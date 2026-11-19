@@ -320856,6 +320856,1518 @@
   "mainStage": null
  },
  {
+  "id": "governors-ball-2024:d1:govballnyc:1200:school-of-rock-queens",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-07",
+  "day": 1,
+  "stage": "GOVBALLNYC",
+  "start": "12:00",
+  "end": "12:30",
+  "printed": "SCHOOL OF ROCK QUEENS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "school-of-rock-queens",
+    "role": "performer"
+   }
+  ],
+  "act": "school-of-rock-queens",
+  "closing": false,
+  "stageLineage": "governors-ball:govballnyc",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d1:govballnyc:1300:blondshell",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-07",
+  "day": 1,
+  "stage": "GOVBALLNYC",
+  "start": "13:00",
+  "end": "13:30",
+  "printed": "BLONDSHELL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "blondshell",
+    "role": "performer"
+   }
+  ],
+  "act": "blondshell",
+  "closing": false,
+  "stageLineage": "governors-ball:govballnyc",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d1:govballnyc:1400:durry",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-07",
+  "day": 1,
+  "stage": "GOVBALLNYC",
+  "start": "14:00",
+  "end": "14:30",
+  "printed": "DURRY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "durry",
+    "role": "performer"
+   }
+  ],
+  "act": "durry",
+  "closing": false,
+  "stageLineage": "governors-ball:govballnyc",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d1:govballnyc:1515:ryan-beatty",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-07",
+  "day": 1,
+  "stage": "GOVBALLNYC",
+  "start": "15:15",
+  "end": "16:00",
+  "printed": "RYAN BEATTY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ryan-beatty",
+    "role": "performer"
+   }
+  ],
+  "act": "ryan-beatty",
+  "closing": false,
+  "stageLineage": "governors-ball:govballnyc",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d1:govballnyc:1645:goth-babe",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-07",
+  "day": 1,
+  "stage": "GOVBALLNYC",
+  "start": "16:45",
+  "end": "17:30",
+  "printed": "GOTH BABE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "goth-babe",
+    "role": "performer"
+   }
+  ],
+  "act": "goth-babe",
+  "closing": false,
+  "stageLineage": "governors-ball:govballnyc",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d1:govballnyc:1830:dominic-fike",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-07",
+  "day": 1,
+  "stage": "GOVBALLNYC",
+  "start": "18:30",
+  "end": "19:30",
+  "printed": "DOMINIC FIKE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dominic-fike",
+    "role": "performer"
+   }
+  ],
+  "act": "dominic-fike",
+  "closing": false,
+  "stageLineage": "governors-ball:govballnyc",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d1:govballnyc:2030:post-malone",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-07",
+  "day": 1,
+  "stage": "GOVBALLNYC",
+  "start": "20:30",
+  "end": null,
+  "printed": "POST MALONE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "post-malone",
+    "role": "performer"
+   }
+  ],
+  "act": "post-malone",
+  "closing": true,
+  "stageLineage": "governors-ball:govballnyc",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d1:gopuff:1230:alex-chapman",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-07",
+  "day": 1,
+  "stage": "GOPUFF",
+  "start": "12:30",
+  "end": "13:00",
+  "printed": "ALEX CHAPMAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alex-chapman",
+    "role": "performer"
+   }
+  ],
+  "act": "alex-chapman",
+  "closing": false,
+  "stageLineage": "governors-ball:gopuff",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d1:gopuff:1330:arcy-drive",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-07",
+  "day": 1,
+  "stage": "GOPUFF",
+  "start": "13:30",
+  "end": "14:00",
+  "printed": "ARCY DRIVE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "arcy-drive",
+    "role": "performer"
+   }
+  ],
+  "act": "arcy-drive",
+  "closing": false,
+  "stageLineage": "governors-ball:gopuff",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d1:gopuff:1430:qveen-herby",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-07",
+  "day": 1,
+  "stage": "GOPUFF",
+  "start": "14:30",
+  "end": "15:15",
+  "printed": "QVEEN HERBY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "qveen-herby",
+    "role": "performer"
+   }
+  ],
+  "act": "qveen-herby",
+  "closing": false,
+  "stageLineage": "governors-ball:gopuff",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d1:gopuff:1600:yung-gravy",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-07",
+  "day": 1,
+  "stage": "GOPUFF",
+  "start": "16:00",
+  "end": "16:45",
+  "printed": "YUNG GRAVY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yung-gravy",
+    "role": "performer"
+   }
+  ],
+  "act": "yung-gravy",
+  "closing": false,
+  "stageLineage": "governors-ball:gopuff",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d1:gopuff:1730:farruko",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-07",
+  "day": 1,
+  "stage": "GOPUFF",
+  "start": "17:30",
+  "end": "18:30",
+  "printed": "FARRUKO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "farruko",
+    "role": "performer"
+   }
+  ],
+  "act": "farruko",
+  "closing": false,
+  "stageLineage": "governors-ball:gopuff",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d1:gopuff:1930:rauw-alejandro",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-07",
+  "day": 1,
+  "stage": "GOPUFF",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "RAUW ALEJANDRO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rauw-alejandro",
+    "role": "performer"
+   }
+  ],
+  "act": "rauw-alejandro",
+  "closing": true,
+  "stageLineage": "governors-ball:gopuff",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d1:ihg-hotels-and-resorts:1200:lauran-hibberd",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-07",
+  "day": 1,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "12:00",
+  "end": "12:30",
+  "printed": "LAURAN HIBBERD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lauran-hibberd",
+    "role": "performer"
+   }
+  ],
+  "act": "lauran-hibberd",
+  "closing": false,
+  "stageLineage": "governors-ball:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d1:ihg-hotels-and-resorts:1300:donna-missal",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-07",
+  "day": 1,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "13:00",
+  "end": "13:30",
+  "printed": "DONNA MISSAL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "donna-missal",
+    "role": "performer"
+   }
+  ],
+  "act": "donna-missal",
+  "closing": false,
+  "stageLineage": "governors-ball:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d1:ihg-hotels-and-resorts:1345:underscores",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-07",
+  "day": 1,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "13:45",
+  "end": "14:15",
+  "printed": "UNDERSCORES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "underscores",
+    "role": "performer"
+   }
+  ],
+  "act": "underscores",
+  "closing": false,
+  "stageLineage": "governors-ball:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d1:ihg-hotels-and-resorts:1440:mimi-webb",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-07",
+  "day": 1,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "14:40",
+  "end": "15:20",
+  "printed": "MIMI WEBB",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mimi-webb",
+    "role": "performer"
+   }
+  ],
+  "act": "mimi-webb",
+  "closing": false,
+  "stageLineage": "governors-ball:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d1:ihg-hotels-and-resorts:1545:flo",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-07",
+  "day": 1,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "15:45",
+  "end": "16:30",
+  "printed": "FLO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "flo",
+    "role": "performer"
+   }
+  ],
+  "act": "flo",
+  "closing": false,
+  "stageLineage": "governors-ball:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d1:ihg-hotels-and-resorts:1700:teezo-touchdown",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-07",
+  "day": 1,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "17:00",
+  "end": "17:45",
+  "printed": "TEEZO TOUCHDOWN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "teezo-touchdown",
+    "role": "performer"
+   }
+  ],
+  "act": "teezo-touchdown",
+  "closing": false,
+  "stageLineage": "governors-ball:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d1:ihg-hotels-and-resorts:1815:alex-g",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-07",
+  "day": 1,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "18:15",
+  "end": "19:00",
+  "printed": "ALEX G",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alex-g",
+    "role": "performer"
+   }
+  ],
+  "act": "alex-g",
+  "closing": false,
+  "stageLineage": "governors-ball:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d1:ihg-hotels-and-resorts:1930:labrinth",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-07",
+  "day": 1,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "LABRINTH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "labrinth",
+    "role": "performer"
+   }
+  ],
+  "act": "labrinth",
+  "closing": true,
+  "stageLineage": "governors-ball:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d2:govballnyc:1200:maz-and-kidd-revel",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-08",
+  "day": 2,
+  "stage": "GOVBALLNYC",
+  "start": "12:00",
+  "end": "12:30",
+  "printed": "MAZ & KIDD REVEL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "maz-and-kidd-revel",
+    "role": "performer"
+   }
+  ],
+  "act": "maz-and-kidd-revel",
+  "closing": false,
+  "stageLineage": "governors-ball:govballnyc",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d2:govballnyc:1300:telescreens",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-08",
+  "day": 2,
+  "stage": "GOVBALLNYC",
+  "start": "13:00",
+  "end": "13:30",
+  "printed": "TELESCREENS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "telescreens",
+    "role": "performer"
+   }
+  ],
+  "act": "telescreens",
+  "closing": false,
+  "stageLineage": "governors-ball:govballnyc",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d2:govballnyc:1400:quarters-of-change",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-08",
+  "day": 2,
+  "stage": "GOVBALLNYC",
+  "start": "14:00",
+  "end": "14:30",
+  "printed": "QUARTERS OF CHANGE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "quarters-of-change",
+    "role": "performer"
+   }
+  ],
+  "act": "quarters-of-change",
+  "closing": false,
+  "stageLineage": "governors-ball:govballnyc",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d2:govballnyc:1515:jessie-murph",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-08",
+  "day": 2,
+  "stage": "GOVBALLNYC",
+  "start": "15:15",
+  "end": "16:05",
+  "printed": "JESSIE MURPH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jessie-murph",
+    "role": "performer"
+   }
+  ],
+  "act": "jessie-murph",
+  "closing": false,
+  "stageLineage": "governors-ball:govballnyc",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d2:govballnyc:1650:sabrina-carpenter",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-08",
+  "day": 2,
+  "stage": "GOVBALLNYC",
+  "start": "16:50",
+  "end": "17:45",
+  "printed": "SABRINA CARPENTER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sabrina-carpenter",
+    "role": "performer"
+   }
+  ],
+  "act": "sabrina-carpenter",
+  "closing": false,
+  "stageLineage": "governors-ball:govballnyc",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d2:govballnyc:1830:carly-rae-jepsen",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-08",
+  "day": 2,
+  "stage": "GOVBALLNYC",
+  "start": "18:30",
+  "end": "19:30",
+  "printed": "CARLY RAE JEPSEN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carly-rae-jepsen",
+    "role": "performer"
+   }
+  ],
+  "act": "carly-rae-jepsen",
+  "closing": false,
+  "stageLineage": "governors-ball:govballnyc",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d2:govballnyc:2030:the-killers",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-08",
+  "day": 2,
+  "stage": "GOVBALLNYC",
+  "start": "20:30",
+  "end": null,
+  "printed": "THE KILLERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-killers",
+    "role": "performer"
+   }
+  ],
+  "act": "the-killers",
+  "closing": true,
+  "stageLineage": "governors-ball:govballnyc",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d2:gopuff:1230:the-thing",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-08",
+  "day": 2,
+  "stage": "GOPUFF",
+  "start": "12:30",
+  "end": "13:00",
+  "printed": "THE THING",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-thing",
+    "role": "performer"
+   }
+  ],
+  "act": "the-thing",
+  "closing": false,
+  "stageLineage": "governors-ball:gopuff",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d2:gopuff:1330:riovaz",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-08",
+  "day": 2,
+  "stage": "GOPUFF",
+  "start": "13:30",
+  "end": "14:00",
+  "printed": "RIOVAZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "riovaz",
+    "role": "performer"
+   }
+  ],
+  "act": "riovaz",
+  "closing": false,
+  "stageLineage": "governors-ball:gopuff",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d2:gopuff:1430:bakar",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-08",
+  "day": 2,
+  "stage": "GOPUFF",
+  "start": "14:30",
+  "end": "15:15",
+  "printed": "BAKAR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bakar",
+    "role": "performer"
+   }
+  ],
+  "act": "bakar",
+  "closing": false,
+  "stageLineage": "governors-ball:gopuff",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d2:gopuff:1605:doechii",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-08",
+  "day": 2,
+  "stage": "GOPUFF",
+  "start": "16:05",
+  "end": "16:50",
+  "printed": "DOECHII",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "doechii",
+    "role": "performer"
+   }
+  ],
+  "act": "doechii",
+  "closing": false,
+  "stageLineage": "governors-ball:gopuff",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d2:gopuff:1745:sexyy-red",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-08",
+  "day": 2,
+  "stage": "GOPUFF",
+  "start": "17:45",
+  "end": "18:30",
+  "printed": "SEXYY RED",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sexyy-red",
+    "role": "performer"
+   }
+  ],
+  "act": "sexyy-red",
+  "closing": false,
+  "stageLineage": "governors-ball:gopuff",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d2:gopuff:1930:21-savage",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-08",
+  "day": 2,
+  "stage": "GOPUFF",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "21 SAVAGE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "21-savage",
+    "role": "performer"
+   }
+  ],
+  "act": "21-savage",
+  "closing": true,
+  "stageLineage": "governors-ball:gopuff",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d2:ihg-hotels-and-resorts:1200:kids-rock-for-kids",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-08",
+  "day": 2,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "12:00",
+  "end": "12:30",
+  "printed": "KIDS ROCK FOR KIDS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kids-rock-for-kids",
+    "role": "performer"
+   }
+  ],
+  "act": "kids-rock-for-kids",
+  "closing": false,
+  "stageLineage": "governors-ball:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d2:ihg-hotels-and-resorts:1245:little-stranger",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-08",
+  "day": 2,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "12:45",
+  "end": "13:15",
+  "printed": "LITTLE STRANGER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "little-stranger",
+    "role": "performer"
+   }
+  ],
+  "act": "little-stranger",
+  "closing": false,
+  "stageLineage": "governors-ball:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d2:ihg-hotels-and-resorts:1345:skizzy-mars",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-08",
+  "day": 2,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "13:45",
+  "end": "14:15",
+  "printed": "SKIZZY MARS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "skizzy-mars",
+    "role": "performer"
+   }
+  ],
+  "act": "skizzy-mars",
+  "closing": false,
+  "stageLineage": "governors-ball:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d2:ihg-hotels-and-resorts:1440:claire-rosinkranz",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-08",
+  "day": 2,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "14:40",
+  "end": "15:20",
+  "printed": "CLAIRE ROSINKRANZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "claire-rosinkranz",
+    "role": "performer"
+   }
+  ],
+  "act": "claire-rosinkranz",
+  "closing": false,
+  "stageLineage": "governors-ball:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d2:ihg-hotels-and-resorts:1545:p1harmony",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-08",
+  "day": 2,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "15:45",
+  "end": "16:30",
+  "printed": "P1HARMONY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "p1harmony",
+    "role": "performer"
+   }
+  ],
+  "act": "p1harmony",
+  "closing": false,
+  "stageLineage": "governors-ball:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d2:ihg-hotels-and-resorts:1700:d4vd",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-08",
+  "day": 2,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "17:00",
+  "end": "17:45",
+  "printed": "D4VD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "d4vd",
+    "role": "performer"
+   }
+  ],
+  "act": "d4vd",
+  "closing": false,
+  "stageLineage": "governors-ball:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d2:ihg-hotels-and-resorts:1815:hippo-campus",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-08",
+  "day": 2,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "18:15",
+  "end": "19:00",
+  "printed": "HIPPO CAMPUS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hippo-campus",
+    "role": "performer"
+   }
+  ],
+  "act": "hippo-campus",
+  "closing": false,
+  "stageLineage": "governors-ball:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d2:ihg-hotels-and-resorts:1930:tv-girl",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-08",
+  "day": 2,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "TV GIRL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tv-girl",
+    "role": "performer"
+   }
+  ],
+  "act": "tv-girl",
+  "closing": true,
+  "stageLineage": "governors-ball:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d3:govballnyc:1200:school-of-rock-brooklyn",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-09",
+  "day": 3,
+  "stage": "GOVBALLNYC",
+  "start": "12:00",
+  "end": "12:30",
+  "printed": "SCHOOL OF ROCK BROOKLYN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "school-of-rock-brooklyn",
+    "role": "performer"
+   }
+  ],
+  "act": "school-of-rock-brooklyn",
+  "closing": false,
+  "stageLineage": "governors-ball:govballnyc",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d3:govballnyc:1300:husbands",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-09",
+  "day": 3,
+  "stage": "GOVBALLNYC",
+  "start": "13:00",
+  "end": "13:30",
+  "printed": "HUSBANDS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "husbands",
+    "role": "performer"
+   }
+  ],
+  "act": "husbands",
+  "closing": false,
+  "stageLineage": "governors-ball:govballnyc",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d3:govballnyc:1400:elyanna",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-09",
+  "day": 3,
+  "stage": "GOVBALLNYC",
+  "start": "14:00",
+  "end": "14:40",
+  "printed": "ELYANNA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "elyanna",
+    "role": "performer"
+   }
+  ],
+  "act": "elyanna",
+  "closing": false,
+  "stageLineage": "governors-ball:govballnyc",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d3:govballnyc:1520:malcolm-todd",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-09",
+  "day": 3,
+  "stage": "GOVBALLNYC",
+  "start": "15:20",
+  "end": "16:00",
+  "printed": "MALCOLM TODD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "malcolm-todd",
+    "role": "performer"
+   }
+  ],
+  "act": "malcolm-todd",
+  "closing": false,
+  "stageLineage": "governors-ball:govballnyc",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d3:govballnyc:1645:chappell-roan",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-09",
+  "day": 3,
+  "stage": "GOVBALLNYC",
+  "start": "16:45",
+  "end": "17:30",
+  "printed": "CHAPPELL ROAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chappell-roan",
+    "role": "performer"
+   }
+  ],
+  "act": "chappell-roan",
+  "closing": false,
+  "stageLineage": "governors-ball:govballnyc",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d3:govballnyc:1830:renee-rapp",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-09",
+  "day": 3,
+  "stage": "GOVBALLNYC",
+  "start": "18:30",
+  "end": "19:30",
+  "printed": "RENEÉ RAPP",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "renee-rapp",
+    "role": "performer"
+   }
+  ],
+  "act": "renee-rapp",
+  "closing": false,
+  "stageLineage": "governors-ball:govballnyc",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d3:govballnyc:2030:sza",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-09",
+  "day": 3,
+  "stage": "GOVBALLNYC",
+  "start": "20:30",
+  "end": null,
+  "printed": "SZA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sza",
+    "role": "performer"
+   }
+  ],
+  "act": "sza",
+  "closing": true,
+  "stageLineage": "governors-ball:govballnyc",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d3:gopuff:1230:hotline-tnt",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-09",
+  "day": 3,
+  "stage": "GOPUFF",
+  "start": "12:30",
+  "end": "13:00",
+  "printed": "HOTLINE TNT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hotline-tnt",
+    "role": "performer"
+   }
+  ],
+  "act": "hotline-tnt",
+  "closing": false,
+  "stageLineage": "governors-ball:gopuff",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d3:gopuff:1330:baby-queen",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-09",
+  "day": 3,
+  "stage": "GOPUFF",
+  "start": "13:30",
+  "end": "14:00",
+  "printed": "BABY QUEEN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "baby-queen",
+    "role": "performer"
+   }
+  ],
+  "act": "baby-queen",
+  "closing": false,
+  "stageLineage": "governors-ball:gopuff",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d3:gopuff:1440:saint-levant",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-09",
+  "day": 3,
+  "stage": "GOPUFF",
+  "start": "14:40",
+  "end": "15:20",
+  "printed": "SAINT LEVANT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "saint-levant",
+    "role": "performer"
+   }
+  ],
+  "act": "saint-levant",
+  "closing": false,
+  "stageLineage": "governors-ball:gopuff",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d3:gopuff:1600:kevin-abstract",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-09",
+  "day": 3,
+  "stage": "GOPUFF",
+  "start": "16:00",
+  "end": "16:45",
+  "printed": "KEVIN ABSTRACT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kevin-abstract",
+    "role": "performer"
+   }
+  ],
+  "act": "kevin-abstract",
+  "closing": false,
+  "stageLineage": "governors-ball:gopuff",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d3:gopuff:1730:don-toliver",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-09",
+  "day": 3,
+  "stage": "GOPUFF",
+  "start": "17:30",
+  "end": "18:30",
+  "printed": "DON TOLIVER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "don-toliver",
+    "role": "performer"
+   }
+  ],
+  "act": "don-toliver",
+  "closing": false,
+  "stageLineage": "governors-ball:gopuff",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d3:gopuff:1930:peso-pluma",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-09",
+  "day": 3,
+  "stage": "GOPUFF",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "PESO PLUMA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "peso-pluma",
+    "role": "performer"
+   }
+  ],
+  "act": "peso-pluma",
+  "closing": true,
+  "stageLineage": "governors-ball:gopuff",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d3:ihg-hotels-and-resorts:1200:the-hails",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-09",
+  "day": 3,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "12:00",
+  "end": "12:30",
+  "printed": "THE HAILS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-hails",
+    "role": "performer"
+   }
+  ],
+  "act": "the-hails",
+  "closing": false,
+  "stageLineage": "governors-ball:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d3:ihg-hotels-and-resorts:1255:fcukers",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-09",
+  "day": 3,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "12:55",
+  "end": "13:25",
+  "printed": "FCUKERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fcukers",
+    "role": "performer"
+   }
+  ],
+  "act": "fcukers",
+  "closing": false,
+  "stageLineage": "governors-ball:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d3:ihg-hotels-and-resorts:1345:g-flip",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-09",
+  "day": 3,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "13:45",
+  "end": "14:15",
+  "printed": "G FLIP",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "g-flip",
+    "role": "performer"
+   }
+  ],
+  "act": "g-flip",
+  "closing": false,
+  "stageLineage": "governors-ball:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d3:ihg-hotels-and-resorts:1440:geese",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-09",
+  "day": 3,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "14:40",
+  "end": "15:20",
+  "printed": "GEESE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "geese",
+    "role": "performer"
+   }
+  ],
+  "act": "geese",
+  "closing": false,
+  "stageLineage": "governors-ball:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d3:ihg-hotels-and-resorts:1545:beach-fossils",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-09",
+  "day": 3,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "15:45",
+  "end": "16:30",
+  "printed": "BEACH FOSSILS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "beach-fossils",
+    "role": "performer"
+   }
+  ],
+  "act": "beach-fossils",
+  "closing": false,
+  "stageLineage": "governors-ball:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d3:ihg-hotels-and-resorts:1700:cannons",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-09",
+  "day": 3,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "17:00",
+  "end": "17:45",
+  "printed": "CANNONS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cannons",
+    "role": "performer"
+   }
+  ],
+  "act": "cannons",
+  "closing": false,
+  "stageLineage": "governors-ball:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d3:ihg-hotels-and-resorts:1815:stephen-sanchez",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-09",
+  "day": 3,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "18:15",
+  "end": "19:00",
+  "printed": "STEPHEN SANCHEZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "stephen-sanchez",
+    "role": "performer"
+   }
+  ],
+  "act": "stephen-sanchez",
+  "closing": false,
+  "stageLineage": "governors-ball:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "governors-ball-2024:d3:ihg-hotels-and-resorts:1930:faye-webster",
+  "source": "edition",
+  "festivalId": "governors-ball-2024",
+  "festivalBrand": "governors-ball",
+  "year": 2024,
+  "date": "2024-06-09",
+  "day": 3,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "FAYE WEBSTER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "faye-webster",
+    "role": "performer"
+   }
+  ],
+  "act": "faye-webster",
+  "closing": true,
+  "stageLineage": "governors-ball:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
   "id": "governors-ball-2025:d1:govballnyc:1215:school-of-rock-queens",
   "source": "edition",
   "festivalId": "governors-ball-2025",
@@ -372897,6 +374409,5531 @@
   "act": "dj-zebo",
   "closing": null,
   "stageLineage": "lollapalooza:vip-lolla-lounge",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:bud-light:1300:matt-hansen",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "BUD LIGHT",
+  "start": "13:00",
+  "end": "13:45",
+  "printed": "MATT HANSEN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "matt-hansen",
+    "role": "performer"
+   }
+  ],
+  "act": "matt-hansen",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:bud-light:1445:sam-barber",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "BUD LIGHT",
+  "start": "14:45",
+  "end": "15:45",
+  "printed": "SAM BARBER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sam-barber",
+    "role": "performer"
+   }
+  ],
+  "act": "sam-barber",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:bud-light:1645:jungle",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "BUD LIGHT",
+  "start": "16:45",
+  "end": "17:45",
+  "printed": "JUNGLE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jungle",
+    "role": "performer"
+   }
+  ],
+  "act": "jungle",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:bud-light:1845:lizzy-mcalpine",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "BUD LIGHT",
+  "start": "18:45",
+  "end": "19:45",
+  "printed": "LIZZY MCALPINE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lizzy-mcalpine",
+    "role": "performer"
+   }
+  ],
+  "act": "lizzy-mcalpine",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:bud-light:2030:hozier",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "BUD LIGHT",
+  "start": "20:30",
+  "end": "22:00",
+  "printed": "HOZIER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hozier",
+    "role": "performer"
+   }
+  ],
+  "act": "hozier",
+  "closing": true,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:tito-s-handmade-vodka:1215:abby-holliday",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "12:15",
+  "end": "13:00",
+  "printed": "ABBY HOLLIDAY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "abby-holliday",
+    "role": "performer"
+   }
+  ],
+  "act": "abby-holliday",
+  "closing": false,
+  "stageLineage": "lollapalooza:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:tito-s-handmade-vodka:1345:fleshwater",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "13:45",
+  "end": "14:45",
+  "printed": "FLESHWATER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fleshwater",
+    "role": "performer"
+   }
+  ],
+  "act": "fleshwater",
+  "closing": false,
+  "stageLineage": "lollapalooza:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:tito-s-handmade-vodka:1545:d4vd",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "15:45",
+  "end": "16:45",
+  "printed": "D4VD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "d4vd",
+    "role": "performer"
+   }
+  ],
+  "act": "d4vd",
+  "closing": false,
+  "stageLineage": "lollapalooza:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:tito-s-handmade-vodka:1745:the-japanese-house",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "17:45",
+  "end": "18:45",
+  "printed": "THE JAPANESE HOUSE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-japanese-house",
+    "role": "performer"
+   }
+  ],
+  "act": "the-japanese-house",
+  "closing": false,
+  "stageLineage": "lollapalooza:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:tito-s-handmade-vodka:1945:camden-cox",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "19:45",
+  "end": "20:30",
+  "printed": "CAMDEN COX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "camden-cox",
+    "role": "performer"
+   }
+  ],
+  "act": "camden-cox",
+  "closing": true,
+  "stageLineage": "lollapalooza:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:bacardi:1200:worry-club",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "BACARDÍ",
+  "start": "12:00",
+  "end": "12:30",
+  "printed": "WORRY CLUB",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "worry-club",
+    "role": "performer"
+   }
+  ],
+  "act": "worry-club",
+  "closing": false,
+  "stageLineage": "lollapalooza:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:bacardi:1250:quannnic",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "BACARDÍ",
+  "start": "12:50",
+  "end": "13:30",
+  "printed": "QUANNNIC",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "quannnic",
+    "role": "performer"
+   }
+  ],
+  "act": "quannnic",
+  "closing": false,
+  "stageLineage": "lollapalooza:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:bacardi:1350:blondshell",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "BACARDÍ",
+  "start": "13:50",
+  "end": "14:30",
+  "printed": "BLONDSHELL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "blondshell",
+    "role": "performer"
+   }
+  ],
+  "act": "blondshell",
+  "closing": false,
+  "stageLineage": "lollapalooza:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:bacardi:1450:riovaz",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "BACARDÍ",
+  "start": "14:50",
+  "end": "15:30",
+  "printed": "RIOVAZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "riovaz",
+    "role": "performer"
+   }
+  ],
+  "act": "riovaz",
+  "closing": false,
+  "stageLineage": "lollapalooza:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:bacardi:1600:elyanna",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "BACARDÍ",
+  "start": "16:00",
+  "end": "16:45",
+  "printed": "ELYANNA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "elyanna",
+    "role": "performer"
+   }
+  ],
+  "act": "elyanna",
+  "closing": false,
+  "stageLineage": "lollapalooza:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:bacardi:1715:gioli-and-assia",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "BACARDÍ",
+  "start": "17:15",
+  "end": "18:00",
+  "printed": "GIOLÌ & ASSIA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gioli-and-assia",
+    "role": "performer"
+   }
+  ],
+  "act": "gioli-and-assia",
+  "closing": false,
+  "stageLineage": "lollapalooza:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:bacardi:1830:saint-levant",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "BACARDÍ",
+  "start": "18:30",
+  "end": "19:15",
+  "printed": "SAINT LEVANT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "saint-levant",
+    "role": "performer"
+   }
+  ],
+  "act": "saint-levant",
+  "closing": false,
+  "stageLineage": "lollapalooza:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:bacardi:1945:flo",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "BACARDÍ",
+  "start": "19:45",
+  "end": "20:30",
+  "printed": "FLO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "flo",
+    "role": "performer"
+   }
+  ],
+  "act": "flo",
+  "closing": false,
+  "stageLineage": "lollapalooza:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:bacardi:2100:da-i-freyr",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "BACARDÍ",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "DAÐI FREYR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dadi-freyr",
+    "role": "performer"
+   }
+  ],
+  "act": "dadi-freyr",
+  "closing": true,
+  "stageLineage": "lollapalooza:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:bmi:1300:chance-emerson",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "BMI",
+  "start": "13:00",
+  "end": "13:40",
+  "printed": "CHANCE EMERSON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chance-emerson",
+    "role": "performer"
+   }
+  ],
+  "act": "chance-emerson",
+  "closing": false,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:bmi:1410:goldie-boutilier",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "BMI",
+  "start": "14:10",
+  "end": "14:50",
+  "printed": "GOLDIE BOUTILIER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "goldie-boutilier",
+    "role": "performer"
+   }
+  ],
+  "act": "goldie-boutilier",
+  "closing": false,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:bmi:1520:brenn",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "BMI",
+  "start": "15:20",
+  "end": "16:00",
+  "printed": "BRENN!",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "brenn",
+    "role": "performer"
+   }
+  ],
+  "act": "brenn",
+  "closing": false,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:bmi:1630:wolves-of-glendale",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "BMI",
+  "start": "16:30",
+  "end": "17:10",
+  "printed": "WOLVES OF GLENDALE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wolves-of-glendale",
+    "role": "performer"
+   }
+  ],
+  "act": "wolves-of-glendale",
+  "closing": false,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:bmi:1740:walter-the-producer",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "BMI",
+  "start": "17:40",
+  "end": "18:20",
+  "printed": "WALTER THE PRODUCER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "walter-the-producer",
+    "role": "performer"
+   }
+  ],
+  "act": "walter-the-producer",
+  "closing": false,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:bmi:1850:adan-diaz",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "BMI",
+  "start": "18:50",
+  "end": "19:30",
+  "printed": "ADAN DIAZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "adan-diaz",
+    "role": "performer"
+   }
+  ],
+  "act": "adan-diaz",
+  "closing": true,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:kidzapalooza:1200:123-andres",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "KIDZAPALOOZA",
+  "start": "12:00",
+  "end": "12:30",
+  "printed": "123 ANDRÉS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "123-andres",
+    "role": "performer"
+   }
+  ],
+  "act": "123-andres",
+  "closing": false,
+  "stageLineage": "lollapalooza:kidzapalooza",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:kidzapalooza:1330:school-of-rock-allstars",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "KIDZAPALOOZA",
+  "start": "13:30",
+  "end": "14:00",
+  "printed": "SCHOOL OF ROCK ALLSTARS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "school-of-rock-allstars",
+    "role": "performer"
+   }
+  ],
+  "act": "school-of-rock-allstars",
+  "closing": false,
+  "stageLineage": "lollapalooza:kidzapalooza",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:kidzapalooza:1500:taj-farrant",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "KIDZAPALOOZA",
+  "start": "15:00",
+  "end": "15:30",
+  "printed": "TAJ FARRANT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "taj-farrant",
+    "role": "performer"
+   }
+  ],
+  "act": "taj-farrant",
+  "closing": false,
+  "stageLineage": "lollapalooza:kidzapalooza",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:kidzapalooza:1715:pierce-freelon",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "KIDZAPALOOZA",
+  "start": "17:15",
+  "end": "17:45",
+  "printed": "PIERCE FREELON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pierce-freelon",
+    "role": "performer"
+   }
+  ],
+  "act": "pierce-freelon",
+  "closing": true,
+  "stageLineage": "lollapalooza:kidzapalooza",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:perry-s:1200:camden-cox",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "PERRY'S",
+  "start": "12:00",
+  "end": "12:45",
+  "printed": "CAMDEN COX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "camden-cox",
+    "role": "performer"
+   }
+  ],
+  "act": "camden-cox",
+  "closing": false,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:perry-s:1255:brandi-cyrus",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "PERRY'S",
+  "start": "12:55",
+  "end": "13:40",
+  "printed": "BRANDI CYRUS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "brandi-cyrus",
+    "role": "performer"
+   }
+  ],
+  "act": "brandi-cyrus",
+  "closing": false,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:perry-s:1350:spinall",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "PERRY'S",
+  "start": "13:50",
+  "end": "14:50",
+  "printed": "SPINALL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "spinall",
+    "role": "performer"
+   }
+  ],
+  "act": "spinall",
+  "closing": false,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:perry-s:1500:kasbo",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "PERRY'S",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "KASBO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kasbo",
+    "role": "performer"
+   }
+  ],
+  "act": "kasbo",
+  "closing": false,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:perry-s:1610:walker-and-royce",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "PERRY'S",
+  "start": "16:10",
+  "end": "17:10",
+  "printed": "WALKER & ROYCE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "walker-and-royce",
+    "role": "performer"
+   }
+  ],
+  "act": "walker-and-royce",
+  "closing": false,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:perry-s:1720:farley-jackmaster-funk",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "PERRY'S",
+  "start": "17:20",
+  "end": "17:50",
+  "printed": "FARLEY \"JACKMASTER\" FUNK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "farley-jackmaster-funk",
+    "role": "performer"
+   }
+  ],
+  "act": "farley-jackmaster-funk",
+  "closing": false,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:perry-s:1800:don-diablo",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "PERRY'S",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "DON DIABLO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "don-diablo",
+    "role": "performer"
+   }
+  ],
+  "act": "don-diablo",
+  "closing": false,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:perry-s:1915:mochakk",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "PERRY'S",
+  "start": "19:15",
+  "end": "20:15",
+  "printed": "MOCHAKK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mochakk",
+    "role": "performer"
+   }
+  ],
+  "act": "mochakk",
+  "closing": false,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:perry-s:2030:fisher",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "PERRY'S",
+  "start": "20:30",
+  "end": "21:45",
+  "printed": "FISHER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fisher",
+    "role": "performer"
+   }
+  ],
+  "act": "fisher",
+  "closing": true,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:ihg-hotels-and-resorts:1245:been-stellar",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "12:45",
+  "end": "13:30",
+  "printed": "BEEN STELLAR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "been-stellar",
+    "role": "performer"
+   }
+  ],
+  "act": "been-stellar",
+  "closing": false,
+  "stageLineage": "lollapalooza:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:ihg-hotels-and-resorts:1415:bigxthaplug",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "14:15",
+  "end": "15:15",
+  "printed": "BIGXTHAPLUG",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bigxthaplug",
+    "role": "performer"
+   }
+  ],
+  "act": "bigxthaplug",
+  "closing": false,
+  "stageLineage": "lollapalooza:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:ihg-hotels-and-resorts:1600:olivia-dean",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "OLIVIA DEAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "olivia-dean",
+    "role": "performer"
+   }
+  ],
+  "act": "olivia-dean",
+  "closing": false,
+  "stageLineage": "lollapalooza:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:ihg-hotels-and-resorts:1800:kesha",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "KESHA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kesha",
+    "role": "performer"
+   }
+  ],
+  "act": "kesha",
+  "closing": false,
+  "stageLineage": "lollapalooza:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:ihg-hotels-and-resorts:2000:benson-boone",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "BENSON BOONE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "benson-boone",
+    "role": "performer"
+   }
+  ],
+  "act": "benson-boone",
+  "closing": true,
+  "stageLineage": "lollapalooza:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:t-mobile:1330:mette",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "T-MOBILE",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "METTE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mette",
+    "role": "performer"
+   }
+  ],
+  "act": "mette",
+  "closing": false,
+  "stageLineage": "lollapalooza:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:t-mobile:1515:tyla",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "T-MOBILE",
+  "start": "15:15",
+  "end": "16:00",
+  "printed": "TYLA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tyla",
+    "role": "performer"
+   }
+  ],
+  "act": "tyla",
+  "closing": false,
+  "stageLineage": "lollapalooza:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:t-mobile:1700:chappell-roan",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "T-MOBILE",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "CHAPPELL ROAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chappell-roan",
+    "role": "performer"
+   }
+  ],
+  "act": "chappell-roan",
+  "closing": false,
+  "stageLineage": "lollapalooza:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:t-mobile:1900:labrinth",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "T-MOBILE",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "LABRINTH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "labrinth",
+    "role": "performer"
+   }
+  ],
+  "act": "labrinth",
+  "closing": false,
+  "stageLineage": "lollapalooza:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:t-mobile:2100:megan-thee-stallion",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "T-MOBILE",
+  "start": "21:00",
+  "end": null,
+  "printed": "MEGAN THEE STALLION",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "megan-thee-stallion",
+    "role": "performer"
+   }
+  ],
+  "act": "megan-thee-stallion",
+  "closing": true,
+  "stageLineage": "lollapalooza:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:toyota-music-den:1400:adan-diaz",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "TOYOTA MUSIC DEN",
+  "start": "14:00",
+  "end": "14:30",
+  "printed": "ADAN DIAZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "adan-diaz",
+    "role": "performer"
+   }
+  ],
+  "act": "adan-diaz",
+  "closing": false,
+  "stageLineage": "lollapalooza:toyota-music-den",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:toyota-music-den:1500:been-stellar",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "TOYOTA MUSIC DEN",
+  "start": "15:00",
+  "end": "15:30",
+  "printed": "BEEN STELLAR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "been-stellar",
+    "role": "performer"
+   }
+  ],
+  "act": "been-stellar",
+  "closing": false,
+  "stageLineage": "lollapalooza:toyota-music-den",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:toyota-music-den:1600:goldie-boutilier",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "TOYOTA MUSIC DEN",
+  "start": "16:00",
+  "end": "16:30",
+  "printed": "GOLDIE BOUTILIER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "goldie-boutilier",
+    "role": "performer"
+   }
+  ],
+  "act": "goldie-boutilier",
+  "closing": false,
+  "stageLineage": "lollapalooza:toyota-music-den",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:toyota-music-den:1700:abby-holliday",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "TOYOTA MUSIC DEN",
+  "start": "17:00",
+  "end": "17:30",
+  "printed": "ABBY HOLLIDAY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "abby-holliday",
+    "role": "performer"
+   }
+  ],
+  "act": "abby-holliday",
+  "closing": false,
+  "stageLineage": "lollapalooza:toyota-music-den",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:toyota-music-den:1800:matt-hansen",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "TOYOTA MUSIC DEN",
+  "start": "18:00",
+  "end": "18:30",
+  "printed": "MATT HANSEN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "matt-hansen",
+    "role": "performer"
+   }
+  ],
+  "act": "matt-hansen",
+  "closing": true,
+  "stageLineage": "lollapalooza:toyota-music-den",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:bud-light-backyard:1400:tiana-verhagen",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "BUD LIGHT BACKYARD",
+  "start": "14:00",
+  "end": "16:00",
+  "printed": "TIANA VERHAGEN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tiana-verhagen",
+    "role": "performer"
+   }
+  ],
+  "act": "tiana-verhagen",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light-backyard",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:bud-light-backyard:1630:matt-hansen",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "BUD LIGHT BACKYARD",
+  "start": "16:30",
+  "end": "17:00",
+  "printed": "MATT HANSEN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "matt-hansen",
+    "role": "performer"
+   }
+  ],
+  "act": "matt-hansen",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light-backyard",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:bud-light-backyard:1700:mr-shaw",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "BUD LIGHT BACKYARD",
+  "start": "17:00",
+  "end": "18:05",
+  "printed": "MR.SHAW",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mr-shaw",
+    "role": "performer"
+   }
+  ],
+  "act": "mr-shaw",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light-backyard",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:bud-light-backyard:1835:abby-holliday",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "BUD LIGHT BACKYARD",
+  "start": "18:35",
+  "end": "19:05",
+  "printed": "ABBY HOLLIDAY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "abby-holliday",
+    "role": "performer"
+   }
+  ],
+  "act": "abby-holliday",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light-backyard",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d1:bud-light-backyard:1905:mr-shaw",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-01",
+  "day": 1,
+  "stage": "BUD LIGHT BACKYARD",
+  "start": "19:05",
+  "end": "20:00",
+  "printed": "MR.SHAW",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mr-shaw",
+    "role": "performer"
+   }
+  ],
+  "act": "mr-shaw",
+  "closing": true,
+  "stageLineage": "lollapalooza:bud-light-backyard",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:bud-light:1300:sundial",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "BUD LIGHT",
+  "start": "13:00",
+  "end": "13:45",
+  "printed": "SUNDIAL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sundial",
+    "role": "performer"
+   }
+  ],
+  "act": "sundial",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:bud-light:1445:wilderado",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "BUD LIGHT",
+  "start": "14:45",
+  "end": "15:45",
+  "printed": "WILDERADO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wilderado",
+    "role": "performer"
+   }
+  ],
+  "act": "wilderado",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:bud-light:1645:sexyy-red",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "BUD LIGHT",
+  "start": "16:45",
+  "end": "17:45",
+  "printed": "SEXYY RED",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sexyy-red",
+    "role": "performer"
+   }
+  ],
+  "act": "sexyy-red",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:bud-light:1845:laufey-with-the-chicago-philharmonic",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "BUD LIGHT",
+  "start": "18:45",
+  "end": "19:45",
+  "printed": "LAUFEY WITH THE CHICAGO PHILHARMONIC",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "laufey-with-the-chicago-philharmonic",
+    "role": "act"
+   }
+  ],
+  "act": "laufey-with-the-chicago-philharmonic",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null,
+  "review": "feat / with billing"
+ },
+ {
+  "id": "lollapalooza-2024:d2:bud-light:2030:stray-kids",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "BUD LIGHT",
+  "start": "20:30",
+  "end": "22:00",
+  "printed": "STRAY KIDS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "stray-kids",
+    "role": "performer"
+   }
+  ],
+  "act": "stray-kids",
+  "closing": true,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:tito-s-handmade-vodka:1215:the-stews",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "12:15",
+  "end": "13:00",
+  "printed": "THE STEWS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-stews",
+    "role": "performer"
+   }
+  ],
+  "act": "the-stews",
+  "closing": false,
+  "stageLineage": "lollapalooza:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:tito-s-handmade-vodka:1345:geese",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "13:45",
+  "end": "14:45",
+  "printed": "GEESE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "geese",
+    "role": "performer"
+   }
+  ],
+  "act": "geese",
+  "closing": false,
+  "stageLineage": "lollapalooza:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:tito-s-handmade-vodka:1545:raye",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "15:45",
+  "end": "16:45",
+  "printed": "RAYE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "raye",
+    "role": "performer"
+   }
+  ],
+  "act": "raye",
+  "closing": false,
+  "stageLineage": "lollapalooza:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:tito-s-handmade-vodka:1745:faye-webster",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "17:45",
+  "end": "18:45",
+  "printed": "FAYE WEBSTER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "faye-webster",
+    "role": "performer"
+   }
+  ],
+  "act": "faye-webster",
+  "closing": false,
+  "stageLineage": "lollapalooza:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:tito-s-handmade-vodka:1945:brandi-cyrus",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "19:45",
+  "end": "20:30",
+  "printed": "BRANDI CYRUS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "brandi-cyrus",
+    "role": "performer"
+   }
+  ],
+  "act": "brandi-cyrus",
+  "closing": true,
+  "stageLineage": "lollapalooza:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:bacardi:1200:fifteenoeight",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "BACARDÍ",
+  "start": "12:00",
+  "end": "12:30",
+  "printed": "FIFTEENOEIGHT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fifteenoeight",
+    "role": "performer"
+   }
+  ],
+  "act": "fifteenoeight",
+  "closing": false,
+  "stageLineage": "lollapalooza:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:bacardi:1250:godly-the-ruler",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "BACARDÍ",
+  "start": "12:50",
+  "end": "13:30",
+  "printed": "GODLY THE RULER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "godly-the-ruler",
+    "role": "performer"
+   }
+  ],
+  "act": "godly-the-ruler",
+  "closing": false,
+  "stageLineage": "lollapalooza:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:bacardi:1350:wisp",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "BACARDÍ",
+  "start": "13:50",
+  "end": "14:30",
+  "printed": "WISP",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wisp",
+    "role": "performer"
+   }
+  ],
+  "act": "wisp",
+  "closing": false,
+  "stageLineage": "lollapalooza:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:bacardi:1450:blu-detiger",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "BACARDÍ",
+  "start": "14:50",
+  "end": "15:30",
+  "printed": "BLU DETIGER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "blu-detiger",
+    "role": "performer"
+   }
+  ],
+  "act": "blu-detiger",
+  "closing": false,
+  "stageLineage": "lollapalooza:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:bacardi:1600:malcolm-todd",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "BACARDÍ",
+  "start": "16:00",
+  "end": "16:45",
+  "printed": "MALCOLM TODD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "malcolm-todd",
+    "role": "performer"
+   }
+  ],
+  "act": "malcolm-todd",
+  "closing": false,
+  "stageLineage": "lollapalooza:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:bacardi:1715:lola-young",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "BACARDÍ",
+  "start": "17:15",
+  "end": "18:00",
+  "printed": "LOLA YOUNG",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lola-young",
+    "role": "performer"
+   }
+  ],
+  "act": "lola-young",
+  "closing": false,
+  "stageLineage": "lollapalooza:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:bacardi:1830:ryan-beatty",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "BACARDÍ",
+  "start": "18:30",
+  "end": "19:15",
+  "printed": "RYAN BEATTY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ryan-beatty",
+    "role": "performer"
+   }
+  ],
+  "act": "ryan-beatty",
+  "closing": false,
+  "stageLineage": "lollapalooza:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:bacardi:1945:megan-moroney",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "BACARDÍ",
+  "start": "19:45",
+  "end": "20:30",
+  "printed": "MEGAN MORONEY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "megan-moroney",
+    "role": "performer"
+   }
+  ],
+  "act": "megan-moroney",
+  "closing": false,
+  "stageLineage": "lollapalooza:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:bacardi:2100:in-this-moment",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "BACARDÍ",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "IN THIS MOMENT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "in-this-moment",
+    "role": "performer"
+   }
+  ],
+  "act": "in-this-moment",
+  "closing": true,
+  "stageLineage": "lollapalooza:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:bmi:1300:cale-tyson",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "BMI",
+  "start": "13:00",
+  "end": "13:40",
+  "printed": "CALE TYSON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cale-tyson",
+    "role": "performer"
+   }
+  ],
+  "act": "cale-tyson",
+  "closing": false,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:bmi:1410:taylor-acorn",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "BMI",
+  "start": "14:10",
+  "end": "14:50",
+  "printed": "TAYLOR ACORN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "taylor-acorn",
+    "role": "performer"
+   }
+  ],
+  "act": "taylor-acorn",
+  "closing": false,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:bmi:1520:ava-maybee",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "BMI",
+  "start": "15:20",
+  "end": "16:00",
+  "printed": "AVA MAYBEE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ava-maybee",
+    "role": "performer"
+   }
+  ],
+  "act": "ava-maybee",
+  "closing": false,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:bmi:1630:tiny-habits",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "BMI",
+  "start": "16:30",
+  "end": "17:10",
+  "printed": "TINY HABITS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tiny-habits",
+    "role": "performer"
+   }
+  ],
+  "act": "tiny-habits",
+  "closing": false,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:bmi:1740:the-national-parks",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "BMI",
+  "start": "17:40",
+  "end": "18:20",
+  "printed": "THE NATIONAL PARKS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-national-parks",
+    "role": "performer"
+   }
+  ],
+  "act": "the-national-parks",
+  "closing": false,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:bmi:1850:mckenna-grace",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "BMI",
+  "start": "18:50",
+  "end": "19:30",
+  "printed": "MCKENNA GRACE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mckenna-grace",
+    "role": "performer"
+   }
+  ],
+  "act": "mckenna-grace",
+  "closing": true,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:kidzapalooza:1200:taj-farrant",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "KIDZAPALOOZA",
+  "start": "12:00",
+  "end": "12:30",
+  "printed": "TAJ FARRANT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "taj-farrant",
+    "role": "performer"
+   }
+  ],
+  "act": "taj-farrant",
+  "closing": false,
+  "stageLineage": "lollapalooza:kidzapalooza",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:kidzapalooza:1330:123-andres",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "KIDZAPALOOZA",
+  "start": "13:30",
+  "end": "14:00",
+  "printed": "123 ANDRÉS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "123-andres",
+    "role": "performer"
+   }
+  ],
+  "act": "123-andres",
+  "closing": false,
+  "stageLineage": "lollapalooza:kidzapalooza",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:kidzapalooza:1500:pierce-freelon",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "KIDZAPALOOZA",
+  "start": "15:00",
+  "end": "15:30",
+  "printed": "PIERCE FREELON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pierce-freelon",
+    "role": "performer"
+   }
+  ],
+  "act": "pierce-freelon",
+  "closing": false,
+  "stageLineage": "lollapalooza:kidzapalooza",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:kidzapalooza:1715:school-of-rock-allstars",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "KIDZAPALOOZA",
+  "start": "17:15",
+  "end": "17:45",
+  "printed": "SCHOOL OF ROCK ALLSTARS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "school-of-rock-allstars",
+    "role": "performer"
+   }
+  ],
+  "act": "school-of-rock-allstars",
+  "closing": true,
+  "stageLineage": "lollapalooza:kidzapalooza",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:perry-s:1200:gudfella",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "PERRY'S",
+  "start": "12:00",
+  "end": "12:35",
+  "printed": "GUDFELLA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gudfella",
+    "role": "performer"
+   }
+  ],
+  "act": "gudfella",
+  "closing": false,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:perry-s:1240:xandra",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "PERRY'S",
+  "start": "12:40",
+  "end": "13:15",
+  "printed": "XANDRA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "xandra",
+    "role": "performer"
+   }
+  ],
+  "act": "xandra",
+  "closing": false,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:perry-s:1325:twinsick",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "PERRY'S",
+  "start": "13:25",
+  "end": "14:10",
+  "printed": "TWINSICK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "twinsick",
+    "role": "performer"
+   }
+  ],
+  "act": "twinsick",
+  "closing": false,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:perry-s:1420:it-s-murph",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "PERRY'S",
+  "start": "14:20",
+  "end": "15:15",
+  "printed": "IT'S MURPH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "it-s-murph",
+    "role": "performer"
+   }
+  ],
+  "act": "it-s-murph",
+  "closing": false,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:perry-s:1520:noizu",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "PERRY'S",
+  "start": "15:20",
+  "end": "16:20",
+  "printed": "NOIZU",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "noizu",
+    "role": "performer"
+   }
+  ],
+  "act": "noizu",
+  "closing": false,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:perry-s:1630:alok",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "PERRY'S",
+  "start": "16:30",
+  "end": "17:30",
+  "printed": "ALOK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alok",
+    "role": "performer"
+   }
+  ],
+  "act": "alok",
+  "closing": false,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:perry-s:1800:loud-luxury",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "PERRY'S",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "LOUD LUXURY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "loud-luxury",
+    "role": "performer"
+   }
+  ],
+  "act": "loud-luxury",
+  "closing": false,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:perry-s:1915:galantis",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "PERRY'S",
+  "start": "19:15",
+  "end": "20:15",
+  "printed": "GALANTIS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "galantis",
+    "role": "performer"
+   }
+  ],
+  "act": "galantis",
+  "closing": false,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:perry-s:2030:zedd",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "PERRY'S",
+  "start": "20:30",
+  "end": "21:45",
+  "printed": "ZEDD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zedd",
+    "role": "performer"
+   }
+  ],
+  "act": "zedd",
+  "closing": true,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:ihg-hotels-and-resorts:1230:daniel-seavey",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "12:30",
+  "end": "13:15",
+  "printed": "DANIEL SEAVEY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "daniel-seavey",
+    "role": "performer"
+   }
+  ],
+  "act": "daniel-seavey",
+  "closing": false,
+  "stageLineage": "lollapalooza:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:ihg-hotels-and-resorts:1400:militarie-gun",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "MILITARIE GUN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "militarie-gun",
+    "role": "performer"
+   }
+  ],
+  "act": "militarie-gun",
+  "closing": false,
+  "stageLineage": "lollapalooza:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:ihg-hotels-and-resorts:1600:veeze",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "VEEZE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "veeze",
+    "role": "performer"
+   }
+  ],
+  "act": "veeze",
+  "closing": false,
+  "stageLineage": "lollapalooza:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:ihg-hotels-and-resorts:1745:ruel",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "17:45",
+  "end": "18:45",
+  "printed": "RUEL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ruel",
+    "role": "performer"
+   }
+  ],
+  "act": "ruel",
+  "closing": false,
+  "stageLineage": "lollapalooza:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:ihg-hotels-and-resorts:1945:kevin-abstract",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "19:45",
+  "end": "20:45",
+  "printed": "KEVIN ABSTRACT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kevin-abstract",
+    "role": "performer"
+   }
+  ],
+  "act": "kevin-abstract",
+  "closing": true,
+  "stageLineage": "lollapalooza:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:t-mobile:1315:pawpaw-rod",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "T-MOBILE",
+  "start": "13:15",
+  "end": "14:00",
+  "printed": "PAWPAW ROD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pawpaw-rod",
+    "role": "performer"
+   }
+  ],
+  "act": "pawpaw-rod",
+  "closing": false,
+  "stageLineage": "lollapalooza:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:t-mobile:1500:qveen-herby",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "T-MOBILE",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "QVEEN HERBY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "qveen-herby",
+    "role": "performer"
+   }
+  ],
+  "act": "qveen-herby",
+  "closing": false,
+  "stageLineage": "lollapalooza:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:t-mobile:1700:victoria-monet",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "T-MOBILE",
+  "start": "17:00",
+  "end": "17:45",
+  "printed": "VICTORIA MONÉT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "victoria-monet",
+    "role": "performer"
+   }
+  ],
+  "act": "victoria-monet",
+  "closing": false,
+  "stageLineage": "lollapalooza:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:t-mobile:1845:renee-rapp",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "T-MOBILE",
+  "start": "18:45",
+  "end": "19:45",
+  "printed": "RENEÉ RAPP",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "renee-rapp",
+    "role": "performer"
+   }
+  ],
+  "act": "renee-rapp",
+  "closing": false,
+  "stageLineage": "lollapalooza:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:t-mobile:2045:sza",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "T-MOBILE",
+  "start": "20:45",
+  "end": null,
+  "printed": "SZA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sza",
+    "role": "performer"
+   }
+  ],
+  "act": "sza",
+  "closing": true,
+  "stageLineage": "lollapalooza:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:toyota-music-den:1400:tiny-habits",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "TOYOTA MUSIC DEN",
+  "start": "14:00",
+  "end": "14:30",
+  "printed": "TINY HABITS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tiny-habits",
+    "role": "performer"
+   }
+  ],
+  "act": "tiny-habits",
+  "closing": false,
+  "stageLineage": "lollapalooza:toyota-music-den",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:toyota-music-den:1500:the-national-parks",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "TOYOTA MUSIC DEN",
+  "start": "15:00",
+  "end": "15:30",
+  "printed": "THE NATIONAL PARKS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-national-parks",
+    "role": "performer"
+   }
+  ],
+  "act": "the-national-parks",
+  "closing": false,
+  "stageLineage": "lollapalooza:toyota-music-den",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:toyota-music-den:1600:mckenna-grace",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "TOYOTA MUSIC DEN",
+  "start": "16:00",
+  "end": "16:30",
+  "printed": "MCKENNA GRACE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mckenna-grace",
+    "role": "performer"
+   }
+  ],
+  "act": "mckenna-grace",
+  "closing": false,
+  "stageLineage": "lollapalooza:toyota-music-den",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:toyota-music-den:1700:ava-maybee",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "TOYOTA MUSIC DEN",
+  "start": "17:00",
+  "end": "17:30",
+  "printed": "AVA MAYBEE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ava-maybee",
+    "role": "performer"
+   }
+  ],
+  "act": "ava-maybee",
+  "closing": false,
+  "stageLineage": "lollapalooza:toyota-music-den",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:toyota-music-den:1800:blu-detiger-dj-set",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "TOYOTA MUSIC DEN",
+  "start": "18:00",
+  "end": "18:30",
+  "printed": "BLU DETIGER (DJ SET)",
+  "setTag": "DJ SET",
+  "performers": [
+   {
+    "key": "blu-detiger",
+    "role": "performer"
+   }
+  ],
+  "act": "blu-detiger",
+  "closing": true,
+  "stageLineage": "lollapalooza:toyota-music-den",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:bud-light-backyard:1400:jenna",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "BUD LIGHT BACKYARD",
+  "start": "14:00",
+  "end": "16:00",
+  "printed": "JENNA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jenna",
+    "role": "performer"
+   }
+  ],
+  "act": "jenna",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light-backyard",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:bud-light-backyard:1630:sam-nelson-harris",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "BUD LIGHT BACKYARD",
+  "start": "16:30",
+  "end": "17:00",
+  "printed": "SAM NELSON HARRIS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sam-nelson-harris",
+    "role": "performer"
+   }
+  ],
+  "act": "sam-nelson-harris",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light-backyard",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:bud-light-backyard:1700:heavy",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "BUD LIGHT BACKYARD",
+  "start": "17:00",
+  "end": "18:05",
+  "printed": "HEAVY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "heavy",
+    "role": "performer"
+   }
+  ],
+  "act": "heavy",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light-backyard",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:bud-light-backyard:1835:pawpaw-rod",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "BUD LIGHT BACKYARD",
+  "start": "18:35",
+  "end": "19:05",
+  "printed": "PAWPAW ROD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pawpaw-rod",
+    "role": "performer"
+   }
+  ],
+  "act": "pawpaw-rod",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light-backyard",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d2:bud-light-backyard:1905:heavy",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-02",
+  "day": 2,
+  "stage": "BUD LIGHT BACKYARD",
+  "start": "19:05",
+  "end": "20:00",
+  "printed": "HEAVY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "heavy",
+    "role": "performer"
+   }
+  ],
+  "act": "heavy",
+  "closing": true,
+  "stageLineage": "lollapalooza:bud-light-backyard",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:bud-light:1315:infinity-song",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "BUD LIGHT",
+  "start": "13:15",
+  "end": "14:00",
+  "printed": "INFINITY SONG",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "infinity-song",
+    "role": "performer"
+   }
+  ],
+  "act": "infinity-song",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:bud-light:1500:dora-jar",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "BUD LIGHT",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "DORA JAR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dora-jar",
+    "role": "performer"
+   }
+  ],
+  "act": "dora-jar",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:bud-light:1700:tv-girl",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "BUD LIGHT",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "TV GIRL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tv-girl",
+    "role": "performer"
+   }
+  ],
+  "act": "tv-girl",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:bud-light:1900:tate-mcrae",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "BUD LIGHT",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "TATE MCRAE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tate-mcrae",
+    "role": "performer"
+   }
+  ],
+  "act": "tate-mcrae",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:bud-light:2045:future-x-metro-boomin",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "BUD LIGHT",
+  "start": "20:45",
+  "end": "22:00",
+  "printed": "FUTURE X METRO BOOMIN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "future-x-metro-boomin",
+    "role": "collab"
+   }
+  ],
+  "act": "future-x-metro-boomin",
+  "closing": true,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:tito-s-handmade-vodka:1230:dasha",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "12:30",
+  "end": "13:15",
+  "printed": "DASHA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dasha",
+    "role": "performer"
+   }
+  ],
+  "act": "dasha",
+  "closing": false,
+  "stageLineage": "lollapalooza:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:tito-s-handmade-vodka:1400:josiah-and-the-bonnevilles",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "JOSIAH AND THE BONNEVILLES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "josiah-and-the-bonnevilles",
+    "role": "performer"
+   }
+  ],
+  "act": "josiah-and-the-bonnevilles",
+  "closing": false,
+  "stageLineage": "lollapalooza:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:tito-s-handmade-vodka:1600:boywithuke",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "BOYWITHUKE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "boywithuke",
+    "role": "performer"
+   }
+  ],
+  "act": "boywithuke",
+  "closing": false,
+  "stageLineage": "lollapalooza:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:tito-s-handmade-vodka:1800:cannons",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "CANNONS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cannons",
+    "role": "performer"
+   }
+  ],
+  "act": "cannons",
+  "closing": false,
+  "stageLineage": "lollapalooza:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:tito-s-handmade-vodka:2000:xandra",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "20:00",
+  "end": "20:45",
+  "printed": "XANDRA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "xandra",
+    "role": "performer"
+   }
+  ],
+  "act": "xandra",
+  "closing": true,
+  "stageLineage": "lollapalooza:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:bacardi:1200:savannah-re",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "BACARDÍ",
+  "start": "12:00",
+  "end": "12:30",
+  "printed": "SAVANNAH RÉ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "savannah-re",
+    "role": "performer"
+   }
+  ],
+  "act": "savannah-re",
+  "closing": false,
+  "stageLineage": "lollapalooza:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:bacardi:1250:friko",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "BACARDÍ",
+  "start": "12:50",
+  "end": "13:30",
+  "printed": "FRIKO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "friko",
+    "role": "performer"
+   }
+  ],
+  "act": "friko",
+  "closing": false,
+  "stageLineage": "lollapalooza:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:bacardi:1350:happy-landing",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "BACARDÍ",
+  "start": "13:50",
+  "end": "14:30",
+  "printed": "HAPPY LANDING",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "happy-landing",
+    "role": "performer"
+   }
+  ],
+  "act": "happy-landing",
+  "closing": false,
+  "stageLineage": "lollapalooza:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:bacardi:1450:quarters-of-change",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "BACARDÍ",
+  "start": "14:50",
+  "end": "15:30",
+  "printed": "QUARTERS OF CHANGE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "quarters-of-change",
+    "role": "performer"
+   }
+  ],
+  "act": "quarters-of-change",
+  "closing": false,
+  "stageLineage": "lollapalooza:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:bacardi:1600:tanner-usrey",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "BACARDÍ",
+  "start": "16:00",
+  "end": "16:45",
+  "printed": "TANNER USREY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tanner-usrey",
+    "role": "performer"
+   }
+  ],
+  "act": "tanner-usrey",
+  "closing": false,
+  "stageLineage": "lollapalooza:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:bacardi:1715:eyedress",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "BACARDÍ",
+  "start": "17:15",
+  "end": "18:00",
+  "printed": "EYEDRESS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eyedress",
+    "role": "performer"
+   }
+  ],
+  "act": "eyedress",
+  "closing": false,
+  "stageLineage": "lollapalooza:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:bacardi:1830:romy",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "BACARDÍ",
+  "start": "18:30",
+  "end": "19:15",
+  "printed": "ROMY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "romy",
+    "role": "performer"
+   }
+  ],
+  "act": "romy",
+  "closing": false,
+  "stageLineage": "lollapalooza:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:bacardi:1945:killer-mike",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "BACARDÍ",
+  "start": "19:45",
+  "end": "20:30",
+  "printed": "KILLER MIKE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "killer-mike",
+    "role": "performer"
+   }
+  ],
+  "act": "killer-mike",
+  "closing": false,
+  "stageLineage": "lollapalooza:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:bacardi:2100:yoasobi",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "BACARDÍ",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "YOASOBI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yoasobi",
+    "role": "performer"
+   }
+  ],
+  "act": "yoasobi",
+  "closing": true,
+  "stageLineage": "lollapalooza:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:bmi:1300:hayes-warner",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "BMI",
+  "start": "13:00",
+  "end": "13:40",
+  "printed": "HAYES WARNER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hayes-warner",
+    "role": "performer"
+   }
+  ],
+  "act": "hayes-warner",
+  "closing": false,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:bmi:1410:nightly",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "BMI",
+  "start": "14:10",
+  "end": "14:50",
+  "printed": "NIGHTLY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nightly",
+    "role": "performer"
+   }
+  ],
+  "act": "nightly",
+  "closing": false,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:bmi:1520:natalie-jane",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "BMI",
+  "start": "15:20",
+  "end": "16:00",
+  "printed": "NATALIE JANE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "natalie-jane",
+    "role": "performer"
+   }
+  ],
+  "act": "natalie-jane",
+  "closing": false,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:bmi:1630:will-linley",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "BMI",
+  "start": "16:30",
+  "end": "17:10",
+  "printed": "WILL LINLEY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "will-linley",
+    "role": "performer"
+   }
+  ],
+  "act": "will-linley",
+  "closing": false,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:bmi:1740:tommy-newport",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "BMI",
+  "start": "17:40",
+  "end": "18:20",
+  "printed": "TOMMY NEWPORT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tommy-newport",
+    "role": "performer"
+   }
+  ],
+  "act": "tommy-newport",
+  "closing": false,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:bmi:1850:sam-nelson-harris",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "BMI",
+  "start": "18:50",
+  "end": "19:30",
+  "printed": "SAM NELSON HARRIS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sam-nelson-harris",
+    "role": "performer"
+   }
+  ],
+  "act": "sam-nelson-harris",
+  "closing": true,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:kidzapalooza:1200:uncle-jumbo",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "KIDZAPALOOZA",
+  "start": "12:00",
+  "end": "12:30",
+  "printed": "UNCLE JUMBO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "uncle-jumbo",
+    "role": "performer"
+   }
+  ],
+  "act": "uncle-jumbo",
+  "closing": false,
+  "stageLineage": "lollapalooza:kidzapalooza",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:kidzapalooza:1330:joanie-leeds",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "KIDZAPALOOZA",
+  "start": "13:30",
+  "end": "14:00",
+  "printed": "JOANIE LEEDS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "joanie-leeds",
+    "role": "performer"
+   }
+  ],
+  "act": "joanie-leeds",
+  "closing": false,
+  "stageLineage": "lollapalooza:kidzapalooza",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:kidzapalooza:1500:homescool",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "KIDZAPALOOZA",
+  "start": "15:00",
+  "end": "15:30",
+  "printed": "HOMESCOOL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "homescool",
+    "role": "performer"
+   }
+  ],
+  "act": "homescool",
+  "closing": false,
+  "stageLineage": "lollapalooza:kidzapalooza",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:kidzapalooza:1600:special-guest-the-happiness-club",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "KIDZAPALOOZA",
+  "start": "16:00",
+  "end": "16:30",
+  "printed": "SPECIAL GUEST: THE HAPPINESS CLUB",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "special-guest-the-happiness-club",
+    "role": "performer"
+   }
+  ],
+  "act": "special-guest-the-happiness-club",
+  "closing": false,
+  "stageLineage": "lollapalooza:kidzapalooza",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:kidzapalooza:1715:q-brothers",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "KIDZAPALOOZA",
+  "start": "17:15",
+  "end": "17:45",
+  "printed": "Q BROTHERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "q-brothers",
+    "role": "performer"
+   }
+  ],
+  "act": "q-brothers",
+  "closing": true,
+  "stageLineage": "lollapalooza:kidzapalooza",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:sonny-s:1200:skrillex",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "SONNY'S",
+  "start": "12:00",
+  "end": "13:00",
+  "printed": "SKRILLEX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "skrillex",
+    "role": "performer"
+   }
+  ],
+  "act": "skrillex",
+  "closing": false,
+  "stageLineage": "lollapalooza:sonny-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:sonny-s:1305:ahadadream-b2b-manara",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "SONNY'S",
+  "start": "13:05",
+  "end": "14:05",
+  "printed": "AHADADREAM B2B MANARA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ahadadream",
+    "role": "b2b"
+   },
+   {
+    "key": "manara",
+    "role": "b2b"
+   }
+  ],
+  "act": "ahadadream-b2b-manara",
+  "closing": false,
+  "stageLineage": "lollapalooza:sonny-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:sonny-s:1415:2hollis",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "SONNY'S",
+  "start": "14:15",
+  "end": "14:45",
+  "printed": "2HOLLIS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "2hollis",
+    "role": "performer"
+   }
+  ],
+  "act": "2hollis",
+  "closing": false,
+  "stageLineage": "lollapalooza:sonny-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:sonny-s:1455:dylan-brady",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "SONNY'S",
+  "start": "14:55",
+  "end": "16:05",
+  "printed": "DYLAN BRADY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dylan-brady",
+    "role": "performer"
+   }
+  ],
+  "act": "dylan-brady",
+  "closing": false,
+  "stageLineage": "lollapalooza:sonny-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:sonny-s:1610:kenny-beats",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "SONNY'S",
+  "start": "16:10",
+  "end": "17:15",
+  "printed": "KENNY BEATS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kenny-beats",
+    "role": "performer"
+   }
+  ],
+  "act": "kenny-beats",
+  "closing": false,
+  "stageLineage": "lollapalooza:sonny-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:sonny-s:1730:nia-archives",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "SONNY'S",
+  "start": "17:30",
+  "end": "18:30",
+  "printed": "NIA ARCHIVES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nia-archives",
+    "role": "performer"
+   }
+  ],
+  "act": "nia-archives",
+  "closing": false,
+  "stageLineage": "lollapalooza:sonny-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:sonny-s:1845:four-tet",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "SONNY'S",
+  "start": "18:45",
+  "end": "20:00",
+  "printed": "FOUR TET",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "four-tet",
+    "role": "performer"
+   }
+  ],
+  "act": "four-tet",
+  "closing": false,
+  "stageLineage": "lollapalooza:sonny-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:sonny-s:2015:skrillex",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "SONNY'S",
+  "start": "20:15",
+  "end": "21:45",
+  "printed": "SKRILLEX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "skrillex",
+    "role": "performer"
+   }
+  ],
+  "act": "skrillex",
+  "closing": true,
+  "stageLineage": "lollapalooza:sonny-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:ihg-hotels-and-resorts:1230:brigitte-calls-me-baby",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "12:30",
+  "end": "13:15",
+  "printed": "BRIGITTE CALLS ME BABY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "brigitte-calls-me-baby",
+    "role": "performer"
+   }
+  ],
+  "act": "brigitte-calls-me-baby",
+  "closing": false,
+  "stageLineage": "lollapalooza:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:ihg-hotels-and-resorts:1400:destroy-boys",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "DESTROY BOYS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "destroy-boys",
+    "role": "performer"
+   }
+  ],
+  "act": "destroy-boys",
+  "closing": false,
+  "stageLineage": "lollapalooza:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:ihg-hotels-and-resorts:1600:briston-maroney",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "BRISTON MARONEY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "briston-maroney",
+    "role": "performer"
+   }
+  ],
+  "act": "briston-maroney",
+  "closing": false,
+  "stageLineage": "lollapalooza:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:ihg-hotels-and-resorts:1745:ethel-cain",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "17:45",
+  "end": "18:45",
+  "printed": "ETHEL CAIN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ethel-cain",
+    "role": "performer"
+   }
+  ],
+  "act": "ethel-cain",
+  "closing": false,
+  "stageLineage": "lollapalooza:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:ihg-hotels-and-resorts:1945:hippo-campus",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "19:45",
+  "end": "20:45",
+  "printed": "HIPPO CAMPUS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hippo-campus",
+    "role": "performer"
+   }
+  ],
+  "act": "hippo-campus",
+  "closing": true,
+  "stageLineage": "lollapalooza:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:t-mobile:1315:armani-white",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "T-MOBILE",
+  "start": "13:15",
+  "end": "14:00",
+  "printed": "ARMANI WHITE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "armani-white",
+    "role": "performer"
+   }
+  ],
+  "act": "armani-white",
+  "closing": false,
+  "stageLineage": "lollapalooza:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:t-mobile:1500:leisure",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "T-MOBILE",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "LEISURE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "leisure",
+    "role": "performer"
+   }
+  ],
+  "act": "leisure",
+  "closing": false,
+  "stageLineage": "lollapalooza:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:t-mobile:1700:ive",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "T-MOBILE",
+  "start": "17:00",
+  "end": "17:45",
+  "printed": "IVE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ive",
+    "role": "performer"
+   }
+  ],
+  "act": "ive",
+  "closing": false,
+  "stageLineage": "lollapalooza:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:t-mobile:1845:deftones",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "T-MOBILE",
+  "start": "18:45",
+  "end": "19:45",
+  "printed": "DEFTONES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "deftones",
+    "role": "performer"
+   }
+  ],
+  "act": "deftones",
+  "closing": false,
+  "stageLineage": "lollapalooza:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:t-mobile:2045:the-killers",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "T-MOBILE",
+  "start": "20:45",
+  "end": null,
+  "printed": "THE KILLERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-killers",
+    "role": "performer"
+   }
+  ],
+  "act": "the-killers",
+  "closing": true,
+  "stageLineage": "lollapalooza:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:toyota-music-den:1400:will-linley",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "TOYOTA MUSIC DEN",
+  "start": "14:00",
+  "end": "14:30",
+  "printed": "WILL LINLEY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "will-linley",
+    "role": "performer"
+   }
+  ],
+  "act": "will-linley",
+  "closing": false,
+  "stageLineage": "lollapalooza:toyota-music-den",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:toyota-music-den:1500:brigitte-calls-me-baby",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "TOYOTA MUSIC DEN",
+  "start": "15:00",
+  "end": "15:30",
+  "printed": "BRIGITTE CALLS ME BABY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "brigitte-calls-me-baby",
+    "role": "performer"
+   }
+  ],
+  "act": "brigitte-calls-me-baby",
+  "closing": false,
+  "stageLineage": "lollapalooza:toyota-music-den",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:toyota-music-den:1600:friko",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "TOYOTA MUSIC DEN",
+  "start": "16:00",
+  "end": "16:30",
+  "printed": "FRIKO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "friko",
+    "role": "performer"
+   }
+  ],
+  "act": "friko",
+  "closing": false,
+  "stageLineage": "lollapalooza:toyota-music-den",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:toyota-music-den:1700:nightly",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "TOYOTA MUSIC DEN",
+  "start": "17:00",
+  "end": "17:30",
+  "printed": "NIGHTLY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nightly",
+    "role": "performer"
+   }
+  ],
+  "act": "nightly",
+  "closing": false,
+  "stageLineage": "lollapalooza:toyota-music-den",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:toyota-music-den:1800:natalie-jane",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "TOYOTA MUSIC DEN",
+  "start": "18:00",
+  "end": "18:30",
+  "printed": "NATALIE JANE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "natalie-jane",
+    "role": "performer"
+   }
+  ],
+  "act": "natalie-jane",
+  "closing": true,
+  "stageLineage": "lollapalooza:toyota-music-den",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:bud-light-backyard:1400:dj-metro",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "BUD LIGHT BACKYARD",
+  "start": "14:00",
+  "end": "16:00",
+  "printed": "DJ METRO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-metro",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-metro",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light-backyard",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:bud-light-backyard:1630:hayes-warner",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "BUD LIGHT BACKYARD",
+  "start": "16:30",
+  "end": "17:00",
+  "printed": "HAYES WARNER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hayes-warner",
+    "role": "performer"
+   }
+  ],
+  "act": "hayes-warner",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light-backyard",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:bud-light-backyard:1700:pigpen",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "BUD LIGHT BACKYARD",
+  "start": "17:00",
+  "end": "18:05",
+  "printed": "PIGPEN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pigpen",
+    "role": "performer"
+   }
+  ],
+  "act": "pigpen",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light-backyard",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:bud-light-backyard:1835:josiah-and-the-bonnevilles",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "BUD LIGHT BACKYARD",
+  "start": "18:35",
+  "end": "19:05",
+  "printed": "JOSIAH AND THE BONNEVILLES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "josiah-and-the-bonnevilles",
+    "role": "performer"
+   }
+  ],
+  "act": "josiah-and-the-bonnevilles",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light-backyard",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d3:bud-light-backyard:1905:pigpen",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 3,
+  "stage": "BUD LIGHT BACKYARD",
+  "start": "19:05",
+  "end": "20:00",
+  "printed": "PIGPEN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pigpen",
+    "role": "performer"
+   }
+  ],
+  "act": "pigpen",
+  "closing": true,
+  "stageLineage": "lollapalooza:bud-light-backyard",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:bud-light:1300:knox",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "BUD LIGHT",
+  "start": "13:00",
+  "end": "13:45",
+  "printed": "KNOX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "knox",
+    "role": "performer"
+   }
+  ],
+  "act": "knox",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:bud-light:1445:mimi-webb",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "BUD LIGHT",
+  "start": "14:45",
+  "end": "15:45",
+  "printed": "MIMI WEBB",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mimi-webb",
+    "role": "performer"
+   }
+  ],
+  "act": "mimi-webb",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:bud-light:1645:vince-staples",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "BUD LIGHT",
+  "start": "16:45",
+  "end": "17:45",
+  "printed": "VINCE STAPLES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vince-staples",
+    "role": "performer"
+   }
+  ],
+  "act": "vince-staples",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:bud-light:1845:conan-gray",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "BUD LIGHT",
+  "start": "18:45",
+  "end": "19:45",
+  "printed": "CONAN GRAY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "conan-gray",
+    "role": "performer"
+   }
+  ],
+  "act": "conan-gray",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:bud-light:2030:melanie-martinez",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "BUD LIGHT",
+  "start": "20:30",
+  "end": "22:00",
+  "printed": "MELANIE MARTINEZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "melanie-martinez",
+    "role": "performer"
+   }
+  ],
+  "act": "melanie-martinez",
+  "closing": true,
+  "stageLineage": "lollapalooza:bud-light",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:tito-s-handmade-vodka:1215:kyle-dion",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "12:15",
+  "end": "13:00",
+  "printed": "KYLE DION",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kyle-dion",
+    "role": "performer"
+   }
+  ],
+  "act": "kyle-dion",
+  "closing": false,
+  "stageLineage": "lollapalooza:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:tito-s-handmade-vodka:1345:good-kid",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "13:45",
+  "end": "14:45",
+  "printed": "GOOD KID",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "good-kid",
+    "role": "performer"
+   }
+  ],
+  "act": "good-kid",
+  "closing": false,
+  "stageLineage": "lollapalooza:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:tito-s-handmade-vodka:1545:teezo-touchdown",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "15:45",
+  "end": "16:45",
+  "printed": "TEEZO TOUCHDOWN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "teezo-touchdown",
+    "role": "performer"
+   }
+  ],
+  "act": "teezo-touchdown",
+  "closing": false,
+  "stageLineage": "lollapalooza:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:tito-s-handmade-vodka:1745:the-last-dinner-party",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "17:45",
+  "end": "18:45",
+  "printed": "THE LAST DINNER PARTY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-last-dinner-party",
+    "role": "performer"
+   }
+  ],
+  "act": "the-last-dinner-party",
+  "closing": false,
+  "stageLineage": "lollapalooza:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:tito-s-handmade-vodka:1945:chicago-made",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "TITO'S HANDMADE VODKA",
+  "start": "19:45",
+  "end": "20:30",
+  "printed": "CHICAGO MADE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chicago-made",
+    "role": "performer"
+   }
+  ],
+  "act": "chicago-made",
+  "closing": true,
+  "stageLineage": "lollapalooza:tito-s-handmade-vodka",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:bacardi:1250:scarlet-demore",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "BACARDÍ",
+  "start": "12:50",
+  "end": "13:30",
+  "printed": "SCARLET DEMORE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "scarlet-demore",
+    "role": "performer"
+   }
+  ],
+  "act": "scarlet-demore",
+  "closing": false,
+  "stageLineage": "lollapalooza:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:bacardi:1350:post-sex-nachos",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "BACARDÍ",
+  "start": "13:50",
+  "end": "14:30",
+  "printed": "POST SEX NACHOS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "post-sex-nachos",
+    "role": "performer"
+   }
+  ],
+  "act": "post-sex-nachos",
+  "closing": false,
+  "stageLineage": "lollapalooza:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:bacardi:1450:nico-vega",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "BACARDÍ",
+  "start": "14:50",
+  "end": "15:30",
+  "printed": "NICO VEGA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nico-vega",
+    "role": "performer"
+   }
+  ],
+  "act": "nico-vega",
+  "closing": false,
+  "stageLineage": "lollapalooza:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:bacardi:1600:briscoe",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "BACARDÍ",
+  "start": "16:00",
+  "end": "16:45",
+  "printed": "BRISCOE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "briscoe",
+    "role": "performer"
+   }
+  ],
+  "act": "briscoe",
+  "closing": false,
+  "stageLineage": "lollapalooza:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:bacardi:1715:medium-build",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "BACARDÍ",
+  "start": "17:15",
+  "end": "18:00",
+  "printed": "MEDIUM BUILD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "medium-build",
+    "role": "performer"
+   }
+  ],
+  "act": "medium-build",
+  "closing": false,
+  "stageLineage": "lollapalooza:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:bacardi:1830:grentperez",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "BACARDÍ",
+  "start": "18:30",
+  "end": "19:15",
+  "printed": "GRENTPEREZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "grentperez",
+    "role": "performer"
+   }
+  ],
+  "act": "grentperez",
+  "closing": false,
+  "stageLineage": "lollapalooza:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:bacardi:1945:cults",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "BACARDÍ",
+  "start": "19:45",
+  "end": "20:30",
+  "printed": "CULTS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cults",
+    "role": "performer"
+   }
+  ],
+  "act": "cults",
+  "closing": false,
+  "stageLineage": "lollapalooza:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:bacardi:2100:ben-bohmer",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "BACARDÍ",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "BEN BÖHMER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ben-bohmer",
+    "role": "performer"
+   }
+  ],
+  "act": "ben-bohmer",
+  "closing": true,
+  "stageLineage": "lollapalooza:bacardi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:bmi:1300:ryan-trey",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "BMI",
+  "start": "13:00",
+  "end": "13:40",
+  "printed": "RYAN TREY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ryan-trey",
+    "role": "performer"
+   }
+  ],
+  "act": "ryan-trey",
+  "closing": false,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:bmi:1410:huddy",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "BMI",
+  "start": "14:10",
+  "end": "14:50",
+  "printed": "HUDDY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "huddy",
+    "role": "performer"
+   }
+  ],
+  "act": "huddy",
+  "closing": false,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:bmi:1520:kaitlin-butts",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "BMI",
+  "start": "15:20",
+  "end": "16:00",
+  "printed": "KAITLIN BUTTS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kaitlin-butts",
+    "role": "performer"
+   }
+  ],
+  "act": "kaitlin-butts",
+  "closing": false,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:bmi:1630:carmen-deleon",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "BMI",
+  "start": "16:30",
+  "end": "17:10",
+  "printed": "CARMEN DELEON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carmen-deleon",
+    "role": "performer"
+   }
+  ],
+  "act": "carmen-deleon",
+  "closing": false,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:bmi:1740:treaty-oak-revival",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "BMI",
+  "start": "17:40",
+  "end": "18:20",
+  "printed": "TREATY OAK REVIVAL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "treaty-oak-revival",
+    "role": "performer"
+   }
+  ],
+  "act": "treaty-oak-revival",
+  "closing": false,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:bmi:1850:willis",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "BMI",
+  "start": "18:50",
+  "end": "19:30",
+  "printed": "WILLIS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "willis",
+    "role": "performer"
+   }
+  ],
+  "act": "willis",
+  "closing": true,
+  "stageLineage": "lollapalooza:bmi",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:kidzapalooza:1200:homescool",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "KIDZAPALOOZA",
+  "start": "12:00",
+  "end": "12:30",
+  "printed": "HOMESCOOL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "homescool",
+    "role": "performer"
+   }
+  ],
+  "act": "homescool",
+  "closing": false,
+  "stageLineage": "lollapalooza:kidzapalooza",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:kidzapalooza:1330:uncle-jumbo",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "KIDZAPALOOZA",
+  "start": "13:30",
+  "end": "14:00",
+  "printed": "UNCLE JUMBO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "uncle-jumbo",
+    "role": "performer"
+   }
+  ],
+  "act": "uncle-jumbo",
+  "closing": false,
+  "stageLineage": "lollapalooza:kidzapalooza",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:kidzapalooza:1500:q-brothers",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "KIDZAPALOOZA",
+  "start": "15:00",
+  "end": "15:30",
+  "printed": "Q BROTHERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "q-brothers",
+    "role": "performer"
+   }
+  ],
+  "act": "q-brothers",
+  "closing": false,
+  "stageLineage": "lollapalooza:kidzapalooza",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:kidzapalooza:1600:bianca-shaw-presented-by-john-walt-foundation",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "KIDZAPALOOZA",
+  "start": "16:00",
+  "end": "16:30",
+  "printed": "BIANCA SHAW PRESENTED BY JOHN WALT FOUNDATION",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bianca-shaw-presented-by-john-walt-foundation",
+    "role": "performer"
+   }
+  ],
+  "act": "bianca-shaw-presented-by-john-walt-foundation",
+  "closing": false,
+  "stageLineage": "lollapalooza:kidzapalooza",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:kidzapalooza:1715:joanie-leeds",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "KIDZAPALOOZA",
+  "start": "17:15",
+  "end": "17:45",
+  "printed": "JOANIE LEEDS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "joanie-leeds",
+    "role": "performer"
+   }
+  ],
+  "act": "joanie-leeds",
+  "closing": true,
+  "stageLineage": "lollapalooza:kidzapalooza",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:perry-s:1200:eddie",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "PERRY'S",
+  "start": "12:00",
+  "end": "12:45",
+  "printed": "EDDIE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eddie",
+    "role": "performer"
+   }
+  ],
+  "act": "eddie",
+  "closing": false,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:perry-s:1300:nostalgix",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "PERRY'S",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "NOSTALGIX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nostalgix",
+    "role": "performer"
+   }
+  ],
+  "act": "nostalgix",
+  "closing": false,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:perry-s:1415:jessica-audiffred",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "PERRY'S",
+  "start": "14:15",
+  "end": "15:15",
+  "printed": "JESSICA AUDIFFRED",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jessica-audiffred",
+    "role": "performer"
+   }
+  ],
+  "act": "jessica-audiffred",
+  "closing": false,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:perry-s:1530:hol",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "PERRY'S",
+  "start": "15:30",
+  "end": "16:30",
+  "printed": "HOL!",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hol",
+    "role": "performer"
+   }
+  ],
+  "act": "hol",
+  "closing": false,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:perry-s:1645:mersiv",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "PERRY'S",
+  "start": "16:45",
+  "end": "17:45",
+  "printed": "MERSIV",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mersiv",
+    "role": "performer"
+   }
+  ],
+  "act": "mersiv",
+  "closing": false,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:perry-s:1815:whyte-fang",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "PERRY'S",
+  "start": "18:15",
+  "end": "19:15",
+  "printed": "WHYTE FANG",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "whyte-fang",
+    "role": "performer"
+   }
+  ],
+  "act": "whyte-fang",
+  "closing": false,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:perry-s:1930:black-tiger-sex-machine",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "PERRY'S",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "BLACK TIGER SEX MACHINE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "black-tiger-sex-machine",
+    "role": "performer"
+   }
+  ],
+  "act": "black-tiger-sex-machine",
+  "closing": false,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:perry-s:2045:zeds-dead",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "PERRY'S",
+  "start": "20:45",
+  "end": "21:45",
+  "printed": "ZEDS DEAD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zeds-dead",
+    "role": "performer"
+   }
+  ],
+  "act": "zeds-dead",
+  "closing": true,
+  "stageLineage": "lollapalooza:perry-s",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:ihg-hotels-and-resorts:1400:valencia-grace",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "14:00",
+  "end": "14:45",
+  "printed": "VALENCIA GRACE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "valencia-grace",
+    "role": "performer"
+   }
+  ],
+  "act": "valencia-grace",
+  "closing": false,
+  "stageLineage": "lollapalooza:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:ihg-hotels-and-resorts:1545:waterparks",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "15:45",
+  "end": "16:45",
+  "printed": "WATERPARKS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "waterparks",
+    "role": "performer"
+   }
+  ],
+  "act": "waterparks",
+  "closing": false,
+  "stageLineage": "lollapalooza:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:ihg-hotels-and-resorts:1745:sir",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "17:45",
+  "end": "18:45",
+  "printed": "SIR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sir",
+    "role": "performer"
+   }
+  ],
+  "act": "sir",
+  "closing": false,
+  "stageLineage": "lollapalooza:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:ihg-hotels-and-resorts:1945:two-door-cinema-club",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "IHG HOTELS & RESORTS",
+  "start": "19:45",
+  "end": "20:45",
+  "printed": "TWO DOOR CINEMA CLUB",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "two-door-cinema-club",
+    "role": "performer"
+   }
+  ],
+  "act": "two-door-cinema-club",
+  "closing": true,
+  "stageLineage": "lollapalooza:ihg-hotels-and-resorts",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:t-mobile:1315:hanabie",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "T-MOBILE",
+  "start": "13:15",
+  "end": "14:00",
+  "printed": "HANABIE.",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hanabie",
+    "role": "performer"
+   }
+  ],
+  "act": "hanabie",
+  "closing": false,
+  "stageLineage": "lollapalooza:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:t-mobile:1445:slow-pulp",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "T-MOBILE",
+  "start": "14:45",
+  "end": "15:45",
+  "printed": "SLOW PULP",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "slow-pulp",
+    "role": "performer"
+   }
+  ],
+  "act": "slow-pulp",
+  "closing": false,
+  "stageLineage": "lollapalooza:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:t-mobile:1645:teddy-swims",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "T-MOBILE",
+  "start": "16:45",
+  "end": "17:45",
+  "printed": "TEDDY SWIMS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "teddy-swims",
+    "role": "performer"
+   }
+  ],
+  "act": "teddy-swims",
+  "closing": false,
+  "stageLineage": "lollapalooza:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:t-mobile:1845:pierce-the-veil",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "T-MOBILE",
+  "start": "18:45",
+  "end": "19:45",
+  "printed": "PIERCE THE VEIL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pierce-the-veil",
+    "role": "performer"
+   }
+  ],
+  "act": "pierce-the-veil",
+  "closing": false,
+  "stageLineage": "lollapalooza:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:t-mobile:2045:blink-182",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "T-MOBILE",
+  "start": "20:45",
+  "end": null,
+  "printed": "BLINK-182",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "blink-182",
+    "role": "performer"
+   }
+  ],
+  "act": "blink-182",
+  "closing": true,
+  "stageLineage": "lollapalooza:t-mobile",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:toyota-music-den:1400:carmen-deleon",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "TOYOTA MUSIC DEN",
+  "start": "14:00",
+  "end": "14:30",
+  "printed": "CARMEN DELEON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carmen-deleon",
+    "role": "performer"
+   }
+  ],
+  "act": "carmen-deleon",
+  "closing": false,
+  "stageLineage": "lollapalooza:toyota-music-den",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:toyota-music-den:1500:medium-build",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "TOYOTA MUSIC DEN",
+  "start": "15:00",
+  "end": "15:30",
+  "printed": "MEDIUM BUILD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "medium-build",
+    "role": "performer"
+   }
+  ],
+  "act": "medium-build",
+  "closing": false,
+  "stageLineage": "lollapalooza:toyota-music-den",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:toyota-music-den:1600:willis",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "TOYOTA MUSIC DEN",
+  "start": "16:00",
+  "end": "16:30",
+  "printed": "WILLIS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "willis",
+    "role": "performer"
+   }
+  ],
+  "act": "willis",
+  "closing": false,
+  "stageLineage": "lollapalooza:toyota-music-den",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:toyota-music-den:1700:nico-vega",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "TOYOTA MUSIC DEN",
+  "start": "17:00",
+  "end": "17:30",
+  "printed": "NICO VEGA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nico-vega",
+    "role": "performer"
+   }
+  ],
+  "act": "nico-vega",
+  "closing": false,
+  "stageLineage": "lollapalooza:toyota-music-den",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:toyota-music-den:1800:knox",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "TOYOTA MUSIC DEN",
+  "start": "18:00",
+  "end": "18:30",
+  "printed": "KNOX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "knox",
+    "role": "performer"
+   }
+  ],
+  "act": "knox",
+  "closing": true,
+  "stageLineage": "lollapalooza:toyota-music-den",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:bud-light-backyard:1400:steph",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "BUD LIGHT BACKYARD",
+  "start": "14:00",
+  "end": "16:00",
+  "printed": "STEPH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "steph",
+    "role": "performer"
+   }
+  ],
+  "act": "steph",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light-backyard",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:bud-light-backyard:1600:vavo",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "BUD LIGHT BACKYARD",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "VAVO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vavo",
+    "role": "performer"
+   }
+  ],
+  "act": "vavo",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light-backyard",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:bud-light-backyard:1700:chachi",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "BUD LIGHT BACKYARD",
+  "start": "17:00",
+  "end": "18:05",
+  "printed": "CHACHI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chachi",
+    "role": "performer"
+   }
+  ],
+  "act": "chachi",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light-backyard",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:bud-light-backyard:1835:ryan-trey",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "BUD LIGHT BACKYARD",
+  "start": "18:35",
+  "end": "19:05",
+  "printed": "RYAN TREY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ryan-trey",
+    "role": "performer"
+   }
+  ],
+  "act": "ryan-trey",
+  "closing": false,
+  "stageLineage": "lollapalooza:bud-light-backyard",
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-2024:d4:bud-light-backyard:1905:chachi",
+  "source": "edition",
+  "festivalId": "lollapalooza-2024",
+  "festivalBrand": "lollapalooza",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 4,
+  "stage": "BUD LIGHT BACKYARD",
+  "start": "19:05",
+  "end": "20:00",
+  "printed": "CHACHI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chachi",
+    "role": "performer"
+   }
+  ],
+  "act": "chachi",
+  "closing": true,
+  "stageLineage": "lollapalooza:bud-light-backyard",
   "mainStage": null
  },
  {

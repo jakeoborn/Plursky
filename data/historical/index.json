@@ -2319,6 +2319,43 @@
    }
   },
   {
+   "id": "governors-ball-2024",
+   "festivalId": "governors-ball",
+   "festivalName": "Governors Ball",
+   "name": "Governors Ball 2024",
+   "year": 2024,
+   "timezone": "America/New_York",
+   "completeness": "selected_stages",
+   "missingStages": [
+    {
+     "stage": "BUD LIGHT BACKYARD",
+     "when": "a separate partner sheet that prints weekdays without dates and starts without ends"
+    }
+   ],
+   "days": [
+    {
+     "day": 1,
+     "date": "2024-06-07",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2024-06-08",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2024-06-09",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 3,
+    "artists": 63,
+    "sets": 63
+   }
+  },
+  {
    "id": "governors-ball-2019",
    "festivalId": "governors-ball",
    "festivalName": "Governors Ball",
@@ -2849,6 +2886,42 @@
     "stages": 11,
     "artists": 190,
     "sets": 225
+   }
+  },
+  {
+   "id": "lollapalooza-2024",
+   "festivalId": "lollapalooza",
+   "festivalName": "Lollapalooza",
+   "name": "Lollapalooza 2024",
+   "year": 2024,
+   "timezone": "America/Chicago",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2024-08-01",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2024-08-02",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2024-08-03",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2024-08-04",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 11,
+    "artists": 188,
+    "sets": 230
    }
   },
   {

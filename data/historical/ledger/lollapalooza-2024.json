@@ -1,0 +1,390 @@
+{
+  "id": "lollapalooza-2024",
+  "method": "official_image_transcription",
+  "official": "https://www.lollapalooza.com/schedule",
+  "window": [
+    "20240601",
+    "20241231"
+  ],
+  "pageCaptures": [
+    {
+      "captureTimestamp": "20240618150752",
+      "archivedUrl": "https://web.archive.org/web/20240618150752/https://www.lollapalooza.com/schedule",
+      "sha256": "a92e9a59d0ecf1f1cfbeeed3b49fb61d563b16b03d0b003ef343958dd03c2428",
+      "images": [
+        "664f52b41a37463ff6118883_LOLLA24-THURS-Schedule-web.png",
+        "664f52c28c0166551155f1d6_LOLLA24-FRI-Schedule-web.png",
+        "664f5c5b3bdd5fc6417e33b1_LOLLA24-SAT-Schedule-web.png",
+        "664f52e6e360879c134ec6f9_LOLLA24-SUN-Schedule-web.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20240717004626",
+      "archivedUrl": "https://web.archive.org/web/20240717004626/https://www.lollapalooza.com/schedule",
+      "sha256": "f4b114e4ea2f1511173788b871f9e94ee1e76803cf5640fe2c29fd51c76ae582",
+      "images": [
+        "667d82d066d61a446118f794_Lolla24_Grid-01Thurs-WEB-06.26.png",
+        "66956f866a03d93fd9641c29_Lolla24_Grid-02FRI-07.15.png",
+        "669691263c14d16c9010fe71_Lolla24_Grid-03Sat-07.10B.png",
+        "6695645c0c7252f99a6ab8ac_Lolla24_Grid-04Sun-07.12.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20240722185554",
+      "archivedUrl": "https://web.archive.org/web/20240722185554/https://www.lollapalooza.com/schedule",
+      "sha256": "e78b0f3521835aa823c109cf2b1c3e9f6bac1c0c83a3fb834721cd2daa028a12",
+      "images": [
+        "669a84ebf8eb6952f1a01829_Lolla24_Grid-01Thurs-07.19.png",
+        "669a84f306a6e25aab5547da_Lolla24_Grid-02Fri-07.19.png",
+        "669a84fb0a333e7eaa78229a_Lolla24_Grid-03Sat-07.19.png",
+        "669a85048f293dacf0fdf6a2_Lolla24_Grid-04Sun-07.19.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20240726124025",
+      "archivedUrl": "https://web.archive.org/web/20240726124025/https://www.lollapalooza.com/schedule",
+      "sha256": "c4f1bf4964270e12e8c1aa6d5d544bf1162af6094b0a8da5cd0fc9ba49eadfa5",
+      "images": [
+        "66a0288b866c5deb6fe13dfc_Lolla24_Grid-01Thurs-07.23.png",
+        "66a13307e964b5a22e48eef1_Lolla24_Grid-02Fri-07.23B.png",
+        "66a125c031662b4367a10e9e_Lolla24_Grid-03Sat-07.23B.png",
+        "66a028a8c67291cb948fc317_Lolla24_Grid-04Sun-07.23.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20240729210748",
+      "archivedUrl": "https://web.archive.org/web/20240729210748/https://www.lollapalooza.com/schedule",
+      "sha256": "a21a62d642d17046e959899c9f59434474abd1c4354c4729eba966b9a3a7bbc7",
+      "images": [
+        "66a0288b866c5deb6fe13dfc_Lolla24_Grid-01Thurs-07.23.png",
+        "66a13307e964b5a22e48eef1_Lolla24_Grid-02Fri-07.23B.png",
+        "66a125c031662b4367a10e9e_Lolla24_Grid-03Sat-07.23B.png",
+        "66a028a8c67291cb948fc317_Lolla24_Grid-04Sun-07.23.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20240731103740",
+      "archivedUrl": "https://web.archive.org/web/20240731103740/https://www.lollapalooza.com/schedule",
+      "sha256": "37c4f36508700c3977b85776ff08f0e240e6285a1bae93142f34a531f18a4516",
+      "images": [
+        "66a0288b866c5deb6fe13dfc_Lolla24_Grid-01Thurs-07.23.png",
+        "66a90c795a6e250b24785288_Lolla24_Grid-02Fri-07.30.png",
+        "66a125c031662b4367a10e9e_Lolla24_Grid-03Sat-07.23B.png",
+        "66a028a8c67291cb948fc317_Lolla24_Grid-04Sun-07.23.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20240801195428",
+      "archivedUrl": "https://web.archive.org/web/20240801195428/https://www.lollapalooza.com/schedule",
+      "sha256": "fac0f3986598bb50dd15a5ff08cc3d45b745b7a1384c24205e899b0e5e634f90",
+      "images": [
+        "66a0288b866c5deb6fe13dfc_Lolla24_Grid-01Thurs-07.23.png",
+        "66a90c795a6e250b24785288_Lolla24_Grid-02Fri-07.30.png",
+        "66a125c031662b4367a10e9e_Lolla24_Grid-03Sat-07.23B.png",
+        "66aba3cf551585593ff25ece_Lolla24_Grid-07.31-Sunday-A.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20240802201139",
+      "archivedUrl": "https://web.archive.org/web/20240802201139/https://www.lollapalooza.com/schedule",
+      "sha256": "112adb9d179552c713350dbb5cefc8fbd3e8af9e84415b4a8f29313a58228d73",
+      "images": [
+        "66a0288b866c5deb6fe13dfc_Lolla24_Grid-01Thurs-07.23.png",
+        "66a90c795a6e250b24785288_Lolla24_Grid-02Fri-07.30.png",
+        "66a125c031662b4367a10e9e_Lolla24_Grid-03Sat-07.23B.png",
+        "66acf902ca50d4389a77c75b_Lolla24_Grid-04Sun-08.02.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20240803202433",
+      "archivedUrl": "https://web.archive.org/web/20240803202433/https://www.lollapalooza.com/schedule",
+      "sha256": "5e9e7ac5a2f4d8d35119e2e35987a39cd95a651f93b08fd5476e7f16ec0dfd60",
+      "images": [
+        "66a0288b866c5deb6fe13dfc_Lolla24_Grid-01Thurs-07.23.png",
+        "66a90c795a6e250b24785288_Lolla24_Grid-02Fri-07.30.png",
+        "66ad9f7366aa44c872fb2595_Lolla24_Grid-03Sat-07.30-A-Skrillex.png",
+        "66acf902ca50d4389a77c75b_Lolla24_Grid-04Sun-08.02.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20240804001943",
+      "archivedUrl": "https://web.archive.org/web/20240804001943/https://www.lollapalooza.com/schedule",
+      "sha256": "5e9e7ac5a2f4d8d35119e2e35987a39cd95a651f93b08fd5476e7f16ec0dfd60",
+      "images": [
+        "66a0288b866c5deb6fe13dfc_Lolla24_Grid-01Thurs-07.23.png",
+        "66a90c795a6e250b24785288_Lolla24_Grid-02Fri-07.30.png",
+        "66ad9f7366aa44c872fb2595_Lolla24_Grid-03Sat-07.30-A-Skrillex.png",
+        "66acf902ca50d4389a77c75b_Lolla24_Grid-04Sun-08.02.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20240804043050",
+      "archivedUrl": "https://web.archive.org/web/20240804043050/https://www.lollapalooza.com/schedule",
+      "sha256": "5e9e7ac5a2f4d8d35119e2e35987a39cd95a651f93b08fd5476e7f16ec0dfd60",
+      "images": [
+        "66a0288b866c5deb6fe13dfc_Lolla24_Grid-01Thurs-07.23.png",
+        "66a90c795a6e250b24785288_Lolla24_Grid-02Fri-07.30.png",
+        "66ad9f7366aa44c872fb2595_Lolla24_Grid-03Sat-07.30-A-Skrillex.png",
+        "66acf902ca50d4389a77c75b_Lolla24_Grid-04Sun-08.02.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20240804151459",
+      "archivedUrl": "https://web.archive.org/web/20240804151459/https://www.lollapalooza.com/schedule",
+      "sha256": "f90efe76004f0ee0abd35777bfdb97cf7a806328628cb62f003fb5a745d7c0ac",
+      "images": [
+        "66a0288b866c5deb6fe13dfc_Lolla24_Grid-01Thurs-07.23.png",
+        "66a90c795a6e250b24785288_Lolla24_Grid-02Fri-07.30.png",
+        "66ad9f7366aa44c872fb2595_Lolla24_Grid-03Sat-07.30-A-Skrillex.png",
+        "66acf902ca50d4389a77c75b_Lolla24_Grid-04Sun-08.02.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20240804170000",
+      "archivedUrl": "https://web.archive.org/web/20240804170000/https://www.lollapalooza.com/schedule",
+      "sha256": "5e74afc26a4c22ec9c9a8c8bbe543496b0da133764afb9a79402d5b9858c04b1",
+      "images": [
+        "66a0288b866c5deb6fe13dfc_Lolla24_Grid-01Thurs-07.23.png",
+        "66a90c795a6e250b24785288_Lolla24_Grid-02Fri-07.30.png",
+        "66ad9f7366aa44c872fb2595_Lolla24_Grid-03Sat-07.30-A-Skrillex.png",
+        "66af9b5dc41636dff47e89ca_Lolla24_Grid-08.04.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20240804194932",
+      "archivedUrl": "https://web.archive.org/web/20240804194932/https://www.lollapalooza.com/schedule",
+      "sha256": "42c0230f9e9285a60c9132ce9ea49511e4ab7de14ba7d3849d8fd67e1d28c652",
+      "images": [
+        "66a0288b866c5deb6fe13dfc_Lolla24_Grid-01Thurs-07.23.png",
+        "66a90c795a6e250b24785288_Lolla24_Grid-02Fri-07.30.png",
+        "66ad9f7366aa44c872fb2595_Lolla24_Grid-03Sat-07.30-A-Skrillex.png",
+        "66afcc0dbf98e4cbfe5db1ea_Lolla24_Grid-08.04B.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20240912180112",
+      "archivedUrl": "https://web.archive.org/web/20240912180112/https://www.lollapalooza.com/schedule",
+      "sha256": "aa0b2c6ae7f5d59ca8c9a53b6aaa742626585ffaf87e9cbc854d8aecf68f3992",
+      "images": [
+        "66a0288b866c5deb6fe13dfc_Lolla24_Grid-01Thurs-07.23.png",
+        "66a90c795a6e250b24785288_Lolla24_Grid-02Fri-07.30.png",
+        "66b0034c942f239f335de312_Lolla24_Grid-03Sat-08.02-B-Skrillex.png",
+        "66b003a5c63063902c89871e_Lolla24_Grid-08.04B.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20240930170239",
+      "archivedUrl": "https://web.archive.org/web/20240930170239/https://www.lollapalooza.com/schedule",
+      "sha256": "aa0b2c6ae7f5d59ca8c9a53b6aaa742626585ffaf87e9cbc854d8aecf68f3992",
+      "images": [
+        "66a0288b866c5deb6fe13dfc_Lolla24_Grid-01Thurs-07.23.png",
+        "66a90c795a6e250b24785288_Lolla24_Grid-02Fri-07.30.png",
+        "66b0034c942f239f335de312_Lolla24_Grid-03Sat-08.02-B-Skrillex.png",
+        "66b003a5c63063902c89871e_Lolla24_Grid-08.04B.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20241114035031",
+      "archivedUrl": "https://web.archive.org/web/20241114035031/https://www.lollapalooza.com/schedule",
+      "sha256": "2b0ff46afe94056dc744f4bfdb796ffe688e930d50278cbe61335c828d35ba33",
+      "images": [
+        "66a0288b866c5deb6fe13dfc_Lolla24_Grid-01Thurs-07.23.png",
+        "66a90c795a6e250b24785288_Lolla24_Grid-02Fri-07.30.png",
+        "66b0034c942f239f335de312_Lolla24_Grid-03Sat-08.02-B-Skrillex.png",
+        "66b003a5c63063902c89871e_Lolla24_Grid-08.04B.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20241203183455",
+      "archivedUrl": "https://web.archive.org/web/20241203183455/https://www.lollapalooza.com/schedule",
+      "sha256": "3a2fbc4513d80b49ff26d95252c41136dc4e72a3d3198030da5d1615a0591ed4",
+      "images": [
+        "66a0288b866c5deb6fe13dfc_Lolla24_Grid-01Thurs-07.23.png",
+        "66a90c795a6e250b24785288_Lolla24_Grid-02Fri-07.30.png",
+        "66b0034c942f239f335de312_Lolla24_Grid-03Sat-08.02-B-Skrillex.png",
+        "66b003a5c63063902c89871e_Lolla24_Grid-08.04B.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20241213110559",
+      "archivedUrl": "https://web.archive.org/web/20241213110559/https://www.lollapalooza.com/schedule",
+      "sha256": "a8542bffaa3073f2a31f55a35d4c1e6e0773867d301ce9055284ae360e6ad84e",
+      "images": [
+        "66a0288b866c5deb6fe13dfc_Lolla24_Grid-01Thurs-07.23.png",
+        "66a90c795a6e250b24785288_Lolla24_Grid-02Fri-07.30.png",
+        "66b0034c942f239f335de312_Lolla24_Grid-03Sat-08.02-B-Skrillex.png",
+        "66b003a5c63063902c89871e_Lolla24_Grid-08.04B.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20241231221441",
+      "archivedUrl": "https://web.archive.org/web/20241231221441/https://www.lollapalooza.com/schedule",
+      "sha256": "a1b263994d2350e5e18625c3a11dd6fb15648f3b0331ab09ed7441b9d17ddbfe",
+      "images": [
+        "66a0288b866c5deb6fe13dfc_Lolla24_Grid-01Thurs-07.23.png",
+        "66a90c795a6e250b24785288_Lolla24_Grid-02Fri-07.30.png",
+        "66b0034c942f239f335de312_Lolla24_Grid-03Sat-08.02-B-Skrillex.png",
+        "66b003a5c63063902c89871e_Lolla24_Grid-08.04B.png"
+      ]
+    }
+  ],
+  "days": [
+    {
+      "day": 1,
+      "date": "2024-08-01",
+      "pageCapture": "20241231221441",
+      "pageArchivedUrl": "https://web.archive.org/web/20241231221441/https://www.lollapalooza.com/schedule",
+      "originalUrl": "https://cdn.prod.website-files.com/65e1e77c24f2cc3e8c657dab/66a0288b866c5deb6fe13dfc_Lolla24_Grid-01Thurs-07.23.png",
+      "imageCapture": "20241203183456",
+      "imageArchivedUrl": "https://web.archive.org/web/20241203183456/https://cdn.prod.website-files.com/65e1e77c24f2cc3e8c657dab/66a0288b866c5deb6fe13dfc_Lolla24_Grid-01Thurs-07.23.png",
+      "sha256": "faaa72ce27b914193a4dc19889b6caa16e0889f65f276ec688c1e01814393c52",
+      "bytes": 557852,
+      "contentType": "image/png",
+      "cacheFile": "3a417daf2e671073ff016675.bin",
+      "revisions": [
+        {
+          "file": "664f52b41a37463ff6118883_LOLLA24-THURS-Schedule-web.png",
+          "firstSeen": "20240618150752"
+        },
+        {
+          "file": "667d82d066d61a446118f794_Lolla24_Grid-01Thurs-WEB-06.26.png",
+          "firstSeen": "20240717004626"
+        },
+        {
+          "file": "669a84ebf8eb6952f1a01829_Lolla24_Grid-01Thurs-07.19.png",
+          "firstSeen": "20240722185554"
+        },
+        {
+          "file": "66a0288b866c5deb6fe13dfc_Lolla24_Grid-01Thurs-07.23.png",
+          "firstSeen": "20240726124025"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2024-08-02",
+      "pageCapture": "20241231221441",
+      "pageArchivedUrl": "https://web.archive.org/web/20241231221441/https://www.lollapalooza.com/schedule",
+      "originalUrl": "https://cdn.prod.website-files.com/65e1e77c24f2cc3e8c657dab/66a90c795a6e250b24785288_Lolla24_Grid-02Fri-07.30.png",
+      "imageCapture": "20241203183456",
+      "imageArchivedUrl": "https://web.archive.org/web/20241203183456/https://cdn.prod.website-files.com/65e1e77c24f2cc3e8c657dab/66a90c795a6e250b24785288_Lolla24_Grid-02Fri-07.30.png",
+      "sha256": "177f791c83bf272eee873a177d50c15a20d60144ddc3e3d0889a55f68a72e53e",
+      "bytes": 535707,
+      "contentType": "image/png",
+      "cacheFile": "eeff630f454b3f03229ee8a0.bin",
+      "revisions": [
+        {
+          "file": "664f52c28c0166551155f1d6_LOLLA24-FRI-Schedule-web.png",
+          "firstSeen": "20240618150752"
+        },
+        {
+          "file": "66956f866a03d93fd9641c29_Lolla24_Grid-02FRI-07.15.png",
+          "firstSeen": "20240717004626"
+        },
+        {
+          "file": "669a84f306a6e25aab5547da_Lolla24_Grid-02Fri-07.19.png",
+          "firstSeen": "20240722185554"
+        },
+        {
+          "file": "66a13307e964b5a22e48eef1_Lolla24_Grid-02Fri-07.23B.png",
+          "firstSeen": "20240726124025"
+        },
+        {
+          "file": "66a90c795a6e250b24785288_Lolla24_Grid-02Fri-07.30.png",
+          "firstSeen": "20240731103740"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2024-08-03",
+      "pageCapture": "20241231221441",
+      "pageArchivedUrl": "https://web.archive.org/web/20241231221441/https://www.lollapalooza.com/schedule",
+      "originalUrl": "https://cdn.prod.website-files.com/65e1e77c24f2cc3e8c657dab/66b0034c942f239f335de312_Lolla24_Grid-03Sat-08.02-B-Skrillex.png",
+      "imageCapture": "20241203183456",
+      "imageArchivedUrl": "https://web.archive.org/web/20241203183456/https://cdn.prod.website-files.com/65e1e77c24f2cc3e8c657dab/66b0034c942f239f335de312_Lolla24_Grid-03Sat-08.02-B-Skrillex.png",
+      "sha256": "19010d88ff77212901ea52eef63051122e2ef6708ca523481e3a4d6b6717eada",
+      "bytes": 557426,
+      "contentType": "image/png",
+      "cacheFile": "97f71f0e66daf71e8730ae55.bin",
+      "revisions": [
+        {
+          "file": "664f5c5b3bdd5fc6417e33b1_LOLLA24-SAT-Schedule-web.png",
+          "firstSeen": "20240618150752"
+        },
+        {
+          "file": "669691263c14d16c9010fe71_Lolla24_Grid-03Sat-07.10B.png",
+          "firstSeen": "20240717004626"
+        },
+        {
+          "file": "669a84fb0a333e7eaa78229a_Lolla24_Grid-03Sat-07.19.png",
+          "firstSeen": "20240722185554"
+        },
+        {
+          "file": "66a125c031662b4367a10e9e_Lolla24_Grid-03Sat-07.23B.png",
+          "firstSeen": "20240726124025"
+        },
+        {
+          "file": "66ad9f7366aa44c872fb2595_Lolla24_Grid-03Sat-07.30-A-Skrillex.png",
+          "firstSeen": "20240803202433"
+        },
+        {
+          "file": "66b0034c942f239f335de312_Lolla24_Grid-03Sat-08.02-B-Skrillex.png",
+          "firstSeen": "20240912180112"
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2024-08-04",
+      "pageCapture": "20241231221441",
+      "pageArchivedUrl": "https://web.archive.org/web/20241231221441/https://www.lollapalooza.com/schedule",
+      "originalUrl": "https://cdn.prod.website-files.com/65e1e77c24f2cc3e8c657dab/66b003a5c63063902c89871e_Lolla24_Grid-08.04B.png",
+      "imageCapture": "20241203183456",
+      "imageArchivedUrl": "https://web.archive.org/web/20241203183456/https://cdn.prod.website-files.com/65e1e77c24f2cc3e8c657dab/66b003a5c63063902c89871e_Lolla24_Grid-08.04B.png",
+      "sha256": "28a43def0ece36075069b428867b1f3d063160129eecf153477c5034cc8c5624",
+      "bytes": 534315,
+      "contentType": "image/png",
+      "cacheFile": "aa4a5e77de38a0fa4bca3a39.bin",
+      "revisions": [
+        {
+          "file": "664f52e6e360879c134ec6f9_LOLLA24-SUN-Schedule-web.png",
+          "firstSeen": "20240618150752"
+        },
+        {
+          "file": "6695645c0c7252f99a6ab8ac_Lolla24_Grid-04Sun-07.12.png",
+          "firstSeen": "20240717004626"
+        },
+        {
+          "file": "669a85048f293dacf0fdf6a2_Lolla24_Grid-04Sun-07.19.png",
+          "firstSeen": "20240722185554"
+        },
+        {
+          "file": "66a028a8c67291cb948fc317_Lolla24_Grid-04Sun-07.23.png",
+          "firstSeen": "20240726124025"
+        },
+        {
+          "file": "66aba3cf551585593ff25ece_Lolla24_Grid-07.31-Sunday-A.png",
+          "firstSeen": "20240801195428"
+        },
+        {
+          "file": "66acf902ca50d4389a77c75b_Lolla24_Grid-04Sun-08.02.png",
+          "firstSeen": "20240802201139"
+        },
+        {
+          "file": "66af9b5dc41636dff47e89ca_Lolla24_Grid-08.04.png",
+          "firstSeen": "20240804170000"
+        },
+        {
+          "file": "66afcc0dbf98e4cbfe5db1ea_Lolla24_Grid-08.04B.png",
+          "firstSeen": "20240804194932"
+        },
+        {
+          "file": "66b003a5c63063902c89871e_Lolla24_Grid-08.04B.png",
+          "firstSeen": "20240912180112"
+        }
+      ]
+    }
+  ],
+  "dropped": []
+}

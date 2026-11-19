@@ -171,8 +171,11 @@ const out = build();
   // style: 194 rows. Defqon.1 2015 adds four: three billings joined by "ft."
   // or "with" (Mad Dog ft. Jeff, Kasparov & System Shock ft Diesel, Qlubtempo
   // Parade with Pavo, Pila, Trilok & Chiren) and one "a.k.a." parenthetical
-  // (Elkabass (a.k.a. The Prophet)): 198 rows. Past 198, stop and report.
-  check(review.length <= 198, `review queue is ${review.length} rows (> 198 means stop and report)`);
+  // (Elkabass (a.k.a. The Prophet)): 198 rows. Lollapalooza 2024 and
+  // Governors Ball 2024 add two: a billing joined by "with" (LAUFEY WITH THE
+  // CHICAGO PHILHARMONIC) and a short name now at three brands (FLO): 200
+  // rows. Past 200, stop and report.
+  check(review.length <= 200, `review queue is ${review.length} rows (> 200 means stop and report)`);
   check(review.every(r => r.reason) && excluded.every(e => e.reason && e.category), 'a review or excluded row without its reason');
   check(excluded.some(e => e.category === 'unnamed-slot'), 'control: no unnamed slot was excluded');
   // Bare non-acts never become artists; a NAMED kids act ("Special Guest: The
@@ -257,7 +260,13 @@ const out = build();
   check(solo >= 3000, `control: only ${solo} solo billings compared`);
   check(!off.length, `app photo key differs from the registry key for ${off.length}: ${off.slice(0, 3)}`);
   // Outside the folded letters, the key is the historical library's slug.
-  const plain = out.billings.map(b => b.printed).filter(t => !/[¥ØøÆæŒœßŁłĐđÞþð]/.test(t));
+  // Every folded letter folds in both cases: the table had ð but not Ð, so
+  // Lollapalooza 2024's "DAÐI FREYR" keyed apart from "Daði Freyr".
+  const pairs = 'ØøÆæŒœŁłĐđÞþÐð';
+  for (let i = 0; i < pairs.length; i += 2)
+    check(artistKey(`A${pairs[i]}B`) === artistKey(`a${pairs[i + 1]}b`) && artistKey(`a${pairs[i]}b`) !== 'a-b', `${pairs[i]} / ${pairs[i + 1]} fold to different keys`);
+  check(artistKey('DAÐI FREYR') === artistKey('Daði Freyr'), 'DAÐI FREYR and Daði Freyr are two keys');
+  const plain = out.billings.map(b => b.printed).filter(t => !/[¥ØøÆæŒœßŁłĐđÞþÐð]/.test(t));
   check(plain.every(t => keyOf(t) === slug(t)), 'keyOf drifted from the historical slug');
 }
 

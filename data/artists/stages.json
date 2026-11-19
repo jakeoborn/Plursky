@@ -2635,6 +2635,32 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "governors-ball:gopuff",
+     "names": [
+      {
+       "printed": "GOPUFF",
+       "editions": [
+        "governors-ball-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:ihg-hotels-and-resorts",
+     "names": [
+      {
+       "printed": "IHG HOTELS & RESORTS",
+       "editions": [
+        "governors-ball-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },
@@ -3747,6 +3773,45 @@
        "printed": "Kidzapalooza Presented By Lifeway",
        "editions": [
         "lollapalooza-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:bacardi",
+     "names": [
+      {
+       "printed": "BACARDÍ",
+       "editions": [
+        "lollapalooza-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:ihg-hotels-and-resorts",
+     "names": [
+      {
+       "printed": "IHG HOTELS & RESORTS",
+       "editions": [
+        "lollapalooza-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:sonny-s",
+     "names": [
+      {
+       "printed": "SONNY'S",
+       "editions": [
+        "lollapalooza-2024"
        ]
       }
      ],

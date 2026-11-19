@@ -1675,8 +1675,10 @@ ok(instant("2025-05-16", "04:13", 12, -420) === "2025-05-17T11:13:00.000Z",
   // not imported names them (review of merged #440, 2026-11-12). Exactly these
   // carry the label, and it cannot drift from the rows: Coachella's three,
   // Sziget 2010 and 2011, whose day pages were archived for five stages only,
-  // and Defqon.1 2015, whose Sunday closing prints one block over untimed acts.
-  const SELECTED = ["coachella-2014", "coachella-2015", "coachella-2016", "defqon1-2015", "sziget-2010", "sziget-2011"];
+  // Defqon.1 2015, whose Sunday closing prints one block over untimed acts,
+  // and Governors Ball 2024, whose Bud Light Backyard sheet prints weekdays
+  // without dates and starts without ends.
+  const SELECTED = ["coachella-2014", "coachella-2015", "coachella-2016", "defqon1-2015", "governors-ball-2024", "sziget-2010", "sziget-2011"];
   const selected = Object.values(editions).filter(e => e.completeness === "selected_stages").map(e => e.id).sort();
   ok(JSON.stringify(selected) === JSON.stringify(SELECTED), `selected_stages editions are ${selected.join(", ") || "none"}, want ${SELECTED.join(", ")}`);
   const c14 = editions["coachella-2014"];

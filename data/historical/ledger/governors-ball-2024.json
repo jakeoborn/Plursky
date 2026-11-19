@@ -1,0 +1,189 @@
+{
+  "id": "governors-ball-2024",
+  "method": "official_image_transcription",
+  "official": "https://www.governorsballmusicfestival.com/schedule",
+  "window": [
+    "20240401",
+    "20241231"
+  ],
+  "pageCaptures": [
+    {
+      "captureTimestamp": "20240515152123",
+      "archivedUrl": "https://web.archive.org/web/20240515152123/https://www.governorsballmusicfestival.com/schedule",
+      "sha256": "6bf56fdda443519339780f5c2c23ce953c258a88e2094252347724de147e8cdf",
+      "images": [
+        "662a7a87fe678e142e89d8a5_GB24-Schedule-Fri-4.25.png",
+        "662a7aa141ac6da7d93e75a4_GB24-Schedule-Sat-4.25.png",
+        "662a7abb5c194ebd3b6bd922_GB24-Schedule-Sun-4.25.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20240521222159",
+      "archivedUrl": "https://web.archive.org/web/20240521222159/https://www.governorsballmusicfestival.com/schedule",
+      "sha256": "d9333de428d1ad7500cc51364ab44685a5feeea002d389d945c671e62eba4d79",
+      "images": [
+        "662a7a87fe678e142e89d8a5_GB24-Schedule-Fri-4.25.png",
+        "662a7aa141ac6da7d93e75a4_GB24-Schedule-Sat-4.25.png",
+        "664bff3175768d0d76ccf61a_GBSchedule-Working-Sun-5.13.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20240530212459",
+      "archivedUrl": "https://web.archive.org/web/20240530212459/https://www.governorsballmusicfestival.com/schedule",
+      "sha256": "15bf1f9bb1d47c904e65595e38f828440adacfc52ed76ea49906b1284ee7bf7e",
+      "images": [
+        "662a7a87fe678e142e89d8a5_GB24-Schedule-Fri-4.25.png",
+        "662a7aa141ac6da7d93e75a4_GB24-Schedule-Sat-4.25.png",
+        "664bff3175768d0d76ccf61a_GBSchedule-Working-Sun-5.13.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20240605090510",
+      "archivedUrl": "https://web.archive.org/web/20240605090510/https://www.governorsballmusicfestival.com/schedule",
+      "sha256": "4f40aa292f7da37e815a09256883f2d28545d15ff69d49bc37855218ef3efdea",
+      "images": [
+        "662a7a87fe678e142e89d8a5_GB24-Schedule-Fri-4.25.png",
+        "662a7aa141ac6da7d93e75a4_GB24-Schedule-Sat-4.25.png",
+        "664bff3175768d0d76ccf61a_GBSchedule-Working-Sun-5.13.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20240621231545",
+      "archivedUrl": "https://web.archive.org/web/20240621231545/https://www.governorsballmusicfestival.com/schedule",
+      "sha256": "0e57e1107cd1c4eb70f2c7ae5efaaedb35aa3de6d384bea295dd7e575304a630",
+      "images": [
+        "66632d47fe88329de99c667c_GBSchedule-Working-Fri-6.7.jpg",
+        "66632d5035bc6084576f5523_GBSchedule-Working-Sat-6.7.jpg",
+        "66632d5eea98c891cce0d952_GBSchedule-Working-Sun-6.7.jpg"
+      ]
+    },
+    {
+      "captureTimestamp": "20240724172856",
+      "archivedUrl": "https://web.archive.org/web/20240724172856/https://www.governorsballmusicfestival.com/schedule",
+      "sha256": "492b0eb71e49a9141d19dd51a84205d42a42185903f6c79338c3a9efdc75d320",
+      "images": [
+        "66632d47fe88329de99c667c_GBSchedule-Working-Fri-6.7.jpg",
+        "66632d5035bc6084576f5523_GBSchedule-Working-Sat-6.7.jpg",
+        "66632d5eea98c891cce0d952_GBSchedule-Working-Sun-6.7.jpg"
+      ]
+    },
+    {
+      "captureTimestamp": "20240804233632",
+      "archivedUrl": "https://web.archive.org/web/20240804233632/https://www.governorsballmusicfestival.com/schedule",
+      "sha256": "99879111b6b204c4a848a3cb51ea51d39d2adbb41df391ee1b2349569fbfa083",
+      "images": [
+        "66632d47fe88329de99c667c_GBSchedule-Working-Fri-6.7.jpg",
+        "66632d5035bc6084576f5523_GBSchedule-Working-Sat-6.7.jpg",
+        "66632d5eea98c891cce0d952_GBSchedule-Working-Sun-6.7.jpg"
+      ]
+    },
+    {
+      "captureTimestamp": "20240915160903",
+      "archivedUrl": "https://web.archive.org/web/20240915160903/https://www.governorsballmusicfestival.com/schedule",
+      "sha256": "289f88b3a3b9ffd6f76cb5c236f7f73d32caf3061a7bb0197cd1a2dc8b3aae79",
+      "images": [
+        "66632d47fe88329de99c667c_GBSchedule-Working-Fri-6.7.jpg",
+        "66632d5035bc6084576f5523_GBSchedule-Working-Sat-6.7.jpg",
+        "66632d5eea98c891cce0d952_GBSchedule-Working-Sun-6.7.jpg"
+      ]
+    },
+    {
+      "captureTimestamp": "20241210140843",
+      "archivedUrl": "https://web.archive.org/web/20241210140843/https://www.governorsballmusicfestival.com/schedule",
+      "sha256": "a43a32443d2b900e18713e7813d8589def91c4a999580c0861ba83270d33218e",
+      "images": [
+        "66632d47fe88329de99c667c_GBSchedule-Working-Fri-6.7.jpg",
+        "66632d5035bc6084576f5523_GBSchedule-Working-Sat-6.7.jpg",
+        "66632d5eea98c891cce0d952_GBSchedule-Working-Sun-6.7.jpg"
+      ]
+    }
+  ],
+  "days": [
+    {
+      "day": 1,
+      "date": "2024-06-07",
+      "pageCapture": "20241210140843",
+      "pageArchivedUrl": "https://web.archive.org/web/20241210140843/https://www.governorsballmusicfestival.com/schedule",
+      "originalUrl": "https://cdn.prod.website-files.com/65802876202510fc31c68bb0/66632d47fe88329de99c667c_GBSchedule-Working-Fri-6.7.jpg",
+      "imageCapture": "20240725045105",
+      "imageArchivedUrl": "https://web.archive.org/web/20240725045105/https://cdn.prod.website-files.com/65802876202510fc31c68bb0/66632d47fe88329de99c667c_GBSchedule-Working-Fri-6.7.jpg",
+      "sha256": "9d356bfcaf45e4186d34995ffea54edf08445c1a9fe85ab932634ba892a77e52",
+      "bytes": 450309,
+      "contentType": "image/jpeg",
+      "cacheFile": "e3628ff7f3e8fe9a0fb38734.bin",
+      "revisions": [
+        {
+          "file": "662a7a87fe678e142e89d8a5_GB24-Schedule-Fri-4.25.png",
+          "firstSeen": "20240515152123"
+        },
+        {
+          "file": "662a7a87fe678e142e89d8a5_GB24-Schedule-Fri-4.25.png",
+          "firstSeen": "20240605090510"
+        },
+        {
+          "file": "66632d47fe88329de99c667c_GBSchedule-Working-Fri-6.7.jpg",
+          "firstSeen": "20240621231545"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2024-06-08",
+      "pageCapture": "20241210140843",
+      "pageArchivedUrl": "https://web.archive.org/web/20241210140843/https://www.governorsballmusicfestival.com/schedule",
+      "originalUrl": "https://cdn.prod.website-files.com/65802876202510fc31c68bb0/66632d5035bc6084576f5523_GBSchedule-Working-Sat-6.7.jpg",
+      "imageCapture": "20240724180403",
+      "imageArchivedUrl": "https://web.archive.org/web/20240724180403/https://cdn.prod.website-files.com/65802876202510fc31c68bb0/66632d5035bc6084576f5523_GBSchedule-Working-Sat-6.7.jpg",
+      "sha256": "f595ced3177b8190497314ba8d665c2a7957db755a5d2757fa9532b581721219",
+      "bytes": 433652,
+      "contentType": "image/jpeg",
+      "cacheFile": "980cc00219cf139c54c7c02a.bin",
+      "revisions": [
+        {
+          "file": "662a7aa141ac6da7d93e75a4_GB24-Schedule-Sat-4.25.png",
+          "firstSeen": "20240515152123"
+        },
+        {
+          "file": "662a7aa141ac6da7d93e75a4_GB24-Schedule-Sat-4.25.png",
+          "firstSeen": "20240605090510"
+        },
+        {
+          "file": "66632d5035bc6084576f5523_GBSchedule-Working-Sat-6.7.jpg",
+          "firstSeen": "20240621231545"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2024-06-09",
+      "pageCapture": "20241210140843",
+      "pageArchivedUrl": "https://web.archive.org/web/20241210140843/https://www.governorsballmusicfestival.com/schedule",
+      "originalUrl": "https://cdn.prod.website-files.com/65802876202510fc31c68bb0/66632d5eea98c891cce0d952_GBSchedule-Working-Sun-6.7.jpg",
+      "imageCapture": "20240725065631",
+      "imageArchivedUrl": "https://web.archive.org/web/20240725065631/https://cdn.prod.website-files.com/65802876202510fc31c68bb0/66632d5eea98c891cce0d952_GBSchedule-Working-Sun-6.7.jpg",
+      "sha256": "2f5ffa5f926ad67bc536da8efdd9fbb471ede7fa657a1d899959362ab8f4e67e",
+      "bytes": 415039,
+      "contentType": "image/jpeg",
+      "cacheFile": "a60d7f08ff76e169170e7075.bin",
+      "revisions": [
+        {
+          "file": "662a7abb5c194ebd3b6bd922_GB24-Schedule-Sun-4.25.png",
+          "firstSeen": "20240515152123"
+        },
+        {
+          "file": "664bff3175768d0d76ccf61a_GBSchedule-Working-Sun-5.13.png",
+          "firstSeen": "20240521222159"
+        },
+        {
+          "file": "664bff3175768d0d76ccf61a_GBSchedule-Working-Sun-5.13.png",
+          "firstSeen": "20240605090510"
+        },
+        {
+          "file": "66632d5eea98c891cce0d952_GBSchedule-Working-Sun-6.7.jpg",
+          "firstSeen": "20240621231545"
+        }
+      ]
+    }
+  ],
+  "dropped": []
+}
