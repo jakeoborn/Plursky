@@ -199,6 +199,27 @@ export const EDITIONS = {
   "sonar-2022": { festivalId: "sonar", name: "Sónar Barcelona 2022", year: 2022,
     timezone: "Europe/Madrid", rolloverHour: 10, method: "official_sources",
     dates: [["2022-06-16", "Thursday"], ["2022-06-17", "Friday"], ["2022-06-18", "Saturday"]] },
+  // Sziget 2010-2011: the festival's own day-by-day programme
+  // (sziget.hu/festival_english/programs/-/days?day=<date>, format
+  // "sziget-days", sziget-days-schedule.mjs), one archived page per day, each
+  // drawing the five big stages its address selects (Main Stage, World Music,
+  // A38-WAN2, the rock-metal stage and the Party Arena). The week's tabs are
+  // the edition's days, the two warm-up days before the main five included.
+  // Each set prints its start alone, so every set is an open end; a set
+  // after midnight is that night's. The programme's own stage picker lists
+  // the festival's other stages and venues (13 and 6 in 2010, 26 and 6 in
+  // 2011: smaller music stages beside theatre, circus and arts sites); they
+  // are counted in coverage, their days not read. 2012's and 2013's day pages
+  // survive only after the programme was taken down ("Soon!") or as a
+  // redirect, so those years are not built.
+  "sziget-2010": { festivalId: "sziget", name: "Sziget 2010", year: 2010,
+    timezone: "Europe/Budapest", rolloverHour: 8, method: "official_sources",
+    dates: [["2010-08-09", "Monday"], ["2010-08-10", "Tuesday"], ["2010-08-11", "Wednesday"], ["2010-08-12", "Thursday"], ["2010-08-13", "Friday"], ["2010-08-14", "Saturday"], ["2010-08-15", "Sunday"]],
+    coverage: { asOf: "2026-11-18", missing: [{ stage: "13 other stages and 6 venues", days: [1, 2, 3, 4, 5, 6, 7], when: "listed in the programme, days not read" }] } },
+  "sziget-2011": { festivalId: "sziget", name: "Sziget 2011", year: 2011,
+    timezone: "Europe/Budapest", rolloverHour: 8, method: "official_sources",
+    dates: [["2011-08-08", "Monday"], ["2011-08-09", "Tuesday"], ["2011-08-10", "Wednesday"], ["2011-08-11", "Thursday"], ["2011-08-12", "Friday"], ["2011-08-13", "Saturday"], ["2011-08-14", "Sunday"]],
+    coverage: { asOf: "2026-11-18", missing: [{ stage: "26 other stages and 6 venues", days: [1, 2, 3, 4, 5, 6, 7], when: "listed in the programme, days not read" }] } },
   // Governors Ball 2017-2019: the official governorsballmusicfestival.com
   // schedule grid, the same C3 page as ACL's and Lolla's (format "acl-grid"),
   // one archived page per year, each captured after the festival.

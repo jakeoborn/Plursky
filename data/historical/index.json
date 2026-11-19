@@ -4534,6 +4534,120 @@
    }
   },
   {
+   "id": "sziget-2011",
+   "festivalId": "sziget",
+   "festivalName": "Sziget",
+   "name": "Sziget 2011",
+   "year": 2011,
+   "timezone": "Europe/Budapest",
+   "completeness": "selected_stages",
+   "missingStages": [
+    {
+     "stage": "26 other stages and 6 venues",
+     "when": "listed in the programme, days not read"
+    }
+   ],
+   "days": [
+    {
+     "day": 1,
+     "date": "2011-08-08",
+     "label": "Monday"
+    },
+    {
+     "day": 2,
+     "date": "2011-08-09",
+     "label": "Tuesday"
+    },
+    {
+     "day": 3,
+     "date": "2011-08-10",
+     "label": "Wednesday"
+    },
+    {
+     "day": 4,
+     "date": "2011-08-11",
+     "label": "Thursday"
+    },
+    {
+     "day": 5,
+     "date": "2011-08-12",
+     "label": "Friday"
+    },
+    {
+     "day": 6,
+     "date": "2011-08-13",
+     "label": "Saturday"
+    },
+    {
+     "day": 7,
+     "date": "2011-08-14",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 105,
+    "sets": 105
+   }
+  },
+  {
+   "id": "sziget-2010",
+   "festivalId": "sziget",
+   "festivalName": "Sziget",
+   "name": "Sziget 2010",
+   "year": 2010,
+   "timezone": "Europe/Budapest",
+   "completeness": "selected_stages",
+   "missingStages": [
+    {
+     "stage": "13 other stages and 6 venues",
+     "when": "listed in the programme, days not read"
+    }
+   ],
+   "days": [
+    {
+     "day": 1,
+     "date": "2010-08-09",
+     "label": "Monday"
+    },
+    {
+     "day": 2,
+     "date": "2010-08-10",
+     "label": "Tuesday"
+    },
+    {
+     "day": 3,
+     "date": "2010-08-11",
+     "label": "Wednesday"
+    },
+    {
+     "day": 4,
+     "date": "2010-08-12",
+     "label": "Thursday"
+    },
+    {
+     "day": 5,
+     "date": "2010-08-13",
+     "label": "Friday"
+    },
+    {
+     "day": 6,
+     "date": "2010-08-14",
+     "label": "Saturday"
+    },
+    {
+     "day": 7,
+     "date": "2010-08-15",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 146,
+    "sets": 146
+   }
+  },
+  {
    "id": "tomorrowland-2023",
    "festivalId": "tomorrowland",
    "festivalName": "Tomorrowland",

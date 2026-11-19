@@ -5616,6 +5616,133 @@
     }
    ]
   },
+  "sziget": {
+   "lineages": [
+    {
+     "id": "sziget:main-stage",
+     "names": [
+      {
+       "printed": "Main Stage",
+       "editions": [
+        "sziget-2010"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sziget:world-music-stage",
+     "names": [
+      {
+       "printed": "World Music Stage",
+       "editions": [
+        "sziget-2010"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sziget:mtv-headbangers-ball-stage",
+     "names": [
+      {
+       "printed": "MTV Headbangers Ball Stage",
+       "editions": [
+        "sziget-2010"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sziget:a38-wan2-stage",
+     "names": [
+      {
+       "printed": "A38-wan2 stage",
+       "editions": [
+        "sziget-2010"
+       ]
+      },
+      {
+       "printed": "A38-WAN2 Stage",
+       "editions": [
+        "sziget-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sziget:party-arena",
+     "names": [
+      {
+       "printed": "Party Arena",
+       "editions": [
+        "sziget-2010"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sziget:pop-rock-main-stage",
+     "names": [
+      {
+       "printed": "Pop-Rock Main Stage",
+       "editions": [
+        "sziget-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sziget:rock-metal-main-stage",
+     "names": [
+      {
+       "printed": "Rock-Metal Main Stage",
+       "editions": [
+        "sziget-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sziget:pesti-est-world-music-main-stage",
+     "names": [
+      {
+       "printed": "Pesti Est World Music Main Stage",
+       "editions": [
+        "sziget-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sziget:burn-party-arena",
+     "names": [
+      {
+       "printed": "Burn Party Arena",
+       "editions": [
+        "sziget-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
   "tomorrowland": {
    "lineages": [
     {

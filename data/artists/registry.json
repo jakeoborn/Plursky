@@ -785,6 +785,21 @@
   "links": []
  },
  {
+  "key": "3-feet-smaller",
+  "name": "3 Feet Smaller",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d4:rock-metal-main-stage:1600:3-feet-smaller-a"
+  ],
+  "firstSeen": "2011-08-11",
+  "lastSeen": "2011-08-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "33-below",
   "name": "33 Below",
   "aliases": [],
@@ -2749,6 +2764,7 @@
    "edc-las-vegas-2024:d1:neon-garden:0100:adam-beyer",
    "edc-orlando-2019:d2:neongarden:2200:adam-beyer",
    "edc-orlando-2025:d1:neongarden:2230:adam-beyer-b2b-layton-giordani",
+   "sziget-2010:d5:party-arena:0130:adam-beyer-s",
    "tomorrowland-2011:d1:carl-cox-and-friends:2130:adam-beyer",
    "tomorrowland-2013:d2:kozzmozz:2200:adam-beyer",
    "tomorrowland-2014:d1:carl-cox-and-friends:2000:adam-beyer",
@@ -2765,7 +2781,7 @@
    "tomorrowland-2022:d9:freedom:2230:adam-beyer",
    "tomorrowland-2023:d1:atmosphere:2300:adam-beyer"
   ],
-  "firstSeen": "2011-07-22",
+  "firstSeen": "2010-08-13",
   "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
@@ -3714,14 +3730,17 @@
  {
   "key": "afrocubism",
   "name": "Afrocubism",
-  "aliases": [],
+  "aliases": [
+   "AfroCubism"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "primavera-sound-2012:d2:escenario-ray-ban:2100:afrocubism"
+   "primavera-sound-2012:d2:escenario-ray-ban:2100:afrocubism",
+   "sziget-2011:d3:pesti-est-world-music-main-stage:2130:afrocubism-cu-ml"
   ],
-  "firstSeen": "2012-06-01",
+  "firstSeen": "2011-08-10",
   "lastSeen": "2012-06-01",
   "photo": null,
   "links": []
@@ -7612,6 +7631,21 @@
   "links": []
  },
  {
+  "key": "alvin-es-a-mokusok",
+  "name": "Alvin és a mókusok",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d3:a38-wan2-stage:0130:alvin-es-a-mokusok"
+  ],
+  "firstSeen": "2010-08-11",
+  "lastSeen": "2010-08-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "alvin-risk",
   "name": "Alvin Risk",
   "aliases": [
@@ -8744,6 +8778,21 @@
   ],
   "firstSeen": "2024-07-26",
   "lastSeen": "2025-07-24",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "amparo-sanchez",
+  "name": "Amparo Sanchez",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d3:world-music-stage:1945:amparo-sanchez-e"
+  ],
+  "firstSeen": "2010-08-11",
+  "lastSeen": "2010-08-11",
   "photo": null,
   "links": []
  },
@@ -9925,6 +9974,7 @@
   "projects": [],
   "billings": [
    "dreamstate-socal-2026:dssc-andy-moor",
+   "sziget-2010:d3:party-arena:0000:andy-moor-uk",
    "tomorrowland-2010:d1:tranceaddict:1800:andy-moor",
    "tomorrowland-2012:d3:tranceaddict:2030:andy-moor",
    "tomorrowland-2013:d3:tranceaddict:2230:andy-moor-b2b-lange",
@@ -11148,6 +11198,21 @@
   ],
   "firstSeen": "2024-07-26",
   "lastSeen": "2024-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "antitela",
+  "name": "Antitela",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d5:mtv-headbangers-ball-stage:0040:antitela-ukr"
+  ],
+  "firstSeen": "2010-08-13",
+  "lastSeen": "2010-08-13",
   "photo": null,
   "links": []
  },
@@ -14800,6 +14865,21 @@
   "links": []
  },
  {
+  "key": "aws",
+  "name": "AWS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d4:mtv-headbangers-ball-stage:1500:aws"
+  ],
+  "firstSeen": "2010-08-12",
+  "lastSeen": "2010-08-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "awwz",
   "name": "Awwz",
   "aliases": [
@@ -15989,9 +16069,10 @@
   "projects": [],
   "billings": [
    "coachella-2015:d2:coachella:1525:bad-religion",
-   "coachella-2015:d5:coachella:1525:bad-religion"
+   "coachella-2015:d5:coachella:1525:bad-religion",
+   "sziget-2010:d3:a38-wan2-stage:2330:bad-religion-usa"
   ],
-  "firstSeen": "2015-04-11",
+  "firstSeen": "2010-08-11",
   "lastSeen": "2015-04-18",
   "photo": null,
   "links": []
@@ -17273,6 +17354,21 @@
   "links": []
  },
  {
+  "key": "baskerville",
+  "name": "Baskerville",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d7:a38-wan2-stage:1700:baskerville-live-nl"
+  ],
+  "firstSeen": "2011-08-14",
+  "lastSeen": "2011-08-14",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "basketball",
   "name": "Basketball",
   "aliases": [],
@@ -17954,6 +18050,21 @@
   "links": []
  },
  {
+  "key": "batucada-sound-machine",
+  "name": "Batucada Sound Machine",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d5:pop-rock-main-stage:1500:batucada-sound-machine-nz"
+  ],
+  "firstSeen": "2011-08-12",
+  "lastSeen": "2011-08-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "baueer",
   "name": "Baueer",
   "aliases": [],
@@ -18259,6 +18370,21 @@
   ],
   "firstSeen": "2019-08-03",
   "lastSeen": "2027-04-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "bea-palya",
+  "name": "Bea Palya",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d4:pesti-est-world-music-main-stage:1815:felix-lajko-and-his-band-feat-bea-palya"
+  ],
+  "firstSeen": "2011-08-11",
+  "lastSeen": "2011-08-11",
   "photo": null,
   "links": []
  },
@@ -19568,6 +19694,21 @@
   "links": []
  },
  {
+  "key": "ben-l-oncle-soul",
+  "name": "Ben L’oncle Soul",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d4:pop-rock-main-stage:1500:ben-l-oncle-soul-f"
+  ],
+  "firstSeen": "2011-08-11",
+  "lastSeen": "2011-08-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "ben-malone",
   "name": "Ben Malone",
   "aliases": [],
@@ -20171,6 +20312,21 @@
   "links": []
  },
  {
+  "key": "bergi-and-svindler",
+  "name": "Bergi & Svindler",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d4:party-arena:2330:bergi-and-svindler"
+  ],
+  "firstSeen": "2010-08-12",
+  "lastSeen": "2010-08-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "berhana",
   "name": "BERHANA",
   "aliases": [],
@@ -20333,6 +20489,21 @@
   ],
   "firstSeen": "2017-06-02",
   "lastSeen": "2017-06-02",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "besh-o-drom",
+  "name": "Besh o droM",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d4:world-music-stage:1815:besh-o-drom-h"
+  ],
+  "firstSeen": "2010-08-12",
+  "lastSeen": "2010-08-12",
   "photo": null,
   "links": []
  },
@@ -21561,6 +21732,21 @@
   "links": []
  },
  {
+  "key": "billy-talent",
+  "name": "Billy Talent",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d7:main-stage:1800:billy-talent-can"
+  ],
+  "firstSeen": "2010-08-15",
+  "lastSeen": "2010-08-15",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "billy-woods",
   "name": "billy woods",
   "aliases": [],
@@ -21588,6 +21774,21 @@
   ],
   "firstSeen": "2025-08-02",
   "lastSeen": "2025-10-10",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "bin-jip",
+  "name": "Bin Jip",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d6:a38-wan2-stage:2020:bin-jip"
+  ],
+  "firstSeen": "2010-08-14",
+  "lastSeen": "2010-08-14",
   "photo": null,
   "links": []
  },
@@ -22200,6 +22401,21 @@
   ],
   "firstSeen": "2019-05-12",
   "lastSeen": "2019-05-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "black-box-revelation",
+  "name": "Black Box Revelation",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d4:a38-wan2-stage:1840:black-box-revelation-b"
+  ],
+  "firstSeen": "2010-08-12",
+  "lastSeen": "2010-08-12",
   "photo": null,
   "links": []
  },
@@ -23036,6 +23252,21 @@
   ],
   "firstSeen": "2026-10-16",
   "lastSeen": "2026-10-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "blind-myself",
+  "name": "Blind Myself",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d5:mtv-headbangers-ball-stage:1800:blind-myself"
+  ],
+  "firstSeen": "2010-08-13",
+  "lastSeen": "2010-08-13",
   "photo": null,
   "links": []
  },
@@ -23948,6 +24179,21 @@
   "links": []
  },
  {
+  "key": "boban-markovic-orkestar",
+  "name": "Boban Markovic Orkestar",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d2:rock-metal-main-stage:1900:boban-markovic-orkestar-srb"
+  ],
+  "firstSeen": "2011-08-09",
+  "lastSeen": "2011-08-09",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "bobby-and-djenko",
   "name": "Bobby & Djenko",
   "aliases": [],
@@ -24316,6 +24562,21 @@
   ],
   "firstSeen": "2024-10-25",
   "lastSeen": "2027-04-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "bomb-the-bass",
+  "name": "Bomb The Bass",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d4:a38-wan2-stage:2330:bomb-the-bass-uk"
+  ],
+  "firstSeen": "2011-08-11",
+  "lastSeen": "2011-08-11",
   "photo": null,
   "links": []
  },
@@ -25625,9 +25886,10 @@
    "outside-lands-2014:d2:panhandle:1955:boys-noize",
    "shambhala-2016:d2:pagoda:0230:boys-noize",
    "sonar-2016:d3:sonarpub:0335:boys-noize",
+   "sziget-2010:d4:party-arena:0030:boys-noize-vs-erol-alkan-d",
    "tomorrowland-2017:d2:i-love-techno:1630:boys-noize"
   ],
-  "firstSeen": "2012-08-03",
+  "firstSeen": "2010-08-12",
   "lastSeen": "2026-11-08",
   "photo": null,
   "links": []
@@ -26908,6 +27170,21 @@
   ],
   "firstSeen": "2013-08-04",
   "lastSeen": "2013-08-04",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "british-sea-power",
+  "name": "British Sea Power",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d5:pop-rock-main-stage:1630:british-sea-power-uk"
+  ],
+  "firstSeen": "2011-08-12",
+  "lastSeen": "2011-08-12",
   "photo": null,
   "links": []
  },
@@ -28321,15 +28598,18 @@
  },
  {
   "key": "buraka-som-sistema",
-  "name": "BURAKA SOM SISTEMA",
-  "aliases": [],
+  "name": "Buraka Som Sistema",
+  "aliases": [
+   "BURAKA SOM SISTEMA"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "hard-summer-2012:d1:hard-stage:1815:buraka-som-sistema"
+   "hard-summer-2012:d1:hard-stage:1815:buraka-som-sistema",
+   "sziget-2011:d6:a38-wan2-stage:2150:buraka-som-sistema-p"
   ],
-  "firstSeen": "2012-08-03",
+  "firstSeen": "2011-08-13",
   "lastSeen": "2012-08-03",
   "photo": null,
   "links": []
@@ -28791,6 +29071,21 @@
   "links": []
  },
  {
+  "key": "c-mon-and-kypski",
+  "name": "C-Mon & Kypski",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d4:a38-wan2-stage:2150:c-mon-and-kypski-nl"
+  ],
+  "firstSeen": "2010-08-12",
+  "lastSeen": "2010-08-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "c-o-pop-lena-willikens",
   "name": "c/o pop: Lena Willikens",
   "aliases": [],
@@ -28933,6 +29228,21 @@
   ],
   "firstSeen": "2016-06-03",
   "lastSeen": "2016-06-03",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "cadaveres",
+  "name": "Cadaveres",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d3:mtv-headbangers-ball-stage:1800:cadaveres"
+  ],
+  "firstSeen": "2010-08-11",
+  "lastSeen": "2010-08-11",
   "photo": null,
   "links": []
  },
@@ -29439,9 +29749,10 @@
    "edc-las-vegas-2012:d2:kineticfield:2350:calvin-harris",
    "edc-las-vegas-2013:d3:kineticfield:0130:calvin-harris",
    "lollapalooza-2012:d2:perry-s:1945:calvin-harris",
-   "lollapalooza-2014:d2:bud-light:2045:calvin-harris"
+   "lollapalooza-2014:d2:bud-light:2045:calvin-harris",
+   "sziget-2010:d6:party-arena:1930:calvin-harris-uk"
   ],
-  "firstSeen": "2012-04-15",
+  "firstSeen": "2010-08-14",
   "lastSeen": "2016-04-24",
   "photo": null,
   "links": []
@@ -29827,6 +30138,21 @@
   ],
   "firstSeen": "2026-10-17",
   "lastSeen": "2026-10-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "cankisou",
+  "name": "Cankisou",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d3:world-music-stage:1700:cankisou-cz"
+  ],
+  "firstSeen": "2010-08-11",
+  "lastSeen": "2010-08-11",
   "photo": null,
   "links": []
  },
@@ -30265,6 +30591,21 @@
   ],
   "firstSeen": "2014-04-12",
   "lastSeen": "2014-04-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "carbovaris",
+  "name": "Carbovaris",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d6:a38-wan2-stage:1700:carbovaris"
+  ],
+  "firstSeen": "2010-08-14",
+  "lastSeen": "2010-08-14",
   "photo": null,
   "links": []
  },
@@ -33145,6 +33486,21 @@
   "links": []
  },
  {
+  "key": "charlie-winston",
+  "name": "Charlie Winston",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d5:a38-wan2-stage:2330:charlie-winston-uk"
+  ],
+  "firstSeen": "2010-08-13",
+  "lastSeen": "2010-08-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "charlotte-adigery-and-bolis-pupul",
   "name": "CHARLOTTE ADIGÉRY & BOLIS PUPUL",
   "aliases": [],
@@ -33663,6 +34019,21 @@
   ],
   "firstSeen": "2024-05-18",
   "lastSeen": "2026-11-08",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "cheikh-lo",
+  "name": "Cheikh Lô",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d7:pesti-est-world-music-main-stage:1945:cheikh-lo-sn"
+  ],
+  "firstSeen": "2011-08-14",
+  "lastSeen": "2011-08-14",
   "photo": null,
   "links": []
  },
@@ -34310,6 +34681,21 @@
   "links": []
  },
  {
+  "key": "children-of-bodom",
+  "name": "Children of Bodom",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d3:mtv-headbangers-ball-stage:2110:children-of-bodom-fin"
+  ],
+  "firstSeen": "2010-08-11",
+  "lastSeen": "2010-08-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "chimp-it",
   "name": "Chimp It",
   "aliases": [],
@@ -34526,6 +34912,21 @@
   ],
   "firstSeen": "2024-07-25",
   "lastSeen": "2025-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "choc-quib-town",
+  "name": "Choc Quib Town",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d7:pesti-est-world-music-main-stage:1815:choc-quib-town-co"
+  ],
+  "firstSeen": "2011-08-14",
+  "lastSeen": "2011-08-14",
   "photo": null,
   "links": []
  },
@@ -35053,6 +35454,21 @@
   ],
   "firstSeen": "2012-07-28",
   "lastSeen": "2012-07-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "chriss",
+  "name": "Chriss",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d7:party-arena:0015:chriss"
+  ],
+  "firstSeen": "2010-08-15",
+  "lastSeen": "2010-08-15",
   "photo": null,
   "links": []
  },
@@ -37801,6 +38217,21 @@
   "links": []
  },
  {
+  "key": "collins-and-behnam",
+  "name": "Collins & Behnam",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d5:party-arena:2200:collins-and-behnam"
+  ],
+  "firstSeen": "2010-08-13",
+  "lastSeen": "2010-08-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "colony-house",
   "name": "Colony House",
   "aliases": [],
@@ -37843,6 +38274,21 @@
   ],
   "firstSeen": "2012-10-12",
   "lastSeen": "2012-10-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "colorstar",
+  "name": "ColorStar",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d4:a38-wan2-stage:1840:colorstar"
+  ],
+  "firstSeen": "2011-08-11",
+  "lastSeen": "2011-08-11",
   "photo": null,
   "links": []
  },
@@ -39384,6 +39830,36 @@
   "links": []
  },
  {
+  "key": "cowboy-junkies",
+  "name": "Cowboy Junkies",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d7:pesti-est-world-music-main-stage:2130:cowboy-junkies-can"
+  ],
+  "firstSeen": "2011-08-14",
+  "lastSeen": "2011-08-14",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "coyote",
+  "name": "Coyote",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d4:party-arena:0330:coyote"
+  ],
+  "firstSeen": "2010-08-12",
+  "lastSeen": "2010-08-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "coyote-kisses",
   "name": "Coyote Kisses",
   "aliases": [],
@@ -40380,7 +40856,8 @@
    "governors-ball-2013:d1:skyy-vodka-tent:1745:crystal-castles",
    "lollapalooza-2011:d1:sony:1915:crystal-castles",
    "lollapalooza-2013:d1:red-bull-sound-select:1615:crystal-castles",
-   "lollapalooza-2017:d2:pepsi:2100:crystal-castles"
+   "lollapalooza-2017:d2:pepsi:2100:crystal-castles",
+   "sziget-2011:d4:a38-wan2-stage:2010:crystal-castles-can"
   ],
   "firstSeen": "2011-08-05",
   "lastSeen": "2017-10-13",
@@ -40450,6 +40927,36 @@
   ],
   "firstSeen": "2024-08-11",
   "lastSeen": "2024-08-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "csik-band",
+  "name": "Csík band",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d6:pesti-est-world-music-main-stage:1945:csik-band-feat-tibor-kiss"
+  ],
+  "firstSeen": "2011-08-13",
+  "lastSeen": "2011-08-13",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "csik-zenekar",
+  "name": "Csík Zenekar",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d3:world-music-stage:1815:csik-zenekar-h"
+  ],
+  "firstSeen": "2010-08-11",
+  "lastSeen": "2010-08-11",
   "photo": null,
   "links": []
  },
@@ -42042,6 +42549,22 @@
   "links": []
  },
  {
+  "key": "dalriada",
+  "name": "Dalriada",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d5:mtv-headbangers-ball-stage:2310:dalriada",
+   "sziget-2011:d7:rock-metal-main-stage:1730:dalriada"
+  ],
+  "firstSeen": "2010-08-13",
+  "lastSeen": "2011-08-14",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dalva",
   "name": "Dalva",
   "aliases": [],
@@ -42550,6 +43073,21 @@
   "links": []
  },
  {
+  "key": "danger",
+  "name": "Danger",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d6:party-arena:0230:danger"
+  ],
+  "firstSeen": "2010-08-14",
+  "lastSeen": "2010-08-14",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "danger-incorporated",
   "name": "Danger Incorporated",
   "aliases": [],
@@ -42784,6 +43322,21 @@
   "links": []
  },
  {
+  "key": "daniel-kahn-and-the-painted-bird",
+  "name": "Daniel Kahn & The Painted Bird",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d5:world-music-stage:1700:daniel-kahn-and-the-painted-bird-usa"
+  ],
+  "firstSeen": "2010-08-13",
+  "lastSeen": "2010-08-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "daniel-kandi",
   "name": "Daniel Kandi",
   "aliases": [],
@@ -42934,6 +43487,21 @@
   ],
   "firstSeen": "2019-07-26",
   "lastSeen": "2019-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "danko-jones",
+  "name": "Danko Jones",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d7:main-stage:1630:danko-jones-can"
+  ],
+  "firstSeen": "2010-08-15",
+  "lastSeen": "2010-08-15",
   "photo": null,
   "links": []
  },
@@ -45313,6 +45881,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "sziget-2011:d4:a38-wan2-stage:2150:de-jeugd-van-tegenwoordig-nl",
    "tomorrowland-2011:d1:blue-flame:0015:de-jeugd-van-tegenwoordig",
    "tomorrowland-2022:d1:the-library:1800:de-jeugd-van-tegenwoordig"
   ],
@@ -45621,6 +46190,21 @@
   "links": []
  },
  {
+  "key": "deak-bill-gyula",
+  "name": "Deák Bill Gyula",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d6:mtv-headbangers-ball-stage:1930:deak-bill-gyula"
+  ],
+  "firstSeen": "2010-08-14",
+  "lastSeen": "2010-08-14",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "deal-casino",
   "name": "DEAL CASINO",
   "aliases": [],
@@ -45888,6 +46472,21 @@
   ],
   "firstSeen": "2022-05-22",
   "lastSeen": "2025-11-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "debout-sur-le-zinc",
+  "name": "Debout Sur Le Zinc",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d6:pesti-est-world-music-main-stage:1815:debout-sur-le-zinc-f"
+  ],
+  "firstSeen": "2011-08-13",
+  "lastSeen": "2011-08-13",
   "photo": null,
   "links": []
  },
@@ -46481,7 +47080,8 @@
   "projects": [],
   "billings": [
    "acl-2018:d2:american-express:1800:deftones",
-   "lollapalooza-2011:d2:playstation:1700:deftones"
+   "lollapalooza-2011:d2:playstation:1700:deftones",
+   "sziget-2011:d5:rock-metal-main-stage:2030:deftones-usa"
   ],
   "firstSeen": "2011-08-06",
   "lastSeen": "2018-10-06",
@@ -46546,6 +47146,21 @@
   ],
   "firstSeen": "2022-10-09",
   "lastSeen": "2022-10-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "deja-vu-revue",
+  "name": "Déja vu Revue",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d5:a38-wan2-stage:1700:deja-vu-revue"
+  ],
+  "firstSeen": "2010-08-13",
+  "lastSeen": "2010-08-13",
   "photo": null,
   "links": []
  },
@@ -47468,6 +48083,22 @@
   "links": []
  },
  {
+  "key": "depresszio",
+  "name": "Depresszió",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d6:mtv-headbangers-ball-stage:1745:depresszio",
+   "sziget-2011:d5:rock-metal-main-stage:1730:depresszio"
+  ],
+  "firstSeen": "2010-08-14",
+  "lastSeen": "2011-08-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "der-panther",
   "name": "Der Panther",
   "aliases": [],
@@ -48267,6 +48898,21 @@
   "links": []
  },
  {
+  "key": "dewolff",
+  "name": "DeWolff",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d5:a38-wan2-stage:1700:dewolff-nl"
+  ],
+  "firstSeen": "2011-08-12",
+  "lastSeen": "2011-08-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dexter-and-mr-smith",
   "name": "Dexter & Mr Smith",
   "aliases": [],
@@ -48499,9 +49145,10 @@
    "acl-2016:d4:honda:1800:die-antwoord",
    "lollapalooza-2012:d1:playstation:1700:die-antwoord",
    "lollapalooza-2016:d4:perry-s:2030:die-antwoord",
-   "outside-lands-2012:d1:twin-peaks-hellman-hollow:1725:die-antwoord"
+   "outside-lands-2012:d1:twin-peaks-hellman-hollow:1725:die-antwoord",
+   "sziget-2010:d7:party-arena:1930:die-antwoord-za"
   ],
-  "firstSeen": "2012-08-03",
+  "firstSeen": "2010-08-15",
   "lastSeen": "2016-10-07",
   "photo": null,
   "links": []
@@ -48790,6 +49437,21 @@
   ],
   "firstSeen": "2025-08-10",
   "lastSeen": "2025-08-10",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "digital-mystikz-featuring-mc-sgt-pokes",
+  "name": "Digital Mystikz featuring MC Sgt Pokes",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d6:a38-wan2-stage:2330:digital-mystikz-featuring-mc-sgt-pokes"
+  ],
+  "firstSeen": "2011-08-13",
+  "lastSeen": "2011-08-13",
   "photo": null,
   "links": []
  },
@@ -49512,6 +50174,21 @@
   ],
   "firstSeen": "2017-07-30",
   "lastSeen": "2017-07-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dirtmusic",
+  "name": "Dirtmusic",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d4:world-music-stage:1945:dirtmusic-es-tamikrest-mali-usa-aus"
+  ],
+  "firstSeen": "2010-08-12",
+  "lastSeen": "2010-08-12",
   "photo": null,
   "links": []
  },
@@ -50583,6 +51260,21 @@
   ],
   "firstSeen": "2012-07-27",
   "lastSeen": "2012-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dizzee-rascal",
+  "name": "Dizzee Rascal",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d5:pop-rock-main-stage:1945:dizzee-rascal-uk"
+  ],
+  "firstSeen": "2011-08-12",
+  "lastSeen": "2011-08-12",
   "photo": null,
   "links": []
  },
@@ -53831,9 +54523,10 @@
    "coachella-2012:d6:gobi:2140:dj-shadow",
    "coachella-2017:d1:mojave:2135:dj-shadow",
    "coachella-2017:d4:mojave:2130:dj-shadow",
-   "sonar-2017:d3:sonarclub:2230:dj-shadow"
+   "sonar-2017:d3:sonarclub:2230:dj-shadow",
+   "sziget-2010:d3:party-arena:1930:dj-shadow-usa"
   ],
-  "firstSeen": "2012-04-15",
+  "firstSeen": "2010-08-11",
   "lastSeen": "2017-06-16",
   "photo": null,
   "links": []
@@ -56301,6 +56994,21 @@
   "links": []
  },
  {
+  "key": "dorian-concept",
+  "name": "Dorian Concept",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d3:a38-wan2-stage:0100:dorian-concept-a"
+  ],
+  "firstSeen": "2011-08-10",
+  "lastSeen": "2011-08-10",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dorian-craft",
   "name": "Dorian Craft",
   "aliases": [],
@@ -57703,6 +58411,21 @@
   ],
   "firstSeen": "2021-10-30",
   "lastSeen": "2025-11-07",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "drums-are-for-parades",
+  "name": "Drums are for Parades",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d4:mtv-headbangers-ball-stage:1630:drums-are-for-parades-b"
+  ],
+  "firstSeen": "2010-08-12",
+  "lastSeen": "2010-08-12",
   "photo": null,
   "links": []
  },
@@ -60529,6 +61252,21 @@
   "links": []
  },
  {
+  "key": "ektomorf",
+  "name": "Ektomorf",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d6:rock-metal-main-stage:1900:ektomorf"
+  ],
+  "firstSeen": "2011-08-13",
+  "lastSeen": "2011-08-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "el-bacha",
   "name": "El Bacha",
   "aliases": [],
@@ -62446,7 +63184,8 @@
   "name": "Empire of the Sun",
   "aliases": [
    "Empire Of The Sun",
-   "EMPIRE OF THE SUN"
+   "EMPIRE OF THE SUN",
+   "Empire of The Sun"
   ],
   "kind": "performer",
   "parents": [],
@@ -62467,7 +63206,8 @@
    "governors-ball-2011:d1:big-apple-stage:2000:empire-of-the-sun",
    "governors-ball-2014:d3:gotham-tent:2015:empire-of-the-sun",
    "outside-lands-2010:d2:twin-peaks:2025:empire-of-the-sun",
-   "outside-lands-2017:d2:twin-peaks:2055:empire-of-the-sun"
+   "outside-lands-2017:d2:twin-peaks:2055:empire-of-the-sun",
+   "sziget-2011:d3:burn-party-arena:1930:empire-of-the-sun-aus"
   ],
   "firstSeen": "2010-08-15",
   "lastSeen": "2027-04-11",
@@ -62688,6 +63428,21 @@
   ],
   "firstSeen": "2019-07-19",
   "lastSeen": "2019-07-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "enter-shikari",
+  "name": "Enter Shikari",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d5:mtv-headbangers-ball-stage:1930:enter-shikari-uk"
+  ],
+  "firstSeen": "2010-08-13",
+  "lastSeen": "2010-08-13",
   "photo": null,
   "links": []
  },
@@ -63099,6 +63854,21 @@
   "links": []
  },
  {
+  "key": "erik-sumo-band",
+  "name": "Erik Sumo Band",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d5:a38-wan2-stage:0130:erik-sumo-band-feat-kiss-erzsi"
+  ],
+  "firstSeen": "2010-08-13",
+  "lastSeen": "2010-08-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "erik-urano",
   "name": "ERIK URANO",
   "aliases": [],
@@ -63210,10 +63980,11 @@
    "primavera-sound-2012:d1:escenario-ray-ban:0415:erol-alkan",
    "primavera-sound-2016:d2:bowers-and-wilkins-sound-system:1400:erol-alkan",
    "sonar-2019:d3:sonarvillage-by-estrella-damm:2105:erol-alkan",
+   "sziget-2010:d4:party-arena:0030:boys-noize-vs-erol-alkan-d",
    "tomorrowland-2014:d3:forma-t:2000:erol-alkan",
    "tomorrowland-2014:d6:forma-t:2000:erol-alkan"
   ],
-  "firstSeen": "2012-05-31",
+  "firstSeen": "2010-08-12",
   "lastSeen": "2019-07-20",
   "photo": null,
   "links": []
@@ -63455,6 +64226,21 @@
   ],
   "firstSeen": "2013-07-28",
   "lastSeen": "2014-07-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "esti-kornel",
+  "name": "Esti Kornél",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d1:main-stage:1900:esti-kornel"
+  ],
+  "firstSeen": "2010-08-09",
+  "lastSeen": "2010-08-09",
   "photo": null,
   "links": []
  },
@@ -64335,6 +65121,21 @@
   "links": []
  },
  {
+  "key": "ez3kiel",
+  "name": "Ez3kiel",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d6:a38-wan2-stage:2150:ez3kiel-f"
+  ],
+  "firstSeen": "2010-08-14",
+  "lastSeen": "2010-08-14",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "ezra-furman",
   "name": "Ezra Furman",
   "aliases": [
@@ -64769,6 +65570,21 @@
   ],
   "firstSeen": "2026-10-17",
   "lastSeen": "2026-10-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "faithless",
+  "name": "Faithless",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d4:main-stage:2130:faithless-uk"
+  ],
+  "firstSeen": "2010-08-12",
+  "lastSeen": "2010-08-12",
   "photo": null,
   "links": []
  },
@@ -65749,6 +66565,21 @@
   "links": []
  },
  {
+  "key": "fear-factory",
+  "name": "Fear Factory",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d7:mtv-headbangers-ball-stage:2110:fear-factory-usa"
+  ],
+  "firstSeen": "2010-08-15",
+  "lastSeen": "2010-08-15",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "featurecast",
   "name": "Featurecast",
   "aliases": [],
@@ -66100,6 +66931,21 @@
   "links": []
  },
  {
+  "key": "felix-lajko-and-his-band",
+  "name": "Felix Lajko and his Band",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d4:pesti-est-world-music-main-stage:1815:felix-lajko-and-his-band-feat-bea-palya"
+  ],
+  "firstSeen": "2011-08-11",
+  "lastSeen": "2011-08-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "felix-mun",
   "name": "Felix Mün",
   "aliases": [],
@@ -66415,6 +67261,21 @@
   ],
   "firstSeen": "2017-07-22",
   "lastSeen": "2019-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "ferus-mustafov",
+  "name": "Ferus Mustafov",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d5:world-music-stage:1815:sondorgo-ferus-mustafov-h-mac"
+  ],
+  "firstSeen": "2010-08-13",
+  "lastSeen": "2010-08-13",
   "photo": null,
   "links": []
  },
@@ -67867,10 +68728,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "lollapalooza-2011:d3:bud-light:1615:flogging-molly"
+   "lollapalooza-2011:d3:bud-light:1615:flogging-molly",
+   "sziget-2011:d3:pop-rock-main-stage:1630:flogging-molly-usa"
   ],
   "firstSeen": "2011-08-07",
-  "lastSeen": "2011-08-07",
+  "lastSeen": "2011-08-10",
   "photo": null,
   "links": []
  },
@@ -68723,9 +69585,10 @@
   "projects": [],
   "billings": [
    "edc-las-vegas-2013:d2:basspod:2100:foreign-beggars",
-   "shambhala-2013:d4:village:0000:foreign-beggars"
+   "shambhala-2013:d4:village:0000:foreign-beggars",
+   "sziget-2010:d4:a38-wan2-stage:1700:foreign-beggars-uk"
   ],
-  "firstSeen": "2013-06-22",
+  "firstSeen": "2010-08-12",
   "lastSeen": "2013-08-11",
   "photo": null,
   "links": []
@@ -72659,9 +73522,10 @@
   "projects": [],
   "billings": [
    "coachella-2017:d1:do-lab:1845:gaslamp-killer",
-   "hard-summer-2012:d2:harder-stage:2010:gaslamp-killer"
+   "hard-summer-2012:d2:harder-stage:2010:gaslamp-killer",
+   "sziget-2011:d6:a38-wan2-stage:0100:gaslamp-killer-uk"
   ],
-  "firstSeen": "2012-08-04",
+  "firstSeen": "2011-08-13",
   "lastSeen": "2017-04-14",
   "photo": null,
   "links": []
@@ -73269,6 +74133,21 @@
   "links": []
  },
  {
+  "key": "gentleman-and-the-evolution",
+  "name": "Gentleman and the Evolution",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d5:main-stage:1800:gentleman-and-the-evolution-d"
+  ],
+  "firstSeen": "2010-08-13",
+  "lastSeen": "2010-08-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "gentlemens-club",
   "name": "Gentlemens Club",
   "aliases": [],
@@ -73539,6 +74418,21 @@
   ],
   "firstSeen": "2017-07-30",
   "lastSeen": "2017-07-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "gesztival",
+  "name": "Gesztivál",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d1:pop-rock-main-stage:2030:gesztival"
+  ],
+  "firstSeen": "2011-08-08",
+  "lastSeen": "2011-08-08",
   "photo": null,
   "links": []
  },
@@ -75314,7 +76208,8 @@
   "projects": [],
   "billings": [
    "lollapalooza-2015:d3:palladia:1830:gogol-bordello",
-   "outside-lands-2010:d1:lands-end:1505:gogol-bordello"
+   "outside-lands-2010:d1:lands-end:1505:gogol-bordello",
+   "sziget-2011:d7:pop-rock-main-stage:1630:gogol-bordello-usa"
   ],
   "firstSeen": "2010-08-14",
   "lastSeen": "2015-08-02",
@@ -75880,6 +76775,21 @@
   "links": []
  },
  {
+  "key": "good-charlotte",
+  "name": "Good Charlotte",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d4:pop-rock-main-stage:1800:good-charlotte-usa"
+  ],
+  "firstSeen": "2011-08-11",
+  "lastSeen": "2011-08-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "good-looks",
   "name": "GOOD LOOKS",
   "aliases": [],
@@ -76050,9 +76960,10 @@
   "billings": [
    "acl-2022:d3:barton-springs:1900:goose",
    "acl-2022:d6:barton-springs:1900:goose",
+   "sziget-2011:d4:burn-party-arena:1930:goose-b",
    "tomorrowland-2019:d3:rave-cave:1700:cellini-b2b-goose"
   ],
-  "firstSeen": "2019-07-21",
+  "firstSeen": "2011-08-11",
   "lastSeen": "2022-10-16",
   "photo": null,
   "links": []
@@ -76085,6 +76996,21 @@
   ],
   "firstSeen": "2013-08-08",
   "lastSeen": "2014-08-08",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "goran-bregovic-wedding-and-funeral-band",
+  "name": "Goran Bregovic Wedding And Funeral Band",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d6:pesti-est-world-music-main-stage:2130:goran-bregovic-wedding-and-funeral-band-bih"
+  ],
+  "firstSeen": "2011-08-13",
+  "lastSeen": "2011-08-13",
   "photo": null,
   "links": []
  },
@@ -76209,6 +77135,21 @@
   "links": []
  },
  {
+  "key": "gorillaz-sound-system",
+  "name": "Gorillaz Sound System",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d4:a38-wan2-stage:2330:gorillaz-sound-system-uk"
+  ],
+  "firstSeen": "2010-08-12",
+  "lastSeen": "2010-08-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "gorje-hewek-and-izhevski",
   "name": "Gorje Hewek & Izhevski",
   "aliases": [],
@@ -76270,6 +77211,22 @@
   ],
   "firstSeen": "2013-09-21",
   "lastSeen": "2013-09-21",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "gotan-project",
+  "name": "Gotan Project",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d5:party-arena:1930:gotan-project-f",
+   "sziget-2011:d4:pesti-est-world-music-main-stage:2130:gotan-project-f"
+  ],
+  "firstSeen": "2010-08-13",
+  "lastSeen": "2011-08-11",
   "photo": null,
   "links": []
  },
@@ -76976,6 +77933,21 @@
   ],
   "firstSeen": "2026-09-19",
   "lastSeen": "2026-12-31",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "green-path",
+  "name": "Green Path",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d7:mtv-headbangers-ball-stage:1500:green-path"
+  ],
+  "firstSeen": "2010-08-15",
+  "lastSeen": "2010-08-15",
   "photo": null,
   "links": []
  },
@@ -78498,6 +79470,21 @@
   "links": []
  },
  {
+  "key": "gwar",
+  "name": "Gwar",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d3:main-stage:1500:gwar-us"
+  ],
+  "firstSeen": "2010-08-11",
+  "lastSeen": "2010-08-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "gwil",
   "name": "Gwil",
   "aliases": [],
@@ -78510,6 +79497,21 @@
   ],
   "firstSeen": "2013-08-09",
   "lastSeen": "2013-08-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "gyorgy-ferenczi-and-rackajam-and-guests",
+  "name": "György Ferenczi & Rackajam & Guests",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d6:world-music-stage:1815:gyorgy-ferenczi-and-rackajam-and-guests"
+  ],
+  "firstSeen": "2010-08-14",
+  "lastSeen": "2010-08-14",
   "photo": null,
   "links": []
  },
@@ -78677,6 +79679,21 @@
   ],
   "firstSeen": "2022-07-22",
   "lastSeen": "2022-07-22",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "hadouken",
+  "name": "Hadouken!",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d6:pop-rock-main-stage:1630:hadouken-uk"
+  ],
+  "firstSeen": "2011-08-13",
+  "lastSeen": "2011-08-13",
   "photo": null,
   "links": []
  },
@@ -80763,6 +81780,21 @@
   "links": []
  },
  {
+  "key": "helloween",
+  "name": "Helloween",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d4:rock-metal-main-stage:1900:helloween-d"
+  ],
+  "firstSeen": "2011-08-11",
+  "lastSeen": "2011-08-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "helloworld",
   "name": "helloworld",
   "aliases": [],
@@ -81638,6 +82670,21 @@
   "links": []
  },
  {
+  "key": "hindi-zahra",
+  "name": "Hindi Zahra",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d6:a38-wan2-stage:1700:hindi-zahra-f"
+  ],
+  "firstSeen": "2011-08-13",
+  "lastSeen": "2011-08-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "hinds",
   "name": "Hinds",
   "aliases": [
@@ -82118,6 +83165,21 @@
   ],
   "firstSeen": "2023-07-29",
   "lastSeen": "2023-07-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "holtido",
+  "name": "Holtidő",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d6:mtv-headbangers-ball-stage:1500:holtido"
+  ],
+  "firstSeen": "2010-08-14",
+  "lastSeen": "2010-08-14",
   "photo": null,
   "links": []
  },
@@ -82928,6 +83990,21 @@
   "links": []
  },
  {
+  "key": "hot-x",
+  "name": "Hot X",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d5:party-arena:0430:hot-x"
+  ],
+  "firstSeen": "2010-08-13",
+  "lastSeen": "2010-08-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "hotel-fiction",
   "name": "Hotel Fiction",
   "aliases": [],
@@ -83276,9 +84353,10 @@
   "billings": [
    "coachella-2016:d3:mojave:1650:hudson-mohawke",
    "coachella-2016:d6:mojave:1650:hudson-mohawke",
-   "primavera-sound-2016:d2:pitchfork:0410:hudson-mohawke-dj-set"
+   "primavera-sound-2016:d2:pitchfork:0410:hudson-mohawke-dj-set",
+   "sziget-2011:d4:a38-wan2-stage:0100:hudson-mohawke-uk"
   ],
-  "firstSeen": "2016-04-17",
+  "firstSeen": "2011-08-11",
   "lastSeen": "2016-06-02",
   "photo": null,
   "links": []
@@ -83810,6 +84888,21 @@
   ],
   "firstSeen": "2026-09-20",
   "lastSeen": "2026-09-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "hurts",
+  "name": "Hurts",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d3:a38-wan2-stage:2330:hurts-uk"
+  ],
+  "firstSeen": "2011-08-10",
+  "lastSeen": "2011-08-10",
   "photo": null,
   "links": []
  },
@@ -84838,6 +85931,21 @@
   "links": []
  },
  {
+  "key": "igor-do-urden",
+  "name": "Igor Do'urden",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d5:party-arena:2300:igor-do-urden"
+  ],
+  "firstSeen": "2010-08-13",
+  "lastSeen": "2010-08-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "igor-vicente",
   "name": "Igor Vicente",
   "aliases": [],
@@ -85064,6 +86172,21 @@
   ],
   "firstSeen": "2015-08-07",
   "lastSeen": "2015-08-07",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "ill-nino",
+  "name": "Ill Niño",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d3:mtv-headbangers-ball-stage:1930:ill-nino-usa"
+  ],
+  "firstSeen": "2010-08-11",
+  "lastSeen": "2010-08-11",
   "photo": null,
   "links": []
  },
@@ -85309,6 +86432,21 @@
   "links": []
  },
  {
+  "key": "in-memoriam-tamas-cseh",
+  "name": "In Memoriam: Tamás Cseh",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d2:world-music-stage:1800:in-memoriam-tamas-cseh"
+  ],
+  "firstSeen": "2010-08-10",
+  "lastSeen": "2010-08-10",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "in-the-endless-zanhyang-we-are",
   "name": "IN THE ENDLESS ZANHYANG WE ARE",
   "aliases": [],
@@ -85525,12 +86663,13 @@
    "dreamstate-socal-2023:d1:the-sequence:0000:infected-mushroom",
    "edc-las-vegas-2024:d1:quantum-valley:0200:infected-mushroom",
    "edc-orlando-2017:d1:neongarden:1830:infected-mushroom-dj-set",
+   "sziget-2010:d6:party-arena:0100:infected-mushroom-isr",
    "tomorrowland-2013:d1:b2b:2330:infected-mushroom",
    "tomorrowland-2018:d2:arch:2330:infected-mushroom",
    "tomorrowland-2022:d2:youphoria:2215:infected-mushroom",
    "tomorrowland-2022:d9:youphoria:2230:infected-mushroom"
   ],
-  "firstSeen": "2013-07-26",
+  "firstSeen": "2010-08-14",
   "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
@@ -85988,6 +87127,21 @@
   "links": []
  },
  {
+  "key": "insane",
+  "name": "Insane",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d3:mtv-headbangers-ball-stage:0040:insane"
+  ],
+  "firstSeen": "2010-08-11",
+  "lastSeen": "2010-08-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "insanlar",
   "name": "Insanlar",
   "aliases": [],
@@ -86075,6 +87229,21 @@
   ],
   "firstSeen": "2019-07-28",
   "lastSeen": "2022-07-15",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "inspector-cluzo",
+  "name": "Inspector Cluzo",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d3:a38-wan2-stage:1840:inspector-cluzo-fr"
+  ],
+  "firstSeen": "2010-08-11",
+  "lastSeen": "2010-08-11",
   "photo": null,
   "links": []
  },
@@ -86192,9 +87361,10 @@
    "lollapalooza-2014:d1:bud-light:1645:interpol",
    "outside-lands-2023:d1:sutro:2000:interpol",
    "primavera-sound-2015:d4:heineken:2220:interpol",
-   "primavera-sound-2019:d2:seat:2315:interpol"
+   "primavera-sound-2019:d2:seat:2315:interpol",
+   "sziget-2011:d3:pop-rock-main-stage:1945:interpol-usa"
   ],
-  "firstSeen": "2014-06-08",
+  "firstSeen": "2011-08-10",
   "lastSeen": "2023-08-11",
   "photo": null,
   "links": []
@@ -86371,6 +87541,21 @@
   ],
   "firstSeen": "2011-09-17",
   "lastSeen": "2011-09-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "iron-maiden",
+  "name": "Iron Maiden",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d6:main-stage:2100:iron-maiden-uk"
+  ],
+  "firstSeen": "2010-08-14",
+  "lastSeen": "2010-08-14",
   "photo": null,
   "links": []
  },
@@ -86635,6 +87820,21 @@
   "links": []
  },
  {
+  "key": "isolated",
+  "name": "Isolated",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d5:a38-wan2-stage:2020:isolated"
+  ],
+  "firstSeen": "2010-08-13",
+  "lastSeen": "2010-08-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "ison",
   "name": "Ison",
   "aliases": [],
@@ -86682,6 +87882,21 @@
   ],
   "firstSeen": "2016-10-01",
   "lastSeen": "2016-10-01",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "isten-hata-mogott",
+  "name": "Isten Háta Mögött",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d7:mtv-headbangers-ball-stage:1800:isten-hata-mogott"
+  ],
+  "firstSeen": "2010-08-15",
+  "lastSeen": "2010-08-15",
   "photo": null,
   "links": []
  },
@@ -90010,6 +91225,21 @@
   "links": []
  },
  {
+  "key": "jaune-toujours",
+  "name": "Jaune Toujours",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d6:world-music-stage:1700:jaune-toujours-b"
+  ],
+  "firstSeen": "2010-08-14",
+  "lastSeen": "2010-08-14",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "jauz",
   "name": "Jauz",
   "aliases": [
@@ -93177,6 +94407,21 @@
   "links": []
  },
  {
+  "key": "joel-mull",
+  "name": "Joel Mull",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d5:party-arena:0300:joel-mull-s"
+  ],
+  "firstSeen": "2010-08-13",
+  "lastSeen": "2010-08-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "joel-sarakula",
   "name": "JOEL SARAKULA",
   "aliases": [],
@@ -95935,6 +97180,21 @@
   "links": []
  },
  {
+  "key": "jr-reid",
+  "name": "Jr. Reid",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d5:pesti-est-world-music-main-stage:1945:sly-and-robbie-feat-jr-reid-jam"
+  ],
+  "firstSeen": "2011-08-12",
+  "lastSeen": "2011-08-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "jsmn",
   "name": "JSMN",
   "aliases": [],
@@ -96131,6 +97391,21 @@
   ],
   "firstSeen": "2019-11-08",
   "lastSeen": "2019-11-08",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "judas-priest",
+  "name": "Judas Priest",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d4:rock-metal-main-stage:2030:judas-priest-uk"
+  ],
+  "firstSeen": "2011-08-11",
+  "lastSeen": "2011-08-11",
   "photo": null,
   "links": []
  },
@@ -96992,6 +98267,21 @@
   "links": []
  },
  {
+  "key": "junkie-and-hawky",
+  "name": "Junkie & Hawky",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d4:party-arena:2200:junkie-and-hawky"
+  ],
+  "firstSeen": "2010-08-12",
+  "lastSeen": "2010-08-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "junkie-kid",
   "name": "Junkie Kid",
   "aliases": [
@@ -97757,6 +99047,21 @@
   "links": []
  },
  {
+  "key": "k-i-z",
+  "name": "K.I.Z.",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d4:main-stage:1500:k-i-z-d"
+  ],
+  "firstSeen": "2010-08-12",
+  "lastSeen": "2010-08-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "k-lab",
   "name": "K+Lab",
   "aliases": [],
@@ -98091,9 +99396,10 @@
   "projects": [],
   "billings": [
    "coachella-2012:d2:main-stage:1710:kaiser-chiefs",
-   "coachella-2012:d5:main-stage:1710:kaiser-chiefs"
+   "coachella-2012:d5:main-stage:1710:kaiser-chiefs",
+   "sziget-2011:d6:pop-rock-main-stage:1945:kaiser-chiefs-uk"
   ],
-  "firstSeen": "2012-04-14",
+  "firstSeen": "2011-08-13",
   "lastSeen": "2012-04-21",
   "photo": null,
   "links": []
@@ -98171,6 +99477,21 @@
   ],
   "firstSeen": "2026-12-19",
   "lastSeen": "2026-12-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "kalapacs",
+  "name": "Kalapács",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d6:mtv-headbangers-ball-stage:0040:kalapacs"
+  ],
+  "firstSeen": "2010-08-14",
+  "lastSeen": "2010-08-14",
   "photo": null,
   "links": []
  },
@@ -98381,6 +99702,21 @@
   ],
   "firstSeen": "2024-07-27",
   "lastSeen": "2024-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "kamelot",
+  "name": "Kamelot",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d6:mtv-headbangers-ball-stage:2310:kamelot-usa"
+  ],
+  "firstSeen": "2010-08-14",
+  "lastSeen": "2010-08-14",
   "photo": null,
   "links": []
  },
@@ -98706,6 +100042,21 @@
   "links": []
  },
  {
+  "key": "karanyi",
+  "name": "Karányi",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d6:party-arena:2200:karanyi"
+  ],
+  "firstSeen": "2010-08-14",
+  "lastSeen": "2010-08-14",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "karavan-sarai",
   "name": "Karavan Sarai",
   "aliases": [],
@@ -98982,9 +100333,11 @@
    "coachella-2012:d2:mojave:2035:kasabian",
    "coachella-2012:d5:mojave:2035:kasabian",
    "coachella-2015:d2:mojave:2015:kasabian",
-   "coachella-2015:d5:mojave:2015:kasabian"
+   "coachella-2015:d5:mojave:2015:kasabian",
+   "sziget-2010:d7:main-stage:1945:kasabian-uk",
+   "sziget-2011:d4:pop-rock-main-stage:1945:kasabian-uk"
   ],
-  "firstSeen": "2012-04-14",
+  "firstSeen": "2010-08-15",
   "lastSeen": "2015-04-18",
   "photo": null,
   "links": []
@@ -99374,9 +100727,10 @@
   "billings": [
    "coachella-2014:d1:gobi:1750:kate-nash",
    "coachella-2014:d4:gobi:1750:kate-nash",
-   "lollapalooza-2014:d2:bud-light:1445:kate-nash"
+   "lollapalooza-2014:d2:bud-light:1445:kate-nash",
+   "sziget-2011:d6:pop-rock-main-stage:1800:kate-nash-uk"
   ],
-  "firstSeen": "2014-04-11",
+  "firstSeen": "2011-08-13",
   "lastSeen": "2014-08-02",
   "photo": null,
   "links": []
@@ -99869,6 +101223,22 @@
   ],
   "firstSeen": "2016-10-07",
   "lastSeen": "2016-10-07",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "kees-van-hondt-and-friends",
+  "name": "Kees van Hondt & friends",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d7:a38-wan2-stage:0130:kees-van-hondt-and-friends-nl-feest-mulatsag-fest",
+   "sziget-2011:d7:a38-wan2-stage:2330:kees-van-hondt-and-friends-nl-feest-mulatsag-fest"
+  ],
+  "firstSeen": "2010-08-15",
+  "lastSeen": "2011-08-14",
   "photo": null,
   "links": []
  },
@@ -100407,6 +101777,21 @@
   ],
   "firstSeen": "2019-05-12",
   "lastSeen": "2026-08-07",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "kerekes-band",
+  "name": "Kerekes Band",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d7:a38-wan2-stage:1840:kerekes-band"
+  ],
+  "firstSeen": "2011-08-14",
+  "lastSeen": "2011-08-14",
   "photo": null,
   "links": []
  },
@@ -101257,7 +102642,8 @@
    "coachella-2014:d5:coachella:1740:kid-cudi",
    "governors-ball-2012:d1:honda-stage:2150:kid-cudi",
    "lollapalooza-2011:d3:perry-s:2100:kid-cudi",
-   "lollapalooza-2015:d2:bud-light:1845:kid-cudi"
+   "lollapalooza-2015:d2:bud-light:1845:kid-cudi",
+   "sziget-2011:d7:burn-party-arena:1930:kid-cudi-usa"
   ],
   "firstSeen": "2011-08-07",
   "lastSeen": "2015-08-01",
@@ -102367,6 +103753,36 @@
   "links": []
  },
  {
+  "key": "kispal-es-a-borz",
+  "name": "Kispál és a Borz",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d1:main-stage:2000:kispal-es-a-borz"
+  ],
+  "firstSeen": "2010-08-09",
+  "lastSeen": "2010-08-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "kiss-erzsi",
+  "name": "Kiss Erzsi",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d5:a38-wan2-stage:0130:erik-sumo-band-feat-kiss-erzsi"
+  ],
+  "firstSeen": "2010-08-13",
+  "lastSeen": "2010-08-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "kiss-kiss-bang-bang",
   "name": "Kiss Kiss Bang Bang",
   "aliases": [],
@@ -103149,9 +104565,10 @@
   "projects": [],
   "billings": [
    "sonar-2016:d2:sonarclub:0005:kode9",
-   "sonar-2018:d1:sonardome-by-red-bull-music:1530:kode9-x-koji-morimoto-av"
+   "sonar-2018:d1:sonardome-by-red-bull-music:1530:kode9-x-koji-morimoto-av",
+   "sziget-2011:d5:a38-wan2-stage:0100:kode9-uk"
   ],
-  "firstSeen": "2016-06-17",
+  "firstSeen": "2011-08-12",
   "lastSeen": "2018-06-14",
   "photo": null,
   "links": []
@@ -103764,6 +105181,21 @@
   "links": []
  },
  {
+  "key": "kovacs-kati",
+  "name": "Kovács Kati",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d4:a38-wan2-stage:2020:qualitons-feat-kovacs-kati"
+  ],
+  "firstSeen": "2010-08-12",
+  "lastSeen": "2010-08-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "koven",
   "name": "Koven",
   "aliases": [
@@ -103786,6 +105218,22 @@
   ],
   "firstSeen": "2015-07-25",
   "lastSeen": "2025-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "kowalsky-meg-a-vega",
+  "name": "Kowalsky meg a Vega",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d6:mtv-headbangers-ball-stage:2110:kowalsky-meg-a-vega",
+   "sziget-2011:d6:a38-wan2-stage:1840:kowalsky-meg-a-vega"
+  ],
+  "firstSeen": "2010-08-14",
+  "lastSeen": "2011-08-13",
   "photo": null,
   "links": []
  },
@@ -104048,6 +105496,21 @@
   ],
   "firstSeen": "2013-06-23",
   "lastSeen": "2026-09-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "kries",
+  "name": "Kries",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d4:world-music-stage:1700:kries-cro"
+  ],
+  "firstSeen": "2010-08-12",
+  "lastSeen": "2010-08-12",
   "photo": null,
   "links": []
  },
@@ -104520,6 +105983,21 @@
   ],
   "firstSeen": "2026-07-04",
   "lastSeen": "2026-07-04",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "kuhl",
+  "name": "Kühl",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d3:party-arena:0330:kuhl"
+  ],
+  "firstSeen": "2010-08-11",
+  "lastSeen": "2010-08-11",
   "photo": null,
   "links": []
  },
@@ -105613,9 +107091,10 @@
   "projects": [],
   "billings": [
    "edc-las-vegas-2013:d3:circuitgrounds:2125:la-roux",
-   "governors-ball-2014:d1:gotham-tent:1745:la-roux"
+   "governors-ball-2014:d1:gotham-tent:1745:la-roux",
+   "sziget-2011:d4:pop-rock-main-stage:1630:la-roux-uk"
   ],
-  "firstSeen": "2013-06-23",
+  "firstSeen": "2011-08-11",
   "lastSeen": "2014-06-06",
   "photo": null,
   "links": []
@@ -105696,6 +107175,21 @@
   "links": []
  },
  {
+  "key": "labrassbanda",
+  "name": "LaBrassBanda",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d3:pesti-est-world-music-main-stage:1700:labrassbanda-d"
+  ],
+  "firstSeen": "2011-08-10",
+  "lastSeen": "2011-08-10",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "labrat",
   "name": "Labrat",
   "aliases": [],
@@ -105742,6 +107236,21 @@
   ],
   "firstSeen": "2018-05-26",
   "lastSeen": "2018-05-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "ladanybene-27",
+  "name": "Ladánybene 27",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d2:main-stage:1500:ladanybene-27"
+  ],
+  "firstSeen": "2010-08-10",
+  "lastSeen": "2010-08-10",
   "photo": null,
   "links": []
  },
@@ -106961,6 +108470,21 @@
   ],
   "firstSeen": "2022-11-13",
   "lastSeen": "2027-01-21",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "laszlo-kollar-klemencz",
+  "name": "Laszlo Kollar-Klemencz",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d4:pesti-est-world-music-main-stage:1700:shtetl-superstars-uk-featl-laszlo-kollar-klemencz"
+  ],
+  "firstSeen": "2011-08-11",
+  "lastSeen": "2011-08-11",
   "photo": null,
   "links": []
  },
@@ -108621,6 +110145,21 @@
   "links": []
  },
  {
+  "key": "leningrad",
+  "name": "Leningrad",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d2:rock-metal-main-stage:2100:leningrad-ru"
+  ],
+  "firstSeen": "2011-08-09",
+  "lastSeen": "2011-08-09",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "lennert-wolfs",
   "name": "Lennert Wolfs",
   "aliases": [],
@@ -108983,6 +110522,21 @@
   ],
   "firstSeen": "2016-07-24",
   "lastSeen": "2017-07-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "les-hurlements-d-leo",
+  "name": "Les Hurlements d'Leo",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d3:pesti-est-world-music-main-stage:1815:les-hurlements-d-leo-f"
+  ],
+  "firstSeen": "2011-08-10",
+  "lastSeen": "2011-08-10",
   "photo": null,
   "links": []
  },
@@ -112115,6 +113669,21 @@
   "links": []
  },
  {
+  "key": "lord",
+  "name": "Lord",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d4:rock-metal-main-stage:1730:lord"
+  ],
+  "firstSeen": "2011-08-11",
+  "lastSeen": "2011-08-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "lord-huron",
   "name": "Lord Huron",
   "aliases": [
@@ -112475,6 +114044,21 @@
   ],
   "firstSeen": "2014-10-03",
   "lastSeen": "2014-10-03",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "los-de-abajo",
+  "name": "Los De Abajo",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d6:world-music-stage:2130:los-de-abajo-mex"
+  ],
+  "firstSeen": "2010-08-14",
+  "lastSeen": "2010-08-14",
   "photo": null,
   "links": []
  },
@@ -112928,6 +114512,21 @@
   ],
   "firstSeen": "2024-11-22",
   "lastSeen": "2025-05-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "lostprophets",
+  "name": "Lostprophets",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d6:rock-metal-main-stage:2030:lostprophets-uk"
+  ],
+  "firstSeen": "2011-08-13",
+  "lastSeen": "2011-08-13",
   "photo": null,
   "links": []
  },
@@ -115358,6 +116957,21 @@
   "links": []
  },
  {
+  "key": "lyapis-trubetskoy",
+  "name": "Lyapis Trubetskoy",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d5:main-stage:1500:lyapis-trubetskoy-by"
+  ],
+  "firstSeen": "2010-08-13",
+  "lastSeen": "2010-08-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "lydia-b-kollins",
   "name": "Lydia B Kollins",
   "aliases": [],
@@ -116533,6 +118147,21 @@
   "links": []
  },
  {
+  "key": "madensuyu",
+  "name": "Madensuyu",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d7:a38-wan2-stage:1840:madensuyu-b"
+  ],
+  "firstSeen": "2010-08-15",
+  "lastSeen": "2010-08-15",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "madeon",
   "name": "Madeon",
   "aliases": [
@@ -116682,9 +118311,10 @@
   "projects": [],
   "billings": [
    "coachella-2012:d1:outdoor:1900:madness",
-   "coachella-2012:d4:outdoor:1900:madness"
+   "coachella-2012:d4:outdoor:1900:madness",
+   "sziget-2010:d3:main-stage:2130:madness-uk"
   ],
-  "firstSeen": "2012-04-13",
+  "firstSeen": "2010-08-11",
   "lastSeen": "2012-04-20",
   "photo": null,
   "links": []
@@ -117137,6 +118767,21 @@
   "links": []
  },
  {
+  "key": "magnifico",
+  "name": "Magnifico",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d5:pesti-est-world-music-main-stage:1700:magnifico-slo"
+  ],
+  "firstSeen": "2011-08-12",
+  "lastSeen": "2011-08-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "magnus",
   "name": "Magnus",
   "aliases": [],
@@ -117163,6 +118808,36 @@
   ],
   "firstSeen": "2026-08-09",
   "lastSeen": "2026-08-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "magyar-radio-szimfonik-live",
+  "name": "Magyar Rádió Szimfonik Live",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d2:pesti-est-world-music-main-stage:2000:magyar-radio-szimfonik-live"
+  ],
+  "firstSeen": "2011-08-09",
+  "lastSeen": "2011-08-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "mahala-rai-banda",
+  "name": "Mahala Rai Banda",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d7:world-music-stage:1700:mahala-rai-banda-rom"
+  ],
+  "firstSeen": "2010-08-15",
+  "lastSeen": "2010-08-15",
   "photo": null,
   "links": []
  },
@@ -117446,9 +119121,10 @@
    "lollapalooza-2013:d3:perry-s:1900:major-lazer",
    "lollapalooza-2016:d2:bud-light:2030:major-lazer",
    "outside-lands-2011:d3:twin-peaks:1640:major-lazer",
-   "outside-lands-2016:d3:lands-end:1825:major-lazer"
+   "outside-lands-2016:d3:lands-end:1825:major-lazer",
+   "sziget-2010:d7:a38-wan2-stage:2330:major-lazer-jam"
   ],
-  "firstSeen": "2011-08-14",
+  "firstSeen": "2010-08-15",
   "lastSeen": "2026-07-31",
   "photo": null,
   "links": []
@@ -118287,6 +119963,21 @@
   "links": []
  },
  {
+  "key": "mangod-inc",
+  "name": "ManGod.Inc",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d3:mtv-headbangers-ball-stage:1630:mangod-inc"
+  ],
+  "firstSeen": "2010-08-11",
+  "lastSeen": "2010-08-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "manic-focus",
   "name": "Manic Focus",
   "aliases": [],
@@ -118316,6 +120007,21 @@
   ],
   "firstSeen": "2014-06-29",
   "lastSeen": "2014-06-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "manic-street-preachers",
+  "name": "Manic Street Preachers",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d7:pop-rock-main-stage:1945:manic-street-preachers-uk"
+  ],
+  "firstSeen": "2011-08-14",
+  "lastSeen": "2011-08-14",
   "photo": null,
   "links": []
  },
@@ -119487,9 +121193,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "acl-2011:d3:amd:1230:mariachi-el-bronx"
+   "acl-2011:d3:amd:1230:mariachi-el-bronx",
+   "sziget-2011:d7:pop-rock-main-stage:1500:mariachi-el-bronx-usa"
   ],
-  "firstSeen": "2011-09-18",
+  "firstSeen": "2011-08-14",
   "lastSeen": "2011-09-18",
   "photo": null,
   "links": []
@@ -119770,6 +121477,7 @@
   "key": "marina-and-the-diamonds",
   "name": "Marina and the Diamonds",
   "aliases": [
+   "Marina & The Diamonds",
    "Marina and The Diamonds",
    "Marina And The Diamonds"
   ],
@@ -119780,9 +121488,10 @@
    "coachella-2015:d3:coachella:1745:marina-and-the-diamonds",
    "coachella-2015:d6:coachella:1740:marina-and-the-diamonds",
    "governors-ball-2015:d2:govballnyc-stage:1500:marina-and-the-diamonds",
-   "lollapalooza-2015:d3:sprint:1645:marina-and-the-diamonds"
+   "lollapalooza-2015:d3:sprint:1645:marina-and-the-diamonds",
+   "sziget-2011:d7:a38-wan2-stage:2010:marina-and-the-diamonds-uk"
   ],
-  "firstSeen": "2015-04-12",
+  "firstSeen": "2011-08-14",
   "lastSeen": "2015-08-02",
   "photo": null,
   "links": []
@@ -126854,6 +128563,21 @@
   "links": []
  },
  {
+  "key": "mika",
+  "name": "Mika",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d5:main-stage:1945:mika-uk"
+  ],
+  "firstSeen": "2010-08-13",
+  "lastSeen": "2010-08-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "mikael-seifu",
   "name": "Mikael Seifu",
   "aliases": [],
@@ -129948,6 +131672,21 @@
   "links": []
  },
  {
+  "key": "monster-magnet",
+  "name": "Monster Magnet",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d7:mtv-headbangers-ball-stage:1930:monster-magnet-usa"
+  ],
+  "firstSeen": "2010-08-15",
+  "lastSeen": "2010-08-15",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "monstergetdown",
   "name": "Monstergetdown",
   "aliases": [],
@@ -131138,15 +132877,18 @@
  {
   "key": "motorhead",
   "name": "Motorhead",
-  "aliases": [],
+  "aliases": [
+   "Motörhead"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "coachella-2014:d3:mojave:2150:motorhead",
-   "coachella-2014:d6:mojave:2150:motorhead"
+   "coachella-2014:d6:mojave:2150:motorhead",
+   "sziget-2011:d3:rock-metal-main-stage:2030:motorhead-uk"
   ],
-  "firstSeen": "2014-04-13",
+  "firstSeen": "2011-08-10",
   "lastSeen": "2014-04-20",
   "photo": null,
   "links": []
@@ -132762,9 +134504,10 @@
    "coachella-2014:d5:coachella:2330:muse",
    "lollapalooza-2011:d1:music-unlimited:2015:muse",
    "lollapalooza-2017:d1:grant-park:2045:muse",
-   "outside-lands-2011:d2:lands-end:2010:muse"
+   "outside-lands-2011:d2:lands-end:2010:muse",
+   "sziget-2010:d7:main-stage:2130:muse-uk"
   ],
-  "firstSeen": "2011-08-05",
+  "firstSeen": "2010-08-15",
   "lastSeen": "2026-07-02",
   "photo": null,
   "links": []
@@ -132941,6 +134684,21 @@
   ],
   "firstSeen": "2013-06-30",
   "lastSeen": "2013-06-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "muzsikas-feat-ildiko-toth-fecske-and-zoltan-farkas-batyu",
+  "name": "Muzsikas feat. Ildiko Toth \"Fecske\" and Zoltan Farkas \"Batyu\"",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d5:pesti-est-world-music-main-stage:1815:muzsikas-feat-ildiko-toth-fecske-and-zoltan-farkas-batyu"
+  ],
+  "firstSeen": "2011-08-12",
+  "lastSeen": "2011-08-12",
   "photo": null,
   "links": []
  },
@@ -135014,6 +136772,21 @@
   "links": []
  },
  {
+  "key": "neck-sprain",
+  "name": "Neck Sprain",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d7:mtv-headbangers-ball-stage:1630:neck-sprain"
+  ],
+  "firstSeen": "2010-08-15",
+  "lastSeen": "2010-08-15",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "neda",
   "name": "NEDA(:",
   "aliases": [],
@@ -135778,6 +137551,22 @@
   ],
   "firstSeen": "2014-04-13",
   "lastSeen": "2014-04-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "nevergreen",
+  "name": "Nevergreen",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d4:mtv-headbangers-ball-stage:2310:nevergreen",
+   "sziget-2011:d7:rock-metal-main-stage:1600:nevergreen"
+  ],
+  "firstSeen": "2010-08-12",
+  "lastSeen": "2011-08-14",
   "photo": null,
   "links": []
  },
@@ -137915,6 +139704,21 @@
   ],
   "firstSeen": "2023-07-28",
   "lastSeen": "2023-07-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "nina-hagen",
+  "name": "Nina Hagen",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d6:a38-wan2-stage:2330:nina-hagen-d"
+  ],
+  "firstSeen": "2010-08-14",
+  "lastSeen": "2010-08-14",
   "photo": null,
   "links": []
  },
@@ -140308,6 +142112,21 @@
   "links": []
  },
  {
+  "key": "o8oo1",
+  "name": "O8OO1",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d7:world-music-stage:1945:o8oo1-e"
+  ],
+  "firstSeen": "2010-08-15",
+  "lastSeen": "2010-08-15",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "oakk",
   "name": "OAKK",
   "aliases": [],
@@ -141289,6 +143108,22 @@
   "links": []
  },
  {
+  "key": "oi-va-voi",
+  "name": "Oi Va Voi",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d5:world-music-stage:2130:oi-va-voi-uk",
+   "sziget-2011:d5:pesti-est-world-music-main-stage:2130:oi-va-voi-uk"
+  ],
+  "firstSeen": "2010-08-13",
+  "lastSeen": "2011-08-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "ojek",
   "name": "Ojek",
   "aliases": [],
@@ -141301,6 +143136,21 @@
   ],
   "firstSeen": "2014-07-19",
   "lastSeen": "2014-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "ojos-de-brujo",
+  "name": "Ojos de Brujo",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d3:pesti-est-world-music-main-stage:1945:ojos-de-brujo-es"
+  ],
+  "firstSeen": "2011-08-10",
+  "lastSeen": "2011-08-10",
   "photo": null,
   "links": []
  },
@@ -142023,6 +143873,21 @@
   "links": []
  },
  {
+  "key": "omara-portuondo",
+  "name": "Omara Portuondo",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d3:world-music-stage:2130:orquesta-buena-vista-social-club-es-omara-portuondo-cub"
+  ],
+  "firstSeen": "2010-08-11",
+  "lastSeen": "2010-08-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "omb-peezy",
   "name": "OMB PEEZY",
   "aliases": [],
@@ -142081,6 +143946,21 @@
   ],
   "firstSeen": "2013-07-26",
   "lastSeen": "2013-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "omen",
+  "name": "Omen",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d3:rock-metal-main-stage:1600:omen"
+  ],
+  "firstSeen": "2011-08-10",
+  "lastSeen": "2011-08-10",
   "photo": null,
   "links": []
  },
@@ -142934,6 +144814,21 @@
   "links": []
  },
  {
+  "key": "orias",
+  "name": "Óriás",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d3:a38-wan2-stage:2020:orias"
+  ],
+  "firstSeen": "2010-08-11",
+  "lastSeen": "2010-08-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "origin",
   "name": "Origin",
   "aliases": [],
@@ -143138,6 +145033,21 @@
   ],
   "firstSeen": "2026-06-27",
   "lastSeen": "2026-06-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "orquesta-buena-vista-social-club",
+  "name": "Orquesta Buena Vista Social Club",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d3:world-music-stage:2130:orquesta-buena-vista-social-club-es-omara-portuondo-cub"
+  ],
+  "firstSeen": "2010-08-11",
+  "lastSeen": "2010-08-11",
   "photo": null,
   "links": []
  },
@@ -143867,6 +145777,36 @@
   ],
   "firstSeen": "2012-08-05",
   "lastSeen": "2012-08-05",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "overdrive",
+  "name": "Overdrive",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d5:mtv-headbangers-ball-stage:1630:overdrive-srb"
+  ],
+  "firstSeen": "2010-08-13",
+  "lastSeen": "2010-08-13",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "overflow",
+  "name": "Overflow",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d6:pop-rock-main-stage:1500:overflow-hr"
+  ],
+  "firstSeen": "2011-08-13",
+  "lastSeen": "2011-08-13",
   "photo": null,
   "links": []
  },
@@ -144783,6 +146723,21 @@
   "links": []
  },
  {
+  "key": "papa-roach",
+  "name": "Papa Roach",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d5:main-stage:1630:papa-roach-usa"
+  ],
+  "firstSeen": "2010-08-13",
+  "lastSeen": "2010-08-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "papadosio",
   "name": "Papadosio",
   "aliases": [],
@@ -144900,6 +146855,21 @@
   ],
   "firstSeen": "2019-07-21",
   "lastSeen": "2019-07-21",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "paradise-lost",
+  "name": "Paradise Lost",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d5:mtv-headbangers-ball-stage:2110:paradise-lost-uk"
+  ],
+  "firstSeen": "2010-08-13",
+  "lastSeen": "2010-08-13",
   "photo": null,
   "links": []
  },
@@ -145141,6 +147111,21 @@
   ],
   "firstSeen": "2023-11-10",
   "lastSeen": "2023-11-10",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "parno-graszt",
+  "name": "Parno Graszt",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d7:world-music-stage:1815:parno-graszt-h"
+  ],
+  "firstSeen": "2010-08-15",
+  "lastSeen": "2010-08-15",
   "photo": null,
   "links": []
  },
@@ -146542,16 +148527,19 @@
  },
  {
   "key": "peaches",
-  "name": "PEACHES",
-  "aliases": [],
+  "name": "Peaches",
+  "aliases": [
+   "PEACHES"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "outside-lands-2016:d2:panhandle:1805:peaches",
-   "primavera-sound-2016:d2:heineken-hidden-stage:2030:peaches"
+   "primavera-sound-2016:d2:heineken-hidden-stage:2030:peaches",
+   "sziget-2010:d3:a38-wan2-stage:2150:peaches-d"
   ],
-  "firstSeen": "2016-06-02",
+  "firstSeen": "2010-08-11",
   "lastSeen": "2016-08-06",
   "photo": null,
   "links": []
@@ -147470,6 +149458,21 @@
   ],
   "firstSeen": "2016-04-17",
   "lastSeen": "2016-10-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "peter-bjorn-and-john",
+  "name": "Peter Bjorn & John",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d5:a38-wan2-stage:2010:peter-bjorn-and-john-s"
+  ],
+  "firstSeen": "2011-08-12",
+  "lastSeen": "2011-08-12",
   "photo": null,
   "links": []
  },
@@ -149999,6 +152002,36 @@
   "links": []
  },
  {
+  "key": "pole-position",
+  "name": "Pole Position",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d3:party-arena:2200:pole-position"
+  ],
+  "firstSeen": "2010-08-11",
+  "lastSeen": "2010-08-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "poli-vs-nora-naughty",
+  "name": "Poli vs. Nora Naughty",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d7:party-arena:2300:poli-vs-nora-naughty"
+  ],
+  "firstSeen": "2010-08-15",
+  "lastSeen": "2010-08-15",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "polica",
   "name": "Poliça",
   "aliases": [
@@ -150953,6 +152986,21 @@
   "links": []
  },
  {
+  "key": "prince",
+  "name": "Prince",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d2:pop-rock-main-stage:1900:prince-usa"
+  ],
+  "firstSeen": "2011-08-09",
+  "lastSeen": "2011-08-09",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "prince-club",
   "name": "Prince Club",
   "aliases": [],
@@ -151718,6 +153766,21 @@
   "links": []
  },
  {
+  "key": "public-image-ltd",
+  "name": "Public Image Ltd.",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d4:main-stage:1800:public-image-ltd-uk"
+  ],
+  "firstSeen": "2010-08-12",
+  "lastSeen": "2010-08-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "public-library-commute",
   "name": "PUBLIC LIBRARY COMMUTE",
   "aliases": [],
@@ -151801,9 +153864,10 @@
   "projects": [],
   "billings": [
    "coachella-2012:d1:main-stage:1950:pulp",
-   "coachella-2012:d4:main-stage:1950:pulp"
+   "coachella-2012:d4:main-stage:1950:pulp",
+   "sziget-2011:d3:pop-rock-main-stage:2130:pulp-uk"
   ],
-  "firstSeen": "2012-04-13",
+  "firstSeen": "2011-08-10",
   "lastSeen": "2012-04-20",
   "photo": null,
   "links": []
@@ -152562,6 +154626,21 @@
   ],
   "firstSeen": "2016-10-02",
   "lastSeen": "2016-10-02",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "qualitons",
+  "name": "Qualitons",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d4:a38-wan2-stage:2020:qualitons-feat-kovacs-kati"
+  ],
+  "firstSeen": "2010-08-12",
+  "lastSeen": "2010-08-12",
   "photo": null,
   "links": []
  },
@@ -158195,6 +160274,21 @@
   "links": []
  },
  {
+  "key": "rise-against",
+  "name": "Rise Against",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d3:pop-rock-main-stage:1800:rise-against-usa"
+  ],
+  "firstSeen": "2011-08-10",
+  "lastSeen": "2011-08-10",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "rising-appalachia",
   "name": "Rising Appalachia",
   "aliases": [],
@@ -158483,6 +160577,22 @@
   ],
   "firstSeen": "2013-06-27",
   "lastSeen": "2026-08-02",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "road",
+  "name": "Road",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d3:mtv-headbangers-ball-stage:2310:road",
+   "sziget-2011:d3:rock-metal-main-stage:1730:road"
+  ],
+  "firstSeen": "2010-08-11",
+  "lastSeen": "2011-08-10",
   "photo": null,
   "links": []
  },
@@ -159837,6 +161947,21 @@
   "links": []
  },
  {
+  "key": "romeo-verzik",
+  "name": "Rómeó Vérzik",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d4:mtv-headbangers-ball-stage:0040:romeo-verzik"
+  ],
+  "firstSeen": "2010-08-12",
+  "lastSeen": "2010-08-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "romes",
   "name": "ROMES",
   "aliases": [],
@@ -160043,6 +162168,21 @@
   "links": []
  },
  {
+  "key": "room-of-the-mad-robots",
+  "name": "Room Of The Mad Robots",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d5:mtv-headbangers-ball-stage:1500:room-of-the-mad-robots"
+  ],
+  "firstSeen": "2010-08-13",
+  "lastSeen": "2010-08-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "roosevelt",
   "name": "Roosevelt",
   "aliases": [
@@ -160073,6 +162213,21 @@
   ],
   "firstSeen": "2011-08-06",
   "lastSeen": "2011-08-06",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "roots-and-routes-art-n-go",
+  "name": "Roots & Routes - Art'N'Go",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d2:a38-wan2-stage:2315:roots-and-routes-art-n-go"
+  ],
+  "firstSeen": "2011-08-09",
+  "lastSeen": "2011-08-09",
   "photo": null,
   "links": []
  },
@@ -160353,6 +162508,22 @@
   ],
   "firstSeen": "2022-05-20",
   "lastSeen": "2022-05-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "rotfront",
+  "name": "Rotfront",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d5:world-music-stage:1945:rotfront-d-h-ukr",
+   "sziget-2011:d4:pesti-est-world-music-main-stage:1945:rotfront-d"
+  ],
+  "firstSeen": "2010-08-13",
+  "lastSeen": "2011-08-11",
   "photo": null,
   "links": []
  },
@@ -161251,6 +163422,21 @@
   ],
   "firstSeen": "2024-07-27",
   "lastSeen": "2024-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "rupa-and-the-april-fishes",
+  "name": "Rupa & the April Fishes",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d6:world-music-stage:1945:rupa-and-the-april-fishes-usa"
+  ],
+  "firstSeen": "2010-08-14",
+  "lastSeen": "2010-08-14",
   "photo": null,
   "links": []
  },
@@ -163569,6 +165755,7 @@
    "edc-las-vegas-2012:d2:kineticfield:2020:sander-van-doorn",
    "edc-las-vegas-2013:d2:kineticfield:2200:sander-van-doorn",
    "nocturnal-wonderland-2013:d1:sunken-garden:2100:sander-van-doorn",
+   "sziget-2010:d3:party-arena:0130:sander-van-doorn-nl",
    "tomorrowland-2011:d2:above-and-beyond-s-group-therapy-stage:1830:sander-van-doorn",
    "tomorrowland-2012:d3:pearl:1900:sander-van-doorn",
    "tomorrowland-2013:d2:mainstage:1630:sander-van-doorn",
@@ -163580,7 +165767,7 @@
    "tomorrowland-2017:d4:sexy-by-nature:2330:sander-van-doorn",
    "tomorrowland-2018:d4:garden-of-madness:2230:sander-van-doorn"
   ],
-  "firstSeen": "2011-07-23",
+  "firstSeen": "2010-08-11",
   "lastSeen": "2018-07-27",
   "photo": null,
   "links": []
@@ -166119,6 +168306,21 @@
   "links": []
  },
  {
+  "key": "selah-sue",
+  "name": "Selah Sue",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d7:a38-wan2-stage:2150:selah-sue-b"
+  ],
+  "firstSeen": "2011-08-14",
+  "lastSeen": "2011-08-14",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "selda-bagcan-and-boom-pam",
   "name": "SELDA BAĞCAN & BOOM PAM",
   "aliases": [],
@@ -167431,6 +169633,21 @@
   "links": []
  },
  {
+  "key": "shantel-and-bucovina-club-orkestar",
+  "name": "Shantel & Bucovina Club Orkestar",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d7:world-music-stage:2130:shantel-and-bucovina-club-orkestar-d"
+  ],
+  "firstSeen": "2010-08-15",
+  "lastSeen": "2010-08-15",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "shanti-celeste",
   "name": "Shanti Celeste",
   "aliases": [
@@ -168659,6 +170876,21 @@
   "links": []
  },
  {
+  "key": "shtetl-superstars",
+  "name": "Shtetl Superstars",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d4:pesti-est-world-music-main-stage:1700:shtetl-superstars-uk-featl-laszlo-kollar-klemencz"
+  ],
+  "firstSeen": "2011-08-11",
+  "lastSeen": "2011-08-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "shuggie-otis",
   "name": "Shuggie Otis",
   "aliases": [],
@@ -169385,6 +171617,21 @@
   "links": []
  },
  {
+  "key": "sikztah",
+  "name": "Sikztah",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d6:party-arena:0400:sikztah"
+  ],
+  "firstSeen": "2010-08-14",
+  "lastSeen": "2010-08-14",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "silcrow",
   "name": "Silcrow",
   "aliases": [],
@@ -169641,9 +171888,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "primavera-sound-2015:d2:pitchfork:0040:simian-mobile-disco"
+   "primavera-sound-2015:d2:pitchfork:0040:simian-mobile-disco",
+   "sziget-2010:d4:party-arena:1930:simian-mobile-disco-live-uk"
   ],
-  "firstSeen": "2015-05-28",
+  "firstSeen": "2010-08-12",
   "lastSeen": "2015-05-28",
   "photo": null,
   "links": []
@@ -170469,6 +172717,36 @@
   "links": []
  },
  {
+  "key": "ska-cubano",
+  "name": "Ska Cubano",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d6:pesti-est-world-music-main-stage:1700:ska-cubano-uk"
+  ],
+  "firstSeen": "2011-08-13",
+  "lastSeen": "2011-08-13",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "ska-p",
+  "name": "Ska-P",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d3:main-stage:1800:ska-p-es"
+  ],
+  "firstSeen": "2010-08-11",
+  "lastSeen": "2010-08-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "skanka",
   "name": "Skanka",
   "aliases": [],
@@ -170766,6 +173044,21 @@
   "links": []
  },
  {
+  "key": "skindred",
+  "name": "Skindred",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d4:mtv-headbangers-ball-stage:1930:skindred-uk"
+  ],
+  "firstSeen": "2010-08-12",
+  "lastSeen": "2010-08-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "skinny-kidz",
   "name": "SKINNY KIDZ",
   "aliases": [],
@@ -170823,6 +173116,21 @@
   ],
   "firstSeen": "2021-10-01",
   "lastSeen": "2021-10-08",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "skip-the-use",
+  "name": "Skip The Use",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d7:a38-wan2-stage:1700:skip-the-use-f"
+  ],
+  "firstSeen": "2010-08-15",
+  "lastSeen": "2010-08-15",
   "photo": null,
   "links": []
  },
@@ -171027,6 +173335,21 @@
   ],
   "firstSeen": "2026-11-07",
   "lastSeen": "2026-12-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "skunk-anansie",
+  "name": "Skunk Anansie",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d5:pop-rock-main-stage:1800:skunk-anansie-uk"
+  ],
+  "firstSeen": "2011-08-12",
+  "lastSeen": "2011-08-12",
   "photo": null,
   "links": []
  },
@@ -171259,6 +173582,21 @@
   ],
   "firstSeen": "2014-07-26",
   "lastSeen": "2014-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "slam-jr",
+  "name": "Slam Jr.",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d7:party-arena:0330:slam-jr"
+  ],
+  "firstSeen": "2010-08-15",
+  "lastSeen": "2010-08-15",
   "photo": null,
   "links": []
  },
@@ -172009,6 +174347,21 @@
   "links": []
  },
  {
+  "key": "sly-and-robbie",
+  "name": "Sly & Robbie",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d5:pesti-est-world-music-main-stage:1945:sly-and-robbie-feat-jr-reid-jam"
+  ],
+  "firstSeen": "2011-08-12",
+  "lastSeen": "2011-08-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "slynk",
   "name": "Slynk",
   "aliases": [],
@@ -172724,6 +175077,21 @@
   "links": []
  },
  {
+  "key": "socalled",
+  "name": "Socalled",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d7:pesti-est-world-music-main-stage:1700:socalled-can"
+  ],
+  "firstSeen": "2011-08-14",
+  "lastSeen": "2011-08-14",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "soccer-mommy",
   "name": "Soccer Mommy",
   "aliases": [
@@ -172816,6 +175184,21 @@
   ],
   "firstSeen": "2026-09-20",
   "lastSeen": "2026-09-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "soerii-and-poolek",
+  "name": "Soerii & Poolek",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d3:a38-wan2-stage:1840:soerii-and-poolek"
+  ],
+  "firstSeen": "2011-08-10",
+  "lastSeen": "2011-08-10",
   "photo": null,
   "links": []
  },
@@ -173621,6 +176004,51 @@
   ],
   "firstSeen": "2012-10-13",
   "lastSeen": "2012-10-13",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "sonata-arctica",
+  "name": "Sonata Arctica",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d7:rock-metal-main-stage:1900:sonata-arctica-fin"
+  ],
+  "firstSeen": "2011-08-14",
+  "lastSeen": "2011-08-14",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "sondorgo",
+  "name": "Söndörgő",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d5:world-music-stage:1815:sondorgo-ferus-mustafov-h-mac"
+  ],
+  "firstSeen": "2010-08-13",
+  "lastSeen": "2010-08-13",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "soneec",
+  "name": "Soneec",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d7:party-arena:2200:soneec"
+  ],
+  "firstSeen": "2010-08-15",
+  "lastSeen": "2010-08-15",
   "photo": null,
   "links": []
  },
@@ -178368,6 +180796,22 @@
   "links": []
  },
  {
+  "key": "subscribe",
+  "name": "Subscribe",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d4:mtv-headbangers-ball-stage:1800:subscribe",
+   "sziget-2011:d5:rock-metal-main-stage:1600:subscribe"
+  ],
+  "firstSeen": "2010-08-12",
+  "lastSeen": "2011-08-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "subscura",
   "name": "Subscura",
   "aliases": [],
@@ -178414,6 +180858,21 @@
   ],
   "firstSeen": "2026-09-18",
   "lastSeen": "2026-11-07",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "subsonica",
+  "name": "Subsonica",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d6:main-stage:1530:subsonica-i"
+  ],
+  "firstSeen": "2010-08-14",
+  "lastSeen": "2010-08-14",
   "photo": null,
   "links": []
  },
@@ -178724,6 +181183,21 @@
   ],
   "firstSeen": "2026-06-26",
   "lastSeen": "2026-06-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "suicidal-tendencies",
+  "name": "Suicidal Tendencies",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d3:a38-wan2-stage:2150:suicidal-tendencies-usa"
+  ],
+  "firstSeen": "2011-08-10",
+  "lastSeen": "2011-08-10",
   "photo": null,
   "links": []
  },
@@ -179319,6 +181793,22 @@
   ],
   "firstSeen": "2011-07-23",
   "lastSeen": "2013-06-22",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "superbutt",
+  "name": "Superbutt",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d7:mtv-headbangers-ball-stage:2310:superbutt",
+   "sziget-2011:d6:rock-metal-main-stage:1730:superbutt"
+  ],
+  "firstSeen": "2010-08-15",
+  "lastSeen": "2011-08-13",
   "photo": null,
   "links": []
  },
@@ -181043,6 +183533,21 @@
   "links": []
  },
  {
+  "key": "szeifert",
+  "name": "Szeifert",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d3:party-arena:2300:szeifert"
+  ],
+  "firstSeen": "2010-08-11",
+  "lastSeen": "2010-08-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "t-a-t-s",
   "name": "T.A.T.S",
   "aliases": [],
@@ -181853,6 +184358,21 @@
   "links": []
  },
  {
+  "key": "tamikrest",
+  "name": "Tamikrest",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d4:world-music-stage:1945:dirtmusic-es-tamikrest-mali-usa-aus"
+  ],
+  "firstSeen": "2010-08-12",
+  "lastSeen": "2010-08-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "tamino",
   "name": "TAMINO",
   "aliases": [],
@@ -181927,6 +184447,22 @@
   ],
   "firstSeen": "2012-08-11",
   "lastSeen": "2013-08-10",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "tankcsapda",
+  "name": "Tankcsapda",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d6:main-stage:1845:tankcsapda-h",
+   "sziget-2011:d7:rock-metal-main-stage:2030:tankcsapda"
+  ],
+  "firstSeen": "2010-08-14",
+  "lastSeen": "2011-08-14",
   "photo": null,
   "links": []
  },
@@ -183542,6 +186078,21 @@
   "links": []
  },
  {
+  "key": "terry-poison",
+  "name": "Terry Poison",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d3:a38-wan2-stage:1700:terry-poison-isr"
+  ],
+  "firstSeen": "2011-08-10",
+  "lastSeen": "2011-08-10",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "terry-riley-and-gyan-riley",
   "name": "TERRY RILEY & GYAN RILEY",
   "aliases": [],
@@ -183933,6 +186484,21 @@
   "links": []
  },
  {
+  "key": "the-69-eyes",
+  "name": "The 69 Eyes",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d4:mtv-headbangers-ball-stage:2110:the-69-eyes-fin"
+  ],
+  "firstSeen": "2010-08-12",
+  "lastSeen": "2010-08-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "the-aaron-ivey-band",
   "name": "The Aaron Ivey Band",
   "aliases": [],
@@ -184031,6 +186597,21 @@
   ],
   "firstSeen": "2012-05-31",
   "lastSeen": "2017-06-01",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "the-aggrolites",
+  "name": "The Aggrolites",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d2:main-stage:1630:the-aggrolites"
+  ],
+  "firstSeen": "2010-08-10",
+  "lastSeen": "2010-08-10",
   "photo": null,
   "links": []
  },
@@ -184841,10 +187422,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "lollapalooza-2011:d1:perry-s:1700:the-bloody-beetroots-death-crew-77"
+   "lollapalooza-2011:d1:perry-s:1700:the-bloody-beetroots-death-crew-77",
+   "sziget-2011:d3:a38-wan2-stage:2010:the-bloody-beetroots-death-crew-77-i"
   ],
   "firstSeen": "2011-08-05",
-  "lastSeen": "2011-08-05",
+  "lastSeen": "2011-08-10",
   "photo": null,
   "links": []
  },
@@ -185258,9 +187840,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "sonar-2022:d3:sonarclub:2230:the-chemical-brothers"
+   "sonar-2022:d3:sonarclub:2230:the-chemical-brothers",
+   "sziget-2011:d4:pop-rock-main-stage:2130:the-chemical-brothers-uk"
   ],
-  "firstSeen": "2022-06-18",
+  "firstSeen": "2011-08-11",
   "lastSeen": "2022-06-18",
   "photo": null,
   "links": []
@@ -185478,9 +188061,10 @@
   "projects": [],
   "billings": [
    "coachella-2015:d3:gobi:1805:the-cribs",
-   "coachella-2015:d6:gobi:1805:the-cribs"
+   "coachella-2015:d6:gobi:1805:the-cribs",
+   "sziget-2010:d6:main-stage:1700:the-cribs-uk"
   ],
-  "firstSeen": "2015-04-12",
+  "firstSeen": "2010-08-14",
   "lastSeen": "2015-04-19",
   "photo": null,
   "links": []
@@ -186664,6 +189248,21 @@
   "links": []
  },
  {
+  "key": "the-grenma",
+  "name": "The Grenma",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d3:mtv-headbangers-ball-stage:1500:the-grenma"
+  ],
+  "firstSeen": "2010-08-11",
+  "lastSeen": "2010-08-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "the-greyboy-allstars",
   "name": "The Greyboy Allstars",
   "aliases": [],
@@ -186746,6 +189345,21 @@
   ],
   "firstSeen": "2011-08-06",
   "lastSeen": "2011-08-06",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "the-haunted",
+  "name": "The Haunted",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d5:rock-metal-main-stage:1900:the-haunted-s"
+  ],
+  "firstSeen": "2011-08-12",
+  "lastSeen": "2011-08-12",
   "photo": null,
   "links": []
  },
@@ -186919,9 +189533,10 @@
   "projects": [],
   "billings": [
    "coachella-2012:d3:main-stage:1805:the-hives",
-   "coachella-2012:d6:main-stage:1805:the-hives"
+   "coachella-2012:d6:main-stage:1805:the-hives",
+   "sziget-2010:d3:main-stage:1945:the-hives-s"
   ],
-  "firstSeen": "2012-04-15",
+  "firstSeen": "2010-08-11",
   "lastSeen": "2012-04-22",
   "photo": null,
   "links": []
@@ -187451,6 +190066,21 @@
   "links": []
  },
  {
+  "key": "the-klezmatics",
+  "name": "The Klezmatics",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d2:rock-metal-main-stage:1700:the-klezmatics-usa"
+  ],
+  "firstSeen": "2011-08-09",
+  "lastSeen": "2011-08-09",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "the-knife",
   "name": "The Knife",
   "aliases": [],
@@ -187934,9 +190564,10 @@
   "projects": [],
   "billings": [
    "acl-2015:d1:miller-lite:1300:the-maccabees",
-   "acl-2015:d4:miller-lite:1300:the-maccabees"
+   "acl-2015:d4:miller-lite:1300:the-maccabees",
+   "sziget-2011:d3:pop-rock-main-stage:1500:the-maccabees-uk"
   ],
-  "firstSeen": "2015-10-02",
+  "firstSeen": "2011-08-10",
   "lastSeen": "2015-10-09",
   "photo": null,
   "links": []
@@ -188622,9 +191253,10 @@
    "lollapalooza-2013:d2:red-bull-sound-select:untimed:the-national",
    "lollapalooza-2018:d2:bud-light:untimed:the-national",
    "outside-lands-2013:d1:lands-end:1700:the-national",
-   "primavera-sound-2018:d3:mango:2130:the-national"
+   "primavera-sound-2018:d3:mango:2130:the-national",
+   "sziget-2011:d7:pop-rock-main-stage:1800:the-national-usa"
   ],
-  "firstSeen": "2013-08-03",
+  "firstSeen": "2011-08-14",
   "lastSeen": "2018-10-12",
   "photo": null,
   "links": []
@@ -189213,9 +191845,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "governors-ball-2015:d3:honda-stage:1215:the-picturebooks"
+   "governors-ball-2015:d3:honda-stage:1215:the-picturebooks",
+   "sziget-2010:d3:a38-wan2-stage:1700:the-picturebooks-d"
   ],
-  "firstSeen": "2015-06-07",
+  "firstSeen": "2010-08-11",
   "lastSeen": "2015-06-07",
   "photo": null,
   "links": []
@@ -189483,9 +192116,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-lv-2026:c15"
+   "edc-lv-2026:c15",
+   "sziget-2011:d5:pop-rock-main-stage:2130:the-prodigy-uk"
   ],
-  "firstSeen": "2026-05-16",
+  "firstSeen": "2011-08-12",
   "lastSeen": "2026-05-16",
   "photo": null,
   "links": []
@@ -190339,6 +192973,21 @@
   "links": []
  },
  {
+  "key": "the-sorrow",
+  "name": "The Sorrow",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d6:rock-metal-main-stage:1600:the-sorrow-a"
+  ],
+  "firstSeen": "2011-08-13",
+  "lastSeen": "2011-08-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "the-soul-rebels",
   "name": "The Soul Rebels",
   "aliases": [],
@@ -190368,6 +193017,21 @@
   ],
   "firstSeen": "2019-11-22",
   "lastSeen": "2019-11-22",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "the-specials",
+  "name": "The Specials",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d4:main-stage:1945:the-specials-uk"
+  ],
+  "firstSeen": "2010-08-12",
+  "lastSeen": "2010-08-12",
   "photo": null,
   "links": []
  },
@@ -190895,9 +193559,10 @@
   "projects": [],
   "billings": [
    "coachella-2014:d3:gobi:1935:the-toy-dolls",
-   "coachella-2014:d6:gobi:1935:the-toy-dolls"
+   "coachella-2014:d6:gobi:1935:the-toy-dolls",
+   "sziget-2010:d3:main-stage:1630:the-toy-dolls-uk"
   ],
-  "firstSeen": "2014-04-13",
+  "firstSeen": "2010-08-11",
   "lastSeen": "2014-04-20",
   "photo": null,
   "links": []
@@ -191152,6 +193817,21 @@
   ],
   "firstSeen": "2019-05-31",
   "lastSeen": "2019-05-31",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "the-wailers",
+  "name": "The Wailers",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d2:main-stage:1945:the-wailers"
+  ],
+  "firstSeen": "2010-08-10",
+  "lastSeen": "2010-08-10",
   "photo": null,
   "links": []
  },
@@ -191989,16 +194669,21 @@
  },
  {
   "key": "thirty-seconds-to-mars",
-  "name": "THIRTY SECONDS TO MARS",
-  "aliases": [],
+  "name": "Thirty Seconds to Mars",
+  "aliases": [
+   "THIRTY SECONDS TO MARS",
+   "Thirty Seconds To Mars"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "acl-2023:d2:honda:1800:thirty-seconds-to-mars",
-   "acl-2023:d5:honda:1800:thirty-seconds-to-mars"
+   "acl-2023:d5:honda:1800:thirty-seconds-to-mars",
+   "sziget-2010:d5:main-stage:2130:thirty-seconds-to-mars-usa",
+   "sziget-2011:d6:pop-rock-main-stage:2130:thirty-seconds-to-mars-usa"
   ],
-  "firstSeen": "2023-10-07",
+  "firstSeen": "2010-08-13",
   "lastSeen": "2023-10-14",
   "photo": null,
   "links": []
@@ -192497,6 +195182,21 @@
   ],
   "firstSeen": "2022-08-06",
   "lastSeen": "2022-08-06",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "tibor-kiss",
+  "name": "Tibor Kiss",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d6:pesti-est-world-music-main-stage:1945:csik-band-feat-tibor-kiss"
+  ],
+  "firstSeen": "2011-08-13",
+  "lastSeen": "2011-08-13",
   "photo": null,
   "links": []
  },
@@ -193190,6 +195890,21 @@
   ],
   "firstSeen": "2016-07-22",
   "lastSeen": "2024-11-08",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "timo-maas",
+  "name": "Timo Maas",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d7:party-arena:0130:timo-maas"
+  ],
+  "firstSeen": "2010-08-15",
+  "lastSeen": "2010-08-15",
   "photo": null,
   "links": []
  },
@@ -194992,9 +197707,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "primavera-sound-2015:d3:auditori-rockdelux:1915:tony-allen"
+   "primavera-sound-2015:d3:auditori-rockdelux:1915:tony-allen",
+   "sziget-2010:d4:world-music-stage:2130:tony-allen-nig"
   ],
-  "firstSeen": "2015-05-29",
+  "firstSeen": "2010-08-12",
   "lastSeen": "2015-05-29",
   "photo": null,
   "links": []
@@ -195238,15 +197954,18 @@
  {
   "key": "toots-and-the-maytals",
   "name": "Toots and the Maytals",
-  "aliases": [],
+  "aliases": [
+   "Toots & the Maytals"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "coachella-2017:d3:coachella:1615:toots-and-the-maytals",
-   "coachella-2017:d6:coachella:1615:toots-and-the-maytals"
+   "coachella-2017:d6:coachella:1615:toots-and-the-maytals",
+   "sziget-2010:d2:main-stage:1800:toots-and-the-maytals"
   ],
-  "firstSeen": "2017-04-16",
+  "firstSeen": "2010-08-10",
   "lastSeen": "2017-04-23",
   "photo": null,
   "links": []
@@ -196145,6 +198864,21 @@
   ],
   "firstSeen": "2011-09-23",
   "lastSeen": "2015-04-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "trentemoller",
+  "name": "Trentemoller",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d5:burn-party-arena:1930:trentemoller-dk"
+  ],
+  "firstSeen": "2011-08-12",
+  "lastSeen": "2011-08-12",
   "photo": null,
   "links": []
  },
@@ -197060,6 +199794,21 @@
   "links": []
  },
  {
+  "key": "tsubi",
+  "name": "Tsubi",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d6:party-arena:2330:tsubi"
+  ],
+  "firstSeen": "2010-08-14",
+  "lastSeen": "2010-08-14",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "tsunami",
   "name": "TSUNAMI",
   "aliases": [],
@@ -197309,6 +200058,36 @@
   ],
   "firstSeen": "2022-07-17",
   "lastSeen": "2023-07-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "turbo",
+  "name": "Turbo",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d7:a38-wan2-stage:2020:turbo"
+  ],
+  "firstSeen": "2010-08-15",
+  "lastSeen": "2010-08-15",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "turbostaat",
+  "name": "Turbostaat",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d5:a38-wan2-stage:2150:turbostaat-d"
+  ],
+  "firstSeen": "2011-08-12",
+  "lastSeen": "2011-08-12",
   "photo": null,
   "links": []
  },
@@ -198501,6 +201280,21 @@
   ],
   "firstSeen": "2016-06-04",
   "lastSeen": "2019-06-01",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "ub40",
+  "name": "UB40",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d2:main-stage:2130:ub40"
+  ],
+  "firstSeen": "2010-08-10",
+  "lastSeen": "2010-08-10",
   "photo": null,
   "links": []
  },
@@ -200803,6 +203597,21 @@
   "links": []
  },
  {
+  "key": "vhk",
+  "name": "VHK",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d6:a38-wan2-stage:0130:vhk"
+  ],
+  "firstSeen": "2010-08-14",
+  "lastSeen": "2010-08-14",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "vhoor",
   "name": "VHOOR",
   "aliases": [],
@@ -202105,6 +204914,21 @@
   "links": []
  },
  {
+  "key": "vive-la-fete",
+  "name": "Vive la Féte",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d5:a38-wan2-stage:2150:vive-la-fete-b"
+  ],
+  "firstSeen": "2010-08-13",
+  "lastSeen": "2010-08-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "vize",
   "name": "Vize",
   "aliases": [],
@@ -202253,6 +205077,21 @@
   ],
   "firstSeen": "2019-07-20",
   "lastSeen": "2019-07-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "vodafone-havervagy-tanc",
+  "name": "Vodafone Havervagy Tánc",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d6:main-stage:1500:vodafone-havervagy-tanc"
+  ],
+  "firstSeen": "2010-08-14",
+  "lastSeen": "2010-08-14",
   "photo": null,
   "links": []
  },
@@ -203717,6 +206556,36 @@
   "links": []
  },
  {
+  "key": "watch-my-dying",
+  "name": "Watch My Dying",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d7:mtv-headbangers-ball-stage:0040:watch-my-dying"
+  ],
+  "firstSeen": "2010-08-15",
+  "lastSeen": "2010-08-15",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "watcha-clan",
+  "name": "Watcha Clan",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d6:a38-wan2-stage:2010:watcha-clan-f"
+  ],
+  "firstSeen": "2011-08-13",
+  "lastSeen": "2011-08-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "water-from-your-eyes",
   "name": "Water From Your Eyes",
   "aliases": [],
@@ -205025,7 +207894,8 @@
   "billings": [
    "coachella-2014:d2:gobi:1435:white-lies",
    "coachella-2014:d5:gobi:1435:white-lies",
-   "lollapalooza-2011:d1:music-unlimited:1600:white-lies"
+   "lollapalooza-2011:d1:music-unlimited:1600:white-lies",
+   "sziget-2011:d7:pop-rock-main-stage:2130:white-lies-uk"
   ],
   "firstSeen": "2011-08-05",
   "lastSeen": "2014-04-19",
@@ -205559,6 +208429,21 @@
   ],
   "firstSeen": "2025-08-03",
   "lastSeen": "2025-10-05",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "wildbirds-and-peacedrums",
+  "name": "Wildbirds & Peacedrums",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d6:a38-wan2-stage:1840:wildbirds-and-peacedrums-s"
+  ],
+  "firstSeen": "2010-08-14",
+  "lastSeen": "2010-08-14",
   "photo": null,
   "links": []
  },
@@ -206336,6 +209221,21 @@
   ],
   "firstSeen": "2024-08-11",
   "lastSeen": "2026-06-06",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "within-temptation",
+  "name": "Within Temptation",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d3:rock-metal-main-stage:1900:within-temptation-nl"
+  ],
+  "firstSeen": "2011-08-10",
+  "lastSeen": "2011-08-10",
   "photo": null,
   "links": []
  },
@@ -207784,6 +210684,21 @@
   "links": []
  },
  {
+  "key": "xiu-xiu",
+  "name": "Xiu Xiu",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d4:a38-wan2-stage:1700:xiu-xiu-usa"
+  ],
+  "firstSeen": "2011-08-11",
+  "lastSeen": "2011-08-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "xols",
   "name": "XOLS",
   "aliases": [],
@@ -208344,9 +211259,10 @@
    "electric-forest-2013:d4:sherwood-court:2230:yeasayer",
    "governors-ball-2013:d3:skyy-vodka-tent:1745:yeasayer",
    "lollapalooza-2016:d1:lakeshore:1530:yeasayer",
-   "outside-lands-2013:d1:twin-peaks:1900:yeasayer"
+   "outside-lands-2013:d1:twin-peaks:1900:yeasayer",
+   "sziget-2010:d7:a38-wan2-stage:2150:yeasayer-usa"
   ],
-  "firstSeen": "2013-06-09",
+  "firstSeen": "2010-08-15",
   "lastSeen": "2016-07-28",
   "photo": null,
   "links": []
@@ -209190,6 +212106,21 @@
   "links": []
  },
  {
+  "key": "young-punx",
+  "name": "Young Punx",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d4:main-stage:1630:young-punx-uk"
+  ],
+  "firstSeen": "2010-08-12",
+  "lastSeen": "2010-08-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "young-the-giant",
   "name": "Young The Giant",
   "aliases": [
@@ -210029,6 +212960,24 @@
   "links": []
  },
  {
+  "key": "zagar",
+  "name": "Zagar",
+  "aliases": [
+   "Žagar"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d4:a38-wan2-stage:0130:zagar",
+   "sziget-2011:d5:a38-wan2-stage:1840:zagar"
+  ],
+  "firstSeen": "2010-08-12",
+  "lastSeen": "2011-08-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "zai1k",
   "name": "ZAI1K",
   "aliases": [],
@@ -210830,6 +213779,21 @@
   "links": []
  },
  {
+  "key": "zombie-nation",
+  "name": "Zombie Nation",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2011:d6:burn-party-arena:1930:zombie-nation-d"
+  ],
+  "firstSeen": "2011-08-13",
+  "lastSeen": "2011-08-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "zomboy",
   "name": "Zomboy",
   "aliases": [
@@ -210908,6 +213872,21 @@
   ],
   "firstSeen": "2012-06-30",
   "lastSeen": "2014-06-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "zorall",
+  "name": "Zorall",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d6:mtv-headbangers-ball-stage:1615:zorall"
+  ],
+  "firstSeen": "2010-08-14",
+  "lastSeen": "2010-08-14",
   "photo": null,
   "links": []
  },
@@ -211076,6 +214055,21 @@
   ],
   "firstSeen": "2015-07-26",
   "lastSeen": "2015-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "zzz",
+  "name": "zZz",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "sziget-2010:d5:a38-wan2-stage:1840:zzz-nl"
+  ],
+  "firstSeen": "2010-08-13",
+  "lastSeen": "2010-08-13",
   "photo": null,
   "links": []
  }

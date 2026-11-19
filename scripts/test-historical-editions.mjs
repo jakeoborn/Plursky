@@ -41,6 +41,7 @@ import { parseShambhalaWebflow, datesFromPost as shambhalaRun, readDatesPost } f
 import { parseCoachella, parseCoachellaData, parseCoachella2012 } from "./historical/coachella-lineup.mjs";
 import { parseDoStuffEmbed, embedPageOk, pageLoadsScript, scriptSetsSrc } from "./historical/dostuff-embed-schedule.mjs";
 import { parseSonarSchedule } from "./historical/sonar-schedule.mjs";
+import { parseSzigetDays, tabDate as szigetDate } from "./historical/sziget-days-schedule.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const H = p => join(ROOT, "data/historical", p);
@@ -885,6 +886,41 @@ if (base && edc) {
     snMust("a Sónar night set filed under the day session", snPage({ night: { events: [snEv("Night Act", "23:30", "01:00", 1, "dia")] } }));
     snMust("a Sónar set with no 24-hour end", snPage({ day: { events: [snEv("Day Act", "13:00", "2pm", 1)] } }));
     snMust("a Sónar calendar drawn twice, differently", snPage() + snCal({ events: snDay, init: 12 }));
+    // Sziget's day programme: one day per page, its tabs the week with no
+    // year, a stage picker whose checked stages are the grid's columns, and
+    // a grid of starts where a set covers the rows below it (rowspan) and a
+    // night runs past midnight. A cell billing several acts is a bill.
+    const szTab = (date, label, sel) => `<td${sel ? ' class="selected"' : ""}>\n<a href="https://web.archive.org/web/20100817142126/http://www.sziget.hu/festival_english/programs/-/days?day=${date}&amp;stages[]=1&amp;stages[]=2" style="cursor:pointer">${label}</a>\n</td>`;
+    const szCell = (span, stage, text, slug = stage === 1 ? "main_stage" : "party_arena") => `<td rowspan="${span}">\n<a href="https://web.archive.org/web/20100817142126/http://www.sziget.hu/festival_english/programs/helyszin/${slug}.${stage}.html#p${span}${stage}">${text}</a>\n</td>`;
+    const szE = '<td class="prprogramcellaures"></td>';
+    const szRow = (t, cells, i) => `<tr class="row${i % 2}">\n<td class="time" valign="middle">${t}</td>${cells.join("")}</tr>`;
+    const szRows = [szRow("19:30", [szCell(2, 1, "Muse (UK)"), szE], 0), szRow("21:00", [szCell(1, 2, "Kode9 (UK)")], 1), szRow("23:30", [szE, szCell(1, 2, "Night &amp; Day")], 2), szRow("01:00", [szE, szCell(1, 2, "Closer<p></p><p>Guest</p>")], 3)];
+    const szPage = ({ title = "Sziget.hu - Programs", tabs = [["2010-08-14", "August 14.<br>Saturday", true], ["2010-08-15", "August 15.<br>Sunday", false]], checked = [true, true], heads = ["Main Stage", "Party Arena"], rows = szRows } = {}) =>
+      `<title>${title}</title><link href="http://s.sziget.hu/templates/sziget2010b/style.css"><div class="cikk"><form id="dailyForm"><table class="dailyDaySelector"><tbody><tr>${tabs.map(t => szTab(...t)).join("")}</tr></tbody></table>`
+      + `<td><input type="checkbox" name="stages[]" value="1" id="loc1"${checked[0] ? ' checked="checked"' : ""}><label for="loc1">Main Stage</label></td><td><input type="checkbox" name="stages[]" value="2" id="loc2"${checked[1] ? ' checked="checked"' : ""}><label for="loc2">Party Arena</label></td>`
+      + `<td><input type="checkbox" name="stages[]" value="3" id="loc3"><label for="loc3">Blues Stage</label></td><td><a style="x" target="_blank" href="http://www.sziget.hu/festival_english/programs/helyszin/hungaricum_village.9.html">Hungaricum Village</a></td></form>`
+      + `<div class="prg_szinpad">\n<table width="930">\n<tbody>\n<tr class="tableheader">\n<td><!-- sh --></td>${heads.map(h => `<th>${h}</th>`).join("")}</tr>\n<tr class="tablesep"><td class="orange1"></td></tr>${rows.join("")}</tbody></table></div></div>`;
+    const szp = parseSzigetDays(szPage(), { year: 2010 });
+    ok(JSON.stringify([szp.date, szp.label, szp.template, szp.tabDates, szp.stages, szp.unshown, szp.venues, szp.sets.map(x => [x.stage, x.start, x.end, x.artist, x.openEnd]), szp.bills.map(b => [b.stage, b.start, b.lines])])
+      === JSON.stringify(["2010-08-14", "August 14. Saturday", "sziget2010b", ["2010-08-14", "2010-08-15"], ["Main Stage", "Party Arena"], ["Blues Stage"], ["Hungaricum Village"],
+        [["Main Stage", "19:30", "", "Muse (UK)", true], ["Party Arena", "21:00", "", "Kode9 (UK)", true], ["Party Arena", "23:30", "", "Night & Day", true]],
+        [["Party Arena", "01:00", ["Closer", "Guest"]]]]),
+      `a Sziget day page must come back as its selected day, open-ended sets after midnight that night's and a several-act cell as a bill: ${JSON.stringify(szp)}`);
+    ok(szigetDate("August 14. Saturday", 2010) === "2010-08-14" && szigetDate("August 14. Sunday", 2010) === null, "a Sziget tab must be dated by its weekday in the year");
+    const szMust = (what, html, year = 2010) => { let bad = false; try { parseSzigetDays(html, { year }); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    szMust("a Sziget 2010 page read as another year's", szPage(), 2011);
+    szMust("a page that is not Sziget's programme", szPage({ title: "Sziget.hu - News" }));
+    szMust("a Sziget page with no selected day", szPage({ tabs: [["2010-08-14", "August 14.<br>Saturday", false], ["2010-08-15", "August 15.<br>Sunday", false]] }));
+    szMust("a Sziget tab whose weekday is not its date's", szPage({ tabs: [["2010-08-14", "August 14.<br>Friday", true]] }));
+    szMust("Sziget tabs that skip a day", szPage({ tabs: [["2010-08-14", "August 14.<br>Saturday", true], ["2010-08-16", "August 16.<br>Monday", false]] }));
+    szMust("a Sziget grid whose columns are not the checked stages", szPage({ checked: [true, false] }));
+    szMust("a Sziget set linked to another stage than its column", szPage({ rows: [szRow("19:30", [szCell(2, 2, "Muse (UK)"), szE], 0), ...szRows.slice(1)] }));
+    szMust("a Sziget row with a cell left over", szPage({ rows: [szRow("19:30", [szCell(2, 1, "Muse (UK)"), szE, szE], 0), ...szRows.slice(1)] }));
+    szMust("a Sziget row missing a cell", szPage({ rows: [szRow("19:30", [szCell(2, 1, "Muse (UK)")], 0), ...szRows.slice(1)] }));
+    szMust("a Sziget set spanning past the grid", szPage({ rows: [...szRows.slice(0, 3), szRow("01:00", [szE, szCell(2, 2, "Closer")], 3)] }));
+    szMust("Sziget rows out of time order", szPage({ rows: [szRows[0], szRow("18:00", [szCell(1, 2, "Kode9 (UK)")], 1), ...szRows.slice(2)] }));
+    szMust("a Sziget night wrapping past midnight twice", szPage({ rows: [...szRows, szRow("00:30", [szE, szE], 4)] }));
+    szMust("a Sziget set naming no act", szPage({ rows: [szRow("19:30", [szCell(2, 1, " "), szE], 0), ...szRows.slice(1)] }));
     // Outside Lands' 2022-2025 lineup widget: its script sets the options on
     // one line of JSON; each artist lists its performances, a shared set (a
     // b2b) under each artist with the same id, every time with its offset.
@@ -1449,6 +1485,15 @@ for (const [id, e] of Object.entries(editions)) {
             `${id} day ${d.day}: page ${s.captureTimestamp} prints "${s.printed}" (named "${s.named}") at ${s.archivedUrl}, not ${wd} ${MONTH[m - 1]} ${dd}`);
           continue;
         }
+        // Sziget's day programme prints the day as its own tab, no year
+        // ("August 14. Saturday"), on Sziget's own English programme page for
+        // that date.
+        if (s.format === "sziget-days") {
+          ok(szigetDate(s.printed, e.year) === d.date && (s.tabs || []).includes(s.printed)
+            && new RegExp(`^https://web\\.archive\\.org/web/\\d{14}/https?://(www\\.)?sziget\\.hu/festival_english/programs/-/days\\?day=${d.date}&`).test(s.archivedUrl || ""),
+            `${id} day ${d.day}: page ${s.captureTimestamp} prints "${s.printed}" at ${s.archivedUrl}, not ${wd} ${MONTH[m - 1]} ${dd}`);
+          continue;
+        }
         // Primavera Sound's 2016-2019 full timetable prints the day as a
         // weekday and a day of the month (2019: the whole date); the row of
         // tabs names one run of days in the year, on Primavera's own site.
@@ -1565,8 +1610,9 @@ ok(instant("2025-05-16", "04:13", 12, -420) === "2025-05-17T11:13:00.000Z",
 
   // selected_stages: an edition whose official schedule had stages that are
   // not imported names them (review of merged #440, 2026-11-12). Exactly these
-  // three carry the label, and it cannot drift from the rows.
-  const SELECTED = ["coachella-2014", "coachella-2015", "coachella-2016"];
+  // carry the label, and it cannot drift from the rows: Coachella's three, and
+  // Sziget 2010 and 2011, whose day pages were archived for five stages only.
+  const SELECTED = ["coachella-2014", "coachella-2015", "coachella-2016", "sziget-2010", "sziget-2011"];
   const selected = Object.values(editions).filter(e => e.completeness === "selected_stages").map(e => e.id).sort();
   ok(JSON.stringify(selected) === JSON.stringify(SELECTED), `selected_stages editions are ${selected.join(", ") || "none"}, want ${SELECTED.join(", ")}`);
   const c14 = editions["coachella-2014"];
