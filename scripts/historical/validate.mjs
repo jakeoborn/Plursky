@@ -26,6 +26,9 @@ export const OFFICIAL_HOSTS = {
   // (/hardsummer/) before the festival had its own domain.
   "hard-summer": ["hardsummer.com", "hardfest.com"],
   "electric-forest": ["electricforestfestival.com", "electricforest.com"],
+  // Ultra's own site. Its WordPress uploads serve resized copies
+  // ("-1600x1000.jpg"); only those were archived for 2024.
+  "ultra-miami": ["ultramusicfestival.com", "legacy.ultramusicfestival.com"],
   "coachella": ["coachella.com"],
   // 2012-2013 Las Vegas pages lived on the brand's root domain
   // (/LasVegas/music.php, /music.php). "=" matches that host alone, so the
