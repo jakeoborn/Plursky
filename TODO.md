@@ -3,7 +3,7 @@
 > **Shipping?** See **[RELEASE.md](RELEASE.md)** — sync iOS, cache-bust, web
 > deploy, and App Store submit commands.
 
-## 🎆 SPEC-212 — NYE, attendance, win-back (status 2026-11-18 5:40 PM CT, main `33a88b9e`, web v645)
+## 🎆 SPEC-212 — NYE, attendance, win-back (status 2026-11-19 12:30 AM CT, main `1228a2bd`, web v646)
 
 > Ledger lines for the merges below: `ops/build-ledger.jsonl` (the ledger has no
 > lines between 2026-10-24 and 2026-11-17; those merges are not backfilled here).
@@ -15,24 +15,27 @@
 - [x] #506 Lollapalooza 2018 by day and stage · #507 Governors Ball 2013–2015
 - [x] #509 Primavera Sound 2015 · #511 Primavera 2016–2019 · #513 Primavera 2012 (data only, v645)
 - [x] #514 Outside Lands + Lightning in a Bottle past editions · #516 Sónar Barcelona past editions (data only, v645)
+- [x] #510 Top-tier round 2 · #517 Sziget 2010/2011 set times · #518 festival pages list every dated past year (v646)
 
 **Open (Claude Plur), none live yet:**
-- [ ] W2 #500 Decadence venue source @ `848e0912` (v650), CI 1/1, CLEAN: merge lane, then live-verify the pages
+- [ ] W2 #500 Decadence venue source @ `a928bc11` (v650): merge lane, then live-verify the pages
 - [ ] W2 #508 daily set-times watch for Countdown NYE @ `9e9eb3a0`: NOT armed until merged (scheduled
       workflows run only from main); after merge, one workflow_dispatch run to confirm
-- [ ] W3 #501 Your weekend timeline (flag) @ `0f83d69f` (v646), CI 1/1: your own arrival and
+- [ ] W3 #501 Your weekend timeline (flag) @ `9c9bfa38` (v651): your own arrival and
       departure times per set; Xcode simulator build + real screenshot posted
-- [ ] W3 #515 per-festival set-tracking opt-in @ `6e2cc0c0` (v649), draft, stacked on #501
+- [ ] W3 #515 per-festival set-tracking opt-in @ `6e2cc0c0` (v649), draft, stacked on #501;
+      refreshes after #501 lands and must then move above v651
 - [ ] W3 accuracy gate: 17 of 20 sets within 10 min on a real album replay. The synthetic
       EDC reference (13 of 15, #503) does not count. Blocked on Jake's albums
-- [ ] W4 #502 @ `4d88b72e` (v647) Monthly win-back + recap hooks + save/cancel states.
-      (#505 is now v652 at `c8ae5987`; no open branch shares v647.) Store offer not created
-      yet (0 win-back offers read live in ASC); Jake's App Store Connect + RevenueCat taps
-- [ ] W5 #504 / #499 MusicKit token renewal command + expiry warning. The token itself
-      expires Fri Nov 27, 8:14 PM CT and needs Jake's key
-- [ ] W6 #503 replay harness · W7 #498 census rule: green and CLEAN, merge lane
-- [ ] #517 Sziget 2010/2011 past editions (Data lane), draft: 146/105 timed sets re-counted
-      independently from the archived day pages; capture hashes did not reproduce (see the PR)
+- [ ] W4 #502 @ `c443aae9` (v647), draft, Monthly win-back + recap hooks + save/cancel states.
+      Store offer not created yet (0 win-back offers read live in ASC); Jake's App Store
+      Connect + RevenueCat taps
+- [ ] W5 #522 MusicKit token renewed to 2027-05-20 @ `fae85b23` (v653): merge lane. iOS uses a
+      MusicKit-generated token first; the bundled fallback updates with the next native build
+- [ ] W5 #504 / #499 MusicKit token renewal command + expiry warning
+- [ ] W6 #503 replay harness · W7 #498 census rule: merge lane
+- [ ] #517 follow-up: its 14 capture `sha256`/`bytes` receipts do not reproduce; fresh raw captures
+      match Wayback's own CDX digests 14/14 (see the #517 comment). The imported sets are unaffected
 
 **Held:** #244 festival essentials (DIRTY; re-port after SPEC-212).
 
