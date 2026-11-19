@@ -8247,7 +8247,6 @@ function MeScreen({ state, setState }) {
     window.addEventListener("plursky-attended-change", refresh);
     return () => window.removeEventListener("plursky-attended-change", refresh);
   }, []);
-  const daysHere = NOW.day || 0;
   const savedCount = savedInLineup(state.saved).length;
   // Earned-badge count for the 4-card grid — same source of truth as
   // BadgesSection (v227: the old hand-mirrored copy here desynced and
@@ -8260,9 +8259,20 @@ function MeScreen({ state, setState }) {
   // Tagline — "DAY N OF EDC LV 2026" once the festival is live, otherwise
   // a pre-festival countdown line with the date range.
   const _cfg = window.FESTIVAL_CONFIG || {};
-  const tagline = daysHere
-    ? `DAY ${daysHere} OF ${(_cfg.shortName || _cfg.brand || "").toUpperCase()}`
-    : `${(_cfg.shortName || _cfg.brand || "").toUpperCase()} · ${(_cfg.dates || "").toUpperCase()}`;
+  // NOW.day falls back to the next set's day, so before and after the
+  // festival it still says 1; only a running night makes it "Day N".
+  const passLive = !!NOW.night && !_mePostFest;
+  const _fname = (_cfg.shortName || _cfg.brand || "").toUpperCase();
+  const tagline = passLive
+    ? `DAY ${NOW.night} OF ${_fname}`
+    : `${_fname}${_cfg.dates ? ` · ${_cfg.dates.toUpperCase()}` : ""}`;
+  // The pass's photo: the festival's licensed art, as on the chooser.
+  const _passRec = typeof festivalArtFor === "function" ? festivalArtFor(_cfg.id) : null;
+  const [passFailed, setPassFailed] = React.useState(false);
+  const passPhoto = _passRec && /^festival-art\/[a-z0-9-]+\.webp$/.test(_passRec.card || "") && !passFailed ? _passRec.card : null;
+  const passCredit = passPhoto && _passRec.author && _passRec.licenseId && _passRec.licenseUrl
+    ? { author: _passRec.author, sourceUrl: _passRec.sourcePage, license: _passRec.licenseId, licenseUrl: _passRec.licenseUrl, changes: _passRec.changes }
+    : null;
 
   return (
     <Screen bg="var(--paper)">
@@ -8270,47 +8280,50 @@ function MeScreen({ state, setState }) {
         <TopBar title="Me" tight />
       </div>
       <ScrollBody ref={useStaggerFade("me")} style={{ padding: "10px 20px 94px" }}>
-        {/* ── 1. Identity: the board's header row. Avatar (photo or
-            initial, accent ring), name, the festival-day line, and the
-            ping code as a code chip with its colour dot. ────────── */}
-        <div data-animate style={{ display: "flex", alignItems: "center", gap: 12, padding: "4px 0 16px" }}>
-          <div
-            onClick={profile ? undefined : promptName}
-            style={{
-              width: 52, height: 52, borderRadius: 999, flexShrink: 0,
-              background: profile?.image ? "transparent" : "var(--s3)",
-              boxShadow: "0 0 0 1.5px var(--acc)",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              overflow: "hidden",
-              cursor: profile ? "default" : "pointer",
-            }}
-          >
-            {profile?.image ? (
-              <img src={profile.image} alt="" style={{
-                width: "100%", height: "100%", objectFit: "cover",
-              }}/>
-            ) : (
-              <span style={{ font: "700 19px/1 var(--f-ui)", color: "var(--ink)" }}>{initial}</span>
+        {/* ── 1. Identity: a festival pass. The festival's own licensed
+            photo behind your avatar, name and ping code, with the day line
+            as the pass's stamp. With no photo for this festival the card
+            keeps its shape on the accent wash. ─────────────────────── */}
+        <section data-animate data-me-pass aria-label="Your festival pass" style={{ margin: "4px 0 16px" }}>
+          <div className={`me-pass${passPhoto ? "" : " plain"}`}>
+            {passPhoto && (
+              <span className="me-pass-media" aria-hidden="true">
+                <img src={`./${passPhoto}`} alt="" decoding="async" onError={() => setPassFailed(true)} />
+                <span className="me-pass-scrim" />
+              </span>
             )}
+            <span className="me-pass-stamp">{passLive && <i aria-hidden="true" />}<span>{tagline}</span></span>
+            <div className="me-pass-who">
+              <div
+                onClick={profile ? undefined : promptName}
+                className="me-pass-avatar"
+                style={{ cursor: profile ? "default" : "pointer" }}
+              >
+                {profile?.image ? (
+                  <img src={profile.image} alt="" />
+                ) : (
+                  <span>{initial}</span>
+                )}
+              </div>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                {rawName ? (
+                  <div className="duo-name me-pass-name">{displayName}</div>
+                ) : (
+                  // An empty account is designed, not a dash: the one thing to
+                  // do here is say who you are.
+                  <button data-me-add-name className="me-pass-add" onClick={promptName}>Add your name</button>
+                )}
+                <span className="me-pass-code">
+                  <span aria-hidden="true" style={{ width: 7, height: 7, borderRadius: 999, background: pingColor, display: "inline-block", flexShrink: 0 }}/>
+                  <span>PING · {pingCode}{setsCaught > 0 ? ` · ${setsCaught} SET${setsCaught === 1 ? "" : "S"} CAUGHT` : ""}</span>
+                </span>
+              </div>
+            </div>
           </div>
-          <div style={{ flex: 1, minWidth: 0 }}>
-            {rawName ? (
-              <div className="duo-headline duo-name" style={{ fontSize: 21, color: "var(--ink)" }}>{displayName}</div>
-            ) : (
-              // An empty account is designed, not a dash: the one thing to
-              // do here is say who you are.
-              <button data-me-add-name onClick={promptName} style={{
-                padding: 0, minHeight: 32, border: "none", background: "none", cursor: "pointer",
-                font: "600 17px/1.3 var(--f-ui)", color: "var(--acc-ink)", textAlign: "left",
-              }}>Add your name</button>
-            )}
-            <div className="duo-label duo-ink3" style={{ marginTop: 4 }}>{tagline}{setsCaught > 0 ? ` · ${setsCaught} SET${setsCaught === 1 ? "" : "S"} CAUGHT` : ""}</div>
-            <span className="duo-code" style={{ display: "inline-flex", alignItems: "center", gap: 6, marginTop: 8 }}>
-              <span aria-hidden="true" style={{ width: 6, height: 6, borderRadius: 999, background: pingColor, display: "inline-block" }}/>
-              PING · {pingCode}
-            </span>
-          </div>
-        </div>
+          {passCredit && typeof PhotoCredit === "function" && (
+            <PhotoCredit className="spot-credit" credit={passCredit} style={{ padding: "0 2px", lineHeight: 1.35, overflowWrap: "anywhere" }} />
+          )}
+        </section>
 
         {/* ── Plursky+ entry (v249) ─────────────────────────────
             UNCONDITIONAL BY DESIGN. Every other paywall entry is content-

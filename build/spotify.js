@@ -12122,11 +12122,22 @@ function MeScreen({
     window.addEventListener("plursky-attended-change", refresh);
     return () => window.removeEventListener("plursky-attended-change", refresh);
   }, []);
-  var daysHere = NOW.day || 0;
   var savedCount = savedInLineup(state.saved).length;
   var badgesEarnedCount = React.useMemo(() => _computeBadges(state.saved).filter(b => b.earned).length, [state.saved]);
   var _cfg = window.FESTIVAL_CONFIG || {};
-  var tagline = daysHere ? `DAY ${daysHere} OF ${(_cfg.shortName || _cfg.brand || "").toUpperCase()}` : `${(_cfg.shortName || _cfg.brand || "").toUpperCase()} · ${(_cfg.dates || "").toUpperCase()}`;
+  var passLive = !!NOW.night && !_mePostFest;
+  var _fname = (_cfg.shortName || _cfg.brand || "").toUpperCase();
+  var tagline = passLive ? `DAY ${NOW.night} OF ${_fname}` : `${_fname}${_cfg.dates ? ` · ${_cfg.dates.toUpperCase()}` : ""}`;
+  var _passRec = typeof festivalArtFor === "function" ? festivalArtFor(_cfg.id) : null;
+  var [passFailed, setPassFailed] = React.useState(false);
+  var passPhoto = _passRec && /^festival-art\/[a-z0-9-]+\.webp$/.test(_passRec.card || "") && !passFailed ? _passRec.card : null;
+  var passCredit = passPhoto && _passRec.author && _passRec.licenseId && _passRec.licenseUrl ? {
+    author: _passRec.author,
+    sourceUrl: _passRec.sourcePage,
+    license: _passRec.licenseId,
+    licenseUrl: _passRec.licenseUrl,
+    changes: _passRec.changes
+  } : null;
   return React.createElement(Screen, {
     bg: "var(--paper)"
   }, React.createElement("div", {
@@ -12141,89 +12152,72 @@ function MeScreen({
     style: {
       padding: "10px 20px 94px"
     }
-  }, React.createElement("div", {
+  }, React.createElement("section", {
     "data-animate": true,
+    "data-me-pass": true,
+    "aria-label": "Your festival pass",
     style: {
-      display: "flex",
-      alignItems: "center",
-      gap: 12,
-      padding: "4px 0 16px"
+      margin: "4px 0 16px"
     }
   }, React.createElement("div", {
+    className: `me-pass${passPhoto ? "" : " plain"}`
+  }, passPhoto && React.createElement("span", {
+    className: "me-pass-media",
+    "aria-hidden": "true"
+  }, React.createElement("img", {
+    src: `./${passPhoto}`,
+    alt: "",
+    decoding: "async",
+    onError: () => setPassFailed(true)
+  }), React.createElement("span", {
+    className: "me-pass-scrim"
+  })), React.createElement("span", {
+    className: "me-pass-stamp"
+  }, passLive && React.createElement("i", {
+    "aria-hidden": "true"
+  }), React.createElement("span", null, tagline)), React.createElement("div", {
+    className: "me-pass-who"
+  }, React.createElement("div", {
     onClick: profile ? undefined : promptName,
+    className: "me-pass-avatar",
     style: {
-      width: 52,
-      height: 52,
-      borderRadius: 999,
-      flexShrink: 0,
-      background: profile?.image ? "transparent" : "var(--s3)",
-      boxShadow: "0 0 0 1.5px var(--acc)",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      overflow: "hidden",
       cursor: profile ? "default" : "pointer"
     }
   }, profile?.image ? React.createElement("img", {
     src: profile.image,
-    alt: "",
-    style: {
-      width: "100%",
-      height: "100%",
-      objectFit: "cover"
-    }
-  }) : React.createElement("span", {
-    style: {
-      font: "700 19px/1 var(--f-ui)",
-      color: "var(--ink)"
-    }
-  }, initial)), React.createElement("div", {
+    alt: ""
+  }) : React.createElement("span", null, initial)), React.createElement("div", {
     style: {
       flex: 1,
       minWidth: 0
     }
   }, rawName ? React.createElement("div", {
-    className: "duo-headline duo-name",
-    style: {
-      fontSize: 21,
-      color: "var(--ink)"
-    }
+    className: "duo-name me-pass-name"
   }, displayName) : React.createElement("button", {
     "data-me-add-name": true,
-    onClick: promptName,
-    style: {
-      padding: 0,
-      minHeight: 32,
-      border: "none",
-      background: "none",
-      cursor: "pointer",
-      font: "600 17px/1.3 var(--f-ui)",
-      color: "var(--acc-ink)",
-      textAlign: "left"
-    }
-  }, "Add your name"), React.createElement("div", {
-    className: "duo-label duo-ink3",
-    style: {
-      marginTop: 4
-    }
-  }, tagline, setsCaught > 0 ? ` · ${setsCaught} SET${setsCaught === 1 ? "" : "S"} CAUGHT` : ""), React.createElement("span", {
-    className: "duo-code",
-    style: {
-      display: "inline-flex",
-      alignItems: "center",
-      gap: 6,
-      marginTop: 8
-    }
+    className: "me-pass-add",
+    onClick: promptName
+  }, "Add your name"), React.createElement("span", {
+    className: "me-pass-code"
   }, React.createElement("span", {
     "aria-hidden": "true",
     style: {
-      width: 6,
-      height: 6,
+      width: 7,
+      height: 7,
       borderRadius: 999,
       background: pingColor,
-      display: "inline-block"
+      display: "inline-block",
+      flexShrink: 0
     }
-  }), "PING · ", pingCode))), plusActive ? React.createElement("div", {
+  }), React.createElement("span", null, "PING · ", pingCode, setsCaught > 0 ? ` · ${setsCaught} SET${setsCaught === 1 ? "" : "S"} CAUGHT` : ""))))), passCredit && typeof PhotoCredit === "function" && React.createElement(PhotoCredit, {
+    className: "spot-credit",
+    credit: passCredit,
+    style: {
+      padding: "0 2px",
+      lineHeight: 1.35,
+      overflowWrap: "anywhere"
+    }
+  })), plusActive ? React.createElement("div", {
     style: {
       display: "flex",
       alignItems: "center",
