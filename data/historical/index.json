@@ -2852,6 +2852,42 @@
    }
   },
   {
+   "id": "lollapalooza-2024",
+   "festivalId": "lollapalooza",
+   "festivalName": "Lollapalooza",
+   "name": "Lollapalooza 2024",
+   "year": 2024,
+   "timezone": "America/Chicago",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2024-08-01",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2024-08-02",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2024-08-03",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2024-08-04",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 11,
+    "artists": 188,
+    "sets": 230
+   }
+  },
+  {
    "id": "lollapalooza-2019",
    "festivalId": "lollapalooza",
    "festivalName": "Lollapalooza",

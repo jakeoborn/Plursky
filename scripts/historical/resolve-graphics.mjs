@@ -28,6 +28,15 @@ export const GRAPHIC_EDITIONS = {
   "governors-ball-2025": { year: 2025, page: "https://www.governorsballmusicfestival.com/schedule", window: ["20250601", "20251231"],
     image: /GBSchedule-[^"'\s/]+?\.png/i,
     days: [{ day: 1, date: "2025-06-06", token: /-Fri/i }, { day: 2, date: "2025-06-07", token: /-Sat/i }, { day: 3, date: "2025-06-08", token: /-Sun/i }] },
+  // Lollapalooza 2024: "Lolla24_Grid-01Thurs-07.23.png"; the May issue was
+  // "LOLLA24-THURS-Schedule-web.png". Re-issues add a date and a letter.
+  // Sunday's last two re-issues carry no day name ("Lolla24_Grid-08.04.png",
+  // "…-08.04B.png"); each prints "SUN, AUG. 4, 2024" in its header, and the
+  // review manifest records that check.
+  "lollapalooza-2024": { year: 2024, page: "https://www.lollapalooza.com/schedule", window: ["20240601", "20241231"],
+    image: /(?:Lolla24_Grid|LOLLA24)-[^"'\s/]+?\.png/i,
+    days: [{ day: 1, date: "2024-08-01", token: /Thurs/i }, { day: 2, date: "2024-08-02", token: /Fri/i },
+      { day: 3, date: "2024-08-03", token: /Sat/i }, { day: 4, date: "2024-08-04", token: /Sun|Grid-08\.04/i }] },
   "lollapalooza-2025": { year: 2025, page: "https://www.lollapalooza.com/schedule", window: ["20250725", "20251231"],
     image: /LOL25_Schedule-[^"'\s/]+?\.png/i,
     days: [{ day: 1, date: "2025-07-31", token: /Thurs/i }, { day: 2, date: "2025-08-01", token: /Fri\b|_Fri/i },
