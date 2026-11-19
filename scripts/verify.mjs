@@ -2726,6 +2726,21 @@ for (const [script, label] of [
   }
 }
 
+// SPEC-212 W2: the daily set-times watch (settimes-watch.yml). Its self-test
+// serves the real fetcher a local site: 404 stays green, while published
+// times, a site error and an unparsable page each turn it red. No network.
+{
+  console.log("▸ Set-times watch gate — pending stays green, published or broken turns red");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/watch-settimes.mjs", "--self-test"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 300000 });
+    process.stdout.write("  " + out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`set-times watch self-test failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b3. Offline festival packs ─────────────────────────────────────────
 // The saved area covers the radius, footprint and pan bounds; the style
 // rewrite leaves nothing remote; the downloader and the pack:// protocol agree
