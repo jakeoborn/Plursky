@@ -58,7 +58,8 @@ const lastDay = d => (d.match(/\d{4}-\d{2}-\d{2}/g) || []).sort().at(-1) || null
 const pubDay = p => (/^(\d{4}-\d{2}-\d{2})(?:T\d{2}:\d{2}:\d{2}Z rev \d+)?$/.exec(p || "") || [])[1] || null;
 const WIKI_PUB = /^(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z) rev (\d+)$/;
 // Words that report a held edition (past tense, or a figure only an event has).
-export const HELD = /\b(?:was held|were held|held (?:on|at|over|in|from)|took place|happened|attended|attendance|attendees|drew|grossed|featured|headlined|performed|performing|playing|hosted|returned|reverted|debuted|celebrated|saw|was (?:a great success|at|visited|expanded|hosted)|were arrested|were reported|continued to (?:be held|keep)|kept the name|adopted the name|changed its name|staged|marked|occurring|spanning|conclusion of)\b/i;
+// A festival's own-language Wikipedia counts too: Portuguese, Spanish, Romanian and German occurrence verbs.
+export const HELD = /\b(?:was held|were held|held (?:on|at|over|in|from)|took place|happened|attended|attendance|attendees|drew|grossed|featured|headlined|performed|performing|playing|hosted|returned|reverted|debuted|celebrated|saw|was (?:a great success|at|visited|expanded|hosted)|were arrested|were reported|continued to (?:be held|keep)|kept the name|adopted the name|changed its name|staged|marked|occurring|spanning|conclusion of|ocorreu|foi realizada|se realizó|tuvo lugar|a avut loc|fand\b.{0,80}?\bstatt)\b/i;
 // Articles that cover several editions: the quote must name this one.
 const PLACE = { "edc-lv": /Las Vegas|Vegas/, "edc-orlando": /Orlando|Tinker/, "edc-mexico": /Mexico/, "beyond-wonderland-socal": /San Bernardino|Socal|SoCal/, "beyond-wonderland-gorge": /Gorge|George/ };
 const yearsIn = q => (q.match(/(?<!\d)(?:19|20)\d{2}(?!\d)/g) || []).map(Number);
@@ -99,9 +100,9 @@ export function check(text) {
   const t = (ok, msg) => { n++; if (!ok) fails.push(msg); };
   const { header, rows } = parse(text);
   t(header === HEADER, "the header is exact");
-  // Every family carries one row for each year 2010-2026 (33 families since batch 1 of the year census).
+  // Every family carries one row for each year 2010-2026 (41 families since batch 2 of the year census).
   const fams = [...new Set(rows.map(r => r.family))];
-  t(fams.length === 33, `33 families (got ${fams.length})`);
+  t(fams.length === 41, `41 families (got ${fams.length})`);
   t(rows.length === fams.length * 17, `${fams.length} families × 17 years = ${fams.length * 17} rows (got ${rows.length})`);
   for (const f of fams) { const ys = rows.filter(r => r.family === f).map(r => +r.year).sort((a, b) => a - b).join(); if (ys !== Array.from({ length: 17 }, (_, i) => 2010 + i).join()) fails.push(`${f}: years are not exactly 2010-2026`); }
   const seen = new Set();
@@ -179,6 +180,9 @@ const lineOf = (f, y) => TEXT.split("\n").find(l => l.startsWith(`${f}\t${y}\t`)
 const swap = (f, y, fn) => { const l = lineOf(f, y); return l ? TEXT.replace(l, fn(l)) : null; };
 const okRow = base.rows.find(r => r.lifecycle === "occurred" && r.note && !ADMISSION.test(r.note));
 const MUTANTS = [
+  // A foreign-language Wikipedia quote counts only with its own occurrence verb.
+  ["Parookaville 2022's German quote without its 'fand … statt'", swap("parookaville", 2022, l => l.replace("fand das Festival", "war das Festival").replace("wieder statt", "wieder geplant"))],
+  ["Tomorrowland Brasil 2024's Portuguese quote without 'ocorreu'", swap("tomorrowland-brasil", 2024, l => l.replace("O evento ocorreu", "O evento estava marcado"))],
   ["Decadence 2011 back to occurred", swap("decadence-colorado", 2011, l => l.replace("\tscheduled_unverified\t", "\toccurred\t"))],
   ["ACL 2021 back to occurred", swap("acl", 2021, l => l.replace("\tscheduled_unverified\t", "\toccurred\t"))],
   ["Lollapalooza 2015 (pre-event capture) back to occurred", swap("lollapalooza", 2015, l => l.replace("\tscheduled_unverified\t", "\toccurred\t"))],
