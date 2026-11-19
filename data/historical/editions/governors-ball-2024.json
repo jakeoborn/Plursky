@@ -1,0 +1,1102 @@
+{
+ "id": "governors-ball-2024",
+ "festivalId": "governors-ball",
+ "name": "Governors Ball 2024",
+ "year": 2024,
+ "timezone": "America/New_York",
+ "rolloverHour": 6,
+ "completeness": "selected_stages",
+ "coverage": {
+  "asOf": "2026-11-19",
+  "missing": [
+   {
+    "stage": "BUD LIGHT BACKYARD",
+    "days": [
+     1,
+     2,
+     3
+    ],
+    "when": "a separate partner sheet that prints weekdays without dates and starts without ends"
+   }
+  ]
+ },
+ "days": [
+  {
+   "day": 1,
+   "date": "2024-06-07",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2024-06-08",
+   "label": "Saturday"
+  },
+  {
+   "day": 3,
+   "date": "2024-06-09",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "governors-ball-2024:govballnyc",
+   "name": "GOVBALLNYC"
+  },
+  {
+   "id": "governors-ball-2024:gopuff",
+   "name": "GOPUFF"
+  },
+  {
+   "id": "governors-ball-2024:ihg-hotels-and-resorts",
+   "name": "IHG HOTELS & RESORTS"
+  }
+ ],
+ "artists": [
+  {
+   "id": "governors-ball-2024:school-of-rock-queens",
+   "name": "SCHOOL OF ROCK QUEENS",
+   "key": "school-of-rock-queens",
+   "performers": [
+    "school-of-rock-queens"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:blondshell",
+   "name": "BLONDSHELL",
+   "key": "blondshell",
+   "performers": [
+    "blondshell"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:durry",
+   "name": "DURRY",
+   "key": "durry",
+   "performers": [
+    "durry"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:ryan-beatty",
+   "name": "RYAN BEATTY",
+   "key": "ryan-beatty",
+   "performers": [
+    "ryan-beatty"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:goth-babe",
+   "name": "GOTH BABE",
+   "key": "goth-babe",
+   "performers": [
+    "goth-babe"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:dominic-fike",
+   "name": "DOMINIC FIKE",
+   "key": "dominic-fike",
+   "performers": [
+    "dominic-fike"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:post-malone",
+   "name": "POST MALONE",
+   "key": "post-malone",
+   "performers": [
+    "post-malone"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:alex-chapman",
+   "name": "ALEX CHAPMAN",
+   "key": "alex-chapman",
+   "performers": [
+    "alex-chapman"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:arcy-drive",
+   "name": "ARCY DRIVE",
+   "key": "arcy-drive",
+   "performers": [
+    "arcy-drive"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:qveen-herby",
+   "name": "QVEEN HERBY",
+   "key": "qveen-herby",
+   "performers": [
+    "qveen-herby"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:yung-gravy",
+   "name": "YUNG GRAVY",
+   "key": "yung-gravy",
+   "performers": [
+    "yung-gravy"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:farruko",
+   "name": "FARRUKO",
+   "key": "farruko",
+   "performers": [
+    "farruko"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:rauw-alejandro",
+   "name": "RAUW ALEJANDRO",
+   "key": "rauw-alejandro",
+   "performers": [
+    "rauw-alejandro"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:lauran-hibberd",
+   "name": "LAURAN HIBBERD",
+   "key": "lauran-hibberd",
+   "performers": [
+    "lauran-hibberd"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:donna-missal",
+   "name": "DONNA MISSAL",
+   "key": "donna-missal",
+   "performers": [
+    "donna-missal"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:underscores",
+   "name": "UNDERSCORES",
+   "key": "underscores",
+   "performers": [
+    "underscores"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:mimi-webb",
+   "name": "MIMI WEBB",
+   "key": "mimi-webb",
+   "performers": [
+    "mimi-webb"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:flo",
+   "name": "FLO",
+   "key": "flo",
+   "performers": [
+    "flo"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:teezo-touchdown",
+   "name": "TEEZO TOUCHDOWN",
+   "key": "teezo-touchdown",
+   "performers": [
+    "teezo-touchdown"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:alex-g",
+   "name": "ALEX G",
+   "key": "alex-g",
+   "performers": [
+    "alex-g"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:labrinth",
+   "name": "LABRINTH",
+   "key": "labrinth",
+   "performers": [
+    "labrinth"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:maz-and-kidd-revel",
+   "name": "MAZ & KIDD REVEL",
+   "key": "maz-and-kidd-revel",
+   "performers": [
+    "maz-and-kidd-revel"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:telescreens",
+   "name": "TELESCREENS",
+   "key": "telescreens",
+   "performers": [
+    "telescreens"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:quarters-of-change",
+   "name": "QUARTERS OF CHANGE",
+   "key": "quarters-of-change",
+   "performers": [
+    "quarters-of-change"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:jessie-murph",
+   "name": "JESSIE MURPH",
+   "key": "jessie-murph",
+   "performers": [
+    "jessie-murph"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:sabrina-carpenter",
+   "name": "SABRINA CARPENTER",
+   "key": "sabrina-carpenter",
+   "performers": [
+    "sabrina-carpenter"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:carly-rae-jepsen",
+   "name": "CARLY RAE JEPSEN",
+   "key": "carly-rae-jepsen",
+   "performers": [
+    "carly-rae-jepsen"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:the-killers",
+   "name": "THE KILLERS",
+   "key": "the-killers",
+   "performers": [
+    "the-killers"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:the-thing",
+   "name": "THE THING",
+   "key": "the-thing",
+   "performers": [
+    "the-thing"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:riovaz",
+   "name": "RIOVAZ",
+   "key": "riovaz",
+   "performers": [
+    "riovaz"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:bakar",
+   "name": "BAKAR",
+   "key": "bakar",
+   "performers": [
+    "bakar"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:doechii",
+   "name": "DOECHII",
+   "key": "doechii",
+   "performers": [
+    "doechii"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:sexyy-red",
+   "name": "SEXYY RED",
+   "key": "sexyy-red",
+   "performers": [
+    "sexyy-red"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:21-savage",
+   "name": "21 SAVAGE",
+   "key": "21-savage",
+   "performers": [
+    "21-savage"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:kids-rock-for-kids",
+   "name": "KIDS ROCK FOR KIDS",
+   "key": "kids-rock-for-kids",
+   "performers": [
+    "kids-rock-for-kids"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:little-stranger",
+   "name": "LITTLE STRANGER",
+   "key": "little-stranger",
+   "performers": [
+    "little-stranger"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:skizzy-mars",
+   "name": "SKIZZY MARS",
+   "key": "skizzy-mars",
+   "performers": [
+    "skizzy-mars"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:claire-rosinkranz",
+   "name": "CLAIRE ROSINKRANZ",
+   "key": "claire-rosinkranz",
+   "performers": [
+    "claire-rosinkranz"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:p1harmony",
+   "name": "P1HARMONY",
+   "key": "p1harmony",
+   "performers": [
+    "p1harmony"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:d4vd",
+   "name": "D4VD",
+   "key": "d4vd",
+   "performers": [
+    "d4vd"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:hippo-campus",
+   "name": "HIPPO CAMPUS",
+   "key": "hippo-campus",
+   "performers": [
+    "hippo-campus"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:tv-girl",
+   "name": "TV GIRL",
+   "key": "tv-girl",
+   "performers": [
+    "tv-girl"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:school-of-rock-brooklyn",
+   "name": "SCHOOL OF ROCK BROOKLYN",
+   "key": "school-of-rock-brooklyn",
+   "performers": [
+    "school-of-rock-brooklyn"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:husbands",
+   "name": "HUSBANDS",
+   "key": "husbands",
+   "performers": [
+    "husbands"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:elyanna",
+   "name": "ELYANNA",
+   "key": "elyanna",
+   "performers": [
+    "elyanna"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:malcolm-todd",
+   "name": "MALCOLM TODD",
+   "key": "malcolm-todd",
+   "performers": [
+    "malcolm-todd"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:chappell-roan",
+   "name": "CHAPPELL ROAN",
+   "key": "chappell-roan",
+   "performers": [
+    "chappell-roan"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:renee-rapp",
+   "name": "RENEÉ RAPP",
+   "key": "renee-rapp",
+   "performers": [
+    "renee-rapp"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:sza",
+   "name": "SZA",
+   "key": "sza",
+   "performers": [
+    "sza"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:hotline-tnt",
+   "name": "HOTLINE TNT",
+   "key": "hotline-tnt",
+   "performers": [
+    "hotline-tnt"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:baby-queen",
+   "name": "BABY QUEEN",
+   "key": "baby-queen",
+   "performers": [
+    "baby-queen"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:saint-levant",
+   "name": "SAINT LEVANT",
+   "key": "saint-levant",
+   "performers": [
+    "saint-levant"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:kevin-abstract",
+   "name": "KEVIN ABSTRACT",
+   "key": "kevin-abstract",
+   "performers": [
+    "kevin-abstract"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:don-toliver",
+   "name": "DON TOLIVER",
+   "key": "don-toliver",
+   "performers": [
+    "don-toliver"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:peso-pluma",
+   "name": "PESO PLUMA",
+   "key": "peso-pluma",
+   "performers": [
+    "peso-pluma"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:the-hails",
+   "name": "THE HAILS",
+   "key": "the-hails",
+   "performers": [
+    "the-hails"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:fcukers",
+   "name": "FCUKERS",
+   "key": "fcukers",
+   "performers": [
+    "fcukers"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:g-flip",
+   "name": "G FLIP",
+   "key": "g-flip",
+   "performers": [
+    "g-flip"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:geese",
+   "name": "GEESE",
+   "key": "geese",
+   "performers": [
+    "geese"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:beach-fossils",
+   "name": "BEACH FOSSILS",
+   "key": "beach-fossils",
+   "performers": [
+    "beach-fossils"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:cannons",
+   "name": "CANNONS",
+   "key": "cannons",
+   "performers": [
+    "cannons"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:stephen-sanchez",
+   "name": "STEPHEN SANCHEZ",
+   "key": "stephen-sanchez",
+   "performers": [
+    "stephen-sanchez"
+   ]
+  },
+  {
+   "id": "governors-ball-2024:faye-webster",
+   "name": "FAYE WEBSTER",
+   "key": "faye-webster",
+   "performers": [
+    "faye-webster"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "governors-ball-2024:d1:govballnyc:1200:school-of-rock-queens",
+   "artistId": "governors-ball-2024:school-of-rock-queens",
+   "day": 1,
+   "stageId": "governors-ball-2024:govballnyc",
+   "start": "12:00",
+   "end": "12:30"
+  },
+  {
+   "id": "governors-ball-2024:d1:govballnyc:1300:blondshell",
+   "artistId": "governors-ball-2024:blondshell",
+   "day": 1,
+   "stageId": "governors-ball-2024:govballnyc",
+   "start": "13:00",
+   "end": "13:30"
+  },
+  {
+   "id": "governors-ball-2024:d1:govballnyc:1400:durry",
+   "artistId": "governors-ball-2024:durry",
+   "day": 1,
+   "stageId": "governors-ball-2024:govballnyc",
+   "start": "14:00",
+   "end": "14:30"
+  },
+  {
+   "id": "governors-ball-2024:d1:govballnyc:1515:ryan-beatty",
+   "artistId": "governors-ball-2024:ryan-beatty",
+   "day": 1,
+   "stageId": "governors-ball-2024:govballnyc",
+   "start": "15:15",
+   "end": "16:00"
+  },
+  {
+   "id": "governors-ball-2024:d1:govballnyc:1645:goth-babe",
+   "artistId": "governors-ball-2024:goth-babe",
+   "day": 1,
+   "stageId": "governors-ball-2024:govballnyc",
+   "start": "16:45",
+   "end": "17:30"
+  },
+  {
+   "id": "governors-ball-2024:d1:govballnyc:1830:dominic-fike",
+   "artistId": "governors-ball-2024:dominic-fike",
+   "day": 1,
+   "stageId": "governors-ball-2024:govballnyc",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "governors-ball-2024:d1:govballnyc:2030:post-malone",
+   "artistId": "governors-ball-2024:post-malone",
+   "day": 1,
+   "stageId": "governors-ball-2024:govballnyc",
+   "start": "20:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "governors-ball-2024:d1:gopuff:1230:alex-chapman",
+   "artistId": "governors-ball-2024:alex-chapman",
+   "day": 1,
+   "stageId": "governors-ball-2024:gopuff",
+   "start": "12:30",
+   "end": "13:00"
+  },
+  {
+   "id": "governors-ball-2024:d1:gopuff:1330:arcy-drive",
+   "artistId": "governors-ball-2024:arcy-drive",
+   "day": 1,
+   "stageId": "governors-ball-2024:gopuff",
+   "start": "13:30",
+   "end": "14:00"
+  },
+  {
+   "id": "governors-ball-2024:d1:gopuff:1430:qveen-herby",
+   "artistId": "governors-ball-2024:qveen-herby",
+   "day": 1,
+   "stageId": "governors-ball-2024:gopuff",
+   "start": "14:30",
+   "end": "15:15"
+  },
+  {
+   "id": "governors-ball-2024:d1:gopuff:1600:yung-gravy",
+   "artistId": "governors-ball-2024:yung-gravy",
+   "day": 1,
+   "stageId": "governors-ball-2024:gopuff",
+   "start": "16:00",
+   "end": "16:45"
+  },
+  {
+   "id": "governors-ball-2024:d1:gopuff:1730:farruko",
+   "artistId": "governors-ball-2024:farruko",
+   "day": 1,
+   "stageId": "governors-ball-2024:gopuff",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "governors-ball-2024:d1:gopuff:1930:rauw-alejandro",
+   "artistId": "governors-ball-2024:rauw-alejandro",
+   "day": 1,
+   "stageId": "governors-ball-2024:gopuff",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "governors-ball-2024:d1:ihg-hotels-and-resorts:1200:lauran-hibberd",
+   "artistId": "governors-ball-2024:lauran-hibberd",
+   "day": 1,
+   "stageId": "governors-ball-2024:ihg-hotels-and-resorts",
+   "start": "12:00",
+   "end": "12:30"
+  },
+  {
+   "id": "governors-ball-2024:d1:ihg-hotels-and-resorts:1300:donna-missal",
+   "artistId": "governors-ball-2024:donna-missal",
+   "day": 1,
+   "stageId": "governors-ball-2024:ihg-hotels-and-resorts",
+   "start": "13:00",
+   "end": "13:30"
+  },
+  {
+   "id": "governors-ball-2024:d1:ihg-hotels-and-resorts:1345:underscores",
+   "artistId": "governors-ball-2024:underscores",
+   "day": 1,
+   "stageId": "governors-ball-2024:ihg-hotels-and-resorts",
+   "start": "13:45",
+   "end": "14:15"
+  },
+  {
+   "id": "governors-ball-2024:d1:ihg-hotels-and-resorts:1440:mimi-webb",
+   "artistId": "governors-ball-2024:mimi-webb",
+   "day": 1,
+   "stageId": "governors-ball-2024:ihg-hotels-and-resorts",
+   "start": "14:40",
+   "end": "15:20"
+  },
+  {
+   "id": "governors-ball-2024:d1:ihg-hotels-and-resorts:1545:flo",
+   "artistId": "governors-ball-2024:flo",
+   "day": 1,
+   "stageId": "governors-ball-2024:ihg-hotels-and-resorts",
+   "start": "15:45",
+   "end": "16:30"
+  },
+  {
+   "id": "governors-ball-2024:d1:ihg-hotels-and-resorts:1700:teezo-touchdown",
+   "artistId": "governors-ball-2024:teezo-touchdown",
+   "day": 1,
+   "stageId": "governors-ball-2024:ihg-hotels-and-resorts",
+   "start": "17:00",
+   "end": "17:45"
+  },
+  {
+   "id": "governors-ball-2024:d1:ihg-hotels-and-resorts:1815:alex-g",
+   "artistId": "governors-ball-2024:alex-g",
+   "day": 1,
+   "stageId": "governors-ball-2024:ihg-hotels-and-resorts",
+   "start": "18:15",
+   "end": "19:00"
+  },
+  {
+   "id": "governors-ball-2024:d1:ihg-hotels-and-resorts:1930:labrinth",
+   "artistId": "governors-ball-2024:labrinth",
+   "day": 1,
+   "stageId": "governors-ball-2024:ihg-hotels-and-resorts",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "governors-ball-2024:d2:govballnyc:1200:maz-and-kidd-revel",
+   "artistId": "governors-ball-2024:maz-and-kidd-revel",
+   "day": 2,
+   "stageId": "governors-ball-2024:govballnyc",
+   "start": "12:00",
+   "end": "12:30"
+  },
+  {
+   "id": "governors-ball-2024:d2:govballnyc:1300:telescreens",
+   "artistId": "governors-ball-2024:telescreens",
+   "day": 2,
+   "stageId": "governors-ball-2024:govballnyc",
+   "start": "13:00",
+   "end": "13:30"
+  },
+  {
+   "id": "governors-ball-2024:d2:govballnyc:1400:quarters-of-change",
+   "artistId": "governors-ball-2024:quarters-of-change",
+   "day": 2,
+   "stageId": "governors-ball-2024:govballnyc",
+   "start": "14:00",
+   "end": "14:30"
+  },
+  {
+   "id": "governors-ball-2024:d2:govballnyc:1515:jessie-murph",
+   "artistId": "governors-ball-2024:jessie-murph",
+   "day": 2,
+   "stageId": "governors-ball-2024:govballnyc",
+   "start": "15:15",
+   "end": "16:05"
+  },
+  {
+   "id": "governors-ball-2024:d2:govballnyc:1650:sabrina-carpenter",
+   "artistId": "governors-ball-2024:sabrina-carpenter",
+   "day": 2,
+   "stageId": "governors-ball-2024:govballnyc",
+   "start": "16:50",
+   "end": "17:45"
+  },
+  {
+   "id": "governors-ball-2024:d2:govballnyc:1830:carly-rae-jepsen",
+   "artistId": "governors-ball-2024:carly-rae-jepsen",
+   "day": 2,
+   "stageId": "governors-ball-2024:govballnyc",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "governors-ball-2024:d2:govballnyc:2030:the-killers",
+   "artistId": "governors-ball-2024:the-killers",
+   "day": 2,
+   "stageId": "governors-ball-2024:govballnyc",
+   "start": "20:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "governors-ball-2024:d2:gopuff:1230:the-thing",
+   "artistId": "governors-ball-2024:the-thing",
+   "day": 2,
+   "stageId": "governors-ball-2024:gopuff",
+   "start": "12:30",
+   "end": "13:00"
+  },
+  {
+   "id": "governors-ball-2024:d2:gopuff:1330:riovaz",
+   "artistId": "governors-ball-2024:riovaz",
+   "day": 2,
+   "stageId": "governors-ball-2024:gopuff",
+   "start": "13:30",
+   "end": "14:00"
+  },
+  {
+   "id": "governors-ball-2024:d2:gopuff:1430:bakar",
+   "artistId": "governors-ball-2024:bakar",
+   "day": 2,
+   "stageId": "governors-ball-2024:gopuff",
+   "start": "14:30",
+   "end": "15:15"
+  },
+  {
+   "id": "governors-ball-2024:d2:gopuff:1605:doechii",
+   "artistId": "governors-ball-2024:doechii",
+   "day": 2,
+   "stageId": "governors-ball-2024:gopuff",
+   "start": "16:05",
+   "end": "16:50"
+  },
+  {
+   "id": "governors-ball-2024:d2:gopuff:1745:sexyy-red",
+   "artistId": "governors-ball-2024:sexyy-red",
+   "day": 2,
+   "stageId": "governors-ball-2024:gopuff",
+   "start": "17:45",
+   "end": "18:30"
+  },
+  {
+   "id": "governors-ball-2024:d2:gopuff:1930:21-savage",
+   "artistId": "governors-ball-2024:21-savage",
+   "day": 2,
+   "stageId": "governors-ball-2024:gopuff",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "governors-ball-2024:d2:ihg-hotels-and-resorts:1200:kids-rock-for-kids",
+   "artistId": "governors-ball-2024:kids-rock-for-kids",
+   "day": 2,
+   "stageId": "governors-ball-2024:ihg-hotels-and-resorts",
+   "start": "12:00",
+   "end": "12:30"
+  },
+  {
+   "id": "governors-ball-2024:d2:ihg-hotels-and-resorts:1245:little-stranger",
+   "artistId": "governors-ball-2024:little-stranger",
+   "day": 2,
+   "stageId": "governors-ball-2024:ihg-hotels-and-resorts",
+   "start": "12:45",
+   "end": "13:15"
+  },
+  {
+   "id": "governors-ball-2024:d2:ihg-hotels-and-resorts:1345:skizzy-mars",
+   "artistId": "governors-ball-2024:skizzy-mars",
+   "day": 2,
+   "stageId": "governors-ball-2024:ihg-hotels-and-resorts",
+   "start": "13:45",
+   "end": "14:15"
+  },
+  {
+   "id": "governors-ball-2024:d2:ihg-hotels-and-resorts:1440:claire-rosinkranz",
+   "artistId": "governors-ball-2024:claire-rosinkranz",
+   "day": 2,
+   "stageId": "governors-ball-2024:ihg-hotels-and-resorts",
+   "start": "14:40",
+   "end": "15:20"
+  },
+  {
+   "id": "governors-ball-2024:d2:ihg-hotels-and-resorts:1545:p1harmony",
+   "artistId": "governors-ball-2024:p1harmony",
+   "day": 2,
+   "stageId": "governors-ball-2024:ihg-hotels-and-resorts",
+   "start": "15:45",
+   "end": "16:30"
+  },
+  {
+   "id": "governors-ball-2024:d2:ihg-hotels-and-resorts:1700:d4vd",
+   "artistId": "governors-ball-2024:d4vd",
+   "day": 2,
+   "stageId": "governors-ball-2024:ihg-hotels-and-resorts",
+   "start": "17:00",
+   "end": "17:45"
+  },
+  {
+   "id": "governors-ball-2024:d2:ihg-hotels-and-resorts:1815:hippo-campus",
+   "artistId": "governors-ball-2024:hippo-campus",
+   "day": 2,
+   "stageId": "governors-ball-2024:ihg-hotels-and-resorts",
+   "start": "18:15",
+   "end": "19:00"
+  },
+  {
+   "id": "governors-ball-2024:d2:ihg-hotels-and-resorts:1930:tv-girl",
+   "artistId": "governors-ball-2024:tv-girl",
+   "day": 2,
+   "stageId": "governors-ball-2024:ihg-hotels-and-resorts",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "governors-ball-2024:d3:govballnyc:1200:school-of-rock-brooklyn",
+   "artistId": "governors-ball-2024:school-of-rock-brooklyn",
+   "day": 3,
+   "stageId": "governors-ball-2024:govballnyc",
+   "start": "12:00",
+   "end": "12:30"
+  },
+  {
+   "id": "governors-ball-2024:d3:govballnyc:1300:husbands",
+   "artistId": "governors-ball-2024:husbands",
+   "day": 3,
+   "stageId": "governors-ball-2024:govballnyc",
+   "start": "13:00",
+   "end": "13:30"
+  },
+  {
+   "id": "governors-ball-2024:d3:govballnyc:1400:elyanna",
+   "artistId": "governors-ball-2024:elyanna",
+   "day": 3,
+   "stageId": "governors-ball-2024:govballnyc",
+   "start": "14:00",
+   "end": "14:40"
+  },
+  {
+   "id": "governors-ball-2024:d3:govballnyc:1520:malcolm-todd",
+   "artistId": "governors-ball-2024:malcolm-todd",
+   "day": 3,
+   "stageId": "governors-ball-2024:govballnyc",
+   "start": "15:20",
+   "end": "16:00"
+  },
+  {
+   "id": "governors-ball-2024:d3:govballnyc:1645:chappell-roan",
+   "artistId": "governors-ball-2024:chappell-roan",
+   "day": 3,
+   "stageId": "governors-ball-2024:govballnyc",
+   "start": "16:45",
+   "end": "17:30"
+  },
+  {
+   "id": "governors-ball-2024:d3:govballnyc:1830:renee-rapp",
+   "artistId": "governors-ball-2024:renee-rapp",
+   "day": 3,
+   "stageId": "governors-ball-2024:govballnyc",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "governors-ball-2024:d3:govballnyc:2030:sza",
+   "artistId": "governors-ball-2024:sza",
+   "day": 3,
+   "stageId": "governors-ball-2024:govballnyc",
+   "start": "20:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "governors-ball-2024:d3:gopuff:1230:hotline-tnt",
+   "artistId": "governors-ball-2024:hotline-tnt",
+   "day": 3,
+   "stageId": "governors-ball-2024:gopuff",
+   "start": "12:30",
+   "end": "13:00"
+  },
+  {
+   "id": "governors-ball-2024:d3:gopuff:1330:baby-queen",
+   "artistId": "governors-ball-2024:baby-queen",
+   "day": 3,
+   "stageId": "governors-ball-2024:gopuff",
+   "start": "13:30",
+   "end": "14:00"
+  },
+  {
+   "id": "governors-ball-2024:d3:gopuff:1440:saint-levant",
+   "artistId": "governors-ball-2024:saint-levant",
+   "day": 3,
+   "stageId": "governors-ball-2024:gopuff",
+   "start": "14:40",
+   "end": "15:20"
+  },
+  {
+   "id": "governors-ball-2024:d3:gopuff:1600:kevin-abstract",
+   "artistId": "governors-ball-2024:kevin-abstract",
+   "day": 3,
+   "stageId": "governors-ball-2024:gopuff",
+   "start": "16:00",
+   "end": "16:45"
+  },
+  {
+   "id": "governors-ball-2024:d3:gopuff:1730:don-toliver",
+   "artistId": "governors-ball-2024:don-toliver",
+   "day": 3,
+   "stageId": "governors-ball-2024:gopuff",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "governors-ball-2024:d3:gopuff:1930:peso-pluma",
+   "artistId": "governors-ball-2024:peso-pluma",
+   "day": 3,
+   "stageId": "governors-ball-2024:gopuff",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "governors-ball-2024:d3:ihg-hotels-and-resorts:1200:the-hails",
+   "artistId": "governors-ball-2024:the-hails",
+   "day": 3,
+   "stageId": "governors-ball-2024:ihg-hotels-and-resorts",
+   "start": "12:00",
+   "end": "12:30"
+  },
+  {
+   "id": "governors-ball-2024:d3:ihg-hotels-and-resorts:1255:fcukers",
+   "artistId": "governors-ball-2024:fcukers",
+   "day": 3,
+   "stageId": "governors-ball-2024:ihg-hotels-and-resorts",
+   "start": "12:55",
+   "end": "13:25"
+  },
+  {
+   "id": "governors-ball-2024:d3:ihg-hotels-and-resorts:1345:g-flip",
+   "artistId": "governors-ball-2024:g-flip",
+   "day": 3,
+   "stageId": "governors-ball-2024:ihg-hotels-and-resorts",
+   "start": "13:45",
+   "end": "14:15"
+  },
+  {
+   "id": "governors-ball-2024:d3:ihg-hotels-and-resorts:1440:geese",
+   "artistId": "governors-ball-2024:geese",
+   "day": 3,
+   "stageId": "governors-ball-2024:ihg-hotels-and-resorts",
+   "start": "14:40",
+   "end": "15:20"
+  },
+  {
+   "id": "governors-ball-2024:d3:ihg-hotels-and-resorts:1545:beach-fossils",
+   "artistId": "governors-ball-2024:beach-fossils",
+   "day": 3,
+   "stageId": "governors-ball-2024:ihg-hotels-and-resorts",
+   "start": "15:45",
+   "end": "16:30"
+  },
+  {
+   "id": "governors-ball-2024:d3:ihg-hotels-and-resorts:1700:cannons",
+   "artistId": "governors-ball-2024:cannons",
+   "day": 3,
+   "stageId": "governors-ball-2024:ihg-hotels-and-resorts",
+   "start": "17:00",
+   "end": "17:45"
+  },
+  {
+   "id": "governors-ball-2024:d3:ihg-hotels-and-resorts:1815:stephen-sanchez",
+   "artistId": "governors-ball-2024:stephen-sanchez",
+   "day": 3,
+   "stageId": "governors-ball-2024:ihg-hotels-and-resorts",
+   "start": "18:15",
+   "end": "19:00"
+  },
+  {
+   "id": "governors-ball-2024:d3:ihg-hotels-and-resorts:1930:faye-webster",
+   "artistId": "governors-ball-2024:faye-webster",
+   "day": 3,
+   "stageId": "governors-ball-2024:ihg-hotels-and-resorts",
+   "start": "19:30",
+   "end": "20:30"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_image_transcription",
+  "official": "https://www.governorsballmusicfestival.com/schedule",
+  "captures": [
+   {
+    "day": 1,
+    "pageArchivedUrl": "https://web.archive.org/web/20241210140843/https://www.governorsballmusicfestival.com/schedule",
+    "pageCapture": "20241210140843",
+    "imageArchivedUrl": "https://web.archive.org/web/20240725045105/https://cdn.prod.website-files.com/65802876202510fc31c68bb0/66632d47fe88329de99c667c_GBSchedule-Working-Fri-6.7.jpg",
+    "imageCapture": "20240725045105",
+    "sha256": "9d356bfcaf45e4186d34995ffea54edf08445c1a9fe85ab932634ba892a77e52",
+    "reviewManifest": "data/historical/review/governors-ball-2024.json"
+   },
+   {
+    "day": 2,
+    "pageArchivedUrl": "https://web.archive.org/web/20241210140843/https://www.governorsballmusicfestival.com/schedule",
+    "pageCapture": "20241210140843",
+    "imageArchivedUrl": "https://web.archive.org/web/20240724180403/https://cdn.prod.website-files.com/65802876202510fc31c68bb0/66632d5035bc6084576f5523_GBSchedule-Working-Sat-6.7.jpg",
+    "imageCapture": "20240724180403",
+    "sha256": "f595ced3177b8190497314ba8d665c2a7957db755a5d2757fa9532b581721219",
+    "reviewManifest": "data/historical/review/governors-ball-2024.json"
+   },
+   {
+    "day": 3,
+    "pageArchivedUrl": "https://web.archive.org/web/20241210140843/https://www.governorsballmusicfestival.com/schedule",
+    "pageCapture": "20241210140843",
+    "imageArchivedUrl": "https://web.archive.org/web/20240725065631/https://cdn.prod.website-files.com/65802876202510fc31c68bb0/66632d5eea98c891cce0d952_GBSchedule-Working-Sun-6.7.jpg",
+    "imageCapture": "20240725065631",
+    "sha256": "2f5ffa5f926ad67bc536da8efdd9fbb471ede7fa657a1d899959362ab8f4e67e",
+    "reviewManifest": "data/historical/review/governors-ball-2024.json"
+   }
+  ]
+ }
+}

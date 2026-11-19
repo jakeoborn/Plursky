@@ -7657,6 +7657,14 @@
   {
    "printed": "Kasparov & System Shock ft Diesel",
    "why": "Left as printed, one act: the \"&\" may join one act or two, and who is behind the \"ft\" is not sourced, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "LAUFEY WITH THE CHICAGO PHILHARMONIC",
+   "why": "Left as printed, one act: Lollapalooza 2024's Friday grid prints Laufey \"with\" an orchestra, and no first-party page rules whether the orchestra is billed as an act of its own, so the billing is neither split nor credited to Laufey alone. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "key": "flo",
+   "why": "Short name billed at more than one festival brand (ACL 2024, Governors Ball 2024, Lollapalooza 2024): no first-party link yet shows they are the same act. The billings render separately until one does."
   }
  ]
 }

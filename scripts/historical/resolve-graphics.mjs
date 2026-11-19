@@ -25,6 +25,12 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 // its graphic. The match is on the image's own filename, which the festival
 // wrote — never on page position.
 export const GRAPHIC_EDITIONS = {
+  // Governors Ball 2024: "GBSchedule-Working-Fri-6.7.jpg" (final, from
+  // 20240621); the April issue was "GB24-Schedule-Fri-4.25.png". The grids
+  // print "FRI. JUNE 7" with no year; June 7 is a Friday in 2024 only.
+  "governors-ball-2024": { year: 2024, page: "https://www.governorsballmusicfestival.com/schedule", window: ["20240401", "20241231"],
+    image: /(?:GBSchedule-Working|GB24-Schedule)-[^"'\s/]+?\.(?:png|jpg)/i,
+    days: [{ day: 1, date: "2024-06-07", token: /-Fri/i }, { day: 2, date: "2024-06-08", token: /-Sat/i }, { day: 3, date: "2024-06-09", token: /-Sun/i }] },
   "governors-ball-2025": { year: 2025, page: "https://www.governorsballmusicfestival.com/schedule", window: ["20250601", "20251231"],
     image: /GBSchedule-[^"'\s/]+?\.png/i,
     days: [{ day: 1, date: "2025-06-06", token: /-Fri/i }, { day: 2, date: "2025-06-07", token: /-Sat/i }, { day: 3, date: "2025-06-08", token: /-Sun/i }] },
@@ -77,7 +83,8 @@ export const GRAPHIC_EDITIONS = {
       { day: 4, date: "2022-10-14", token: /Fri-Wk2/i }, { day: 5, date: "2022-10-15", token: /Sat-Wk2/i }, { day: 6, date: "2022-10-16", token: /Sun-Wk2/i }] },
 };
 
-const fullSize = u => !/-p-\d+\.png$/i.test(u);
+// Webflow resized copies end "-p-500.png" or "-p-800.jpg"; keep only the original.
+const fullSize = u => !/-p-\d+\.(?:png|jpe?g)$/i.test(u);
 
 export async function resolve(id) {
   const ed = GRAPHIC_EDITIONS[id];

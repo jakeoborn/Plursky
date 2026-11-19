@@ -14,6 +14,13 @@ const ACL_WEEKEND_LABELS = ["Weekend 1 · Friday", "Weekend 1 · Saturday", "Wee
   "Weekend 2 · Friday", "Weekend 2 · Saturday", "Weekend 2 · Sunday"];
 
 export const EDITIONS = {
+  // Governors Ball 2024: three official daily grids (official_image_transcription).
+  // The page also embeds one Bud Light Backyard sheet for all three days; it
+  // prints weekdays without dates and starts without ends, so it is not read.
+  "governors-ball-2024": { festivalId: "governors-ball", name: "Governors Ball 2024", year: 2024,
+    timezone: "America/New_York", rolloverHour: 6, method: "official_image_transcription",
+    dates: [["2024-06-07", "Friday"], ["2024-06-08", "Saturday"], ["2024-06-09", "Sunday"]],
+    coverage: { asOf: "2026-11-19", missing: [{ stage: "BUD LIGHT BACKYARD", days: [1, 2, 3], when: "a separate partner sheet that prints weekdays without dates and starts without ends" }] } },
   "governors-ball-2025": { festivalId: "governors-ball", name: "Governors Ball 2025", year: 2025,
     timezone: "America/New_York", rolloverHour: 6, method: "official_image_transcription",
     dates: [["2025-06-06", "Friday"], ["2025-06-07", "Saturday"], ["2025-06-08", "Sunday"]] },
