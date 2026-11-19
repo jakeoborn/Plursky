@@ -45,6 +45,7 @@ import { parseSzigetDays, tabDate as szigetDate } from "./historical/sziget-days
 import { parseDefqonAreas, headerDate as defqonDate } from "./historical/defqon-schedule.mjs";
 import { parseTomorrowlandLineup } from "./historical/tomorrowland-lineup.mjs";
 import { parseTimeWarpLineup, headerDates as twHeaderDates } from "./historical/timewarp-lineup.mjs";
+import { parseDefqonGrid, dayHeading as dgDayHeading } from "./historical/defqon-grid-lineup.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const H = p => join(ROOT, "data/historical", p);
@@ -1007,6 +1008,40 @@ if (base && edc) {
     twMust("a Time Warp list headed with the wrong weekday", twPage({ lists: [twLists[1], twLists[0]] }));
     twMust("a Time Warp act with no name", twPage({ lists: [twList(1, "Friday A-Z", [twAct(" ")]), twLists[1]] }));
     twMust("a Time Warp act listed twice on one night", twPage({ lists: [twList(1, "Friday A-Z", [twAct("Perel"), twAct("Perel")]), twLists[1]] }));
+    // Defqon.1 2013's timetable grid: one section per day, one row per area,
+    // blocks by width with no time; a named part with its acts and hosts.
+    const dgCell = (cls, inner) => `<li class="${cls}"><div class="inner">${inner}</div></li>`;
+    const dgRow = (cls, area, cells) => `<div class="day-lineup ${cls}">\n<ul class="lineup-bar">${area ? dgCell("area", area) : ""}${cells.join("")}</ul>\n</div>`;
+    const dgDay = (id, heading, rows) => `<section class="day ${id}" id="${id}"><h2 class="day-title"><span>${heading}</span></h2>${rows.join("")}</section>`;
+    const dgDays = [
+      dgDay("friday", "Festival Day 1 - Friday June 21", [dgRow("fri blue", null, [dgCell("ten", "<div><div><h3>The Gathering @ The Blue</h3>Frontliner<br>Zatox<br>Hosted By Villain &amp; Ruffian</div></div>")])]),
+      dgDay("saturday", "Festival Day 2 - Saturday June 22", [dgRow("sat red", "RED", [dgCell("one", "Ran-D"), dgCell("half double", '<div class="holder">Outbreak <br>/ Live</div>'), dgCell("one off", ""),
+        dgCell("one double", '<div class="holder">Endymion &amp;<br><span>Evil Activities</span></div>'), dgCell("half", "End<br>show")]),
+        dgRow("sat uv", "UV", [dgCell("one", "Alpha<span class=\"up\">2</span>"), dgCell("one", "N-Vitral / Live")])]),
+      dgDay("sunday", "Festival Day 3 - Sunday June 23", [dgRow("sun black", "BLACK", [dgCell("one", "Coone"), dgCell("four red ending", "<div><div><h3>The Closing</h3>Coone<br>Wildstylez<br>Hosted By Villain</div></div>")])]),
+    ];
+    const dgPage = ({ days = dgDays, title = "DEFQON.1 FESTIVAL - TIME-TABLE" } = {}) => `<title>${title}</title>${days.join("")}`;
+    const dgp = parseDefqonGrid(dgPage(), { year: 2013 });
+    ok(JSON.stringify([dgp.title, dgp.days.map(d => [d.date, d.label, d.acts.map(a => `${a.artist}@${a.stage}`)]), dgp.segments, dgp.parts.map(x => [x.heading, x.stage, x.acts, x.hosts])])
+      === JSON.stringify(["DEFQON.1 FESTIVAL - TIME-TABLE", [["2013-06-21", "Friday 21 June 2013", ["Frontliner@Blue", "Zatox@Blue"]],
+        ["2013-06-22", "Saturday 22 June 2013", ["Ran-D@Red", "Outbreak (Live)@Red", "Endymion & Evil Activities@Red", "Alpha²@UV", "N-Vitral (Live)@UV"]],
+        ["2013-06-23", "Sunday 23 June 2013", ["Coone@Black", "Coone@", "Wildstylez@"]]],
+        [{ day: 2, stage: "Red", segment: "End show" }],
+        [["The Gathering @ The Blue", "Blue", ["Frontliner", "Zatox"], ["Hosted By Villain & Ruffian"]], ["The Closing", "", ["Coone", "Wildstylez"], ["Hosted By Villain"]]]]),
+      `a Defqon.1 grid must come back as its dated days, each act with its area, live sets billed "(Live)", hosts and show segments apart: ${JSON.stringify(dgp)}`);
+    ok(dgDayHeading("Festival Day 2 - Saturday June 22", 2013)?.date === "2013-06-22" && dgDayHeading("Festival Day 2 - Sunday June 22", 2013) === null && dgDayHeading("Festival Day 2 - Saturday June 31", 2013) === null,
+      "Defqon.1 day headings must be a weekday and a real date in the year");
+    const dgMust = (what, html, year = 2013) => { let bad = false; try { parseDefqonGrid(html, { year }); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    dgMust("a Defqon.1 2013 grid read as another year's", dgPage(), 2014);
+    dgMust("a Defqon.1 grid with no day", dgPage({ days: [] }));
+    dgMust("a Defqon.1 day printed twice", dgPage({ days: [dgDays[0], dgDays[0]] }));
+    dgMust("a Defqon.1 day out of order", dgPage({ days: [dgDays[1], dgDays[0]] }));
+    dgMust("a Defqon.1 block the grid does not draw", dgPage({ days: [dgDays[0], dgDay("saturday", "Festival Day 2 - Saturday June 22", [dgRow("sat red", "RED", [dgCell("seven", "Ran-D")])])] }));
+    dgMust("a Defqon.1 gap that prints a name", dgPage({ days: [dgDays[0], dgDay("saturday", "Festival Day 2 - Saturday June 22", [dgRow("sat red", "RED", [dgCell("one off", "Ran-D")])])] }));
+    dgMust("a Defqon.1 act row with no area", dgPage({ days: [dgDays[0], dgDay("saturday", "Festival Day 2 - Saturday June 22", [dgRow("sat red", null, [dgCell("one", "Ran-D")])])] }));
+    dgMust("a Defqon.1 day naming no act", dgPage({ days: [dgDays[0], dgDay("saturday", "Festival Day 2 - Saturday June 22", [dgRow("sat red", "RED", [dgCell("one off", "")])])] }));
+    dgMust("a Defqon.1 named part with hosts only", dgPage({ days: [dgDay("friday", "Festival Day 1 - Friday June 21", [dgRow("fri blue", null, [dgCell("ten", "<div><div><h3>The Gathering @ The Blue</h3>Hosted By Villain</div></div>")])])] }));
+    dgMust("a Defqon.1 named part drawn in another area's row", dgPage({ days: [dgDay("friday", "Festival Day 1 - Friday June 21", [dgRow("fri red", "RED", [dgCell("ten", "<div><div><h3>The Gathering @ The Blue</h3>Zatox</div></div>")])])] }));
     // Outside Lands' 2022-2025 lineup widget: its script sets the options on
     // one line of JSON; each artist lists its performances, a shared set (a
     // b2b) under each artist with the same id, every time with its offset.

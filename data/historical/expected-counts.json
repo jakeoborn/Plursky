@@ -158,5 +158,6 @@
  "sonar-2022": { "stages": 8, "setsPerDay": [24, 46, 45], "droppedPerDay": [0, 0, 0] },
  "sziget-2010": { "stages": 5, "setsPerDay": [2, 6, 28, 27, 28, 28, 27], "droppedPerDay": [0, 0, 0, 0, 0, 0, 0] },
  "sziget-2011": { "stages": 5, "setsPerDay": [1, 6, 20, 20, 19, 20, 19], "droppedPerDay": [0, 0, 0, 0, 0, 0, 0] },
+ "defqon1-2013": { "artists": 158, "stages": 11, "appearancesPerDay": [4, 109, 53], "dropped": 0 },
  "defqon1-2015": { "stages": 14, "setsPerDay": [11, 133, 77], "droppedPerDay": [0, 0, 0] }
 }
