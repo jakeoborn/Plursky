@@ -1,0 +1,159 @@
+{
+  "id": "primavera-sound-2016",
+  "method": "official_sources",
+  "official": "https://www.primaverasound.es/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2016-06-01",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.primaverasound.es:80/horarios?d=3&l=forum",
+          "archivedUrl": "https://web.archive.org/web/20160619040947/http://www.primaverasound.es:80/horarios?d=3&l=forum",
+          "captureTimestamp": "20160619040947",
+          "printed": "MIÉRCOLES 1",
+          "sha256": "88f9006e33ae2f2171c7cf8a8b68614435878782302daa9843abefc93bcdb0fd",
+          "bytes": 158290,
+          "rows": 5,
+          "format": "primavera-completos",
+          "heading": "Horarios",
+          "active": "Horarios completos",
+          "tabs": [
+            "LUNES 30",
+            "MARTES 31",
+            "MIÉRCOLES 1",
+            "JUEVES 2",
+            "VIERNES 3",
+            "SÁBADO 4",
+            "DOMINGO 5"
+          ],
+          "stages": 1,
+          "axis": "11:30-06:30",
+          "cityStages": [
+            "DayPro",
+            "Sala Apolo",
+            "La [2] de Apolo",
+            "BARTS"
+          ],
+          "citySets": 16,
+          "times": "each block prints its range on the 24-hour clock, drawn on its own 15-minute row and two pixels a minute tall; the city venues' columns are not read as sets"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2016-06-02",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.primaverasound.es:80/horarios?d=4&l=forum",
+          "archivedUrl": "https://web.archive.org/web/20160619050343/http://www.primaverasound.es:80/horarios?d=4&l=forum",
+          "captureTimestamp": "20160619050343",
+          "printed": "JUEVES 2",
+          "sha256": "fe0150fe299f4350176b7993034fbfc317244dab514e4dce7062638977665221",
+          "bytes": 352519,
+          "rows": 72,
+          "format": "primavera-completos",
+          "heading": "Horarios",
+          "active": "Horarios completos",
+          "tabs": [
+            "LUNES 30",
+            "MARTES 31",
+            "MIÉRCOLES 1",
+            "JUEVES 2",
+            "VIERNES 3",
+            "SÁBADO 4",
+            "DOMINGO 5"
+          ],
+          "stages": 12,
+          "axis": "11:00-06:30",
+          "cityStages": [
+            "DayPro"
+          ],
+          "citySets": 9,
+          "times": "each block prints its range on the 24-hour clock, drawn on its own 15-minute row and two pixels a minute tall; the city venues' columns are not read as sets"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2016-06-03",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.primaverasound.es:80/horarios?d=5&l=forum",
+          "archivedUrl": "https://web.archive.org/web/20160619051545/http://www.primaverasound.es:80/horarios?d=5&l=forum",
+          "captureTimestamp": "20160619051545",
+          "printed": "VIERNES 3",
+          "sha256": "45779d5b65ee338da90dbb509c9e47dada5b37f119817697be6d0182426ef716",
+          "bytes": 388260,
+          "rows": 71,
+          "format": "primavera-completos",
+          "heading": "Horarios",
+          "active": "Horarios completos",
+          "tabs": [
+            "LUNES 30",
+            "MARTES 31",
+            "MIÉRCOLES 1",
+            "JUEVES 2",
+            "VIERNES 3",
+            "SÁBADO 4",
+            "DOMINGO 5"
+          ],
+          "stages": 12,
+          "axis": "11:00-06:30",
+          "cityStages": [
+            "Martini",
+            "Sala Teatre",
+            "DayPro"
+          ],
+          "citySets": 17,
+          "times": "each block prints its range on the 24-hour clock, drawn on its own 15-minute row and two pixels a minute tall; the city venues' columns are not read as sets"
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2016-06-04",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.primaverasound.es:80/horarios?d=6&l=forum",
+          "archivedUrl": "https://web.archive.org/web/20160619061253/http://www.primaverasound.es:80/horarios?d=6&l=forum",
+          "captureTimestamp": "20160619061253",
+          "printed": "SÁBADO 4",
+          "sha256": "c7a521ea1bbc89d5f93e194719ab86c42c6162ad46c0314aa3e7dd33b91fa4ad",
+          "bytes": 403952,
+          "rows": 73,
+          "format": "primavera-completos",
+          "heading": "Horarios",
+          "active": "Horarios completos",
+          "tabs": [
+            "LUNES 30",
+            "MARTES 31",
+            "MIÉRCOLES 1",
+            "JUEVES 2",
+            "VIERNES 3",
+            "SÁBADO 4",
+            "DOMINGO 5"
+          ],
+          "stages": 13,
+          "axis": "11:00-06:30",
+          "cityStages": [
+            "Martini",
+            "Sala Teatre",
+            "DayPro"
+          ],
+          "citySets": 17,
+          "times": "each block prints its range on the 24-hour clock, drawn on its own 15-minute row and two pixels a minute tall; the city venues' columns are not read as sets",
+          "openEnded": [
+            "MINIMÚSICA: (18:00)"
+          ]
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": []
+}

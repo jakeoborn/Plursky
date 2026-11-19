@@ -1,0 +1,2401 @@
+{
+ "id": "sonar-2017",
+ "festivalId": "sonar",
+ "name": "Sónar Barcelona 2017",
+ "year": 2017,
+ "timezone": "Europe/Madrid",
+ "rolloverHour": 10,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2017-06-14",
+   "label": "Wednesday"
+  },
+  {
+   "day": 2,
+   "date": "2017-06-15",
+   "label": "Thursday"
+  },
+  {
+   "day": 3,
+   "date": "2017-06-16",
+   "label": "Friday"
+  },
+  {
+   "day": 4,
+   "date": "2017-06-17",
+   "label": "Saturday"
+  },
+  {
+   "day": 5,
+   "date": "2017-06-18",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "sonar-2017:sonarhall",
+   "name": "SonarHall"
+  },
+  {
+   "id": "sonar-2017:sonarcomplex",
+   "name": "SonarComplex"
+  },
+  {
+   "id": "sonar-2017:sonardome",
+   "name": "SonarDôme"
+  },
+  {
+   "id": "sonar-2017:sonarvillage-by-estrella-damm",
+   "name": "SonarVillage by Estrella Damm"
+  },
+  {
+   "id": "sonar-2017:sonarxs",
+   "name": "SonarXS"
+  },
+  {
+   "id": "sonar-2017:sonarcar",
+   "name": "SonarCar"
+  },
+  {
+   "id": "sonar-2017:sonarclub",
+   "name": "SonarClub"
+  },
+  {
+   "id": "sonar-2017:sonarlab",
+   "name": "SonarLab"
+  },
+  {
+   "id": "sonar-2017:sonarpub-by-thunder-bitch",
+   "name": "SonarPub by Thunder Bitch"
+  },
+  {
+   "id": "sonar-2017:l-auditori",
+   "name": "L'Auditori"
+  }
+ ],
+ "artists": [
+  {
+   "id": "sonar-2017:bjork-dj-set-opening-night-separate-ticket",
+   "name": "Björk DJ Set (Opening Night - separate ticket)",
+   "key": "bjork-dj-set-opening-night-separate-ticket",
+   "performers": [
+    "bjork-dj-set-opening-night-separate-ticket"
+   ]
+  },
+  {
+   "id": "sonar-2017:boris-chimp-504",
+   "name": "Boris Chimp 504",
+   "key": "boris-chimp-504",
+   "performers": [
+    "boris-chimp-504"
+   ]
+  },
+  {
+   "id": "sonar-2017:tommy-cash",
+   "name": "Tommy Cash",
+   "key": "tommy-cash",
+   "performers": [
+    "tommy-cash"
+   ]
+  },
+  {
+   "id": "sonar-2017:forest-swords",
+   "name": "Forest Swords",
+   "key": "forest-swords",
+   "performers": [
+    "forest-swords"
+   ]
+  },
+  {
+   "id": "sonar-2017:arca-live-and-jesse-kanda-av",
+   "name": "Arca (live) & Jesse Kanda (AV)",
+   "key": "arca-live-and-jesse-kanda-av",
+   "performers": [
+    "arca-live-and-jesse-kanda-av"
+   ]
+  },
+  {
+   "id": "sonar-2017:todaysart-dopplereffekt-antivj-scientists-artist-coders-entropy",
+   "name": "TodaysArt: Dopplereffekt + Antivj + Scientists + Artist-coders - Entropy",
+   "key": "todaysart-dopplereffekt-antivj-scientists-artist-coders-entropy",
+   "performers": [
+    "todaysart-dopplereffekt-antivj-scientists-artist-coders-entropy"
+   ]
+  },
+  {
+   "id": "sonar-2017:todaysart-tarik-barri-ft-lea-fabrikant",
+   "name": "TodaysArt: Tarik Barri ft. Lea Fabrikant",
+   "key": "todaysart-tarik-barri-ft-lea-fabrikant",
+   "performers": [
+    "todaysart-tarik-barri-ft-lea-fabrikant"
+   ]
+  },
+  {
+   "id": "sonar-2017:todaysart-andy-stott",
+   "name": "TodaysArt: Andy Stott",
+   "key": "todaysart-andy-stott",
+   "performers": [
+    "todaysart-andy-stott"
+   ]
+  },
+  {
+   "id": "sonar-2017:lanoche",
+   "name": "Lanoche",
+   "key": "lanoche",
+   "performers": [
+    "lanoche"
+   ]
+  },
+  {
+   "id": "sonar-2017:rayray",
+   "name": "RayRay",
+   "key": "rayray",
+   "performers": [
+    "rayray"
+   ]
+  },
+  {
+   "id": "sonar-2017:miiin",
+   "name": "MIIIN",
+   "key": "miiin",
+   "performers": [
+    "miiin"
+   ]
+  },
+  {
+   "id": "sonar-2017:christian-tiger-school",
+   "name": "Christian Tiger School",
+   "key": "christian-tiger-school",
+   "performers": [
+    "christian-tiger-school"
+   ]
+  },
+  {
+   "id": "sonar-2017:daniel-brandt-and-eternal-something",
+   "name": "Daniel Brandt & Eternal Something",
+   "key": "daniel-brandt-and-eternal-something",
+   "performers": [
+    "daniel-brandt-and-eternal-something"
+   ]
+  },
+  {
+   "id": "sonar-2017:father-ft-danger-incorporated",
+   "name": "Father ft. Danger Incorporated",
+   "key": "father-ft-danger-incorporated",
+   "performers": [
+    "father-ft-danger-incorporated"
+   ]
+  },
+  {
+   "id": "sonar-2017:rp-boo",
+   "name": "RP Boo",
+   "key": "rp-boo",
+   "performers": [
+    "rp-boo"
+   ]
+  },
+  {
+   "id": "sonar-2017:denis-sulta",
+   "name": "Denis Sulta",
+   "key": "denis-sulta",
+   "performers": [
+    "denis-sulta"
+   ]
+  },
+  {
+   "id": "sonar-2017:tutu",
+   "name": "Tutu",
+   "key": "tutu",
+   "performers": [
+    "tutu"
+   ]
+  },
+  {
+   "id": "sonar-2017:bflecha",
+   "name": "BFlecha",
+   "key": "bflecha",
+   "performers": [
+    "bflecha"
+   ]
+  },
+  {
+   "id": "sonar-2017:rumore",
+   "name": "Rumore",
+   "key": "rumore",
+   "performers": [
+    "rumore"
+   ]
+  },
+  {
+   "id": "sonar-2017:princess-nokia",
+   "name": "Princess Nokia",
+   "key": "princess-nokia",
+   "performers": [
+    "princess-nokia"
+   ]
+  },
+  {
+   "id": "sonar-2017:bawrut",
+   "name": "Bawrut",
+   "key": "bawrut",
+   "performers": [
+    "bawrut"
+   ]
+  },
+  {
+   "id": "sonar-2017:d-wn",
+   "name": "D△WN",
+   "key": "d-wn",
+   "performers": [
+    "d-wn"
+   ]
+  },
+  {
+   "id": "sonar-2017:prins-thomas",
+   "name": "Prins Thomas",
+   "key": "prins-thomas",
+   "performers": [
+    "prins-thomas"
+   ]
+  },
+  {
+   "id": "sonar-2017:hvob",
+   "name": "HVOB",
+   "key": "hvob",
+   "performers": [
+    "hvob"
+   ]
+  },
+  {
+   "id": "sonar-2017:craig-richards",
+   "name": "Craig Richards",
+   "key": "craig-richards",
+   "performers": [
+    "craig-richards"
+   ]
+  },
+  {
+   "id": "sonar-2017:conor-thomas",
+   "name": "Conor Thomas",
+   "key": "conor-thomas",
+   "performers": [
+    "conor-thomas"
+   ]
+  },
+  {
+   "id": "sonar-2017:toxe",
+   "name": "Toxe",
+   "key": "toxe",
+   "performers": [
+    "toxe"
+   ]
+  },
+  {
+   "id": "sonar-2017:bsn-posse",
+   "name": "BSN Posse",
+   "key": "bsn-posse",
+   "performers": [
+    "bsn-posse"
+   ]
+  },
+  {
+   "id": "sonar-2017:yung-beef",
+   "name": "Yung Beef",
+   "key": "yung-beef",
+   "performers": [
+    "yung-beef"
+   ]
+  },
+  {
+   "id": "sonar-2017:yves-tumor",
+   "name": "Yves Tumor",
+   "key": "yves-tumor",
+   "performers": [
+    "yves-tumor"
+   ]
+  },
+  {
+   "id": "sonar-2017:dj-bus-replacement-service",
+   "name": "DJ Bus Replacement Service",
+   "key": "dj-bus-replacement-service",
+   "performers": [
+    "dj-bus-replacement-service"
+   ]
+  },
+  {
+   "id": "sonar-2017:kinder-malo-and-pimp-flaco",
+   "name": "Kinder Malo & Pimp Flaco",
+   "key": "kinder-malo-and-pimp-flaco",
+   "performers": [
+    "kinder-malo-and-pimp-flaco"
+   ]
+  },
+  {
+   "id": "sonar-2017:jacques",
+   "name": "Jacques",
+   "key": "jacques",
+   "performers": [
+    "jacques"
+   ]
+  },
+  {
+   "id": "sonar-2017:evian-christ",
+   "name": "Evian Christ",
+   "key": "evian-christ",
+   "performers": [
+    "evian-christ"
+   ]
+  },
+  {
+   "id": "sonar-2017:clark",
+   "name": "Clark",
+   "key": "clark",
+   "performers": [
+    "clark"
+   ]
+  },
+  {
+   "id": "sonar-2017:aitor-etxebarria",
+   "name": "Aitor Etxebarria",
+   "key": "aitor-etxebarria",
+   "performers": [
+    "aitor-etxebarria"
+   ]
+  },
+  {
+   "id": "sonar-2017:lcc",
+   "name": "LCC",
+   "key": "lcc",
+   "performers": [
+    "lcc"
+   ]
+  },
+  {
+   "id": "sonar-2017:elysia-crampton",
+   "name": "Elysia Crampton",
+   "key": "elysia-crampton",
+   "performers": [
+    "elysia-crampton"
+   ]
+  },
+  {
+   "id": "sonar-2017:nonotak",
+   "name": "Nonotak",
+   "key": "nonotak",
+   "performers": [
+    "nonotak"
+   ]
+  },
+  {
+   "id": "sonar-2017:julian-mayorga",
+   "name": "Julián Mayorga",
+   "key": "julian-mayorga",
+   "performers": [
+    "julian-mayorga"
+   ]
+  },
+  {
+   "id": "sonar-2017:etyen",
+   "name": "Etyen",
+   "key": "etyen",
+   "performers": [
+    "etyen"
+   ]
+  },
+  {
+   "id": "sonar-2017:sofie-winterson",
+   "name": "Sofie Winterson",
+   "key": "sofie-winterson",
+   "performers": [
+    "sofie-winterson"
+   ]
+  },
+  {
+   "id": "sonar-2017:lamusa",
+   "name": "Lamusa",
+   "key": "lamusa",
+   "performers": [
+    "lamusa"
+   ]
+  },
+  {
+   "id": "sonar-2017:river-tiber",
+   "name": "River Tiber",
+   "key": "river-tiber",
+   "performers": [
+    "river-tiber"
+   ]
+  },
+  {
+   "id": "sonar-2017:suzanne-ciani",
+   "name": "Suzanne Ciani",
+   "key": "suzanne-ciani",
+   "performers": [
+    "suzanne-ciani"
+   ]
+  },
+  {
+   "id": "sonar-2017:pan-daijing",
+   "name": "Pan Daijing",
+   "key": "pan-daijing",
+   "performers": [
+    "pan-daijing"
+   ]
+  },
+  {
+   "id": "sonar-2017:marie-davidson-presents-bullshit-threshold",
+   "name": "Marie Davidson presents \"Bullshit Threshold\"",
+   "key": "marie-davidson-presents-bullshit-threshold",
+   "performers": [
+    "marie-davidson-presents-bullshit-threshold"
+   ]
+  },
+  {
+   "id": "sonar-2017:floorplan-live-robert-hood-and-lyric-hood",
+   "name": "Floorplan Live (Robert Hood & Lyric Hood)",
+   "key": "floorplan-live-robert-hood-and-lyric-hood",
+   "performers": [
+    "floorplan-live-robert-hood-and-lyric-hood"
+   ]
+  },
+  {
+   "id": "sonar-2017:diego-armando",
+   "name": "Diego Armando",
+   "key": "diego-armando",
+   "performers": [
+    "diego-armando"
+   ]
+  },
+  {
+   "id": "sonar-2017:playback-maracas",
+   "name": "Playback Maracas",
+   "key": "playback-maracas",
+   "performers": [
+    "playback-maracas"
+   ]
+  },
+  {
+   "id": "sonar-2017:juana-molina",
+   "name": "Juana Molina",
+   "key": "juana-molina",
+   "performers": [
+    "juana-molina"
+   ]
+  },
+  {
+   "id": "sonar-2017:c-o-pop-lena-willikens",
+   "name": "c/o pop: Lena Willikens",
+   "key": "c-o-pop-lena-willikens",
+   "performers": [
+    "c-o-pop-lena-willikens"
+   ]
+  },
+  {
+   "id": "sonar-2017:c-o-pop-roosevelt",
+   "name": "c/o pop: Roosevelt",
+   "key": "c-o-pop-roosevelt",
+   "performers": [
+    "c-o-pop-roosevelt"
+   ]
+  },
+  {
+   "id": "sonar-2017:stooki-sound",
+   "name": "Stööki Sound",
+   "key": "stooki-sound",
+   "performers": [
+    "stooki-sound"
+   ]
+  },
+  {
+   "id": "sonar-2017:fat-freddy-s-drop",
+   "name": "Fat Freddy's Drop",
+   "key": "fat-freddy-s-drop",
+   "performers": [
+    "fat-freddy-s-drop"
+   ]
+  },
+  {
+   "id": "sonar-2017:damian-lazarus",
+   "name": "Damian Lazarus",
+   "key": "damian-lazarus",
+   "performers": [
+    "damian-lazarus"
+   ]
+  },
+  {
+   "id": "sonar-2017:juan-ingaramo",
+   "name": "Juan Ingaramo",
+   "key": "juan-ingaramo",
+   "performers": [
+    "juan-ingaramo"
+   ]
+  },
+  {
+   "id": "sonar-2017:kablam",
+   "name": "Kablam",
+   "key": "kablam",
+   "performers": [
+    "kablam"
+   ]
+  },
+  {
+   "id": "sonar-2017:sturla-atlas",
+   "name": "Sturla Atlas",
+   "key": "sturla-atlas",
+   "performers": [
+    "sturla-atlas"
+   ]
+  },
+  {
+   "id": "sonar-2017:bad-gyal",
+   "name": "Bad Gyal",
+   "key": "bad-gyal",
+   "performers": [
+    "bad-gyal"
+   ]
+  },
+  {
+   "id": "sonar-2017:dj-florentino",
+   "name": "DJ Florentino",
+   "key": "dj-florentino",
+   "performers": [
+    "dj-florentino"
+   ]
+  },
+  {
+   "id": "sonar-2017:kiddy-smile",
+   "name": "Kiddy Smile",
+   "key": "kiddy-smile",
+   "performers": [
+    "kiddy-smile"
+   ]
+  },
+  {
+   "id": "sonar-2017:masters-at-work-6h-set",
+   "name": "Masters At Work (6h set)",
+   "key": "masters-at-work-6h-set",
+   "performers": [
+    "masters-at-work-6h-set"
+   ]
+  },
+  {
+   "id": "sonar-2017:mario-nieto",
+   "name": "Mario Nieto",
+   "key": "mario-nieto",
+   "performers": [
+    "mario-nieto"
+   ]
+  },
+  {
+   "id": "sonar-2017:dj-shadow",
+   "name": "DJ Shadow",
+   "key": "dj-shadow",
+   "performers": [
+    "dj-shadow"
+   ]
+  },
+  {
+   "id": "sonar-2017:jon-hopkins-dj",
+   "name": "Jon Hopkins (DJ)",
+   "key": "jon-hopkins-dj",
+   "performers": [
+    "jon-hopkins-dj"
+   ]
+  },
+  {
+   "id": "sonar-2017:moderat",
+   "name": "Moderat",
+   "key": "moderat",
+   "performers": [
+    "moderat"
+   ]
+  },
+  {
+   "id": "sonar-2017:jacques-greene",
+   "name": "Jacques Greene",
+   "key": "jacques-greene",
+   "performers": [
+    "jacques-greene"
+   ]
+  },
+  {
+   "id": "sonar-2017:soulwax",
+   "name": "Soulwax",
+   "key": "soulwax",
+   "performers": [
+    "soulwax"
+   ]
+  },
+  {
+   "id": "sonar-2017:dubfire",
+   "name": "Dubfire",
+   "key": "dubfire",
+   "performers": [
+    "dubfire"
+   ]
+  },
+  {
+   "id": "sonar-2017:ches",
+   "name": "Ches",
+   "key": "ches",
+   "performers": [
+    "ches"
+   ]
+  },
+  {
+   "id": "sonar-2017:sandro-jeeawock",
+   "name": "Sandro Jeeawock",
+   "key": "sandro-jeeawock",
+   "performers": [
+    "sandro-jeeawock"
+   ]
+  },
+  {
+   "id": "sonar-2017:little-dragon",
+   "name": "Little Dragon",
+   "key": "little-dragon",
+   "performers": [
+    "little-dragon"
+   ]
+  },
+  {
+   "id": "sonar-2017:cashmere-cat",
+   "name": "Cashmere Cat",
+   "key": "cashmere-cat",
+   "performers": [
+    "cashmere-cat"
+   ]
+  },
+  {
+   "id": "sonar-2017:aj-tracey",
+   "name": "AJ Tracey",
+   "key": "aj-tracey",
+   "performers": [
+    "aj-tracey"
+   ]
+  },
+  {
+   "id": "sonar-2017:jlin",
+   "name": "Jlin",
+   "key": "jlin",
+   "performers": [
+    "jlin"
+   ]
+  },
+  {
+   "id": "sonar-2017:giggs",
+   "name": "Giggs",
+   "key": "giggs",
+   "performers": [
+    "giggs"
+   ]
+  },
+  {
+   "id": "sonar-2017:lunice",
+   "name": "Lunice",
+   "key": "lunice",
+   "performers": [
+    "lunice"
+   ]
+  },
+  {
+   "id": "sonar-2017:benji-b",
+   "name": "Benji B",
+   "key": "benji-b",
+   "performers": [
+    "benji-b"
+   ]
+  },
+  {
+   "id": "sonar-2017:judah",
+   "name": "Judah",
+   "key": "judah",
+   "performers": [
+    "judah"
+   ]
+  },
+  {
+   "id": "sonar-2017:anderson-paak-and-the-free-nationals",
+   "name": "Anderson .Paak & The Free Nationals",
+   "key": "anderson-paak-and-the-free-nationals",
+   "performers": [
+    "anderson-paak-and-the-free-nationals"
+   ]
+  },
+  {
+   "id": "sonar-2017:clams-casino",
+   "name": "Clams Casino",
+   "key": "clams-casino",
+   "performers": [
+    "clams-casino"
+   ]
+  },
+  {
+   "id": "sonar-2017:nicolas-jaar",
+   "name": "Nicolas Jaar",
+   "key": "nicolas-jaar",
+   "performers": [
+    "nicolas-jaar"
+   ]
+  },
+  {
+   "id": "sonar-2017:derrick-carter",
+   "name": "Derrick Carter",
+   "key": "derrick-carter",
+   "performers": [
+    "derrick-carter"
+   ]
+  },
+  {
+   "id": "sonar-2017:nina-kraviz",
+   "name": "Nina Kraviz",
+   "key": "nina-kraviz",
+   "performers": [
+    "nina-kraviz"
+   ]
+  },
+  {
+   "id": "sonar-2017:animic",
+   "name": "Anímic",
+   "key": "animic",
+   "performers": [
+    "animic"
+   ]
+  },
+  {
+   "id": "sonar-2017:gaika",
+   "name": "GAIKA",
+   "key": "gaika",
+   "performers": [
+    "gaika"
+   ]
+  },
+  {
+   "id": "sonar-2017:nosaj-thing-daito-manabe",
+   "name": "Nosaj Thing + Daito Manabe",
+   "key": "nosaj-thing-daito-manabe",
+   "performers": [
+    "nosaj-thing-daito-manabe"
+   ]
+  },
+  {
+   "id": "sonar-2017:sohn",
+   "name": "Sohn",
+   "key": "sohn",
+   "performers": [
+    "sohn"
+   ]
+  },
+  {
+   "id": "sonar-2017:connectome",
+   "name": "Connectome",
+   "key": "connectome",
+   "performers": [
+    "connectome"
+   ]
+  },
+  {
+   "id": "sonar-2017:nico-muhly",
+   "name": "Nico Muhly",
+   "key": "nico-muhly",
+   "performers": [
+    "nico-muhly"
+   ]
+  },
+  {
+   "id": "sonar-2017:valgeir-sigurdsson",
+   "name": "Valgeir Sigurdsson",
+   "key": "valgeir-sigurdsson",
+   "performers": [
+    "valgeir-sigurdsson"
+   ]
+  },
+  {
+   "id": "sonar-2017:amnesia-scanner",
+   "name": "Amnesia Scanner",
+   "key": "amnesia-scanner",
+   "performers": [
+    "amnesia-scanner"
+   ]
+  },
+  {
+   "id": "sonar-2017:ghostly-enemies",
+   "name": "Ghostly Enemies",
+   "key": "ghostly-enemies",
+   "performers": [
+    "ghostly-enemies"
+   ]
+  },
+  {
+   "id": "sonar-2017:huma",
+   "name": "Huma",
+   "key": "huma",
+   "performers": [
+    "huma"
+   ]
+  },
+  {
+   "id": "sonar-2017:crystal-sparrows",
+   "name": "Crystal / Sparrows",
+   "key": "crystal-sparrows",
+   "performers": [
+    "crystal-sparrows"
+   ]
+  },
+  {
+   "id": "sonar-2017:matmos",
+   "name": "Matmos",
+   "key": "matmos",
+   "performers": [
+    "matmos"
+   ]
+  },
+  {
+   "id": "sonar-2017:veronica-vasicka",
+   "name": "Veronica Vasicka",
+   "key": "veronica-vasicka",
+   "performers": [
+    "veronica-vasicka"
+   ]
+  },
+  {
+   "id": "sonar-2017:c-tangana",
+   "name": "C. Tangana",
+   "key": "c-tangana",
+   "performers": [
+    "c-tangana"
+   ]
+  },
+  {
+   "id": "sonar-2017:suicideyear",
+   "name": "Suicideyear",
+   "key": "suicideyear",
+   "performers": [
+    "suicideyear"
+   ]
+  },
+  {
+   "id": "sonar-2017:thundercat",
+   "name": "Thundercat",
+   "key": "thundercat",
+   "performers": [
+    "thundercat"
+   ]
+  },
+  {
+   "id": "sonar-2017:star-eyes-b2b-jubilee",
+   "name": "Star Eyes b2b Jubilee",
+   "key": "star-eyes-b2b-jubilee",
+   "performers": [
+    "star-eyes",
+    "jubilee"
+   ]
+  },
+  {
+   "id": "sonar-2017:pauk",
+   "name": "Pauk",
+   "key": "pauk",
+   "performers": [
+    "pauk"
+   ]
+  },
+  {
+   "id": "sonar-2017:fira-fem",
+   "name": "Fira Fem",
+   "key": "fira-fem",
+   "performers": [
+    "fira-fem"
+   ]
+  },
+  {
+   "id": "sonar-2017:telmo-trenor",
+   "name": "Telmo Trenor",
+   "key": "telmo-trenor",
+   "performers": [
+    "telmo-trenor"
+   ]
+  },
+  {
+   "id": "sonar-2017:joe-goddard-live",
+   "name": "Joe Goddard (live)",
+   "key": "joe-goddard-live",
+   "performers": [
+    "joe-goddard-live"
+   ]
+  },
+  {
+   "id": "sonar-2017:zutzut-and-imaabs",
+   "name": "Zutzut & Imaabs",
+   "key": "zutzut-and-imaabs",
+   "performers": [
+    "zutzut-and-imaabs"
+   ]
+  },
+  {
+   "id": "sonar-2017:nadia-rose",
+   "name": "Nadia Rose",
+   "key": "nadia-rose",
+   "performers": [
+    "nadia-rose"
+   ]
+  },
+  {
+   "id": "sonar-2017:soulection-presents-joe-kay-jarreau-vandal",
+   "name": "Soulection presents Joe Kay + Jarreau Vandal",
+   "key": "soulection-presents-joe-kay-jarreau-vandal",
+   "performers": [
+    "soulection-presents-joe-kay-jarreau-vandal"
+   ]
+  },
+  {
+   "id": "sonar-2017:keys-n-krates",
+   "name": "Keys N Krates",
+   "key": "keys-n-krates",
+   "performers": [
+    "keys-n-krates"
+   ]
+  },
+  {
+   "id": "sonar-2017:optimo",
+   "name": "Optimo",
+   "key": "optimo",
+   "performers": [
+    "optimo"
+   ]
+  },
+  {
+   "id": "sonar-2017:oblique-and-carlos-bayona",
+   "name": "Oblique & Carlos Bayona",
+   "key": "oblique-and-carlos-bayona",
+   "performers": [
+    "oblique-and-carlos-bayona"
+   ]
+  },
+  {
+   "id": "sonar-2017:aethereal-arthropod",
+   "name": "Aethereal Arthropod",
+   "key": "aethereal-arthropod",
+   "performers": [
+    "aethereal-arthropod"
+   ]
+  },
+  {
+   "id": "sonar-2017:bejo",
+   "name": "Bejo",
+   "key": "bejo",
+   "performers": [
+    "bejo"
+   ]
+  },
+  {
+   "id": "sonar-2017:deena-abdelwahed",
+   "name": "Deena Abdelwahed",
+   "key": "deena-abdelwahed",
+   "performers": [
+    "deena-abdelwahed"
+   ]
+  },
+  {
+   "id": "sonar-2017:dellafuente-y-maka",
+   "name": "Dellafuente y Maka",
+   "key": "dellafuente-y-maka",
+   "performers": [
+    "dellafuente-y-maka"
+   ]
+  },
+  {
+   "id": "sonar-2017:total-freedom",
+   "name": "Total Freedom",
+   "key": "total-freedom",
+   "performers": [
+    "total-freedom"
+   ]
+  },
+  {
+   "id": "sonar-2017:seth-troxler-and-tiga-6h-set",
+   "name": "Seth Troxler & Tiga (6h set)",
+   "key": "seth-troxler-and-tiga-6h-set",
+   "performers": [
+    "seth-troxler-and-tiga-6h-set"
+   ]
+  },
+  {
+   "id": "sonar-2017:fran-lenaers",
+   "name": "Fran Lenaers",
+   "key": "fran-lenaers",
+   "performers": [
+    "fran-lenaers"
+   ]
+  },
+  {
+   "id": "sonar-2017:cerrone",
+   "name": "Cerrone",
+   "key": "cerrone",
+   "performers": [
+    "cerrone"
+   ]
+  },
+  {
+   "id": "sonar-2017:clara-3000",
+   "name": "Clara 3000",
+   "key": "clara-3000",
+   "performers": [
+    "clara-3000"
+   ]
+  },
+  {
+   "id": "sonar-2017:justice",
+   "name": "Justice",
+   "key": "justice",
+   "performers": [
+    "justice"
+   ]
+  },
+  {
+   "id": "sonar-2017:heidi",
+   "name": "Heidi",
+   "key": "heidi",
+   "performers": [
+    "heidi"
+   ]
+  },
+  {
+   "id": "sonar-2017:eric-prydz",
+   "name": "Eric Prydz",
+   "key": "eric-prydz",
+   "performers": [
+    "eric-prydz"
+   ]
+  },
+  {
+   "id": "sonar-2017:marco-carola",
+   "name": "Marco Carola",
+   "key": "marco-carola",
+   "performers": [
+    "marco-carola"
+   ]
+  },
+  {
+   "id": "sonar-2017:ylia",
+   "name": "Ylia",
+   "key": "ylia",
+   "performers": [
+    "ylia"
+   ]
+  },
+  {
+   "id": "sonar-2017:overmono",
+   "name": "Overmono",
+   "key": "overmono",
+   "performers": [
+    "overmono"
+   ]
+  },
+  {
+   "id": "sonar-2017:carl-craig-presents-versus-synthesizer-ensemble",
+   "name": "Carl Craig presents Versus Synthesizer Ensemble",
+   "key": "carl-craig-presents-versus-synthesizer-ensemble",
+   "performers": [
+    "carl-craig-presents-versus-synthesizer-ensemble"
+   ]
+  },
+  {
+   "id": "sonar-2017:t-q-d-royal-t-dj-q-and-flava-d",
+   "name": "t q d (royal t, dj q & flava d)",
+   "key": "t-q-d-royal-t-dj-q-and-flava-d",
+   "performers": [
+    "t-q-d-royal-t-dj-q-and-flava-d"
+   ]
+  },
+  {
+   "id": "sonar-2017:beautiful-swimmers",
+   "name": "Beautiful Swimmers",
+   "key": "beautiful-swimmers",
+   "performers": [
+    "beautiful-swimmers"
+   ]
+  },
+  {
+   "id": "sonar-2017:marcel-dettmann-and-dr-rubinstein",
+   "name": "Marcel Dettmann & Dr. Rubinstein",
+   "key": "marcel-dettmann-and-dr-rubinstein",
+   "performers": [
+    "marcel-dettmann-and-dr-rubinstein"
+   ]
+  },
+  {
+   "id": "sonar-2017:daphni-and-hunee",
+   "name": "Daphni & Hunee",
+   "key": "daphni-and-hunee",
+   "performers": [
+    "daphni-and-hunee"
+   ]
+  },
+  {
+   "id": "sonar-2017:fuego-squad-dj2d2-and-will-blake",
+   "name": "Fuego Squad: DJ2D2 & Will Blake",
+   "key": "fuego-squad-dj2d2-and-will-blake",
+   "performers": [
+    "fuego-squad-dj2d2-and-will-blake"
+   ]
+  },
+  {
+   "id": "sonar-2017:nick-hook",
+   "name": "Nick Hook",
+   "key": "nick-hook",
+   "performers": [
+    "nick-hook"
+   ]
+  },
+  {
+   "id": "sonar-2017:de-la-soul",
+   "name": "De La Soul",
+   "key": "de-la-soul",
+   "performers": [
+    "de-la-soul"
+   ]
+  },
+  {
+   "id": "sonar-2017:avalon-emerson-and-courtesy",
+   "name": "Avalon Emerson & Courtesy",
+   "key": "avalon-emerson-and-courtesy",
+   "performers": [
+    "avalon-emerson-and-courtesy"
+   ]
+  },
+  {
+   "id": "sonar-2017:vitalic-odc-live",
+   "name": "Vitalic - ODC live",
+   "key": "vitalic-odc-live",
+   "performers": [
+    "vitalic-odc-live"
+   ]
+  },
+  {
+   "id": "sonar-2017:the-black-madonna",
+   "name": "The Black Madonna",
+   "key": "the-black-madonna",
+   "performers": [
+    "the-black-madonna"
+   ]
+  },
+  {
+   "id": "sonar-2017:closing-night-death-speaks-by-david-lang-performed-by-stargaze-and-nico-muhly",
+   "name": "Closing Night \"Death Speaks\" by David Lang: performed by Stargaze and Nico Muhly",
+   "key": "closing-night-death-speaks-by-david-lang-performed-by-stargaze-and-nico-muhly",
+   "performers": [
+    "closing-night-death-speaks-by-david-lang-performed-by-stargaze-and-nico-muhly"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "sonar-2017:d1:sonarhall:2000:bjork-dj-set-opening-night-separate-ticket",
+   "artistId": "sonar-2017:bjork-dj-set-opening-night-separate-ticket",
+   "day": 1,
+   "stageId": "sonar-2017:sonarhall",
+   "start": "20:00",
+   "end": "00:00"
+  },
+  {
+   "id": "sonar-2017:d2:sonarhall:1430:boris-chimp-504",
+   "artistId": "sonar-2017:boris-chimp-504",
+   "day": 2,
+   "stageId": "sonar-2017:sonarhall",
+   "start": "14:30",
+   "end": "15:30"
+  },
+  {
+   "id": "sonar-2017:d2:sonarhall:1615:tommy-cash",
+   "artistId": "sonar-2017:tommy-cash",
+   "day": 2,
+   "stageId": "sonar-2017:sonarhall",
+   "start": "16:15",
+   "end": "17:15"
+  },
+  {
+   "id": "sonar-2017:d2:sonarhall:1830:forest-swords",
+   "artistId": "sonar-2017:forest-swords",
+   "day": 2,
+   "stageId": "sonar-2017:sonarhall",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "sonar-2017:d2:sonarhall:2100:arca-live-and-jesse-kanda-av",
+   "artistId": "sonar-2017:arca-live-and-jesse-kanda-av",
+   "day": 2,
+   "stageId": "sonar-2017:sonarhall",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "sonar-2017:d2:sonarcomplex:1330:todaysart-dopplereffekt-antivj-scientists-artist-coders-entropy",
+   "artistId": "sonar-2017:todaysart-dopplereffekt-antivj-scientists-artist-coders-entropy",
+   "day": 2,
+   "stageId": "sonar-2017:sonarcomplex",
+   "start": "13:30",
+   "end": "14:20"
+  },
+  {
+   "id": "sonar-2017:d2:sonarcomplex:1600:todaysart-dopplereffekt-antivj-scientists-artist-coders-entropy",
+   "artistId": "sonar-2017:todaysart-dopplereffekt-antivj-scientists-artist-coders-entropy",
+   "day": 2,
+   "stageId": "sonar-2017:sonarcomplex",
+   "start": "16:00",
+   "end": "16:50"
+  },
+  {
+   "id": "sonar-2017:d2:sonarcomplex:1800:todaysart-tarik-barri-ft-lea-fabrikant",
+   "artistId": "sonar-2017:todaysart-tarik-barri-ft-lea-fabrikant",
+   "day": 2,
+   "stageId": "sonar-2017:sonarcomplex",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "sonar-2017:d2:sonarcomplex:2000:todaysart-andy-stott",
+   "artistId": "sonar-2017:todaysart-andy-stott",
+   "day": 2,
+   "stageId": "sonar-2017:sonarcomplex",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "sonar-2017:d2:sonardome:1300:lanoche",
+   "artistId": "sonar-2017:lanoche",
+   "day": 2,
+   "stageId": "sonar-2017:sonardome",
+   "start": "13:00",
+   "end": "13:45"
+  },
+  {
+   "id": "sonar-2017:d2:sonardome:1350:rayray",
+   "artistId": "sonar-2017:rayray",
+   "day": 2,
+   "stageId": "sonar-2017:sonardome",
+   "start": "13:50",
+   "end": "14:50"
+  },
+  {
+   "id": "sonar-2017:d2:sonardome:1455:miiin",
+   "artistId": "sonar-2017:miiin",
+   "day": 2,
+   "stageId": "sonar-2017:sonardome",
+   "start": "14:55",
+   "end": "15:55"
+  },
+  {
+   "id": "sonar-2017:d2:sonardome:1600:christian-tiger-school",
+   "artistId": "sonar-2017:christian-tiger-school",
+   "day": 2,
+   "stageId": "sonar-2017:sonardome",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "sonar-2017:d2:sonardome:1720:daniel-brandt-and-eternal-something",
+   "artistId": "sonar-2017:daniel-brandt-and-eternal-something",
+   "day": 2,
+   "stageId": "sonar-2017:sonardome",
+   "start": "17:20",
+   "end": "18:10"
+  },
+  {
+   "id": "sonar-2017:d2:sonardome:1820:father-ft-danger-incorporated",
+   "artistId": "sonar-2017:father-ft-danger-incorporated",
+   "day": 2,
+   "stageId": "sonar-2017:sonardome",
+   "start": "18:20",
+   "end": "19:05"
+  },
+  {
+   "id": "sonar-2017:d2:sonardome:1915:rp-boo",
+   "artistId": "sonar-2017:rp-boo",
+   "day": 2,
+   "stageId": "sonar-2017:sonardome",
+   "start": "19:15",
+   "end": "20:25"
+  },
+  {
+   "id": "sonar-2017:d2:sonardome:2030:denis-sulta",
+   "artistId": "sonar-2017:denis-sulta",
+   "day": 2,
+   "stageId": "sonar-2017:sonardome",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "sonar-2017:d2:sonarvillage-by-estrella-damm:1300:tutu",
+   "artistId": "sonar-2017:tutu",
+   "day": 2,
+   "stageId": "sonar-2017:sonarvillage-by-estrella-damm",
+   "start": "13:00",
+   "end": "14:30"
+  },
+  {
+   "id": "sonar-2017:d2:sonarvillage-by-estrella-damm:1430:bflecha",
+   "artistId": "sonar-2017:bflecha",
+   "day": 2,
+   "stageId": "sonar-2017:sonarvillage-by-estrella-damm",
+   "start": "14:30",
+   "end": "15:35"
+  },
+  {
+   "id": "sonar-2017:d2:sonarvillage-by-estrella-damm:1535:rumore",
+   "artistId": "sonar-2017:rumore",
+   "day": 2,
+   "stageId": "sonar-2017:sonarvillage-by-estrella-damm",
+   "start": "15:35",
+   "end": "16:35"
+  },
+  {
+   "id": "sonar-2017:d2:sonarvillage-by-estrella-damm:1640:princess-nokia",
+   "artistId": "sonar-2017:princess-nokia",
+   "day": 2,
+   "stageId": "sonar-2017:sonarvillage-by-estrella-damm",
+   "start": "16:40",
+   "end": "17:20"
+  },
+  {
+   "id": "sonar-2017:d2:sonarvillage-by-estrella-damm:1720:bawrut",
+   "artistId": "sonar-2017:bawrut",
+   "day": 2,
+   "stageId": "sonar-2017:sonarvillage-by-estrella-damm",
+   "start": "17:20",
+   "end": "18:30"
+  },
+  {
+   "id": "sonar-2017:d2:sonarvillage-by-estrella-damm:1830:d-wn",
+   "artistId": "sonar-2017:d-wn",
+   "day": 2,
+   "stageId": "sonar-2017:sonarvillage-by-estrella-damm",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "sonar-2017:d2:sonarvillage-by-estrella-damm:1930:prins-thomas",
+   "artistId": "sonar-2017:prins-thomas",
+   "day": 2,
+   "stageId": "sonar-2017:sonarvillage-by-estrella-damm",
+   "start": "19:30",
+   "end": "21:00"
+  },
+  {
+   "id": "sonar-2017:d2:sonarvillage-by-estrella-damm:2100:hvob",
+   "artistId": "sonar-2017:hvob",
+   "day": 2,
+   "stageId": "sonar-2017:sonarvillage-by-estrella-damm",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "sonar-2017:d2:sonarvillage-by-estrella-damm:2210:craig-richards",
+   "artistId": "sonar-2017:craig-richards",
+   "day": 2,
+   "stageId": "sonar-2017:sonarvillage-by-estrella-damm",
+   "start": "22:10",
+   "end": "00:00"
+  },
+  {
+   "id": "sonar-2017:d2:sonarxs:1600:conor-thomas",
+   "artistId": "sonar-2017:conor-thomas",
+   "day": 2,
+   "stageId": "sonar-2017:sonarxs",
+   "start": "16:00",
+   "end": "16:45"
+  },
+  {
+   "id": "sonar-2017:d2:sonarxs:1650:toxe",
+   "artistId": "sonar-2017:toxe",
+   "day": 2,
+   "stageId": "sonar-2017:sonarxs",
+   "start": "16:50",
+   "end": "17:50"
+  },
+  {
+   "id": "sonar-2017:d2:sonarxs:1755:bsn-posse",
+   "artistId": "sonar-2017:bsn-posse",
+   "day": 2,
+   "stageId": "sonar-2017:sonarxs",
+   "start": "17:55",
+   "end": "18:55"
+  },
+  {
+   "id": "sonar-2017:d2:sonarxs:1900:yung-beef",
+   "artistId": "sonar-2017:yung-beef",
+   "day": 2,
+   "stageId": "sonar-2017:sonarxs",
+   "start": "19:00",
+   "end": "19:45"
+  },
+  {
+   "id": "sonar-2017:d2:sonarxs:1950:yves-tumor",
+   "artistId": "sonar-2017:yves-tumor",
+   "day": 2,
+   "stageId": "sonar-2017:sonarxs",
+   "start": "19:50",
+   "end": "20:20"
+  },
+  {
+   "id": "sonar-2017:d2:sonarxs:2025:dj-bus-replacement-service",
+   "artistId": "sonar-2017:dj-bus-replacement-service",
+   "day": 2,
+   "stageId": "sonar-2017:sonarxs",
+   "start": "20:25",
+   "end": "21:30"
+  },
+  {
+   "id": "sonar-2017:d3:sonarhall:1430:kinder-malo-and-pimp-flaco",
+   "artistId": "sonar-2017:kinder-malo-and-pimp-flaco",
+   "day": 3,
+   "stageId": "sonar-2017:sonarhall",
+   "start": "14:30",
+   "end": "15:30"
+  },
+  {
+   "id": "sonar-2017:d3:sonarhall:1630:jacques",
+   "artistId": "sonar-2017:jacques",
+   "day": 3,
+   "stageId": "sonar-2017:sonarhall",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "sonar-2017:d3:sonarhall:1830:evian-christ",
+   "artistId": "sonar-2017:evian-christ",
+   "day": 3,
+   "stageId": "sonar-2017:sonarhall",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "sonar-2017:d3:sonarhall:2030:clark",
+   "artistId": "sonar-2017:clark",
+   "day": 3,
+   "stageId": "sonar-2017:sonarhall",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "sonar-2017:d3:sonarcomplex:1400:aitor-etxebarria",
+   "artistId": "sonar-2017:aitor-etxebarria",
+   "day": 3,
+   "stageId": "sonar-2017:sonarcomplex",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "sonar-2017:d3:sonarcomplex:1600:lcc",
+   "artistId": "sonar-2017:lcc",
+   "day": 3,
+   "stageId": "sonar-2017:sonarcomplex",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "sonar-2017:d3:sonarcomplex:1800:elysia-crampton",
+   "artistId": "sonar-2017:elysia-crampton",
+   "day": 3,
+   "stageId": "sonar-2017:sonarcomplex",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "sonar-2017:d3:sonarcomplex:2000:nonotak",
+   "artistId": "sonar-2017:nonotak",
+   "day": 3,
+   "stageId": "sonar-2017:sonarcomplex",
+   "start": "20:00",
+   "end": "20:45"
+  },
+  {
+   "id": "sonar-2017:d3:sonardome:1300:julian-mayorga",
+   "artistId": "sonar-2017:julian-mayorga",
+   "day": 3,
+   "stageId": "sonar-2017:sonardome",
+   "start": "13:00",
+   "end": "13:45"
+  },
+  {
+   "id": "sonar-2017:d3:sonardome:1350:etyen",
+   "artistId": "sonar-2017:etyen",
+   "day": 3,
+   "stageId": "sonar-2017:sonardome",
+   "start": "13:50",
+   "end": "15:00"
+  },
+  {
+   "id": "sonar-2017:d3:sonardome:1510:sofie-winterson",
+   "artistId": "sonar-2017:sofie-winterson",
+   "day": 3,
+   "stageId": "sonar-2017:sonardome",
+   "start": "15:10",
+   "end": "15:55"
+  },
+  {
+   "id": "sonar-2017:d3:sonardome:1600:lamusa",
+   "artistId": "sonar-2017:lamusa",
+   "day": 3,
+   "stageId": "sonar-2017:sonardome",
+   "start": "16:00",
+   "end": "16:50"
+  },
+  {
+   "id": "sonar-2017:d3:sonardome:1700:river-tiber",
+   "artistId": "sonar-2017:river-tiber",
+   "day": 3,
+   "stageId": "sonar-2017:sonardome",
+   "start": "17:00",
+   "end": "17:45"
+  },
+  {
+   "id": "sonar-2017:d3:sonardome:1800:suzanne-ciani",
+   "artistId": "sonar-2017:suzanne-ciani",
+   "day": 3,
+   "stageId": "sonar-2017:sonardome",
+   "start": "18:00",
+   "end": "18:40"
+  },
+  {
+   "id": "sonar-2017:d3:sonardome:1850:pan-daijing",
+   "artistId": "sonar-2017:pan-daijing",
+   "day": 3,
+   "stageId": "sonar-2017:sonardome",
+   "start": "18:50",
+   "end": "19:40"
+  },
+  {
+   "id": "sonar-2017:d3:sonardome:1950:marie-davidson-presents-bullshit-threshold",
+   "artistId": "sonar-2017:marie-davidson-presents-bullshit-threshold",
+   "day": 3,
+   "stageId": "sonar-2017:sonardome",
+   "start": "19:50",
+   "end": "20:50"
+  },
+  {
+   "id": "sonar-2017:d3:sonardome:2100:floorplan-live-robert-hood-and-lyric-hood",
+   "artistId": "sonar-2017:floorplan-live-robert-hood-and-lyric-hood",
+   "day": 3,
+   "stageId": "sonar-2017:sonardome",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "sonar-2017:d3:sonarvillage-by-estrella-damm:1300:diego-armando",
+   "artistId": "sonar-2017:diego-armando",
+   "day": 3,
+   "stageId": "sonar-2017:sonarvillage-by-estrella-damm",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "sonar-2017:d3:sonarvillage-by-estrella-damm:1400:playback-maracas",
+   "artistId": "sonar-2017:playback-maracas",
+   "day": 3,
+   "stageId": "sonar-2017:sonarvillage-by-estrella-damm",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "sonar-2017:d3:sonarvillage-by-estrella-damm:1515:juana-molina",
+   "artistId": "sonar-2017:juana-molina",
+   "day": 3,
+   "stageId": "sonar-2017:sonarvillage-by-estrella-damm",
+   "start": "15:15",
+   "end": "16:05"
+  },
+  {
+   "id": "sonar-2017:d3:sonarvillage-by-estrella-damm:1605:c-o-pop-lena-willikens",
+   "artistId": "sonar-2017:c-o-pop-lena-willikens",
+   "day": 3,
+   "stageId": "sonar-2017:sonarvillage-by-estrella-damm",
+   "start": "16:05",
+   "end": "17:35"
+  },
+  {
+   "id": "sonar-2017:d3:sonarvillage-by-estrella-damm:1735:c-o-pop-roosevelt",
+   "artistId": "sonar-2017:c-o-pop-roosevelt",
+   "day": 3,
+   "stageId": "sonar-2017:sonarvillage-by-estrella-damm",
+   "start": "17:35",
+   "end": "18:35"
+  },
+  {
+   "id": "sonar-2017:d3:sonarvillage-by-estrella-damm:1835:stooki-sound",
+   "artistId": "sonar-2017:stooki-sound",
+   "day": 3,
+   "stageId": "sonar-2017:sonarvillage-by-estrella-damm",
+   "start": "18:35",
+   "end": "19:35"
+  },
+  {
+   "id": "sonar-2017:d3:sonarvillage-by-estrella-damm:1935:fat-freddy-s-drop",
+   "artistId": "sonar-2017:fat-freddy-s-drop",
+   "day": 3,
+   "stageId": "sonar-2017:sonarvillage-by-estrella-damm",
+   "start": "19:35",
+   "end": "20:50"
+  },
+  {
+   "id": "sonar-2017:d3:sonarvillage-by-estrella-damm:2100:damian-lazarus",
+   "artistId": "sonar-2017:damian-lazarus",
+   "day": 3,
+   "stageId": "sonar-2017:sonarvillage-by-estrella-damm",
+   "start": "21:00",
+   "end": "23:00"
+  },
+  {
+   "id": "sonar-2017:d3:sonarxs:1600:juan-ingaramo",
+   "artistId": "sonar-2017:juan-ingaramo",
+   "day": 3,
+   "stageId": "sonar-2017:sonarxs",
+   "start": "16:00",
+   "end": "16:45"
+  },
+  {
+   "id": "sonar-2017:d3:sonarxs:1650:kablam",
+   "artistId": "sonar-2017:kablam",
+   "day": 3,
+   "stageId": "sonar-2017:sonarxs",
+   "start": "16:50",
+   "end": "17:50"
+  },
+  {
+   "id": "sonar-2017:d3:sonarxs:1755:sturla-atlas",
+   "artistId": "sonar-2017:sturla-atlas",
+   "day": 3,
+   "stageId": "sonar-2017:sonarxs",
+   "start": "17:55",
+   "end": "18:30"
+  },
+  {
+   "id": "sonar-2017:d3:sonarxs:1835:bad-gyal",
+   "artistId": "sonar-2017:bad-gyal",
+   "day": 3,
+   "stageId": "sonar-2017:sonarxs",
+   "start": "18:35",
+   "end": "19:10"
+  },
+  {
+   "id": "sonar-2017:d3:sonarxs:1915:dj-florentino",
+   "artistId": "sonar-2017:dj-florentino",
+   "day": 3,
+   "stageId": "sonar-2017:sonarxs",
+   "start": "19:15",
+   "end": "20:15"
+  },
+  {
+   "id": "sonar-2017:d3:sonarxs:2020:kiddy-smile",
+   "artistId": "sonar-2017:kiddy-smile",
+   "day": 3,
+   "stageId": "sonar-2017:sonarxs",
+   "start": "20:20",
+   "end": "21:30"
+  },
+  {
+   "id": "sonar-2017:d3:sonarcar:0000:masters-at-work-6h-set",
+   "artistId": "sonar-2017:masters-at-work-6h-set",
+   "day": 3,
+   "stageId": "sonar-2017:sonarcar",
+   "start": "00:00",
+   "end": "06:00"
+  },
+  {
+   "id": "sonar-2017:d3:sonarclub:2130:mario-nieto",
+   "artistId": "sonar-2017:mario-nieto",
+   "day": 3,
+   "stageId": "sonar-2017:sonarclub",
+   "start": "21:30",
+   "end": "22:25"
+  },
+  {
+   "id": "sonar-2017:d3:sonarclub:2230:dj-shadow",
+   "artistId": "sonar-2017:dj-shadow",
+   "day": 3,
+   "stageId": "sonar-2017:sonarclub",
+   "start": "22:30",
+   "end": "23:30"
+  },
+  {
+   "id": "sonar-2017:d3:sonarclub:2335:jon-hopkins-dj",
+   "artistId": "sonar-2017:jon-hopkins-dj",
+   "day": 3,
+   "stageId": "sonar-2017:sonarclub",
+   "start": "23:35",
+   "end": "00:55"
+  },
+  {
+   "id": "sonar-2017:d3:sonarclub:0100:moderat",
+   "artistId": "sonar-2017:moderat",
+   "day": 3,
+   "stageId": "sonar-2017:sonarclub",
+   "start": "01:00",
+   "end": "02:15"
+  },
+  {
+   "id": "sonar-2017:d3:sonarclub:0225:jacques-greene",
+   "artistId": "sonar-2017:jacques-greene",
+   "day": 3,
+   "stageId": "sonar-2017:sonarclub",
+   "start": "02:25",
+   "end": "03:35"
+  },
+  {
+   "id": "sonar-2017:d3:sonarclub:0350:soulwax",
+   "artistId": "sonar-2017:soulwax",
+   "day": 3,
+   "stageId": "sonar-2017:sonarclub",
+   "start": "03:50",
+   "end": "05:00"
+  },
+  {
+   "id": "sonar-2017:d3:sonarclub:0510:dubfire",
+   "artistId": "sonar-2017:dubfire",
+   "day": 3,
+   "stageId": "sonar-2017:sonarclub",
+   "start": "05:10",
+   "end": "07:00"
+  },
+  {
+   "id": "sonar-2017:d3:sonarlab:2130:ches",
+   "artistId": "sonar-2017:ches",
+   "day": 3,
+   "stageId": "sonar-2017:sonarlab",
+   "start": "21:30",
+   "end": "22:25"
+  },
+  {
+   "id": "sonar-2017:d3:sonarlab:2230:sandro-jeeawock",
+   "artistId": "sonar-2017:sandro-jeeawock",
+   "day": 3,
+   "stageId": "sonar-2017:sonarlab",
+   "start": "22:30",
+   "end": "23:25"
+  },
+  {
+   "id": "sonar-2017:d3:sonarlab:2330:little-dragon",
+   "artistId": "sonar-2017:little-dragon",
+   "day": 3,
+   "stageId": "sonar-2017:sonarlab",
+   "start": "23:30",
+   "end": "00:30"
+  },
+  {
+   "id": "sonar-2017:d3:sonarlab:0035:cashmere-cat",
+   "artistId": "sonar-2017:cashmere-cat",
+   "day": 3,
+   "stageId": "sonar-2017:sonarlab",
+   "start": "00:35",
+   "end": "01:35"
+  },
+  {
+   "id": "sonar-2017:d3:sonarlab:0140:aj-tracey",
+   "artistId": "sonar-2017:aj-tracey",
+   "day": 3,
+   "stageId": "sonar-2017:sonarlab",
+   "start": "01:40",
+   "end": "02:10"
+  },
+  {
+   "id": "sonar-2017:d3:sonarlab:0215:jlin",
+   "artistId": "sonar-2017:jlin",
+   "day": 3,
+   "stageId": "sonar-2017:sonarlab",
+   "start": "02:15",
+   "end": "03:15"
+  },
+  {
+   "id": "sonar-2017:d3:sonarlab:0325:giggs",
+   "artistId": "sonar-2017:giggs",
+   "day": 3,
+   "stageId": "sonar-2017:sonarlab",
+   "start": "03:25",
+   "end": "03:55"
+  },
+  {
+   "id": "sonar-2017:d3:sonarlab:0410:lunice",
+   "artistId": "sonar-2017:lunice",
+   "day": 3,
+   "stageId": "sonar-2017:sonarlab",
+   "start": "04:10",
+   "end": "05:10"
+  },
+  {
+   "id": "sonar-2017:d3:sonarlab:0515:benji-b",
+   "artistId": "sonar-2017:benji-b",
+   "day": 3,
+   "stageId": "sonar-2017:sonarlab",
+   "start": "05:15",
+   "end": "07:00"
+  },
+  {
+   "id": "sonar-2017:d3:sonarpub-by-thunder-bitch:2200:judah",
+   "artistId": "sonar-2017:judah",
+   "day": 3,
+   "stageId": "sonar-2017:sonarpub-by-thunder-bitch",
+   "start": "22:00",
+   "end": "23:20"
+  },
+  {
+   "id": "sonar-2017:d3:sonarpub-by-thunder-bitch:2330:anderson-paak-and-the-free-nationals",
+   "artistId": "sonar-2017:anderson-paak-and-the-free-nationals",
+   "day": 3,
+   "stageId": "sonar-2017:sonarpub-by-thunder-bitch",
+   "start": "23:30",
+   "end": "00:30"
+  },
+  {
+   "id": "sonar-2017:d3:sonarpub-by-thunder-bitch:0035:clams-casino",
+   "artistId": "sonar-2017:clams-casino",
+   "day": 3,
+   "stageId": "sonar-2017:sonarpub-by-thunder-bitch",
+   "start": "00:35",
+   "end": "01:35"
+  },
+  {
+   "id": "sonar-2017:d3:sonarpub-by-thunder-bitch:0145:nicolas-jaar",
+   "artistId": "sonar-2017:nicolas-jaar",
+   "day": 3,
+   "stageId": "sonar-2017:sonarpub-by-thunder-bitch",
+   "start": "01:45",
+   "end": "03:15"
+  },
+  {
+   "id": "sonar-2017:d3:sonarpub-by-thunder-bitch:0320:derrick-carter",
+   "artistId": "sonar-2017:derrick-carter",
+   "day": 3,
+   "stageId": "sonar-2017:sonarpub-by-thunder-bitch",
+   "start": "03:20",
+   "end": "05:00"
+  },
+  {
+   "id": "sonar-2017:d3:sonarpub-by-thunder-bitch:0505:nina-kraviz",
+   "artistId": "sonar-2017:nina-kraviz",
+   "day": 3,
+   "stageId": "sonar-2017:sonarpub-by-thunder-bitch",
+   "start": "05:05",
+   "end": "07:00"
+  },
+  {
+   "id": "sonar-2017:d4:sonarhall:1430:animic",
+   "artistId": "sonar-2017:animic",
+   "day": 4,
+   "stageId": "sonar-2017:sonarhall",
+   "start": "14:30",
+   "end": "15:15"
+  },
+  {
+   "id": "sonar-2017:d4:sonarhall:1630:gaika",
+   "artistId": "sonar-2017:gaika",
+   "day": 4,
+   "stageId": "sonar-2017:sonarhall",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "sonar-2017:d4:sonarhall:1830:nosaj-thing-daito-manabe",
+   "artistId": "sonar-2017:nosaj-thing-daito-manabe",
+   "day": 4,
+   "stageId": "sonar-2017:sonarhall",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "sonar-2017:d4:sonarhall:2030:sohn",
+   "artistId": "sonar-2017:sohn",
+   "day": 4,
+   "stageId": "sonar-2017:sonarhall",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "sonar-2017:d4:sonarcomplex:1400:connectome",
+   "artistId": "sonar-2017:connectome",
+   "day": 4,
+   "stageId": "sonar-2017:sonarcomplex",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "sonar-2017:d4:sonarcomplex:1600:nico-muhly",
+   "artistId": "sonar-2017:nico-muhly",
+   "day": 4,
+   "stageId": "sonar-2017:sonarcomplex",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "sonar-2017:d4:sonarcomplex:1800:valgeir-sigurdsson",
+   "artistId": "sonar-2017:valgeir-sigurdsson",
+   "day": 4,
+   "stageId": "sonar-2017:sonarcomplex",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "sonar-2017:d4:sonarcomplex:2000:amnesia-scanner",
+   "artistId": "sonar-2017:amnesia-scanner",
+   "day": 4,
+   "stageId": "sonar-2017:sonarcomplex",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "sonar-2017:d4:sonardome:1300:ghostly-enemies",
+   "artistId": "sonar-2017:ghostly-enemies",
+   "day": 4,
+   "stageId": "sonar-2017:sonardome",
+   "start": "13:00",
+   "end": "13:35"
+  },
+  {
+   "id": "sonar-2017:d4:sonardome:1345:huma",
+   "artistId": "sonar-2017:huma",
+   "day": 4,
+   "stageId": "sonar-2017:sonardome",
+   "start": "13:45",
+   "end": "14:25"
+  },
+  {
+   "id": "sonar-2017:d4:sonardome:1430:crystal-sparrows",
+   "artistId": "sonar-2017:crystal-sparrows",
+   "day": 4,
+   "stageId": "sonar-2017:sonardome",
+   "start": "14:30",
+   "end": "15:05"
+  },
+  {
+   "id": "sonar-2017:d4:sonardome:1520:matmos",
+   "artistId": "sonar-2017:matmos",
+   "day": 4,
+   "stageId": "sonar-2017:sonardome",
+   "start": "15:20",
+   "end": "16:05"
+  },
+  {
+   "id": "sonar-2017:d4:sonardome:1610:veronica-vasicka",
+   "artistId": "sonar-2017:veronica-vasicka",
+   "day": 4,
+   "stageId": "sonar-2017:sonardome",
+   "start": "16:10",
+   "end": "17:10"
+  },
+  {
+   "id": "sonar-2017:d4:sonardome:1725:c-tangana",
+   "artistId": "sonar-2017:c-tangana",
+   "day": 4,
+   "stageId": "sonar-2017:sonardome",
+   "start": "17:25",
+   "end": "18:10"
+  },
+  {
+   "id": "sonar-2017:d4:sonardome:1825:suicideyear",
+   "artistId": "sonar-2017:suicideyear",
+   "day": 4,
+   "stageId": "sonar-2017:sonardome",
+   "start": "18:25",
+   "end": "19:15"
+  },
+  {
+   "id": "sonar-2017:d4:sonardome:1935:thundercat",
+   "artistId": "sonar-2017:thundercat",
+   "day": 4,
+   "stageId": "sonar-2017:sonardome",
+   "start": "19:35",
+   "end": "20:35"
+  },
+  {
+   "id": "sonar-2017:d4:sonardome:2045:star-eyes-b2b-jubilee",
+   "artistId": "sonar-2017:star-eyes-b2b-jubilee",
+   "day": 4,
+   "stageId": "sonar-2017:sonardome",
+   "start": "20:45",
+   "end": "22:00"
+  },
+  {
+   "id": "sonar-2017:d4:sonarvillage-by-estrella-damm:1300:pauk",
+   "artistId": "sonar-2017:pauk",
+   "day": 4,
+   "stageId": "sonar-2017:sonarvillage-by-estrella-damm",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "sonar-2017:d4:sonarvillage-by-estrella-damm:1400:fira-fem",
+   "artistId": "sonar-2017:fira-fem",
+   "day": 4,
+   "stageId": "sonar-2017:sonarvillage-by-estrella-damm",
+   "start": "14:00",
+   "end": "14:45"
+  },
+  {
+   "id": "sonar-2017:d4:sonarvillage-by-estrella-damm:1445:telmo-trenor",
+   "artistId": "sonar-2017:telmo-trenor",
+   "day": 4,
+   "stageId": "sonar-2017:sonarvillage-by-estrella-damm",
+   "start": "14:45",
+   "end": "15:50"
+  },
+  {
+   "id": "sonar-2017:d4:sonarvillage-by-estrella-damm:1550:joe-goddard-live",
+   "artistId": "sonar-2017:joe-goddard-live",
+   "day": 4,
+   "stageId": "sonar-2017:sonarvillage-by-estrella-damm",
+   "start": "15:50",
+   "end": "16:50"
+  },
+  {
+   "id": "sonar-2017:d4:sonarvillage-by-estrella-damm:1650:zutzut-and-imaabs",
+   "artistId": "sonar-2017:zutzut-and-imaabs",
+   "day": 4,
+   "stageId": "sonar-2017:sonarvillage-by-estrella-damm",
+   "start": "16:50",
+   "end": "18:00"
+  },
+  {
+   "id": "sonar-2017:d4:sonarvillage-by-estrella-damm:1800:nadia-rose",
+   "artistId": "sonar-2017:nadia-rose",
+   "day": 4,
+   "stageId": "sonar-2017:sonarvillage-by-estrella-damm",
+   "start": "18:00",
+   "end": "18:35"
+  },
+  {
+   "id": "sonar-2017:d4:sonarvillage-by-estrella-damm:1835:soulection-presents-joe-kay-jarreau-vandal",
+   "artistId": "sonar-2017:soulection-presents-joe-kay-jarreau-vandal",
+   "day": 4,
+   "stageId": "sonar-2017:sonarvillage-by-estrella-damm",
+   "start": "18:35",
+   "end": "20:10"
+  },
+  {
+   "id": "sonar-2017:d4:sonarvillage-by-estrella-damm:2010:keys-n-krates",
+   "artistId": "sonar-2017:keys-n-krates",
+   "day": 4,
+   "stageId": "sonar-2017:sonarvillage-by-estrella-damm",
+   "start": "20:10",
+   "end": "21:10"
+  },
+  {
+   "id": "sonar-2017:d4:sonarvillage-by-estrella-damm:2115:optimo",
+   "artistId": "sonar-2017:optimo",
+   "day": 4,
+   "stageId": "sonar-2017:sonarvillage-by-estrella-damm",
+   "start": "21:15",
+   "end": "23:00"
+  },
+  {
+   "id": "sonar-2017:d4:sonarxs:1600:oblique-and-carlos-bayona",
+   "artistId": "sonar-2017:oblique-and-carlos-bayona",
+   "day": 4,
+   "stageId": "sonar-2017:sonarxs",
+   "start": "16:00",
+   "end": "16:40"
+  },
+  {
+   "id": "sonar-2017:d4:sonarxs:1645:aethereal-arthropod",
+   "artistId": "sonar-2017:aethereal-arthropod",
+   "day": 4,
+   "stageId": "sonar-2017:sonarxs",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "sonar-2017:d4:sonarxs:1750:bejo",
+   "artistId": "sonar-2017:bejo",
+   "day": 4,
+   "stageId": "sonar-2017:sonarxs",
+   "start": "17:50",
+   "end": "18:30"
+  },
+  {
+   "id": "sonar-2017:d4:sonarxs:1835:deena-abdelwahed",
+   "artistId": "sonar-2017:deena-abdelwahed",
+   "day": 4,
+   "stageId": "sonar-2017:sonarxs",
+   "start": "18:35",
+   "end": "19:35"
+  },
+  {
+   "id": "sonar-2017:d4:sonarxs:1940:dellafuente-y-maka",
+   "artistId": "sonar-2017:dellafuente-y-maka",
+   "day": 4,
+   "stageId": "sonar-2017:sonarxs",
+   "start": "19:40",
+   "end": "20:25"
+  },
+  {
+   "id": "sonar-2017:d4:sonarxs:2030:total-freedom",
+   "artistId": "sonar-2017:total-freedom",
+   "day": 4,
+   "stageId": "sonar-2017:sonarxs",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "sonar-2017:d4:sonarcar:0000:seth-troxler-and-tiga-6h-set",
+   "artistId": "sonar-2017:seth-troxler-and-tiga-6h-set",
+   "day": 4,
+   "stageId": "sonar-2017:sonarcar",
+   "start": "00:00",
+   "end": "06:00"
+  },
+  {
+   "id": "sonar-2017:d4:sonarclub:2130:fran-lenaers",
+   "artistId": "sonar-2017:fran-lenaers",
+   "day": 4,
+   "stageId": "sonar-2017:sonarclub",
+   "start": "21:30",
+   "end": "22:40"
+  },
+  {
+   "id": "sonar-2017:d4:sonarclub:2245:cerrone",
+   "artistId": "sonar-2017:cerrone",
+   "day": 4,
+   "stageId": "sonar-2017:sonarclub",
+   "start": "22:45",
+   "end": "23:45"
+  },
+  {
+   "id": "sonar-2017:d4:sonarclub:2350:clara-3000",
+   "artistId": "sonar-2017:clara-3000",
+   "day": 4,
+   "stageId": "sonar-2017:sonarclub",
+   "start": "23:50",
+   "end": "01:00"
+  },
+  {
+   "id": "sonar-2017:d4:sonarclub:0115:justice",
+   "artistId": "sonar-2017:justice",
+   "day": 4,
+   "stageId": "sonar-2017:sonarclub",
+   "start": "01:15",
+   "end": "02:30"
+  },
+  {
+   "id": "sonar-2017:d4:sonarclub:0235:heidi",
+   "artistId": "sonar-2017:heidi",
+   "day": 4,
+   "stageId": "sonar-2017:sonarclub",
+   "start": "02:35",
+   "end": "03:50"
+  },
+  {
+   "id": "sonar-2017:d4:sonarclub:0400:eric-prydz",
+   "artistId": "sonar-2017:eric-prydz",
+   "day": 4,
+   "stageId": "sonar-2017:sonarclub",
+   "start": "04:00",
+   "end": "05:30"
+  },
+  {
+   "id": "sonar-2017:d4:sonarclub:0535:marco-carola",
+   "artistId": "sonar-2017:marco-carola",
+   "day": 4,
+   "stageId": "sonar-2017:sonarclub",
+   "start": "05:35",
+   "end": "07:00"
+  },
+  {
+   "id": "sonar-2017:d4:sonarlab:2130:ylia",
+   "artistId": "sonar-2017:ylia",
+   "day": 4,
+   "stageId": "sonar-2017:sonarlab",
+   "start": "21:30",
+   "end": "22:25"
+  },
+  {
+   "id": "sonar-2017:d4:sonarlab:2230:overmono",
+   "artistId": "sonar-2017:overmono",
+   "day": 4,
+   "stageId": "sonar-2017:sonarlab",
+   "start": "22:30",
+   "end": "23:20"
+  },
+  {
+   "id": "sonar-2017:d4:sonarlab:2330:carl-craig-presents-versus-synthesizer-ensemble",
+   "artistId": "sonar-2017:carl-craig-presents-versus-synthesizer-ensemble",
+   "day": 4,
+   "stageId": "sonar-2017:sonarlab",
+   "start": "23:30",
+   "end": "00:30"
+  },
+  {
+   "id": "sonar-2017:d4:sonarlab:0040:t-q-d-royal-t-dj-q-and-flava-d",
+   "artistId": "sonar-2017:t-q-d-royal-t-dj-q-and-flava-d",
+   "day": 4,
+   "stageId": "sonar-2017:sonarlab",
+   "start": "00:40",
+   "end": "01:40"
+  },
+  {
+   "id": "sonar-2017:d4:sonarlab:0145:beautiful-swimmers",
+   "artistId": "sonar-2017:beautiful-swimmers",
+   "day": 4,
+   "stageId": "sonar-2017:sonarlab",
+   "start": "01:45",
+   "end": "03:00"
+  },
+  {
+   "id": "sonar-2017:d4:sonarlab:0305:marcel-dettmann-and-dr-rubinstein",
+   "artistId": "sonar-2017:marcel-dettmann-and-dr-rubinstein",
+   "day": 4,
+   "stageId": "sonar-2017:sonarlab",
+   "start": "03:05",
+   "end": "05:00"
+  },
+  {
+   "id": "sonar-2017:d4:sonarlab:0505:daphni-and-hunee",
+   "artistId": "sonar-2017:daphni-and-hunee",
+   "day": 4,
+   "stageId": "sonar-2017:sonarlab",
+   "start": "05:05",
+   "end": "07:00"
+  },
+  {
+   "id": "sonar-2017:d4:sonarpub-by-thunder-bitch:2200:fuego-squad-dj2d2-and-will-blake",
+   "artistId": "sonar-2017:fuego-squad-dj2d2-and-will-blake",
+   "day": 4,
+   "stageId": "sonar-2017:sonarpub-by-thunder-bitch",
+   "start": "22:00",
+   "end": "22:50"
+  },
+  {
+   "id": "sonar-2017:d4:sonarpub-by-thunder-bitch:2300:fat-freddy-s-drop",
+   "artistId": "sonar-2017:fat-freddy-s-drop",
+   "day": 4,
+   "stageId": "sonar-2017:sonarpub-by-thunder-bitch",
+   "start": "23:00",
+   "end": "00:15"
+  },
+  {
+   "id": "sonar-2017:d4:sonarpub-by-thunder-bitch:0020:nick-hook",
+   "artistId": "sonar-2017:nick-hook",
+   "day": 4,
+   "stageId": "sonar-2017:sonarpub-by-thunder-bitch",
+   "start": "00:20",
+   "end": "01:20"
+  },
+  {
+   "id": "sonar-2017:d4:sonarpub-by-thunder-bitch:0125:de-la-soul",
+   "artistId": "sonar-2017:de-la-soul",
+   "day": 4,
+   "stageId": "sonar-2017:sonarpub-by-thunder-bitch",
+   "start": "01:25",
+   "end": "02:25"
+  },
+  {
+   "id": "sonar-2017:d4:sonarpub-by-thunder-bitch:0230:avalon-emerson-and-courtesy",
+   "artistId": "sonar-2017:avalon-emerson-and-courtesy",
+   "day": 4,
+   "stageId": "sonar-2017:sonarpub-by-thunder-bitch",
+   "start": "02:30",
+   "end": "03:55"
+  },
+  {
+   "id": "sonar-2017:d4:sonarpub-by-thunder-bitch:0400:vitalic-odc-live",
+   "artistId": "sonar-2017:vitalic-odc-live",
+   "day": 4,
+   "stageId": "sonar-2017:sonarpub-by-thunder-bitch",
+   "start": "04:00",
+   "end": "05:00"
+  },
+  {
+   "id": "sonar-2017:d4:sonarpub-by-thunder-bitch:0505:the-black-madonna",
+   "artistId": "sonar-2017:the-black-madonna",
+   "day": 4,
+   "stageId": "sonar-2017:sonarpub-by-thunder-bitch",
+   "start": "05:05",
+   "end": "07:00"
+  },
+  {
+   "id": "sonar-2017:d5:l-auditori:2030:closing-night-death-speaks-by-david-lang-performed-by-stargaze-and-nico-muhly",
+   "artistId": "sonar-2017:closing-night-death-speaks-by-david-lang-performed-by-stargaze-and-nico-muhly",
+   "day": 5,
+   "stageId": "sonar-2017:l-auditori",
+   "start": "20:30",
+   "end": "21:30"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://sonar.es/en",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20180615215543/https://sonar.es/en/2017/schedules",
+    "captureTimestamp": "20180615215543",
+    "printed": "Wednesday 14 | Sónar by Night",
+    "sha256": "23ad44675ca27ab8a1fbda6f9de663fe34f37f3b57c8588965354dc9bc8c2245",
+    "rows": 1,
+    "format": "sonar-calendar",
+    "named": "Concerts Timetable - Sónar Barcelona 2017",
+    "sessions": [
+     "Wednesday 14 | Sónar by Night: 20:00 to 07:00"
+    ]
+   },
+   {
+    "day": 2,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20180615215543/https://sonar.es/en/2017/schedules",
+    "captureTimestamp": "20180615215543",
+    "printed": "Thursday 15 | Sónar by Day",
+    "sha256": "23ad44675ca27ab8a1fbda6f9de663fe34f37f3b57c8588965354dc9bc8c2245",
+    "rows": 31,
+    "format": "sonar-calendar",
+    "named": "Concerts Timetable - Sónar Barcelona 2017",
+    "sessions": [
+     "Thursday 15 | Sónar by Day: 13:00 to 00:00"
+    ]
+   },
+   {
+    "day": 3,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20180615215543/https://sonar.es/en/2017/schedules",
+    "captureTimestamp": "20180615215543",
+    "printed": "Friday 16 | Sónar by Day · Friday 16 | Sónar by Night",
+    "sha256": "23ad44675ca27ab8a1fbda6f9de663fe34f37f3b57c8588965354dc9bc8c2245",
+    "rows": 54,
+    "format": "sonar-calendar",
+    "named": "Concerts Timetable - Sónar Barcelona 2017",
+    "sessions": [
+     "Friday 16 | Sónar by Day: 13:00 to 00:00",
+     "Friday 16 | Sónar by Night: 20:00 to 07:00"
+    ]
+   },
+   {
+    "day": 4,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20180615215543/https://sonar.es/en/2017/schedules",
+    "captureTimestamp": "20180615215543",
+    "printed": "Saturday 17 | Sónar by Day · Saturday 17 | Sónar by Night",
+    "sha256": "23ad44675ca27ab8a1fbda6f9de663fe34f37f3b57c8588965354dc9bc8c2245",
+    "rows": 54,
+    "format": "sonar-calendar",
+    "named": "Concerts Timetable - Sónar Barcelona 2017",
+    "sessions": [
+     "Saturday 17 | Sónar by Day: 13:00 to 00:00",
+     "Saturday 17 | Sónar by Night: 20:00 to 07:00"
+    ]
+   },
+   {
+    "day": 5,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20180615215543/https://sonar.es/en/2017/schedules",
+    "captureTimestamp": "20180615215543",
+    "printed": "Sunday 18 | Sónar by Night",
+    "sha256": "23ad44675ca27ab8a1fbda6f9de663fe34f37f3b57c8588965354dc9bc8c2245",
+    "rows": 1,
+    "format": "sonar-calendar",
+    "named": "Concerts Timetable - Sónar Barcelona 2017",
+    "sessions": [
+     "Sunday 18 | Sónar by Night: 20:00 to 07:00"
+    ]
+   }
+  ]
+ }
+}

@@ -1,0 +1,689 @@
+{
+  "id": "sonar-2022",
+  "method": "official_sources",
+  "official": "https://sonar.es/en",
+  "days": [
+    {
+      "day": 1,
+      "date": "2022-06-16",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://sonar.es/en/2022/schedules",
+          "archivedUrl": "https://web.archive.org/web/20221004200650/https://sonar.es/en/2022/schedules",
+          "captureTimestamp": "20221004200650",
+          "printed": "Thursday 16 | Sónar by Day",
+          "sha256": "de912e171cb04468f209614ca1647a581478c3ec1b3860ec8f5c39385a2f3618",
+          "bytes": 384785,
+          "rows": 24,
+          "format": "sonar-calendar",
+          "named": "Sónar Barcelona 2022 - Timetables",
+          "sessions": [
+            "Thursday 16 | Sónar by Day: 13:00 to 00:00"
+          ],
+          "stages": 4,
+          "times": "24-hour ranges, each inside its session's own hours; a night set after midnight is that night's",
+          "programmeShows": 25,
+          "programmeStages": [
+            "Stage+D",
+            "Lounge+D by Patreon",
+            "SonarÀgora",
+            "SonarMàtica by Tezos",
+            "SonarExtra"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2022-06-17",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://sonar.es/en/2022/schedules",
+          "archivedUrl": "https://web.archive.org/web/20221004200650/https://sonar.es/en/2022/schedules",
+          "captureTimestamp": "20221004200650",
+          "printed": "Friday 17 | Sónar by Day · Friday 17 | Sónar by Night",
+          "sha256": "de912e171cb04468f209614ca1647a581478c3ec1b3860ec8f5c39385a2f3618",
+          "bytes": 384785,
+          "rows": 46,
+          "format": "sonar-calendar",
+          "named": "Sónar Barcelona 2022 - Timetables",
+          "sessions": [
+            "Friday 17 | Sónar by Day: 13:00 to 00:00",
+            "Friday 17 | Sónar by Night: 20:00 to 08:00"
+          ],
+          "stages": 8,
+          "times": "24-hour ranges, each inside its session's own hours; a night set after midnight is that night's",
+          "programmeShows": 24,
+          "programmeStages": [
+            "Stage+D",
+            "Lounge+D by Patreon",
+            "SonarÀgora",
+            "SonarMàtica by Tezos",
+            "SonarExtra"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2022-06-18",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://sonar.es/en/2022/schedules",
+          "archivedUrl": "https://web.archive.org/web/20221004200650/https://sonar.es/en/2022/schedules",
+          "captureTimestamp": "20221004200650",
+          "printed": "Saturday 18 | Sónar by Day · Saturday 18 | Sónar by Night",
+          "sha256": "de912e171cb04468f209614ca1647a581478c3ec1b3860ec8f5c39385a2f3618",
+          "bytes": 384785,
+          "rows": 45,
+          "format": "sonar-calendar",
+          "named": "Sónar Barcelona 2022 - Timetables",
+          "sessions": [
+            "Saturday 18 | Sónar by Day: 13:00 to 00:00",
+            "Saturday 18 | Sónar by Night: 20:00 to 08:00"
+          ],
+          "stages": 8,
+          "times": "24-hour ranges, each inside its session's own hours; a night set after midnight is that night's",
+          "programmeShows": 16,
+          "programmeStages": [
+            "Stage+D",
+            "Lounge+D by Patreon",
+            "SonarMàtica by Tezos",
+            "SonarExtra"
+          ]
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "day": 1,
+      "stage": "Lounge+D by Patreon",
+      "start": "15:00",
+      "end": "15:30",
+      "billing": "Q&A: Maria Arnal with José Luis De Vicente",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 1,
+      "stage": "Lounge+D by Patreon",
+      "start": "15:45",
+      "end": "16:15",
+      "billing": "Hyperorgan in collaboration with Blancafort OM & Palau Güell",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 1,
+      "stage": "Lounge+D by Patreon",
+      "start": "16:30",
+      "end": "17:00",
+      "billing": "Q&A: Liam Young with Ben Eastham",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 1,
+      "stage": "Lounge+D by Patreon",
+      "start": "17:15",
+      "end": "18:00",
+      "billing": "Community meetup for music tech projects (hosted by Music Tech EU)",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 1,
+      "stage": "Lounge+D by Patreon",
+      "start": "18:15",
+      "end": "18:45",
+      "billing": "Q&A: Eris Drew & Octo Octa with Christine Kakaire",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 1,
+      "stage": "Lounge+D by Patreon",
+      "start": "19:00",
+      "end": "19:45",
+      "billing": "In conversation with Vincent Schwenk presented by Patreon",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 1,
+      "stage": "Lounge+D by Patreon",
+      "start": "20:00",
+      "end": "21:00",
+      "billing": "Meet & Drink by Estrella Damm & DJs by Patreon (Chloe Lula)",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 1,
+      "stage": "SonarÀgora",
+      "start": "13:30",
+      "end": "14:15",
+      "billing": "\"Being a curious music mind\" Experiment results by IDIBELL",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 1,
+      "stage": "SonarÀgora",
+      "start": "14:30",
+      "end": "16:00",
+      "billing": "Andreas Refsgaard: 'Playful Machine Learning' Masterclass",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 1,
+      "stage": "SonarÀgora",
+      "start": "16:30",
+      "end": "18:30",
+      "billing": "Bas Grasmayer & Kaitlyn Davies: 'What you really need to know about web3' Masterclass",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 1,
+      "stage": "SonarÀgora",
+      "start": "19:00",
+      "end": "20:00",
+      "billing": "'How the music industry can use data for good' presented by DICE",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 1,
+      "stage": "SonarExtra",
+      "start": "10:00",
+      "end": "20:00",
+      "billing": "Hyperorgan in collaboration with Blancafort OM & Palau Güell with Albert Blancafort, Santi Vilanova (Playmodes) and gamut inc",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 1,
+      "stage": "SonarExtra",
+      "start": "10:00",
+      "end": "19:00",
+      "billing": "Sondear by Mika Vainio",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 1,
+      "stage": "SonarExtra",
+      "start": "10:00",
+      "end": "19:00",
+      "billing": "Museum of Sound listening experience by Mika Vainio",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 1,
+      "stage": "SonarExtra",
+      "start": "12:00",
+      "end": "22:00",
+      "billing": "Quayola: ‘Transient’ Installation, presented by ME by Meliá",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 1,
+      "stage": "SonarMàtica by Tezos",
+      "start": "13:00",
+      "end": "20:00",
+      "billing": "SonarMàtica by Tezos - Installations",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 1,
+      "stage": "SonarMàtica by Tezos",
+      "start": "13:00",
+      "end": "20:00",
+      "billing": "SonarMàtica by Tezos - Realities+D",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 1,
+      "stage": "SonarMàtica by Tezos",
+      "start": "13:00",
+      "end": "20:00",
+      "billing": "SonarMàtica by Tezos - NFT Exhibition curated Sónar | Tezos",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 1,
+      "stage": "Stage+D",
+      "start": "13:30",
+      "end": "14:00",
+      "billing": "Quayola: 'Gazing Machines'",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 1,
+      "stage": "Stage+D",
+      "start": "14:30",
+      "end": "15:00",
+      "billing": "Mario Klingemann 'The Road to Obsolescence'",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 1,
+      "stage": "Stage+D",
+      "start": "15:15",
+      "end": "16:00",
+      "billing": "What art can teach us about Web3: Fernando Cucchietti (BSC), Stefania Artusi (Tezos), Merel van Helsdingen (NXT Museum) and Harriet Davey",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 1,
+      "stage": "Stage+D",
+      "start": "16:15",
+      "end": "17:00",
+      "billing": "Bernie Krause: 'The future belongs to those who can hear it coming'",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 1,
+      "stage": "Stage+D",
+      "start": "17:00",
+      "end": "17:30",
+      "billing": "Michel André feat. Hamill Industries: 'Bioacoustics, the science of the sound of Life, can take humanity back to Nature'",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 1,
+      "stage": "Stage+D",
+      "start": "18:00",
+      "end": "18:30",
+      "billing": "Liam Young: 'Planet City and the Return of Global Wilderness'",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 1,
+      "stage": "Stage+D",
+      "start": "19:30",
+      "end": "20:30",
+      "billing": "‘A World of Service’ by JASSS & Ben Kreukniet",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 2,
+      "stage": "Lounge+D by Patreon",
+      "start": "15:00",
+      "end": "16:00",
+      "billing": "Community meetup for art, music and blockchain projects",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 2,
+      "stage": "Lounge+D by Patreon",
+      "start": "16:30",
+      "end": "17:00",
+      "billing": "Q&A: Lady Shaka with Christine Kakaire",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 2,
+      "stage": "Lounge+D by Patreon",
+      "start": "17:30",
+      "end": "18:00",
+      "billing": "Q&A: Andreas Refsgaard with Ben Eastham",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 2,
+      "stage": "Lounge+D by Patreon",
+      "start": "18:30",
+      "end": "19:00",
+      "billing": "Q&A: Craig Leon with Antònia Folguera",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 2,
+      "stage": "Lounge+D by Patreon",
+      "start": "19:15",
+      "end": "20:00",
+      "billing": "In conversation with Uncompressed presented by Patreon",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 2,
+      "stage": "Lounge+D by Patreon",
+      "start": "20:00",
+      "end": "21:00",
+      "billing": "Meet & Drink by Estrella Damm & DJs by Patreon (Bawrut)",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 2,
+      "stage": "SonarÀgora",
+      "start": "13:30",
+      "end": "14:30",
+      "billing": "Synthetic singing: Towards natural, personalized and user controllable voices Masterclass by Voctro Labs",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 2,
+      "stage": "SonarÀgora",
+      "start": "15:00",
+      "end": "15:45",
+      "billing": "Creativity and AI, Three case studies from the AI + Music S+T+ARTS Festival",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 2,
+      "stage": "SonarÀgora",
+      "start": "16:15",
+      "end": "17:00",
+      "billing": "'Future of Music: AI-driven Virtual Artists' presented by Sensorium Galaxy",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 2,
+      "stage": "SonarÀgora",
+      "start": "17:15",
+      "end": "18:30",
+      "billing": "Natasha Greenhalgh: 'Immersive installations: prototyping future realities' Masterclass",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 2,
+      "stage": "SonarÀgora",
+      "start": "19:00",
+      "end": "20:00",
+      "billing": "DJing in VR presented by Pioneer DJ feat. Danny Avila",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 2,
+      "stage": "SonarExtra",
+      "start": "10:00",
+      "end": "20:00",
+      "billing": "Hyperorgan in collaboration with Blancafort OM & Palau Güell with Albert Blancafort, Santi Vilanova (Playmodes) and gamut inc",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 2,
+      "stage": "SonarExtra",
+      "start": "10:00",
+      "end": "19:00",
+      "billing": "Sondear by Mika Vainio",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 2,
+      "stage": "SonarExtra",
+      "start": "10:00",
+      "end": "19:00",
+      "billing": "Museum of Sound listening experience by Mika Vainio",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 2,
+      "stage": "SonarExtra",
+      "start": "12:00",
+      "end": "22:00",
+      "billing": "Quayola: ‘Transient’ Installation, presented by ME by Meliá",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 2,
+      "stage": "SonarMàtica by Tezos",
+      "start": "13:00",
+      "end": "20:00",
+      "billing": "SonarMàtica by Tezos - NFT Exhibition curated Sónar | Tezos",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 2,
+      "stage": "SonarMàtica by Tezos",
+      "start": "13:00",
+      "end": "20:00",
+      "billing": "SonarMàtica by Tezos - Installations",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 2,
+      "stage": "SonarMàtica by Tezos",
+      "start": "13:00",
+      "end": "20:00",
+      "billing": "SonarMàtica by Tezos - Realities+D",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 2,
+      "stage": "Stage+D",
+      "start": "13:30",
+      "end": "14:30",
+      "billing": "Kate Crawford & Trevor Paglen: 'The Standard Human'",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 2,
+      "stage": "Stage+D",
+      "start": "15:30",
+      "end": "16:00",
+      "billing": "Sougwen 䇤君 Chung: 'Seeing Double - Bridging Dualities with Relational Intelligence'",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 2,
+      "stage": "Stage+D",
+      "start": "17:00",
+      "end": "17:30",
+      "billing": "Craig Leon: 'Androids Singing the Body Electric'",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 2,
+      "stage": "Stage+D",
+      "start": "17:30",
+      "end": "18:00",
+      "billing": "Constanza Piña feat. Milena Pafundi: 'KHIPU Computador prehispánico electrotextil'",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 2,
+      "stage": "Stage+D",
+      "start": "18:00",
+      "end": "18:30",
+      "billing": "Monira Al Qadiri & Raed Yassin: 'S.A.N.D. (Somatic Acoustic Neolithic Dust)'",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 2,
+      "stage": "Stage+D",
+      "start": "19:30",
+      "end": "20:30",
+      "billing": "‘A World of Service’ by JASSS & Ben Kreukniet",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 3,
+      "stage": "Lounge+D by Patreon",
+      "start": "16:30",
+      "end": "17:00",
+      "billing": "Q & A: Lyra Pramuk with Christine Kakaire",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 3,
+      "stage": "Lounge+D by Patreon",
+      "start": "17:15",
+      "end": "17:45",
+      "billing": "Q&A: JASSS, Ben Kreukniet with Ben Eastham",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 3,
+      "stage": "Lounge+D by Patreon",
+      "start": "18:00",
+      "end": "18:30",
+      "billing": "Q&A: Agoria with Christine Kakaire",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 3,
+      "stage": "Lounge+D by Patreon",
+      "start": "19:00",
+      "end": "19:30",
+      "billing": "Q&A: Tupac Martir with Ben Eastham",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 3,
+      "stage": "Lounge+D by Patreon",
+      "start": "20:00",
+      "end": "21:00",
+      "billing": "Meet & Drink by Estrella Damm & DJs by Patreon DE:MA)",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 3,
+      "stage": "SonarExtra",
+      "start": "10:00",
+      "end": "20:00",
+      "billing": "Hyperorgan in collaboration with Blancafort OM & Palau Güell with Albert Blancafort, Santi Vilanova (Playmodes) and gamut inc",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 3,
+      "stage": "SonarExtra",
+      "start": "10:00",
+      "end": "19:00",
+      "billing": "Sondear by Mika Vainio",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 3,
+      "stage": "SonarExtra",
+      "start": "10:00",
+      "end": "19:00",
+      "billing": "Museum of Sound listening experience by Mika Vainio",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 3,
+      "stage": "SonarExtra",
+      "start": "12:00",
+      "end": "22:00",
+      "billing": "Quayola: ‘Transient’ Installation, presented by ME by Meliá",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 3,
+      "stage": "SonarMàtica by Tezos",
+      "start": "13:00",
+      "end": "20:00",
+      "billing": "SonarMàtica by Tezos - Realities+D",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 3,
+      "stage": "SonarMàtica by Tezos",
+      "start": "13:00",
+      "end": "20:00",
+      "billing": "SonarMàtica by Tezos - NFT Exhibition curated Sónar | Tezos",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 3,
+      "stage": "SonarMàtica by Tezos",
+      "start": "13:00",
+      "end": "20:00",
+      "billing": "SonarMàtica by Tezos - Installations",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 3,
+      "stage": "Stage+D",
+      "start": "13:30",
+      "end": "16:00",
+      "billing": "'Unplug and Recharge: AI-powered Soundscape Experience'",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 3,
+      "stage": "Stage+D",
+      "start": "16:30",
+      "end": "17:30",
+      "billing": "5uuoPRPPW%A% with DOES work ('Why am I always hot?') gtxdlr & Laura Rigau ('Memory Bleach') y ¥€$Si PERSE ('Xenomilitia: The Antifa Chronicles')",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 3,
+      "stage": "Stage+D",
+      "start": "18:00",
+      "end": "18:30",
+      "billing": "Tupac Martir: 'Haita'",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    },
+    {
+      "day": 3,
+      "stage": "Stage+D",
+      "start": "19:30",
+      "end": "20:30",
+      "billing": "‘A World of Service’ by JASSS & Ben Kreukniet",
+      "reason": "Stage+D, Lounge+D by Patreon, SonarÀgora, SonarMàtica by Tezos and SonarExtra are Sónar+D's programme: talks, masterclasses and installations, not music sets",
+      "programme": true
+    }
+  ],
+  "dropped": []
+}

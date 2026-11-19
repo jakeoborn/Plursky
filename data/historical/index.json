@@ -2375,6 +2375,99 @@
    }
   },
   {
+   "id": "governors-ball-2015",
+   "festivalId": "governors-ball",
+   "festivalName": "Governors Ball",
+   "name": "Governors Ball 2015",
+   "year": 2015,
+   "timezone": "America/New_York",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2015-06-05",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2015-06-06",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2015-06-07",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 4,
+    "artists": 67,
+    "sets": 67
+   }
+  },
+  {
+   "id": "governors-ball-2014",
+   "festivalId": "governors-ball",
+   "festivalName": "Governors Ball",
+   "name": "Governors Ball 2014",
+   "year": 2014,
+   "timezone": "America/New_York",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2014-06-06",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2014-06-07",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2014-06-08",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 4,
+    "artists": 68,
+    "sets": 68
+   }
+  },
+  {
+   "id": "governors-ball-2013",
+   "festivalId": "governors-ball",
+   "festivalName": "Governors Ball",
+   "name": "Governors Ball 2013",
+   "year": 2013,
+   "timezone": "America/New_York",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2013-06-07",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2013-06-08",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2013-06-09",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 4,
+    "artists": 66,
+    "sets": 66
+   }
+  },
+  {
    "id": "governors-ball-2012",
    "festivalId": "governors-ball",
    "festivalName": "Governors Ball",
@@ -2606,6 +2699,83 @@
     "stages": 5,
     "artists": 56,
     "sets": 57
+   }
+  },
+  {
+   "id": "lightning-in-a-bottle-2019",
+   "festivalId": "lightning-in-a-bottle",
+   "festivalName": "Lightning in a Bottle",
+   "name": "Lightning in a Bottle 2019",
+   "year": 2019,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2019-05-08",
+     "label": "Wednesday"
+    },
+    {
+     "day": 2,
+     "date": "2019-05-09",
+     "label": "Thursday"
+    },
+    {
+     "day": 3,
+     "date": "2019-05-10",
+     "label": "Friday"
+    },
+    {
+     "day": 4,
+     "date": "2019-05-11",
+     "label": "Saturday"
+    },
+    {
+     "day": 5,
+     "date": "2019-05-12",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 216,
+    "sets": 229
+   }
+  },
+  {
+   "id": "lightning-in-a-bottle-2018",
+   "festivalId": "lightning-in-a-bottle",
+   "festivalName": "Lightning in a Bottle",
+   "name": "Lightning in a Bottle 2018",
+   "year": 2018,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2018-05-24",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2018-05-25",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2018-05-26",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2018-05-27",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 10,
+    "artists": 214,
+    "sets": 224
    }
   },
   {
@@ -3261,6 +3431,192 @@
    }
   },
   {
+   "id": "outside-lands-2025",
+   "festivalId": "outside-lands",
+   "festivalName": "Outside Lands",
+   "name": "Outside Lands 2025",
+   "year": 2025,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2025-08-08",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2025-08-09",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2025-08-10",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 10,
+    "artists": 139,
+    "sets": 155
+   }
+  },
+  {
+   "id": "outside-lands-2024",
+   "festivalId": "outside-lands",
+   "festivalName": "Outside Lands",
+   "name": "Outside Lands 2024",
+   "year": 2024,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2024-08-09",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2024-08-10",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2024-08-11",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 9,
+    "artists": 131,
+    "sets": 139
+   }
+  },
+  {
+   "id": "outside-lands-2023",
+   "festivalId": "outside-lands",
+   "festivalName": "Outside Lands",
+   "name": "Outside Lands 2023",
+   "year": 2023,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2023-08-11",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2023-08-12",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2023-08-13",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 9,
+    "artists": 113,
+    "sets": 126
+   }
+  },
+  {
+   "id": "outside-lands-2022",
+   "festivalId": "outside-lands",
+   "festivalName": "Outside Lands",
+   "name": "Outside Lands 2022",
+   "year": 2022,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2022-08-05",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2022-08-06",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2022-08-07",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 7,
+    "artists": 112,
+    "sets": 127
+   }
+  },
+  {
+   "id": "outside-lands-2019",
+   "festivalId": "outside-lands",
+   "festivalName": "Outside Lands",
+   "name": "Outside Lands 2019",
+   "year": 2019,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2019-08-09",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2019-08-10",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2019-08-11",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 93,
+    "sets": 94
+   }
+  },
+  {
+   "id": "outside-lands-2018",
+   "festivalId": "outside-lands",
+   "festivalName": "Outside Lands",
+   "name": "Outside Lands 2018",
+   "year": 2018,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2018-08-10",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2018-08-11",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2018-08-12",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 93,
+    "sets": 93
+   }
+  },
+  {
    "id": "outside-lands-2017",
    "festivalId": "outside-lands",
    "festivalName": "Outside Lands",
@@ -3501,6 +3857,217 @@
     "stages": 5,
     "artists": 55,
     "sets": 55
+   }
+  },
+  {
+   "id": "primavera-sound-2019",
+   "festivalId": "primavera-sound",
+   "festivalName": "Primavera Sound",
+   "name": "Primavera Sound 2019",
+   "year": 2019,
+   "timezone": "Europe/Madrid",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2019-05-29",
+     "label": "Wednesday"
+    },
+    {
+     "day": 2,
+     "date": "2019-05-30",
+     "label": "Thursday"
+    },
+    {
+     "day": 3,
+     "date": "2019-05-31",
+     "label": "Friday"
+    },
+    {
+     "day": 4,
+     "date": "2019-06-01",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 16,
+    "artists": 262,
+    "sets": 267
+   }
+  },
+  {
+   "id": "primavera-sound-2018",
+   "festivalId": "primavera-sound",
+   "festivalName": "Primavera Sound",
+   "name": "Primavera Sound 2018",
+   "year": 2018,
+   "timezone": "Europe/Madrid",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2018-05-30",
+     "label": "Wednesday"
+    },
+    {
+     "day": 2,
+     "date": "2018-05-31",
+     "label": "Thursday"
+    },
+    {
+     "day": 3,
+     "date": "2018-06-01",
+     "label": "Friday"
+    },
+    {
+     "day": 4,
+     "date": "2018-06-02",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 14,
+    "artists": 224,
+    "sets": 225
+   }
+  },
+  {
+   "id": "primavera-sound-2017",
+   "festivalId": "primavera-sound",
+   "festivalName": "Primavera Sound",
+   "name": "Primavera Sound 2017",
+   "year": 2017,
+   "timezone": "Europe/Madrid",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2017-05-31",
+     "label": "Wednesday"
+    },
+    {
+     "day": 2,
+     "date": "2017-06-01",
+     "label": "Thursday"
+    },
+    {
+     "day": 3,
+     "date": "2017-06-02",
+     "label": "Friday"
+    },
+    {
+     "day": 4,
+     "date": "2017-06-03",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 14,
+    "artists": 216,
+    "sets": 221
+   }
+  },
+  {
+   "id": "primavera-sound-2016",
+   "festivalId": "primavera-sound",
+   "festivalName": "Primavera Sound",
+   "name": "Primavera Sound 2016",
+   "year": 2016,
+   "timezone": "Europe/Madrid",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2016-06-01",
+     "label": "Wednesday"
+    },
+    {
+     "day": 2,
+     "date": "2016-06-02",
+     "label": "Thursday"
+    },
+    {
+     "day": 3,
+     "date": "2016-06-03",
+     "label": "Friday"
+    },
+    {
+     "day": 4,
+     "date": "2016-06-04",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 14,
+    "artists": 207,
+    "sets": 221
+   }
+  },
+  {
+   "id": "primavera-sound-2015",
+   "festivalId": "primavera-sound",
+   "festivalName": "Primavera Sound",
+   "name": "Primavera Sound 2015",
+   "year": 2015,
+   "timezone": "Europe/Madrid",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2015-05-27",
+     "label": "Wednesday"
+    },
+    {
+     "day": 2,
+     "date": "2015-05-28",
+     "label": "Thursday"
+    },
+    {
+     "day": 3,
+     "date": "2015-05-29",
+     "label": "Friday"
+    },
+    {
+     "day": 4,
+     "date": "2015-05-30",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 11,
+    "artists": 183,
+    "sets": 196
+   }
+  },
+  {
+   "id": "primavera-sound-2012",
+   "festivalId": "primavera-sound",
+   "festivalName": "Primavera Sound",
+   "name": "Primavera Sound 2012",
+   "year": 2012,
+   "timezone": "Europe/Madrid",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2012-05-31",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2012-06-01",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2012-06-02",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 10,
+    "artists": 179,
+    "sets": 191
    }
   },
   {
@@ -3789,6 +4356,295 @@
     "stages": 6,
     "artists": 214,
     "sets": 230
+   }
+  },
+  {
+   "id": "sonar-2022",
+   "festivalId": "sonar",
+   "festivalName": "Sónar Barcelona",
+   "name": "Sónar Barcelona 2022",
+   "year": 2022,
+   "timezone": "Europe/Madrid",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2022-06-16",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2022-06-17",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2022-06-18",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 112,
+    "sets": 115
+   }
+  },
+  {
+   "id": "sonar-2019",
+   "festivalId": "sonar",
+   "festivalName": "Sónar Barcelona",
+   "name": "Sónar Barcelona 2019",
+   "year": 2019,
+   "timezone": "Europe/Madrid",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2019-07-18",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2019-07-19",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2019-07-20",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2019-07-21",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 11,
+    "artists": 133,
+    "sets": 133
+   }
+  },
+  {
+   "id": "sonar-2018",
+   "festivalId": "sonar",
+   "festivalName": "Sónar Barcelona",
+   "name": "Sónar Barcelona 2018",
+   "year": 2018,
+   "timezone": "Europe/Madrid",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2018-06-14",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2018-06-15",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2018-06-16",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2018-06-17",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 13,
+    "artists": 136,
+    "sets": 138
+   }
+  },
+  {
+   "id": "sonar-2017",
+   "festivalId": "sonar",
+   "festivalName": "Sónar Barcelona",
+   "name": "Sónar Barcelona 2017",
+   "year": 2017,
+   "timezone": "Europe/Madrid",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2017-06-14",
+     "label": "Wednesday"
+    },
+    {
+     "day": 2,
+     "date": "2017-06-15",
+     "label": "Thursday"
+    },
+    {
+     "day": 3,
+     "date": "2017-06-16",
+     "label": "Friday"
+    },
+    {
+     "day": 4,
+     "date": "2017-06-17",
+     "label": "Saturday"
+    },
+    {
+     "day": 5,
+     "date": "2017-06-18",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 10,
+    "artists": 139,
+    "sets": 141
+   }
+  },
+  {
+   "id": "sonar-2016",
+   "festivalId": "sonar",
+   "festivalName": "Sónar Barcelona",
+   "name": "Sónar Barcelona 2016",
+   "year": 2016,
+   "timezone": "Europe/Madrid",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2016-06-16",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2016-06-17",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2016-06-18",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 9,
+    "artists": 116,
+    "sets": 118
+   }
+  },
+  {
+   "id": "sziget-2011",
+   "festivalId": "sziget",
+   "festivalName": "Sziget",
+   "name": "Sziget 2011",
+   "year": 2011,
+   "timezone": "Europe/Budapest",
+   "completeness": "selected_stages",
+   "missingStages": [
+    {
+     "stage": "26 other stages and 6 venues",
+     "when": "listed in the programme, days not read"
+    }
+   ],
+   "days": [
+    {
+     "day": 1,
+     "date": "2011-08-08",
+     "label": "Monday"
+    },
+    {
+     "day": 2,
+     "date": "2011-08-09",
+     "label": "Tuesday"
+    },
+    {
+     "day": 3,
+     "date": "2011-08-10",
+     "label": "Wednesday"
+    },
+    {
+     "day": 4,
+     "date": "2011-08-11",
+     "label": "Thursday"
+    },
+    {
+     "day": 5,
+     "date": "2011-08-12",
+     "label": "Friday"
+    },
+    {
+     "day": 6,
+     "date": "2011-08-13",
+     "label": "Saturday"
+    },
+    {
+     "day": 7,
+     "date": "2011-08-14",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 105,
+    "sets": 105
+   }
+  },
+  {
+   "id": "sziget-2010",
+   "festivalId": "sziget",
+   "festivalName": "Sziget",
+   "name": "Sziget 2010",
+   "year": 2010,
+   "timezone": "Europe/Budapest",
+   "completeness": "selected_stages",
+   "missingStages": [
+    {
+     "stage": "13 other stages and 6 venues",
+     "when": "listed in the programme, days not read"
+    }
+   ],
+   "days": [
+    {
+     "day": 1,
+     "date": "2010-08-09",
+     "label": "Monday"
+    },
+    {
+     "day": 2,
+     "date": "2010-08-10",
+     "label": "Tuesday"
+    },
+    {
+     "day": 3,
+     "date": "2010-08-11",
+     "label": "Wednesday"
+    },
+    {
+     "day": 4,
+     "date": "2010-08-12",
+     "label": "Thursday"
+    },
+    {
+     "day": 5,
+     "date": "2010-08-13",
+     "label": "Friday"
+    },
+    {
+     "day": 6,
+     "date": "2010-08-14",
+     "label": "Saturday"
+    },
+    {
+     "day": 7,
+     "date": "2010-08-15",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 146,
+    "sets": 146
    }
   },
   {

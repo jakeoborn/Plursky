@@ -1,0 +1,103 @@
+{
+  "id": "sonar-2019",
+  "method": "official_sources",
+  "official": "https://sonar.es/en",
+  "days": [
+    {
+      "day": 1,
+      "date": "2019-07-18",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://sonar.es/en/2019/schedules",
+          "archivedUrl": "https://web.archive.org/web/20190817210830/https://sonar.es/en/2019/schedules",
+          "captureTimestamp": "20190817210830",
+          "printed": "Thursday 18 | Sónar by Day",
+          "sha256": "50deeeded850ecfaa943dc394dfb41238071e77db9f7b1d03856a71fc1a16ceb",
+          "bytes": 401816,
+          "rows": 30,
+          "format": "sonar-calendar",
+          "named": "Sonar Sónar Barcelona 2019",
+          "sessions": [
+            "Thursday 18 | Sónar by Day: 13:00 to 00:00"
+          ],
+          "stages": 5,
+          "times": "24-hour ranges, each inside its session's own hours; a night set after midnight is that night's"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2019-07-19",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://sonar.es/en/2019/schedules",
+          "archivedUrl": "https://web.archive.org/web/20190817210830/https://sonar.es/en/2019/schedules",
+          "captureTimestamp": "20190817210830",
+          "printed": "Friday 19 | Sónar by Day · Friday 19 | Sónar by Night",
+          "sha256": "50deeeded850ecfaa943dc394dfb41238071e77db9f7b1d03856a71fc1a16ceb",
+          "bytes": 401816,
+          "rows": 52,
+          "format": "sonar-calendar",
+          "named": "Sonar Sónar Barcelona 2019",
+          "sessions": [
+            "Friday 19 | Sónar by Day: 13:00 to 00:00",
+            "Friday 19 | Sónar by Night: 20:00 to 07:00"
+          ],
+          "stages": 10,
+          "times": "24-hour ranges, each inside its session's own hours; a night set after midnight is that night's"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2019-07-20",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://sonar.es/en/2019/schedules",
+          "archivedUrl": "https://web.archive.org/web/20190817210830/https://sonar.es/en/2019/schedules",
+          "captureTimestamp": "20190817210830",
+          "printed": "Saturday 20 | Sónar by Day · Saturday 20 | Sónar by Night",
+          "sha256": "50deeeded850ecfaa943dc394dfb41238071e77db9f7b1d03856a71fc1a16ceb",
+          "bytes": 401816,
+          "rows": 50,
+          "format": "sonar-calendar",
+          "named": "Sonar Sónar Barcelona 2019",
+          "sessions": [
+            "Saturday 20 | Sónar by Day: 13:00 to 00:00",
+            "Saturday 20 | Sónar by Night: 20:00 to 07:00"
+          ],
+          "stages": 9,
+          "times": "24-hour ranges, each inside its session's own hours; a night set after midnight is that night's"
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2019-07-21",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://sonar.es/en/2019/schedules",
+          "archivedUrl": "https://web.archive.org/web/20190817210830/https://sonar.es/en/2019/schedules",
+          "captureTimestamp": "20190817210830",
+          "printed": "Sunday 21 | Sónar by Night",
+          "sha256": "50deeeded850ecfaa943dc394dfb41238071e77db9f7b1d03856a71fc1a16ceb",
+          "bytes": 401816,
+          "rows": 1,
+          "format": "sonar-calendar",
+          "named": "Sonar Sónar Barcelona 2019",
+          "sessions": [
+            "Sunday 21 | Sónar by Night: 20:00 to 07:00"
+          ],
+          "stages": 1,
+          "times": "24-hour ranges, each inside its session's own hours; a night set after midnight is that night's"
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": []
+}

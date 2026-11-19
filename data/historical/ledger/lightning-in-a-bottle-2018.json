@@ -1,0 +1,145 @@
+{
+  "id": "lightning-in-a-bottle-2018",
+  "method": "official_sources",
+  "official": "https://lightninginabottle.org/lineup/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2018-05-24",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://lib2018.dostff.co/embeds/lineup.js",
+          "archivedUrl": "https://web.archive.org/web/20181121121544/https://lib2018.dostff.co/embeds/lineup.js",
+          "captureTimestamp": "20181121121544",
+          "printed": "2018-05-24",
+          "sha256": "537053d217e6dff29e3ea031b1e120b78c0b8d9027231e55ab41ced7bb040c74",
+          "bytes": 635750,
+          "rows": 32,
+          "format": "dostuff-embed",
+          "run": "2018-05-23 to 2018-05-28",
+          "timezone": "America/Los_Angeles",
+          "grouping": "Music",
+          "stages": 6,
+          "embeddedBy": {
+            "url": "https://lightninginabottle.org/lineup/",
+            "archivedUrl": "https://web.archive.org/web/20181104142540/https://lightninginabottle.org/lineup/",
+            "captureTimestamp": "20181104142540",
+            "loads": "https://lib2018.dostff.co/embeds/lineup.js"
+          },
+          "times": "each set's start and end with its UTC offset, which is the festival's time zone's; a set shared by two acts is drawn under each with one id and counted once",
+          "sharedSets": [
+            "Desert Hearts Lakeside Launch Party (under LEE REYNOLDS, MIKEY LION, Marbs, Porky)"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2018-05-25",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://lib2018.dostff.co/embeds/lineup.js",
+          "archivedUrl": "https://web.archive.org/web/20181121121544/https://lib2018.dostff.co/embeds/lineup.js",
+          "captureTimestamp": "20181121121544",
+          "printed": "2018-05-25",
+          "sha256": "537053d217e6dff29e3ea031b1e120b78c0b8d9027231e55ab41ced7bb040c74",
+          "bytes": 635750,
+          "rows": 66,
+          "format": "dostuff-embed",
+          "run": "2018-05-23 to 2018-05-28",
+          "timezone": "America/Los_Angeles",
+          "grouping": "Music",
+          "stages": 9,
+          "embeddedBy": {
+            "url": "https://lightninginabottle.org/lineup/",
+            "archivedUrl": "https://web.archive.org/web/20181104142540/https://lightninginabottle.org/lineup/",
+            "captureTimestamp": "20181104142540",
+            "loads": "https://lib2018.dostff.co/embeds/lineup.js"
+          },
+          "times": "each set's start and end with its UTC offset, which is the festival's time zone's; a set shared by two acts is drawn under each with one id and counted once",
+          "sharedSets": [
+            "Luke Redford, Nico Sun (under Luke Redford, Nico Sun)",
+            "Nico Sun, Luke Redford (under Luke Redford, Nico Sun)"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2018-05-26",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://lib2018.dostff.co/embeds/lineup.js",
+          "archivedUrl": "https://web.archive.org/web/20181121121544/https://lib2018.dostff.co/embeds/lineup.js",
+          "captureTimestamp": "20181121121544",
+          "printed": "2018-05-26",
+          "sha256": "537053d217e6dff29e3ea031b1e120b78c0b8d9027231e55ab41ced7bb040c74",
+          "bytes": 635750,
+          "rows": 63,
+          "format": "dostuff-embed",
+          "run": "2018-05-23 to 2018-05-28",
+          "timezone": "America/Los_Angeles",
+          "grouping": "Music",
+          "stages": 10,
+          "embeddedBy": {
+            "url": "https://lightninginabottle.org/lineup/",
+            "archivedUrl": "https://web.archive.org/web/20181104142540/https://lightninginabottle.org/lineup/",
+            "captureTimestamp": "20181104142540",
+            "loads": "https://lib2018.dostff.co/embeds/lineup.js"
+          },
+          "times": "each set's start and end with its UTC offset, which is the festival's time zone's; a set shared by two acts is drawn under each with one id and counted once",
+          "sharedSets": [
+            "Tipper, Plus a special performance by Android Jones (under Plus a special performance by Android Jones, Tipper)"
+          ],
+          "programmeShows": 1,
+          "programmeStages": [
+            "Yoga Sol"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2018-05-27",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://lib2018.dostff.co/embeds/lineup.js",
+          "archivedUrl": "https://web.archive.org/web/20181121121544/https://lib2018.dostff.co/embeds/lineup.js",
+          "captureTimestamp": "20181121121544",
+          "printed": "2018-05-27",
+          "sha256": "537053d217e6dff29e3ea031b1e120b78c0b8d9027231e55ab41ced7bb040c74",
+          "bytes": 635750,
+          "rows": 63,
+          "format": "dostuff-embed",
+          "run": "2018-05-23 to 2018-05-28",
+          "timezone": "America/Los_Angeles",
+          "grouping": "Music",
+          "stages": 9,
+          "embeddedBy": {
+            "url": "https://lightninginabottle.org/lineup/",
+            "archivedUrl": "https://web.archive.org/web/20181104142540/https://lightninginabottle.org/lineup/",
+            "captureTimestamp": "20181104142540",
+            "loads": "https://lib2018.dostff.co/embeds/lineup.js"
+          },
+          "times": "each set's start and end with its UTC offset, which is the festival's time zone's; a set shared by two acts is drawn under each with one id and counted once"
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "day": 3,
+      "stage": "Yoga Sol",
+      "start": "20:30",
+      "end": "22:00",
+      "billing": "Poranguí",
+      "reason": "Yoga Sol holds yoga, movement and meditation sessions, not music sets",
+      "programme": true
+    }
+  ],
+  "dropped": []
+}
