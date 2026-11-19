@@ -15,7 +15,7 @@
 - [x] #506 Lollapalooza 2018 by day and stage · #507 Governors Ball 2013–2015
 - [x] #509 Primavera Sound 2015 · #511 Primavera 2016–2019 · #513 Primavera 2012 (data only, v645)
 - [x] #514 Outside Lands + Lightning in a Bottle past editions · #516 Sónar Barcelona past editions (data only, v645)
-- [x] #510 Top-tier round 2 · #517 Sziget 2010/2011 set times · #518 festival pages list every dated past year · #519 / #520 year census batches 1 and 2 (v646)
+- [x] #510 Top-tier round 2 · #517 Sziget 2010/2011 set times · #518 festival pages list every dated past year · #519 / #520 year census batches 1 and 2 · #521 past years for 8 festivals · #523 year census batch 4 (v646)
 
 **Open (Claude Plur), none live yet:**
 - [ ] W2 #500 Decadence venue source @ `a928bc11` (v650): merge lane, then live-verify the pages
