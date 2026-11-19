@@ -99,7 +99,11 @@ export function check(text) {
   const t = (ok, msg) => { n++; if (!ok) fails.push(msg); };
   const { header, rows } = parse(text);
   t(header === HEADER, "the header is exact");
-  t(rows.length === 425, `25 families × 17 years = 425 rows (got ${rows.length})`);
+  // Every family carries one row for each year 2010-2026 (33 families since batch 1 of the year census).
+  const fams = [...new Set(rows.map(r => r.family))];
+  t(fams.length === 33, `33 families (got ${fams.length})`);
+  t(rows.length === fams.length * 17, `${fams.length} families × 17 years = ${fams.length * 17} rows (got ${rows.length})`);
+  for (const f of fams) { const ys = rows.filter(r => r.family === f).map(r => +r.year).sort((a, b) => a - b).join(); if (ys !== Array.from({ length: 17 }, (_, i) => 2010 + i).join()) fails.push(`${f}: years are not exactly 2010-2026`); }
   const seen = new Set();
   for (const r of rows) {
     const id = `${r.family} ${r.year}`;
