@@ -1138,6 +1138,43 @@
    }
   },
   {
+   "id": "defqon1-2015",
+   "festivalId": "defqon1",
+   "festivalName": "Defqon.1",
+   "name": "Defqon.1 2015",
+   "year": 2015,
+   "timezone": "Europe/Amsterdam",
+   "completeness": "selected_stages",
+   "missingStages": [
+    {
+     "stage": "Closing",
+     "when": "Sunday 20:00 till 23:00 at the Red; the page lists its acts without their own times"
+    }
+   ],
+   "days": [
+    {
+     "day": 1,
+     "date": "2015-06-19",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2015-06-20",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2015-06-21",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 14,
+    "artists": 219,
+    "sets": 221
+   }
+  },
+  {
    "id": "dreamstate-socal-2025",
    "festivalId": "dreamstate-socal",
    "festivalName": "Dreamstate SoCal",
@@ -4645,6 +4682,52 @@
     "stages": 5,
     "artists": 146,
     "sets": 146
+   }
+  },
+  {
+   "id": "tomorrowland-2024",
+   "festivalId": "tomorrowland",
+   "festivalName": "Tomorrowland",
+   "name": "Tomorrowland 2024",
+   "year": 2024,
+   "timezone": "Europe/Brussels",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2024-07-19",
+     "label": "Weekend 1 · Friday"
+    },
+    {
+     "day": 2,
+     "date": "2024-07-20",
+     "label": "Weekend 1 · Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2024-07-21",
+     "label": "Weekend 1 · Sunday"
+    },
+    {
+     "day": 4,
+     "date": "2024-07-26",
+     "label": "Weekend 2 · Friday"
+    },
+    {
+     "day": 5,
+     "date": "2024-07-27",
+     "label": "Weekend 2 · Saturday"
+    },
+    {
+     "day": 6,
+     "date": "2024-07-28",
+     "label": "Weekend 2 · Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 15,
+    "artists": 675,
+    "sets": 0
    }
   },
   {
