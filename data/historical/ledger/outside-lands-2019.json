@@ -1,0 +1,515 @@
+{
+  "id": "outside-lands-2019",
+  "method": "official_sources",
+  "official": "https://sfoutsidelands.com/lineup/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2019-08-09",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://sfosl19.dostff.co/embeds/lineup.js",
+          "archivedUrl": "https://web.archive.org/web/20190820205437/https://sfosl19.dostff.co/embeds/lineup.js",
+          "captureTimestamp": "20190820205437",
+          "printed": "2019-08-09",
+          "sha256": "b30bda57bd63436f1acd25728ff39dab30c3c5fe6331a18f8607a567418f58f4",
+          "bytes": 465618,
+          "rows": 31,
+          "format": "dostuff-embed",
+          "run": "2019-08-09 to 2019-08-11",
+          "timezone": "America/Los_Angeles",
+          "grouping": "Interactive Lineup",
+          "stages": 8,
+          "embeddedBy": {
+            "url": "https://www.sfoutsidelands.com/lineup/",
+            "archivedUrl": "https://web.archive.org/web/20190824062635/https://www.sfoutsidelands.com/lineup/",
+            "captureTimestamp": "20190824062635",
+            "loads": "https://sfosl19.dostff.co/embeds/lineup.js",
+            "via": {
+              "url": "https://www.sfoutsidelands.com/assets/js/dist/main.js?v=1566427100111989000",
+              "archivedUrl": "https://web.archive.org/web/20190824062646/https://www.sfoutsidelands.com/assets/js/dist/main.js?v=1566427100111989000",
+              "captureTimestamp": "20190824062646",
+              "setsSrc": "https://sfosl19.dostff.co/embeds/lineup.js"
+            }
+          },
+          "times": "each set's start and end with its UTC offset, which is the festival's time zone's; a set shared by two acts is drawn under each with one id and counted once",
+          "billing": "the widget's options print show_performance_titles false, so each set is drawn under its act's name, not its title, and billed as that act; a set drawn under several acts is billed as its title, the festival's one name for the shared set",
+          "sharedSets": [
+            "Dillagence and Rich Table Present - Donuts (under Dillagence, Jessica McKenna, Rich Table: Sarah & Evan Rich)",
+            "Susan Feniger and Adam Duritz (under Adam Duritz, Jessica McKenna, Susan Feniger)",
+            "Alyssa Edwards and Melissa King's Secret Recipes (under Alyssa Edwards, Jessica McKenna, Melissa King)",
+            "Snack Cabaret by Boyfriend and Chris Cosentino (under Boyfriend, Chris Cosentino, Jessica McKenna)",
+            "Red Room Orchestra Play The Music Of \"The Big Lebowski\" (under Red Room Orchestra Play The Music Of \"The Big Lebowski\", Tony Danza: Standards & Stories)",
+            "Jimmy O. Yang, Dulcé Sloan, Nore Davis, Nori Reed (under Dulcé Sloan, JIMMY O. YANG, Nore Davis, Nori Reed)",
+            "Alyssa Edwards feat. Dulcé Sloan (under Alyssa Edwards, Dulcé Sloan)"
+          ],
+          "foodShows": 9,
+          "foodStages": [
+            "GastroMagic",
+            "Cocktail Magic"
+          ],
+          "comedyShows": 5,
+          "comedyStage": "The Barbary"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2019-08-10",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://sfosl19.dostff.co/embeds/lineup.js",
+          "archivedUrl": "https://web.archive.org/web/20190820205437/https://sfosl19.dostff.co/embeds/lineup.js",
+          "captureTimestamp": "20190820205437",
+          "printed": "2019-08-10",
+          "sha256": "b30bda57bd63436f1acd25728ff39dab30c3c5fe6331a18f8607a567418f58f4",
+          "bytes": 465618,
+          "rows": 31,
+          "format": "dostuff-embed",
+          "run": "2019-08-09 to 2019-08-11",
+          "timezone": "America/Los_Angeles",
+          "grouping": "Interactive Lineup",
+          "stages": 8,
+          "embeddedBy": {
+            "url": "https://www.sfoutsidelands.com/lineup/",
+            "archivedUrl": "https://web.archive.org/web/20190824062635/https://www.sfoutsidelands.com/lineup/",
+            "captureTimestamp": "20190824062635",
+            "loads": "https://sfosl19.dostff.co/embeds/lineup.js",
+            "via": {
+              "url": "https://www.sfoutsidelands.com/assets/js/dist/main.js?v=1566427100111989000",
+              "archivedUrl": "https://web.archive.org/web/20190824062646/https://www.sfoutsidelands.com/assets/js/dist/main.js?v=1566427100111989000",
+              "captureTimestamp": "20190824062646",
+              "setsSrc": "https://sfosl19.dostff.co/embeds/lineup.js"
+            }
+          },
+          "times": "each set's start and end with its UTC offset, which is the festival's time zone's; a set shared by two acts is drawn under each with one id and counted once",
+          "billing": "the widget's options print show_performance_titles false, so each set is drawn under its act's name, not its title, and billed as that act; a set drawn under several acts is billed as its title, the festival's one name for the shared set",
+          "sharedSets": [
+            "Back-to-Back Chef w/ Bon Appétit's Molly Baz and Ella Mai (under Adam Rapoport, Ella Mai, Molly Baz)",
+            "Jessica Koslow and Big Wild w/ Bon Appétit's Adam Rapoport (under Adam Rapoport, Big Wild, Jessica Koslow)",
+            "Slurpers w/ Bon Appétit's Andy Baraghani and CupcakKe (under Adam Rapoport, Andy Baraghani, CupCakKe)",
+            "The Bon Appétit Test Kitchen Live w/ Jimmy O. Yang (under Adam Rapoport, Andy Baraghani, JIMMY O. YANG, Molly Baz)",
+            "Jimmy O. Yang, Dulcé Sloan, Nore Davis, Nori Reed (under Dulcé Sloan, JIMMY O. YANG, Nore Davis, Nori Reed)",
+            "Mike Birbiglia, Aparna Nancherla, Rhea Butcher (under Aparna Nancherla, Mike Birbiglia, Rhea Butcher)",
+            "Mike Birbiglia, Aparna Nancherla, Rhea Butcher (under Aparna Nancherla, Mike Birbiglia, Rhea Butcher)",
+            "As You Like It Ft. MossMoss & Rich Korach (under As You Like It Ft. Mossmoss & Rich Korach, Mossmoss [AYLI], Rich Korach [AYLI])"
+          ],
+          "foodShows": 8,
+          "foodStages": [
+            "GastroMagic",
+            "Cocktail Magic"
+          ],
+          "comedyShows": 5,
+          "comedyStage": "The Barbary"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2019-08-11",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://sfosl19.dostff.co/embeds/lineup.js",
+          "archivedUrl": "https://web.archive.org/web/20190820205437/https://sfosl19.dostff.co/embeds/lineup.js",
+          "captureTimestamp": "20190820205437",
+          "printed": "2019-08-11",
+          "sha256": "b30bda57bd63436f1acd25728ff39dab30c3c5fe6331a18f8607a567418f58f4",
+          "bytes": 465618,
+          "rows": 32,
+          "format": "dostuff-embed",
+          "run": "2019-08-09 to 2019-08-11",
+          "timezone": "America/Los_Angeles",
+          "grouping": "Interactive Lineup",
+          "stages": 8,
+          "embeddedBy": {
+            "url": "https://www.sfoutsidelands.com/lineup/",
+            "archivedUrl": "https://web.archive.org/web/20190824062635/https://www.sfoutsidelands.com/lineup/",
+            "captureTimestamp": "20190824062635",
+            "loads": "https://sfosl19.dostff.co/embeds/lineup.js",
+            "via": {
+              "url": "https://www.sfoutsidelands.com/assets/js/dist/main.js?v=1566427100111989000",
+              "archivedUrl": "https://web.archive.org/web/20190824062646/https://www.sfoutsidelands.com/assets/js/dist/main.js?v=1566427100111989000",
+              "captureTimestamp": "20190824062646",
+              "setsSrc": "https://sfosl19.dostff.co/embeds/lineup.js"
+            }
+          },
+          "times": "each set's start and end with its UTC offset, which is the festival's time zone's; a set shared by two acts is drawn under each with one id and counted once",
+          "billing": "the widget's options print show_performance_titles false, so each set is drawn under its act's name, not its title, and billed as that act; a set drawn under several acts is billed as its title, the festival's one name for the shared set",
+          "sharedSets": [
+            "Puddles Pity Party & Souvla Throw a Pita Party (under Matt Besser, Puddles Pity Party, Tony Cervone of Souvla)",
+            "Anderson .Paak & The Free Nationals and Roy Choi (under Anderson .Paak & The Free Nationals, Matt Besser, Roy Choi)",
+            "Michael Solomonov and Cherry Glazerr (under Cherry Glazerr, Matt Besser, Michael Solomonov)",
+            "Beignets and Bounce Brunch w/ Brenda's and Katey Red (under Brenda Buenviaje, Katey Red, Matt Besser)",
+            "NPR's All Things Considered: Audie Cornish and Aparna Nancherla Live (under Aparna Nancherla, NPR's All Things Considered: Audie Cornish and Aparna Nancherla Live)",
+            "Voyage To The Stars Live! With Colton Dunn, Felicia Day, and Janet Varney Ft. Special Guest Paul F. Tompkins (under Paul F. Tompkins, Voyage To The Stars Live! With Colton Dunn, Felicia Day & Janet Varney with Special Guest Paul F.  Tompkins)",
+            "Off Book: The Improvised Musical with Jessica McKenna and Zach Reino Ft. Paul F. Tompkins (under OFF BOOK: THE IMPROVISED MUSICAL with Jessica McKenna and Zach Reino, Paul F. Tompkins)"
+          ],
+          "foodShows": 8,
+          "foodStages": [
+            "GastroMagic",
+            "Cocktail Magic"
+          ],
+          "comedyShows": 4,
+          "comedyStage": "The Barbary"
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "day": 1,
+      "stage": "Cocktail Magic",
+      "start": "12:00",
+      "end": "13:50",
+      "billing": "Jon Armstrong",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 1,
+      "stage": "Cocktail Magic",
+      "start": "15:05",
+      "end": "16:05",
+      "billing": "Monster Rally",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 1,
+      "stage": "Cocktail Magic",
+      "start": "16:25",
+      "end": "16:55",
+      "billing": "Jon Armstrong",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 1,
+      "stage": "Cocktail Magic",
+      "start": "18:15",
+      "end": "18:40",
+      "billing": "Jon Armstrong",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 1,
+      "stage": "Cocktail Magic",
+      "start": "19:25",
+      "end": "20:25",
+      "billing": "ZEBUEL",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 1,
+      "stage": "GastroMagic",
+      "start": "14:50",
+      "end": "15:20",
+      "billing": "Dillagence and Rich Table Present - Donuts",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 1,
+      "stage": "GastroMagic",
+      "start": "16:10",
+      "end": "16:40",
+      "billing": "Susan Feniger and Adam Duritz",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 1,
+      "stage": "GastroMagic",
+      "start": "17:30",
+      "end": "18:00",
+      "billing": "Alyssa Edwards and Melissa King's Secret Recipes",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 1,
+      "stage": "GastroMagic",
+      "start": "18:50",
+      "end": "19:20",
+      "billing": "Snack Cabaret by Boyfriend and Chris Cosentino",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 1,
+      "stage": "The Barbary",
+      "start": "12:30",
+      "end": "13:20",
+      "billing": "Jaron Lanier: Virtual Reality is the Opposite of Artificial Intelligence",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 1,
+      "stage": "The Barbary",
+      "start": "14:15",
+      "end": "15:15",
+      "billing": "Red Room Orchestra Play The Music Of \"The Big Lebowski\"",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 1,
+      "stage": "The Barbary",
+      "start": "16:00",
+      "end": "17:15",
+      "billing": "Tony Danza: Standards & Stories",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 1,
+      "stage": "The Barbary",
+      "start": "17:50",
+      "end": "18:50",
+      "billing": "Jimmy O. Yang, Dulcé Sloan, Nore Davis, Nori Reed",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 1,
+      "stage": "The Barbary",
+      "start": "19:20",
+      "end": "20:05",
+      "billing": "Alyssa Edwards feat. Dulcé Sloan",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 2,
+      "stage": "Cocktail Magic",
+      "start": "13:50",
+      "end": "14:20",
+      "billing": "Jon Armstrong",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 2,
+      "stage": "Cocktail Magic",
+      "start": "16:20",
+      "end": "17:05",
+      "billing": "Amo Amo",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 2,
+      "stage": "Cocktail Magic",
+      "start": "17:55",
+      "end": "18:25",
+      "billing": "Jon Armstrong",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 2,
+      "stage": "Cocktail Magic",
+      "start": "19:30",
+      "end": "20:25",
+      "billing": "Monster Rally",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 2,
+      "stage": "GastroMagic",
+      "start": "13:55",
+      "end": "14:25",
+      "billing": "Back-to-Back Chef w/ Bon Appétit's Molly Baz and Ella Mai",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 2,
+      "stage": "GastroMagic",
+      "start": "15:10",
+      "end": "15:40",
+      "billing": "Jessica Koslow and Big Wild w/ Bon Appétit's Adam Rapoport",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 2,
+      "stage": "GastroMagic",
+      "start": "16:25",
+      "end": "16:55",
+      "billing": "Slurpers w/ Bon Appétit's Andy Baraghani and CupcakKe",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 2,
+      "stage": "GastroMagic",
+      "start": "17:45",
+      "end": "18:15",
+      "billing": "The Bon Appétit Test Kitchen Live w/ Jimmy O. Yang",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 2,
+      "stage": "The Barbary",
+      "start": "13:25",
+      "end": "14:10",
+      "billing": "Ear Hustle: A Conversation with Nigel Poor & Earlonne Woods moderated by Snap Judgment's Glynn Washington",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 2,
+      "stage": "The Barbary",
+      "start": "14:40",
+      "end": "15:40",
+      "billing": "Jimmy O. Yang, Dulcé Sloan, Nore Davis, Nori Reed",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 2,
+      "stage": "The Barbary",
+      "start": "16:10",
+      "end": "17:10",
+      "billing": "Mike Birbiglia, Aparna Nancherla, Rhea Butcher",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 2,
+      "stage": "The Barbary",
+      "start": "17:40",
+      "end": "18:40",
+      "billing": "Tiny Meat Gang Live W/ Cody Ko & Noel Miller",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 2,
+      "stage": "The Barbary",
+      "start": "19:10",
+      "end": "20:10",
+      "billing": "Mike Birbiglia, Aparna Nancherla, Rhea Butcher",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 3,
+      "stage": "Cocktail Magic",
+      "start": "14:20",
+      "end": "14:50",
+      "billing": "Jon Armstrong",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 3,
+      "stage": "Cocktail Magic",
+      "start": "15:40",
+      "end": "16:40",
+      "billing": "Black Taffy",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 3,
+      "stage": "Cocktail Magic",
+      "start": "17:10",
+      "end": "17:40",
+      "billing": "Jon Armstrong",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 3,
+      "stage": "Cocktail Magic",
+      "start": "18:25",
+      "end": "19:25",
+      "billing": "ZEBUEL",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 3,
+      "stage": "GastroMagic",
+      "start": "13:55",
+      "end": "14:25",
+      "billing": "Puddles Pity Party & Souvla Throw a Pita Party",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 3,
+      "stage": "GastroMagic",
+      "start": "15:10",
+      "end": "15:40",
+      "billing": "Anderson .Paak & The Free Nationals and Roy Choi",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 3,
+      "stage": "GastroMagic",
+      "start": "16:30",
+      "end": "17:00",
+      "billing": "Michael Solomonov and Cherry Glazerr",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 3,
+      "stage": "GastroMagic",
+      "start": "17:40",
+      "end": "18:10",
+      "billing": "Beignets and Bounce Brunch w/ Brenda's and Katey Red",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 3,
+      "stage": "The Barbary",
+      "start": "13:15",
+      "end": "14:15",
+      "billing": "NPR's All Things Considered: Audie Cornish and Aparna Nancherla Live",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 3,
+      "stage": "The Barbary",
+      "start": "14:45",
+      "end": "15:45",
+      "billing": "Voyage To The Stars Live! With Colton Dunn, Felicia Day, and Janet Varney Ft. Special Guest Paul F. Tompkins",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 3,
+      "stage": "The Barbary",
+      "start": "16:20",
+      "end": "17:05",
+      "billing": "Puddles Pity Party",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 3,
+      "stage": "The Barbary",
+      "start": "17:40",
+      "end": "18:40",
+      "billing": "Off Book: The Improvised Musical with Jessica McKenna and Zach Reino Ft. Paul F. Tompkins",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    }
+  ],
+  "dropped": []
+}

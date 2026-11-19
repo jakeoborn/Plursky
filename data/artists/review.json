@@ -455,11 +455,46 @@
   "why": "Left as printed: whether the parenthetical names the act this artist plays in or a separate act is not sourced (the Bunny (Rabbit in the Moon) rule), so the billing is neither merged with the bare name nor credited to the act it names."
  },
  {
+  "id": "governors-ball-2015:d1:govballnyc-stage:1930:florence-the-machine",
+  "printed": "Florence + The Machine",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
   "id": "governors-ball-2019:d2:govballnyc-stage:2115:florence-the-machine",
   "printed": "FLORENCE + THE MACHINE",
   "reason": "\"+\" billing",
   "pending": true,
   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "lightning-in-a-bottle-2018:d4:crossroads:2130:comunit-takeover-w-itzone-jonn-wuuan",
+  "printed": "Comunit Takeover w/ Itzone, Jonn, Wuuan",
+  "reason": "feat / with billing",
+  "pending": true,
+  "why": "Left as printed: a crew's takeover of the stage with its DJs listed; whether the takeover is one set or three, and who \"Comunit\" names, is not sourced. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "lightning-in-a-bottle-2019:d3:grand-artique:0115:carlo-x-ofier",
+  "printed": "Carlo x Ofier",
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"x\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "lightning-in-a-bottle-2019:d3:thunder:2025:soulection-ft-joe-kay-sasha-marie-and-andres",
+  "printed": "SOULECTION ft Joe Kay, Sasha Marie & Andres",
+  "reason": "feat / with billing",
+  "pending": true,
+  "why": "Left as printed: the printing does not settle whether the \"&\" joins two guests or names one act, so the guests are not split (the A Family Affair rule). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "lightning-in-a-bottle-2019:d4:beacon:0245:andres-soulection",
+  "printed": "Andres (SOULECTION)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed: the parenthetical names the crew the DJ is known from, but \"Andres\" alone could be any act of that name, so the billing is not reduced to it. Renders as its own billing until a first-party page rules it."
  },
  {
   "id": "lollapalooza-2012:d3:bud-light:1815:florence-the-machine",
@@ -532,6 +567,104 @@
   "why": "Left as printed: whether this is a Rabbit in the Moon member's set or a separate act is not sourced, so it is neither merged nor credited to Rabbit in the Moon."
  },
  {
+  "id": "outside-lands-2018:d2:lands-end:2025:florence-the-machine",
+  "printed": "Florence + the Machine",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "outside-lands-2018:d2:twin-peaks:1720:sob-x-rbe",
+  "printed": "SOB x RBE",
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"x\" is not sourced (it can be one name: never split on \"x\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "outside-lands-2019:d2:the-house-by-heineken:1200:groove-well-ft-soulfunky-j-key-and-ledet",
+  "printed": "Groove Well Ft. Soulfunky J-Key & Ledet",
+  "reason": "feat / with billing",
+  "pending": true,
+  "why": "Left as printed: the printing does not settle whether the \"&\" joins two guests or names one act, so the guests are not split (the A Family Affair rule). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "outside-lands-2019:d2:the-house-by-heineken:1345:as-you-like-it-ft-mossmoss-and-rich-korach",
+  "printed": "As You Like It Ft. MossMoss & Rich Korach",
+  "reason": "feat / with billing",
+  "pending": true,
+  "why": "Left as printed: the printing does not settle whether the \"&\" joins two guests or names one act, so the guests are not split (the A Family Affair rule). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "outside-lands-2023:d1:twin-peaks:1720:diesel-shaquille-o-neal",
+  "printed": "Diesel (Shaquille O'Neal)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed: the page prints no \"aka\", so whether the parenthetical gives the same act's other name or a separate act is not sourced (the Bunny (Rabbit in the Moon) rule); the billing is neither merged nor credited to Shaquille O'Neal."
+ },
+ {
+  "id": "outside-lands-2023:d3:hard-french-dolores:1820:hard-french-x-brown-amy-featuring-carrieondisco-and-oscar-ew",
+  "printed": "Hard French x Brown Amy featuring CarrieOnDisco and Oscar (EW)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"x\" is not sourced, and the guests' \"and\" and the \"(EW)\" parenthetical may each be one name or two. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "primavera-sound-2016:d2:ray-ban:0400:optimo-espacio",
+  "printed": "OPTIMO (ESPACIO)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed, one act: the parenthetical may name the act's own club night or the people behind it, and no first-party page says which. Renders as its own billing until one rules it."
+ },
+ {
+  "id": "primavera-sound-2018:d2:xiringuito-aperol:1200:josey-rebelle-champion-daphni-four-tet-four-tet-presents-four-tet-presents",
+  "printed": "JOSEY REBELLE / CHAMPION / DAPHNI / FOUR TET / FOUR TET PRESENTS (FOUR TET PRESENTS)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "A curated day billed under its curator (\"… PRESENTS\"), its names joined by \"/\": the page prints one block for the whole day and does not say which names play when, or whether each is an act of its own. The billing renders as printed until a source rules it."
+ },
+ {
+  "id": "primavera-sound-2018:d4:xiringuito-aperol:1200:orpheu-the-wizard-palmbomen-ii-dekmantel-soundsystem-palms-trax-dekmantel-presents-dekmantel-presents",
+  "printed": "ORPHEU THE WIZARD / PALMBOMEN II / DEKMANTEL SOUNDSYSTEM / PALMS TRAX / DEKMANTEL PRESENTS (DEKMANTEL PRESENTS)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "A curated day billed under its curator (\"… PRESENTS\"), its names joined by \"/\": the page prints one block for the whole day and does not say which names play when, or whether each is an act of its own. The billing renders as printed until a source rules it."
+ },
+ {
+  "id": "primavera-sound-2019:d2:xiringuito-aperol:1515:shakti-alliance-ivy-modet-vir",
+  "printed": "SHAKTI ALLIANCE (IVY, MODET, VIR)",
+  "reason": "parenthetical names people",
+  "pending": true,
+  "why": "Left as printed, one act: the parenthetical names the people or crew behind the billing, but no first-party page says how it splits. Renders as its own billing until one rules it."
+ },
+ {
+  "id": "primavera-sound-2019:d3:your-heineken-stage:1830:birkins-feat-ken-stringfellow-play-ziggy-stardust",
+  "printed": "BIRKINS FEAT. KEN STRINGFELLOW PLAY ZIGGY STARDUST",
+  "reason": "feat / with billing",
+  "pending": true,
+  "why": "Left as printed, one act: the billing is a show (an album played live) with a guest, and no first-party page says where the guest name ends and the show title begins. Renders as its own billing until one rules it."
+ },
+ {
+  "id": "primavera-sound-2019:d3:your-heineken-stage:2150:el-mato-a-un-policia-motorizado-feat-amaia-j-y-manu-ferron",
+  "printed": "EL MATÓ A UN POLICÍA MOTORIZADO FEAT. AMAIA, J Y MANU FERRÓN",
+  "reason": "feat / with billing",
+  "pending": true,
+  "why": "Left as printed, one act: one guest is printed as the single letter \"J\", which cannot be told apart from other acts of that name without a first-party page. Renders as its own billing until one rules it."
+ },
+ {
+  "id": "primavera-sound-2019:d3:lotus:2235:tony-touch-and-friends-don-chezina-soni-withaneye",
+  "printed": "TONY TOUCH & FRIENDS (DON CHEZINA + SONI WITHANEYE)",
+  "reason": "parenthetical names people",
+  "pending": true,
+  "why": "Left as printed, one act: the parenthetical names the people or crew behind the billing, but no first-party page says how it splits. Renders as its own billing until one rules it."
+ },
+ {
+  "id": "primavera-sound-2019:d4:night-pro:1630:p-postman-ft-emergency-tiara-darko-and-mahkenna-dj-unknown",
+  "printed": "P POSTMAN FT. EMERGENCY TIARA, DARKO & MAHKENNA, DJ UNKNOWN",
+  "reason": "feat / with billing",
+  "pending": true,
+  "why": "Left as printed, one act: the printing does not say whether \"DARKO & MAHKENNA\" is one act or two, and no first-party page rules it. Renders as its own billing until one rules it."
+ },
+ {
   "id": "shambhala-2011:d3:labyrinth:0700:dj-solar-of-deliria",
   "printed": "DJ Solar (of Deliria)",
   "reason": "parenthetical is not a known set tag",
@@ -600,6 +733,41 @@
   "reason": "\"x\" billing whose sides are not both known acts",
   "pending": true,
   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it. (Shambhala 2024 prints \"TF Marz B2B Parkbreezy\" as its own billing.)"
+ },
+ {
+  "id": "sonar-2016:d2:sonarvillage-by-estrella-damm:1800:congo-natty-feat-congo-dubz-tenor-fly-nanci-and-phoebe",
+  "printed": "Congo Natty feat. Congo Dubz, Tenor Fly, Nãnci & Phoebe",
+  "reason": "feat / with billing",
+  "pending": true,
+  "why": "Left as printed: the printing does not settle whether \"Nãnci & Phoebe\" is one guest act or two, so the guests are not split. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "sonar-2016:d3:sonarhall:1430:bruna-and-wooky-alba-g-corral",
+  "printed": "bRUNA & Wooky + Alba G. Corral",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed: whether \"bRUNA & Wooky\" is one act or two is not sourced, so the \"+\" billing is not split. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "sonar-2018:d1:sonarcomplex:1600:ratkje-and-barruk-avant-joik-insomnia-and-we-are-europe-present",
+  "printed": "Ratkje & Barruk: Avant Joik (Insomnia & We Are Europe present)",
+  "reason": "parenthetical names people",
+  "pending": true,
+  "why": "Left as printed: the \"&\" joins two surnames the page does not give in full, so the performers are not named. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "sonar-2019:d2:sonardome-presented-by-red-bull:2040:lao-and-wasted-fates-n-a-a-f-i",
+  "printed": "LAO & Wasted Fates (N.A.A.F.I.)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed: the printing does not settle whether the \"&\" joins two acts or names one, so the billing is not split. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "sziget-2011:d5:pesti-est-world-music-main-stage:1815:muzsikas-feat-ildiko-toth-fecske-and-zoltan-farkas-batyu",
+  "printed": "Muzsikas feat. Ildiko Toth \"Fecske\" and Zoltan Farkas \"Batyu\"",
+  "reason": "feat / with billing",
+  "pending": true,
+  "why": "Left as printed: the guests are printed with nicknames in quotes and joined by \"and\", and no first-party page settles how each guest is named, so the guests are not split. Renders as its own billing until a first-party page rules it."
  },
  {
   "id": "tomorrowland-2010:d1:i-love-the-90-s:2330:johan-gielen-and-cor-fijneman-back2back-airscape",
@@ -840,6 +1008,13 @@
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
  },
  {
+  "id": "key:b3k",
+  "printed": "B3K",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at Lightning in a Bottle 2019 and HARD Summer 2026 (each on its own official lineup). Not merged into one arc until a first-party link shows it is the same act; the billings render separately."
+ },
+ {
   "id": "key:k-d",
   "printed": "k?d",
   "reason": "very short name billed at more than one festival brand",
@@ -880,6 +1055,13 @@
   "reason": "very short name billed at more than one festival brand",
   "pending": true,
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
+  "id": "key:lum",
+  "printed": "LUM",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at Lightning in a Bottle 2019 and Day Zero Tulum 2027 (each on its own official lineup). Not merged into one arc until a first-party link shows it is the same act; the billings render separately."
  },
  {
   "id": "key:sza",
@@ -966,6 +1148,13 @@
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
  },
  {
+  "id": "key:idk",
+  "printed": "IDK",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
   "id": "key:fkj",
   "printed": "FKJ",
   "reason": "very short name billed at more than one festival brand",
@@ -1027,6 +1216,13 @@
   "reason": "very short name billed at more than one festival brand",
   "pending": true,
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
+  "id": "key:off",
+  "printed": "OFF!",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at Primavera Sound 2012 and Coachella 2015 (each on its own official timetable). Not merged into one arc until a first-party link shows it is the same act; the billings render separately."
  },
  {
   "id": "key:rac",
@@ -1113,11 +1309,25 @@
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
  },
  {
+  "id": "key:tor",
+  "printed": "Tor",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at Lightning in a Bottle 2018 and Shambhala 2014 and 2024 (each on its own official lineup). Not merged into one arc until a first-party link shows it is the same act; the billings render separately."
+ },
+ {
   "id": "key:wet",
   "printed": "Wet",
   "reason": "very short name billed at more than one festival brand",
   "pending": true,
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
+  "id": "key:j-i-d",
+  "printed": "J.I.D",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at Lollapalooza 2019 and Outside Lands 2023 (each on its own official lineup). Not merged into one arc until a first-party link shows it is the same act; the billings render separately."
  },
  {
   "id": "key:s-p-y",
@@ -1132,5 +1342,19 @@
   "reason": "very short name billed at more than one festival brand",
   "pending": true,
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
+  "id": "key:za",
+  "printed": "ZA!",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at Primavera Sound and Sónar 2019 (each on its own official timetable, Sónar's as Ouchhh + Za!: Superstrings). Not merged into one arc until a first-party link shows it is the same act; the billings render separately."
+ },
+ {
+  "id": "key:mow",
+  "printed": "MOW",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at Primavera Sound 2019 and Sónar 2018 (each on its own official timetable). Not merged into one arc until a first-party link shows it is the same act; the billings render separately."
  }
 ]

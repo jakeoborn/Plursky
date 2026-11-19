@@ -1,0 +1,297 @@
+{
+  "id": "sziget-2011",
+  "method": "official_sources",
+  "official": "https://www.sziget.hu/festival_english/programs",
+  "days": [
+    {
+      "day": 1,
+      "date": "2011-08-08",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.sziget.hu/festival_english/programs/-/days?day=2011-08-08&stages[]=1695&stages[]=1769&stages[]=1770&stages[]=1767&stages[]=1772",
+          "archivedUrl": "https://web.archive.org/web/20110917221145/http://www.sziget.hu/festival_english/programs/-/days?day=2011-08-08&stages[]=1695&stages[]=1769&stages[]=1770&stages[]=1767&stages[]=1772",
+          "captureTimestamp": "20110917221145",
+          "printed": "August 08. Monday",
+          "sha256": "af00bc68ec9fa5f628c0e37fa9b0444d3a7169863e82b7215cc3cdbe226b3a78",
+          "bytes": 29688,
+          "rows": 1,
+          "format": "sziget-days",
+          "template": "sziget2011",
+          "tabs": [
+            "August 08. Monday",
+            "August 09. Tuesday",
+            "August 10. Wednesday",
+            "August 11. Thursday",
+            "August 12. Friday",
+            "August 13. Saturday",
+            "August 14. Sunday"
+          ],
+          "stages": 5,
+          "otherStages": 26,
+          "otherVenues": 6,
+          "times": "each set prints its start alone on the 24-hour clock, in its stage's column; no set prints an end, and a set after midnight is that night's"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2011-08-09",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.sziget.hu/festival_english/programs/-/days?day=2011-08-09&stages[]=1695&stages[]=1769&stages[]=1770&stages[]=1767&stages[]=1772",
+          "archivedUrl": "https://web.archive.org/web/20110917221150/http://www.sziget.hu/festival_english/programs/-/days?day=2011-08-09&stages[]=1695&stages[]=1769&stages[]=1770&stages[]=1767&stages[]=1772",
+          "captureTimestamp": "20110917221150",
+          "printed": "August 09. Tuesday",
+          "sha256": "8631e8f75c0b028796851963b93b0c13dfe916afed0ab107627178855bfb82b1",
+          "bytes": 31601,
+          "rows": 6,
+          "format": "sziget-days",
+          "template": "sziget2011",
+          "tabs": [
+            "August 08. Monday",
+            "August 09. Tuesday",
+            "August 10. Wednesday",
+            "August 11. Thursday",
+            "August 12. Friday",
+            "August 13. Saturday",
+            "August 14. Sunday"
+          ],
+          "stages": 5,
+          "otherStages": 26,
+          "otherVenues": 6,
+          "times": "each set prints its start alone on the 24-hour clock, in its stage's column; no set prints an end, and a set after midnight is that night's"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2011-08-10",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.sziget.hu/festival_english/programs/-/days?day=2011-08-10&stages[]=1695&stages[]=1769&stages[]=1770&stages[]=1767&stages[]=1772",
+          "archivedUrl": "https://web.archive.org/web/20110902065024/http://www.sziget.hu/festival_english/programs/-/days?day=2011-08-10&stages[]=1695&stages[]=1769&stages[]=1770&stages[]=1767&stages[]=1772",
+          "captureTimestamp": "20110902065024",
+          "printed": "August 10. Wednesday",
+          "sha256": "232dca1aee03c0cae4b1cd91192370bd34542b3fc7b1528c99e77ef20a82a170",
+          "bytes": 36936,
+          "rows": 20,
+          "format": "sziget-days",
+          "template": "sziget2011",
+          "tabs": [
+            "August 08. Monday",
+            "August 09. Tuesday",
+            "August 10. Wednesday",
+            "August 11. Thursday",
+            "August 12. Friday",
+            "August 13. Saturday",
+            "August 14. Sunday"
+          ],
+          "stages": 5,
+          "otherStages": 26,
+          "otherVenues": 6,
+          "times": "each set prints its start alone on the 24-hour clock, in its stage's column; no set prints an end, and a set after midnight is that night's",
+          "bills": [
+            "Burn Party Arena from 22:00: Richie Hawtin (CAN) / pres. Control Stage with & Ambivalent (USA) / Marc Houle (CAN) live / Philipp Straub (A) / Igor Do'urden vs. Coyote"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2011-08-11",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.sziget.hu/festival_english/programs/-/days?day=2011-08-11&stages[]=1695&stages[]=1769&stages[]=1770&stages[]=1767&stages[]=1772",
+          "archivedUrl": "https://web.archive.org/web/20110902065053/http://www.sziget.hu/festival_english/programs/-/days?day=2011-08-11&stages[]=1695&stages[]=1769&stages[]=1770&stages[]=1767&stages[]=1772",
+          "captureTimestamp": "20110902065053",
+          "printed": "August 11. Thursday",
+          "sha256": "69d7296fbb9f0879b07989add71b6f599951f2f995c49b243a906f89d589e57a",
+          "bytes": 36913,
+          "rows": 20,
+          "format": "sziget-days",
+          "template": "sziget2011",
+          "tabs": [
+            "August 08. Monday",
+            "August 09. Tuesday",
+            "August 10. Wednesday",
+            "August 11. Thursday",
+            "August 12. Friday",
+            "August 13. Saturday",
+            "August 14. Sunday"
+          ],
+          "stages": 5,
+          "otherStages": 26,
+          "otherVenues": 6,
+          "times": "each set prints its start alone on the 24-hour clock, in its stage's column; no set prints an end, and a set after midnight is that night's",
+          "bills": [
+            "Burn Party Arena from 22:00: 2manydjs (B) live / Gesaffelstein (F) / Andro Sikztah Stereokillaz"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "date": "2011-08-12",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.sziget.hu/festival_english/programs/-/days?day=2011-08-12&stages[]=1695&stages[]=1769&stages[]=1770&stages[]=1767&stages[]=1772",
+          "archivedUrl": "https://web.archive.org/web/20110902065057/http://www.sziget.hu/festival_english/programs/-/days?day=2011-08-12&stages[]=1695&stages[]=1769&stages[]=1770&stages[]=1767&stages[]=1772",
+          "captureTimestamp": "20110902065057",
+          "printed": "August 12. Friday",
+          "sha256": "caad6a59b44a82b095074d3e622f2fc8a3350009245566d99a5fb7b3d99dc0f1",
+          "bytes": 36948,
+          "rows": 19,
+          "format": "sziget-days",
+          "template": "sziget2011",
+          "tabs": [
+            "August 08. Monday",
+            "August 09. Tuesday",
+            "August 10. Wednesday",
+            "August 11. Thursday",
+            "August 12. Friday",
+            "August 13. Saturday",
+            "August 14. Sunday"
+          ],
+          "stages": 5,
+          "otherStages": 26,
+          "otherVenues": 6,
+          "times": "each set prints its start alone on the 24-hour clock, in its stage's column; no set prints an end, and a set after midnight is that night's",
+          "bills": [
+            "Burn Party Arena from 22:00: Dubfire (USA) / Cristian Varela (E) / Technasia (F) / Carlo Lio (CAN) / Hot X Jay Lumen vs. SanFranciscoBeat",
+            "A38-WAN2 Stage from 23:30: Cadik Travel Agency feat. / Ben Sharpa (H-ZA)"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "date": "2011-08-13",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.sziget.hu/festival_english/programs/-/days?day=2011-08-13&stages[]=1695&stages[]=1769&stages[]=1770&stages[]=1767&stages[]=1772",
+          "archivedUrl": "https://web.archive.org/web/20110902065123/http://www.sziget.hu/festival_english/programs/-/days?day=2011-08-13&stages[]=1695&stages[]=1769&stages[]=1770&stages[]=1767&stages[]=1772",
+          "captureTimestamp": "20110902065123",
+          "printed": "August 13. Saturday",
+          "sha256": "6c09004ca045a865505289019e38a2bc65c1f2a4f8033815b8ac334ea36182cb",
+          "bytes": 36973,
+          "rows": 20,
+          "format": "sziget-days",
+          "template": "sziget2011",
+          "tabs": [
+            "August 08. Monday",
+            "August 09. Tuesday",
+            "August 10. Wednesday",
+            "August 11. Thursday",
+            "August 12. Friday",
+            "August 13. Saturday",
+            "August 14. Sunday"
+          ],
+          "stages": 5,
+          "otherStages": 26,
+          "otherVenues": 6,
+          "times": "each set prints its start alone on the 24-hour clock, in its stage's column; no set prints an end, and a set after midnight is that night's",
+          "bills": [
+            "Burn Party Arena from 22:00: Above& Beyond (UK) / Blake Jarell (USA) / Dj Observer & Daniel Heatcliff (A) / Blake Jarell (USA) / Myon & Shane 54 / Poleposition Jutasi"
+          ]
+        }
+      ]
+    },
+    {
+      "day": 7,
+      "date": "2011-08-14",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.sziget.hu/festival_english/programs/-/days?day=2011-08-14&stages[]=1695&stages[]=1769&stages[]=1770&stages[]=1767&stages[]=1772",
+          "archivedUrl": "https://web.archive.org/web/20110902065102/http://www.sziget.hu/festival_english/programs/-/days?day=2011-08-14&stages[]=1695&stages[]=1769&stages[]=1770&stages[]=1767&stages[]=1772",
+          "captureTimestamp": "20110902065102",
+          "printed": "August 14. Sunday",
+          "sha256": "392efe0c072bcadff415e2b66c8b3904bff775c2c0ee5ca85cf14dcff29450cf",
+          "bytes": 36495,
+          "rows": 19,
+          "format": "sziget-days",
+          "template": "sziget2011",
+          "tabs": [
+            "August 08. Monday",
+            "August 09. Tuesday",
+            "August 10. Wednesday",
+            "August 11. Thursday",
+            "August 12. Friday",
+            "August 13. Saturday",
+            "August 14. Sunday"
+          ],
+          "stages": 5,
+          "otherStages": 26,
+          "otherVenues": 6,
+          "times": "each set prints its start alone on the 24-hour clock, in its stage's column; no set prints an end, and a set after midnight is that night's",
+          "bills": [
+            "Burn Party Arena from 22:00: Steve Angello (S) / Sunnery James & Ryan Marciano (NL) / Chriss vs. Dandy Soneec & Belocca Junkie & Hawky"
+          ]
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "day": 3,
+      "stage": "Burn Party Arena",
+      "start": "",
+      "end": "",
+      "billing": "Richie Hawtin (CAN) / pres. Control Stage with & Ambivalent (USA) / Marc Houle (CAN) live / Philipp Straub (A) / Igor Do'urden vs. Coyote",
+      "reason": "One programme entry bills several acts under a single start (a night's line-up): none of them has a time of its own, so none is placed as a set.",
+      "untimed": true
+    },
+    {
+      "day": 4,
+      "stage": "Burn Party Arena",
+      "start": "",
+      "end": "",
+      "billing": "2manydjs (B) live / Gesaffelstein (F) / Andro Sikztah Stereokillaz",
+      "reason": "One programme entry bills several acts under a single start (a night's line-up): none of them has a time of its own, so none is placed as a set.",
+      "untimed": true
+    },
+    {
+      "day": 5,
+      "stage": "Burn Party Arena",
+      "start": "",
+      "end": "",
+      "billing": "Dubfire (USA) / Cristian Varela (E) / Technasia (F) / Carlo Lio (CAN) / Hot X Jay Lumen vs. SanFranciscoBeat",
+      "reason": "One programme entry bills several acts under a single start (a night's line-up): none of them has a time of its own, so none is placed as a set.",
+      "untimed": true
+    },
+    {
+      "day": 5,
+      "stage": "A38-WAN2 Stage",
+      "start": "",
+      "end": "",
+      "billing": "Cadik Travel Agency feat. / Ben Sharpa (H-ZA)",
+      "reason": "One programme entry bills several acts under a single start (a night's line-up): none of them has a time of its own, so none is placed as a set.",
+      "untimed": true
+    },
+    {
+      "day": 6,
+      "stage": "Burn Party Arena",
+      "start": "",
+      "end": "",
+      "billing": "Above& Beyond (UK) / Blake Jarell (USA) / Dj Observer & Daniel Heatcliff (A) / Blake Jarell (USA) / Myon & Shane 54 / Poleposition Jutasi",
+      "reason": "One programme entry bills several acts under a single start (a night's line-up): none of them has a time of its own, so none is placed as a set.",
+      "untimed": true
+    },
+    {
+      "day": 7,
+      "stage": "Burn Party Arena",
+      "start": "",
+      "end": "",
+      "billing": "Steve Angello (S) / Sunnery James & Ryan Marciano (NL) / Chriss vs. Dandy Soneec & Belocca Junkie & Hawky",
+      "reason": "One programme entry bills several acts under a single start (a night's line-up): none of them has a time of its own, so none is placed as a set.",
+      "untimed": true
+    }
+  ],
+  "dropped": []
+}

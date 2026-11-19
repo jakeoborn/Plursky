@@ -1,0 +1,4425 @@
+{
+ "id": "primavera-sound-2019",
+ "festivalId": "primavera-sound",
+ "name": "Primavera Sound 2019",
+ "year": 2019,
+ "timezone": "Europe/Madrid",
+ "rolloverHour": 10,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2019-05-29",
+   "label": "Wednesday"
+  },
+  {
+   "day": 2,
+   "date": "2019-05-30",
+   "label": "Thursday"
+  },
+  {
+   "day": 3,
+   "date": "2019-05-31",
+   "label": "Friday"
+  },
+  {
+   "day": 4,
+   "date": "2019-06-01",
+   "label": "Saturday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "primavera-sound-2019:primavera",
+   "name": "Primavera"
+  },
+  {
+   "id": "primavera-sound-2019:night-pro",
+   "name": "Night Pro"
+  },
+  {
+   "id": "primavera-sound-2019:xiringuito-aperol",
+   "name": "Xiringuito Aperol"
+  },
+  {
+   "id": "primavera-sound-2019:auditori-rockdelux",
+   "name": "Auditori Rockdelux"
+  },
+  {
+   "id": "primavera-sound-2019:ray-ban",
+   "name": "Ray-Ban"
+  },
+  {
+   "id": "primavera-sound-2019:adidas-originals",
+   "name": "adidas Originals"
+  },
+  {
+   "id": "primavera-sound-2019:pitchfork",
+   "name": "Pitchfork"
+  },
+  {
+   "id": "primavera-sound-2019:desperados-cube",
+   "name": "Desperados Cube"
+  },
+  {
+   "id": "primavera-sound-2019:your-heineken-stage",
+   "name": "Your Heineken Stage"
+  },
+  {
+   "id": "primavera-sound-2019:lotus",
+   "name": "Lotus"
+  },
+  {
+   "id": "primavera-sound-2019:seat",
+   "name": "Seat"
+  },
+  {
+   "id": "primavera-sound-2019:ocb-paper-sessions",
+   "name": "OCB PAPER SESSIONS"
+  },
+  {
+   "id": "primavera-sound-2019:pull-and-bear",
+   "name": "Pull&Bear"
+  },
+  {
+   "id": "primavera-sound-2019:seat-village",
+   "name": "Seat Village"
+  },
+  {
+   "id": "primavera-sound-2019:ray-ban-studios",
+   "name": "Ray-Ban Studios"
+  },
+  {
+   "id": "primavera-sound-2019:el-punto-by-adidas-originals",
+   "name": "El Punto by adidas Originals"
+  }
+ ],
+ "artists": [
+  {
+   "id": "primavera-sound-2019:mow",
+   "name": "MOW",
+   "key": "mow",
+   "performers": [
+    "mow"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:melenas",
+   "name": "MELENAS",
+   "key": "melenas",
+   "performers": [
+    "melenas"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:hatchie",
+   "name": "HATCHIE",
+   "key": "hatchie",
+   "performers": [
+    "hatchie"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:cuco",
+   "name": "CUCO",
+   "key": "cuco",
+   "performers": [
+    "cuco"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:big-red-machine",
+   "name": "BIG RED MACHINE",
+   "key": "big-red-machine",
+   "performers": [
+    "big-red-machine"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:egosex",
+   "name": "EGOSEX",
+   "key": "egosex",
+   "performers": [
+    "egosex"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:l8ching",
+   "name": "L8CHING",
+   "key": "l8ching",
+   "performers": [
+    "l8ching"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:meuko-meuko",
+   "name": "MEUKO! MEUKO!",
+   "key": "meuko-meuko",
+   "performers": [
+    "meuko-meuko"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:alice-phoebe-lou",
+   "name": "ALICE PHOEBE LOU",
+   "key": "alice-phoebe-lou",
+   "performers": [
+    "alice-phoebe-lou"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:stephen-malkmus-and-the-jicks",
+   "name": "STEPHEN MALKMUS & THE JICKS",
+   "key": "stephen-malkmus-and-the-jicks",
+   "performers": [
+    "stephen-malkmus-and-the-jicks"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:christine-and-the-queens",
+   "name": "CHRISTINE AND THE QUEENS",
+   "key": "christine-and-the-queens",
+   "performers": [
+    "christine-and-the-queens"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:guided-by-voices",
+   "name": "GUIDED BY VOICES",
+   "key": "guided-by-voices",
+   "performers": [
+    "guided-by-voices"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:charli-xcx",
+   "name": "CHARLI XCX",
+   "key": "charli-xcx",
+   "performers": [
+    "charli-xcx"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:teskno",
+   "name": "TĘSKNO",
+   "key": "teskno",
+   "performers": [
+    "teskno"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:belau",
+   "name": "BELAU",
+   "key": "belau",
+   "performers": [
+    "belau"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:malihini",
+   "name": "MALIHINI",
+   "key": "malihini",
+   "performers": [
+    "malihini"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:lonker-see",
+   "name": "LONKER SEE",
+   "key": "lonker-see",
+   "performers": [
+    "lonker-see"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:we-will-fail",
+   "name": "WE WILL FAIL",
+   "key": "we-will-fail",
+   "performers": [
+    "we-will-fail"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:im",
+   "name": "IM",
+   "key": "im",
+   "performers": [
+    "im"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:shakti-alliance-ivy-modet-vir",
+   "name": "SHAKTI ALLIANCE (IVY, MODET, VIR)",
+   "key": "shakti-alliance-ivy-modet-vir",
+   "performers": [
+    "shakti-alliance-ivy-modet-vir"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:bridget-st-john",
+   "name": "BRIDGET ST. JOHN",
+   "key": "bridget-st-john",
+   "performers": [
+    "bridget-st-john"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:julien-baker",
+   "name": "JULIEN BAKER",
+   "key": "julien-baker",
+   "performers": [
+    "julien-baker"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:the-necks",
+   "name": "THE NECKS",
+   "key": "the-necks",
+   "performers": [
+    "the-necks"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:terry-riley-and-gyan-riley",
+   "name": "TERRY RILEY & GYAN RILEY",
+   "key": "terry-riley-and-gyan-riley",
+   "performers": [
+    "terry-riley-and-gyan-riley"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:apparat-live",
+   "name": "APPARAT LIVE",
+   "key": "apparat-live",
+   "performers": [
+    "apparat-live"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:las-odio",
+   "name": "LAS ODIO",
+   "key": "las-odio",
+   "performers": [
+    "las-odio"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:soccer-mommy",
+   "name": "SOCCER MOMMY",
+   "key": "soccer-mommy",
+   "performers": [
+    "soccer-mommy"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:danny-brown",
+   "name": "DANNY BROWN",
+   "key": "danny-brown",
+   "performers": [
+    "danny-brown"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:nas",
+   "name": "NAS",
+   "key": "nas",
+   "performers": [
+    "nas"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:dirty-projectors",
+   "name": "DIRTY PROJECTORS",
+   "key": "dirty-projectors",
+   "performers": [
+    "dirty-projectors"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:fka-twigs",
+   "name": "FKA TWIGS",
+   "key": "fka-twigs",
+   "performers": [
+    "fka-twigs"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:nina-kraviz",
+   "name": "NINA KRAVIZ",
+   "key": "nina-kraviz",
+   "performers": [
+    "nina-kraviz"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:elena-setien",
+   "name": "ELENA SETIÉN",
+   "key": "elena-setien",
+   "performers": [
+    "elena-setien"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:dream-wife",
+   "name": "DREAM WIFE",
+   "key": "dream-wife",
+   "performers": [
+    "dream-wife"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:shonen-knife",
+   "name": "SHONEN KNIFE",
+   "key": "shonen-knife",
+   "performers": [
+    "shonen-knife"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:stiff-little-fingers",
+   "name": "STIFF LITTLE FINGERS",
+   "key": "stiff-little-fingers",
+   "performers": [
+    "stiff-little-fingers"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:carcass",
+   "name": "CARCASS",
+   "key": "carcass",
+   "performers": [
+    "carcass"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:myrkur",
+   "name": "MYRKUR",
+   "key": "myrkur",
+   "performers": [
+    "myrkur"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:nitzer-ebb",
+   "name": "NITZER EBB",
+   "key": "nitzer-ebb",
+   "performers": [
+    "nitzer-ebb"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:odina",
+   "name": "ODINA",
+   "key": "odina",
+   "performers": [
+    "odina"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:tomberlin",
+   "name": "TOMBERLIN",
+   "key": "tomberlin",
+   "performers": [
+    "tomberlin"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:clairo",
+   "name": "CLAIRO",
+   "key": "clairo",
+   "performers": [
+    "clairo"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:sigrid",
+   "name": "SIGRID",
+   "key": "sigrid",
+   "performers": [
+    "sigrid"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:070-shake",
+   "name": "070 SHAKE",
+   "key": "070-shake",
+   "performers": [
+    "070-shake"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:empress-of",
+   "name": "EMPRESS OF",
+   "key": "empress-of",
+   "performers": [
+    "empress-of"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:mykki-blanco",
+   "name": "MYKKI BLANCO",
+   "key": "mykki-blanco",
+   "performers": [
+    "mykki-blanco"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:mafalda",
+   "name": "MAFALDA",
+   "key": "mafalda",
+   "performers": [
+    "mafalda"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:dam-funk",
+   "name": "DÂM-FUNK",
+   "key": "dam-funk",
+   "performers": [
+    "dam-funk"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:krystal-klear",
+   "name": "KRYSTAL KLEAR",
+   "key": "krystal-klear",
+   "performers": [
+    "krystal-klear"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:jayda-g",
+   "name": "JAYDA G",
+   "key": "jayda-g",
+   "performers": [
+    "jayda-g"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:denis-sulta",
+   "name": "DENIS SULTA",
+   "key": "denis-sulta",
+   "performers": [
+    "denis-sulta"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:job-jobse",
+   "name": "JOB JOBSE",
+   "key": "job-jobse",
+   "performers": [
+    "job-jobse"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:octo-octa-b2b-eris-drew",
+   "name": "OCTO OCTA B2B ERIS DREW",
+   "key": "octo-octa-b2b-eris-drew",
+   "performers": [
+    "octo-octa",
+    "eris-drew"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:aliment-play-television-personalities",
+   "name": "ALIMENT PLAY TELEVISION PERSONALITIES",
+   "key": "aliment-play-television-personalities",
+   "performers": [
+    "aliment-play-television-personalities"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:chandra",
+   "name": "CHANDRA",
+   "key": "chandra",
+   "performers": [
+    "chandra"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:viva-belgrado-play-at-the-drive-in",
+   "name": "VIVA BELGRADO PLAY AT THE DRIVE IN",
+   "key": "viva-belgrado-play-at-the-drive-in",
+   "performers": [
+    "viva-belgrado-play-at-the-drive-in"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:pylon-reenactment-society",
+   "name": "PYLON REENACTMENT SOCIETY",
+   "key": "pylon-reenactment-society",
+   "performers": [
+    "pylon-reenactment-society"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:the-comet-is-coming",
+   "name": "THE COMET IS COMING",
+   "key": "the-comet-is-coming",
+   "performers": [
+    "the-comet-is-coming"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:severed-heads",
+   "name": "SEVERED HEADS",
+   "key": "severed-heads",
+   "performers": [
+    "severed-heads"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:r-e-a-l",
+   "name": "R.E.A.L.",
+   "key": "r-e-a-l",
+   "performers": [
+    "r-e-a-l"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:bakar",
+   "name": "BAKAR",
+   "key": "bakar",
+   "performers": [
+    "bakar"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:marie-davidson",
+   "name": "MARIE DAVIDSON",
+   "key": "marie-davidson",
+   "performers": [
+    "marie-davidson"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:princess-nokia",
+   "name": "PRINCESS NOKIA",
+   "key": "princess-nokia",
+   "performers": [
+    "princess-nokia"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:sophie",
+   "name": "SOPHIE",
+   "key": "sophie",
+   "performers": [
+    "sophie"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:yaeji",
+   "name": "YAEJI",
+   "key": "yaeji",
+   "performers": [
+    "yaeji"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:maribou-state",
+   "name": "MARIBOU STATE",
+   "key": "maribou-state",
+   "performers": [
+    "maribou-state"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:the-mani-las",
+   "name": "THE MANI-LAS",
+   "key": "the-mani-las",
+   "performers": [
+    "the-mani-las"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:mac-demarco",
+   "name": "MAC DEMARCO",
+   "key": "mac-demarco",
+   "performers": [
+    "mac-demarco"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:interpol",
+   "name": "INTERPOL",
+   "key": "interpol",
+   "performers": [
+    "interpol"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:future",
+   "name": "FUTURE",
+   "key": "future",
+   "performers": [
+    "future"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:big-thief",
+   "name": "BIG THIEF",
+   "key": "big-thief",
+   "performers": [
+    "big-thief"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:courtney-barnett",
+   "name": "COURTNEY BARNETT",
+   "key": "courtney-barnett",
+   "performers": [
+    "courtney-barnett"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:erykah-badu",
+   "name": "ERYKAH BADU",
+   "key": "erykah-badu",
+   "performers": [
+    "erykah-badu"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:erik-urano",
+   "name": "ERIK URANO",
+   "key": "erik-urano",
+   "performers": [
+    "erik-urano"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:chynna",
+   "name": "CHYNNA",
+   "key": "chynna",
+   "performers": [
+    "chynna"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:celeste",
+   "name": "CELESTE",
+   "key": "celeste",
+   "performers": [
+    "celeste"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:idk",
+   "name": "IDK",
+   "key": "idk",
+   "performers": [
+    "idk"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:jarvis-cocker-dj-set",
+   "name": "JARVIS COCKER DJ SET",
+   "key": "jarvis-cocker-dj-set",
+   "performers": [
+    "jarvis-cocker-dj-set"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:upsammy",
+   "name": "UPSAMMY",
+   "key": "upsammy",
+   "performers": [
+    "upsammy"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:objekt",
+   "name": "OBJEKT",
+   "key": "objekt",
+   "performers": [
+    "objekt"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:demdike-stare",
+   "name": "DEMDIKE STARE",
+   "key": "demdike-stare",
+   "performers": [
+    "demdike-stare"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:djrum",
+   "name": "DJRUM",
+   "key": "djrum",
+   "performers": [
+    "djrum"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:anastasia-kristensen-live",
+   "name": "ANASTASIA KRISTENSEN LIVE",
+   "key": "anastasia-kristensen-live",
+   "performers": [
+    "anastasia-kristensen-live"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:brat-star",
+   "name": "BRAT STAR",
+   "key": "brat-star",
+   "performers": [
+    "brat-star"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:goa",
+   "name": "GOA",
+   "key": "goa",
+   "performers": [
+    "goa"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:gangsta-boo",
+   "name": "GANGSTA BOO",
+   "key": "gangsta-boo",
+   "performers": [
+    "gangsta-boo"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:rico-nasty",
+   "name": "RICO NASTY",
+   "key": "rico-nasty",
+   "performers": [
+    "rico-nasty"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:japanese",
+   "name": "JAPANESE",
+   "key": "japanese",
+   "performers": [
+    "japanese"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:uzielito-mix",
+   "name": "UZIELITO MIX",
+   "key": "uzielito-mix",
+   "performers": [
+    "uzielito-mix"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:snail-mail",
+   "name": "SNAIL MAIL",
+   "key": "snail-mail",
+   "performers": [
+    "snail-mail"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:beak-and-gt",
+   "name": "BEAK&gt;",
+   "key": "beak-and-gt",
+   "performers": [
+    "beak-and-gt"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:jawbreaker",
+   "name": "JAWBREAKER",
+   "key": "jawbreaker",
+   "performers": [
+    "jawbreaker"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:low",
+   "name": "LOW",
+   "key": "low",
+   "performers": [
+    "low"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:jungle",
+   "name": "JUNGLE",
+   "key": "jungle",
+   "performers": [
+    "jungle"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:han",
+   "name": "HÅN",
+   "key": "han",
+   "performers": [
+    "han"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:mayberian-sanskulotts",
+   "name": "MAYBERIAN SANSKÜLOTTS",
+   "key": "mayberian-sanskulotts",
+   "performers": [
+    "mayberian-sanskulotts"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:birthh",
+   "name": "BIRTHH",
+   "key": "birthh",
+   "performers": [
+    "birthh"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:nfx",
+   "name": "NFX",
+   "key": "nfx",
+   "performers": [
+    "nfx"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:edsun",
+   "name": "EDSUN",
+   "key": "edsun",
+   "performers": [
+    "edsun"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:bronko-yotte",
+   "name": "BRONKO YOTTE",
+   "key": "bronko-yotte",
+   "performers": [
+    "bronko-yotte"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:5k-hd",
+   "name": "5K HD",
+   "key": "5k-hd",
+   "performers": [
+    "5k-hd"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:isa-bel",
+   "name": "ISA·BEL",
+   "key": "isa-bel",
+   "performers": [
+    "isa-bel"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:xols",
+   "name": "XOLS",
+   "key": "xols",
+   "performers": [
+    "xols"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:phosky",
+   "name": "PHOSKY",
+   "key": "phosky",
+   "performers": [
+    "phosky"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:midori-takada",
+   "name": "MIDORI TAKADA",
+   "key": "midori-takada",
+   "performers": [
+    "midori-takada"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:maria-jose-llergo",
+   "name": "MARÍA JOSÉ LLERGO",
+   "key": "maria-jose-llergo",
+   "performers": [
+    "maria-jose-llergo"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:julia-holter",
+   "name": "JULIA HOLTER",
+   "key": "julia-holter",
+   "performers": [
+    "julia-holter"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:lucy-dacus",
+   "name": "LUCY DACUS",
+   "key": "lucy-dacus",
+   "performers": [
+    "lucy-dacus"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:sons-of-kemet-xl",
+   "name": "SONS OF KEMET XL",
+   "key": "sons-of-kemet-xl",
+   "performers": [
+    "sons-of-kemet-xl"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:derby-motoreta-s-burrito-kachimba",
+   "name": "DERBY MOTORETA'S BURRITO KACHIMBA",
+   "key": "derby-motoreta-s-burrito-kachimba",
+   "performers": [
+    "derby-motoreta-s-burrito-kachimba"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:suede",
+   "name": "SUEDE",
+   "key": "suede",
+   "performers": [
+    "suede"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:kate-tempest",
+   "name": "KATE TEMPEST",
+   "key": "kate-tempest",
+   "performers": [
+    "kate-tempest"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:mura-masa",
+   "name": "MURA MASA",
+   "key": "mura-masa",
+   "performers": [
+    "mura-masa"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:peggy-gou",
+   "name": "PEGGY GOU",
+   "key": "peggy-gou",
+   "performers": [
+    "peggy-gou"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:lidia-damunt",
+   "name": "LIDIA DAMUNT",
+   "key": "lidia-damunt",
+   "performers": [
+    "lidia-damunt"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:pond",
+   "name": "POND",
+   "key": "pond",
+   "performers": [
+    "pond"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:fucked-up",
+   "name": "FUCKED UP",
+   "key": "fucked-up",
+   "performers": [
+    "fucked-up"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:chai",
+   "name": "CHAI",
+   "key": "chai",
+   "performers": [
+    "chai"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:amyl-and-the-sniffers",
+   "name": "AMYL AND THE SNIFFERS",
+   "key": "amyl-and-the-sniffers",
+   "performers": [
+    "amyl-and-the-sniffers"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:lisabo",
+   "name": "LISABÖ",
+   "key": "lisabo",
+   "performers": [
+    "lisabo"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:bliss-signal",
+   "name": "BLISS SIGNAL",
+   "key": "bliss-signal",
+   "performers": [
+    "bliss-signal"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:putochinomaricon",
+   "name": "PUTOCHINOMARICÓN",
+   "key": "putochinomaricon",
+   "performers": [
+    "putochinomaricon"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:just-mustard",
+   "name": "JUST MUSTARD",
+   "key": "just-mustard",
+   "performers": [
+    "just-mustard"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:liz-phair",
+   "name": "LIZ PHAIR",
+   "key": "liz-phair",
+   "performers": [
+    "liz-phair"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:aldous-harding",
+   "name": "ALDOUS HARDING",
+   "key": "aldous-harding",
+   "performers": [
+    "aldous-harding"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:yves-tumor",
+   "name": "YVES TUMOR",
+   "key": "yves-tumor",
+   "performers": [
+    "yves-tumor"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:flohio",
+   "name": "FLOHIO",
+   "key": "flohio",
+   "performers": [
+    "flohio"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:iglooghost",
+   "name": "IGLOOGHOST",
+   "key": "iglooghost",
+   "performers": [
+    "iglooghost"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:ylia",
+   "name": "YLIA",
+   "key": "ylia",
+   "performers": [
+    "ylia"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:laurel-halo-dj-set",
+   "name": "LAUREL HALO DJ SET",
+   "key": "laurel-halo-dj-set",
+   "performers": [
+    "laurel-halo-dj-set"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:steffi",
+   "name": "STEFFI",
+   "key": "steffi",
+   "performers": [
+    "steffi"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:courtesy",
+   "name": "COURTESY",
+   "key": "courtesy",
+   "performers": [
+    "courtesy"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:dr-rubinstein",
+   "name": "DR. RUBINSTEIN",
+   "key": "dr-rubinstein",
+   "performers": [
+    "dr-rubinstein"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:overmono-live-and-dj",
+   "name": "OVERMONO LIVE & DJ",
+   "key": "overmono-live-and-dj",
+   "performers": [
+    "overmono-live-and-dj"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:joy-orbison",
+   "name": "JOY ORBISON",
+   "key": "joy-orbison",
+   "performers": [
+    "joy-orbison"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:helena-hauff",
+   "name": "HELENA HAUFF",
+   "key": "helena-hauff",
+   "performers": [
+    "helena-hauff"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:birkins-feat-ken-stringfellow-play-ziggy-stardust",
+   "name": "BIRKINS FEAT. KEN STRINGFELLOW PLAY ZIGGY STARDUST",
+   "key": "birkins-feat-ken-stringfellow-play-ziggy-stardust",
+   "performers": [
+    "birkins-feat-ken-stringfellow-play-ziggy-stardust"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:piroshka",
+   "name": "PIROSHKA",
+   "key": "piroshka",
+   "performers": [
+    "piroshka"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:el-mato-a-un-policia-motorizado-feat-amaia-j-y-manu-ferron",
+   "name": "EL MATÓ A UN POLICÍA MOTORIZADO FEAT. AMAIA, J Y MANU FERRÓN",
+   "key": "el-mato-a-un-policia-motorizado-feat-amaia-j-y-manu-ferron",
+   "performers": [
+    "el-mato-a-un-policia-motorizado-feat-amaia-j-y-manu-ferron"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:107-faunos",
+   "name": "107 FAUNOS",
+   "key": "107-faunos",
+   "performers": [
+    "107-faunos"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:swervedriver",
+   "name": "SWERVEDRIVER",
+   "key": "swervedriver",
+   "performers": [
+    "swervedriver"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:kokoshca-play-las-grecas",
+   "name": "KOKOSHCA PLAY LAS GRECAS",
+   "key": "kokoshca-play-las-grecas",
+   "performers": [
+    "kokoshca-play-las-grecas"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:bflecha",
+   "name": "BFLECHA",
+   "key": "bflecha",
+   "performers": [
+    "bflecha"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:wednesday-campanella",
+   "name": "WEDNESDAY CAMPANELLA",
+   "key": "wednesday-campanella",
+   "performers": [
+    "wednesday-campanella"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:sticky-m-a",
+   "name": "STICKY M.A.",
+   "key": "sticky-m-a",
+   "performers": [
+    "sticky-m-a"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:tony-touch-and-friends-don-chezina-soni-withaneye",
+   "name": "TONY TOUCH & FRIENDS (DON CHEZINA + SONI WITHANEYE)",
+   "key": "tony-touch-and-friends-don-chezina-soni-withaneye",
+   "performers": [
+    "tony-touch-and-friends-don-chezina-soni-withaneye"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:ivy-queen",
+   "name": "IVY QUEEN",
+   "key": "ivy-queen",
+   "performers": [
+    "ivy-queen"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:cybotron-live",
+   "name": "CYBOTRON LIVE",
+   "key": "cybotron-live",
+   "performers": [
+    "cybotron-live"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:objekt-live",
+   "name": "OBJEKT LIVE",
+   "key": "objekt-live",
+   "performers": [
+    "objekt-live"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:agoria-live",
+   "name": "AGORIA LIVE",
+   "key": "agoria-live",
+   "performers": [
+    "agoria-live"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:pavvla",
+   "name": "PAVVLA",
+   "key": "pavvla",
+   "performers": [
+    "pavvla"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:carly-rae-jepsen",
+   "name": "CARLY RAE JEPSEN",
+   "key": "carly-rae-jepsen",
+   "performers": [
+    "carly-rae-jepsen"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:miley-cyrus",
+   "name": "MILEY CYRUS",
+   "key": "miley-cyrus",
+   "performers": [
+    "miley-cyrus"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:robyn",
+   "name": "ROBYN",
+   "key": "robyn",
+   "performers": [
+    "robyn"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:kurt-vile-and-the-violators",
+   "name": "KURT VILE & THE VIOLATORS",
+   "key": "kurt-vile-and-the-violators",
+   "performers": [
+    "kurt-vile-and-the-violators"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:janelle-monae",
+   "name": "JANELLE MONÁE",
+   "key": "janelle-monae",
+   "performers": [
+    "janelle-monae"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:tame-impala",
+   "name": "TAME IMPALA",
+   "key": "tame-impala",
+   "performers": [
+    "tame-impala"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:la-tiguerita",
+   "name": "LA TIGUERITA",
+   "key": "la-tiguerita",
+   "performers": [
+    "la-tiguerita"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:mucho-muchacho",
+   "name": "MUCHO MUCHACHO",
+   "key": "mucho-muchacho",
+   "performers": [
+    "mucho-muchacho"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:junglepussy",
+   "name": "JUNGLEPUSSY",
+   "key": "junglepussy",
+   "performers": [
+    "junglepussy"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:aj-tracey",
+   "name": "AJ TRACEY",
+   "key": "aj-tracey",
+   "performers": [
+    "aj-tracey"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:tim-burgess-the-charlatans-dj-set",
+   "name": "TIM BURGESS (THE CHARLATANS) DJ SET",
+   "key": "tim-burgess-the-charlatans-dj-set",
+   "performers": [
+    "tim-burgess-the-charlatans-dj-set"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:anthony-naples-live",
+   "name": "ANTHONY NAPLES LIVE",
+   "key": "anthony-naples-live",
+   "performers": [
+    "anthony-naples-live"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:object-blue",
+   "name": "OBJECT BLUE",
+   "key": "object-blue",
+   "performers": [
+    "object-blue"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:mad-miran",
+   "name": "MAD MIRAN",
+   "key": "mad-miran",
+   "performers": [
+    "mad-miran"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:roza-terenzi",
+   "name": "ROZA TERENZI",
+   "key": "roza-terenzi",
+   "performers": [
+    "roza-terenzi"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:batu",
+   "name": "BATU",
+   "key": "batu",
+   "performers": [
+    "batu"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:somadamantina",
+   "name": "SOMADAMANTINA",
+   "key": "somadamantina",
+   "performers": [
+    "somadamantina"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:mark-luva",
+   "name": "MARK LUVA",
+   "key": "mark-luva",
+   "performers": [
+    "mark-luva"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:la-zowi",
+   "name": "LA ZOWI",
+   "key": "la-zowi",
+   "performers": [
+    "la-zowi"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:gothboiclique",
+   "name": "GOTHBOICLIQUE",
+   "key": "gothboiclique",
+   "performers": [
+    "gothboiclique"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:la-goony-chonga",
+   "name": "LA GOONY CHONGA",
+   "key": "la-goony-chonga",
+   "performers": [
+    "la-goony-chonga"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:rosa-pistola",
+   "name": "ROSA PISTOLA",
+   "key": "rosa-pistola",
+   "performers": [
+    "rosa-pistola"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:ama-lou",
+   "name": "AMA LOU",
+   "key": "ama-lou",
+   "performers": [
+    "ama-lou"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:built-to-spill-performs-keep-it-like-a-secret",
+   "name": "BUILT TO SPILL PERFORMS 'KEEP IT LIKE A SECRET'",
+   "key": "built-to-spill-performs-keep-it-like-a-secret",
+   "performers": [
+    "built-to-spill-performs-keep-it-like-a-secret"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:pusha-t",
+   "name": "PUSHA T",
+   "key": "pusha-t",
+   "performers": [
+    "pusha-t"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:primal-scream",
+   "name": "PRIMAL SCREAM",
+   "key": "primal-scream",
+   "performers": [
+    "primal-scream"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:roisin-murphy",
+   "name": "RÓISÍN MURPHY",
+   "key": "roisin-murphy",
+   "performers": [
+    "roisin-murphy"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:p-postman-ft-emergency-tiara-darko-and-mahkenna-dj-unknown",
+   "name": "P POSTMAN FT. EMERGENCY TIARA, DARKO & MAHKENNA, DJ UNKNOWN",
+   "key": "p-postman-ft-emergency-tiara-darko-and-mahkenna-dj-unknown",
+   "performers": [
+    "p-postman-ft-emergency-tiara-darko-and-mahkenna-dj-unknown"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:bonish",
+   "name": "BONISH",
+   "key": "bonish",
+   "performers": [
+    "bonish"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:kirara",
+   "name": "KIRARA",
+   "key": "kirara",
+   "performers": [
+    "kirara"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:dtsq",
+   "name": "DTSQ",
+   "key": "dtsq",
+   "performers": [
+    "dtsq"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:phoro",
+   "name": "PHORO",
+   "key": "phoro",
+   "performers": [
+    "phoro"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:eli-almic-and-dj-rc",
+   "name": "ELI ALMIC & DJ RC",
+   "key": "eli-almic-and-dj-rc",
+   "performers": [
+    "eli-almic-and-dj-rc"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:sistemas-inestables",
+   "name": "SISTEMAS INESTABLES",
+   "key": "sistemas-inestables",
+   "performers": [
+    "sistemas-inestables"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:f5",
+   "name": "F5",
+   "key": "f5",
+   "performers": [
+    "f5"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:frinda-di-lanco",
+   "name": "FRINDA DI LANCO",
+   "key": "frinda-di-lanco",
+   "performers": [
+    "frinda-di-lanco"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:ecran-total",
+   "name": "ECRAN TOTAL",
+   "key": "ecran-total",
+   "performers": [
+    "ecran-total"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:dj-supermarkt",
+   "name": "DJ SUPERMARKT",
+   "key": "dj-supermarkt",
+   "performers": [
+    "dj-supermarkt"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:caterina-barbieri",
+   "name": "CATERINA BARBIERI",
+   "key": "caterina-barbieri",
+   "performers": [
+    "caterina-barbieri"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:tirzah",
+   "name": "TIRZAH",
+   "key": "tirzah",
+   "performers": [
+    "tirzah"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:the-mystery-of-the-bulgarian-voices-featuring-lisa-gerrard",
+   "name": "THE MYSTERY OF THE BULGARIAN VOICES FEATURING LISA GERRARD",
+   "key": "the-mystery-of-the-bulgarian-voices-featuring-lisa-gerrard",
+   "performers": [
+    "the-mystery-of-the-bulgarian-voices-featuring-lisa-gerrard"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:tim-hecker-and-konoyo-ensemble",
+   "name": "TIM HECKER & KONOYO ENSEMBLE",
+   "key": "tim-hecker-and-konoyo-ensemble",
+   "performers": [
+    "tim-hecker-and-konoyo-ensemble"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:alondra-bentley",
+   "name": "ALONDRA BENTLEY",
+   "key": "alondra-bentley",
+   "performers": [
+    "alondra-bentley"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:dayme-arocena",
+   "name": "DAYMÉ AROCENA",
+   "key": "dayme-arocena",
+   "performers": [
+    "dayme-arocena"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:shellac",
+   "name": "SHELLAC",
+   "key": "shellac",
+   "performers": [
+    "shellac"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:jarvis-cocker-introducing-jarv-is",
+   "name": "JARVIS COCKER INTRODUCING JARV IS...",
+   "key": "jarvis-cocker-introducing-jarv-is",
+   "performers": [
+    "jarvis-cocker-introducing-jarv-is"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:stereolab",
+   "name": "STEREOLAB",
+   "key": "stereolab",
+   "performers": [
+    "stereolab"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:modeselektor-live",
+   "name": "MODESELEKTOR LIVE",
+   "key": "modeselektor-live",
+   "performers": [
+    "modeselektor-live"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:dj-rosario-and-sama-yax",
+   "name": "DJ ROSARIO & SAMA YAX",
+   "key": "dj-rosario-and-sama-yax",
+   "performers": [
+    "dj-rosario-and-sama-yax"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:carino",
+   "name": "CARIÑO",
+   "key": "carino",
+   "performers": [
+    "carino"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:haru-nemuri",
+   "name": "HARU NEMURI",
+   "key": "haru-nemuri",
+   "performers": [
+    "haru-nemuri"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:frank-carter-and-the-rattlesnakes",
+   "name": "FRANK CARTER & THE RATTLESNAKES",
+   "key": "frank-carter-and-the-rattlesnakes",
+   "performers": [
+    "frank-carter-and-the-rattlesnakes"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:drab-majesty",
+   "name": "DRAB MAJESTY",
+   "key": "drab-majesty",
+   "performers": [
+    "drab-majesty"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:june-of-44",
+   "name": "JUNE OF 44",
+   "key": "june-of-44",
+   "performers": [
+    "june-of-44"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:the-messthetics",
+   "name": "THE MESSTHETICS",
+   "key": "the-messthetics",
+   "performers": [
+    "the-messthetics"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:jpegmafia",
+   "name": "JPEGMAFIA",
+   "key": "jpegmafia",
+   "performers": [
+    "jpegmafia"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:retirada",
+   "name": "RETIRADA!",
+   "key": "retirada",
+   "performers": [
+    "retirada"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:nilufer-yanya",
+   "name": "NILÜFER YANYA",
+   "key": "nilufer-yanya",
+   "performers": [
+    "nilufer-yanya"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:loyle-carner",
+   "name": "LOYLE CARNER",
+   "key": "loyle-carner",
+   "performers": [
+    "loyle-carner"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:neneh-cherry",
+   "name": "NENEH CHERRY",
+   "key": "neneh-cherry",
+   "performers": [
+    "neneh-cherry"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:cupcakke",
+   "name": "CUPCAKKE",
+   "key": "cupcakke",
+   "performers": [
+    "cupcakke"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:danny-l-harle",
+   "name": "DANNY L HARLE",
+   "key": "danny-l-harle",
+   "performers": [
+    "danny-l-harle"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:slowthai",
+   "name": "SLOWTHAI",
+   "key": "slowthai",
+   "performers": [
+    "slowthai"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:nosedrip",
+   "name": "NOSEDRIP",
+   "key": "nosedrip",
+   "performers": [
+    "nosedrip"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:epsilove",
+   "name": "EPSILOVE",
+   "key": "epsilove",
+   "performers": [
+    "epsilove"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:izabel",
+   "name": "IZABEL",
+   "key": "izabel",
+   "performers": [
+    "izabel"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:fantastic-man-b2b-tornado-wallace",
+   "name": "FANTASTIC MAN B2B TORNADO WALLACE",
+   "key": "fantastic-man-b2b-tornado-wallace",
+   "performers": [
+    "fantastic-man",
+    "tornado-wallace"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:hieroglyphic-being",
+   "name": "HIEROGLYPHIC BEING",
+   "key": "hieroglyphic-being",
+   "performers": [
+    "hieroglyphic-being"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:mozhgan",
+   "name": "MOZHGAN",
+   "key": "mozhgan",
+   "performers": [
+    "mozhgan"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:veronica-vasicka",
+   "name": "VERONICA VASICKA",
+   "key": "veronica-vasicka",
+   "performers": [
+    "veronica-vasicka"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:jasss",
+   "name": "JASSS",
+   "key": "jasss",
+   "performers": [
+    "jasss"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:voiski",
+   "name": "VOISKI",
+   "key": "voiski",
+   "performers": [
+    "voiski"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:evripidis-and-his-tragedies-sing-the-magnetic-fields",
+   "name": "EVRIPIDIS AND HIS TRAGEDIES SING THE MAGNETIC FIELDS",
+   "key": "evripidis-and-his-tragedies-sing-the-magnetic-fields",
+   "performers": [
+    "evripidis-and-his-tragedies-sing-the-magnetic-fields"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:me-and-the-bees-play-the-breeders",
+   "name": "ME AND THE BEES PLAY THE BREEDERS",
+   "key": "me-and-the-bees-play-the-breeders",
+   "performers": [
+    "me-and-the-bees-play-the-breeders"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:the-bevis-frond",
+   "name": "THE BEVIS FROND",
+   "key": "the-bevis-frond",
+   "performers": [
+    "the-bevis-frond"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:bush-tetras",
+   "name": "BUSH TETRAS",
+   "key": "bush-tetras",
+   "performers": [
+    "bush-tetras"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:mujeres-play-los-saicos",
+   "name": "MUJERES PLAY LOS SAICOS",
+   "key": "mujeres-play-los-saicos",
+   "performers": [
+    "mujeres-play-los-saicos"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:museless",
+   "name": "MUSELESS",
+   "key": "museless",
+   "performers": [
+    "museless"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:rrucculla",
+   "name": "RRUCCULLA",
+   "key": "rrucculla",
+   "performers": [
+    "rrucculla"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:channel-tres",
+   "name": "CHANNEL TRES",
+   "key": "channel-tres",
+   "performers": [
+    "channel-tres"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:lizzo",
+   "name": "LIZZO",
+   "key": "lizzo",
+   "performers": [
+    "lizzo"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:tierra-whack",
+   "name": "TIERRA WHACK",
+   "key": "tierra-whack",
+   "performers": [
+    "tierra-whack"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:david-august",
+   "name": "DAVID AUGUST",
+   "key": "david-august",
+   "performers": [
+    "david-august"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:richie-hawtin-close",
+   "name": "RICHIE HAWTIN CLOSE",
+   "key": "richie-hawtin-close",
+   "performers": [
+    "richie-hawtin-close"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:avalon-emerson",
+   "name": "AVALON EMERSON",
+   "key": "avalon-emerson",
+   "performers": [
+    "avalon-emerson"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:boy-pablo",
+   "name": "BOY PABLO",
+   "key": "boy-pablo",
+   "performers": [
+    "boy-pablo"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:kali-uchis",
+   "name": "KALI UCHIS",
+   "key": "kali-uchis",
+   "performers": [
+    "kali-uchis"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:solange",
+   "name": "SOLANGE",
+   "key": "solange",
+   "performers": [
+    "solange"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:james-blake",
+   "name": "JAMES BLAKE",
+   "key": "james-blake",
+   "performers": [
+    "james-blake"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:miya-folick",
+   "name": "MIYA FOLICK",
+   "key": "miya-folick",
+   "performers": [
+    "miya-folick"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:nathy-peluso",
+   "name": "NATHY PELUSO",
+   "key": "nathy-peluso",
+   "performers": [
+    "nathy-peluso"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:rosalia",
+   "name": "ROSALÍA",
+   "key": "rosalia",
+   "performers": [
+    "rosalia"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:j-balvin",
+   "name": "J BALVIN",
+   "key": "j-balvin",
+   "performers": [
+    "j-balvin"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:ninhomalo",
+   "name": "NINHOMALO",
+   "key": "ninhomalo",
+   "performers": [
+    "ninhomalo"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:calido-lehamo",
+   "name": "CÁLIDO LEHAMO",
+   "key": "calido-lehamo",
+   "performers": [
+    "calido-lehamo"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:kaydy-cain",
+   "name": "KAYDY CAIN",
+   "key": "kaydy-cain",
+   "performers": [
+    "kaydy-cain"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:bbymutha",
+   "name": "BBYMUTHA",
+   "key": "bbymutha",
+   "performers": [
+    "bbymutha"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:little-simz",
+   "name": "LITTLE SIMZ",
+   "key": "little-simz",
+   "performers": [
+    "little-simz"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:richard-colburn-belle-and-sebastian-dj-set",
+   "name": "RICHARD COLBURN (BELLE AND SEBASTIAN) DJ SET",
+   "key": "richard-colburn-belle-and-sebastian-dj-set",
+   "performers": [
+    "richard-colburn-belle-and-sebastian-dj-set"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:suzanne-ciani",
+   "name": "SUZANNE CIANI",
+   "key": "suzanne-ciani",
+   "performers": [
+    "suzanne-ciani"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:dj-marcelle-another-nice-mess",
+   "name": "DJ MARCELLE / ANOTHER NICE MESS",
+   "key": "dj-marcelle-another-nice-mess",
+   "performers": [
+    "dj-marcelle-another-nice-mess"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:forest-drive-west",
+   "name": "FOREST DRIVE WEST",
+   "key": "forest-drive-west",
+   "performers": [
+    "forest-drive-west"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:aisha-devi",
+   "name": "AÏSHA DEVI",
+   "key": "aisha-devi",
+   "performers": [
+    "aisha-devi"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:peach",
+   "name": "PEACH",
+   "key": "peach",
+   "performers": [
+    "peach"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:martyn",
+   "name": "MARTYN",
+   "key": "martyn",
+   "performers": [
+    "martyn"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:albany",
+   "name": "ALBANY",
+   "key": "albany",
+   "performers": [
+    "albany"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:ian-isiah",
+   "name": "IAN ISIAH",
+   "key": "ian-isiah",
+   "performers": [
+    "ian-isiah"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:hurricane-g-feat-tony-touch",
+   "name": "HURRICANE G FEAT TONY TOUCH",
+   "key": "hurricane-g-feat-tony-touch",
+   "performers": [
+    "hurricane-g-feat-tony-touch"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:kodie-shane",
+   "name": "KODIE SHANE",
+   "key": "kodie-shane",
+   "performers": [
+    "kodie-shane"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:dj-playero",
+   "name": "DJ PLAYERO",
+   "key": "dj-playero",
+   "performers": [
+    "dj-playero"
+   ]
+  },
+  {
+   "id": "primavera-sound-2019:yung-beef-dj-set",
+   "name": "YUNG BEEF DJ SET",
+   "key": "yung-beef-dj-set",
+   "performers": [
+    "yung-beef-dj-set"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "primavera-sound-2019:d1:primavera:1700:mow",
+   "artistId": "primavera-sound-2019:mow",
+   "day": 1,
+   "stageId": "primavera-sound-2019:primavera",
+   "start": "17:00",
+   "end": "17:35"
+  },
+  {
+   "id": "primavera-sound-2019:d1:primavera:1800:melenas",
+   "artistId": "primavera-sound-2019:melenas",
+   "day": 1,
+   "stageId": "primavera-sound-2019:primavera",
+   "start": "18:00",
+   "end": "18:45"
+  },
+  {
+   "id": "primavera-sound-2019:d1:primavera:1910:hatchie",
+   "artistId": "primavera-sound-2019:hatchie",
+   "day": 1,
+   "stageId": "primavera-sound-2019:primavera",
+   "start": "19:10",
+   "end": "20:00"
+  },
+  {
+   "id": "primavera-sound-2019:d1:primavera:2030:cuco",
+   "artistId": "primavera-sound-2019:cuco",
+   "day": 1,
+   "stageId": "primavera-sound-2019:primavera",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "primavera-sound-2019:d1:primavera:2200:big-red-machine",
+   "artistId": "primavera-sound-2019:big-red-machine",
+   "day": 1,
+   "stageId": "primavera-sound-2019:primavera",
+   "start": "22:00",
+   "end": "23:15"
+  },
+  {
+   "id": "primavera-sound-2019:d1:night-pro:1800:egosex",
+   "artistId": "primavera-sound-2019:egosex",
+   "day": 1,
+   "stageId": "primavera-sound-2019:night-pro",
+   "start": "18:00",
+   "end": "18:40"
+  },
+  {
+   "id": "primavera-sound-2019:d1:night-pro:1910:l8ching",
+   "artistId": "primavera-sound-2019:l8ching",
+   "day": 1,
+   "stageId": "primavera-sound-2019:night-pro",
+   "start": "19:10",
+   "end": "19:50"
+  },
+  {
+   "id": "primavera-sound-2019:d1:night-pro:2010:meuko-meuko",
+   "artistId": "primavera-sound-2019:meuko-meuko",
+   "day": 1,
+   "stageId": "primavera-sound-2019:night-pro",
+   "start": "20:10",
+   "end": "20:50"
+  },
+  {
+   "id": "primavera-sound-2019:d2:primavera:1720:alice-phoebe-lou",
+   "artistId": "primavera-sound-2019:alice-phoebe-lou",
+   "day": 2,
+   "stageId": "primavera-sound-2019:primavera",
+   "start": "17:20",
+   "end": "18:05"
+  },
+  {
+   "id": "primavera-sound-2019:d2:primavera:1900:stephen-malkmus-and-the-jicks",
+   "artistId": "primavera-sound-2019:stephen-malkmus-and-the-jicks",
+   "day": 2,
+   "stageId": "primavera-sound-2019:primavera",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "primavera-sound-2019:d2:primavera:2110:christine-and-the-queens",
+   "artistId": "primavera-sound-2019:christine-and-the-queens",
+   "day": 2,
+   "stageId": "primavera-sound-2019:primavera",
+   "start": "21:10",
+   "end": "22:15"
+  },
+  {
+   "id": "primavera-sound-2019:d2:primavera:2325:guided-by-voices",
+   "artistId": "primavera-sound-2019:guided-by-voices",
+   "day": 2,
+   "stageId": "primavera-sound-2019:primavera",
+   "start": "23:25",
+   "end": "00:40"
+  },
+  {
+   "id": "primavera-sound-2019:d2:primavera:0155:charli-xcx",
+   "artistId": "primavera-sound-2019:charli-xcx",
+   "day": 2,
+   "stageId": "primavera-sound-2019:primavera",
+   "start": "01:55",
+   "end": "02:45"
+  },
+  {
+   "id": "primavera-sound-2019:d2:night-pro:1820:teskno",
+   "artistId": "primavera-sound-2019:teskno",
+   "day": 2,
+   "stageId": "primavera-sound-2019:night-pro",
+   "start": "18:20",
+   "end": "19:00"
+  },
+  {
+   "id": "primavera-sound-2019:d2:night-pro:1920:belau",
+   "artistId": "primavera-sound-2019:belau",
+   "day": 2,
+   "stageId": "primavera-sound-2019:night-pro",
+   "start": "19:20",
+   "end": "20:00"
+  },
+  {
+   "id": "primavera-sound-2019:d2:night-pro:2020:malihini",
+   "artistId": "primavera-sound-2019:malihini",
+   "day": 2,
+   "stageId": "primavera-sound-2019:night-pro",
+   "start": "20:20",
+   "end": "21:00"
+  },
+  {
+   "id": "primavera-sound-2019:d2:night-pro:2120:lonker-see",
+   "artistId": "primavera-sound-2019:lonker-see",
+   "day": 2,
+   "stageId": "primavera-sound-2019:night-pro",
+   "start": "21:20",
+   "end": "22:00"
+  },
+  {
+   "id": "primavera-sound-2019:d2:night-pro:2220:we-will-fail",
+   "artistId": "primavera-sound-2019:we-will-fail",
+   "day": 2,
+   "stageId": "primavera-sound-2019:night-pro",
+   "start": "22:20",
+   "end": "23:00"
+  },
+  {
+   "id": "primavera-sound-2019:d2:xiringuito-aperol:1400:im",
+   "artistId": "primavera-sound-2019:im",
+   "day": 2,
+   "stageId": "primavera-sound-2019:xiringuito-aperol",
+   "start": "14:00",
+   "end": "15:15"
+  },
+  {
+   "id": "primavera-sound-2019:d2:xiringuito-aperol:1515:shakti-alliance-ivy-modet-vir",
+   "artistId": "primavera-sound-2019:shakti-alliance-ivy-modet-vir",
+   "day": 2,
+   "stageId": "primavera-sound-2019:xiringuito-aperol",
+   "start": "15:15",
+   "end": "18:00"
+  },
+  {
+   "id": "primavera-sound-2019:d2:auditori-rockdelux:1600:bridget-st-john",
+   "artistId": "primavera-sound-2019:bridget-st-john",
+   "day": 2,
+   "stageId": "primavera-sound-2019:auditori-rockdelux",
+   "start": "16:00",
+   "end": "16:45"
+  },
+  {
+   "id": "primavera-sound-2019:d2:auditori-rockdelux:1700:julien-baker",
+   "artistId": "primavera-sound-2019:julien-baker",
+   "day": 2,
+   "stageId": "primavera-sound-2019:auditori-rockdelux",
+   "start": "17:00",
+   "end": "17:50"
+  },
+  {
+   "id": "primavera-sound-2019:d2:auditori-rockdelux:1810:the-necks",
+   "artistId": "primavera-sound-2019:the-necks",
+   "day": 2,
+   "stageId": "primavera-sound-2019:auditori-rockdelux",
+   "start": "18:10",
+   "end": "19:10"
+  },
+  {
+   "id": "primavera-sound-2019:d2:auditori-rockdelux:1930:terry-riley-and-gyan-riley",
+   "artistId": "primavera-sound-2019:terry-riley-and-gyan-riley",
+   "day": 2,
+   "stageId": "primavera-sound-2019:auditori-rockdelux",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "primavera-sound-2019:d2:auditori-rockdelux:2055:apparat-live",
+   "artistId": "primavera-sound-2019:apparat-live",
+   "day": 2,
+   "stageId": "primavera-sound-2019:auditori-rockdelux",
+   "start": "20:55",
+   "end": "22:00"
+  },
+  {
+   "id": "primavera-sound-2019:d2:ray-ban:1640:las-odio",
+   "artistId": "primavera-sound-2019:las-odio",
+   "day": 2,
+   "stageId": "primavera-sound-2019:ray-ban",
+   "start": "16:40",
+   "end": "17:15"
+  },
+  {
+   "id": "primavera-sound-2019:d2:ray-ban:1810:soccer-mommy",
+   "artistId": "primavera-sound-2019:soccer-mommy",
+   "day": 2,
+   "stageId": "primavera-sound-2019:ray-ban",
+   "start": "18:10",
+   "end": "18:55"
+  },
+  {
+   "id": "primavera-sound-2019:d2:ray-ban:2005:danny-brown",
+   "artistId": "primavera-sound-2019:danny-brown",
+   "day": 2,
+   "stageId": "primavera-sound-2019:ray-ban",
+   "start": "20:05",
+   "end": "21:05"
+  },
+  {
+   "id": "primavera-sound-2019:d2:ray-ban:2220:nas",
+   "artistId": "primavera-sound-2019:nas",
+   "day": 2,
+   "stageId": "primavera-sound-2019:ray-ban",
+   "start": "22:20",
+   "end": "23:20"
+  },
+  {
+   "id": "primavera-sound-2019:d2:ray-ban:0045:dirty-projectors",
+   "artistId": "primavera-sound-2019:dirty-projectors",
+   "day": 2,
+   "stageId": "primavera-sound-2019:ray-ban",
+   "start": "00:45",
+   "end": "01:50"
+  },
+  {
+   "id": "primavera-sound-2019:d2:ray-ban:0250:fka-twigs",
+   "artistId": "primavera-sound-2019:fka-twigs",
+   "day": 2,
+   "stageId": "primavera-sound-2019:ray-ban",
+   "start": "02:50",
+   "end": "03:50"
+  },
+  {
+   "id": "primavera-sound-2019:d2:ray-ban:0400:nina-kraviz",
+   "artistId": "primavera-sound-2019:nina-kraviz",
+   "day": 2,
+   "stageId": "primavera-sound-2019:ray-ban",
+   "start": "04:00",
+   "end": "06:00"
+  },
+  {
+   "id": "primavera-sound-2019:d2:adidas-originals:1700:elena-setien",
+   "artistId": "primavera-sound-2019:elena-setien",
+   "day": 2,
+   "stageId": "primavera-sound-2019:adidas-originals",
+   "start": "17:00",
+   "end": "17:40"
+  },
+  {
+   "id": "primavera-sound-2019:d2:adidas-originals:1825:dream-wife",
+   "artistId": "primavera-sound-2019:dream-wife",
+   "day": 2,
+   "stageId": "primavera-sound-2019:adidas-originals",
+   "start": "18:25",
+   "end": "19:10"
+  },
+  {
+   "id": "primavera-sound-2019:d2:adidas-originals:2005:shonen-knife",
+   "artistId": "primavera-sound-2019:shonen-knife",
+   "day": 2,
+   "stageId": "primavera-sound-2019:adidas-originals",
+   "start": "20:05",
+   "end": "20:50"
+  },
+  {
+   "id": "primavera-sound-2019:d2:adidas-originals:2145:stiff-little-fingers",
+   "artistId": "primavera-sound-2019:stiff-little-fingers",
+   "day": 2,
+   "stageId": "primavera-sound-2019:adidas-originals",
+   "start": "21:45",
+   "end": "22:30"
+  },
+  {
+   "id": "primavera-sound-2019:d2:adidas-originals:2330:carcass",
+   "artistId": "primavera-sound-2019:carcass",
+   "day": 2,
+   "stageId": "primavera-sound-2019:adidas-originals",
+   "start": "23:30",
+   "end": "00:30"
+  },
+  {
+   "id": "primavera-sound-2019:d2:adidas-originals:0120:myrkur",
+   "artistId": "primavera-sound-2019:myrkur",
+   "day": 2,
+   "stageId": "primavera-sound-2019:adidas-originals",
+   "start": "01:20",
+   "end": "02:05"
+  },
+  {
+   "id": "primavera-sound-2019:d2:adidas-originals:0300:nitzer-ebb",
+   "artistId": "primavera-sound-2019:nitzer-ebb",
+   "day": 2,
+   "stageId": "primavera-sound-2019:adidas-originals",
+   "start": "03:00",
+   "end": "04:00"
+  },
+  {
+   "id": "primavera-sound-2019:d2:pitchfork:1745:odina",
+   "artistId": "primavera-sound-2019:odina",
+   "day": 2,
+   "stageId": "primavera-sound-2019:pitchfork",
+   "start": "17:45",
+   "end": "18:20"
+  },
+  {
+   "id": "primavera-sound-2019:d2:pitchfork:1915:tomberlin",
+   "artistId": "primavera-sound-2019:tomberlin",
+   "day": 2,
+   "stageId": "primavera-sound-2019:pitchfork",
+   "start": "19:15",
+   "end": "20:00"
+  },
+  {
+   "id": "primavera-sound-2019:d2:pitchfork:2055:clairo",
+   "artistId": "primavera-sound-2019:clairo",
+   "day": 2,
+   "stageId": "primavera-sound-2019:pitchfork",
+   "start": "20:55",
+   "end": "21:40"
+  },
+  {
+   "id": "primavera-sound-2019:d2:pitchfork:2235:sigrid",
+   "artistId": "primavera-sound-2019:sigrid",
+   "day": 2,
+   "stageId": "primavera-sound-2019:pitchfork",
+   "start": "22:35",
+   "end": "23:25"
+  },
+  {
+   "id": "primavera-sound-2019:d2:pitchfork:0035:070-shake",
+   "artistId": "primavera-sound-2019:070-shake",
+   "day": 2,
+   "stageId": "primavera-sound-2019:pitchfork",
+   "start": "00:35",
+   "end": "01:15"
+  },
+  {
+   "id": "primavera-sound-2019:d2:pitchfork:0210:empress-of",
+   "artistId": "primavera-sound-2019:empress-of",
+   "day": 2,
+   "stageId": "primavera-sound-2019:pitchfork",
+   "start": "02:10",
+   "end": "02:55"
+  },
+  {
+   "id": "primavera-sound-2019:d2:pitchfork:0405:mykki-blanco",
+   "artistId": "primavera-sound-2019:mykki-blanco",
+   "day": 2,
+   "stageId": "primavera-sound-2019:pitchfork",
+   "start": "04:05",
+   "end": "05:55"
+  },
+  {
+   "id": "primavera-sound-2019:d2:desperados-cube:1800:mafalda",
+   "artistId": "primavera-sound-2019:mafalda",
+   "day": 2,
+   "stageId": "primavera-sound-2019:desperados-cube",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "primavera-sound-2019:d2:desperados-cube:1900:dam-funk",
+   "artistId": "primavera-sound-2019:dam-funk",
+   "day": 2,
+   "stageId": "primavera-sound-2019:desperados-cube",
+   "start": "19:00",
+   "end": "20:30"
+  },
+  {
+   "id": "primavera-sound-2019:d2:desperados-cube:2030:krystal-klear",
+   "artistId": "primavera-sound-2019:krystal-klear",
+   "day": 2,
+   "stageId": "primavera-sound-2019:desperados-cube",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "primavera-sound-2019:d2:desperados-cube:2200:jayda-g",
+   "artistId": "primavera-sound-2019:jayda-g",
+   "day": 2,
+   "stageId": "primavera-sound-2019:desperados-cube",
+   "start": "22:00",
+   "end": "23:30"
+  },
+  {
+   "id": "primavera-sound-2019:d2:desperados-cube:2330:denis-sulta",
+   "artistId": "primavera-sound-2019:denis-sulta",
+   "day": 2,
+   "stageId": "primavera-sound-2019:desperados-cube",
+   "start": "23:30",
+   "end": "01:00"
+  },
+  {
+   "id": "primavera-sound-2019:d2:desperados-cube:0100:job-jobse",
+   "artistId": "primavera-sound-2019:job-jobse",
+   "day": 2,
+   "stageId": "primavera-sound-2019:desperados-cube",
+   "start": "01:00",
+   "end": "02:30"
+  },
+  {
+   "id": "primavera-sound-2019:d2:desperados-cube:0230:octo-octa-b2b-eris-drew",
+   "artistId": "primavera-sound-2019:octo-octa-b2b-eris-drew",
+   "day": 2,
+   "stageId": "primavera-sound-2019:desperados-cube",
+   "start": "02:30",
+   "end": "05:30"
+  },
+  {
+   "id": "primavera-sound-2019:d2:your-heineken-stage:1825:aliment-play-television-personalities",
+   "artistId": "primavera-sound-2019:aliment-play-television-personalities",
+   "day": 2,
+   "stageId": "primavera-sound-2019:your-heineken-stage",
+   "start": "18:25",
+   "end": "19:10"
+  },
+  {
+   "id": "primavera-sound-2019:d2:your-heineken-stage:2005:chandra",
+   "artistId": "primavera-sound-2019:chandra",
+   "day": 2,
+   "stageId": "primavera-sound-2019:your-heineken-stage",
+   "start": "20:05",
+   "end": "20:50"
+  },
+  {
+   "id": "primavera-sound-2019:d2:your-heineken-stage:2145:viva-belgrado-play-at-the-drive-in",
+   "artistId": "primavera-sound-2019:viva-belgrado-play-at-the-drive-in",
+   "day": 2,
+   "stageId": "primavera-sound-2019:your-heineken-stage",
+   "start": "21:45",
+   "end": "22:30"
+  },
+  {
+   "id": "primavera-sound-2019:d2:your-heineken-stage:2330:pylon-reenactment-society",
+   "artistId": "primavera-sound-2019:pylon-reenactment-society",
+   "day": 2,
+   "stageId": "primavera-sound-2019:your-heineken-stage",
+   "start": "23:30",
+   "end": "00:20"
+  },
+  {
+   "id": "primavera-sound-2019:d2:your-heineken-stage:0120:the-comet-is-coming",
+   "artistId": "primavera-sound-2019:the-comet-is-coming",
+   "day": 2,
+   "stageId": "primavera-sound-2019:your-heineken-stage",
+   "start": "01:20",
+   "end": "02:05"
+  },
+  {
+   "id": "primavera-sound-2019:d2:your-heineken-stage:0300:severed-heads",
+   "artistId": "primavera-sound-2019:severed-heads",
+   "day": 2,
+   "stageId": "primavera-sound-2019:your-heineken-stage",
+   "start": "03:00",
+   "end": "04:00"
+  },
+  {
+   "id": "primavera-sound-2019:d2:lotus:1830:r-e-a-l",
+   "artistId": "primavera-sound-2019:r-e-a-l",
+   "day": 2,
+   "stageId": "primavera-sound-2019:lotus",
+   "start": "18:30",
+   "end": "19:15"
+  },
+  {
+   "id": "primavera-sound-2019:d2:lotus:2015:bakar",
+   "artistId": "primavera-sound-2019:bakar",
+   "day": 2,
+   "stageId": "primavera-sound-2019:lotus",
+   "start": "20:15",
+   "end": "21:10"
+  },
+  {
+   "id": "primavera-sound-2019:d2:lotus:2140:marie-davidson",
+   "artistId": "primavera-sound-2019:marie-davidson",
+   "day": 2,
+   "stageId": "primavera-sound-2019:lotus",
+   "start": "21:40",
+   "end": "22:35"
+  },
+  {
+   "id": "primavera-sound-2019:d2:lotus:2310:princess-nokia",
+   "artistId": "primavera-sound-2019:princess-nokia",
+   "day": 2,
+   "stageId": "primavera-sound-2019:lotus",
+   "start": "23:10",
+   "end": "00:10"
+  },
+  {
+   "id": "primavera-sound-2019:d2:lotus:0050:sophie",
+   "artistId": "primavera-sound-2019:sophie",
+   "day": 2,
+   "stageId": "primavera-sound-2019:lotus",
+   "start": "00:50",
+   "end": "01:50"
+  },
+  {
+   "id": "primavera-sound-2019:d2:lotus:0225:yaeji",
+   "artistId": "primavera-sound-2019:yaeji",
+   "day": 2,
+   "stageId": "primavera-sound-2019:lotus",
+   "start": "02:25",
+   "end": "03:25"
+  },
+  {
+   "id": "primavera-sound-2019:d2:lotus:0355:maribou-state",
+   "artistId": "primavera-sound-2019:maribou-state",
+   "day": 2,
+   "stageId": "primavera-sound-2019:lotus",
+   "start": "03:55",
+   "end": "04:55"
+  },
+  {
+   "id": "primavera-sound-2019:d2:seat:1845:the-mani-las",
+   "artistId": "primavera-sound-2019:the-mani-las",
+   "day": 2,
+   "stageId": "primavera-sound-2019:seat",
+   "start": "18:45",
+   "end": "19:30"
+  },
+  {
+   "id": "primavera-sound-2019:d2:seat:2030:mac-demarco",
+   "artistId": "primavera-sound-2019:mac-demarco",
+   "day": 2,
+   "stageId": "primavera-sound-2019:seat",
+   "start": "20:30",
+   "end": "21:45"
+  },
+  {
+   "id": "primavera-sound-2019:d2:seat:2315:interpol",
+   "artistId": "primavera-sound-2019:interpol",
+   "day": 2,
+   "stageId": "primavera-sound-2019:seat",
+   "start": "23:15",
+   "end": "00:25"
+  },
+  {
+   "id": "primavera-sound-2019:d2:seat:0205:future",
+   "artistId": "primavera-sound-2019:future",
+   "day": 2,
+   "stageId": "primavera-sound-2019:seat",
+   "start": "02:05",
+   "end": "03:00"
+  },
+  {
+   "id": "primavera-sound-2019:d2:ocb-paper-sessions:1900:alice-phoebe-lou",
+   "artistId": "primavera-sound-2019:alice-phoebe-lou",
+   "day": 2,
+   "stageId": "primavera-sound-2019:ocb-paper-sessions",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "primavera-sound-2019:d2:pull-and-bear:1935:big-thief",
+   "artistId": "primavera-sound-2019:big-thief",
+   "day": 2,
+   "stageId": "primavera-sound-2019:pull-and-bear",
+   "start": "19:35",
+   "end": "20:25"
+  },
+  {
+   "id": "primavera-sound-2019:d2:pull-and-bear:2150:courtney-barnett",
+   "artistId": "primavera-sound-2019:courtney-barnett",
+   "day": 2,
+   "stageId": "primavera-sound-2019:pull-and-bear",
+   "start": "21:50",
+   "end": "23:05"
+  },
+  {
+   "id": "primavera-sound-2019:d2:pull-and-bear:0030:erykah-badu",
+   "artistId": "primavera-sound-2019:erykah-badu",
+   "day": 2,
+   "stageId": "primavera-sound-2019:pull-and-bear",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "primavera-sound-2019:d2:seat-village:2100:erik-urano",
+   "artistId": "primavera-sound-2019:erik-urano",
+   "day": 2,
+   "stageId": "primavera-sound-2019:seat-village",
+   "start": "21:00",
+   "end": "21:45"
+  },
+  {
+   "id": "primavera-sound-2019:d2:seat-village:2215:chynna",
+   "artistId": "primavera-sound-2019:chynna",
+   "day": 2,
+   "stageId": "primavera-sound-2019:seat-village",
+   "start": "22:15",
+   "end": "23:00"
+  },
+  {
+   "id": "primavera-sound-2019:d2:seat-village:0000:celeste",
+   "artistId": "primavera-sound-2019:celeste",
+   "day": 2,
+   "stageId": "primavera-sound-2019:seat-village",
+   "start": "00:00",
+   "end": "00:45"
+  },
+  {
+   "id": "primavera-sound-2019:d2:seat-village:0130:idk",
+   "artistId": "primavera-sound-2019:idk",
+   "day": 2,
+   "stageId": "primavera-sound-2019:seat-village",
+   "start": "01:30",
+   "end": "02:30"
+  },
+  {
+   "id": "primavera-sound-2019:d2:seat-village:0300:jarvis-cocker-dj-set",
+   "artistId": "primavera-sound-2019:jarvis-cocker-dj-set",
+   "day": 2,
+   "stageId": "primavera-sound-2019:seat-village",
+   "start": "03:00",
+   "end": "05:00"
+  },
+  {
+   "id": "primavera-sound-2019:d2:ray-ban-studios:2200:upsammy",
+   "artistId": "primavera-sound-2019:upsammy",
+   "day": 2,
+   "stageId": "primavera-sound-2019:ray-ban-studios",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "primavera-sound-2019:d2:ray-ban-studios:2300:objekt",
+   "artistId": "primavera-sound-2019:objekt",
+   "day": 2,
+   "stageId": "primavera-sound-2019:ray-ban-studios",
+   "start": "23:00",
+   "end": "00:30"
+  },
+  {
+   "id": "primavera-sound-2019:d2:ray-ban-studios:0030:demdike-stare",
+   "artistId": "primavera-sound-2019:demdike-stare",
+   "day": 2,
+   "stageId": "primavera-sound-2019:ray-ban-studios",
+   "start": "00:30",
+   "end": "01:30"
+  },
+  {
+   "id": "primavera-sound-2019:d2:ray-ban-studios:0130:djrum",
+   "artistId": "primavera-sound-2019:djrum",
+   "day": 2,
+   "stageId": "primavera-sound-2019:ray-ban-studios",
+   "start": "01:30",
+   "end": "03:00"
+  },
+  {
+   "id": "primavera-sound-2019:d2:ray-ban-studios:0300:anastasia-kristensen-live",
+   "artistId": "primavera-sound-2019:anastasia-kristensen-live",
+   "day": 2,
+   "stageId": "primavera-sound-2019:ray-ban-studios",
+   "start": "03:00",
+   "end": "04:00"
+  },
+  {
+   "id": "primavera-sound-2019:d2:ray-ban-studios:0400:brat-star",
+   "artistId": "primavera-sound-2019:brat-star",
+   "day": 2,
+   "stageId": "primavera-sound-2019:ray-ban-studios",
+   "start": "04:00",
+   "end": "05:30"
+  },
+  {
+   "id": "primavera-sound-2019:d2:el-punto-by-adidas-originals:2315:goa",
+   "artistId": "primavera-sound-2019:goa",
+   "day": 2,
+   "stageId": "primavera-sound-2019:el-punto-by-adidas-originals",
+   "start": "23:15",
+   "end": "00:00"
+  },
+  {
+   "id": "primavera-sound-2019:d2:el-punto-by-adidas-originals:0000:brat-star",
+   "artistId": "primavera-sound-2019:brat-star",
+   "day": 2,
+   "stageId": "primavera-sound-2019:el-punto-by-adidas-originals",
+   "start": "00:00",
+   "end": "01:15"
+  },
+  {
+   "id": "primavera-sound-2019:d2:el-punto-by-adidas-originals:0115:gangsta-boo",
+   "artistId": "primavera-sound-2019:gangsta-boo",
+   "day": 2,
+   "stageId": "primavera-sound-2019:el-punto-by-adidas-originals",
+   "start": "01:15",
+   "end": "02:00"
+  },
+  {
+   "id": "primavera-sound-2019:d2:el-punto-by-adidas-originals:0200:rico-nasty",
+   "artistId": "primavera-sound-2019:rico-nasty",
+   "day": 2,
+   "stageId": "primavera-sound-2019:el-punto-by-adidas-originals",
+   "start": "02:00",
+   "end": "02:45"
+  },
+  {
+   "id": "primavera-sound-2019:d2:el-punto-by-adidas-originals:0245:japanese",
+   "artistId": "primavera-sound-2019:japanese",
+   "day": 2,
+   "stageId": "primavera-sound-2019:el-punto-by-adidas-originals",
+   "start": "02:45",
+   "end": "03:30"
+  },
+  {
+   "id": "primavera-sound-2019:d2:el-punto-by-adidas-originals:0330:uzielito-mix",
+   "artistId": "primavera-sound-2019:uzielito-mix",
+   "day": 2,
+   "stageId": "primavera-sound-2019:el-punto-by-adidas-originals",
+   "start": "03:30",
+   "end": "05:00"
+  },
+  {
+   "id": "primavera-sound-2019:d3:primavera:1735:snail-mail",
+   "artistId": "primavera-sound-2019:snail-mail",
+   "day": 3,
+   "stageId": "primavera-sound-2019:primavera",
+   "start": "17:35",
+   "end": "18:20"
+  },
+  {
+   "id": "primavera-sound-2019:d3:primavera:1930:beak-and-gt",
+   "artistId": "primavera-sound-2019:beak-and-gt",
+   "day": 3,
+   "stageId": "primavera-sound-2019:primavera",
+   "start": "19:30",
+   "end": "20:20"
+  },
+  {
+   "id": "primavera-sound-2019:d3:primavera:2110:jawbreaker",
+   "artistId": "primavera-sound-2019:jawbreaker",
+   "day": 3,
+   "stageId": "primavera-sound-2019:primavera",
+   "start": "21:10",
+   "end": "22:25"
+  },
+  {
+   "id": "primavera-sound-2019:d3:primavera:2350:low",
+   "artistId": "primavera-sound-2019:low",
+   "day": 3,
+   "stageId": "primavera-sound-2019:primavera",
+   "start": "23:50",
+   "end": "00:50"
+  },
+  {
+   "id": "primavera-sound-2019:d3:primavera:0200:jungle",
+   "artistId": "primavera-sound-2019:jungle",
+   "day": 3,
+   "stageId": "primavera-sound-2019:primavera",
+   "start": "02:00",
+   "end": "03:00"
+  },
+  {
+   "id": "primavera-sound-2019:d3:night-pro:1655:han",
+   "artistId": "primavera-sound-2019:han",
+   "day": 3,
+   "stageId": "primavera-sound-2019:night-pro",
+   "start": "16:55",
+   "end": "17:35"
+  },
+  {
+   "id": "primavera-sound-2019:d3:night-pro:1755:mayberian-sanskulotts",
+   "artistId": "primavera-sound-2019:mayberian-sanskulotts",
+   "day": 3,
+   "stageId": "primavera-sound-2019:night-pro",
+   "start": "17:55",
+   "end": "18:35"
+  },
+  {
+   "id": "primavera-sound-2019:d3:night-pro:1850:birthh",
+   "artistId": "primavera-sound-2019:birthh",
+   "day": 3,
+   "stageId": "primavera-sound-2019:night-pro",
+   "start": "18:50",
+   "end": "19:30"
+  },
+  {
+   "id": "primavera-sound-2019:d3:night-pro:2000:nfx",
+   "artistId": "primavera-sound-2019:nfx",
+   "day": 3,
+   "stageId": "primavera-sound-2019:night-pro",
+   "start": "20:00",
+   "end": "20:40"
+  },
+  {
+   "id": "primavera-sound-2019:d3:night-pro:2100:edsun",
+   "artistId": "primavera-sound-2019:edsun",
+   "day": 3,
+   "stageId": "primavera-sound-2019:night-pro",
+   "start": "21:00",
+   "end": "21:40"
+  },
+  {
+   "id": "primavera-sound-2019:d3:night-pro:2200:bronko-yotte",
+   "artistId": "primavera-sound-2019:bronko-yotte",
+   "day": 3,
+   "stageId": "primavera-sound-2019:night-pro",
+   "start": "22:00",
+   "end": "22:40"
+  },
+  {
+   "id": "primavera-sound-2019:d3:night-pro:2300:5k-hd",
+   "artistId": "primavera-sound-2019:5k-hd",
+   "day": 3,
+   "stageId": "primavera-sound-2019:night-pro",
+   "start": "23:00",
+   "end": "23:40"
+  },
+  {
+   "id": "primavera-sound-2019:d3:xiringuito-aperol:1400:isa-bel",
+   "artistId": "primavera-sound-2019:isa-bel",
+   "day": 3,
+   "stageId": "primavera-sound-2019:xiringuito-aperol",
+   "start": "14:00",
+   "end": "15:15"
+  },
+  {
+   "id": "primavera-sound-2019:d3:xiringuito-aperol:1515:xols",
+   "artistId": "primavera-sound-2019:xols",
+   "day": 3,
+   "stageId": "primavera-sound-2019:xiringuito-aperol",
+   "start": "15:15",
+   "end": "16:45"
+  },
+  {
+   "id": "primavera-sound-2019:d3:xiringuito-aperol:1645:phosky",
+   "artistId": "primavera-sound-2019:phosky",
+   "day": 3,
+   "stageId": "primavera-sound-2019:xiringuito-aperol",
+   "start": "16:45",
+   "end": "18:00"
+  },
+  {
+   "id": "primavera-sound-2019:d3:auditori-rockdelux:1600:midori-takada",
+   "artistId": "primavera-sound-2019:midori-takada",
+   "day": 3,
+   "stageId": "primavera-sound-2019:auditori-rockdelux",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "primavera-sound-2019:d3:auditori-rockdelux:1730:maria-jose-llergo",
+   "artistId": "primavera-sound-2019:maria-jose-llergo",
+   "day": 3,
+   "stageId": "primavera-sound-2019:auditori-rockdelux",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "primavera-sound-2019:d3:auditori-rockdelux:1920:julia-holter",
+   "artistId": "primavera-sound-2019:julia-holter",
+   "day": 3,
+   "stageId": "primavera-sound-2019:auditori-rockdelux",
+   "start": "19:20",
+   "end": "20:30"
+  },
+  {
+   "id": "primavera-sound-2019:d3:auditori-rockdelux:2100:dirty-projectors",
+   "artistId": "primavera-sound-2019:dirty-projectors",
+   "day": 3,
+   "stageId": "primavera-sound-2019:auditori-rockdelux",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "primavera-sound-2019:d3:ray-ban:1645:lucy-dacus",
+   "artistId": "primavera-sound-2019:lucy-dacus",
+   "day": 3,
+   "stageId": "primavera-sound-2019:ray-ban",
+   "start": "16:45",
+   "end": "17:30"
+  },
+  {
+   "id": "primavera-sound-2019:d3:ray-ban:1825:sons-of-kemet-xl",
+   "artistId": "primavera-sound-2019:sons-of-kemet-xl",
+   "day": 3,
+   "stageId": "primavera-sound-2019:ray-ban",
+   "start": "18:25",
+   "end": "19:25"
+  },
+  {
+   "id": "primavera-sound-2019:d3:ray-ban:2025:derby-motoreta-s-burrito-kachimba",
+   "artistId": "primavera-sound-2019:derby-motoreta-s-burrito-kachimba",
+   "day": 3,
+   "stageId": "primavera-sound-2019:ray-ban",
+   "start": "20:25",
+   "end": "21:05"
+  },
+  {
+   "id": "primavera-sound-2019:d3:ray-ban:2230:suede",
+   "artistId": "primavera-sound-2019:suede",
+   "day": 3,
+   "stageId": "primavera-sound-2019:ray-ban",
+   "start": "22:30",
+   "end": "23:45"
+  },
+  {
+   "id": "primavera-sound-2019:d3:ray-ban:0055:kate-tempest",
+   "artistId": "primavera-sound-2019:kate-tempest",
+   "day": 3,
+   "stageId": "primavera-sound-2019:ray-ban",
+   "start": "00:55",
+   "end": "01:55"
+  },
+  {
+   "id": "primavera-sound-2019:d3:ray-ban:0305:mura-masa",
+   "artistId": "primavera-sound-2019:mura-masa",
+   "day": 3,
+   "stageId": "primavera-sound-2019:ray-ban",
+   "start": "03:05",
+   "end": "04:00"
+  },
+  {
+   "id": "primavera-sound-2019:d3:ray-ban:0410:peggy-gou",
+   "artistId": "primavera-sound-2019:peggy-gou",
+   "day": 3,
+   "stageId": "primavera-sound-2019:ray-ban",
+   "start": "04:10",
+   "end": "06:00"
+  },
+  {
+   "id": "primavera-sound-2019:d3:adidas-originals:1700:lidia-damunt",
+   "artistId": "primavera-sound-2019:lidia-damunt",
+   "day": 3,
+   "stageId": "primavera-sound-2019:adidas-originals",
+   "start": "17:00",
+   "end": "17:40"
+  },
+  {
+   "id": "primavera-sound-2019:d3:adidas-originals:1830:pond",
+   "artistId": "primavera-sound-2019:pond",
+   "day": 3,
+   "stageId": "primavera-sound-2019:adidas-originals",
+   "start": "18:30",
+   "end": "19:15"
+  },
+  {
+   "id": "primavera-sound-2019:d3:adidas-originals:2010:fucked-up",
+   "artistId": "primavera-sound-2019:fucked-up",
+   "day": 3,
+   "stageId": "primavera-sound-2019:adidas-originals",
+   "start": "20:10",
+   "end": "20:55"
+  },
+  {
+   "id": "primavera-sound-2019:d3:adidas-originals:2215:chai",
+   "artistId": "primavera-sound-2019:chai",
+   "day": 3,
+   "stageId": "primavera-sound-2019:adidas-originals",
+   "start": "22:15",
+   "end": "23:00"
+  },
+  {
+   "id": "primavera-sound-2019:d3:adidas-originals:0000:amyl-and-the-sniffers",
+   "artistId": "primavera-sound-2019:amyl-and-the-sniffers",
+   "day": 3,
+   "stageId": "primavera-sound-2019:adidas-originals",
+   "start": "00:00",
+   "end": "00:50"
+  },
+  {
+   "id": "primavera-sound-2019:d3:adidas-originals:0145:lisabo",
+   "artistId": "primavera-sound-2019:lisabo",
+   "day": 3,
+   "stageId": "primavera-sound-2019:adidas-originals",
+   "start": "01:45",
+   "end": "02:30"
+  },
+  {
+   "id": "primavera-sound-2019:d3:adidas-originals:0325:bliss-signal",
+   "artistId": "primavera-sound-2019:bliss-signal",
+   "day": 3,
+   "stageId": "primavera-sound-2019:adidas-originals",
+   "start": "03:25",
+   "end": "04:10"
+  },
+  {
+   "id": "primavera-sound-2019:d3:pitchfork:1745:putochinomaricon",
+   "artistId": "primavera-sound-2019:putochinomaricon",
+   "day": 3,
+   "stageId": "primavera-sound-2019:pitchfork",
+   "start": "17:45",
+   "end": "18:25"
+  },
+  {
+   "id": "primavera-sound-2019:d3:pitchfork:1920:just-mustard",
+   "artistId": "primavera-sound-2019:just-mustard",
+   "day": 3,
+   "stageId": "primavera-sound-2019:pitchfork",
+   "start": "19:20",
+   "end": "20:05"
+  },
+  {
+   "id": "primavera-sound-2019:d3:pitchfork:2100:liz-phair",
+   "artistId": "primavera-sound-2019:liz-phair",
+   "day": 3,
+   "stageId": "primavera-sound-2019:pitchfork",
+   "start": "21:00",
+   "end": "21:45"
+  },
+  {
+   "id": "primavera-sound-2019:d3:pitchfork:2305:aldous-harding",
+   "artistId": "primavera-sound-2019:aldous-harding",
+   "day": 3,
+   "stageId": "primavera-sound-2019:pitchfork",
+   "start": "23:05",
+   "end": "23:55"
+  },
+  {
+   "id": "primavera-sound-2019:d3:pitchfork:0055:yves-tumor",
+   "artistId": "primavera-sound-2019:yves-tumor",
+   "day": 3,
+   "stageId": "primavera-sound-2019:pitchfork",
+   "start": "00:55",
+   "end": "01:40"
+  },
+  {
+   "id": "primavera-sound-2019:d3:pitchfork:0235:flohio",
+   "artistId": "primavera-sound-2019:flohio",
+   "day": 3,
+   "stageId": "primavera-sound-2019:pitchfork",
+   "start": "02:35",
+   "end": "03:20"
+  },
+  {
+   "id": "primavera-sound-2019:d3:pitchfork:0415:iglooghost",
+   "artistId": "primavera-sound-2019:iglooghost",
+   "day": 3,
+   "stageId": "primavera-sound-2019:pitchfork",
+   "start": "04:15",
+   "end": "05:00"
+  },
+  {
+   "id": "primavera-sound-2019:d3:desperados-cube:1800:ylia",
+   "artistId": "primavera-sound-2019:ylia",
+   "day": 3,
+   "stageId": "primavera-sound-2019:desperados-cube",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "primavera-sound-2019:d3:desperados-cube:1900:laurel-halo-dj-set",
+   "artistId": "primavera-sound-2019:laurel-halo-dj-set",
+   "day": 3,
+   "stageId": "primavera-sound-2019:desperados-cube",
+   "start": "19:00",
+   "end": "20:30"
+  },
+  {
+   "id": "primavera-sound-2019:d3:desperados-cube:2030:steffi",
+   "artistId": "primavera-sound-2019:steffi",
+   "day": 3,
+   "stageId": "primavera-sound-2019:desperados-cube",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "primavera-sound-2019:d3:desperados-cube:2200:courtesy",
+   "artistId": "primavera-sound-2019:courtesy",
+   "day": 3,
+   "stageId": "primavera-sound-2019:desperados-cube",
+   "start": "22:00",
+   "end": "23:30"
+  },
+  {
+   "id": "primavera-sound-2019:d3:desperados-cube:2330:dr-rubinstein",
+   "artistId": "primavera-sound-2019:dr-rubinstein",
+   "day": 3,
+   "stageId": "primavera-sound-2019:desperados-cube",
+   "start": "23:30",
+   "end": "01:00"
+  },
+  {
+   "id": "primavera-sound-2019:d3:desperados-cube:0100:overmono-live-and-dj",
+   "artistId": "primavera-sound-2019:overmono-live-and-dj",
+   "day": 3,
+   "stageId": "primavera-sound-2019:desperados-cube",
+   "start": "01:00",
+   "end": "02:30"
+  },
+  {
+   "id": "primavera-sound-2019:d3:desperados-cube:0230:joy-orbison",
+   "artistId": "primavera-sound-2019:joy-orbison",
+   "day": 3,
+   "stageId": "primavera-sound-2019:desperados-cube",
+   "start": "02:30",
+   "end": "04:00"
+  },
+  {
+   "id": "primavera-sound-2019:d3:desperados-cube:0400:helena-hauff",
+   "artistId": "primavera-sound-2019:helena-hauff",
+   "day": 3,
+   "stageId": "primavera-sound-2019:desperados-cube",
+   "start": "04:00",
+   "end": "05:30"
+  },
+  {
+   "id": "primavera-sound-2019:d3:your-heineken-stage:1830:birkins-feat-ken-stringfellow-play-ziggy-stardust",
+   "artistId": "primavera-sound-2019:birkins-feat-ken-stringfellow-play-ziggy-stardust",
+   "day": 3,
+   "stageId": "primavera-sound-2019:your-heineken-stage",
+   "start": "18:30",
+   "end": "19:15"
+  },
+  {
+   "id": "primavera-sound-2019:d3:your-heineken-stage:2010:piroshka",
+   "artistId": "primavera-sound-2019:piroshka",
+   "day": 3,
+   "stageId": "primavera-sound-2019:your-heineken-stage",
+   "start": "20:10",
+   "end": "20:55"
+  },
+  {
+   "id": "primavera-sound-2019:d3:your-heineken-stage:2150:el-mato-a-un-policia-motorizado-feat-amaia-j-y-manu-ferron",
+   "artistId": "primavera-sound-2019:el-mato-a-un-policia-motorizado-feat-amaia-j-y-manu-ferron",
+   "day": 3,
+   "stageId": "primavera-sound-2019:your-heineken-stage",
+   "start": "21:50",
+   "end": "22:50"
+  },
+  {
+   "id": "primavera-sound-2019:d3:your-heineken-stage:0000:107-faunos",
+   "artistId": "primavera-sound-2019:107-faunos",
+   "day": 3,
+   "stageId": "primavera-sound-2019:your-heineken-stage",
+   "start": "00:00",
+   "end": "00:50"
+  },
+  {
+   "id": "primavera-sound-2019:d3:your-heineken-stage:0150:swervedriver",
+   "artistId": "primavera-sound-2019:swervedriver",
+   "day": 3,
+   "stageId": "primavera-sound-2019:your-heineken-stage",
+   "start": "01:50",
+   "end": "02:30"
+  },
+  {
+   "id": "primavera-sound-2019:d3:your-heineken-stage:0330:kokoshca-play-las-grecas",
+   "artistId": "primavera-sound-2019:kokoshca-play-las-grecas",
+   "day": 3,
+   "stageId": "primavera-sound-2019:your-heineken-stage",
+   "start": "03:30",
+   "end": "04:20"
+  },
+  {
+   "id": "primavera-sound-2019:d3:lotus:1900:bflecha",
+   "artistId": "primavera-sound-2019:bflecha",
+   "day": 3,
+   "stageId": "primavera-sound-2019:lotus",
+   "start": "19:00",
+   "end": "19:45"
+  },
+  {
+   "id": "primavera-sound-2019:d3:lotus:2000:wednesday-campanella",
+   "artistId": "primavera-sound-2019:wednesday-campanella",
+   "day": 3,
+   "stageId": "primavera-sound-2019:lotus",
+   "start": "20:00",
+   "end": "20:45"
+  },
+  {
+   "id": "primavera-sound-2019:d3:lotus:2100:sticky-m-a",
+   "artistId": "primavera-sound-2019:sticky-m-a",
+   "day": 3,
+   "stageId": "primavera-sound-2019:lotus",
+   "start": "21:00",
+   "end": "21:45"
+  },
+  {
+   "id": "primavera-sound-2019:d3:lotus:2235:tony-touch-and-friends-don-chezina-soni-withaneye",
+   "artistId": "primavera-sound-2019:tony-touch-and-friends-don-chezina-soni-withaneye",
+   "day": 3,
+   "stageId": "primavera-sound-2019:lotus",
+   "start": "22:35",
+   "end": "23:25"
+  },
+  {
+   "id": "primavera-sound-2019:d3:lotus:0015:ivy-queen",
+   "artistId": "primavera-sound-2019:ivy-queen",
+   "day": 3,
+   "stageId": "primavera-sound-2019:lotus",
+   "start": "00:15",
+   "end": "01:15"
+  },
+  {
+   "id": "primavera-sound-2019:d3:lotus:0140:cybotron-live",
+   "artistId": "primavera-sound-2019:cybotron-live",
+   "day": 3,
+   "stageId": "primavera-sound-2019:lotus",
+   "start": "01:40",
+   "end": "02:50"
+  },
+  {
+   "id": "primavera-sound-2019:d3:lotus:0320:objekt-live",
+   "artistId": "primavera-sound-2019:objekt-live",
+   "day": 3,
+   "stageId": "primavera-sound-2019:lotus",
+   "start": "03:20",
+   "end": "04:20"
+  },
+  {
+   "id": "primavera-sound-2019:d3:lotus:0450:agoria-live",
+   "artistId": "primavera-sound-2019:agoria-live",
+   "day": 3,
+   "stageId": "primavera-sound-2019:lotus",
+   "start": "04:50",
+   "end": "05:45"
+  },
+  {
+   "id": "primavera-sound-2019:d3:seat:1845:pavvla",
+   "artistId": "primavera-sound-2019:pavvla",
+   "day": 3,
+   "stageId": "primavera-sound-2019:seat",
+   "start": "18:45",
+   "end": "19:30"
+  },
+  {
+   "id": "primavera-sound-2019:d3:seat:2030:carly-rae-jepsen",
+   "artistId": "primavera-sound-2019:carly-rae-jepsen",
+   "day": 3,
+   "stageId": "primavera-sound-2019:seat",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "primavera-sound-2019:d3:seat:2310:miley-cyrus",
+   "artistId": "primavera-sound-2019:miley-cyrus",
+   "day": 3,
+   "stageId": "primavera-sound-2019:seat",
+   "start": "23:10",
+   "end": "00:10"
+  },
+  {
+   "id": "primavera-sound-2019:d3:seat:0155:robyn",
+   "artistId": "primavera-sound-2019:robyn",
+   "day": 3,
+   "stageId": "primavera-sound-2019:seat",
+   "start": "01:55",
+   "end": "03:00"
+  },
+  {
+   "id": "primavera-sound-2019:d3:ocb-paper-sessions:1900:chai",
+   "artistId": "primavera-sound-2019:chai",
+   "day": 3,
+   "stageId": "primavera-sound-2019:ocb-paper-sessions",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "primavera-sound-2019:d3:pull-and-bear:1935:kurt-vile-and-the-violators",
+   "artistId": "primavera-sound-2019:kurt-vile-and-the-violators",
+   "day": 3,
+   "stageId": "primavera-sound-2019:pull-and-bear",
+   "start": "19:35",
+   "end": "20:25"
+  },
+  {
+   "id": "primavera-sound-2019:d3:pull-and-bear:2135:janelle-monae",
+   "artistId": "primavera-sound-2019:janelle-monae",
+   "day": 3,
+   "stageId": "primavera-sound-2019:pull-and-bear",
+   "start": "21:35",
+   "end": "23:05"
+  },
+  {
+   "id": "primavera-sound-2019:d3:pull-and-bear:0020:tame-impala",
+   "artistId": "primavera-sound-2019:tame-impala",
+   "day": 3,
+   "stageId": "primavera-sound-2019:pull-and-bear",
+   "start": "00:20",
+   "end": "01:50"
+  },
+  {
+   "id": "primavera-sound-2019:d3:seat-village:2100:la-tiguerita",
+   "artistId": "primavera-sound-2019:la-tiguerita",
+   "day": 3,
+   "stageId": "primavera-sound-2019:seat-village",
+   "start": "21:00",
+   "end": "21:45"
+  },
+  {
+   "id": "primavera-sound-2019:d3:seat-village:2215:mucho-muchacho",
+   "artistId": "primavera-sound-2019:mucho-muchacho",
+   "day": 3,
+   "stageId": "primavera-sound-2019:seat-village",
+   "start": "22:15",
+   "end": "23:00"
+  },
+  {
+   "id": "primavera-sound-2019:d3:seat-village:2345:junglepussy",
+   "artistId": "primavera-sound-2019:junglepussy",
+   "day": 3,
+   "stageId": "primavera-sound-2019:seat-village",
+   "start": "23:45",
+   "end": "00:30"
+  },
+  {
+   "id": "primavera-sound-2019:d3:seat-village:0130:aj-tracey",
+   "artistId": "primavera-sound-2019:aj-tracey",
+   "day": 3,
+   "stageId": "primavera-sound-2019:seat-village",
+   "start": "01:30",
+   "end": "02:30"
+  },
+  {
+   "id": "primavera-sound-2019:d3:seat-village:0300:tim-burgess-the-charlatans-dj-set",
+   "artistId": "primavera-sound-2019:tim-burgess-the-charlatans-dj-set",
+   "day": 3,
+   "stageId": "primavera-sound-2019:seat-village",
+   "start": "03:00",
+   "end": "05:00"
+  },
+  {
+   "id": "primavera-sound-2019:d3:ray-ban-studios:2200:anthony-naples-live",
+   "artistId": "primavera-sound-2019:anthony-naples-live",
+   "day": 3,
+   "stageId": "primavera-sound-2019:ray-ban-studios",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "primavera-sound-2019:d3:ray-ban-studios:2300:overmono-live-and-dj",
+   "artistId": "primavera-sound-2019:overmono-live-and-dj",
+   "day": 3,
+   "stageId": "primavera-sound-2019:ray-ban-studios",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "primavera-sound-2019:d3:ray-ban-studios:0000:object-blue",
+   "artistId": "primavera-sound-2019:object-blue",
+   "day": 3,
+   "stageId": "primavera-sound-2019:ray-ban-studios",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "primavera-sound-2019:d3:ray-ban-studios:0100:mad-miran",
+   "artistId": "primavera-sound-2019:mad-miran",
+   "day": 3,
+   "stageId": "primavera-sound-2019:ray-ban-studios",
+   "start": "01:00",
+   "end": "02:30"
+  },
+  {
+   "id": "primavera-sound-2019:d3:ray-ban-studios:0230:roza-terenzi",
+   "artistId": "primavera-sound-2019:roza-terenzi",
+   "day": 3,
+   "stageId": "primavera-sound-2019:ray-ban-studios",
+   "start": "02:30",
+   "end": "04:00"
+  },
+  {
+   "id": "primavera-sound-2019:d3:ray-ban-studios:0400:batu",
+   "artistId": "primavera-sound-2019:batu",
+   "day": 3,
+   "stageId": "primavera-sound-2019:ray-ban-studios",
+   "start": "04:00",
+   "end": "05:30"
+  },
+  {
+   "id": "primavera-sound-2019:d3:el-punto-by-adidas-originals:2315:somadamantina",
+   "artistId": "primavera-sound-2019:somadamantina",
+   "day": 3,
+   "stageId": "primavera-sound-2019:el-punto-by-adidas-originals",
+   "start": "23:15",
+   "end": "00:00"
+  },
+  {
+   "id": "primavera-sound-2019:d3:el-punto-by-adidas-originals:0000:mark-luva",
+   "artistId": "primavera-sound-2019:mark-luva",
+   "day": 3,
+   "stageId": "primavera-sound-2019:el-punto-by-adidas-originals",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "primavera-sound-2019:d3:el-punto-by-adidas-originals:0100:la-zowi",
+   "artistId": "primavera-sound-2019:la-zowi",
+   "day": 3,
+   "stageId": "primavera-sound-2019:el-punto-by-adidas-originals",
+   "start": "01:00",
+   "end": "01:45"
+  },
+  {
+   "id": "primavera-sound-2019:d3:el-punto-by-adidas-originals:0145:gothboiclique",
+   "artistId": "primavera-sound-2019:gothboiclique",
+   "day": 3,
+   "stageId": "primavera-sound-2019:el-punto-by-adidas-originals",
+   "start": "01:45",
+   "end": "02:45"
+  },
+  {
+   "id": "primavera-sound-2019:d3:el-punto-by-adidas-originals:0300:la-goony-chonga",
+   "artistId": "primavera-sound-2019:la-goony-chonga",
+   "day": 3,
+   "stageId": "primavera-sound-2019:el-punto-by-adidas-originals",
+   "start": "03:00",
+   "end": "03:45"
+  },
+  {
+   "id": "primavera-sound-2019:d3:el-punto-by-adidas-originals:0345:rosa-pistola",
+   "artistId": "primavera-sound-2019:rosa-pistola",
+   "day": 3,
+   "stageId": "primavera-sound-2019:el-punto-by-adidas-originals",
+   "start": "03:45",
+   "end": "05:00"
+  },
+  {
+   "id": "primavera-sound-2019:d4:primavera:1730:ama-lou",
+   "artistId": "primavera-sound-2019:ama-lou",
+   "day": 4,
+   "stageId": "primavera-sound-2019:primavera",
+   "start": "17:30",
+   "end": "18:15"
+  },
+  {
+   "id": "primavera-sound-2019:d4:primavera:1915:built-to-spill-performs-keep-it-like-a-secret",
+   "artistId": "primavera-sound-2019:built-to-spill-performs-keep-it-like-a-secret",
+   "day": 4,
+   "stageId": "primavera-sound-2019:primavera",
+   "start": "19:15",
+   "end": "20:20"
+  },
+  {
+   "id": "primavera-sound-2019:d4:primavera:2155:pusha-t",
+   "artistId": "primavera-sound-2019:pusha-t",
+   "day": 4,
+   "stageId": "primavera-sound-2019:primavera",
+   "start": "21:55",
+   "end": "22:55"
+  },
+  {
+   "id": "primavera-sound-2019:d4:primavera:0015:primal-scream",
+   "artistId": "primavera-sound-2019:primal-scream",
+   "day": 4,
+   "stageId": "primavera-sound-2019:primavera",
+   "start": "00:15",
+   "end": "01:25"
+  },
+  {
+   "id": "primavera-sound-2019:d4:primavera:0235:roisin-murphy",
+   "artistId": "primavera-sound-2019:roisin-murphy",
+   "day": 4,
+   "stageId": "primavera-sound-2019:primavera",
+   "start": "02:35",
+   "end": "03:35"
+  },
+  {
+   "id": "primavera-sound-2019:d4:night-pro:1630:p-postman-ft-emergency-tiara-darko-and-mahkenna-dj-unknown",
+   "artistId": "primavera-sound-2019:p-postman-ft-emergency-tiara-darko-and-mahkenna-dj-unknown",
+   "day": 4,
+   "stageId": "primavera-sound-2019:night-pro",
+   "start": "16:30",
+   "end": "17:10"
+  },
+  {
+   "id": "primavera-sound-2019:d4:night-pro:1730:bonish",
+   "artistId": "primavera-sound-2019:bonish",
+   "day": 4,
+   "stageId": "primavera-sound-2019:night-pro",
+   "start": "17:30",
+   "end": "18:10"
+  },
+  {
+   "id": "primavera-sound-2019:d4:night-pro:1830:kirara",
+   "artistId": "primavera-sound-2019:kirara",
+   "day": 4,
+   "stageId": "primavera-sound-2019:night-pro",
+   "start": "18:30",
+   "end": "19:10"
+  },
+  {
+   "id": "primavera-sound-2019:d4:night-pro:1930:dtsq",
+   "artistId": "primavera-sound-2019:dtsq",
+   "day": 4,
+   "stageId": "primavera-sound-2019:night-pro",
+   "start": "19:30",
+   "end": "20:10"
+  },
+  {
+   "id": "primavera-sound-2019:d4:night-pro:2030:phoro",
+   "artistId": "primavera-sound-2019:phoro",
+   "day": 4,
+   "stageId": "primavera-sound-2019:night-pro",
+   "start": "20:30",
+   "end": "21:10"
+  },
+  {
+   "id": "primavera-sound-2019:d4:night-pro:2200:eli-almic-and-dj-rc",
+   "artistId": "primavera-sound-2019:eli-almic-and-dj-rc",
+   "day": 4,
+   "stageId": "primavera-sound-2019:night-pro",
+   "start": "22:00",
+   "end": "22:40"
+  },
+  {
+   "id": "primavera-sound-2019:d4:night-pro:2300:sistemas-inestables",
+   "artistId": "primavera-sound-2019:sistemas-inestables",
+   "day": 4,
+   "stageId": "primavera-sound-2019:night-pro",
+   "start": "23:00",
+   "end": "23:40"
+  },
+  {
+   "id": "primavera-sound-2019:d4:night-pro:0000:f5",
+   "artistId": "primavera-sound-2019:f5",
+   "day": 4,
+   "stageId": "primavera-sound-2019:night-pro",
+   "start": "00:00",
+   "end": "00:40"
+  },
+  {
+   "id": "primavera-sound-2019:d4:xiringuito-aperol:1400:frinda-di-lanco",
+   "artistId": "primavera-sound-2019:frinda-di-lanco",
+   "day": 4,
+   "stageId": "primavera-sound-2019:xiringuito-aperol",
+   "start": "14:00",
+   "end": "15:15"
+  },
+  {
+   "id": "primavera-sound-2019:d4:xiringuito-aperol:1515:ecran-total",
+   "artistId": "primavera-sound-2019:ecran-total",
+   "day": 4,
+   "stageId": "primavera-sound-2019:xiringuito-aperol",
+   "start": "15:15",
+   "end": "16:30"
+  },
+  {
+   "id": "primavera-sound-2019:d4:xiringuito-aperol:1630:dj-supermarkt",
+   "artistId": "primavera-sound-2019:dj-supermarkt",
+   "day": 4,
+   "stageId": "primavera-sound-2019:xiringuito-aperol",
+   "start": "16:30",
+   "end": "18:00"
+  },
+  {
+   "id": "primavera-sound-2019:d4:auditori-rockdelux:1600:caterina-barbieri",
+   "artistId": "primavera-sound-2019:caterina-barbieri",
+   "day": 4,
+   "stageId": "primavera-sound-2019:auditori-rockdelux",
+   "start": "16:00",
+   "end": "16:55"
+  },
+  {
+   "id": "primavera-sound-2019:d4:auditori-rockdelux:1730:tirzah",
+   "artistId": "primavera-sound-2019:tirzah",
+   "day": 4,
+   "stageId": "primavera-sound-2019:auditori-rockdelux",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "primavera-sound-2019:d4:auditori-rockdelux:1900:the-mystery-of-the-bulgarian-voices-featuring-lisa-gerrard",
+   "artistId": "primavera-sound-2019:the-mystery-of-the-bulgarian-voices-featuring-lisa-gerrard",
+   "day": 4,
+   "stageId": "primavera-sound-2019:auditori-rockdelux",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "primavera-sound-2019:d4:auditori-rockdelux:2100:tim-hecker-and-konoyo-ensemble",
+   "artistId": "primavera-sound-2019:tim-hecker-and-konoyo-ensemble",
+   "day": 4,
+   "stageId": "primavera-sound-2019:auditori-rockdelux",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "primavera-sound-2019:d4:ray-ban:1650:alondra-bentley",
+   "artistId": "primavera-sound-2019:alondra-bentley",
+   "day": 4,
+   "stageId": "primavera-sound-2019:ray-ban",
+   "start": "16:50",
+   "end": "17:25"
+  },
+  {
+   "id": "primavera-sound-2019:d4:ray-ban:1820:dayme-arocena",
+   "artistId": "primavera-sound-2019:dayme-arocena",
+   "day": 4,
+   "stageId": "primavera-sound-2019:ray-ban",
+   "start": "18:20",
+   "end": "19:10"
+  },
+  {
+   "id": "primavera-sound-2019:d4:ray-ban:2025:shellac",
+   "artistId": "primavera-sound-2019:shellac",
+   "day": 4,
+   "stageId": "primavera-sound-2019:ray-ban",
+   "start": "20:25",
+   "end": "21:15"
+  },
+  {
+   "id": "primavera-sound-2019:d4:ray-ban:2255:jarvis-cocker-introducing-jarv-is",
+   "artistId": "primavera-sound-2019:jarvis-cocker-introducing-jarv-is",
+   "day": 4,
+   "stageId": "primavera-sound-2019:ray-ban",
+   "start": "22:55",
+   "end": "00:10"
+  },
+  {
+   "id": "primavera-sound-2019:d4:ray-ban:0130:stereolab",
+   "artistId": "primavera-sound-2019:stereolab",
+   "day": 4,
+   "stageId": "primavera-sound-2019:ray-ban",
+   "start": "01:30",
+   "end": "02:30"
+  },
+  {
+   "id": "primavera-sound-2019:d4:ray-ban:0340:modeselektor-live",
+   "artistId": "primavera-sound-2019:modeselektor-live",
+   "day": 4,
+   "stageId": "primavera-sound-2019:ray-ban",
+   "start": "03:40",
+   "end": "04:50"
+  },
+  {
+   "id": "primavera-sound-2019:d4:ray-ban:0500:dj-rosario-and-sama-yax",
+   "artistId": "primavera-sound-2019:dj-rosario-and-sama-yax",
+   "day": 4,
+   "stageId": "primavera-sound-2019:ray-ban",
+   "start": "05:00",
+   "end": "06:00"
+  },
+  {
+   "id": "primavera-sound-2019:d4:adidas-originals:1700:carino",
+   "artistId": "primavera-sound-2019:carino",
+   "day": 4,
+   "stageId": "primavera-sound-2019:adidas-originals",
+   "start": "17:00",
+   "end": "17:40"
+  },
+  {
+   "id": "primavera-sound-2019:d4:adidas-originals:1835:haru-nemuri",
+   "artistId": "primavera-sound-2019:haru-nemuri",
+   "day": 4,
+   "stageId": "primavera-sound-2019:adidas-originals",
+   "start": "18:35",
+   "end": "19:20"
+  },
+  {
+   "id": "primavera-sound-2019:d4:adidas-originals:2010:frank-carter-and-the-rattlesnakes",
+   "artistId": "primavera-sound-2019:frank-carter-and-the-rattlesnakes",
+   "day": 4,
+   "stageId": "primavera-sound-2019:adidas-originals",
+   "start": "20:10",
+   "end": "21:05"
+  },
+  {
+   "id": "primavera-sound-2019:d4:adidas-originals:2205:drab-majesty",
+   "artistId": "primavera-sound-2019:drab-majesty",
+   "day": 4,
+   "stageId": "primavera-sound-2019:adidas-originals",
+   "start": "22:05",
+   "end": "22:55"
+  },
+  {
+   "id": "primavera-sound-2019:d4:adidas-originals:2355:june-of-44",
+   "artistId": "primavera-sound-2019:june-of-44",
+   "day": 4,
+   "stageId": "primavera-sound-2019:adidas-originals",
+   "start": "23:55",
+   "end": "00:40"
+  },
+  {
+   "id": "primavera-sound-2019:d4:adidas-originals:0135:the-messthetics",
+   "artistId": "primavera-sound-2019:the-messthetics",
+   "day": 4,
+   "stageId": "primavera-sound-2019:adidas-originals",
+   "start": "01:35",
+   "end": "02:25"
+  },
+  {
+   "id": "primavera-sound-2019:d4:adidas-originals:0320:jpegmafia",
+   "artistId": "primavera-sound-2019:jpegmafia",
+   "day": 4,
+   "stageId": "primavera-sound-2019:adidas-originals",
+   "start": "03:20",
+   "end": "04:05"
+  },
+  {
+   "id": "primavera-sound-2019:d4:pitchfork:1745:retirada",
+   "artistId": "primavera-sound-2019:retirada",
+   "day": 4,
+   "stageId": "primavera-sound-2019:pitchfork",
+   "start": "17:45",
+   "end": "18:30"
+  },
+  {
+   "id": "primavera-sound-2019:d4:pitchfork:1925:nilufer-yanya",
+   "artistId": "primavera-sound-2019:nilufer-yanya",
+   "day": 4,
+   "stageId": "primavera-sound-2019:pitchfork",
+   "start": "19:25",
+   "end": "20:10"
+  },
+  {
+   "id": "primavera-sound-2019:d4:pitchfork:2105:loyle-carner",
+   "artistId": "primavera-sound-2019:loyle-carner",
+   "day": 4,
+   "stageId": "primavera-sound-2019:pitchfork",
+   "start": "21:05",
+   "end": "21:50"
+  },
+  {
+   "id": "primavera-sound-2019:d4:pitchfork:2300:neneh-cherry",
+   "artistId": "primavera-sound-2019:neneh-cherry",
+   "day": 4,
+   "stageId": "primavera-sound-2019:pitchfork",
+   "start": "23:00",
+   "end": "23:50"
+  },
+  {
+   "id": "primavera-sound-2019:d4:pitchfork:0045:cupcakke",
+   "artistId": "primavera-sound-2019:cupcakke",
+   "day": 4,
+   "stageId": "primavera-sound-2019:pitchfork",
+   "start": "00:45",
+   "end": "01:30"
+  },
+  {
+   "id": "primavera-sound-2019:d4:pitchfork:0230:danny-l-harle",
+   "artistId": "primavera-sound-2019:danny-l-harle",
+   "day": 4,
+   "stageId": "primavera-sound-2019:pitchfork",
+   "start": "02:30",
+   "end": "03:15"
+  },
+  {
+   "id": "primavera-sound-2019:d4:pitchfork:0410:slowthai",
+   "artistId": "primavera-sound-2019:slowthai",
+   "day": 4,
+   "stageId": "primavera-sound-2019:pitchfork",
+   "start": "04:10",
+   "end": "04:55"
+  },
+  {
+   "id": "primavera-sound-2019:d4:desperados-cube:1800:nosedrip",
+   "artistId": "primavera-sound-2019:nosedrip",
+   "day": 4,
+   "stageId": "primavera-sound-2019:desperados-cube",
+   "start": "18:00",
+   "end": "19:30"
+  },
+  {
+   "id": "primavera-sound-2019:d4:desperados-cube:1930:epsilove",
+   "artistId": "primavera-sound-2019:epsilove",
+   "day": 4,
+   "stageId": "primavera-sound-2019:desperados-cube",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "primavera-sound-2019:d4:desperados-cube:2030:izabel",
+   "artistId": "primavera-sound-2019:izabel",
+   "day": 4,
+   "stageId": "primavera-sound-2019:desperados-cube",
+   "start": "20:30",
+   "end": "21:50"
+  },
+  {
+   "id": "primavera-sound-2019:d4:desperados-cube:2155:fantastic-man-b2b-tornado-wallace",
+   "artistId": "primavera-sound-2019:fantastic-man-b2b-tornado-wallace",
+   "day": 4,
+   "stageId": "primavera-sound-2019:desperados-cube",
+   "start": "21:55",
+   "end": "23:30"
+  },
+  {
+   "id": "primavera-sound-2019:d4:desperados-cube:2330:hieroglyphic-being",
+   "artistId": "primavera-sound-2019:hieroglyphic-being",
+   "day": 4,
+   "stageId": "primavera-sound-2019:desperados-cube",
+   "start": "23:30",
+   "end": "00:30"
+  },
+  {
+   "id": "primavera-sound-2019:d4:desperados-cube:0030:mozhgan",
+   "artistId": "primavera-sound-2019:mozhgan",
+   "day": 4,
+   "stageId": "primavera-sound-2019:desperados-cube",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "primavera-sound-2019:d4:desperados-cube:0200:veronica-vasicka",
+   "artistId": "primavera-sound-2019:veronica-vasicka",
+   "day": 4,
+   "stageId": "primavera-sound-2019:desperados-cube",
+   "start": "02:00",
+   "end": "02:40"
+  },
+  {
+   "id": "primavera-sound-2019:d4:desperados-cube:0240:jasss",
+   "artistId": "primavera-sound-2019:jasss",
+   "day": 4,
+   "stageId": "primavera-sound-2019:desperados-cube",
+   "start": "02:40",
+   "end": "04:30"
+  },
+  {
+   "id": "primavera-sound-2019:d4:desperados-cube:0430:voiski",
+   "artistId": "primavera-sound-2019:voiski",
+   "day": 4,
+   "stageId": "primavera-sound-2019:desperados-cube",
+   "start": "04:30",
+   "end": "06:00"
+  },
+  {
+   "id": "primavera-sound-2019:d4:your-heineken-stage:1835:evripidis-and-his-tragedies-sing-the-magnetic-fields",
+   "artistId": "primavera-sound-2019:evripidis-and-his-tragedies-sing-the-magnetic-fields",
+   "day": 4,
+   "stageId": "primavera-sound-2019:your-heineken-stage",
+   "start": "18:35",
+   "end": "19:20"
+  },
+  {
+   "id": "primavera-sound-2019:d4:your-heineken-stage:2015:me-and-the-bees-play-the-breeders",
+   "artistId": "primavera-sound-2019:me-and-the-bees-play-the-breeders",
+   "day": 4,
+   "stageId": "primavera-sound-2019:your-heineken-stage",
+   "start": "20:15",
+   "end": "21:00"
+  },
+  {
+   "id": "primavera-sound-2019:d4:your-heineken-stage:2355:the-bevis-frond",
+   "artistId": "primavera-sound-2019:the-bevis-frond",
+   "day": 4,
+   "stageId": "primavera-sound-2019:your-heineken-stage",
+   "start": "23:55",
+   "end": "00:40"
+  },
+  {
+   "id": "primavera-sound-2019:d4:your-heineken-stage:0140:bush-tetras",
+   "artistId": "primavera-sound-2019:bush-tetras",
+   "day": 4,
+   "stageId": "primavera-sound-2019:your-heineken-stage",
+   "start": "01:40",
+   "end": "02:25"
+  },
+  {
+   "id": "primavera-sound-2019:d4:your-heineken-stage:0320:mujeres-play-los-saicos",
+   "artistId": "primavera-sound-2019:mujeres-play-los-saicos",
+   "day": 4,
+   "stageId": "primavera-sound-2019:your-heineken-stage",
+   "start": "03:20",
+   "end": "04:05"
+  },
+  {
+   "id": "primavera-sound-2019:d4:lotus:1900:museless",
+   "artistId": "primavera-sound-2019:museless",
+   "day": 4,
+   "stageId": "primavera-sound-2019:lotus",
+   "start": "19:00",
+   "end": "19:45"
+  },
+  {
+   "id": "primavera-sound-2019:d4:lotus:2000:rrucculla",
+   "artistId": "primavera-sound-2019:rrucculla",
+   "day": 4,
+   "stageId": "primavera-sound-2019:lotus",
+   "start": "20:00",
+   "end": "20:45"
+  },
+  {
+   "id": "primavera-sound-2019:d4:lotus:2100:channel-tres",
+   "artistId": "primavera-sound-2019:channel-tres",
+   "day": 4,
+   "stageId": "primavera-sound-2019:lotus",
+   "start": "21:00",
+   "end": "21:45"
+  },
+  {
+   "id": "primavera-sound-2019:d4:lotus:2235:lizzo",
+   "artistId": "primavera-sound-2019:lizzo",
+   "day": 4,
+   "stageId": "primavera-sound-2019:lotus",
+   "start": "22:35",
+   "end": "23:35"
+  },
+  {
+   "id": "primavera-sound-2019:d4:lotus:0000:tierra-whack",
+   "artistId": "primavera-sound-2019:tierra-whack",
+   "day": 4,
+   "stageId": "primavera-sound-2019:lotus",
+   "start": "00:00",
+   "end": "00:40"
+  },
+  {
+   "id": "primavera-sound-2019:d4:lotus:0110:david-august",
+   "artistId": "primavera-sound-2019:david-august",
+   "day": 4,
+   "stageId": "primavera-sound-2019:lotus",
+   "start": "01:10",
+   "end": "02:15"
+  },
+  {
+   "id": "primavera-sound-2019:d4:lotus:0250:richie-hawtin-close",
+   "artistId": "primavera-sound-2019:richie-hawtin-close",
+   "day": 4,
+   "stageId": "primavera-sound-2019:lotus",
+   "start": "02:50",
+   "end": "04:05"
+  },
+  {
+   "id": "primavera-sound-2019:d4:lotus:0420:avalon-emerson",
+   "artistId": "primavera-sound-2019:avalon-emerson",
+   "day": 4,
+   "stageId": "primavera-sound-2019:lotus",
+   "start": "04:20",
+   "end": "05:45"
+  },
+  {
+   "id": "primavera-sound-2019:d4:seat:1845:boy-pablo",
+   "artistId": "primavera-sound-2019:boy-pablo",
+   "day": 4,
+   "stageId": "primavera-sound-2019:seat",
+   "start": "18:45",
+   "end": "19:30"
+  },
+  {
+   "id": "primavera-sound-2019:d4:seat:2045:kali-uchis",
+   "artistId": "primavera-sound-2019:kali-uchis",
+   "day": 4,
+   "stageId": "primavera-sound-2019:seat",
+   "start": "20:45",
+   "end": "21:45"
+  },
+  {
+   "id": "primavera-sound-2019:d4:seat:2300:solange",
+   "artistId": "primavera-sound-2019:solange",
+   "day": 4,
+   "stageId": "primavera-sound-2019:seat",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "primavera-sound-2019:d4:seat:0125:james-blake",
+   "artistId": "primavera-sound-2019:james-blake",
+   "day": 4,
+   "stageId": "primavera-sound-2019:seat",
+   "start": "01:25",
+   "end": "02:45"
+  },
+  {
+   "id": "primavera-sound-2019:d4:ocb-paper-sessions:1900:miya-folick",
+   "artistId": "primavera-sound-2019:miya-folick",
+   "day": 4,
+   "stageId": "primavera-sound-2019:ocb-paper-sessions",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "primavera-sound-2019:d4:pull-and-bear:1940:nathy-peluso",
+   "artistId": "primavera-sound-2019:nathy-peluso",
+   "day": 4,
+   "stageId": "primavera-sound-2019:pull-and-bear",
+   "start": "19:40",
+   "end": "20:40"
+  },
+  {
+   "id": "primavera-sound-2019:d4:pull-and-bear:2155:rosalia",
+   "artistId": "primavera-sound-2019:rosalia",
+   "day": 4,
+   "stageId": "primavera-sound-2019:pull-and-bear",
+   "start": "21:55",
+   "end": "22:55"
+  },
+  {
+   "id": "primavera-sound-2019:d4:pull-and-bear:0005:j-balvin",
+   "artistId": "primavera-sound-2019:j-balvin",
+   "day": 4,
+   "stageId": "primavera-sound-2019:pull-and-bear",
+   "start": "00:05",
+   "end": "01:20"
+  },
+  {
+   "id": "primavera-sound-2019:d4:seat-village:2100:ninhomalo",
+   "artistId": "primavera-sound-2019:ninhomalo",
+   "day": 4,
+   "stageId": "primavera-sound-2019:seat-village",
+   "start": "21:00",
+   "end": "21:30"
+  },
+  {
+   "id": "primavera-sound-2019:d4:seat-village:2155:calido-lehamo",
+   "artistId": "primavera-sound-2019:calido-lehamo",
+   "day": 4,
+   "stageId": "primavera-sound-2019:seat-village",
+   "start": "21:55",
+   "end": "22:40"
+  },
+  {
+   "id": "primavera-sound-2019:d4:seat-village:2250:kaydy-cain",
+   "artistId": "primavera-sound-2019:kaydy-cain",
+   "day": 4,
+   "stageId": "primavera-sound-2019:seat-village",
+   "start": "22:50",
+   "end": "23:40"
+  },
+  {
+   "id": "primavera-sound-2019:d4:seat-village:2355:bbymutha",
+   "artistId": "primavera-sound-2019:bbymutha",
+   "day": 4,
+   "stageId": "primavera-sound-2019:seat-village",
+   "start": "23:55",
+   "end": "00:45"
+  },
+  {
+   "id": "primavera-sound-2019:d4:seat-village:0145:little-simz",
+   "artistId": "primavera-sound-2019:little-simz",
+   "day": 4,
+   "stageId": "primavera-sound-2019:seat-village",
+   "start": "01:45",
+   "end": "02:30"
+  },
+  {
+   "id": "primavera-sound-2019:d4:seat-village:0300:richard-colburn-belle-and-sebastian-dj-set",
+   "artistId": "primavera-sound-2019:richard-colburn-belle-and-sebastian-dj-set",
+   "day": 4,
+   "stageId": "primavera-sound-2019:seat-village",
+   "start": "03:00",
+   "end": "05:00"
+  },
+  {
+   "id": "primavera-sound-2019:d4:ray-ban-studios:2200:suzanne-ciani",
+   "artistId": "primavera-sound-2019:suzanne-ciani",
+   "day": 4,
+   "stageId": "primavera-sound-2019:ray-ban-studios",
+   "start": "22:00",
+   "end": "22:45"
+  },
+  {
+   "id": "primavera-sound-2019:d4:ray-ban-studios:2245:dj-marcelle-another-nice-mess",
+   "artistId": "primavera-sound-2019:dj-marcelle-another-nice-mess",
+   "day": 4,
+   "stageId": "primavera-sound-2019:ray-ban-studios",
+   "start": "22:45",
+   "end": "00:15"
+  },
+  {
+   "id": "primavera-sound-2019:d4:ray-ban-studios:0015:forest-drive-west",
+   "artistId": "primavera-sound-2019:forest-drive-west",
+   "day": 4,
+   "stageId": "primavera-sound-2019:ray-ban-studios",
+   "start": "00:15",
+   "end": "01:45"
+  },
+  {
+   "id": "primavera-sound-2019:d4:ray-ban-studios:0145:aisha-devi",
+   "artistId": "primavera-sound-2019:aisha-devi",
+   "day": 4,
+   "stageId": "primavera-sound-2019:ray-ban-studios",
+   "start": "01:45",
+   "end": "02:45"
+  },
+  {
+   "id": "primavera-sound-2019:d4:ray-ban-studios:0245:peach",
+   "artistId": "primavera-sound-2019:peach",
+   "day": 4,
+   "stageId": "primavera-sound-2019:ray-ban-studios",
+   "start": "02:45",
+   "end": "04:15"
+  },
+  {
+   "id": "primavera-sound-2019:d4:ray-ban-studios:0415:martyn",
+   "artistId": "primavera-sound-2019:martyn",
+   "day": 4,
+   "stageId": "primavera-sound-2019:ray-ban-studios",
+   "start": "04:15",
+   "end": "05:45"
+  },
+  {
+   "id": "primavera-sound-2019:d4:el-punto-by-adidas-originals:2315:albany",
+   "artistId": "primavera-sound-2019:albany",
+   "day": 4,
+   "stageId": "primavera-sound-2019:el-punto-by-adidas-originals",
+   "start": "23:15",
+   "end": "00:00"
+  },
+  {
+   "id": "primavera-sound-2019:d4:el-punto-by-adidas-originals:0000:ian-isiah",
+   "artistId": "primavera-sound-2019:ian-isiah",
+   "day": 4,
+   "stageId": "primavera-sound-2019:el-punto-by-adidas-originals",
+   "start": "00:00",
+   "end": "00:25"
+  },
+  {
+   "id": "primavera-sound-2019:d4:el-punto-by-adidas-originals:0025:hurricane-g-feat-tony-touch",
+   "artistId": "primavera-sound-2019:hurricane-g-feat-tony-touch",
+   "day": 4,
+   "stageId": "primavera-sound-2019:el-punto-by-adidas-originals",
+   "start": "00:25",
+   "end": "01:10"
+  },
+  {
+   "id": "primavera-sound-2019:d4:el-punto-by-adidas-originals:0110:kodie-shane",
+   "artistId": "primavera-sound-2019:kodie-shane",
+   "day": 4,
+   "stageId": "primavera-sound-2019:el-punto-by-adidas-originals",
+   "start": "01:10",
+   "end": "02:00"
+  },
+  {
+   "id": "primavera-sound-2019:d4:el-punto-by-adidas-originals:0200:dj-playero",
+   "artistId": "primavera-sound-2019:dj-playero",
+   "day": 4,
+   "stageId": "primavera-sound-2019:el-punto-by-adidas-originals",
+   "start": "02:00",
+   "end": "03:30"
+  },
+  {
+   "id": "primavera-sound-2019:d4:el-punto-by-adidas-originals:0330:yung-beef-dj-set",
+   "artistId": "primavera-sound-2019:yung-beef-dj-set",
+   "day": 4,
+   "stageId": "primavera-sound-2019:el-punto-by-adidas-originals",
+   "start": "03:30",
+   "end": "05:00"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://www.primaverasound.es/",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20190723183551/https://www.primaverasound.es/horarios?d=3&l=forum&content=",
+    "captureTimestamp": "20190723183551",
+    "printed": "2019-05-29",
+    "sha256": "796db93b294f91ec38dda65adbccf6bf856f214c355ee04da2d3770f8ad60f26",
+    "rows": 8,
+    "format": "primavera-completos",
+    "heading": "Set times",
+    "active": "All set times",
+    "tabs": [
+     "2019-05-27",
+     "2019-05-28",
+     "2019-05-29",
+     "2019-05-30",
+     "2019-05-31",
+     "2019-06-01",
+     "2019-06-02"
+    ]
+   },
+   {
+    "day": 2,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20190723183928/https://www.primaverasound.es/horarios?d=4&l=forum&content=",
+    "captureTimestamp": "20190723183928",
+    "printed": "2019-05-30",
+    "sha256": "f97282f799545c6436ef7a6e0888881c01140d76f7b1802f71a00e47dd1891e8",
+    "rows": 83,
+    "format": "primavera-completos",
+    "heading": "Set times",
+    "active": "All set times",
+    "tabs": [
+     "2019-05-27",
+     "2019-05-28",
+     "2019-05-29",
+     "2019-05-30",
+     "2019-05-31",
+     "2019-06-01",
+     "2019-06-02"
+    ]
+   },
+   {
+    "day": 3,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20190723184303/https://www.primaverasound.es/horarios?d=5&l=forum&content=",
+    "captureTimestamp": "20190723184303",
+    "printed": "2019-05-31",
+    "sha256": "b96302c8181226933505ca85ee2f3be300b339e579d93fd78e74fc71dfcbeeb3",
+    "rows": 87,
+    "format": "primavera-completos",
+    "heading": "Set times",
+    "active": "All set times",
+    "tabs": [
+     "2019-05-27",
+     "2019-05-28",
+     "2019-05-29",
+     "2019-05-30",
+     "2019-05-31",
+     "2019-06-01",
+     "2019-06-02"
+    ]
+   },
+   {
+    "day": 4,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20190723184655/https://www.primaverasound.es/horarios?d=6&l=forum&content=",
+    "captureTimestamp": "20190723184655",
+    "printed": "2019-06-01",
+    "sha256": "0f3e7e9e5bd5fd00d6091bc67293a067f448a3c181242936ffc5d7dad1949f1b",
+    "rows": 89,
+    "format": "primavera-completos",
+    "heading": "Set times",
+    "active": "All set times",
+    "tabs": [
+     "2019-05-27",
+     "2019-05-28",
+     "2019-05-29",
+     "2019-05-30",
+     "2019-05-31",
+     "2019-06-01",
+     "2019-06-02"
+    ]
+   }
+  ]
+ }
+}

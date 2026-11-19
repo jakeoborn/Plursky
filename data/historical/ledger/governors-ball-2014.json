@@ -1,0 +1,99 @@
+{
+  "id": "governors-ball-2014",
+  "method": "official_sources",
+  "official": "https://governorsballmusicfestival.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2014-06-06",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://lineup.governorsballmusicfestival.com/events/2014/06/06/",
+          "archivedUrl": "https://web.archive.org/web/20140614035055/https://lineup.governorsballmusicfestival.com/events/2014/06/06/",
+          "captureTimestamp": "20140614035055",
+          "printed": "Friday, June 6",
+          "sha256": "6930e626c2b201b0cf0f0a73c2e5dbc9a48ffefb5750b41c20e064803f0d89dc",
+          "bytes": 66042,
+          "rows": 23,
+          "format": "dostuff-grid",
+          "stages": 4,
+          "axis": "12:00 … 11:00",
+          "pxPerMinute": 2,
+          "axisStart": "12:00",
+          "meridiem": "read off the anchor act's own page on the lineup site",
+          "anchor": {
+            "url": "https://lineup.governorsballmusicfestival.com/band/outkast",
+            "archivedUrl": "https://web.archive.org/web/20140604211648/https://lineup.governorsballmusicfestival.com/band/outkast",
+            "captureTimestamp": "20140604211648",
+            "sha256": "0b8247a37dddfd724596c4cc89785e3843daced5b446b62d0b7b79772820fe1b",
+            "bytes": 56325,
+            "printed": "Friday Jun 6 9:15 PM on GovBallNYC Stage"
+          }
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2014-06-07",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://lineup.governorsballmusicfestival.com/events/2014/06/07/",
+          "archivedUrl": "https://web.archive.org/web/20140616195603/https://lineup.governorsballmusicfestival.com/events/2014/06/07/",
+          "captureTimestamp": "20140616195603",
+          "printed": "Saturday, June 7",
+          "sha256": "f954615d7a69bd03faca193e7e2291ed14bc38ef7c6af568001585edd3a747e8",
+          "bytes": 66035,
+          "rows": 22,
+          "format": "dostuff-grid",
+          "stages": 4,
+          "axis": "12:00 … 11:00",
+          "pxPerMinute": 2,
+          "axisStart": "12:00",
+          "meridiem": "read off the anchor act's own page on the lineup site",
+          "anchor": {
+            "url": "https://lineup.governorsballmusicfestival.com/band/jack-white",
+            "archivedUrl": "https://web.archive.org/web/20140528135101/https://lineup.governorsballmusicfestival.com/band/jack-white",
+            "captureTimestamp": "20140528135101",
+            "sha256": "55e49489a42af6342dc12409c5518b0c4bb022afd7ba00012ea1f0f7787b855d",
+            "bytes": 60140,
+            "printed": "Saturday Jun 7 9:30 PM on GovBallNYC Stage"
+          }
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2014-06-08",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://lineup.governorsballmusicfestival.com/events/2014/06/08/",
+          "archivedUrl": "https://web.archive.org/web/20140618204230/https://lineup.governorsballmusicfestival.com/events/2014/06/08/",
+          "captureTimestamp": "20140618204230",
+          "printed": "Sunday, June 8",
+          "sha256": "4146bd2212895656ff6b80245afb33cdebf3ac302ace7d1d38b9caf514f0564f",
+          "bytes": 66496,
+          "rows": 23,
+          "format": "dostuff-grid",
+          "stages": 4,
+          "axis": "12:00 … 11:00",
+          "pxPerMinute": 2,
+          "axisStart": "12:00",
+          "meridiem": "read off the anchor act's own page on the lineup site",
+          "anchor": {
+            "url": "https://lineup.governorsballmusicfestival.com/band/vampire-weekend",
+            "archivedUrl": "https://web.archive.org/web/20140604222057/https://lineup.governorsballmusicfestival.com/band/vampire-weekend",
+            "captureTimestamp": "20140604222057",
+            "sha256": "f9d609447b24629e6b1faab37c782a153a580c5e8c1252be7886bc19b9c57bac",
+            "bytes": 61370,
+            "printed": "Sunday Jun 8 9:15 PM on GovBallNYC Stage"
+          }
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": []
+}

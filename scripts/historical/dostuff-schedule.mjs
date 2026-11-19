@@ -1,5 +1,6 @@
 // dostuff-schedule.mjs — the official schedule grid that Outside Lands
-// (lineup.sfoutsidelands.com) and Lollapalooza 2012 (lineup.lollapalooza.com)
+// (lineup.sfoutsidelands.com), Lollapalooza 2012 (lineup.lollapalooza.com) and
+// Governors Ball 2013 (lineup.governorsballmusicfestival.com)
 // ran on DoStuff Media's lineup platform, as archived by the Wayback Machine,
 // into rows. Format "dostuff-grid".
 //
@@ -46,7 +47,7 @@ export const TOLERANCE_PX = 1.5;
 // prints. Outside Lands' titles print the year ("Outside Lands 2013");
 // Lollapalooza's 2012 title prints the name alone, and its year is then the
 // day tab's own.
-export const FESTIVALS = { "Outside Lands": "outside-lands", "Lollapalooza": "lollapalooza", "ACL": "acl" };
+export const FESTIVALS = { "Outside Lands": "outside-lands", "Lollapalooza": "lollapalooza", "ACL": "acl", "Governors Ball": "governors-ball" };
 const titled = title => {
   const m = /^(.+?)(?: (20\d\d))?$/.exec(title);
   const festival = m && FESTIVALS[m[1]];
