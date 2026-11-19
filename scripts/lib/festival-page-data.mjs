@@ -85,6 +85,35 @@ export function pastEditionsFor(id, root = ROOT) {
     .sort((a, b) => b.year - a.year);
 }
 
+// The festival's other past years: the ones the photo scan's calendar
+// (data/historical/scan-calendar.json, built from the census and supplement
+// with sources) knows the dates and venue of, but whose lineup is not in the
+// Past Festivals library yet. Each opens at the same ?tab=past&edition=<id>
+// link, where the app shows its dates, venue and the user's photos from it
+// (historical.jsx _HistCalendarYear) until the lineup lands under that id.
+// Never a year the library already holds, nor the page's own year or later.
+export function calendarYearsFor(id, root = ROOT) {
+  const cal = path.join(root, 'data', 'historical', 'scan-calendar.json');
+  const idx = path.join(root, 'data', 'historical', 'index.json');
+  if (!existsSync(cal)) return [];
+  const m = /^(.*)-(\d{4})$/.exec(String(id));
+  const base = m ? m[1] : String(id), year = m ? +m[2] : Infinity;
+  const held = new Set(existsSync(idx) ? (JSON.parse(readFileSync(idx, 'utf8')).editions || []).filter(e => e.festivalId === base).map(e => e.year) : []);
+  return (JSON.parse(readFileSync(cal, 'utf8')).editions || [])
+    .filter(e => e.festivalId === base && e.year < year && !held.has(e.year) && e.days?.length)
+    .map(e => ({
+      id: e.id, name: e.name, year: e.year, datesOnly: true,
+      first: e.days[0].date, last: e.days[e.days.length - 1].date, venue: e.venue || null,
+    }))
+    .sort((a, b) => b.year - a.year);
+}
+
+// Every past year a festival page and the welcome page list: the library's
+// editions and the calendar's dates-only years, newest first.
+export function pastYearsFor(id, root = ROOT) {
+  return [...pastEditionsFor(id, root), ...calendarYearsFor(id, root)].sort((a, b) => b.year - a.year);
+}
+
 const AMENITY_LABELS = {
   water: 'Water', toilet: 'Restrooms', med: 'Medical', food: 'Food', info: 'Info',
   charge: 'Charging', locker: 'Lockers', art: 'Art',

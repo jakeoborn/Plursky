@@ -20,7 +20,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadRegistry } from './lib/load-registry.mjs';
 import { fp, festivalFingerprint } from './lib/sitemap-fingerprint.mjs';
-import { plateFor, pastEditionsFor, amenitySummary, isPlaceholderStage, hoursLine, editionHours, checkedOn, pageStatus, stageProgrammingFor } from './lib/festival-page-data.mjs';
+import { plateFor, pastYearsFor, amenitySummary, isPlaceholderStage, hoursLine, editionHours, checkedOn, pageStatus, stageProgrammingFor } from './lib/festival-page-data.mjs';
 import { loadEmbedData, selectEmbeds, embedsSection, embedWindowStart } from './lib/official-embeds.mjs';
 import { loadDayAfter, assertDayAfter, selectDayAfter, dayAfterSection, DAY_AFTER_CSS } from './lib/day-after.mjs';
 
@@ -461,9 +461,11 @@ function editionSummary(e) {
 // leads with its newest past edition instead of an empty page: clearly a
 // past edition, with its own dates and the date of its source (sourceDate), and
 // kept apart from everything this page says about the upcoming edition.
+// A dates-only year (no lineup in the library yet) is never the look-back.
+const lookBackOf = (entry, editions) => entry.available ? null : editions.find(e => !e.datesOnly) || null;
 function lookBackSection(entry, editions) {
-  if (entry.available || !editions.length) return '';
-  const e = editions[0];
+  const e = lookBackOf(entry, editions);
+  if (!e) return '';
   return `
   <section class="lookback" aria-labelledby="lookback-h" style="border:1px solid var(--line);border-radius:12px;padding:4px 16px 8px;margin:8px 0 0">
     <h2 id="lookback-h" style="margin-top:12px">Look back: ${e.year}</h2>
@@ -475,16 +477,20 @@ function lookBackSection(entry, editions) {
 }
 
 function pastSection(entry, editions) {
-  const rest = entry.available ? editions : editions.slice(1);
+  const look = lookBackOf(entry, editions);
+  const rest = editions.filter(e => e !== look);
   if (!rest.length) return '';
   const cfg = entry.config;
+  const datesOnly = rest.some(e => e.datesOnly);
   return `
   <section aria-labelledby="past-h">
-    <h2 id="past-h">${entry.available ? 'Past editions' : 'Earlier editions'} of ${esc(cfg.brand || cfg.name)}</h2>
+    <h2 id="past-h">${look ? 'Earlier editions' : 'Past editions'} of ${esc(cfg.brand || cfg.name)}</h2>
     <ul>
-${rest.map(e => `      <li><a href="${editionHref(e)}">${esc(e.name)}</a><span class="sep"> — </span>${ymdLabel(e.first, e.last)}${e.artists != null ? `, ${actsN(e.artists)}` : ''}${e.sets != null ? `, ${e.sets} sets` : ''}${e.lineupOnly ? ', set times not verified' : ''}${e.missingStages ? ', selected stages' : ''}</li>`).join('\n')}
+${rest.map(e => e.datesOnly
+    ? `      <li><a href="${editionHref(e)}">${esc(e.name)}</a><span class="sep"> — </span>${ymdLabel(e.first, e.last)}${e.venue ? `, ${esc(e.venue)}` : ''}, lineup coming</li>`
+    : `      <li><a href="${editionHref(e)}">${esc(e.name)}</a><span class="sep"> — </span>${ymdLabel(e.first, e.last)}${e.artists != null ? `, ${actsN(e.artists)}` : ''}${e.sets != null ? `, ${e.sets} sets` : ''}${e.lineupOnly ? ', set times not verified' : ''}${e.missingStages ? ', selected stages' : ''}</li>`).join('\n')}
     </ul>
-    <p class="note">Each link opens that edition in Past Festivals in Plursky.</p>
+    <p class="note">Each link opens that edition in Past Festivals in Plursky.${datesOnly ? ' A year marked lineup coming shows its dates, venue and your photos from it until its lineup is added.' : ''}</p>
   </section>`;
 }
 
@@ -646,7 +652,7 @@ function stub(entry, statusOverride, lastmod) {
   const stages = (ds?.stages || []).filter(s => !isPlaceholderStage(s));
   const blocks = weekendBlocks(cfg);
   const plate = plateFor(cfg);
-  const editions = pastEditionsFor(id);
+  const editions = pastYearsFor(id);
   const amenities = amenitySummary(DS, id, entry.available);
   const mapHtml = mapSection(entry, plate);
   const indexable = names.length > 0;

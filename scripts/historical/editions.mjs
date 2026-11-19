@@ -220,6 +220,16 @@ export const EDITIONS = {
     timezone: "Europe/Budapest", rolloverHour: 8, method: "official_sources",
     dates: [["2011-08-08", "Monday"], ["2011-08-09", "Tuesday"], ["2011-08-10", "Wednesday"], ["2011-08-11", "Thursday"], ["2011-08-12", "Friday"], ["2011-08-13", "Saturday"], ["2011-08-14", "Sunday"]],
     coverage: { asOf: "2026-11-18", missing: [{ stage: "26 other stages and 6 venues", days: [1, 2, 3, 4, 5, 6, 7], when: "listed in the programme, days not read" }] } },
+  // Defqon.1 2015: the festival's own timetable (defqon1.nl/en/timetable/,
+  // format "defqon-areas", defqon-schedule.mjs), one page for the whole
+  // weekend, captured two days after it. Friday is The Gathering, Saturday
+  // night's afterparty is Saturday's. Sunday's closing on the Red prints one
+  // range (20:00 till 23:00) over three acts with no time of their own, so
+  // they are not placed as sets.
+  "defqon1-2015": { festivalId: "defqon1", name: "Defqon.1 2015", year: 2015,
+    timezone: "Europe/Amsterdam", rolloverHour: 6, method: "official_sources",
+    dates: [["2015-06-19", "Friday"], ["2015-06-20", "Saturday"], ["2015-06-21", "Sunday"]],
+    coverage: { asOf: "2026-11-19", missing: [{ stage: "Closing", days: [3], when: "Sunday 20:00 till 23:00 at the Red; the page lists its acts without their own times" }] } },
   // Governors Ball 2017-2019: the official governorsballmusicfestival.com
   // schedule grid, the same C3 page as ACL's and Lolla's (format "acl-grid"),
   // one archived page per year, each captured after the festival.
@@ -478,6 +488,15 @@ export const EDITIONS = {
   "tomorrowland-2022": { festivalId: "tomorrowland", name: "Tomorrowland 2022", year: 2022,
     timezone: "Europe/Brussels", rolloverHour: 6, method: "official_sources", dates: [["2022-07-15", "Friday"], ["2022-07-16", "Saturday"], ["2022-07-17", "Sunday"], ["2022-07-22", "Friday"], ["2022-07-23", "Saturday"], ["2022-07-24", "Sunday"], ["2022-07-29", "Friday"], ["2022-07-30", "Saturday"], ["2022-07-31", "Sunday"]],
     dayLabels: TML_THREE_WEEKEND_LABELS },
+  // The day timetables of 2024 were never archived. The festival's own
+  // lineup page was (extract-tml-lineup.mjs): who played each stage on each of
+  // the six days, as printed in May 2024, with no times.
+  "tomorrowland-2024": { festivalId: "tomorrowland", name: "Tomorrowland 2024", year: 2024,
+    timezone: "Europe/Brussels", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2024-07-19", "Friday"], ["2024-07-20", "Saturday"], ["2024-07-21", "Sunday"], ["2024-07-26", "Friday"], ["2024-07-27", "Saturday"], ["2024-07-28", "Sunday"]],
+    dayLabels: ACL_WEEKEND_LABELS,
+    notes: [{ asOf: "2026-11-19", text: "The lineup as the festival's own page printed it on 13 May 2024, two months before the festival. Late changes after that day are not shown.",
+      source: "https://web.archive.org/web/20240513185007/https://www.tomorrowland.com/en/festival/line-up/stages/friday-19-july-2024" }] },
   "tomorrowland-2023": { festivalId: "tomorrowland", name: "Tomorrowland 2023", year: 2023,
     timezone: "Europe/Brussels", rolloverHour: 6, method: "official_sources", dates: [["2023-07-21", "Friday"], ["2023-07-22", "Saturday"], ["2023-07-23", "Sunday"], ["2023-07-28", "Friday"], ["2023-07-29", "Saturday"], ["2023-07-30", "Sunday"]],
     dayLabels: ACL_WEEKEND_LABELS },
