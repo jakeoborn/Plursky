@@ -801,6 +801,12 @@ export const DROP_RULES = [
   { category: "show-segment", stage: /^kinetic ?field$/i,
     test: /^(intermezzo\b.*|kinetic (experience|celebration|bloom)\b.*|(natural|kinetic|industrial|spiritual) energy|grow|blossom|pollinate|closing)$/i,
     reason: "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance" },
+  // Ultra Miami 2016 and 2017 printed the Arcadia Spider stage show as a
+  // timed row each day ("ARCADIA LANDING SHOW", 8:25 PM or 8:30 PM) on the
+  // RESISTANCE (2016) and ARCADIA THE SPIDER (2017) stage. Scoped to that
+  // exact billing on those two stages.
+  { category: "show-segment", stage: /^(resistance|arcadia the spider)$/i, test: /^arcadia landing show$/i,
+    reason: "Arcadia stage show printed between sets, not a billed performance" },
   // Electric Forest 2013 printed contest slots before their winners were
   // named ("Discovery Project Winner") and a "Secret Set".
   { category: "unnamed-slot", test: /^(special guest|surprise guest|secret guest|secret set|tba|tbd|to be announced|coming soon!*|discovery project winners?|mystery headliner)$/i,
