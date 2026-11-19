@@ -703,20 +703,14 @@ Ordered by impact-per-engineering-hour.
       Swap to `<RealMap …>` (or a runtime toggle) to bring back the
       MapLibre + heatmap + Apple-Maps-style chrome. ⚠️ Do NOT purge
       `TopDownMap` — it's the live map.
-- [ ] **Apple Music dev token** — code side is done (v152). All that's
-      left is YOUR steps on Apple Developer:
-      1. developer.apple.com → Certificates, Identifiers & Profiles →
-         **Keys** → "+" → name it "Plursky MusicKit" → enable **MusicKit**
-         → pick or create a MusicKit identifier (bundle-form like
-         `music.com.plursky.app`).
-      2. Download the `AuthKey_XXXXXXXXXX.p8` (Apple lets you download
-         ONCE — save it).
-      3. Edit `KEY_ID` in `scripts/gen-musickit-jwt.mjs` to the 10-char
-         ID from the filename.
-      4. Run `node scripts/gen-musickit-jwt.mjs | pbcopy`
-      5. Paste the JWT into `APPLE_DEV_TOKEN` (top of `spotify.jsx`).
-      6. The card auto-unhides; commit + push + sync iOS.
-      JWTs expire every ~6 months — recurring task.
+- [ ] **Apple Music dev token renewal** — live since v152; the token expires
+      every ~6 months (`scripts/check-musickit-token.mjs` warns ahead).
+      From the repo folder (`cd ~/Plursky`), on Jake's Mac:
+      `node scripts/sign-musickit-token.mjs X54Q9P743S <KEY_ID> ~/Downloads/AuthKey_<KEY_ID>.p8 --write`
+      renews `APPLE_DEV_TOKEN` in `spotify-api.jsx` (self-verified); then
+      cache-bust, commit + push (web) and the next iOS build. A NEW key:
+      Keys → ➕ → "Plursky MusicKit" → Media Services (MusicKit) → Register →
+      Download (ONCE). The .p8 never goes in the repo or chat.
 - [x] **Capacitor Share for recap card + data export** — DONE 2026-05-20
       (v152). Both `_shareRecapCard` (spotify.jsx) and `sbExportUserData`
       (supabase.jsx) now branch on `Capacitor.isNativePlatform()` and

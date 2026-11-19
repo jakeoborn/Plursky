@@ -8,6 +8,17 @@
 // A difference is not a bug in itself: lineups change. It means the census
 // has to be re-measured (and the numbers it feeds re-read) before the registry
 // is built or re-checked against it. Measurement only: nothing in the app reads this.
+//
+// MAINTENANCE RULE (decided 2026-11-17, option 2; recorded under SPEC-212 W7):
+//   * --check is NOT in verify.mjs and does not gate merges. The past-editions
+//     backfill adds performers with every batch, so main shows additive drift
+//     between re-measures. That drift is expected, not a failure.
+//   * Re-measure only when the M1 registry milestone needs the baseline, as
+//     ONE PR that runs --write and records the date and the four totals.
+//   * Last re-measure: #492 (merged 2026-11-17, f3e55b16): festivalsInRegistry
+//     64, billingRows2026 3330, archivedEditions 117, performersArchived 8936.
+//   * Why not regenerate on every data PR: every batch would then rewrite the
+//     same JSON, and parallel data PRs would conflict on it.
 import { readFileSync, readdirSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { loadRegistry } from './lib/load-registry.mjs';
 import { slug } from './historical/lib.mjs';
