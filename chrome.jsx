@@ -2679,6 +2679,7 @@ function SetTrackingCard() {
   const hasData = !!(cfg && (Object.keys(getSetTrackIntervals(cfg.id)).length || Object.keys(getSetTapPoints(cfg.id)).length));
   const canReview = !!(cfg && setReviewRows(cfg).length);
   const [reviewing, setReviewing] = React.useState(false);
+  const [weekend, setWeekend] = React.useState(false);
   const btn = (primary) => ({
     background: primary ? "var(--acc)" : "var(--s3)", color: primary ? "var(--on-acc)" : "var(--ink)",
     border: "none", borderRadius: 999, padding: "0 16px", minHeight: 44,
@@ -2733,6 +2734,9 @@ function SetTrackingCard() {
           {canReview && (
             <button data-set-review-open onClick={() => setReviewing(true)} style={btn(false)}>Review your sets</button>
           )}
+          {canReview && yourWeekendEnabled() && (
+            <button data-your-weekend-open onClick={() => setWeekend(true)} style={btn(false)}>Your weekend</button>
+          )}
           {hasData && (
             <button data-set-tracking-clear onClick={() => clearSetTrack(cfg.id)} style={btn(false)}>Clear {name} times</button>
           )}
@@ -2742,6 +2746,7 @@ function SetTrackingCard() {
         </div>
       )}
       {reviewing && <SetReviewSheet cfg={cfg} onClose={() => setReviewing(false)} />}
+      {weekend && <YourWeekendSheet cfg={cfg} onClose={() => setWeekend(false)} />}
       {calibrating && <StageCalibrateSheet cfg={cfg} onClose={() => setCalibrating(false)} />}
     </div>
   );
@@ -2849,6 +2854,139 @@ function setReviewRows(cfg = window.FESTIVAL_CONFIG) {
   const min = a => { const n = toNightMin(a.start); return Number.isFinite(n) ? n : 9999; };
   const day = a => (typeof a.day === "number" ? a.day : 99);
   return rows.sort((x, y) => day(x.a) - day(y.a) || min(x.a) - min(y.a) || key(x) - key(y) || String(x.a.id).localeCompare(String(y.a.id)));
+}
+
+// ── SPEC-200 Build 3: Your weekend (behind a flag, default off) ──
+// Turned on per phone with localStorage plursky_flag_your_weekend = "on"
+// until it has been field-tested. Free, like the rest of set tracking.
+const YOUR_WEEKEND_FLAG_KEY = "plursky_flag_your_weekend";
+function yourWeekendEnabled() {
+  try { return localStorage.getItem(YOUR_WEEKEND_FLAG_KEY) === "on"; } catch { return false; }
+}
+// The timeline's model, pure over setReviewRows' rows: one entry per night,
+// each set you caught (the engine says caught, or you answered Full / Part)
+// with its evidence laid over the set's published window as shares of it,
+// and your own first and last time at its stage.
+// Left out: brief passes, "I wasn't there", and saved sets with nothing on
+// this phone. Whether those last show as a miss is an open founder call
+// (set-attendance spec, open decision 4), so nothing here marks a miss.
+// Times and kinds only, never a place.
+function yourWeekendNights(rows, cfg) {
+  const nights = new Map();
+  const tz = (cfg && cfg.tz) || undefined;
+  const nightOf = ms => {
+    // The 08:00 rule every surface uses: a 01:00 set belongs to the night before.
+    try { return new Intl.DateTimeFormat("en-US", { timeZone: tz, weekday: "short", month: "short", day: "numeric" }).format(new Date(ms - 8 * 3600000)); } catch { return ""; }
+  };
+  for (const r of rows || []) {
+    const { a, manual, verdict } = r || {};
+    if (!a || manual === "absent") continue;
+    if (!(manual === "full" || manual === "partial" || (verdict && verdict.caught))) continue;
+    const ev = r.ev || [];
+    const runs = ev.map(e => ({ from: e.from, to: e.to, src: e.kind === "gps" ? "gps" : "photo" }));
+    const w = attendTimeClass(a) === "blank" ? null : attendSetWindowMs(a, cfg, runs);
+    const marks = [];
+    if (w) {
+      const L = w.endMs - w.startMs;
+      const share = ms => Math.min(1, Math.max(0, (ms - w.startMs) / L));
+      for (const e of ev) {
+        if (e.kind === "gps") {
+          const l = share(e.from), rr = share(e.to);
+          if (rr > l) marks.push({ kind: "run", l, w: rr - l });
+        } else marks.push({ kind: "point", via: e.kind, l: share(e.from) });
+      }
+    }
+    // Your own times at this set: the first and last moment anything on this
+    // phone put you at its stage (a GPS run, a photo, a check-in, a tap),
+    // inside the set's window like the track and the verdict. A run that goes
+    // on past the end is the next act's, and one from before the start is the
+    // last act's, so neither moves these times.
+    const inSet = e => !w || (e.kind === "gps" ? Math.min(e.to, w.endMs) > Math.max(e.from, w.startMs) : e.from >= w.startMs && e.from <= w.endMs);
+    const youTimes = ev.filter(e => Number.isFinite(e.from) && inSet(e)).map(e => {
+      const to = Number.isFinite(e.to) && e.to > e.from ? e.to : e.from;
+      return w ? [Math.max(e.from, w.startMs), Math.min(to, w.endMs)] : [e.from, to];
+    });
+    const you = youTimes.length ? { fromMs: Math.min(...youTimes.map(t => t[0])), toMs: Math.max(...youTimes.map(t => t[1])) } : null;
+    const youText = you
+      ? (you.toMs > you.fromMs ? `You: ${_setClock(you.fromMs, cfg)} to ${_setClock(you.toMs, cfg)}` : `You: ${_setClock(you.fromMs, cfg)}`)
+      : "Your times: nothing on this phone";
+    const dd = cfg && cfg.dayDates && cfg.dayDates[a.day];
+    const label = w ? nightOf(w.startMs) : (dd && dd.short) || (a.day != null ? `Day ${a.day}` : "");
+    const key = w ? `n:${label}` : `d:${a.day}`;
+    if (!nights.has(key)) nights.set(key, { key, label, sortMs: Infinity, day: typeof a.day === "number" ? a.day : 99, sets: [] });
+    const n = nights.get(key);
+    if (w && w.startMs < n.sortMs) n.sortMs = w.startMs;
+    n.sets.push({
+      id: a.id, name: a.name, stage: a.stage, start: a.start || "", end: a.end || "",
+      startMs: w ? w.startMs : null, mine: !!manual,
+      tag: manual ? (verdict && verdict.label) || (manual === "full" ? "Full set · your edit" : "Part of it · your edit")
+        : (verdict && verdict.label) || "Length unknown",
+      marks, you, youText,
+    });
+  }
+  const out = [...nights.values()];
+  for (const n of out) n.sets.sort((x, y) => (x.startMs ?? Infinity) - (y.startMs ?? Infinity) || String(x.id).localeCompare(String(y.id)));
+  return out.sort((x, y) => x.sortMs - y.sortMs || x.day - y.day);
+}
+
+// The timeline: a night per section, a row per caught set, and under its name
+// a track the length of the set with the minutes you were there filled in.
+// The track is decoration (aria-hidden); the tag says the same thing in words.
+function YourWeekendSheet({ cfg = window.FESTIVAL_CONFIG, onClose }) {
+  const [, bump] = React.useReducer(x => x + 1, 0);
+  const [open, setOpen] = React.useState(null);
+  React.useEffect(() => {
+    window.addEventListener(SET_TRACK_EVENT, bump);
+    return () => window.removeEventListener(SET_TRACK_EVENT, bump);
+  }, []);
+  const rows = setReviewRows(cfg);
+  const nights = yourWeekendNights(rows, cfg);
+  const stages = ((_attendedDataSets()[cfg.id] || {}).stages) || window.STAGES || [];
+  if (open) {
+    const a = rows.find(r => r.a.id === open)?.a;
+    if (a) return <SetCorrectionSheet a={a} cfg={cfg} onClose={() => setOpen(null)} />;
+  }
+  const count = nights.reduce((s, n) => s + n.sets.length, 0);
+  return (
+    <FieldSheet title="Your weekend" eyebrow={(cfg.shortName || cfg.name || "").toUpperCase()} onClose={onClose}>
+      <div data-your-weekend-summary className="duo-data-s duo-ink3" style={{ marginBottom: 12 }}>
+        {count ? `${count} set${count === 1 ? "" : "s"} caught on this phone` : "No sets caught on this phone yet."}
+      </div>
+      {nights.map(n => (
+        <section key={n.key} data-your-weekend-night={n.label} style={{ marginBottom: 16 }}>
+          <div className="duo-label duo-ink3" style={{ marginBottom: 4 }}>{n.label.toUpperCase()}</div>
+          {n.sets.map(s => {
+            const stage = stages.find(st => st.id === s.stage);
+            return (
+              <button key={s.id} data-your-weekend-set={s.id} onClick={() => setOpen(s.id)} style={{
+                display: "block", width: "100%", padding: "10px 0", background: "transparent", border: "none",
+                borderBottom: "1px solid var(--line)", textAlign: "left", cursor: "pointer", color: "var(--ink)",
+              }}>
+                <div style={{ display: "flex", alignItems: "baseline", gap: 12, flexWrap: "wrap" }}>
+                  <div style={{ flex: "1 1 160px", minWidth: 0, fontSize: 15, fontWeight: 650, overflowWrap: "anywhere" }}>{s.name}</div>
+                  <span data-your-weekend-tag className="duo-data-s" style={{ color: s.mine ? "var(--acc-ink)" : "var(--ink)" }}>{s.tag}</span>
+                </div>
+                <div className="duo-data-s duo-ink3" style={{ marginBottom: 6 }}>
+                  {[stage && (stage.short || stage.name), s.start && s.end ? `Set ${fmt12(s.start)} to ${fmt12(s.end)}` : "Set time not published"].filter(Boolean).join(" · ")}
+                </div>
+                <div data-your-weekend-you className={s.you ? "duo-data-s" : "duo-data-s duo-ink3"} style={{ marginBottom: 6, color: s.you ? "var(--ink)" : undefined }}>{s.youText}</div>
+                {/* No evidence (your own answer alone) draws no track: an empty one reads as zero minutes. */}
+                {s.startMs != null && s.marks.length > 0 && (
+                  <div data-your-weekend-track aria-hidden="true" style={{ position: "relative", height: 8, borderRadius: 4, background: "var(--s3)" }}>
+                    {s.marks.map((m, i) => m.kind === "run" ? (
+                      <span key={i} data-your-weekend-run style={{ position: "absolute", top: 0, bottom: 0, left: `${(m.l * 100).toFixed(2)}%`, width: `${Math.max(1, m.w * 100).toFixed(2)}%`, borderRadius: 4, background: "var(--acc)" }} />
+                    ) : (
+                      <span key={i} data-your-weekend-point style={{ position: "absolute", top: -2, width: 12, height: 12, marginLeft: -6, left: `${(m.l * 100).toFixed(2)}%`, borderRadius: 6, background: "var(--acc)", boxShadow: "0 0 0 2px var(--s2)" }} />
+                    ))}
+                  </div>
+                )}
+              </button>
+            );
+          })}
+        </section>
+      ))}
+    </FieldSheet>
+  );
 }
 
 // One set: what the evidence says, why, and your answer. A correction wins

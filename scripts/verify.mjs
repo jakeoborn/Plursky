@@ -4158,6 +4158,16 @@ for (const [label, file] of [["contract", "scripts/test-public-plan-share.mjs"],
     fail(`set evidence failed${detail ? `: ${detail}` : ""}`);
   }
 
+  console.log("▸ Your weekend gate: caught sets only, marks clipped to the set, the 08:00 night rule, behind a flag, never Missed");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-your-weekend.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`your weekend failed${detail ? `: ${detail}` : ""}`);
+  }
+
   console.log("▸ Set-tracking gate — opt-in, foreground, measured stages, runs equal the engine's, no coordinates stored");
   try {
     const out = execFileSync(process.execPath, ["scripts/test-set-tracking.mjs"],
