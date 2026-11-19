@@ -8596,6 +8596,20 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "ultra-miami:umf-radio",
+     "names": [
+      {
+       "printed": "UMF RADIO",
+       "editions": [
+        "ultra-miami-2024",
+        "ultra-miami-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   }

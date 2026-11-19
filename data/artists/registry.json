@@ -877,10 +877,11 @@
    "edc-orlando-2019:d1:kineticfield:1624:3lau",
    "electric-forest-2013:d3:sherwood-court:2130:3lau",
    "lollapalooza-2017:d2:perry-s:1800:3lau",
-   "nocturnal-wonderland-2021:d2:wolves-den:2100:3lau"
+   "nocturnal-wonderland-2021:d2:wolves-den:2100:3lau",
+   "ultra-miami-2024:d1:ultra-main-stage:1600:3lau"
   ],
   "firstSeen": "2013-06-29",
-  "lastSeen": "2021-09-19",
+  "lastSeen": "2024-03-22",
   "photo": null,
   "links": []
  },
@@ -1196,6 +1197,21 @@
   "links": []
  },
  {
+  "key": "7grams",
+  "name": "7GRAMS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2024:d2:oasis:1700:7grams"
+  ],
+  "firstSeen": "2024-03-23",
+  "lastSeen": "2024-03-23",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "7th-heaven",
   "name": "7th Heaven",
   "aliases": [],
@@ -1351,7 +1367,8 @@
    "edc-orlando-2025:d3:neongarden:1800:999999999-acid-set",
    "hard-summer-2025:d2:green-stage:2000:999999999",
    "tomorrowland-2019:d1:cage:1630:999999999",
-   "tomorrowland-2023:d4:atmosphere:1730:999999999"
+   "tomorrowland-2023:d4:atmosphere:1730:999999999",
+   "ultra-miami-2025:d3:the-cove:1730:999999999"
   ],
   "firstSeen": "2019-07-19",
   "lastSeen": "2026-10-31",
@@ -1916,14 +1933,17 @@
  {
   "key": "aabel",
   "name": "Aabel",
-  "aliases": [],
+  "aliases": [
+   "AABEL"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "iii-points-2026:iiip-aabel-b2b-siegel"
+   "iii-points-2026:iiip-aabel-b2b-siegel",
+   "ultra-miami-2025:d3:oasis:1330:aabel"
   ],
-  "firstSeen": "2026-10-16",
+  "firstSeen": "2025-03-30",
   "lastSeen": "2026-10-16",
   "photo": null,
   "links": []
@@ -2360,7 +2380,8 @@
    "tomorrowland-2018:d5:mainstage:2350:above-and-beyond",
    "tomorrowland-2019:d1:youphoria:2200:above-and-beyond",
    "tomorrowland-2022:d8:crystal-garden:2200:above-and-beyond",
-   "tomorrowland-2023:d5:crystal-garden:2200:above-and-beyond"
+   "tomorrowland-2023:d5:crystal-garden:2200:above-and-beyond",
+   "ultra-miami-2025:d3:live-stage:2100:above-and-beyond"
   ],
   "firstSeen": "2011-07-23",
   "lastSeen": "2026-12-18",
@@ -2850,7 +2871,10 @@
    "tomorrowland-2022:d3:atmosphere:2200:adam-beyer",
    "tomorrowland-2022:d6:atmosphere:2100:adam-beyer-b2b-maceo-plex",
    "tomorrowland-2022:d9:freedom:2230:adam-beyer",
-   "tomorrowland-2023:d1:atmosphere:2300:adam-beyer"
+   "tomorrowland-2023:d1:atmosphere:2300:adam-beyer",
+   "ultra-miami-2024:d1:megastructure:2030:adam-beyer",
+   "ultra-miami-2024:d3:megastructure:2045:adam-beyer",
+   "ultra-miami-2025:d2:megastructure:2020:adam-beyer"
   ],
   "firstSeen": "2010-08-13",
   "lastSeen": "2027-01-21",
@@ -2890,15 +2914,18 @@
  {
   "key": "adam-de-great",
   "name": "Adam De Great",
-  "aliases": [],
+  "aliases": [
+   "ADAM DE GREAT"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-2013:d3:samsung-secret-forest:1230:adam-de-great"
+   "tomorrowland-2013:d3:samsung-secret-forest:1230:adam-de-great",
+   "ultra-miami-2025:d3:oasis:1415:adam-de-great"
   ],
   "firstSeen": "2013-07-28",
-  "lastSeen": "2013-07-28",
+  "lastSeen": "2025-03-30",
   "photo": null,
   "links": []
  },
@@ -3449,7 +3476,9 @@
  {
   "key": "adrenalize",
   "name": "Adrenalize",
-  "aliases": [],
+  "aliases": [
+   "ADRENALIZE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -3458,7 +3487,9 @@
    "edc-las-vegas-2024:d2:wasteland:2330:adrenalize-b2b-wasted-penguinz",
    "edc-las-vegas-2025:d3:wasteland:0330:adrenalize",
    "tomorrowland-2013:d1:q-dance:1900:adrenalize",
-   "tomorrowland-2017:d5:q-dance:1500:adrenalize"
+   "tomorrowland-2017:d5:q-dance:1500:adrenalize",
+   "ultra-miami-2024:d2:umf-radio:1650:adrenalize-b2b-sound-rush",
+   "ultra-miami-2025:d3:umf-radio:1330:adrenalize"
   ],
   "firstSeen": "2013-07-26",
   "lastSeen": "2025-05-18",
@@ -3520,7 +3551,9 @@
  {
   "key": "adriatique",
   "name": "Adriatique",
-  "aliases": [],
+  "aliases": [
+   "ADRIATIQUE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -3537,7 +3570,8 @@
    "tomorrowland-2022:d4:core:2300:adriatique",
    "tomorrowland-2022:d9:core:2000:adriatique",
    "tomorrowland-2023:d2:freedom-by-bud:2100:adriatique",
-   "tomorrowland-2023:d6:crystal-garden:2030:adriatique"
+   "tomorrowland-2023:d6:crystal-garden:2030:adriatique",
+   "ultra-miami-2024:d2:megastructure:2130:adriatique"
   ],
   "firstSeen": "2016-07-23",
   "lastSeen": "2026-05-15",
@@ -3802,14 +3836,18 @@
  {
   "key": "afrobeta",
   "name": "Afrobeta",
-  "aliases": [],
+  "aliases": [
+   "AFROBETA"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul25"
+   "ultra-miami-2026:ul25",
+   "ultra-miami-2024:d3:live-stage:1655:afrobeta",
+   "ultra-miami-2025:d3:live-stage:1600:afrobeta"
   ],
-  "firstSeen": "2026-03-27",
+  "firstSeen": "2024-03-24",
   "lastSeen": "2026-03-27",
   "photo": null,
   "links": []
@@ -3907,7 +3945,9 @@
    "tomorrowland-2022:d6:the-library:2200:afrojack",
    "tomorrowland-2022:d8:mainstage:2145:afrojack",
    "tomorrowland-2023:d2:mainstage:2130:afrojack",
-   "tomorrowland-2023:d6:the-library:2100:afrojack"
+   "tomorrowland-2023:d6:the-library:2100:afrojack",
+   "ultra-miami-2024:d3:ultra-main-stage:1810:afrojack",
+   "ultra-miami-2025:d1:ultra-main-stage:2020:afrojack"
   ],
   "firstSeen": "2010-07-24",
   "lastSeen": "2026-12-12",
@@ -4305,7 +4345,8 @@
   "billings": [
    "crssd-fall-2026:crssd-ahadadream",
    "lollapalooza-2024:d3:sonny-s:1305:ahadadream-b2b-manara",
-   "shambhala-2025:d3:the-pagoda:2200:ahadadream"
+   "shambhala-2025:d3:the-pagoda:2200:ahadadream",
+   "ultra-miami-2025:d1:umf-radio:2130:ahadadream"
   ],
   "firstSeen": "2024-08-03",
   "lastSeen": "2026-09-26",
@@ -5053,7 +5094,8 @@
    "tomorrowland-2016:d1:v-sessions:1600:alan-walker",
    "tomorrowland-2017:d6:mainstage:1700:alan-walker",
    "tomorrowland-2018:d1:mainstage:1850:alan-walker",
-   "tomorrowland-2022:d4:mainstage:2145:alan-walker"
+   "tomorrowland-2022:d4:mainstage:2145:alan-walker",
+   "ultra-miami-2024:d1:ultra-main-stage:1800:alan-walker"
   ],
   "firstSeen": "2016-07-22",
   "lastSeen": "2026-12-11",
@@ -5286,15 +5328,18 @@
  {
   "key": "alchimyst",
   "name": "Alchimyst",
-  "aliases": [],
+  "aliases": [
+   "ALCHIMYST"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-las-vegas-2024:d1:quantum-valley:1900:alchimyst"
+   "edc-las-vegas-2024:d1:quantum-valley:1900:alchimyst",
+   "ultra-miami-2025:d2:umf-radio:1700:alchimyst"
   ],
   "firstSeen": "2024-05-17",
-  "lastSeen": "2024-05-17",
+  "lastSeen": "2025-03-29",
   "photo": null,
   "links": []
  },
@@ -5723,7 +5768,8 @@
    "tomorrowland-2022:d2:mainstage:2350:alesso",
    "tomorrowland-2022:d6:mainstage:2150:alesso",
    "tomorrowland-2023:d2:mainstage:2350:alesso",
-   "tomorrowland-2023:d6:mainstage:2040:alesso"
+   "tomorrowland-2023:d6:mainstage:2040:alesso",
+   "ultra-miami-2025:d1:ultra-main-stage:2125:alesso"
   ],
   "firstSeen": "2011-07-22",
   "lastSeen": "2027-02-20",
@@ -6031,6 +6077,21 @@
   ],
   "firstSeen": "2017-04-23",
   "lastSeen": "2017-04-23",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "alex-pizzuti",
+  "name": "ALEX PIZZUTI",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2025:d3:oasis:1800:alex-pizzuti-b2b-tank"
+  ],
+  "firstSeen": "2025-03-30",
+  "lastSeen": "2025-03-30",
   "photo": null,
   "links": []
  },
@@ -6899,6 +6960,21 @@
   "links": []
  },
  {
+  "key": "allan-ramirez",
+  "name": "ALLAN RAMIREZ",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2024:d2:oasis:2100:allan-ramirez"
+  ],
+  "firstSeen": "2024-03-23",
+  "lastSeen": "2024-03-23",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "allan-rayman",
   "name": "Allan Rayman",
   "aliases": [],
@@ -7062,9 +7138,10 @@
    "edc-las-vegas-2025:d3:circuit-grounds:1900:alleycvt",
    "edc-orlando-2025:d3:stereobloom:2000:alleycvt",
    "lollapalooza-2025:d2:perry-s:1515:alleycvt",
-   "shambhala-2025:d3:the-village:0200:alleycvt"
+   "shambhala-2025:d3:the-village:0200:alleycvt",
+   "ultra-miami-2025:d3:worldwide-stage:1515:alleycvt-b2b-jessica-audiffred"
   ],
-  "firstSeen": "2025-05-18",
+  "firstSeen": "2025-03-30",
   "lastSeen": "2026-12-31",
   "photo": null,
   "links": []
@@ -8506,7 +8583,8 @@
    "tomorrowland-2022:d4:atmosphere:2300:amelie-lens",
    "tomorrowland-2022:d7:atmosphere:2130:amelie-lens",
    "tomorrowland-2023:d1:mainstage:1940:amelie-lens",
-   "tomorrowland-2023:d6:atmosphere:2200:amelie-lens"
+   "tomorrowland-2023:d6:atmosphere:2200:amelie-lens",
+   "ultra-miami-2024:d2:megastructure:1700:amelie-lens"
   ],
   "firstSeen": "2016-07-24",
   "lastSeen": "2026-08-02",
@@ -9971,14 +10049,17 @@
  {
   "key": "andy-ares",
   "name": "Andy Ares",
-  "aliases": [],
+  "aliases": [
+   "ANDY ARES"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul158"
+   "ultra-miami-2026:ul158",
+   "ultra-miami-2025:d1:oasis:1600:andy-ares"
   ],
-  "firstSeen": "2026-03-29",
+  "firstSeen": "2025-03-28",
   "lastSeen": "2026-03-29",
   "photo": null,
   "links": []
@@ -10020,7 +10101,9 @@
    "nocturnal-wonderland-2022:d2:labyrinth:2100:andy-c",
    "shambhala-2014:d4:village:0030:andy-c",
    "shambhala-2025:d4:the-village:2300:andy-c",
-   "sonar-2019:d2:sonarlab-resident-advisor:0255:andy-c"
+   "sonar-2019:d2:sonarlab-resident-advisor:0255:andy-c",
+   "ultra-miami-2024:d3:worldwide-stage:1655:andy-c",
+   "ultra-miami-2025:d3:worldwide-stage:1630:andy-c"
   ],
   "firstSeen": "2012-09-21",
   "lastSeen": "2026-12-18",
@@ -10142,14 +10225,19 @@
  {
   "key": "andy-pate",
   "name": "Andy Pate",
-  "aliases": [],
+  "aliases": [
+   "ANDY PATE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul70"
+   "ultra-miami-2026:ul70",
+   "ultra-miami-2024:d3:megastructure:1200:andy-pate-b3b-christopher-james-b3b-rod-b",
+   "ultra-miami-2025:d2:the-cove:1200:basset-b3b-andy-pate-b3b-rod-b",
+   "ultra-miami-2025:d2:oasis:1600:andy-pate"
   ],
-  "firstSeen": "2026-03-28",
+  "firstSeen": "2024-03-24",
   "lastSeen": "2026-03-28",
   "photo": null,
   "links": []
@@ -10777,16 +10865,19 @@
  {
   "key": "ann-clue",
   "name": "Ann Clue",
-  "aliases": [],
+  "aliases": [
+   "ANN CLUE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "edc-las-vegas-2022:d1:circuit-grounds:1900:ann-clue",
-   "tomorrowland-2023:d5:freedom-by-bud:1430:ann-clue"
+   "tomorrowland-2023:d5:freedom-by-bud:1430:ann-clue",
+   "ultra-miami-2024:d3:the-cove:1430:ann-clue"
   ],
   "firstSeen": "2022-05-20",
-  "lastSeen": "2023-07-29",
+  "lastSeen": "2024-03-24",
   "photo": null,
   "links": []
  },
@@ -11523,7 +11614,8 @@
   "projects": [],
   "billings": [
    "arc-2026:arc-anyma-grid-d3",
-   "tomorrowland-2023:d2:freedom-by-bud:1930:anyma"
+   "tomorrowland-2023:d2:freedom-by-bud:1930:anyma",
+   "ultra-miami-2025:d2:ultra-main-stage:1900:anyma-b2b-solomun"
   ],
   "firstSeen": "2023-07-22",
   "lastSeen": "2026-09-06",
@@ -11550,6 +11642,21 @@
   ],
   "firstSeen": "2017-07-22",
   "lastSeen": "2026-12-13",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "apashe-live-brass-orchestra",
+  "name": "APASHE LIVE BRASS ORCHESTRA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2024:d1:live-stage:2000:apashe-live-brass-orchestra"
+  ],
+  "firstSeen": "2024-03-22",
+  "lastSeen": "2024-03-22",
   "photo": null,
   "links": []
  },
@@ -12066,7 +12173,8 @@
    "edc-orlando-2025:d1:kineticfield:1626:argy",
    "tomorrowland-2013:d1:q-dance:1200:argy",
    "tomorrowland-2014:d1:qult:1430:argy",
-   "tomorrowland-2014:d4:qult:1430:argy"
+   "tomorrowland-2014:d4:qult:1430:argy",
+   "ultra-miami-2024:d1:the-cove:1900:argy"
   ],
   "firstSeen": "2013-07-26",
   "lastSeen": "2026-05-15",
@@ -12449,7 +12557,11 @@
    "tomorrowland-2022:d1:mainstage:2145:armin-van-buuren",
    "tomorrowland-2022:d4:mainstage:2250:armin-van-buuren",
    "tomorrowland-2023:d5:mainstage:2130:armin-van-buuren",
-   "tomorrowland-2023:d6:freedom-by-bud:2030:armin-van-buuren"
+   "tomorrowland-2023:d6:freedom-by-bud:2030:armin-van-buuren",
+   "ultra-miami-2024:d3:ultra-main-stage:1930:armin-van-buuren",
+   "ultra-miami-2025:d1:worldwide-stage:2300:armin-van-buuren-b3b-maddix-b3b-oliver-heldens",
+   "ultra-miami-2025:d1:worldwide-stage:2130:armin-van-buuren",
+   "ultra-miami-2025:d2:ultra-main-stage:1755:armin-van-buuren"
   ],
   "firstSeen": "2010-07-25",
   "lastSeen": "2026-05-17",
@@ -12482,7 +12594,8 @@
    "escape-halloween-2021:d1:the-grimm:1830:armnhmr",
    "nocturnal-wonderland-2018:d1:wolves-den:2005:armnhmr",
    "outside-lands-2025:d1:twin-peaks:1855:armnhmr",
-   "tomorrowland-2023:d2:youphoria:2000:armnhmr"
+   "tomorrowland-2023:d2:youphoria:2000:armnhmr",
+   "ultra-miami-2024:d3:worldwide-stage:1355:armnhmr"
   ],
   "firstSeen": "2018-09-14",
   "lastSeen": "2026-12-30",
@@ -12735,7 +12848,9 @@
    "tomorrowland-2019:d2:leaf-by-jbl:1730:artbat",
    "tomorrowland-2022:d3:freedom:1800:artbat",
    "tomorrowland-2022:d6:freedom:2030:artbat",
-   "tomorrowland-2022:d9:mainstage:1940:artbat"
+   "tomorrowland-2022:d9:mainstage:1940:artbat",
+   "ultra-miami-2024:d3:megastructure:1615:artbat",
+   "ultra-miami-2025:d1:megastructure:1900:artbat"
   ],
   "firstSeen": "2019-07-20",
   "lastSeen": "2026-12-13",
@@ -13046,6 +13161,21 @@
   ],
   "firstSeen": "2019-08-10",
   "lastSeen": "2019-08-10",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "asco",
+  "name": "ASCO",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2024:d2:oasis:2200:asco"
+  ],
+  "firstSeen": "2024-03-23",
+  "lastSeen": "2024-03-23",
   "photo": null,
   "links": []
  },
@@ -13800,7 +13930,8 @@
    "edc-orlando-2021:d1:circuit-grounds:1700:atliens",
    "edc-orlando-2023:d1:circuit-grounds:2015:atliens",
    "escape-halloween-2019:d1:psycho-circus:2100:atliens",
-   "escape-halloween-2025:d1:sewer-district:0100:atliens"
+   "escape-halloween-2025:d1:sewer-district:0100:atliens",
+   "ultra-miami-2025:d2:worldwide-stage:2130:atliens"
   ],
   "firstSeen": "2019-10-25",
   "lastSeen": "2026-12-30",
@@ -14326,14 +14457,18 @@
  {
   "key": "audiosal",
   "name": "Audiosal",
-  "aliases": [],
+  "aliases": [
+   "AUDIOSAL"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul164"
+   "ultra-miami-2026:ul164",
+   "ultra-miami-2024:d3:oasis:1730:audiosal",
+   "ultra-miami-2025:d2:oasis:2000:audiosal"
   ],
-  "firstSeen": "2026-03-29",
+  "firstSeen": "2024-03-24",
   "lastSeen": "2026-03-29",
   "photo": null,
   "links": []
@@ -15196,7 +15331,9 @@
  {
   "key": "axwell",
   "name": "Axwell",
-  "aliases": [],
+  "aliases": [
+   "AXWELL"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -15208,7 +15345,8 @@
    "tomorrowland-2016:d2:axtone:1900:axwell",
    "tomorrowland-2017:d5:axtone:1900:axwell",
    "tomorrowland-2018:d2:freedom-stage-by-budweiser:2000:axwell",
-   "tomorrowland-2019:d5:freedom-stage-by-budweiser:1945:axwell"
+   "tomorrowland-2019:d5:freedom-stage-by-budweiser:1945:axwell",
+   "ultra-miami-2025:d2:ultra-main-stage:2035:axwell"
   ],
   "firstSeen": "2010-07-25",
   "lastSeen": "2026-12-11",
@@ -15721,6 +15859,21 @@
   ],
   "firstSeen": "2026-10-30",
   "lastSeen": "2026-10-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "b2b-b2b-b2b-b2b-b2b-b2b",
+  "name": "?B2B?B2B?B2B?B2B?B2B?B2B",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2025:d1:umf-radio:2230:b2b-b2b-b2b-b2b-b2b-b2b"
+  ],
+  "firstSeen": "2025-03-28",
+  "lastSeen": "2025-03-28",
   "photo": null,
   "links": []
  },
@@ -17073,16 +17226,19 @@
  {
   "key": "barclay-crenshaw",
   "name": "Barclay Crenshaw",
-  "aliases": [],
+  "aliases": [
+   "BARCLAY CRENSHAW"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "coachella-2017:d4:do-lab:1645:barclay-crenshaw",
-   "shambhala-2024:d4:the-pagoda:0230:barclay-crenshaw"
+   "shambhala-2024:d4:the-pagoda:0230:barclay-crenshaw",
+   "ultra-miami-2025:d2:worldwide-stage:1530:barclay-crenshaw"
   ],
   "firstSeen": "2017-04-21",
-  "lastSeen": "2024-07-28",
+  "lastSeen": "2025-03-29",
   "photo": null,
   "links": []
  },
@@ -17753,16 +17909,34 @@
   "links": []
  },
  {
-  "key": "bassett",
-  "name": "Bassett",
+  "key": "basset",
+  "name": "BASSET",
   "aliases": [],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul132"
+   "ultra-miami-2025:d2:the-cove:1200:basset-b3b-andy-pate-b3b-rod-b"
   ],
-  "firstSeen": "2026-03-29",
+  "firstSeen": "2025-03-29",
+  "lastSeen": "2025-03-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "bassett",
+  "name": "Bassett",
+  "aliases": [
+   "BASSETT"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2026:ul132",
+   "ultra-miami-2025:d2:oasis:1700:luke-hunter-b2b-bassett"
+  ],
+  "firstSeen": "2025-03-29",
   "lastSeen": "2026-03-29",
   "photo": null,
   "links": []
@@ -19269,10 +19443,11 @@
   "projects": [],
   "billings": [
    "acl-2023:d3:t-mobile:1330:becky-hill",
-   "outside-lands-2023:d1:twin-peaks:1545:becky-hill"
+   "outside-lands-2023:d1:twin-peaks:1545:becky-hill",
+   "ultra-miami-2025:d2:live-stage:1800:becky-hill"
   ],
   "firstSeen": "2023-08-11",
-  "lastSeen": "2023-10-08",
+  "lastSeen": "2025-03-29",
   "photo": null,
   "links": []
  },
@@ -20020,10 +20195,27 @@
    "tomorrowland-2018:d4:freedom-stage-by-budweiser:2300:ben-nicky",
    "tomorrowland-2019:d2:freedom-stage-by-budweiser:1730:ben-nicky",
    "tomorrowland-2019:d6:mainstage:1420:ben-nicky",
-   "tomorrowland-2023:d6:the-library:1700:ben-nicky"
+   "tomorrowland-2023:d6:the-library:1700:ben-nicky",
+   "ultra-miami-2024:d1:worldwide-stage:1845:ben-nicky-presents-emotional-havoc",
+   "ultra-miami-2024:d2:umf-radio:1735:ben-nicky-presents-xtreme"
   ],
   "firstSeen": "2012-07-29",
   "lastSeen": "2025-05-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "ben-nigrelli",
+  "name": "BEN NIGRELLI",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2025:d1:oasis:1900:ben-nigrelli"
+  ],
+  "firstSeen": "2025-03-28",
+  "lastSeen": "2025-03-28",
   "photo": null,
   "links": []
  },
@@ -21789,14 +21981,18 @@
  {
   "key": "bill-kelly",
   "name": "Bill Kelly",
-  "aliases": [],
+  "aliases": [
+   "BILL KELLY"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul107"
+   "ultra-miami-2026:ul107",
+   "ultra-miami-2024:d3:oasis:1630:bill-kelly",
+   "ultra-miami-2025:d3:oasis:1530:bill-kelly"
   ],
-  "firstSeen": "2026-03-28",
+  "firstSeen": "2024-03-24",
   "lastSeen": "2026-03-28",
   "photo": null,
   "links": []
@@ -22939,7 +23135,8 @@
    "escape-halloween-2025:d1:sewer-district:2145:black-tiger-sex-machine",
    "lollapalooza-2015:d3:perry-s:1235:black-tiger-sex-machine",
    "lollapalooza-2024:d4:perry-s:1930:black-tiger-sex-machine",
-   "nocturnal-wonderland-2019:d2:labyrinth:2155:black-tiger-sex-machine"
+   "nocturnal-wonderland-2019:d2:labyrinth:2155:black-tiger-sex-machine",
+   "ultra-miami-2024:d3:worldwide-stage:2005:black-tiger-sex-machine-presents-the-anime-show"
   ],
   "firstSeen": "2015-08-02",
   "lastSeen": "2026-12-30",
@@ -23382,9 +23579,10 @@
   "projects": [],
   "billings": [
    "tomorrowland-thailand-2026:tmlth-blazy",
-   "dreamstate-socal-2025:d1:the-sequence:1900:blazy"
+   "dreamstate-socal-2025:d1:the-sequence:1900:blazy",
+   "ultra-miami-2025:d2:umf-radio:1900:blazy"
   ],
-  "firstSeen": "2025-11-21",
+  "firstSeen": "2025-03-29",
   "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
@@ -24797,10 +24995,26 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul145"
+   "ultra-miami-2026:ul145",
+   "ultra-miami-2024:d2:oasis:1800:boiish"
   ],
-  "firstSeen": "2026-03-29",
+  "firstSeen": "2024-03-23",
   "lastSeen": "2026-03-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "boiish-live",
+  "name": "BOIISH LIVE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2025:d2:live-stage:1630:boiish-live"
+  ],
+  "firstSeen": "2025-03-29",
+  "lastSeen": "2025-03-29",
   "photo": null,
   "links": []
  },
@@ -25640,7 +25854,9 @@
  {
   "key": "boris-brejcha",
   "name": "Boris Brejcha",
-  "aliases": [],
+  "aliases": [
+   "BORIS BREJCHA"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -25652,7 +25868,8 @@
    "edc-las-vegas-2022:d1:circuit-grounds:0200:boris-brejcha",
    "tomorrowland-2018:d6:atmosphere:1600:boris-brejcha",
    "tomorrowland-2019:d4:mainstage:1450:boris-brejcha",
-   "tomorrowland-2022:d7:mainstage:1940:boris-brejcha"
+   "tomorrowland-2022:d7:mainstage:1940:boris-brejcha",
+   "ultra-miami-2025:d1:megastructure:2030:boris-brejcha"
   ],
   "firstSeen": "2018-07-29",
   "lastSeen": "2027-04-11",
@@ -25930,7 +26147,8 @@
    "edc-las-vegas-2024:d2:basspod:2130:bou",
    "hard-summer-2025:d1:green-stage:1800:bou",
    "shambhala-2025:d2:the-village:0200:bou",
-   "tomorrowland-2022:d2:crystal-garden:2030:bou"
+   "tomorrowland-2022:d2:crystal-garden:2030:bou",
+   "ultra-miami-2024:d3:worldwide-stage:1555:bou"
   ],
   "firstSeen": "2022-07-16",
   "lastSeen": "2026-11-06",
@@ -27111,7 +27329,8 @@
    "tomorrowland-2019:d5:q-dance:2000:brennan-heart",
    "tomorrowland-2022:d6:the-library:2100:brennan-heart",
    "tomorrowland-2023:d3:freedom-by-bud:1830:brennan-heart",
-   "tomorrowland-2023:d6:the-library:2300:brennan-heart"
+   "tomorrowland-2023:d6:the-library:2300:brennan-heart",
+   "ultra-miami-2025:d3:umf-radio:1800:brennan-heart"
   ],
   "firstSeen": "2010-07-25",
   "lastSeen": "2026-12-13",
@@ -30154,7 +30373,9 @@
  {
   "key": "calvin-harris",
   "name": "Calvin Harris",
-  "aliases": [],
+  "aliases": [
+   "CALVIN HARRIS"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -30171,10 +30392,11 @@
    "edc-las-vegas-2013:d3:kineticfield:0130:calvin-harris",
    "lollapalooza-2012:d2:perry-s:1945:calvin-harris",
    "lollapalooza-2014:d2:bud-light:2045:calvin-harris",
-   "sziget-2010:d6:party-arena:1930:calvin-harris-uk"
+   "sziget-2010:d6:party-arena:1930:calvin-harris-uk",
+   "ultra-miami-2024:d3:ultra-main-stage:2100:calvin-harris"
   ],
   "firstSeen": "2010-08-14",
-  "lastSeen": "2016-04-24",
+  "lastSeen": "2024-03-24",
   "photo": null,
   "links": []
  },
@@ -30269,7 +30491,8 @@
    "tomorrowland-2018:d3:garden-of-madness:1630:camelphat",
    "tomorrowland-2019:d1:freedom-stage-by-budweiser:1930:camelphat",
    "tomorrowland-2019:d6:garden-of-madness:2030:camelphat",
-   "tomorrowland-2023:d2:freedom-by-bud:1800:camelphat"
+   "tomorrowland-2023:d2:freedom-by-bud:1800:camelphat",
+   "ultra-miami-2024:d3:megastructure:1745:camelphat"
   ],
   "firstSeen": "2016-07-24",
   "lastSeen": "2026-12-18",
@@ -31196,7 +31419,9 @@
  {
   "key": "carl-cox",
   "name": "Carl Cox",
-  "aliases": [],
+  "aliases": [
+   "CARL COX"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -31217,7 +31442,9 @@
    "tomorrowland-2017:d1:mainstage:1200:carl-cox",
    "tomorrowland-2018:d1:mainstage:1200:carl-cox",
    "tomorrowland-2019:d1:mainstage:1200:carl-cox-daybreak-session",
-   "tomorrowland-2019:d4:atmosphere:2300:carl-cox"
+   "tomorrowland-2019:d4:atmosphere:2300:carl-cox",
+   "ultra-miami-2025:d2:megastructure:2200:carl-cox-evolution",
+   "ultra-miami-2025:d2:megastructure:1200:carl-cox-b2b-christopher-coe-live"
   ],
   "firstSeen": "2011-07-22",
   "lastSeen": "2026-03-28",
@@ -33906,15 +34133,18 @@
  {
   "key": "charlie-sparks",
   "name": "Charlie Sparks",
-  "aliases": [],
+  "aliases": [
+   "CHARLIE SPARKS"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2024:d3:neon-garden:1500:charlie-sparks"
+   "edc-orlando-2024:d3:neon-garden:1500:charlie-sparks",
+   "ultra-miami-2025:d3:the-cove:1430:charlie-sparks"
   ],
   "firstSeen": "2024-11-10",
-  "lastSeen": "2024-11-10",
+  "lastSeen": "2025-03-30",
   "photo": null,
   "links": []
  },
@@ -34047,7 +34277,8 @@
    "tomorrowland-2019:d4:mainstage:1950:charlotte-de-witte",
    "tomorrowland-2022:d1:atmosphere:2300:charlotte-de-witte",
    "tomorrowland-2022:d5:atmosphere:2300:charlotte-de-witte",
-   "tomorrowland-2022:d8:mainstage:2350:charlotte-de-witte"
+   "tomorrowland-2022:d8:mainstage:2350:charlotte-de-witte",
+   "ultra-miami-2025:d1:megastructure:2200:charlotte-de-witte"
   ],
   "firstSeen": "2017-07-22",
   "lastSeen": "2027-04-10",
@@ -34191,6 +34422,7 @@
   "name": "Chase & Status",
   "aliases": [
    "CHASE & STATUS",
+   "CHASE AND STATUS",
    "Chase and Status"
   ],
   "kind": "performer",
@@ -34204,7 +34436,9 @@
    "edc-las-vegas-2025:d2:basspod:0030:chase-and-status",
    "edc-orlando-2025:d3:circuitgrounds:2045:chase-and-status",
    "lollapalooza-2014:d2:perry-s:1900:chase-and-status",
-   "lollapalooza-2025:d3:perry-s:1930:chase-and-status"
+   "lollapalooza-2025:d3:perry-s:1930:chase-and-status",
+   "ultra-miami-2024:d2:worldwide-stage:2130:chase-and-status",
+   "ultra-miami-2025:d1:live-stage:2010:chase-and-status"
   ],
   "firstSeen": "2012-06-10",
   "lastSeen": "2027-04-11",
@@ -35298,7 +35532,8 @@
    "day-zero-tulum-2027:dzt-chloe-caillet",
    "escape-halloween-2024:d1:wicked-woods:2000:chloe-caillet",
    "escape-halloween-2024:d1:the-cauldron:1730:chloe-caillet",
-   "tomorrowland-2023:d1:core:1600:chloe-caillet"
+   "tomorrowland-2023:d1:core:1600:chloe-caillet",
+   "ultra-miami-2025:d3:megastructure:1500:chloe-caillet"
   ],
   "firstSeen": "2023-07-21",
   "lastSeen": "2027-01-09",
@@ -35460,9 +35695,11 @@
   "projects": [],
   "billings": [
    "arc-2026:arc-chris-avantgarde-b2b-kevin-de-vries-grid-d3",
-   "edc-las-vegas-2025:d3:quantum-valley:0215:chris-avantgarde"
+   "edc-las-vegas-2025:d3:quantum-valley:0215:chris-avantgarde",
+   "ultra-miami-2024:d1:the-cove:2030:massano-b2b-chris-avantgarde",
+   "ultra-miami-2025:d2:the-cove:2200:massano-b2b-chris-avantgarde"
   ],
-  "firstSeen": "2025-05-18",
+  "firstSeen": "2024-03-22",
   "lastSeen": "2026-09-06",
   "photo": null,
   "links": []
@@ -35707,6 +35944,21 @@
   ],
   "firstSeen": "2014-08-10",
   "lastSeen": "2026-11-06",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "chris-luno",
+  "name": "CHRIS LUNO",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2024:d3:umf-radio:1315:chris-luno"
+  ],
+  "firstSeen": "2024-03-24",
+  "lastSeen": "2024-03-24",
   "photo": null,
   "links": []
  },
@@ -36165,6 +36417,21 @@
   "links": []
  },
  {
+  "key": "christopher-coe",
+  "name": "CHRISTOPHER COE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2025:d2:megastructure:1200:carl-cox-b2b-christopher-coe-live"
+  ],
+  "firstSeen": "2025-03-29",
+  "lastSeen": "2025-03-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "christopher-cross",
   "name": "Christopher Cross",
   "aliases": [],
@@ -36182,14 +36449,18 @@
  {
   "key": "christopher-james",
   "name": "Christopher James",
-  "aliases": [],
+  "aliases": [
+   "CHRISTOPHER JAMES"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul132"
+   "ultra-miami-2026:ul132",
+   "ultra-miami-2024:d3:megastructure:1200:andy-pate-b3b-christopher-james-b3b-rod-b",
+   "ultra-miami-2025:d2:oasis:1500:josh-wetherington-b2b-christopher-james"
   ],
-  "firstSeen": "2026-03-29",
+  "firstSeen": "2024-03-24",
   "lastSeen": "2026-03-29",
   "photo": null,
   "links": []
@@ -37033,9 +37304,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul165"
+   "ultra-miami-2026:ul165",
+   "ultra-miami-2024:d3:oasis:1200:cj",
+   "ultra-miami-2025:d2:oasis:1200:juno-b3b-cj-b3b-marvin-delgado"
   ],
-  "firstSeen": "2026-03-29",
+  "firstSeen": "2024-03-24",
   "lastSeen": "2026-03-29",
   "photo": null,
   "links": []
@@ -37854,7 +38127,9 @@
   "aliases": [],
   "kind": "performer",
   "parents": [],
-  "projects": [],
+  "projects": [
+   "lszee"
+  ],
   "billings": [
    "coachella-2015:d1:do-lab:1130:clozee",
    "lightning-in-a-bottle-2018:d4:thunder:2245:clozee",
@@ -38341,7 +38616,8 @@
    "dreamstate-socal-2023:d2:the-sequence:1600:coexist",
    "dreamstate-socal-2024:d1:the-sequence:1300:coexist",
    "dreamstate-socal-2025:d2:the-sequence:1700:coexist",
-   "tomorrowland-2019:d3:kara-savi:1400:coexist"
+   "tomorrowland-2019:d3:kara-savi:1400:coexist",
+   "ultra-miami-2025:d2:umf-radio:1500:coexist"
   ],
   "firstSeen": "2019-07-21",
   "lastSeen": "2025-11-22",
@@ -39594,7 +39870,9 @@
    "tomorrowland-2022:d4:youphoria:1800:coone",
    "tomorrowland-2022:d7:youphoria:1930:coone",
    "tomorrowland-2023:d1:youphoria:1630:coone",
-   "tomorrowland-2023:d6:youphoria:1700:coone"
+   "tomorrowland-2023:d6:youphoria:1700:coone",
+   "ultra-miami-2024:d2:umf-radio:1920:coone",
+   "ultra-miami-2025:d3:umf-radio:1700:coone"
   ],
   "firstSeen": "2010-07-24",
   "lastSeen": "2026-12-30",
@@ -40591,7 +40869,8 @@
    "edc-orlando-2025:d2:circuitgrounds:2200:crankdat",
    "hard-summer-2025:d1:green-stage:2100:crankdat",
    "tomorrowland-2022:d9:youphoria:1830:crankdat",
-   "tomorrowland-2023:d5:youphoria:1700:crankdat"
+   "tomorrowland-2023:d5:youphoria:1700:crankdat",
+   "ultra-miami-2025:d2:worldwide-stage:1930:crankdat"
   ],
   "firstSeen": "2022-07-31",
   "lastSeen": "2026-12-31",
@@ -41492,6 +41771,21 @@
   "links": []
  },
  {
+  "key": "cuartero",
+  "name": "CUARTERO",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2024:d2:the-cove:1600:waff-b2b-cuartero"
+  ],
+  "firstSeen": "2024-03-23",
+  "lastSeen": "2024-03-23",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "cuchillo",
   "name": "Cuchillo",
   "aliases": [],
@@ -41978,9 +42272,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul106"
+   "ultra-miami-2026:ul106",
+   "ultra-miami-2025:d3:oasis:1245:cvmrn"
   ],
-  "firstSeen": "2026-03-28",
+  "firstSeen": "2025-03-30",
   "lastSeen": "2026-03-28",
   "photo": null,
   "links": []
@@ -42628,7 +42923,8 @@
    "tomorrowland-2022:d4:youphoria:1900:da-tweekaz",
    "tomorrowland-2022:d6:mainstage:1835:da-tweekaz",
    "tomorrowland-2023:d3:mainstage:1940:da-tweekaz",
-   "tomorrowland-2023:d6:youphoria:1800:da-tweekaz"
+   "tomorrowland-2023:d6:youphoria:1800:da-tweekaz",
+   "ultra-miami-2025:d3:umf-radio:1900:da-tweekaz"
   ],
   "firstSeen": "2012-07-29",
   "lastSeen": "2026-12-20",
@@ -42683,9 +42979,11 @@
   "projects": [],
   "billings": [
    "ultra-miami-2026:ul105",
-   "arc-2026:arc-dabura-b2b-anna-maria-midway-d1"
+   "arc-2026:arc-dabura-b2b-anna-maria-midway-d1",
+   "ultra-miami-2024:d2:oasis:1600:soul-goodman-b2b-dabura",
+   "ultra-miami-2025:d2:oasis:1330:soul-goodman-b2b-dabura"
   ],
-  "firstSeen": "2026-03-28",
+  "firstSeen": "2024-03-23",
   "lastSeen": "2026-09-04",
   "photo": null,
   "links": []
@@ -44779,7 +45077,8 @@
    "edc-las-vegas-2013:d1:basscon:2300:darksiderz",
    "edc-las-vegas-2022:d3:wasteland:2040:darksiderz",
    "edc-las-vegas-2024:d2:wasteland:2030:kreation-b2b-darksiderz",
-   "edc-orlando-2019:d1:stereobloom:1600:darksiderz"
+   "edc-orlando-2019:d1:stereobloom:1600:darksiderz",
+   "ultra-miami-2025:d3:umf-radio:1200:darksiderz"
   ],
   "firstSeen": "2012-06-08",
   "lastSeen": "2026-09-19",
@@ -45519,7 +45818,9 @@
  {
   "key": "david-guetta",
   "name": "David Guetta",
-  "aliases": [],
+  "aliases": [
+   "DAVID GUETTA"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -45542,7 +45843,8 @@
    "tomorrowland-2017:d3:mainstage:2000:david-guetta",
    "tomorrowland-2017:d6:mainstage:2200:david-guetta",
    "tomorrowland-2018:d6:mainstage:2150:david-guetta",
-   "tomorrowland-2019:d5:mainstage:2150:david-guetta"
+   "tomorrowland-2019:d5:mainstage:2150:david-guetta",
+   "ultra-miami-2024:d2:ultra-main-stage:2345:david-guetta"
   ],
   "firstSeen": "2010-07-25",
   "lastSeen": "2026-11-06",
@@ -46586,6 +46888,21 @@
   "links": []
  },
  {
+  "key": "de-xenia",
+  "name": "DE XENIA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2025:d3:oasis:1900:de-xenia"
+  ],
+  "firstSeen": "2025-03-30",
+  "lastSeen": "2025-03-30",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dea-magna",
   "name": "Dea Magna",
   "aliases": [
@@ -46754,7 +47071,9 @@
    "nocturnal-wonderland-2021:d1:wolves-den:2300:deadmau5",
    "outside-lands-2011:d3:twin-peaks:2000:deadmau5",
    "tomorrowland-2016:d1:mau5trap:2325:deadmau5-b2b-eric-prydz",
-   "tomorrowland-2017:d6:pryda:2030:deadmau5"
+   "tomorrowland-2017:d6:pryda:2030:deadmau5",
+   "ultra-miami-2025:d2:worldwide-stage:2245:deadmau5-b2b-pendulum-dj-set",
+   "ultra-miami-2025:d3:worldwide-stage:2045:deadmau5-retro5pective"
   ],
   "firstSeen": "2011-08-07",
   "lastSeen": "2026-09-19",
@@ -48685,7 +49004,8 @@
    "tomorrowland-2014:d2:mainstage:1500:deorro",
    "tomorrowland-2015:d1:dim-mak:1945:deorro",
    "tomorrowland-2015:d2:mainstage:1630:deorro",
-   "tomorrowland-2019:d5:mainstage:1550:deorro"
+   "tomorrowland-2019:d5:mainstage:1550:deorro",
+   "ultra-miami-2024:d2:live-stage:1600:deorro"
   ],
   "firstSeen": "2013-07-26",
   "lastSeen": "2026-11-08",
@@ -49860,6 +50180,21 @@
   "links": []
  },
  {
+  "key": "die-maschine",
+  "name": "DIE MASCHINE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2024:d3:oasis:2015:die-maschine-b2b-scott-knight"
+  ],
+  "firstSeen": "2024-03-24",
+  "lastSeen": "2024-03-24",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "die-spitz",
   "name": "Die Spitz",
   "aliases": [
@@ -50358,6 +50693,21 @@
   "links": []
  },
  {
+  "key": "dillon-nathaniel",
+  "name": "DILLON NATHANIEL",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2025:d2:worldwide-stage:1230:dillon-nathaniel"
+  ],
+  "firstSeen": "2025-03-29",
+  "lastSeen": "2025-03-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dimaro",
   "name": "DiMaro",
   "aliases": [
@@ -50401,7 +50751,9 @@
  {
   "key": "dimension",
   "name": "Dimension",
-  "aliases": [],
+  "aliases": [
+   "DIMENSION"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [
@@ -50415,7 +50767,9 @@
    "shambhala-2024:d4:the-village:0000:dimension",
    "tomorrowland-2016:d1:tranceaddict:1300:dimension",
    "tomorrowland-2017:d4:netsky-and-friends:1700:dimension",
-   "tomorrowland-2022:d5:crystal-garden:2030:dimension"
+   "tomorrowland-2022:d5:crystal-garden:2030:dimension",
+   "ultra-miami-2024:d3:worldwide-stage:1755:dimension",
+   "ultra-miami-2025:d3:worldwide-stage:1730:dimension"
   ],
   "firstSeen": "2016-07-22",
   "lastSeen": "2026-12-11",
@@ -51396,7 +51750,8 @@
    "edc-orlando-2024:d2:kinetic-field:2119:dillon-francis-b2b-disco-lines",
    "nocturnal-wonderland-2022:d2:wolves-den:1645:disco-lines",
    "outside-lands-2023:d1:soma-tent:1535:disco-lines",
-   "shambhala-2024:d3:the-pagoda:0100:disco-lines"
+   "shambhala-2024:d3:the-pagoda:0100:disco-lines",
+   "ultra-miami-2024:d3:ultra-main-stage:1455:disco-lines"
   ],
   "firstSeen": "2022-09-18",
   "lastSeen": "2027-02-20",
@@ -53575,14 +53930,17 @@
  {
   "key": "dj-ideal",
   "name": "DJ Ideal",
-  "aliases": [],
+  "aliases": [
+   "DJ IDEAL"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul40"
+   "ultra-miami-2026:ul40",
+   "ultra-miami-2024:d1:oasis:1800:dj-ideal-b2b-lumina"
   ],
-  "firstSeen": "2026-03-27",
+  "firstSeen": "2024-03-22",
   "lastSeen": "2026-03-27",
   "photo": null,
   "links": []
@@ -54869,6 +55227,21 @@
   ],
   "firstSeen": "2023-07-28",
   "lastSeen": "2023-07-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dj-purple",
+  "name": "DJ PURPLE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2024:d2:oasis:2300:dj-purple"
+  ],
+  "firstSeen": "2024-03-23",
+  "lastSeen": "2024-03-23",
   "photo": null,
   "links": []
  },
@@ -56413,6 +56786,21 @@
   "links": []
  },
  {
+  "key": "dk-ideal",
+  "name": "DK IDEAL",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2025:d1:oasis:1800:richard-fraioli-b3b-minnie-page-b3b-dk-ideal"
+  ],
+  "firstSeen": "2025-03-28",
+  "lastSeen": "2025-03-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dka",
   "name": "DkA",
   "aliases": [],
@@ -56673,7 +57061,8 @@
    "escape-halloween-2021:d1:psycho-circus:2300:doctor-p-b2b-funtcase",
    "lollapalooza-2012:d3:perry-s:1630:doctor-p",
    "nocturnal-wonderland-2022:d2:labyrinth:2000:doctor-p",
-   "shambhala-2011:d4:village:0330:doctor-p"
+   "shambhala-2011:d4:village:0330:doctor-p",
+   "ultra-miami-2025:d3:worldwide-stage:1400:flux-pavilion-b2b-doctor-p"
   ],
   "firstSeen": "2011-08-07",
   "lastSeen": "2026-09-18",
@@ -56906,7 +57295,9 @@
   ],
   "kind": "performer",
   "parents": [],
-  "projects": [],
+  "projects": [
+   "everything-always"
+  ],
   "billings": [
    "edc-thailand-2026:edcth-dom-dolla",
    "coachella-2027:coa27-dom-dolla",
@@ -59551,7 +59942,9 @@
    "tomorrowland-2012:d3:richie-hawtin-presents-enter:1800:dubfire",
    "tomorrowland-2015:d1:carl-cox-and-friends:2000:dubfire",
    "tomorrowland-2018:d2:amicorum-spectaculum-presents-theatre-formidable:2300:dubfire",
-   "tomorrowland-2018:d4:atmosphere:1700:dubfire"
+   "tomorrowland-2018:d4:atmosphere:1700:dubfire",
+   "ultra-miami-2024:d2:the-cove:2200:dubfire-b2b-ilario-alicante",
+   "ultra-miami-2025:d2:megastructure:1450:dubfire-evolv"
   ],
   "firstSeen": "2011-07-24",
   "lastSeen": "2026-09-05",
@@ -59561,14 +59954,17 @@
  {
   "key": "dubplates-and-dragons",
   "name": "Dubplates & Dragons",
-  "aliases": [],
+  "aliases": [
+   "DUBPLATES AND DRAGONS"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul157"
+   "ultra-miami-2026:ul157",
+   "ultra-miami-2024:d3:oasis:1415:dubplates-and-dragons"
   ],
-  "firstSeen": "2026-03-29",
+  "firstSeen": "2024-03-24",
   "lastSeen": "2026-03-29",
   "photo": null,
   "links": []
@@ -61730,17 +62126,20 @@
  {
   "key": "eelke-kleijn",
   "name": "Eelke Kleijn",
-  "aliases": [],
+  "aliases": [
+   "EELKE KLEIJN"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "tomorrowland-2018:d2:house-of-mask-by-cubanisto:1800:eelke-kleijn",
    "tomorrowland-2019:d4:core:2030:eelke-kleijn",
-   "tomorrowland-2023:d4:terra-solis:1930:eelke-kleijn"
+   "tomorrowland-2023:d4:terra-solis:1930:eelke-kleijn",
+   "ultra-miami-2024:d3:umf-radio:1615:eelke-kleijn"
   ],
   "firstSeen": "2018-07-21",
-  "lastSeen": "2023-07-28",
+  "lastSeen": "2024-03-24",
   "photo": null,
   "links": []
  },
@@ -62029,6 +62428,21 @@
   ],
   "firstSeen": "2023-11-12",
   "lastSeen": "2023-11-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "ekonovah",
+  "name": "EKONOVAH",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2024:d1:oasis:1600:ekonovah"
+  ],
+  "firstSeen": "2024-03-22",
+  "lastSeen": "2024-03-22",
   "photo": null,
   "links": []
  },
@@ -62373,7 +62787,8 @@
    "acl-2024:d1:miller-lite:1710:elderbrook",
    "acl-2024:d4:miller-lite:1910:elderbrook",
    "shambhala-2025:d3:the-pagoda:2315:elderbrook-dj-set",
-   "tomorrowland-2022:d9:crystal-garden:1700:elderbrook"
+   "tomorrowland-2022:d9:crystal-garden:1700:elderbrook",
+   "ultra-miami-2024:d3:live-stage:1955:elderbrook"
   ],
   "firstSeen": "2022-07-31",
   "lastSeen": "2026-06-26",
@@ -62807,7 +63222,8 @@
    "nocturnal-wonderland-2021:d2:owloch-grove:2230:eli-and-fur",
    "tomorrowland-2017:d3:claptone:1530:eli-and-fur",
    "tomorrowland-2018:d4:tulip:1730:eli-and-fur",
-   "tomorrowland-2022:d1:kara-savi:2200:eli-and-fur"
+   "tomorrowland-2022:d1:kara-savi:2200:eli-and-fur",
+   "ultra-miami-2024:d3:umf-radio:1745:eli-and-fur"
   ],
   "firstSeen": "2017-04-15",
   "lastSeen": "2026-12-11",
@@ -62839,7 +63255,9 @@
    "escape-halloween-2025:d2:the-big-top:2215:eli-brown",
    "nocturnal-wonderland-2019:d2:sunken-garden:1900:eli-brown",
    "tomorrowland-2022:d4:crystal-garden:0000:eli-brown",
-   "tomorrowland-2023:d1:atmosphere:1800:eli-brown"
+   "tomorrowland-2023:d1:atmosphere:1800:eli-brown",
+   "ultra-miami-2024:d3:the-cove:1900:hi-lo-b2b-eli-brown",
+   "ultra-miami-2025:d1:the-cove:2200:eli-brown"
   ],
   "firstSeen": "2019-09-15",
   "lastSeen": "2027-01-21",
@@ -64411,7 +64829,8 @@
    "tomorrowland-2012:d1:untitled-invites-dub-police:0000:eptic",
    "tomorrowland-2022:d1:rose-garden:2300:eptic",
    "tomorrowland-2022:d6:youphoria:1930:eptic",
-   "tomorrowland-2022:d7:rose-garden:2300:eptic"
+   "tomorrowland-2022:d7:rose-garden:2300:eptic",
+   "ultra-miami-2024:d3:worldwide-stage:1255:eptic"
   ],
   "firstSeen": "2012-07-27",
   "lastSeen": "2026-09-20",
@@ -64562,7 +64981,8 @@
    "tomorrowland-2017:d6:pryda:2200:eric-prydz",
    "tomorrowland-2018:d4:atmosphere:2300:eric-prydz",
    "tomorrowland-2019:d1:freedom-stage-by-budweiser:2300:eric-prydz",
-   "tomorrowland-2019:d4:freedom-stage-by-budweiser:2300:eric-prydz"
+   "tomorrowland-2019:d4:freedom-stage-by-budweiser:2300:eric-prydz",
+   "ultra-miami-2024:d3:megastructure:1915:eric-prydz"
   ],
   "firstSeen": "2013-06-22",
   "lastSeen": "2026-03-27",
@@ -65399,16 +65819,19 @@
  {
   "key": "evan-giia",
   "name": "Evan Giia",
-  "aliases": [],
+  "aliases": [
+   "EVAN GIIA"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "edc-las-vegas-2022:d1:cosmic-meadow:2050:evan-giia",
-   "outside-lands-2023:d1:twin-peaks:1415:evan-giia"
+   "outside-lands-2023:d1:twin-peaks:1415:evan-giia",
+   "ultra-miami-2024:d2:live-stage:1720:evan-giia"
   ],
   "firstSeen": "2022-05-20",
-  "lastSeen": "2023-08-11",
+  "lastSeen": "2024-03-23",
   "photo": null,
   "links": []
  },
@@ -65562,6 +65985,24 @@
   ],
   "firstSeen": "2015-06-26",
   "lastSeen": "2015-06-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "everything-always",
+  "name": "EVERYTHING ALWAYS",
+  "aliases": [],
+  "kind": "project",
+  "parents": [
+   "dom-dolla",
+   "john-summit"
+  ],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2025:d1:ultra-main-stage:2230:everything-always-dom-dolla-john-summit"
+  ],
+  "firstSeen": "2025-03-28",
+  "lastSeen": "2025-03-28",
   "photo": null,
   "links": []
  },
@@ -65782,7 +66223,8 @@
    "shambhala-2016:d2:village:0200:excision",
    "shambhala-2024:d2:the-village:0030:excision",
    "shambhala-2025:d2:the-village:0030:excision",
-   "tomorrowland-2017:d5:barong-family:2350:excision"
+   "tomorrowland-2017:d5:barong-family:2350:excision",
+   "ultra-miami-2024:d2:ultra-main-stage:2045:excision"
   ],
   "firstSeen": "2011-08-06",
   "lastSeen": "2026-12-30",
@@ -66852,6 +67294,21 @@
   ],
   "firstSeen": "2026-07-30",
   "lastSeen": "2026-10-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "far-out",
+  "name": "FAR OUT",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2024:d1:umf-radio:1700:far-out"
+  ],
+  "firstSeen": "2024-03-22",
+  "lastSeen": "2024-03-22",
   "photo": null,
   "links": []
  },
@@ -68011,15 +68468,18 @@
  {
   "key": "fernanda-pistelli",
   "name": "Fernanda Pistelli",
-  "aliases": [],
+  "aliases": [
+   "FERNANDA PISTELLI"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "dreamstate-socal-2024:d1:the-void:1600:fernanda-pistelli"
+   "dreamstate-socal-2024:d1:the-void:1600:fernanda-pistelli",
+   "ultra-miami-2025:d2:umf-radio:1600:fernanda-pistelli"
   ],
   "firstSeen": "2024-11-22",
-  "lastSeen": "2024-11-22",
+  "lastSeen": "2025-03-29",
   "photo": null,
   "links": []
  },
@@ -70111,7 +70571,8 @@
    "nocturnal-wonderland-2021:d2:wolves-den:2200:flux-pavilion",
    "shambhala-2011:d4:village:0200:flux-pavilion",
    "tomorrowland-2017:d5:barong-family:2150:flux-pavilion",
-   "tomorrowland-2019:d3:l-orangerie:1830:flux-pavilion"
+   "tomorrowland-2019:d3:l-orangerie:1830:flux-pavilion",
+   "ultra-miami-2025:d3:worldwide-stage:1400:flux-pavilion-b2b-doctor-p"
   ],
   "firstSeen": "2011-08-07",
   "lastSeen": "2026-09-19",
@@ -70750,7 +71211,8 @@
    "hard-summer-2025:d2:hard-stage:1815:four-tet",
    "lollapalooza-2024:d3:sonny-s:1845:four-tet",
    "sonar-2016:d2:sonarcar:0000:four-tet",
-   "sonar-2019:d2:sonarpub-by-thunder-bitch:0350:four-tet"
+   "sonar-2019:d2:sonarpub-by-thunder-bitch:0350:four-tet",
+   "ultra-miami-2025:d3:megastructure:1800:four-tet"
   ],
   "firstSeen": "2016-06-17",
   "lastSeen": "2027-04-11",
@@ -71316,7 +71778,9 @@
  {
   "key": "frank-walker",
   "name": "Frank Walker",
-  "aliases": [],
+  "aliases": [
+   "FRANK WALKER"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -71324,7 +71788,9 @@
    "ultra-miami-2026:ul1",
    "edc-orlando-2021:d3:kinetic-field:1401:frank-walker",
    "outside-lands-2017:d1:the-house-by-heineken:1530:frank-walker",
-   "tomorrowland-2017:d6:smash-the-house:1630:frank-walker"
+   "tomorrowland-2017:d6:smash-the-house:1630:frank-walker",
+   "ultra-miami-2024:d2:ultra-main-stage:1600:frank-walker",
+   "ultra-miami-2025:d2:ultra-main-stage:1440:frank-walker"
   ],
   "firstSeen": "2017-07-30",
   "lastSeen": "2026-03-27",
@@ -74884,7 +75350,8 @@
    "edc-las-vegas-2022:d1:kinetic-field:1900:gem-and-tauri",
    "edc-orlando-2023:d3:kinetic-field:1432:gem-and-tauri",
    "escape-halloween-2024:d2:the-grimm:1700:gem-and-tauri",
-   "nocturnal-wonderland-2021:d2:sunken-garden:1700:gem-and-tauri"
+   "nocturnal-wonderland-2021:d2:sunken-garden:1700:gem-and-tauri",
+   "ultra-miami-2024:d1:umf-radio:1800:gem-and-tauri"
   ],
   "firstSeen": "2021-09-19",
   "lastSeen": "2024-10-26",
@@ -75408,7 +75875,8 @@
    "hard-summer-2012:d1:harder-stage:2230:gesaffelstein",
    "hard-summer-2025:d2:purple-stage:2049:gesaffelstein",
    "lollapalooza-2014:d3:perry-s:1615:gesaffelstein",
-   "outside-lands-2025:d2:sutro:2040:gesaffelstein"
+   "outside-lands-2025:d2:sutro:2040:gesaffelstein",
+   "ultra-miami-2025:d2:live-stage:2245:gesaffelstein"
   ],
   "firstSeen": "2012-08-03",
   "lastSeen": "2025-08-09",
@@ -75989,15 +76457,19 @@
  {
   "key": "gil-glaze",
   "name": "Gil Glaze",
-  "aliases": [],
+  "aliases": [
+   "GIL GLAZE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "ultra-miami-2026:ul47",
-   "dwp-2026:dwp-gil-glaze"
+   "dwp-2026:dwp-gil-glaze",
+   "ultra-miami-2024:d3:ultra-main-stage:1230:gil-glaze",
+   "ultra-miami-2025:d2:ultra-main-stage:1230:gil-glaze"
   ],
-  "firstSeen": "2026-03-28",
+  "firstSeen": "2024-03-24",
   "lastSeen": "2026-12-11",
   "photo": null,
   "links": []
@@ -76205,9 +76677,10 @@
   "billings": [
    "dreamstate-socal-2026:dssc-giorgia-angiuli",
    "dreamstate-socal-2024:d2:the-sequence:1900:giorgia-angiuli",
-   "dreamstate-socal-2025:d1:the-sequence:2000:giorgia-angiuli"
+   "dreamstate-socal-2025:d1:the-sequence:2000:giorgia-angiuli",
+   "ultra-miami-2024:d3:megastructure:1315:giorgia-angiuli-live"
   ],
-  "firstSeen": "2024-11-23",
+  "firstSeen": "2024-03-24",
   "lastSeen": "2026-11-20",
   "photo": null,
   "links": []
@@ -76528,7 +77001,8 @@
    "edc-orlando-2022:d1:stereo-bloom:1900:giuseppe-ottaviani",
    "edc-orlando-2024:d3:stereo-bloom:1900:giuseppe-ottaviani",
    "tomorrowland-2011:d3:paul-van-dyk-presents-evolution:1545:giuseppe-ottaviani",
-   "tomorrowland-2022:d7:kara-savi:2200:giuseppe-ottaviani"
+   "tomorrowland-2022:d7:kara-savi:2200:giuseppe-ottaviani",
+   "ultra-miami-2024:d1:worldwide-stage:1730:giuseppe-ottaviani"
   ],
   "firstSeen": "2011-07-24",
   "lastSeen": "2026-12-19",
@@ -77135,7 +77609,8 @@
   "billings": [
    "escape-halloween-2025:d2:the-warehouse:1700:godlands",
    "tomorrowland-2022:d6:youphoria:1430:godlands",
-   "tomorrowland-2023:d2:youphoria:1600:godlands"
+   "tomorrowland-2023:d2:youphoria:1600:godlands",
+   "ultra-miami-2024:d1:umf-radio:1600:godlands"
   ],
   "firstSeen": "2022-07-24",
   "lastSeen": "2025-11-01",
@@ -79953,7 +80428,9 @@
    "lollapalooza-2019:d3:perry-s:untimed:gryffin",
    "lollapalooza-2025:d4:perry-s:1900:gryffin",
    "outside-lands-2018:d3:twin-peaks:1530:gryffin",
-   "outside-lands-2024:d1:twin-peaks:2035:gryffin"
+   "outside-lands-2024:d1:twin-peaks:2035:gryffin",
+   "ultra-miami-2024:d2:ultra-main-stage:1820:gryffin",
+   "ultra-miami-2025:d3:ultra-main-stage:1830:gryffin"
   ],
   "firstSeen": "2017-04-15",
   "lastSeen": "2026-12-30",
@@ -81802,7 +82279,9 @@
  {
   "key": "hardwell",
   "name": "Hardwell",
-  "aliases": [],
+  "aliases": [
+   "HARDWELL"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -81826,7 +82305,9 @@
    "tomorrowland-2018:d4:mainstage:2350:hardwell",
    "tomorrowland-2022:d1:mainstage:2250:hardwell",
    "tomorrowland-2022:d7:mainstage:2350:hardwell",
-   "tomorrowland-2023:d4:mainstage:2350:hardwell"
+   "tomorrowland-2023:d4:mainstage:2350:hardwell",
+   "ultra-miami-2024:d2:ultra-main-stage:1925:hardwell",
+   "ultra-miami-2025:d2:ultra-main-stage:2300:hardwell"
   ],
   "firstSeen": "2010-07-25",
   "lastSeen": "2026-11-08",
@@ -82656,15 +83137,18 @@
  {
   "key": "hector",
   "name": "Hector",
-  "aliases": [],
+  "aliases": [
+   "HECTOR"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-2012:d3:richie-hawtin-presents-enter:1200:hector"
+   "tomorrowland-2012:d3:richie-hawtin-presents-enter:1200:hector",
+   "ultra-miami-2024:d1:the-cove:1600:hector"
   ],
   "firstSeen": "2012-07-29",
-  "lastSeen": "2012-07-29",
+  "lastSeen": "2024-03-22",
   "photo": null,
   "links": []
  },
@@ -82691,7 +83175,9 @@
  {
   "key": "hedex",
   "name": "Hedex",
-  "aliases": [],
+  "aliases": [
+   "HEDEX"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -82703,9 +83189,11 @@
    "edc-las-vegas-2024:d2:basspod:2330:hedex",
    "edc-las-vegas-2025:d2:cosmic-meadow:0430:hedex",
    "edc-orlando-2024:d1:circuit-grounds:1920:hedex",
-   "shambhala-2024:d3:the-village:2330:hedex"
+   "shambhala-2024:d3:the-village:2330:hedex",
+   "ultra-miami-2024:d2:worldwide-stage:1930:hedex",
+   "ultra-miami-2025:d2:worldwide-stage:2030:hedex"
   ],
-  "firstSeen": "2024-05-18",
+  "firstSeen": "2024-03-23",
   "lastSeen": "2026-09-20",
   "photo": null,
   "links": []
@@ -83524,7 +84012,8 @@
    "tomorrowland-2022:d6:atmosphere:1700:hi-lo",
    "tomorrowland-2022:d9:atmosphere:1830:hi-lo",
    "tomorrowland-2023:d1:atmosphere:1930:hi-lo-b2b-layton-giordani",
-   "tomorrowland-2023:d4:freedom-by-bud:1930:hi-lo"
+   "tomorrowland-2023:d4:freedom-by-bud:1930:hi-lo",
+   "ultra-miami-2024:d3:the-cove:1900:hi-lo-b2b-eli-brown"
   ],
   "firstSeen": "2021-10-30",
   "lastSeen": "2026-03-28",
@@ -86620,7 +87109,8 @@
    "edc-las-vegas-2025:d3:neon-garden:0300:nico-moreno-b2b-i-hate-models",
    "edc-orlando-2024:d3:neon-garden:2100:i-hate-models",
    "hard-summer-2025:d2:green-stage:1900:i-hate-models",
-   "tomorrowland-2023:d4:atmosphere:2030:i-hate-models"
+   "tomorrowland-2023:d4:atmosphere:2030:i-hate-models",
+   "ultra-miami-2025:d3:the-cove:1900:i-hate-models"
   ],
   "firstSeen": "2022-05-21",
   "lastSeen": "2027-04-03",
@@ -87291,7 +87781,8 @@
    "tomorrowland-2014:d5:cocoon:1630:ilario-alicante",
    "tomorrowland-2017:d3:cda-invites-cocoon:1530:ilario-alicante",
    "tomorrowland-2018:d3:youphoria:1530:ilario-alicante",
-   "tomorrowland-2019:d3:core:1730:ilario-alicante"
+   "tomorrowland-2019:d3:core:1730:ilario-alicante",
+   "ultra-miami-2024:d2:the-cove:2200:dubfire-b2b-ilario-alicante"
   ],
   "firstSeen": "2014-07-26",
   "lastSeen": "2025-10-31",
@@ -87894,7 +88385,8 @@
    "tomorrowland-2013:d1:b2b:2330:infected-mushroom",
    "tomorrowland-2018:d2:arch:2330:infected-mushroom",
    "tomorrowland-2022:d2:youphoria:2215:infected-mushroom",
-   "tomorrowland-2022:d9:youphoria:2230:infected-mushroom"
+   "tomorrowland-2022:d9:youphoria:2230:infected-mushroom",
+   "ultra-miami-2025:d3:live-stage:1650:infected-mushroom"
   ],
   "firstSeen": "2010-08-14",
   "lastSeen": "2026-12-12",
@@ -88555,7 +89047,9 @@
  {
   "key": "interplanetary-criminal",
   "name": "Interplanetary Criminal",
-  "aliases": [],
+  "aliases": [
+   "INTERPLANETARY CRIMINAL"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -88566,7 +89060,8 @@
    "hard-summer-2026:hs1-interplanetary-criminal-b2b-main-p",
    "beyond-wonderland-socal-2026:d2:queen-s-domain:1955:interplanetary-criminal",
    "edc-las-vegas-2024:d2:bionic-jungle:2115:interplanetary-criminal",
-   "edc-las-vegas-2025:d3:stereo-bloom:2315:interplanetary-criminal"
+   "edc-las-vegas-2025:d3:stereo-bloom:2315:interplanetary-criminal",
+   "ultra-miami-2025:d1:umf-radio:1730:skream-b2b-interplanetary-criminal"
   ],
   "firstSeen": "2024-05-18",
   "lastSeen": "2026-11-06",
@@ -90147,14 +90642,17 @@
  {
   "key": "jack-vice",
   "name": "Jack Vice",
-  "aliases": [],
+  "aliases": [
+   "JACK VICE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul109"
+   "ultra-miami-2026:ul109",
+   "ultra-miami-2025:d1:oasis:2200:jack-vice"
   ],
-  "firstSeen": "2026-03-28",
+  "firstSeen": "2025-03-28",
   "lastSeen": "2026-03-28",
   "photo": null,
   "links": []
@@ -90861,10 +91359,11 @@
    "coachella-2017:d6:gobi:2035:jai-wolf",
    "edc-las-vegas-2022:d2:cosmic-meadow:0025:jai-wolf",
    "lollapalooza-2017:d3:pepsi:1830:jai-wolf",
-   "nocturnal-wonderland-2018:d1:wolves-den:2310:jai-wolf"
+   "nocturnal-wonderland-2018:d1:wolves-den:2310:jai-wolf",
+   "ultra-miami-2024:d2:live-stage:2220:jai-wolf"
   ],
   "firstSeen": "2015-04-12",
-  "lastSeen": "2022-05-21",
+  "lastSeen": "2024-03-23",
   "photo": null,
   "links": []
  },
@@ -93007,6 +93506,21 @@
   "links": []
  },
  {
+  "key": "jayp",
+  "name": "JAYP",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2025:d2:oasis:1415:jayp"
+  ],
+  "firstSeen": "2025-03-29",
+  "lastSeen": "2025-03-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "jaytech",
   "name": "Jaytech",
   "aliases": [],
@@ -94322,7 +94836,8 @@
    "edc-orlando-2024:d1:circuit-grounds:1815:jessica-audiffred",
    "escape-halloween-2025:d1:sewer-district:2300:jessica-audiffred",
    "lollapalooza-2024:d4:perry-s:1415:jessica-audiffred",
-   "tomorrowland-2023:d5:youphoria:2200:jessica-audiffred"
+   "tomorrowland-2023:d5:youphoria:2200:jessica-audiffred",
+   "ultra-miami-2025:d3:worldwide-stage:1515:alleycvt-b2b-jessica-audiffred"
   ],
   "firstSeen": "2022-05-20",
   "lastSeen": "2027-01-01",
@@ -94496,9 +95011,10 @@
    "edc-orlando-2025:d1:casabacardi:1830:jev",
    "escape-halloween-2025:d1:the-big-top:1655:jev",
    "escape-halloween-2025:d1:casa-bacardi:2200:jev",
-   "lollapalooza-2025:d3:perry-s:1240:jev"
+   "lollapalooza-2025:d3:perry-s:1240:jev",
+   "ultra-miami-2025:d3:ultra-main-stage:1215:jev"
   ],
-  "firstSeen": "2025-08-02",
+  "firstSeen": "2025-03-30",
   "lastSeen": "2027-01-01",
   "photo": null,
   "links": []
@@ -94789,6 +95305,21 @@
   ],
   "firstSeen": "2022-07-24",
   "lastSeen": "2027-04-10",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "jimmie-page",
+  "name": "JIMMIE PAGE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2024:d1:oasis:1700:jimmie-page-b2b-richard-fraioli"
+  ],
+  "firstSeen": "2024-03-22",
+  "lastSeen": "2024-03-22",
   "photo": null,
   "links": []
  },
@@ -95188,9 +95719,10 @@
   "billings": [
    "edc-orlando-2026:ecf17",
    "ultra-miami-2026:ul77",
-   "dreamstate-socal-2026:dssc-joa"
+   "dreamstate-socal-2026:dssc-joa",
+   "ultra-miami-2025:d3:oasis:1700:joa"
   ],
-  "firstSeen": "2026-03-28",
+  "firstSeen": "2025-03-30",
   "lastSeen": "2026-11-20",
   "photo": null,
   "links": []
@@ -95711,10 +96243,11 @@
    "edc-orlando-2022:d2:kinetic-field:1530:joel-corry",
    "tomorrowland-2022:d3:mainstage:1630:joel-corry",
    "tomorrowland-2022:d8:the-library:2000:joel-corry",
-   "tomorrowland-2023:d3:the-library:1700:joel-corry"
+   "tomorrowland-2023:d3:the-library:1700:joel-corry",
+   "ultra-miami-2025:d2:ultra-main-stage:1545:joel-corry"
   ],
   "firstSeen": "2022-05-22",
-  "lastSeen": "2023-07-23",
+  "lastSeen": "2025-03-29",
   "photo": null,
   "links": []
  },
@@ -96531,7 +97064,9 @@
   ],
   "kind": "performer",
   "parents": [],
-  "projects": [],
+  "projects": [
+   "everything-always"
+  ],
   "billings": [
    "edc-lv-2026:k15",
    "ultra-miami-2026:ul122",
@@ -96889,7 +97424,8 @@
    "edc-las-vegas-2025:d1:ubuntu:0400:jon-casey",
    "edc-orlando-2022:d2:circuit-grounds:1500:jon-casey",
    "edc-orlando-2024:d1:circuit-grounds:1610:jon-casey",
-   "shambhala-2025:d4:the-pagoda:1930:jon-casey"
+   "shambhala-2025:d4:the-pagoda:1930:jon-casey",
+   "ultra-miami-2024:d3:worldwide-stage:1200:jon-casey"
   ],
   "firstSeen": "2022-11-12",
   "lastSeen": "2026-12-30",
@@ -97544,7 +98080,9 @@
  {
   "key": "joris-voorn",
   "name": "Joris Voorn",
-  "aliases": [],
+  "aliases": [
+   "JORIS VOORN"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -97565,7 +98103,9 @@
    "tomorrowland-2022:d4:freedom:2130:joris-voorn",
    "tomorrowland-2022:d7:freedom:1700:joris-voorn",
    "tomorrowland-2023:d1:atmosphere:2130:joris-voorn",
-   "tomorrowland-2023:d4:freedom-by-bud:2100:joris-voorn"
+   "tomorrowland-2023:d4:freedom-by-bud:2100:joris-voorn",
+   "ultra-miami-2024:d2:the-cove:2030:joris-voorn-b2b-kolsch",
+   "ultra-miami-2025:d2:megastructure:1610:joris-voorn-live"
   ],
   "firstSeen": "2010-07-24",
   "lastSeen": "2026-12-13",
@@ -98062,9 +98602,26 @@
   "links": []
  },
  {
+  "key": "josh-wetherington",
+  "name": "JOSH WETHERINGTON",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2025:d2:oasis:1500:josh-wetherington-b2b-christopher-james"
+  ],
+  "firstSeen": "2025-03-29",
+  "lastSeen": "2025-03-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "josh-wink",
   "name": "Josh Wink",
-  "aliases": [],
+  "aliases": [
+   "JOSH WINK"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -98076,10 +98633,11 @@
    "tomorrowland-2012:d3:ovum-recordings:2200:josh-wink",
    "tomorrowland-2013:d3:profound-sounds:1930:josh-wink-b2b-davide-squillace",
    "tomorrowland-2014:d6:cafe-d-anvers-25-years:1930:josh-wink",
-   "tomorrowland-2015:d2:cocoon-vinyl-only:1830:josh-wink"
+   "tomorrowland-2015:d2:cocoon-vinyl-only:1830:josh-wink",
+   "ultra-miami-2025:d1:the-cove:1730:josh-wink"
   ],
   "firstSeen": "2010-07-25",
-  "lastSeen": "2017-08-12",
+  "lastSeen": "2025-03-28",
   "photo": null,
   "links": []
  },
@@ -98362,7 +98920,9 @@
  {
   "key": "joyhauser",
   "name": "Joyhauser",
-  "aliases": [],
+  "aliases": [
+   "JOYHAUSER"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -98370,10 +98930,11 @@
    "tomorrowland-2018:d3:youphoria:1230:joyhauser",
    "tomorrowland-2019:d4:atmosphere:1230:joyhauser",
    "tomorrowland-2022:d3:atmosphere:1530:joyhauser",
-   "tomorrowland-2023:d4:freedom-by-bud:1500:joyhauser"
+   "tomorrowland-2023:d4:freedom-by-bud:1500:joyhauser",
+   "ultra-miami-2025:d1:the-cove:1600:joyhauser"
   ],
   "firstSeen": "2018-07-22",
-  "lastSeen": "2023-07-28",
+  "lastSeen": "2025-03-28",
   "photo": null,
   "links": []
  },
@@ -98891,6 +99452,21 @@
   "links": []
  },
  {
+  "key": "juicy-romance",
+  "name": "JUICY ROMANCE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2025:d1:umf-radio:1600:partiboi69-b2b-juicy-romance"
+  ],
+  "firstSeen": "2025-03-28",
+  "lastSeen": "2025-03-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "juji",
   "name": "JUJI",
   "aliases": [],
@@ -99120,14 +99696,17 @@
  {
   "key": "julian-cross",
   "name": "Julian Cross",
-  "aliases": [],
+  "aliases": [
+   "JULIAN CROSS"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul58"
+   "ultra-miami-2026:ul58",
+   "ultra-miami-2025:d3:worldwide-stage:1200:julian-cross"
   ],
-  "firstSeen": "2026-03-28",
+  "firstSeen": "2025-03-30",
   "lastSeen": "2026-03-28",
   "photo": null,
   "links": []
@@ -99346,7 +99925,8 @@
    "ultra-miami-2026:ul71",
    "edc-orlando-2019:d2:neongarden:1300:juliet-fox",
    "tomorrowland-2022:d6:atmosphere:1400:juliet-fox",
-   "tomorrowland-2023:d1:atmosphere:1600:juliet-fox"
+   "tomorrowland-2023:d1:atmosphere:1600:juliet-fox",
+   "ultra-miami-2025:d3:the-cove:1300:juliet-fox"
   ],
   "firstSeen": "2019-11-09",
   "lastSeen": "2026-03-28",
@@ -99665,14 +100245,17 @@
  {
   "key": "juno",
   "name": "Juno",
-  "aliases": [],
+  "aliases": [
+   "JUNO"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul103"
+   "ultra-miami-2026:ul103",
+   "ultra-miami-2025:d2:oasis:1200:juno-b3b-cj-b3b-marvin-delgado"
   ],
-  "firstSeen": "2026-03-28",
+  "firstSeen": "2025-03-29",
   "lastSeen": "2026-03-28",
   "photo": null,
   "links": []
@@ -100365,9 +100948,9 @@
  },
  {
   "key": "k-d",
-  "name": "k?d",
+  "name": "K?D",
   "aliases": [
-   "K?D"
+   "k?d"
   ],
   "kind": "performer",
   "parents": [],
@@ -100380,10 +100963,11 @@
    "lollapalooza-2018:d3:perry-s:untimed:k-d",
    "nocturnal-wonderland-2017:d1:wolves-den:2000:k-d",
    "nocturnal-wonderland-2019:d1:wolves-den:1900:k-d",
-   "tomorrowland-2018:d1:freedom-stage-by-budweiser:1800:k-d"
+   "tomorrowland-2018:d1:freedom-stage-by-budweiser:1800:k-d",
+   "ultra-miami-2024:d1:umf-radio:1900:k-d"
   ],
   "firstSeen": "2017-09-15",
-  "lastSeen": "2022-05-20",
+  "lastSeen": "2024-03-22",
   "photo": null,
   "links": []
  },
@@ -101122,7 +101706,9 @@
    "edc-las-vegas-2022:d3:wasteland:1950:kami",
    "edc-las-vegas-2025:d1:beatbox-art-car:2030:kami-hybrid-warfare-set",
    "edc-las-vegas-2025:d3:wasteland:2030:death-code-b2b-kami",
-   "edc-orlando-2021:d1:stereo-bloom:1500:kami"
+   "edc-orlando-2021:d1:stereo-bloom:1500:kami",
+   "ultra-miami-2024:d2:umf-radio:2320:kami",
+   "ultra-miami-2025:d3:umf-radio:2100:kami"
   ],
   "firstSeen": "2021-11-12",
   "lastSeen": "2025-05-18",
@@ -101404,13 +101990,17 @@
  {
   "key": "kapuchon",
   "name": "Kapuchon",
-  "aliases": [],
+  "aliases": [
+   "KAPUCHON"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "ultra-miami-2026:ul114",
-   "tomorrowland-2023:d2:crystal-garden:1700:kapuchon"
+   "tomorrowland-2023:d2:crystal-garden:1700:kapuchon",
+   "ultra-miami-2024:d3:ultra-main-stage:1405:kapuchon",
+   "ultra-miami-2025:d2:ultra-main-stage:1335:kapuchon"
   ],
   "firstSeen": "2023-07-22",
   "lastSeen": "2026-03-29",
@@ -101736,14 +102326,17 @@
  {
   "key": "kasablanca",
   "name": "Kasablanca",
-  "aliases": [],
+  "aliases": [
+   "KASABLANCA"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "edc-las-vegas-2022:d2:cosmic-meadow:2000:kasablanca",
    "edc-las-vegas-2024:d3:cosmic-meadow:0310:kasablanca",
-   "outside-lands-2024:d1:panhandle:1945:kasablanca"
+   "outside-lands-2024:d1:panhandle:1945:kasablanca",
+   "ultra-miami-2024:d2:live-stage:2100:kasablanca"
   ],
   "firstSeen": "2022-05-21",
   "lastSeen": "2024-08-09",
@@ -101811,9 +102404,11 @@
   "billings": [
    "ultra-miami-2026:ul80",
    "arc-2026:arc-korolova-b2b-kasia-midway-d1",
-   "edc-orlando-2025:d1:neongarden:1500:kasia"
+   "edc-orlando-2025:d1:neongarden:1500:kasia",
+   "ultra-miami-2024:d1:megastructure:1600:kasia",
+   "ultra-miami-2025:d2:the-cove:1730:kasia"
   ],
-  "firstSeen": "2025-11-07",
+  "firstSeen": "2024-03-22",
   "lastSeen": "2026-09-04",
   "photo": null,
   "links": []
@@ -103345,6 +103940,21 @@
   "links": []
  },
  {
+  "key": "ketboi69",
+  "name": "KETBOI69",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2025:d1:umf-radio:1900:ketboi69"
+  ],
+  "firstSeen": "2025-03-28",
+  "lastSeen": "2025-03-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "kettama",
   "name": "Kettama",
   "aliases": [
@@ -103445,7 +104055,8 @@
    "tomorrowland-2022:d2:atmosphere:1600:kevin-de-vries",
    "tomorrowland-2022:d9:core:2200:konstantin-sibold-b2b-kevin-de-vries",
    "tomorrowland-2023:d2:freedom-by-bud:1630:kevin-de-vries",
-   "tomorrowland-2023:d6:crystal-garden:1900:kevin-de-vries"
+   "tomorrowland-2023:d6:crystal-garden:1900:kevin-de-vries",
+   "ultra-miami-2025:d2:the-cove:2030:kevin-de-vries"
   ],
   "firstSeen": "2019-07-20",
   "lastSeen": "2027-04-03",
@@ -103904,7 +104515,8 @@
    "dreamstate-socal-2024:d2:the-sequence:1300:khromata",
    "dreamstate-socal-2025:d2:the-sequence:1600:khromata",
    "edc-las-vegas-2022:d2:quantum-valley:1900:khromata",
-   "lightning-in-a-bottle-2019:d4:the-stacks:2210:khromata"
+   "lightning-in-a-bottle-2019:d4:the-stacks:2210:khromata",
+   "ultra-miami-2025:d2:umf-radio:1400:khromata"
   ],
   "firstSeen": "2019-05-11",
   "lastSeen": "2025-11-22",
@@ -104422,6 +105034,22 @@
   ],
   "firstSeen": "2013-08-09",
   "lastSeen": "2014-08-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "kill-safari",
+  "name": "KILL SAFARI",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2024:d2:worldwide-stage:1800:kill-safari",
+   "ultra-miami-2025:d2:worldwide-stage:1730:kill-safari"
+  ],
+  "firstSeen": "2024-03-23",
+  "lastSeen": "2025-03-29",
   "photo": null,
   "links": []
  },
@@ -105450,7 +106078,8 @@
    "edc-orlando-2024:d3:neon-garden:1800:klangkuenstler",
    "escape-halloween-2025:d2:the-cage:2130:klangkuenstler",
    "tomorrowland-2022:d4:atmosphere:1530:klangkuenstler",
-   "tomorrowland-2023:d6:atmosphere:1700:klangkuenstler"
+   "tomorrowland-2023:d6:atmosphere:1700:klangkuenstler",
+   "ultra-miami-2024:d2:worldwide-stage:2030:klangkuenstler"
   ],
   "firstSeen": "2022-07-22",
   "lastSeen": "2026-11-08",
@@ -105747,7 +106376,9 @@
  {
   "key": "knife-party",
   "name": "Knife Party",
-  "aliases": [],
+  "aliases": [
+   "KNIFE PARTY"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -105759,10 +106390,11 @@
    "lollapalooza-2013:d3:perry-s:2025:knife-party",
    "tomorrowland-2013:d2:mainstage:1915:knife-party",
    "tomorrowland-2014:d2:super-you-and-me:2215:knife-party",
-   "tomorrowland-2014:d4:mainstage:2330:knife-party"
+   "tomorrowland-2014:d4:mainstage:2330:knife-party",
+   "ultra-miami-2025:d2:worldwide-stage:1830:knife-party"
   ],
   "firstSeen": "2012-06-08",
-  "lastSeen": "2014-07-25",
+  "lastSeen": "2025-03-29",
   "photo": null,
   "links": []
  },
@@ -105811,7 +106443,8 @@
    "edc-las-vegas-2022:d2:rynobus:0115:knock2",
    "edc-orlando-2025:d3:circuitgrounds:2245:knock2",
    "lollapalooza-2025:d2:perry-s:2030:knock2",
-   "outside-lands-2024:d1:twin-peaks:1720:knock2"
+   "outside-lands-2024:d1:twin-peaks:1720:knock2",
+   "ultra-miami-2024:d2:worldwide-stage:2330:rl-grime-b2b-knock2"
   ],
   "firstSeen": "2022-05-21",
   "lastSeen": "2026-08-02",
@@ -106258,7 +106891,9 @@
  {
   "key": "kolsch",
   "name": "Kölsch",
-  "aliases": [],
+  "aliases": [
+   "KOLSCH"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -106278,7 +106913,8 @@
    "tomorrowland-2022:d8:mainstage:1940:kolsch",
    "tomorrowland-2022:d9:freedom:2100:kolsch",
    "tomorrowland-2023:d1:freedom-by-bud:2100:kolsch",
-   "tomorrowland-2023:d4:mainstage:2040:kolsch"
+   "tomorrowland-2023:d4:mainstage:2040:kolsch",
+   "ultra-miami-2024:d2:the-cove:2030:joris-voorn-b2b-kolsch"
   ],
   "firstSeen": "2016-06-17",
   "lastSeen": "2026-12-13",
@@ -106628,7 +107264,8 @@
    "edc-orlando-2025:d3:kineticfield:1526:korolova",
    "escape-halloween-2025:d1:the-big-top:1855:korolova",
    "tomorrowland-2023:d3:mainstage:1530:korolova",
-   "tomorrowland-2023:d4:crystal-garden:1430:korolova"
+   "tomorrowland-2023:d4:crystal-garden:1430:korolova",
+   "ultra-miami-2025:d2:the-cove:1900:korolova"
   ],
   "firstSeen": "2023-07-23",
   "lastSeen": "2026-12-18",
@@ -107425,7 +108062,9 @@
    "tomorrowland-2017:d3:smash-the-house:1930:kshmr",
    "tomorrowland-2017:d5:mainstage:2100:kshmr",
    "tomorrowland-2018:d6:organ-of-harmony:2000:kshmr",
-   "tomorrowland-2019:d3:mainstage:1900:kshmr"
+   "tomorrowland-2019:d3:mainstage:1900:kshmr",
+   "ultra-miami-2024:d2:ultra-main-stage:1635:kshmr",
+   "ultra-miami-2025:d2:live-stage:2100:kshmr-the-live-experience"
   ],
   "firstSeen": "2016-04-17",
   "lastSeen": "2025-11-01",
@@ -110227,7 +110866,9 @@
  {
   "key": "laura-van-dam",
   "name": "Laura van Dam",
-  "aliases": [],
+  "aliases": [
+   "LAURA VAN DAM"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -110235,7 +110876,8 @@
    "groove-cruise-2027:gc-laura-van-dam",
    "dreamstate-socal-2024:d2:the-dream:1500:laura-van-dam",
    "edc-las-vegas-2025:d3:quantum-valley:2000:laura-van-dam",
-   "tomorrowland-2023:d5:crystal-garden:1330:laura-van-dam"
+   "tomorrowland-2023:d5:crystal-garden:1330:laura-van-dam",
+   "ultra-miami-2024:d1:worldwide-stage:1600:laura-van-dam"
   ],
   "firstSeen": "2023-07-29",
   "lastSeen": "2027-01-21",
@@ -111624,15 +112266,33 @@
  {
   "key": "lemony-snickettes",
   "name": "Lemony Snickettes",
+  "aliases": [
+   "LEMONY SNICKETTES"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2026:ul161",
+   "ultra-miami-2024:d2:oasis:2000:wags-b2b-lemony-snickettes"
+  ],
+  "firstSeen": "2024-03-23",
+  "lastSeen": "2026-03-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "lemony-snickttes",
+  "name": "LEMONY SNICKTTES",
   "aliases": [],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul161"
+   "ultra-miami-2025:d2:oasis:2100:wags-b2b-lemony-snickttes"
   ],
-  "firstSeen": "2026-03-29",
-  "lastSeen": "2026-03-29",
+  "firstSeen": "2025-03-29",
+  "lastSeen": "2025-03-29",
   "photo": null,
   "links": []
  },
@@ -112256,7 +112916,8 @@
    "edc-las-vegas-2024:d2:basspod:0130:subtronics-b2b-level-up",
    "edc-las-vegas-2025:d2:basspod:0330:level-up",
    "edc-orlando-2023:d1:circuit-grounds:1615:level-up",
-   "escape-halloween-2024:d1:sewer-district:2100:level-up"
+   "escape-halloween-2024:d1:sewer-district:2100:level-up",
+   "ultra-miami-2025:d2:worldwide-stage:1320:level-up"
   ],
   "firstSeen": "2022-05-22",
   "lastSeen": "2026-12-30",
@@ -115656,14 +116317,18 @@
  {
   "key": "los-de-la-vega",
   "name": "Los De La Vega",
-  "aliases": [],
+  "aliases": [
+   "LOS DE LA VEGA"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul41"
+   "ultra-miami-2026:ul41",
+   "ultra-miami-2024:d2:oasis:1900:los-de-la-vega",
+   "ultra-miami-2025:d1:oasis:2000:los-de-la-vega"
   ],
-  "firstSeen": "2026-03-27",
+  "firstSeen": "2024-03-23",
   "lastSeen": "2026-03-27",
   "photo": null,
   "links": []
@@ -116905,7 +117570,9 @@
   "aliases": [],
   "kind": "performer",
   "parents": [],
-  "projects": [],
+  "projects": [
+   "lszee"
+  ],
   "billings": [
    "edc-las-vegas-2024:d1:cosmic-meadow:0150:lsdream",
    "shambhala-2024:d4:the-pagoda:0100:lsdream"
@@ -116931,17 +117598,38 @@
   "links": []
  },
  {
+  "key": "lszee",
+  "name": "LSZEE",
+  "aliases": [],
+  "kind": "project",
+  "parents": [
+   "clozee",
+   "lsdream"
+  ],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2025:d3:live-stage:1930:lszee-lsdream-clozee"
+  ],
+  "firstSeen": "2025-03-30",
+  "lastSeen": "2025-03-30",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "ltj-bukem",
   "name": "LTJ Bukem",
-  "aliases": [],
+  "aliases": [
+   "LTJ BUKEM"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "nocturnal-wonderland-2019:d2:parliament-art-car:2300:ltj-bukem"
+   "nocturnal-wonderland-2019:d2:parliament-art-car:2300:ltj-bukem",
+   "ultra-miami-2025:d2:worldwide-stage:1425:ltj-bukem"
   ],
   "firstSeen": "2019-09-15",
-  "lastSeen": "2019-09-15",
+  "lastSeen": "2025-03-29",
   "photo": null,
   "links": []
  },
@@ -117070,14 +117758,17 @@
  {
   "key": "luca-testa",
   "name": "Luca Testa",
-  "aliases": [],
+  "aliases": [
+   "LUCA TESTA"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul46"
+   "ultra-miami-2026:ul46",
+   "ultra-miami-2025:d3:oasis:2000:luca-testa"
   ],
-  "firstSeen": "2026-03-27",
+  "firstSeen": "2025-03-30",
   "lastSeen": "2026-03-27",
   "photo": null,
   "links": []
@@ -117882,14 +118573,18 @@
  {
   "key": "luke-hunter",
   "name": "Luke Hunter",
-  "aliases": [],
+  "aliases": [
+   "LUKE HUNTER"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul162"
+   "ultra-miami-2026:ul162",
+   "ultra-miami-2024:d3:oasis:1830:luke-hunter",
+   "ultra-miami-2025:d2:oasis:1700:luke-hunter-b2b-bassett"
   ],
-  "firstSeen": "2026-03-29",
+  "firstSeen": "2024-03-24",
   "lastSeen": "2026-03-29",
   "photo": null,
   "links": []
@@ -118048,6 +118743,21 @@
   ],
   "firstSeen": "2026-10-31",
   "lastSeen": "2026-10-31",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "lumina",
+  "name": "LUMINA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2024:d1:oasis:1800:dj-ideal-b2b-lumina"
+  ],
+  "firstSeen": "2024-03-22",
+  "lastSeen": "2024-03-22",
   "photo": null,
   "links": []
  },
@@ -119078,6 +119788,21 @@
   "links": []
  },
  {
+  "key": "maahez",
+  "name": "MAAHEZ",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2025:d3:oasis:1200:maahez"
+  ],
+  "firstSeen": "2025-03-30",
+  "lastSeen": "2025-03-30",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "maanic",
   "name": "Maanic",
   "aliases": [],
@@ -119637,7 +120362,10 @@
    "edc-las-vegas-2025:d3:circuit-grounds:2015:maddix",
    "edc-orlando-2023:d3:stereo-bloom:1800:maddix",
    "edc-orlando-2024:d3:kinetic-field:1632:maddix",
-   "escape-halloween-2024:d2:the-grimm:2000:maddix"
+   "escape-halloween-2024:d2:the-grimm:2000:maddix",
+   "ultra-miami-2024:d1:worldwide-stage:1945:maddix",
+   "ultra-miami-2025:d1:worldwide-stage:2300:armin-van-buuren-b3b-maddix-b3b-oliver-heldens",
+   "ultra-miami-2025:d1:worldwide-stage:1900:maddix"
   ],
   "firstSeen": "2023-11-12",
   "lastSeen": "2026-12-11",
@@ -119670,9 +120398,10 @@
   "projects": [],
   "billings": [
    "edc-orlando-2025:d2:circuitgrounds:1500:maddy-o-neal",
-   "shambhala-2024:d2:fractal-forest:2000:maddy-o-neal"
+   "shambhala-2024:d2:fractal-forest:2000:maddy-o-neal",
+   "ultra-miami-2024:d1:live-stage:1700:maddy-o-neal"
   ],
-  "firstSeen": "2024-07-26",
+  "firstSeen": "2024-03-22",
   "lastSeen": "2025-11-08",
   "photo": null,
   "links": []
@@ -119791,7 +120520,8 @@
    "electric-forest-2013:d1:ranch-arena:2215:madeon",
    "escape-halloween-2017:d1:slaughterhouse:2200:madeon",
    "lollapalooza-2012:d1:perry-s:1630:madeon",
-   "lollapalooza-2019:d3:american-eagle:untimed:madeon"
+   "lollapalooza-2019:d3:american-eagle:untimed:madeon",
+   "ultra-miami-2024:d2:live-stage:2345:madeon-b2b-san-holo"
   ],
   "firstSeen": "2012-04-13",
   "lastSeen": "2026-03-28",
@@ -120067,15 +120797,18 @@
  {
   "key": "maga",
   "name": "Maga",
-  "aliases": [],
+  "aliases": [
+   "MAGA"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-2018:d5:leaf-by-jbl:1730:maga"
+   "tomorrowland-2018:d5:leaf-by-jbl:1730:maga",
+   "ultra-miami-2025:d2:the-cove:1300:maga"
   ],
   "firstSeen": "2018-07-28",
-  "lastSeen": "2018-07-28",
+  "lastSeen": "2025-03-29",
   "photo": null,
   "links": []
  },
@@ -120114,7 +120847,9 @@
  {
   "key": "magdalena",
   "name": "Magdalena",
-  "aliases": [],
+  "aliases": [
+   "MAGDALENA"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -120122,10 +120857,11 @@
    "tomorrowland-2016:d2:diynamic:1200:magdalena",
    "tomorrowland-2017:d5:diynamic:1600:magdalena",
    "tomorrowland-2018:d2:garden-of-madness:1530:magdalena",
-   "tomorrowland-2019:d5:garden-of-madness:1800:magdalena"
+   "tomorrowland-2019:d5:garden-of-madness:1800:magdalena",
+   "ultra-miami-2024:d1:the-cove:1730:magdalena"
   ],
   "firstSeen": "2016-07-23",
-  "lastSeen": "2019-07-27",
+  "lastSeen": "2024-03-22",
   "photo": null,
   "links": []
  },
@@ -120509,6 +121245,21 @@
   ],
   "firstSeen": "2016-06-03",
   "lastSeen": "2016-06-03",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "mahmut-orhan",
+  "name": "MAHMUT ORHAN",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2024:d2:the-cove:1730:mahmut-orhan"
+  ],
+  "firstSeen": "2024-03-23",
+  "lastSeen": "2024-03-23",
   "photo": null,
   "links": []
  },
@@ -122035,9 +122786,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul15"
+   "ultra-miami-2026:ul15",
+   "ultra-miami-2025:d1:megastructure:1600:marco-faraone-b2b-mar-t"
   ],
-  "firstSeen": "2026-03-27",
+  "firstSeen": "2025-03-28",
   "lastSeen": "2026-03-27",
   "photo": null,
   "links": []
@@ -122211,6 +122963,21 @@
   ],
   "firstSeen": "2015-05-29",
   "lastSeen": "2015-05-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "marc-romboy",
+  "name": "MARC ROMBOY",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2025:d2:megastructure:1335:marc-romboy-live"
+  ],
+  "firstSeen": "2025-03-29",
+  "lastSeen": "2025-03-29",
   "photo": null,
   "links": []
  },
@@ -122446,7 +123213,9 @@
  {
   "key": "marco-faraone",
   "name": "Marco Faraone",
-  "aliases": [],
+  "aliases": [
+   "MARCO FARAONE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -122455,7 +123224,8 @@
    "groove-cruise-2027:gc-marco-faraone",
    "tomorrowland-2014:d6:cafe-d-anvers-25-years:1300:marco-faraone",
    "tomorrowland-2017:d1:drumcode:1730:marco-faraone",
-   "tomorrowland-2018:d1:core:1530:marco-faraone"
+   "tomorrowland-2018:d1:core:1530:marco-faraone",
+   "ultra-miami-2025:d1:megastructure:1600:marco-faraone-b2b-mar-t"
   ],
   "firstSeen": "2014-07-27",
   "lastSeen": "2027-01-21",
@@ -122495,14 +123265,17 @@
  {
   "key": "marco-ninni",
   "name": "Marco Ninni",
-  "aliases": [],
+  "aliases": [
+   "MARCO NINNI"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul111"
+   "ultra-miami-2026:ul111",
+   "ultra-miami-2025:d1:oasis:2300:marco-ninni"
   ],
-  "firstSeen": "2026-03-28",
+  "firstSeen": "2025-03-28",
   "lastSeen": "2026-03-28",
   "photo": null,
   "links": []
@@ -124194,7 +124967,9 @@
    "tomorrowland-2022:d6:mainstage:2255:martin-garrix",
    "tomorrowland-2022:d7:the-library:2300:martin-garrix",
    "tomorrowland-2023:d3:mainstage:2250:martin-garrix",
-   "tomorrowland-2023:d6:mainstage:2250:martin-garrix"
+   "tomorrowland-2023:d6:mainstage:2250:martin-garrix",
+   "ultra-miami-2024:d2:ultra-main-stage:2215:martin-garrix",
+   "ultra-miami-2025:d3:ultra-main-stage:2045:martin-garrix"
   ],
   "firstSeen": "2014-04-11",
   "lastSeen": "2027-04-10",
@@ -124482,14 +125257,18 @@
  {
   "key": "marvin-delgado",
   "name": "Marvin Delgado",
-  "aliases": [],
+  "aliases": [
+   "MARVIN DELGADO"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul165"
+   "ultra-miami-2026:ul165",
+   "ultra-miami-2024:d3:oasis:1245:marvin-delgado",
+   "ultra-miami-2025:d2:oasis:1200:juno-b3b-cj-b3b-marvin-delgado"
   ],
-  "firstSeen": "2026-03-29",
+  "firstSeen": "2024-03-24",
   "lastSeen": "2026-03-29",
   "photo": null,
   "links": []
@@ -124853,14 +125632,18 @@
  {
   "key": "massano",
   "name": "Massano",
-  "aliases": [],
+  "aliases": [
+   "MASSANO"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "edc-lv-2026:q28",
    "ultra-miami-2026:ul16",
-   "tomorrowland-2023:d6:crystal-garden:1600:massano"
+   "tomorrowland-2023:d6:crystal-garden:1600:massano",
+   "ultra-miami-2024:d1:the-cove:2030:massano-b2b-chris-avantgarde",
+   "ultra-miami-2025:d2:the-cove:2200:massano-b2b-chris-avantgarde"
   ],
   "firstSeen": "2023-07-30",
   "lastSeen": "2026-05-17",
@@ -124990,6 +125773,21 @@
   ],
   "firstSeen": "2022-07-24",
   "lastSeen": "2022-07-24",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "masterhand",
+  "name": "MASTERHAND",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2024:d2:live-stage:1940:masterhand"
+  ],
+  "firstSeen": "2024-03-23",
+  "lastSeen": "2024-03-23",
   "photo": null,
   "links": []
  },
@@ -125218,7 +126016,9 @@
  {
   "key": "mathame",
   "name": "Mathame",
-  "aliases": [],
+  "aliases": [
+   "MATHAME"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -125230,7 +126030,8 @@
    "tomorrowland-2019:d5:atmosphere:1430:mathame",
    "tomorrowland-2022:d2:atmosphere:1800:mathame",
    "tomorrowland-2022:d9:freedom:1730:mathame",
-   "tomorrowland-2023:d1:freedom-by-bud:1930:mathame"
+   "tomorrowland-2023:d1:freedom-by-bud:1930:mathame",
+   "ultra-miami-2024:d2:megastructure:1830:mathame-a-v-show"
   ],
   "firstSeen": "2019-07-27",
   "lastSeen": "2027-04-10",
@@ -126046,7 +126847,8 @@
    "edc-orlando-2023:d2:stereo-bloom:2100:mau-p",
    "edc-orlando-2024:d3:circuit-grounds:2140:mau-p",
    "lollapalooza-2025:d1:dollapalooza:1900:mau-p",
-   "tomorrowland-2023:d1:freedom-by-bud:1500:mau-p"
+   "tomorrowland-2023:d1:freedom-by-bud:1500:mau-p",
+   "ultra-miami-2025:d3:megastructure:1630:mau-p"
   ],
   "firstSeen": "2023-07-21",
   "lastSeen": "2027-04-03",
@@ -128445,15 +129247,18 @@
  {
   "key": "memba",
   "name": "Memba",
-  "aliases": [],
+  "aliases": [
+   "MEMBA"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-las-vegas-2022:d1:corona-stage:0045:memba-dj-set"
+   "edc-las-vegas-2022:d1:corona-stage:0045:memba-dj-set",
+   "ultra-miami-2024:d2:live-stage:1830:memba"
   ],
   "firstSeen": "2022-05-20",
-  "lastSeen": "2022-05-20",
+  "lastSeen": "2024-03-23",
   "photo": null,
   "links": []
  },
@@ -128766,7 +129571,8 @@
    "escape-halloween-2021:d2:psycho-circus:1730:mersiv",
    "hard-summer-2025:d1:green-stage:2000:tape-b-b2b-mersiv",
    "lollapalooza-2024:d4:perry-s:1645:mersiv",
-   "shambhala-2025:d4:the-pagoda:0145:mersiv"
+   "shambhala-2025:d4:the-pagoda:0145:mersiv",
+   "ultra-miami-2024:d2:worldwide-stage:1700:mersiv"
   ],
   "firstSeen": "2021-10-30",
   "lastSeen": "2025-08-02",
@@ -128935,14 +129741,18 @@
  {
   "key": "metaphysical",
   "name": "Metaphysical",
-  "aliases": [],
+  "aliases": [
+   "METAPHYSICAL"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul166"
+   "ultra-miami-2026:ul166",
+   "ultra-miami-2024:d3:oasis:2100:metaphysical",
+   "ultra-miami-2025:d2:oasis:2300:metaphysical-b2b-tone-abstract"
   ],
-  "firstSeen": "2026-03-29",
+  "firstSeen": "2024-03-24",
   "lastSeen": "2026-03-29",
   "photo": null,
   "links": []
@@ -131144,6 +131954,21 @@
   "links": []
  },
  {
+  "key": "mills-and-relo",
+  "name": "MILLS & RELO",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2024:d1:oasis:2000:mills-and-relo"
+  ],
+  "firstSeen": "2024-03-22",
+  "lastSeen": "2024-03-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "milly-and-the-mayhem",
   "name": "Milly & The Mayhem",
   "aliases": [],
@@ -131325,7 +132150,9 @@
  {
   "key": "mind-against",
   "name": "Mind Against",
-  "aliases": [],
+  "aliases": [
+   "MIND AGAINST"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -131340,7 +132167,8 @@
    "tomorrowland-2019:d5:core:1730:mind-against",
    "tomorrowland-2022:d5:core:2300:mind-against",
    "tomorrowland-2022:d8:atmosphere:2100:mind-against",
-   "tomorrowland-2023:d4:core:2300:mind-against"
+   "tomorrowland-2023:d4:core:2300:mind-against",
+   "ultra-miami-2024:d1:megastructure:1730:mind-against"
   ],
   "firstSeen": "2016-06-17",
   "lastSeen": "2026-12-12",
@@ -131536,6 +132364,21 @@
   ],
   "firstSeen": "2012-06-29",
   "lastSeen": "2015-06-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "minnie-page",
+  "name": "MINNIE PAGE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2025:d1:oasis:1800:richard-fraioli-b3b-minnie-page-b3b-dk-ideal"
+  ],
+  "firstSeen": "2025-03-28",
+  "lastSeen": "2025-03-28",
   "photo": null,
   "links": []
  },
@@ -131974,7 +132817,9 @@
    "edc-orlando-2022:d2:kinetic-field:1430:miss-monique",
    "edc-orlando-2023:d1:kinetic-field:1527:miss-monique",
    "edc-orlando-2025:d1:neongarden:1800:miss-monique",
-   "tomorrowland-2022:d7:kara-savi:1530:miss-monique"
+   "tomorrowland-2022:d7:kara-savi:1530:miss-monique",
+   "ultra-miami-2024:d2:megastructure:1600:miss-monique",
+   "ultra-miami-2025:d1:megastructure:1730:miss-monique"
   ],
   "firstSeen": "2022-07-29",
   "lastSeen": "2026-12-20",
@@ -134303,6 +135148,22 @@
   "links": []
  },
  {
+  "key": "moritz-hofbauer",
+  "name": "MORITZ HOFBAUER",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2024:d3:the-cove:1300:moritz-hofbauer",
+   "ultra-miami-2025:d2:the-cove:1430:moritz-hofbauer-live"
+  ],
+  "firstSeen": "2024-03-24",
+  "lastSeen": "2025-03-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "mormor",
   "name": "MorMor",
   "aliases": [],
@@ -134397,7 +135258,8 @@
    "edc-orlando-2024:d2:kinetic-field:1632:morten",
    "tomorrowland-2017:d4:dim-mak:1630:morten",
    "tomorrowland-2022:d1:the-library:2200:morten",
-   "tomorrowland-2022:d4:mainstage:1735:morten"
+   "tomorrowland-2022:d4:mainstage:1735:morten",
+   "ultra-miami-2025:d2:ultra-main-stage:1650:morten"
   ],
   "firstSeen": "2017-07-28",
   "lastSeen": "2026-12-13",
@@ -135097,16 +135959,19 @@
  {
   "key": "mr-black",
   "name": "Mr Black",
-  "aliases": [],
+  "aliases": [
+   "MR.BLACK"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "tomorrowland-2019:d4:rose-garden:1230:mr-black",
-   "tomorrowland-2022:d4:kara-savi:1600:mr-black"
+   "tomorrowland-2022:d4:kara-savi:1600:mr-black",
+   "ultra-miami-2025:d2:umf-radio:2300:mr-black"
   ],
   "firstSeen": "2019-07-26",
-  "lastSeen": "2022-07-22",
+  "lastSeen": "2025-03-29",
   "photo": null,
   "links": []
  },
@@ -136768,6 +137633,21 @@
   "links": []
  },
  {
+  "key": "myint",
+  "name": "MYINT",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2024:d3:oasis:1330:myint"
+  ],
+  "firstSeen": "2024-03-24",
+  "lastSeen": "2024-03-24",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "mykall",
   "name": "Mykall",
   "aliases": [],
@@ -136820,9 +137700,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul48"
+   "ultra-miami-2026:ul48",
+   "ultra-miami-2024:d3:ultra-main-stage:1315:mykris",
+   "ultra-miami-2025:d3:ultra-main-stage:1305:mykris"
   ],
-  "firstSeen": "2026-03-28",
+  "firstSeen": "2024-03-24",
   "lastSeen": "2026-03-28",
   "photo": null,
   "links": []
@@ -139221,10 +140103,11 @@
    "lollapalooza-2012:d1:perry-s:1900:nero",
    "lollapalooza-2015:d3:perry-s:2110:nero",
    "tomorrowland-2014:d2:super-you-and-me:2000:nero",
-   "tomorrowland-2014:d5:super-you-and-me:2230:nero"
+   "tomorrowland-2014:d5:super-you-and-me:2230:nero",
+   "ultra-miami-2025:d1:live-stage:1840:nero"
   ],
   "firstSeen": "2012-04-15",
-  "lastSeen": "2017-10-27",
+  "lastSeen": "2025-03-28",
   "photo": null,
   "links": []
  },
@@ -139781,7 +140664,8 @@
    "nocturnal-wonderland-2021:d1:wolves-den:2200:nghtmre",
    "tomorrowland-2018:d3:arch:2000:nghtmre",
    "tomorrowland-2022:d3:youphoria:2130:nghtmre",
-   "tomorrowland-2022:d5:crystal-garden:2250:jauz-b2b-nghtmre"
+   "tomorrowland-2022:d5:crystal-garden:2250:jauz-b2b-nghtmre",
+   "ultra-miami-2025:d3:worldwide-stage:1930:nghtmre-b2b-sullivan-king"
   ],
   "firstSeen": "2015-08-02",
   "lastSeen": "2027-01-01",
@@ -139871,7 +140755,9 @@
  {
   "key": "nic-fanciulli",
   "name": "Nic Fanciulli",
-  "aliases": [],
+  "aliases": [
+   "NIC FANCIULLI"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -139881,7 +140767,8 @@
    "coachella-2016:d4:yuma:1715:nic-fanciulli",
    "edc-orlando-2024:d1:neon-garden:1800:nic-fanciulli",
    "tomorrowland-2011:d1:cafe-d-anvers:1730:nic-fanciulli",
-   "tomorrowland-2017:d6:ants:2230:nic-fanciulli"
+   "tomorrowland-2017:d6:ants:2230:nic-fanciulli",
+   "ultra-miami-2025:d1:the-cove:1900:nic-fanciulli"
   ],
   "firstSeen": "2011-07-22",
   "lastSeen": "2026-03-27",
@@ -140386,7 +141273,9 @@
  {
   "key": "nicky-romero",
   "name": "Nicky Romero",
-  "aliases": [],
+  "aliases": [
+   "NICKY ROMERO"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -140410,7 +141299,8 @@
    "tomorrowland-2019:d4:mainstage:2050:nicky-romero",
    "tomorrowland-2022:d2:the-library:2300:nicky-romero",
    "tomorrowland-2022:d9:mainstage:1835:nicky-romero",
-   "tomorrowland-2023:d4:the-library:2200:nicky-romero"
+   "tomorrowland-2023:d4:the-library:2200:nicky-romero",
+   "ultra-miami-2024:d1:ultra-main-stage:1655:nicky-romero"
   ],
   "firstSeen": "2011-09-23",
   "lastSeen": "2026-03-28",
@@ -140527,9 +141417,10 @@
    "edc-las-vegas-2025:d3:neon-garden:0300:nico-moreno-b2b-i-hate-models",
    "edc-orlando-2025:d3:neongarden:2230:nico-moreno",
    "hard-summer-2025:d2:green-stage:2100:nico-moreno",
-   "outside-lands-2025:d1:soma:1955:nico-moreno"
+   "outside-lands-2025:d1:soma:1955:nico-moreno",
+   "ultra-miami-2025:d3:the-cove:2030:nico-moreno"
   ],
-  "firstSeen": "2025-05-18",
+  "firstSeen": "2025-03-30",
   "lastSeen": "2026-12-12",
   "photo": null,
   "links": []
@@ -140958,7 +141849,8 @@
    "dreamstate-socal-2025:d1:the-void:2300:nifra",
    "edc-las-vegas-2024:d1:quantum-valley:2100:nifra",
    "edc-orlando-2021:d2:stereo-bloom:1615:nifra",
-   "tomorrowland-2023:d3:youphoria:1730:nifra"
+   "tomorrowland-2023:d3:youphoria:1730:nifra",
+   "ultra-miami-2025:d1:worldwide-stage:1800:nifra"
   ],
   "firstSeen": "2021-11-13",
   "lastSeen": "2027-01-21",
@@ -141151,6 +142043,21 @@
   ],
   "firstSeen": "2021-10-30",
   "lastSeen": "2022-07-23",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "nightlapse",
+  "name": "NIGHTLAPSE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2024:d3:umf-radio:1200:nightlapse"
+  ],
+  "firstSeen": "2024-03-24",
+  "lastSeen": "2024-03-24",
   "photo": null,
   "links": []
  },
@@ -141627,7 +142534,8 @@
    "tomorrowland-2018:d6:atmosphere:2230:nina-kraviz",
    "tomorrowland-2019:d2:l-orangerie:2300:nina-kraviz",
    "tomorrowland-2023:d3:mainstage:1840:nina-kraviz",
-   "tomorrowland-2023:d4:atmosphere:2200:nina-kraviz"
+   "tomorrowland-2023:d4:atmosphere:2200:nina-kraviz",
+   "ultra-miami-2024:d1:megastructure:1900:nina-kraviz"
   ],
   "firstSeen": "2014-04-18",
   "lastSeen": "2027-04-03",
@@ -142916,7 +143824,9 @@
    "tomorrowland-2018:d2:mainstage:1200:nora-en-pure",
    "tomorrowland-2018:d5:organ-of-harmony:2000:nora-en-pure",
    "tomorrowland-2019:d2:lotus:2000:nora-en-pure",
-   "tomorrowland-2023:d1:rise-by-coke-studio:1800:nora-en-pure"
+   "tomorrowland-2023:d1:rise-by-coke-studio:1800:nora-en-pure",
+   "ultra-miami-2024:d3:ultra-main-stage:1600:nora-en-pure",
+   "ultra-miami-2024:d3:umf-radio:1915:nora-en-pure"
   ],
   "firstSeen": "2016-08-05",
   "lastSeen": "2025-05-18",
@@ -143197,7 +144107,8 @@
    "edc-las-vegas-2022:d3:corona-stage:0100:nostalgix",
    "edc-orlando-2021:d1:circuit-grounds:1600:wenzday-b2b-nostalgix",
    "lollapalooza-2024:d4:perry-s:1300:nostalgix",
-   "nocturnal-wonderland-2022:d1:wolves-den:1700:nostalgix"
+   "nocturnal-wonderland-2022:d1:wolves-den:1700:nostalgix",
+   "ultra-miami-2024:d1:live-stage:1830:nostalgix"
   ],
   "firstSeen": "2021-11-12",
   "lastSeen": "2026-05-17",
@@ -143809,6 +144720,21 @@
   ],
   "firstSeen": "2017-07-29",
   "lastSeen": "2017-07-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "nusha",
+  "name": "NUSHA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2025:d3:the-cove:1200:nusha"
+  ],
+  "firstSeen": "2025-03-30",
+  "lastSeen": "2025-03-30",
   "photo": null,
   "links": []
  },
@@ -144555,7 +145481,8 @@
    "edc-las-vegas-2025:d3:stereo-bloom:2200:odd-mob",
    "edc-orlando-2024:d1:stereo-bloom:1845:odd-mob",
    "escape-halloween-2024:d2:feeding-grounds:2130:odd-mob",
-   "shambhala-2025:d4:amp:0130:odd-mob"
+   "shambhala-2025:d4:amp:0130:odd-mob",
+   "ultra-miami-2025:d3:ultra-main-stage:1410:odd-mob"
   ],
   "firstSeen": "2024-05-18",
   "lastSeen": "2027-04-11",
@@ -145376,7 +146303,10 @@
    "tomorrowland-2019:d1:mainstage:1850:oliver-heldens",
    "tomorrowland-2019:d4:l-orangerie:2200:oliver-heldens",
    "tomorrowland-2022:d8:mainstage:2040:oliver-heldens",
-   "tomorrowland-2023:d1:the-library:2300:oliver-heldens"
+   "tomorrowland-2023:d1:the-library:2300:oliver-heldens",
+   "ultra-miami-2024:d3:ultra-main-stage:1705:oliver-heldens",
+   "ultra-miami-2025:d1:worldwide-stage:2300:armin-van-buuren-b3b-maddix-b3b-oliver-heldens",
+   "ultra-miami-2025:d1:worldwide-stage:2015:oliver-heldens"
   ],
   "firstSeen": "2014-07-18",
   "lastSeen": "2026-12-31",
@@ -145687,13 +146617,16 @@
  {
   "key": "olympe",
   "name": "Olympe",
-  "aliases": [],
+  "aliases": [
+   "OLYMPE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "ultra-miami-2026:ul78",
-   "tomorrowland-2023:d4:core:1230:olympe"
+   "tomorrowland-2023:d4:core:1230:olympe",
+   "ultra-miami-2025:d2:the-cove:1600:olympe"
   ],
   "firstSeen": "2023-07-28",
   "lastSeen": "2026-03-28",
@@ -145784,6 +146717,21 @@
   ],
   "firstSeen": "2019-08-02",
   "lastSeen": "2022-10-14",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "omar-deaz",
+  "name": "OMAR DEAZ",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2025:d2:oasis:1245:omar-deaz"
+  ],
+  "firstSeen": "2025-03-29",
+  "lastSeen": "2025-03-29",
   "photo": null,
   "links": []
  },
@@ -145923,7 +146871,8 @@
   "billings": [
    "dreamstate-socal-2023:d2:the-sequence:1915:omiki",
    "dreamstate-socal-2024:d1:the-sequence:1900:omiki",
-   "edc-las-vegas-2025:d1:quantum-valley:0300:omiki"
+   "edc-las-vegas-2025:d1:quantum-valley:0300:omiki",
+   "ultra-miami-2025:d2:umf-radio:1800:omiki"
   ],
   "firstSeen": "2023-11-18",
   "lastSeen": "2025-05-16",
@@ -146668,15 +147617,18 @@
  {
   "key": "orbital",
   "name": "Orbital",
-  "aliases": [],
+  "aliases": [
+   "ORBITAL"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "nocturnal-wonderland-2012:d2:queen-s-grounds:2115:orbital"
+   "nocturnal-wonderland-2012:d2:queen-s-grounds:2115:orbital",
+   "ultra-miami-2024:d3:live-stage:2115:orbital"
   ],
   "firstSeen": "2012-09-22",
-  "lastSeen": "2012-09-22",
+  "lastSeen": "2024-03-24",
   "photo": null,
   "links": []
  },
@@ -147744,6 +148696,21 @@
   "links": []
  },
  {
+  "key": "ovadia",
+  "name": "OVADIA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2024:d3:umf-radio:1415:ovadia"
+  ],
+  "firstSeen": "2024-03-24",
+  "lastSeen": "2024-03-24",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "overdoz",
   "name": "Overdoz",
   "aliases": [],
@@ -148462,7 +149429,8 @@
    "tomorrowland-2018:d3:atmosphere:1930:pan-pot",
    "tomorrowland-2019:d1:atmosphere:1900:pan-pot",
    "tomorrowland-2019:d4:atmosphere:2100:pan-pot",
-   "tomorrowland-2022:d4:atmosphere:2130:pan-pot"
+   "tomorrowland-2022:d4:atmosphere:2130:pan-pot",
+   "ultra-miami-2024:d3:the-cove:2045:pan-pot"
   ],
   "firstSeen": "2014-07-19",
   "lastSeen": "2027-04-03",
@@ -148883,6 +149851,21 @@
   "links": []
  },
  {
+  "key": "paradoks",
+  "name": "PARADOKS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2024:d3:umf-radio:2045:paradoks-b2b-volaris"
+  ],
+  "firstSeen": "2024-03-24",
+  "lastSeen": "2024-03-24",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "parallel-worlds",
   "name": "Parallel Worlds",
   "aliases": [],
@@ -149218,7 +150201,9 @@
  {
   "key": "partiboi69",
   "name": "Partiboi69",
-  "aliases": [],
+  "aliases": [
+   "PARTIBOI69"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -149226,7 +150211,8 @@
    "nocturnal-wonderland-2026:nw-partiboi69",
    "edc-las-vegas-2022:d3:cosmic-meadow:2000:partiboi69",
    "edc-las-vegas-2025:d1:bionic-jungle:2130:skream-b2b-partiboi69",
-   "sonar-2022:d1:sonarpark-by-dice:2035:partiboi69"
+   "sonar-2022:d1:sonarpark-by-dice:2035:partiboi69",
+   "ultra-miami-2025:d1:umf-radio:1600:partiboi69-b2b-juicy-romance"
   ],
   "firstSeen": "2022-05-22",
   "lastSeen": "2026-09-19",
@@ -149774,7 +150760,8 @@
    "edc-orlando-2024:d3:neon-garden:1630:patrick-mason",
    "escape-halloween-2024:d2:wicked-woods:2130:patrick-mason",
    "tomorrowland-2023:d1:cage:1600:patrick-mason",
-   "tomorrowland-2023:d4:atmosphere:1600:patrick-mason"
+   "tomorrowland-2023:d4:atmosphere:1600:patrick-mason",
+   "ultra-miami-2024:d3:the-cove:1730:patrick-mason"
   ],
   "firstSeen": "2023-07-21",
   "lastSeen": "2024-11-10",
@@ -149817,7 +150804,9 @@
  {
   "key": "patrick-topping",
   "name": "Patrick Topping",
-  "aliases": [],
+  "aliases": [
+   "PATRICK TOPPING"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [
@@ -149834,7 +150823,8 @@
    "tomorrowland-2017:d2:paradise:2000:patrick-topping",
    "tomorrowland-2018:d1:core:1730:patrick-topping",
    "tomorrowland-2019:d4:youphoria:1730:patrick-topping",
-   "tomorrowland-2023:d3:crystal-garden:2200:patrick-topping"
+   "tomorrowland-2023:d3:crystal-garden:2200:patrick-topping",
+   "ultra-miami-2025:d1:the-cove:2030:patrick-topping"
   ],
   "firstSeen": "2015-07-24",
   "lastSeen": "2026-12-31",
@@ -150696,7 +151686,8 @@
    "hard-summer-2025:d1:green-stage:1900:peekaboo",
    "nocturnal-wonderland-2019:d2:labyrinth:1945:peekaboo",
    "nocturnal-wonderland-2022:d2:labyrinth:2200:peekaboo",
-   "shambhala-2024:d3:amp:0000:peekaboo"
+   "shambhala-2024:d3:amp:0000:peekaboo",
+   "ultra-miami-2025:d3:worldwide-stage:1830:peekaboo"
   ],
   "firstSeen": "2019-09-15",
   "lastSeen": "2027-01-01",
@@ -150779,7 +151770,8 @@
    "primavera-sound-2018:d3:desperados-club:2030:peggy-gou",
    "primavera-sound-2019:d3:ray-ban:0410:peggy-gou",
    "tomorrowland-2018:d6:youphoria:1800:peggy-gou",
-   "tomorrowland-2019:d4:freedom-stage-by-budweiser:1930:peggy-gou"
+   "tomorrowland-2019:d4:freedom-stage-by-budweiser:1930:peggy-gou",
+   "ultra-miami-2024:d2:megastructure:2300:peggy-gou"
   ],
   "firstSeen": "2018-06-01",
   "lastSeen": "2027-04-09",
@@ -150868,16 +151860,20 @@
  {
   "key": "pendulum",
   "name": "Pendulum",
-  "aliases": [],
+  "aliases": [
+   "PENDULUM"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "tomorrowland-2012:d2:star-warz-presents-shogun-audio:2200:pendulum-dj-set-ft-mc-verse",
-   "tomorrowland-2018:d3:arch:2300:pendulum-dj-set"
+   "tomorrowland-2018:d3:arch:2300:pendulum-dj-set",
+   "ultra-miami-2025:d1:live-stage:2140:pendulum-live",
+   "ultra-miami-2025:d2:worldwide-stage:2245:deadmau5-b2b-pendulum-dj-set"
   ],
   "firstSeen": "2012-07-28",
-  "lastSeen": "2018-07-22",
+  "lastSeen": "2025-03-29",
   "photo": null,
   "links": []
  },
@@ -154337,17 +155333,20 @@
  {
   "key": "popof",
   "name": "Popof",
-  "aliases": [],
+  "aliases": [
+   "POPOF"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [
    "turbulences"
   ],
   "billings": [
-   "tomorrowland-2014:d2:cocoon:2030:popof"
+   "tomorrowland-2014:d2:cocoon:2030:popof",
+   "ultra-miami-2025:d3:the-cove:1600:popof-x-space-92-present-turbulences"
   ],
   "firstSeen": "2014-07-19",
-  "lastSeen": "2014-07-19",
+  "lastSeen": "2025-03-30",
   "photo": null,
   "links": []
  },
@@ -156295,7 +157294,8 @@
    "ultra-miami-2026:ul163",
    "edc-las-vegas-2022:d1:allegiant-rave-hangar:0200:purple",
    "edc-orlando-2022:d1:corona-electric-beach:1500:purple",
-   "edc-orlando-2024:d3:casa-bacardi:2200:purple"
+   "edc-orlando-2024:d3:casa-bacardi:2200:purple",
+   "ultra-miami-2025:d1:oasis:2100:purple"
   ],
   "firstSeen": "2022-05-20",
   "lastSeen": "2026-03-29",
@@ -157794,10 +158794,11 @@
    "tomorrowland-2017:d6:coone-and-the-gang:2300:radical-redemption",
    "tomorrowland-2019:d5:q-dance:2200:radical-redemption",
    "tomorrowland-2019:d6:youphoria:2150:radical-redemption",
-   "tomorrowland-2022:d8:freedom:2300:radical-redemption"
+   "tomorrowland-2022:d8:freedom:2300:radical-redemption",
+   "ultra-miami-2024:d2:umf-radio:2220:radical-redemption"
   ],
   "firstSeen": "2017-07-30",
-  "lastSeen": "2022-10-28",
+  "lastSeen": "2024-03-23",
   "photo": null,
   "links": []
  },
@@ -158004,6 +159005,21 @@
   ],
   "firstSeen": "2026-09-26",
   "lastSeen": "2027-04-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "rafael-cerato",
+  "name": "RAFAEL CERATO",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2025:d3:megastructure:1200:rafael-cerato"
+  ],
+  "firstSeen": "2025-03-30",
+  "lastSeen": "2025-03-30",
   "photo": null,
   "links": []
  },
@@ -158577,7 +159593,9 @@
  {
   "key": "ran-d",
   "name": "Ran-D",
-  "aliases": [],
+  "aliases": [
+   "RAN D"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -158594,10 +159612,11 @@
    "tomorrowland-2019:d6:q-dance:2000:ran-d",
    "tomorrowland-2022:d5:freedom:1700:ran-d",
    "tomorrowland-2022:d7:youphoria:1830:ran-d",
-   "tomorrowland-2023:d4:the-library:2345:ran-d"
+   "tomorrowland-2023:d4:the-library:2345:ran-d",
+   "ultra-miami-2024:d2:umf-radio:2120:ran-d"
   ],
   "firstSeen": "2011-07-23",
-  "lastSeen": "2023-07-28",
+  "lastSeen": "2024-03-23",
   "photo": null,
   "links": []
  },
@@ -160685,14 +161704,17 @@
  {
   "key": "reinier-zonneveld",
   "name": "Reinier Zonneveld",
-  "aliases": [],
+  "aliases": [
+   "REINIER ZONNEVELD"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "dreamstate-socal-2026:dssc-reinier-zonneveld-live",
    "tomorrowland-2023:d2:atmosphere:2330:reinier-zonneveld",
-   "tomorrowland-2023:d5:freedom-by-bud:2230:reinier-zonneveld"
+   "tomorrowland-2023:d5:freedom-by-bud:2230:reinier-zonneveld",
+   "ultra-miami-2024:d2:the-cove:2330:reinier-zonneveld-live"
   ],
   "firstSeen": "2023-07-22",
   "lastSeen": "2026-11-20",
@@ -161784,14 +162806,18 @@
  {
   "key": "richard-fraioli",
   "name": "Richard Fraioli",
-  "aliases": [],
+  "aliases": [
+   "RICHARD FRAIOLI"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul40"
+   "ultra-miami-2026:ul40",
+   "ultra-miami-2024:d1:oasis:1700:jimmie-page-b2b-richard-fraioli",
+   "ultra-miami-2025:d1:oasis:1800:richard-fraioli-b3b-minnie-page-b3b-dk-ideal"
   ],
-  "firstSeen": "2026-03-27",
+  "firstSeen": "2024-03-22",
   "lastSeen": "2026-03-27",
   "photo": null,
   "links": []
@@ -161844,7 +162870,9 @@
  {
   "key": "richie-hawtin",
   "name": "Richie Hawtin",
-  "aliases": [],
+  "aliases": [
+   "RICHIE HAWTIN"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -161868,7 +162896,8 @@
    "tomorrowland-2018:d1:atmosphere:2130:richie-hawtin",
    "tomorrowland-2018:d6:atmosphere:2100:richie-hawtin",
    "tomorrowland-2019:d3:atmosphere:2230:richie-hawtin",
-   "tomorrowland-2019:d6:atmosphere:2030:richie-hawtin"
+   "tomorrowland-2019:d6:atmosphere:2030:richie-hawtin",
+   "ultra-miami-2025:d2:megastructure:1855:richie-hawtin-dex-efx-x0x"
   ],
   "firstSeen": "2010-07-24",
   "lastSeen": "2027-04-03",
@@ -162833,7 +163862,8 @@
    "lollapalooza-2015:d2:perry-s:1630:rl-grime",
    "lollapalooza-2019:d3:perry-s:untimed:rl-grime",
    "outside-lands-2015:d1:twin-peaks:1715:rl-grime",
-   "outside-lands-2019:d2:twin-peaks:2040:rl-grime"
+   "outside-lands-2019:d2:twin-peaks:2040:rl-grime",
+   "ultra-miami-2024:d2:worldwide-stage:2330:rl-grime-b2b-knock2"
   ],
   "firstSeen": "2013-06-27",
   "lastSeen": "2026-08-02",
@@ -163762,14 +164792,19 @@
  {
   "key": "rod-b",
   "name": "Rod B.",
-  "aliases": [],
+  "aliases": [
+   "ROD B"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul70"
+   "ultra-miami-2026:ul70",
+   "ultra-miami-2024:d3:megastructure:1200:andy-pate-b3b-christopher-james-b3b-rod-b",
+   "ultra-miami-2025:d2:the-cove:1200:basset-b3b-andy-pate-b3b-rod-b",
+   "ultra-miami-2025:d2:oasis:1900:rod-b"
   ],
-  "firstSeen": "2026-03-28",
+  "firstSeen": "2024-03-24",
   "lastSeen": "2026-03-28",
   "photo": null,
   "links": []
@@ -163840,14 +164875,18 @@
  {
   "key": "rodrigo-vieira",
   "name": "Rodrigo Vieira",
-  "aliases": [],
+  "aliases": [
+   "RODRIGO VIEIRA"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul44"
+   "ultra-miami-2026:ul44",
+   "ultra-miami-2024:d3:oasis:1545:rodrigo-vieira",
+   "ultra-miami-2025:d3:oasis:1500:rodrigo-vieira"
   ],
-  "firstSeen": "2026-03-27",
+  "firstSeen": "2024-03-24",
   "lastSeen": "2026-03-27",
   "photo": null,
   "links": []
@@ -163881,6 +164920,21 @@
   ],
   "firstSeen": "2012-07-28",
   "lastSeen": "2018-05-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "roe-revolution",
+  "name": "ROE REVOLUTION",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2025:d2:umf-radio:1200:roe-revolution"
+  ],
+  "firstSeen": "2025-03-29",
+  "lastSeen": "2025-03-29",
   "photo": null,
   "links": []
  },
@@ -164423,7 +165477,8 @@
    "edc-lv-2026:w27",
    "edc-las-vegas-2025:d3:wasteland:0230:rooler",
    "escape-halloween-2024:d1:feeding-grounds:2200:rooler",
-   "tomorrowland-2019:d6:cage:1930:rooler"
+   "tomorrowland-2019:d6:cage:1930:rooler",
+   "ultra-miami-2025:d3:umf-radio:2000:rooler"
   ],
   "firstSeen": "2019-07-28",
   "lastSeen": "2026-05-17",
@@ -165286,7 +166341,9 @@
  {
   "key": "ruben-de-ronde",
   "name": "Ruben de Ronde",
-  "aliases": [],
+  "aliases": [
+   "RUBEN DE RONDE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -165298,10 +166355,11 @@
    "tomorrowland-2017:d4:a-state-of-trance:1300:ruben-de-ronde-b2b-rodg",
    "tomorrowland-2018:d4:freedom-stage-by-budweiser:1430:ruben-de-ronde",
    "tomorrowland-2019:d6:freedom-stage-by-budweiser:1400:ruben-de-ronde-b2b-estiva",
-   "tomorrowland-2023:d3:youphoria:1530:ruben-de-ronde"
+   "tomorrowland-2023:d3:youphoria:1530:ruben-de-ronde",
+   "ultra-miami-2025:d1:worldwide-stage:1700:ruben-de-ronde"
   ],
   "firstSeen": "2017-07-28",
-  "lastSeen": "2024-11-22",
+  "lastSeen": "2025-03-28",
   "photo": null,
   "links": []
  },
@@ -166922,7 +167980,8 @@
    "escape-halloween-2019:d1:the-grimm:1905:said-the-sky",
    "escape-halloween-2022:d2:the-grimm:2055:said-the-sky",
    "lollapalooza-2019:d2:perry-s:untimed:said-the-sky",
-   "nocturnal-wonderland-2018:d2:labyrinth:2110:said-the-sky"
+   "nocturnal-wonderland-2018:d2:labyrinth:2110:said-the-sky",
+   "ultra-miami-2025:d3:live-stage:1810:said-the-sky"
   ],
   "firstSeen": "2018-09-15",
   "lastSeen": "2026-09-20",
@@ -167470,7 +168529,9 @@
  {
   "key": "sam-feldt",
   "name": "Sam Feldt",
-  "aliases": [],
+  "aliases": [
+   "SAM FELDT"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -167482,7 +168543,8 @@
    "tomorrowland-2017:d3:robin-schulz-and-friends:1630:sam-feldt",
    "tomorrowland-2017:d4:spinnin-sessions:2030:sam-feldt",
    "tomorrowland-2019:d1:l-orangerie:1830:sam-feldt",
-   "tomorrowland-2019:d5:mainstage:1750:sam-feldt-live"
+   "tomorrowland-2019:d5:mainstage:1750:sam-feldt-live",
+   "ultra-miami-2025:d1:ultra-main-stage:1600:sam-feldt"
   ],
   "firstSeen": "2016-04-15",
   "lastSeen": "2027-01-21",
@@ -167996,7 +169058,8 @@
    "tomorrowland-2017:d1:monstercat:1800:san-holo",
    "tomorrowland-2017:d5:barong-family:1850:san-holo",
    "tomorrowland-2018:d1:mainstage:1550:san-holo",
-   "tomorrowland-2018:d4:rose-garden:1900:san-holo"
+   "tomorrowland-2018:d4:rose-garden:1900:san-holo",
+   "ultra-miami-2024:d2:live-stage:2345:madeon-b2b-san-holo"
   ],
   "firstSeen": "2015-07-26",
   "lastSeen": "2026-11-08",
@@ -168133,6 +169196,21 @@
   ],
   "firstSeen": "2017-07-28",
   "lastSeen": "2017-07-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "sandro-bianchi",
+  "name": "SANDRO BIANCHI",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2025:d2:oasis:1800:sandro-bianchi"
+  ],
+  "firstSeen": "2025-03-29",
+  "lastSeen": "2025-03-29",
   "photo": null,
   "links": []
  },
@@ -168796,14 +169874,17 @@
  {
   "key": "sasha-john-digweed",
   "name": "Sasha_John Digweed",
-  "aliases": [],
+  "aliases": [
+   "SASHA_JOHN DIGWEED"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul73"
+   "ultra-miami-2026:ul73",
+   "ultra-miami-2024:d3:megastructure:1445:sasha-john-digweed"
   ],
-  "firstSeen": "2026-03-28",
+  "firstSeen": "2024-03-24",
   "lastSeen": "2026-03-28",
   "photo": null,
   "links": []
@@ -169685,14 +170766,17 @@
  {
   "key": "schrotthagen",
   "name": "Schrotthagen",
-  "aliases": [],
+  "aliases": [
+   "SCHROTTHAGEN"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "dreamstate-socal-2026:dssc-schrotthagen"
+   "dreamstate-socal-2026:dssc-schrotthagen",
+   "ultra-miami-2025:d1:worldwide-stage:1600:schrotthagen"
   ],
-  "firstSeen": "2026-11-20",
+  "firstSeen": "2025-03-28",
   "lastSeen": "2026-11-20",
   "photo": null,
   "links": []
@@ -169913,6 +170997,21 @@
   ],
   "firstSeen": "2026-06-18",
   "lastSeen": "2026-06-18",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "scott-knight",
+  "name": "SCOTT KNIGHT",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2024:d3:oasis:2015:die-maschine-b2b-scott-knight"
+  ],
+  "firstSeen": "2024-03-24",
+  "lastSeen": "2024-03-24",
   "photo": null,
   "links": []
  },
@@ -170310,6 +171409,21 @@
   ],
   "firstSeen": "2026-03-29",
   "lastSeen": "2027-01-21",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "sebastian-rodriguez",
+  "name": "SEBASTIAN RODRIGUEZ",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2024:d1:oasis:2045:sebastian-rodriguez"
+  ],
+  "firstSeen": "2024-03-22",
+  "lastSeen": "2024-03-22",
   "photo": null,
   "links": []
  },
@@ -171424,7 +172538,8 @@
    "tomorrowland-2017:d1:monstercat:0000:seven-lions",
    "tomorrowland-2018:d1:rose-garden:0000:seven-lions",
    "tomorrowland-2019:d1:rose-garden:2000:seven-lions-b2b-kill-the-noise",
-   "tomorrowland-2019:d1:youphoria:0000:seven-lions"
+   "tomorrowland-2019:d1:youphoria:0000:seven-lions",
+   "ultra-miami-2024:d2:worldwide-stage:2230:seven-lions"
   ],
   "firstSeen": "2014-06-29",
   "lastSeen": "2027-01-01",
@@ -172949,7 +174064,8 @@
    "dreamstate-socal-2023:d1:the-void:2200:shl-mo",
    "edc-las-vegas-2024:d3:neon-garden:2100:shl-mo",
    "edc-las-vegas-2025:d1:wasteland:0330:shl-mo",
-   "tomorrowland-2023:d5:cage:1530:shl-mo"
+   "tomorrowland-2023:d5:cage:1530:shl-mo",
+   "ultra-miami-2025:d2:umf-radio:2100:shl-mo"
   ],
   "firstSeen": "2023-07-29",
   "lastSeen": "2025-05-16",
@@ -175345,14 +176461,17 @@
  {
   "key": "skepsis",
   "name": "Skepsis",
-  "aliases": [],
+  "aliases": [
+   "SKEPSIS"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "beyond-wonderland-socal-2026:d2:the-sea-of-wonder:2150:skepsis-b2b-turno"
+   "beyond-wonderland-socal-2026:d2:the-sea-of-wonder:2150:skepsis-b2b-turno",
+   "ultra-miami-2025:d1:live-stage:1600:skepsis"
   ],
-  "firstSeen": "2026-03-28",
+  "firstSeen": "2025-03-28",
   "lastSeen": "2026-03-28",
   "photo": null,
   "links": []
@@ -175709,7 +176828,8 @@
    "shambhala-2014:d2:pagoda:2130:skream",
    "tomorrowland-2014:d3:forma-t:1700:skream",
    "tomorrowland-2014:d6:forma-t:1700:skream",
-   "tomorrowland-2018:d2:amicorum-spectaculum-presents-theatre-formidable:1700:skream"
+   "tomorrowland-2018:d2:amicorum-spectaculum-presents-theatre-formidable:1700:skream",
+   "ultra-miami-2025:d1:umf-radio:1730:skream-b2b-interplanetary-criminal"
   ],
   "firstSeen": "2014-07-20",
   "lastSeen": "2026-05-17",
@@ -175805,7 +176925,8 @@
    "shambhala-2011:d4:pagoda:0100:skrillex",
    "shambhala-2015:d2:village:0030:skrillex",
    "tomorrowland-2012:d2:mainstage:2130:skrillex",
-   "tomorrowland-2014:d1:mainstage:2000:skrillex"
+   "tomorrowland-2014:d1:mainstage:2000:skrillex",
+   "ultra-miami-2025:d2:ultra-main-stage:2140:skrillex"
   ],
   "firstSeen": "2011-08-05",
   "lastSeen": "2026-10-02",
@@ -176134,7 +177255,8 @@
    "escape-halloween-2017:d2:slaughterhouse:2030:slander",
    "lollapalooza-2017:d4:perry-s:1630:slander",
    "shambhala-2025:d3:the-village:0030:slander",
-   "tomorrowland-2023:d2:youphoria:2200:slander"
+   "tomorrowland-2023:d2:youphoria:2200:slander",
+   "ultra-miami-2024:d1:ultra-main-stage:2010:slander"
   ],
   "firstSeen": "2017-08-06",
   "lastSeen": "2026-12-30",
@@ -178238,7 +179360,9 @@
  {
   "key": "solomun",
   "name": "Solomun",
-  "aliases": [],
+  "aliases": [
+   "SOLOMUN"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -178260,7 +179384,9 @@
    "tomorrowland-2018:d6:mainstage:1950:solomun",
    "tomorrowland-2019:d1:garden-of-madness:2130:solomun",
    "tomorrowland-2019:d5:garden-of-madness:2255:solomun",
-   "tomorrowland-2019:d6:mainstage:2020:solomun"
+   "tomorrowland-2019:d6:mainstage:2020:solomun",
+   "ultra-miami-2025:d2:ultra-main-stage:1900:anyma-b2b-solomun",
+   "ultra-miami-2025:d3:megastructure:1930:solomun"
   ],
   "firstSeen": "2012-07-27",
   "lastSeen": "2027-04-10",
@@ -178678,7 +179804,9 @@
  {
   "key": "sonny-fodera",
   "name": "Sonny Fodera",
-  "aliases": [],
+  "aliases": [
+   "SONNY FODERA"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -178688,7 +179816,8 @@
    "escape-halloween-2021:d2:sanitarium:2300:sonny-fodera",
    "tomorrowland-2017:d3:cafeina:1930:sonny-fodera",
    "tomorrowland-2019:d3:rose-garden:2230:sonny-fodera",
-   "tomorrowland-2023:d1:the-library:2000:sonny-fodera"
+   "tomorrowland-2023:d1:the-library:2000:sonny-fodera",
+   "ultra-miami-2025:d3:ultra-main-stage:1515:sonny-fodera"
   ],
   "firstSeen": "2017-07-23",
   "lastSeen": "2026-09-26",
@@ -179011,9 +180140,10 @@
    "edc-thailand-2026:edcth-kanine-b2b-sota",
    "edc-las-vegas-2025:d1:basspod:1950:basstripper-b2b-sota",
    "edc-orlando-2025:d1:circuitgrounds:1530:sota",
-   "escape-halloween-2025:d1:sewer-district:1845:sota"
+   "escape-halloween-2025:d1:sewer-district:1845:sota",
+   "ultra-miami-2025:d3:worldwide-stage:1300:sota"
   ],
-  "firstSeen": "2025-05-16",
+  "firstSeen": "2025-03-30",
   "lastSeen": "2026-12-19",
   "photo": null,
   "links": []
@@ -179071,14 +180201,18 @@
  {
   "key": "soul-goodman",
   "name": "Soul Goodman",
-  "aliases": [],
+  "aliases": [
+   "SOUL GOODMAN"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul105"
+   "ultra-miami-2026:ul105",
+   "ultra-miami-2024:d2:oasis:1600:soul-goodman-b2b-dabura",
+   "ultra-miami-2025:d2:oasis:1330:soul-goodman-b2b-dabura"
   ],
-  "firstSeen": "2026-03-28",
+  "firstSeen": "2024-03-23",
   "lastSeen": "2026-03-28",
   "photo": null,
   "links": []
@@ -179409,7 +180543,8 @@
    "tomorrowland-2019:d1:q-dance:1630:sound-rush",
    "tomorrowland-2022:d2:freedom:1600:sound-rush",
    "tomorrowland-2023:d3:freedom-by-bud:1730:sound-rush",
-   "tomorrowland-2023:d6:youphoria:1500:sound-rush"
+   "tomorrowland-2023:d6:youphoria:1500:sound-rush",
+   "ultra-miami-2024:d2:umf-radio:1650:adrenalize-b2b-sound-rush"
   ],
   "firstSeen": "2015-06-21",
   "lastSeen": "2024-05-17",
@@ -179604,7 +180739,8 @@
    "tomorrowland-thailand-2026:tmlth-amber-broos-b2b-space-92",
    "groove-cruise-2027:gc-space-92",
    "dreamstate-socal-2025:d2:the-void:2200:space-92",
-   "edc-orlando-2024:d3:kinetic-field:1432:space-92"
+   "edc-orlando-2024:d3:kinetic-field:1432:space-92",
+   "ultra-miami-2025:d3:the-cove:1600:popof-x-space-92-present-turbulences"
   ],
   "firstSeen": "2024-11-10",
   "lastSeen": "2027-01-21",
@@ -179666,7 +180802,9 @@
  {
   "key": "space-laces",
   "name": "Space Laces",
-  "aliases": [],
+  "aliases": [
+   "SPACE LACES"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -179675,7 +180813,8 @@
    "lost-lands-2026:llu15",
    "countdown-nye-2026:cdny-space-laces",
    "beyond-wonderland-socal-2026:d2:mad-hatter-s-castle:2145:eptic-b2b-space-laces",
-   "edc-las-vegas-2022:d2:basspod:0330:getter-b2b-space-laces"
+   "edc-las-vegas-2022:d2:basspod:0330:getter-b2b-space-laces",
+   "ultra-miami-2024:d3:worldwide-stage:1455:space-laces"
   ],
   "firstSeen": "2022-05-21",
   "lastSeen": "2027-01-01",
@@ -181518,7 +182657,9 @@
  {
   "key": "stephan-bodzin",
   "name": "Stephan Bodzin",
-  "aliases": [],
+  "aliases": [
+   "STEPHAN BODZIN"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -181529,10 +182670,11 @@
    "tomorrowland-2019:d6:core:2245:stephan-bodzin-live",
    "tomorrowland-2022:d2:atmosphere:2200:stephan-bodzin",
    "tomorrowland-2022:d6:core:2200:stephan-bodzin",
-   "tomorrowland-2023:d6:crystal-garden:2200:stephan-bodzin"
+   "tomorrowland-2023:d6:crystal-garden:2200:stephan-bodzin",
+   "ultra-miami-2025:d2:megastructure:1730:stephan-bodzin-live"
   ],
   "firstSeen": "2018-07-29",
-  "lastSeen": "2023-07-30",
+  "lastSeen": "2025-03-29",
   "photo": null,
   "links": []
  },
@@ -181893,7 +183035,9 @@
    "tomorrowland-2019:d1:mainstage:2150:steve-aoki",
    "tomorrowland-2019:d6:lotus:1900:steve-aoki",
    "tomorrowland-2022:d4:mainstage:2350:steve-aoki",
-   "tomorrowland-2023:d5:mainstage:2350:steve-aoki"
+   "tomorrowland-2023:d5:mainstage:2350:steve-aoki",
+   "ultra-miami-2024:d2:ultra-main-stage:1715:steve-aoki",
+   "ultra-miami-2025:d3:ultra-main-stage:1620:steve-aoki"
   ],
   "firstSeen": "2011-07-23",
   "lastSeen": "2026-12-31",
@@ -183263,7 +184407,9 @@
    "tomorrowland-2018:d2:atmosphere:2200:sub-zero-project",
    "tomorrowland-2019:d1:q-dance:1900:sub-zero-project",
    "tomorrowland-2019:d6:q-dance:1900:sub-zero-project",
-   "tomorrowland-2022:d7:youphoria:1730:sub-zero-project"
+   "tomorrowland-2022:d7:youphoria:1730:sub-zero-project",
+   "ultra-miami-2024:d2:umf-radio:1820:sub-zero-project",
+   "ultra-miami-2025:d3:umf-radio:1600:sub-zero-project"
   ],
   "firstSeen": "2016-07-22",
   "lastSeen": "2026-12-12",
@@ -183364,6 +184510,21 @@
   ],
   "firstSeen": "2024-05-17",
   "lastSeen": "2024-05-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "subfocus",
+  "name": "SUBFOCUS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2024:d3:live-stage:1845:subfocus"
+  ],
+  "firstSeen": "2024-03-24",
+  "lastSeen": "2024-03-24",
   "photo": null,
   "links": []
  },
@@ -183553,7 +184714,8 @@
    "edc-orlando-2025:d3:kineticfield:2105:subtronics",
    "escape-halloween-2022:d1:feeding-grounds:0100:subtronics",
    "nocturnal-wonderland-2019:d1:labyrinth:2100:subtronics",
-   "shambhala-2024:d4:the-village:0130:subtronics"
+   "shambhala-2024:d4:the-village:0130:subtronics",
+   "ultra-miami-2025:d1:ultra-main-stage:1755:subtronics"
   ],
   "firstSeen": "2019-09-14",
   "lastSeen": "2026-12-31",
@@ -183876,7 +185038,8 @@
    "escape-halloween-2021:d1:psycho-circus:2000:sullivan-king",
    "nocturnal-wonderland-2022:d1:labyrinth:2200:sullivan-king",
    "tomorrowland-2022:d3:youphoria:1930:sullivan-king",
-   "tomorrowland-2023:d5:youphoria:1800:sullivan-king"
+   "tomorrowland-2023:d5:youphoria:1800:sullivan-king",
+   "ultra-miami-2025:d3:worldwide-stage:1930:nghtmre-b2b-sullivan-king"
   ],
   "firstSeen": "2021-10-29",
   "lastSeen": "2026-12-30",
@@ -185236,7 +186399,8 @@
    "edc-orlando-2021:d1:circuit-grounds:2125:nghtmre-b2b-svdden-death",
    "edc-orlando-2022:d2:circuit-grounds:2200:svdden-death",
    "lollapalooza-2019:d1:perry-s:untimed:svdden-death",
-   "tomorrowland-2023:d1:the-rose-garden:2000:svdden-death"
+   "tomorrowland-2023:d1:the-rose-garden:2000:svdden-death",
+   "ultra-miami-2024:d3:worldwide-stage:2115:svdden-death"
   ],
   "firstSeen": "2019-08-01",
   "lastSeen": "2026-09-19",
@@ -186736,6 +187900,21 @@
   "links": []
  },
  {
+  "key": "takshak",
+  "name": "TAKSHAK",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2025:d2:oasis:2200:takshak"
+  ],
+  "firstSeen": "2025-03-29",
+  "lastSeen": "2025-03-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "takt-tick",
   "name": "Takt Tick",
   "aliases": [],
@@ -187116,6 +188295,21 @@
   "links": []
  },
  {
+  "key": "tank",
+  "name": "TANK",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2025:d3:oasis:1800:alex-pizzuti-b2b-tank"
+  ],
+  "firstSeen": "2025-03-30",
+  "lastSeen": "2025-03-30",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "tank-and-the-bangas",
   "name": "Tank and The Bangas",
   "aliases": [],
@@ -187298,6 +188492,21 @@
   ],
   "firstSeen": "2021-11-12",
   "lastSeen": "2025-11-07",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "tape-b-and-levity",
+  "name": "TAPE B & LEVITY",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2024:d2:worldwide-stage:1600:tape-b-and-levity"
+  ],
+  "firstSeen": "2024-03-23",
+  "lastSeen": "2024-03-23",
   "photo": null,
   "links": []
  },
@@ -188722,13 +189931,16 @@
  {
   "key": "terra",
   "name": "Terra",
-  "aliases": [],
+  "aliases": [
+   "TERRA"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "dreamstate-socal-2026:dssc-terra",
-   "dreamstate-socal-2024:d1:the-sequence:1530:terra"
+   "dreamstate-socal-2024:d1:the-sequence:1530:terra",
+   "ultra-miami-2025:d2:umf-radio:2200:terra"
   ],
   "firstSeen": "2024-11-22",
   "lastSeen": "2026-11-20",
@@ -195020,15 +196232,18 @@
  {
   "key": "the-purge",
   "name": "The Purge",
-  "aliases": [],
+  "aliases": [
+   "THE PURGE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "edc-lv-2026:w22",
-   "ultra-miami-2026:ul94"
+   "ultra-miami-2026:ul94",
+   "ultra-miami-2025:d3:umf-radio:1500:the-purge"
   ],
-  "firstSeen": "2026-03-28",
+  "firstSeen": "2025-03-30",
   "lastSeen": "2026-05-17",
   "photo": null,
   "links": []
@@ -198285,7 +199500,9 @@
    "tomorrowland-2022:d5:mainstage:2145:tiesto",
    "tomorrowland-2022:d7:mainstage:2250:tiesto",
    "tomorrowland-2023:d1:mainstage:2350:tiesto",
-   "tomorrowland-2023:d4:mainstage:2250:tiesto"
+   "tomorrowland-2023:d4:mainstage:2250:tiesto",
+   "ultra-miami-2024:d1:ultra-main-stage:1905:tiesto-sunset-slot",
+   "ultra-miami-2025:d1:ultra-main-stage:1900:tiesto"
   ],
   "firstSeen": "2011-07-23",
   "lastSeen": "2027-04-10",
@@ -198861,10 +200078,11 @@
    "tomorrowland-2019:d4:garden-of-madness:2230:timmy-trumpet",
    "tomorrowland-2022:d2:mainstage:2145:timmy-trumpet",
    "tomorrowland-2022:d4:the-library:2200:timmy-trumpet",
-   "tomorrowland-2023:d3:mainstage:2040:timmy-trumpet"
+   "tomorrowland-2023:d3:mainstage:2040:timmy-trumpet",
+   "ultra-miami-2025:d1:ultra-main-stage:1650:timmy-trumpet"
   ],
   "firstSeen": "2016-07-22",
-  "lastSeen": "2024-11-08",
+  "lastSeen": "2025-03-28",
   "photo": null,
   "links": []
  },
@@ -199819,8 +201037,8 @@
   "key": "tokimonsta",
   "name": "TOKiMONSTA",
   "aliases": [
-   "Tokimonsta",
-   "TOKIMONSTA"
+   "TOKIMONSTA",
+   "Tokimonsta"
   ],
   "kind": "performer",
   "parents": [],
@@ -199836,7 +201054,8 @@
    "electric-forest-2015:d4:forest-stage:2115:tokimonsta",
    "lightning-in-a-bottle-2018:d3:lightning:2115:tokimonsta",
    "outside-lands-2016:d1:panhandle:1630:tokimonsta",
-   "outside-lands-2022:d2:soma-tent:1845:tokimonsta"
+   "outside-lands-2022:d2:soma-tent:1845:tokimonsta",
+   "ultra-miami-2025:d2:live-stage:1930:tokimonsta"
   ],
   "firstSeen": "2015-06-28",
   "lastSeen": "2027-02-20",
@@ -200607,6 +201826,21 @@
   "billings": [],
   "firstSeen": null,
   "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "tone-abstract",
+  "name": "TONE ABSTRACT",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2025:d2:oasis:2300:metaphysical-b2b-tone-abstract"
+  ],
+  "firstSeen": "2025-03-29",
+  "lastSeen": "2025-03-29",
   "photo": null,
   "links": []
  },
@@ -201453,6 +202687,21 @@
   ],
   "firstSeen": "2016-07-28",
   "lastSeen": "2016-07-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "township-rebellion",
+  "name": "TOWNSHIP REBELLION",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2024:d3:umf-radio:1515:township-rebellion"
+  ],
+  "firstSeen": "2024-03-24",
+  "lastSeen": "2024-03-24",
   "photo": null,
   "links": []
  },
@@ -202381,7 +203630,8 @@
    "edc-las-vegas-2025:d1:cosmic-meadow:2100:trivecta",
    "edc-orlando-2022:d3:circuit-grounds:1625:trivecta",
    "escape-halloween-2024:d2:sewer-district:1945:trivecta",
-   "nocturnal-wonderland-2022:d1:labyrinth:1900:trivecta"
+   "nocturnal-wonderland-2022:d1:labyrinth:1900:trivecta",
+   "ultra-miami-2024:d3:live-stage:1735:trivecta"
   ],
   "firstSeen": "2022-09-17",
   "lastSeen": "2027-01-21",
@@ -206393,6 +207643,21 @@
   "links": []
  },
  {
+  "key": "venbee",
+  "name": "VENBEE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2025:d1:live-stage:1720:venbee"
+  ],
+  "firstSeen": "2025-03-28",
+  "lastSeen": "2025-03-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "venom",
   "name": "VENOM",
   "aliases": [],
@@ -206989,6 +208254,21 @@
   "links": []
  },
  {
+  "key": "victor-cardenas",
+  "name": "VICTOR CARDENAS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2025:d3:oasis:2100:victor-cardenas"
+  ],
+  "firstSeen": "2025-03-30",
+  "lastSeen": "2025-03-30",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "victor-jones",
   "name": "Victor Jones",
   "aliases": [],
@@ -207017,7 +208297,8 @@
    "dreamstate-socal-2025:d2:the-void:2000:victor-ruiz",
    "edc-las-vegas-2025:d1:quantum-valley:2200:victor-ruiz",
    "tomorrowland-2017:d5:cubanisto-presents-ketaloco:1600:victor-ruiz",
-   "tomorrowland-2023:d5:atmosphere:2100:victor-ruiz"
+   "tomorrowland-2023:d5:atmosphere:2100:victor-ruiz",
+   "ultra-miami-2024:d3:the-cove:1600:victor-ruiz"
   ],
   "firstSeen": "2017-07-29",
   "lastSeen": "2025-11-22",
@@ -207451,7 +208732,8 @@
    "tomorrowland-2022:d1:the-library:2300:vini-vici",
    "tomorrowland-2022:d4:kara-savi:1815:vini-vici",
    "tomorrowland-2022:d9:the-library:2300:vini-vici",
-   "tomorrowland-2023:d1:mainstage:1840:vini-vici"
+   "tomorrowland-2023:d1:mainstage:1840:vini-vici",
+   "ultra-miami-2025:d2:umf-radio:2000:vini-vici"
   ],
   "firstSeen": "2016-07-23",
   "lastSeen": "2026-12-11",
@@ -207539,7 +208821,8 @@
    "tomorrowland-2022:d1:crystal-garden:1900:vintage-culture",
    "tomorrowland-2022:d5:mainstage:1840:vintage-culture",
    "tomorrowland-2023:d3:mainstage:1735:vintage-culture",
-   "tomorrowland-2023:d4:crystal-garden:1600:vintage-culture"
+   "tomorrowland-2023:d4:crystal-garden:1600:vintage-culture",
+   "ultra-miami-2024:d2:megastructure:2000:vintage-culture"
   ],
   "firstSeen": "2019-07-19",
   "lastSeen": "2027-04-09",
@@ -208310,6 +209593,21 @@
   "links": []
  },
  {
+  "key": "volaris",
+  "name": "VOLARIS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2024:d3:umf-radio:2045:paradoks-b2b-volaris"
+  ],
+  "firstSeen": "2024-03-24",
+  "lastSeen": "2024-03-24",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "volbeat",
   "name": "Volbeat",
   "aliases": [],
@@ -208570,7 +209868,8 @@
    "portola-2026:pt2-vtss",
    "hard-summer-2026:hs2-vtss",
    "edc-thailand-2026:edcth-vtss",
-   "edc-las-vegas-2024:d2:bionic-jungle:0330:vtss"
+   "edc-las-vegas-2024:d2:bionic-jungle:0330:vtss",
+   "ultra-miami-2025:d1:umf-radio:2030:vtss"
   ],
   "firstSeen": "2024-05-18",
   "lastSeen": "2026-12-19",
@@ -208817,13 +210116,16 @@
  {
   "key": "wade",
   "name": "Wade",
-  "aliases": [],
+  "aliases": [
+   "WADE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "edc-las-vegas-2022:d3:stereo-bloom:2200:wade",
-   "edc-las-vegas-2024:d2:circuit-grounds:0330:wade"
+   "edc-las-vegas-2024:d2:circuit-grounds:0330:wade",
+   "ultra-miami-2024:d2:the-cove:1900:wade"
   ],
   "firstSeen": "2022-05-22",
   "lastSeen": "2024-05-18",
@@ -208848,7 +210150,9 @@
  {
   "key": "waff",
   "name": "wAFF",
-  "aliases": [],
+  "aliases": [
+   "WAFF"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -208860,24 +210164,29 @@
    "tomorrowland-2016:d1:jamie-jones-pr-paradise:1700:waff",
    "tomorrowland-2017:d1:elrow:1530:waff",
    "tomorrowland-2018:d3:garden-of-madness:1930:waff",
-   "tomorrowland-2019:d2:core:2000:waff"
+   "tomorrowland-2019:d2:core:2000:waff",
+   "ultra-miami-2024:d2:the-cove:1600:waff-b2b-cuartero"
   ],
   "firstSeen": "2013-07-26",
-  "lastSeen": "2019-07-20",
+  "lastSeen": "2024-03-23",
   "photo": null,
   "links": []
  },
  {
   "key": "wags",
   "name": "Wags",
-  "aliases": [],
+  "aliases": [
+   "WAGS"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul161"
+   "ultra-miami-2026:ul161",
+   "ultra-miami-2024:d2:oasis:2000:wags-b2b-lemony-snickettes",
+   "ultra-miami-2025:d2:oasis:2100:wags-b2b-lemony-snickttes"
   ],
-  "firstSeen": "2026-03-29",
+  "firstSeen": "2024-03-23",
   "lastSeen": "2026-03-29",
   "photo": null,
   "links": []
@@ -209506,7 +210815,8 @@
    "tomorrowland-2019:d6:q-dance:2100:warface",
    "tomorrowland-2022:d2:freedom:2300:warface",
    "tomorrowland-2022:d4:youphoria:2215:warface",
-   "tomorrowland-2023:d1:youphoria:2130:warface"
+   "tomorrowland-2023:d1:youphoria:2130:warface",
+   "ultra-miami-2024:d2:umf-radio:2020:warface"
   ],
   "firstSeen": "2015-06-20",
   "lastSeen": "2026-05-17",
@@ -211493,6 +212803,24 @@
   "links": []
  },
  {
+  "key": "wiener-bros",
+  "name": "WIENER BROS",
+  "aliases": [
+   "WIENER BROS."
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2024:d3:oasis:1500:wiener-bros",
+   "ultra-miami-2025:d1:oasis:1700:wiener-bros"
+  ],
+  "firstSeen": "2024-03-24",
+  "lastSeen": "2025-03-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "wilco",
   "name": "Wilco",
   "aliases": [],
@@ -211839,7 +213167,8 @@
    "edc-orlando-2023:d2:circuit-grounds:1900:wilkinson",
    "edc-orlando-2025:d3:stereobloom:2115:wilkinson",
    "electric-forest-2014:d2:tripolee:1930:wilkinson",
-   "tomorrowland-2017:d6:star-warz-invites-ram-records:2200:wilkinson-ft-mc-ad-apt"
+   "tomorrowland-2017:d6:star-warz-invites-ram-records:2200:wilkinson-ft-mc-ad-apt",
+   "ultra-miami-2025:d2:worldwide-stage:1630:wilkinson"
   ],
   "firstSeen": "2012-06-10",
   "lastSeen": "2026-06-27",
@@ -213114,7 +214443,8 @@
    "escape-halloween-2024:d1:sewer-district:2300:wooli",
    "nocturnal-wonderland-2021:d2:sunken-garden:2100:wooli",
    "shambhala-2025:d4:the-village:0200:wooli",
-   "tomorrowland-2022:d3:youphoria:1830:wooli"
+   "tomorrowland-2022:d3:youphoria:1830:wooli",
+   "ultra-miami-2024:d3:worldwide-stage:1855:wooli"
   ],
   "firstSeen": "2021-09-19",
   "lastSeen": "2026-11-06",
@@ -213604,14 +214934,18 @@
  {
   "key": "wyzzard",
   "name": "Wyzzard",
-  "aliases": [],
+  "aliases": [
+   "WYZZARD"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul103"
+   "ultra-miami-2026:ul103",
+   "ultra-miami-2024:d1:oasis:1900:wyzzard",
+   "ultra-miami-2025:d3:oasis:1615:x-con-b2b-wyzzard"
   ],
-  "firstSeen": "2026-03-28",
+  "firstSeen": "2024-03-22",
   "lastSeen": "2026-03-28",
   "photo": null,
   "links": []
@@ -213723,14 +215057,18 @@
  {
   "key": "x-con",
   "name": "X-Con",
-  "aliases": [],
+  "aliases": [
+   "X-CON"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul165"
+   "ultra-miami-2026:ul165",
+   "ultra-miami-2024:d3:oasis:1930:x-con",
+   "ultra-miami-2025:d3:oasis:1615:x-con-b2b-wyzzard"
   ],
-  "firstSeen": "2026-03-29",
+  "firstSeen": "2024-03-24",
   "lastSeen": "2026-03-29",
   "photo": null,
   "links": []
@@ -216539,7 +217877,8 @@
    "outside-lands-2023:d1:twin-peaks:2035:zedd",
    "tomorrowland-2012:d1:dim-mak-fight-club:2315:zedd",
    "tomorrowland-2012:d2:super-you-and-me:1400:zedd",
-   "tomorrowland-2013:d2:mainstage:1530:zedd"
+   "tomorrowland-2013:d2:mainstage:1530:zedd",
+   "ultra-miami-2025:d3:ultra-main-stage:1935:zedd"
   ],
   "firstSeen": "2012-04-15",
   "lastSeen": "2026-10-31",
@@ -216578,7 +217917,8 @@
    "tomorrowland-2012:d1:dim-mak-fight-club:0000:zeds-dead",
    "tomorrowland-2014:d1:mad-decent:1930:zeds-dead",
    "tomorrowland-2014:d4:mad-decent:1930:zeds-dead",
-   "tomorrowland-2019:d1:rose-garden:2330:zeds-dead"
+   "tomorrowland-2019:d1:rose-garden:2330:zeds-dead",
+   "ultra-miami-2025:d1:live-stage:2300:zeds-dead-presents-return-to-the-spectrum-of-intergalactic-happiness"
   ],
   "firstSeen": "2011-08-07",
   "lastSeen": "2026-12-30",
@@ -216948,6 +218288,21 @@
   "links": []
  },
  {
+  "key": "zlata",
+  "name": "ZLATA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ultra-miami-2024:d3:the-cove:1200:zlata"
+  ],
+  "firstSeen": "2024-03-24",
+  "lastSeen": "2024-03-24",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "zoe",
   "name": "Zoé",
   "aliases": [
@@ -217229,15 +218584,18 @@
  {
   "key": "zorza",
   "name": "Zorza",
-  "aliases": [],
+  "aliases": [
+   "ZORZA"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2024:d3:neon-garden:1300:zorza"
+   "edc-orlando-2024:d3:neon-garden:1300:zorza",
+   "ultra-miami-2025:d2:umf-radio:1300:zorza"
   ],
   "firstSeen": "2024-11-10",
-  "lastSeen": "2024-11-10",
+  "lastSeen": "2025-03-29",
   "photo": null,
   "links": []
  },

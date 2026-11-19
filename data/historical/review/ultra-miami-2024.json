@@ -1,0 +1,116 @@
+{
+ "id": "ultra-miami-2024",
+ "days": [
+  {
+   "day": 1,
+   "date": "2024-03-22",
+   "sha256": "371335f74335c3fafeec9b9f21fcf2bebb86d44115cf2dd0e026042d361a8a62",
+   "originalUrl": "https://ultramusicfestival.com/wp-content/uploads/2024/03/ULTRA2024_SET-TIMES_22-1600x1000.jpg",
+   "imageArchivedUrl": "https://web.archive.org/web/20240329132933/https://ultramusicfestival.com/wp-content/uploads/2024/03/ULTRA2024_SET-TIMES_22-1600x1000.jpg",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-19T20:47:27.754Z",
+   "rowsConfirmed": 31,
+   "note": "Header read off the graphic: SET TIMES · FRI MARCH 22 BAYFRONT · MARCH 22 BAYFRONT PARK 2024 · FROM 4:00 PM TO 12:00 AM. Seven stage columns: ULTRA MAIN STAGE, WORLDWIDE STAGE, MEGASTRUCTURE and THE COVE on the left panel, LIVE STAGE, UMF RADIO and OASIS on the right; stage names are the column logos, uppercased. The UMF RADIO column prints a host logo under it each day (OPHELIA Friday, DIRTY WORKZ Saturday, purified Sunday); the stage is UMF RADIO. Every block prints a start only (\"9:15 PM\"), so every row is open-ended. A smaller coloured line under a name (LIVE, A/V, a presents line) is kept in parentheses after it, as printed. The original upload was never archived; this is the site's own 1600x1000 resized copy, which is legible. Friday was shut down at about 9:00 PM for severe weather (Billboard, 23 March 2024), just before HARDWELL's main-stage set, so the 14 sets printed at 9:00 PM or later did not happen and are not listed: FISHER x CHRIS LAKE (PRESENT UNDER CONSTRUCTION), HARDWELL, ARMIN VAN BUUREN, ARMIN VAN BUUREN B2B OLIVER HELDENS, AMELIE LENS, JORIS VOORN B2B KÖLSCH, ZEDS DEAD (A/V), MASTERHAND, OPHELIA B2B2B, ANDREW BAYER, BLANKE, TAK SHAK, JUSTIN RABIN, LIAM WALTERS. OPHELIA's block prints B2B2B with no partners named.",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 40,
+   "corrections": [
+    "3LAU: artist \"NICKY ROMERO 4:55 РM 3LAU\" → \"3LAU\"",
+    "BEN NICKY (PRESENTS EMOTIONAL HAVOC): artist \"MADDIX 7:45 PN BEN NICKY PRESENTS EMOTIONAL HAVOC\" → \"BEN NICKY (PRESENTS EMOTIONAL HAVOC)\"",
+    "MASSANO B2B CHRIS AVANTGARDE: artist \"MASSAND B2B CHRIS AVANTGARDE\" → \"MASSANO B2B CHRIS AVANTGARDE\"",
+    "APASHE LIVE BRASS ORCHESTRA: artist \"19 MASTERHAND 9:20 РM APASHE LIVE BRASS ORCHESTRA\" → \"APASHE LIVE BRASS ORCHESTRA\"",
+    "SPECIAL GUEST: artist \"BSOO NKE 9:00 SPECIAL GUEST\" → \"SPECIAL GUEST\"",
+    "K?D: artist \"KPD\" → \"K?D\"",
+    "DJ IDEAL B2B LUMINA: artist \"WYZZARD DJ IDEAL B2B LUMINA\" → \"DJ IDEAL B2B LUMINA\""
+   ],
+   "ocrMissed": [
+    "ULTRA MAIN STAGE 16:55 NICKY ROMERO",
+    "WORLDWIDE STAGE 19:45 MADDIX",
+    "OASIS 19:00 WYZZARD"
+   ],
+   "ocrExtra": [
+    "ULTRA MAIN STAGE 22:45 FISHER x CHRIS LAKE PRESENT UNDER CONSTRUCTION",
+    "ULTRA MAIN STAGE 21:15 HARDWELL",
+    "WORLDWIDE STAGE 22:30 ARMIN VAN BUUREN",
+    "WORLDWIDE STAGE 21:00 ARMIN VAN BUUREN B2B OLIVER HELDENS",
+    "MEGASTRUCTURE 22:00 AMELIE LENS",
+    "THE COVE 22:00 JORIS VOORN KÖLSCH B2B",
+    "LIVE STAGE 22:45 ZEDS DEAD",
+    "UMF RADIO 23:00 OPHELIA B282B",
+    "UMF RADIO 22:00 ANDREW BAYER",
+    "OASIS 23:00 TAK SHAK",
+    "OASIS 22:15 JUSTIN RABIN",
+    "OASIS 21:30 LIAM WALTERS"
+   ]
+  },
+  {
+   "day": 2,
+   "date": "2024-03-23",
+   "sha256": "804ca44326d68fc21e80c8edda637ec7780a9b95a4bbf4d4e39df3f37d53d42e",
+   "originalUrl": "https://ultramusicfestival.com/wp-content/uploads/2024/03/ULTRA2024_SET-TIMES_Sat-Complete-1-1600x1000.jpg",
+   "imageArchivedUrl": "https://web.archive.org/web/20240330001003/https://ultramusicfestival.com/wp-content/uploads/2024/03/ULTRA2024_SET-TIMES_Sat-Complete-1-1600x1000.jpg",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-19T20:47:27.763Z",
+   "rowsConfirmed": 51,
+   "note": "Header read off the graphic: SET TIMES · SAT MARCH 23 BAYFRONT · MARCH 23 BAYFRONT PARK 2024. Seven stage columns: ULTRA MAIN STAGE, WORLDWIDE STAGE, MEGASTRUCTURE and THE COVE on the left panel, LIVE STAGE, UMF RADIO and OASIS on the right; stage names are the column logos, uppercased. The UMF RADIO column prints a host logo under it each day (OPHELIA Friday, DIRTY WORKZ Saturday, purified Sunday); the stage is UMF RADIO. Every block prints a start only (\"9:15 PM\"), so every row is open-ended. A smaller coloured line under a name (LIVE, A/V, a presents line) is kept in parentheses after it, as printed. The original upload was never archived; this is the site's own 1600x1000 resized copy, which is legible. This is the re-issued Saturday grid (Sat-Complete-1, replacing 23-2): it adds sets moved from the shut-down Friday, among them HARDWELL, AMELIE LENS, JORIS VOORN B2B KOLSCH (printed without the umlaut here) and MASTERHAND.",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 42,
+   "corrections": [
+    "DAVID GUETTA: artist \"13 DAVID GUETTA\" → \"DAVID GUETTA\"",
+    "KSHMR: artist \"STEVE AOKI 5:15 Pм KSHMR\" → \"KSHMR\"",
+    "VINTAGE CULTURE: artist \"WAGS B2B LEMONY SNICKETTES\" → \"VINTAGE CULTURE\"; stage \"OASIS\" → \"MEGASTRUCTURE\"",
+    "MATHAME (A/V SHOW): artist \"VINTAGE CULTURE MATHAME\" → \"MATHAME (A/V SHOW)\"",
+    "REINIER ZONNEVELD (LIVE): artist \"REINIER ZONNEVELD LIVE\" → \"REINIER ZONNEVELD (LIVE)\"",
+    "DUBFIRE B2B ILARIO ALICANTE: artist \"DUBFIRE B2B ILARIU ALICANTE\" → \"DUBFIRE B2B ILARIO ALICANTE\"",
+    "WADE: artist \"JORIS VOORN B2B KOLSCH WADE\" → \"WADE\"",
+    "WAFF B2B CUARTERO: artist \"MAHMUT ORHAN 5:30 РM WAFF B2B CUARTERO\" → \"WAFF B2B CUARTERO\"",
+    "JAI WOLF: artist \"13 MADEON B2B SAN HOLO JAI WOLF\" → \"JAI WOLF\"",
+    "DEORRO: artist \"MEMBA 6:30 РM EVAN GIIA 5:20 РM DEORRO\" → \"DEORRO\"",
+    "WARFACE: artist \"RAN WARFACE\" → \"WARFACE\"",
+    "ADRENALIZE B2B SOUND RUSH: artist \"BEN NICKY PRESENTS XTREME ADRENALIZE B2B SOUND RUSH\" → \"ADRENALIZE B2B SOUND RUSH\"",
+    "ASCO: artist \"ASCU\" → \"ASCO\""
+   ],
+   "ocrMissed": [
+    "ULTRA MAIN STAGE 17:15 STEVE AOKI",
+    "THE COVE 20:30 JORIS VOORN B2B KOLSCH",
+    "THE COVE 17:30 MAHMUT ORHAN",
+    "LIVE STAGE 23:45 MADEON B2B SAN HOLO",
+    "LIVE STAGE 18:30 MEMBA",
+    "LIVE STAGE 17:20 EVAN GIIA",
+    "UMF RADIO 21:20 RAN D",
+    "UMF RADIO 17:35 BEN NICKY (PRESENTS XTREME)",
+    "OASIS 20:00 WAGS B2B LEMONY SNICKETTES"
+   ],
+   "ocrExtra": []
+  },
+  {
+   "day": 3,
+   "date": "2024-03-24",
+   "sha256": "37d325d0dd3ca7d87fccedb18e8fbc77fe2f02a803dc67971c11363c2c218dcb",
+   "originalUrl": "https://ultramusicfestival.com/wp-content/uploads/2024/03/ULTRA2024_SET-TIMES_Sun-Complete-2-1600x1000.jpg",
+   "imageArchivedUrl": "https://web.archive.org/web/20240331004356/https://ultramusicfestival.com/wp-content/uploads/2024/03/ULTRA2024_SET-TIMES_Sun-Complete-2-1600x1000.jpg",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-19T20:47:27.763Z",
+   "rowsConfirmed": 58,
+   "note": "Header read off the graphic: SET TIMES · SUN MARCH 24 BAYFRONT · MARCH 24 BAYFRONT PARK 2024. Seven stage columns: ULTRA MAIN STAGE, WORLDWIDE STAGE, MEGASTRUCTURE and THE COVE on the left panel, LIVE STAGE, UMF RADIO and OASIS on the right; stage names are the column logos, uppercased. The UMF RADIO column prints a host logo under it each day (OPHELIA Friday, DIRTY WORKZ Saturday, purified Sunday); the stage is UMF RADIO. Every block prints a start only (\"9:15 PM\"), so every row is open-ended. A smaller coloured line under a name (LIVE, A/V, a presents line) is kept in parentheses after it, as printed. The original upload was never archived; this is the site's own 1600x1000 resized copy, which is legible. This is the re-issued Sunday grid (Sun-Complete-2, replacing 24-2); the hour axis runs 12 PM to 10 PM. SASHA_JOHN DIGWEED is printed with an underscore. NORA EN PURE is printed twice, on ULTRA MAIN STAGE at 4:00 PM and on UMF RADIO at 7:15 PM.",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 56,
+   "corrections": [
+    "SVDDEN DEATH: artist \"\" → \"SVDDEN DEATH\"",
+    "BLACK TIGER SEX MACHINE (PRESENTS THE ANIME SHOW): artist \"BLACK TIGER SEX MACHINE PRESENTS THE ANIME SHOW\" → \"BLACK TIGER SEX MACHINE (PRESENTS THE ANIME SHOW)\"",
+    "ANDY C: artist \"ANDYC\" → \"ANDY C\"",
+    "ARTBAT: artist \"ARTBAI\" → \"ARTBAT\"",
+    "GIORGIA ANGIULI (LIVE): artist \"GIORGIA ANGIULI LIVE\" → \"GIORGIA ANGIULI (LIVE)\"",
+    "HI-LO B2B ELI BROWN: artist \"LI BROWN\" → \"HI-LO B2B ELI BROWN\"",
+    "ORBITAL: artist \"\" → \"ORBITAL\"",
+    "NORA EN PURE: artist \"VORA EN PURE\" → \"NORA EN PURE\"",
+    "EELKE KLEIJN: artist \"ELLE FUR EELKE KLEIJN\" → \"EELKE KLEIJN\"",
+    "NIGHTLAPSE: artist \"CHRIS LUNO 1:15 P NIGHTLAPSE\" → \"NIGHTLAPSE\""
+   ],
+   "ocrMissed": [
+    "UMF RADIO 17:45 ELI & FUR",
+    "UMF RADIO 13:15 CHRIS LUNO"
+   ],
+   "ocrExtra": []
+  }
+ ]
+}

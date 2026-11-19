@@ -6951,6 +6951,184 @@
    ],
    "why": "Sziget's programme prints every visiting act with where it comes from in parentheses (\"(UK)\", \"(USA)\", \"(D, H, UKR)\"), its house style across the whole line-up: the code is not part of the act's name. The words after the code are the show's title in Dutch, Hungarian and English (\"Feest / Mulatság / Fest\", a party), not an act.",
    "source": "https://www.sziget.hu/festival_english/programs"
+  },
+  {
+   "printed": "TIËSTO (SUNSET SLOT)",
+   "performers": [
+    {
+     "name": "TIËSTO",
+     "role": "performer"
+    }
+   ],
+   "setTag": "SUNSET SLOT",
+   "why": "\"SUNSET SLOT\" names the set (its time slot on the Main Stage), not a person: it is the set tag, and the billing counts on TIËSTO (the Sian (Techno Classics) rule).",
+   "source": "https://ultramusicfestival.com/set-times/"
+  },
+  {
+   "printed": "BEN NICKY (PRESENTS EMOTIONAL HAVOC)",
+   "performers": [
+    {
+     "name": "BEN NICKY",
+     "role": "performer"
+    }
+   ],
+   "setTag": "PRESENTS EMOTIONAL HAVOC",
+   "why": "\"PRESENTS EMOTIONAL HAVOC\" names the show the act played, not a person: it is the set tag, and the billing counts on BEN NICKY (the Sian (Techno Classics) rule).",
+   "source": "https://ultramusicfestival.com/set-times/"
+  },
+  {
+   "printed": "BEN NICKY (PRESENTS XTREME)",
+   "performers": [
+    {
+     "name": "BEN NICKY",
+     "role": "performer"
+    }
+   ],
+   "setTag": "PRESENTS XTREME",
+   "why": "\"PRESENTS XTREME\" names the show the act played, not a person: it is the set tag, and the billing counts on BEN NICKY (the Sian (Techno Classics) rule).",
+   "source": "https://ultramusicfestival.com/set-times/"
+  },
+  {
+   "printed": "MATHAME (A/V SHOW)",
+   "performers": [
+    {
+     "name": "MATHAME",
+     "role": "performer"
+    }
+   ],
+   "setTag": "A/V SHOW",
+   "why": "\"A/V SHOW\" says how the act played the set, not a person: it is the set tag, and the billing counts on MATHAME (the Sian (Techno Classics) rule).",
+   "source": "https://ultramusicfestival.com/set-times/"
+  },
+  {
+   "printed": "BLACK TIGER SEX MACHINE (PRESENTS THE ANIME SHOW)",
+   "performers": [
+    {
+     "name": "BLACK TIGER SEX MACHINE",
+     "role": "performer"
+    }
+   ],
+   "setTag": "PRESENTS THE ANIME SHOW",
+   "why": "\"PRESENTS THE ANIME SHOW\" names the show the act played, not a person: it is the set tag, and the billing counts on BLACK TIGER SEX MACHINE (the Sian (Techno Classics) rule).",
+   "source": "https://ultramusicfestival.com/set-times/"
+  },
+  {
+   "printed": "ZEDS DEAD (PRESENTS: RETURN TO THE SPECTRUM OF INTERGALACTIC HAPPINESS)",
+   "performers": [
+    {
+     "name": "ZEDS DEAD",
+     "role": "performer"
+    }
+   ],
+   "setTag": "PRESENTS: RETURN TO THE SPECTRUM OF INTERGALACTIC HAPPINESS",
+   "why": "\"PRESENTS: RETURN TO THE SPECTRUM OF INTERGALACTIC HAPPINESS\" names the show the act played, not a person: it is the set tag, and the billing counts on ZEDS DEAD (the Sian (Techno Classics) rule).",
+   "source": "https://ultramusicfestival.com/lineup/set-times/"
+  },
+  {
+   "printed": "CARL COX (EVOLUTION)",
+   "performers": [
+    {
+     "name": "CARL COX",
+     "role": "performer"
+    }
+   ],
+   "setTag": "EVOLUTION",
+   "why": "\"EVOLUTION\" names the show the act played, not a person: it is the set tag, and the billing counts on CARL COX (the Sian (Techno Classics) rule).",
+   "source": "https://ultramusicfestival.com/lineup/set-times/"
+  },
+  {
+   "printed": "RICHIE HAWTIN (DEX EFX X0X)",
+   "performers": [
+    {
+     "name": "RICHIE HAWTIN",
+     "role": "performer"
+    }
+   ],
+   "setTag": "DEX EFX X0X",
+   "why": "\"DEX EFX X0X\" names the show the act played (his live performance setup), not a person: it is the set tag, and the billing counts on RICHIE HAWTIN (the Sian (Techno Classics) rule).",
+   "source": "https://ultramusicfestival.com/lineup/set-times/"
+  },
+  {
+   "printed": "DUBFIRE (EVOLV)",
+   "performers": [
+    {
+     "name": "DUBFIRE",
+     "role": "performer"
+    }
+   ],
+   "setTag": "EVOLV",
+   "why": "\"EVOLV\" names the show the act played, not a person: it is the set tag, and the billing counts on DUBFIRE (the Sian (Techno Classics) rule).",
+   "source": "https://ultramusicfestival.com/lineup/set-times/"
+  },
+  {
+   "printed": "KSHMR (THE LIVE EXPERIENCE)",
+   "performers": [
+    {
+     "name": "KSHMR",
+     "role": "performer"
+    }
+   ],
+   "setTag": "THE LIVE EXPERIENCE",
+   "why": "\"THE LIVE EXPERIENCE\" says how the act played the set, not a person: it is the set tag, and the billing counts on KSHMR (the Sian (Techno Classics) rule).",
+   "source": "https://ultramusicfestival.com/lineup/set-times/"
+  },
+  {
+   "printed": "DEADMAU5 (RETRO5PECTIVE)",
+   "performers": [
+    {
+     "name": "DEADMAU5",
+     "role": "performer"
+    }
+   ],
+   "setTag": "RETRO5PECTIVE",
+   "why": "\"RETRO5PECTIVE\" names the show the act played, not a person: it is the set tag, and the billing counts on DEADMAU5 (the Sian (Techno Classics) rule).",
+   "source": "https://ultramusicfestival.com/lineup/set-times/"
+  },
+  {
+   "printed": "POPOF X SPACE 92 (PRESENT TURBULENCES)",
+   "performers": [
+    {
+     "name": "POPOF",
+     "role": "b2b"
+    },
+    {
+     "name": "SPACE 92",
+     "role": "b2b"
+    }
+   ],
+   "setTag": "PRESENT TURBULENCES",
+   "why": "The billing names two artists playing together (\"X\") and the show they present: each artist is credited b2b, and \"PRESENT TURBULENCES\" names the show, not a person, so it is the set tag (the Sian (Techno Classics) rule).",
+   "source": "https://ultramusicfestival.com/lineup/set-times/"
+  },
+  {
+   "printed": "EVERYTHING ALWAYS (DOM DOLLA + JOHN SUMMIT)",
+   "performers": [
+    {
+     "name": "EVERYTHING ALWAYS",
+     "role": "project",
+     "parents": [
+      "DOM DOLLA",
+      "JOHN SUMMIT"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the artists behind the billed project: EVERYTHING ALWAYS is a project with DOM DOLLA and JOHN SUMMIT as parents (the Tchami x Malaa (No Redemption) rule, printed the other way round).",
+   "source": "https://ultramusicfestival.com/lineup/set-times/"
+  },
+  {
+   "printed": "LSZEE (LSDREAM + CLOZEE)",
+   "performers": [
+    {
+     "name": "LSZEE",
+     "role": "project",
+     "parents": [
+      "LSDREAM",
+      "CLOZEE"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the artists behind the billed project: LSZEE is a project with LSDREAM and CLOZEE as parents (the Tchami x Malaa (No Redemption) rule, printed the other way round).",
+   "source": "https://ultramusicfestival.com/lineup/set-times/"
   }
  ],
  "pending": [

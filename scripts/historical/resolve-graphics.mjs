@@ -28,6 +28,18 @@ export const GRAPHIC_EDITIONS = {
   // Governors Ball 2024: "GBSchedule-Working-Fri-6.7.jpg" (final, from
   // 20240621); the April issue was "GB24-Schedule-Fri-4.25.png". The grids
   // print "FRI. JUNE 7" with no year; June 7 is a Friday in 2024 only.
+  // Ultra 2024: the original uploads were never archived, only WordPress's
+  // resized copies; the 1600x1000 copy is the largest and is legible. The
+  // Saturday and Sunday grids were re-issued as "Sat-Complete-1" and
+  // "Sun-Complete-2" during the festival.
+  "ultra-miami-2024": { year: 2024, page: "https://ultramusicfestival.com/set-times/", window: ["20240301", "20240331"],
+    image: /ULTRA2024_SET-TIMES_[^"'\s/]+?-1600x1000\.jpe?g/i,
+    days: [{ day: 1, date: "2024-03-22", token: /_22-/i }, { day: 2, date: "2024-03-23", token: /_(?:23|Sat)-/i }, { day: 3, date: "2024-03-24", token: /_(?:24|Sun)-/i }] },
+  // Ultra 2025 prints all three days on one graphic, so every day reads the
+  // same file. The page moved to /lineup/set-times/ that year.
+  "ultra-miami-2025": { year: 2025, page: "https://ultramusicfestival.com/lineup/set-times/", window: ["20250301", "20250330"],
+    image: /ULTRA2025-SET-TIMES[^"'\s/]*?\.png/i,
+    days: [{ day: 1, date: "2025-03-28", token: /SET-TIMES/i }, { day: 2, date: "2025-03-29", token: /SET-TIMES/i }, { day: 3, date: "2025-03-30", token: /SET-TIMES/i }] },
   "governors-ball-2024": { year: 2024, page: "https://www.governorsballmusicfestival.com/schedule", window: ["20240401", "20241231"],
     image: /(?:GBSchedule-Working|GB24-Schedule)-[^"'\s/]+?\.(?:png|jpg)/i,
     days: [{ day: 1, date: "2024-06-07", token: /-Fri/i }, { day: 2, date: "2024-06-08", token: /-Sat/i }, { day: 3, date: "2024-06-09", token: /-Sun/i }] },
