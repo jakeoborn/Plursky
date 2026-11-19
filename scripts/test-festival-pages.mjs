@@ -30,6 +30,7 @@ import { plateFor, isPlaceholderStage, MAX_PAGE_IMAGE_BYTES, editionHours } from
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const F_DIR = join(ROOT, 'f');
 const HIST = existsSync(join(ROOT, 'data/historical/index.json')) ? JSON.parse(readFileSync(join(ROOT, 'data/historical/index.json'), 'utf8')).editions : [];
+const CAL = existsSync(join(ROOT, 'data/historical/scan-calendar.json')) ? JSON.parse(readFileSync(join(ROOT, 'data/historical/scan-calendar.json'), 'utf8')).editions : [];
 
 let checks = 0, failed = 0;
 const fail = (msg) => { checks++; failed++; console.log(`  ✗  ${msg}`); };
@@ -136,7 +137,20 @@ function checkPage(entry, html, { verified }) {
   const pastLines = (section(html, 'past-h') || '').split('</li>').map(visibleText);
   const pastText = [lookText, ...pastLines].join(' ');
   const shown = /id="(past|lookback)-h"/.test(html);
-  if (!!past.length !== shown) out.push(`past-editions section present=${shown}, library has ${past.length}`);
+  // A year the scan calendar dates whose lineup is not in the library yet is
+  // listed too, read from the calendar here: its dates, its venue and
+  // "lineup coming", never a count, and never the look-back.
+  const pageYear = +id.slice(-4);
+  const calYears = CAL.filter(e => e.festivalId === id.replace(/-\d{4}$/, '') && e.year < pageYear && !HIST.some(h => h.festivalId === e.festivalId && h.year === e.year));
+  if (!!(past.length || calYears.length) !== shown) out.push(`past-editions section present=${shown}, library has ${past.length}, calendar ${calYears.length} more`);
+  for (const e of calYears) {
+    const line = pastLines.find(l => l.includes(`${e.name} —`));
+    if (!line) { out.push(`past editions do not list the dates-only year "${e.name}"`); continue; }
+    if (!/, lineup coming$/.test(line.trim())) out.push(`dates-only year "${e.name}" does not end "lineup coming"`);
+    if (/\bacts?\b|\bsets\b/.test(line)) out.push(`dates-only year "${e.name}" claims a count`);
+    if (e.venue && !line.includes(e.venue)) out.push(`dates-only year "${e.name}" does not name its venue ${e.venue}`);
+    if (lookText.includes(`${e.name} ·`)) out.push(`dates-only year "${e.name}" is the look-back`);
+  }
   for (const e of past) {
     const look = lookText.includes(`${e.name} ·`);
     const line = look ? lookText : pastLines.find(l => l.includes(`${e.name} —`));
@@ -331,6 +345,9 @@ const mutants = [
   ['an empty preview with its official links dropped', byId('coachella-2027'), (h) => h.replace(/<a href="https:\/\/www\.coachella\.com\/[^"]*"[^>]*>[^<]*<\/a>/g, 'coachella'), false], // site AND maps page
   // A lineup-only past edition relabelled with the zero its sets list happens to hold.
   ['a lineup-only past edition shown as "0 sets"', byId('nocturnal-wonderland-2026'), (h) => h.replace(', set times not verified</li>', ', 0 sets</li>'), false],
+  // A dates-only year dropped from the list, and one given a count it has no source for.
+  ['a dates-only past year dropped', byId('ultra-miami-2026'), (h) => h.replace(/\s*<li><a href="\/\?tab=past&amp;edition=ultra-miami-2025">[\s\S]*?<\/li>/, ''), false],
+  ['a dates-only past year given a count', byId('ultra-miami-2026'), (h) => h.replace('Bayfront Park, lineup coming</li>', 'Bayfront Park, 120 acts, lineup coming</li>'), false],
   // Control: the same sentence on VERIFIED geometry is not what the rule forbids.
   ['a walk-time sentence on verified geometry', verified, (h) => h.replace('</main>', `${WALK}\n</main>`), true],
   // GSC Events fields. Fixtures are chosen by what the data holds, so they
