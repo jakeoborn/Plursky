@@ -3,7 +3,7 @@
 > **Shipping?** See **[RELEASE.md](RELEASE.md)** — sync iOS, cache-bust, web
 > deploy, and App Store submit commands.
 
-## 🎆 SPEC-212 — NYE, attendance, win-back (status 2026-11-19 12:30 AM CT, main `16f93ebb`, web v646)
+## 🎆 SPEC-212 — NYE, attendance, win-back (status 2026-11-19 12:30 AM CT, main `670b74a1`, web v646)
 
 > Ledger lines for the merges below: `ops/build-ledger.jsonl` (the ledger has no
 > lines between 2026-10-24 and 2026-11-17; those merges are not backfilled here).
@@ -15,7 +15,7 @@
 - [x] #506 Lollapalooza 2018 by day and stage · #507 Governors Ball 2013–2015
 - [x] #509 Primavera Sound 2015 · #511 Primavera 2016–2019 · #513 Primavera 2012 (data only, v645)
 - [x] #514 Outside Lands + Lightning in a Bottle past editions · #516 Sónar Barcelona past editions (data only, v645)
-- [x] #510 Top-tier round 2 · #517 Sziget 2010/2011 set times · #518 festival pages list every dated past year · #519 year census batch 1 (v646)
+- [x] #510 Top-tier round 2 · #517 Sziget 2010/2011 set times · #518 festival pages list every dated past year · #519 / #520 year census batches 1 and 2 (v646)
 
 **Open (Claude Plur), none live yet:**
 - [ ] W2 #500 Decadence venue source @ `a928bc11` (v650): merge lane, then live-verify the pages
