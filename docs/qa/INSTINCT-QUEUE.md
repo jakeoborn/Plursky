@@ -132,7 +132,7 @@ from `_DATA_SETS`. Ordered by start date; entries without one sort last.
 | III Points 2026 | `iii-points-2026` | Oct 16–17, 2026 | 231 | 231 | 0 | 13 | live |
 | Escape Halloween 2026 | `escape-halloween-2026` | Oct 30–31, 2026 | 118 | 118 | 0 | 7 | live |
 | EDC Orlando 2026 | `edc-orlando-2026` | Nov 6–8, 2026 | 133 | 133 | 0 | 5 | live |
-| Dreamstate SoCal 2026 | `dreamstate-socal-2026` | Nov 20–21, 2026 | 70 | 0 | 70 | 5 | live |
+| Dreamstate SoCal 2026 | `dreamstate-socal-2026` | Nov 20–21, 2026 | 70 | 70 | 0 | 5 | live |
 | Djakarta Warehouse Project 2026 | `dwp-2026` | Dec 11–13, 2026 | 27 | 0 | 27 | 0 | live |
 | Tomorrowland Thailand 2026 | `tomorrowland-thailand-2026` | Dec 11–13, 2026 | 158 | 158 | 0 | 7 | live |
 | EDC Thailand 2026 | `edc-thailand-2026` | Dec 18–20, 2026 | 100 | 0 | 100 | 0 | live |

@@ -264,7 +264,7 @@
     }
    ],
    "why": "Dreamstate SoCal 2026 sells this row as one co-billed set; the module records the official lineup list (70 <li> rows, 14 co-billed) and that every half is a real artist. Each named artist is credited as co-billed; nothing is merged.",
-   "source": "https://socal.dreamstateusa.com/lineup/"
+   "source": "https://socal.dreamstateusa.com/lineup/set-times/"
   },
   {
    "printed": "ALPHA 9 + Ilan Bluestone",
@@ -279,7 +279,7 @@
     }
    ],
    "why": "Dreamstate SoCal 2026 sells this row as one co-billed set; the module records the official lineup list (70 <li> rows, 14 co-billed) and that every half is a real artist. Each named artist is credited as co-billed; nothing is merged.",
-   "source": "https://socal.dreamstateusa.com/lineup/"
+   "source": "https://socal.dreamstateusa.com/lineup/set-times/"
   },
   {
    "printed": "Aly & Fila + Billy Gillies",
@@ -294,22 +294,7 @@
     }
    ],
    "why": "Dreamstate SoCal 2026 sells this row as one co-billed set; the module records the official lineup list (70 <li> rows, 14 co-billed) and that every half is a real artist. Each named artist is credited as co-billed; nothing is merged.",
-   "source": "https://socal.dreamstateusa.com/lineup/"
-  },
-  {
-   "printed": "BT + Matt Fax",
-   "performers": [
-    {
-     "name": "BT",
-     "role": "cobilled"
-    },
-    {
-     "name": "Matt Fax",
-     "role": "cobilled"
-    }
-   ],
-   "why": "Dreamstate SoCal 2026 sells this row as one co-billed set; the module records the official lineup list (70 <li> rows, 14 co-billed) and that every half is a real artist. Each named artist is credited as co-billed; nothing is merged.",
-   "source": "https://socal.dreamstateusa.com/lineup/"
+   "source": "https://socal.dreamstateusa.com/lineup/set-times/"
   },
   {
    "printed": "Darren Porter + Sean Tyas",
@@ -324,7 +309,7 @@
     }
    ],
    "why": "Dreamstate SoCal 2026 sells this row as one co-billed set; the module records the official lineup list (70 <li> rows, 14 co-billed) and that every half is a real artist. Each named artist is credited as co-billed; nothing is merged.",
-   "source": "https://socal.dreamstateusa.com/lineup/"
+   "source": "https://socal.dreamstateusa.com/lineup/set-times/"
   },
   {
    "printed": "David Rust + Olly James",
@@ -339,7 +324,7 @@
     }
    ],
    "why": "Dreamstate SoCal 2026 sells this row as one co-billed set; the module records the official lineup list (70 <li> rows, 14 co-billed) and that every half is a real artist. Each named artist is credited as co-billed; nothing is merged.",
-   "source": "https://socal.dreamstateusa.com/lineup/"
+   "source": "https://socal.dreamstateusa.com/lineup/set-times/"
   },
   {
    "printed": "Eddie Halliwell + Judge Jules",
@@ -354,7 +339,7 @@
     }
    ],
    "why": "Dreamstate SoCal 2026 sells this row as one co-billed set; the module records the official lineup list (70 <li> rows, 14 co-billed) and that every half is a real artist. Each named artist is credited as co-billed; nothing is merged.",
-   "source": "https://socal.dreamstateusa.com/lineup/"
+   "source": "https://socal.dreamstateusa.com/lineup/set-times/"
   },
   {
    "printed": "Ferry Corsten + Marsh",
@@ -369,7 +354,7 @@
     }
    ],
    "why": "Dreamstate SoCal 2026 sells this row as one co-billed set; the module records the official lineup list (70 <li> rows, 14 co-billed) and that every half is a real artist. Each named artist is credited as co-billed; nothing is merged.",
-   "source": "https://socal.dreamstateusa.com/lineup/"
+   "source": "https://socal.dreamstateusa.com/lineup/set-times/"
   },
   {
    "printed": "Hannah Laing + Marie Vaunt",
@@ -384,22 +369,7 @@
     }
    ],
    "why": "Dreamstate SoCal 2026 sells this row as one co-billed set; the module records the official lineup list (70 <li> rows, 14 co-billed) and that every half is a real artist. Each named artist is credited as co-billed; nothing is merged.",
-   "source": "https://socal.dreamstateusa.com/lineup/"
-  },
-  {
-   "printed": "John Askew + Simon Patterson",
-   "performers": [
-    {
-     "name": "John Askew",
-     "role": "cobilled"
-    },
-    {
-     "name": "Simon Patterson",
-     "role": "cobilled"
-    }
-   ],
-   "why": "Dreamstate SoCal 2026 sells this row as one co-billed set; the module records the official lineup list (70 <li> rows, 14 co-billed) and that every half is a real artist. Each named artist is credited as co-billed; nothing is merged.",
-   "source": "https://socal.dreamstateusa.com/lineup/"
+   "source": "https://socal.dreamstateusa.com/lineup/set-times/"
   },
   {
    "printed": "Bryan Kearney + John O'Callaghan pres Key4050",
@@ -414,22 +384,7 @@
     }
    ],
    "why": "The printing names the project and the artists behind it (\"A + B pres C\"): C is a project with A and B as parents (the Levity presents Lasership rule). The press release names the parents; the lineup page prints \"Key4050\".",
-   "source": "https://socal.dreamstateusa.com/lineup/"
-  },
-  {
-   "printed": "David Forbes + Mark Sherry pres Thick As Thieves",
-   "performers": [
-    {
-     "name": "Thick As Thieves",
-     "role": "project",
-     "parents": [
-      "David Forbes",
-      "Mark Sherry"
-     ]
-    }
-   ],
-   "why": "The printing names the project and the artists behind it (\"A + B pres C\"): C is a project with A and B as parents (the Levity presents Lasership rule).",
-   "source": "https://socal.dreamstateusa.com/lineup/"
+   "source": "https://socal.dreamstateusa.com/lineup/set-times/"
   },
   {
    "printed": "Ferry Tayle + Tonks pres Mirage (Live)",
@@ -445,7 +400,7 @@
    ],
    "setTag": "Live",
    "why": "The printing names the project and the artists behind it (\"A + B pres C\"): C is a project with A and B as parents (the Levity presents Lasership rule). \"(Live)\" is the set tag.",
-   "source": "https://socal.dreamstateusa.com/lineup/"
+   "source": "https://socal.dreamstateusa.com/lineup/set-times/"
   },
   {
    "printed": "Paul Denton + Will Rees pres Parallel Worlds",
@@ -460,7 +415,7 @@
     }
    ],
    "why": "The printing names the project and the artists behind it (\"A + B pres C\"): C is a project with A and B as parents (the Levity presents Lasership rule).",
-   "source": "https://socal.dreamstateusa.com/lineup/"
+   "source": "https://socal.dreamstateusa.com/lineup/set-times/"
   },
   {
    "printed": "Alex Chapman + Zoe Gitter",
@@ -611,7 +566,7 @@
    ],
    "setTag": "Anjunabeats Classics",
    "why": "\"Anjunabeats Classics\" names the set (Anjunabeats is the act's own label), not a person: it is the set tag, and the billing counts on Above & Beyond.",
-   "source": "https://socal.dreamstateusa.com/lineup/"
+   "source": "https://socal.dreamstateusa.com/lineup/set-times/"
   },
   {
    "printed": "Sunday (1994)",
@@ -633,7 +588,7 @@
     }
    ],
    "why": "The country code is the festival's own disambiguator for this name: kept whole, so it is never merged with another \"Kaufmann\".",
-   "source": "https://socal.dreamstateusa.com/lineup/"
+   "source": "https://socal.dreamstateusa.com/lineup/set-times/"
   },
   {
    "printed": "Malóne Morez B2B Miluhska",
@@ -7299,6 +7254,21 @@
    ],
    "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
    "source": "http://iiipoints.com/schedule/"
+  },
+  {
+   "printed": "David Forbes + John Askew",
+   "performers": [
+    {
+     "name": "David Forbes",
+     "role": "cobilled"
+    },
+    {
+     "name": "John Askew",
+     "role": "cobilled"
+    }
+   ],
+   "why": "Dreamstate SoCal 2026 sells this row as one co-billed set (official lineup and set-times pages, re-read 2026-11-20), and each half is a real artist already in the data. Each named artist is credited as co-billed; nothing is merged.",
+   "source": "https://socal.dreamstateusa.com/lineup/set-times/"
   }
  ],
  "pending": [
