@@ -21,7 +21,12 @@ import { citeToken, datedLabel, dayMinutes, graphicPrints, receiptGaps, sameGrap
 // official source, however accurate it looks.
 export const OFFICIAL_HOSTS = {
   "governors-ball": ["governorsballmusicfestival.com", "cdn.prod.website-files.com"],
-  "lollapalooza": ["lollapalooza.com", "cdn.prod.website-files.com"],
+  // assets-global.website-files.com (the older Webflow CDN hostname, as for
+  // ACL below): the archived 2021-2023 lollapalooza.com/schedule captures
+  // embed their daily grids from it. Extended to Lollapalooza on 2026-11-19
+  // (Plur thread), Lollapalooza grids only; the image must still be embedded
+  // on an archived official page and carry its hash and review entry.
+  "lollapalooza": ["lollapalooza.com", "cdn.prod.website-files.com", "assets-global.website-files.com"],
   // hardfest.com: HARD's own site, where HARD Summer 2012's page lived
   // (/hardsummer/) before the festival had its own domain.
   "hard-summer": ["hardsummer.com", "hardfest.com"],
@@ -36,8 +41,8 @@ export const OFFICIAL_HOSTS = {
   "edc-lv": ["lasvegas.electricdaisycarnival.com", "=electricdaisycarnival.com"],
   // assets-global.website-files.com is the same Webflow CDN under its older
   // hostname: every archived 2022 aclfestival.com/schedule capture embeds the
-  // grids from it (/626ab670470f4322713394d1/). Allowed for ACL only (Instinct
-  // ruling, SPEC-182, 2026-11-06); the image must still be embedded on an
+  // grids from it (/626ab670470f4322713394d1/). Allowed for ACL (Instinct
+  // ruling, SPEC-182, 2026-11-06) and, since 2026-11-19, Lollapalooza only; the image must still be embedded on an
   // archived official page and carry its hash and review entry.
   "acl": ["aclfestival.com", "cdn.prod.website-files.com", "assets-global.website-files.com"],
   // The 2012 and 2013 SoCal lineups lived on the root domain (lineup.php).

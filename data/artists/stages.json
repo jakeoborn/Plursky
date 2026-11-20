@@ -3817,6 +3817,88 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "lollapalooza:bud-light-seltzer",
+     "names": [
+      {
+       "printed": "BUD LIGHT SELTZER",
+       "editions": [
+        "lollapalooza-2021",
+        "lollapalooza-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:grubhub",
+     "names": [
+      {
+       "printed": "GRUBHUB",
+       "editions": [
+        "lollapalooza-2021"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:solana-x-perry-s",
+     "names": [
+      {
+       "printed": "SOLANA X PERRY'S",
+       "editions": [
+        "lollapalooza-2021",
+        "lollapalooza-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:bud-light-seltzer-sessions",
+     "names": [
+      {
+       "printed": "BUD LIGHT SELTZER SESSIONS",
+       "editions": [
+        "lollapalooza-2021",
+        "lollapalooza-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:discord",
+     "names": [
+      {
+       "printed": "DISCORD",
+       "editions": [
+        "lollapalooza-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:coinbase",
+     "names": [
+      {
+       "printed": "COINBASE",
+       "editions": [
+        "lollapalooza-2022",
+        "lollapalooza-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },
