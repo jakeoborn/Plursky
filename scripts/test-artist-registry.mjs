@@ -185,7 +185,10 @@ const out = build();
   // BONNIE X CLYDE billing (2019 Saturday) under its existing pending entry:
   // 212 rows. III Points 2014 adds two, pending with no claim: VI (THE DEEP
   // END) and LAURA (OF MIAMI), each a parenthetical that is not sourced (the
-  // Bunny (Rabbit in the Moon) rule): 214 rows. Past 214, stop and report.
+  // Bunny (Rabbit in the Moon) rule): 214 rows. LAUFEY WITH THE CHICAGO
+  // PHILHARMONIC is then ruled under the "with" rule (the orchestra's own event
+  // page bills the set as Laufey's): 213 rows. The cap stays at 214. Past 214,
+  // stop and report.
   check(review.length <= 214, `review queue is ${review.length} rows (> 214 means stop and report)`);
   check(review.every(r => r.reason) && excluded.every(e => e.reason && e.category), 'a review or excluded row without its reason');
   check(excluded.some(e => e.category === 'unnamed-slot'), 'control: no unnamed slot was excluded');
