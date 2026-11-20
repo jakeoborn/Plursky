@@ -1737,7 +1737,7 @@ function _readSetTrackPrefs() {
     var v1 = localStorage.getItem(SET_TRACK_PREF_V1_KEY);
     var fid = _setTrackActiveId();
     if (v1 != null && fid) {
-      if ((v1 === "on" || v1 === "off") && !(fid in prefs)) prefs[fid] = v1;
+      if ((v1 === "on" || v1 === "off") && !Object.prototype.hasOwnProperty.call(prefs, fid)) prefs[fid] = v1;
       localStorage.setItem(SET_TRACK_PREF_KEY, JSON.stringify(prefs));
       localStorage.removeItem(SET_TRACK_PREF_V1_KEY);
     }

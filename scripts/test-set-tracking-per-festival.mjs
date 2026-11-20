@@ -120,7 +120,7 @@ for (const [c, m] of wire) if (!c) { failed++; console.log(`  ✗  ${m}`); }
 const MUT = [
   ["var v = _readSetTrackPrefs()[festivalId];", 'var v = Object.values(_readSetTrackPrefs()).includes("on") ? "on" : _readSetTrackPrefs()[festivalId];'],  // a yes anywhere = a yes everywhere
   ["localStorage.removeItem(SET_TRACK_PREF_V1_KEY);", ""],                                                                         // legacy yes spreads
-  ["&& !(fid in prefs)) prefs[fid] = v1;", ") prefs[fid] = v1;"],                                                                  // legacy overrides an answer
+  ["&& !Object.prototype.hasOwnProperty.call(prefs, fid)) prefs[fid] = v1;", ") prefs[fid] = v1;"],                                                                  // legacy overrides an answer
   ["if (!festivalId) return;", 'if (!festivalId) festivalId = "undefined";'],                                                      // writes with no festival
 ];
 let caught = 0;
