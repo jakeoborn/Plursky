@@ -4370,6 +4370,21 @@
   "links": []
  },
  {
+  "key": "agent-rose",
+  "name": "AGENT ROSE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d2:sector3:1950:agent-rose"
+  ],
+  "firstSeen": "2014-10-11",
+  "lastSeen": "2014-10-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "agents-of-time",
   "name": "Agents Of Time",
   "aliases": [
@@ -13423,14 +13438,17 @@
  {
   "key": "artime",
   "name": "Artime",
-  "aliases": [],
+  "aliases": [
+   "ARTIME"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "iii-points-2026:iiip-artime-b2b-mystic-bill"
+   "iii-points-2026:iiip-artime-b2b-mystic-bill",
+   "iii-points-2014:d2:sector3:2220:artime"
   ],
-  "firstSeen": "2026-10-17",
+  "firstSeen": "2014-10-11",
   "lastSeen": "2026-10-17",
   "photo": null,
   "links": []
@@ -15704,6 +15722,21 @@
   ],
   "firstSeen": "2021-10-30",
   "lastSeen": "2024-11-08",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "avstin-pavl",
+  "name": "AVSTIN PAVL",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d1:mainframe:1945:avstin-pavl"
+  ],
+  "firstSeen": "2014-10-10",
+  "lastSeen": "2014-10-10",
   "photo": null,
   "links": []
  },
@@ -18925,6 +18958,21 @@
   "links": []
  },
  {
+  "key": "basti",
+  "name": "BASTI",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d2:mindmelt:2050:basti"
+  ],
+  "firstSeen": "2014-10-11",
+  "lastSeen": "2014-10-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "bastian-bux",
   "name": "Bastian Bux",
   "aliases": [],
@@ -21431,6 +21479,21 @@
   ],
   "firstSeen": "2024-08-01",
   "lastSeen": "2025-06-06",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "benton",
+  "name": "BENTON",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d1:mindmelt:2120:benton"
+  ],
+  "firstSeen": "2014-10-10",
+  "lastSeen": "2014-10-10",
   "photo": null,
   "links": []
  },
@@ -25063,6 +25126,21 @@
   "links": []
  },
  {
+  "key": "blue-jay",
+  "name": "BLUE JAY",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d3:skatespace:2000:blue-jay"
+  ],
+  "firstSeen": "2014-10-12",
+  "lastSeen": "2014-10-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "blue-lunar-monkey",
   "name": "Blue Lunar Monkey",
   "aliases": [],
@@ -25442,6 +25520,7 @@
    "electric-forest-2014:d3:tripolee:1730:bob-moses",
    "escape-halloween-2022:d2:sanitarium:2300:bob-moses-club-set",
    "governors-ball-2019:d3:american-eagle-stage:1950:bob-moses",
+   "iii-points-2014:d3:mainframe:2200:bob-moses",
    "lollapalooza-2016:d1:pepsi:1450:bob-moses",
    "lollapalooza-2022:d2:discord:2100:bob-moses",
    "outside-lands-2019:d3:sutro:1655:bob-moses",
@@ -26218,6 +26297,21 @@
   ],
   "firstSeen": "2026-10-17",
   "lastSeen": "2026-10-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "bonnie-beats",
+  "name": "BONNIE BEATS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d3:sector3:2000:bonnie-beats"
+  ],
+  "firstSeen": "2014-10-12",
+  "lastSeen": "2014-10-12",
   "photo": null,
   "links": []
  },
@@ -33275,7 +33369,9 @@
  {
   "key": "cashmere-cat",
   "name": "Cashmere Cat",
-  "aliases": [],
+  "aliases": [
+   "CASHMERE CAT"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -33283,6 +33379,7 @@
    "coachella-2015:d2:gobi:1645:cashmere-cat",
    "coachella-2015:d5:gobi:1645:cashmere-cat",
    "electric-forest-2014:d4:tripolee:2200:cashmere-cat",
+   "iii-points-2014:d2:skatespace:2330:cashmere-cat",
    "lollapalooza-2016:d1:pepsi:1945:cashmere-cat",
    "sonar-2017:d3:sonarlab:0035:cashmere-cat"
   ],
@@ -34605,14 +34702,17 @@
  {
   "key": "chalk",
   "name": "Chalk",
-  "aliases": [],
+  "aliases": [
+   "CHALK"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "lollapalooza-2026:lo42"
+   "lollapalooza-2026:lo42",
+   "iii-points-2014:d3:sector3:2100:chalk"
   ],
-  "firstSeen": "2026-07-30",
+  "firstSeen": "2014-10-12",
   "lastSeen": "2026-07-30",
   "photo": null,
   "links": []
@@ -36110,12 +36210,13 @@
    "acl-2021:d1:miller-lite:1900:chet-faker",
    "coachella-2015:d2:outdoor:1710:chet-faker",
    "coachella-2015:d5:outdoor:1710:chet-faker",
+   "iii-points-2014:d2:mainframe:2130:chet-faker",
    "lollapalooza-2015:d2:pepsi:1830:chet-faker",
    "outside-lands-2015:d1:sutro:1825:chet-faker",
    "primavera-sound-2015:d2:ray-ban:2355:chet-faker",
    "ultra-miami-2016:d1:live-stage:2130:chet-faker"
   ],
-  "firstSeen": "2015-04-11",
+  "firstSeen": "2014-10-11",
   "lastSeen": "2021-10-01",
   "photo": null,
   "links": []
@@ -40456,6 +40557,21 @@
   ],
   "firstSeen": "2022-07-30",
   "lastSeen": "2026-03-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "com-truise",
+  "name": "COM TRUISE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d3:mainframe:1955:com-truise"
+  ],
+  "firstSeen": "2014-10-12",
+  "lastSeen": "2014-10-12",
   "photo": null,
   "links": []
  },
@@ -48749,6 +48865,21 @@
   "links": []
  },
  {
+  "key": "deaf-poets",
+  "name": "DEAF POETS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d3:mindmelt:2115:deaf-poets"
+  ],
+  "firstSeen": "2014-10-12",
+  "lastSeen": "2014-10-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "deafheaven",
   "name": "Deafheaven",
   "aliases": [],
@@ -52771,6 +52902,21 @@
   ],
   "firstSeen": "2027-04-11",
   "lastSeen": "2027-04-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dinnerdate",
+  "name": "DINNERDATE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d3:skatespace:2245:dinnerdate"
+  ],
+  "firstSeen": "2014-10-12",
+  "lastSeen": "2014-10-12",
   "photo": null,
   "links": []
  },
@@ -57938,6 +58084,7 @@
    "coachella-2014:d4:do-lab:2200:dj-tennis",
    "edc-orlando-2019:d1:neongarden:1800:tiga-b2b-dj-tennis",
    "escape-halloween-2017:d2:cannibals-tea-party:2000:dj-tennis",
+   "iii-points-2014:d2:mindmelt:2240:dj-tennis",
    "primavera-sound-2017:d2:ray-ban:0400:dj-tennis",
    "sonar-2019:d3:sonarpub-by-thunder-bitch:0250:dj-tennis",
    "tomorrowland-2016:d2:cafe-d-anvers:2000:dj-tennis",
@@ -62164,14 +62311,17 @@
  {
   "key": "dude-skywalker",
   "name": "Dude Skywalker",
-  "aliases": [],
+  "aliases": [
+   "DUDE SKYWALKER"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "iii-points-2026:iiip-dude-skywalker"
+   "iii-points-2026:iiip-dude-skywalker",
+   "iii-points-2014:d3:skatespace:0100:dude-skywalker"
   ],
-  "firstSeen": "2026-10-16",
+  "firstSeen": "2014-10-12",
   "lastSeen": "2026-10-16",
   "photo": null,
   "links": []
@@ -62239,6 +62389,7 @@
    "coachella-2015:d5:sahara:2020:duke-dumont",
    "escape-halloween-2017:d2:slaughterhouse:2300:duke-dumont",
    "escape-halloween-2019:d1:the-grimm:2145:duke-dumont",
+   "iii-points-2014:d1:mainframe:0145:duke-dumont",
    "lollapalooza-2014:d2:perry-s:1515:duke-dumont",
    "lollapalooza-2016:d2:perry-s:1800:duke-dumont",
    "lollapalooza-2022:d3:solana-x-perry-s:1830:duke-dumont",
@@ -62943,6 +63094,21 @@
   "links": []
  },
  {
+  "key": "dza",
+  "name": "DZA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d2:skatespace:0100:dza"
+  ],
+  "firstSeen": "2014-10-11",
+  "lastSeen": "2014-10-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dzeko",
   "name": "DZEKO",
   "aliases": [],
@@ -63064,6 +63230,21 @@
   ],
   "firstSeen": "2019-07-27",
   "lastSeen": "2023-07-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "eagle-chief",
+  "name": "EAGLE CHIEF",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d3:mindmelt:1900:eagle-chief"
+  ],
+  "firstSeen": "2014-10-12",
+  "lastSeen": "2014-10-12",
   "photo": null,
   "links": []
  },
@@ -73121,6 +73302,7 @@
    "coachella-2015:d4:mojave:2200:flying-lotus",
    "electric-forest-2014:d3:sherwood-court:2130:flying-lotus",
    "governors-ball-2015:d3:gotham-tent:2000:flying-lotus",
+   "iii-points-2014:d1:mainframe:2315:flying-lotus",
    "lightning-in-a-bottle-2019:d3:lightning:0045:flying-lotus-3d",
    "lollapalooza-2015:d1:pepsi:2100:flying-lotus",
    "outside-lands-2019:d1:sutro:2040:flying-lotus-3d",
@@ -74125,6 +74307,21 @@
   ],
   "firstSeen": "2013-07-27",
   "lastSeen": "2013-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "frank-flux",
+  "name": "FRANK FLUX",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d2:skatespace:2030:frank-flux"
+  ],
+  "firstSeen": "2014-10-11",
+  "lastSeen": "2014-10-11",
   "photo": null,
   "links": []
  },
@@ -81029,6 +81226,21 @@
   "links": []
  },
  {
+  "key": "gooddroid",
+  "name": "GOODDROID",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d1:skatespace:1900:gooddroid"
+  ],
+  "firstSeen": "2014-10-10",
+  "lastSeen": "2014-10-10",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "goodgroove",
   "name": "Goodgroove",
   "aliases": [],
@@ -86430,6 +86642,21 @@
   "links": []
  },
  {
+  "key": "hercules-and-love-affair",
+  "name": "HERCULES & LOVE AFFAIR",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d1:mindmelt:2240:hercules-and-love-affair"
+  ],
+  "firstSeen": "2014-10-10",
+  "lastSeen": "2014-10-10",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "here-lies-man",
   "name": "HERE LIES MAN",
   "aliases": [],
@@ -88388,15 +88615,18 @@
  {
   "key": "hot-natured",
   "name": "Hot Natured",
-  "aliases": [],
+  "aliases": [
+   "HOT NATURED"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "coachella-2015:d1:gobi:1845:hot-natured",
-   "coachella-2015:d4:gobi:1850:hot-natured"
+   "coachella-2015:d4:gobi:1850:hot-natured",
+   "iii-points-2014:d3:mainframe:2320:hot-natured"
   ],
-  "firstSeen": "2015-04-10",
+  "firstSeen": "2014-10-12",
   "lastSeen": "2015-04-17",
   "photo": null,
   "links": []
@@ -89318,6 +89548,21 @@
   ],
   "firstSeen": "2014-04-20",
   "lastSeen": "2014-04-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "hunters-of-the-alps",
+  "name": "HUNTERS OF THE ALPS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d3:skatespace:2130:hunters-of-the-alps"
+  ],
+  "firstSeen": "2014-10-12",
+  "lastSeen": "2014-10-12",
   "photo": null,
   "links": []
  },
@@ -90302,10 +90547,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "iii-points-2014:d2:skatespace:2000:ideal",
    "ultra-miami-2017:d3:oasis:1600:ideal-b2b-zaa",
    "ultra-miami-2019:d3:oasis:2000:ideal-b2b-angemi"
   ],
-  "firstSeen": "2017-03-26",
+  "firstSeen": "2014-10-11",
   "lastSeen": "2019-03-31",
   "photo": null,
   "links": []
@@ -90805,6 +91051,21 @@
   ],
   "firstSeen": "2010-08-11",
   "lastSeen": "2010-08-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "illa",
+  "name": "ILLA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d1:skatespace:2015:illa"
+  ],
+  "firstSeen": "2014-10-10",
+  "lastSeen": "2014-10-10",
   "photo": null,
   "links": []
  },
@@ -94073,16 +94334,20 @@
  {
   "key": "jacques-greene",
   "name": "Jacques Greene",
-  "aliases": [],
+  "aliases": [
+   "JACQUES GREENE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "iii-points-2026:iiip-jacques-greene",
+   "iii-points-2014:d1:mainframe:0045:jacques-greene-live",
+   "iii-points-2014:d3:skatespace:2345:jacques-greene-dj-set",
    "shambhala-2024:d3:grove:0100:jacques-greene",
    "sonar-2017:d3:sonarclub:0225:jacques-greene"
   ],
-  "firstSeen": "2017-06-16",
+  "firstSeen": "2014-10-10",
   "lastSeen": "2026-10-16",
   "photo": null,
   "links": []
@@ -94101,6 +94366,21 @@
   ],
   "firstSeen": "2012-04-14",
   "lastSeen": "2013-06-21",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "jacuzzi-boys",
+  "name": "JACUZZI BOYS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d3:mindmelt:2205:jacuzzi-boys"
+  ],
+  "firstSeen": "2014-10-12",
+  "lastSeen": "2014-10-12",
   "photo": null,
   "links": []
  },
@@ -95071,6 +95351,7 @@
    "edc-orlando-2023:d1:neon-garden:2200:jamie-jones",
    "escape-halloween-2017:d1:cannibals-tea-party:2345:jamie-jones",
    "escape-halloween-2017:d1:cannibals-tea-party:0100:jamie-jones-b2b-joseph-capriati",
+   "iii-points-2014:d3:mainframe:0145:jamie-jones",
    "nocturnal-wonderland-2012:d2:upside-down-room:1900:jamie-jones",
    "tomorrowland-2012:d1:cafe-d-anvers:2300:jamie-jones",
    "tomorrowland-2013:d1:jamie-jones-pr-paradise:2300:jamie-jones",
@@ -95155,8 +95436,8 @@
   "key": "jamie-xx",
   "name": "Jamie xx",
   "aliases": [
-   "Jamie XX",
-   "JAMIE XX"
+   "JAMIE XX",
+   "Jamie XX"
   ],
   "kind": "performer",
   "parents": [],
@@ -95164,6 +95445,7 @@
   "billings": [
    "coachella-2015:d3:gobi:2020:jamie-xx",
    "coachella-2015:d6:gobi:2020:jamie-xx",
+   "iii-points-2014:d2:mainframe:0145:jamie-xx",
    "outside-lands-2018:d2:sutro:1935:jamie-xx",
    "outside-lands-2025:d3:sutro:2020:jamie-xx",
    "primavera-sound-2012:d3:escenario-vice:0215:jamie-xx",
@@ -96790,9 +97072,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "iii-points-2026:iiip-jbz"
+   "iii-points-2026:iiip-jbz",
+   "iii-points-2014:d2:skatespace:2230:jbz"
   ],
-  "firstSeen": "2026-10-17",
+  "firstSeen": "2014-10-11",
   "lastSeen": "2026-10-17",
   "photo": null,
   "links": []
@@ -97491,14 +97774,18 @@
  {
   "key": "jeremy-ismael",
   "name": "Jeremy Ismael",
-  "aliases": [],
+  "aliases": [
+   "JEREMY ISMAEL"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "iii-points-2026:iiip-jeremy-ismael"
+   "iii-points-2026:iiip-jeremy-ismael",
+   "iii-points-2014:d2:mindmelt:1900:jeremy-ismael",
+   "iii-points-2014:d2:sector3:2310:jeremy-ismael"
   ],
-  "firstSeen": "2026-10-17",
+  "firstSeen": "2014-10-11",
   "lastSeen": "2026-10-17",
   "photo": null,
   "links": []
@@ -97714,6 +98001,21 @@
   ],
   "firstSeen": "2026-07-04",
   "lastSeen": "2026-07-04",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "jesp",
+  "name": "JESP",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d2:skatespace:1900:jesp"
+  ],
+  "firstSeen": "2014-10-11",
+  "lastSeen": "2014-10-11",
   "photo": null,
   "links": []
  },
@@ -100256,6 +100558,7 @@
   "projects": [],
   "billings": [
    "hard-summer-2012:d1:rbma-discotheque:1840:john-talabot",
+   "iii-points-2014:d2:mainframe:0030:john-talabot",
    "primavera-sound-2012:d1:escenario-ray-ban:0310:john-talabot-live",
    "primavera-sound-2015:d4:bowers-and-wilkins-sound-system:0030:john-talabot",
    "primavera-sound-2018:d4:desperados-club:0200:john-talabot",
@@ -102355,6 +102658,21 @@
   ],
   "firstSeen": "2011-08-07",
   "lastSeen": "2016-08-07",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "jport",
+  "name": "JPORT",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d1:sector3:1900:jport"
+  ],
+  "firstSeen": "2014-10-10",
+  "lastSeen": "2014-10-10",
   "photo": null,
   "links": []
  },
@@ -106436,6 +106754,7 @@
    "electric-forest-2014:d1:tripolee:1700:kaytranada",
    "governors-ball-2019:d3:american-eagle-stage:2130:kaytranada",
    "hard-summer-2025:d1:hard-stage:1905:kaytranada",
+   "iii-points-2014:d3:mainframe:2050:kaytranada",
    "lollapalooza-2017:d1:pepsi:1930:kaytranada",
    "lollapalooza-2021:d1:bud-light-seltzer:1900:kaytranada",
    "outside-lands-2017:d2:twin-peaks:1720:kaytranada",
@@ -106619,6 +106938,21 @@
   "links": []
  },
  {
+  "key": "keen-one",
+  "name": "KEEN ONE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d3:sector3:2200:keen-one"
+  ],
+  "firstSeen": "2014-10-12",
+  "lastSeen": "2014-10-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "keenan-mathias",
   "name": "KEENAN MATHIAS",
   "aliases": [],
@@ -106767,12 +107101,13 @@
    "portola-2026:pt2-kelela",
    "coachella-2027:coa27-kelela",
    "governors-ball-2018:d2:american-eagle-stage:1545:kelela",
+   "iii-points-2014:d2:mainframe:2040:kelela",
    "outside-lands-2018:d3:twin-peaks:1400:kelela",
    "primavera-sound-2015:d2:adidas-originals:2145:kelela",
    "primavera-sound-2018:d2:ray-ban:2035:kelela",
    "sonar-2016:d1:sonarhall:1900:kelela"
   ],
-  "firstSeen": "2015-05-28",
+  "firstSeen": "2014-10-11",
   "lastSeen": "2027-04-09",
   "photo": null,
   "links": []
@@ -107408,6 +107743,21 @@
   ],
   "firstSeen": "2025-03-28",
   "lastSeen": "2025-03-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "ketchy-shuby",
+  "name": "KETCHY SHUBY",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d1:mindmelt:1940:ketchy-shuby"
+  ],
+  "firstSeen": "2014-10-10",
+  "lastSeen": "2014-10-10",
   "photo": null,
   "links": []
  },
@@ -110292,6 +110642,21 @@
   "links": []
  },
  {
+  "key": "kodiak-fur",
+  "name": "KODIAK FUR",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d2:mainframe:1955:kodiak-fur"
+  ],
+  "firstSeen": "2014-10-11",
+  "lastSeen": "2014-10-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "kodie-shane",
   "name": "KODIE SHANE",
   "aliases": [],
@@ -111308,6 +111673,21 @@
   ],
   "firstSeen": "2013-06-27",
   "lastSeen": "2013-06-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "krisp",
+  "name": "KRISP",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d2:mainframe:1910:krisp"
+  ],
+  "firstSeen": "2014-10-11",
+  "lastSeen": "2014-10-11",
   "photo": null,
   "links": []
  },
@@ -114643,6 +115023,21 @@
   "links": []
  },
  {
+  "key": "laura-of-miami",
+  "name": "LAURA (OF MIAMI)",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d1:mindmelt:1900:laura-of-miami"
+  ],
+  "firstSeen": "2014-10-10",
+  "lastSeen": "2014-10-10",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "laura-van-dam",
   "name": "Laura van Dam",
   "aliases": [
@@ -115138,6 +115533,21 @@
   ],
   "firstSeen": "2021-11-13",
   "lastSeen": "2026-11-07",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "lazaro-casanova",
+  "name": "LAZARO CASANOVA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d2:mindmelt:2140:lazaro-casanova"
+  ],
+  "firstSeen": "2014-10-11",
+  "lastSeen": "2014-10-11",
   "photo": null,
   "links": []
  },
@@ -120825,6 +121235,21 @@
   "links": []
  },
  {
+  "key": "lou-flores",
+  "name": "LOU FLORES",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d1:sector3:2300:lou-flores"
+  ],
+  "firstSeen": "2014-10-10",
+  "lastSeen": "2014-10-10",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "lou-lou-players",
   "name": "Lou Lou Players",
   "aliases": [],
@@ -123422,6 +123847,7 @@
    "acl-2026:as38",
    "coachella-2015:d1:mojave:1920:lykke-li",
    "coachella-2015:d4:mojave:1920:lykke-li",
+   "iii-points-2014:d1:mainframe:2040:lykke-li",
    "lollapalooza-2011:d2:google:1915:lykke-li",
    "lollapalooza-2014:d1:lake-shore:1930:lykke-li",
    "lollapalooza-2018:d4:grant-park:untimed:lykke-li",
@@ -123985,6 +124411,7 @@
    "coachella-2017:d1:outdoor:1725:mac-demarco",
    "coachella-2017:d4:outdoor:1725:mac-demarco",
    "governors-ball-2017:d3:honda:1645:mac-demarco",
+   "iii-points-2014:d3:mindmelt:2300:mac-demarco",
    "lollapalooza-2017:d3:pepsi:2100:mac-demarco",
    "outside-lands-2015:d2:lands-end:1420:mac-demarco",
    "outside-lands-2018:d1:sutro:2000:mac-demarco",
@@ -131172,6 +131599,21 @@
   "links": []
  },
  {
+  "key": "maure",
+  "name": "MAURE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d2:skatespace:2145:maure"
+  ],
+  "firstSeen": "2014-10-11",
+  "lastSeen": "2014-10-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "maurice-west",
   "name": "Maurice West",
   "aliases": [],
@@ -134182,6 +134624,21 @@
   "links": []
  },
  {
+  "key": "methods",
+  "name": "METHODS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d2:sector3:2130:methods"
+  ],
+  "firstSeen": "2014-10-11",
+  "lastSeen": "2014-10-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "methyl-ethel",
   "name": "Methyl Ethel",
   "aliases": [
@@ -134279,6 +134736,7 @@
   "billings": [
    "coachella-2012:d3:outdoor:1400:metronomy",
    "coachella-2012:d6:outdoor:1400:metronomy",
+   "iii-points-2014:d2:mainframe:2255:metronomy",
    "primavera-sound-2017:d4:mango:2125:metronomy"
   ],
   "firstSeen": "2012-04-15",
@@ -136111,6 +136569,21 @@
   "links": []
  },
  {
+  "key": "mikey-ramirez",
+  "name": "MIKEY RAMIREZ",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d2:sector3:1900:mikey-ramirez"
+  ],
+  "firstSeen": "2014-10-11",
+  "lastSeen": "2014-10-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "mikey-thunder",
   "name": "Mikey Thunder",
   "aliases": [],
@@ -136410,6 +136883,21 @@
   ],
   "firstSeen": "2015-05-30",
   "lastSeen": "2015-05-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "millionyoung",
+  "name": "MILLIONYOUNG",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d1:mindmelt:2050:millionyoung"
+  ],
+  "firstSeen": "2014-10-10",
+  "lastSeen": "2014-10-10",
   "photo": null,
   "links": []
  },
@@ -140602,6 +141090,21 @@
   "links": []
  },
  {
+  "key": "mr-brown",
+  "name": "MR. BROWN",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d1:mindmelt:2200:mr-brown"
+  ],
+  "firstSeen": "2014-10-10",
+  "lastSeen": "2014-10-10",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "mr-carmack",
   "name": "Mr. Carmack",
   "aliases": [],
@@ -140764,6 +141267,21 @@
   ],
   "firstSeen": "2024-07-25",
   "lastSeen": "2024-07-25",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "mr-jolt",
+  "name": "MR. JOLT",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d2:sector3:2040:mr-jolt"
+  ],
+  "firstSeen": "2014-10-11",
+  "lastSeen": "2014-10-11",
   "photo": null,
   "links": []
  },
@@ -142190,6 +142708,21 @@
   ],
   "firstSeen": "2014-10-04",
   "lastSeen": "2014-10-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "my-deer",
+  "name": "MY DEER",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d3:skatespace:1915:my-deer"
+  ],
+  "firstSeen": "2014-10-12",
+  "lastSeen": "2014-10-12",
   "photo": null,
   "links": []
  },
@@ -147012,6 +147545,21 @@
   "links": []
  },
  {
+  "key": "nikey-blitz",
+  "name": "NIKEY BLITZ",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d3:mindmelt:2030:nikey-blitz"
+  ],
+  "firstSeen": "2014-10-12",
+  "lastSeen": "2014-10-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "niki",
   "name": "NIKI",
   "aliases": [],
@@ -147096,6 +147644,21 @@
   ],
   "firstSeen": "2016-03-19",
   "lastSeen": "2016-03-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "niko-javan",
+  "name": "NIKO JAVAN",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d1:skatespace:2100:niko-javan"
+  ],
+  "firstSeen": "2014-10-10",
+  "lastSeen": "2014-10-10",
   "photo": null,
   "links": []
  },
@@ -149549,6 +150112,21 @@
   ],
   "firstSeen": "2022-07-29",
   "lastSeen": "2022-07-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "nuri",
+  "name": "NURI",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d1:mainframe:1910:nuri-w-robb-bank"
+  ],
+  "firstSeen": "2014-10-10",
+  "lastSeen": "2014-10-10",
   "photo": null,
   "links": []
  },
@@ -155485,6 +156063,21 @@
   "links": []
  },
  {
+  "key": "pase-rock",
+  "name": "PASE ROCK",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d2:skatespace:2100:pase-rock"
+  ],
+  "firstSeen": "2014-10-11",
+  "lastSeen": "2014-10-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "passion-pit",
   "name": "Passion Pit",
   "aliases": [
@@ -155874,6 +156467,21 @@
   ],
   "firstSeen": "2015-07-24",
   "lastSeen": "2026-12-31",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "patrick-walsh",
+  "name": "PATRICK WALSH",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d1:mindmelt:2010:patrick-walsh"
+  ],
+  "firstSeen": "2014-10-10",
+  "lastSeen": "2014-10-10",
   "photo": null,
   "links": []
  },
@@ -159416,6 +160024,21 @@
   ],
   "firstSeen": "2022-05-20",
   "lastSeen": "2022-05-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "pirate-stereo",
+  "name": "PIRATE STEREO",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d1:sector3:2100:pirate-stereo"
+  ],
+  "firstSeen": "2014-10-10",
+  "lastSeen": "2014-10-10",
   "photo": null,
   "links": []
  },
@@ -169379,10 +170002,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "governors-ball-2014:d2:honda-stage:1330:rjd2"
+   "governors-ball-2014:d2:honda-stage:1330:rjd2",
+   "iii-points-2014:d1:skatespace:0030:rjd2"
   ],
   "firstSeen": "2014-06-07",
-  "lastSeen": "2014-06-07",
+  "lastSeen": "2014-10-10",
   "photo": null,
   "links": []
  },
@@ -169703,6 +170327,21 @@
   ],
   "firstSeen": "2027-01-09",
   "lastSeen": "2027-01-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "robb-bank",
+  "name": "ROBB BANK$",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d1:mainframe:1910:nuri-w-robb-bank"
+  ],
+  "firstSeen": "2014-10-10",
+  "lastSeen": "2014-10-10",
   "photo": null,
   "links": []
  },
@@ -171001,6 +171640,21 @@
   "links": []
  },
  {
+  "key": "rone",
+  "name": "RONE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d3:mainframe:1910:rone"
+  ],
+  "firstSeen": "2014-10-12",
+  "lastSeen": "2014-10-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "roni-size",
   "name": "Roni Size",
   "aliases": [],
@@ -172170,6 +172824,21 @@
   ],
   "firstSeen": "2024-08-02",
   "lastSeen": "2024-08-02",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "ruen",
+  "name": "RUEN",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d2:skatespace:1930:ruen"
+  ],
+  "firstSeen": "2014-10-11",
+  "lastSeen": "2014-10-11",
   "photo": null,
   "links": []
  },
@@ -175209,6 +175878,21 @@
   "links": []
  },
  {
+  "key": "santiago-caballero",
+  "name": "SANTIAGO CABALLERO",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d1:sector3:2000:santiago-caballero"
+  ],
+  "firstSeen": "2014-10-10",
+  "lastSeen": "2014-10-10",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "santigold",
   "name": "Santigold",
   "aliases": [
@@ -176985,6 +177669,21 @@
   ],
   "firstSeen": "2012-08-10",
   "lastSeen": "2012-08-10",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "sean-drake",
+  "name": "SEAN DRAKE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d1:sector3:2200:sean-drake"
+  ],
+  "firstSeen": "2014-10-10",
+  "lastSeen": "2014-10-10",
   "photo": null,
   "links": []
  },
@@ -195803,6 +196502,21 @@
   "links": []
  },
  {
+  "key": "telekenetic-walrus",
+  "name": "TELEKENETIC WALRUS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d1:skatespace:1945:telekenetic-walrus"
+  ],
+  "firstSeen": "2014-10-10",
+  "lastSeen": "2014-10-10",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "telekinesis",
   "name": "Telekinesis",
   "aliases": [],
@@ -195814,6 +196528,21 @@
   ],
   "firstSeen": "2011-09-17",
   "lastSeen": "2011-09-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "telescope-thieves",
+  "name": "TELESCOPE THIEVES",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d1:skatespace:2145:telescope-thieves"
+  ],
+  "firstSeen": "2014-10-10",
+  "lastSeen": "2014-10-10",
   "photo": null,
   "links": []
  },
@@ -198498,6 +199227,21 @@
   "links": []
  },
  {
+  "key": "the-deep",
+  "name": "THE DEEP",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d1:skatespace:2230:the-deep"
+  ],
+  "firstSeen": "2014-10-10",
+  "lastSeen": "2014-10-10",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "the-deep-dark-woods",
   "name": "The Deep Dark Woods",
   "aliases": [],
@@ -199886,6 +200630,21 @@
   "links": []
  },
  {
+  "key": "the-hongs",
+  "name": "THE HONGS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d3:skatespace:2215:the-hongs"
+  ],
+  "firstSeen": "2014-10-12",
+  "lastSeen": "2014-10-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "the-horrors",
   "name": "The Horrors",
   "aliases": [],
@@ -200068,6 +200827,21 @@
   ],
   "firstSeen": "2017-04-14",
   "lastSeen": "2017-04-21",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "the-jacket",
+  "name": "THE JACKET",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d3:skatespace:2045:the-jacket"
+  ],
+  "firstSeen": "2014-10-12",
+  "lastSeen": "2014-10-12",
   "photo": null,
   "links": []
  },
@@ -205734,6 +206508,7 @@
    "coachella-2012:d6:gobi:1720:thundercat",
    "coachella-2017:d2:mojave:1730:thundercat",
    "coachella-2017:d5:mojave:1730:thundercat",
+   "iii-points-2014:d1:mainframe:2215:thundercat",
    "outside-lands-2017:d2:twin-peaks:1545:thundercat",
    "outside-lands-2025:d1:lands-end:1610:thundercat",
    "primavera-sound-2018:d3:ray-ban:2235:thundercat",
@@ -205747,16 +206522,19 @@
  {
   "key": "thunderpony",
   "name": "Thunderpony",
-  "aliases": [],
+  "aliases": [
+   "THUNDERPONY"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "iii-points-2026:iiip-tiffy-vera-b2b-thunderpony",
    "edc-las-vegas-2022:d3:bionic-jungle:1900:thunderpony",
-   "edc-orlando-2023:d1:neon-garden:1300:thunderpony"
+   "edc-orlando-2023:d1:neon-garden:1300:thunderpony",
+   "iii-points-2014:d2:mindmelt:1930:thunderpony"
   ],
-  "firstSeen": "2022-05-22",
+  "firstSeen": "2014-10-11",
   "lastSeen": "2026-10-16",
   "photo": null,
   "links": []
@@ -206089,6 +206867,7 @@
    "coachella-2014:d5:yuma:2230:tiga",
    "edc-las-vegas-2013:d2:cosmicmeadow:2200:tiga",
    "edc-orlando-2019:d1:neongarden:1800:tiga-b2b-dj-tennis",
+   "iii-points-2014:d3:mainframe:0035:tiga",
    "tomorrowland-2018:d4:core:1945:tiga",
    "tomorrowland-2019:d1:freedom-stage-by-budweiser:2100:tiga"
   ],
@@ -209777,6 +210556,21 @@
   "links": []
  },
  {
+  "key": "tremends",
+  "name": "TREMENDS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d3:mindmelt:1945:tremends"
+  ],
+  "firstSeen": "2014-10-12",
+  "lastSeen": "2014-10-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "trent-cantrelle",
   "name": "Trent Cantrelle",
   "aliases": [],
@@ -212417,14 +213211,17 @@
  {
   "key": "uchi",
   "name": "Uchi",
-  "aliases": [],
+  "aliases": [
+   "UCHI"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "iii-points-2026:iiip-uchi"
+   "iii-points-2026:iiip-uchi",
+   "iii-points-2014:d2:mindmelt:2010:uchi"
   ],
-  "firstSeen": "2026-10-16",
+  "firstSeen": "2014-10-11",
   "lastSeen": "2026-10-16",
   "photo": null,
   "links": []
@@ -214816,6 +215613,21 @@
   ],
   "firstSeen": "2016-07-31",
   "lastSeen": "2018-06-02",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "vi-the-deep-end",
+  "name": "VI (THE DEEP END)",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d3:sector3:1900:vi-the-deep-end"
+  ],
+  "firstSeen": "2014-10-12",
+  "lastSeen": "2014-10-12",
   "photo": null,
   "links": []
  },
@@ -220059,14 +220871,17 @@
  {
   "key": "will-buck",
   "name": "Will Buck",
-  "aliases": [],
+  "aliases": [
+   "WILL BUCK"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "iii-points-2026:iiip-will-buck-b2b-taimur"
+   "iii-points-2026:iiip-will-buck-b2b-taimur",
+   "iii-points-2014:d1:skatespace:2330:will-buck"
   ],
-  "firstSeen": "2026-10-16",
+  "firstSeen": "2014-10-10",
   "lastSeen": "2026-10-16",
   "photo": null,
   "links": []
@@ -223166,6 +223981,21 @@
   ],
   "firstSeen": "2017-06-17",
   "lastSeen": "2022-06-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "ynot",
+  "name": "YNOT",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "iii-points-2014:d3:sector3:2300:ynot"
+  ],
+  "firstSeen": "2014-10-12",
+  "lastSeen": "2014-10-12",
   "photo": null,
   "links": []
  },

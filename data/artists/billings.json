@@ -327224,6 +327224,1956 @@
   "mainStage": null
  },
  {
+  "id": "iii-points-2014:d1:mainframe:1910:nuri-w-robb-bank",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-10",
+  "day": 1,
+  "stage": "MAINFRAME",
+  "start": "19:10",
+  "end": null,
+  "printed": "NURI W/ ROBB BANK$",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nuri",
+    "role": "performer"
+   },
+   {
+    "key": "robb-bank",
+    "role": "guest"
+   }
+  ],
+  "act": "nuri-w-robb-bank",
+  "closing": false,
+  "stageLineage": "iii-points:mainframe",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d1:mainframe:1945:avstin-pavl",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-10",
+  "day": 1,
+  "stage": "MAINFRAME",
+  "start": "19:45",
+  "end": null,
+  "printed": "AVSTIN PAVL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "avstin-pavl",
+    "role": "performer"
+   }
+  ],
+  "act": "avstin-pavl",
+  "closing": false,
+  "stageLineage": "iii-points:mainframe",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d1:mainframe:2040:lykke-li",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-10",
+  "day": 1,
+  "stage": "MAINFRAME",
+  "start": "20:40",
+  "end": null,
+  "printed": "LYKKE LI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lykke-li",
+    "role": "performer"
+   }
+  ],
+  "act": "lykke-li",
+  "closing": false,
+  "stageLineage": "iii-points:mainframe",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d1:mainframe:2215:thundercat",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-10",
+  "day": 1,
+  "stage": "MAINFRAME",
+  "start": "22:15",
+  "end": null,
+  "printed": "THUNDERCAT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "thundercat",
+    "role": "performer"
+   }
+  ],
+  "act": "thundercat",
+  "closing": false,
+  "stageLineage": "iii-points:mainframe",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d1:mainframe:2315:flying-lotus",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-10",
+  "day": 1,
+  "stage": "MAINFRAME",
+  "start": "23:15",
+  "end": null,
+  "printed": "FLYING LOTUS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "flying-lotus",
+    "role": "performer"
+   }
+  ],
+  "act": "flying-lotus",
+  "closing": false,
+  "stageLineage": "iii-points:mainframe",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d1:mainframe:0045:jacques-greene-live",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-10",
+  "day": 1,
+  "stage": "MAINFRAME",
+  "start": "00:45",
+  "end": null,
+  "printed": "JACQUES GREENE (LIVE)",
+  "setTag": "LIVE",
+  "performers": [
+   {
+    "key": "jacques-greene",
+    "role": "performer"
+   }
+  ],
+  "act": "jacques-greene",
+  "closing": false,
+  "stageLineage": "iii-points:mainframe",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d1:mainframe:0145:duke-dumont",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-10",
+  "day": 1,
+  "stage": "MAINFRAME",
+  "start": "01:45",
+  "end": null,
+  "printed": "DUKE DUMONT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "duke-dumont",
+    "role": "performer"
+   }
+  ],
+  "act": "duke-dumont",
+  "closing": true,
+  "stageLineage": "iii-points:mainframe",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d1:mindmelt:1900:laura-of-miami",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-10",
+  "day": 1,
+  "stage": "MINDMELT",
+  "start": "19:00",
+  "end": null,
+  "printed": "LAURA (OF MIAMI)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "laura-of-miami",
+    "role": "act"
+   }
+  ],
+  "act": "laura-of-miami",
+  "closing": false,
+  "stageLineage": "iii-points:mindmelt",
+  "mainStage": null,
+  "review": "parenthetical is not a known set tag"
+ },
+ {
+  "id": "iii-points-2014:d1:mindmelt:1940:ketchy-shuby",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-10",
+  "day": 1,
+  "stage": "MINDMELT",
+  "start": "19:40",
+  "end": null,
+  "printed": "KETCHY SHUBY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ketchy-shuby",
+    "role": "performer"
+   }
+  ],
+  "act": "ketchy-shuby",
+  "closing": false,
+  "stageLineage": "iii-points:mindmelt",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d1:mindmelt:2010:patrick-walsh",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-10",
+  "day": 1,
+  "stage": "MINDMELT",
+  "start": "20:10",
+  "end": null,
+  "printed": "PATRICK WALSH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "patrick-walsh",
+    "role": "performer"
+   }
+  ],
+  "act": "patrick-walsh",
+  "closing": false,
+  "stageLineage": "iii-points:mindmelt",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d1:mindmelt:2050:millionyoung",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-10",
+  "day": 1,
+  "stage": "MINDMELT",
+  "start": "20:50",
+  "end": null,
+  "printed": "MILLIONYOUNG",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "millionyoung",
+    "role": "performer"
+   }
+  ],
+  "act": "millionyoung",
+  "closing": false,
+  "stageLineage": "iii-points:mindmelt",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d1:mindmelt:2120:benton",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-10",
+  "day": 1,
+  "stage": "MINDMELT",
+  "start": "21:20",
+  "end": null,
+  "printed": "BENTON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "benton",
+    "role": "performer"
+   }
+  ],
+  "act": "benton",
+  "closing": false,
+  "stageLineage": "iii-points:mindmelt",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d1:mindmelt:2200:mr-brown",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-10",
+  "day": 1,
+  "stage": "MINDMELT",
+  "start": "22:00",
+  "end": null,
+  "printed": "MR. BROWN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mr-brown",
+    "role": "performer"
+   }
+  ],
+  "act": "mr-brown",
+  "closing": false,
+  "stageLineage": "iii-points:mindmelt",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d1:mindmelt:2240:hercules-and-love-affair",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-10",
+  "day": 1,
+  "stage": "MINDMELT",
+  "start": "22:40",
+  "end": null,
+  "printed": "HERCULES & LOVE AFFAIR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hercules-and-love-affair",
+    "role": "performer"
+   }
+  ],
+  "act": "hercules-and-love-affair",
+  "closing": true,
+  "stageLineage": "iii-points:mindmelt",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d1:sector3:1900:jport",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-10",
+  "day": 1,
+  "stage": "SECTOR3",
+  "start": "19:00",
+  "end": null,
+  "printed": "JPORT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jport",
+    "role": "performer"
+   }
+  ],
+  "act": "jport",
+  "closing": false,
+  "stageLineage": "iii-points:sector3",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d1:sector3:2000:santiago-caballero",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-10",
+  "day": 1,
+  "stage": "SECTOR3",
+  "start": "20:00",
+  "end": null,
+  "printed": "SANTIAGO CABALLERO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "santiago-caballero",
+    "role": "performer"
+   }
+  ],
+  "act": "santiago-caballero",
+  "closing": false,
+  "stageLineage": "iii-points:sector3",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d1:sector3:2100:pirate-stereo",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-10",
+  "day": 1,
+  "stage": "SECTOR3",
+  "start": "21:00",
+  "end": null,
+  "printed": "PIRATE STEREO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pirate-stereo",
+    "role": "performer"
+   }
+  ],
+  "act": "pirate-stereo",
+  "closing": false,
+  "stageLineage": "iii-points:sector3",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d1:sector3:2200:sean-drake",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-10",
+  "day": 1,
+  "stage": "SECTOR3",
+  "start": "22:00",
+  "end": null,
+  "printed": "SEAN DRAKE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sean-drake",
+    "role": "performer"
+   }
+  ],
+  "act": "sean-drake",
+  "closing": false,
+  "stageLineage": "iii-points:sector3",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d1:sector3:2300:lou-flores",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-10",
+  "day": 1,
+  "stage": "SECTOR3",
+  "start": "23:00",
+  "end": null,
+  "printed": "LOU FLORES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lou-flores",
+    "role": "performer"
+   }
+  ],
+  "act": "lou-flores",
+  "closing": true,
+  "stageLineage": "iii-points:sector3",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d1:skatespace:1900:gooddroid",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-10",
+  "day": 1,
+  "stage": "SKATESPACE",
+  "start": "19:00",
+  "end": null,
+  "printed": "GOODDROID",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gooddroid",
+    "role": "performer"
+   }
+  ],
+  "act": "gooddroid",
+  "closing": false,
+  "stageLineage": "iii-points:skatespace",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d1:skatespace:1945:telekenetic-walrus",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-10",
+  "day": 1,
+  "stage": "SKATESPACE",
+  "start": "19:45",
+  "end": null,
+  "printed": "TELEKENETIC WALRUS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "telekenetic-walrus",
+    "role": "performer"
+   }
+  ],
+  "act": "telekenetic-walrus",
+  "closing": false,
+  "stageLineage": "iii-points:skatespace",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d1:skatespace:2015:illa",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-10",
+  "day": 1,
+  "stage": "SKATESPACE",
+  "start": "20:15",
+  "end": null,
+  "printed": "ILLA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "illa",
+    "role": "performer"
+   }
+  ],
+  "act": "illa",
+  "closing": false,
+  "stageLineage": "iii-points:skatespace",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d1:skatespace:2100:niko-javan",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-10",
+  "day": 1,
+  "stage": "SKATESPACE",
+  "start": "21:00",
+  "end": null,
+  "printed": "NIKO JAVAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "niko-javan",
+    "role": "performer"
+   }
+  ],
+  "act": "niko-javan",
+  "closing": false,
+  "stageLineage": "iii-points:skatespace",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d1:skatespace:2145:telescope-thieves",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-10",
+  "day": 1,
+  "stage": "SKATESPACE",
+  "start": "21:45",
+  "end": null,
+  "printed": "TELESCOPE THIEVES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "telescope-thieves",
+    "role": "performer"
+   }
+  ],
+  "act": "telescope-thieves",
+  "closing": false,
+  "stageLineage": "iii-points:skatespace",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d1:skatespace:2230:the-deep",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-10",
+  "day": 1,
+  "stage": "SKATESPACE",
+  "start": "22:30",
+  "end": null,
+  "printed": "THE DEEP",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-deep",
+    "role": "performer"
+   }
+  ],
+  "act": "the-deep",
+  "closing": false,
+  "stageLineage": "iii-points:skatespace",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d1:skatespace:2330:will-buck",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-10",
+  "day": 1,
+  "stage": "SKATESPACE",
+  "start": "23:30",
+  "end": null,
+  "printed": "WILL BUCK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "will-buck",
+    "role": "performer"
+   }
+  ],
+  "act": "will-buck",
+  "closing": false,
+  "stageLineage": "iii-points:skatespace",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d1:skatespace:0030:rjd2",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-10",
+  "day": 1,
+  "stage": "SKATESPACE",
+  "start": "00:30",
+  "end": null,
+  "printed": "RJD2",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rjd2",
+    "role": "performer"
+   }
+  ],
+  "act": "rjd2",
+  "closing": true,
+  "stageLineage": "iii-points:skatespace",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d2:mainframe:1910:krisp",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-11",
+  "day": 2,
+  "stage": "MAINFRAME",
+  "start": "19:10",
+  "end": null,
+  "printed": "KRISP",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "krisp",
+    "role": "performer"
+   }
+  ],
+  "act": "krisp",
+  "closing": false,
+  "stageLineage": "iii-points:mainframe",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d2:mainframe:1955:kodiak-fur",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-11",
+  "day": 2,
+  "stage": "MAINFRAME",
+  "start": "19:55",
+  "end": null,
+  "printed": "KODIAK FUR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kodiak-fur",
+    "role": "performer"
+   }
+  ],
+  "act": "kodiak-fur",
+  "closing": false,
+  "stageLineage": "iii-points:mainframe",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d2:mainframe:2040:kelela",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-11",
+  "day": 2,
+  "stage": "MAINFRAME",
+  "start": "20:40",
+  "end": null,
+  "printed": "KELELA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kelela",
+    "role": "performer"
+   }
+  ],
+  "act": "kelela",
+  "closing": false,
+  "stageLineage": "iii-points:mainframe",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d2:mainframe:2130:chet-faker",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-11",
+  "day": 2,
+  "stage": "MAINFRAME",
+  "start": "21:30",
+  "end": null,
+  "printed": "CHET FAKER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chet-faker",
+    "role": "performer"
+   }
+  ],
+  "act": "chet-faker",
+  "closing": false,
+  "stageLineage": "iii-points:mainframe",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d2:mainframe:2255:metronomy",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-11",
+  "day": 2,
+  "stage": "MAINFRAME",
+  "start": "22:55",
+  "end": null,
+  "printed": "METRONOMY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "metronomy",
+    "role": "performer"
+   }
+  ],
+  "act": "metronomy",
+  "closing": false,
+  "stageLineage": "iii-points:mainframe",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d2:mainframe:0030:john-talabot",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-11",
+  "day": 2,
+  "stage": "MAINFRAME",
+  "start": "00:30",
+  "end": null,
+  "printed": "JOHN TALABOT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "john-talabot",
+    "role": "performer"
+   }
+  ],
+  "act": "john-talabot",
+  "closing": false,
+  "stageLineage": "iii-points:mainframe",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d2:mainframe:0145:jamie-xx",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-11",
+  "day": 2,
+  "stage": "MAINFRAME",
+  "start": "01:45",
+  "end": null,
+  "printed": "JAMIE XX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jamie-xx",
+    "role": "performer"
+   }
+  ],
+  "act": "jamie-xx",
+  "closing": true,
+  "stageLineage": "iii-points:mainframe",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d2:mindmelt:1900:jeremy-ismael",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-11",
+  "day": 2,
+  "stage": "MINDMELT",
+  "start": "19:00",
+  "end": null,
+  "printed": "JEREMY ISMAEL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jeremy-ismael",
+    "role": "performer"
+   }
+  ],
+  "act": "jeremy-ismael",
+  "closing": false,
+  "stageLineage": "iii-points:mindmelt",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d2:mindmelt:1930:thunderpony",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-11",
+  "day": 2,
+  "stage": "MINDMELT",
+  "start": "19:30",
+  "end": null,
+  "printed": "THUNDERPONY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "thunderpony",
+    "role": "performer"
+   }
+  ],
+  "act": "thunderpony",
+  "closing": false,
+  "stageLineage": "iii-points:mindmelt",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d2:mindmelt:2010:uchi",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-11",
+  "day": 2,
+  "stage": "MINDMELT",
+  "start": "20:10",
+  "end": null,
+  "printed": "UCHI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "uchi",
+    "role": "performer"
+   }
+  ],
+  "act": "uchi",
+  "closing": false,
+  "stageLineage": "iii-points:mindmelt",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d2:mindmelt:2050:basti",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-11",
+  "day": 2,
+  "stage": "MINDMELT",
+  "start": "20:50",
+  "end": null,
+  "printed": "BASTI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "basti",
+    "role": "performer"
+   }
+  ],
+  "act": "basti",
+  "closing": false,
+  "stageLineage": "iii-points:mindmelt",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d2:mindmelt:2140:lazaro-casanova",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-11",
+  "day": 2,
+  "stage": "MINDMELT",
+  "start": "21:40",
+  "end": null,
+  "printed": "LAZARO CASANOVA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lazaro-casanova",
+    "role": "performer"
+   }
+  ],
+  "act": "lazaro-casanova",
+  "closing": false,
+  "stageLineage": "iii-points:mindmelt",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d2:mindmelt:2240:dj-tennis",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-11",
+  "day": 2,
+  "stage": "MINDMELT",
+  "start": "22:40",
+  "end": null,
+  "printed": "DJ TENNIS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-tennis",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-tennis",
+  "closing": true,
+  "stageLineage": "iii-points:mindmelt",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d2:sector3:1900:mikey-ramirez",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-11",
+  "day": 2,
+  "stage": "SECTOR3",
+  "start": "19:00",
+  "end": null,
+  "printed": "MIKEY RAMIREZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mikey-ramirez",
+    "role": "performer"
+   }
+  ],
+  "act": "mikey-ramirez",
+  "closing": false,
+  "stageLineage": "iii-points:sector3",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d2:sector3:1950:agent-rose",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-11",
+  "day": 2,
+  "stage": "SECTOR3",
+  "start": "19:50",
+  "end": null,
+  "printed": "AGENT ROSE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "agent-rose",
+    "role": "performer"
+   }
+  ],
+  "act": "agent-rose",
+  "closing": false,
+  "stageLineage": "iii-points:sector3",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d2:sector3:2040:mr-jolt",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-11",
+  "day": 2,
+  "stage": "SECTOR3",
+  "start": "20:40",
+  "end": null,
+  "printed": "MR. JOLT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mr-jolt",
+    "role": "performer"
+   }
+  ],
+  "act": "mr-jolt",
+  "closing": false,
+  "stageLineage": "iii-points:sector3",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d2:sector3:2130:methods",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-11",
+  "day": 2,
+  "stage": "SECTOR3",
+  "start": "21:30",
+  "end": null,
+  "printed": "METHODS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "methods",
+    "role": "performer"
+   }
+  ],
+  "act": "methods",
+  "closing": false,
+  "stageLineage": "iii-points:sector3",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d2:sector3:2220:artime",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-11",
+  "day": 2,
+  "stage": "SECTOR3",
+  "start": "22:20",
+  "end": null,
+  "printed": "ARTIME",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "artime",
+    "role": "performer"
+   }
+  ],
+  "act": "artime",
+  "closing": false,
+  "stageLineage": "iii-points:sector3",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d2:sector3:2310:jeremy-ismael",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-11",
+  "day": 2,
+  "stage": "SECTOR3",
+  "start": "23:10",
+  "end": null,
+  "printed": "JEREMY ISMAEL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jeremy-ismael",
+    "role": "performer"
+   }
+  ],
+  "act": "jeremy-ismael",
+  "closing": true,
+  "stageLineage": "iii-points:sector3",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d2:skatespace:1900:jesp",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-11",
+  "day": 2,
+  "stage": "SKATESPACE",
+  "start": "19:00",
+  "end": null,
+  "printed": "JESP",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jesp",
+    "role": "performer"
+   }
+  ],
+  "act": "jesp",
+  "closing": false,
+  "stageLineage": "iii-points:skatespace",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d2:skatespace:1930:ruen",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-11",
+  "day": 2,
+  "stage": "SKATESPACE",
+  "start": "19:30",
+  "end": null,
+  "printed": "RUEN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ruen",
+    "role": "performer"
+   }
+  ],
+  "act": "ruen",
+  "closing": false,
+  "stageLineage": "iii-points:skatespace",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d2:skatespace:2000:ideal",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-11",
+  "day": 2,
+  "stage": "SKATESPACE",
+  "start": "20:00",
+  "end": null,
+  "printed": "IDEAL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ideal",
+    "role": "performer"
+   }
+  ],
+  "act": "ideal",
+  "closing": false,
+  "stageLineage": "iii-points:skatespace",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d2:skatespace:2030:frank-flux",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-11",
+  "day": 2,
+  "stage": "SKATESPACE",
+  "start": "20:30",
+  "end": null,
+  "printed": "FRANK FLUX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "frank-flux",
+    "role": "performer"
+   }
+  ],
+  "act": "frank-flux",
+  "closing": false,
+  "stageLineage": "iii-points:skatespace",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d2:skatespace:2100:pase-rock",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-11",
+  "day": 2,
+  "stage": "SKATESPACE",
+  "start": "21:00",
+  "end": null,
+  "printed": "PASE ROCK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pase-rock",
+    "role": "performer"
+   }
+  ],
+  "act": "pase-rock",
+  "closing": false,
+  "stageLineage": "iii-points:skatespace",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d2:skatespace:2145:maure",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-11",
+  "day": 2,
+  "stage": "SKATESPACE",
+  "start": "21:45",
+  "end": null,
+  "printed": "MAURE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "maure",
+    "role": "performer"
+   }
+  ],
+  "act": "maure",
+  "closing": false,
+  "stageLineage": "iii-points:skatespace",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d2:skatespace:2230:jbz",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-11",
+  "day": 2,
+  "stage": "SKATESPACE",
+  "start": "22:30",
+  "end": null,
+  "printed": "JBZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jbz",
+    "role": "performer"
+   }
+  ],
+  "act": "jbz",
+  "closing": false,
+  "stageLineage": "iii-points:skatespace",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d2:skatespace:2330:cashmere-cat",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-11",
+  "day": 2,
+  "stage": "SKATESPACE",
+  "start": "23:30",
+  "end": null,
+  "printed": "CASHMERE CAT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cashmere-cat",
+    "role": "performer"
+   }
+  ],
+  "act": "cashmere-cat",
+  "closing": false,
+  "stageLineage": "iii-points:skatespace",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d2:skatespace:0100:dza",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-11",
+  "day": 2,
+  "stage": "SKATESPACE",
+  "start": "01:00",
+  "end": null,
+  "printed": "DZA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dza",
+    "role": "performer"
+   }
+  ],
+  "act": "dza",
+  "closing": true,
+  "stageLineage": "iii-points:skatespace",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d3:mainframe:1910:rone",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-12",
+  "day": 3,
+  "stage": "MAINFRAME",
+  "start": "19:10",
+  "end": null,
+  "printed": "RONE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rone",
+    "role": "performer"
+   }
+  ],
+  "act": "rone",
+  "closing": false,
+  "stageLineage": "iii-points:mainframe",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d3:mainframe:1955:com-truise",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-12",
+  "day": 3,
+  "stage": "MAINFRAME",
+  "start": "19:55",
+  "end": null,
+  "printed": "COM TRUISE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "com-truise",
+    "role": "performer"
+   }
+  ],
+  "act": "com-truise",
+  "closing": false,
+  "stageLineage": "iii-points:mainframe",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d3:mainframe:2050:kaytranada",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-12",
+  "day": 3,
+  "stage": "MAINFRAME",
+  "start": "20:50",
+  "end": null,
+  "printed": "KAYTRANADA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kaytranada",
+    "role": "performer"
+   }
+  ],
+  "act": "kaytranada",
+  "closing": false,
+  "stageLineage": "iii-points:mainframe",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d3:mainframe:2200:bob-moses",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-12",
+  "day": 3,
+  "stage": "MAINFRAME",
+  "start": "22:00",
+  "end": null,
+  "printed": "BOB MOSES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bob-moses",
+    "role": "performer"
+   }
+  ],
+  "act": "bob-moses",
+  "closing": false,
+  "stageLineage": "iii-points:mainframe",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d3:mainframe:2320:hot-natured",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-12",
+  "day": 3,
+  "stage": "MAINFRAME",
+  "start": "23:20",
+  "end": null,
+  "printed": "HOT NATURED",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hot-natured",
+    "role": "performer"
+   }
+  ],
+  "act": "hot-natured",
+  "closing": false,
+  "stageLineage": "iii-points:mainframe",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d3:mainframe:0035:tiga",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-12",
+  "day": 3,
+  "stage": "MAINFRAME",
+  "start": "00:35",
+  "end": null,
+  "printed": "TIGA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tiga",
+    "role": "performer"
+   }
+  ],
+  "act": "tiga",
+  "closing": false,
+  "stageLineage": "iii-points:mainframe",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d3:mainframe:0145:jamie-jones",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-12",
+  "day": 3,
+  "stage": "MAINFRAME",
+  "start": "01:45",
+  "end": null,
+  "printed": "JAMIE JONES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jamie-jones",
+    "role": "performer"
+   }
+  ],
+  "act": "jamie-jones",
+  "closing": true,
+  "stageLineage": "iii-points:mainframe",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d3:mindmelt:1900:eagle-chief",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-12",
+  "day": 3,
+  "stage": "MINDMELT",
+  "start": "19:00",
+  "end": null,
+  "printed": "EAGLE CHIEF",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eagle-chief",
+    "role": "performer"
+   }
+  ],
+  "act": "eagle-chief",
+  "closing": false,
+  "stageLineage": "iii-points:mindmelt",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d3:mindmelt:1945:tremends",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-12",
+  "day": 3,
+  "stage": "MINDMELT",
+  "start": "19:45",
+  "end": null,
+  "printed": "TREMENDS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tremends",
+    "role": "performer"
+   }
+  ],
+  "act": "tremends",
+  "closing": false,
+  "stageLineage": "iii-points:mindmelt",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d3:mindmelt:2030:nikey-blitz",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-12",
+  "day": 3,
+  "stage": "MINDMELT",
+  "start": "20:30",
+  "end": null,
+  "printed": "NIKEY BLITZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nikey-blitz",
+    "role": "performer"
+   }
+  ],
+  "act": "nikey-blitz",
+  "closing": false,
+  "stageLineage": "iii-points:mindmelt",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d3:mindmelt:2115:deaf-poets",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-12",
+  "day": 3,
+  "stage": "MINDMELT",
+  "start": "21:15",
+  "end": null,
+  "printed": "DEAF POETS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "deaf-poets",
+    "role": "performer"
+   }
+  ],
+  "act": "deaf-poets",
+  "closing": false,
+  "stageLineage": "iii-points:mindmelt",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d3:mindmelt:2205:jacuzzi-boys",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-12",
+  "day": 3,
+  "stage": "MINDMELT",
+  "start": "22:05",
+  "end": null,
+  "printed": "JACUZZI BOYS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jacuzzi-boys",
+    "role": "performer"
+   }
+  ],
+  "act": "jacuzzi-boys",
+  "closing": false,
+  "stageLineage": "iii-points:mindmelt",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d3:mindmelt:2300:mac-demarco",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-12",
+  "day": 3,
+  "stage": "MINDMELT",
+  "start": "23:00",
+  "end": null,
+  "printed": "MAC DEMARCO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mac-demarco",
+    "role": "performer"
+   }
+  ],
+  "act": "mac-demarco",
+  "closing": true,
+  "stageLineage": "iii-points:mindmelt",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d3:sector3:1900:vi-the-deep-end",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-12",
+  "day": 3,
+  "stage": "SECTOR3",
+  "start": "19:00",
+  "end": null,
+  "printed": "VI (THE DEEP END)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vi-the-deep-end",
+    "role": "act"
+   }
+  ],
+  "act": "vi-the-deep-end",
+  "closing": false,
+  "stageLineage": "iii-points:sector3",
+  "mainStage": null,
+  "review": "parenthetical is not a known set tag"
+ },
+ {
+  "id": "iii-points-2014:d3:sector3:2000:bonnie-beats",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-12",
+  "day": 3,
+  "stage": "SECTOR3",
+  "start": "20:00",
+  "end": null,
+  "printed": "BONNIE BEATS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bonnie-beats",
+    "role": "performer"
+   }
+  ],
+  "act": "bonnie-beats",
+  "closing": false,
+  "stageLineage": "iii-points:sector3",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d3:sector3:2100:chalk",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-12",
+  "day": 3,
+  "stage": "SECTOR3",
+  "start": "21:00",
+  "end": null,
+  "printed": "CHALK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chalk",
+    "role": "performer"
+   }
+  ],
+  "act": "chalk",
+  "closing": false,
+  "stageLineage": "iii-points:sector3",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d3:sector3:2200:keen-one",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-12",
+  "day": 3,
+  "stage": "SECTOR3",
+  "start": "22:00",
+  "end": null,
+  "printed": "KEEN ONE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "keen-one",
+    "role": "performer"
+   }
+  ],
+  "act": "keen-one",
+  "closing": false,
+  "stageLineage": "iii-points:sector3",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d3:sector3:2300:ynot",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-12",
+  "day": 3,
+  "stage": "SECTOR3",
+  "start": "23:00",
+  "end": null,
+  "printed": "YNOT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ynot",
+    "role": "performer"
+   }
+  ],
+  "act": "ynot",
+  "closing": true,
+  "stageLineage": "iii-points:sector3",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d3:skatespace:1915:my-deer",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-12",
+  "day": 3,
+  "stage": "SKATESPACE",
+  "start": "19:15",
+  "end": null,
+  "printed": "MY DEER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "my-deer",
+    "role": "performer"
+   }
+  ],
+  "act": "my-deer",
+  "closing": false,
+  "stageLineage": "iii-points:skatespace",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d3:skatespace:2000:blue-jay",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-12",
+  "day": 3,
+  "stage": "SKATESPACE",
+  "start": "20:00",
+  "end": null,
+  "printed": "BLUE JAY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "blue-jay",
+    "role": "performer"
+   }
+  ],
+  "act": "blue-jay",
+  "closing": false,
+  "stageLineage": "iii-points:skatespace",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d3:skatespace:2045:the-jacket",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-12",
+  "day": 3,
+  "stage": "SKATESPACE",
+  "start": "20:45",
+  "end": null,
+  "printed": "THE JACKET",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-jacket",
+    "role": "performer"
+   }
+  ],
+  "act": "the-jacket",
+  "closing": false,
+  "stageLineage": "iii-points:skatespace",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d3:skatespace:2130:hunters-of-the-alps",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-12",
+  "day": 3,
+  "stage": "SKATESPACE",
+  "start": "21:30",
+  "end": null,
+  "printed": "HUNTERS OF THE ALPS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hunters-of-the-alps",
+    "role": "performer"
+   }
+  ],
+  "act": "hunters-of-the-alps",
+  "closing": false,
+  "stageLineage": "iii-points:skatespace",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d3:skatespace:2215:the-hongs",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-12",
+  "day": 3,
+  "stage": "SKATESPACE",
+  "start": "22:15",
+  "end": null,
+  "printed": "THE HONGS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-hongs",
+    "role": "performer"
+   }
+  ],
+  "act": "the-hongs",
+  "closing": false,
+  "stageLineage": "iii-points:skatespace",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d3:skatespace:2245:dinnerdate",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-12",
+  "day": 3,
+  "stage": "SKATESPACE",
+  "start": "22:45",
+  "end": null,
+  "printed": "DINNERDATE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dinnerdate",
+    "role": "performer"
+   }
+  ],
+  "act": "dinnerdate",
+  "closing": false,
+  "stageLineage": "iii-points:skatespace",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d3:skatespace:2345:jacques-greene-dj-set",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-12",
+  "day": 3,
+  "stage": "SKATESPACE",
+  "start": "23:45",
+  "end": null,
+  "printed": "JACQUES GREENE (DJ SET)",
+  "setTag": "DJ SET",
+  "performers": [
+   {
+    "key": "jacques-greene",
+    "role": "performer"
+   }
+  ],
+  "act": "jacques-greene",
+  "closing": false,
+  "stageLineage": "iii-points:skatespace",
+  "mainStage": null
+ },
+ {
+  "id": "iii-points-2014:d3:skatespace:0100:dude-skywalker",
+  "source": "edition",
+  "festivalId": "iii-points-2014",
+  "festivalBrand": "iii-points",
+  "year": 2014,
+  "date": "2014-10-12",
+  "day": 3,
+  "stage": "SKATESPACE",
+  "start": "01:00",
+  "end": null,
+  "printed": "DUDE SKYWALKER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dude-skywalker",
+    "role": "performer"
+   }
+  ],
+  "act": "dude-skywalker",
+  "closing": true,
+  "stageLineage": "iii-points:skatespace",
+  "mainStage": null
+ },
+ {
   "id": "lightning-in-a-bottle-2018:d1:beacon:2130:dream-seed",
   "source": "edition",
   "festivalId": "lightning-in-a-bottle-2018",

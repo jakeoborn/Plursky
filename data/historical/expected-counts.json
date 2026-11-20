@@ -23,6 +23,7 @@
   "ultra-miami-2016": { "stages": 9, "setsPerDay": [56, 82, 79], "droppedPerDay": [1, 1, 1] },
   "ultra-miami-2017": { "stages": 8, "setsPerDay": [54, 74, 69], "droppedPerDay": [1, 2, 1] },
   "ultra-miami-2019": { "stages": 8, "setsPerDay": [70, 65, 68], "droppedPerDay": [0, 1, 0] },
+  "iii-points-2014": { "stages": 4, "setsPerDay": [27, 28, 26], "droppedPerDay": [0, 0, 0] },
   "ultra-miami-2022": { "stages": 7, "setsPerDay": [46, 64, 51], "droppedPerDay": [1, 0, 1] },
   "ultra-miami-2023": { "stages": 7, "setsPerDay": [45, 66, 54], "droppedPerDay": [1, 1, 0] },
  "ultra-miami-2024": { "stages": 7, "setsPerDay": [30, 51, 58], "droppedPerDay": [1, 0, 0] },
