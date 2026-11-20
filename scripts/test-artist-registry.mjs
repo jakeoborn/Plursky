@@ -244,7 +244,9 @@ const out = build();
   const by = t => billings.find(b => b.printed === t);
   const roles = b => b && b.performers.map(x => `${x.key}:${x.role}`).join(' ');
   check(roles(by('Fallen with MC Dino')) === 'fallen:performer mc-dino:mc', `MC ruling: ${roles(by('Fallen with MC Dino'))}`);
-  check(roles(by('BT + Matt Fax')) === 'bt:cobilled matt-fax:cobilled', `co-billed ruling: ${roles(by('BT + Matt Fax'))}`);
+  // A past edition's billing, so a lineup refresh cannot remove the fixture
+  // (BT + Matt Fax left the Dreamstate SoCal 2026 lineup on 2026-11-20).
+  check(roles(by('Nosaj Thing + Daito Manabe')) === 'nosaj-thing:cobilled daito-manabe:cobilled', `co-billed ruling: ${roles(by('Nosaj Thing + Daito Manabe'))}`);
   const a = by('Above & Beyond (Anjunabeats Classics)');
   check(roles(a) === 'above-and-beyond:performer' && a.setTag === 'Anjunabeats Classics', `set-tag ruling: ${JSON.stringify(a && { p: roles(a), t: a.setTag })}`);
   const key = registry.find(r => r.key === 'key4050'), bk = registry.find(r => r.key === 'bryan-kearney');

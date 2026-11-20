@@ -1120,9 +1120,23 @@
         "dreamstate-socal-2019",
         "dreamstate-socal-2024"
        ]
+      },
+      {
+       "printed": "Dream",
+       "editions": [
+        "dreamstate-socal-2026"
+       ]
       }
      ],
-     "joins": [],
+     "joins": [
+      {
+       "from": "The Dream",
+       "to": "Dream",
+       "why": "The official 2026 set-times pages print this stage as \"The Dream\"; the app's stage list names it \"Dream\". Same stage, the article dropped.",
+       "source": "https://socal.dreamstateusa.com/lineup/set-times/",
+       "observedAt": "2026-11-20"
+      }
+     ],
      "mainStage": null
     },
     {
@@ -1142,9 +1156,23 @@
         "dreamstate-socal-2019",
         "dreamstate-socal-2024"
        ]
+      },
+      {
+       "printed": "Sequence",
+       "editions": [
+        "dreamstate-socal-2026"
+       ]
       }
      ],
-     "joins": [],
+     "joins": [
+      {
+       "from": "The Sequence",
+       "to": "Sequence",
+       "why": "The official 2026 set-times pages print this stage as \"The Sequence\"; the app's stage list names it \"Sequence\". Same stage, the article dropped.",
+       "source": "https://socal.dreamstateusa.com/lineup/set-times/",
+       "observedAt": "2026-11-20"
+      }
+     ],
      "mainStage": null
     },
     {
@@ -1164,9 +1192,23 @@
         "dreamstate-socal-2019",
         "dreamstate-socal-2024"
        ]
+      },
+      {
+       "printed": "Vision",
+       "editions": [
+        "dreamstate-socal-2026"
+       ]
       }
      ],
-     "joins": [],
+     "joins": [
+      {
+       "from": "The Vision",
+       "to": "Vision",
+       "why": "The official 2026 set-times pages print this stage as \"The Vision\"; the app's stage list names it \"Vision\". Same stage, the article dropped.",
+       "source": "https://socal.dreamstateusa.com/lineup/set-times/",
+       "observedAt": "2026-11-20"
+      }
+     ],
      "mainStage": null
     },
     {
@@ -1197,9 +1239,23 @@
        "editions": [
         "dreamstate-socal-2024"
        ]
+      },
+      {
+       "printed": "Void",
+       "editions": [
+        "dreamstate-socal-2026"
+       ]
       }
      ],
-     "joins": [],
+     "joins": [
+      {
+       "from": "The Void",
+       "to": "Void",
+       "why": "The official 2026 set-times pages print this stage as \"The Void\"; the app's stage list names it \"Void\". Same stage, the article dropped.",
+       "source": "https://socal.dreamstateusa.com/lineup/set-times/",
+       "observedAt": "2026-11-20"
+      }
+     ],
      "mainStage": null
     },
     {

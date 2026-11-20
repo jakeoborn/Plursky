@@ -60628,11 +60628,11 @@
   "festivalId": "dreamstate-socal-2026",
   "festivalBrand": "dreamstate-socal",
   "year": 2026,
-  "date": "2026-11-20",
-  "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-11-21",
+  "day": 2,
+  "stage": "Vision",
+  "start": "23:00",
+  "end": "00:00",
   "printed": "4 Strings (Classics Set)",
   "setTag": "Classics Set",
   "performers": [
@@ -60642,8 +60642,8 @@
    }
   ],
   "act": "4-strings",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-vision",
   "mainStage": null
  },
  {
@@ -60654,9 +60654,9 @@
   "year": 2026,
   "date": "2026-11-20",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Void",
+  "start": "19:00",
+  "end": "20:00",
   "printed": "A.N.I.",
   "setTag": null,
   "performers": [
@@ -60666,8 +60666,8 @@
    }
   ],
   "act": "a-n-i",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-void",
   "mainStage": null
  },
  {
@@ -60676,11 +60676,11 @@
   "festivalId": "dreamstate-socal-2026",
   "festivalBrand": "dreamstate-socal",
   "year": 2026,
-  "date": "2026-11-20",
-  "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-11-21",
+  "day": 2,
+  "stage": "Dream",
+  "start": "20:00",
+  "end": "21:00",
   "printed": "Aaron Hibell (Live)",
   "setTag": "Live",
   "performers": [
@@ -60690,8 +60690,8 @@
    }
   ],
   "act": "aaron-hibell",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-dream",
   "mainStage": null
  },
  {
@@ -60700,11 +60700,11 @@
   "festivalId": "dreamstate-socal-2026",
   "festivalBrand": "dreamstate-socal",
   "year": 2026,
-  "date": "2026-11-20",
-  "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-11-21",
+  "day": 2,
+  "stage": "Dream",
+  "start": "23:00",
+  "end": "01:00",
   "printed": "Above & Beyond (Anjunabeats Classics)",
   "setTag": "Anjunabeats Classics",
   "performers": [
@@ -60714,8 +60714,8 @@
    }
   ],
   "act": "above-and-beyond",
-  "closing": null,
-  "stageLineage": null,
+  "closing": true,
+  "stageLineage": "dreamstate-socal:the-dream",
   "mainStage": null
  },
  {
@@ -60724,11 +60724,11 @@
   "festivalId": "dreamstate-socal-2026",
   "festivalBrand": "dreamstate-socal",
   "year": 2026,
-  "date": "2026-11-20",
-  "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-11-21",
+  "day": 2,
+  "stage": "Sequence",
+  "start": "23:00",
+  "end": "00:00",
   "printed": "Ace Ventura",
   "setTag": null,
   "performers": [
@@ -60738,8 +60738,8 @@
    }
   ],
   "act": "ace-ventura",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-sequence",
   "mainStage": null
  },
  {
@@ -60748,11 +60748,11 @@
   "festivalId": "dreamstate-socal-2026",
   "festivalBrand": "dreamstate-socal",
   "year": 2026,
-  "date": "2026-11-20",
-  "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-11-21",
+  "day": 2,
+  "stage": "Vision",
+  "start": "20:00",
+  "end": "21:00",
   "printed": "Allen Watts + Talla 2XLC",
   "setTag": null,
   "performers": [
@@ -60766,8 +60766,8 @@
    }
   ],
   "act": "allen-watts-talla-2xlc",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-vision",
   "mainStage": null
  },
  {
@@ -60776,11 +60776,11 @@
   "festivalId": "dreamstate-socal-2026",
   "festivalBrand": "dreamstate-socal",
   "year": 2026,
-  "date": "2026-11-20",
-  "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-11-21",
+  "day": 2,
+  "stage": "Dream",
+  "start": "21:00",
+  "end": "22:00",
   "printed": "ALPHA 9 + Ilan Bluestone",
   "setTag": null,
   "performers": [
@@ -60794,8 +60794,8 @@
    }
   ],
   "act": "alpha-9-ilan-bluestone",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-dream",
   "mainStage": null
  },
  {
@@ -60804,11 +60804,11 @@
   "festivalId": "dreamstate-socal-2026",
   "festivalBrand": "dreamstate-socal",
   "year": 2026,
-  "date": "2026-11-20",
-  "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-11-21",
+  "day": 2,
+  "stage": "Void",
+  "start": "22:30",
+  "end": "23:45",
   "printed": "Aly & Fila + Billy Gillies",
   "setTag": null,
   "performers": [
@@ -60822,8 +60822,8 @@
    }
   ],
   "act": "aly-and-fila-billy-gillies",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-void",
   "mainStage": null
  },
  {
@@ -60834,9 +60834,9 @@
   "year": 2026,
   "date": "2026-11-20",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Dream",
+  "start": "21:00",
+  "end": "22:00",
   "printed": "Andrew Rayel pres Extasia",
   "setTag": null,
   "performers": [
@@ -60846,8 +60846,8 @@
    }
   ],
   "act": "andrew-rayel-pres-extasia",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-dream",
   "mainStage": null
  },
  {
@@ -60856,11 +60856,11 @@
   "festivalId": "dreamstate-socal-2026",
   "festivalBrand": "dreamstate-socal",
   "year": 2026,
-  "date": "2026-11-20",
-  "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-11-21",
+  "day": 2,
+  "stage": "Vision",
+  "start": "19:00",
+  "end": "20:00",
   "printed": "Andy Moor",
   "setTag": null,
   "performers": [
@@ -60870,8 +60870,8 @@
    }
   ],
   "act": "andy-moor",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-vision",
   "mainStage": null
  },
  {
@@ -60880,11 +60880,11 @@
   "festivalId": "dreamstate-socal-2026",
   "festivalBrand": "dreamstate-socal",
   "year": 2026,
-  "date": "2026-11-20",
-  "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-11-21",
+  "day": 2,
+  "stage": "Sequence",
+  "start": "00:00",
+  "end": "01:00",
   "printed": "Animato",
   "setTag": null,
   "performers": [
@@ -60894,8 +60894,8 @@
    }
   ],
   "act": "animato",
-  "closing": null,
-  "stageLineage": null,
+  "closing": true,
+  "stageLineage": "dreamstate-socal:the-sequence",
   "mainStage": null
  },
  {
@@ -60906,9 +60906,9 @@
   "year": 2026,
   "date": "2026-11-20",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Dream",
+  "start": "00:00",
+  "end": "01:00",
   "printed": "ARTBAT",
   "setTag": null,
   "performers": [
@@ -60918,8 +60918,8 @@
    }
   ],
   "act": "artbat",
-  "closing": null,
-  "stageLineage": null,
+  "closing": true,
+  "stageLineage": "dreamstate-socal:the-dream",
   "mainStage": null
  },
  {
@@ -60930,9 +60930,9 @@
   "year": 2026,
   "date": "2026-11-20",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Sequence",
+  "start": "22:00",
+  "end": "23:00",
   "printed": "Astrix",
   "setTag": null,
   "performers": [
@@ -60942,8 +60942,8 @@
    }
   ],
   "act": "astrix",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-sequence",
   "mainStage": null
  },
  {
@@ -60952,11 +60952,11 @@
   "festivalId": "dreamstate-socal-2026",
   "festivalBrand": "dreamstate-socal",
   "year": 2026,
-  "date": "2026-11-20",
-  "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-11-21",
+  "day": 2,
+  "stage": "Sequence",
+  "start": "16:00",
+  "end": "17:00",
   "printed": "Barakuda",
   "setTag": null,
   "performers": [
@@ -60966,8 +60966,8 @@
    }
   ],
   "act": "barakuda",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-sequence",
   "mainStage": null
  },
  {
@@ -60978,9 +60978,9 @@
   "year": 2026,
   "date": "2026-11-20",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Void",
+  "start": "17:00",
+  "end": "18:00",
   "printed": "BK",
   "setTag": null,
   "performers": [
@@ -60990,8 +60990,8 @@
    }
   ],
   "act": "bk",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-void",
   "mainStage": null
  },
  {
@@ -61000,11 +61000,11 @@
   "festivalId": "dreamstate-socal-2026",
   "festivalBrand": "dreamstate-socal",
   "year": 2026,
-  "date": "2026-11-20",
-  "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-11-21",
+  "day": 2,
+  "stage": "Void",
+  "start": "21:15",
+  "end": "22:30",
   "printed": "Bryan Kearney + John O'Callaghan pres Key4050",
   "setTag": null,
   "performers": [
@@ -61014,36 +61014,32 @@
    }
   ],
   "act": "bryan-kearney-john-o-callaghan-pres-key4050",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-void",
   "mainStage": null
  },
  {
-  "id": "dreamstate-socal-2026:dssc-bt-and-matt-fax",
+  "id": "dreamstate-socal-2026:dssc-bt",
   "source": "live",
   "festivalId": "dreamstate-socal-2026",
   "festivalBrand": "dreamstate-socal",
   "year": 2026,
   "date": "2026-11-20",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
-  "printed": "BT + Matt Fax",
+  "stage": "Vision",
+  "start": "23:00",
+  "end": "00:00",
+  "printed": "BT",
   "setTag": null,
   "performers": [
    {
     "key": "bt",
-    "role": "cobilled"
-   },
-   {
-    "key": "matt-fax",
-    "role": "cobilled"
+    "role": "performer"
    }
   ],
-  "act": "bt-matt-fax",
-  "closing": null,
-  "stageLineage": null,
+  "act": "bt",
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-vision",
   "mainStage": null
  },
  {
@@ -61054,9 +61050,9 @@
   "year": 2026,
   "date": "2026-11-20",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Sequence",
+  "start": "19:00",
+  "end": "20:00",
   "printed": "Burn In Noise",
   "setTag": null,
   "performers": [
@@ -61066,8 +61062,8 @@
    }
   ],
   "act": "burn-in-noise",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-sequence",
   "mainStage": null
  },
  {
@@ -61076,11 +61072,11 @@
   "festivalId": "dreamstate-socal-2026",
   "festivalBrand": "dreamstate-socal",
   "year": 2026,
-  "date": "2026-11-20",
-  "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-11-21",
+  "day": 2,
+  "stage": "Vision",
+  "start": "18:00",
+  "end": "19:00",
   "printed": "Chris Metcalfe",
   "setTag": null,
   "performers": [
@@ -61090,8 +61086,8 @@
    }
   ],
   "act": "chris-metcalfe",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-vision",
   "mainStage": null
  },
  {
@@ -61100,11 +61096,11 @@
   "festivalId": "dreamstate-socal-2026",
   "festivalBrand": "dreamstate-socal",
   "year": 2026,
-  "date": "2026-11-20",
-  "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-11-21",
+  "day": 2,
+  "stage": "Vision",
+  "start": "22:00",
+  "end": "23:00",
   "printed": "Cold Blue",
   "setTag": null,
   "performers": [
@@ -61114,8 +61110,8 @@
    }
   ],
   "act": "cold-blue",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-vision",
   "mainStage": null
  },
  {
@@ -61124,11 +61120,11 @@
   "festivalId": "dreamstate-socal-2026",
   "festivalBrand": "dreamstate-socal",
   "year": 2026,
-  "date": "2026-11-20",
-  "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-11-21",
+  "day": 2,
+  "stage": "Vision",
+  "start": "21:00",
+  "end": "22:00",
   "printed": "Darren Porter + Sean Tyas",
   "setTag": null,
   "performers": [
@@ -61142,8 +61138,8 @@
    }
   ],
   "act": "darren-porter-sean-tyas",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-vision",
   "mainStage": null
  },
  {
@@ -61152,11 +61148,11 @@
   "festivalId": "dreamstate-socal-2026",
   "festivalBrand": "dreamstate-socal",
   "year": 2026,
-  "date": "2026-11-20",
-  "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-11-21",
+  "day": 2,
+  "stage": "Dream",
+  "start": "16:00",
+  "end": "17:00",
   "printed": "Das Pharaoh",
   "setTag": null,
   "performers": [
@@ -61166,8 +61162,8 @@
    }
   ],
   "act": "das-pharaoh",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-dream",
   "mainStage": null
  },
  {
@@ -61178,9 +61174,9 @@
   "year": 2026,
   "date": "2026-11-20",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Dream",
+  "start": "22:00",
+  "end": "23:00",
   "printed": "Dash Berlin",
   "setTag": null,
   "performers": [
@@ -61190,32 +61186,36 @@
    }
   ],
   "act": "dash-berlin",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-dream",
   "mainStage": null
  },
  {
-  "id": "dreamstate-socal-2026:dssc-david-forbes-and-mark-sherry-pres-thick-as-thieves",
+  "id": "dreamstate-socal-2026:dssc-david-forbes-and-john-askew",
   "source": "live",
   "festivalId": "dreamstate-socal-2026",
   "festivalBrand": "dreamstate-socal",
   "year": 2026,
-  "date": "2026-11-20",
-  "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
-  "printed": "David Forbes + Mark Sherry pres Thick As Thieves",
+  "date": "2026-11-21",
+  "day": 2,
+  "stage": "Void",
+  "start": "20:00",
+  "end": "21:15",
+  "printed": "David Forbes + John Askew",
   "setTag": null,
   "performers": [
    {
-    "key": "thick-as-thieves",
-    "role": "project"
+    "key": "david-forbes",
+    "role": "cobilled"
+   },
+   {
+    "key": "john-askew",
+    "role": "cobilled"
    }
   ],
-  "act": "david-forbes-mark-sherry-pres-thick-as-thieves",
-  "closing": null,
-  "stageLineage": null,
+  "act": "david-forbes-john-askew",
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-void",
   "mainStage": null
  },
  {
@@ -61226,9 +61226,9 @@
   "year": 2026,
   "date": "2026-11-20",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Dream",
+  "start": "18:00",
+  "end": "19:00",
   "printed": "David Rust + Olly James",
   "setTag": null,
   "performers": [
@@ -61242,32 +61242,8 @@
    }
   ],
   "act": "david-rust-olly-james",
-  "closing": null,
-  "stageLineage": null,
-  "mainStage": null
- },
- {
-  "id": "dreamstate-socal-2026:dssc-discovery-project",
-  "source": "live",
-  "festivalId": "dreamstate-socal-2026",
-  "festivalBrand": "dreamstate-socal",
-  "year": 2026,
-  "date": "2026-11-20",
-  "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
-  "printed": "Discovery Project",
-  "setTag": null,
-  "performers": [
-   {
-    "key": "discovery-project",
-    "role": "performer"
-   }
-  ],
-  "act": "discovery-project",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-dream",
   "mainStage": null
  },
  {
@@ -61276,11 +61252,11 @@
   "festivalId": "dreamstate-socal-2026",
   "festivalBrand": "dreamstate-socal",
   "year": 2026,
-  "date": "2026-11-20",
-  "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-11-21",
+  "day": 2,
+  "stage": "Void",
+  "start": "19:00",
+  "end": "20:00",
   "printed": "Eddie Halliwell + Judge Jules",
   "setTag": null,
   "performers": [
@@ -61294,8 +61270,8 @@
    }
   ],
   "act": "eddie-halliwell-judge-jules",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-void",
   "mainStage": null
  },
  {
@@ -61306,9 +61282,9 @@
   "year": 2026,
   "date": "2026-11-20",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Void",
+  "start": "23:00",
+  "end": "00:00",
   "printed": "Enrico Sangiuliano",
   "setTag": null,
   "performers": [
@@ -61318,8 +61294,8 @@
    }
   ],
   "act": "enrico-sangiuliano",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-void",
   "mainStage": null
  },
  {
@@ -61328,11 +61304,11 @@
   "festivalId": "dreamstate-socal-2026",
   "festivalBrand": "dreamstate-socal",
   "year": 2026,
-  "date": "2026-11-20",
-  "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-11-21",
+  "day": 2,
+  "stage": "Dream",
+  "start": "22:00",
+  "end": "23:00",
   "printed": "Ferry Corsten + Marsh",
   "setTag": null,
   "performers": [
@@ -61346,8 +61322,8 @@
    }
   ],
   "act": "ferry-corsten-marsh",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-dream",
   "mainStage": null
  },
  {
@@ -61358,9 +61334,9 @@
   "year": 2026,
   "date": "2026-11-20",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Vision",
+  "start": "19:00",
+  "end": "20:00",
   "printed": "Ferry Tayle + Tonks pres Mirage (Live)",
   "setTag": "Live",
   "performers": [
@@ -61370,8 +61346,8 @@
    }
   ],
   "act": "ferry-tayle-tonks-pres-mirage",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-vision",
   "mainStage": null
  },
  {
@@ -61382,9 +61358,9 @@
   "year": 2026,
   "date": "2026-11-20",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Vision",
+  "start": "18:00",
+  "end": "19:00",
   "printed": "FRANKYEFFE",
   "setTag": null,
   "performers": [
@@ -61394,8 +61370,8 @@
    }
   ],
   "act": "frankyeffe",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-vision",
   "mainStage": null
  },
  {
@@ -61404,11 +61380,11 @@
   "festivalId": "dreamstate-socal-2026",
   "festivalBrand": "dreamstate-socal",
   "year": 2026,
-  "date": "2026-11-20",
-  "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-11-21",
+  "day": 2,
+  "stage": "Sequence",
+  "start": "21:00",
+  "end": "22:00",
   "printed": "Giorgia Angiuli",
   "setTag": null,
   "performers": [
@@ -61418,8 +61394,8 @@
    }
   ],
   "act": "giorgia-angiuli",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-sequence",
   "mainStage": null
  },
  {
@@ -61430,9 +61406,9 @@
   "year": 2026,
   "date": "2026-11-20",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Sequence",
+  "start": "20:00",
+  "end": "21:00",
   "printed": "GMS",
   "setTag": null,
   "performers": [
@@ -61442,8 +61418,8 @@
    }
   ],
   "act": "gms",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-sequence",
   "mainStage": null
  },
  {
@@ -61454,9 +61430,9 @@
   "year": 2026,
   "date": "2026-11-20",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Dream",
+  "start": "23:00",
+  "end": "00:00",
   "printed": "Hannah Laing + Marie Vaunt",
   "setTag": null,
   "performers": [
@@ -61470,8 +61446,32 @@
    }
   ],
   "act": "hannah-laing-marie-vaunt",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-dream",
+  "mainStage": null
+ },
+ {
+  "id": "dreamstate-socal-2026:dssc-hausman",
+  "source": "live",
+  "festivalId": "dreamstate-socal-2026",
+  "festivalBrand": "dreamstate-socal",
+  "year": 2026,
+  "date": "2026-11-21",
+  "day": 2,
+  "stage": "Void",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Hausman",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hausman",
+    "role": "performer"
+   }
+  ],
+  "act": "hausman",
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-void",
   "mainStage": null
  },
  {
@@ -61482,9 +61482,9 @@
   "year": 2026,
   "date": "2026-11-20",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Sequence",
+  "start": "00:00",
+  "end": "01:00",
   "printed": "Infected Mushroom",
   "setTag": null,
   "performers": [
@@ -61494,8 +61494,8 @@
    }
   ],
   "act": "infected-mushroom",
-  "closing": null,
-  "stageLineage": null,
+  "closing": true,
+  "stageLineage": "dreamstate-socal:the-sequence",
   "mainStage": null
  },
  {
@@ -61504,11 +61504,11 @@
   "festivalId": "dreamstate-socal-2026",
   "festivalBrand": "dreamstate-socal",
   "year": 2026,
-  "date": "2026-11-20",
-  "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-11-21",
+  "day": 2,
+  "stage": "Dream",
+  "start": "19:00",
+  "end": "20:00",
   "printed": "JOA",
   "setTag": null,
   "performers": [
@@ -61518,8 +61518,8 @@
    }
   ],
   "act": "joa",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-dream",
   "mainStage": null
  },
  {
@@ -61528,11 +61528,11 @@
   "festivalId": "dreamstate-socal-2026",
   "festivalBrand": "dreamstate-socal",
   "year": 2026,
-  "date": "2026-11-20",
-  "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-11-21",
+  "day": 2,
+  "stage": "Sequence",
+  "start": "20:00",
+  "end": "21:00",
   "printed": "John 00 Fleming",
   "setTag": null,
   "performers": [
@@ -61542,36 +61542,8 @@
    }
   ],
   "act": "john-00-fleming",
-  "closing": null,
-  "stageLineage": null,
-  "mainStage": null
- },
- {
-  "id": "dreamstate-socal-2026:dssc-john-askew-and-simon-patterson",
-  "source": "live",
-  "festivalId": "dreamstate-socal-2026",
-  "festivalBrand": "dreamstate-socal",
-  "year": 2026,
-  "date": "2026-11-20",
-  "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
-  "printed": "John Askew + Simon Patterson",
-  "setTag": null,
-  "performers": [
-   {
-    "key": "john-askew",
-    "role": "cobilled"
-   },
-   {
-    "key": "simon-patterson",
-    "role": "cobilled"
-   }
-  ],
-  "act": "john-askew-simon-patterson",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-sequence",
   "mainStage": null
  },
  {
@@ -61582,9 +61554,9 @@
   "year": 2026,
   "date": "2026-11-20",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Vision",
+  "start": "16:00",
+  "end": "17:00",
   "printed": "KARMÅ",
   "setTag": null,
   "performers": [
@@ -61594,8 +61566,8 @@
    }
   ],
   "act": "karma",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-vision",
   "mainStage": null
  },
  {
@@ -61606,9 +61578,9 @@
   "year": 2026,
   "date": "2026-11-20",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Sequence",
+  "start": "18:00",
+  "end": "19:00",
   "printed": "KAUFMANN (DE)",
   "setTag": null,
   "performers": [
@@ -61618,8 +61590,8 @@
    }
   ],
   "act": "kaufmann-de",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-sequence",
   "mainStage": null
  },
  {
@@ -61630,9 +61602,9 @@
   "year": 2026,
   "date": "2026-11-20",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Void",
+  "start": "18:00",
+  "end": "19:00",
   "printed": "Lee Ann Roberts",
   "setTag": null,
   "performers": [
@@ -61642,8 +61614,8 @@
    }
   ],
   "act": "lee-ann-roberts",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-void",
   "mainStage": null
  },
  {
@@ -61654,9 +61626,9 @@
   "year": 2026,
   "date": "2026-11-20",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Vision",
+  "start": "00:00",
+  "end": "01:00",
   "printed": "Marco V",
   "setTag": null,
   "performers": [
@@ -61666,8 +61638,8 @@
    }
   ],
   "act": "marco-v",
-  "closing": null,
-  "stageLineage": null,
+  "closing": true,
+  "stageLineage": "dreamstate-socal:the-vision",
   "mainStage": null
  },
  {
@@ -61676,11 +61648,11 @@
   "festivalId": "dreamstate-socal-2026",
   "festivalBrand": "dreamstate-socal",
   "year": 2026,
-  "date": "2026-11-20",
-  "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-11-21",
+  "day": 2,
+  "stage": "Vision",
+  "start": "17:00",
+  "end": "18:00",
   "printed": "Maria Healy",
   "setTag": null,
   "performers": [
@@ -61690,8 +61662,8 @@
    }
   ],
   "act": "maria-healy",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-vision",
   "mainStage": null
  },
  {
@@ -61702,9 +61674,9 @@
   "year": 2026,
   "date": "2026-11-20",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Dream",
+  "start": "20:00",
+  "end": "21:00",
   "printed": "MaRLo",
   "setTag": null,
   "performers": [
@@ -61714,8 +61686,8 @@
    }
   ],
   "act": "marlo",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-dream",
   "mainStage": null
  },
  {
@@ -61726,9 +61698,9 @@
   "year": 2026,
   "date": "2026-11-20",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Dream",
+  "start": "17:00",
+  "end": "18:00",
   "printed": "Matty Ralph",
   "setTag": null,
   "performers": [
@@ -61738,8 +61710,8 @@
    }
   ],
   "act": "matty-ralph",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-dream",
   "mainStage": null
  },
  {
@@ -61750,9 +61722,9 @@
   "year": 2026,
   "date": "2026-11-20",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Vision",
+  "start": "22:00",
+  "end": "23:00",
   "printed": "Mauro Picotto",
   "setTag": null,
   "performers": [
@@ -61762,8 +61734,8 @@
    }
   ],
   "act": "mauro-picotto",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-vision",
   "mainStage": null
  },
  {
@@ -61774,9 +61746,9 @@
   "year": 2026,
   "date": "2026-11-20",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Sequence",
+  "start": "16:00",
+  "end": "17:00",
   "printed": "Maximizer",
   "setTag": null,
   "performers": [
@@ -61786,8 +61758,8 @@
    }
   ],
   "act": "maximizer",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-sequence",
   "mainStage": null
  },
  {
@@ -61798,9 +61770,9 @@
   "year": 2026,
   "date": "2026-11-20",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Sequence",
+  "start": "23:00",
+  "end": "00:00",
   "printed": "Neelix",
   "setTag": null,
   "performers": [
@@ -61810,8 +61782,8 @@
    }
   ],
   "act": "neelix",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-sequence",
   "mainStage": null
  },
  {
@@ -61822,9 +61794,9 @@
   "year": 2026,
   "date": "2026-11-20",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Vision",
+  "start": "20:00",
+  "end": "21:00",
   "printed": "NRG2000",
   "setTag": null,
   "performers": [
@@ -61834,8 +61806,8 @@
    }
   ],
   "act": "nrg2000",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-vision",
   "mainStage": null
  },
  {
@@ -61844,11 +61816,11 @@
   "festivalId": "dreamstate-socal-2026",
   "festivalBrand": "dreamstate-socal",
   "year": 2026,
-  "date": "2026-11-20",
-  "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-11-21",
+  "day": 2,
+  "stage": "Dream",
+  "start": "18:00",
+  "end": "19:00",
   "printed": "Nu Aspect",
   "setTag": null,
   "performers": [
@@ -61858,8 +61830,8 @@
    }
   ],
   "act": "nu-aspect",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-dream",
   "mainStage": null
  },
  {
@@ -61870,9 +61842,9 @@
   "year": 2026,
   "date": "2026-11-20",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Void",
+  "start": "21:00",
+  "end": "22:00",
   "printed": "Panteros666",
   "setTag": null,
   "performers": [
@@ -61882,8 +61854,8 @@
    }
   ],
   "act": "panteros666",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-void",
   "mainStage": null
  },
  {
@@ -61892,11 +61864,11 @@
   "festivalId": "dreamstate-socal-2026",
   "festivalBrand": "dreamstate-socal",
   "year": 2026,
-  "date": "2026-11-20",
-  "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-11-21",
+  "day": 2,
+  "stage": "Void",
+  "start": "18:00",
+  "end": "19:00",
   "printed": "Paul Denton + Will Rees pres Parallel Worlds",
   "setTag": null,
   "performers": [
@@ -61906,8 +61878,8 @@
    }
   ],
   "act": "paul-denton-will-rees-pres-parallel-worlds",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-void",
   "mainStage": null
  },
  {
@@ -61916,11 +61888,11 @@
   "festivalId": "dreamstate-socal-2026",
   "festivalBrand": "dreamstate-socal",
   "year": 2026,
-  "date": "2026-11-20",
-  "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-11-21",
+  "day": 2,
+  "stage": "Void",
+  "start": "23:45",
+  "end": "01:00",
   "printed": "Paul van Dyk pres Essence Of Acid",
   "setTag": null,
   "performers": [
@@ -61930,8 +61902,8 @@
    }
   ],
   "act": "paul-van-dyk-pres-essence-of-acid",
-  "closing": null,
-  "stageLineage": null,
+  "closing": true,
+  "stageLineage": "dreamstate-socal:the-void",
   "mainStage": null
  },
  {
@@ -61942,9 +61914,9 @@
   "year": 2026,
   "date": "2026-11-20",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Void",
+  "start": "22:00",
+  "end": "23:00",
   "printed": "Pegassi",
   "setTag": null,
   "performers": [
@@ -61954,8 +61926,8 @@
    }
   ],
   "act": "pegassi",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-void",
   "mainStage": null
  },
  {
@@ -61964,11 +61936,11 @@
   "festivalId": "dreamstate-socal-2026",
   "festivalBrand": "dreamstate-socal",
   "year": 2026,
-  "date": "2026-11-20",
-  "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-11-21",
+  "day": 2,
+  "stage": "Sequence",
+  "start": "17:00",
+  "end": "18:00",
   "printed": "Perfect Stranger",
   "setTag": null,
   "performers": [
@@ -61978,8 +61950,8 @@
    }
   ],
   "act": "perfect-stranger",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-sequence",
   "mainStage": null
  },
  {
@@ -61990,9 +61962,9 @@
   "year": 2026,
   "date": "2026-11-20",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Sequence",
+  "start": "21:00",
+  "end": "22:00",
   "printed": "Phaxe",
   "setTag": null,
   "performers": [
@@ -62002,8 +61974,8 @@
    }
   ],
   "act": "phaxe",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-sequence",
   "mainStage": null
  },
  {
@@ -62014,9 +61986,9 @@
   "year": 2026,
   "date": "2026-11-20",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Void",
+  "start": "00:00",
+  "end": "01:00",
   "printed": "Reinier Zonneveld (Live)",
   "setTag": "Live",
   "performers": [
@@ -62026,8 +61998,8 @@
    }
   ],
   "act": "reinier-zonneveld",
-  "closing": null,
-  "stageLineage": null,
+  "closing": true,
+  "stageLineage": "dreamstate-socal:the-void",
   "mainStage": null
  },
  {
@@ -62036,11 +62008,11 @@
   "festivalId": "dreamstate-socal-2026",
   "festivalBrand": "dreamstate-socal",
   "year": 2026,
-  "date": "2026-11-20",
-  "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-11-21",
+  "day": 2,
+  "stage": "Sequence",
+  "start": "18:00",
+  "end": "19:00",
   "printed": "Rising Dust",
   "setTag": null,
   "performers": [
@@ -62050,8 +62022,32 @@
    }
   ],
   "act": "rising-dust",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-sequence",
+  "mainStage": null
+ },
+ {
+  "id": "dreamstate-socal-2026:dssc-roman-messer",
+  "source": "live",
+  "festivalId": "dreamstate-socal-2026",
+  "festivalBrand": "dreamstate-socal",
+  "year": 2026,
+  "date": "2026-11-21",
+  "day": 2,
+  "stage": "Void",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Roman Messer",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "roman-messer",
+    "role": "performer"
+   }
+  ],
+  "act": "roman-messer",
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-void",
   "mainStage": null
  },
  {
@@ -62062,9 +62058,9 @@
   "year": 2026,
   "date": "2026-11-20",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Void",
+  "start": "20:00",
+  "end": "21:00",
   "printed": "Schrotthagen",
   "setTag": null,
   "performers": [
@@ -62074,8 +62070,8 @@
    }
   ],
   "act": "schrotthagen",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-void",
   "mainStage": null
  },
  {
@@ -62084,11 +62080,11 @@
   "festivalId": "dreamstate-socal-2026",
   "festivalBrand": "dreamstate-socal",
   "year": 2026,
-  "date": "2026-11-20",
-  "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-11-21",
+  "day": 2,
+  "stage": "Vision",
+  "start": "16:00",
+  "end": "17:00",
   "printed": "Sequence Six",
   "setTag": null,
   "performers": [
@@ -62098,8 +62094,8 @@
    }
   ],
   "act": "sequence-six",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-vision",
   "mainStage": null
  },
  {
@@ -62110,9 +62106,9 @@
   "year": 2026,
   "date": "2026-11-20",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Void",
+  "start": "16:00",
+  "end": "17:00",
   "printed": "Shay De Castro",
   "setTag": null,
   "performers": [
@@ -62122,8 +62118,8 @@
    }
   ],
   "act": "shay-de-castro",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-void",
   "mainStage": null
  },
  {
@@ -62132,11 +62128,11 @@
   "festivalId": "dreamstate-socal-2026",
   "festivalBrand": "dreamstate-socal",
   "year": 2026,
-  "date": "2026-11-20",
-  "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-11-21",
+  "day": 2,
+  "stage": "Sequence",
+  "start": "19:00",
+  "end": "20:00",
   "printed": "Sighter",
   "setTag": null,
   "performers": [
@@ -62146,8 +62142,8 @@
    }
   ],
   "act": "sighter",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-sequence",
   "mainStage": null
  },
  {
@@ -62156,11 +62152,11 @@
   "festivalId": "dreamstate-socal-2026",
   "festivalBrand": "dreamstate-socal",
   "year": 2026,
-  "date": "2026-11-20",
-  "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-11-21",
+  "day": 2,
+  "stage": "Vision",
+  "start": "00:00",
+  "end": "01:00",
   "printed": "Solarstone",
   "setTag": null,
   "performers": [
@@ -62170,8 +62166,8 @@
    }
   ],
   "act": "solarstone",
-  "closing": null,
-  "stageLineage": null,
+  "closing": true,
+  "stageLineage": "dreamstate-socal:the-vision",
   "mainStage": null
  },
  {
@@ -62182,9 +62178,9 @@
   "year": 2026,
   "date": "2026-11-20",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Vision",
+  "start": "17:00",
+  "end": "18:00",
   "printed": "Steve Dekay",
   "setTag": null,
   "performers": [
@@ -62194,8 +62190,8 @@
    }
   ],
   "act": "steve-dekay",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-vision",
   "mainStage": null
  },
  {
@@ -62206,9 +62202,9 @@
   "year": 2026,
   "date": "2026-11-20",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Sequence",
+  "start": "17:00",
+  "end": "18:00",
   "printed": "Terra",
   "setTag": null,
   "performers": [
@@ -62218,8 +62214,8 @@
    }
   ],
   "act": "terra",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-sequence",
   "mainStage": null
  },
  {
@@ -62228,11 +62224,11 @@
   "festivalId": "dreamstate-socal-2026",
   "festivalBrand": "dreamstate-socal",
   "year": 2026,
-  "date": "2026-11-20",
-  "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-11-21",
+  "day": 2,
+  "stage": "Dream",
+  "start": "17:00",
+  "end": "18:00",
   "printed": "TH;EN",
   "setTag": null,
   "performers": [
@@ -62242,8 +62238,8 @@
    }
   ],
   "act": "th-en",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-dream",
   "mainStage": null
  },
  {
@@ -62254,9 +62250,9 @@
   "year": 2026,
   "date": "2026-11-20",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Dream",
+  "start": "19:00",
+  "end": "20:00",
   "printed": "The Rocketman",
   "setTag": null,
   "performers": [
@@ -62266,8 +62262,8 @@
    }
   ],
   "act": "the-rocketman",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-dream",
   "mainStage": null
  },
  {
@@ -62276,11 +62272,11 @@
   "festivalId": "dreamstate-socal-2026",
   "festivalBrand": "dreamstate-socal",
   "year": 2026,
-  "date": "2026-11-20",
-  "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "date": "2026-11-21",
+  "day": 2,
+  "stage": "Sequence",
+  "start": "22:00",
+  "end": "23:00",
   "printed": "Vini Vici",
   "setTag": null,
   "performers": [
@@ -62290,8 +62286,8 @@
    }
   ],
   "act": "vini-vici",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-sequence",
   "mainStage": null
  },
  {
@@ -62302,9 +62298,9 @@
   "year": 2026,
   "date": "2026-11-20",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Dream",
+  "start": "16:00",
+  "end": "17:00",
   "printed": "VisionV",
   "setTag": null,
   "performers": [
@@ -62314,8 +62310,8 @@
    }
   ],
   "act": "visionv",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-dream",
   "mainStage": null
  },
  {
@@ -62326,9 +62322,9 @@
   "year": 2026,
   "date": "2026-11-20",
   "day": 1,
-  "stage": null,
-  "start": null,
-  "end": null,
+  "stage": "Vision",
+  "start": "21:00",
+  "end": "22:00",
   "printed": "Warp Brothers",
   "setTag": null,
   "performers": [
@@ -62338,8 +62334,8 @@
    }
   ],
   "act": "warp-brothers",
-  "closing": null,
-  "stageLineage": null,
+  "closing": false,
+  "stageLineage": "dreamstate-socal:the-vision",
   "mainStage": null
  },
  {
