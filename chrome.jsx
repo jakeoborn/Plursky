@@ -1403,8 +1403,9 @@ function recordAttendanceFromGps(lat, lng, opts) {
 // background mode, no new permission, so a locked screen pauses the count.
 // The opt-in is PER FESTIVAL (SPEC-212 W3): a yes for one festival is not a
 // yes for the next. v2 holds { [festivalId]: "on" | "off" }; absent = never
-// asked. v1 was one global answer: on first read it moves to the festival
-// active right then, and only that one, then v1 is deleted.
+// asked. v1 was one global answer. It is dropped on first read, never moved
+// (decided 2026-11-20): a yes given before the per-festival question cannot
+// say which festival it was for, so every festival asks again.
 const SET_TRACK_PREF_KEY = "plursky_set_tracking_v2";
 const SET_TRACK_PREF_V1_KEY = "plursky_set_tracking_v1";
 const SET_TRACK_STORE_KEY = "plursky_set_intervals_v1";  // { [festivalId]: { last, runs } }
@@ -1414,13 +1415,7 @@ function _readSetTrackPrefs() {
   let prefs = {};
   try { const p = JSON.parse(localStorage.getItem(SET_TRACK_PREF_KEY) || "{}"); if (p && typeof p === "object" && !Array.isArray(p)) prefs = p; } catch {}
   try {
-    const v1 = localStorage.getItem(SET_TRACK_PREF_V1_KEY);
-    const fid = _setTrackActiveId();
-    if (v1 != null && fid) {
-      if ((v1 === "on" || v1 === "off") && !Object.prototype.hasOwnProperty.call(prefs, fid)) prefs[fid] = v1;
-      localStorage.setItem(SET_TRACK_PREF_KEY, JSON.stringify(prefs));
-      localStorage.removeItem(SET_TRACK_PREF_V1_KEY);
-    }
+    if (localStorage.getItem(SET_TRACK_PREF_V1_KEY) != null) localStorage.removeItem(SET_TRACK_PREF_V1_KEY);
   } catch {}
   return prefs;
 }

@@ -3,9 +3,9 @@
 // build in a vm:
 //   1. Never asked reads null for every festival; a yes for one festival is
 //      not a yes for another, and the active festival is the default.
-//   2. Migration: the old global answer (v1) moves to the festival active at
-//      first read, and only that one; v1 is then deleted, so a later festival
-//      is asked again. An answer already given for that festival wins.
+//   2. Migration: the old global answer (v1) is dropped on first read, never
+//      moved to any festival, so every festival asks again. An answer already
+//      given for a festival is kept.
 //   3. No active festival: nothing reads on, nothing is written.
 //   4. Wiring: the watcher and the card read the festival they are about.
 //   5. Broken fixtures: each rule nudged in the compiled source must fail.
@@ -64,25 +64,27 @@ function run(src) {
     ok(JSON.parse(store[V2])["edc-lv-2026"] === "on" && JSON.parse(store[V2])["acl-2026"] === "off", `v2 store shape (${store[V2]})`);
     ok(events.filter(e => e === "plursky-set-tracking-change").length === 2, "each answer announces the change once");
   }
-  // 2. Migration
+  // 2. Migration: v1 is dropped, never moved
   {
     const { ctx, store, use } = load(src, "ultra-miami-2026", { [V1]: "on" });
-    ok(G(ctx) === "on", "a legacy yes is lost for the festival active at upgrade");
-    ok(!(V1 in store), "the legacy key survives migration");
+    ok(G(ctx) === null, "a legacy yes was moved to the festival active at upgrade");
+    ok(!(V1 in store), "the legacy key survives the first read");
+    ok(!(V2 in store) || !("ultra-miami-2026" in JSON.parse(store[V2])), `a legacy yes was written to v2 (${store[V2]})`);
     use("edc-lv-2026");
     ok(G(ctx) === null, "a legacy yes spread to a second festival");
   }
   {
     const { ctx, store } = load(src, "ultra-miami-2026", { [V1]: "off" });
-    ok(G(ctx) === "off" && !(V1 in store), "a legacy no does not stay no");
+    ok(G(ctx) === null && !(V1 in store), "a legacy no was moved or kept");
   }
   {
     const { ctx, store } = load(src, "ultra-miami-2026", { [V1]: "on", [V2]: JSON.stringify({ "ultra-miami-2026": "off" }) });
-    ok(G(ctx) === "off" && !(V1 in store), "a legacy yes overrode an answer already given for that festival");
+    ok(G(ctx) === "off" && !(V1 in store), "an answer already given for that festival was lost or overridden");
   }
   {
     const { ctx, store } = load(src, null, { [V1]: "on" });
-    ok(G(ctx) === null && store[V1] === "on", "with no festival active the legacy yes was moved or dropped");
+    // No festival, no read: the key waits for the first read with a festival, which drops it.
+    ok(G(ctx) === null && !(V2 in store), "with no festival active the legacy yes reads on or was written to v2");
   }
   // 3. No active festival
   {
@@ -119,8 +121,8 @@ for (const [c, m] of wire) if (!c) { failed++; console.log(`  ✗  ${m}`); }
 // 5. Broken fixtures in the compiled source
 const MUT = [
   ["var v = _readSetTrackPrefs()[festivalId];", 'var v = Object.values(_readSetTrackPrefs()).includes("on") ? "on" : _readSetTrackPrefs()[festivalId];'],  // a yes anywhere = a yes everywhere
-  ["localStorage.removeItem(SET_TRACK_PREF_V1_KEY);", ""],                                                                         // legacy yes spreads
-  ["&& !Object.prototype.hasOwnProperty.call(prefs, fid)) prefs[fid] = v1;", ") prefs[fid] = v1;"],                                                                  // legacy overrides an answer
+  ["localStorage.removeItem(SET_TRACK_PREF_V1_KEY);", ""],                                                                         // legacy key survives
+  ["localStorage.removeItem(SET_TRACK_PREF_V1_KEY);", "{ var f = _setTrackActiveId(); if (f) prefs[f] = localStorage.getItem(SET_TRACK_PREF_V1_KEY); localStorage.removeItem(SET_TRACK_PREF_V1_KEY); }"], // legacy yes moves
   ["if (!festivalId) return;", 'if (!festivalId) festivalId = "undefined";'],                                                      // writes with no festival
 ];
 let caught = 0;

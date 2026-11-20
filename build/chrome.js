@@ -1734,13 +1734,7 @@ function _readSetTrackPrefs() {
     if (p && typeof p === "object" && !Array.isArray(p)) prefs = p;
   } catch {}
   try {
-    var v1 = localStorage.getItem(SET_TRACK_PREF_V1_KEY);
-    var fid = _setTrackActiveId();
-    if (v1 != null && fid) {
-      if ((v1 === "on" || v1 === "off") && !Object.prototype.hasOwnProperty.call(prefs, fid)) prefs[fid] = v1;
-      localStorage.setItem(SET_TRACK_PREF_KEY, JSON.stringify(prefs));
-      localStorage.removeItem(SET_TRACK_PREF_V1_KEY);
-    }
+    if (localStorage.getItem(SET_TRACK_PREF_V1_KEY) != null) localStorage.removeItem(SET_TRACK_PREF_V1_KEY);
   } catch {}
   return prefs;
 }
