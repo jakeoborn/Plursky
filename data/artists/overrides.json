@@ -7284,6 +7284,21 @@
    ],
    "why": "\"formerly\" gives the same act's other name, not a second act: the billing counts on JEFFREY SUTORIUS, the billed name, and the other name is not credited separately (the Misselaineous (aka Honeey Mustard) rule).",
    "source": "https://ultramusicfestival.com/lineup/"
+  },
+  {
+   "printed": "NURI W/ ROBB BANK$",
+   "performers": [
+    {
+     "name": "NURI",
+     "role": "performer"
+    },
+    {
+     "name": "ROBB BANK$",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set.",
+   "source": "http://iiipoints.com/schedule/"
   }
  ],
  "pending": [
@@ -8034,6 +8049,14 @@
   {
    "key": "yg",
    "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "printed": "VI (THE DEEP END)",
+   "why": "Left as printed: whether the parenthetical names the act this artist plays in or a separate act is not sourced (the Bunny (Rabbit in the Moon) rule), so the billing is neither merged with the bare name nor credited to the act it names."
+  },
+  {
+   "printed": "LAURA (OF MIAMI)",
+   "why": "Left as printed: the parenthetical is not sourced as a name the act uses elsewhere (the Bunny (Rabbit in the Moon) rule), so the billing is neither merged with the bare name nor credited to anything the parenthetical names."
   }
  ]
 }

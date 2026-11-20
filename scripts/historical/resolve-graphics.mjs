@@ -38,6 +38,10 @@ export const GRAPHIC_EDITIONS = {
   // reads the same file. The graphic is re-issued with a counter
   // ("miami-lineup-phase3-2.jpg", "miami-lineup-times-2019-5.jpg"); the
   // "-og" social card is a different crop and never matches.
+  // III Points 2014: one grid per day, embedded by the schedule page.
+  "iii-points-2014": { year: 2014, page: "http://iiipoints.com/schedule/", window: ["20141001", "20141231"],
+    image: /\/Schedule\/(?:friday|saturday|sunday)\.png/i,
+    days: [{ day: 1, date: "2014-10-10", token: /friday/i }, { day: 2, date: "2014-10-11", token: /saturday/i }, { day: 3, date: "2014-10-12", token: /sunday/i }] },
   "ultra-miami-2016": { year: 2016, page: "https://ultramusicfestival.com/lineup/", window: ["20160301", "20160331"],
     image: /miami-lineup-phase3-\d+\.jpg/i,
     days: [{ day: 1, date: "2016-03-18", token: /lineup/i }, { day: 2, date: "2016-03-19", token: /lineup/i }, { day: 3, date: "2016-03-20", token: /lineup/i }] },

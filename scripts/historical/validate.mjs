@@ -34,6 +34,9 @@ export const OFFICIAL_HOSTS = {
   // Ultra's own site. Its WordPress uploads serve resized copies
   // ("-1600x1000.jpg"); only those were archived for 2024.
   "ultra-miami": ["ultramusicfestival.com", "legacy.ultramusicfestival.com"],
+  // III Points' own site. Its 2014 schedule page embedded one grid image per
+  // day under www.iiipoints.com/Schedule/.
+  "iii-points": ["iiipoints.com"],
   "coachella": ["coachella.com"],
   // 2012-2013 Las Vegas pages lived on the brand's root domain
   // (/LasVegas/music.php, /music.php). "=" matches that host alone, so the

@@ -3059,6 +3059,58 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "iii-points:mainframe",
+     "names": [
+      {
+       "printed": "MAINFRAME",
+       "editions": [
+        "iii-points-2014"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "iii-points:mindmelt",
+     "names": [
+      {
+       "printed": "MINDMELT",
+       "editions": [
+        "iii-points-2014"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "iii-points:sector3",
+     "names": [
+      {
+       "printed": "SECTOR3",
+       "editions": [
+        "iii-points-2014"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "iii-points:skatespace",
+     "names": [
+      {
+       "printed": "SKATESPACE",
+       "editions": [
+        "iii-points-2014"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },

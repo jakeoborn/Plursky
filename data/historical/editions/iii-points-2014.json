@@ -1,0 +1,1450 @@
+{
+ "id": "iii-points-2014",
+ "festivalId": "iii-points",
+ "name": "III Points 2014",
+ "year": 2014,
+ "timezone": "America/New_York",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2014-10-10",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2014-10-11",
+   "label": "Saturday"
+  },
+  {
+   "day": 3,
+   "date": "2014-10-12",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "iii-points-2014:mainframe",
+   "name": "MAINFRAME"
+  },
+  {
+   "id": "iii-points-2014:mindmelt",
+   "name": "MINDMELT"
+  },
+  {
+   "id": "iii-points-2014:sector3",
+   "name": "SECTOR3"
+  },
+  {
+   "id": "iii-points-2014:skatespace",
+   "name": "SKATESPACE"
+  }
+ ],
+ "artists": [
+  {
+   "id": "iii-points-2014:nuri-w-robb-bank",
+   "name": "NURI W/ ROBB BANK$",
+   "key": "nuri-w-robb-bank",
+   "performers": [
+    "nuri-w-robb-bank"
+   ]
+  },
+  {
+   "id": "iii-points-2014:avstin-pavl",
+   "name": "AVSTIN PAVL",
+   "key": "avstin-pavl",
+   "performers": [
+    "avstin-pavl"
+   ]
+  },
+  {
+   "id": "iii-points-2014:lykke-li",
+   "name": "LYKKE LI",
+   "key": "lykke-li",
+   "performers": [
+    "lykke-li"
+   ]
+  },
+  {
+   "id": "iii-points-2014:thundercat",
+   "name": "THUNDERCAT",
+   "key": "thundercat",
+   "performers": [
+    "thundercat"
+   ]
+  },
+  {
+   "id": "iii-points-2014:flying-lotus",
+   "name": "FLYING LOTUS",
+   "key": "flying-lotus",
+   "performers": [
+    "flying-lotus"
+   ]
+  },
+  {
+   "id": "iii-points-2014:jacques-greene-live",
+   "name": "JACQUES GREENE (LIVE)",
+   "key": "jacques-greene-live",
+   "performers": [
+    "jacques-greene-live"
+   ]
+  },
+  {
+   "id": "iii-points-2014:duke-dumont",
+   "name": "DUKE DUMONT",
+   "key": "duke-dumont",
+   "performers": [
+    "duke-dumont"
+   ]
+  },
+  {
+   "id": "iii-points-2014:laura-of-miami",
+   "name": "LAURA (OF MIAMI)",
+   "key": "laura-of-miami",
+   "performers": [
+    "laura-of-miami"
+   ]
+  },
+  {
+   "id": "iii-points-2014:ketchy-shuby",
+   "name": "KETCHY SHUBY",
+   "key": "ketchy-shuby",
+   "performers": [
+    "ketchy-shuby"
+   ]
+  },
+  {
+   "id": "iii-points-2014:patrick-walsh",
+   "name": "PATRICK WALSH",
+   "key": "patrick-walsh",
+   "performers": [
+    "patrick-walsh"
+   ]
+  },
+  {
+   "id": "iii-points-2014:millionyoung",
+   "name": "MILLIONYOUNG",
+   "key": "millionyoung",
+   "performers": [
+    "millionyoung"
+   ]
+  },
+  {
+   "id": "iii-points-2014:benton",
+   "name": "BENTON",
+   "key": "benton",
+   "performers": [
+    "benton"
+   ]
+  },
+  {
+   "id": "iii-points-2014:mr-brown",
+   "name": "MR. BROWN",
+   "key": "mr-brown",
+   "performers": [
+    "mr-brown"
+   ]
+  },
+  {
+   "id": "iii-points-2014:hercules-and-love-affair",
+   "name": "HERCULES & LOVE AFFAIR",
+   "key": "hercules-and-love-affair",
+   "performers": [
+    "hercules-and-love-affair"
+   ]
+  },
+  {
+   "id": "iii-points-2014:jport",
+   "name": "JPORT",
+   "key": "jport",
+   "performers": [
+    "jport"
+   ]
+  },
+  {
+   "id": "iii-points-2014:santiago-caballero",
+   "name": "SANTIAGO CABALLERO",
+   "key": "santiago-caballero",
+   "performers": [
+    "santiago-caballero"
+   ]
+  },
+  {
+   "id": "iii-points-2014:pirate-stereo",
+   "name": "PIRATE STEREO",
+   "key": "pirate-stereo",
+   "performers": [
+    "pirate-stereo"
+   ]
+  },
+  {
+   "id": "iii-points-2014:sean-drake",
+   "name": "SEAN DRAKE",
+   "key": "sean-drake",
+   "performers": [
+    "sean-drake"
+   ]
+  },
+  {
+   "id": "iii-points-2014:lou-flores",
+   "name": "LOU FLORES",
+   "key": "lou-flores",
+   "performers": [
+    "lou-flores"
+   ]
+  },
+  {
+   "id": "iii-points-2014:gooddroid",
+   "name": "GOODDROID",
+   "key": "gooddroid",
+   "performers": [
+    "gooddroid"
+   ]
+  },
+  {
+   "id": "iii-points-2014:telekenetic-walrus",
+   "name": "TELEKENETIC WALRUS",
+   "key": "telekenetic-walrus",
+   "performers": [
+    "telekenetic-walrus"
+   ]
+  },
+  {
+   "id": "iii-points-2014:illa",
+   "name": "ILLA",
+   "key": "illa",
+   "performers": [
+    "illa"
+   ]
+  },
+  {
+   "id": "iii-points-2014:niko-javan",
+   "name": "NIKO JAVAN",
+   "key": "niko-javan",
+   "performers": [
+    "niko-javan"
+   ]
+  },
+  {
+   "id": "iii-points-2014:telescope-thieves",
+   "name": "TELESCOPE THIEVES",
+   "key": "telescope-thieves",
+   "performers": [
+    "telescope-thieves"
+   ]
+  },
+  {
+   "id": "iii-points-2014:the-deep",
+   "name": "THE DEEP",
+   "key": "the-deep",
+   "performers": [
+    "the-deep"
+   ]
+  },
+  {
+   "id": "iii-points-2014:will-buck",
+   "name": "WILL BUCK",
+   "key": "will-buck",
+   "performers": [
+    "will-buck"
+   ]
+  },
+  {
+   "id": "iii-points-2014:rjd2",
+   "name": "RJD2",
+   "key": "rjd2",
+   "performers": [
+    "rjd2"
+   ]
+  },
+  {
+   "id": "iii-points-2014:krisp",
+   "name": "KRISP",
+   "key": "krisp",
+   "performers": [
+    "krisp"
+   ]
+  },
+  {
+   "id": "iii-points-2014:kodiak-fur",
+   "name": "KODIAK FUR",
+   "key": "kodiak-fur",
+   "performers": [
+    "kodiak-fur"
+   ]
+  },
+  {
+   "id": "iii-points-2014:kelela",
+   "name": "KELELA",
+   "key": "kelela",
+   "performers": [
+    "kelela"
+   ]
+  },
+  {
+   "id": "iii-points-2014:chet-faker",
+   "name": "CHET FAKER",
+   "key": "chet-faker",
+   "performers": [
+    "chet-faker"
+   ]
+  },
+  {
+   "id": "iii-points-2014:metronomy",
+   "name": "METRONOMY",
+   "key": "metronomy",
+   "performers": [
+    "metronomy"
+   ]
+  },
+  {
+   "id": "iii-points-2014:john-talabot",
+   "name": "JOHN TALABOT",
+   "key": "john-talabot",
+   "performers": [
+    "john-talabot"
+   ]
+  },
+  {
+   "id": "iii-points-2014:jamie-xx",
+   "name": "JAMIE XX",
+   "key": "jamie-xx",
+   "performers": [
+    "jamie-xx"
+   ]
+  },
+  {
+   "id": "iii-points-2014:jeremy-ismael",
+   "name": "JEREMY ISMAEL",
+   "key": "jeremy-ismael",
+   "performers": [
+    "jeremy-ismael"
+   ]
+  },
+  {
+   "id": "iii-points-2014:thunderpony",
+   "name": "THUNDERPONY",
+   "key": "thunderpony",
+   "performers": [
+    "thunderpony"
+   ]
+  },
+  {
+   "id": "iii-points-2014:uchi",
+   "name": "UCHI",
+   "key": "uchi",
+   "performers": [
+    "uchi"
+   ]
+  },
+  {
+   "id": "iii-points-2014:basti",
+   "name": "BASTI",
+   "key": "basti",
+   "performers": [
+    "basti"
+   ]
+  },
+  {
+   "id": "iii-points-2014:lazaro-casanova",
+   "name": "LAZARO CASANOVA",
+   "key": "lazaro-casanova",
+   "performers": [
+    "lazaro-casanova"
+   ]
+  },
+  {
+   "id": "iii-points-2014:dj-tennis",
+   "name": "DJ TENNIS",
+   "key": "dj-tennis",
+   "performers": [
+    "dj-tennis"
+   ]
+  },
+  {
+   "id": "iii-points-2014:mikey-ramirez",
+   "name": "MIKEY RAMIREZ",
+   "key": "mikey-ramirez",
+   "performers": [
+    "mikey-ramirez"
+   ]
+  },
+  {
+   "id": "iii-points-2014:agent-rose",
+   "name": "AGENT ROSE",
+   "key": "agent-rose",
+   "performers": [
+    "agent-rose"
+   ]
+  },
+  {
+   "id": "iii-points-2014:mr-jolt",
+   "name": "MR. JOLT",
+   "key": "mr-jolt",
+   "performers": [
+    "mr-jolt"
+   ]
+  },
+  {
+   "id": "iii-points-2014:methods",
+   "name": "METHODS",
+   "key": "methods",
+   "performers": [
+    "methods"
+   ]
+  },
+  {
+   "id": "iii-points-2014:artime",
+   "name": "ARTIME",
+   "key": "artime",
+   "performers": [
+    "artime"
+   ]
+  },
+  {
+   "id": "iii-points-2014:jesp",
+   "name": "JESP",
+   "key": "jesp",
+   "performers": [
+    "jesp"
+   ]
+  },
+  {
+   "id": "iii-points-2014:ruen",
+   "name": "RUEN",
+   "key": "ruen",
+   "performers": [
+    "ruen"
+   ]
+  },
+  {
+   "id": "iii-points-2014:ideal",
+   "name": "IDEAL",
+   "key": "ideal",
+   "performers": [
+    "ideal"
+   ]
+  },
+  {
+   "id": "iii-points-2014:frank-flux",
+   "name": "FRANK FLUX",
+   "key": "frank-flux",
+   "performers": [
+    "frank-flux"
+   ]
+  },
+  {
+   "id": "iii-points-2014:pase-rock",
+   "name": "PASE ROCK",
+   "key": "pase-rock",
+   "performers": [
+    "pase-rock"
+   ]
+  },
+  {
+   "id": "iii-points-2014:maure",
+   "name": "MAURE",
+   "key": "maure",
+   "performers": [
+    "maure"
+   ]
+  },
+  {
+   "id": "iii-points-2014:jbz",
+   "name": "JBZ",
+   "key": "jbz",
+   "performers": [
+    "jbz"
+   ]
+  },
+  {
+   "id": "iii-points-2014:cashmere-cat",
+   "name": "CASHMERE CAT",
+   "key": "cashmere-cat",
+   "performers": [
+    "cashmere-cat"
+   ]
+  },
+  {
+   "id": "iii-points-2014:dza",
+   "name": "DZA",
+   "key": "dza",
+   "performers": [
+    "dza"
+   ]
+  },
+  {
+   "id": "iii-points-2014:rone",
+   "name": "RONE",
+   "key": "rone",
+   "performers": [
+    "rone"
+   ]
+  },
+  {
+   "id": "iii-points-2014:com-truise",
+   "name": "COM TRUISE",
+   "key": "com-truise",
+   "performers": [
+    "com-truise"
+   ]
+  },
+  {
+   "id": "iii-points-2014:kaytranada",
+   "name": "KAYTRANADA",
+   "key": "kaytranada",
+   "performers": [
+    "kaytranada"
+   ]
+  },
+  {
+   "id": "iii-points-2014:bob-moses",
+   "name": "BOB MOSES",
+   "key": "bob-moses",
+   "performers": [
+    "bob-moses"
+   ]
+  },
+  {
+   "id": "iii-points-2014:hot-natured",
+   "name": "HOT NATURED",
+   "key": "hot-natured",
+   "performers": [
+    "hot-natured"
+   ]
+  },
+  {
+   "id": "iii-points-2014:tiga",
+   "name": "TIGA",
+   "key": "tiga",
+   "performers": [
+    "tiga"
+   ]
+  },
+  {
+   "id": "iii-points-2014:jamie-jones",
+   "name": "JAMIE JONES",
+   "key": "jamie-jones",
+   "performers": [
+    "jamie-jones"
+   ]
+  },
+  {
+   "id": "iii-points-2014:eagle-chief",
+   "name": "EAGLE CHIEF",
+   "key": "eagle-chief",
+   "performers": [
+    "eagle-chief"
+   ]
+  },
+  {
+   "id": "iii-points-2014:tremends",
+   "name": "TREMENDS",
+   "key": "tremends",
+   "performers": [
+    "tremends"
+   ]
+  },
+  {
+   "id": "iii-points-2014:nikey-blitz",
+   "name": "NIKEY BLITZ",
+   "key": "nikey-blitz",
+   "performers": [
+    "nikey-blitz"
+   ]
+  },
+  {
+   "id": "iii-points-2014:deaf-poets",
+   "name": "DEAF POETS",
+   "key": "deaf-poets",
+   "performers": [
+    "deaf-poets"
+   ]
+  },
+  {
+   "id": "iii-points-2014:jacuzzi-boys",
+   "name": "JACUZZI BOYS",
+   "key": "jacuzzi-boys",
+   "performers": [
+    "jacuzzi-boys"
+   ]
+  },
+  {
+   "id": "iii-points-2014:mac-demarco",
+   "name": "MAC DEMARCO",
+   "key": "mac-demarco",
+   "performers": [
+    "mac-demarco"
+   ]
+  },
+  {
+   "id": "iii-points-2014:vi-the-deep-end",
+   "name": "VI (THE DEEP END)",
+   "key": "vi-the-deep-end",
+   "performers": [
+    "vi-the-deep-end"
+   ]
+  },
+  {
+   "id": "iii-points-2014:bonnie-beats",
+   "name": "BONNIE BEATS",
+   "key": "bonnie-beats",
+   "performers": [
+    "bonnie-beats"
+   ]
+  },
+  {
+   "id": "iii-points-2014:chalk",
+   "name": "CHALK",
+   "key": "chalk",
+   "performers": [
+    "chalk"
+   ]
+  },
+  {
+   "id": "iii-points-2014:keen-one",
+   "name": "KEEN ONE",
+   "key": "keen-one",
+   "performers": [
+    "keen-one"
+   ]
+  },
+  {
+   "id": "iii-points-2014:ynot",
+   "name": "YNOT",
+   "key": "ynot",
+   "performers": [
+    "ynot"
+   ]
+  },
+  {
+   "id": "iii-points-2014:my-deer",
+   "name": "MY DEER",
+   "key": "my-deer",
+   "performers": [
+    "my-deer"
+   ]
+  },
+  {
+   "id": "iii-points-2014:blue-jay",
+   "name": "BLUE JAY",
+   "key": "blue-jay",
+   "performers": [
+    "blue-jay"
+   ]
+  },
+  {
+   "id": "iii-points-2014:the-jacket",
+   "name": "THE JACKET",
+   "key": "the-jacket",
+   "performers": [
+    "the-jacket"
+   ]
+  },
+  {
+   "id": "iii-points-2014:hunters-of-the-alps",
+   "name": "HUNTERS OF THE ALPS",
+   "key": "hunters-of-the-alps",
+   "performers": [
+    "hunters-of-the-alps"
+   ]
+  },
+  {
+   "id": "iii-points-2014:the-hongs",
+   "name": "THE HONGS",
+   "key": "the-hongs",
+   "performers": [
+    "the-hongs"
+   ]
+  },
+  {
+   "id": "iii-points-2014:dinnerdate",
+   "name": "DINNERDATE",
+   "key": "dinnerdate",
+   "performers": [
+    "dinnerdate"
+   ]
+  },
+  {
+   "id": "iii-points-2014:jacques-greene-dj-set",
+   "name": "JACQUES GREENE (DJ SET)",
+   "key": "jacques-greene-dj-set",
+   "performers": [
+    "jacques-greene-dj-set"
+   ]
+  },
+  {
+   "id": "iii-points-2014:dude-skywalker",
+   "name": "DUDE SKYWALKER",
+   "key": "dude-skywalker",
+   "performers": [
+    "dude-skywalker"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "iii-points-2014:d1:mainframe:1910:nuri-w-robb-bank",
+   "artistId": "iii-points-2014:nuri-w-robb-bank",
+   "day": 1,
+   "stageId": "iii-points-2014:mainframe",
+   "start": "19:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d1:mainframe:1945:avstin-pavl",
+   "artistId": "iii-points-2014:avstin-pavl",
+   "day": 1,
+   "stageId": "iii-points-2014:mainframe",
+   "start": "19:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d1:mainframe:2040:lykke-li",
+   "artistId": "iii-points-2014:lykke-li",
+   "day": 1,
+   "stageId": "iii-points-2014:mainframe",
+   "start": "20:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d1:mainframe:2215:thundercat",
+   "artistId": "iii-points-2014:thundercat",
+   "day": 1,
+   "stageId": "iii-points-2014:mainframe",
+   "start": "22:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d1:mainframe:2315:flying-lotus",
+   "artistId": "iii-points-2014:flying-lotus",
+   "day": 1,
+   "stageId": "iii-points-2014:mainframe",
+   "start": "23:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d1:mainframe:0045:jacques-greene-live",
+   "artistId": "iii-points-2014:jacques-greene-live",
+   "day": 1,
+   "stageId": "iii-points-2014:mainframe",
+   "start": "00:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d1:mainframe:0145:duke-dumont",
+   "artistId": "iii-points-2014:duke-dumont",
+   "day": 1,
+   "stageId": "iii-points-2014:mainframe",
+   "start": "01:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d1:mindmelt:1900:laura-of-miami",
+   "artistId": "iii-points-2014:laura-of-miami",
+   "day": 1,
+   "stageId": "iii-points-2014:mindmelt",
+   "start": "19:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d1:mindmelt:1940:ketchy-shuby",
+   "artistId": "iii-points-2014:ketchy-shuby",
+   "day": 1,
+   "stageId": "iii-points-2014:mindmelt",
+   "start": "19:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d1:mindmelt:2010:patrick-walsh",
+   "artistId": "iii-points-2014:patrick-walsh",
+   "day": 1,
+   "stageId": "iii-points-2014:mindmelt",
+   "start": "20:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d1:mindmelt:2050:millionyoung",
+   "artistId": "iii-points-2014:millionyoung",
+   "day": 1,
+   "stageId": "iii-points-2014:mindmelt",
+   "start": "20:50",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d1:mindmelt:2120:benton",
+   "artistId": "iii-points-2014:benton",
+   "day": 1,
+   "stageId": "iii-points-2014:mindmelt",
+   "start": "21:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d1:mindmelt:2200:mr-brown",
+   "artistId": "iii-points-2014:mr-brown",
+   "day": 1,
+   "stageId": "iii-points-2014:mindmelt",
+   "start": "22:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d1:mindmelt:2240:hercules-and-love-affair",
+   "artistId": "iii-points-2014:hercules-and-love-affair",
+   "day": 1,
+   "stageId": "iii-points-2014:mindmelt",
+   "start": "22:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d1:sector3:1900:jport",
+   "artistId": "iii-points-2014:jport",
+   "day": 1,
+   "stageId": "iii-points-2014:sector3",
+   "start": "19:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d1:sector3:2000:santiago-caballero",
+   "artistId": "iii-points-2014:santiago-caballero",
+   "day": 1,
+   "stageId": "iii-points-2014:sector3",
+   "start": "20:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d1:sector3:2100:pirate-stereo",
+   "artistId": "iii-points-2014:pirate-stereo",
+   "day": 1,
+   "stageId": "iii-points-2014:sector3",
+   "start": "21:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d1:sector3:2200:sean-drake",
+   "artistId": "iii-points-2014:sean-drake",
+   "day": 1,
+   "stageId": "iii-points-2014:sector3",
+   "start": "22:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d1:sector3:2300:lou-flores",
+   "artistId": "iii-points-2014:lou-flores",
+   "day": 1,
+   "stageId": "iii-points-2014:sector3",
+   "start": "23:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d1:skatespace:1900:gooddroid",
+   "artistId": "iii-points-2014:gooddroid",
+   "day": 1,
+   "stageId": "iii-points-2014:skatespace",
+   "start": "19:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d1:skatespace:1945:telekenetic-walrus",
+   "artistId": "iii-points-2014:telekenetic-walrus",
+   "day": 1,
+   "stageId": "iii-points-2014:skatespace",
+   "start": "19:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d1:skatespace:2015:illa",
+   "artistId": "iii-points-2014:illa",
+   "day": 1,
+   "stageId": "iii-points-2014:skatespace",
+   "start": "20:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d1:skatespace:2100:niko-javan",
+   "artistId": "iii-points-2014:niko-javan",
+   "day": 1,
+   "stageId": "iii-points-2014:skatespace",
+   "start": "21:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d1:skatespace:2145:telescope-thieves",
+   "artistId": "iii-points-2014:telescope-thieves",
+   "day": 1,
+   "stageId": "iii-points-2014:skatespace",
+   "start": "21:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d1:skatespace:2230:the-deep",
+   "artistId": "iii-points-2014:the-deep",
+   "day": 1,
+   "stageId": "iii-points-2014:skatespace",
+   "start": "22:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d1:skatespace:2330:will-buck",
+   "artistId": "iii-points-2014:will-buck",
+   "day": 1,
+   "stageId": "iii-points-2014:skatespace",
+   "start": "23:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d1:skatespace:0030:rjd2",
+   "artistId": "iii-points-2014:rjd2",
+   "day": 1,
+   "stageId": "iii-points-2014:skatespace",
+   "start": "00:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d2:mainframe:1910:krisp",
+   "artistId": "iii-points-2014:krisp",
+   "day": 2,
+   "stageId": "iii-points-2014:mainframe",
+   "start": "19:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d2:mainframe:1955:kodiak-fur",
+   "artistId": "iii-points-2014:kodiak-fur",
+   "day": 2,
+   "stageId": "iii-points-2014:mainframe",
+   "start": "19:55",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d2:mainframe:2040:kelela",
+   "artistId": "iii-points-2014:kelela",
+   "day": 2,
+   "stageId": "iii-points-2014:mainframe",
+   "start": "20:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d2:mainframe:2130:chet-faker",
+   "artistId": "iii-points-2014:chet-faker",
+   "day": 2,
+   "stageId": "iii-points-2014:mainframe",
+   "start": "21:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d2:mainframe:2255:metronomy",
+   "artistId": "iii-points-2014:metronomy",
+   "day": 2,
+   "stageId": "iii-points-2014:mainframe",
+   "start": "22:55",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d2:mainframe:0030:john-talabot",
+   "artistId": "iii-points-2014:john-talabot",
+   "day": 2,
+   "stageId": "iii-points-2014:mainframe",
+   "start": "00:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d2:mainframe:0145:jamie-xx",
+   "artistId": "iii-points-2014:jamie-xx",
+   "day": 2,
+   "stageId": "iii-points-2014:mainframe",
+   "start": "01:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d2:mindmelt:1900:jeremy-ismael",
+   "artistId": "iii-points-2014:jeremy-ismael",
+   "day": 2,
+   "stageId": "iii-points-2014:mindmelt",
+   "start": "19:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d2:mindmelt:1930:thunderpony",
+   "artistId": "iii-points-2014:thunderpony",
+   "day": 2,
+   "stageId": "iii-points-2014:mindmelt",
+   "start": "19:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d2:mindmelt:2010:uchi",
+   "artistId": "iii-points-2014:uchi",
+   "day": 2,
+   "stageId": "iii-points-2014:mindmelt",
+   "start": "20:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d2:mindmelt:2050:basti",
+   "artistId": "iii-points-2014:basti",
+   "day": 2,
+   "stageId": "iii-points-2014:mindmelt",
+   "start": "20:50",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d2:mindmelt:2140:lazaro-casanova",
+   "artistId": "iii-points-2014:lazaro-casanova",
+   "day": 2,
+   "stageId": "iii-points-2014:mindmelt",
+   "start": "21:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d2:mindmelt:2240:dj-tennis",
+   "artistId": "iii-points-2014:dj-tennis",
+   "day": 2,
+   "stageId": "iii-points-2014:mindmelt",
+   "start": "22:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d2:sector3:1900:mikey-ramirez",
+   "artistId": "iii-points-2014:mikey-ramirez",
+   "day": 2,
+   "stageId": "iii-points-2014:sector3",
+   "start": "19:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d2:sector3:1950:agent-rose",
+   "artistId": "iii-points-2014:agent-rose",
+   "day": 2,
+   "stageId": "iii-points-2014:sector3",
+   "start": "19:50",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d2:sector3:2040:mr-jolt",
+   "artistId": "iii-points-2014:mr-jolt",
+   "day": 2,
+   "stageId": "iii-points-2014:sector3",
+   "start": "20:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d2:sector3:2130:methods",
+   "artistId": "iii-points-2014:methods",
+   "day": 2,
+   "stageId": "iii-points-2014:sector3",
+   "start": "21:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d2:sector3:2220:artime",
+   "artistId": "iii-points-2014:artime",
+   "day": 2,
+   "stageId": "iii-points-2014:sector3",
+   "start": "22:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d2:sector3:2310:jeremy-ismael",
+   "artistId": "iii-points-2014:jeremy-ismael",
+   "day": 2,
+   "stageId": "iii-points-2014:sector3",
+   "start": "23:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d2:skatespace:1900:jesp",
+   "artistId": "iii-points-2014:jesp",
+   "day": 2,
+   "stageId": "iii-points-2014:skatespace",
+   "start": "19:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d2:skatespace:1930:ruen",
+   "artistId": "iii-points-2014:ruen",
+   "day": 2,
+   "stageId": "iii-points-2014:skatespace",
+   "start": "19:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d2:skatespace:2000:ideal",
+   "artistId": "iii-points-2014:ideal",
+   "day": 2,
+   "stageId": "iii-points-2014:skatespace",
+   "start": "20:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d2:skatespace:2030:frank-flux",
+   "artistId": "iii-points-2014:frank-flux",
+   "day": 2,
+   "stageId": "iii-points-2014:skatespace",
+   "start": "20:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d2:skatespace:2100:pase-rock",
+   "artistId": "iii-points-2014:pase-rock",
+   "day": 2,
+   "stageId": "iii-points-2014:skatespace",
+   "start": "21:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d2:skatespace:2145:maure",
+   "artistId": "iii-points-2014:maure",
+   "day": 2,
+   "stageId": "iii-points-2014:skatespace",
+   "start": "21:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d2:skatespace:2230:jbz",
+   "artistId": "iii-points-2014:jbz",
+   "day": 2,
+   "stageId": "iii-points-2014:skatespace",
+   "start": "22:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d2:skatespace:2330:cashmere-cat",
+   "artistId": "iii-points-2014:cashmere-cat",
+   "day": 2,
+   "stageId": "iii-points-2014:skatespace",
+   "start": "23:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d2:skatespace:0100:dza",
+   "artistId": "iii-points-2014:dza",
+   "day": 2,
+   "stageId": "iii-points-2014:skatespace",
+   "start": "01:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d3:mainframe:1910:rone",
+   "artistId": "iii-points-2014:rone",
+   "day": 3,
+   "stageId": "iii-points-2014:mainframe",
+   "start": "19:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d3:mainframe:1955:com-truise",
+   "artistId": "iii-points-2014:com-truise",
+   "day": 3,
+   "stageId": "iii-points-2014:mainframe",
+   "start": "19:55",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d3:mainframe:2050:kaytranada",
+   "artistId": "iii-points-2014:kaytranada",
+   "day": 3,
+   "stageId": "iii-points-2014:mainframe",
+   "start": "20:50",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d3:mainframe:2200:bob-moses",
+   "artistId": "iii-points-2014:bob-moses",
+   "day": 3,
+   "stageId": "iii-points-2014:mainframe",
+   "start": "22:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d3:mainframe:2320:hot-natured",
+   "artistId": "iii-points-2014:hot-natured",
+   "day": 3,
+   "stageId": "iii-points-2014:mainframe",
+   "start": "23:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d3:mainframe:0035:tiga",
+   "artistId": "iii-points-2014:tiga",
+   "day": 3,
+   "stageId": "iii-points-2014:mainframe",
+   "start": "00:35",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d3:mainframe:0145:jamie-jones",
+   "artistId": "iii-points-2014:jamie-jones",
+   "day": 3,
+   "stageId": "iii-points-2014:mainframe",
+   "start": "01:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d3:mindmelt:1900:eagle-chief",
+   "artistId": "iii-points-2014:eagle-chief",
+   "day": 3,
+   "stageId": "iii-points-2014:mindmelt",
+   "start": "19:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d3:mindmelt:1945:tremends",
+   "artistId": "iii-points-2014:tremends",
+   "day": 3,
+   "stageId": "iii-points-2014:mindmelt",
+   "start": "19:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d3:mindmelt:2030:nikey-blitz",
+   "artistId": "iii-points-2014:nikey-blitz",
+   "day": 3,
+   "stageId": "iii-points-2014:mindmelt",
+   "start": "20:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d3:mindmelt:2115:deaf-poets",
+   "artistId": "iii-points-2014:deaf-poets",
+   "day": 3,
+   "stageId": "iii-points-2014:mindmelt",
+   "start": "21:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d3:mindmelt:2205:jacuzzi-boys",
+   "artistId": "iii-points-2014:jacuzzi-boys",
+   "day": 3,
+   "stageId": "iii-points-2014:mindmelt",
+   "start": "22:05",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d3:mindmelt:2300:mac-demarco",
+   "artistId": "iii-points-2014:mac-demarco",
+   "day": 3,
+   "stageId": "iii-points-2014:mindmelt",
+   "start": "23:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d3:sector3:1900:vi-the-deep-end",
+   "artistId": "iii-points-2014:vi-the-deep-end",
+   "day": 3,
+   "stageId": "iii-points-2014:sector3",
+   "start": "19:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d3:sector3:2000:bonnie-beats",
+   "artistId": "iii-points-2014:bonnie-beats",
+   "day": 3,
+   "stageId": "iii-points-2014:sector3",
+   "start": "20:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d3:sector3:2100:chalk",
+   "artistId": "iii-points-2014:chalk",
+   "day": 3,
+   "stageId": "iii-points-2014:sector3",
+   "start": "21:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d3:sector3:2200:keen-one",
+   "artistId": "iii-points-2014:keen-one",
+   "day": 3,
+   "stageId": "iii-points-2014:sector3",
+   "start": "22:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d3:sector3:2300:ynot",
+   "artistId": "iii-points-2014:ynot",
+   "day": 3,
+   "stageId": "iii-points-2014:sector3",
+   "start": "23:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d3:skatespace:1915:my-deer",
+   "artistId": "iii-points-2014:my-deer",
+   "day": 3,
+   "stageId": "iii-points-2014:skatespace",
+   "start": "19:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d3:skatespace:2000:blue-jay",
+   "artistId": "iii-points-2014:blue-jay",
+   "day": 3,
+   "stageId": "iii-points-2014:skatespace",
+   "start": "20:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d3:skatespace:2045:the-jacket",
+   "artistId": "iii-points-2014:the-jacket",
+   "day": 3,
+   "stageId": "iii-points-2014:skatespace",
+   "start": "20:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d3:skatespace:2130:hunters-of-the-alps",
+   "artistId": "iii-points-2014:hunters-of-the-alps",
+   "day": 3,
+   "stageId": "iii-points-2014:skatespace",
+   "start": "21:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d3:skatespace:2215:the-hongs",
+   "artistId": "iii-points-2014:the-hongs",
+   "day": 3,
+   "stageId": "iii-points-2014:skatespace",
+   "start": "22:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d3:skatespace:2245:dinnerdate",
+   "artistId": "iii-points-2014:dinnerdate",
+   "day": 3,
+   "stageId": "iii-points-2014:skatespace",
+   "start": "22:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d3:skatespace:2345:jacques-greene-dj-set",
+   "artistId": "iii-points-2014:jacques-greene-dj-set",
+   "day": 3,
+   "stageId": "iii-points-2014:skatespace",
+   "start": "23:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "iii-points-2014:d3:skatespace:0100:dude-skywalker",
+   "artistId": "iii-points-2014:dude-skywalker",
+   "day": 3,
+   "stageId": "iii-points-2014:skatespace",
+   "start": "01:00",
+   "end": null,
+   "openEnd": true
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_image_transcription",
+  "official": "http://iiipoints.com/schedule/",
+  "captures": [
+   {
+    "day": 1,
+    "pageArchivedUrl": "https://web.archive.org/web/20141020054914/http://iiipoints.com/schedule/",
+    "pageCapture": "20141020054914",
+    "imageArchivedUrl": "https://web.archive.org/web/20141221130014/http://www.iiipoints.com/Schedule/friday.png",
+    "imageCapture": "20141221130014",
+    "sha256": "0b95ed8e6cf9e8c64e9a0b6a484dd832b7f0910757e6c2dd69658934f2a388ae",
+    "reviewManifest": "data/historical/review/iii-points-2014.json"
+   },
+   {
+    "day": 2,
+    "pageArchivedUrl": "https://web.archive.org/web/20141020054914/http://iiipoints.com/schedule/",
+    "pageCapture": "20141020054914",
+    "imageArchivedUrl": "https://web.archive.org/web/20141221122016/http://www.iiipoints.com/Schedule/saturday.png",
+    "imageCapture": "20141221122016",
+    "sha256": "8dab31522798917a0c77fc7b262b56983364cfda79f7aae000a131c3c894db7f",
+    "reviewManifest": "data/historical/review/iii-points-2014.json"
+   },
+   {
+    "day": 3,
+    "pageArchivedUrl": "https://web.archive.org/web/20141020054914/http://iiipoints.com/schedule/",
+    "pageCapture": "20141020054914",
+    "imageArchivedUrl": "https://web.archive.org/web/20141221122459/http://www.iiipoints.com/Schedule/sunday.png",
+    "imageCapture": "20141221122459",
+    "sha256": "819fbb097889c705f87807adb90eaaafca4f4c8b48c118df55958c9d48daea25",
+    "reviewManifest": "data/historical/review/iii-points-2014.json"
+   }
+  ]
+ }
+}

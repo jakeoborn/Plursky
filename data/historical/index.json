@@ -2776,6 +2776,37 @@
    }
   },
   {
+   "id": "iii-points-2014",
+   "festivalId": "iii-points",
+   "festivalName": "III Points",
+   "name": "III Points 2014",
+   "year": 2014,
+   "timezone": "America/New_York",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2014-10-10",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2014-10-11",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2014-10-12",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 4,
+    "artists": 80,
+    "sets": 81
+   }
+  },
+  {
    "id": "lightning-in-a-bottle-2019",
    "festivalId": "lightning-in-a-bottle",
    "festivalName": "Lightning in a Bottle",
