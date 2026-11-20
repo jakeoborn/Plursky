@@ -174,8 +174,11 @@ const out = build();
   // (Elkabass (a.k.a. The Prophet)): 198 rows. Lollapalooza 2024 and
   // Governors Ball 2024 add two: a billing joined by "with" (LAUFEY WITH THE
   // CHICAGO PHILHARMONIC) and a short name now at three brands (FLO): 200
-  // rows. Past 200, stop and report.
-  check(review.length <= 200, `review queue is ${review.length} rows (> 200 means stop and report)`);
+  // rows. Ultra Miami 2022 and 2023 add three: an "x" billing whose sides are
+  // not both known acts (KVSH X PONTIFEXX), a "+" billing (ASH TRÉS + MOSES
+  // JAZZ) and a short name now at two brands (Kx5): 203 rows. Past 203, stop
+  // and report.
+  check(review.length <= 203, `review queue is ${review.length} rows (> 203 means stop and report)`);
   check(review.every(r => r.reason) && excluded.every(e => e.reason && e.category), 'a review or excluded row without its reason');
   check(excluded.some(e => e.category === 'unnamed-slot'), 'control: no unnamed slot was excluded');
   // Bare non-acts never become artists; a NAMED kids act ("Special Guest: The

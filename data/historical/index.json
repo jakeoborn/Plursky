@@ -5336,6 +5336,68 @@
     "artists": 137,
     "sets": 139
    }
+  },
+  {
+   "id": "ultra-miami-2023",
+   "festivalId": "ultra-miami",
+   "festivalName": "Ultra Miami",
+   "name": "Ultra Miami 2023",
+   "year": 2023,
+   "timezone": "America/New_York",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2023-03-24",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2023-03-25",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2023-03-26",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 7,
+    "artists": 164,
+    "sets": 165
+   }
+  },
+  {
+   "id": "ultra-miami-2022",
+   "festivalId": "ultra-miami",
+   "festivalName": "Ultra Miami",
+   "name": "Ultra Miami 2022",
+   "year": 2022,
+   "timezone": "America/New_York",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2022-03-25",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2022-03-26",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2022-03-27",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 7,
+    "artists": 158,
+    "sets": 161
+   }
   }
  ]
 }

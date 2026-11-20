@@ -712070,6 +712070,7948 @@
   "mainStage": null
  },
  {
+  "id": "ultra-miami-2022:d1:ultra-main-stage:2245:kygo",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "22:45",
+  "end": null,
+  "printed": "KYGO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kygo",
+    "role": "performer"
+   }
+  ],
+  "act": "kygo",
+  "closing": true,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:ultra-main-stage:2140:martin-garrix",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "21:40",
+  "end": null,
+  "printed": "MARTIN GARRIX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "martin-garrix",
+    "role": "performer"
+   }
+  ],
+  "act": "martin-garrix",
+  "closing": false,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:ultra-main-stage:2035:alesso",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "20:35",
+  "end": null,
+  "printed": "ALESSO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alesso",
+    "role": "performer"
+   }
+  ],
+  "act": "alesso",
+  "closing": false,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:ultra-main-stage:1930:fisher",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "19:30",
+  "end": null,
+  "printed": "FISHER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fisher",
+    "role": "performer"
+   }
+  ],
+  "act": "fisher",
+  "closing": false,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:ultra-main-stage:1825:timmy-trumpet",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "18:25",
+  "end": null,
+  "printed": "TIMMY TRUMPET",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "timmy-trumpet",
+    "role": "performer"
+   }
+  ],
+  "act": "timmy-trumpet",
+  "closing": false,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:ultra-main-stage:1720:nicky-romero",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "17:20",
+  "end": null,
+  "printed": "NICKY ROMERO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nicky-romero",
+    "role": "performer"
+   }
+  ],
+  "act": "nicky-romero",
+  "closing": false,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:ultra-main-stage:1615:frank-walker",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "16:15",
+  "end": null,
+  "printed": "FRANK WALKER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "frank-walker",
+    "role": "performer"
+   }
+  ],
+  "act": "frank-walker",
+  "closing": false,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:live-stage:2300:pendulum",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "LIVE STAGE",
+  "start": "23:00",
+  "end": null,
+  "printed": "PENDULUM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pendulum",
+    "role": "performer"
+   }
+  ],
+  "act": "pendulum",
+  "closing": true,
+  "stageLineage": "ultra-miami:live-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:live-stage:2130:alison-wonderland",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "LIVE STAGE",
+  "start": "21:30",
+  "end": null,
+  "printed": "ALISON WONDERLAND",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alison-wonderland",
+    "role": "performer"
+   }
+  ],
+  "act": "alison-wonderland",
+  "closing": false,
+  "stageLineage": "ultra-miami:live-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:live-stage:2000:svdden-death-presents-voyd",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "LIVE STAGE",
+  "start": "20:00",
+  "end": null,
+  "printed": "SVDDEN DEATH (PRESENTS VOYD)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "voyd",
+    "role": "project"
+   }
+  ],
+  "act": "svdden-death-presents-voyd",
+  "closing": false,
+  "stageLineage": "ultra-miami:live-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:live-stage:1830:sullivan-king",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "LIVE STAGE",
+  "start": "18:30",
+  "end": null,
+  "printed": "SULLIVAN KING",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sullivan-king",
+    "role": "performer"
+   }
+  ],
+  "act": "sullivan-king",
+  "closing": false,
+  "stageLineage": "ultra-miami:live-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:live-stage:1700:ookay",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "LIVE STAGE",
+  "start": "17:00",
+  "end": null,
+  "printed": "OOKAY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ookay",
+    "role": "performer"
+   }
+  ],
+  "act": "ookay",
+  "closing": false,
+  "stageLineage": "ultra-miami:live-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:megastructure:2200:carl-cox",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "MEGASTRUCTURE",
+  "start": "22:00",
+  "end": null,
+  "printed": "CARL COX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carl-cox",
+    "role": "performer"
+   }
+  ],
+  "act": "carl-cox",
+  "closing": true,
+  "stageLineage": "ultra-miami:megastructure",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:megastructure:2030:nina-kraviz",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "MEGASTRUCTURE",
+  "start": "20:30",
+  "end": null,
+  "printed": "NINA KRAVIZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nina-kraviz",
+    "role": "performer"
+   }
+  ],
+  "act": "nina-kraviz",
+  "closing": false,
+  "stageLineage": "ultra-miami:megastructure",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:megastructure:1900:joseph-capriati",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "MEGASTRUCTURE",
+  "start": "19:00",
+  "end": null,
+  "printed": "JOSEPH CAPRIATI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "joseph-capriati",
+    "role": "performer"
+   }
+  ],
+  "act": "joseph-capriati",
+  "closing": false,
+  "stageLineage": "ultra-miami:megastructure",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:megastructure:1730:michael-bibi",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "MEGASTRUCTURE",
+  "start": "17:30",
+  "end": null,
+  "printed": "MICHAEL BIBI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "michael-bibi",
+    "role": "performer"
+   }
+  ],
+  "act": "michael-bibi",
+  "closing": false,
+  "stageLineage": "ultra-miami:megastructure",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:megastructure:1600:anfisa-letyago",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "MEGASTRUCTURE",
+  "start": "16:00",
+  "end": null,
+  "printed": "ANFISA LETYAGO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "anfisa-letyago",
+    "role": "performer"
+   }
+  ],
+  "act": "anfisa-letyago",
+  "closing": false,
+  "stageLineage": "ultra-miami:megastructure",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:worldwide-stage:2230:armin-van-buuren",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "WORLDWIDE STAGE",
+  "start": "22:30",
+  "end": null,
+  "printed": "ARMIN VAN BUUREN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "armin-van-buuren",
+    "role": "performer"
+   }
+  ],
+  "act": "armin-van-buuren",
+  "closing": true,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:worldwide-stage:2130:armin-van-buuren-b2b-reinier-zonneveld-live",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "WORLDWIDE STAGE",
+  "start": "21:30",
+  "end": null,
+  "printed": "ARMIN VAN BUUREN B2B REINIER ZONNEVELD (LIVE)",
+  "setTag": "LIVE",
+  "performers": [
+   {
+    "key": "armin-van-buuren",
+    "role": "b2b"
+   },
+   {
+    "key": "reinier-zonneveld",
+    "role": "b2b"
+   }
+  ],
+  "act": "armin-van-buuren-b2b-reinier-zonneveld",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:worldwide-stage:2030:vini-vici",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "WORLDWIDE STAGE",
+  "start": "20:30",
+  "end": null,
+  "printed": "VINI VICI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vini-vici",
+    "role": "performer"
+   }
+  ],
+  "act": "vini-vici",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:worldwide-stage:1930:gareth-emery",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "WORLDWIDE STAGE",
+  "start": "19:30",
+  "end": null,
+  "printed": "GARETH EMERY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gareth-emery",
+    "role": "performer"
+   }
+  ],
+  "act": "gareth-emery",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:worldwide-stage:1835:andrew-rayel",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "WORLDWIDE STAGE",
+  "start": "18:35",
+  "end": null,
+  "printed": "ANDREW RAYEL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "andrew-rayel",
+    "role": "performer"
+   }
+  ],
+  "act": "andrew-rayel",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:worldwide-stage:1740:aly-and-fila",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "WORLDWIDE STAGE",
+  "start": "17:40",
+  "end": null,
+  "printed": "ALY & FILA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "aly-and-fila",
+    "role": "performer"
+   }
+  ],
+  "act": "aly-and-fila",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:worldwide-stage:1650:sander-van-doorn",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "WORLDWIDE STAGE",
+  "start": "16:50",
+  "end": null,
+  "printed": "SANDER VAN DOORN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sander-van-doorn",
+    "role": "performer"
+   }
+  ],
+  "act": "sander-van-doorn",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:worldwide-stage:1600:avira",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "WORLDWIDE STAGE",
+  "start": "16:00",
+  "end": null,
+  "printed": "AVIRA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "avira",
+    "role": "performer"
+   }
+  ],
+  "act": "avira",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:the-cove:2100:boris-brejcha",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "THE COVE",
+  "start": "21:00",
+  "end": null,
+  "printed": "BORIS BREJCHA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "boris-brejcha",
+    "role": "performer"
+   }
+  ],
+  "act": "boris-brejcha",
+  "closing": true,
+  "stageLineage": "ultra-miami:the-cove",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:the-cove:1800:ann-clue",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "THE COVE",
+  "start": "18:00",
+  "end": null,
+  "printed": "ANN CLUE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ann-clue",
+    "role": "performer"
+   }
+  ],
+  "act": "ann-clue",
+  "closing": false,
+  "stageLineage": "ultra-miami:the-cove",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:the-cove:1600:popof",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "THE COVE",
+  "start": "16:00",
+  "end": null,
+  "printed": "POPOF",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "popof",
+    "role": "performer"
+   }
+  ],
+  "act": "popof",
+  "closing": false,
+  "stageLineage": "ultra-miami:the-cove",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:umf-radio:2215:justin-mylo",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "UMF RADIO",
+  "start": "22:15",
+  "end": null,
+  "printed": "JUSTIN MYLO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "justin-mylo",
+    "role": "performer"
+   }
+  ],
+  "act": "justin-mylo",
+  "closing": true,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:umf-radio:2115:julian-jordan",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "UMF RADIO",
+  "start": "21:15",
+  "end": null,
+  "printed": "JULIAN JORDAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "julian-jordan",
+    "role": "performer"
+   }
+  ],
+  "act": "julian-jordan",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:umf-radio:2030:dubvision",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "UMF RADIO",
+  "start": "20:30",
+  "end": null,
+  "printed": "DUBVISION",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dubvision",
+    "role": "performer"
+   }
+  ],
+  "act": "dubvision",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:umf-radio:1945:matisse-and-sadko",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "UMF RADIO",
+  "start": "19:45",
+  "end": null,
+  "printed": "MATISSE & SADKO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "matisse-and-sadko",
+    "role": "performer"
+   }
+  ],
+  "act": "matisse-and-sadko",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:umf-radio:1900:kvsh-x-pontifexx",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "UMF RADIO",
+  "start": "19:00",
+  "end": null,
+  "printed": "KVSH X PONTIFEXX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kvsh-x-pontifexx",
+    "role": "act"
+   }
+  ],
+  "act": "kvsh-x-pontifexx",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null,
+  "review": "\"x\" billing whose sides are not both known acts"
+ },
+ {
+  "id": "ultra-miami-2022:d1:umf-radio:1815:florian-picasso",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "UMF RADIO",
+  "start": "18:15",
+  "end": null,
+  "printed": "FLORIAN PICASSO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "florian-picasso",
+    "role": "performer"
+   }
+  ],
+  "act": "florian-picasso",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:umf-radio:1730:matt-nash",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "UMF RADIO",
+  "start": "17:30",
+  "end": null,
+  "printed": "MATT NASH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "matt-nash",
+    "role": "performer"
+   }
+  ],
+  "act": "matt-nash",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:umf-radio:1645:osrin",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "UMF RADIO",
+  "start": "16:45",
+  "end": null,
+  "printed": "OSRIN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "osrin",
+    "role": "performer"
+   }
+  ],
+  "act": "osrin",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:umf-radio:1600:infuze",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "UMF RADIO",
+  "start": "16:00",
+  "end": null,
+  "printed": "INFUZE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "infuze",
+    "role": "performer"
+   }
+  ],
+  "act": "infuze",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:oasis:2300:metaphysical-b2b-knowlton-walsh",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "OASIS",
+  "start": "23:00",
+  "end": null,
+  "printed": "METAPHYSICAL B2B KNOWLTON WALSH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "metaphysical",
+    "role": "b2b"
+   },
+   {
+    "key": "knowlton-walsh",
+    "role": "b2b"
+   }
+  ],
+  "act": "metaphysical-b2b-knowlton-walsh",
+  "closing": true,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:oasis:2215:wags",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "OASIS",
+  "start": "22:15",
+  "end": null,
+  "printed": "WAGS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wags",
+    "role": "performer"
+   }
+  ],
+  "act": "wags",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:oasis:2130:dave-sol",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "OASIS",
+  "start": "21:30",
+  "end": null,
+  "printed": "DAVE SOL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dave-sol",
+    "role": "performer"
+   }
+  ],
+  "act": "dave-sol",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:oasis:2030:jimmie-page",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "OASIS",
+  "start": "20:30",
+  "end": null,
+  "printed": "JIMMIE PAGE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jimmie-page",
+    "role": "performer"
+   }
+  ],
+  "act": "jimmie-page",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:oasis:1930:dj-ideal-b2b-redux-saints",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "OASIS",
+  "start": "19:30",
+  "end": null,
+  "printed": "DJ IDEAL B2B REDUX SAINTS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-ideal",
+    "role": "b2b"
+   },
+   {
+    "key": "redux-saints",
+    "role": "b2b"
+   }
+  ],
+  "act": "dj-ideal-b2b-redux-saints",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:oasis:1830:zaa",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "OASIS",
+  "start": "18:30",
+  "end": null,
+  "printed": "ZAA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zaa",
+    "role": "performer"
+   }
+  ],
+  "act": "zaa",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:oasis:1730:bebe-breaks",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "OASIS",
+  "start": "17:30",
+  "end": null,
+  "printed": "BEBE BREAKS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bebe-breaks",
+    "role": "performer"
+   }
+  ],
+  "act": "bebe-breaks",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:oasis:1645:chico-bandido",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "OASIS",
+  "start": "16:45",
+  "end": null,
+  "printed": "CHICO BANDIDO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chico-bandido",
+    "role": "performer"
+   }
+  ],
+  "act": "chico-bandido",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d1:oasis:1600:sirchaz-and-sofia",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-25",
+  "day": 1,
+  "stage": "OASIS",
+  "start": "16:00",
+  "end": null,
+  "printed": "SIRCHAZ AND SOFIA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sirchaz-and-sofia",
+    "role": "performer"
+   }
+  ],
+  "act": "sirchaz-and-sofia",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:ultra-main-stage:2245:illenium",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "22:45",
+  "end": null,
+  "printed": "ILLENIUM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "illenium",
+    "role": "performer"
+   }
+  ],
+  "act": "illenium",
+  "closing": true,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:ultra-main-stage:2140:dj-snake",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "21:40",
+  "end": null,
+  "printed": "DJ SNAKE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-snake",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-snake",
+  "closing": false,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:ultra-main-stage:2035:afrojack",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "20:35",
+  "end": null,
+  "printed": "AFROJACK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "afrojack",
+    "role": "performer"
+   }
+  ],
+  "act": "afrojack",
+  "closing": false,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:ultra-main-stage:1930:tiesto",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "19:30",
+  "end": null,
+  "printed": "TIËSTO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tiesto",
+    "role": "performer"
+   }
+  ],
+  "act": "tiesto",
+  "closing": false,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:ultra-main-stage:1825:oliver-heldens",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "18:25",
+  "end": null,
+  "printed": "OLIVER HELDENS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "oliver-heldens",
+    "role": "performer"
+   }
+  ],
+  "act": "oliver-heldens",
+  "closing": false,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:ultra-main-stage:1720:tchami",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "17:20",
+  "end": null,
+  "printed": "TCHAMI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tchami",
+    "role": "performer"
+   }
+  ],
+  "act": "tchami",
+  "closing": false,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:ultra-main-stage:1615:sam-feldt",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "16:15",
+  "end": null,
+  "printed": "SAM FELDT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sam-feldt",
+    "role": "performer"
+   }
+  ],
+  "act": "sam-feldt",
+  "closing": false,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:ultra-main-stage:1510:jeffrey-sutorius",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "15:10",
+  "end": null,
+  "printed": "JEFFREY SUTORIUS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jeffrey-sutorius",
+    "role": "performer"
+   }
+  ],
+  "act": "jeffrey-sutorius",
+  "closing": false,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:ultra-main-stage:1405:mykris",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "14:05",
+  "end": null,
+  "printed": "MYKRIS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mykris",
+    "role": "performer"
+   }
+  ],
+  "act": "mykris",
+  "closing": false,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:ultra-main-stage:1300:tommie-sunshine",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "13:00",
+  "end": null,
+  "printed": "TOMMIE SUNSHINE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tommie-sunshine",
+    "role": "performer"
+   }
+  ],
+  "act": "tommie-sunshine",
+  "closing": false,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:live-stage:2300:kshmr-the-live-experience",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "LIVE STAGE",
+  "start": "23:00",
+  "end": null,
+  "printed": "KSHMR (THE LIVE EXPERIENCE)",
+  "setTag": "THE LIVE EXPERIENCE",
+  "performers": [
+   {
+    "key": "kshmr",
+    "role": "performer"
+   }
+  ],
+  "act": "kshmr",
+  "closing": true,
+  "stageLineage": "ultra-miami:live-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:live-stage:2130:madeon",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "LIVE STAGE",
+  "start": "21:30",
+  "end": null,
+  "printed": "MADEON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "madeon",
+    "role": "performer"
+   }
+  ],
+  "act": "madeon",
+  "closing": false,
+  "stageLineage": "ultra-miami:live-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:live-stage:2000:sofi-tukker",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "LIVE STAGE",
+  "start": "20:00",
+  "end": null,
+  "printed": "SOFI TUKKER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sofi-tukker",
+    "role": "performer"
+   }
+  ],
+  "act": "sofi-tukker",
+  "closing": false,
+  "stageLineage": "ultra-miami:live-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:live-stage:1830:gareth-emery-analog",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "LIVE STAGE",
+  "start": "18:30",
+  "end": null,
+  "printed": "GARETH EMERY (ANALOG)",
+  "setTag": "ANALOG",
+  "performers": [
+   {
+    "key": "gareth-emery",
+    "role": "performer"
+   }
+  ],
+  "act": "gareth-emery",
+  "closing": false,
+  "stageLineage": "ultra-miami:live-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:live-stage:1700:olan",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "LIVE STAGE",
+  "start": "17:00",
+  "end": null,
+  "printed": "OLAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "olan",
+    "role": "performer"
+   }
+  ],
+  "act": "olan",
+  "closing": false,
+  "stageLineage": "ultra-miami:live-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:live-stage:1600:afrobeta",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "LIVE STAGE",
+  "start": "16:00",
+  "end": null,
+  "printed": "AFROBETA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "afrobeta",
+    "role": "performer"
+   }
+  ],
+  "act": "afrobeta",
+  "closing": false,
+  "stageLineage": "ultra-miami:live-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:megastructure:2100:carl-cox-hybrid-live",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "MEGASTRUCTURE",
+  "start": "21:00",
+  "end": null,
+  "printed": "CARL COX (HYBRID LIVE)",
+  "setTag": "HYBRID LIVE",
+  "performers": [
+   {
+    "key": "carl-cox",
+    "role": "performer"
+   }
+  ],
+  "act": "carl-cox",
+  "closing": true,
+  "stageLineage": "ultra-miami:megastructure",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:megastructure:1930:tale-of-us",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "MEGASTRUCTURE",
+  "start": "19:30",
+  "end": null,
+  "printed": "TALE OF US",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tale-of-us",
+    "role": "performer"
+   }
+  ],
+  "act": "tale-of-us",
+  "closing": false,
+  "stageLineage": "ultra-miami:megastructure",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:megastructure:1800:anna",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "MEGASTRUCTURE",
+  "start": "18:00",
+  "end": null,
+  "printed": "ANNA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "anna",
+    "role": "performer"
+   }
+  ],
+  "act": "anna",
+  "closing": false,
+  "stageLineage": "ultra-miami:megastructure",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:megastructure:1630:sasha-john-digweed",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "MEGASTRUCTURE",
+  "start": "16:30",
+  "end": null,
+  "printed": "SASHA | JOHN DIGWEED",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sasha-john-digweed",
+    "role": "performer"
+   }
+  ],
+  "act": "sasha-john-digweed",
+  "closing": false,
+  "stageLineage": "ultra-miami:megastructure",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:megastructure:1500:dubfire",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "MEGASTRUCTURE",
+  "start": "15:00",
+  "end": null,
+  "printed": "DUBFIRE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dubfire",
+    "role": "performer"
+   }
+  ],
+  "act": "dubfire",
+  "closing": false,
+  "stageLineage": "ultra-miami:megastructure",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:megastructure:1400:giorgia-angiuli-live",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "MEGASTRUCTURE",
+  "start": "14:00",
+  "end": null,
+  "printed": "GIORGIA ANGIULI (LIVE)",
+  "setTag": "LIVE",
+  "performers": [
+   {
+    "key": "giorgia-angiuli",
+    "role": "performer"
+   }
+  ],
+  "act": "giorgia-angiuli",
+  "closing": false,
+  "stageLineage": "ultra-miami:megastructure",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:megastructure:1200:brennen-grey",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "MEGASTRUCTURE",
+  "start": "12:00",
+  "end": null,
+  "printed": "BRENNEN GREY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "brennen-grey",
+    "role": "performer"
+   }
+  ],
+  "act": "brennen-grey",
+  "closing": false,
+  "stageLineage": "ultra-miami:megastructure",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:worldwide-stage:2300:knife-party",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "WORLDWIDE STAGE",
+  "start": "23:00",
+  "end": null,
+  "printed": "KNIFE PARTY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "knife-party",
+    "role": "performer"
+   }
+  ],
+  "act": "knife-party",
+  "closing": true,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:worldwide-stage:2130:jauz-b2b-nghtmre",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "WORLDWIDE STAGE",
+  "start": "21:30",
+  "end": null,
+  "printed": "JAUZ B2B NGHTMRE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jauz",
+    "role": "b2b"
+   },
+   {
+    "key": "nghtmre",
+    "role": "b2b"
+   }
+  ],
+  "act": "jauz-b2b-nghtmre",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:worldwide-stage:2010:black-tiger-sex-machine",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "WORLDWIDE STAGE",
+  "start": "20:10",
+  "end": null,
+  "printed": "BLACK TIGER SEX MACHINE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "black-tiger-sex-machine",
+    "role": "performer"
+   }
+  ],
+  "act": "black-tiger-sex-machine",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:worldwide-stage:1900:whethan",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "WORLDWIDE STAGE",
+  "start": "19:00",
+  "end": null,
+  "printed": "WHETHAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "whethan",
+    "role": "performer"
+   }
+  ],
+  "act": "whethan",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:worldwide-stage:1730:4b-b2b-saymyname",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "WORLDWIDE STAGE",
+  "start": "17:30",
+  "end": null,
+  "printed": "4B B2B SAYMYNAME",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "4b",
+    "role": "b2b"
+   },
+   {
+    "key": "saymyname",
+    "role": "b2b"
+   }
+  ],
+  "act": "4b-b2b-saymyname",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:worldwide-stage:1630:slushii",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "WORLDWIDE STAGE",
+  "start": "16:30",
+  "end": null,
+  "printed": "SLUSHII",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "slushii",
+    "role": "performer"
+   }
+  ],
+  "act": "slushii",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:worldwide-stage:1530:wax-motif",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "WORLDWIDE STAGE",
+  "start": "15:30",
+  "end": null,
+  "printed": "WAX MOTIF",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wax-motif",
+    "role": "performer"
+   }
+  ],
+  "act": "wax-motif",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:worldwide-stage:1400:mija-b2b-gg-magree",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "WORLDWIDE STAGE",
+  "start": "14:00",
+  "end": null,
+  "printed": "MIJA B2B GG MAGREE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mija",
+    "role": "b2b"
+   },
+   {
+    "key": "gg-magree",
+    "role": "b2b"
+   }
+  ],
+  "act": "mija-b2b-gg-magree",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:worldwide-stage:1300:a-hundred-drums",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "WORLDWIDE STAGE",
+  "start": "13:00",
+  "end": null,
+  "printed": "A HUNDRED DRUMS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "a-hundred-drums",
+    "role": "performer"
+   }
+  ],
+  "act": "a-hundred-drums",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:worldwide-stage:1200:ares-carter",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "WORLDWIDE STAGE",
+  "start": "12:00",
+  "end": null,
+  "printed": "ARES CARTER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ares-carter",
+    "role": "performer"
+   }
+  ],
+  "act": "ares-carter",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:the-cove:2230:solardo",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "THE COVE",
+  "start": "22:30",
+  "end": null,
+  "printed": "SOLARDO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "solardo",
+    "role": "performer"
+   }
+  ],
+  "act": "solardo",
+  "closing": true,
+  "stageLineage": "ultra-miami:the-cove",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:the-cove:2100:camelphat",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "THE COVE",
+  "start": "21:00",
+  "end": null,
+  "printed": "CAMELPHAT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "camelphat",
+    "role": "performer"
+   }
+  ],
+  "act": "camelphat",
+  "closing": false,
+  "stageLineage": "ultra-miami:the-cove",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:the-cove:1930:nic-fanciulli",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "THE COVE",
+  "start": "19:30",
+  "end": null,
+  "printed": "NIC FANCIULLI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nic-fanciulli",
+    "role": "performer"
+   }
+  ],
+  "act": "nic-fanciulli",
+  "closing": false,
+  "stageLineage": "ultra-miami:the-cove",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:the-cove:1800:dom-dolla",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "THE COVE",
+  "start": "18:00",
+  "end": null,
+  "printed": "DOM DOLLA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dom-dolla",
+    "role": "performer"
+   }
+  ],
+  "act": "dom-dolla",
+  "closing": false,
+  "stageLineage": "ultra-miami:the-cove",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:the-cove:1630:john-summit",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "THE COVE",
+  "start": "16:30",
+  "end": null,
+  "printed": "JOHN SUMMIT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "john-summit",
+    "role": "performer"
+   }
+  ],
+  "act": "john-summit",
+  "closing": false,
+  "stageLineage": "ultra-miami:the-cove",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:the-cove:1500:christian-smith-b2b-cristian-varela",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "THE COVE",
+  "start": "15:00",
+  "end": null,
+  "printed": "CHRISTIAN SMITH B2B CRISTIAN VARELA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "christian-smith",
+    "role": "b2b"
+   },
+   {
+    "key": "cristian-varela",
+    "role": "b2b"
+   }
+  ],
+  "act": "christian-smith-b2b-cristian-varela",
+  "closing": false,
+  "stageLineage": "ultra-miami:the-cove",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:the-cove:1330:rafa-barrios",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "THE COVE",
+  "start": "13:30",
+  "end": null,
+  "printed": "RAFA BARRIOS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rafa-barrios",
+    "role": "performer"
+   }
+  ],
+  "act": "rafa-barrios",
+  "closing": false,
+  "stageLineage": "ultra-miami:the-cove",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:the-cove:1200:nala",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "THE COVE",
+  "start": "12:00",
+  "end": null,
+  "printed": "NALA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nala",
+    "role": "performer"
+   }
+  ],
+  "act": "nala",
+  "closing": false,
+  "stageLineage": "ultra-miami:the-cove",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:umf-radio:2300:nitepunk",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "UMF RADIO",
+  "start": "23:00",
+  "end": null,
+  "printed": "NITEPUNK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nitepunk",
+    "role": "performer"
+   }
+  ],
+  "act": "nitepunk",
+  "closing": true,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:umf-radio:2200:leotrix",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "UMF RADIO",
+  "start": "22:00",
+  "end": null,
+  "printed": "LEOTRIX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "leotrix",
+    "role": "performer"
+   }
+  ],
+  "act": "leotrix",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:umf-radio:2100:frosttop",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "UMF RADIO",
+  "start": "21:00",
+  "end": null,
+  "printed": "FROSTTOP",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "frosttop",
+    "role": "performer"
+   }
+  ],
+  "act": "frosttop",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:umf-radio:1950:peekaboo",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "UMF RADIO",
+  "start": "19:50",
+  "end": null,
+  "printed": "PEEKABOO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "peekaboo",
+    "role": "performer"
+   }
+  ],
+  "act": "peekaboo",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:umf-radio:1730:space-laces",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "UMF RADIO",
+  "start": "17:30",
+  "end": null,
+  "printed": "SPACE LACES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "space-laces",
+    "role": "performer"
+   }
+  ],
+  "act": "space-laces",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:umf-radio:1620:wavedash",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "UMF RADIO",
+  "start": "16:20",
+  "end": null,
+  "printed": "WAVEDASH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wavedash",
+    "role": "performer"
+   }
+  ],
+  "act": "wavedash",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:umf-radio:1510:william-black",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "UMF RADIO",
+  "start": "15:10",
+  "end": null,
+  "printed": "WILLIAM BLACK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "william-black",
+    "role": "performer"
+   }
+  ],
+  "act": "william-black",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:umf-radio:1400:riot",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "UMF RADIO",
+  "start": "14:00",
+  "end": null,
+  "printed": "RIOT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "riot",
+    "role": "performer"
+   }
+  ],
+  "act": "riot",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:umf-radio:1300:kraysh",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "UMF RADIO",
+  "start": "13:00",
+  "end": null,
+  "printed": "KRAYSH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kraysh",
+    "role": "performer"
+   }
+  ],
+  "act": "kraysh",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:umf-radio:1200:saka",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "UMF RADIO",
+  "start": "12:00",
+  "end": null,
+  "printed": "SAKA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "saka",
+    "role": "performer"
+   }
+  ],
+  "act": "saka",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:oasis:2300:tak-shak",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "OASIS",
+  "start": "23:00",
+  "end": null,
+  "printed": "TAK SHAK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tak-shak",
+    "role": "performer"
+   }
+  ],
+  "act": "tak-shak",
+  "closing": true,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:oasis:2215:los-de-la-vega",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "OASIS",
+  "start": "22:15",
+  "end": null,
+  "printed": "LOS DE LA VEGA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "los-de-la-vega",
+    "role": "performer"
+   }
+  ],
+  "act": "los-de-la-vega",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:oasis:2130:festival-nun-b2b-die-maschine",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "OASIS",
+  "start": "21:30",
+  "end": null,
+  "printed": "FESTIVAL NUN B2B DIE MASCHINE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "festival-nun",
+    "role": "b2b"
+   },
+   {
+    "key": "die-maschine",
+    "role": "b2b"
+   }
+  ],
+  "act": "festival-nun-b2b-die-maschine",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:oasis:2045:mednas",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "OASIS",
+  "start": "20:45",
+  "end": null,
+  "printed": "MEDNAS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mednas",
+    "role": "performer"
+   }
+  ],
+  "act": "mednas",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:oasis:1945:wyzzard",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "OASIS",
+  "start": "19:45",
+  "end": null,
+  "printed": "WYZZARD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wyzzard",
+    "role": "performer"
+   }
+  ],
+  "act": "wyzzard",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:oasis:1845:dabura",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "OASIS",
+  "start": "18:45",
+  "end": null,
+  "printed": "DABURA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dabura",
+    "role": "performer"
+   }
+  ],
+  "act": "dabura",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:oasis:1745:soul-goodman",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "OASIS",
+  "start": "17:45",
+  "end": null,
+  "printed": "SOUL GOODMAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "soul-goodman",
+    "role": "performer"
+   }
+  ],
+  "act": "soul-goodman",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:oasis:1645:richard-fraioli",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "OASIS",
+  "start": "16:45",
+  "end": null,
+  "printed": "RICHARD FRAIOLI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "richard-fraioli",
+    "role": "performer"
+   }
+  ],
+  "act": "richard-fraioli",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:oasis:1600:lemony-snickettes",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "OASIS",
+  "start": "16:00",
+  "end": null,
+  "printed": "LEMONY SNICKETTES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lemony-snickettes",
+    "role": "performer"
+   }
+  ],
+  "act": "lemony-snickettes",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:oasis:1500:sizemore",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "OASIS",
+  "start": "15:00",
+  "end": null,
+  "printed": "SIZEMORE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sizemore",
+    "role": "performer"
+   }
+  ],
+  "act": "sizemore",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:oasis:1400:jose-esco",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "OASIS",
+  "start": "14:00",
+  "end": null,
+  "printed": "JOSE ESCO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jose-esco",
+    "role": "performer"
+   }
+  ],
+  "act": "jose-esco",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:oasis:1300:dmiitri-saldi",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "OASIS",
+  "start": "13:00",
+  "end": null,
+  "printed": "DMIITRI SALDI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dmiitri-saldi",
+    "role": "performer"
+   }
+  ],
+  "act": "dmiitri-saldi",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d2:oasis:1200:rodrigo-vieira",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-26",
+  "day": 2,
+  "stage": "OASIS",
+  "start": "12:00",
+  "end": null,
+  "printed": "RODRIGO VIEIRA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rodrigo-vieira",
+    "role": "performer"
+   }
+  ],
+  "act": "rodrigo-vieira",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:ultra-main-stage:1940:david-guetta",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "19:40",
+  "end": null,
+  "printed": "DAVID GUETTA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "david-guetta",
+    "role": "performer"
+   }
+  ],
+  "act": "david-guetta",
+  "closing": true,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:ultra-main-stage:1820:armin-van-buuren",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "18:20",
+  "end": null,
+  "printed": "ARMIN VAN BUUREN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "armin-van-buuren",
+    "role": "performer"
+   }
+  ],
+  "act": "armin-van-buuren",
+  "closing": false,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:ultra-main-stage:1715:vintage-culture-x-claptone",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "17:15",
+  "end": null,
+  "printed": "VINTAGE CULTURE X CLAPTONE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vintage-culture-x-claptone",
+    "role": "collab"
+   }
+  ],
+  "act": "vintage-culture-x-claptone",
+  "closing": false,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:ultra-main-stage:1610:acraze",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "16:10",
+  "end": null,
+  "printed": "ACRAZE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "acraze",
+    "role": "performer"
+   }
+  ],
+  "act": "acraze",
+  "closing": false,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:ultra-main-stage:1505:vini-vici",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "15:05",
+  "end": null,
+  "printed": "VINI VICI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vini-vici",
+    "role": "performer"
+   }
+  ],
+  "act": "vini-vici",
+  "closing": false,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:ultra-main-stage:1400:cedric-gervais",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "14:00",
+  "end": null,
+  "printed": "CEDRIC GERVAIS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cedric-gervais",
+    "role": "performer"
+   }
+  ],
+  "act": "cedric-gervais",
+  "closing": false,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:live-stage:2100:slander",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "LIVE STAGE",
+  "start": "21:00",
+  "end": null,
+  "printed": "SLANDER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "slander",
+    "role": "performer"
+   }
+  ],
+  "act": "slander",
+  "closing": true,
+  "stageLineage": "ultra-miami:live-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:live-stage:1930:oliver-tree",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "LIVE STAGE",
+  "start": "19:30",
+  "end": null,
+  "printed": "OLIVER TREE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "oliver-tree",
+    "role": "performer"
+   }
+  ],
+  "act": "oliver-tree",
+  "closing": false,
+  "stageLineage": "ultra-miami:live-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:live-stage:1800:elohim",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "LIVE STAGE",
+  "start": "18:00",
+  "end": null,
+  "printed": "ELOHIM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "elohim",
+    "role": "performer"
+   }
+  ],
+  "act": "elohim",
+  "closing": false,
+  "stageLineage": "ultra-miami:live-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:live-stage:1630:forester",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "LIVE STAGE",
+  "start": "16:30",
+  "end": null,
+  "printed": "FORESTER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "forester",
+    "role": "performer"
+   }
+  ],
+  "act": "forester",
+  "closing": false,
+  "stageLineage": "ultra-miami:live-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:megastructure:2000:carl-cox",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "MEGASTRUCTURE",
+  "start": "20:00",
+  "end": null,
+  "printed": "CARL COX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carl-cox",
+    "role": "performer"
+   }
+  ],
+  "act": "carl-cox",
+  "closing": true,
+  "stageLineage": "ultra-miami:megastructure",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:megastructure:1830:adam-beyer",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "MEGASTRUCTURE",
+  "start": "18:30",
+  "end": null,
+  "printed": "ADAM BEYER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "adam-beyer",
+    "role": "performer"
+   }
+  ],
+  "act": "adam-beyer",
+  "closing": false,
+  "stageLineage": "ultra-miami:megastructure",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:megastructure:1700:reinier-zonneveld-live",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "MEGASTRUCTURE",
+  "start": "17:00",
+  "end": null,
+  "printed": "REINIER ZONNEVELD (LIVE)",
+  "setTag": "LIVE",
+  "performers": [
+   {
+    "key": "reinier-zonneveld",
+    "role": "performer"
+   }
+  ],
+  "act": "reinier-zonneveld",
+  "closing": false,
+  "stageLineage": "ultra-miami:megastructure",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:megastructure:1530:amelie-lens",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "MEGASTRUCTURE",
+  "start": "15:30",
+  "end": null,
+  "printed": "AMELIE LENS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "amelie-lens",
+    "role": "performer"
+   }
+  ],
+  "act": "amelie-lens",
+  "closing": false,
+  "stageLineage": "ultra-miami:megastructure",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:megastructure:1430:hannes-bieger-live",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "MEGASTRUCTURE",
+  "start": "14:30",
+  "end": null,
+  "printed": "HANNES BIEGER (LIVE)",
+  "setTag": "LIVE",
+  "performers": [
+   {
+    "key": "hannes-bieger",
+    "role": "performer"
+   }
+  ],
+  "act": "hannes-bieger",
+  "closing": false,
+  "stageLineage": "ultra-miami:megastructure",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:megastructure:1330:christopher-coe-live",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "MEGASTRUCTURE",
+  "start": "13:30",
+  "end": null,
+  "printed": "CHRISTOPHER COE (LIVE)",
+  "setTag": "LIVE",
+  "performers": [
+   {
+    "key": "christopher-coe",
+    "role": "performer"
+   }
+  ],
+  "act": "christopher-coe",
+  "closing": false,
+  "stageLineage": "ultra-miami:megastructure",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:megastructure:1200:elio-riso",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "MEGASTRUCTURE",
+  "start": "12:00",
+  "end": null,
+  "printed": "ELIO RISO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "elio-riso",
+    "role": "performer"
+   }
+  ],
+  "act": "elio-riso",
+  "closing": false,
+  "stageLineage": "ultra-miami:megastructure",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:worldwide-stage:2100:zeds-dead",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "WORLDWIDE STAGE",
+  "start": "21:00",
+  "end": null,
+  "printed": "ZEDS DEAD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zeds-dead",
+    "role": "performer"
+   }
+  ],
+  "act": "zeds-dead",
+  "closing": true,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:worldwide-stage:2000:seven-lions",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "WORLDWIDE STAGE",
+  "start": "20:00",
+  "end": null,
+  "printed": "SEVEN LIONS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "seven-lions",
+    "role": "performer"
+   }
+  ],
+  "act": "seven-lions",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:worldwide-stage:1830:ghost-rydr",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "WORLDWIDE STAGE",
+  "start": "18:30",
+  "end": null,
+  "printed": "GHOST RYDR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ghost-rydr",
+    "role": "performer"
+   }
+  ],
+  "act": "ghost-rydr",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:worldwide-stage:1730:kill-the-noise",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "WORLDWIDE STAGE",
+  "start": "17:30",
+  "end": null,
+  "printed": "KILL THE NOISE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kill-the-noise",
+    "role": "performer"
+   }
+  ],
+  "act": "kill-the-noise",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:worldwide-stage:1630:krewella",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "WORLDWIDE STAGE",
+  "start": "16:30",
+  "end": null,
+  "printed": "KREWELLA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "krewella",
+    "role": "performer"
+   }
+  ],
+  "act": "krewella",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:worldwide-stage:1530:whipped-cream",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "WORLDWIDE STAGE",
+  "start": "15:30",
+  "end": null,
+  "printed": "WHIPPED CREAM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "whipped-cream",
+    "role": "performer"
+   }
+  ],
+  "act": "whipped-cream",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:worldwide-stage:1430:hybrid-minds",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "WORLDWIDE STAGE",
+  "start": "14:30",
+  "end": null,
+  "printed": "HYBRID MINDS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hybrid-minds",
+    "role": "performer"
+   }
+  ],
+  "act": "hybrid-minds",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:worldwide-stage:1200:metaphysical",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "WORLDWIDE STAGE",
+  "start": "12:00",
+  "end": null,
+  "printed": "METAPHYSICAL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "metaphysical",
+    "role": "performer"
+   }
+  ],
+  "act": "metaphysical",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:the-cove:2030:pan-pot",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "THE COVE",
+  "start": "20:30",
+  "end": null,
+  "printed": "PAN-POT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pan-pot",
+    "role": "performer"
+   }
+  ],
+  "act": "pan-pot",
+  "closing": true,
+  "stageLineage": "ultra-miami:the-cove",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:the-cove:1900:sama-abdulhadi",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "THE COVE",
+  "start": "19:00",
+  "end": null,
+  "printed": "SAMA' ABDULHADI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sama-abdulhadi",
+    "role": "performer"
+   }
+  ],
+  "act": "sama-abdulhadi",
+  "closing": false,
+  "stageLineage": "ultra-miami:the-cove",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:the-cove:1730:ilario-alicante",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "THE COVE",
+  "start": "17:30",
+  "end": null,
+  "printed": "ILARIO ALICANTE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ilario-alicante",
+    "role": "performer"
+   }
+  ],
+  "act": "ilario-alicante",
+  "closing": false,
+  "stageLineage": "ultra-miami:the-cove",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:the-cove:1630:matador",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "THE COVE",
+  "start": "16:30",
+  "end": null,
+  "printed": "MATADOR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "matador",
+    "role": "performer"
+   }
+  ],
+  "act": "matador",
+  "closing": false,
+  "stageLineage": "ultra-miami:the-cove",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:the-cove:1330:technasia-b3b-hector-b3b-carlo-lio",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "THE COVE",
+  "start": "13:30",
+  "end": null,
+  "printed": "TECHNASIA B3B HECTOR B3B CARLO LIO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "technasia",
+    "role": "b2b"
+   },
+   {
+    "key": "hector",
+    "role": "b2b"
+   },
+   {
+    "key": "carlo-lio",
+    "role": "b2b"
+   }
+  ],
+  "act": "technasia-b3b-hector-b3b-carlo-lio",
+  "closing": false,
+  "stageLineage": "ultra-miami:the-cove",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:the-cove:1200:andy-pate-b2b-rod-b",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "THE COVE",
+  "start": "12:00",
+  "end": null,
+  "printed": "ANDY PATE B2B ROD B",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "andy-pate",
+    "role": "b2b"
+   },
+   {
+    "key": "rod-b",
+    "role": "b2b"
+   }
+  ],
+  "act": "andy-pate-b2b-rod-b",
+  "closing": false,
+  "stageLineage": "ultra-miami:the-cove",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:umf-radio:2100:gammer",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "UMF RADIO",
+  "start": "21:00",
+  "end": null,
+  "printed": "GAMMER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gammer",
+    "role": "performer"
+   }
+  ],
+  "act": "gammer",
+  "closing": true,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:umf-radio:2000:da-tweekaz",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "UMF RADIO",
+  "start": "20:00",
+  "end": null,
+  "printed": "DA TWEEKAZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "da-tweekaz",
+    "role": "performer"
+   }
+  ],
+  "act": "da-tweekaz",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:umf-radio:1900:coone-presents-15-yrs-dwx",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "UMF RADIO",
+  "start": "19:00",
+  "end": null,
+  "printed": "COONE (PRESENTS 15 YRS DWX)",
+  "setTag": "PRESENTS 15 YRS DWX",
+  "performers": [
+   {
+    "key": "coone",
+    "role": "performer"
+   }
+  ],
+  "act": "coone",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:umf-radio:1800:sub-zero-project",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "UMF RADIO",
+  "start": "18:00",
+  "end": null,
+  "printed": "SUB ZERO PROJECT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sub-zero-project",
+    "role": "performer"
+   }
+  ],
+  "act": "sub-zero-project",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:umf-radio:1700:ben-nicky-presents-extreme",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "UMF RADIO",
+  "start": "17:00",
+  "end": null,
+  "printed": "BEN NICKY (PRESENTS EXTREME)",
+  "setTag": "PRESENTS EXTREME",
+  "performers": [
+   {
+    "key": "ben-nicky",
+    "role": "performer"
+   }
+  ],
+  "act": "ben-nicky",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:umf-radio:1600:darren-styles",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "UMF RADIO",
+  "start": "16:00",
+  "end": null,
+  "printed": "DARREN STYLES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "darren-styles",
+    "role": "performer"
+   }
+  ],
+  "act": "darren-styles",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:umf-radio:1500:audiofreq",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "UMF RADIO",
+  "start": "15:00",
+  "end": null,
+  "printed": "AUDIOFREQ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "audiofreq",
+    "role": "performer"
+   }
+  ],
+  "act": "audiofreq",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:umf-radio:1400:dr-phunk",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "UMF RADIO",
+  "start": "14:00",
+  "end": null,
+  "printed": "DR PHUNK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dr-phunk",
+    "role": "performer"
+   }
+  ],
+  "act": "dr-phunk",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:umf-radio:1300:darksiderz",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "UMF RADIO",
+  "start": "13:00",
+  "end": null,
+  "printed": "DARKSIDERZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "darksiderz",
+    "role": "performer"
+   }
+  ],
+  "act": "darksiderz",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:umf-radio:1200:pulsatorz",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "UMF RADIO",
+  "start": "12:00",
+  "end": null,
+  "printed": "PULSATORZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pulsatorz",
+    "role": "performer"
+   }
+  ],
+  "act": "pulsatorz",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:oasis:2100:boiish",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "OASIS",
+  "start": "21:00",
+  "end": null,
+  "printed": "BOIISH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "boiish",
+    "role": "performer"
+   }
+  ],
+  "act": "boiish",
+  "closing": true,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:oasis:2000:jean-marie",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "OASIS",
+  "start": "20:00",
+  "end": null,
+  "printed": "JEAN MARIE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jean-marie",
+    "role": "performer"
+   }
+  ],
+  "act": "jean-marie",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:oasis:1900:purple",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "OASIS",
+  "start": "19:00",
+  "end": null,
+  "printed": "PURPLE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "purple",
+    "role": "performer"
+   }
+  ],
+  "act": "purple",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:oasis:1800:omar-deaz",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "OASIS",
+  "start": "18:00",
+  "end": null,
+  "printed": "OMAR DEAZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "omar-deaz",
+    "role": "performer"
+   }
+  ],
+  "act": "omar-deaz",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:oasis:1700:juno",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "OASIS",
+  "start": "17:00",
+  "end": null,
+  "printed": "JUNO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "juno",
+    "role": "performer"
+   }
+  ],
+  "act": "juno",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:oasis:1600:x-con",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "OASIS",
+  "start": "16:00",
+  "end": null,
+  "printed": "X-CON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "x-con",
+    "role": "performer"
+   }
+  ],
+  "act": "x-con",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:oasis:1500:proxxy-b2b-bradley-drop",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "OASIS",
+  "start": "15:00",
+  "end": null,
+  "printed": "PROXXY B2B BRADLEY DROP",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "proxxy",
+    "role": "b2b"
+   },
+   {
+    "key": "bradley-drop",
+    "role": "b2b"
+   }
+  ],
+  "act": "proxxy-b2b-bradley-drop",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:oasis:1400:muzana",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "OASIS",
+  "start": "14:00",
+  "end": null,
+  "printed": "MUZANA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "muzana",
+    "role": "performer"
+   }
+  ],
+  "act": "muzana",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:oasis:1300:luca-testa",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "OASIS",
+  "start": "13:00",
+  "end": null,
+  "printed": "LUCA TESTA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "luca-testa",
+    "role": "performer"
+   }
+  ],
+  "act": "luca-testa",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2022:d3:oasis:1200:ben-spence",
+  "source": "edition",
+  "festivalId": "ultra-miami-2022",
+  "festivalBrand": "ultra-miami",
+  "year": 2022,
+  "date": "2022-03-27",
+  "day": 3,
+  "stage": "OASIS",
+  "start": "12:00",
+  "end": null,
+  "printed": "BEN SPENCE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ben-spence",
+    "role": "performer"
+   }
+  ],
+  "act": "ben-spence",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:ultra-main-stage:2245:martin-garrix",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "22:45",
+  "end": null,
+  "printed": "MARTIN GARRIX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "martin-garrix",
+    "role": "performer"
+   }
+  ],
+  "act": "martin-garrix",
+  "closing": true,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:ultra-main-stage:2130:zedd",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "21:30",
+  "end": null,
+  "printed": "ZEDD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zedd",
+    "role": "performer"
+   }
+  ],
+  "act": "zedd",
+  "closing": false,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:ultra-main-stage:2025:afrojack",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "20:25",
+  "end": null,
+  "printed": "AFROJACK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "afrojack",
+    "role": "performer"
+   }
+  ],
+  "act": "afrojack",
+  "closing": false,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:ultra-main-stage:1920:gryffin",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "19:20",
+  "end": null,
+  "printed": "GRYFFIN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gryffin",
+    "role": "performer"
+   }
+  ],
+  "act": "gryffin",
+  "closing": false,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:ultra-main-stage:1815:charlotte-de-witte",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "18:15",
+  "end": null,
+  "printed": "CHARLOTTE DE WITTE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "charlotte-de-witte",
+    "role": "performer"
+   }
+  ],
+  "act": "charlotte-de-witte",
+  "closing": false,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:ultra-main-stage:1710:endless-summer-sam-feldt-b2b-jonas-blue",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "17:10",
+  "end": null,
+  "printed": "ENDLESS SUMMER (SAM FELDT B2B JONAS BLUE)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "endless-summer",
+    "role": "project"
+   }
+  ],
+  "act": "endless-summer-sam-feldt-b2b-jonas-blue",
+  "closing": false,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:ultra-main-stage:1615:frank-walker",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "16:15",
+  "end": null,
+  "printed": "FRANK WALKER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "frank-walker",
+    "role": "performer"
+   }
+  ],
+  "act": "frank-walker",
+  "closing": false,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:live-stage:2245:rezz",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "LIVE STAGE",
+  "start": "22:45",
+  "end": null,
+  "printed": "REZZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rezz",
+    "role": "performer"
+   }
+  ],
+  "act": "rezz",
+  "closing": true,
+  "stageLineage": "ultra-miami:live-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:live-stage:2130:clozee",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "LIVE STAGE",
+  "start": "21:30",
+  "end": null,
+  "printed": "CLOZEE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "clozee",
+    "role": "performer"
+   }
+  ],
+  "act": "clozee",
+  "closing": false,
+  "stageLineage": "ultra-miami:live-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:live-stage:2000:grimes",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "LIVE STAGE",
+  "start": "20:00",
+  "end": null,
+  "printed": "GRIMES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "grimes",
+    "role": "performer"
+   }
+  ],
+  "act": "grimes",
+  "closing": false,
+  "stageLineage": "ultra-miami:live-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:live-stage:1830:kasablanca-live",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "LIVE STAGE",
+  "start": "18:30",
+  "end": null,
+  "printed": "KASABLANCA (LIVE)",
+  "setTag": "LIVE",
+  "performers": [
+   {
+    "key": "kasablanca",
+    "role": "performer"
+   }
+  ],
+  "act": "kasablanca",
+  "closing": false,
+  "stageLineage": "ultra-miami:live-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:live-stage:1700:jvna",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "LIVE STAGE",
+  "start": "17:00",
+  "end": null,
+  "printed": "JVNA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jvna",
+    "role": "performer"
+   }
+  ],
+  "act": "jvna",
+  "closing": false,
+  "stageLineage": "ultra-miami:live-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:megastructure:2230:eric-prydz-presents-holo",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "MEGASTRUCTURE",
+  "start": "22:30",
+  "end": null,
+  "printed": "ERIC PRYDZ (PRESENTS HOLO)",
+  "setTag": "PRESENTS HOLO",
+  "performers": [
+   {
+    "key": "eric-prydz",
+    "role": "performer"
+   }
+  ],
+  "act": "eric-prydz",
+  "closing": true,
+  "stageLineage": "ultra-miami:megastructure",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:megastructure:2015:maceo-plex-b2b-michael-bibi",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "MEGASTRUCTURE",
+  "start": "20:15",
+  "end": null,
+  "printed": "MACEO PLEX B2B MICHAEL BIBI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "maceo-plex",
+    "role": "b2b"
+   },
+   {
+    "key": "michael-bibi",
+    "role": "b2b"
+   }
+  ],
+  "act": "maceo-plex-b2b-michael-bibi",
+  "closing": false,
+  "stageLineage": "ultra-miami:megastructure",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:megastructure:1845:ilario-alicante",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "MEGASTRUCTURE",
+  "start": "18:45",
+  "end": null,
+  "printed": "ILARIO ALICANTE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ilario-alicante",
+    "role": "performer"
+   }
+  ],
+  "act": "ilario-alicante",
+  "closing": false,
+  "stageLineage": "ultra-miami:megastructure",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:megastructure:1715:chris-stussy",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "MEGASTRUCTURE",
+  "start": "17:15",
+  "end": null,
+  "printed": "CHRIS STUSSY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chris-stussy",
+    "role": "performer"
+   }
+  ],
+  "act": "chris-stussy",
+  "closing": false,
+  "stageLineage": "ultra-miami:megastructure",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:megastructure:1600:melanie-ribbe",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "MEGASTRUCTURE",
+  "start": "16:00",
+  "end": null,
+  "printed": "MELANIE RIBBE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "melanie-ribbe",
+    "role": "performer"
+   }
+  ],
+  "act": "melanie-ribbe",
+  "closing": false,
+  "stageLineage": "ultra-miami:megastructure",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:worldwide-stage:2200:armin-van-buuren",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "WORLDWIDE STAGE",
+  "start": "22:00",
+  "end": null,
+  "printed": "ARMIN VAN BUUREN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "armin-van-buuren",
+    "role": "performer"
+   }
+  ],
+  "act": "armin-van-buuren",
+  "closing": true,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:worldwide-stage:2030:gareth-emery",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "WORLDWIDE STAGE",
+  "start": "20:30",
+  "end": null,
+  "printed": "GARETH EMERY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gareth-emery",
+    "role": "performer"
+   }
+  ],
+  "act": "gareth-emery",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:worldwide-stage:2000:armin-van-buuren-b2b-ferry-corsten",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "WORLDWIDE STAGE",
+  "start": "20:00",
+  "end": null,
+  "printed": "ARMIN VAN BUUREN B2B FERRY CORSTEN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "armin-van-buuren",
+    "role": "b2b"
+   },
+   {
+    "key": "ferry-corsten",
+    "role": "b2b"
+   }
+  ],
+  "act": "armin-van-buuren-b2b-ferry-corsten",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:worldwide-stage:1900:ferry-corsten",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "WORLDWIDE STAGE",
+  "start": "19:00",
+  "end": null,
+  "printed": "FERRY CORSTEN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ferry-corsten",
+    "role": "performer"
+   }
+  ],
+  "act": "ferry-corsten",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:worldwide-stage:1800:ilan-bluestone",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "WORLDWIDE STAGE",
+  "start": "18:00",
+  "end": null,
+  "printed": "ILAN BLUESTONE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ilan-bluestone",
+    "role": "performer"
+   }
+  ],
+  "act": "ilan-bluestone",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:worldwide-stage:1700:blastoyz",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "WORLDWIDE STAGE",
+  "start": "17:00",
+  "end": null,
+  "printed": "BLASTOYZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "blastoyz",
+    "role": "performer"
+   }
+  ],
+  "act": "blastoyz",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:worldwide-stage:1600:ruben-de-ronde",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "WORLDWIDE STAGE",
+  "start": "16:00",
+  "end": null,
+  "printed": "RUBEN DE RONDE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ruben-de-ronde",
+    "role": "performer"
+   }
+  ],
+  "act": "ruben-de-ronde",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:the-cove:2200:nicole-moudaber-b2b-chris-liebing",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "THE COVE",
+  "start": "22:00",
+  "end": null,
+  "printed": "NICOLE MOUDABER B2B CHRIS LIEBING",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nicole-moudaber",
+    "role": "b2b"
+   },
+   {
+    "key": "chris-liebing",
+    "role": "b2b"
+   }
+  ],
+  "act": "nicole-moudaber-b2b-chris-liebing",
+  "closing": true,
+  "stageLineage": "ultra-miami:the-cove",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:the-cove:2030:ida-engberg-b2b-maya-jane-coles",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "THE COVE",
+  "start": "20:30",
+  "end": null,
+  "printed": "IDA ENGBERG B2B MAYA JANE COLES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ida-engberg",
+    "role": "b2b"
+   },
+   {
+    "key": "maya-jane-coles",
+    "role": "b2b"
+   }
+  ],
+  "act": "ida-engberg-b2b-maya-jane-coles",
+  "closing": false,
+  "stageLineage": "ultra-miami:the-cove",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:the-cove:1900:luigi-madonna-b2b-roberto-capuano",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "THE COVE",
+  "start": "19:00",
+  "end": null,
+  "printed": "LUIGI MADONNA B2B ROBERTO CAPUANO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "luigi-madonna",
+    "role": "b2b"
+   },
+   {
+    "key": "roberto-capuano",
+    "role": "b2b"
+   }
+  ],
+  "act": "luigi-madonna-b2b-roberto-capuano",
+  "closing": false,
+  "stageLineage": "ultra-miami:the-cove",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:the-cove:1730:juliet-fox",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "THE COVE",
+  "start": "17:30",
+  "end": null,
+  "printed": "JULIET FOX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "juliet-fox",
+    "role": "performer"
+   }
+  ],
+  "act": "juliet-fox",
+  "closing": false,
+  "stageLineage": "ultra-miami:the-cove",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:the-cove:1600:nicole-moudaber",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "THE COVE",
+  "start": "16:00",
+  "end": null,
+  "printed": "NICOLE MOUDABER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nicole-moudaber",
+    "role": "performer"
+   }
+  ],
+  "act": "nicole-moudaber",
+  "closing": false,
+  "stageLineage": "ultra-miami:the-cove",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:umf-radio:2310:dr-phunk",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "UMF RADIO",
+  "start": "23:10",
+  "end": null,
+  "printed": "DR PHUNK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dr-phunk",
+    "role": "performer"
+   }
+  ],
+  "act": "dr-phunk",
+  "closing": true,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:umf-radio:2220:maddix",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "UMF RADIO",
+  "start": "22:20",
+  "end": null,
+  "printed": "MADDIX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "maddix",
+    "role": "performer"
+   }
+  ],
+  "act": "maddix",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:umf-radio:2050:joel-corry",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "UMF RADIO",
+  "start": "20:50",
+  "end": null,
+  "printed": "JOEL CORRY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "joel-corry",
+    "role": "performer"
+   }
+  ],
+  "act": "joel-corry",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:umf-radio:2000:dada-life",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "UMF RADIO",
+  "start": "20:00",
+  "end": null,
+  "printed": "DADA LIFE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dada-life",
+    "role": "performer"
+   }
+  ],
+  "act": "dada-life",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:umf-radio:1900:jeffrey-sutorius",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "UMF RADIO",
+  "start": "19:00",
+  "end": null,
+  "printed": "JEFFREY SUTORIUS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jeffrey-sutorius",
+    "role": "performer"
+   }
+  ],
+  "act": "jeffrey-sutorius",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:umf-radio:1800:tony-junior",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "UMF RADIO",
+  "start": "18:00",
+  "end": null,
+  "printed": "TONY JUNIOR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tony-junior",
+    "role": "performer"
+   }
+  ],
+  "act": "tony-junior",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:umf-radio:1700:sick-individuals",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "UMF RADIO",
+  "start": "17:00",
+  "end": null,
+  "printed": "SICK INDIVIDUALS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sick-individuals",
+    "role": "performer"
+   }
+  ],
+  "act": "sick-individuals",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:umf-radio:1600:ang",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "UMF RADIO",
+  "start": "16:00",
+  "end": null,
+  "printed": "ANG",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ang",
+    "role": "performer"
+   }
+  ],
+  "act": "ang",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:oasis:2300:tak-shak",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "OASIS",
+  "start": "23:00",
+  "end": null,
+  "printed": "TAK SHAK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tak-shak",
+    "role": "performer"
+   }
+  ],
+  "act": "tak-shak",
+  "closing": true,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:oasis:2200:los-de-la-vega",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "OASIS",
+  "start": "22:00",
+  "end": null,
+  "printed": "LOS DE LA VEGA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "los-de-la-vega",
+    "role": "performer"
+   }
+  ],
+  "act": "los-de-la-vega",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:oasis:2100:wags",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "OASIS",
+  "start": "21:00",
+  "end": null,
+  "printed": "WAGS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wags",
+    "role": "performer"
+   }
+  ],
+  "act": "wags",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:oasis:2000:festival-nun",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "OASIS",
+  "start": "20:00",
+  "end": null,
+  "printed": "FESTIVAL NUN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "festival-nun",
+    "role": "performer"
+   }
+  ],
+  "act": "festival-nun",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:oasis:1900:wyzzard",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "OASIS",
+  "start": "19:00",
+  "end": null,
+  "printed": "WYZZARD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wyzzard",
+    "role": "performer"
+   }
+  ],
+  "act": "wyzzard",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:oasis:1800:soul-goodman-b2b-dabura",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "OASIS",
+  "start": "18:00",
+  "end": null,
+  "printed": "SOUL GOODMAN B2B DABURA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "soul-goodman",
+    "role": "b2b"
+   },
+   {
+    "key": "dabura",
+    "role": "b2b"
+   }
+  ],
+  "act": "soul-goodman-b2b-dabura",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:oasis:1700:jimmie-page-b2b-richard-fraioli",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "OASIS",
+  "start": "17:00",
+  "end": null,
+  "printed": "JIMMIE PAGE B2B RICHARD FRAIOLI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jimmie-page",
+    "role": "b2b"
+   },
+   {
+    "key": "richard-fraioli",
+    "role": "b2b"
+   }
+  ],
+  "act": "jimmie-page-b2b-richard-fraioli",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d1:oasis:1600:rodrigo-vieira",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-24",
+  "day": 1,
+  "stage": "OASIS",
+  "start": "16:00",
+  "end": null,
+  "printed": "RODRIGO VIEIRA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rodrigo-vieira",
+    "role": "performer"
+   }
+  ],
+  "act": "rodrigo-vieira",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:ultra-main-stage:2245:marshmello",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "22:45",
+  "end": null,
+  "printed": "MARSHMELLO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marshmello",
+    "role": "performer"
+   }
+  ],
+  "act": "marshmello",
+  "closing": true,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:ultra-main-stage:2140:alesso",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "21:40",
+  "end": null,
+  "printed": "ALESSO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alesso",
+    "role": "performer"
+   }
+  ],
+  "act": "alesso",
+  "closing": false,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:ultra-main-stage:2035:hardwell",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "20:35",
+  "end": null,
+  "printed": "HARDWELL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hardwell",
+    "role": "performer"
+   }
+  ],
+  "act": "hardwell",
+  "closing": false,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:ultra-main-stage:1930:tiesto",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "19:30",
+  "end": null,
+  "printed": "TIËSTO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tiesto",
+    "role": "performer"
+   }
+  ],
+  "act": "tiesto",
+  "closing": false,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:ultra-main-stage:1825:armin-van-buuren",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "18:25",
+  "end": null,
+  "printed": "ARMIN VAN BUUREN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "armin-van-buuren",
+    "role": "performer"
+   }
+  ],
+  "act": "armin-van-buuren",
+  "closing": false,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:ultra-main-stage:1650:dom-dolla-b2b-vintage-culture",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "16:50",
+  "end": null,
+  "printed": "DOM DOLLA B2B VINTAGE CULTURE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dom-dolla",
+    "role": "b2b"
+   },
+   {
+    "key": "vintage-culture",
+    "role": "b2b"
+   }
+  ],
+  "act": "dom-dolla-b2b-vintage-culture",
+  "closing": false,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:ultra-main-stage:1545:nicky-romero",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "15:45",
+  "end": null,
+  "printed": "NICKY ROMERO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nicky-romero",
+    "role": "performer"
+   }
+  ],
+  "act": "nicky-romero",
+  "closing": false,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:ultra-main-stage:1440:fedde-le-grand",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "14:40",
+  "end": null,
+  "printed": "FEDDE LE GRAND",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fedde-le-grand",
+    "role": "performer"
+   }
+  ],
+  "act": "fedde-le-grand",
+  "closing": false,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:ultra-main-stage:1335:mykris",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "13:35",
+  "end": null,
+  "printed": "MYKRIS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mykris",
+    "role": "performer"
+   }
+  ],
+  "act": "mykris",
+  "closing": false,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:ultra-main-stage:1230:syn-cole",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "12:30",
+  "end": null,
+  "printed": "SYN COLE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "syn-cole",
+    "role": "performer"
+   }
+  ],
+  "act": "syn-cole",
+  "closing": false,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:live-stage:2300:m-i-a",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "LIVE STAGE",
+  "start": "23:00",
+  "end": null,
+  "printed": "M.I.A.",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "m-i-a",
+    "role": "performer"
+   }
+  ],
+  "act": "m-i-a",
+  "closing": true,
+  "stageLineage": "ultra-miami:live-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:live-stage:2130:black-tiger-sex-machine-presents-portals",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "LIVE STAGE",
+  "start": "21:30",
+  "end": null,
+  "printed": "BLACK TIGER SEX MACHINE (PRESENTS PORTALS)",
+  "setTag": "PRESENTS PORTALS",
+  "performers": [
+   {
+    "key": "black-tiger-sex-machine",
+    "role": "performer"
+   }
+  ],
+  "act": "black-tiger-sex-machine",
+  "closing": false,
+  "stageLineage": "ultra-miami:live-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:live-stage:2000:kayzo-live",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "LIVE STAGE",
+  "start": "20:00",
+  "end": null,
+  "printed": "KAYZO (LIVE)",
+  "setTag": "LIVE",
+  "performers": [
+   {
+    "key": "kayzo",
+    "role": "performer"
+   }
+  ],
+  "act": "kayzo",
+  "closing": false,
+  "stageLineage": "ultra-miami:live-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:live-stage:1830:becky-hill",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "LIVE STAGE",
+  "start": "18:30",
+  "end": null,
+  "printed": "BECKY HILL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "becky-hill",
+    "role": "performer"
+   }
+  ],
+  "act": "becky-hill",
+  "closing": false,
+  "stageLineage": "ultra-miami:live-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:live-stage:1700:fairlane",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "LIVE STAGE",
+  "start": "17:00",
+  "end": null,
+  "printed": "FAIRLANE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fairlane",
+    "role": "performer"
+   }
+  ],
+  "act": "fairlane",
+  "closing": false,
+  "stageLineage": "ultra-miami:live-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:megastructure:2200:carl-cox-hybrid-live",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "MEGASTRUCTURE",
+  "start": "22:00",
+  "end": null,
+  "printed": "CARL COX (HYBRID LIVE)",
+  "setTag": "HYBRID LIVE",
+  "performers": [
+   {
+    "key": "carl-cox",
+    "role": "performer"
+   }
+  ],
+  "act": "carl-cox",
+  "closing": true,
+  "stageLineage": "ultra-miami:megastructure",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:megastructure:2000:adam-beyer-cirez-d",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "MEGASTRUCTURE",
+  "start": "20:00",
+  "end": null,
+  "printed": "ADAM BEYER □ CIREZ D",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "adam-beyer-cirez-d",
+    "role": "performer"
+   }
+  ],
+  "act": "adam-beyer-cirez-d",
+  "closing": false,
+  "stageLineage": "ultra-miami:megastructure",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:megastructure:1830:camelphat",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "MEGASTRUCTURE",
+  "start": "18:30",
+  "end": null,
+  "printed": "CAMELPHAT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "camelphat",
+    "role": "performer"
+   }
+  ],
+  "act": "camelphat",
+  "closing": false,
+  "stageLineage": "ultra-miami:megastructure",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:megastructure:1700:hi-lo-b2b-testpilot",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "MEGASTRUCTURE",
+  "start": "17:00",
+  "end": null,
+  "printed": "HI-LO B2B TESTPILOT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hi-lo",
+    "role": "b2b"
+   },
+   {
+    "key": "testpilot",
+    "role": "b2b"
+   }
+  ],
+  "act": "hi-lo-b2b-testpilot",
+  "closing": false,
+  "stageLineage": "ultra-miami:megastructure",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:megastructure:1530:anfisa-letyago",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "MEGASTRUCTURE",
+  "start": "15:30",
+  "end": null,
+  "printed": "ANFISA LETYAGO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "anfisa-letyago",
+    "role": "performer"
+   }
+  ],
+  "act": "anfisa-letyago",
+  "closing": false,
+  "stageLineage": "ultra-miami:megastructure",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:megastructure:1400:popof-b2b-space-92-present-turbulences",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "MEGASTRUCTURE",
+  "start": "14:00",
+  "end": null,
+  "printed": "POPOF B2B SPACE 92 (PRESENT TURBULENCES)",
+  "setTag": "PRESENT TURBULENCES",
+  "performers": [
+   {
+    "key": "popof",
+    "role": "b2b"
+   },
+   {
+    "key": "space-92",
+    "role": "b2b"
+   }
+  ],
+  "act": "popof-b2b-space-92",
+  "closing": false,
+  "stageLineage": "ultra-miami:megastructure",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:megastructure:1200:elio-riso-b3b-andy-pate-b3b-rod-b",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "MEGASTRUCTURE",
+  "start": "12:00",
+  "end": null,
+  "printed": "ELIO RISO B3B ANDY PATE B3B ROD B",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "elio-riso",
+    "role": "b2b"
+   },
+   {
+    "key": "andy-pate",
+    "role": "b2b"
+   },
+   {
+    "key": "rod-b",
+    "role": "b2b"
+   }
+  ],
+  "act": "elio-riso-b3b-andy-pate-b3b-rod-b",
+  "closing": false,
+  "stageLineage": "ultra-miami:megastructure",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:worldwide-stage:2300:subtronics",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "WORLDWIDE STAGE",
+  "start": "23:00",
+  "end": null,
+  "printed": "SUBTRONICS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "subtronics",
+    "role": "performer"
+   }
+  ],
+  "act": "subtronics",
+  "closing": true,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:worldwide-stage:2200:liquid-stranger",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "WORLDWIDE STAGE",
+  "start": "22:00",
+  "end": null,
+  "printed": "LIQUID STRANGER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "liquid-stranger",
+    "role": "performer"
+   }
+  ],
+  "act": "liquid-stranger",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:worldwide-stage:2100:malaa",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "WORLDWIDE STAGE",
+  "start": "21:00",
+  "end": null,
+  "printed": "MALAA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "malaa",
+    "role": "performer"
+   }
+  ],
+  "act": "malaa",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:worldwide-stage:2000:deathpact",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "WORLDWIDE STAGE",
+  "start": "20:00",
+  "end": null,
+  "printed": "DEATHPACT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "deathpact",
+    "role": "performer"
+   }
+  ],
+  "act": "deathpact",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:worldwide-stage:1900:isoxo",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "WORLDWIDE STAGE",
+  "start": "19:00",
+  "end": null,
+  "printed": "ISOxo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "isoxo",
+    "role": "performer"
+   }
+  ],
+  "act": "isoxo",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:worldwide-stage:1800:kill-the-noise",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "WORLDWIDE STAGE",
+  "start": "18:00",
+  "end": null,
+  "printed": "KILL THE NOISE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kill-the-noise",
+    "role": "performer"
+   }
+  ],
+  "act": "kill-the-noise",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:worldwide-stage:1700:moore-kismet",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "WORLDWIDE STAGE",
+  "start": "17:00",
+  "end": null,
+  "printed": "MOORE KISMET",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "moore-kismet",
+    "role": "performer"
+   }
+  ],
+  "act": "moore-kismet",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:worldwide-stage:1600:gg-magree",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "WORLDWIDE STAGE",
+  "start": "16:00",
+  "end": null,
+  "printed": "GG MAGREE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gg-magree",
+    "role": "performer"
+   }
+  ],
+  "act": "gg-magree",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:worldwide-stage:1500:notlo",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "WORLDWIDE STAGE",
+  "start": "15:00",
+  "end": null,
+  "printed": "NOTLÖ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "notlo",
+    "role": "performer"
+   }
+  ],
+  "act": "notlo",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:worldwide-stage:1400:a-hundred-drums",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "WORLDWIDE STAGE",
+  "start": "14:00",
+  "end": null,
+  "printed": "A HUNDRED DRUMS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "a-hundred-drums",
+    "role": "performer"
+   }
+  ],
+  "act": "a-hundred-drums",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:worldwide-stage:1300:canabliss",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "WORLDWIDE STAGE",
+  "start": "13:00",
+  "end": null,
+  "printed": "CANABLISS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "canabliss",
+    "role": "performer"
+   }
+  ],
+  "act": "canabliss",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:worldwide-stage:1200:softest-hard",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "WORLDWIDE STAGE",
+  "start": "12:00",
+  "end": null,
+  "printed": "SOFTEST HARD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "softest-hard",
+    "role": "performer"
+   }
+  ],
+  "act": "softest-hard",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:the-cove:2230:joris-voorn",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "THE COVE",
+  "start": "22:30",
+  "end": null,
+  "printed": "JORIS VOORN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "joris-voorn",
+    "role": "performer"
+   }
+  ],
+  "act": "joris-voorn",
+  "closing": true,
+  "stageLineage": "ultra-miami:the-cove",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:the-cove:2100:dubfire-b2b-kolsch",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "THE COVE",
+  "start": "21:00",
+  "end": null,
+  "printed": "DUBFIRE B2B KÖLSCH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dubfire",
+    "role": "b2b"
+   },
+   {
+    "key": "kolsch",
+    "role": "b2b"
+   }
+  ],
+  "act": "dubfire-b2b-kolsch",
+  "closing": false,
+  "stageLineage": "ultra-miami:the-cove",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:the-cove:1930:mind-against",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "THE COVE",
+  "start": "19:30",
+  "end": null,
+  "printed": "MIND AGAINST",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mind-against",
+    "role": "performer"
+   }
+  ],
+  "act": "mind-against",
+  "closing": false,
+  "stageLineage": "ultra-miami:the-cove",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:the-cove:1800:fideles",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "THE COVE",
+  "start": "18:00",
+  "end": null,
+  "printed": "FIDELES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fideles",
+    "role": "performer"
+   }
+  ],
+  "act": "fideles",
+  "closing": false,
+  "stageLineage": "ultra-miami:the-cove",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:the-cove:1630:franky-wah",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "THE COVE",
+  "start": "16:30",
+  "end": null,
+  "printed": "FRANKY WAH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "franky-wah",
+    "role": "performer"
+   }
+  ],
+  "act": "franky-wah",
+  "closing": false,
+  "stageLineage": "ultra-miami:the-cove",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:the-cove:1500:gheist",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "THE COVE",
+  "start": "15:00",
+  "end": null,
+  "printed": "GHEIST",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gheist",
+    "role": "performer"
+   }
+  ],
+  "act": "gheist",
+  "closing": false,
+  "stageLineage": "ultra-miami:the-cove",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:the-cove:1330:brina-knauss",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "THE COVE",
+  "start": "13:30",
+  "end": null,
+  "printed": "BRINA KNAUSS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "brina-knauss",
+    "role": "performer"
+   }
+  ],
+  "act": "brina-knauss",
+  "closing": false,
+  "stageLineage": "ultra-miami:the-cove",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:the-cove:1200:kasia",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "THE COVE",
+  "start": "12:00",
+  "end": null,
+  "printed": "KASIA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kasia",
+    "role": "performer"
+   }
+  ],
+  "act": "kasia",
+  "closing": false,
+  "stageLineage": "ultra-miami:the-cove",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:umf-radio:2200:dubvision",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "UMF RADIO",
+  "start": "22:00",
+  "end": null,
+  "printed": "DUBVISION",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dubvision",
+    "role": "performer"
+   }
+  ],
+  "act": "dubvision",
+  "closing": true,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:umf-radio:2100:mike-williams",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "UMF RADIO",
+  "start": "21:00",
+  "end": null,
+  "printed": "MIKE WILLIAMS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mike-williams",
+    "role": "performer"
+   }
+  ],
+  "act": "mike-williams",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:umf-radio:2000:lucas-and-steve",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "UMF RADIO",
+  "start": "20:00",
+  "end": null,
+  "printed": "LUCAS & STEVE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lucas-and-steve",
+    "role": "performer"
+   }
+  ],
+  "act": "lucas-and-steve",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:umf-radio:1900:cesqeaux",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "UMF RADIO",
+  "start": "19:00",
+  "end": null,
+  "printed": "CESQEAUX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cesqeaux",
+    "role": "performer"
+   }
+  ],
+  "act": "cesqeaux",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:umf-radio:1800:nick-van-de-wall-throwback-set",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "UMF RADIO",
+  "start": "18:00",
+  "end": null,
+  "printed": "NICK VAN DE WALL (THROWBACK SET)",
+  "setTag": "THROWBACK SET",
+  "performers": [
+   {
+    "key": "nick-van-de-wall",
+    "role": "performer"
+   }
+  ],
+  "act": "nick-van-de-wall",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:umf-radio:1700:black-v-neck",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "UMF RADIO",
+  "start": "17:00",
+  "end": null,
+  "printed": "BLACK V NECK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "black-v-neck",
+    "role": "performer"
+   }
+  ],
+  "act": "black-v-neck",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:umf-radio:1600:chasner",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "UMF RADIO",
+  "start": "16:00",
+  "end": null,
+  "printed": "CHASNER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chasner",
+    "role": "performer"
+   }
+  ],
+  "act": "chasner",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:umf-radio:1500:chico-rose",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "UMF RADIO",
+  "start": "15:00",
+  "end": null,
+  "printed": "CHICO ROSE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chico-rose",
+    "role": "performer"
+   }
+  ],
+  "act": "chico-rose",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:umf-radio:1400:julian-cross",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "UMF RADIO",
+  "start": "14:00",
+  "end": null,
+  "printed": "JULIAN CROSS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "julian-cross",
+    "role": "performer"
+   }
+  ],
+  "act": "julian-cross",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:umf-radio:1300:rancido",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "UMF RADIO",
+  "start": "13:00",
+  "end": null,
+  "printed": "RANCIDO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rancido",
+    "role": "performer"
+   }
+  ],
+  "act": "rancido",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:umf-radio:1200:cosmicat",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "UMF RADIO",
+  "start": "12:00",
+  "end": null,
+  "printed": "COSMICAT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cosmicat",
+    "role": "performer"
+   }
+  ],
+  "act": "cosmicat",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:oasis:2300:reggio",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "OASIS",
+  "start": "23:00",
+  "end": null,
+  "printed": "REGGIO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "reggio",
+    "role": "performer"
+   }
+  ],
+  "act": "reggio",
+  "closing": true,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:oasis:2200:alex-pizzuti",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "OASIS",
+  "start": "22:00",
+  "end": null,
+  "printed": "ALEX PIZZUTI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alex-pizzuti",
+    "role": "performer"
+   }
+  ],
+  "act": "alex-pizzuti",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:oasis:2100:mcsunshine-b2b-jp-candela",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "OASIS",
+  "start": "21:00",
+  "end": null,
+  "printed": "MCSUNSHINE B2B JP CANDELA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mcsunshine",
+    "role": "b2b"
+   },
+   {
+    "key": "jp-candela",
+    "role": "b2b"
+   }
+  ],
+  "act": "mcsunshine-b2b-jp-candela",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:oasis:2000:terry-golden",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "OASIS",
+  "start": "20:00",
+  "end": null,
+  "printed": "TERRY GOLDEN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "terry-golden",
+    "role": "performer"
+   }
+  ],
+  "act": "terry-golden",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:oasis:1900:dj-purple",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "OASIS",
+  "start": "19:00",
+  "end": null,
+  "printed": "DJ PURPLE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-purple",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-purple",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:oasis:1810:liam-walters",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "OASIS",
+  "start": "18:10",
+  "end": null,
+  "printed": "LIAM WALTERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "liam-walters",
+    "role": "performer"
+   }
+  ],
+  "act": "liam-walters",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:oasis:1720:sebastian-rodriguez",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "OASIS",
+  "start": "17:20",
+  "end": null,
+  "printed": "SEBASTIAN RODRIGUEZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sebastian-rodriguez",
+    "role": "performer"
+   }
+  ],
+  "act": "sebastian-rodriguez",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:oasis:1630:justin-rabin",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "OASIS",
+  "start": "16:30",
+  "end": null,
+  "printed": "JUSTIN RABIN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "justin-rabin",
+    "role": "performer"
+   }
+  ],
+  "act": "justin-rabin",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:oasis:1600:cvmrn",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "OASIS",
+  "start": "16:00",
+  "end": null,
+  "printed": "CVMRN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cvmrn",
+    "role": "performer"
+   }
+  ],
+  "act": "cvmrn",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:oasis:1500:die-maschine",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "OASIS",
+  "start": "15:00",
+  "end": null,
+  "printed": "DIE MASCHINE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "die-maschine",
+    "role": "performer"
+   }
+  ],
+  "act": "die-maschine",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:oasis:1400:tacko",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "OASIS",
+  "start": "14:00",
+  "end": null,
+  "printed": "TACKO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tacko",
+    "role": "performer"
+   }
+  ],
+  "act": "tacko",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:oasis:1300:omar-deaz",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "OASIS",
+  "start": "13:00",
+  "end": null,
+  "printed": "OMAR DEAZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "omar-deaz",
+    "role": "performer"
+   }
+  ],
+  "act": "omar-deaz",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d2:oasis:1200:marvin-delgado",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-25",
+  "day": 2,
+  "stage": "OASIS",
+  "start": "12:00",
+  "end": null,
+  "printed": "MARVIN DELGADO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marvin-delgado",
+    "role": "performer"
+   }
+  ],
+  "act": "marvin-delgado",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:ultra-main-stage:2045:swedish-house-mafia",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "20:45",
+  "end": null,
+  "printed": "SWEDISH HOUSE MAFIA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "swedish-house-mafia",
+    "role": "performer"
+   }
+  ],
+  "act": "swedish-house-mafia",
+  "closing": true,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:ultra-main-stage:1925:david-guetta",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "19:25",
+  "end": null,
+  "printed": "DAVID GUETTA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "david-guetta",
+    "role": "performer"
+   }
+  ],
+  "act": "david-guetta",
+  "closing": false,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:ultra-main-stage:1740:oliver-heldens-b2b-tchami",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "17:40",
+  "end": null,
+  "printed": "OLIVER HELDENS B2B TCHAMI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "oliver-heldens",
+    "role": "b2b"
+   },
+   {
+    "key": "tchami",
+    "role": "b2b"
+   }
+  ],
+  "act": "oliver-heldens-b2b-tchami",
+  "closing": false,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:ultra-main-stage:1635:timmy-trumpet",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "16:35",
+  "end": null,
+  "printed": "TIMMY TRUMPET",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "timmy-trumpet",
+    "role": "performer"
+   }
+  ],
+  "act": "timmy-trumpet",
+  "closing": false,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:ultra-main-stage:1530:vini-vici",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "15:30",
+  "end": null,
+  "printed": "VINI VICI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vini-vici",
+    "role": "performer"
+   }
+  ],
+  "act": "vini-vici",
+  "closing": false,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:ultra-main-stage:1425:deorro",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "14:25",
+  "end": null,
+  "printed": "DEORRO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "deorro",
+    "role": "performer"
+   }
+  ],
+  "act": "deorro",
+  "closing": false,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:ultra-main-stage:1320:cedric-gervais",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "13:20",
+  "end": null,
+  "printed": "CEDRIC GERVAIS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cedric-gervais",
+    "role": "performer"
+   }
+  ],
+  "act": "cedric-gervais",
+  "closing": false,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:ultra-main-stage:1215:kapuchon",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "ULTRA MAIN STAGE",
+  "start": "12:15",
+  "end": null,
+  "printed": "KAPUCHON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kapuchon",
+    "role": "performer"
+   }
+  ],
+  "act": "kapuchon",
+  "closing": false,
+  "stageLineage": "ultra-miami:ultra-main-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:live-stage:2045:kx5",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "LIVE STAGE",
+  "start": "20:45",
+  "end": null,
+  "printed": "Kx5",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kx5",
+    "role": "performer"
+   }
+  ],
+  "act": "kx5",
+  "closing": true,
+  "stageLineage": "ultra-miami:live-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:live-stage:1915:gigantic-nghtmre",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "LIVE STAGE",
+  "start": "19:15",
+  "end": null,
+  "printed": "GIGANTIC NGHTMRE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gigantic-nghtmre",
+    "role": "performer"
+   }
+  ],
+  "act": "gigantic-nghtmre",
+  "closing": false,
+  "stageLineage": "ultra-miami:live-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:live-stage:1745:dabin",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "LIVE STAGE",
+  "start": "17:45",
+  "end": null,
+  "printed": "DABIN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dabin",
+    "role": "performer"
+   }
+  ],
+  "act": "dabin",
+  "closing": false,
+  "stageLineage": "ultra-miami:live-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:live-stage:1630:william-black-live",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "LIVE STAGE",
+  "start": "16:30",
+  "end": null,
+  "printed": "WILLIAM BLACK (LIVE)",
+  "setTag": "LIVE",
+  "performers": [
+   {
+    "key": "william-black",
+    "role": "performer"
+   }
+  ],
+  "act": "william-black",
+  "closing": false,
+  "stageLineage": "ultra-miami:live-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:live-stage:1545:afrobeta",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "LIVE STAGE",
+  "start": "15:45",
+  "end": null,
+  "printed": "AFROBETA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "afrobeta",
+    "role": "performer"
+   }
+  ],
+  "act": "afrobeta",
+  "closing": false,
+  "stageLineage": "ultra-miami:live-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:megastructure:2000:carl-cox",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "MEGASTRUCTURE",
+  "start": "20:00",
+  "end": null,
+  "printed": "CARL COX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carl-cox",
+    "role": "performer"
+   }
+  ],
+  "act": "carl-cox",
+  "closing": true,
+  "stageLineage": "ultra-miami:megastructure",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:megastructure:1800:tale-of-us",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "MEGASTRUCTURE",
+  "start": "18:00",
+  "end": null,
+  "printed": "TALE OF US",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tale-of-us",
+    "role": "performer"
+   }
+  ],
+  "act": "tale-of-us",
+  "closing": false,
+  "stageLineage": "ultra-miami:megastructure",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:megastructure:1630:stephan-bodzin-live",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "MEGASTRUCTURE",
+  "start": "16:30",
+  "end": null,
+  "printed": "STEPHAN BODZIN (LIVE)",
+  "setTag": "LIVE",
+  "performers": [
+   {
+    "key": "stephan-bodzin",
+    "role": "performer"
+   }
+  ],
+  "act": "stephan-bodzin",
+  "closing": false,
+  "stageLineage": "ultra-miami:megastructure",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:megastructure:1500:enrico-sangiuliano",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "MEGASTRUCTURE",
+  "start": "15:00",
+  "end": null,
+  "printed": "ENRICO SANGIULIANO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "enrico-sangiuliano",
+    "role": "performer"
+   }
+  ],
+  "act": "enrico-sangiuliano",
+  "closing": false,
+  "stageLineage": "ultra-miami:megastructure",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:megastructure:1330:mathame",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "MEGASTRUCTURE",
+  "start": "13:30",
+  "end": null,
+  "printed": "MATHAME",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mathame",
+    "role": "performer"
+   }
+  ],
+  "act": "mathame",
+  "closing": false,
+  "stageLineage": "ultra-miami:megastructure",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:megastructure:1200:brennen-grey",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "MEGASTRUCTURE",
+  "start": "12:00",
+  "end": null,
+  "printed": "BRENNEN GREY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "brennen-grey",
+    "role": "performer"
+   }
+  ],
+  "act": "brennen-grey",
+  "closing": false,
+  "stageLineage": "ultra-miami:megastructure",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:worldwide-stage:2100:ganja-white-night",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "WORLDWIDE STAGE",
+  "start": "21:00",
+  "end": null,
+  "printed": "GANJA WHITE NIGHT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ganja-white-night",
+    "role": "performer"
+   }
+  ],
+  "act": "ganja-white-night",
+  "closing": true,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:worldwide-stage:1930:jauz-b2b-svdden-death",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "WORLDWIDE STAGE",
+  "start": "19:30",
+  "end": null,
+  "printed": "JAUZ B2B SVDDEN DEATH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jauz",
+    "role": "b2b"
+   },
+   {
+    "key": "svdden-death",
+    "role": "b2b"
+   }
+  ],
+  "act": "jauz-b2b-svdden-death",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:worldwide-stage:1830:wilkinson",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "WORLDWIDE STAGE",
+  "start": "18:30",
+  "end": null,
+  "printed": "WILKINSON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wilkinson",
+    "role": "performer"
+   }
+  ],
+  "act": "wilkinson",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:worldwide-stage:1730:apashe",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "WORLDWIDE STAGE",
+  "start": "17:30",
+  "end": null,
+  "printed": "APASHE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "apashe",
+    "role": "performer"
+   }
+  ],
+  "act": "apashe",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:worldwide-stage:1630:dimension",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "WORLDWIDE STAGE",
+  "start": "16:30",
+  "end": null,
+  "printed": "DIMENSION",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dimension",
+    "role": "performer"
+   }
+  ],
+  "act": "dimension",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:worldwide-stage:1530:yookie",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "WORLDWIDE STAGE",
+  "start": "15:30",
+  "end": null,
+  "printed": "YOOKIE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yookie",
+    "role": "performer"
+   }
+  ],
+  "act": "yookie",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:worldwide-stage:1430:lucille-croft",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "WORLDWIDE STAGE",
+  "start": "14:30",
+  "end": null,
+  "printed": "LUCILLE CROFT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lucille-croft",
+    "role": "performer"
+   }
+  ],
+  "act": "lucille-croft",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:worldwide-stage:1300:crankdat",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "WORLDWIDE STAGE",
+  "start": "13:00",
+  "end": null,
+  "printed": "CRANKDAT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "crankdat",
+    "role": "performer"
+   }
+  ],
+  "act": "crankdat",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:worldwide-stage:1200:com3t",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "WORLDWIDE STAGE",
+  "start": "12:00",
+  "end": null,
+  "printed": "COM3T",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "com3t",
+    "role": "performer"
+   }
+  ],
+  "act": "com3t",
+  "closing": false,
+  "stageLineage": "ultra-miami:worldwide-stage",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:the-cove:2030:walker-and-royce",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "THE COVE",
+  "start": "20:30",
+  "end": null,
+  "printed": "WALKER & ROYCE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "walker-and-royce",
+    "role": "performer"
+   }
+  ],
+  "act": "walker-and-royce",
+  "closing": true,
+  "stageLineage": "ultra-miami:the-cove",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:the-cove:1900:claude-vonstroke",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "THE COVE",
+  "start": "19:00",
+  "end": null,
+  "printed": "CLAUDE VONSTROKE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "claude-vonstroke",
+    "role": "performer"
+   }
+  ],
+  "act": "claude-vonstroke",
+  "closing": false,
+  "stageLineage": "ultra-miami:the-cove",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:the-cove:1730:vnssa",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "THE COVE",
+  "start": "17:30",
+  "end": null,
+  "printed": "VNSSA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vnssa",
+    "role": "performer"
+   }
+  ],
+  "act": "vnssa",
+  "closing": false,
+  "stageLineage": "ultra-miami:the-cove",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:the-cove:1600:shiba-san",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "THE COVE",
+  "start": "16:00",
+  "end": null,
+  "printed": "SHIBA SAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "shiba-san",
+    "role": "performer"
+   }
+  ],
+  "act": "shiba-san",
+  "closing": false,
+  "stageLineage": "ultra-miami:the-cove",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:the-cove:1430:lubelski",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "THE COVE",
+  "start": "14:30",
+  "end": null,
+  "printed": "LUBELSKI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lubelski",
+    "role": "performer"
+   }
+  ],
+  "act": "lubelski",
+  "closing": false,
+  "stageLineage": "ultra-miami:the-cove",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:the-cove:1300:raecola",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "THE COVE",
+  "start": "13:00",
+  "end": null,
+  "printed": "RAECOLA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "raecola",
+    "role": "performer"
+   }
+  ],
+  "act": "raecola",
+  "closing": false,
+  "stageLineage": "ultra-miami:the-cove",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:the-cove:1200:kyle-kinch",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "THE COVE",
+  "start": "12:00",
+  "end": null,
+  "printed": "KYLE KINCH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kyle-kinch",
+    "role": "performer"
+   }
+  ],
+  "act": "kyle-kinch",
+  "closing": false,
+  "stageLineage": "ultra-miami:the-cove",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:umf-radio:2100:lil-texas",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "UMF RADIO",
+  "start": "21:00",
+  "end": null,
+  "printed": "LIL TEXAS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lil-texas",
+    "role": "performer"
+   }
+  ],
+  "act": "lil-texas",
+  "closing": true,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:umf-radio:2000:warface",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "UMF RADIO",
+  "start": "20:00",
+  "end": null,
+  "printed": "WARFACE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "warface",
+    "role": "performer"
+   }
+  ],
+  "act": "warface",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:umf-radio:1900:darren-styles",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "UMF RADIO",
+  "start": "19:00",
+  "end": null,
+  "printed": "DARREN STYLES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "darren-styles",
+    "role": "performer"
+   }
+  ],
+  "act": "darren-styles",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:umf-radio:1800:sub-zero-project",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "UMF RADIO",
+  "start": "18:00",
+  "end": null,
+  "printed": "SUB ZERO PROJECT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sub-zero-project",
+    "role": "performer"
+   }
+  ],
+  "act": "sub-zero-project",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:umf-radio:1700:da-tweekaz",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "UMF RADIO",
+  "start": "17:00",
+  "end": null,
+  "printed": "DA TWEEKAZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "da-tweekaz",
+    "role": "performer"
+   }
+  ],
+  "act": "da-tweekaz",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:umf-radio:1600:coone",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "UMF RADIO",
+  "start": "16:00",
+  "end": null,
+  "printed": "COONE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "coone",
+    "role": "performer"
+   }
+  ],
+  "act": "coone",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:umf-radio:1500:rebelion",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "UMF RADIO",
+  "start": "15:00",
+  "end": null,
+  "printed": "REBELION",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rebelion",
+    "role": "performer"
+   }
+  ],
+  "act": "rebelion",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:umf-radio:1330:soren",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "UMF RADIO",
+  "start": "13:30",
+  "end": null,
+  "printed": "SOREN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "soren",
+    "role": "performer"
+   }
+  ],
+  "act": "soren",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:umf-radio:1200:talon",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "UMF RADIO",
+  "start": "12:00",
+  "end": null,
+  "printed": "TALON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "talon",
+    "role": "performer"
+   }
+  ],
+  "act": "talon",
+  "closing": false,
+  "stageLineage": "ultra-miami:umf-radio",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:oasis:2100:metaphysical",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "OASIS",
+  "start": "21:00",
+  "end": null,
+  "printed": "METAPHYSICAL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "metaphysical",
+    "role": "performer"
+   }
+  ],
+  "act": "metaphysical",
+  "closing": true,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:oasis:2000:audiosal",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "OASIS",
+  "start": "20:00",
+  "end": null,
+  "printed": "AUDIOSAL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "audiosal",
+    "role": "performer"
+   }
+  ],
+  "act": "audiosal",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:oasis:1900:boiish",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "OASIS",
+  "start": "19:00",
+  "end": null,
+  "printed": "BOIISH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "boiish",
+    "role": "performer"
+   }
+  ],
+  "act": "boiish",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:oasis:1800:luke-hunter",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "OASIS",
+  "start": "18:00",
+  "end": null,
+  "printed": "LUKE HUNTER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "luke-hunter",
+    "role": "performer"
+   }
+  ],
+  "act": "luke-hunter",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:oasis:1700:bill-kelly",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "OASIS",
+  "start": "17:00",
+  "end": null,
+  "printed": "BILL KELLY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bill-kelly",
+    "role": "performer"
+   }
+  ],
+  "act": "bill-kelly",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:oasis:1600:christopher-james",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "OASIS",
+  "start": "16:00",
+  "end": null,
+  "printed": "CHRISTOPHER JAMES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "christopher-james",
+    "role": "performer"
+   }
+  ],
+  "act": "christopher-james",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:oasis:1500:x-con",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "OASIS",
+  "start": "15:00",
+  "end": null,
+  "printed": "X-CON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "x-con",
+    "role": "performer"
+   }
+  ],
+  "act": "x-con",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:oasis:1400:dj-ideal-b2b-lady-verse",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "OASIS",
+  "start": "14:00",
+  "end": null,
+  "printed": "DJ IDEAL B2B LADY VERSE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-ideal",
+    "role": "b2b"
+   },
+   {
+    "key": "lady-verse",
+    "role": "b2b"
+   }
+  ],
+  "act": "dj-ideal-b2b-lady-verse",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:oasis:1300:lum1na",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "OASIS",
+  "start": "13:00",
+  "end": null,
+  "printed": "LUM1NA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lum1na",
+    "role": "performer"
+   }
+  ],
+  "act": "lum1na",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null
+ },
+ {
+  "id": "ultra-miami-2023:d3:oasis:1200:ash-tres-moses-jazz",
+  "source": "edition",
+  "festivalId": "ultra-miami-2023",
+  "festivalBrand": "ultra-miami",
+  "year": 2023,
+  "date": "2023-03-26",
+  "day": 3,
+  "stage": "OASIS",
+  "start": "12:00",
+  "end": null,
+  "printed": "ASH TRÉS + MOSES JAZZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ash-tres-moses-jazz",
+    "role": "act"
+   }
+  ],
+  "act": "ash-tres-moses-jazz",
+  "closing": false,
+  "stageLineage": "ultra-miami:oasis",
+  "mainStage": null,
+  "review": "\"+\" billing"
+ },
+ {
   "id": "ultra-miami-2024:d1:ultra-main-stage:2010:slander",
   "source": "edition",
   "festivalId": "ultra-miami-2024",
