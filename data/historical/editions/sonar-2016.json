@@ -1,0 +1,1992 @@
+{
+ "id": "sonar-2016",
+ "festivalId": "sonar",
+ "name": "Sónar Barcelona 2016",
+ "year": 2016,
+ "timezone": "Europe/Madrid",
+ "rolloverHour": 10,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2016-06-16",
+   "label": "Thursday"
+  },
+  {
+   "day": 2,
+   "date": "2016-06-17",
+   "label": "Friday"
+  },
+  {
+   "day": 3,
+   "date": "2016-06-18",
+   "label": "Saturday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "sonar-2016:l-auditori",
+   "name": "L'Auditori"
+  },
+  {
+   "id": "sonar-2016:sonarcomplex",
+   "name": "SonarComplex"
+  },
+  {
+   "id": "sonar-2016:sonardome",
+   "name": "SonarDôme"
+  },
+  {
+   "id": "sonar-2016:sonarhall",
+   "name": "SonarHall"
+  },
+  {
+   "id": "sonar-2016:sonarvillage-by-estrella-damm",
+   "name": "SonarVillage by Estrella Damm"
+  },
+  {
+   "id": "sonar-2016:sonarcar",
+   "name": "SonarCar"
+  },
+  {
+   "id": "sonar-2016:sonarclub",
+   "name": "SonarClub"
+  },
+  {
+   "id": "sonar-2016:sonarlab",
+   "name": "SonarLab"
+  },
+  {
+   "id": "sonar-2016:sonarpub",
+   "name": "SonarPub"
+  }
+ ],
+ "artists": [
+  {
+   "id": "sonar-2016:john-luther-adams-barcelona-symphony-orchestra",
+   "name": "John Luther Adams + Barcelona Symphony Orchestra",
+   "key": "john-luther-adams-barcelona-symphony-orchestra",
+   "performers": [
+    "john-luther-adams-barcelona-symphony-orchestra"
+   ]
+  },
+  {
+   "id": "sonar-2016:dawn-of-midi",
+   "name": "Dawn Of Midi",
+   "key": "dawn-of-midi",
+   "performers": [
+    "dawn-of-midi"
+   ]
+  },
+  {
+   "id": "sonar-2016:field-by-martin-messier",
+   "name": "FIELD by Martin Messier",
+   "key": "field-by-martin-messier",
+   "performers": [
+    "field-by-martin-messier"
+   ]
+  },
+  {
+   "id": "sonar-2016:james-rhodes",
+   "name": "James Rhodes",
+   "key": "james-rhodes",
+   "performers": [
+    "james-rhodes"
+   ]
+  },
+  {
+   "id": "sonar-2016:gazelle-twin-kingdom-come",
+   "name": "Gazelle Twin: Kingdom Come",
+   "key": "gazelle-twin-kingdom-come",
+   "performers": [
+    "gazelle-twin-kingdom-come"
+   ]
+  },
+  {
+   "id": "sonar-2016:65daysofstatic-plays-no-man-s-sky",
+   "name": "65daysofstatic plays No Man's Sky",
+   "key": "65daysofstatic-plays-no-man-s-sky",
+   "performers": [
+    "65daysofstatic-plays-no-man-s-sky"
+   ]
+  },
+  {
+   "id": "sonar-2016:lil-jabba",
+   "name": "LiL JaBBA",
+   "key": "lil-jabba",
+   "performers": [
+    "lil-jabba"
+   ]
+  },
+  {
+   "id": "sonar-2016:lemonick",
+   "name": "Lemonick",
+   "key": "lemonick",
+   "performers": [
+    "lemonick"
+   ]
+  },
+  {
+   "id": "sonar-2016:john-grvy",
+   "name": "John Grvy",
+   "key": "john-grvy",
+   "performers": [
+    "john-grvy"
+   ]
+  },
+  {
+   "id": "sonar-2016:kasper-marott",
+   "name": "Kasper Marott",
+   "key": "kasper-marott",
+   "performers": [
+    "kasper-marott"
+   ]
+  },
+  {
+   "id": "sonar-2016:sevdaliza",
+   "name": "Sevdaliza",
+   "key": "sevdaliza",
+   "performers": [
+    "sevdaliza"
+   ]
+  },
+  {
+   "id": "sonar-2016:jamie-woon",
+   "name": "Jamie Woon",
+   "key": "jamie-woon",
+   "performers": [
+    "jamie-woon"
+   ]
+  },
+  {
+   "id": "sonar-2016:insanlar",
+   "name": "Insanlar",
+   "key": "insanlar",
+   "performers": [
+    "insanlar"
+   ]
+  },
+  {
+   "id": "sonar-2016:tuff-city-kids",
+   "name": "Tuff City Kids",
+   "key": "tuff-city-kids",
+   "performers": [
+    "tuff-city-kids"
+   ]
+  },
+  {
+   "id": "sonar-2016:king-midas-sound-fennesz",
+   "name": "King Midas Sound + Fennesz",
+   "key": "king-midas-sound-fennesz",
+   "performers": [
+    "king-midas-sound-fennesz"
+   ]
+  },
+  {
+   "id": "sonar-2016:kelela",
+   "name": "Kelela",
+   "key": "kelela",
+   "performers": [
+    "kelela"
+   ]
+  },
+  {
+   "id": "sonar-2016:david-august-live-band",
+   "name": "David August (live band)",
+   "key": "david-august-live-band",
+   "performers": [
+    "david-august-live-band"
+   ]
+  },
+  {
+   "id": "sonar-2016:lady-leshurr",
+   "name": "Lady Leshurr",
+   "key": "lady-leshurr",
+   "performers": [
+    "lady-leshurr"
+   ]
+  },
+  {
+   "id": "sonar-2016:the-black-madonna",
+   "name": "The Black Madonna",
+   "key": "the-black-madonna",
+   "performers": [
+    "the-black-madonna"
+   ]
+  },
+  {
+   "id": "sonar-2016:bob-moses",
+   "name": "Bob Moses",
+   "key": "bob-moses",
+   "performers": [
+    "bob-moses"
+   ]
+  },
+  {
+   "id": "sonar-2016:kenny-dope",
+   "name": "Kenny Dope",
+   "key": "kenny-dope",
+   "performers": [
+    "kenny-dope"
+   ]
+  },
+  {
+   "id": "sonar-2016:golden-bug-and-desilence-v-i-c-t-o-r",
+   "name": "Golden Bug & Desilence - V.I.C.T.O.R.",
+   "key": "golden-bug-and-desilence-v-i-c-t-o-r",
+   "performers": [
+    "golden-bug-and-desilence-v-i-c-t-o-r"
+   ]
+  },
+  {
+   "id": "sonar-2016:soft-revolvers-by-myriam-bleau",
+   "name": "Soft Revolvers by Myriam Bleau",
+   "key": "soft-revolvers-by-myriam-bleau",
+   "performers": [
+    "soft-revolvers-by-myriam-bleau"
+   ]
+  },
+  {
+   "id": "sonar-2016:nino-de-elche-los-voluble-en-el-nombre-de",
+   "name": "Niño de Elche + Los Voluble: “En el Nombre de”",
+   "key": "nino-de-elche-los-voluble-en-el-nombre-de",
+   "performers": [
+    "nino-de-elche-los-voluble-en-el-nombre-de"
+   ]
+  },
+  {
+   "id": "sonar-2016:sobrenadar",
+   "name": "Sobrenadar",
+   "key": "sobrenadar",
+   "performers": [
+    "sobrenadar"
+   ]
+  },
+  {
+   "id": "sonar-2016:jackwasfaster",
+   "name": "JackWasFaster",
+   "key": "jackwasfaster",
+   "performers": [
+    "jackwasfaster"
+   ]
+  },
+  {
+   "id": "sonar-2016:silkersoft",
+   "name": "Silkersoft",
+   "key": "silkersoft",
+   "performers": [
+    "silkersoft"
+   ]
+  },
+  {
+   "id": "sonar-2016:sapphire-slows",
+   "name": "Sapphire Slows",
+   "key": "sapphire-slows",
+   "performers": [
+    "sapphire-slows"
+   ]
+  },
+  {
+   "id": "sonar-2016:hiele",
+   "name": "Hiele",
+   "key": "hiele",
+   "performers": [
+    "hiele"
+   ]
+  },
+  {
+   "id": "sonar-2016:pulsinger-and-irl",
+   "name": "Pulsinger & Irl",
+   "key": "pulsinger-and-irl",
+   "performers": [
+    "pulsinger-and-irl"
+   ]
+  },
+  {
+   "id": "sonar-2016:jacob-korn",
+   "name": "Jacob Korn",
+   "key": "jacob-korn",
+   "performers": [
+    "jacob-korn"
+   ]
+  },
+  {
+   "id": "sonar-2016:underground-resistance-presents-timeline",
+   "name": "Underground Resistance presents Timeline",
+   "key": "underground-resistance-presents-timeline",
+   "performers": [
+    "underground-resistance-presents-timeline"
+   ]
+  },
+  {
+   "id": "sonar-2016:gerd-janson",
+   "name": "Gerd Janson",
+   "key": "gerd-janson",
+   "performers": [
+    "gerd-janson"
+   ]
+  },
+  {
+   "id": "sonar-2016:lloret-salvatge",
+   "name": "Lloret Salvatge",
+   "key": "lloret-salvatge",
+   "performers": [
+    "lloret-salvatge"
+   ]
+  },
+  {
+   "id": "sonar-2016:mikael-seifu",
+   "name": "Mikael Seifu",
+   "key": "mikael-seifu",
+   "performers": [
+    "mikael-seifu"
+   ]
+  },
+  {
+   "id": "sonar-2016:kode9-x-lawrence-lek-present-the-n-tel",
+   "name": "Kode9 x Lawrence Lek present The Nøtel",
+   "key": "kode9-x-lawrence-lek-present-the-n-tel",
+   "performers": [
+    "kode9-x-lawrence-lek-present-the-n-tel"
+   ]
+  },
+  {
+   "id": "sonar-2016:roots-manuva",
+   "name": "Roots Manuva",
+   "key": "roots-manuva",
+   "performers": [
+    "roots-manuva"
+   ]
+  },
+  {
+   "id": "sonar-2016:john-grant",
+   "name": "John Grant",
+   "key": "john-grant",
+   "performers": [
+    "john-grant"
+   ]
+  },
+  {
+   "id": "sonar-2016:ilia-mayer",
+   "name": "Ilia Mayer",
+   "key": "ilia-mayer",
+   "performers": [
+    "ilia-mayer"
+   ]
+  },
+  {
+   "id": "sonar-2016:awwz",
+   "name": "Awwz",
+   "key": "awwz",
+   "performers": [
+    "awwz"
+   ]
+  },
+  {
+   "id": "sonar-2016:el-guincho",
+   "name": "El Guincho",
+   "key": "el-guincho",
+   "performers": [
+    "el-guincho"
+   ]
+  },
+  {
+   "id": "sonar-2016:las-hermanas",
+   "name": "Las Hermanas",
+   "key": "las-hermanas",
+   "performers": [
+    "las-hermanas"
+   ]
+  },
+  {
+   "id": "sonar-2016:ata-kak",
+   "name": "Ata Kak",
+   "key": "ata-kak",
+   "performers": [
+    "ata-kak"
+   ]
+  },
+  {
+   "id": "sonar-2016:congo-natty-feat-congo-dubz-tenor-fly-nanci-and-phoebe",
+   "name": "Congo Natty feat. Congo Dubz, Tenor Fly, Nãnci & Phoebe",
+   "key": "congo-natty-feat-congo-dubz-tenor-fly-nanci-and-phoebe",
+   "performers": [
+    "congo-natty-feat-congo-dubz-tenor-fly-nanci-and-phoebe"
+   ]
+  },
+  {
+   "id": "sonar-2016:danny-l-harle",
+   "name": "Danny L. Harle",
+   "key": "danny-l-harle",
+   "performers": [
+    "danny-l-harle"
+   ]
+  },
+  {
+   "id": "sonar-2016:santigold",
+   "name": "Santigold",
+   "key": "santigold",
+   "performers": [
+    "santigold"
+   ]
+  },
+  {
+   "id": "sonar-2016:matias-aguayo",
+   "name": "Matias Aguayo",
+   "key": "matias-aguayo",
+   "performers": [
+    "matias-aguayo"
+   ]
+  },
+  {
+   "id": "sonar-2016:four-tet",
+   "name": "Four Tet",
+   "key": "four-tet",
+   "performers": [
+    "four-tet"
+   ]
+  },
+  {
+   "id": "sonar-2016:angel-molina",
+   "name": "Angel Molina",
+   "key": "angel-molina",
+   "performers": [
+    "angel-molina"
+   ]
+  },
+  {
+   "id": "sonar-2016:jean-michel-jarre",
+   "name": "Jean-Michel Jarre",
+   "key": "jean-michel-jarre",
+   "performers": [
+    "jean-michel-jarre"
+   ]
+  },
+  {
+   "id": "sonar-2016:kode9",
+   "name": "Kode9",
+   "key": "kode9",
+   "performers": [
+    "kode9"
+   ]
+  },
+  {
+   "id": "sonar-2016:james-blake",
+   "name": "James Blake",
+   "key": "james-blake",
+   "performers": [
+    "james-blake"
+   ]
+  },
+  {
+   "id": "sonar-2016:mind-against",
+   "name": "Mind Against",
+   "key": "mind-against",
+   "performers": [
+    "mind-against"
+   ]
+  },
+  {
+   "id": "sonar-2016:richie-hawtin",
+   "name": "Richie Hawtin",
+   "key": "richie-hawtin",
+   "performers": [
+    "richie-hawtin"
+   ]
+  },
+  {
+   "id": "sonar-2016:the-martinez-brothers",
+   "name": "The Martinez Brothers",
+   "key": "the-martinez-brothers",
+   "performers": [
+    "the-martinez-brothers"
+   ]
+  },
+  {
+   "id": "sonar-2016:noaipre",
+   "name": "Noaipre",
+   "key": "noaipre",
+   "performers": [
+    "noaipre"
+   ]
+  },
+  {
+   "id": "sonar-2016:hot-shotz-powell-lorenzo-senni",
+   "name": "Hot Shotz (Powell + Lorenzo Senni)",
+   "key": "hot-shotz-powell-lorenzo-senni",
+   "performers": [
+    "hot-shotz-powell-lorenzo-senni"
+   ]
+  },
+  {
+   "id": "sonar-2016:intergalactic-gary",
+   "name": "Intergalactic Gary",
+   "key": "intergalactic-gary",
+   "performers": [
+    "intergalactic-gary"
+   ]
+  },
+  {
+   "id": "sonar-2016:soichi-terada",
+   "name": "Soichi Terada",
+   "key": "soichi-terada",
+   "performers": [
+    "soichi-terada"
+   ]
+  },
+  {
+   "id": "sonar-2016:kerri-chandler",
+   "name": "Kerri Chandler",
+   "key": "kerri-chandler",
+   "performers": [
+    "kerri-chandler"
+   ]
+  },
+  {
+   "id": "sonar-2016:ben-ufo-b2b-helena-hauff",
+   "name": "Ben UFO b2b Helena Hauff",
+   "key": "ben-ufo-b2b-helena-hauff",
+   "performers": [
+    "ben-ufo",
+    "helena-hauff"
+   ]
+  },
+  {
+   "id": "sonar-2016:dvs1-and-r-dhad",
+   "name": "DVS1 & Rødhåd",
+   "key": "dvs1-and-r-dhad",
+   "performers": [
+    "dvs1-and-r-dhad"
+   ]
+  },
+  {
+   "id": "sonar-2016:zero-vs-chelis",
+   "name": "Zero vs. Chelis",
+   "key": "zero-vs-chelis",
+   "performers": [
+    "zero-vs-chelis"
+   ]
+  },
+  {
+   "id": "sonar-2016:anohni-hopelessness",
+   "name": "ANOHNI: HOPELESSNESS",
+   "key": "anohni-hopelessness",
+   "performers": [
+    "anohni-hopelessness"
+   ]
+  },
+  {
+   "id": "sonar-2016:red-axes",
+   "name": "Red Axes",
+   "key": "red-axes",
+   "performers": [
+    "red-axes"
+   ]
+  },
+  {
+   "id": "sonar-2016:flume",
+   "name": "Flume",
+   "key": "flume",
+   "performers": [
+    "flume"
+   ]
+  },
+  {
+   "id": "sonar-2016:mano-le-tough",
+   "name": "Mano Le Tough",
+   "key": "mano-le-tough",
+   "performers": [
+    "mano-le-tough"
+   ]
+  },
+  {
+   "id": "sonar-2016:kolsch-live",
+   "name": "Kölsch (live)",
+   "key": "kolsch-live",
+   "performers": [
+    "kolsch-live"
+   ]
+  },
+  {
+   "id": "sonar-2016:john-talabot",
+   "name": "John Talabot",
+   "key": "john-talabot",
+   "performers": [
+    "john-talabot"
+   ]
+  },
+  {
+   "id": "sonar-2016:n-m-o",
+   "name": "N.M.O.",
+   "key": "n-m-o",
+   "performers": [
+    "n-m-o"
+   ]
+  },
+  {
+   "id": "sonar-2016:alva-noto",
+   "name": "Alva Noto",
+   "key": "alva-noto",
+   "performers": [
+    "alva-noto"
+   ]
+  },
+  {
+   "id": "sonar-2016:cyclo",
+   "name": "Cyclo",
+   "key": "cyclo",
+   "performers": [
+    "cyclo"
+   ]
+  },
+  {
+   "id": "sonar-2016:byetone",
+   "name": "Byetone",
+   "key": "byetone",
+   "performers": [
+    "byetone"
+   ]
+  },
+  {
+   "id": "sonar-2016:malard",
+   "name": "Malard",
+   "key": "malard",
+   "performers": [
+    "malard"
+   ]
+  },
+  {
+   "id": "sonar-2016:talktome",
+   "name": "Talktome",
+   "key": "talktome",
+   "performers": [
+    "talktome"
+   ]
+  },
+  {
+   "id": "sonar-2016:astrolith",
+   "name": "Astrolith",
+   "key": "astrolith",
+   "performers": [
+    "astrolith"
+   ]
+  },
+  {
+   "id": "sonar-2016:homesick",
+   "name": "HomeSick",
+   "key": "homesick",
+   "performers": [
+    "homesick"
+   ]
+  },
+  {
+   "id": "sonar-2016:sassy-j",
+   "name": "Sassy J",
+   "key": "sassy-j",
+   "performers": [
+    "sassy-j"
+   ]
+  },
+  {
+   "id": "sonar-2016:lafawndah",
+   "name": "Lafawndah",
+   "key": "lafawndah",
+   "performers": [
+    "lafawndah"
+   ]
+  },
+  {
+   "id": "sonar-2016:drippin",
+   "name": "Drippin",
+   "key": "drippin",
+   "performers": [
+    "drippin"
+   ]
+  },
+  {
+   "id": "sonar-2016:club-cheval",
+   "name": "Club Cheval",
+   "key": "club-cheval",
+   "performers": [
+    "club-cheval"
+   ]
+  },
+  {
+   "id": "sonar-2016:magic-mountain-high",
+   "name": "Magic Mountain High",
+   "key": "magic-mountain-high",
+   "performers": [
+    "magic-mountain-high"
+   ]
+  },
+  {
+   "id": "sonar-2016:bruna-and-wooky-alba-g-corral",
+   "name": "bRUNA & Wooky + Alba G. Corral",
+   "key": "bruna-and-wooky-alba-g-corral",
+   "performers": [
+    "bruna-and-wooky-alba-g-corral"
+   ]
+  },
+  {
+   "id": "sonar-2016:yung-lean",
+   "name": "Yung Lean",
+   "key": "yung-lean",
+   "performers": [
+    "yung-lean"
+   ]
+  },
+  {
+   "id": "sonar-2016:oneohtrix-point-never",
+   "name": "Oneohtrix Point Never",
+   "key": "oneohtrix-point-never",
+   "performers": [
+    "oneohtrix-point-never"
+   ]
+  },
+  {
+   "id": "sonar-2016:howling",
+   "name": "Howling",
+   "key": "howling",
+   "performers": [
+    "howling"
+   ]
+  },
+  {
+   "id": "sonar-2016:tendts",
+   "name": "Tendts",
+   "key": "tendts",
+   "performers": [
+    "tendts"
+   ]
+  },
+  {
+   "id": "sonar-2016:ison",
+   "name": "Ison",
+   "key": "ison",
+   "performers": [
+    "ison"
+   ]
+  },
+  {
+   "id": "sonar-2016:badbadnotgood",
+   "name": "Badbadnotgood",
+   "key": "badbadnotgood",
+   "performers": [
+    "badbadnotgood"
+   ]
+  },
+  {
+   "id": "sonar-2016:ivy-lab",
+   "name": "Ivy Lab",
+   "key": "ivy-lab",
+   "performers": [
+    "ivy-lab"
+   ]
+  },
+  {
+   "id": "sonar-2016:nozinja",
+   "name": "Nozinja",
+   "key": "nozinja",
+   "performers": [
+    "nozinja"
+   ]
+  },
+  {
+   "id": "sonar-2016:troyboi",
+   "name": "TroyBoi",
+   "key": "troyboi",
+   "performers": [
+    "troyboi"
+   ]
+  },
+  {
+   "id": "sonar-2016:section-boyz",
+   "name": "Section Boyz",
+   "key": "section-boyz",
+   "performers": [
+    "section-boyz"
+   ]
+  },
+  {
+   "id": "sonar-2016:ed-banger-house-party-busy-p-para-one-boston-bun",
+   "name": "Ed Banger House Party: Busy P + Para One + Boston Bun",
+   "key": "ed-banger-house-party-busy-p-para-one-boston-bun",
+   "performers": [
+    "ed-banger-house-party-busy-p-para-one-boston-bun"
+   ]
+  },
+  {
+   "id": "sonar-2016:laurent-garnier",
+   "name": "Laurent Garnier",
+   "key": "laurent-garnier",
+   "performers": [
+    "laurent-garnier"
+   ]
+  },
+  {
+   "id": "sonar-2016:undo",
+   "name": "Undo",
+   "key": "undo",
+   "performers": [
+    "undo"
+   ]
+  },
+  {
+   "id": "sonar-2016:new-order",
+   "name": "New Order",
+   "key": "new-order",
+   "performers": [
+    "new-order"
+   ]
+  },
+  {
+   "id": "sonar-2016:coyu",
+   "name": "Coyu",
+   "key": "coyu",
+   "performers": [
+    "coyu"
+   ]
+  },
+  {
+   "id": "sonar-2016:booka-shade",
+   "name": "Booka Shade",
+   "key": "booka-shade",
+   "performers": [
+    "booka-shade"
+   ]
+  },
+  {
+   "id": "sonar-2016:eats-everything",
+   "name": "Eats Everything",
+   "key": "eats-everything",
+   "performers": [
+    "eats-everything"
+   ]
+  },
+  {
+   "id": "sonar-2016:fatboy-slim",
+   "name": "Fatboy Slim",
+   "key": "fatboy-slim",
+   "performers": [
+    "fatboy-slim"
+   ]
+  },
+  {
+   "id": "sonar-2016:paco-osuna",
+   "name": "Paco Osuna",
+   "key": "paco-osuna",
+   "performers": [
+    "paco-osuna"
+   ]
+  },
+  {
+   "id": "sonar-2016:trill-squad-toner-sanatruja",
+   "name": "Trill Squad: Toner + Sanatruja",
+   "key": "trill-squad-toner-sanatruja",
+   "performers": [
+    "trill-squad-toner-sanatruja"
+   ]
+  },
+  {
+   "id": "sonar-2016:mura-masa",
+   "name": "Mura Masa",
+   "key": "mura-masa",
+   "performers": [
+    "mura-masa"
+   ]
+  },
+  {
+   "id": "sonar-2016:dj-ez",
+   "name": "DJ EZ",
+   "key": "dj-ez",
+   "performers": [
+    "dj-ez"
+   ]
+  },
+  {
+   "id": "sonar-2016:mele-and-monki-s-nrg-flash",
+   "name": "Melé & Monki’s NRG FLASH",
+   "key": "mele-and-monki-s-nrg-flash",
+   "performers": [
+    "mele-and-monki-s-nrg-flash"
+   ]
+  },
+  {
+   "id": "sonar-2016:stormzy",
+   "name": "Stormzy",
+   "key": "stormzy",
+   "performers": [
+    "stormzy"
+   ]
+  },
+  {
+   "id": "sonar-2016:krysko-and-greg-lord",
+   "name": "Krysko & Greg Lord",
+   "key": "krysko-and-greg-lord",
+   "performers": [
+    "krysko-and-greg-lord"
+   ]
+  },
+  {
+   "id": "sonar-2016:bicep",
+   "name": "Bicep",
+   "key": "bicep",
+   "performers": [
+    "bicep"
+   ]
+  },
+  {
+   "id": "sonar-2016:ben-klock",
+   "name": "Ben Klock",
+   "key": "ben-klock",
+   "performers": [
+    "ben-klock"
+   ]
+  },
+  {
+   "id": "sonar-2016:alizzz",
+   "name": "Alizzz",
+   "key": "alizzz",
+   "performers": [
+    "alizzz"
+   ]
+  },
+  {
+   "id": "sonar-2016:kaytranada",
+   "name": "Kaytranada",
+   "key": "kaytranada",
+   "performers": [
+    "kaytranada"
+   ]
+  },
+  {
+   "id": "sonar-2016:skepta",
+   "name": "Skepta",
+   "key": "skepta",
+   "performers": [
+    "skepta"
+   ]
+  },
+  {
+   "id": "sonar-2016:craze",
+   "name": "Craze",
+   "key": "craze",
+   "performers": [
+    "craze"
+   ]
+  },
+  {
+   "id": "sonar-2016:boys-noize",
+   "name": "Boys Noize",
+   "key": "boys-noize",
+   "performers": [
+    "boys-noize"
+   ]
+  },
+  {
+   "id": "sonar-2016:jackmaster",
+   "name": "Jackmaster",
+   "key": "jackmaster",
+   "performers": [
+    "jackmaster"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "sonar-2016:d1:l-auditori:2030:john-luther-adams-barcelona-symphony-orchestra",
+   "artistId": "sonar-2016:john-luther-adams-barcelona-symphony-orchestra",
+   "day": 1,
+   "stageId": "sonar-2016:l-auditori",
+   "start": "20:30",
+   "end": "21:15"
+  },
+  {
+   "id": "sonar-2016:d1:l-auditori:2115:dawn-of-midi",
+   "artistId": "sonar-2016:dawn-of-midi",
+   "day": 1,
+   "stageId": "sonar-2016:l-auditori",
+   "start": "21:15",
+   "end": "22:30"
+  },
+  {
+   "id": "sonar-2016:d1:sonarcomplex:1700:field-by-martin-messier",
+   "artistId": "sonar-2016:field-by-martin-messier",
+   "day": 1,
+   "stageId": "sonar-2016:sonarcomplex",
+   "start": "17:00",
+   "end": "17:30"
+  },
+  {
+   "id": "sonar-2016:d1:sonarcomplex:1830:james-rhodes",
+   "artistId": "sonar-2016:james-rhodes",
+   "day": 1,
+   "stageId": "sonar-2016:sonarcomplex",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "sonar-2016:d1:sonarcomplex:2000:gazelle-twin-kingdom-come",
+   "artistId": "sonar-2016:gazelle-twin-kingdom-come",
+   "day": 1,
+   "stageId": "sonar-2016:sonarcomplex",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "sonar-2016:d1:sonarcomplex:2200:65daysofstatic-plays-no-man-s-sky",
+   "artistId": "sonar-2016:65daysofstatic-plays-no-man-s-sky",
+   "day": 1,
+   "stageId": "sonar-2016:sonarcomplex",
+   "start": "22:00",
+   "end": "22:45"
+  },
+  {
+   "id": "sonar-2016:d1:sonardome:1300:lil-jabba",
+   "artistId": "sonar-2016:lil-jabba",
+   "day": 1,
+   "stageId": "sonar-2016:sonardome",
+   "start": "13:00",
+   "end": "14:10"
+  },
+  {
+   "id": "sonar-2016:d1:sonardome:1415:lemonick",
+   "artistId": "sonar-2016:lemonick",
+   "day": 1,
+   "stageId": "sonar-2016:sonardome",
+   "start": "14:15",
+   "end": "15:20"
+  },
+  {
+   "id": "sonar-2016:d1:sonardome:1525:john-grvy",
+   "artistId": "sonar-2016:john-grvy",
+   "day": 1,
+   "stageId": "sonar-2016:sonardome",
+   "start": "15:25",
+   "end": "16:15"
+  },
+  {
+   "id": "sonar-2016:d1:sonardome:1620:kasper-marott",
+   "artistId": "sonar-2016:kasper-marott",
+   "day": 1,
+   "stageId": "sonar-2016:sonardome",
+   "start": "16:20",
+   "end": "17:20"
+  },
+  {
+   "id": "sonar-2016:d1:sonardome:1730:sevdaliza",
+   "artistId": "sonar-2016:sevdaliza",
+   "day": 1,
+   "stageId": "sonar-2016:sonardome",
+   "start": "17:30",
+   "end": "18:20"
+  },
+  {
+   "id": "sonar-2016:d1:sonardome:1840:jamie-woon",
+   "artistId": "sonar-2016:jamie-woon",
+   "day": 1,
+   "stageId": "sonar-2016:sonardome",
+   "start": "18:40",
+   "end": "19:40"
+  },
+  {
+   "id": "sonar-2016:d1:sonardome:1950:insanlar",
+   "artistId": "sonar-2016:insanlar",
+   "day": 1,
+   "stageId": "sonar-2016:sonardome",
+   "start": "19:50",
+   "end": "20:50"
+  },
+  {
+   "id": "sonar-2016:d1:sonardome:2100:tuff-city-kids",
+   "artistId": "sonar-2016:tuff-city-kids",
+   "day": 1,
+   "stageId": "sonar-2016:sonardome",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "sonar-2016:d1:sonarhall:1730:king-midas-sound-fennesz",
+   "artistId": "sonar-2016:king-midas-sound-fennesz",
+   "day": 1,
+   "stageId": "sonar-2016:sonarhall",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "sonar-2016:d1:sonarhall:1900:kelela",
+   "artistId": "sonar-2016:kelela",
+   "day": 1,
+   "stageId": "sonar-2016:sonarhall",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "sonar-2016:d1:sonarhall:2030:david-august-live-band",
+   "artistId": "sonar-2016:david-august-live-band",
+   "day": 1,
+   "stageId": "sonar-2016:sonarhall",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "sonar-2016:d1:sonarvillage-by-estrella-damm:1800:lady-leshurr",
+   "artistId": "sonar-2016:lady-leshurr",
+   "day": 1,
+   "stageId": "sonar-2016:sonarvillage-by-estrella-damm",
+   "start": "18:00",
+   "end": "18:30"
+  },
+  {
+   "id": "sonar-2016:d1:sonarvillage-by-estrella-damm:1830:the-black-madonna",
+   "artistId": "sonar-2016:the-black-madonna",
+   "day": 1,
+   "stageId": "sonar-2016:sonarvillage-by-estrella-damm",
+   "start": "18:30",
+   "end": "20:00"
+  },
+  {
+   "id": "sonar-2016:d1:sonarvillage-by-estrella-damm:2000:bob-moses",
+   "artistId": "sonar-2016:bob-moses",
+   "day": 1,
+   "stageId": "sonar-2016:sonarvillage-by-estrella-damm",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "sonar-2016:d1:sonarvillage-by-estrella-damm:2100:kenny-dope",
+   "artistId": "sonar-2016:kenny-dope",
+   "day": 1,
+   "stageId": "sonar-2016:sonarvillage-by-estrella-damm",
+   "start": "21:00",
+   "end": "23:00"
+  },
+  {
+   "id": "sonar-2016:d2:sonarcomplex:1400:golden-bug-and-desilence-v-i-c-t-o-r",
+   "artistId": "sonar-2016:golden-bug-and-desilence-v-i-c-t-o-r",
+   "day": 2,
+   "stageId": "sonar-2016:sonarcomplex",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "sonar-2016:d2:sonarcomplex:1700:soft-revolvers-by-myriam-bleau",
+   "artistId": "sonar-2016:soft-revolvers-by-myriam-bleau",
+   "day": 2,
+   "stageId": "sonar-2016:sonarcomplex",
+   "start": "17:00",
+   "end": "17:25"
+  },
+  {
+   "id": "sonar-2016:d2:sonarcomplex:1830:nino-de-elche-los-voluble-en-el-nombre-de",
+   "artistId": "sonar-2016:nino-de-elche-los-voluble-en-el-nombre-de",
+   "day": 2,
+   "stageId": "sonar-2016:sonarcomplex",
+   "start": "18:30",
+   "end": "19:20"
+  },
+  {
+   "id": "sonar-2016:d2:sonarcomplex:2000:dawn-of-midi",
+   "artistId": "sonar-2016:dawn-of-midi",
+   "day": 2,
+   "stageId": "sonar-2016:sonarcomplex",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "sonar-2016:d2:sonardome:1300:sobrenadar",
+   "artistId": "sonar-2016:sobrenadar",
+   "day": 2,
+   "stageId": "sonar-2016:sonardome",
+   "start": "13:00",
+   "end": "13:45"
+  },
+  {
+   "id": "sonar-2016:d2:sonardome:1350:jackwasfaster",
+   "artistId": "sonar-2016:jackwasfaster",
+   "day": 2,
+   "stageId": "sonar-2016:sonardome",
+   "start": "13:50",
+   "end": "14:40"
+  },
+  {
+   "id": "sonar-2016:d2:sonardome:1445:silkersoft",
+   "artistId": "sonar-2016:silkersoft",
+   "day": 2,
+   "stageId": "sonar-2016:sonardome",
+   "start": "14:45",
+   "end": "15:30"
+  },
+  {
+   "id": "sonar-2016:d2:sonardome:1535:sapphire-slows",
+   "artistId": "sonar-2016:sapphire-slows",
+   "day": 2,
+   "stageId": "sonar-2016:sonardome",
+   "start": "15:35",
+   "end": "16:20"
+  },
+  {
+   "id": "sonar-2016:d2:sonardome:1625:hiele",
+   "artistId": "sonar-2016:hiele",
+   "day": 2,
+   "stageId": "sonar-2016:sonardome",
+   "start": "16:25",
+   "end": "17:10"
+  },
+  {
+   "id": "sonar-2016:d2:sonardome:1715:pulsinger-and-irl",
+   "artistId": "sonar-2016:pulsinger-and-irl",
+   "day": 2,
+   "stageId": "sonar-2016:sonardome",
+   "start": "17:15",
+   "end": "18:00"
+  },
+  {
+   "id": "sonar-2016:d2:sonardome:1810:jacob-korn",
+   "artistId": "sonar-2016:jacob-korn",
+   "day": 2,
+   "stageId": "sonar-2016:sonardome",
+   "start": "18:10",
+   "end": "19:00"
+  },
+  {
+   "id": "sonar-2016:d2:sonardome:1910:underground-resistance-presents-timeline",
+   "artistId": "sonar-2016:underground-resistance-presents-timeline",
+   "day": 2,
+   "stageId": "sonar-2016:sonardome",
+   "start": "19:10",
+   "end": "20:20"
+  },
+  {
+   "id": "sonar-2016:d2:sonardome:2030:gerd-janson",
+   "artistId": "sonar-2016:gerd-janson",
+   "day": 2,
+   "stageId": "sonar-2016:sonardome",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "sonar-2016:d2:sonarhall:1430:lloret-salvatge",
+   "artistId": "sonar-2016:lloret-salvatge",
+   "day": 2,
+   "stageId": "sonar-2016:sonarhall",
+   "start": "14:30",
+   "end": "15:20"
+  },
+  {
+   "id": "sonar-2016:d2:sonarhall:1600:mikael-seifu",
+   "artistId": "sonar-2016:mikael-seifu",
+   "day": 2,
+   "stageId": "sonar-2016:sonarhall",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "sonar-2016:d2:sonarhall:1730:kode9-x-lawrence-lek-present-the-n-tel",
+   "artistId": "sonar-2016:kode9-x-lawrence-lek-present-the-n-tel",
+   "day": 2,
+   "stageId": "sonar-2016:sonarhall",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "sonar-2016:d2:sonarhall:1900:roots-manuva",
+   "artistId": "sonar-2016:roots-manuva",
+   "day": 2,
+   "stageId": "sonar-2016:sonarhall",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "sonar-2016:d2:sonarhall:2030:john-grant",
+   "artistId": "sonar-2016:john-grant",
+   "day": 2,
+   "stageId": "sonar-2016:sonarhall",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "sonar-2016:d2:sonarvillage-by-estrella-damm:1300:ilia-mayer",
+   "artistId": "sonar-2016:ilia-mayer",
+   "day": 2,
+   "stageId": "sonar-2016:sonarvillage-by-estrella-damm",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "sonar-2016:d2:sonarvillage-by-estrella-damm:1400:awwz",
+   "artistId": "sonar-2016:awwz",
+   "day": 2,
+   "stageId": "sonar-2016:sonarvillage-by-estrella-damm",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "sonar-2016:d2:sonarvillage-by-estrella-damm:1500:el-guincho",
+   "artistId": "sonar-2016:el-guincho",
+   "day": 2,
+   "stageId": "sonar-2016:sonarvillage-by-estrella-damm",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "sonar-2016:d2:sonarvillage-by-estrella-damm:1600:las-hermanas",
+   "artistId": "sonar-2016:las-hermanas",
+   "day": 2,
+   "stageId": "sonar-2016:sonarvillage-by-estrella-damm",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "sonar-2016:d2:sonarvillage-by-estrella-damm:1700:ata-kak",
+   "artistId": "sonar-2016:ata-kak",
+   "day": 2,
+   "stageId": "sonar-2016:sonarvillage-by-estrella-damm",
+   "start": "17:00",
+   "end": "17:45"
+  },
+  {
+   "id": "sonar-2016:d2:sonarvillage-by-estrella-damm:1800:congo-natty-feat-congo-dubz-tenor-fly-nanci-and-phoebe",
+   "artistId": "sonar-2016:congo-natty-feat-congo-dubz-tenor-fly-nanci-and-phoebe",
+   "day": 2,
+   "stageId": "sonar-2016:sonarvillage-by-estrella-damm",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "sonar-2016:d2:sonarvillage-by-estrella-damm:1900:danny-l-harle",
+   "artistId": "sonar-2016:danny-l-harle",
+   "day": 2,
+   "stageId": "sonar-2016:sonarvillage-by-estrella-damm",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "sonar-2016:d2:sonarvillage-by-estrella-damm:2000:santigold",
+   "artistId": "sonar-2016:santigold",
+   "day": 2,
+   "stageId": "sonar-2016:sonarvillage-by-estrella-damm",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "sonar-2016:d2:sonarvillage-by-estrella-damm:2100:matias-aguayo",
+   "artistId": "sonar-2016:matias-aguayo",
+   "day": 2,
+   "stageId": "sonar-2016:sonarvillage-by-estrella-damm",
+   "start": "21:00",
+   "end": "23:00"
+  },
+  {
+   "id": "sonar-2016:d2:sonarcar:0000:four-tet",
+   "artistId": "sonar-2016:four-tet",
+   "day": 2,
+   "stageId": "sonar-2016:sonarcar",
+   "start": "00:00",
+   "end": "07:00"
+  },
+  {
+   "id": "sonar-2016:d2:sonarclub:2130:angel-molina",
+   "artistId": "sonar-2016:angel-molina",
+   "day": 2,
+   "stageId": "sonar-2016:sonarclub",
+   "start": "21:30",
+   "end": "22:25"
+  },
+  {
+   "id": "sonar-2016:d2:sonarclub:2230:jean-michel-jarre",
+   "artistId": "sonar-2016:jean-michel-jarre",
+   "day": 2,
+   "stageId": "sonar-2016:sonarclub",
+   "start": "22:30",
+   "end": "00:00"
+  },
+  {
+   "id": "sonar-2016:d2:sonarclub:0005:kode9",
+   "artistId": "sonar-2016:kode9",
+   "day": 2,
+   "stageId": "sonar-2016:sonarclub",
+   "start": "00:05",
+   "end": "00:55"
+  },
+  {
+   "id": "sonar-2016:d2:sonarclub:0100:james-blake",
+   "artistId": "sonar-2016:james-blake",
+   "day": 2,
+   "stageId": "sonar-2016:sonarclub",
+   "start": "01:00",
+   "end": "02:10"
+  },
+  {
+   "id": "sonar-2016:d2:sonarclub:0215:mind-against",
+   "artistId": "sonar-2016:mind-against",
+   "day": 2,
+   "stageId": "sonar-2016:sonarclub",
+   "start": "02:15",
+   "end": "03:25"
+  },
+  {
+   "id": "sonar-2016:d2:sonarclub:0330:richie-hawtin",
+   "artistId": "sonar-2016:richie-hawtin",
+   "day": 2,
+   "stageId": "sonar-2016:sonarclub",
+   "start": "03:30",
+   "end": "05:00"
+  },
+  {
+   "id": "sonar-2016:d2:sonarclub:0500:the-martinez-brothers",
+   "artistId": "sonar-2016:the-martinez-brothers",
+   "day": 2,
+   "stageId": "sonar-2016:sonarclub",
+   "start": "05:00",
+   "end": "07:00"
+  },
+  {
+   "id": "sonar-2016:d2:sonarlab:2130:noaipre",
+   "artistId": "sonar-2016:noaipre",
+   "day": 2,
+   "stageId": "sonar-2016:sonarlab",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "sonar-2016:d2:sonarlab:2230:hot-shotz-powell-lorenzo-senni",
+   "artistId": "sonar-2016:hot-shotz-powell-lorenzo-senni",
+   "day": 2,
+   "stageId": "sonar-2016:sonarlab",
+   "start": "22:30",
+   "end": "23:30"
+  },
+  {
+   "id": "sonar-2016:d2:sonarlab:2330:intergalactic-gary",
+   "artistId": "sonar-2016:intergalactic-gary",
+   "day": 2,
+   "stageId": "sonar-2016:sonarlab",
+   "start": "23:30",
+   "end": "00:30"
+  },
+  {
+   "id": "sonar-2016:d2:sonarlab:0030:soichi-terada",
+   "artistId": "sonar-2016:soichi-terada",
+   "day": 2,
+   "stageId": "sonar-2016:sonarlab",
+   "start": "00:30",
+   "end": "01:30"
+  },
+  {
+   "id": "sonar-2016:d2:sonarlab:0130:kerri-chandler",
+   "artistId": "sonar-2016:kerri-chandler",
+   "day": 2,
+   "stageId": "sonar-2016:sonarlab",
+   "start": "01:30",
+   "end": "03:00"
+  },
+  {
+   "id": "sonar-2016:d2:sonarlab:0300:ben-ufo-b2b-helena-hauff",
+   "artistId": "sonar-2016:ben-ufo-b2b-helena-hauff",
+   "day": 2,
+   "stageId": "sonar-2016:sonarlab",
+   "start": "03:00",
+   "end": "05:00"
+  },
+  {
+   "id": "sonar-2016:d2:sonarlab:0500:dvs1-and-r-dhad",
+   "artistId": "sonar-2016:dvs1-and-r-dhad",
+   "day": 2,
+   "stageId": "sonar-2016:sonarlab",
+   "start": "05:00",
+   "end": "07:00"
+  },
+  {
+   "id": "sonar-2016:d2:sonarpub:2145:zero-vs-chelis",
+   "artistId": "sonar-2016:zero-vs-chelis",
+   "day": 2,
+   "stageId": "sonar-2016:sonarpub",
+   "start": "21:45",
+   "end": "22:45"
+  },
+  {
+   "id": "sonar-2016:d2:sonarpub:2250:anohni-hopelessness",
+   "artistId": "sonar-2016:anohni-hopelessness",
+   "day": 2,
+   "stageId": "sonar-2016:sonarpub",
+   "start": "22:50",
+   "end": "00:15"
+  },
+  {
+   "id": "sonar-2016:d2:sonarpub:0020:red-axes",
+   "artistId": "sonar-2016:red-axes",
+   "day": 2,
+   "stageId": "sonar-2016:sonarpub",
+   "start": "00:20",
+   "end": "01:20"
+  },
+  {
+   "id": "sonar-2016:d2:sonarpub:0130:flume",
+   "artistId": "sonar-2016:flume",
+   "day": 2,
+   "stageId": "sonar-2016:sonarpub",
+   "start": "01:30",
+   "end": "02:30"
+  },
+  {
+   "id": "sonar-2016:d2:sonarpub:0235:mano-le-tough",
+   "artistId": "sonar-2016:mano-le-tough",
+   "day": 2,
+   "stageId": "sonar-2016:sonarpub",
+   "start": "02:35",
+   "end": "03:50"
+  },
+  {
+   "id": "sonar-2016:d2:sonarpub:0355:kolsch-live",
+   "artistId": "sonar-2016:kolsch-live",
+   "day": 2,
+   "stageId": "sonar-2016:sonarpub",
+   "start": "03:55",
+   "end": "04:55"
+  },
+  {
+   "id": "sonar-2016:d2:sonarpub:0500:john-talabot",
+   "artistId": "sonar-2016:john-talabot",
+   "day": 2,
+   "stageId": "sonar-2016:sonarpub",
+   "start": "05:00",
+   "end": "07:00"
+  },
+  {
+   "id": "sonar-2016:d3:sonarcomplex:1400:n-m-o",
+   "artistId": "sonar-2016:n-m-o",
+   "day": 3,
+   "stageId": "sonar-2016:sonarcomplex",
+   "start": "14:00",
+   "end": "14:30"
+  },
+  {
+   "id": "sonar-2016:d3:sonarcomplex:1700:alva-noto",
+   "artistId": "sonar-2016:alva-noto",
+   "day": 3,
+   "stageId": "sonar-2016:sonarcomplex",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "sonar-2016:d3:sonarcomplex:1830:cyclo",
+   "artistId": "sonar-2016:cyclo",
+   "day": 3,
+   "stageId": "sonar-2016:sonarcomplex",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "sonar-2016:d3:sonarcomplex:2000:byetone",
+   "artistId": "sonar-2016:byetone",
+   "day": 3,
+   "stageId": "sonar-2016:sonarcomplex",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "sonar-2016:d3:sonardome:1300:malard",
+   "artistId": "sonar-2016:malard",
+   "day": 3,
+   "stageId": "sonar-2016:sonardome",
+   "start": "13:00",
+   "end": "13:45"
+  },
+  {
+   "id": "sonar-2016:d3:sonardome:1350:talktome",
+   "artistId": "sonar-2016:talktome",
+   "day": 3,
+   "stageId": "sonar-2016:sonardome",
+   "start": "13:50",
+   "end": "14:45"
+  },
+  {
+   "id": "sonar-2016:d3:sonardome:1450:astrolith",
+   "artistId": "sonar-2016:astrolith",
+   "day": 3,
+   "stageId": "sonar-2016:sonardome",
+   "start": "14:50",
+   "end": "15:35"
+  },
+  {
+   "id": "sonar-2016:d3:sonardome:1540:homesick",
+   "artistId": "sonar-2016:homesick",
+   "day": 3,
+   "stageId": "sonar-2016:sonardome",
+   "start": "15:40",
+   "end": "16:25"
+  },
+  {
+   "id": "sonar-2016:d3:sonardome:1630:sassy-j",
+   "artistId": "sonar-2016:sassy-j",
+   "day": 3,
+   "stageId": "sonar-2016:sonardome",
+   "start": "16:30",
+   "end": "17:25"
+  },
+  {
+   "id": "sonar-2016:d3:sonardome:1730:lafawndah",
+   "artistId": "sonar-2016:lafawndah",
+   "day": 3,
+   "stageId": "sonar-2016:sonardome",
+   "start": "17:30",
+   "end": "18:15"
+  },
+  {
+   "id": "sonar-2016:d3:sonardome:1820:drippin",
+   "artistId": "sonar-2016:drippin",
+   "day": 3,
+   "stageId": "sonar-2016:sonardome",
+   "start": "18:20",
+   "end": "19:10"
+  },
+  {
+   "id": "sonar-2016:d3:sonardome:1920:club-cheval",
+   "artistId": "sonar-2016:club-cheval",
+   "day": 3,
+   "stageId": "sonar-2016:sonardome",
+   "start": "19:20",
+   "end": "20:20"
+  },
+  {
+   "id": "sonar-2016:d3:sonardome:2030:magic-mountain-high",
+   "artistId": "sonar-2016:magic-mountain-high",
+   "day": 3,
+   "stageId": "sonar-2016:sonardome",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "sonar-2016:d3:sonarhall:1430:bruna-and-wooky-alba-g-corral",
+   "artistId": "sonar-2016:bruna-and-wooky-alba-g-corral",
+   "day": 3,
+   "stageId": "sonar-2016:sonarhall",
+   "start": "14:30",
+   "end": "15:25"
+  },
+  {
+   "id": "sonar-2016:d3:sonarhall:1630:yung-lean",
+   "artistId": "sonar-2016:yung-lean",
+   "day": 3,
+   "stageId": "sonar-2016:sonarhall",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "sonar-2016:d3:sonarhall:1830:oneohtrix-point-never",
+   "artistId": "sonar-2016:oneohtrix-point-never",
+   "day": 3,
+   "stageId": "sonar-2016:sonarhall",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "sonar-2016:d3:sonarhall:2030:howling",
+   "artistId": "sonar-2016:howling",
+   "day": 3,
+   "stageId": "sonar-2016:sonarhall",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "sonar-2016:d3:sonarvillage-by-estrella-damm:1300:tendts",
+   "artistId": "sonar-2016:tendts",
+   "day": 3,
+   "stageId": "sonar-2016:sonarvillage-by-estrella-damm",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "sonar-2016:d3:sonarvillage-by-estrella-damm:1400:ison",
+   "artistId": "sonar-2016:ison",
+   "day": 3,
+   "stageId": "sonar-2016:sonarvillage-by-estrella-damm",
+   "start": "14:00",
+   "end": "16:00"
+  },
+  {
+   "id": "sonar-2016:d3:sonarvillage-by-estrella-damm:1600:badbadnotgood",
+   "artistId": "sonar-2016:badbadnotgood",
+   "day": 3,
+   "stageId": "sonar-2016:sonarvillage-by-estrella-damm",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "sonar-2016:d3:sonarvillage-by-estrella-damm:1700:ivy-lab",
+   "artistId": "sonar-2016:ivy-lab",
+   "day": 3,
+   "stageId": "sonar-2016:sonarvillage-by-estrella-damm",
+   "start": "17:00",
+   "end": "18:15"
+  },
+  {
+   "id": "sonar-2016:d3:sonarvillage-by-estrella-damm:1815:nozinja",
+   "artistId": "sonar-2016:nozinja",
+   "day": 3,
+   "stageId": "sonar-2016:sonarvillage-by-estrella-damm",
+   "start": "18:15",
+   "end": "19:00"
+  },
+  {
+   "id": "sonar-2016:d3:sonarvillage-by-estrella-damm:1900:troyboi",
+   "artistId": "sonar-2016:troyboi",
+   "day": 3,
+   "stageId": "sonar-2016:sonarvillage-by-estrella-damm",
+   "start": "19:00",
+   "end": "20:15"
+  },
+  {
+   "id": "sonar-2016:d3:sonarvillage-by-estrella-damm:2015:section-boyz",
+   "artistId": "sonar-2016:section-boyz",
+   "day": 3,
+   "stageId": "sonar-2016:sonarvillage-by-estrella-damm",
+   "start": "20:15",
+   "end": "21:00"
+  },
+  {
+   "id": "sonar-2016:d3:sonarvillage-by-estrella-damm:2100:ed-banger-house-party-busy-p-para-one-boston-bun",
+   "artistId": "sonar-2016:ed-banger-house-party-busy-p-para-one-boston-bun",
+   "day": 3,
+   "stageId": "sonar-2016:sonarvillage-by-estrella-damm",
+   "start": "21:00",
+   "end": "23:00"
+  },
+  {
+   "id": "sonar-2016:d3:sonarcar:0000:laurent-garnier",
+   "artistId": "sonar-2016:laurent-garnier",
+   "day": 3,
+   "stageId": "sonar-2016:sonarcar",
+   "start": "00:00",
+   "end": "07:00"
+  },
+  {
+   "id": "sonar-2016:d3:sonarclub:2130:undo",
+   "artistId": "sonar-2016:undo",
+   "day": 3,
+   "stageId": "sonar-2016:sonarclub",
+   "start": "21:30",
+   "end": "22:25"
+  },
+  {
+   "id": "sonar-2016:d3:sonarclub:2230:new-order",
+   "artistId": "sonar-2016:new-order",
+   "day": 3,
+   "stageId": "sonar-2016:sonarclub",
+   "start": "22:30",
+   "end": "00:00"
+  },
+  {
+   "id": "sonar-2016:d3:sonarclub:0005:coyu",
+   "artistId": "sonar-2016:coyu",
+   "day": 3,
+   "stageId": "sonar-2016:sonarclub",
+   "start": "00:05",
+   "end": "01:25"
+  },
+  {
+   "id": "sonar-2016:d3:sonarclub:0130:booka-shade",
+   "artistId": "sonar-2016:booka-shade",
+   "day": 3,
+   "stageId": "sonar-2016:sonarclub",
+   "start": "01:30",
+   "end": "02:30"
+  },
+  {
+   "id": "sonar-2016:d3:sonarclub:0235:eats-everything",
+   "artistId": "sonar-2016:eats-everything",
+   "day": 3,
+   "stageId": "sonar-2016:sonarclub",
+   "start": "02:35",
+   "end": "03:55"
+  },
+  {
+   "id": "sonar-2016:d3:sonarclub:0400:fatboy-slim",
+   "artistId": "sonar-2016:fatboy-slim",
+   "day": 3,
+   "stageId": "sonar-2016:sonarclub",
+   "start": "04:00",
+   "end": "05:30"
+  },
+  {
+   "id": "sonar-2016:d3:sonarclub:0535:paco-osuna",
+   "artistId": "sonar-2016:paco-osuna",
+   "day": 3,
+   "stageId": "sonar-2016:sonarclub",
+   "start": "05:35",
+   "end": "07:00"
+  },
+  {
+   "id": "sonar-2016:d3:sonarlab:2130:trill-squad-toner-sanatruja",
+   "artistId": "sonar-2016:trill-squad-toner-sanatruja",
+   "day": 3,
+   "stageId": "sonar-2016:sonarlab",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "sonar-2016:d3:sonarlab:2230:mura-masa",
+   "artistId": "sonar-2016:mura-masa",
+   "day": 3,
+   "stageId": "sonar-2016:sonarlab",
+   "start": "22:30",
+   "end": "23:25"
+  },
+  {
+   "id": "sonar-2016:d3:sonarlab:2330:dj-ez",
+   "artistId": "sonar-2016:dj-ez",
+   "day": 3,
+   "stageId": "sonar-2016:sonarlab",
+   "start": "23:30",
+   "end": "00:30"
+  },
+  {
+   "id": "sonar-2016:d3:sonarlab:0035:mele-and-monki-s-nrg-flash",
+   "artistId": "sonar-2016:mele-and-monki-s-nrg-flash",
+   "day": 3,
+   "stageId": "sonar-2016:sonarlab",
+   "start": "00:35",
+   "end": "01:55"
+  },
+  {
+   "id": "sonar-2016:d3:sonarlab:0200:stormzy",
+   "artistId": "sonar-2016:stormzy",
+   "day": 3,
+   "stageId": "sonar-2016:sonarlab",
+   "start": "02:00",
+   "end": "02:45"
+  },
+  {
+   "id": "sonar-2016:d3:sonarlab:0250:krysko-and-greg-lord",
+   "artistId": "sonar-2016:krysko-and-greg-lord",
+   "day": 3,
+   "stageId": "sonar-2016:sonarlab",
+   "start": "02:50",
+   "end": "04:00"
+  },
+  {
+   "id": "sonar-2016:d3:sonarlab:0400:bicep",
+   "artistId": "sonar-2016:bicep",
+   "day": 3,
+   "stageId": "sonar-2016:sonarlab",
+   "start": "04:00",
+   "end": "05:30"
+  },
+  {
+   "id": "sonar-2016:d3:sonarlab:0530:ben-klock",
+   "artistId": "sonar-2016:ben-klock",
+   "day": 3,
+   "stageId": "sonar-2016:sonarlab",
+   "start": "05:30",
+   "end": "07:00"
+  },
+  {
+   "id": "sonar-2016:d3:sonarpub:2200:alizzz",
+   "artistId": "sonar-2016:alizzz",
+   "day": 3,
+   "stageId": "sonar-2016:sonarpub",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "sonar-2016:d3:sonarpub:2315:santigold",
+   "artistId": "sonar-2016:santigold",
+   "day": 3,
+   "stageId": "sonar-2016:sonarpub",
+   "start": "23:15",
+   "end": "00:15"
+  },
+  {
+   "id": "sonar-2016:d3:sonarpub:0020:kaytranada",
+   "artistId": "sonar-2016:kaytranada",
+   "day": 3,
+   "stageId": "sonar-2016:sonarpub",
+   "start": "00:20",
+   "end": "01:20"
+  },
+  {
+   "id": "sonar-2016:d3:sonarpub:0125:skepta",
+   "artistId": "sonar-2016:skepta",
+   "day": 3,
+   "stageId": "sonar-2016:sonarpub",
+   "start": "01:25",
+   "end": "02:10"
+  },
+  {
+   "id": "sonar-2016:d3:sonarpub:0215:craze",
+   "artistId": "sonar-2016:craze",
+   "day": 3,
+   "stageId": "sonar-2016:sonarpub",
+   "start": "02:15",
+   "end": "03:25"
+  },
+  {
+   "id": "sonar-2016:d3:sonarpub:0335:boys-noize",
+   "artistId": "sonar-2016:boys-noize",
+   "day": 3,
+   "stageId": "sonar-2016:sonarpub",
+   "start": "03:35",
+   "end": "04:50"
+  },
+  {
+   "id": "sonar-2016:d3:sonarpub:0500:jackmaster",
+   "artistId": "sonar-2016:jackmaster",
+   "day": 3,
+   "stageId": "sonar-2016:sonarpub",
+   "start": "05:00",
+   "end": "07:00"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://sonar.es/en",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20180615215253/https://sonar.es/en/2016/schedules",
+    "captureTimestamp": "20180615215253",
+    "printed": "Thursday 16 | Sónar by Day · Thursday 16 | Sónar by Night",
+    "sha256": "c0c571cf98b8f96bf080c32a756dda3c2b176e0538ccfe9936d68f2c63fa84a8",
+    "rows": 21,
+    "format": "sonar-calendar",
+    "named": "Schedule - Sónar Barcelona 2016",
+    "sessions": [
+     "Thursday 16 | Sónar by Day: 13:00 to 23:00",
+     "Thursday 16 | Sónar by Night: 20:00 to 07:00"
+    ]
+   },
+   {
+    "day": 2,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20180615215253/https://sonar.es/en/2016/schedules",
+    "captureTimestamp": "20180615215253",
+    "printed": "Friday 17 | Sónar by Day · Friday 17 | Sónar by Night",
+    "sha256": "c0c571cf98b8f96bf080c32a756dda3c2b176e0538ccfe9936d68f2c63fa84a8",
+    "rows": 49,
+    "format": "sonar-calendar",
+    "named": "Schedule - Sónar Barcelona 2016",
+    "sessions": [
+     "Friday 17 | Sónar by Day: 13:00 to 23:00",
+     "Friday 17 | Sónar by Night: 20:00 to 07:00"
+    ]
+   },
+   {
+    "day": 3,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20180615215253/https://sonar.es/en/2016/schedules",
+    "captureTimestamp": "20180615215253",
+    "printed": "Saturday 18 | Sónar by Day · Saturday 18 | Sónar by Night",
+    "sha256": "c0c571cf98b8f96bf080c32a756dda3c2b176e0538ccfe9936d68f2c63fa84a8",
+    "rows": 48,
+    "format": "sonar-calendar",
+    "named": "Schedule - Sónar Barcelona 2016",
+    "sessions": [
+     "Saturday 18 | Sónar by Day: 13:00 to 23:00",
+     "Saturday 18 | Sónar by Night: 20:00 to 07:00"
+    ]
+   }
+  ]
+ }
+}

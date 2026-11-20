@@ -96,6 +96,90 @@ backwards or more than six hours, or starts off the axis by over an hour, is a
 misprint and an excluded row, never read another way (2012's Turf War, printed
 "11:45 pm - 12:10 pm"). Sets in a column must run in order with no overlap.
 
+Archived Primavera Sound timetable (2012 and 2015, format `primavera-horarios`):
+
+    node scripts/historical/gather-primavera-horarios.mjs <edition-id> <gather-dir> <official-url> <ts> <day-url> [ … one pair per day ]
+    node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
+
+primaverasound.es/horarios?d=N&l=forum was the festival's own Parc del Fòrum
+timetable, one page a day. The page prints a row of day tabs, its own day the
+one not linked, in whichever language it was served (Catalan "dimecres 27 de
+maig", Spanish "jueves 28 de mayo", English "Friday May 29"), with no year:
+each tab's weekday must fall on its date in the edition's year, and the tabs
+must be the edition's days in order. The heading must name Parc del Fòrum, so
+the city shows (Primavera a la Ciutat, `l=ciutat`) are never read. The grid
+has a column per stage (repeated in a footer row) and a row every 15 minutes
+that opens and closes with its own time, carrying on past midnight to 6:30.
+Each set is a block in its stage's cell that prints its range on the 24-hour
+clock ("(23:45 - 01:15)"); its start must be the row's time plus the block's
+own offset (`KKaddMinutes-N`, under 15), and the block must be drawn two
+pixels a minute tall. A block that prints its start alone ("(03:00)", 2015's
+Zamilska) is an open end. Sets on a stage must run in order with no overlap;
+anything else stops the read. The 2015 day pages were captured after the
+festival (Wednesday's on May 31, the rest in September). Wednesday 27 May is
+the ATP stage alone; the three main days have 11 stages each.
+
+2012 is the same page on an older template ("2012"): the stage headers carry
+a width, there is no footer row, and every block prints its start alone
+("(17:10)"), which must fall inside its row's 15 minutes; there is no offset
+class and the block heights are server artefacts, not read. Every 2012 set
+is open-ended. A page can draw an empty slot, an empty name under an anchor
+with no artist id: it names no act, so it is listed in the ledger
+(`emptySlots`) and never read as a set (one each on Thursday and Friday, on
+the ATP stage). The three day pages were read in Spanish (`lang=es`, so the
+stage names agree across days), captured 1 July 2012: Thursday 31 May has 8
+Fòrum stages, Friday and Saturday 10. 2013's pages use the same template,
+but only Wednesday's and Thursday's survive from after the festival (the
+later captures of Friday and Saturday are error pages), so 2013 is not
+loaded.
+
+Archived Primavera Sound full timetable (2016 to 2019, format `primavera-completos`):
+
+    node scripts/historical/gather-primavera-completos.mjs <edition-id> <gather-dir> <official-url> <ts> <day-url> [ … one pair per day ]
+    node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
+
+From 2016 the same /horarios?d=N&l=forum address serves the full timetable
+("Horarios completos" active in the venue submenu): one page a day of the
+whole festival week, Parc del Fòrum's columns first under "PARC DEL FÒRUM",
+then the city venues' under "Primavera a la Ciutat", each stage header and
+each block marked with its venue (`escenarioforum`, `concertBoxciutat`). The
+day tabs print a weekday and a day of the month only ("MIÉRCOLES 1"), so the
+row as a whole names its dates: exactly one run of consecutive days in the
+edition's year must have those weekdays and days (2016: Monday 30 May to
+Sunday 5 June), and the edition's days must sit in it in a row. The grid,
+the 15-minute rows, the block offsets, the two-pixels-a-minute heights and
+the no-overlap rule are checked as for 2015, in the city's columns too, but
+only the Fòrum's blocks become sets. A start-only block ("(18:00)", 2016's
+minimúsica) is an open end. Wednesday 1 June is one free concert on the
+Primavera stage; Thursday to Saturday have 12 or 13 Fòrum stages. The night
+runs to 06:00, so the 2016 day runs from 10 AM. Pages captured 19 June 2016.
+
+2017 is the same page with three changes. The tabs print a short weekday
+("MIÉ-31") and list only the season's days with shows, so the run may skip
+days: each tab must be the first day after the one before with its weekday
+and day of the month, no more than a week on. One Fòrum stage (Mango House)
+is printed after the city's columns, still marked as the Fòrum's. Each name
+links to that year's artist page (`2017_artists?id=…`), and the link's year
+must be the edition's. Wednesday 31 May is the Fòrum's free opening on two
+stages. Pages captured 20 to 23 June 2017.
+
+2018 is the same page again, still headed "Horarios", its tabs printing
+whole dates ("2018-05-30", Monday 28 May to Sunday 3 June) and its names
+keeping 2017's class. Wednesday 30 May is the Fòrum's opening on three
+stages, Thursday to Saturday have 13 or 14. One start-only block (Skepta,
+"(02:45)") is an open end. Pages captured 27 October 2018.
+
+2019 is the same page again, headed "Set times" with "All set times" active
+and the Fòrum's columns under "Parc del Fòrum". The tabs print whole dates
+as 2018's do ("2019-05-30", Monday 27 May to Sunday 2 June), which must fall
+in the edition's year, each later than the one before and at most a week on. The
+names keep 2017's class (`artists_2017`), so only the link's year
+(`2019_artists?id=…`) is read. Day Pro, a city conference, prints two
+sessions at once on Friday 31 May, so the no-overlap rule holds for the
+Fòrum's stages only; the city's columns are never sets. Wednesday 29 May is
+the Fòrum's opening night on two stages, Thursday to Saturday have 16, and
+Sunday 2 June is the city's alone. Pages captured 23 July 2019.
+
 Archived Lollapalooza lineup cards (2018, format `lolla-cards`):
 
     node scripts/historical/gather-lolla-cards.mjs <edition-id> <gather-dir> <official-url> <ts> <url>
@@ -366,6 +450,31 @@ the festival: the capture used (20120807041117) is the grid printed after it,
 with the evening moved later and eight afternoon sets no longer listed, and
 the edition carries a note saying so.
 
+Governors Ball 2013 ran on the same platform
+(lineup.governorsballmusicfestival.com, same format and tools). Its titles
+print the year ("Governors Ball 2013", "Kanye West at Governors Ball 2013").
+Each day's grid is a capture taken after the festival, with four stages, and
+its anchor is one headliner's own page: Pretty Lights (Friday 9:30 PM,
+HondaSTAGE), Guns N' Roses (Saturday) and Kanye West (Sunday, both 9:30 PM on
+the GOV BALL NYC STAGE). Friday was cut short by rain. The grid still prints
+Kings of Leon closing Friday, but the festival's own homepage (captured
+2013-07-21) posted that they would play Saturday at 6:45 PM, where the
+Saturday grid lists them. A set like this goes in the edition's `movedSets`
+with its from and to slots, the official page and the words quoted from it.
+gather-dostuff.mjs excludes the printed block as `moved`, and the import
+checks three things: that the page's moved blocks and the excluded rows match
+one for one, that the set is listed where it was played, and that the
+archived official page prints every quoted phrase. validate.mjs then requires
+a note naming both days. Press also reported Pretty Lights' Friday set as cut,
+but no official page says so, so it stays as printed.
+
+Governors Ball 2014 and 2015 are the same site and layout (four stages, axis
+from "12:00"), each day's grid captured after the festival. Anchors: Outkast,
+Jack White and Vampire Weekend (2014); Drake, Marina And The Diamonds and The
+Black Keys (2015). Deadmau5's 2015 page, captured before the festival, prints
+9:15 PM, but the final Saturday grid has him at 9:30, so that page cannot fix
+the axis, and Marina (captured after her set) anchors Saturday instead.
+
 Lollapalooza 2011 is the same site's older layout, read by the same tools.
 Its title prints the year ("Lollapalooza 2011"); the days are a drop-down
 (the current one as plain text, "Fri, Aug 5", the others as links whose
@@ -396,6 +505,62 @@ Black Keys, Jack White and Red Hot Chili Peppers for 2012 (captured Nov 8,
 after it). The kids' stage keeps its printed name each year ("Austin Kiddie
 Limits presented by H-E-B", "HEB-Kids"), kept as music as in 2013, and one
 unnamed "Special Guest" slot there each year is dropped.
+
+Archived DoStuff lineup widgets (Outside Lands 2018, 2019 and 2022 to 2025, Lightning in a Bottle 2018 and 2019, format `dostuff-embed`):
+
+    node scripts/historical/gather-dostuff-embed.mjs <edition-id> <gather-dir> <official-url> \
+      <ts> <embed-url> <page-ts> <page-url> [--via <ts> <site-script-url>] \
+      [--food <stage>]... [--comedy <stage>] [--programme <stage>]...
+    node scripts/historical/import-gather.mjs <edition-id> <gather-dir>
+
+From 2018 the official lineup page (sfoutsidelands.com/lineup/) draws its
+schedule with a script from the festival's own DoStuff site
+(`sfosl.dostff.co`, `sfosl19.dostff.co`, `22-osl.dostff.co`, `osl23fest.dostff.co`, `fest24outsidelands.dostff.co`,
+`ds25festlands.dostff.co`, each `/embeds/lineup.js`). The script sets
+`window._fest_options` on one line of JSON: the festival's name, its first
+and last day, its time zone, and an "Interactive Lineup" grouping in which
+every artist lists its performances, each with an id, a stage, a billing and
+a start and end printed as whole dates with their UTC offset
+("2023-08-11T20:40:00.000-07:00"). A set shared by two artists (a b2b, a
+feature) appears under each with the same id and is one set, billed as its
+own name. Every offset must be the time zone's at that instant, every set end
+after its start and within twelve hours, every day inside the run the options
+print (a start before 6 AM is the night before), and no two sets may overlap
+on one stage. The run must be the edition's own days. Each script capture
+cites the official lineup page that loads it on sfoutsidelands.com
+(`embeddedBy`), captured within a month of it, and only captures taken after
+each festival are used. The 2018 page loads the script by its own
+`<script src>`; the 2019 page is an app shell whose own main.js adds the
+widget's `<script>` on the lineup route, so its receipt also cites that
+main.js (`via`), captured eleven seconds after the page on the same host, and
+the import checks that it sets the widget's address whole. GastroMagic and
+Cocktail Magic (2018, 2019) are the food stages and The Barbary the comedy
+tent, as in the grid years; Cocktail Magic alone (2022, 2023) is the food
+stage later. Their shows are excluded rows, one for one with the widget.
+2018 has 93 sets on 5 stages (Friday 10 to Sunday 12 August), 2019 94 on 5
+(Friday 9 to Sunday 11 August), 2022 127 on 7 (Friday 5 to Sunday 7
+August), 2023 126 on 9, 2024 139 on 9 and 2025 155 on 10. There was no
+festival in 2020, and 2021 (October) has no archived widget of this kind.
+
+When the options print `"show_performance_titles": false` (every capture
+here), the widget draws each set under its act's name and never its title,
+so a set drawn under one act is billed as that act ("Forester", not
+"Forester (DJ set)"), and a set drawn under several acts is billed as its
+title, the festival's one name for the shared set. Two performances with the
+same stage, start, end and billing are one set drawn twice and counted once.
+The edition's days are the run's days the widget prints a set on: the run
+may reach one day past them at either end (a gate day, a last morning) and
+no further.
+
+Lightning in a Bottle 2018 and 2019 come from `lib2018.dostff.co` and
+`lib2019.dostff.co`. Their archived lineup pages (lightninginabottle.org/lineup/)
+and scripts were captured days apart, so each page must be captured within a
+month of its script and its HTML must load that very script (`embeddedBy.loads`
+in the ledger). Its yoga and meditation stages (Yoga Sol in 2018; Yoga Sol,
+Yoga Luna and Meditation Grove in 2019) are programme stages
+(`--programme`): their sessions are excluded rows, one for one with the
+widget. 2018 (Lake San Antonio) has 224 sets on 10 stages, Thursday 24 to
+Sunday 27 May; 2019 (Buena Vista Lake) 229 on 8, Wednesday 8 to Sunday 12 May.
 
 Archived Outside Lands schedule planner (2010 and 2011, format `myscheduler-data`):
 

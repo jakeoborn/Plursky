@@ -915,6 +915,192 @@
     }
    ]
   },
+  "defqon1": {
+   "lineages": [
+    {
+     "id": "defqon1:blue",
+     "names": [
+      {
+       "printed": "Blue",
+       "editions": [
+        "defqon1-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "defqon1:black",
+     "names": [
+      {
+       "printed": "Black",
+       "editions": [
+        "defqon1-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "defqon1:red",
+     "names": [
+      {
+       "printed": "Red",
+       "editions": [
+        "defqon1-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "defqon1:brown",
+     "names": [
+      {
+       "printed": "Brown",
+       "editions": [
+        "defqon1-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "defqon1:uv",
+     "names": [
+      {
+       "printed": "UV",
+       "editions": [
+        "defqon1-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "defqon1:gold",
+     "names": [
+      {
+       "printed": "Gold",
+       "editions": [
+        "defqon1-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "defqon1:magenta",
+     "names": [
+      {
+       "printed": "Magenta",
+       "editions": [
+        "defqon1-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "defqon1:silver",
+     "names": [
+      {
+       "printed": "Silver",
+       "editions": [
+        "defqon1-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "defqon1:indigo",
+     "names": [
+      {
+       "printed": "Indigo",
+       "editions": [
+        "defqon1-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "defqon1:yellow",
+     "names": [
+      {
+       "printed": "Yellow",
+       "editions": [
+        "defqon1-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "defqon1:white",
+     "names": [
+      {
+       "printed": "White",
+       "editions": [
+        "defqon1-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "defqon1:purple",
+     "names": [
+      {
+       "printed": "Purple",
+       "editions": [
+        "defqon1-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "defqon1:afterparty",
+     "names": [
+      {
+       "printed": "Afterparty",
+       "editions": [
+        "defqon1-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "defqon1:orange",
+     "names": [
+      {
+       "printed": "Orange",
+       "editions": [
+        "defqon1-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
   "dreamstate-socal": {
    "lineages": [
     {
@@ -2396,6 +2582,85 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "governors-ball:you-re-doing-great-stage",
+     "names": [
+      {
+       "printed": "YOU'RE DOING GREAT STAGE",
+       "editions": [
+        "governors-ball-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:hondastage",
+     "names": [
+      {
+       "printed": "HondaSTAGE",
+       "editions": [
+        "governors-ball-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:skyy-vodka-tent",
+     "names": [
+      {
+       "printed": "SKYY VODKA TENT",
+       "editions": [
+        "governors-ball-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:gotham-tent",
+     "names": [
+      {
+       "printed": "Gotham Tent",
+       "editions": [
+        "governors-ball-2014",
+        "governors-ball-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:gopuff",
+     "names": [
+      {
+       "printed": "GOPUFF",
+       "editions": [
+        "governors-ball-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:ihg-hotels-and-resorts",
+     "names": [
+      {
+       "printed": "IHG HOTELS & RESORTS",
+       "editions": [
+        "governors-ball-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },
@@ -2789,6 +3054,224 @@
        "printed": "444",
        "editions": [
         "iii-points-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "iii-points:mainframe",
+     "names": [
+      {
+       "printed": "MAINFRAME",
+       "editions": [
+        "iii-points-2014"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "iii-points:mindmelt",
+     "names": [
+      {
+       "printed": "MINDMELT",
+       "editions": [
+        "iii-points-2014"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "iii-points:sector3",
+     "names": [
+      {
+       "printed": "SECTOR3",
+       "editions": [
+        "iii-points-2014"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "iii-points:skatespace",
+     "names": [
+      {
+       "printed": "SKATESPACE",
+       "editions": [
+        "iii-points-2014"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
+  "lightning-in-a-bottle": {
+   "lineages": [
+    {
+     "id": "lightning-in-a-bottle:beacon",
+     "names": [
+      {
+       "printed": "Beacon",
+       "editions": [
+        "lightning-in-a-bottle-2018",
+        "lightning-in-a-bottle-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lightning-in-a-bottle:crossroads",
+     "names": [
+      {
+       "printed": "Crossroads",
+       "editions": [
+        "lightning-in-a-bottle-2018",
+        "lightning-in-a-bottle-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lightning-in-a-bottle:favela-bar",
+     "names": [
+      {
+       "printed": "Favela Bar",
+       "editions": [
+        "lightning-in-a-bottle-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lightning-in-a-bottle:grand-artique",
+     "names": [
+      {
+       "printed": "Grand Artique",
+       "editions": [
+        "lightning-in-a-bottle-2018",
+        "lightning-in-a-bottle-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lightning-in-a-bottle:lakeside",
+     "names": [
+      {
+       "printed": "Lakeside",
+       "editions": [
+        "lightning-in-a-bottle-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lightning-in-a-bottle:pagoda-bar",
+     "names": [
+      {
+       "printed": "Pagoda Bar",
+       "editions": [
+        "lightning-in-a-bottle-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lightning-in-a-bottle:lightning",
+     "names": [
+      {
+       "printed": "Lightning",
+       "editions": [
+        "lightning-in-a-bottle-2018",
+        "lightning-in-a-bottle-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lightning-in-a-bottle:memory-palace",
+     "names": [
+      {
+       "printed": "Memory Palace",
+       "editions": [
+        "lightning-in-a-bottle-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lightning-in-a-bottle:thunder",
+     "names": [
+      {
+       "printed": "Thunder",
+       "editions": [
+        "lightning-in-a-bottle-2018",
+        "lightning-in-a-bottle-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lightning-in-a-bottle:woogie",
+     "names": [
+      {
+       "printed": "Woogie",
+       "editions": [
+        "lightning-in-a-bottle-2018",
+        "lightning-in-a-bottle-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lightning-in-a-bottle:favela",
+     "names": [
+      {
+       "printed": "Favela",
+       "editions": [
+        "lightning-in-a-bottle-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lightning-in-a-bottle:the-stacks",
+     "names": [
+      {
+       "printed": "The Stacks",
+       "editions": [
+        "lightning-in-a-bottle-2019"
        ]
       }
      ],
@@ -3342,6 +3825,127 @@
        "printed": "Kidzapalooza Presented By Lifeway",
        "editions": [
         "lollapalooza-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:bacardi",
+     "names": [
+      {
+       "printed": "BACARDÍ",
+       "editions": [
+        "lollapalooza-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:ihg-hotels-and-resorts",
+     "names": [
+      {
+       "printed": "IHG HOTELS & RESORTS",
+       "editions": [
+        "lollapalooza-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:sonny-s",
+     "names": [
+      {
+       "printed": "SONNY'S",
+       "editions": [
+        "lollapalooza-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:bud-light-seltzer",
+     "names": [
+      {
+       "printed": "BUD LIGHT SELTZER",
+       "editions": [
+        "lollapalooza-2021",
+        "lollapalooza-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:grubhub",
+     "names": [
+      {
+       "printed": "GRUBHUB",
+       "editions": [
+        "lollapalooza-2021"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:solana-x-perry-s",
+     "names": [
+      {
+       "printed": "SOLANA X PERRY'S",
+       "editions": [
+        "lollapalooza-2021",
+        "lollapalooza-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:bud-light-seltzer-sessions",
+     "names": [
+      {
+       "printed": "BUD LIGHT SELTZER SESSIONS",
+       "editions": [
+        "lollapalooza-2021",
+        "lollapalooza-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:discord",
+     "names": [
+      {
+       "printed": "DISCORD",
+       "editions": [
+        "lollapalooza-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:coinbase",
+     "names": [
+      {
+       "printed": "COINBASE",
+       "editions": [
+        "lollapalooza-2022",
+        "lollapalooza-2023"
        ]
       }
      ],
@@ -4030,6 +4634,117 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "outside-lands:the-music-den-by-toyota",
+     "names": [
+      {
+       "printed": "The Music Den by Toyota",
+       "editions": [
+        "outside-lands-2022",
+        "outside-lands-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:fake-and-gay-dolores",
+     "names": [
+      {
+       "printed": "FAKE and GAY @ Dolores’",
+       "editions": [
+        "outside-lands-2023",
+        "outside-lands-2024",
+        "outside-lands-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:oasis-dolores",
+     "names": [
+      {
+       "printed": "OASIS @ Dolores’",
+       "editions": [
+        "outside-lands-2023",
+        "outside-lands-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:hard-french-dolores",
+     "names": [
+      {
+       "printed": "Hard French @ Dolores’",
+       "editions": [
+        "outside-lands-2023",
+        "outside-lands-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:casa-bacardi",
+     "names": [
+      {
+       "printed": "CASA BACARDÍ",
+       "editions": [
+        "outside-lands-2024",
+        "outside-lands-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:soma",
+     "names": [
+      {
+       "printed": "SOMA",
+       "editions": [
+        "outside-lands-2024",
+        "outside-lands-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:oasis-arts-dolores",
+     "names": [
+      {
+       "printed": "OASIS ARTS @ Dolores’",
+       "editions": [
+        "outside-lands-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "outside-lands:polyglamorous-dolores",
+     "names": [
+      {
+       "printed": "Polyglamorous @ Dolores’",
+       "editions": [
+        "outside-lands-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },
@@ -4094,6 +4809,569 @@
        "printed": "Despacio",
        "editions": [
         "portola-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
+  "primavera-sound": {
+   "lineages": [
+    {
+     "id": "primavera-sound:atp",
+     "names": [
+      {
+       "printed": "ATP",
+       "editions": [
+        "primavera-sound-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:auditori-rockdelux",
+     "names": [
+      {
+       "printed": "Auditori Rockdelux",
+       "editions": [
+        "primavera-sound-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:ray-ban",
+     "names": [
+      {
+       "printed": "Ray-Ban",
+       "editions": [
+        "primavera-sound-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:h-and-m-pro",
+     "names": [
+      {
+       "printed": "H&M PRO",
+       "editions": [
+        "primavera-sound-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:pitchfork",
+     "names": [
+      {
+       "printed": "Pitchfork",
+       "editions": [
+        "primavera-sound-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:ray-ban-unplugged",
+     "names": [
+      {
+       "printed": "Ray-Ban Unplugged",
+       "editions": [
+        "primavera-sound-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:heineken-hidden-stage",
+     "names": [
+      {
+       "printed": "Heineken Hidden Stage",
+       "editions": [
+        "primavera-sound-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:heineken",
+     "names": [
+      {
+       "printed": "Heineken",
+       "editions": [
+        "primavera-sound-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:adidas-originals",
+     "names": [
+      {
+       "printed": "adidas Originals",
+       "editions": [
+        "primavera-sound-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:primavera",
+     "names": [
+      {
+       "printed": "Primavera",
+       "editions": [
+        "primavera-sound-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:bowers-and-wilkins-sound-system",
+     "names": [
+      {
+       "printed": "Bowers & Wilkins Sound System",
+       "editions": [
+        "primavera-sound-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:primavera-concierto-gratuito",
+     "names": [
+      {
+       "printed": "Primavera (concierto gratuito)",
+       "editions": [
+        "primavera-sound-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:firestone-stage",
+     "names": [
+      {
+       "printed": "Firestone Stage",
+       "editions": [
+        "primavera-sound-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:nightpro",
+     "names": [
+      {
+       "printed": "NightPro",
+       "editions": [
+        "primavera-sound-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:h-and-m",
+     "names": [
+      {
+       "printed": "H&M",
+       "editions": [
+        "primavera-sound-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:minimusica",
+     "names": [
+      {
+       "printed": "minimúsica",
+       "editions": [
+        "primavera-sound-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:desperados-club-feat-bowers-and-wilkins-sound-system",
+     "names": [
+      {
+       "printed": "Desperados Club feat. Bowers & Wilkins Sound System",
+       "editions": [
+        "primavera-sound-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:night-pro",
+     "names": [
+      {
+       "printed": "Night Pro",
+       "editions": [
+        "primavera-sound-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:bacardi-live",
+     "names": [
+      {
+       "printed": "Bacardí Live",
+       "editions": [
+        "primavera-sound-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:mango",
+     "names": [
+      {
+       "printed": "Mango",
+       "editions": [
+        "primavera-sound-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:mango-house",
+     "names": [
+      {
+       "printed": "Mango House",
+       "editions": [
+        "primavera-sound-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:xiringuito-aperol",
+     "names": [
+      {
+       "printed": "Xiringuito Aperol",
+       "editions": [
+        "primavera-sound-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:desperados-cube",
+     "names": [
+      {
+       "printed": "Desperados Cube",
+       "editions": [
+        "primavera-sound-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:your-heineken-stage",
+     "names": [
+      {
+       "printed": "Your Heineken Stage",
+       "editions": [
+        "primavera-sound-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:lotus",
+     "names": [
+      {
+       "printed": "Lotus",
+       "editions": [
+        "primavera-sound-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:seat",
+     "names": [
+      {
+       "printed": "Seat",
+       "editions": [
+        "primavera-sound-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:ocb-paper-sessions",
+     "names": [
+      {
+       "printed": "OCB PAPER SESSIONS",
+       "editions": [
+        "primavera-sound-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:pull-and-bear",
+     "names": [
+      {
+       "printed": "Pull&Bear",
+       "editions": [
+        "primavera-sound-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:seat-village",
+     "names": [
+      {
+       "printed": "Seat Village",
+       "editions": [
+        "primavera-sound-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:ray-ban-studios",
+     "names": [
+      {
+       "printed": "Ray-Ban Studios",
+       "editions": [
+        "primavera-sound-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:el-punto-by-adidas-originals",
+     "names": [
+      {
+       "printed": "El Punto by adidas Originals",
+       "editions": [
+        "primavera-sound-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:primavera-with-apple-music",
+     "names": [
+      {
+       "printed": "Primavera with Apple Music",
+       "editions": [
+        "primavera-sound-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:desperados-club",
+     "names": [
+      {
+       "printed": "Desperados Club",
+       "editions": [
+        "primavera-sound-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:the-warehouse",
+     "names": [
+      {
+       "printed": "The Warehouse",
+       "editions": [
+        "primavera-sound-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:radio-primavera-sound",
+     "names": [
+      {
+       "printed": "Radio Primavera Sound",
+       "editions": [
+        "primavera-sound-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:escenario-ray-ban",
+     "names": [
+      {
+       "printed": "Escenario Ray-Ban",
+       "editions": [
+        "primavera-sound-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:escenario-pitchfork",
+     "names": [
+      {
+       "printed": "Escenario Pitchfork",
+       "editions": [
+        "primavera-sound-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:escenario-vice",
+     "names": [
+      {
+       "printed": "Escenario Vice",
+       "editions": [
+        "primavera-sound-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:escenario-adidas-originals",
+     "names": [
+      {
+       "printed": "Escenario adidas Originals",
+       "editions": [
+        "primavera-sound-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:escenario-mini",
+     "names": [
+      {
+       "printed": "Escenario MINI",
+       "editions": [
+        "primavera-sound-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:escenario-san-miguel",
+     "names": [
+      {
+       "printed": "Escenario San Miguel",
+       "editions": [
+        "primavera-sound-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:escenario-atp",
+     "names": [
+      {
+       "printed": "Escenario ATP",
+       "editions": [
+        "primavera-sound-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "primavera-sound:salon-myspace-smint",
+     "names": [
+      {
+       "printed": "Salón Myspace Smint",
+       "editions": [
+        "primavera-sound-2012"
        ]
       }
      ],
@@ -4294,6 +5572,301 @@
     }
    ]
   },
+  "sonar": {
+   "lineages": [
+    {
+     "id": "sonar:l-auditori",
+     "names": [
+      {
+       "printed": "L'Auditori",
+       "editions": [
+        "sonar-2016",
+        "sonar-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonarcomplex",
+     "names": [
+      {
+       "printed": "SonarComplex",
+       "editions": [
+        "sonar-2016",
+        "sonar-2017",
+        "sonar-2018",
+        "sonar-2019",
+        "sonar-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonardome",
+     "names": [
+      {
+       "printed": "SonarDôme",
+       "editions": [
+        "sonar-2016",
+        "sonar-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonarhall",
+     "names": [
+      {
+       "printed": "SonarHall",
+       "editions": [
+        "sonar-2016",
+        "sonar-2017",
+        "sonar-2018",
+        "sonar-2019",
+        "sonar-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonarvillage-by-estrella-damm",
+     "names": [
+      {
+       "printed": "SonarVillage by Estrella Damm",
+       "editions": [
+        "sonar-2016",
+        "sonar-2017",
+        "sonar-2018",
+        "sonar-2019",
+        "sonar-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonarcar",
+     "names": [
+      {
+       "printed": "SonarCar",
+       "editions": [
+        "sonar-2016",
+        "sonar-2017",
+        "sonar-2018",
+        "sonar-2019",
+        "sonar-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonarclub",
+     "names": [
+      {
+       "printed": "SonarClub",
+       "editions": [
+        "sonar-2016",
+        "sonar-2017",
+        "sonar-2018",
+        "sonar-2019",
+        "sonar-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonarlab",
+     "names": [
+      {
+       "printed": "SonarLab",
+       "editions": [
+        "sonar-2016",
+        "sonar-2017",
+        "sonar-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonarpub",
+     "names": [
+      {
+       "printed": "SonarPub",
+       "editions": [
+        "sonar-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonarxs",
+     "names": [
+      {
+       "printed": "SonarXS",
+       "editions": [
+        "sonar-2017",
+        "sonar-2018",
+        "sonar-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonarpub-by-thunder-bitch",
+     "names": [
+      {
+       "printed": "SonarPub by Thunder Bitch",
+       "editions": [
+        "sonar-2017",
+        "sonar-2018",
+        "sonar-2019",
+        "sonar-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:despacio",
+     "names": [
+      {
+       "printed": "Despacio",
+       "editions": [
+        "sonar-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:l-auditori-sala-1-pau-casals",
+     "names": [
+      {
+       "printed": "L'Auditori: Sala 1 - Pau Casals",
+       "editions": [
+        "sonar-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonardome-by-red-bull-music",
+     "names": [
+      {
+       "printed": "SonarDôme by Red Bull Music",
+       "editions": [
+        "sonar-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonarlab-resident-advisor",
+     "names": [
+      {
+       "printed": "SonarLab - Resident Advisor",
+       "editions": [
+        "sonar-2018",
+        "sonar-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:teatre-grec",
+     "names": [
+      {
+       "printed": "Teatre Grec",
+       "editions": [
+        "sonar-2018",
+        "sonar-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonardome-presented-by-red-bull",
+     "names": [
+      {
+       "printed": "SonarDôme presented by Red Bull",
+       "editions": [
+        "sonar-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:capella-macba",
+     "names": [
+      {
+       "printed": "Capella MACBA",
+       "editions": [
+        "sonar-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonarpark-by-dice",
+     "names": [
+      {
+       "printed": "SonarPark by DICE",
+       "editions": [
+        "sonar-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sonar:sonarlab-by-resident-advisor",
+     "names": [
+      {
+       "printed": "SonarLab by Resident Advisor",
+       "editions": [
+        "sonar-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
   "summerfest": {
    "lineages": [
     {
@@ -4420,6 +5993,133 @@
        "printed": "AmFam House",
        "editions": [
         "summerfest-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
+  "sziget": {
+   "lineages": [
+    {
+     "id": "sziget:main-stage",
+     "names": [
+      {
+       "printed": "Main Stage",
+       "editions": [
+        "sziget-2010"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sziget:world-music-stage",
+     "names": [
+      {
+       "printed": "World Music Stage",
+       "editions": [
+        "sziget-2010"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sziget:mtv-headbangers-ball-stage",
+     "names": [
+      {
+       "printed": "MTV Headbangers Ball Stage",
+       "editions": [
+        "sziget-2010"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sziget:a38-wan2-stage",
+     "names": [
+      {
+       "printed": "A38-wan2 stage",
+       "editions": [
+        "sziget-2010"
+       ]
+      },
+      {
+       "printed": "A38-WAN2 Stage",
+       "editions": [
+        "sziget-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sziget:party-arena",
+     "names": [
+      {
+       "printed": "Party Arena",
+       "editions": [
+        "sziget-2010"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sziget:pop-rock-main-stage",
+     "names": [
+      {
+       "printed": "Pop-Rock Main Stage",
+       "editions": [
+        "sziget-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sziget:rock-metal-main-stage",
+     "names": [
+      {
+       "printed": "Rock-Metal Main Stage",
+       "editions": [
+        "sziget-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sziget:pesti-est-world-music-main-stage",
+     "names": [
+      {
+       "printed": "Pesti Est World Music Main Stage",
+       "editions": [
+        "sziget-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sziget:burn-party-arena",
+     "names": [
+      {
+       "printed": "Burn Party Arena",
+       "editions": [
+        "sziget-2011"
        ]
       }
      ],
@@ -7025,6 +8725,137 @@
        "printed": "Oasis",
        "editions": [
         "ultra-miami-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "ultra-miami:umf-radio",
+     "names": [
+      {
+       "printed": "UMF RADIO",
+       "editions": [
+        "ultra-miami-2024",
+        "ultra-miami-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "ultra-miami:carl-cox-and-friends",
+     "names": [
+      {
+       "printed": "CARL COX & FRIENDS",
+       "editions": [
+        "ultra-miami-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "ultra-miami:resistance",
+     "names": [
+      {
+       "printed": "RESISTANCE",
+       "editions": [
+        "ultra-miami-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "ultra-miami:stage-7",
+     "names": [
+      {
+       "printed": "STAGE 7",
+       "editions": [
+        "ultra-miami-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "ultra-miami:i-m-in-a-state-of-trance",
+     "names": [
+      {
+       "printed": "I'M IN A STATE OF TRANCE",
+       "editions": [
+        "ultra-miami-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "ultra-miami:arcadia-the-spider",
+     "names": [
+      {
+       "printed": "ARCADIA THE SPIDER",
+       "editions": [
+        "ultra-miami-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "ultra-miami:biscayne",
+     "names": [
+      {
+       "printed": "BISCAYNE",
+       "editions": [
+        "ultra-miami-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "ultra-miami:live-arena",
+     "names": [
+      {
+       "printed": "LIVE ARENA",
+       "editions": [
+        "ultra-miami-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "ultra-miami:reflector",
+     "names": [
+      {
+       "printed": "REFLECTOR",
+       "editions": [
+        "ultra-miami-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "ultra-miami:arrival",
+     "names": [
+      {
+       "printed": "ARRIVAL",
+       "editions": [
+        "ultra-miami-2019"
        ]
       }
      ],

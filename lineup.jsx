@@ -623,6 +623,71 @@ const _lineupUnsplitRange = (n) => {
   try { return FESTIVAL_CONFIG.dayDates?.[n]?.name || FESTIVAL_CONFIG.dates || ""; } catch { return ""; }
 };
 
+// The day's headliners as a billboard at the top of the list: the festival's
+// own licensed photo behind the biggest names on the bill, closer first
+// (Jake, Nov 18: "make everything top tier with a wow factor"). No artist
+// photo here: a Spotify image may only be shown uncropped with nothing over it.
+// Shown on a day that is not running; on the running night Now leads instead.
+function _lineupHeadliners(dayArtists) {
+  const timed = a => !!a.start && !setTimesUnconfirmed(a);
+  const late = (x, y) => (timed(y) ? toNightMin(y.start) : -1) - (timed(x) ? toNightMin(x.start) : -1);
+  // The poster's own top line, when the festival published one.
+  const billed = dayArtists.filter(isTopBilled);
+  if (billed.length) return { acts: billed.slice().sort(late).slice(0, 3), billed: true };
+  // Otherwise the closer of each of the first three stages, main stage first:
+  // the hour-derived tier misses a night that ends before 11 PM.
+  const acts = [];
+  for (const st of STAGES) {
+    const sets = dayArtists.filter(a => a.stage === st.id && timed(a));
+    if (!sets.length) continue;
+    acts.push(sets.slice().sort(late)[0]);
+    if (acts.length === 3) break;
+  }
+  return { acts, billed: false };
+}
+function LineupHeadliners({ acts, billed, dayLabel, onOpen }) {
+  const rec = typeof festivalArtFor === "function" ? festivalArtFor(FESTIVAL_CONFIG.id) : null;
+  const [failed, setFailed] = React.useState(false);
+  const photo = rec && /^festival-art\/[a-z0-9-]+\.webp$/.test(rec.card || "") && !failed ? rec.card : null;
+  const credit = photo && rec.author && rec.licenseId && rec.licenseUrl
+    ? { author: rec.author, sourceUrl: rec.sourcePage, license: rec.licenseId, licenseUrl: rec.licenseUrl, changes: rec.changes }
+    : null;
+  // Top of the poster when it bills one; else these are just the last sets
+  // on each stage, so the card says so rather than calling them headliners.
+  const word = billed ? topTierLabel(acts.length > 1) : "Closing the night";
+  return (
+    <section data-lineup-headliners aria-label={`${dayLabel} ${word.toLowerCase()}`} style={{ margin: "8px 0 12px" }}>
+      <div className={`lh-card${photo ? "" : " plain"}`}>
+        {photo && (
+          <span className="lh-media" aria-hidden="true">
+            <img src={`./${photo}`} alt="" decoding="async" onError={() => setFailed(true)} />
+            <span className="lh-scrim" />
+          </span>
+        )}
+        <span className="lh-eyebrow">{dayLabel} · {word}</span>
+        <ol className="lh-list">
+          {acts.map((a, i) => {
+            const stage = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE).name;
+            const when = a.start && !setTimesUnconfirmed(a) ? fmt12(a.start) : null;
+            return (
+              <li key={a.id}>
+                <button data-lineup-headliner={a.id} className="lh-act" onClick={() => onOpen(a.id)}
+                  aria-label={`${a.name}${when ? ", " + when : ""}${stage ? ", " + stage : ""}`}>
+                  <span className={`lh-name${i === 0 ? " top" : ""}`}>{actDisplayName(a.name)}</span>
+                  <span className="lh-meta">{[when, stage].filter(Boolean).join(" · ")}</span>
+                </button>
+              </li>
+            );
+          })}
+        </ol>
+      </div>
+      {credit && typeof PhotoCredit === "function" && (
+        <PhotoCredit className="spot-credit" credit={credit} style={{ padding: "0 2px", lineHeight: 1.35, overflowWrap: "anywhere" }} />
+      )}
+    </section>
+  );
+}
+
 function LineupScreen({ state, setState }) {
   // Names are never truncated: fit each list name to its row after every
   // render and on resize.
@@ -1512,6 +1577,12 @@ function LineupScreen({ state, setState }) {
             </div>
           </div>
         )}
+        {viewMode === "list" && filter === "all" && !q.trim() && !_chipFilterActive && NOW.night !== day && (() => {
+          const { acts, billed } = _lineupHeadliners(dayArtists);
+          if (!acts.length) return null;
+          const dayLabel = FESTIVAL_CONFIG.dayDates?.[day]?.name || DAYS.find(d => d.n === day)?.label || `Day ${day}`;
+          return <LineupHeadliners acts={acts} billed={billed} dayLabel={dayLabel} onOpen={id => setState({ ...state, artist: id })} />;
+        })()}
         {gridLead && (() => {
           // v165: grid now shows only the selected day (like list mode) so
           // navigation is clean — no more scrolling through all 3 days.

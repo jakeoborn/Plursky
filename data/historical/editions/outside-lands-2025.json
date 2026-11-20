@@ -1,0 +1,2483 @@
+{
+ "id": "outside-lands-2025",
+ "festivalId": "outside-lands",
+ "name": "Outside Lands 2025",
+ "year": 2025,
+ "timezone": "America/Los_Angeles",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2025-08-08",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2025-08-09",
+   "label": "Saturday"
+  },
+  {
+   "day": 3,
+   "date": "2025-08-10",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "outside-lands-2025:casa-bacardi",
+   "name": "CASA BACARDÍ"
+  },
+  {
+   "id": "outside-lands-2025:duboce-triangle",
+   "name": "Duboce Triangle"
+  },
+  {
+   "id": "outside-lands-2025:fake-and-gay-dolores",
+   "name": "FAKE and GAY @ Dolores’"
+  },
+  {
+   "id": "outside-lands-2025:lands-end",
+   "name": "Lands End"
+  },
+  {
+   "id": "outside-lands-2025:panhandle",
+   "name": "Panhandle"
+  },
+  {
+   "id": "outside-lands-2025:soma",
+   "name": "SOMA"
+  },
+  {
+   "id": "outside-lands-2025:sutro",
+   "name": "Sutro"
+  },
+  {
+   "id": "outside-lands-2025:twin-peaks",
+   "name": "Twin Peaks"
+  },
+  {
+   "id": "outside-lands-2025:oasis-arts-dolores",
+   "name": "OASIS ARTS @ Dolores’"
+  },
+  {
+   "id": "outside-lands-2025:polyglamorous-dolores",
+   "name": "Polyglamorous @ Dolores’"
+  }
+ ],
+ "artists": [
+  {
+   "id": "outside-lands-2025:caja-magica",
+   "name": "Caja Mágica",
+   "key": "caja-magica",
+   "performers": [
+    "caja-magica"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:salsa-by-ricardo",
+   "name": "Salsa by Ricardo",
+   "key": "salsa-by-ricardo",
+   "performers": [
+    "salsa-by-ricardo"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:brown-angel",
+   "name": "Brown Angel",
+   "key": "brown-angel",
+   "performers": [
+    "brown-angel"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:juos",
+   "name": "Juos",
+   "key": "juos",
+   "performers": [
+    "juos"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:open-mic-hosted-by-rainbow-girls",
+   "name": "Open Mic hosted by Rainbow Girls",
+   "key": "open-mic-hosted-by-rainbow-girls",
+   "performers": [
+    "open-mic-hosted-by-rainbow-girls"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:baalti",
+   "name": "Baalti",
+   "key": "baalti",
+   "performers": [
+    "baalti"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:the-two-lips",
+   "name": "The Two Lips",
+   "key": "the-two-lips",
+   "performers": [
+    "the-two-lips"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:inji-dj-set",
+   "name": "INJI (DJ Set)",
+   "key": "inji-dj-set",
+   "performers": [
+    "inji-dj-set"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:nimino-dj-set",
+   "name": "nimino (DJ Set)",
+   "key": "nimino-dj-set",
+   "performers": [
+    "nimino-dj-set"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:the-emo-night-tour",
+   "name": "The Emo Night Tour",
+   "key": "the-emo-night-tour",
+   "performers": [
+    "the-emo-night-tour"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:mama-san",
+   "name": "Mama San",
+   "key": "mama-san",
+   "performers": [
+    "mama-san"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:just-another-bitch",
+   "name": "Just Another Bitch",
+   "key": "just-another-bitch",
+   "performers": [
+    "just-another-bitch"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:beverly-chills",
+   "name": "Beverly Chills",
+   "key": "beverly-chills",
+   "performers": [
+    "beverly-chills"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:dangerous-rose",
+   "name": "Dangerous Rose",
+   "key": "dangerous-rose",
+   "performers": [
+    "dangerous-rose"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:chase-icon-live",
+   "name": "Chase Icon (Live)",
+   "key": "chase-icon-live",
+   "performers": [
+    "chase-icon-live"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:memphy",
+   "name": "Memphy",
+   "key": "memphy",
+   "performers": [
+    "memphy"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:adam-kraft",
+   "name": "Adam Kraft",
+   "key": "adam-kraft",
+   "performers": [
+    "adam-kraft"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:fcukers-dj-set",
+   "name": "Fcukers (DJ Set)",
+   "key": "fcukers-dj-set",
+   "performers": [
+    "fcukers-dj-set"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:alemeda",
+   "name": "Alemeda",
+   "key": "alemeda",
+   "performers": [
+    "alemeda"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:destroy-boys",
+   "name": "Destroy Boys",
+   "key": "destroy-boys",
+   "performers": [
+    "destroy-boys"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:mannequin-pussy",
+   "name": "Mannequin Pussy",
+   "key": "mannequin-pussy",
+   "performers": [
+    "mannequin-pussy"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:thundercat",
+   "name": "Thundercat",
+   "key": "thundercat",
+   "performers": [
+    "thundercat"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:still-woozy",
+   "name": "Still Woozy",
+   "key": "still-woozy",
+   "performers": [
+    "still-woozy"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:doechii",
+   "name": "Doechii",
+   "key": "doechii",
+   "performers": [
+    "doechii"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:doja-cat",
+   "name": "Doja Cat",
+   "key": "doja-cat",
+   "performers": [
+    "doja-cat"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:avatari",
+   "name": "AVATARI",
+   "key": "avatari",
+   "performers": [
+    "avatari"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:alexandra-savior",
+   "name": "Alexandra Savior",
+   "key": "alexandra-savior",
+   "performers": [
+    "alexandra-savior"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:midrift",
+   "name": "Midrift",
+   "key": "midrift",
+   "performers": [
+    "midrift"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:nimino",
+   "name": "nimino",
+   "key": "nimino",
+   "performers": [
+    "nimino"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:fcukers",
+   "name": "Fcukers",
+   "key": "fcukers",
+   "performers": [
+    "fcukers"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:bunt",
+   "name": "BUNT.",
+   "key": "bunt",
+   "performers": [
+    "bunt"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:atrip",
+   "name": "ATRIP",
+   "key": "atrip",
+   "performers": [
+    "atrip"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:notion",
+   "name": "NOTION",
+   "key": "notion",
+   "performers": [
+    "notion"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:bonobo",
+   "name": "Bonobo",
+   "key": "bonobo",
+   "performers": [
+    "bonobo"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:floating-points",
+   "name": "Floating Points",
+   "key": "floating-points",
+   "performers": [
+    "floating-points"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:nico-moreno",
+   "name": "Nico Moreno",
+   "key": "nico-moreno",
+   "performers": [
+    "nico-moreno"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:newdad",
+   "name": "NewDad",
+   "key": "newdad",
+   "performers": [
+    "newdad"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:almost-monday",
+   "name": "almost monday",
+   "key": "almost-monday",
+   "performers": [
+    "almost-monday"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:vansire",
+   "name": "Vansire",
+   "key": "vansire",
+   "performers": [
+    "vansire"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:jessica-pratt",
+   "name": "Jessica Pratt",
+   "key": "jessica-pratt",
+   "performers": [
+    "jessica-pratt"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:mark-ambor",
+   "name": "Mark Ambor",
+   "key": "mark-ambor",
+   "performers": [
+    "mark-ambor"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:role-model",
+   "name": "ROLE MODEL",
+   "key": "role-model",
+   "performers": [
+    "role-model"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:beck-with-symphony",
+   "name": "Beck with Symphony",
+   "key": "beck-with-symphony",
+   "performers": [
+    "beck-with-symphony"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:los-menor3s",
+   "name": "LOS MENOR3S",
+   "key": "los-menor3s",
+   "performers": [
+    "los-menor3s"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:inji",
+   "name": "INJI",
+   "key": "inji",
+   "performers": [
+    "inji"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:fujii-kaze",
+   "name": "Fujii Kaze",
+   "key": "fujii-kaze",
+   "performers": [
+    "fujii-kaze"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:marina",
+   "name": "MARINA",
+   "key": "marina",
+   "performers": [
+    "marina"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:armnhmr",
+   "name": "ARMNHMR",
+   "key": "armnhmr",
+   "performers": [
+    "armnhmr"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:john-summit",
+   "name": "John Summit",
+   "key": "john-summit",
+   "performers": [
+    "john-summit"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:gasolina-party",
+   "name": "Gasolina Party",
+   "key": "gasolina-party",
+   "performers": [
+    "gasolina-party"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:lara-g",
+   "name": "Lara G",
+   "key": "lara-g",
+   "performers": [
+    "lara-g"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:roi-turbo",
+   "name": "Roi Turbo",
+   "key": "roi-turbo",
+   "performers": [
+    "roi-turbo"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:kate-bollinger-solo",
+   "name": "Kate Bollinger (Solo)",
+   "key": "kate-bollinger-solo",
+   "performers": [
+    "kate-bollinger-solo"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:bay-ledges",
+   "name": "Bay Ledges",
+   "key": "bay-ledges",
+   "performers": [
+    "bay-ledges"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:paco-versailles-dj-set",
+   "name": "Paco Versailles (DJ Set)",
+   "key": "paco-versailles-dj-set",
+   "performers": [
+    "paco-versailles-dj-set"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:dj-mandy",
+   "name": "DJ Mandy",
+   "key": "dj-mandy",
+   "performers": [
+    "dj-mandy"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:amelia-moore",
+   "name": "Amelia Moore",
+   "key": "amelia-moore",
+   "performers": [
+    "amelia-moore"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:matt-champion",
+   "name": "Matt Champion",
+   "key": "matt-champion",
+   "performers": [
+    "matt-champion"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:larussell",
+   "name": "LaRussell",
+   "key": "larussell",
+   "performers": [
+    "larussell"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:bakar",
+   "name": "Bakar",
+   "key": "bakar",
+   "performers": [
+    "bakar"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:ludacris",
+   "name": "Ludacris",
+   "key": "ludacris",
+   "performers": [
+    "ludacris"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:gracie-abrams",
+   "name": "Gracie Abrams",
+   "key": "gracie-abrams",
+   "performers": [
+    "gracie-abrams"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:tyler-the-creator",
+   "name": "Tyler, The Creator",
+   "key": "tyler-the-creator",
+   "performers": [
+    "tyler-the-creator"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:vincent-lima",
+   "name": "Vincent Lima",
+   "key": "vincent-lima",
+   "performers": [
+    "vincent-lima"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:good-neighbours",
+   "name": "Good Neighbours",
+   "key": "good-neighbours",
+   "performers": [
+    "good-neighbours"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:sarah-kinsley",
+   "name": "Sarah Kinsley",
+   "key": "sarah-kinsley",
+   "performers": [
+    "sarah-kinsley"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:kate-bollinger",
+   "name": "Kate Bollinger",
+   "key": "kate-bollinger",
+   "performers": [
+    "kate-bollinger"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:dj-pee-wee",
+   "name": "DJ Pee .Wee",
+   "key": "dj-pee-wee",
+   "performers": [
+    "dj-pee-wee"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:infinite-jess",
+   "name": "Infinite Jess",
+   "key": "infinite-jess",
+   "performers": [
+    "infinite-jess"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:girl-math-vnssa-b2b-nala",
+   "name": "Girl Math (VNSSA b2b Nala)",
+   "key": "girl-math-vnssa-b2b-nala",
+   "performers": [
+    "girl-math-vnssa",
+    "nala"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:dombresky",
+   "name": "Dombresky",
+   "key": "dombresky",
+   "performers": [
+    "dombresky"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:walker-and-royce",
+   "name": "Walker & Royce",
+   "key": "walker-and-royce",
+   "performers": [
+    "walker-and-royce"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:claude-vonstroke",
+   "name": "Claude VonStroke",
+   "key": "claude-vonstroke",
+   "performers": [
+    "claude-vonstroke"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:paco-versailles",
+   "name": "Paco Versailles",
+   "key": "paco-versailles",
+   "performers": [
+    "paco-versailles"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:klangphonics",
+   "name": "Klangphonics",
+   "key": "klangphonics",
+   "performers": [
+    "klangphonics"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:wasia-project",
+   "name": "Wasia Project",
+   "key": "wasia-project",
+   "performers": [
+    "wasia-project"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:artemas",
+   "name": "Artemas",
+   "key": "artemas",
+   "performers": [
+    "artemas"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:2hollis",
+   "name": "2hollis",
+   "key": "2hollis",
+   "performers": [
+    "2hollis"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:gesaffelstein",
+   "name": "Gesaffelstein",
+   "key": "gesaffelstein",
+   "performers": [
+    "gesaffelstein"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:vampire-weekend",
+   "name": "Vampire Weekend",
+   "key": "vampire-weekend",
+   "performers": [
+    "vampire-weekend"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:the-army-the-navy",
+   "name": "The Army, The Navy",
+   "key": "the-army-the-navy",
+   "performers": [
+    "the-army-the-navy"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:flipturn",
+   "name": "flipturn",
+   "key": "flipturn",
+   "performers": [
+    "flipturn"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:wallows",
+   "name": "Wallows",
+   "key": "wallows",
+   "performers": [
+    "wallows"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:royel-otis",
+   "name": "Royel Otis",
+   "key": "royel-otis",
+   "performers": [
+    "royel-otis"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:baloney-dj-set-dj-subeaux",
+   "name": "BALONEY DJ Set: DJ Subeaux",
+   "key": "baloney-dj-set-dj-subeaux",
+   "performers": [
+    "baloney-dj-set-dj-subeaux"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:baloney",
+   "name": "BALONEY",
+   "key": "baloney",
+   "performers": [
+    "baloney"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:reparations-dj-set-miss-toto",
+   "name": "REPARATIONS DJ SET: Miss Toto",
+   "key": "reparations-dj-set-miss-toto",
+   "performers": [
+    "reparations-dj-set-miss-toto"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:reparations",
+   "name": "REPARATIONS",
+   "key": "reparations",
+   "performers": [
+    "reparations"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:princess-dj-set-dj-bella-spreads",
+   "name": "PRINCESS DJ SET: DJ Bella Spreads",
+   "key": "princess-dj-set-dj-bella-spreads",
+   "performers": [
+    "princess-dj-set-dj-bella-spreads"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:princess",
+   "name": "PRINCESS",
+   "key": "princess",
+   "performers": [
+    "princess"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:oasis-dj-set-dj-bella-spreads",
+   "name": "OASIS DJ SET: DJ Bella Spreads",
+   "key": "oasis-dj-set-dj-bella-spreads",
+   "performers": [
+    "oasis-dj-set-dj-bella-spreads"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:digital-kitkat",
+   "name": "Digital KitKat",
+   "key": "digital-kitkat",
+   "performers": [
+    "digital-kitkat"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:bolo",
+   "name": "BOLO",
+   "key": "bolo",
+   "performers": [
+    "bolo"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:dj-umami",
+   "name": "DJ Umami",
+   "key": "dj-umami",
+   "performers": [
+    "dj-umami"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:lexa-gates",
+   "name": "Lexa Gates",
+   "key": "lexa-gates",
+   "performers": [
+    "lexa-gates"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:kareem-rahma-and-tiny-gun",
+   "name": "Kareem Rahma & Tiny Gun",
+   "key": "kareem-rahma-and-tiny-gun",
+   "performers": [
+    "kareem-rahma-and-tiny-gun"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:nourished-by-time",
+   "name": "Nourished by Time",
+   "key": "nourished-by-time",
+   "performers": [
+    "nourished-by-time"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:mayer-hawthorne-dj-set",
+   "name": "Mayer Hawthorne (DJ Set)",
+   "key": "mayer-hawthorne-dj-set",
+   "performers": [
+    "mayer-hawthorne-dj-set"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:electric-feels",
+   "name": "Electric Feels",
+   "key": "electric-feels",
+   "performers": [
+    "electric-feels"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:arcy-drive",
+   "name": "Arcy Drive",
+   "key": "arcy-drive",
+   "performers": [
+    "arcy-drive"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:big-freedia-with-sf-gay-men-s-chorus",
+   "name": "Big Freedia with SF Gay Men's Chorus",
+   "key": "big-freedia-with-sf-gay-men-s-chorus",
+   "performers": [
+    "big-freedia-with-sf-gay-men-s-chorus"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:mayer-hawthorne",
+   "name": "Mayer Hawthorne",
+   "key": "mayer-hawthorne",
+   "performers": [
+    "mayer-hawthorne"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:finneas",
+   "name": "FINNEAS",
+   "key": "finneas",
+   "performers": [
+    "finneas"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:bleachers",
+   "name": "Bleachers",
+   "key": "bleachers",
+   "performers": [
+    "bleachers"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:glass-animals",
+   "name": "Glass Animals",
+   "key": "glass-animals",
+   "performers": [
+    "glass-animals"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:hozier",
+   "name": "Hozier",
+   "key": "hozier",
+   "performers": [
+    "hozier"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:alex-amen",
+   "name": "Alex Amen",
+   "key": "alex-amen",
+   "performers": [
+    "alex-amen"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:midnight-generation",
+   "name": "Midnight Generation",
+   "key": "midnight-generation",
+   "performers": [
+    "midnight-generation"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:orla-gartland",
+   "name": "Orla Gartland",
+   "key": "orla-gartland",
+   "performers": [
+    "orla-gartland"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:julie",
+   "name": "julie",
+   "key": "julie",
+   "performers": [
+    "julie"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:neal-francis",
+   "name": "Neal Francis",
+   "key": "neal-francis",
+   "performers": [
+    "neal-francis"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:sound-bath-presented-by-kaiser-permanente",
+   "name": "Sound Bath presented by Kaiser Permanente",
+   "key": "sound-bath-presented-by-kaiser-permanente",
+   "performers": [
+    "sound-bath-presented-by-kaiser-permanente"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:banksia",
+   "name": "BANKSIA",
+   "key": "banksia",
+   "performers": [
+    "banksia"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:txc",
+   "name": "TxC",
+   "key": "txc",
+   "performers": [
+    "txc"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:and-friends",
+   "name": "&friends",
+   "key": "and-friends",
+   "performers": [
+    "and-friends"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:claptone",
+   "name": "Claptone",
+   "key": "claptone",
+   "performers": [
+    "claptone"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:blond-ish",
+   "name": "BLOND:ISH",
+   "key": "blond-ish",
+   "performers": [
+    "blond-ish"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:black-coffee",
+   "name": "Black Coffee",
+   "key": "black-coffee",
+   "performers": [
+    "black-coffee"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:cassandra-coleman",
+   "name": "Cassandra Coleman",
+   "key": "cassandra-coleman",
+   "performers": [
+    "cassandra-coleman"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:luna-li",
+   "name": "Luna Li",
+   "key": "luna-li",
+   "performers": [
+    "luna-li"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:hope-tala",
+   "name": "Hope Tala",
+   "key": "hope-tala",
+   "performers": [
+    "hope-tala"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:ca7riel-and-paco-amoroso",
+   "name": "CA7RIEL & Paco Amoroso",
+   "key": "ca7riel-and-paco-amoroso",
+   "performers": [
+    "ca7riel-and-paco-amoroso"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:rebecca-black",
+   "name": "Rebecca Black",
+   "key": "rebecca-black",
+   "performers": [
+    "rebecca-black"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:sammy-virji",
+   "name": "Sammy Virji",
+   "key": "sammy-virji",
+   "performers": [
+    "sammy-virji"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:jamie-xx",
+   "name": "Jamie xx",
+   "key": "jamie-xx",
+   "performers": [
+    "jamie-xx"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:black-party",
+   "name": "bLAck pARty",
+   "key": "black-party",
+   "performers": [
+    "black-party"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:naomi-sharon",
+   "name": "Naomi Sharon",
+   "key": "naomi-sharon",
+   "performers": [
+    "naomi-sharon"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:levity",
+   "name": "Levity",
+   "key": "levity",
+   "performers": [
+    "levity"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:bigxthaplug",
+   "name": "BigXthaPlug",
+   "key": "bigxthaplug",
+   "performers": [
+    "bigxthaplug"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:jorja-smith",
+   "name": "Jorja Smith",
+   "key": "jorja-smith",
+   "performers": [
+    "jorja-smith"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:anderson-paak-and-the-free-nationals",
+   "name": "Anderson .Paak & The Free Nationals",
+   "key": "anderson-paak-and-the-free-nationals",
+   "performers": [
+    "anderson-paak-and-the-free-nationals"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:mouthfeel",
+   "name": "Mouthfeel",
+   "key": "mouthfeel",
+   "performers": [
+    "mouthfeel"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:chelsea-starr",
+   "name": "Chelsea Starr",
+   "key": "chelsea-starr",
+   "performers": [
+    "chelsea-starr"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:jen-dm",
+   "name": "Jen DM",
+   "key": "jen-dm",
+   "performers": [
+    "jen-dm"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:drag-by-vivvy-and-her-cast-of-1-000s",
+   "name": "Drag by Vivvy and her cast of 1,000s",
+   "key": "drag-by-vivvy-and-her-cast-of-1-000s",
+   "performers": [
+    "drag-by-vivvy-and-her-cast-of-1-000s"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:beya-b2b-mark-o-brien",
+   "name": "BEYA b2b Mark O’Brien",
+   "key": "beya-b2b-mark-o-brien",
+   "performers": [
+    "beya",
+    "mark-o-brien"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:david-harness",
+   "name": "David Harness",
+   "key": "david-harness",
+   "performers": [
+    "david-harness"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:father-figure",
+   "name": "Father Figure",
+   "key": "father-figure",
+   "performers": [
+    "father-figure"
+   ]
+  },
+  {
+   "id": "outside-lands-2025:rebecca-black-dj-set",
+   "name": "Rebecca Black (DJ Set)",
+   "key": "rebecca-black-dj-set",
+   "performers": [
+    "rebecca-black-dj-set"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "outside-lands-2025:d1:casa-bacardi:1245:caja-magica",
+   "artistId": "outside-lands-2025:caja-magica",
+   "day": 1,
+   "stageId": "outside-lands-2025:casa-bacardi",
+   "start": "12:45",
+   "end": "14:15"
+  },
+  {
+   "id": "outside-lands-2025:d1:casa-bacardi:1445:salsa-by-ricardo",
+   "artistId": "outside-lands-2025:salsa-by-ricardo",
+   "day": 1,
+   "stageId": "outside-lands-2025:casa-bacardi",
+   "start": "14:45",
+   "end": "15:15"
+  },
+  {
+   "id": "outside-lands-2025:d1:casa-bacardi:1525:brown-angel",
+   "artistId": "outside-lands-2025:brown-angel",
+   "day": 1,
+   "stageId": "outside-lands-2025:casa-bacardi",
+   "start": "15:25",
+   "end": "16:55"
+  },
+  {
+   "id": "outside-lands-2025:d1:casa-bacardi:1710:caja-magica",
+   "artistId": "outside-lands-2025:caja-magica",
+   "day": 1,
+   "stageId": "outside-lands-2025:casa-bacardi",
+   "start": "17:10",
+   "end": "18:10"
+  },
+  {
+   "id": "outside-lands-2025:d1:casa-bacardi:1830:juos",
+   "artistId": "outside-lands-2025:juos",
+   "day": 1,
+   "stageId": "outside-lands-2025:casa-bacardi",
+   "start": "18:30",
+   "end": "19:15"
+  },
+  {
+   "id": "outside-lands-2025:d1:duboce-triangle:1250:open-mic-hosted-by-rainbow-girls",
+   "artistId": "outside-lands-2025:open-mic-hosted-by-rainbow-girls",
+   "day": 1,
+   "stageId": "outside-lands-2025:duboce-triangle",
+   "start": "12:50",
+   "end": "13:35"
+  },
+  {
+   "id": "outside-lands-2025:d1:duboce-triangle:1420:baalti",
+   "artistId": "outside-lands-2025:baalti",
+   "day": 1,
+   "stageId": "outside-lands-2025:duboce-triangle",
+   "start": "14:20",
+   "end": "14:50"
+  },
+  {
+   "id": "outside-lands-2025:d1:duboce-triangle:1540:the-two-lips",
+   "artistId": "outside-lands-2025:the-two-lips",
+   "day": 1,
+   "stageId": "outside-lands-2025:duboce-triangle",
+   "start": "15:40",
+   "end": "16:10"
+  },
+  {
+   "id": "outside-lands-2025:d1:duboce-triangle:1700:inji-dj-set",
+   "artistId": "outside-lands-2025:inji-dj-set",
+   "day": 1,
+   "stageId": "outside-lands-2025:duboce-triangle",
+   "start": "17:00",
+   "end": "17:30"
+  },
+  {
+   "id": "outside-lands-2025:d1:duboce-triangle:1830:nimino-dj-set",
+   "artistId": "outside-lands-2025:nimino-dj-set",
+   "day": 1,
+   "stageId": "outside-lands-2025:duboce-triangle",
+   "start": "18:30",
+   "end": "19:00"
+  },
+  {
+   "id": "outside-lands-2025:d1:duboce-triangle:1930:the-emo-night-tour",
+   "artistId": "outside-lands-2025:the-emo-night-tour",
+   "day": 1,
+   "stageId": "outside-lands-2025:duboce-triangle",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "outside-lands-2025:d1:fake-and-gay-dolores:1300:mama-san",
+   "artistId": "outside-lands-2025:mama-san",
+   "day": 1,
+   "stageId": "outside-lands-2025:fake-and-gay-dolores",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "outside-lands-2025:d1:fake-and-gay-dolores:1400:just-another-bitch",
+   "artistId": "outside-lands-2025:just-another-bitch",
+   "day": 1,
+   "stageId": "outside-lands-2025:fake-and-gay-dolores",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "outside-lands-2025:d1:fake-and-gay-dolores:1500:beverly-chills",
+   "artistId": "outside-lands-2025:beverly-chills",
+   "day": 1,
+   "stageId": "outside-lands-2025:fake-and-gay-dolores",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "outside-lands-2025:d1:fake-and-gay-dolores:1600:dangerous-rose",
+   "artistId": "outside-lands-2025:dangerous-rose",
+   "day": 1,
+   "stageId": "outside-lands-2025:fake-and-gay-dolores",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "outside-lands-2025:d1:fake-and-gay-dolores:1700:chase-icon-live",
+   "artistId": "outside-lands-2025:chase-icon-live",
+   "day": 1,
+   "stageId": "outside-lands-2025:fake-and-gay-dolores",
+   "start": "17:00",
+   "end": "17:20"
+  },
+  {
+   "id": "outside-lands-2025:d1:fake-and-gay-dolores:1720:memphy",
+   "artistId": "outside-lands-2025:memphy",
+   "day": 1,
+   "stageId": "outside-lands-2025:fake-and-gay-dolores",
+   "start": "17:20",
+   "end": "18:30"
+  },
+  {
+   "id": "outside-lands-2025:d1:fake-and-gay-dolores:1830:adam-kraft",
+   "artistId": "outside-lands-2025:adam-kraft",
+   "day": 1,
+   "stageId": "outside-lands-2025:fake-and-gay-dolores",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "outside-lands-2025:d1:fake-and-gay-dolores:1930:fcukers-dj-set",
+   "artistId": "outside-lands-2025:fcukers-dj-set",
+   "day": 1,
+   "stageId": "outside-lands-2025:fake-and-gay-dolores",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "outside-lands-2025:d1:lands-end:1220:alemeda",
+   "artistId": "outside-lands-2025:alemeda",
+   "day": 1,
+   "stageId": "outside-lands-2025:lands-end",
+   "start": "12:20",
+   "end": "13:05"
+  },
+  {
+   "id": "outside-lands-2025:d1:lands-end:1335:destroy-boys",
+   "artistId": "outside-lands-2025:destroy-boys",
+   "day": 1,
+   "stageId": "outside-lands-2025:lands-end",
+   "start": "13:35",
+   "end": "14:20"
+  },
+  {
+   "id": "outside-lands-2025:d1:lands-end:1450:mannequin-pussy",
+   "artistId": "outside-lands-2025:mannequin-pussy",
+   "day": 1,
+   "stageId": "outside-lands-2025:lands-end",
+   "start": "14:50",
+   "end": "15:40"
+  },
+  {
+   "id": "outside-lands-2025:d1:lands-end:1610:thundercat",
+   "artistId": "outside-lands-2025:thundercat",
+   "day": 1,
+   "stageId": "outside-lands-2025:lands-end",
+   "start": "16:10",
+   "end": "17:00"
+  },
+  {
+   "id": "outside-lands-2025:d1:lands-end:1730:still-woozy",
+   "artistId": "outside-lands-2025:still-woozy",
+   "day": 1,
+   "stageId": "outside-lands-2025:lands-end",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "outside-lands-2025:d1:lands-end:1900:doechii",
+   "artistId": "outside-lands-2025:doechii",
+   "day": 1,
+   "stageId": "outside-lands-2025:lands-end",
+   "start": "19:00",
+   "end": "19:45"
+  },
+  {
+   "id": "outside-lands-2025:d1:lands-end:2030:doja-cat",
+   "artistId": "outside-lands-2025:doja-cat",
+   "day": 1,
+   "stageId": "outside-lands-2025:lands-end",
+   "start": "20:30",
+   "end": "21:55"
+  },
+  {
+   "id": "outside-lands-2025:d1:panhandle:1200:avatari",
+   "artistId": "outside-lands-2025:avatari",
+   "day": 1,
+   "stageId": "outside-lands-2025:panhandle",
+   "start": "12:00",
+   "end": "12:40"
+  },
+  {
+   "id": "outside-lands-2025:d1:panhandle:1330:alexandra-savior",
+   "artistId": "outside-lands-2025:alexandra-savior",
+   "day": 1,
+   "stageId": "outside-lands-2025:panhandle",
+   "start": "13:30",
+   "end": "14:10"
+  },
+  {
+   "id": "outside-lands-2025:d1:panhandle:1500:midrift",
+   "artistId": "outside-lands-2025:midrift",
+   "day": 1,
+   "stageId": "outside-lands-2025:panhandle",
+   "start": "15:00",
+   "end": "15:40"
+  },
+  {
+   "id": "outside-lands-2025:d1:panhandle:1635:nimino",
+   "artistId": "outside-lands-2025:nimino",
+   "day": 1,
+   "stageId": "outside-lands-2025:panhandle",
+   "start": "16:35",
+   "end": "17:15"
+  },
+  {
+   "id": "outside-lands-2025:d1:panhandle:1810:fcukers",
+   "artistId": "outside-lands-2025:fcukers",
+   "day": 1,
+   "stageId": "outside-lands-2025:panhandle",
+   "start": "18:10",
+   "end": "18:50"
+  },
+  {
+   "id": "outside-lands-2025:d1:panhandle:1945:bunt",
+   "artistId": "outside-lands-2025:bunt",
+   "day": 1,
+   "stageId": "outside-lands-2025:panhandle",
+   "start": "19:45",
+   "end": "20:30"
+  },
+  {
+   "id": "outside-lands-2025:d1:soma:1200:baalti",
+   "artistId": "outside-lands-2025:baalti",
+   "day": 1,
+   "stageId": "outside-lands-2025:soma",
+   "start": "12:00",
+   "end": "13:35"
+  },
+  {
+   "id": "outside-lands-2025:d1:soma:1335:atrip",
+   "artistId": "outside-lands-2025:atrip",
+   "day": 1,
+   "stageId": "outside-lands-2025:soma",
+   "start": "13:35",
+   "end": "15:10"
+  },
+  {
+   "id": "outside-lands-2025:d1:soma:1510:notion",
+   "artistId": "outside-lands-2025:notion",
+   "day": 1,
+   "stageId": "outside-lands-2025:soma",
+   "start": "15:10",
+   "end": "16:40"
+  },
+  {
+   "id": "outside-lands-2025:d1:soma:1640:bonobo",
+   "artistId": "outside-lands-2025:bonobo",
+   "day": 1,
+   "stageId": "outside-lands-2025:soma",
+   "start": "16:40",
+   "end": "18:15"
+  },
+  {
+   "id": "outside-lands-2025:d1:soma:1815:floating-points",
+   "artistId": "outside-lands-2025:floating-points",
+   "day": 1,
+   "stageId": "outside-lands-2025:soma",
+   "start": "18:15",
+   "end": "19:50"
+  },
+  {
+   "id": "outside-lands-2025:d1:soma:1955:nico-moreno",
+   "artistId": "outside-lands-2025:nico-moreno",
+   "day": 1,
+   "stageId": "outside-lands-2025:soma",
+   "start": "19:55",
+   "end": "21:30"
+  },
+  {
+   "id": "outside-lands-2025:d1:sutro:1200:the-two-lips",
+   "artistId": "outside-lands-2025:the-two-lips",
+   "day": 1,
+   "stageId": "outside-lands-2025:sutro",
+   "start": "12:00",
+   "end": "12:50"
+  },
+  {
+   "id": "outside-lands-2025:d1:sutro:1320:newdad",
+   "artistId": "outside-lands-2025:newdad",
+   "day": 1,
+   "stageId": "outside-lands-2025:sutro",
+   "start": "13:20",
+   "end": "14:00"
+  },
+  {
+   "id": "outside-lands-2025:d1:sutro:1425:almost-monday",
+   "artistId": "outside-lands-2025:almost-monday",
+   "day": 1,
+   "stageId": "outside-lands-2025:sutro",
+   "start": "14:25",
+   "end": "15:10"
+  },
+  {
+   "id": "outside-lands-2025:d1:sutro:1535:vansire",
+   "artistId": "outside-lands-2025:vansire",
+   "day": 1,
+   "stageId": "outside-lands-2025:sutro",
+   "start": "15:35",
+   "end": "16:10"
+  },
+  {
+   "id": "outside-lands-2025:d1:sutro:1640:jessica-pratt",
+   "artistId": "outside-lands-2025:jessica-pratt",
+   "day": 1,
+   "stageId": "outside-lands-2025:sutro",
+   "start": "16:40",
+   "end": "17:25"
+  },
+  {
+   "id": "outside-lands-2025:d1:sutro:1755:mark-ambor",
+   "artistId": "outside-lands-2025:mark-ambor",
+   "day": 1,
+   "stageId": "outside-lands-2025:sutro",
+   "start": "17:55",
+   "end": "18:45"
+  },
+  {
+   "id": "outside-lands-2025:d1:sutro:1915:role-model",
+   "artistId": "outside-lands-2025:role-model",
+   "day": 1,
+   "stageId": "outside-lands-2025:sutro",
+   "start": "19:15",
+   "end": "20:05"
+  },
+  {
+   "id": "outside-lands-2025:d1:sutro:2035:beck-with-symphony",
+   "artistId": "outside-lands-2025:beck-with-symphony",
+   "day": 1,
+   "stageId": "outside-lands-2025:sutro",
+   "start": "20:35",
+   "end": "21:50"
+  },
+  {
+   "id": "outside-lands-2025:d1:twin-peaks:1245:los-menor3s",
+   "artistId": "outside-lands-2025:los-menor3s",
+   "day": 1,
+   "stageId": "outside-lands-2025:twin-peaks",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "outside-lands-2025:d1:twin-peaks:1415:inji",
+   "artistId": "outside-lands-2025:inji",
+   "day": 1,
+   "stageId": "outside-lands-2025:twin-peaks",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "outside-lands-2025:d1:twin-peaks:1545:fujii-kaze",
+   "artistId": "outside-lands-2025:fujii-kaze",
+   "day": 1,
+   "stageId": "outside-lands-2025:twin-peaks",
+   "start": "15:45",
+   "end": "16:35"
+  },
+  {
+   "id": "outside-lands-2025:d1:twin-peaks:1720:marina",
+   "artistId": "outside-lands-2025:marina",
+   "day": 1,
+   "stageId": "outside-lands-2025:twin-peaks",
+   "start": "17:20",
+   "end": "18:10"
+  },
+  {
+   "id": "outside-lands-2025:d1:twin-peaks:1855:armnhmr",
+   "artistId": "outside-lands-2025:armnhmr",
+   "day": 1,
+   "stageId": "outside-lands-2025:twin-peaks",
+   "start": "18:55",
+   "end": "19:45"
+  },
+  {
+   "id": "outside-lands-2025:d1:twin-peaks:2035:john-summit",
+   "artistId": "outside-lands-2025:john-summit",
+   "day": 1,
+   "stageId": "outside-lands-2025:twin-peaks",
+   "start": "20:35",
+   "end": "21:55"
+  },
+  {
+   "id": "outside-lands-2025:d2:casa-bacardi:1235:gasolina-party",
+   "artistId": "outside-lands-2025:gasolina-party",
+   "day": 2,
+   "stageId": "outside-lands-2025:casa-bacardi",
+   "start": "12:35",
+   "end": "13:50"
+  },
+  {
+   "id": "outside-lands-2025:d2:casa-bacardi:1410:lara-g",
+   "artistId": "outside-lands-2025:lara-g",
+   "day": 2,
+   "stageId": "outside-lands-2025:casa-bacardi",
+   "start": "14:10",
+   "end": "14:50"
+  },
+  {
+   "id": "outside-lands-2025:d2:casa-bacardi:1510:gasolina-party",
+   "artistId": "outside-lands-2025:gasolina-party",
+   "day": 2,
+   "stageId": "outside-lands-2025:casa-bacardi",
+   "start": "15:10",
+   "end": "16:25"
+  },
+  {
+   "id": "outside-lands-2025:d2:casa-bacardi:1645:lara-g",
+   "artistId": "outside-lands-2025:lara-g",
+   "day": 2,
+   "stageId": "outside-lands-2025:casa-bacardi",
+   "start": "16:45",
+   "end": "17:25"
+  },
+  {
+   "id": "outside-lands-2025:d2:casa-bacardi:1745:gasolina-party",
+   "artistId": "outside-lands-2025:gasolina-party",
+   "day": 2,
+   "stageId": "outside-lands-2025:casa-bacardi",
+   "start": "17:45",
+   "end": "19:15"
+  },
+  {
+   "id": "outside-lands-2025:d2:duboce-triangle:1245:open-mic-hosted-by-rainbow-girls",
+   "artistId": "outside-lands-2025:open-mic-hosted-by-rainbow-girls",
+   "day": 2,
+   "stageId": "outside-lands-2025:duboce-triangle",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "outside-lands-2025:d2:duboce-triangle:1415:roi-turbo",
+   "artistId": "outside-lands-2025:roi-turbo",
+   "day": 2,
+   "stageId": "outside-lands-2025:duboce-triangle",
+   "start": "14:15",
+   "end": "14:45"
+  },
+  {
+   "id": "outside-lands-2025:d2:duboce-triangle:1535:kate-bollinger-solo",
+   "artistId": "outside-lands-2025:kate-bollinger-solo",
+   "day": 2,
+   "stageId": "outside-lands-2025:duboce-triangle",
+   "start": "15:35",
+   "end": "16:05"
+  },
+  {
+   "id": "outside-lands-2025:d2:duboce-triangle:1655:bay-ledges",
+   "artistId": "outside-lands-2025:bay-ledges",
+   "day": 2,
+   "stageId": "outside-lands-2025:duboce-triangle",
+   "start": "16:55",
+   "end": "17:25"
+  },
+  {
+   "id": "outside-lands-2025:d2:duboce-triangle:1825:paco-versailles-dj-set",
+   "artistId": "outside-lands-2025:paco-versailles-dj-set",
+   "day": 2,
+   "stageId": "outside-lands-2025:duboce-triangle",
+   "start": "18:25",
+   "end": "18:55"
+  },
+  {
+   "id": "outside-lands-2025:d2:duboce-triangle:1955:dj-mandy",
+   "artistId": "outside-lands-2025:dj-mandy",
+   "day": 2,
+   "stageId": "outside-lands-2025:duboce-triangle",
+   "start": "19:55",
+   "end": "20:40"
+  },
+  {
+   "id": "outside-lands-2025:d2:lands-end:1215:amelia-moore",
+   "artistId": "outside-lands-2025:amelia-moore",
+   "day": 2,
+   "stageId": "outside-lands-2025:lands-end",
+   "start": "12:15",
+   "end": "13:00"
+  },
+  {
+   "id": "outside-lands-2025:d2:lands-end:1330:matt-champion",
+   "artistId": "outside-lands-2025:matt-champion",
+   "day": 2,
+   "stageId": "outside-lands-2025:lands-end",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "outside-lands-2025:d2:lands-end:1445:larussell",
+   "artistId": "outside-lands-2025:larussell",
+   "day": 2,
+   "stageId": "outside-lands-2025:lands-end",
+   "start": "14:45",
+   "end": "15:35"
+  },
+  {
+   "id": "outside-lands-2025:d2:lands-end:1605:bakar",
+   "artistId": "outside-lands-2025:bakar",
+   "day": 2,
+   "stageId": "outside-lands-2025:lands-end",
+   "start": "16:05",
+   "end": "16:55"
+  },
+  {
+   "id": "outside-lands-2025:d2:lands-end:1725:ludacris",
+   "artistId": "outside-lands-2025:ludacris",
+   "day": 2,
+   "stageId": "outside-lands-2025:lands-end",
+   "start": "17:25",
+   "end": "18:25"
+  },
+  {
+   "id": "outside-lands-2025:d2:lands-end:1855:gracie-abrams",
+   "artistId": "outside-lands-2025:gracie-abrams",
+   "day": 2,
+   "stageId": "outside-lands-2025:lands-end",
+   "start": "18:55",
+   "end": "19:55"
+  },
+  {
+   "id": "outside-lands-2025:d2:lands-end:2040:tyler-the-creator",
+   "artistId": "outside-lands-2025:tyler-the-creator",
+   "day": 2,
+   "stageId": "outside-lands-2025:lands-end",
+   "start": "20:40",
+   "end": "21:55"
+  },
+  {
+   "id": "outside-lands-2025:d2:panhandle:1335:vincent-lima",
+   "artistId": "outside-lands-2025:vincent-lima",
+   "day": 2,
+   "stageId": "outside-lands-2025:panhandle",
+   "start": "13:35",
+   "end": "14:15"
+  },
+  {
+   "id": "outside-lands-2025:d2:panhandle:1505:good-neighbours",
+   "artistId": "outside-lands-2025:good-neighbours",
+   "day": 2,
+   "stageId": "outside-lands-2025:panhandle",
+   "start": "15:05",
+   "end": "15:45"
+  },
+  {
+   "id": "outside-lands-2025:d2:panhandle:1635:sarah-kinsley",
+   "artistId": "outside-lands-2025:sarah-kinsley",
+   "day": 2,
+   "stageId": "outside-lands-2025:panhandle",
+   "start": "16:35",
+   "end": "17:15"
+  },
+  {
+   "id": "outside-lands-2025:d2:panhandle:1810:kate-bollinger",
+   "artistId": "outside-lands-2025:kate-bollinger",
+   "day": 2,
+   "stageId": "outside-lands-2025:panhandle",
+   "start": "18:10",
+   "end": "18:50"
+  },
+  {
+   "id": "outside-lands-2025:d2:panhandle:1945:dj-pee-wee",
+   "artistId": "outside-lands-2025:dj-pee-wee",
+   "day": 2,
+   "stageId": "outside-lands-2025:panhandle",
+   "start": "19:45",
+   "end": "20:30"
+  },
+  {
+   "id": "outside-lands-2025:d2:soma:1200:infinite-jess",
+   "artistId": "outside-lands-2025:infinite-jess",
+   "day": 2,
+   "stageId": "outside-lands-2025:soma",
+   "start": "12:00",
+   "end": "13:35"
+  },
+  {
+   "id": "outside-lands-2025:d2:soma:1335:dj-mandy",
+   "artistId": "outside-lands-2025:dj-mandy",
+   "day": 2,
+   "stageId": "outside-lands-2025:soma",
+   "start": "13:35",
+   "end": "15:10"
+  },
+  {
+   "id": "outside-lands-2025:d2:soma:1510:girl-math-vnssa-b2b-nala",
+   "artistId": "outside-lands-2025:girl-math-vnssa-b2b-nala",
+   "day": 2,
+   "stageId": "outside-lands-2025:soma",
+   "start": "15:10",
+   "end": "16:45"
+  },
+  {
+   "id": "outside-lands-2025:d2:soma:1645:dombresky",
+   "artistId": "outside-lands-2025:dombresky",
+   "day": 2,
+   "stageId": "outside-lands-2025:soma",
+   "start": "16:45",
+   "end": "18:20"
+  },
+  {
+   "id": "outside-lands-2025:d2:soma:1820:walker-and-royce",
+   "artistId": "outside-lands-2025:walker-and-royce",
+   "day": 2,
+   "stageId": "outside-lands-2025:soma",
+   "start": "18:20",
+   "end": "20:10"
+  },
+  {
+   "id": "outside-lands-2025:d2:soma:2010:claude-vonstroke",
+   "artistId": "outside-lands-2025:claude-vonstroke",
+   "day": 2,
+   "stageId": "outside-lands-2025:soma",
+   "start": "20:10",
+   "end": "21:55"
+  },
+  {
+   "id": "outside-lands-2025:d2:sutro:1200:roi-turbo",
+   "artistId": "outside-lands-2025:roi-turbo",
+   "day": 2,
+   "stageId": "outside-lands-2025:sutro",
+   "start": "12:00",
+   "end": "12:30"
+  },
+  {
+   "id": "outside-lands-2025:d2:sutro:1250:bay-ledges",
+   "artistId": "outside-lands-2025:bay-ledges",
+   "day": 2,
+   "stageId": "outside-lands-2025:sutro",
+   "start": "12:50",
+   "end": "13:30"
+  },
+  {
+   "id": "outside-lands-2025:d2:sutro:1355:paco-versailles",
+   "artistId": "outside-lands-2025:paco-versailles",
+   "day": 2,
+   "stageId": "outside-lands-2025:sutro",
+   "start": "13:55",
+   "end": "14:35"
+  },
+  {
+   "id": "outside-lands-2025:d2:sutro:1505:klangphonics",
+   "artistId": "outside-lands-2025:klangphonics",
+   "day": 2,
+   "stageId": "outside-lands-2025:sutro",
+   "start": "15:05",
+   "end": "15:55"
+  },
+  {
+   "id": "outside-lands-2025:d2:sutro:1625:wasia-project",
+   "artistId": "outside-lands-2025:wasia-project",
+   "day": 2,
+   "stageId": "outside-lands-2025:sutro",
+   "start": "16:25",
+   "end": "17:15"
+  },
+  {
+   "id": "outside-lands-2025:d2:sutro:1745:artemas",
+   "artistId": "outside-lands-2025:artemas",
+   "day": 2,
+   "stageId": "outside-lands-2025:sutro",
+   "start": "17:45",
+   "end": "18:35"
+  },
+  {
+   "id": "outside-lands-2025:d2:sutro:1905:2hollis",
+   "artistId": "outside-lands-2025:2hollis",
+   "day": 2,
+   "stageId": "outside-lands-2025:sutro",
+   "start": "19:05",
+   "end": "19:55"
+  },
+  {
+   "id": "outside-lands-2025:d2:sutro:2040:gesaffelstein",
+   "artistId": "outside-lands-2025:gesaffelstein",
+   "day": 2,
+   "stageId": "outside-lands-2025:sutro",
+   "start": "20:40",
+   "end": "21:50"
+  },
+  {
+   "id": "outside-lands-2025:d2:twin-peaks:1245:vampire-weekend",
+   "artistId": "outside-lands-2025:vampire-weekend",
+   "day": 2,
+   "stageId": "outside-lands-2025:twin-peaks",
+   "start": "12:45",
+   "end": "13:35"
+  },
+  {
+   "id": "outside-lands-2025:d2:twin-peaks:1420:the-army-the-navy",
+   "artistId": "outside-lands-2025:the-army-the-navy",
+   "day": 2,
+   "stageId": "outside-lands-2025:twin-peaks",
+   "start": "14:20",
+   "end": "15:05"
+  },
+  {
+   "id": "outside-lands-2025:d2:twin-peaks:1550:flipturn",
+   "artistId": "outside-lands-2025:flipturn",
+   "day": 2,
+   "stageId": "outside-lands-2025:twin-peaks",
+   "start": "15:50",
+   "end": "16:35"
+  },
+  {
+   "id": "outside-lands-2025:d2:twin-peaks:1720:wallows",
+   "artistId": "outside-lands-2025:wallows",
+   "day": 2,
+   "stageId": "outside-lands-2025:twin-peaks",
+   "start": "17:20",
+   "end": "18:10"
+  },
+  {
+   "id": "outside-lands-2025:d2:twin-peaks:1855:royel-otis",
+   "artistId": "outside-lands-2025:royel-otis",
+   "day": 2,
+   "stageId": "outside-lands-2025:twin-peaks",
+   "start": "18:55",
+   "end": "19:45"
+  },
+  {
+   "id": "outside-lands-2025:d2:twin-peaks:2035:vampire-weekend",
+   "artistId": "outside-lands-2025:vampire-weekend",
+   "day": 2,
+   "stageId": "outside-lands-2025:twin-peaks",
+   "start": "20:35",
+   "end": "21:50"
+  },
+  {
+   "id": "outside-lands-2025:d2:oasis-arts-dolores:1245:baloney-dj-set-dj-subeaux",
+   "artistId": "outside-lands-2025:baloney-dj-set-dj-subeaux",
+   "day": 2,
+   "stageId": "outside-lands-2025:oasis-arts-dolores",
+   "start": "12:45",
+   "end": "13:45"
+  },
+  {
+   "id": "outside-lands-2025:d2:oasis-arts-dolores:1345:baloney",
+   "artistId": "outside-lands-2025:baloney",
+   "day": 2,
+   "stageId": "outside-lands-2025:oasis-arts-dolores",
+   "start": "13:45",
+   "end": "14:45"
+  },
+  {
+   "id": "outside-lands-2025:d2:oasis-arts-dolores:1445:reparations-dj-set-miss-toto",
+   "artistId": "outside-lands-2025:reparations-dj-set-miss-toto",
+   "day": 2,
+   "stageId": "outside-lands-2025:oasis-arts-dolores",
+   "start": "14:45",
+   "end": "15:45"
+  },
+  {
+   "id": "outside-lands-2025:d2:oasis-arts-dolores:1545:reparations",
+   "artistId": "outside-lands-2025:reparations",
+   "day": 2,
+   "stageId": "outside-lands-2025:oasis-arts-dolores",
+   "start": "15:45",
+   "end": "17:15"
+  },
+  {
+   "id": "outside-lands-2025:d2:oasis-arts-dolores:1715:princess-dj-set-dj-bella-spreads",
+   "artistId": "outside-lands-2025:princess-dj-set-dj-bella-spreads",
+   "day": 2,
+   "stageId": "outside-lands-2025:oasis-arts-dolores",
+   "start": "17:15",
+   "end": "18:15"
+  },
+  {
+   "id": "outside-lands-2025:d2:oasis-arts-dolores:1815:princess",
+   "artistId": "outside-lands-2025:princess",
+   "day": 2,
+   "stageId": "outside-lands-2025:oasis-arts-dolores",
+   "start": "18:15",
+   "end": "19:45"
+  },
+  {
+   "id": "outside-lands-2025:d2:oasis-arts-dolores:1945:oasis-dj-set-dj-bella-spreads",
+   "artistId": "outside-lands-2025:oasis-dj-set-dj-bella-spreads",
+   "day": 2,
+   "stageId": "outside-lands-2025:oasis-arts-dolores",
+   "start": "19:45",
+   "end": "20:45"
+  },
+  {
+   "id": "outside-lands-2025:d3:casa-bacardi:1245:digital-kitkat",
+   "artistId": "outside-lands-2025:digital-kitkat",
+   "day": 3,
+   "stageId": "outside-lands-2025:casa-bacardi",
+   "start": "12:45",
+   "end": "14:15"
+  },
+  {
+   "id": "outside-lands-2025:d3:casa-bacardi:1445:salsa-by-ricardo",
+   "artistId": "outside-lands-2025:salsa-by-ricardo",
+   "day": 3,
+   "stageId": "outside-lands-2025:casa-bacardi",
+   "start": "14:45",
+   "end": "15:15"
+  },
+  {
+   "id": "outside-lands-2025:d3:casa-bacardi:1545:bolo",
+   "artistId": "outside-lands-2025:bolo",
+   "day": 3,
+   "stageId": "outside-lands-2025:casa-bacardi",
+   "start": "15:45",
+   "end": "17:25"
+  },
+  {
+   "id": "outside-lands-2025:d3:casa-bacardi:1745:dj-umami",
+   "artistId": "outside-lands-2025:dj-umami",
+   "day": 3,
+   "stageId": "outside-lands-2025:casa-bacardi",
+   "start": "17:45",
+   "end": "19:15"
+  },
+  {
+   "id": "outside-lands-2025:d3:duboce-triangle:1235:open-mic-hosted-by-rainbow-girls",
+   "artistId": "outside-lands-2025:open-mic-hosted-by-rainbow-girls",
+   "day": 3,
+   "stageId": "outside-lands-2025:duboce-triangle",
+   "start": "12:35",
+   "end": "13:20"
+  },
+  {
+   "id": "outside-lands-2025:d3:duboce-triangle:1405:lexa-gates",
+   "artistId": "outside-lands-2025:lexa-gates",
+   "day": 3,
+   "stageId": "outside-lands-2025:duboce-triangle",
+   "start": "14:05",
+   "end": "14:35"
+  },
+  {
+   "id": "outside-lands-2025:d3:duboce-triangle:1525:kareem-rahma-and-tiny-gun",
+   "artistId": "outside-lands-2025:kareem-rahma-and-tiny-gun",
+   "day": 3,
+   "stageId": "outside-lands-2025:duboce-triangle",
+   "start": "15:25",
+   "end": "15:55"
+  },
+  {
+   "id": "outside-lands-2025:d3:duboce-triangle:1645:nourished-by-time",
+   "artistId": "outside-lands-2025:nourished-by-time",
+   "day": 3,
+   "stageId": "outside-lands-2025:duboce-triangle",
+   "start": "16:45",
+   "end": "17:15"
+  },
+  {
+   "id": "outside-lands-2025:d3:duboce-triangle:1815:mayer-hawthorne-dj-set",
+   "artistId": "outside-lands-2025:mayer-hawthorne-dj-set",
+   "day": 3,
+   "stageId": "outside-lands-2025:duboce-triangle",
+   "start": "18:15",
+   "end": "18:45"
+  },
+  {
+   "id": "outside-lands-2025:d3:duboce-triangle:1930:electric-feels",
+   "artistId": "outside-lands-2025:electric-feels",
+   "day": 3,
+   "stageId": "outside-lands-2025:duboce-triangle",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "outside-lands-2025:d3:lands-end:1200:arcy-drive",
+   "artistId": "outside-lands-2025:arcy-drive",
+   "day": 3,
+   "stageId": "outside-lands-2025:lands-end",
+   "start": "12:00",
+   "end": "12:45"
+  },
+  {
+   "id": "outside-lands-2025:d3:lands-end:1315:big-freedia-with-sf-gay-men-s-chorus",
+   "artistId": "outside-lands-2025:big-freedia-with-sf-gay-men-s-chorus",
+   "day": 3,
+   "stageId": "outside-lands-2025:lands-end",
+   "start": "13:15",
+   "end": "14:00"
+  },
+  {
+   "id": "outside-lands-2025:d3:lands-end:1430:mayer-hawthorne",
+   "artistId": "outside-lands-2025:mayer-hawthorne",
+   "day": 3,
+   "stageId": "outside-lands-2025:lands-end",
+   "start": "14:30",
+   "end": "15:20"
+  },
+  {
+   "id": "outside-lands-2025:d3:lands-end:1550:finneas",
+   "artistId": "outside-lands-2025:finneas",
+   "day": 3,
+   "stageId": "outside-lands-2025:lands-end",
+   "start": "15:50",
+   "end": "16:40"
+  },
+  {
+   "id": "outside-lands-2025:d3:lands-end:1710:bleachers",
+   "artistId": "outside-lands-2025:bleachers",
+   "day": 3,
+   "stageId": "outside-lands-2025:lands-end",
+   "start": "17:10",
+   "end": "18:00"
+  },
+  {
+   "id": "outside-lands-2025:d3:lands-end:1830:glass-animals",
+   "artistId": "outside-lands-2025:glass-animals",
+   "day": 3,
+   "stageId": "outside-lands-2025:lands-end",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "outside-lands-2025:d3:lands-end:2015:hozier",
+   "artistId": "outside-lands-2025:hozier",
+   "day": 3,
+   "stageId": "outside-lands-2025:lands-end",
+   "start": "20:15",
+   "end": "21:55"
+  },
+  {
+   "id": "outside-lands-2025:d3:panhandle:1200:alex-amen",
+   "artistId": "outside-lands-2025:alex-amen",
+   "day": 3,
+   "stageId": "outside-lands-2025:panhandle",
+   "start": "12:00",
+   "end": "12:40"
+  },
+  {
+   "id": "outside-lands-2025:d3:panhandle:1325:midnight-generation",
+   "artistId": "outside-lands-2025:midnight-generation",
+   "day": 3,
+   "stageId": "outside-lands-2025:panhandle",
+   "start": "13:25",
+   "end": "14:05"
+  },
+  {
+   "id": "outside-lands-2025:d3:panhandle:1455:orla-gartland",
+   "artistId": "outside-lands-2025:orla-gartland",
+   "day": 3,
+   "stageId": "outside-lands-2025:panhandle",
+   "start": "14:55",
+   "end": "15:35"
+  },
+  {
+   "id": "outside-lands-2025:d3:panhandle:1630:lexa-gates",
+   "artistId": "outside-lands-2025:lexa-gates",
+   "day": 3,
+   "stageId": "outside-lands-2025:panhandle",
+   "start": "16:30",
+   "end": "17:10"
+  },
+  {
+   "id": "outside-lands-2025:d3:panhandle:1805:julie",
+   "artistId": "outside-lands-2025:julie",
+   "day": 3,
+   "stageId": "outside-lands-2025:panhandle",
+   "start": "18:05",
+   "end": "18:45"
+  },
+  {
+   "id": "outside-lands-2025:d3:panhandle:1950:neal-francis",
+   "artistId": "outside-lands-2025:neal-francis",
+   "day": 3,
+   "stageId": "outside-lands-2025:panhandle",
+   "start": "19:50",
+   "end": "20:35"
+  },
+  {
+   "id": "outside-lands-2025:d3:soma:1115:sound-bath-presented-by-kaiser-permanente",
+   "artistId": "outside-lands-2025:sound-bath-presented-by-kaiser-permanente",
+   "day": 3,
+   "stageId": "outside-lands-2025:soma",
+   "start": "11:15",
+   "end": "11:45"
+  },
+  {
+   "id": "outside-lands-2025:d3:soma:1200:banksia",
+   "artistId": "outside-lands-2025:banksia",
+   "day": 3,
+   "stageId": "outside-lands-2025:soma",
+   "start": "12:00",
+   "end": "14:20"
+  },
+  {
+   "id": "outside-lands-2025:d3:soma:1420:txc",
+   "artistId": "outside-lands-2025:txc",
+   "day": 3,
+   "stageId": "outside-lands-2025:soma",
+   "start": "14:20",
+   "end": "15:10"
+  },
+  {
+   "id": "outside-lands-2025:d3:soma:1510:and-friends",
+   "artistId": "outside-lands-2025:and-friends",
+   "day": 3,
+   "stageId": "outside-lands-2025:soma",
+   "start": "15:10",
+   "end": "16:45"
+  },
+  {
+   "id": "outside-lands-2025:d3:soma:1645:claptone",
+   "artistId": "outside-lands-2025:claptone",
+   "day": 3,
+   "stageId": "outside-lands-2025:soma",
+   "start": "16:45",
+   "end": "18:20"
+  },
+  {
+   "id": "outside-lands-2025:d3:soma:1820:blond-ish",
+   "artistId": "outside-lands-2025:blond-ish",
+   "day": 3,
+   "stageId": "outside-lands-2025:soma",
+   "start": "18:20",
+   "end": "19:55"
+  },
+  {
+   "id": "outside-lands-2025:d3:soma:1955:black-coffee",
+   "artistId": "outside-lands-2025:black-coffee",
+   "day": 3,
+   "stageId": "outside-lands-2025:soma",
+   "start": "19:55",
+   "end": "21:55"
+  },
+  {
+   "id": "outside-lands-2025:d3:sutro:1200:cassandra-coleman",
+   "artistId": "outside-lands-2025:cassandra-coleman",
+   "day": 3,
+   "stageId": "outside-lands-2025:sutro",
+   "start": "12:00",
+   "end": "12:30"
+  },
+  {
+   "id": "outside-lands-2025:d3:sutro:1250:nourished-by-time",
+   "artistId": "outside-lands-2025:nourished-by-time",
+   "day": 3,
+   "stageId": "outside-lands-2025:sutro",
+   "start": "12:50",
+   "end": "13:30"
+  },
+  {
+   "id": "outside-lands-2025:d3:sutro:1355:luna-li",
+   "artistId": "outside-lands-2025:luna-li",
+   "day": 3,
+   "stageId": "outside-lands-2025:sutro",
+   "start": "13:55",
+   "end": "14:35"
+  },
+  {
+   "id": "outside-lands-2025:d3:sutro:1500:hope-tala",
+   "artistId": "outside-lands-2025:hope-tala",
+   "day": 3,
+   "stageId": "outside-lands-2025:sutro",
+   "start": "15:00",
+   "end": "15:45"
+  },
+  {
+   "id": "outside-lands-2025:d3:sutro:1615:ca7riel-and-paco-amoroso",
+   "artistId": "outside-lands-2025:ca7riel-and-paco-amoroso",
+   "day": 3,
+   "stageId": "outside-lands-2025:sutro",
+   "start": "16:15",
+   "end": "17:00"
+  },
+  {
+   "id": "outside-lands-2025:d3:sutro:1730:rebecca-black",
+   "artistId": "outside-lands-2025:rebecca-black",
+   "day": 3,
+   "stageId": "outside-lands-2025:sutro",
+   "start": "17:30",
+   "end": "18:20"
+  },
+  {
+   "id": "outside-lands-2025:d3:sutro:1850:sammy-virji",
+   "artistId": "outside-lands-2025:sammy-virji",
+   "day": 3,
+   "stageId": "outside-lands-2025:sutro",
+   "start": "18:50",
+   "end": "19:50"
+  },
+  {
+   "id": "outside-lands-2025:d3:sutro:2020:jamie-xx",
+   "artistId": "outside-lands-2025:jamie-xx",
+   "day": 3,
+   "stageId": "outside-lands-2025:sutro",
+   "start": "20:20",
+   "end": "21:50"
+  },
+  {
+   "id": "outside-lands-2025:d3:twin-peaks:1245:black-party",
+   "artistId": "outside-lands-2025:black-party",
+   "day": 3,
+   "stageId": "outside-lands-2025:twin-peaks",
+   "start": "12:45",
+   "end": "13:25"
+  },
+  {
+   "id": "outside-lands-2025:d3:twin-peaks:1410:naomi-sharon",
+   "artistId": "outside-lands-2025:naomi-sharon",
+   "day": 3,
+   "stageId": "outside-lands-2025:twin-peaks",
+   "start": "14:10",
+   "end": "14:55"
+  },
+  {
+   "id": "outside-lands-2025:d3:twin-peaks:1540:levity",
+   "artistId": "outside-lands-2025:levity",
+   "day": 3,
+   "stageId": "outside-lands-2025:twin-peaks",
+   "start": "15:40",
+   "end": "16:30"
+  },
+  {
+   "id": "outside-lands-2025:d3:twin-peaks:1715:bigxthaplug",
+   "artistId": "outside-lands-2025:bigxthaplug",
+   "day": 3,
+   "stageId": "outside-lands-2025:twin-peaks",
+   "start": "17:15",
+   "end": "18:05"
+  },
+  {
+   "id": "outside-lands-2025:d3:twin-peaks:1850:jorja-smith",
+   "artistId": "outside-lands-2025:jorja-smith",
+   "day": 3,
+   "stageId": "outside-lands-2025:twin-peaks",
+   "start": "18:50",
+   "end": "19:50"
+  },
+  {
+   "id": "outside-lands-2025:d3:twin-peaks:2040:anderson-paak-and-the-free-nationals",
+   "artistId": "outside-lands-2025:anderson-paak-and-the-free-nationals",
+   "day": 3,
+   "stageId": "outside-lands-2025:twin-peaks",
+   "start": "20:40",
+   "end": "21:55"
+  },
+  {
+   "id": "outside-lands-2025:d3:polyglamorous-dolores:1230:mouthfeel",
+   "artistId": "outside-lands-2025:mouthfeel",
+   "day": 3,
+   "stageId": "outside-lands-2025:polyglamorous-dolores",
+   "start": "12:30",
+   "end": "13:30"
+  },
+  {
+   "id": "outside-lands-2025:d3:polyglamorous-dolores:1330:chelsea-starr",
+   "artistId": "outside-lands-2025:chelsea-starr",
+   "day": 3,
+   "stageId": "outside-lands-2025:polyglamorous-dolores",
+   "start": "13:30",
+   "end": "14:30"
+  },
+  {
+   "id": "outside-lands-2025:d3:polyglamorous-dolores:1430:jen-dm",
+   "artistId": "outside-lands-2025:jen-dm",
+   "day": 3,
+   "stageId": "outside-lands-2025:polyglamorous-dolores",
+   "start": "14:30",
+   "end": "15:30"
+  },
+  {
+   "id": "outside-lands-2025:d3:polyglamorous-dolores:1530:drag-by-vivvy-and-her-cast-of-1-000s",
+   "artistId": "outside-lands-2025:drag-by-vivvy-and-her-cast-of-1-000s",
+   "day": 3,
+   "stageId": "outside-lands-2025:polyglamorous-dolores",
+   "start": "15:30",
+   "end": "15:50"
+  },
+  {
+   "id": "outside-lands-2025:d3:polyglamorous-dolores:1550:beya-b2b-mark-o-brien",
+   "artistId": "outside-lands-2025:beya-b2b-mark-o-brien",
+   "day": 3,
+   "stageId": "outside-lands-2025:polyglamorous-dolores",
+   "start": "15:50",
+   "end": "17:05"
+  },
+  {
+   "id": "outside-lands-2025:d3:polyglamorous-dolores:1705:david-harness",
+   "artistId": "outside-lands-2025:david-harness",
+   "day": 3,
+   "stageId": "outside-lands-2025:polyglamorous-dolores",
+   "start": "17:05",
+   "end": "18:05"
+  },
+  {
+   "id": "outside-lands-2025:d3:polyglamorous-dolores:1805:drag-by-vivvy-and-her-cast-of-1-000s",
+   "artistId": "outside-lands-2025:drag-by-vivvy-and-her-cast-of-1-000s",
+   "day": 3,
+   "stageId": "outside-lands-2025:polyglamorous-dolores",
+   "start": "18:05",
+   "end": "18:25"
+  },
+  {
+   "id": "outside-lands-2025:d3:polyglamorous-dolores:1825:father-figure",
+   "artistId": "outside-lands-2025:father-figure",
+   "day": 3,
+   "stageId": "outside-lands-2025:polyglamorous-dolores",
+   "start": "18:25",
+   "end": "19:25"
+  },
+  {
+   "id": "outside-lands-2025:d3:polyglamorous-dolores:1925:rebecca-black-dj-set",
+   "artistId": "outside-lands-2025:rebecca-black-dj-set",
+   "day": 3,
+   "stageId": "outside-lands-2025:polyglamorous-dolores",
+   "start": "19:25",
+   "end": "20:25"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://sfoutsidelands.com/lineup/",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20250811205728/https://ds25festlands.dostff.co/embeds/lineup.js",
+    "captureTimestamp": "20250811205728",
+    "printed": "2025-08-08",
+    "sha256": "d7003f8f86d059070acbe511d44753c91cc394bed874247f4a3715d97f644f6f",
+    "rows": 52,
+    "format": "dostuff-embed",
+    "run": "2025-08-08 to 2025-08-10",
+    "embeddedBy": {
+     "url": "https://sfoutsidelands.com/lineup/",
+     "archivedUrl": "https://web.archive.org/web/20250811205727/https://sfoutsidelands.com/lineup/",
+     "captureTimestamp": "20250811205727",
+     "loads": "https://ds25festlands.dostff.co/embeds/lineup.js"
+    }
+   },
+   {
+    "day": 2,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20250811205728/https://ds25festlands.dostff.co/embeds/lineup.js",
+    "captureTimestamp": "20250811205728",
+    "printed": "2025-08-09",
+    "sha256": "d7003f8f86d059070acbe511d44753c91cc394bed874247f4a3715d97f644f6f",
+    "rows": 50,
+    "format": "dostuff-embed",
+    "run": "2025-08-08 to 2025-08-10",
+    "embeddedBy": {
+     "url": "https://sfoutsidelands.com/lineup/",
+     "archivedUrl": "https://web.archive.org/web/20250811205727/https://sfoutsidelands.com/lineup/",
+     "captureTimestamp": "20250811205727",
+     "loads": "https://ds25festlands.dostff.co/embeds/lineup.js"
+    }
+   },
+   {
+    "day": 3,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20250811205728/https://ds25festlands.dostff.co/embeds/lineup.js",
+    "captureTimestamp": "20250811205728",
+    "printed": "2025-08-10",
+    "sha256": "d7003f8f86d059070acbe511d44753c91cc394bed874247f4a3715d97f644f6f",
+    "rows": 53,
+    "format": "dostuff-embed",
+    "run": "2025-08-08 to 2025-08-10",
+    "embeddedBy": {
+     "url": "https://sfoutsidelands.com/lineup/",
+     "archivedUrl": "https://web.archive.org/web/20250811205727/https://sfoutsidelands.com/lineup/",
+     "captureTimestamp": "20250811205727",
+     "loads": "https://ds25festlands.dostff.co/embeds/lineup.js"
+    }
+   }
+  ]
+ }
+}

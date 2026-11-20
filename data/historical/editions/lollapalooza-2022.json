@@ -1,0 +1,3253 @@
+{
+ "id": "lollapalooza-2022",
+ "festivalId": "lollapalooza",
+ "name": "Lollapalooza 2022",
+ "year": 2022,
+ "timezone": "America/Chicago",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2022-07-28",
+   "label": "Thursday"
+  },
+  {
+   "day": 2,
+   "date": "2022-07-29",
+   "label": "Friday"
+  },
+  {
+   "day": 3,
+   "date": "2022-07-30",
+   "label": "Saturday"
+  },
+  {
+   "day": 4,
+   "date": "2022-07-31",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "lollapalooza-2022:bud-light-seltzer",
+   "name": "BUD LIGHT SELTZER"
+  },
+  {
+   "id": "lollapalooza-2022:tito-s-handmade-vodka",
+   "name": "TITO'S HANDMADE VODKA"
+  },
+  {
+   "id": "lollapalooza-2022:discord",
+   "name": "DISCORD"
+  },
+  {
+   "id": "lollapalooza-2022:bmi",
+   "name": "BMI"
+  },
+  {
+   "id": "lollapalooza-2022:kidzapalooza",
+   "name": "KIDZAPALOOZA"
+  },
+  {
+   "id": "lollapalooza-2022:solana-x-perry-s",
+   "name": "SOLANA X PERRY'S"
+  },
+  {
+   "id": "lollapalooza-2022:coinbase",
+   "name": "COINBASE"
+  },
+  {
+   "id": "lollapalooza-2022:t-mobile",
+   "name": "T-MOBILE"
+  },
+  {
+   "id": "lollapalooza-2022:bud-light-seltzer-sessions",
+   "name": "BUD LIGHT SELTZER SESSIONS"
+  }
+ ],
+ "artists": [
+  {
+   "id": "lollapalooza-2022:last-dinosaurs",
+   "name": "LAST DINOSAURS",
+   "key": "last-dinosaurs",
+   "performers": [
+    "last-dinosaurs"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:inhaler",
+   "name": "INHALER",
+   "key": "inhaler",
+   "performers": [
+    "inhaler"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:tove-lo",
+   "name": "TOVE LO",
+   "key": "tove-lo",
+   "performers": [
+    "tove-lo"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:jazmine-sullivan",
+   "name": "JAZMINE SULLIVAN",
+   "key": "jazmine-sullivan",
+   "performers": [
+    "jazmine-sullivan"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:lil-baby",
+   "name": "LIL BABY",
+   "key": "lil-baby",
+   "performers": [
+    "lil-baby"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:redveil",
+   "name": "REDVEIL",
+   "key": "redveil",
+   "performers": [
+    "redveil"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:sam-fender",
+   "name": "SAM FENDER",
+   "key": "sam-fender",
+   "performers": [
+    "sam-fender"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:role-model",
+   "name": "ROLE MODEL",
+   "key": "role-model",
+   "performers": [
+    "role-model"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:100-gecs",
+   "name": "100 GECS",
+   "key": "100-gecs",
+   "performers": [
+    "100-gecs"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:com3t",
+   "name": "COM3T",
+   "key": "com3t",
+   "performers": [
+    "com3t"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:tony-velour",
+   "name": "TONY VELOUR",
+   "key": "tony-velour",
+   "performers": [
+    "tony-velour"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:niko-rubio",
+   "name": "NIKO RUBIO",
+   "key": "niko-rubio",
+   "performers": [
+    "niko-rubio"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:midwxst",
+   "name": "MIDWXST",
+   "key": "midwxst",
+   "performers": [
+    "midwxst"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:petey",
+   "name": "PETEY",
+   "key": "petey",
+   "performers": [
+    "petey"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:zach-bryan",
+   "name": "ZACH BRYAN",
+   "key": "zach-bryan",
+   "performers": [
+    "zach-bryan"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:pi-erre-bourne",
+   "name": "PI'ERRE BOURNE",
+   "key": "pi-erre-bourne",
+   "performers": [
+    "pi-erre-bourne"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:remi-wolf",
+   "name": "REMI WOLF",
+   "key": "remi-wolf",
+   "performers": [
+    "remi-wolf"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:maxo-kream",
+   "name": "MAXO KREAM",
+   "key": "maxo-kream",
+   "performers": [
+    "maxo-kream"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:caroline-polachek",
+   "name": "CAROLINE POLACHEK",
+   "key": "caroline-polachek",
+   "performers": [
+    "caroline-polachek"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:mills",
+   "name": "MILLS",
+   "key": "mills",
+   "performers": [
+    "mills"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:willie-jones",
+   "name": "WILLIE JONES",
+   "key": "willie-jones",
+   "performers": [
+    "willie-jones"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:jesse-jo-stark",
+   "name": "JESSE JO STARK",
+   "key": "jesse-jo-stark",
+   "performers": [
+    "jesse-jo-stark"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:giovannie-and-the-hired-guns",
+   "name": "GIOVANNIE AND THE HIRED GUNS",
+   "key": "giovannie-and-the-hired-guns",
+   "performers": [
+    "giovannie-and-the-hired-guns"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:rosie",
+   "name": "ROSIE",
+   "key": "rosie",
+   "performers": [
+    "rosie"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:lorna-shore",
+   "name": "LORNA SHORE",
+   "key": "lorna-shore",
+   "performers": [
+    "lorna-shore"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:suzi-shelton",
+   "name": "SUZI SHELTON",
+   "key": "suzi-shelton",
+   "performers": [
+    "suzi-shelton"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:school-of-rock",
+   "name": "SCHOOL OF ROCK",
+   "key": "school-of-rock",
+   "performers": [
+    "school-of-rock"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:cielito-lindo",
+   "name": "CIELITO LINDO",
+   "key": "cielito-lindo",
+   "performers": [
+    "cielito-lindo"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:fyutch",
+   "name": "FYUTCH",
+   "key": "fyutch",
+   "performers": [
+    "fyutch"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:biicla",
+   "name": "BIICLA",
+   "key": "biicla",
+   "performers": [
+    "biicla"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:jubilee",
+   "name": "JUBILEE",
+   "key": "jubilee",
+   "performers": [
+    "jubilee"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:bijou",
+   "name": "BIJOU",
+   "key": "bijou",
+   "performers": [
+    "bijou"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:tsha",
+   "name": "TSHA",
+   "key": "tsha",
+   "performers": [
+    "tsha"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:chris-lorenzo",
+   "name": "CHRIS LORENZO",
+   "key": "chris-lorenzo",
+   "performers": [
+    "chris-lorenzo"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:mk",
+   "name": "MK",
+   "key": "mk",
+   "performers": [
+    "mk"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:black-coffee",
+   "name": "BLACK COFFEE",
+   "key": "black-coffee",
+   "performers": [
+    "black-coffee"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:zhu",
+   "name": "ZHU",
+   "key": "zhu",
+   "performers": [
+    "zhu"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:emmy-meli",
+   "name": "EMMY MELI",
+   "key": "emmy-meli",
+   "performers": [
+    "emmy-meli"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:sampa-the-great",
+   "name": "SAMPA THE GREAT",
+   "key": "sampa-the-great",
+   "performers": [
+    "sampa-the-great"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:the-wombats",
+   "name": "THE WOMBATS",
+   "key": "the-wombats",
+   "performers": [
+    "the-wombats"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:manchester-orchestra",
+   "name": "MANCHESTER ORCHESTRA",
+   "key": "manchester-orchestra",
+   "performers": [
+    "manchester-orchestra"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:ashnikko",
+   "name": "ASHNIKKO",
+   "key": "ashnikko",
+   "performers": [
+    "ashnikko"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:underscores",
+   "name": "UNDERSCORES",
+   "key": "underscores",
+   "performers": [
+    "underscores"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:maude-latour",
+   "name": "MAUDE LATOUR",
+   "key": "maude-latour",
+   "performers": [
+    "maude-latour"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:still-woozy",
+   "name": "STILL WOOZY",
+   "key": "still-woozy",
+   "performers": [
+    "still-woozy"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:billy-strings",
+   "name": "BILLY STRINGS",
+   "key": "billy-strings",
+   "performers": [
+    "billy-strings"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:metallica",
+   "name": "METALLICA",
+   "key": "metallica",
+   "performers": [
+    "metallica"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:jordy",
+   "name": "JORDY",
+   "key": "jordy",
+   "performers": [
+    "jordy"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:jasiah",
+   "name": "JASIAH",
+   "key": "jasiah",
+   "performers": [
+    "jasiah"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:mahalia",
+   "name": "MAHALIA",
+   "key": "mahalia",
+   "performers": [
+    "mahalia"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:royal-blood",
+   "name": "ROYAL BLOOD",
+   "key": "royal-blood",
+   "performers": [
+    "royal-blood"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:don-toliver",
+   "name": "DON TOLIVER",
+   "key": "don-toliver",
+   "performers": [
+    "don-toliver"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:machine-gun-kelly",
+   "name": "MACHINE GUN KELLY",
+   "key": "machine-gun-kelly",
+   "performers": [
+    "machine-gun-kelly"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:jackie-hayes",
+   "name": "JACKIE HAYES",
+   "key": "jackie-hayes",
+   "performers": [
+    "jackie-hayes"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:baby-tate",
+   "name": "BABY TATE",
+   "key": "baby-tate",
+   "performers": [
+    "baby-tate"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:the-regrettes",
+   "name": "THE REGRETTES",
+   "key": "the-regrettes",
+   "performers": [
+    "the-regrettes"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:king-princess",
+   "name": "KING PRINCESS",
+   "key": "king-princess",
+   "performers": [
+    "king-princess"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:david-solomon",
+   "name": "DAVID SOLOMON",
+   "key": "david-solomon",
+   "performers": [
+    "david-solomon"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:aiida",
+   "name": "AIIDA",
+   "key": "aiida",
+   "performers": [
+    "aiida"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:flipturn",
+   "name": "FLIPTURN",
+   "key": "flipturn",
+   "performers": [
+    "flipturn"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:kaycyy",
+   "name": "KAYCYY",
+   "key": "kaycyy",
+   "performers": [
+    "kaycyy"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:wet-leg",
+   "name": "WET LEG",
+   "key": "wet-leg",
+   "performers": [
+    "wet-leg"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:genesis-owusu",
+   "name": "GENESIS OWUSU",
+   "key": "genesis-owusu",
+   "performers": [
+    "genesis-owusu"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:muna",
+   "name": "MUNA",
+   "key": "muna",
+   "performers": [
+    "muna"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:glaive",
+   "name": "GLAIVE",
+   "key": "glaive",
+   "performers": [
+    "glaive"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:sofaygo",
+   "name": "SOFAYGO",
+   "key": "sofaygo",
+   "performers": [
+    "sofaygo"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:bob-moses",
+   "name": "BOB MOSES",
+   "key": "bob-moses",
+   "performers": [
+    "bob-moses"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:daisy-the-great",
+   "name": "DAISY THE GREAT",
+   "key": "daisy-the-great",
+   "performers": [
+    "daisy-the-great"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:taipei-houston",
+   "name": "TAIPEI HOUSTON",
+   "key": "taipei-houston",
+   "performers": [
+    "taipei-houston"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:gata",
+   "name": "GATA",
+   "key": "gata",
+   "performers": [
+    "gata"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:joey-valence-and-brae",
+   "name": "JOEY VALENCE & BRAE",
+   "key": "joey-valence-and-brae",
+   "performers": [
+    "joey-valence-and-brae"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:binki",
+   "name": "BINKI",
+   "key": "binki",
+   "performers": [
+    "binki"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:rawayana",
+   "name": "RAWAYANA",
+   "key": "rawayana",
+   "performers": [
+    "rawayana"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:pierce-freelon",
+   "name": "PIERCE FREELON",
+   "key": "pierce-freelon",
+   "performers": [
+    "pierce-freelon"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:young-franco",
+   "name": "YOUNG FRANCO",
+   "key": "young-franco",
+   "performers": [
+    "young-franco"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:fiin",
+   "name": "FIIN",
+   "key": "fiin",
+   "performers": [
+    "fiin"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:maddy-o-neal",
+   "name": "MADDY O'NEAL",
+   "key": "maddy-o-neal",
+   "performers": [
+    "maddy-o-neal"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:whipped-cream",
+   "name": "WHIPPED CREAM",
+   "key": "whipped-cream",
+   "performers": [
+    "whipped-cream"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:wreckno",
+   "name": "WRECKNO",
+   "key": "wreckno",
+   "performers": [
+    "wreckno"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:lp-giobbi",
+   "name": "LP GIOBBI",
+   "key": "lp-giobbi",
+   "performers": [
+    "lp-giobbi"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:clozee",
+   "name": "CLOZEE",
+   "key": "clozee",
+   "performers": [
+    "clozee"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:liquid-stranger",
+   "name": "LIQUID STRANGER",
+   "key": "liquid-stranger",
+   "performers": [
+    "liquid-stranger"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:rezz",
+   "name": "REZZ",
+   "key": "rezz",
+   "performers": [
+    "rezz"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:la-dona",
+   "name": "LA DOÑA",
+   "key": "la-dona",
+   "performers": [
+    "la-dona"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:del-water-gap",
+   "name": "DEL WATER GAP",
+   "key": "del-water-gap",
+   "performers": [
+    "del-water-gap"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:tinashe",
+   "name": "TINASHE",
+   "key": "tinashe",
+   "performers": [
+    "tinashe"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:coi-leray",
+   "name": "COI LERAY",
+   "key": "coi-leray",
+   "performers": [
+    "coi-leray"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:girl-in-red",
+   "name": "GIRL IN RED",
+   "key": "girl-in-red",
+   "performers": [
+    "girl-in-red"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:rolling-blackouts-coastal-fever",
+   "name": "ROLLING BLACKOUTS COASTAL FEVER",
+   "key": "rolling-blackouts-coastal-fever",
+   "performers": [
+    "rolling-blackouts-coastal-fever"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:cordae",
+   "name": "CORDAE",
+   "key": "cordae",
+   "performers": [
+    "cordae"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:glass-animals",
+   "name": "GLASS ANIMALS",
+   "key": "glass-animals",
+   "performers": [
+    "glass-animals"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:dua-lipa",
+   "name": "DUA LIPA",
+   "key": "dua-lipa",
+   "performers": [
+    "dua-lipa"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:hinds",
+   "name": "HINDS",
+   "key": "hinds",
+   "performers": [
+    "hinds"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:crawlers",
+   "name": "CRAWLERS",
+   "key": "crawlers",
+   "performers": [
+    "crawlers"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:griff",
+   "name": "GRIFF",
+   "key": "griff",
+   "performers": [
+    "griff"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:blxst",
+   "name": "BLXST",
+   "key": "blxst",
+   "performers": [
+    "blxst"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:idles",
+   "name": "IDLES",
+   "key": "idles",
+   "performers": [
+    "idles"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:kygo",
+   "name": "KYGO",
+   "key": "kygo",
+   "performers": [
+    "kygo"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:charm-la-donna",
+   "name": "CHARM LA'DONNA",
+   "key": "charm-la-donna",
+   "performers": [
+    "charm-la-donna"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:alexander-23",
+   "name": "ALEXANDER 23",
+   "key": "alexander-23",
+   "performers": [
+    "alexander-23"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:larry-june",
+   "name": "LARRY JUNE",
+   "key": "larry-june",
+   "performers": [
+    "larry-june"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:coin",
+   "name": "COIN",
+   "key": "coin",
+   "performers": [
+    "coin"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:charly-jordan",
+   "name": "CHARLY JORDAN",
+   "key": "charly-jordan",
+   "performers": [
+    "charly-jordan"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:d-carr",
+   "name": "D. CARR",
+   "key": "d-carr",
+   "performers": [
+    "d-carr"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:calder-allen",
+   "name": "CALDER ALLEN",
+   "key": "calder-allen",
+   "performers": [
+    "calder-allen"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:pom-pom-squad",
+   "name": "POM POM SQUAD",
+   "key": "pom-pom-squad",
+   "performers": [
+    "pom-pom-squad"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:coco-and-clair-clair",
+   "name": "COCO & CLAIR CLAIR",
+   "key": "coco-and-clair-clair",
+   "performers": [
+    "coco-and-clair-clair"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:gracie-abrams",
+   "name": "GRACIE ABRAMS",
+   "key": "gracie-abrams",
+   "performers": [
+    "gracie-abrams"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:duckwrth",
+   "name": "DUCKWRTH",
+   "key": "duckwrth",
+   "performers": [
+    "duckwrth"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:mariah-the-scientist",
+   "name": "MARIAH THE SCIENTIST",
+   "key": "mariah-the-scientist",
+   "performers": [
+    "mariah-the-scientist"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:turnstile",
+   "name": "TURNSTILE",
+   "key": "turnstile",
+   "performers": [
+    "turnstile"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:willow",
+   "name": "WILLOW",
+   "key": "willow",
+   "performers": [
+    "willow"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:sam-austins",
+   "name": "SAM AUSTINS",
+   "key": "sam-austins",
+   "performers": [
+    "sam-austins"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:meet-me-the-altar",
+   "name": "MEET ME @ THE ALTAR",
+   "key": "meet-me-the-altar",
+   "performers": [
+    "meet-me-the-altar"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:dannylux",
+   "name": "DANNYLUX",
+   "key": "dannylux",
+   "performers": [
+    "dannylux"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:prentiss",
+   "name": "PRENTISS",
+   "key": "prentiss",
+   "performers": [
+    "prentiss"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:babyjake",
+   "name": "BABYJAKE",
+   "key": "babyjake",
+   "performers": [
+    "babyjake"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:gayle",
+   "name": "GAYLE",
+   "key": "gayle",
+   "performers": [
+    "gayle"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:the-lucky-band",
+   "name": "THE LUCKY BAND",
+   "key": "the-lucky-band",
+   "performers": [
+    "the-lucky-band"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:q-brothers",
+   "name": "Q BROTHERS",
+   "key": "q-brothers",
+   "performers": [
+    "q-brothers"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:koo-koo-kanga-roo",
+   "name": "KOO KOO KANGA ROO",
+   "key": "koo-koo-kanga-roo",
+   "performers": [
+    "koo-koo-kanga-roo"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:bucky-cheds",
+   "name": "BUCKY CHEDS",
+   "key": "bucky-cheds",
+   "performers": [
+    "bucky-cheds"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:steller",
+   "name": "STELLER",
+   "key": "steller",
+   "performers": [
+    "steller"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:grabbitz",
+   "name": "GRABBITZ",
+   "key": "grabbitz",
+   "performers": [
+    "grabbitz"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:evan-giia",
+   "name": "EVAN GIIA",
+   "key": "evan-giia",
+   "performers": [
+    "evan-giia"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:surf-mesa",
+   "name": "SURF MESA",
+   "key": "surf-mesa",
+   "performers": [
+    "surf-mesa"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:lil-durk",
+   "name": "LIL DURK",
+   "key": "lil-durk",
+   "performers": [
+    "lil-durk"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:sidepiece",
+   "name": "SIDEPIECE",
+   "key": "sidepiece",
+   "performers": [
+    "sidepiece"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:duke-dumont",
+   "name": "DUKE DUMONT",
+   "key": "duke-dumont",
+   "performers": [
+    "duke-dumont"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:tomorrow-x-together",
+   "name": "TOMORROW X TOGETHER",
+   "key": "tomorrow-x-together",
+   "performers": [
+    "tomorrow-x-together"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:kaskade",
+   "name": "KASKADE",
+   "key": "kaskade",
+   "performers": [
+    "kaskade"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:ericdoa",
+   "name": "ERICDOA",
+   "key": "ericdoa",
+   "performers": [
+    "ericdoa"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:dashboard-confessional",
+   "name": "DASHBOARD CONFESSIONAL",
+   "key": "dashboard-confessional",
+   "performers": [
+    "dashboard-confessional"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:yg",
+   "name": "YG",
+   "key": "yg",
+   "performers": [
+    "yg"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:chelsea-cutler",
+   "name": "CHELSEA CUTLER",
+   "key": "chelsea-cutler",
+   "performers": [
+    "chelsea-cutler"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:cochise",
+   "name": "COCHISE",
+   "key": "cochise",
+   "performers": [
+    "cochise"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:fletcher",
+   "name": "FLETCHER",
+   "key": "fletcher",
+   "performers": [
+    "fletcher"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:wallows",
+   "name": "WALLOWS",
+   "key": "wallows",
+   "performers": [
+    "wallows"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:big-sean",
+   "name": "BIG SEAN",
+   "key": "big-sean",
+   "performers": [
+    "big-sean"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:j-cole",
+   "name": "J. COLE",
+   "key": "j-cole",
+   "performers": [
+    "j-cole"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:de-wayne",
+   "name": "DE'WAYNE",
+   "key": "de-wayne",
+   "performers": [
+    "de-wayne"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:erica-banks",
+   "name": "ERICA BANKS",
+   "key": "erica-banks",
+   "performers": [
+    "erica-banks"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:djo",
+   "name": "DJO",
+   "key": "djo",
+   "performers": [
+    "djo"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:charli-xcx",
+   "name": "CHARLI XCX",
+   "key": "charli-xcx",
+   "performers": [
+    "charli-xcx"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:the-kid-laroi",
+   "name": "THE KID LAROI",
+   "key": "the-kid-laroi",
+   "performers": [
+    "the-kid-laroi"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:j-hope",
+   "name": "J-HOPE",
+   "key": "j-hope",
+   "performers": [
+    "j-hope"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:horsegirl",
+   "name": "HORSEGIRL",
+   "key": "horsegirl",
+   "performers": [
+    "horsegirl"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:hot-milk",
+   "name": "HOT MILK",
+   "key": "hot-milk",
+   "performers": [
+    "hot-milk"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:the-marias",
+   "name": "THE MARÍAS",
+   "key": "the-marias",
+   "performers": [
+    "the-marias"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:local-natives",
+   "name": "LOCAL NATIVES",
+   "key": "local-natives",
+   "performers": [
+    "local-natives"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:lucille-croft",
+   "name": "LUCILLE CROFT",
+   "key": "lucille-croft",
+   "performers": [
+    "lucille-croft"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:chicago-made-showcase",
+   "name": "CHICAGO MADE SHOWCASE",
+   "key": "chicago-made-showcase",
+   "performers": [
+    "chicago-made-showcase"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:blackstarkids",
+   "name": "BLACKSTARKIDS",
+   "key": "blackstarkids",
+   "performers": [
+    "blackstarkids"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:teezo-touchdown",
+   "name": "TEEZO TOUCHDOWN",
+   "key": "teezo-touchdown",
+   "performers": [
+    "teezo-touchdown"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:claire-rosinkranz",
+   "name": "CLAIRE ROSINKRANZ",
+   "key": "claire-rosinkranz",
+   "performers": [
+    "claire-rosinkranz"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:kennyhoopla",
+   "name": "KENNYHOOPLA",
+   "key": "kennyhoopla",
+   "performers": [
+    "kennyhoopla"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:young-nudy",
+   "name": "YOUNG NUDY",
+   "key": "young-nudy",
+   "performers": [
+    "young-nudy"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:pinkpantheress",
+   "name": "PINKPANTHERESS",
+   "key": "pinkpantheress",
+   "performers": [
+    "pinkpantheress"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:dominic-fike",
+   "name": "DOMINIC FIKE",
+   "key": "dominic-fike",
+   "performers": [
+    "dominic-fike"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:polo-and-pan",
+   "name": "POLO & PAN",
+   "key": "polo-and-pan",
+   "performers": [
+    "polo-and-pan"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:trella",
+   "name": "TRELLA",
+   "key": "trella",
+   "performers": [
+    "trella"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:buffalo-nichols",
+   "name": "BUFFALO NICHOLS",
+   "key": "buffalo-nichols",
+   "performers": [
+    "buffalo-nichols"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:l-l",
+   "name": "LØLØ",
+   "key": "l-l",
+   "performers": [
+    "l-l"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:peter-cottontale",
+   "name": "PETER COTTONTALE",
+   "key": "peter-cottontale",
+   "performers": [
+    "peter-cottontale"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:india-shawn",
+   "name": "INDIA SHAWN",
+   "key": "india-shawn",
+   "performers": [
+    "india-shawn"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:dylan",
+   "name": "DYLAN",
+   "key": "dylan",
+   "performers": [
+    "dylan"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:zookeper",
+   "name": "ZOOKËPER",
+   "key": "zookeper",
+   "performers": [
+    "zookeper"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:hannah-wants",
+   "name": "HANNAH WANTS",
+   "key": "hannah-wants",
+   "performers": [
+    "hannah-wants"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:habstrakt",
+   "name": "HABSTRAKT",
+   "key": "habstrakt",
+   "performers": [
+    "habstrakt"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:james-hype",
+   "name": "JAMES HYPE",
+   "key": "james-hype",
+   "performers": [
+    "james-hype"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:atliens",
+   "name": "ATLIENS",
+   "key": "atliens",
+   "performers": [
+    "atliens"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:gordo",
+   "name": "GORDO",
+   "key": "gordo",
+   "performers": [
+    "gordo"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:john-summit",
+   "name": "JOHN SUMMIT",
+   "key": "john-summit",
+   "performers": [
+    "john-summit"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:denzel-curry",
+   "name": "DENZEL CURRY",
+   "key": "denzel-curry",
+   "performers": [
+    "denzel-curry"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:low-cut-connie",
+   "name": "LOW CUT CONNIE",
+   "key": "low-cut-connie",
+   "performers": [
+    "low-cut-connie"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:audrey-nuna",
+   "name": "AUDREY NUNA",
+   "key": "audrey-nuna",
+   "performers": [
+    "audrey-nuna"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:goth-babe",
+   "name": "GOTH BABE",
+   "key": "goth-babe",
+   "performers": [
+    "goth-babe"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:beach-bunny",
+   "name": "BEACH BUNNY",
+   "key": "beach-bunny",
+   "performers": [
+    "beach-bunny"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:banks",
+   "name": "BANKS",
+   "key": "banks",
+   "performers": [
+    "banks"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:zoe-wees",
+   "name": "ZOE WEES",
+   "key": "zoe-wees",
+   "performers": [
+    "zoe-wees"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:maneskin",
+   "name": "MÅNESKIN",
+   "key": "maneskin",
+   "performers": [
+    "maneskin"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:porno-for-pyros",
+   "name": "PORNO FOR PYROS",
+   "key": "porno-for-pyros",
+   "performers": [
+    "porno-for-pyros"
+   ]
+  },
+  {
+   "id": "lollapalooza-2022:green-day",
+   "name": "GREEN DAY",
+   "key": "green-day",
+   "performers": [
+    "green-day"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "lollapalooza-2022:d1:bud-light-seltzer:1315:last-dinosaurs",
+   "artistId": "lollapalooza-2022:last-dinosaurs",
+   "day": 1,
+   "stageId": "lollapalooza-2022:bud-light-seltzer",
+   "start": "13:15",
+   "end": "14:00"
+  },
+  {
+   "id": "lollapalooza-2022:d1:bud-light-seltzer:1500:inhaler",
+   "artistId": "lollapalooza-2022:inhaler",
+   "day": 1,
+   "stageId": "lollapalooza-2022:bud-light-seltzer",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "lollapalooza-2022:d1:bud-light-seltzer:1700:tove-lo",
+   "artistId": "lollapalooza-2022:tove-lo",
+   "day": 1,
+   "stageId": "lollapalooza-2022:bud-light-seltzer",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "lollapalooza-2022:d1:bud-light-seltzer:1900:jazmine-sullivan",
+   "artistId": "lollapalooza-2022:jazmine-sullivan",
+   "day": 1,
+   "stageId": "lollapalooza-2022:bud-light-seltzer",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "lollapalooza-2022:d1:bud-light-seltzer:2045:lil-baby",
+   "artistId": "lollapalooza-2022:lil-baby",
+   "day": 1,
+   "stageId": "lollapalooza-2022:bud-light-seltzer",
+   "start": "20:45",
+   "end": "22:00"
+  },
+  {
+   "id": "lollapalooza-2022:d1:tito-s-handmade-vodka:1230:redveil",
+   "artistId": "lollapalooza-2022:redveil",
+   "day": 1,
+   "stageId": "lollapalooza-2022:tito-s-handmade-vodka",
+   "start": "12:30",
+   "end": "13:15"
+  },
+  {
+   "id": "lollapalooza-2022:d1:tito-s-handmade-vodka:1400:sam-fender",
+   "artistId": "lollapalooza-2022:sam-fender",
+   "day": 1,
+   "stageId": "lollapalooza-2022:tito-s-handmade-vodka",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "lollapalooza-2022:d1:tito-s-handmade-vodka:1600:role-model",
+   "artistId": "lollapalooza-2022:role-model",
+   "day": 1,
+   "stageId": "lollapalooza-2022:tito-s-handmade-vodka",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "lollapalooza-2022:d1:tito-s-handmade-vodka:1800:100-gecs",
+   "artistId": "lollapalooza-2022:100-gecs",
+   "day": 1,
+   "stageId": "lollapalooza-2022:tito-s-handmade-vodka",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "lollapalooza-2022:d1:tito-s-handmade-vodka:2000:com3t",
+   "artistId": "lollapalooza-2022:com3t",
+   "day": 1,
+   "stageId": "lollapalooza-2022:tito-s-handmade-vodka",
+   "start": "20:00",
+   "end": "20:45"
+  },
+  {
+   "id": "lollapalooza-2022:d1:discord:1200:tony-velour",
+   "artistId": "lollapalooza-2022:tony-velour",
+   "day": 1,
+   "stageId": "lollapalooza-2022:discord",
+   "start": "12:00",
+   "end": "12:30"
+  },
+  {
+   "id": "lollapalooza-2022:d1:discord:1250:niko-rubio",
+   "artistId": "lollapalooza-2022:niko-rubio",
+   "day": 1,
+   "stageId": "lollapalooza-2022:discord",
+   "start": "12:50",
+   "end": "13:30"
+  },
+  {
+   "id": "lollapalooza-2022:d1:discord:1350:midwxst",
+   "artistId": "lollapalooza-2022:midwxst",
+   "day": 1,
+   "stageId": "lollapalooza-2022:discord",
+   "start": "13:50",
+   "end": "14:30"
+  },
+  {
+   "id": "lollapalooza-2022:d1:discord:1450:petey",
+   "artistId": "lollapalooza-2022:petey",
+   "day": 1,
+   "stageId": "lollapalooza-2022:discord",
+   "start": "14:50",
+   "end": "15:30"
+  },
+  {
+   "id": "lollapalooza-2022:d1:discord:1600:zach-bryan",
+   "artistId": "lollapalooza-2022:zach-bryan",
+   "day": 1,
+   "stageId": "lollapalooza-2022:discord",
+   "start": "16:00",
+   "end": "16:45"
+  },
+  {
+   "id": "lollapalooza-2022:d1:discord:1715:pi-erre-bourne",
+   "artistId": "lollapalooza-2022:pi-erre-bourne",
+   "day": 1,
+   "stageId": "lollapalooza-2022:discord",
+   "start": "17:15",
+   "end": "18:00"
+  },
+  {
+   "id": "lollapalooza-2022:d1:discord:1830:remi-wolf",
+   "artistId": "lollapalooza-2022:remi-wolf",
+   "day": 1,
+   "stageId": "lollapalooza-2022:discord",
+   "start": "18:30",
+   "end": "19:15"
+  },
+  {
+   "id": "lollapalooza-2022:d1:discord:1945:maxo-kream",
+   "artistId": "lollapalooza-2022:maxo-kream",
+   "day": 1,
+   "stageId": "lollapalooza-2022:discord",
+   "start": "19:45",
+   "end": "20:30"
+  },
+  {
+   "id": "lollapalooza-2022:d1:discord:2100:caroline-polachek",
+   "artistId": "lollapalooza-2022:caroline-polachek",
+   "day": 1,
+   "stageId": "lollapalooza-2022:discord",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "lollapalooza-2022:d1:bmi:1300:mills",
+   "artistId": "lollapalooza-2022:mills",
+   "day": 1,
+   "stageId": "lollapalooza-2022:bmi",
+   "start": "13:00",
+   "end": "13:40"
+  },
+  {
+   "id": "lollapalooza-2022:d1:bmi:1410:willie-jones",
+   "artistId": "lollapalooza-2022:willie-jones",
+   "day": 1,
+   "stageId": "lollapalooza-2022:bmi",
+   "start": "14:10",
+   "end": "14:50"
+  },
+  {
+   "id": "lollapalooza-2022:d1:bmi:1520:jesse-jo-stark",
+   "artistId": "lollapalooza-2022:jesse-jo-stark",
+   "day": 1,
+   "stageId": "lollapalooza-2022:bmi",
+   "start": "15:20",
+   "end": "16:00"
+  },
+  {
+   "id": "lollapalooza-2022:d1:bmi:1630:giovannie-and-the-hired-guns",
+   "artistId": "lollapalooza-2022:giovannie-and-the-hired-guns",
+   "day": 1,
+   "stageId": "lollapalooza-2022:bmi",
+   "start": "16:30",
+   "end": "17:10"
+  },
+  {
+   "id": "lollapalooza-2022:d1:bmi:1740:rosie",
+   "artistId": "lollapalooza-2022:rosie",
+   "day": 1,
+   "stageId": "lollapalooza-2022:bmi",
+   "start": "17:40",
+   "end": "18:20"
+  },
+  {
+   "id": "lollapalooza-2022:d1:bmi:1850:lorna-shore",
+   "artistId": "lollapalooza-2022:lorna-shore",
+   "day": 1,
+   "stageId": "lollapalooza-2022:bmi",
+   "start": "18:50",
+   "end": "19:30"
+  },
+  {
+   "id": "lollapalooza-2022:d1:kidzapalooza:1200:suzi-shelton",
+   "artistId": "lollapalooza-2022:suzi-shelton",
+   "day": 1,
+   "stageId": "lollapalooza-2022:kidzapalooza",
+   "start": "12:00",
+   "end": "12:30"
+  },
+  {
+   "id": "lollapalooza-2022:d1:kidzapalooza:1330:school-of-rock",
+   "artistId": "lollapalooza-2022:school-of-rock",
+   "day": 1,
+   "stageId": "lollapalooza-2022:kidzapalooza",
+   "start": "13:30",
+   "end": "14:00"
+  },
+  {
+   "id": "lollapalooza-2022:d1:kidzapalooza:1500:cielito-lindo",
+   "artistId": "lollapalooza-2022:cielito-lindo",
+   "day": 1,
+   "stageId": "lollapalooza-2022:kidzapalooza",
+   "start": "15:00",
+   "end": "15:30"
+  },
+  {
+   "id": "lollapalooza-2022:d1:kidzapalooza:1715:fyutch",
+   "artistId": "lollapalooza-2022:fyutch",
+   "day": 1,
+   "stageId": "lollapalooza-2022:kidzapalooza",
+   "start": "17:15",
+   "end": "17:45"
+  },
+  {
+   "id": "lollapalooza-2022:d1:solana-x-perry-s:1200:biicla",
+   "artistId": "lollapalooza-2022:biicla",
+   "day": 1,
+   "stageId": "lollapalooza-2022:solana-x-perry-s",
+   "start": "12:00",
+   "end": "12:45"
+  },
+  {
+   "id": "lollapalooza-2022:d1:solana-x-perry-s:1300:jubilee",
+   "artistId": "lollapalooza-2022:jubilee",
+   "day": 1,
+   "stageId": "lollapalooza-2022:solana-x-perry-s",
+   "start": "13:00",
+   "end": "13:45"
+  },
+  {
+   "id": "lollapalooza-2022:d1:solana-x-perry-s:1400:bijou",
+   "artistId": "lollapalooza-2022:bijou",
+   "day": 1,
+   "stageId": "lollapalooza-2022:solana-x-perry-s",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "lollapalooza-2022:d1:solana-x-perry-s:1515:tsha",
+   "artistId": "lollapalooza-2022:tsha",
+   "day": 1,
+   "stageId": "lollapalooza-2022:solana-x-perry-s",
+   "start": "15:15",
+   "end": "16:15"
+  },
+  {
+   "id": "lollapalooza-2022:d1:solana-x-perry-s:1630:chris-lorenzo",
+   "artistId": "lollapalooza-2022:chris-lorenzo",
+   "day": 1,
+   "stageId": "lollapalooza-2022:solana-x-perry-s",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "lollapalooza-2022:d1:solana-x-perry-s:1745:mk",
+   "artistId": "lollapalooza-2022:mk",
+   "day": 1,
+   "stageId": "lollapalooza-2022:solana-x-perry-s",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "lollapalooza-2022:d1:solana-x-perry-s:1900:black-coffee",
+   "artistId": "lollapalooza-2022:black-coffee",
+   "day": 1,
+   "stageId": "lollapalooza-2022:solana-x-perry-s",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "lollapalooza-2022:d1:solana-x-perry-s:2030:zhu",
+   "artistId": "lollapalooza-2022:zhu",
+   "day": 1,
+   "stageId": "lollapalooza-2022:solana-x-perry-s",
+   "start": "20:30",
+   "end": "21:45"
+  },
+  {
+   "id": "lollapalooza-2022:d1:coinbase:1200:emmy-meli",
+   "artistId": "lollapalooza-2022:emmy-meli",
+   "day": 1,
+   "stageId": "lollapalooza-2022:coinbase",
+   "start": "12:00",
+   "end": "12:45"
+  },
+  {
+   "id": "lollapalooza-2022:d1:coinbase:1330:sampa-the-great",
+   "artistId": "lollapalooza-2022:sampa-the-great",
+   "day": 1,
+   "stageId": "lollapalooza-2022:coinbase",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "lollapalooza-2022:d1:coinbase:1515:the-wombats",
+   "artistId": "lollapalooza-2022:the-wombats",
+   "day": 1,
+   "stageId": "lollapalooza-2022:coinbase",
+   "start": "15:15",
+   "end": "16:15"
+  },
+  {
+   "id": "lollapalooza-2022:d1:coinbase:1715:manchester-orchestra",
+   "artistId": "lollapalooza-2022:manchester-orchestra",
+   "day": 1,
+   "stageId": "lollapalooza-2022:coinbase",
+   "start": "17:15",
+   "end": "18:15"
+  },
+  {
+   "id": "lollapalooza-2022:d1:coinbase:1915:ashnikko",
+   "artistId": "lollapalooza-2022:ashnikko",
+   "day": 1,
+   "stageId": "lollapalooza-2022:coinbase",
+   "start": "19:15",
+   "end": "20:15"
+  },
+  {
+   "id": "lollapalooza-2022:d1:t-mobile:1245:underscores",
+   "artistId": "lollapalooza-2022:underscores",
+   "day": 1,
+   "stageId": "lollapalooza-2022:t-mobile",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "lollapalooza-2022:d1:t-mobile:1415:maude-latour",
+   "artistId": "lollapalooza-2022:maude-latour",
+   "day": 1,
+   "stageId": "lollapalooza-2022:t-mobile",
+   "start": "14:15",
+   "end": "15:15"
+  },
+  {
+   "id": "lollapalooza-2022:d1:t-mobile:1615:still-woozy",
+   "artistId": "lollapalooza-2022:still-woozy",
+   "day": 1,
+   "stageId": "lollapalooza-2022:t-mobile",
+   "start": "16:15",
+   "end": "17:15"
+  },
+  {
+   "id": "lollapalooza-2022:d1:t-mobile:1815:billy-strings",
+   "artistId": "lollapalooza-2022:billy-strings",
+   "day": 1,
+   "stageId": "lollapalooza-2022:t-mobile",
+   "start": "18:15",
+   "end": "19:15"
+  },
+  {
+   "id": "lollapalooza-2022:d1:t-mobile:2015:metallica",
+   "artistId": "lollapalooza-2022:metallica",
+   "day": 1,
+   "stageId": "lollapalooza-2022:t-mobile",
+   "start": "20:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "lollapalooza-2022:d1:bud-light-seltzer-sessions:1430:niko-rubio",
+   "artistId": "lollapalooza-2022:niko-rubio",
+   "day": 1,
+   "stageId": "lollapalooza-2022:bud-light-seltzer-sessions",
+   "start": "14:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "lollapalooza-2022:d1:bud-light-seltzer-sessions:1630:maude-latour",
+   "artistId": "lollapalooza-2022:maude-latour",
+   "day": 1,
+   "stageId": "lollapalooza-2022:bud-light-seltzer-sessions",
+   "start": "16:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "lollapalooza-2022:d1:bud-light-seltzer-sessions:1830:jordy",
+   "artistId": "lollapalooza-2022:jordy",
+   "day": 1,
+   "stageId": "lollapalooza-2022:bud-light-seltzer-sessions",
+   "start": "18:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "lollapalooza-2022:d2:bud-light-seltzer:1330:jasiah",
+   "artistId": "lollapalooza-2022:jasiah",
+   "day": 2,
+   "stageId": "lollapalooza-2022:bud-light-seltzer",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "lollapalooza-2022:d2:bud-light-seltzer:1500:mahalia",
+   "artistId": "lollapalooza-2022:mahalia",
+   "day": 2,
+   "stageId": "lollapalooza-2022:bud-light-seltzer",
+   "start": "15:00",
+   "end": "15:45"
+  },
+  {
+   "id": "lollapalooza-2022:d2:bud-light-seltzer:1645:royal-blood",
+   "artistId": "lollapalooza-2022:royal-blood",
+   "day": 2,
+   "stageId": "lollapalooza-2022:bud-light-seltzer",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "lollapalooza-2022:d2:bud-light-seltzer:1845:don-toliver",
+   "artistId": "lollapalooza-2022:don-toliver",
+   "day": 2,
+   "stageId": "lollapalooza-2022:bud-light-seltzer",
+   "start": "18:45",
+   "end": "19:45"
+  },
+  {
+   "id": "lollapalooza-2022:d2:bud-light-seltzer:2030:machine-gun-kelly",
+   "artistId": "lollapalooza-2022:machine-gun-kelly",
+   "day": 2,
+   "stageId": "lollapalooza-2022:bud-light-seltzer",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "lollapalooza-2022:d2:tito-s-handmade-vodka:1245:jackie-hayes",
+   "artistId": "lollapalooza-2022:jackie-hayes",
+   "day": 2,
+   "stageId": "lollapalooza-2022:tito-s-handmade-vodka",
+   "start": "12:45",
+   "end": "13:30"
+  },
+  {
+   "id": "lollapalooza-2022:d2:tito-s-handmade-vodka:1415:baby-tate",
+   "artistId": "lollapalooza-2022:baby-tate",
+   "day": 2,
+   "stageId": "lollapalooza-2022:tito-s-handmade-vodka",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "lollapalooza-2022:d2:tito-s-handmade-vodka:1545:the-regrettes",
+   "artistId": "lollapalooza-2022:the-regrettes",
+   "day": 2,
+   "stageId": "lollapalooza-2022:tito-s-handmade-vodka",
+   "start": "15:45",
+   "end": "16:45"
+  },
+  {
+   "id": "lollapalooza-2022:d2:tito-s-handmade-vodka:1745:king-princess",
+   "artistId": "lollapalooza-2022:king-princess",
+   "day": 2,
+   "stageId": "lollapalooza-2022:tito-s-handmade-vodka",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "lollapalooza-2022:d2:tito-s-handmade-vodka:1945:david-solomon",
+   "artistId": "lollapalooza-2022:david-solomon",
+   "day": 2,
+   "stageId": "lollapalooza-2022:tito-s-handmade-vodka",
+   "start": "19:45",
+   "end": "20:30"
+  },
+  {
+   "id": "lollapalooza-2022:d2:discord:1200:aiida",
+   "artistId": "lollapalooza-2022:aiida",
+   "day": 2,
+   "stageId": "lollapalooza-2022:discord",
+   "start": "12:00",
+   "end": "12:30"
+  },
+  {
+   "id": "lollapalooza-2022:d2:discord:1250:flipturn",
+   "artistId": "lollapalooza-2022:flipturn",
+   "day": 2,
+   "stageId": "lollapalooza-2022:discord",
+   "start": "12:50",
+   "end": "13:30"
+  },
+  {
+   "id": "lollapalooza-2022:d2:discord:1350:kaycyy",
+   "artistId": "lollapalooza-2022:kaycyy",
+   "day": 2,
+   "stageId": "lollapalooza-2022:discord",
+   "start": "13:50",
+   "end": "14:30"
+  },
+  {
+   "id": "lollapalooza-2022:d2:discord:1450:wet-leg",
+   "artistId": "lollapalooza-2022:wet-leg",
+   "day": 2,
+   "stageId": "lollapalooza-2022:discord",
+   "start": "14:50",
+   "end": "15:30"
+  },
+  {
+   "id": "lollapalooza-2022:d2:discord:1600:genesis-owusu",
+   "artistId": "lollapalooza-2022:genesis-owusu",
+   "day": 2,
+   "stageId": "lollapalooza-2022:discord",
+   "start": "16:00",
+   "end": "16:45"
+  },
+  {
+   "id": "lollapalooza-2022:d2:discord:1715:muna",
+   "artistId": "lollapalooza-2022:muna",
+   "day": 2,
+   "stageId": "lollapalooza-2022:discord",
+   "start": "17:15",
+   "end": "18:00"
+  },
+  {
+   "id": "lollapalooza-2022:d2:discord:1830:glaive",
+   "artistId": "lollapalooza-2022:glaive",
+   "day": 2,
+   "stageId": "lollapalooza-2022:discord",
+   "start": "18:30",
+   "end": "19:15"
+  },
+  {
+   "id": "lollapalooza-2022:d2:discord:1945:sofaygo",
+   "artistId": "lollapalooza-2022:sofaygo",
+   "day": 2,
+   "stageId": "lollapalooza-2022:discord",
+   "start": "19:45",
+   "end": "20:30"
+  },
+  {
+   "id": "lollapalooza-2022:d2:discord:2100:bob-moses",
+   "artistId": "lollapalooza-2022:bob-moses",
+   "day": 2,
+   "stageId": "lollapalooza-2022:discord",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "lollapalooza-2022:d2:bmi:1300:daisy-the-great",
+   "artistId": "lollapalooza-2022:daisy-the-great",
+   "day": 2,
+   "stageId": "lollapalooza-2022:bmi",
+   "start": "13:00",
+   "end": "13:40"
+  },
+  {
+   "id": "lollapalooza-2022:d2:bmi:1410:taipei-houston",
+   "artistId": "lollapalooza-2022:taipei-houston",
+   "day": 2,
+   "stageId": "lollapalooza-2022:bmi",
+   "start": "14:10",
+   "end": "14:50"
+  },
+  {
+   "id": "lollapalooza-2022:d2:bmi:1520:gata",
+   "artistId": "lollapalooza-2022:gata",
+   "day": 2,
+   "stageId": "lollapalooza-2022:bmi",
+   "start": "15:20",
+   "end": "16:00"
+  },
+  {
+   "id": "lollapalooza-2022:d2:bmi:1630:joey-valence-and-brae",
+   "artistId": "lollapalooza-2022:joey-valence-and-brae",
+   "day": 2,
+   "stageId": "lollapalooza-2022:bmi",
+   "start": "16:30",
+   "end": "17:10"
+  },
+  {
+   "id": "lollapalooza-2022:d2:bmi:1740:binki",
+   "artistId": "lollapalooza-2022:binki",
+   "day": 2,
+   "stageId": "lollapalooza-2022:bmi",
+   "start": "17:40",
+   "end": "18:20"
+  },
+  {
+   "id": "lollapalooza-2022:d2:bmi:1850:rawayana",
+   "artistId": "lollapalooza-2022:rawayana",
+   "day": 2,
+   "stageId": "lollapalooza-2022:bmi",
+   "start": "18:50",
+   "end": "19:30"
+  },
+  {
+   "id": "lollapalooza-2022:d2:kidzapalooza:1200:suzi-shelton",
+   "artistId": "lollapalooza-2022:suzi-shelton",
+   "day": 2,
+   "stageId": "lollapalooza-2022:kidzapalooza",
+   "start": "12:00",
+   "end": "12:30"
+  },
+  {
+   "id": "lollapalooza-2022:d2:kidzapalooza:1330:fyutch",
+   "artistId": "lollapalooza-2022:fyutch",
+   "day": 2,
+   "stageId": "lollapalooza-2022:kidzapalooza",
+   "start": "13:30",
+   "end": "14:00"
+  },
+  {
+   "id": "lollapalooza-2022:d2:kidzapalooza:1500:school-of-rock",
+   "artistId": "lollapalooza-2022:school-of-rock",
+   "day": 2,
+   "stageId": "lollapalooza-2022:kidzapalooza",
+   "start": "15:00",
+   "end": "15:30"
+  },
+  {
+   "id": "lollapalooza-2022:d2:kidzapalooza:1715:pierce-freelon",
+   "artistId": "lollapalooza-2022:pierce-freelon",
+   "day": 2,
+   "stageId": "lollapalooza-2022:kidzapalooza",
+   "start": "17:15",
+   "end": "17:45"
+  },
+  {
+   "id": "lollapalooza-2022:d2:solana-x-perry-s:1200:young-franco",
+   "artistId": "lollapalooza-2022:young-franco",
+   "day": 2,
+   "stageId": "lollapalooza-2022:solana-x-perry-s",
+   "start": "12:00",
+   "end": "12:30"
+  },
+  {
+   "id": "lollapalooza-2022:d2:solana-x-perry-s:1235:fiin",
+   "artistId": "lollapalooza-2022:fiin",
+   "day": 2,
+   "stageId": "lollapalooza-2022:solana-x-perry-s",
+   "start": "12:35",
+   "end": "13:15"
+  },
+  {
+   "id": "lollapalooza-2022:d2:solana-x-perry-s:1330:maddy-o-neal",
+   "artistId": "lollapalooza-2022:maddy-o-neal",
+   "day": 2,
+   "stageId": "lollapalooza-2022:solana-x-perry-s",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "lollapalooza-2022:d2:solana-x-perry-s:1430:whipped-cream",
+   "artistId": "lollapalooza-2022:whipped-cream",
+   "day": 2,
+   "stageId": "lollapalooza-2022:solana-x-perry-s",
+   "start": "14:30",
+   "end": "15:15"
+  },
+  {
+   "id": "lollapalooza-2022:d2:solana-x-perry-s:1530:wreckno",
+   "artistId": "lollapalooza-2022:wreckno",
+   "day": 2,
+   "stageId": "lollapalooza-2022:solana-x-perry-s",
+   "start": "15:30",
+   "end": "16:15"
+  },
+  {
+   "id": "lollapalooza-2022:d2:solana-x-perry-s:1630:lp-giobbi",
+   "artistId": "lollapalooza-2022:lp-giobbi",
+   "day": 2,
+   "stageId": "lollapalooza-2022:solana-x-perry-s",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "lollapalooza-2022:d2:solana-x-perry-s:1800:clozee",
+   "artistId": "lollapalooza-2022:clozee",
+   "day": 2,
+   "stageId": "lollapalooza-2022:solana-x-perry-s",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "lollapalooza-2022:d2:solana-x-perry-s:1915:liquid-stranger",
+   "artistId": "lollapalooza-2022:liquid-stranger",
+   "day": 2,
+   "stageId": "lollapalooza-2022:solana-x-perry-s",
+   "start": "19:15",
+   "end": "20:15"
+  },
+  {
+   "id": "lollapalooza-2022:d2:solana-x-perry-s:2030:rezz",
+   "artistId": "lollapalooza-2022:rezz",
+   "day": 2,
+   "stageId": "lollapalooza-2022:solana-x-perry-s",
+   "start": "20:30",
+   "end": "21:45"
+  },
+  {
+   "id": "lollapalooza-2022:d2:coinbase:1200:la-dona",
+   "artistId": "lollapalooza-2022:la-dona",
+   "day": 2,
+   "stageId": "lollapalooza-2022:coinbase",
+   "start": "12:00",
+   "end": "12:45"
+  },
+  {
+   "id": "lollapalooza-2022:d2:coinbase:1345:del-water-gap",
+   "artistId": "lollapalooza-2022:del-water-gap",
+   "day": 2,
+   "stageId": "lollapalooza-2022:coinbase",
+   "start": "13:45",
+   "end": "14:45"
+  },
+  {
+   "id": "lollapalooza-2022:d2:coinbase:1545:tinashe",
+   "artistId": "lollapalooza-2022:tinashe",
+   "day": 2,
+   "stageId": "lollapalooza-2022:coinbase",
+   "start": "15:45",
+   "end": "16:45"
+  },
+  {
+   "id": "lollapalooza-2022:d2:coinbase:1745:coi-leray",
+   "artistId": "lollapalooza-2022:coi-leray",
+   "day": 2,
+   "stageId": "lollapalooza-2022:coinbase",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "lollapalooza-2022:d2:coinbase:1945:girl-in-red",
+   "artistId": "lollapalooza-2022:girl-in-red",
+   "day": 2,
+   "stageId": "lollapalooza-2022:coinbase",
+   "start": "19:45",
+   "end": "20:45"
+  },
+  {
+   "id": "lollapalooza-2022:d2:t-mobile:1245:jordy",
+   "artistId": "lollapalooza-2022:jordy",
+   "day": 2,
+   "stageId": "lollapalooza-2022:t-mobile",
+   "start": "12:45",
+   "end": "13:45"
+  },
+  {
+   "id": "lollapalooza-2022:d2:t-mobile:1445:rolling-blackouts-coastal-fever",
+   "artistId": "lollapalooza-2022:rolling-blackouts-coastal-fever",
+   "day": 2,
+   "stageId": "lollapalooza-2022:t-mobile",
+   "start": "14:45",
+   "end": "15:45"
+  },
+  {
+   "id": "lollapalooza-2022:d2:t-mobile:1645:cordae",
+   "artistId": "lollapalooza-2022:cordae",
+   "day": 2,
+   "stageId": "lollapalooza-2022:t-mobile",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "lollapalooza-2022:d2:t-mobile:1845:glass-animals",
+   "artistId": "lollapalooza-2022:glass-animals",
+   "day": 2,
+   "stageId": "lollapalooza-2022:t-mobile",
+   "start": "18:45",
+   "end": "19:45"
+  },
+  {
+   "id": "lollapalooza-2022:d2:t-mobile:2045:dua-lipa",
+   "artistId": "lollapalooza-2022:dua-lipa",
+   "day": 2,
+   "stageId": "lollapalooza-2022:t-mobile",
+   "start": "20:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "lollapalooza-2022:d2:bud-light-seltzer-sessions:1430:la-dona",
+   "artistId": "lollapalooza-2022:la-dona",
+   "day": 2,
+   "stageId": "lollapalooza-2022:bud-light-seltzer-sessions",
+   "start": "14:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "lollapalooza-2022:d2:bud-light-seltzer-sessions:1630:rawayana",
+   "artistId": "lollapalooza-2022:rawayana",
+   "day": 2,
+   "stageId": "lollapalooza-2022:bud-light-seltzer-sessions",
+   "start": "16:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "lollapalooza-2022:d2:bud-light-seltzer-sessions:1830:hinds",
+   "artistId": "lollapalooza-2022:hinds",
+   "day": 2,
+   "stageId": "lollapalooza-2022:bud-light-seltzer-sessions",
+   "start": "18:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "lollapalooza-2022:d3:bud-light-seltzer:1300:crawlers",
+   "artistId": "lollapalooza-2022:crawlers",
+   "day": 3,
+   "stageId": "lollapalooza-2022:bud-light-seltzer",
+   "start": "13:00",
+   "end": "13:45"
+  },
+  {
+   "id": "lollapalooza-2022:d3:bud-light-seltzer:1445:griff",
+   "artistId": "lollapalooza-2022:griff",
+   "day": 3,
+   "stageId": "lollapalooza-2022:bud-light-seltzer",
+   "start": "14:45",
+   "end": "15:45"
+  },
+  {
+   "id": "lollapalooza-2022:d3:bud-light-seltzer:1645:blxst",
+   "artistId": "lollapalooza-2022:blxst",
+   "day": 3,
+   "stageId": "lollapalooza-2022:bud-light-seltzer",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "lollapalooza-2022:d3:bud-light-seltzer:1845:idles",
+   "artistId": "lollapalooza-2022:idles",
+   "day": 3,
+   "stageId": "lollapalooza-2022:bud-light-seltzer",
+   "start": "18:45",
+   "end": "19:45"
+  },
+  {
+   "id": "lollapalooza-2022:d3:bud-light-seltzer:2030:kygo",
+   "artistId": "lollapalooza-2022:kygo",
+   "day": 3,
+   "stageId": "lollapalooza-2022:bud-light-seltzer",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "lollapalooza-2022:d3:tito-s-handmade-vodka:1215:charm-la-donna",
+   "artistId": "lollapalooza-2022:charm-la-donna",
+   "day": 3,
+   "stageId": "lollapalooza-2022:tito-s-handmade-vodka",
+   "start": "12:15",
+   "end": "13:00"
+  },
+  {
+   "id": "lollapalooza-2022:d3:tito-s-handmade-vodka:1345:alexander-23",
+   "artistId": "lollapalooza-2022:alexander-23",
+   "day": 3,
+   "stageId": "lollapalooza-2022:tito-s-handmade-vodka",
+   "start": "13:45",
+   "end": "14:45"
+  },
+  {
+   "id": "lollapalooza-2022:d3:tito-s-handmade-vodka:1545:larry-june",
+   "artistId": "lollapalooza-2022:larry-june",
+   "day": 3,
+   "stageId": "lollapalooza-2022:tito-s-handmade-vodka",
+   "start": "15:45",
+   "end": "16:45"
+  },
+  {
+   "id": "lollapalooza-2022:d3:tito-s-handmade-vodka:1745:coin",
+   "artistId": "lollapalooza-2022:coin",
+   "day": 3,
+   "stageId": "lollapalooza-2022:tito-s-handmade-vodka",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "lollapalooza-2022:d3:tito-s-handmade-vodka:1945:charly-jordan",
+   "artistId": "lollapalooza-2022:charly-jordan",
+   "day": 3,
+   "stageId": "lollapalooza-2022:tito-s-handmade-vodka",
+   "start": "19:45",
+   "end": "20:30"
+  },
+  {
+   "id": "lollapalooza-2022:d3:discord:1200:d-carr",
+   "artistId": "lollapalooza-2022:d-carr",
+   "day": 3,
+   "stageId": "lollapalooza-2022:discord",
+   "start": "12:00",
+   "end": "12:30"
+  },
+  {
+   "id": "lollapalooza-2022:d3:discord:1250:calder-allen",
+   "artistId": "lollapalooza-2022:calder-allen",
+   "day": 3,
+   "stageId": "lollapalooza-2022:discord",
+   "start": "12:50",
+   "end": "13:30"
+  },
+  {
+   "id": "lollapalooza-2022:d3:discord:1350:pom-pom-squad",
+   "artistId": "lollapalooza-2022:pom-pom-squad",
+   "day": 3,
+   "stageId": "lollapalooza-2022:discord",
+   "start": "13:50",
+   "end": "14:30"
+  },
+  {
+   "id": "lollapalooza-2022:d3:discord:1450:coco-and-clair-clair",
+   "artistId": "lollapalooza-2022:coco-and-clair-clair",
+   "day": 3,
+   "stageId": "lollapalooza-2022:discord",
+   "start": "14:50",
+   "end": "15:30"
+  },
+  {
+   "id": "lollapalooza-2022:d3:discord:1600:gracie-abrams",
+   "artistId": "lollapalooza-2022:gracie-abrams",
+   "day": 3,
+   "stageId": "lollapalooza-2022:discord",
+   "start": "16:00",
+   "end": "16:45"
+  },
+  {
+   "id": "lollapalooza-2022:d3:discord:1715:duckwrth",
+   "artistId": "lollapalooza-2022:duckwrth",
+   "day": 3,
+   "stageId": "lollapalooza-2022:discord",
+   "start": "17:15",
+   "end": "18:00"
+  },
+  {
+   "id": "lollapalooza-2022:d3:discord:1830:mariah-the-scientist",
+   "artistId": "lollapalooza-2022:mariah-the-scientist",
+   "day": 3,
+   "stageId": "lollapalooza-2022:discord",
+   "start": "18:30",
+   "end": "19:15"
+  },
+  {
+   "id": "lollapalooza-2022:d3:discord:1945:turnstile",
+   "artistId": "lollapalooza-2022:turnstile",
+   "day": 3,
+   "stageId": "lollapalooza-2022:discord",
+   "start": "19:45",
+   "end": "20:45"
+  },
+  {
+   "id": "lollapalooza-2022:d3:discord:2115:willow",
+   "artistId": "lollapalooza-2022:willow",
+   "day": 3,
+   "stageId": "lollapalooza-2022:discord",
+   "start": "21:15",
+   "end": "22:00"
+  },
+  {
+   "id": "lollapalooza-2022:d3:bmi:1300:sam-austins",
+   "artistId": "lollapalooza-2022:sam-austins",
+   "day": 3,
+   "stageId": "lollapalooza-2022:bmi",
+   "start": "13:00",
+   "end": "13:40"
+  },
+  {
+   "id": "lollapalooza-2022:d3:bmi:1410:meet-me-the-altar",
+   "artistId": "lollapalooza-2022:meet-me-the-altar",
+   "day": 3,
+   "stageId": "lollapalooza-2022:bmi",
+   "start": "14:10",
+   "end": "14:50"
+  },
+  {
+   "id": "lollapalooza-2022:d3:bmi:1520:dannylux",
+   "artistId": "lollapalooza-2022:dannylux",
+   "day": 3,
+   "stageId": "lollapalooza-2022:bmi",
+   "start": "15:20",
+   "end": "16:00"
+  },
+  {
+   "id": "lollapalooza-2022:d3:bmi:1630:prentiss",
+   "artistId": "lollapalooza-2022:prentiss",
+   "day": 3,
+   "stageId": "lollapalooza-2022:bmi",
+   "start": "16:30",
+   "end": "17:10"
+  },
+  {
+   "id": "lollapalooza-2022:d3:bmi:1740:babyjake",
+   "artistId": "lollapalooza-2022:babyjake",
+   "day": 3,
+   "stageId": "lollapalooza-2022:bmi",
+   "start": "17:40",
+   "end": "18:20"
+  },
+  {
+   "id": "lollapalooza-2022:d3:bmi:1850:gayle",
+   "artistId": "lollapalooza-2022:gayle",
+   "day": 3,
+   "stageId": "lollapalooza-2022:bmi",
+   "start": "18:50",
+   "end": "19:30"
+  },
+  {
+   "id": "lollapalooza-2022:d3:kidzapalooza:1200:pierce-freelon",
+   "artistId": "lollapalooza-2022:pierce-freelon",
+   "day": 3,
+   "stageId": "lollapalooza-2022:kidzapalooza",
+   "start": "12:00",
+   "end": "12:30"
+  },
+  {
+   "id": "lollapalooza-2022:d3:kidzapalooza:1330:the-lucky-band",
+   "artistId": "lollapalooza-2022:the-lucky-band",
+   "day": 3,
+   "stageId": "lollapalooza-2022:kidzapalooza",
+   "start": "13:30",
+   "end": "14:00"
+  },
+  {
+   "id": "lollapalooza-2022:d3:kidzapalooza:1500:q-brothers",
+   "artistId": "lollapalooza-2022:q-brothers",
+   "day": 3,
+   "stageId": "lollapalooza-2022:kidzapalooza",
+   "start": "15:00",
+   "end": "15:30"
+  },
+  {
+   "id": "lollapalooza-2022:d3:kidzapalooza:1715:koo-koo-kanga-roo",
+   "artistId": "lollapalooza-2022:koo-koo-kanga-roo",
+   "day": 3,
+   "stageId": "lollapalooza-2022:kidzapalooza",
+   "start": "17:15",
+   "end": "17:45"
+  },
+  {
+   "id": "lollapalooza-2022:d3:solana-x-perry-s:1200:bucky-cheds",
+   "artistId": "lollapalooza-2022:bucky-cheds",
+   "day": 3,
+   "stageId": "lollapalooza-2022:solana-x-perry-s",
+   "start": "12:00",
+   "end": "12:35"
+  },
+  {
+   "id": "lollapalooza-2022:d3:solana-x-perry-s:1240:steller",
+   "artistId": "lollapalooza-2022:steller",
+   "day": 3,
+   "stageId": "lollapalooza-2022:solana-x-perry-s",
+   "start": "12:40",
+   "end": "13:20"
+  },
+  {
+   "id": "lollapalooza-2022:d3:solana-x-perry-s:1330:grabbitz",
+   "artistId": "lollapalooza-2022:grabbitz",
+   "day": 3,
+   "stageId": "lollapalooza-2022:solana-x-perry-s",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "lollapalooza-2022:d3:solana-x-perry-s:1415:evan-giia",
+   "artistId": "lollapalooza-2022:evan-giia",
+   "day": 3,
+   "stageId": "lollapalooza-2022:solana-x-perry-s",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "lollapalooza-2022:d3:solana-x-perry-s:1515:surf-mesa",
+   "artistId": "lollapalooza-2022:surf-mesa",
+   "day": 3,
+   "stageId": "lollapalooza-2022:solana-x-perry-s",
+   "start": "15:15",
+   "end": "16:00"
+  },
+  {
+   "id": "lollapalooza-2022:d3:solana-x-perry-s:1615:lil-durk",
+   "artistId": "lollapalooza-2022:lil-durk",
+   "day": 3,
+   "stageId": "lollapalooza-2022:solana-x-perry-s",
+   "start": "16:15",
+   "end": "17:00"
+  },
+  {
+   "id": "lollapalooza-2022:d3:solana-x-perry-s:1715:sidepiece",
+   "artistId": "lollapalooza-2022:sidepiece",
+   "day": 3,
+   "stageId": "lollapalooza-2022:solana-x-perry-s",
+   "start": "17:15",
+   "end": "18:15"
+  },
+  {
+   "id": "lollapalooza-2022:d3:solana-x-perry-s:1830:duke-dumont",
+   "artistId": "lollapalooza-2022:duke-dumont",
+   "day": 3,
+   "stageId": "lollapalooza-2022:solana-x-perry-s",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "lollapalooza-2022:d3:solana-x-perry-s:1945:tomorrow-x-together",
+   "artistId": "lollapalooza-2022:tomorrow-x-together",
+   "day": 3,
+   "stageId": "lollapalooza-2022:solana-x-perry-s",
+   "start": "19:45",
+   "end": "20:30"
+  },
+  {
+   "id": "lollapalooza-2022:d3:solana-x-perry-s:2030:kaskade",
+   "artistId": "lollapalooza-2022:kaskade",
+   "day": 3,
+   "stageId": "lollapalooza-2022:solana-x-perry-s",
+   "start": "20:30",
+   "end": "21:45"
+  },
+  {
+   "id": "lollapalooza-2022:d3:coinbase:1230:ericdoa",
+   "artistId": "lollapalooza-2022:ericdoa",
+   "day": 3,
+   "stageId": "lollapalooza-2022:coinbase",
+   "start": "12:30",
+   "end": "13:15"
+  },
+  {
+   "id": "lollapalooza-2022:d3:coinbase:1400:hinds",
+   "artistId": "lollapalooza-2022:hinds",
+   "day": 3,
+   "stageId": "lollapalooza-2022:coinbase",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "lollapalooza-2022:d3:coinbase:1600:dashboard-confessional",
+   "artistId": "lollapalooza-2022:dashboard-confessional",
+   "day": 3,
+   "stageId": "lollapalooza-2022:coinbase",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "lollapalooza-2022:d3:coinbase:1800:yg",
+   "artistId": "lollapalooza-2022:yg",
+   "day": 3,
+   "stageId": "lollapalooza-2022:coinbase",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "lollapalooza-2022:d3:coinbase:2000:chelsea-cutler",
+   "artistId": "lollapalooza-2022:chelsea-cutler",
+   "day": 3,
+   "stageId": "lollapalooza-2022:coinbase",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "lollapalooza-2022:d3:t-mobile:1315:cochise",
+   "artistId": "lollapalooza-2022:cochise",
+   "day": 3,
+   "stageId": "lollapalooza-2022:t-mobile",
+   "start": "13:15",
+   "end": "14:00"
+  },
+  {
+   "id": "lollapalooza-2022:d3:t-mobile:1500:fletcher",
+   "artistId": "lollapalooza-2022:fletcher",
+   "day": 3,
+   "stageId": "lollapalooza-2022:t-mobile",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "lollapalooza-2022:d3:t-mobile:1700:wallows",
+   "artistId": "lollapalooza-2022:wallows",
+   "day": 3,
+   "stageId": "lollapalooza-2022:t-mobile",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "lollapalooza-2022:d3:t-mobile:1900:big-sean",
+   "artistId": "lollapalooza-2022:big-sean",
+   "day": 3,
+   "stageId": "lollapalooza-2022:t-mobile",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "lollapalooza-2022:d3:t-mobile:2100:j-cole",
+   "artistId": "lollapalooza-2022:j-cole",
+   "day": 3,
+   "stageId": "lollapalooza-2022:t-mobile",
+   "start": "21:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "lollapalooza-2022:d3:bud-light-seltzer-sessions:1430:de-wayne",
+   "artistId": "lollapalooza-2022:de-wayne",
+   "day": 3,
+   "stageId": "lollapalooza-2022:bud-light-seltzer-sessions",
+   "start": "14:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "lollapalooza-2022:d3:bud-light-seltzer-sessions:1630:evan-giia",
+   "artistId": "lollapalooza-2022:evan-giia",
+   "day": 3,
+   "stageId": "lollapalooza-2022:bud-light-seltzer-sessions",
+   "start": "16:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "lollapalooza-2022:d3:bud-light-seltzer-sessions:1830:alexander-23",
+   "artistId": "lollapalooza-2022:alexander-23",
+   "day": 3,
+   "stageId": "lollapalooza-2022:bud-light-seltzer-sessions",
+   "start": "18:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "lollapalooza-2022:d4:bud-light-seltzer:1345:erica-banks",
+   "artistId": "lollapalooza-2022:erica-banks",
+   "day": 4,
+   "stageId": "lollapalooza-2022:bud-light-seltzer",
+   "start": "13:45",
+   "end": "14:30"
+  },
+  {
+   "id": "lollapalooza-2022:d4:bud-light-seltzer:1515:djo",
+   "artistId": "lollapalooza-2022:djo",
+   "day": 4,
+   "stageId": "lollapalooza-2022:bud-light-seltzer",
+   "start": "15:15",
+   "end": "16:15"
+  },
+  {
+   "id": "lollapalooza-2022:d4:bud-light-seltzer:1715:charli-xcx",
+   "artistId": "lollapalooza-2022:charli-xcx",
+   "day": 4,
+   "stageId": "lollapalooza-2022:bud-light-seltzer",
+   "start": "17:15",
+   "end": "18:15"
+  },
+  {
+   "id": "lollapalooza-2022:d4:bud-light-seltzer:1915:the-kid-laroi",
+   "artistId": "lollapalooza-2022:the-kid-laroi",
+   "day": 4,
+   "stageId": "lollapalooza-2022:bud-light-seltzer",
+   "start": "19:15",
+   "end": "20:15"
+  },
+  {
+   "id": "lollapalooza-2022:d4:bud-light-seltzer:2050:j-hope",
+   "artistId": "lollapalooza-2022:j-hope",
+   "day": 4,
+   "stageId": "lollapalooza-2022:bud-light-seltzer",
+   "start": "20:50",
+   "end": "22:00"
+  },
+  {
+   "id": "lollapalooza-2022:d4:tito-s-handmade-vodka:1300:horsegirl",
+   "artistId": "lollapalooza-2022:horsegirl",
+   "day": 4,
+   "stageId": "lollapalooza-2022:tito-s-handmade-vodka",
+   "start": "13:00",
+   "end": "13:45"
+  },
+  {
+   "id": "lollapalooza-2022:d4:tito-s-handmade-vodka:1430:hot-milk",
+   "artistId": "lollapalooza-2022:hot-milk",
+   "day": 4,
+   "stageId": "lollapalooza-2022:tito-s-handmade-vodka",
+   "start": "14:30",
+   "end": "15:15"
+  },
+  {
+   "id": "lollapalooza-2022:d4:tito-s-handmade-vodka:1615:the-marias",
+   "artistId": "lollapalooza-2022:the-marias",
+   "day": 4,
+   "stageId": "lollapalooza-2022:tito-s-handmade-vodka",
+   "start": "16:15",
+   "end": "17:15"
+  },
+  {
+   "id": "lollapalooza-2022:d4:tito-s-handmade-vodka:1815:local-natives",
+   "artistId": "lollapalooza-2022:local-natives",
+   "day": 4,
+   "stageId": "lollapalooza-2022:tito-s-handmade-vodka",
+   "start": "18:15",
+   "end": "19:15"
+  },
+  {
+   "id": "lollapalooza-2022:d4:tito-s-handmade-vodka:2015:lucille-croft",
+   "artistId": "lollapalooza-2022:lucille-croft",
+   "day": 4,
+   "stageId": "lollapalooza-2022:tito-s-handmade-vodka",
+   "start": "20:15",
+   "end": "20:50"
+  },
+  {
+   "id": "lollapalooza-2022:d4:discord:1145:chicago-made-showcase",
+   "artistId": "lollapalooza-2022:chicago-made-showcase",
+   "day": 4,
+   "stageId": "lollapalooza-2022:discord",
+   "start": "11:45",
+   "end": "12:30"
+  },
+  {
+   "id": "lollapalooza-2022:d4:discord:1250:blackstarkids",
+   "artistId": "lollapalooza-2022:blackstarkids",
+   "day": 4,
+   "stageId": "lollapalooza-2022:discord",
+   "start": "12:50",
+   "end": "13:30"
+  },
+  {
+   "id": "lollapalooza-2022:d4:discord:1350:teezo-touchdown",
+   "artistId": "lollapalooza-2022:teezo-touchdown",
+   "day": 4,
+   "stageId": "lollapalooza-2022:discord",
+   "start": "13:50",
+   "end": "14:30"
+  },
+  {
+   "id": "lollapalooza-2022:d4:discord:1450:claire-rosinkranz",
+   "artistId": "lollapalooza-2022:claire-rosinkranz",
+   "day": 4,
+   "stageId": "lollapalooza-2022:discord",
+   "start": "14:50",
+   "end": "15:30"
+  },
+  {
+   "id": "lollapalooza-2022:d4:discord:1600:kennyhoopla",
+   "artistId": "lollapalooza-2022:kennyhoopla",
+   "day": 4,
+   "stageId": "lollapalooza-2022:discord",
+   "start": "16:00",
+   "end": "16:45"
+  },
+  {
+   "id": "lollapalooza-2022:d4:discord:1715:young-nudy",
+   "artistId": "lollapalooza-2022:young-nudy",
+   "day": 4,
+   "stageId": "lollapalooza-2022:discord",
+   "start": "17:15",
+   "end": "18:00"
+  },
+  {
+   "id": "lollapalooza-2022:d4:discord:1830:pinkpantheress",
+   "artistId": "lollapalooza-2022:pinkpantheress",
+   "day": 4,
+   "stageId": "lollapalooza-2022:discord",
+   "start": "18:30",
+   "end": "19:15"
+  },
+  {
+   "id": "lollapalooza-2022:d4:discord:1945:dominic-fike",
+   "artistId": "lollapalooza-2022:dominic-fike",
+   "day": 4,
+   "stageId": "lollapalooza-2022:discord",
+   "start": "19:45",
+   "end": "20:30"
+  },
+  {
+   "id": "lollapalooza-2022:d4:discord:2100:polo-and-pan",
+   "artistId": "lollapalooza-2022:polo-and-pan",
+   "day": 4,
+   "stageId": "lollapalooza-2022:discord",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "lollapalooza-2022:d4:bmi:1300:trella",
+   "artistId": "lollapalooza-2022:trella",
+   "day": 4,
+   "stageId": "lollapalooza-2022:bmi",
+   "start": "13:00",
+   "end": "13:40"
+  },
+  {
+   "id": "lollapalooza-2022:d4:bmi:1410:buffalo-nichols",
+   "artistId": "lollapalooza-2022:buffalo-nichols",
+   "day": 4,
+   "stageId": "lollapalooza-2022:bmi",
+   "start": "14:10",
+   "end": "14:50"
+  },
+  {
+   "id": "lollapalooza-2022:d4:bmi:1520:l-l",
+   "artistId": "lollapalooza-2022:l-l",
+   "day": 4,
+   "stageId": "lollapalooza-2022:bmi",
+   "start": "15:20",
+   "end": "16:00"
+  },
+  {
+   "id": "lollapalooza-2022:d4:bmi:1630:peter-cottontale",
+   "artistId": "lollapalooza-2022:peter-cottontale",
+   "day": 4,
+   "stageId": "lollapalooza-2022:bmi",
+   "start": "16:30",
+   "end": "17:10"
+  },
+  {
+   "id": "lollapalooza-2022:d4:bmi:1740:india-shawn",
+   "artistId": "lollapalooza-2022:india-shawn",
+   "day": 4,
+   "stageId": "lollapalooza-2022:bmi",
+   "start": "17:40",
+   "end": "18:20"
+  },
+  {
+   "id": "lollapalooza-2022:d4:bmi:1850:dylan",
+   "artistId": "lollapalooza-2022:dylan",
+   "day": 4,
+   "stageId": "lollapalooza-2022:bmi",
+   "start": "18:50",
+   "end": "19:30"
+  },
+  {
+   "id": "lollapalooza-2022:d4:kidzapalooza:1200:koo-koo-kanga-roo",
+   "artistId": "lollapalooza-2022:koo-koo-kanga-roo",
+   "day": 4,
+   "stageId": "lollapalooza-2022:kidzapalooza",
+   "start": "12:00",
+   "end": "12:30"
+  },
+  {
+   "id": "lollapalooza-2022:d4:kidzapalooza:1330:q-brothers",
+   "artistId": "lollapalooza-2022:q-brothers",
+   "day": 4,
+   "stageId": "lollapalooza-2022:kidzapalooza",
+   "start": "13:30",
+   "end": "14:00"
+  },
+  {
+   "id": "lollapalooza-2022:d4:kidzapalooza:1500:cielito-lindo",
+   "artistId": "lollapalooza-2022:cielito-lindo",
+   "day": 4,
+   "stageId": "lollapalooza-2022:kidzapalooza",
+   "start": "15:00",
+   "end": "15:30"
+  },
+  {
+   "id": "lollapalooza-2022:d4:kidzapalooza:1715:the-lucky-band",
+   "artistId": "lollapalooza-2022:the-lucky-band",
+   "day": 4,
+   "stageId": "lollapalooza-2022:kidzapalooza",
+   "start": "17:15",
+   "end": "17:45"
+  },
+  {
+   "id": "lollapalooza-2022:d4:solana-x-perry-s:1200:zookeper",
+   "artistId": "lollapalooza-2022:zookeper",
+   "day": 4,
+   "stageId": "lollapalooza-2022:solana-x-perry-s",
+   "start": "12:00",
+   "end": "12:45"
+  },
+  {
+   "id": "lollapalooza-2022:d4:solana-x-perry-s:1300:hannah-wants",
+   "artistId": "lollapalooza-2022:hannah-wants",
+   "day": 4,
+   "stageId": "lollapalooza-2022:solana-x-perry-s",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "lollapalooza-2022:d4:solana-x-perry-s:1415:habstrakt",
+   "artistId": "lollapalooza-2022:habstrakt",
+   "day": 4,
+   "stageId": "lollapalooza-2022:solana-x-perry-s",
+   "start": "14:15",
+   "end": "15:15"
+  },
+  {
+   "id": "lollapalooza-2022:d4:solana-x-perry-s:1530:james-hype",
+   "artistId": "lollapalooza-2022:james-hype",
+   "day": 4,
+   "stageId": "lollapalooza-2022:solana-x-perry-s",
+   "start": "15:30",
+   "end": "16:30"
+  },
+  {
+   "id": "lollapalooza-2022:d4:solana-x-perry-s:1645:atliens",
+   "artistId": "lollapalooza-2022:atliens",
+   "day": 4,
+   "stageId": "lollapalooza-2022:solana-x-perry-s",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "lollapalooza-2022:d4:solana-x-perry-s:1815:gordo",
+   "artistId": "lollapalooza-2022:gordo",
+   "day": 4,
+   "stageId": "lollapalooza-2022:solana-x-perry-s",
+   "start": "18:15",
+   "end": "19:15"
+  },
+  {
+   "id": "lollapalooza-2022:d4:solana-x-perry-s:1930:john-summit",
+   "artistId": "lollapalooza-2022:john-summit",
+   "day": 4,
+   "stageId": "lollapalooza-2022:solana-x-perry-s",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "lollapalooza-2022:d4:solana-x-perry-s:2045:denzel-curry",
+   "artistId": "lollapalooza-2022:denzel-curry",
+   "day": 4,
+   "stageId": "lollapalooza-2022:solana-x-perry-s",
+   "start": "20:45",
+   "end": "21:45"
+  },
+  {
+   "id": "lollapalooza-2022:d4:coinbase:1215:low-cut-connie",
+   "artistId": "lollapalooza-2022:low-cut-connie",
+   "day": 4,
+   "stageId": "lollapalooza-2022:coinbase",
+   "start": "12:15",
+   "end": "13:00"
+  },
+  {
+   "id": "lollapalooza-2022:d4:coinbase:1345:audrey-nuna",
+   "artistId": "lollapalooza-2022:audrey-nuna",
+   "day": 4,
+   "stageId": "lollapalooza-2022:coinbase",
+   "start": "13:45",
+   "end": "14:30"
+  },
+  {
+   "id": "lollapalooza-2022:d4:coinbase:1515:goth-babe",
+   "artistId": "lollapalooza-2022:goth-babe",
+   "day": 4,
+   "stageId": "lollapalooza-2022:coinbase",
+   "start": "15:15",
+   "end": "16:15"
+  },
+  {
+   "id": "lollapalooza-2022:d4:coinbase:1715:beach-bunny",
+   "artistId": "lollapalooza-2022:beach-bunny",
+   "day": 4,
+   "stageId": "lollapalooza-2022:coinbase",
+   "start": "17:15",
+   "end": "18:15"
+  },
+  {
+   "id": "lollapalooza-2022:d4:coinbase:1915:banks",
+   "artistId": "lollapalooza-2022:banks",
+   "day": 4,
+   "stageId": "lollapalooza-2022:coinbase",
+   "start": "19:15",
+   "end": "20:15"
+  },
+  {
+   "id": "lollapalooza-2022:d4:t-mobile:1300:de-wayne",
+   "artistId": "lollapalooza-2022:de-wayne",
+   "day": 4,
+   "stageId": "lollapalooza-2022:t-mobile",
+   "start": "13:00",
+   "end": "13:45"
+  },
+  {
+   "id": "lollapalooza-2022:d4:t-mobile:1430:zoe-wees",
+   "artistId": "lollapalooza-2022:zoe-wees",
+   "day": 4,
+   "stageId": "lollapalooza-2022:t-mobile",
+   "start": "14:30",
+   "end": "15:15"
+  },
+  {
+   "id": "lollapalooza-2022:d4:t-mobile:1615:maneskin",
+   "artistId": "lollapalooza-2022:maneskin",
+   "day": 4,
+   "stageId": "lollapalooza-2022:t-mobile",
+   "start": "16:15",
+   "end": "17:15"
+  },
+  {
+   "id": "lollapalooza-2022:d4:t-mobile:1815:porno-for-pyros",
+   "artistId": "lollapalooza-2022:porno-for-pyros",
+   "day": 4,
+   "stageId": "lollapalooza-2022:t-mobile",
+   "start": "18:15",
+   "end": "19:15"
+  },
+  {
+   "id": "lollapalooza-2022:d4:t-mobile:2015:green-day",
+   "artistId": "lollapalooza-2022:green-day",
+   "day": 4,
+   "stageId": "lollapalooza-2022:t-mobile",
+   "start": "20:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "lollapalooza-2022:d4:bud-light-seltzer-sessions:1430:babyjake",
+   "artistId": "lollapalooza-2022:babyjake",
+   "day": 4,
+   "stageId": "lollapalooza-2022:bud-light-seltzer-sessions",
+   "start": "14:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "lollapalooza-2022:d4:bud-light-seltzer-sessions:1630:charm-la-donna",
+   "artistId": "lollapalooza-2022:charm-la-donna",
+   "day": 4,
+   "stageId": "lollapalooza-2022:bud-light-seltzer-sessions",
+   "start": "16:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "lollapalooza-2022:d4:bud-light-seltzer-sessions:1830:emmy-meli",
+   "artistId": "lollapalooza-2022:emmy-meli",
+   "day": 4,
+   "stageId": "lollapalooza-2022:bud-light-seltzer-sessions",
+   "start": "18:30",
+   "end": null,
+   "openEnd": true
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_image_transcription",
+  "official": "https://www.lollapalooza.com/schedule",
+  "captures": [
+   {
+    "day": 1,
+    "pageArchivedUrl": "https://web.archive.org/web/20221215142514/https://www.lollapalooza.com/schedule",
+    "pageCapture": "20221215142514",
+    "imageArchivedUrl": "https://web.archive.org/web/20221215005501/https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/62e2a47ad6dca96b7b20ba94_LOL22-Grid-0728-THURSDAY_Web-Opt-1080x1350.jpg",
+    "imageCapture": "20221215005501",
+    "sha256": "94b5942d4ceb8013bed80663c459eccde361f822f45c1b94da3d43d86643b592",
+    "reviewManifest": "data/historical/review/lollapalooza-2022.json"
+   },
+   {
+    "day": 2,
+    "pageArchivedUrl": "https://web.archive.org/web/20221215142514/https://www.lollapalooza.com/schedule",
+    "pageCapture": "20221215142514",
+    "imageArchivedUrl": "https://web.archive.org/web/20221215005547/https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/62e41b0c6c8bceee87e0789f_LOL22-Grid-0727-FRIDAY_Post.png",
+    "imageCapture": "20221215005547",
+    "sha256": "34da63e87ffb740658915b14106b35d94acabbd2e06d85f23b5a6af17e5b2018",
+    "reviewManifest": "data/historical/review/lollapalooza-2022.json"
+   },
+   {
+    "day": 3,
+    "pageArchivedUrl": "https://web.archive.org/web/20221215142514/https://www.lollapalooza.com/schedule",
+    "pageCapture": "20221215142514",
+    "imageArchivedUrl": "https://web.archive.org/web/20221215005549/https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/62e4421385270ae9ea26b826_LOL22-Grid-0729_Sat-1350X1080.png",
+    "imageCapture": "20221215005549",
+    "sha256": "8b1ad38494e4ec514e876f5f980d89291e516f8963936bd9d3480c81cc7370c0",
+    "reviewManifest": "data/historical/review/lollapalooza-2022.json"
+   },
+   {
+    "day": 4,
+    "pageArchivedUrl": "https://web.archive.org/web/20221215142514/https://www.lollapalooza.com/schedule",
+    "pageCapture": "20221215142514",
+    "imageArchivedUrl": "https://web.archive.org/web/20221215005549/https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/62e6e4c4d40fd8519539c8e0_LOL22-Grid-0731SUN_1350X1080.png",
+    "imageCapture": "20221215005549",
+    "sha256": "e54ea0a234b25ab118901d1d52af6470492ae53d4f41e9336c0f1c6b625cf318",
+    "reviewManifest": "data/historical/review/lollapalooza-2022.json"
+   }
+  ]
+ },
+ "notes": [
+  {
+   "asOf": "2026-11-19",
+   "days": [
+    1
+   ],
+   "text": "Thursday's times are read off Lollapalooza's own Thursday grid, the image its schedule page embedded.",
+   "source": "https://web.archive.org/web/20221215005501/https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/62e2a47ad6dca96b7b20ba94_LOL22-Grid-0728-THURSDAY_Web-Opt-1080x1350.jpg"
+  },
+  {
+   "asOf": "2026-11-19",
+   "days": [
+    2
+   ],
+   "text": "Friday's times are read off Lollapalooza's own Friday grid, the image its schedule page embedded.",
+   "source": "https://web.archive.org/web/20221215005547/https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/62e41b0c6c8bceee87e0789f_LOL22-Grid-0727-FRIDAY_Post.png"
+  },
+  {
+   "asOf": "2026-11-19",
+   "days": [
+    3
+   ],
+   "text": "Saturday's times are read off Lollapalooza's own Saturday grid, the image its schedule page embedded.",
+   "source": "https://web.archive.org/web/20221215005549/https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/62e4421385270ae9ea26b826_LOL22-Grid-0729_Sat-1350X1080.png"
+  },
+  {
+   "asOf": "2026-11-19",
+   "days": [
+    4
+   ],
+   "text": "Sunday's times are read off Lollapalooza's own Sunday grid, the image its schedule page embedded.",
+   "source": "https://web.archive.org/web/20221215005549/https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/62e6e4c4d40fd8519539c8e0_LOL22-Grid-0731SUN_1350X1080.png"
+  }
+ ]
+}
