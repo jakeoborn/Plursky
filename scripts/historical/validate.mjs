@@ -26,6 +26,9 @@ export const OFFICIAL_HOSTS = {
   // (/hardsummer/) before the festival had its own domain.
   "hard-summer": ["hardsummer.com", "hardfest.com"],
   "electric-forest": ["electricforestfestival.com", "electricforest.com"],
+  // Ultra's own site. Its WordPress uploads serve resized copies
+  // ("-1600x1000.jpg"); only those were archived for 2024.
+  "ultra-miami": ["ultramusicfestival.com", "legacy.ultramusicfestival.com"],
   "coachella": ["coachella.com"],
   // 2012-2013 Las Vegas pages lived on the brand's root domain
   // (/LasVegas/music.php, /music.php). "=" matches that host alone, so the
@@ -108,7 +111,9 @@ const WAYBACK = /^https:\/\/web\.archive\.org\/web\/(\d{14})\/(https?:\/\/[^/]+)
 
 function officialArchive(url, festivalId, year, p, label) {
   const m = WAYBACK.exec(url || "");
-  if (!m) return p.push(`${label}: "${url}" is not a Wayback archive URL`);
+  // Report and return nothing: returning p.push() handed callers a number,
+  // and a note citing a non-Wayback URL crashed on ts.startsWith.
+  if (!m) { p.push(`${label}: "${url}" is not a Wayback archive URL`); return null; }
   const host = new URL(m[2]).hostname.replace(/^www\./, "");
   if (!hostIn(OFFICIAL_HOSTS[festivalId], host))
     p.push(`${label}: ${host} is not an official ${festivalId} property`);
