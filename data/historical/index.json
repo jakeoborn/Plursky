@@ -2925,6 +2925,114 @@
    }
   },
   {
+   "id": "lollapalooza-2023",
+   "festivalId": "lollapalooza",
+   "festivalName": "Lollapalooza",
+   "name": "Lollapalooza 2023",
+   "year": 2023,
+   "timezone": "America/Chicago",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2023-08-03",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2023-08-04",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2023-08-05",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2023-08-06",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 10,
+    "artists": 185,
+    "sets": 229
+   }
+  },
+  {
+   "id": "lollapalooza-2022",
+   "festivalId": "lollapalooza",
+   "festivalName": "Lollapalooza",
+   "name": "Lollapalooza 2022",
+   "year": 2022,
+   "timezone": "America/Chicago",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2022-07-28",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2022-07-29",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2022-07-30",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2022-07-31",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 9,
+    "artists": 183,
+    "sets": 203
+   }
+  },
+  {
+   "id": "lollapalooza-2021",
+   "festivalId": "lollapalooza",
+   "festivalName": "Lollapalooza",
+   "name": "Lollapalooza 2021",
+   "year": 2021,
+   "timezone": "America/Chicago",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2021-07-29",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2021-07-30",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2021-07-31",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2021-08-01",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 174,
+    "sets": 185
+   }
+  },
+  {
    "id": "lollapalooza-2019",
    "festivalId": "lollapalooza",
    "festivalName": "Lollapalooza",

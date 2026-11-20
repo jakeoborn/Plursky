@@ -553,6 +553,41 @@
   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
  },
  {
+  "id": "lollapalooza-2022:d3:solana-x-perry-s:1945:tomorrow-x-together",
+  "printed": "TOMORROW X TOGETHER",
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "lollapalooza-2023:d3:bud-light:2030:tomorrow-x-together",
+  "printed": "TOMORROW X TOGETHER",
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "lollapalooza-2023:d3:bacardi:1150:kosine-x-frayne-vibez",
+  "printed": "KOSINE X FRAYNE VIBEZ",
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "lollapalooza-2023:d3:perry-s:1330:bonnie-x-clyde",
+  "printed": "BONNIE X CLYDE",
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "lollapalooza-2023:d4:bacardi:1945:dpr-ian-dpr-live",
+  "printed": "DPR IAN + DPR LIVE",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
   "id": "lollapalooza-2024:d2:bud-light:1845:laufey-with-the-chicago-philharmonic",
   "printed": "LAUFEY WITH THE CHICAGO PHILHARMONIC",
   "reason": "feat / with billing",
@@ -1204,6 +1239,20 @@
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
  },
  {
+  "id": "key:cam",
+  "printed": "CAM",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
+  "id": "key:bia",
+  "printed": "BIA",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
   "id": "key:fkj",
   "printed": "FKJ",
   "reason": "very short name billed at more than one festival brand",
@@ -1363,6 +1412,13 @@
   "reason": "very short name billed at more than one festival brand",
   "pending": true,
   "why": "Short name billed at Nocturnal Wonderland 2022 and Lights All Night 2026 (from a press relay of the poster). Not merged into one arc until a first-party link shows it is the same act; the billings render separately."
+ },
+ {
+  "id": "key:yg",
+  "printed": "YG",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
  },
  {
   "id": "key:air",

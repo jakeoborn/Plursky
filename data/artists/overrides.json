@@ -7972,6 +7972,30 @@
   {
    "key": "kx5",
    "why": "Short name billed at more than one festival brand (EDC Las Vegas 2022, Ultra Miami 2023). EDC prints it as \"Kaskade & deadmau5 present Kx5\" and Ultra as Kx5 alone; both read as one act, so the key stays one, and no claim is made about the act behind the Ultra billing."
+  },
+  {
+   "printed": "TOMORROW X TOGETHER",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "KOSINE X FRAYNE VIBEZ",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "DPR IAN + DPR LIVE",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "key": "cam",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "bia",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "yg",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
   }
  ]
 }

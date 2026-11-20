@@ -55,6 +55,23 @@ export const GRAPHIC_EDITIONS = {
   "governors-ball-2025": { year: 2025, page: "https://www.governorsballmusicfestival.com/schedule", window: ["20250601", "20251231"],
     image: /GBSchedule-[^"'\s/]+?\.png/i,
     days: [{ day: 1, date: "2025-06-06", token: /-Fri/i }, { day: 2, date: "2025-06-07", token: /-Sat/i }, { day: 3, date: "2025-06-08", token: /-Sun/i }] },
+  // Lollapalooza 2021-2023: grids embedded on lollapalooza.com/schedule from
+  // assets-global.website-files.com. 2021 "LP21-GRID-V15_01-Thurs-01.png"
+  // (re-issued V11-V15); 2022 "LOL22-Grid-0728-THURSDAY_Web-Opt-….jpg" and
+  // "LOL22-Grid-0729_Sat-1350X1080.png"; 2023 "L23_Grid-07.28_Aug3.png", whose
+  // Sunday was re-issued as "L23_Grid-08.01_Aug6-1080x1350.png".
+  "lollapalooza-2021": { year: 2021, page: "https://www.lollapalooza.com/schedule", window: ["20210601", "20211231"],
+    image: /LP21-GRID-V\d+_[^"'\s/]+?\.png/i,
+    days: [{ day: 1, date: "2021-07-29", token: /_01-Thurs/i }, { day: 2, date: "2021-07-30", token: /_02-Fri/i },
+      { day: 3, date: "2021-07-31", token: /_03-Sat/i }, { day: 4, date: "2021-08-01", token: /_04-Sun/i }] },
+  "lollapalooza-2022": { year: 2022, page: "https://www.lollapalooza.com/schedule", window: ["20220601", "20221231"],
+    image: /LOL22-Grid-[^"'\s/]+?\.(?:png|jpe?g)/i,
+    days: [{ day: 1, date: "2022-07-28", token: /THURS/i }, { day: 2, date: "2022-07-29", token: /FRI/i },
+      { day: 3, date: "2022-07-30", token: /Sat/i }, { day: 4, date: "2022-07-31", token: /SUN/i }] },
+  "lollapalooza-2023": { year: 2023, page: "https://www.lollapalooza.com/schedule", window: ["20230601", "20231231"],
+    image: /L23_Grid-[^"'\s/]+?\.png/i,
+    days: [{ day: 1, date: "2023-08-03", token: /_Aug3\b|_Aug3[-.]/i }, { day: 2, date: "2023-08-04", token: /_Aug4/i },
+      { day: 3, date: "2023-08-05", token: /_Aug5/i }, { day: 4, date: "2023-08-06", token: /_Aug6/i }] },
   // Lollapalooza 2024: "Lolla24_Grid-01Thurs-07.23.png"; the May issue was
   // "LOLLA24-THURS-Schedule-web.png". Re-issues add a date and a letter.
   // Sunday's last two re-issues carry no day name ("Lolla24_Grid-08.04.png",

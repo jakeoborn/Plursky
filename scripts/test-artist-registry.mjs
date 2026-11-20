@@ -176,9 +176,13 @@ const out = build();
   // CHICAGO PHILHARMONIC) and a short name now at three brands (FLO): 200
   // rows. Ultra Miami 2022 and 2023 add three: an "x" billing whose sides are
   // not both known acts (KVSH X PONTIFEXX), a "+" billing (ASH TRÉS + MOSES
-  // JAZZ) and a short name now at two brands (Kx5): 203 rows. Past 203, stop
-  // and report.
-  check(review.length <= 203, `review queue is ${review.length} rows (> 203 means stop and report)`);
+  // JAZZ) and a short name now at two brands (Kx5): 203 rows. Lollapalooza
+  // 2021 to 2023 add eight, all pending with no claim: four "x" or "+"
+  // billings (TOMORROW X TOGETHER twice, KOSINE X FRAYNE VIBEZ, DPR IAN + DPR
+  // LIVE), a BONNIE X CLYDE billing under its existing pending entry, and
+  // three short names now at more than one brand (CAM, BIA, YG): 211 rows.
+  // Past 211, stop and report.
+  check(review.length <= 211, `review queue is ${review.length} rows (> 211 means stop and report)`);
   check(review.every(r => r.reason) && excluded.every(e => e.reason && e.category), 'a review or excluded row without its reason');
   check(excluded.some(e => e.category === 'unnamed-slot'), 'control: no unnamed slot was excluded');
   // Bare non-acts never become artists; a NAMED kids act ("Special Guest: The
