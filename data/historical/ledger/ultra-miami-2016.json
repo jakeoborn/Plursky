@@ -1,0 +1,121 @@
+{
+  "id": "ultra-miami-2016",
+  "method": "official_image_transcription",
+  "official": "https://ultramusicfestival.com/lineup/",
+  "window": [
+    "20160301",
+    "20160331"
+  ],
+  "pageCaptures": [
+    {
+      "captureTimestamp": "20160305075450",
+      "archivedUrl": "https://web.archive.org/web/20160305075450/https://ultramusicfestival.com/lineup/",
+      "sha256": "6bb3fe2a4cd6877adad13b43858659d1f2a5e795b3963923d8b86afad38c0453",
+      "images": []
+    },
+    {
+      "captureTimestamp": "20160321125252",
+      "archivedUrl": "https://web.archive.org/web/20160321125252/https://ultramusicfestival.com/lineup/",
+      "sha256": "1b34e0525c7613c0f343b3cd19fc8dc87358de8542e97138a51d460baf23a302",
+      "images": [
+        "miami-lineup-phase3-2.jpg"
+      ]
+    },
+    {
+      "captureTimestamp": "20160327083656",
+      "archivedUrl": "https://web.archive.org/web/20160327083656/https://ultramusicfestival.com/lineup/",
+      "sha256": "1ea8e7323854e9ba6b58c63dd9b2c505fe4d3b1ee51dbcc9cf0c3b24ef1c0b8c",
+      "images": [
+        "miami-lineup-phase3-2.jpg"
+      ]
+    }
+  ],
+  "days": [
+    {
+      "day": 1,
+      "date": "2016-03-18",
+      "pageCapture": "20160327083656",
+      "pageArchivedUrl": "https://web.archive.org/web/20160327083656/https://ultramusicfestival.com/lineup/",
+      "originalUrl": "https://ultramusicfestival.com/wp-content/uploads/2015/07/miami-lineup-phase3-2.jpg",
+      "imageCapture": "20160321125256",
+      "imageArchivedUrl": "https://web.archive.org/web/20160321125256/https://ultramusicfestival.com/wp-content/uploads/2015/07/miami-lineup-phase3-2.jpg",
+      "sha256": "e2092278c223d2913738d1c9cf625c68ad8a846f24dab96d1a351e234b3f472e",
+      "bytes": 969825,
+      "contentType": "image/jpeg",
+      "cacheFile": "34bcca7682c9f0df4d1e8c13.bin",
+      "revisions": [
+        {
+          "file": "miami-lineup-phase3-2.jpg",
+          "firstSeen": "20160321125252"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2016-03-19",
+      "pageCapture": "20160327083656",
+      "pageArchivedUrl": "https://web.archive.org/web/20160327083656/https://ultramusicfestival.com/lineup/",
+      "originalUrl": "https://ultramusicfestival.com/wp-content/uploads/2015/07/miami-lineup-phase3-2.jpg",
+      "imageCapture": "20160321125256",
+      "imageArchivedUrl": "https://web.archive.org/web/20160321125256/https://ultramusicfestival.com/wp-content/uploads/2015/07/miami-lineup-phase3-2.jpg",
+      "sha256": "e2092278c223d2913738d1c9cf625c68ad8a846f24dab96d1a351e234b3f472e",
+      "bytes": 969825,
+      "contentType": "image/jpeg",
+      "cacheFile": "34bcca7682c9f0df4d1e8c13.bin",
+      "revisions": [
+        {
+          "file": "miami-lineup-phase3-2.jpg",
+          "firstSeen": "20160321125252"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2016-03-20",
+      "pageCapture": "20160327083656",
+      "pageArchivedUrl": "https://web.archive.org/web/20160327083656/https://ultramusicfestival.com/lineup/",
+      "originalUrl": "https://ultramusicfestival.com/wp-content/uploads/2015/07/miami-lineup-phase3-2.jpg",
+      "imageCapture": "20160321125256",
+      "imageArchivedUrl": "https://web.archive.org/web/20160321125256/https://ultramusicfestival.com/wp-content/uploads/2015/07/miami-lineup-phase3-2.jpg",
+      "sha256": "e2092278c223d2913738d1c9cf625c68ad8a846f24dab96d1a351e234b3f472e",
+      "bytes": 969825,
+      "contentType": "image/jpeg",
+      "cacheFile": "34bcca7682c9f0df4d1e8c13.bin",
+      "revisions": [
+        {
+          "file": "miami-lineup-phase3-2.jpg",
+          "firstSeen": "20160321125252"
+        }
+      ]
+    }
+  ],
+  "dropped": [
+    {
+      "day": 1,
+      "stage": "RESISTANCE",
+      "start": "20:30",
+      "end": null,
+      "billing": "ARCADIA LANDING SHOW",
+      "category": "show-segment",
+      "reason": "Arcadia stage show printed between sets, not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "RESISTANCE",
+      "start": "20:30",
+      "end": null,
+      "billing": "ARCADIA LANDING SHOW",
+      "category": "show-segment",
+      "reason": "Arcadia stage show printed between sets, not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "RESISTANCE",
+      "start": "20:25",
+      "end": null,
+      "billing": "ARCADIA LANDING SHOW",
+      "category": "show-segment",
+      "reason": "Arcadia stage show printed between sets, not a billed performance"
+    }
+  ]
+}

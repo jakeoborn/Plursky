@@ -33,6 +33,20 @@ export const GRAPHIC_EDITIONS = {
   // Saturday and Sunday grids were re-issued as "Sat-Complete-1" and
   // "Sun-Complete-2" during the festival.
   // Ultra 2022: "UltraMiami_2022_Set_Times_FRI-1600x1000.png", "…_SAT-1-…", "…_SUN-4-…".
+  // Ultra 2016, 2017 and 2019 print set times on the lineup graphic itself,
+  // one tall image with every stage and day, on the /lineup/ page. Every day
+  // reads the same file. The graphic is re-issued with a counter
+  // ("miami-lineup-phase3-2.jpg", "miami-lineup-times-2019-5.jpg"); the
+  // "-og" social card is a different crop and never matches.
+  "ultra-miami-2016": { year: 2016, page: "https://ultramusicfestival.com/lineup/", window: ["20160301", "20160331"],
+    image: /miami-lineup-phase3-\d+\.jpg/i,
+    days: [{ day: 1, date: "2016-03-18", token: /lineup/i }, { day: 2, date: "2016-03-19", token: /lineup/i }, { day: 3, date: "2016-03-20", token: /lineup/i }] },
+  "ultra-miami-2017": { year: 2017, page: "https://ultramusicfestival.com/lineup/", window: ["20170301", "20170331"],
+    image: /miami-lineup-phase3-\d+\.jpg/i,
+    days: [{ day: 1, date: "2017-03-24", token: /lineup/i }, { day: 2, date: "2017-03-25", token: /lineup/i }, { day: 3, date: "2017-03-26", token: /lineup/i }] },
+  "ultra-miami-2019": { year: 2019, page: "https://ultramusicfestival.com/lineup/", window: ["20190301", "20190331"],
+    image: /miami-lineup-times-2019-\d+\.jpg/i,
+    days: [{ day: 1, date: "2019-03-29", token: /lineup/i }, { day: 2, date: "2019-03-30", token: /lineup/i }, { day: 3, date: "2019-03-31", token: /lineup/i }] },
   "ultra-miami-2022": { year: 2022, page: "https://ultramusicfestival.com/set-times/", window: ["20220301", "20220331"],
     image: /UltraMiami_2022_Set_Times_[^"'\s/]+?-1600x1000\.png/i,
     days: [{ day: 1, date: "2022-03-25", token: /_FRI-/i }, { day: 2, date: "2022-03-26", token: /_SAT-/i }, { day: 3, date: "2022-03-27", token: /_SUN-/i }] },
@@ -131,8 +145,10 @@ export async function resolve(id) {
   const seen = [];
   for (const c of caps) {
     const got = await fetchCapture(c.timestamp, ed.page);
-    const re = new RegExp(`https?:[^"'\\s)]+?${ed.image.source}`, "gi");
-    const imgs = [...new Set(got.text.match(re) || [])].filter(fullSize);
+    // Older WordPress pages (Ultra 2016, 2017) link protocol-relative
+    // ("//ultramusicfestival.com/wp-content/…"); those read as https.
+    const re = new RegExp(`(?:https?:)?//[^"'\\s)]+?${ed.image.source}`, "gi");
+    const imgs = [...new Set((got.text.match(re) || []).map(u => u.startsWith("//") ? `https:${u}` : u))].filter(fullSize);
     seen.push({ captureTimestamp: got.captureTimestamp, archivedUrl: got.archivedUrl, sha256: got.sha256, images: imgs });
   }
   const ledger = { id, method: "official_image_transcription", official: ed.page, window: ed.window,

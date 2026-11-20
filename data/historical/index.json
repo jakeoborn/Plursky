@@ -5506,6 +5506,99 @@
     "artists": 158,
     "sets": 161
    }
+  },
+  {
+   "id": "ultra-miami-2019",
+   "festivalId": "ultra-miami",
+   "festivalName": "Ultra Miami",
+   "name": "Ultra Miami 2019",
+   "year": 2019,
+   "timezone": "America/New_York",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2019-03-29",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2019-03-30",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2019-03-31",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 198,
+    "sets": 203
+   }
+  },
+  {
+   "id": "ultra-miami-2017",
+   "festivalId": "ultra-miami",
+   "festivalName": "Ultra Miami",
+   "name": "Ultra Miami 2017",
+   "year": 2017,
+   "timezone": "America/New_York",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2017-03-24",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2017-03-25",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2017-03-26",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 193,
+    "sets": 197
+   }
+  },
+  {
+   "id": "ultra-miami-2016",
+   "festivalId": "ultra-miami",
+   "festivalName": "Ultra Miami",
+   "name": "Ultra Miami 2016",
+   "year": 2016,
+   "timezone": "America/New_York",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2016-03-18",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2016-03-19",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2016-03-20",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 9,
+    "artists": 214,
+    "sets": 217
+   }
   }
  ]
 }

@@ -8692,6 +8692,123 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "ultra-miami:carl-cox-and-friends",
+     "names": [
+      {
+       "printed": "CARL COX & FRIENDS",
+       "editions": [
+        "ultra-miami-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "ultra-miami:resistance",
+     "names": [
+      {
+       "printed": "RESISTANCE",
+       "editions": [
+        "ultra-miami-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "ultra-miami:stage-7",
+     "names": [
+      {
+       "printed": "STAGE 7",
+       "editions": [
+        "ultra-miami-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "ultra-miami:i-m-in-a-state-of-trance",
+     "names": [
+      {
+       "printed": "I'M IN A STATE OF TRANCE",
+       "editions": [
+        "ultra-miami-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "ultra-miami:arcadia-the-spider",
+     "names": [
+      {
+       "printed": "ARCADIA THE SPIDER",
+       "editions": [
+        "ultra-miami-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "ultra-miami:biscayne",
+     "names": [
+      {
+       "printed": "BISCAYNE",
+       "editions": [
+        "ultra-miami-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "ultra-miami:live-arena",
+     "names": [
+      {
+       "printed": "LIVE ARENA",
+       "editions": [
+        "ultra-miami-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "ultra-miami:reflector",
+     "names": [
+      {
+       "printed": "REFLECTOR",
+       "editions": [
+        "ultra-miami-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "ultra-miami:arrival",
+     "names": [
+      {
+       "printed": "ARRIVAL",
+       "editions": [
+        "ultra-miami-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   }

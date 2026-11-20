@@ -7246,6 +7246,44 @@
    ],
    "why": "The parenthetical names the artists behind the billed project: ENDLESS SUMMER is a project with SAM FELDT and JONAS BLUE as parents (the Tchami x Malaa (No Redemption) rule, printed the other way round).",
    "source": "https://ultramusicfestival.com/set-times/"
+  },
+  {
+   "printed": "DEADMAU5 (CUBE 3.0 WORLDWIDE DEBUT)",
+   "performers": [
+    {
+     "name": "DEADMAU5",
+     "role": "performer"
+    }
+   ],
+   "setTag": "CUBE 3.0 WORLDWIDE DEBUT",
+   "why": "\"CUBE 3.0 WORLDWIDE DEBUT\" names the show, not a person: it is the set tag, and the billing counts on DEADMAU5 (the Sian (Techno Classics) rule).",
+   "source": "https://ultramusicfestival.com/lineup/"
+  },
+  {
+   "printed": "NGHTMRE + SLANDER (PRESENT GUD VIBRATIONS)",
+   "performers": [
+    {
+     "name": "Gud Vibrations",
+     "role": "project",
+     "parents": [
+      "NGHTMRE",
+      "SLANDER"
+     ]
+    }
+   ],
+   "why": "The parenthetical names the project the two billed artists play as: Gud Vibrations is a project with NGHTMRE and SLANDER as parents (the Tchami x Malaa (No Redemption) rule). Both are billed on their own elsewhere in the data.",
+   "source": "https://ultramusicfestival.com/lineup/"
+  },
+  {
+   "printed": "JEFFREY SUTORIUS (FORMERLY DASH BERLIN)",
+   "performers": [
+    {
+     "name": "JEFFREY SUTORIUS",
+     "role": "performer"
+    }
+   ],
+   "why": "\"formerly\" gives the same act's other name, not a second act: the billing counts on JEFFREY SUTORIUS, the billed name, and the other name is not credited separately (the Misselaineous (aka Honeey Mustard) rule).",
+   "source": "https://ultramusicfestival.com/lineup/"
   }
  ],
  "pending": [

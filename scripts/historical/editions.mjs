@@ -251,6 +251,15 @@ export const EDITIONS = {
     dates: [["2019-05-31", "Friday"], ["2019-06-01", "Saturday"], ["2019-06-02", "Sunday"]],
     notes: [{ asOf: "2026-11-11", days: [3], text: "Sunday was evacuated for storms. The schedule shown is the revised one the official page printed after the festival, with gates reopening in the evening; acts that were canceled are not listed.",
       source: "https://web.archive.org/web/20190709043321/https://www.governorsballmusicfestival.com/schedule/" }] },
+  "ultra-miami-2016": { festivalId: "ultra-miami", name: "Ultra Miami 2016", year: 2016,
+    timezone: "America/New_York", rolloverHour: 6, method: "official_image_transcription",
+    dates: [["2016-03-18", "Friday"], ["2016-03-19", "Saturday"], ["2016-03-20", "Sunday"]] },
+  "ultra-miami-2017": { festivalId: "ultra-miami", name: "Ultra Miami 2017", year: 2017,
+    timezone: "America/New_York", rolloverHour: 6, method: "official_image_transcription",
+    dates: [["2017-03-24", "Friday"], ["2017-03-25", "Saturday"], ["2017-03-26", "Sunday"]] },
+  "ultra-miami-2019": { festivalId: "ultra-miami", name: "Ultra Miami 2019", year: 2019,
+    timezone: "America/New_York", rolloverHour: 6, method: "official_image_transcription",
+    dates: [["2019-03-29", "Friday"], ["2019-03-30", "Saturday"], ["2019-03-31", "Sunday"]] },
   "ultra-miami-2022": { festivalId: "ultra-miami", name: "Ultra Miami 2022", year: 2022,
     timezone: "America/New_York", rolloverHour: 6, method: "official_image_transcription",
     dates: [["2022-03-25", "Friday"], ["2022-03-26", "Saturday"], ["2022-03-27", "Sunday"]] },
@@ -801,6 +810,12 @@ export const DROP_RULES = [
   { category: "show-segment", stage: /^kinetic ?field$/i,
     test: /^(intermezzo\b.*|kinetic (experience|celebration|bloom)\b.*|(natural|kinetic|industrial|spiritual) energy|grow|blossom|pollinate|closing)$/i,
     reason: "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance" },
+  // Ultra Miami 2016 and 2017 printed the Arcadia Spider stage show as a
+  // timed row each day ("ARCADIA LANDING SHOW", 8:25 PM or 8:30 PM) on the
+  // RESISTANCE (2016) and ARCADIA THE SPIDER (2017) stage. Scoped to that
+  // exact billing on those two stages.
+  { category: "show-segment", stage: /^(resistance|arcadia the spider)$/i, test: /^arcadia landing show$/i,
+    reason: "Arcadia stage show printed between sets, not a billed performance" },
   // Electric Forest 2013 printed contest slots before their winners were
   // named ("Discovery Project Winner") and a "Secret Set".
   { category: "unnamed-slot", test: /^(special guest|surprise guest|secret guest|secret set|tba|tbd|to be announced|coming soon!*|discovery project winners?|mystery headliner)$/i,
@@ -871,6 +886,9 @@ export const PRINTED_NON_LATIN = {
   // The same lambda on Tomorrowland's own day timetables.
   "tomorrowland-2015": ["Axwell Λ Ingrosso"],
   "tomorrowland-2016": ["Axwell Λ Ingrosso"],
+  // The same lambda on Ultra's own 2017 set-times graphic, read by eye
+  // (review/ultra-miami-2017.json).
+  "ultra-miami-2017": ["AXWELL Λ INGROSSO"],
   // The same lambda on Governors Ball's own 2014 lineup-site grid.
   "governors-ball-2014": ["Axwell Λ Ingrosso"],
   // The trio's own Greek lambda, as Coachella's 2012 lineup page prints it.

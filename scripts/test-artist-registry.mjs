@@ -181,8 +181,10 @@ const out = build();
   // billings (TOMORROW X TOGETHER twice, KOSINE X FRAYNE VIBEZ, DPR IAN + DPR
   // LIVE), a BONNIE X CLYDE billing under its existing pending entry, and
   // three short names now at more than one brand (CAM, BIA, YG): 211 rows.
-  // Past 211, stop and report.
-  check(review.length <= 211, `review queue is ${review.length} rows (> 211 means stop and report)`);
+  // Ultra Miami 2016, 2017 and 2019 add one, pending with no claim: a second
+  // BONNIE X CLYDE billing (2019 Saturday) under its existing pending entry:
+  // 212 rows. Past 212, stop and report.
+  check(review.length <= 212, `review queue is ${review.length} rows (> 212 means stop and report)`);
   check(review.every(r => r.reason) && excluded.every(e => e.reason && e.category), 'a review or excluded row without its reason');
   check(excluded.some(e => e.category === 'unnamed-slot'), 'control: no unnamed slot was excluded');
   // Bare non-acts never become artists; a NAMED kids act ("Special Guest: The
