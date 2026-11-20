@@ -32,6 +32,13 @@ ok(new RegExp(`<key>${INTERNAL_ONLY_KEY}</key><true/>`).test(xml), "plist sets t
 ok(exportOptionsProblems(xml).length === 0, "the real plist passes the check");
 ok(exportOptionsProblems(xml.replace(/\s*<key>testFlightInternalTestingOnly<\/key><true\/>/, "")).length === 1, "a plist without the key is rejected");
 ok(exportOptionsProblems(xml.replace("<key>testFlightInternalTestingOnly</key><true/>", "<key>testFlightInternalTestingOnly</key><false/>")).length === 1, "a plist with the key false is rejected");
+// --app-store: the key is present and false, and each mode rejects the other's plist.
+const asXml = exportOptionsPlist("X54Q9P743S", { appStore: true });
+ok(new RegExp(`<key>${INTERNAL_ONLY_KEY}</key><false/>`).test(asXml), "an App Store plist sets testFlightInternalTestingOnly false, explicitly");
+ok(exportOptionsProblems(asXml, { appStore: true }).length === 0, "the App Store plist passes the App Store check");
+ok(exportOptionsProblems(asXml).length === 1, "an App Store plist FAILS the default (internal-only) check");
+ok(exportOptionsProblems(xml, { appStore: true }).length === 1, "an internal-only plist FAILS the App Store check");
+ok(exportOptionsProblems(asXml.replace(/\s*<key>testFlightInternalTestingOnly<\/key><false\/>/, ""), { appStore: true }).length === 1, "an App Store plist without the key is rejected");
 
 // 2. ASC beta groups.
 const internal = { id: "g1", attributes: { name: "Plursky team", isInternalGroup: true, publicLinkEnabled: false } };
@@ -49,7 +56,7 @@ const at = s => src.indexOf(s);
 const upload = at('run("upload"');
 ok(upload > 0, "upload step found");
 ok(at("externalDistribution(groups)") > 0 && at("externalDistribution(groups)") < upload, "beta-group guard runs before the upload");
-ok(at("exportOptionsPlist(TEAM_ID)") > 0 && at("exportOptionsPlist(TEAM_ID)") < upload, "export plist comes from exportOptionsPlist()");
+ok(at("exportOptionsPlist(TEAM_ID") > 0 && at("exportOptionsPlist(TEAM_ID") < upload, "export plist comes from exportOptionsPlist()");
 ok(at("exportOptionsProblems(") > 0 && at("exportOptionsProblems(") < upload, "plist check runs before the upload");
 ok(!/<key>method<\/key>/.test(src), "no second hand-written export plist in the script");
 const wait = at("await awaitValidBuild(");
@@ -58,6 +65,8 @@ ok(at("if (problems.length) die(") > wait, "any awaitValidBuild problem stops th
 ok((src.match(/betaGroups\?/g) || []).length === 2, "groups are read in exactly two places: the app before upload, the build inside awaitValidBuild");
 ok(!/WAIT_VALID/.test(src) && !/processingState[^\n]*break/.test(src), "no default path that stops waiting before VALID (old --wait-valid opt-in gone)");
 ok(!/--(skip|no|allow)-?(guard|external|internal)/i.test(src), "no flag skips the guard");
+ok(at("exportOptionsPlist(TEAM_ID, { appStore: APP_STORE })") > 0 && at("exportOptionsProblems(fs.readFileSync(exportOpts, \"utf8\"), { appStore: APP_STORE })") > 0, "the plist and its check both follow the run's mode");
+ok(!/\/v1\/builds\/\$\{id\}\/betaGroups/.test(src) && /\/v1\/betaGroups\?filter\[builds\]=\$\{id\}/.test(src), "the build's groups are read with filter[builds] (Apple 403s /builds/{id}/betaGroups)");
 
 // 4. Behaviour: fake clock + fake ASC, no network.
 async function sim(states, groupsAt) {

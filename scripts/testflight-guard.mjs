@@ -1,5 +1,6 @@
 // testflight-guard.mjs — keeps a build from build-upload-testflight.mjs on
-// INTERNAL TestFlight only. Pure functions, so test-testflight-guard.mjs can
+// INTERNAL TestFlight only, unless the caller asks for an App Store build
+// (--app-store), which an App Store version can take for review. Pure functions, so test-testflight-guard.mjs can
 // prove each rule without Xcode or App Store Connect.
 //
 // Two layers:
@@ -12,7 +13,10 @@
 
 export const INTERNAL_ONLY_KEY = "testFlightInternalTestingOnly";
 
-export function exportOptionsPlist(teamId) {
+// An internal-only build can never be attached to an App Store version
+// (Apple: "the specified pre-release build could not be added"), so an App
+// Store build sets the key to false, explicitly. The key is never left out.
+export function exportOptionsPlist(teamId, { appStore = false } = {}) {
   return `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0"><dict>
@@ -22,16 +26,19 @@ export function exportOptionsPlist(teamId) {
   <key>signingStyle</key><string>automatic</string>
   <key>uploadSymbols</key><true/>
   <key>manageAppVersionAndBuildNumber</key><false/>
-  <key>${INTERNAL_ONLY_KEY}</key><true/>
+  <key>${INTERNAL_ONLY_KEY}</key><${appStore ? "false" : "true"}/>
 </dict></plist>
 `;
 }
 
-// Problems with an export-options plist; empty when it is internal-only.
-export function exportOptionsProblems(xml) {
+// Problems with an export-options plist; empty when it matches the mode:
+// internal-only (the default) needs the key true, an App Store build needs it
+// false. Missing is wrong in both modes.
+export function exportOptionsProblems(xml, { appStore = false } = {}) {
   const m = new RegExp(`<key>${INTERNAL_ONLY_KEY}</key>\\s*<(true|false)\\s*/>`).exec(xml);
   if (!m) return [`export options lack ${INTERNAL_ONLY_KEY}`];
-  if (m[1] !== "true") return [`export options set ${INTERNAL_ONLY_KEY} to false`];
+  const want = appStore ? "false" : "true";
+  if (m[1] !== want) return [`export options set ${INTERNAL_ONLY_KEY} to ${m[1]}, this run needs ${want}`];
   return [];
 }
 
