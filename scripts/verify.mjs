@@ -379,7 +379,8 @@ if (fdata.length) {
 //                  page should start saying so. No commit exists to hang that
 //                  on, and failing an unrelated PR for it teaches everyone to
 //                  ignore a red tick. Owned by .github/workflows/page-freshness.yml,
-//                  which runs the same script daily with --check-strict.
+//                  which runs the same script daily with --check-strict and,
+//                  when it fails, opens a regen PR from a bot/ branch.
 //
 // So this gate deliberately runs the CALENDAR-TOLERANT --check: it renders each
 // stub on both sides of its end date and accepts either, which means a registry
