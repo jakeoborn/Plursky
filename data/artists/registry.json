@@ -36387,6 +36387,21 @@
   "links": []
  },
  {
+  "key": "chicago-philharmonic",
+  "name": "Chicago Philharmonic",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-2024:d2:bud-light:1845:laufey-with-the-chicago-philharmonic"
+  ],
+  "firstSeen": "2024-08-02",
+  "lastSeen": "2024-08-02",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "chicago-toys",
   "name": "CHICAGO TOYS",
   "aliases": [],
@@ -114928,8 +114943,8 @@
   "links": []
  },
  {
-  "key": "laufey-with-the-chicago-philharmonic",
-  "name": "LAUFEY WITH THE CHICAGO PHILHARMONIC",
+  "key": "laufey",
+  "name": "Laufey",
   "aliases": [],
   "kind": "performer",
   "parents": [],

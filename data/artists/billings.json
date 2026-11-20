@@ -392649,15 +392649,18 @@
   "setTag": null,
   "performers": [
    {
-    "key": "laufey-with-the-chicago-philharmonic",
-    "role": "act"
+    "key": "laufey",
+    "role": "performer"
+   },
+   {
+    "key": "chicago-philharmonic",
+    "role": "guest"
    }
   ],
   "act": "laufey-with-the-chicago-philharmonic",
   "closing": false,
   "stageLineage": "lollapalooza:bud-light",
-  "mainStage": null,
-  "review": "feat / with billing"
+  "mainStage": null
  },
  {
   "id": "lollapalooza-2024:d2:bud-light:2030:stray-kids",

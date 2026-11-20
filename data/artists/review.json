@@ -602,13 +602,6 @@
   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
  },
  {
-  "id": "lollapalooza-2024:d2:bud-light:1845:laufey-with-the-chicago-philharmonic",
-  "printed": "LAUFEY WITH THE CHICAGO PHILHARMONIC",
-  "reason": "feat / with billing",
-  "pending": true,
-  "why": "Left as printed, one act: Lollapalooza 2024's Friday grid prints Laufey \"with\" an orchestra, and no first-party page rules whether the orchestra is billed as an act of its own, so the billing is neither split nor credited to Laufey alone. Renders as its own billing until a first-party page rules it."
- },
- {
   "id": "nocturnal-wonderland-2011:d2:labyrinth:2300:cosmic-gate-feat-emma-hewitt",
   "printed": "Cosmic Gate feat. Emma Hewitt",
   "reason": "feat / with billing",
