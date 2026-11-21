@@ -834,6 +834,98 @@
    }
   },
   {
+   "id": "coachella-2024",
+   "festivalId": "coachella",
+   "festivalName": "Coachella",
+   "name": "Coachella 2024",
+   "year": 2024,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2024-04-12",
+     "label": "Weekend 1 · Friday"
+    },
+    {
+     "day": 2,
+     "date": "2024-04-13",
+     "label": "Weekend 1 · Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2024-04-14",
+     "label": "Weekend 1 · Sunday"
+    },
+    {
+     "day": 4,
+     "date": "2024-04-19",
+     "label": "Weekend 2 · Friday"
+    },
+    {
+     "day": 5,
+     "date": "2024-04-20",
+     "label": "Weekend 2 · Saturday"
+    },
+    {
+     "day": 6,
+     "date": "2024-04-21",
+     "label": "Weekend 2 · Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 186,
+    "sets": 336
+   }
+  },
+  {
+   "id": "coachella-2023",
+   "festivalId": "coachella",
+   "festivalName": "Coachella",
+   "name": "Coachella 2023",
+   "year": 2023,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2023-04-14",
+     "label": "Weekend 1 · Friday"
+    },
+    {
+     "day": 2,
+     "date": "2023-04-15",
+     "label": "Weekend 1 · Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2023-04-16",
+     "label": "Weekend 1 · Sunday"
+    },
+    {
+     "day": 4,
+     "date": "2023-04-21",
+     "label": "Weekend 2 · Friday"
+    },
+    {
+     "day": 5,
+     "date": "2023-04-22",
+     "label": "Weekend 2 · Saturday"
+    },
+    {
+     "day": 6,
+     "date": "2023-04-23",
+     "label": "Weekend 2 · Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 7,
+    "artists": 191,
+    "sets": 354
+   }
+  },
+  {
    "id": "coachella-2022",
    "festivalId": "coachella",
    "festivalName": "Coachella",
@@ -1129,6 +1221,68 @@
     "stages": 6,
     "artists": 149,
     "sets": 293
+   }
+  },
+  {
+   "id": "coachella-2011",
+   "festivalId": "coachella",
+   "festivalName": "Coachella",
+   "name": "Coachella 2011",
+   "year": 2011,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2011-04-15",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2011-04-16",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2011-04-17",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 6,
+    "artists": 188,
+    "sets": 190
+   }
+  },
+  {
+   "id": "coachella-2010",
+   "festivalId": "coachella",
+   "festivalName": "Coachella",
+   "name": "Coachella 2010",
+   "year": 2010,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2010-04-16",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2010-04-17",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2010-04-18",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 135,
+    "sets": 135
    }
   },
   {

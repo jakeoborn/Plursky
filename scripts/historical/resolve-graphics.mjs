@@ -142,10 +142,24 @@ export const GRAPHIC_EDITIONS = {
   // so the token is the file's own name. Weekend 1's Sunday was re-issued
   // (gmprJMads… → gd07bQrV…, capture 20220417004207); Weekend 2's three are
   // on the May capture.
+  "coachella-2010": { year: 2010, page: "http://www.coachella.com/event/set-times", window: ["20100401", "20100531"],
+    image: /images\/2010(?:fri|sat|sun)\.jpg/,
+    days: [{ day: 1, date: "2010-04-16", token: /^2010fri\./ }, { day: 2, date: "2010-04-17", token: /^2010sat\./ }, { day: 3, date: "2010-04-18", token: /^2010sun\./ }] },
+  "coachella-2011": { year: 2011, page: "http://www.coachella.com/event/set-times", window: ["20110401", "20110531"],
+    image: /images\/ie6\/800(?:fri|sat|sun)\.jpg/,
+    days: [{ day: 1, date: "2011-04-15", token: /^800fri\./ }, { day: 2, date: "2011-04-16", token: /^800sat\./ }, { day: 3, date: "2011-04-17", token: /^800sun\./ }] },
   "coachella-2022": { year: 2022, page: "https://www.coachella.com/schedule", window: ["20220401", "20220531"],
     image: /content_images\/232\/[A-Za-z0-9]{40}\.jpg/,
     days: [{ day: 1, date: "2022-04-15", token: /^H1xpKD3d/ }, { day: 2, date: "2022-04-16", token: /^U0mrDaS8/ }, { day: 3, date: "2022-04-17", token: /^(gd07bQrV|gmprJMad)/ },
       { day: 4, date: "2022-04-22", token: /^vDDIalfx/ }, { day: 5, date: "2022-04-23", token: /^9hx4C2KF/ }, { day: 6, date: "2022-04-24", token: /^zzf52cET/ }] },
+  "coachella-2023": { year: 2023, page: "https://www.coachella.com/schedule", window: ["20230401", "20230531"],
+    image: /coachella-2023\/images\/coach-[a-z0-9-]+\.jpeg/,
+    days: [{ day: 1, date: "2023-04-14", token: /^coach-friday\./ }, { day: 2, date: "2023-04-15", token: /^coach-saturday\./ }, { day: 3, date: "2023-04-16", token: /^coach-sunday\./ },
+      { day: 4, date: "2023-04-21", token: /^coach-w2-friday\./ }, { day: 5, date: "2023-04-22", token: /^coach-w2-saturday\./ }, { day: 6, date: "2023-04-23", token: /^coach-w2-sunday\./ }] },
+  "coachella-2024": { year: 2024, page: "https://www.coachella.com/schedule", window: ["20240401", "20240531"],
+    image: /content_images\/452\/[A-Za-z0-9]{40}\.jpg/,
+    days: [{ day: 1, date: "2024-04-12", token: /^wDq5bU0e/ }, { day: 2, date: "2024-04-13", token: /^FsAaxfwe/ }, { day: 3, date: "2024-04-14", token: /^QIXQ0WU1/ },
+      { day: 4, date: "2024-04-19", token: /^Q27wWxzl/ }, { day: 5, date: "2024-04-20", token: /^umPrN2MU/ }, { day: 6, date: "2024-04-21", token: /^tGARxSEF/ }] },
 };
 
 // Webflow resized copies end "-p-500.png" or "-p-800.jpg"; keep only the original.

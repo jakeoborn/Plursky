@@ -1,0 +1,277 @@
+{
+  "id": "coachella-2023",
+  "method": "official_image_transcription",
+  "official": "https://www.coachella.com/schedule",
+  "window": [
+    "20230401",
+    "20230531"
+  ],
+  "pageCaptures": [
+    {
+      "captureTimestamp": "20230415002153",
+      "archivedUrl": "https://web.archive.org/web/20230415002153/https://www.coachella.com/schedule",
+      "sha256": "c0b37e16d82fb9f85c154c86a7b140fda71731a4b922fc39f20b49d83e40ea47",
+      "images": [
+        "coach-friday.jpeg",
+        "coach-saturday.jpeg",
+        "coach-sunday.jpeg"
+      ]
+    },
+    {
+      "captureTimestamp": "20230415024648",
+      "archivedUrl": "https://web.archive.org/web/20230415024648/https://www.coachella.com/schedule",
+      "sha256": "c0b37e16d82fb9f85c154c86a7b140fda71731a4b922fc39f20b49d83e40ea47",
+      "images": [
+        "coach-friday.jpeg",
+        "coach-saturday.jpeg",
+        "coach-sunday.jpeg"
+      ]
+    },
+    {
+      "captureTimestamp": "20230415032052",
+      "archivedUrl": "https://web.archive.org/web/20230415032052/https://www.coachella.com/schedule",
+      "sha256": "c0b37e16d82fb9f85c154c86a7b140fda71731a4b922fc39f20b49d83e40ea47",
+      "images": [
+        "coach-friday.jpeg",
+        "coach-saturday.jpeg",
+        "coach-sunday.jpeg"
+      ]
+    },
+    {
+      "captureTimestamp": "20230415190727",
+      "archivedUrl": "https://web.archive.org/web/20230415190727/https://www.coachella.com/schedule",
+      "sha256": "ef2d7fe380e0d36cb3a2d07c5e7dd9c859e648ac2181c1d42290a73e566ed9fb",
+      "images": [
+        "coach-friday.jpeg",
+        "coach-saturday.jpeg",
+        "coach-sunday.jpeg"
+      ]
+    },
+    {
+      "captureTimestamp": "20230416075707",
+      "archivedUrl": "https://web.archive.org/web/20230416075707/https://www.coachella.com/schedule",
+      "sha256": "6b688089f492d3df3b2bedd66ab6daecc5ba058c36ef9778e40c1a057a64199b",
+      "images": [
+        "coach-friday.jpeg",
+        "coach-saturday.jpeg",
+        "coach-sunday.jpeg"
+      ]
+    },
+    {
+      "captureTimestamp": "20230416141651",
+      "archivedUrl": "https://web.archive.org/web/20230416141651/https://www.coachella.com/schedule",
+      "sha256": "6b688089f492d3df3b2bedd66ab6daecc5ba058c36ef9778e40c1a057a64199b",
+      "images": [
+        "coach-friday.jpeg",
+        "coach-saturday.jpeg",
+        "coach-sunday.jpeg"
+      ]
+    },
+    {
+      "captureTimestamp": "20230416234841",
+      "archivedUrl": "https://web.archive.org/web/20230416234841/https://www.coachella.com/schedule",
+      "sha256": "572712f5e5cbc8565a1ebe6162110a53ff9eaf60b8b4052ab590b0b7ca9877b2",
+      "images": [
+        "coach-friday.jpeg",
+        "coach-saturday.jpeg",
+        "coach-sunday.jpeg"
+      ]
+    },
+    {
+      "captureTimestamp": "20230417172932",
+      "archivedUrl": "https://web.archive.org/web/20230417172932/https://www.coachella.com/schedule",
+      "sha256": "d8e33f5cef646f29050c84155539a54d197d6bd832182dc0bdc28339fb5a001c",
+      "images": [
+        "coach-friday.jpeg",
+        "coach-saturday.jpeg",
+        "coach-sunday.jpeg"
+      ]
+    },
+    {
+      "captureTimestamp": "20230418182155",
+      "archivedUrl": "https://web.archive.org/web/20230418182155/https://www.coachella.com/schedule",
+      "sha256": "d92363b06c9ca8a41941f6dedebae1e6bfbb79fd5d010156b05af574ba2329d1",
+      "images": [
+        "coach-friday.jpeg",
+        "coach-saturday.jpeg",
+        "coach-sunday.jpeg"
+      ]
+    },
+    {
+      "captureTimestamp": "20230420162635",
+      "archivedUrl": "https://web.archive.org/web/20230420162635/https://www.coachella.com/schedule",
+      "sha256": "3ab05356cf69912490a2f2221c5409a762d2abf85a4eec0b62456a703efeb221",
+      "images": [
+        "coach-friday.jpeg",
+        "coach-saturday.jpeg",
+        "coach-sunday.jpeg"
+      ]
+    },
+    {
+      "captureTimestamp": "20230420234025",
+      "archivedUrl": "https://web.archive.org/web/20230420234025/https://www.coachella.com/schedule",
+      "sha256": "a6b9681912b06227de192aa389c34f84f8e550584fe6aad29af8f00d204463af",
+      "images": [
+        "coach-w2-friday.jpeg",
+        "coach-w2-saturday.jpeg",
+        "coach-w2-sunday.jpeg",
+        "coach-friday.jpeg",
+        "coach-saturday.jpeg",
+        "coach-sunday.jpeg"
+      ]
+    },
+    {
+      "captureTimestamp": "20230421061059",
+      "archivedUrl": "https://web.archive.org/web/20230421061059/https://www.coachella.com/schedule",
+      "sha256": "90a4c83191c61c394f29cb4ff4c814b7764c9390dc0ecccb3a45674d9e4a849c",
+      "images": [
+        "coach-w2-friday.jpeg",
+        "coach-w2-saturday.jpeg",
+        "coach-w2-sunday.jpeg",
+        "coach-friday.jpeg",
+        "coach-saturday.jpeg",
+        "coach-sunday.jpeg"
+      ]
+    },
+    {
+      "captureTimestamp": "20230421202417",
+      "archivedUrl": "https://web.archive.org/web/20230421202417/https://www.coachella.com/schedule",
+      "sha256": "20520485dba2995cdcc02fd1cc12d4037950ea414adf53610f75502dcf9f011d",
+      "images": [
+        "coach-w2-friday.jpeg",
+        "coach-w2-saturday.jpeg",
+        "coach-w2-sunday.jpeg",
+        "coach-friday.jpeg",
+        "coach-saturday.jpeg",
+        "coach-sunday.jpeg"
+      ]
+    }
+  ],
+  "days": [
+    {
+      "day": 1,
+      "date": "2023-04-14",
+      "pageCapture": "20230421202417",
+      "pageArchivedUrl": "https://web.archive.org/web/20230421202417/https://www.coachella.com/schedule",
+      "originalUrl": "https://media-prd.coachella.com/content/coachella-2023/images/coach-friday.jpeg",
+      "imageCapture": "20230421170439",
+      "imageArchivedUrl": "https://web.archive.org/web/20230421170439/https://media-prd.coachella.com/content/coachella-2023/images/coach-friday.jpeg",
+      "sha256": "7918cb524125a264c8142938c2bcb514e9355b5d34538aa5b5ab79b190aab8e9",
+      "bytes": 1894349,
+      "contentType": "image/jpeg",
+      "cacheFile": "d04e6660317fbbd44a0d9cd7.bin",
+      "revisions": [
+        {
+          "file": "coach-friday.jpeg",
+          "firstSeen": "20230415002153"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2023-04-15",
+      "pageCapture": "20230421202417",
+      "pageArchivedUrl": "https://web.archive.org/web/20230421202417/https://www.coachella.com/schedule",
+      "originalUrl": "https://media-prd.coachella.com/content/coachella-2023/images/coach-saturday.jpeg",
+      "imageCapture": "20230421170445",
+      "imageArchivedUrl": "https://web.archive.org/web/20230421170445/https://media-prd.coachella.com/content/coachella-2023/images/coach-saturday.jpeg",
+      "sha256": "87c4b9051af2240314e309b8c3a4929cedb923e48a53e6cae4eb5a2220839e7f",
+      "bytes": 2014540,
+      "contentType": "image/jpeg",
+      "cacheFile": "242b9ac2e64b03dd610eb97a.bin",
+      "revisions": [
+        {
+          "file": "coach-saturday.jpeg",
+          "firstSeen": "20230415002153"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2023-04-16",
+      "pageCapture": "20230421202417",
+      "pageArchivedUrl": "https://web.archive.org/web/20230421202417/https://www.coachella.com/schedule",
+      "originalUrl": "https://media-prd.coachella.com/content/coachella-2023/images/coach-sunday.jpeg",
+      "imageCapture": "20230421170457",
+      "imageArchivedUrl": "https://web.archive.org/web/20230421170457/https://media-prd.coachella.com/content/coachella-2023/images/coach-sunday.jpeg",
+      "sha256": "7ba510c53d644cc00c8debd12b518c545af06987a9dbd6072d64630126d1c50b",
+      "bytes": 2002265,
+      "contentType": "image/jpeg",
+      "cacheFile": "d9c933c6567da7dcefb132c8.bin",
+      "revisions": [
+        {
+          "file": "coach-sunday.jpeg",
+          "firstSeen": "20230415002153"
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2023-04-21",
+      "pageCapture": "20230421202417",
+      "pageArchivedUrl": "https://web.archive.org/web/20230421202417/https://www.coachella.com/schedule",
+      "originalUrl": "https://media-prd.coachella.com/content/coachella-2023/images/coach-w2-friday.jpeg",
+      "imageCapture": "20230422005134",
+      "imageArchivedUrl": "https://web.archive.org/web/20230422005134/https://media-prd.coachella.com/content/coachella-2023/images/coach-w2-friday.jpeg",
+      "sha256": "ddf8a0755b7398f7003435f7a6b02ec635bc4ef5b896afd31ce8e744484b5a98",
+      "bytes": 340182,
+      "contentType": "image/jpeg",
+      "cacheFile": "a5a9fcde60e1d7edaa57ccf5.bin",
+      "revisions": [
+        {
+          "file": "coach-w2-friday.jpeg",
+          "firstSeen": "20230420234025"
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "date": "2023-04-22",
+      "pageCapture": "20230421202417",
+      "pageArchivedUrl": "https://web.archive.org/web/20230421202417/https://www.coachella.com/schedule",
+      "originalUrl": "https://media-prd.coachella.com/content/coachella-2023/images/coach-w2-saturday.jpeg",
+      "imageCapture": "20230422005135",
+      "imageArchivedUrl": "https://web.archive.org/web/20230422005135/https://media-prd.coachella.com/content/coachella-2023/images/coach-w2-saturday.jpeg",
+      "sha256": "ec3c5b9b8b597b2d2ee26e0d78b21a851913eb233b1633b9a5742820d98f422b",
+      "bytes": 339015,
+      "contentType": "image/jpeg",
+      "cacheFile": "fbb7d0f10fb8f620a0b535fa.bin",
+      "revisions": [
+        {
+          "file": "coach-w2-saturday.jpeg",
+          "firstSeen": "20230420234025"
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "date": "2023-04-23",
+      "pageCapture": "20230421202417",
+      "pageArchivedUrl": "https://web.archive.org/web/20230421202417/https://www.coachella.com/schedule",
+      "originalUrl": "https://media-prd.coachella.com/content/coachella-2023/images/coach-w2-sunday.jpeg",
+      "imageCapture": "20230422191401",
+      "imageArchivedUrl": "https://web.archive.org/web/20230422191401/https://media-prd.coachella.com/content/coachella-2023/images/coach-w2-sunday.jpeg",
+      "sha256": "8853550d1d0b43d012f4de8ba217596d3d446da2b1d32dc40bb2de4131c6d259",
+      "bytes": 326174,
+      "contentType": "image/jpeg",
+      "cacheFile": "b4444fa220b766913799beba.bin",
+      "revisions": [
+        {
+          "file": "coach-w2-sunday.jpeg",
+          "firstSeen": "20230420234025"
+        }
+      ]
+    }
+  ],
+  "dropped": [
+    {
+      "day": 6,
+      "stage": "Coachella",
+      "start": "22:25",
+      "end": null,
+      "billing": "tba",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    }
+  ]
+}

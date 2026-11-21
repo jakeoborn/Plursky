@@ -182,6 +182,20 @@
   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it. Ilan Bluestone is billed alone at EDC Las Vegas 2026; his arc misses this set until it is ruled."
  },
  {
+  "id": "coachella-2011:d2:outdoor:1355:thao-with-the-get-down-stay-down",
+  "printed": "Thao with the Get Down Stay Down",
+  "reason": "feat / with billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"feat.\" or \"with\" is not sourced, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "coachella-2011:d2:oasis-dome:2230:andy-c-gq",
+  "printed": "Andy C. + GQ",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
   "id": "coachella-2015:d3:coachella:2050:florence-the-machine",
   "printed": "Florence + the Machine",
   "reason": "\"+\" billing",
@@ -210,16 +224,86 @@
   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
  },
  {
-  "id": "coachella-2022:d5:outdoor:1430:loboman-x-massio",
-  "printed": "Loboman x Massio",
+  "id": "coachella-2022:d6:mojave:2240:the-blessed-madonna-honey-dijon",
+  "printed": "The Blessed Madonna + Honey Dijon",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "coachella-2023:d1:yuma:1615:dennis-cruz-pawsa",
+  "printed": "Dennis Cruz + PAWSA",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "coachella-2023:d2:yuma:1730:dj-tennis-carlita",
+  "printed": "DJ Tennis + Carlita",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "coachella-2023:d3:outdoor:2040:fisher-chris-lake",
+  "printed": "Fisher + Chris Lake",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "coachella-2023:d3:gobi:2120:dpr-live-dpr-ian",
+  "printed": "DPR LIVE + DPR IAN",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "coachella-2023:d4:yuma:1615:dennis-cruz-pawsa",
+  "printed": "Dennis Cruz + PAWSA",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "coachella-2023:d5:sonora:1200:triste-juventud-x-totem",
+  "printed": "Triste Juventud x TÓTEM",
   "reason": "\"x\" billing whose sides are not both known acts",
   "pending": true,
   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
  },
  {
-  "id": "coachella-2022:d6:mojave:2240:the-blessed-madonna-honey-dijon",
-  "printed": "The Blessed Madonna + Honey Dijon",
+  "id": "coachella-2023:d5:yuma:1730:dj-tennis-carlita",
+  "printed": "DJ Tennis + Carlita",
   "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "coachella-2023:d6:outdoor:2035:fisher-chris-lake",
+  "printed": "Fisher + Chris Lake",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "coachella-2023:d6:gobi:2120:dpr-live-dpr-ian",
+  "printed": "DPR LIVE + DPR IAN",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "coachella-2024:d2:sonora:1300:triste-juventud-x-totem",
+  "printed": "Triste Juventud x TOTEM",
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "coachella-2024:d3:quasar:1815:jamie-xx-x-floating-points-x-daphni",
+  "printed": "Jamie xx x Floating Points x Daphni",
+  "reason": "\"x\" billing whose sides are not both known acts",
   "pending": true,
   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
  },
@@ -1316,11 +1400,25 @@
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
  },
  {
-  "id": "key:x",
-  "printed": "†††",
+  "id": "key:sia",
+  "printed": "Sia",
   "reason": "very short name billed at more than one festival brand",
   "pending": true,
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
+  "id": "key:x",
+  "printed": "!!!",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
+  "id": "key:off",
+  "printed": "OFF!",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at Primavera Sound 2012 and Coachella 2015 (each on its own official timetable). Not merged into one arc until a first-party link shows it is the same act; the billings render separately."
  },
  {
   "id": "key:nas",
@@ -1358,22 +1456,8 @@
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
  },
  {
-  "id": "key:off",
-  "printed": "OFF!",
-  "reason": "very short name billed at more than one festival brand",
-  "pending": true,
-  "why": "Short name billed at Primavera Sound 2012 and Coachella 2015 (each on its own official timetable). Not merged into one arc until a first-party link shows it is the same act; the billings render separately."
- },
- {
   "id": "key:rac",
   "printed": "RAC",
-  "reason": "very short name billed at more than one festival brand",
-  "pending": true,
-  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
- },
- {
-  "id": "key:sia",
-  "printed": "Sia",
   "reason": "very short name billed at more than one festival brand",
   "pending": true,
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
@@ -1405,6 +1489,20 @@
   "reason": "very short name billed at more than one festival brand",
   "pending": true,
   "why": "Short name billed at Lollapalooza 2019 and Outside Lands 2023 (each on its own official lineup). Not merged into one arc until a first-party link shows it is the same act; the billings render separately."
+ },
+ {
+  "id": "key:umi",
+  "printed": "UMI",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
+  "id": "key:maz",
+  "printed": "Maz",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
  },
  {
   "id": "key:tdj",
