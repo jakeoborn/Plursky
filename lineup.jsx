@@ -901,6 +901,12 @@ function LineupScreen({ state, setState }) {
   React.useLayoutEffect(() => {
     const tail = document.querySelector("[data-lineup-scroll] [data-open-tail]");
     if (tail) tail.style.height = "0px";
+    // That new list clamps the scroller back to the top, and no scroll the
+    // user drove reaches onScroll, so a header the open folded stayed folded:
+    // My plan on a live night hid Share and Calendar under the list. At the
+    // top the header is open, the same rule onScroll applies (y < 24).
+    const sc = viewMode === "list" && document.querySelector("[data-lineup-scroll]");
+    if (sc && sc.scrollTop < 24 && collapsedRef.current) setCollapsed(false);
   }, [filter, stageFilter, genreFilter, tierFilter, sortBy, q]);
   React.useLayoutEffect(() => {
     if (viewMode === "list") {

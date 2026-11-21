@@ -227,7 +227,13 @@ try {
     ok(tagged === !!(await p.$("[data-weekend]")), `${fid}: weekend tabs ${tagged ? "present" : "absent"}`);
     // The plan row (My night + Calendar, or the untimed note) shows once a save exists.
     await p.locator('button[aria-label^="Save "]').first().click(); await p.waitForTimeout(300);
-    await p.click('[data-lineup-show="saved"]').catch(() => {}); await p.waitForTimeout(300);
+    // While a festival is LIVE the lineup opens scrolled to the NOW line, so the
+    // header folds and only the folded bar's copy of the chip is on screen. Tap
+    // the copy a fan can tap (the header chip sits under the folded bar then);
+    // this check must not depend on the clock (it went red when Dreamstate
+    // SoCal 2026 went live).
+    const folded = !!(await p.$('[data-lineup-compact][data-collapsed="1"]'));
+    await p.click(folded ? '[data-mini-show="saved"]' : '[data-lineup-show="saved"]'); await p.waitForTimeout(300);
     const chip = (await p.locator('[data-lineup-show="saved"]').first().innerText()).trim();
     ok(untimed ? !!(await p.$("[data-untimed-note]")) && /^Shortlist/.test(chip)
       : !(await p.$("[data-untimed-note]")) && /^My plan/.test(chip), `${fid}: ${untimed ? "shortlist row (no set times)" : "plan row (timed)"} (chip "${chip}")`);
