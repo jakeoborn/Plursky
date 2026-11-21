@@ -1,0 +1,81 @@
+{
+  "id": "coachella-2011",
+  "method": "official_image_transcription",
+  "official": "http://www.coachella.com/event/set-times",
+  "window": [
+    "20110401",
+    "20110531"
+  ],
+  "pageCaptures": [
+    {
+      "captureTimestamp": "20110430035537",
+      "archivedUrl": "https://web.archive.org/web/20110430035537/http://www.coachella.com/event/set-times",
+      "sha256": "0a80ce162c8eb76cba51b6ef1596a201cda3b729c2e14c42b43a8924651a4b1f",
+      "images": [
+        "800fri.jpg",
+        "800sat.jpg",
+        "800sun.jpg"
+      ]
+    }
+  ],
+  "days": [
+    {
+      "day": 1,
+      "date": "2011-04-15",
+      "pageCapture": "20110430035537",
+      "pageArchivedUrl": "https://web.archive.org/web/20110430035537/http://www.coachella.com/event/set-times",
+      "originalUrl": "http://coachella.com/images/ie6/800fri.jpg",
+      "imageCapture": "20110708172230",
+      "imageArchivedUrl": "https://web.archive.org/web/20110708172230/http://coachella.com/images/ie6/800fri.jpg",
+      "sha256": "34e23477e00996e4d349a4cfe3d320da4b039d1ba2af95efaf3f4a1645187546",
+      "bytes": 101397,
+      "contentType": "image/jpeg",
+      "cacheFile": "ccfdd4cefdbc215ec5b142ab.bin",
+      "revisions": [
+        {
+          "file": "800fri.jpg",
+          "firstSeen": "20110430035537"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2011-04-16",
+      "pageCapture": "20110430035537",
+      "pageArchivedUrl": "https://web.archive.org/web/20110430035537/http://www.coachella.com/event/set-times",
+      "originalUrl": "http://coachella.com/images/ie6/800sat.jpg",
+      "imageCapture": "20110708172258",
+      "imageArchivedUrl": "https://web.archive.org/web/20110708172258/http://coachella.com/images/ie6/800sat.jpg",
+      "sha256": "a90117d5f0d67191edc3e186281d7fc49976c66ba4049102712d8a2c351ec88a",
+      "bytes": 108163,
+      "contentType": "image/jpeg",
+      "cacheFile": "184cb3b85a77b400e730888f.bin",
+      "revisions": [
+        {
+          "file": "800sat.jpg",
+          "firstSeen": "20110430035537"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2011-04-17",
+      "pageCapture": "20110430035537",
+      "pageArchivedUrl": "https://web.archive.org/web/20110430035537/http://www.coachella.com/event/set-times",
+      "originalUrl": "http://coachella.com/images/ie6/800sun.jpg",
+      "imageCapture": "20110708172218",
+      "imageArchivedUrl": "https://web.archive.org/web/20110708172218/http://coachella.com/images/ie6/800sun.jpg",
+      "sha256": "9f9c5a0f754cc0e9abac6b67657766624dd06ed793c0c180ea7a78445a1e9a7e",
+      "bytes": 101260,
+      "contentType": "image/jpeg",
+      "cacheFile": "a80bb53ecb8db625e608c4b6.bin",
+      "revisions": [
+        {
+          "file": "800sun.jpg",
+          "firstSeen": "20110430035537"
+        }
+      ]
+    }
+  ],
+  "dropped": []
+}
