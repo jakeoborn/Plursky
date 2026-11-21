@@ -203802,6 +203802,9273 @@
   "mainStage": null
  },
  {
+  "id": "coachella-2022:d1:coachella:1345:juicewon",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Coachella",
+  "start": "13:45",
+  "end": "14:15",
+  "printed": "Juicewon",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "juicewon",
+    "role": "performer"
+   }
+  ],
+  "act": "juicewon",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:coachella:1435:princess-nokia",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Coachella",
+  "start": "14:35",
+  "end": "15:15",
+  "printed": "Princess Nokia",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "princess-nokia",
+    "role": "performer"
+   }
+  ],
+  "act": "princess-nokia",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:coachella:1540:mika",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Coachella",
+  "start": "15:40",
+  "end": "16:25",
+  "printed": "MIKA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mika",
+    "role": "performer"
+   }
+  ],
+  "act": "mika",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:coachella:1650:ari-lennox",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Coachella",
+  "start": "16:50",
+  "end": "17:35",
+  "printed": "Ari Lennox",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ari-lennox",
+    "role": "performer"
+   }
+  ],
+  "act": "ari-lennox",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:coachella:1800:anitta",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Coachella",
+  "start": "18:00",
+  "end": "18:45",
+  "printed": "Anitta",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "anitta",
+    "role": "performer"
+   }
+  ],
+  "act": "anitta",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:coachella:1910:grupo-firme",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Coachella",
+  "start": "19:10",
+  "end": "20:00",
+  "printed": "Grupo Firme",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "grupo-firme",
+    "role": "performer"
+   }
+  ],
+  "act": "grupo-firme",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:coachella:2025:lil-baby",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Coachella",
+  "start": "20:25",
+  "end": "21:10",
+  "printed": "Lil Baby",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lil-baby",
+    "role": "performer"
+   }
+  ],
+  "act": "lil-baby",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:coachella:2210:daniel-caesar",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Coachella",
+  "start": "22:10",
+  "end": "22:55",
+  "printed": "Daniel Caesar",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "daniel-caesar",
+    "role": "performer"
+   }
+  ],
+  "act": "daniel-caesar",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:coachella:2335:harry-styles",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Coachella",
+  "start": "23:35",
+  "end": null,
+  "printed": "Harry Styles",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "harry-styles",
+    "role": "performer"
+   }
+  ],
+  "act": "harry-styles",
+  "closing": true,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:outdoor:1400:yimbo",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Outdoor",
+  "start": "14:00",
+  "end": "14:30",
+  "printed": "Yimbo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yimbo",
+    "role": "performer"
+   }
+  ],
+  "act": "yimbo",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:outdoor:1455:the-hu",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Outdoor",
+  "start": "14:55",
+  "end": "15:35",
+  "printed": "The Hu",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-hu",
+    "role": "performer"
+   }
+  ],
+  "act": "the-hu",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:outdoor:1600:bishop-briggs",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Outdoor",
+  "start": "16:00",
+  "end": "16:45",
+  "printed": "Bishop Briggs",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bishop-briggs",
+    "role": "performer"
+   }
+  ],
+  "act": "bishop-briggs",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:outdoor:1705:omar-apollo",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Outdoor",
+  "start": "17:05",
+  "end": "17:50",
+  "printed": "Omar Apollo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "omar-apollo",
+    "role": "performer"
+   }
+  ],
+  "act": "omar-apollo",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:outdoor:1825:niki",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Outdoor",
+  "start": "18:25",
+  "end": "19:10",
+  "printed": "NIKI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "niki",
+    "role": "performer"
+   }
+  ],
+  "act": "niki",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:outdoor:1940:madeon",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Outdoor",
+  "start": "19:40",
+  "end": "20:35",
+  "printed": "Madeon",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "madeon",
+    "role": "performer"
+   }
+  ],
+  "act": "madeon",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:outdoor:2110:phoebe-bridgers",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Outdoor",
+  "start": "21:10",
+  "end": "22:10",
+  "printed": "Phoebe Bridgers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "phoebe-bridgers",
+    "role": "performer"
+   }
+  ],
+  "act": "phoebe-bridgers",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:outdoor:2240:louis-the-child",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Outdoor",
+  "start": "22:40",
+  "end": "23:35",
+  "printed": "Louis the Child",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "louis-the-child",
+    "role": "performer"
+   }
+  ],
+  "act": "louis-the-child",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:outdoor:0000:king-gizzard-and-the-lizard-wizard",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Outdoor",
+  "start": "00:00",
+  "end": null,
+  "printed": "King Gizzard and the Lizard Wizard",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "king-gizzard-and-the-lizard-wizard",
+    "role": "performer"
+   }
+  ],
+  "act": "king-gizzard-and-the-lizard-wizard",
+  "closing": true,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:sonora:1200:jim-smith",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Sonora",
+  "start": "12:00",
+  "end": "13:40",
+  "printed": "Jim Smith",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jim-smith",
+    "role": "performer"
+   }
+  ],
+  "act": "jim-smith",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:sonora:1340:giselle-woo-and-the-night-owls",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Sonora",
+  "start": "13:40",
+  "end": "14:10",
+  "printed": "Giselle Woo & the Night Owls",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "giselle-woo-and-the-night-owls",
+    "role": "performer"
+   }
+  ],
+  "act": "giselle-woo-and-the-night-owls",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:sonora:1430:jean-dawson",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Sonora",
+  "start": "14:30",
+  "end": "15:05",
+  "printed": "Jean Dawson",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jean-dawson",
+    "role": "performer"
+   }
+  ],
+  "act": "jean-dawson",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:sonora:1530:code-orange",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Sonora",
+  "start": "15:30",
+  "end": "16:10",
+  "printed": "Code Orange",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "code-orange",
+    "role": "performer"
+   }
+  ],
+  "act": "code-orange",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:sonora:1635:the-chats",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Sonora",
+  "start": "16:35",
+  "end": "17:10",
+  "printed": "The Chats",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-chats",
+    "role": "performer"
+   }
+  ],
+  "act": "the-chats",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:sonora:1740:spiritualized",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Sonora",
+  "start": "17:40",
+  "end": "18:40",
+  "printed": "Spiritualized",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "spiritualized",
+    "role": "performer"
+   }
+  ],
+  "act": "spiritualized",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:sonora:1920:pup",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Sonora",
+  "start": "19:20",
+  "end": "20:00",
+  "printed": "PUP",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pup",
+    "role": "performer"
+   }
+  ],
+  "act": "pup",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:sonora:2100:amyl-and-the-sniffers",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Sonora",
+  "start": "21:00",
+  "end": "21:40",
+  "printed": "Amyl & the Sniffers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "amyl-and-the-sniffers",
+    "role": "performer"
+   }
+  ],
+  "act": "amyl-and-the-sniffers",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:sonora:2210:ela-minus",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Sonora",
+  "start": "22:10",
+  "end": "22:50",
+  "printed": "Ela Minus",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ela-minus",
+    "role": "performer"
+   }
+  ],
+  "act": "ela-minus",
+  "closing": true,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:gobi:1345:torres-martinez-birdsinging-and-dancing",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Gobi",
+  "start": "13:45",
+  "end": "14:00",
+  "printed": "Torres Martinez Birdsinging and Dancing",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "torres-martinez-birdsinging-and-dancing",
+    "role": "performer"
+   }
+  ],
+  "act": "torres-martinez-birdsinging-and-dancing",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:gobi:1415:arooj-aftab",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Gobi",
+  "start": "14:15",
+  "end": "14:55",
+  "printed": "Arooj Aftab",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "arooj-aftab",
+    "role": "performer"
+   }
+  ],
+  "act": "arooj-aftab",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:gobi:1520:the-regrettes",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Gobi",
+  "start": "15:20",
+  "end": "16:05",
+  "printed": "The Regrettes",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-regrettes",
+    "role": "performer"
+   }
+  ],
+  "act": "the-regrettes",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:gobi:1635:role-model",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Gobi",
+  "start": "16:35",
+  "end": "17:20",
+  "printed": "Role Model",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "role-model",
+    "role": "performer"
+   }
+  ],
+  "act": "role-model",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:gobi:1750:the-marias",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Gobi",
+  "start": "17:50",
+  "end": "18:35",
+  "printed": "The Marías",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-marias",
+    "role": "performer"
+   }
+  ],
+  "act": "the-marias",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:gobi:1900:slowthai",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Gobi",
+  "start": "19:00",
+  "end": "19:45",
+  "printed": "slowthai",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "slowthai",
+    "role": "performer"
+   }
+  ],
+  "act": "slowthai",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:gobi:2010:tokimonsta",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Gobi",
+  "start": "20:10",
+  "end": "21:00",
+  "printed": "TOKiMONSTA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tokimonsta",
+    "role": "performer"
+   }
+  ],
+  "act": "tokimonsta",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:gobi:2125:the-avalanches",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Gobi",
+  "start": "21:25",
+  "end": "22:15",
+  "printed": "The Avalanches",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-avalanches",
+    "role": "performer"
+   }
+  ],
+  "act": "the-avalanches",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:gobi:2245:epik-high",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Gobi",
+  "start": "22:45",
+  "end": "23:35",
+  "printed": "EPIK HIGH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "epik-high",
+    "role": "performer"
+   }
+  ],
+  "act": "epik-high",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:gobi:0005:badbadnotgood",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Gobi",
+  "start": "00:05",
+  "end": null,
+  "printed": "BADBADNOTGOOD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "badbadnotgood",
+    "role": "performer"
+   }
+  ],
+  "act": "badbadnotgood",
+  "closing": true,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:mojave:1320:meute",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Mojave",
+  "start": "13:20",
+  "end": "14:00",
+  "printed": "MEUTE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "meute",
+    "role": "performer"
+   }
+  ],
+  "act": "meute",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:mojave:1425:lawrence",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Mojave",
+  "start": "14:25",
+  "end": "14:55",
+  "printed": "Lawrence",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lawrence",
+    "role": "performer"
+   }
+  ],
+  "act": "lawrence",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:mojave:1520:raveena",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Mojave",
+  "start": "15:20",
+  "end": "16:00",
+  "printed": "Raveena",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "raveena",
+    "role": "performer"
+   }
+  ],
+  "act": "raveena",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:mojave:1625:still-woozy",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Mojave",
+  "start": "16:25",
+  "end": "17:05",
+  "printed": "Still Woozy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "still-woozy",
+    "role": "performer"
+   }
+  ],
+  "act": "still-woozy",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:mojave:1730:carly-rae-jepsen",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Mojave",
+  "start": "17:30",
+  "end": "18:15",
+  "printed": "Carly Rae Jepsen",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carly-rae-jepsen",
+    "role": "performer"
+   }
+  ],
+  "act": "carly-rae-jepsen",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:mojave:1845:arcade-fire",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Mojave",
+  "start": "18:45",
+  "end": "19:45",
+  "printed": "Arcade Fire",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "arcade-fire",
+    "role": "performer"
+   }
+  ],
+  "act": "arcade-fire",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:mojave:2010:idles",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Mojave",
+  "start": "20:10",
+  "end": "21:00",
+  "printed": "IDLES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "idles",
+    "role": "performer"
+   }
+  ],
+  "act": "idles",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:mojave:2125:pink-sweat",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Mojave",
+  "start": "21:25",
+  "end": "22:10",
+  "printed": "Pink Sweat$",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pink-sweat",
+    "role": "performer"
+   }
+  ],
+  "act": "pink-sweat",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:mojave:2235:snoh-aalegra",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Mojave",
+  "start": "22:35",
+  "end": "23:20",
+  "printed": "Snoh Aalegra",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "snoh-aalegra",
+    "role": "performer"
+   }
+  ],
+  "act": "snoh-aalegra",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:mojave:2345:lane-8",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Mojave",
+  "start": "23:45",
+  "end": null,
+  "printed": "Lane 8",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lane-8",
+    "role": "performer"
+   }
+  ],
+  "act": "lane-8",
+  "closing": true,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:sahara:1325:venessa-michaels",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Sahara",
+  "start": "13:25",
+  "end": "13:55",
+  "printed": "Venessa Michaels",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "venessa-michaels",
+    "role": "performer"
+   }
+  ],
+  "act": "venessa-michaels",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:sahara:1405:gg-magree",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Sahara",
+  "start": "14:05",
+  "end": "14:50",
+  "printed": "GG Magree",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gg-magree",
+    "role": "performer"
+   }
+  ],
+  "act": "gg-magree",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:sahara:1450:lost-kings",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Sahara",
+  "start": "14:50",
+  "end": "15:35",
+  "printed": "Lost Kings",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lost-kings",
+    "role": "performer"
+   }
+  ],
+  "act": "lost-kings",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:sahara:1535:john-summit",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Sahara",
+  "start": "15:35",
+  "end": "16:35",
+  "printed": "John Summit",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "john-summit",
+    "role": "performer"
+   }
+  ],
+  "act": "john-summit",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:sahara:1635:dom-dolla",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Sahara",
+  "start": "16:35",
+  "end": "17:35",
+  "printed": "Dom Dolla",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dom-dolla",
+    "role": "performer"
+   }
+  ],
+  "act": "dom-dolla",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:sahara:1800:city-girls",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Sahara",
+  "start": "18:00",
+  "end": "18:45",
+  "printed": "City Girls",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "city-girls",
+    "role": "performer"
+   }
+  ],
+  "act": "city-girls",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:sahara:1905:cordae",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Sahara",
+  "start": "19:05",
+  "end": "19:50",
+  "printed": "Cordae",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cordae",
+    "role": "performer"
+   }
+  ],
+  "act": "cordae",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:sahara:2010:black-coffee",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Sahara",
+  "start": "20:10",
+  "end": "21:10",
+  "printed": "Black Coffee",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "black-coffee",
+    "role": "performer"
+   }
+  ],
+  "act": "black-coffee",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:sahara:2135:baby-keem",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Sahara",
+  "start": "21:35",
+  "end": "22:20",
+  "printed": "Baby Keem",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "baby-keem",
+    "role": "performer"
+   }
+  ],
+  "act": "baby-keem",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:sahara:2245:big-sean",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Sahara",
+  "start": "22:45",
+  "end": "23:30",
+  "printed": "Big Sean",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "big-sean",
+    "role": "performer"
+   }
+  ],
+  "act": "big-sean",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:sahara:2355:slander",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Sahara",
+  "start": "23:55",
+  "end": null,
+  "printed": "SLANDER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "slander",
+    "role": "performer"
+   }
+  ],
+  "act": "slander",
+  "closing": true,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:yuma:1200:dear-humans",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Yuma",
+  "start": "12:00",
+  "end": "13:00",
+  "printed": "Dear Humans",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dear-humans",
+    "role": "performer"
+   }
+  ],
+  "act": "dear-humans",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:yuma:1300:sohmi",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Yuma",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "SOHMI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sohmi",
+    "role": "performer"
+   }
+  ],
+  "act": "sohmi",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:yuma:1400:logic1000",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Yuma",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "Logic1000",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "logic1000",
+    "role": "performer"
+   }
+  ],
+  "act": "logic1000",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:yuma:1500:jayda-g",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Yuma",
+  "start": "15:00",
+  "end": "16:15",
+  "printed": "Jayda G",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jayda-g",
+    "role": "performer"
+   }
+  ],
+  "act": "jayda-g",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:yuma:1615:purple-disco-machine",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Yuma",
+  "start": "16:15",
+  "end": "17:30",
+  "printed": "Purple Disco Machine",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "purple-disco-machine",
+    "role": "performer"
+   }
+  ],
+  "act": "purple-disco-machine",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:yuma:1730:daphni",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Yuma",
+  "start": "17:30",
+  "end": "18:45",
+  "printed": "Daphni",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "daphni",
+    "role": "performer"
+   }
+  ],
+  "act": "daphni",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:yuma:1845:damian-lazarus",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Yuma",
+  "start": "18:45",
+  "end": "20:15",
+  "printed": "Damian Lazarus",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "damian-lazarus",
+    "role": "performer"
+   }
+  ],
+  "act": "damian-lazarus",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:yuma:2015:peggy-gou",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Yuma",
+  "start": "20:15",
+  "end": "21:45",
+  "printed": "Peggy Gou",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "peggy-gou",
+    "role": "performer"
+   }
+  ],
+  "act": "peggy-gou",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:yuma:2145:the-martinez-brothers",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Yuma",
+  "start": "21:45",
+  "end": "23:15",
+  "printed": "The Martinez Brothers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-martinez-brothers",
+    "role": "performer"
+   }
+  ],
+  "act": "the-martinez-brothers",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d1:yuma:2315:artbat",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-15",
+  "day": 1,
+  "stage": "Yuma",
+  "start": "23:15",
+  "end": null,
+  "printed": "ARTBAT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "artbat",
+    "role": "performer"
+   }
+  ],
+  "act": "artbat",
+  "closing": true,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:coachella:1315:record-safari",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Coachella",
+  "start": "13:15",
+  "end": "13:45",
+  "printed": "Record Safari",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "record-safari",
+    "role": "performer"
+   }
+  ],
+  "act": "record-safari",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:coachella:1400:koffee",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Coachella",
+  "start": "14:00",
+  "end": "14:40",
+  "printed": "Koffee",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "koffee",
+    "role": "performer"
+   }
+  ],
+  "act": "koffee",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:coachella:1505:masego",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Coachella",
+  "start": "15:05",
+  "end": "15:55",
+  "printed": "Masego",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "masego",
+    "role": "performer"
+   }
+  ],
+  "act": "masego",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:coachella:1620:conan-gray",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Coachella",
+  "start": "16:20",
+  "end": "17:05",
+  "printed": "Conan Gray",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "conan-gray",
+    "role": "performer"
+   }
+  ],
+  "act": "conan-gray",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:coachella:1730:giveon",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Coachella",
+  "start": "17:30",
+  "end": "18:15",
+  "printed": "Giveon",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "giveon",
+    "role": "performer"
+   }
+  ],
+  "act": "giveon",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:coachella:1845:88rising",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Coachella",
+  "start": "18:45",
+  "end": "20:05",
+  "printed": "88rising",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "88rising",
+    "role": "performer"
+   }
+  ],
+  "act": "88rising",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:coachella:2035:flume",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Coachella",
+  "start": "20:35",
+  "end": "21:35",
+  "printed": "Flume",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "flume",
+    "role": "performer"
+   }
+  ],
+  "act": "flume",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:coachella:2205:megan-thee-stallion",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Coachella",
+  "start": "22:05",
+  "end": "22:50",
+  "printed": "Megan Thee Stallion",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "megan-thee-stallion",
+    "role": "performer"
+   }
+  ],
+  "act": "megan-thee-stallion",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:coachella:2330:billie-eilish",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Coachella",
+  "start": "23:30",
+  "end": null,
+  "printed": "Billie Eilish",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "billie-eilish",
+    "role": "performer"
+   }
+  ],
+  "act": "billie-eilish",
+  "closing": true,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:outdoor:1345:gingee",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Outdoor",
+  "start": "13:45",
+  "end": "14:15",
+  "printed": "Gingee",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gingee",
+    "role": "performer"
+   }
+  ],
+  "act": "gingee",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:outdoor:1430:chelsea-cutler",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Outdoor",
+  "start": "14:30",
+  "end": "15:10",
+  "printed": "Chelsea Cutler",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chelsea-cutler",
+    "role": "performer"
+   }
+  ],
+  "act": "chelsea-cutler",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:outdoor:1535:beach-bunny",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Outdoor",
+  "start": "15:35",
+  "end": "16:20",
+  "printed": "Beach Bunny",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "beach-bunny",
+    "role": "performer"
+   }
+  ],
+  "act": "beach-bunny",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:outdoor:1640:wallows",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Outdoor",
+  "start": "16:40",
+  "end": "17:25",
+  "printed": "Wallows",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wallows",
+    "role": "performer"
+   }
+  ],
+  "act": "wallows",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:outdoor:1750:cuco",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Outdoor",
+  "start": "17:50",
+  "end": "18:40",
+  "printed": "Cuco",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cuco",
+    "role": "performer"
+   }
+  ],
+  "act": "cuco",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:outdoor:1910:disclosure",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Outdoor",
+  "start": "19:10",
+  "end": "20:25",
+  "printed": "Disclosure",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "disclosure",
+    "role": "performer"
+   }
+  ],
+  "act": "disclosure",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:outdoor:2100:danny-elfman",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Outdoor",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "Danny Elfman",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "danny-elfman",
+    "role": "performer"
+   }
+  ],
+  "act": "danny-elfman",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:outdoor:2235:stromae",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Outdoor",
+  "start": "22:35",
+  "end": null,
+  "printed": "Stromae",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "stromae",
+    "role": "performer"
+   }
+  ],
+  "act": "stromae",
+  "closing": true,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:sonora:1200:buster-jarvis",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Sonora",
+  "start": "12:00",
+  "end": "13:00",
+  "printed": "Buster Jarvis",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "buster-jarvis",
+    "role": "performer"
+   }
+  ],
+  "act": "buster-jarvis",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:sonora:1300:yard-act",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Sonora",
+  "start": "13:00",
+  "end": "13:30",
+  "printed": "Yard Act",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yard-act",
+    "role": "performer"
+   }
+  ],
+  "act": "yard-act",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:sonora:1345:beach-goons",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Sonora",
+  "start": "13:45",
+  "end": "14:15",
+  "printed": "Beach Goons",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "beach-goons",
+    "role": "performer"
+   }
+  ],
+  "act": "beach-goons",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:sonora:1430:nilufer-yanya",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Sonora",
+  "start": "14:30",
+  "end": "15:10",
+  "printed": "Nilüfer Yanya",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nilufer-yanya",
+    "role": "performer"
+   }
+  ],
+  "act": "nilufer-yanya",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:sonora:1530:ed-maverick",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Sonora",
+  "start": "15:30",
+  "end": "16:10",
+  "printed": "Ed Maverick",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ed-maverick",
+    "role": "performer"
+   }
+  ],
+  "act": "ed-maverick",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:sonora:1640:nicki-nicole",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Sonora",
+  "start": "16:40",
+  "end": "17:20",
+  "printed": "Nicki Nicole",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nicki-nicole",
+    "role": "performer"
+   }
+  ],
+  "act": "nicki-nicole",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:sonora:1745:mannequin-pussy",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Sonora",
+  "start": "17:45",
+  "end": "18:25",
+  "printed": "Mannequin Pussy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mannequin-pussy",
+    "role": "performer"
+   }
+  ],
+  "act": "mannequin-pussy",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:sonora:1850:inner-wave",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Sonora",
+  "start": "18:50",
+  "end": "19:30",
+  "printed": "Inner Wave",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "inner-wave",
+    "role": "performer"
+   }
+  ],
+  "act": "inner-wave",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:sonora:2000:black-midi",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Sonora",
+  "start": "20:00",
+  "end": "20:50",
+  "printed": "black midi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "black-midi",
+    "role": "performer"
+   }
+  ],
+  "act": "black-midi",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:sonora:2115:molchat-doma",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Sonora",
+  "start": "21:15",
+  "end": "22:00",
+  "printed": "Molchat Doma",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "molchat-doma",
+    "role": "performer"
+   }
+  ],
+  "act": "molchat-doma",
+  "closing": true,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:gobi:1245:mark-lizaola",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Gobi",
+  "start": "12:45",
+  "end": "13:15",
+  "printed": "Mark Lizaola",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mark-lizaola",
+    "role": "performer"
+   }
+  ],
+  "act": "mark-lizaola",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:gobi:1335:alaina-castillo",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Gobi",
+  "start": "13:35",
+  "end": "14:15",
+  "printed": "Alaina Castillo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alaina-castillo",
+    "role": "performer"
+   }
+  ],
+  "act": "alaina-castillo",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:gobi:1440:current-joys",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Gobi",
+  "start": "14:40",
+  "end": "15:20",
+  "printed": "Current Joys",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "current-joys",
+    "role": "performer"
+   }
+  ],
+  "act": "current-joys",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:gobi:1545:l-imperatrice",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Gobi",
+  "start": "15:45",
+  "end": "16:25",
+  "printed": "L'Impératrice",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "l-imperatrice",
+    "role": "performer"
+   }
+  ],
+  "act": "l-imperatrice",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:gobi:1650:arlo-parks",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Gobi",
+  "start": "16:50",
+  "end": "17:35",
+  "printed": "Arlo Parks",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "arlo-parks",
+    "role": "performer"
+   }
+  ],
+  "act": "arlo-parks",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:gobi:1800:rina-sawayama",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Gobi",
+  "start": "18:00",
+  "end": "18:45",
+  "printed": "Rina Sawayama",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rina-sawayama",
+    "role": "performer"
+   }
+  ],
+  "act": "rina-sawayama",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:gobi:1915:caroline-polachek",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Gobi",
+  "start": "19:15",
+  "end": "20:00",
+  "printed": "Caroline Polachek",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "caroline-polachek",
+    "role": "performer"
+   }
+  ],
+  "act": "caroline-polachek",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:gobi:2025:pabllo-vittar",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Gobi",
+  "start": "20:25",
+  "end": "21:10",
+  "printed": "Pabllo Vittar",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pabllo-vittar",
+    "role": "performer"
+   }
+  ],
+  "act": "pabllo-vittar",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:gobi:2135:freddie-gibbs-and-madlib",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Gobi",
+  "start": "21:35",
+  "end": "22:25",
+  "printed": "Freddie Gibbs & Madlib",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "freddie-gibbs-and-madlib",
+    "role": "performer"
+   }
+  ],
+  "act": "freddie-gibbs-and-madlib",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:gobi:2250:hot-chip",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Gobi",
+  "start": "22:50",
+  "end": "23:35",
+  "printed": "Hot Chip",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hot-chip",
+    "role": "performer"
+   }
+  ],
+  "act": "hot-chip",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:gobi:2355:kyary-pamyu-pamyu",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Gobi",
+  "start": "23:55",
+  "end": null,
+  "printed": "Kyary Pamyu Pamyu",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kyary-pamyu-pamyu",
+    "role": "performer"
+   }
+  ],
+  "act": "kyary-pamyu-pamyu",
+  "closing": true,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:mojave:1330:gee-dee",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Mojave",
+  "start": "13:30",
+  "end": "14:00",
+  "printed": "Gee Dee",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gee-dee",
+    "role": "performer"
+   }
+  ],
+  "act": "gee-dee",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:mojave:1420:amber-mark",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Mojave",
+  "start": "14:20",
+  "end": "15:05",
+  "printed": "Amber Mark",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "amber-mark",
+    "role": "performer"
+   }
+  ],
+  "act": "amber-mark",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:mojave:1530:holly-humberstone",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Mojave",
+  "start": "15:30",
+  "end": "16:15",
+  "printed": "Holly Humberstone",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "holly-humberstone",
+    "role": "performer"
+   }
+  ],
+  "act": "holly-humberstone",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:mojave:1640:japanese-breakfast",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Mojave",
+  "start": "16:40",
+  "end": "17:25",
+  "printed": "Japanese Breakfast",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "japanese-breakfast",
+    "role": "performer"
+   }
+  ],
+  "act": "japanese-breakfast",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:mojave:1750:girl-in-red",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Mojave",
+  "start": "17:50",
+  "end": "18:35",
+  "printed": "girl in red",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "girl-in-red",
+    "role": "performer"
+   }
+  ],
+  "act": "girl-in-red",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:mojave:1900:turnstile",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Mojave",
+  "start": "19:00",
+  "end": "19:50",
+  "printed": "Turnstile",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "turnstile",
+    "role": "performer"
+   }
+  ],
+  "act": "turnstile",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:mojave:2015:steve-lacy",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Mojave",
+  "start": "20:15",
+  "end": "21:00",
+  "printed": "Steve Lacy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "steve-lacy",
+    "role": "performer"
+   }
+  ],
+  "act": "steve-lacy",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:mojave:2130:caribou",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Mojave",
+  "start": "21:30",
+  "end": "22:25",
+  "printed": "Caribou",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "caribou",
+    "role": "performer"
+   }
+  ],
+  "act": "caribou",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:mojave:2245:floating-points",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Mojave",
+  "start": "22:45",
+  "end": "23:40",
+  "printed": "Floating Points",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "floating-points",
+    "role": "performer"
+   }
+  ],
+  "act": "floating-points",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:mojave:2340:dj-koze",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Mojave",
+  "start": "23:40",
+  "end": null,
+  "printed": "DJ Koze",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-koze",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-koze",
+  "closing": true,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:sahara:1245:latane-from-fundido",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Sahara",
+  "start": "12:45",
+  "end": "13:15",
+  "printed": "Latane from Fundido",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "latane-from-fundido",
+    "role": "performer"
+   }
+  ],
+  "act": "latane-from-fundido",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:sahara:1330:dj-lord",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Sahara",
+  "start": "13:30",
+  "end": "14:10",
+  "printed": "DJ Lord",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-lord",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-lord",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:sahara:1410:vnssa",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Sahara",
+  "start": "14:10",
+  "end": "14:55",
+  "printed": "VNSSA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vnssa",
+    "role": "performer"
+   }
+  ],
+  "act": "vnssa",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:sahara:1455:whipped-cream",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Sahara",
+  "start": "14:55",
+  "end": "15:40",
+  "printed": "Whipped Cream",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "whipped-cream",
+    "role": "performer"
+   }
+  ],
+  "act": "whipped-cream",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:sahara:1600:j-i-d",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Sahara",
+  "start": "16:00",
+  "end": "16:45",
+  "printed": "J.I.D",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "j-i-d",
+    "role": "performer"
+   }
+  ],
+  "act": "j-i-d",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:sahara:1705:emo-nite",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Sahara",
+  "start": "17:05",
+  "end": "17:50",
+  "printed": "Emo Nite",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "emo-nite",
+    "role": "performer"
+   }
+  ],
+  "act": "emo-nite",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:sahara:1810:100-gecs",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Sahara",
+  "start": "18:10",
+  "end": "18:50",
+  "printed": "100 gecs",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "100-gecs",
+    "role": "performer"
+   }
+  ],
+  "act": "100-gecs",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:sahara:1915:tchami",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Sahara",
+  "start": "19:15",
+  "end": "19:55",
+  "printed": "Tchami",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tchami",
+    "role": "performer"
+   }
+  ],
+  "act": "tchami",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:sahara:2025:brockhampton",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Sahara",
+  "start": "20:25",
+  "end": "21:15",
+  "printed": "BROCKHAMPTON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "brockhampton",
+    "role": "performer"
+   }
+  ],
+  "act": "brockhampton",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:sahara:2140:rich-brian",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Sahara",
+  "start": "21:40",
+  "end": "22:25",
+  "printed": "Rich Brian",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rich-brian",
+    "role": "performer"
+   }
+  ],
+  "act": "rich-brian",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:sahara:2250:isaiah-rashad",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Sahara",
+  "start": "22:50",
+  "end": "23:35",
+  "printed": "Isaiah Rashad",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "isaiah-rashad",
+    "role": "performer"
+   }
+  ],
+  "act": "isaiah-rashad",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:sahara:0005:21-savage",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Sahara",
+  "start": "00:05",
+  "end": null,
+  "printed": "21 Savage",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "21-savage",
+    "role": "performer"
+   }
+  ],
+  "act": "21-savage",
+  "closing": true,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:yuma:1200:miane",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Yuma",
+  "start": "12:00",
+  "end": "12:45",
+  "printed": "Miane",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "miane",
+    "role": "performer"
+   }
+  ],
+  "act": "miane",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:yuma:1245:layla-benitez",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Yuma",
+  "start": "12:45",
+  "end": "14:00",
+  "printed": "Layla Benitez",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "layla-benitez",
+    "role": "performer"
+   }
+  ],
+  "act": "layla-benitez",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:yuma:1400:dj-holographic",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Yuma",
+  "start": "14:00",
+  "end": "15:15",
+  "printed": "DJ Holographic",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-holographic",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-holographic",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:yuma:1515:sama-abdulhadi",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Yuma",
+  "start": "15:15",
+  "end": "16:30",
+  "printed": "Sama' Abdulhadi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sama-abdulhadi",
+    "role": "performer"
+   }
+  ],
+  "act": "sama-abdulhadi",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:yuma:1630:paco-osuna",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Yuma",
+  "start": "16:30",
+  "end": "18:00",
+  "printed": "Paco Osuna",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "paco-osuna",
+    "role": "performer"
+   }
+  ],
+  "act": "paco-osuna",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:yuma:1800:anna",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Yuma",
+  "start": "18:00",
+  "end": "19:30",
+  "printed": "ANNA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "anna",
+    "role": "performer"
+   }
+  ],
+  "act": "anna",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:yuma:1930:chris-liebing",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Yuma",
+  "start": "19:30",
+  "end": "21:00",
+  "printed": "Chris Liebing",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chris-liebing",
+    "role": "performer"
+   }
+  ],
+  "act": "chris-liebing",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:yuma:2100:dixon",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Yuma",
+  "start": "21:00",
+  "end": "23:00",
+  "printed": "Dixon",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dixon",
+    "role": "performer"
+   }
+  ],
+  "act": "dixon",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d2:yuma:2300:richie-hawtin",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-16",
+  "day": 2,
+  "stage": "Yuma",
+  "start": "23:00",
+  "end": null,
+  "printed": "Richie Hawtin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "richie-hawtin",
+    "role": "performer"
+   }
+  ],
+  "act": "richie-hawtin",
+  "closing": true,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:coachella:1330:gabe-real",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Coachella",
+  "start": "13:30",
+  "end": "14:00",
+  "printed": "Gabe Real",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gabe-real",
+    "role": "performer"
+   }
+  ],
+  "act": "gabe-real",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:coachella:1415:surf-curse",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Coachella",
+  "start": "14:15",
+  "end": "14:55",
+  "printed": "Surf Curse",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "surf-curse",
+    "role": "performer"
+   }
+  ],
+  "act": "surf-curse",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:coachella:1520:banda-ms",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Coachella",
+  "start": "15:20",
+  "end": "16:10",
+  "printed": "Banda MS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "banda-ms",
+    "role": "performer"
+   }
+  ],
+  "act": "banda-ms",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:coachella:1635:run-the-jewels",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Coachella",
+  "start": "16:35",
+  "end": "17:20",
+  "printed": "Run The Jewels",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "run-the-jewels",
+    "role": "performer"
+   }
+  ],
+  "act": "run-the-jewels",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:coachella:1745:maggie-rogers",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Coachella",
+  "start": "17:45",
+  "end": "18:30",
+  "printed": "Maggie Rogers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "maggie-rogers",
+    "role": "performer"
+   }
+  ],
+  "act": "maggie-rogers",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:coachella:1900:karol-g",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Coachella",
+  "start": "19:00",
+  "end": "19:50",
+  "printed": "Karol G",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "karol-g",
+    "role": "performer"
+   }
+  ],
+  "act": "karol-g",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:coachella:2030:doja-cat",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Coachella",
+  "start": "20:30",
+  "end": "21:30",
+  "printed": "Doja Cat",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "doja-cat",
+    "role": "performer"
+   }
+  ],
+  "act": "doja-cat",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:coachella:2220:swedish-house-mafia-x-the-weeknd",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Coachella",
+  "start": "22:20",
+  "end": null,
+  "printed": "Swedish House Mafia x The Weeknd",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "swedish-house-mafia-x-the-weeknd",
+    "role": "collab"
+   }
+  ],
+  "act": "swedish-house-mafia-x-the-weeknd",
+  "closing": true,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:outdoor:1310:dave-p",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Outdoor",
+  "start": "13:10",
+  "end": "13:40",
+  "printed": "Dave P",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dave-p",
+    "role": "performer"
+   }
+  ],
+  "act": "dave-p",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:outdoor:1400:mariah-the-scientist",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Outdoor",
+  "start": "14:00",
+  "end": "14:35",
+  "printed": "Mariah the Scientist",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mariah-the-scientist",
+    "role": "performer"
+   }
+  ],
+  "act": "mariah-the-scientist",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:outdoor:1455:yola",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Outdoor",
+  "start": "14:55",
+  "end": "15:35",
+  "printed": "Yola",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yola",
+    "role": "performer"
+   }
+  ],
+  "act": "yola",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:outdoor:1600:alec-benjamin",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Outdoor",
+  "start": "16:00",
+  "end": "16:40",
+  "printed": "Alec Benjamin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alec-benjamin",
+    "role": "performer"
+   }
+  ],
+  "act": "alec-benjamin",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:outdoor:1705:finneas",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Outdoor",
+  "start": "17:05",
+  "end": "17:50",
+  "printed": "FINNEAS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "finneas",
+    "role": "performer"
+   }
+  ],
+  "act": "finneas",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:outdoor:1815:solomun",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Outdoor",
+  "start": "18:15",
+  "end": "19:15",
+  "printed": "Solomun",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "solomun",
+    "role": "performer"
+   }
+  ],
+  "act": "solomun",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:outdoor:1940:joji",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Outdoor",
+  "start": "19:40",
+  "end": "20:30",
+  "printed": "Joji",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "joji",
+    "role": "performer"
+   }
+  ],
+  "act": "joji",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:outdoor:2130:jamie-xx",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Outdoor",
+  "start": "21:30",
+  "end": null,
+  "printed": "Jamie xx",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jamie-xx",
+    "role": "performer"
+   }
+  ],
+  "act": "jamie-xx",
+  "closing": true,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:sonora:1200:interventionboi",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Sonora",
+  "start": "12:00",
+  "end": "13:25",
+  "printed": "interventionboi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "interventionboi",
+    "role": "performer"
+   }
+  ],
+  "act": "interventionboi",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:sonora:1325:carino",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Sonora",
+  "start": "13:25",
+  "end": "13:55",
+  "printed": "Cariño",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carino",
+    "role": "performer"
+   }
+  ],
+  "act": "carino",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:sonora:1420:alt-n-gun",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Sonora",
+  "start": "14:20",
+  "end": "15:00",
+  "printed": "Altın Gün",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alt-n-gun",
+    "role": "performer"
+   }
+  ],
+  "act": "alt-n-gun",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:sonora:1520:skegss",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Sonora",
+  "start": "15:20",
+  "end": "16:00",
+  "printed": "Skegss",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "skegss",
+    "role": "performer"
+   }
+  ],
+  "act": "skegss",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:sonora:1620:viagra-boys",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Sonora",
+  "start": "16:20",
+  "end": "17:00",
+  "printed": "Viagra Boys",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "viagra-boys",
+    "role": "performer"
+   }
+  ],
+  "act": "viagra-boys",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:sonora:1725:crumb",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Sonora",
+  "start": "17:25",
+  "end": "18:05",
+  "printed": "Crumb",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "crumb",
+    "role": "performer"
+   }
+  ],
+  "act": "crumb",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:sonora:1830:eyedress",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Sonora",
+  "start": "18:30",
+  "end": "19:10",
+  "printed": "Eyedress",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eyedress",
+    "role": "performer"
+   }
+  ],
+  "act": "eyedress",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:sonora:2000:nathy-peluso",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Sonora",
+  "start": "20:00",
+  "end": "20:50",
+  "printed": "Nathy Peluso",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nathy-peluso",
+    "role": "performer"
+   }
+  ],
+  "act": "nathy-peluso",
+  "closing": true,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:gobi:1310:massio",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Gobi",
+  "start": "13:10",
+  "end": "13:40",
+  "printed": "Massio",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "massio",
+    "role": "performer"
+   }
+  ],
+  "act": "massio",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:gobi:1400:sampa-the-great",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Gobi",
+  "start": "14:00",
+  "end": "14:35",
+  "printed": "Sampa the Great",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sampa-the-great",
+    "role": "performer"
+   }
+  ],
+  "act": "sampa-the-great",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:gobi:1455:hayden-james",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Gobi",
+  "start": "14:55",
+  "end": "15:40",
+  "printed": "Hayden James",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hayden-james",
+    "role": "performer"
+   }
+  ],
+  "act": "hayden-james",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:gobi:1600:beabadoobee",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Gobi",
+  "start": "16:00",
+  "end": "16:40",
+  "printed": "beabadoobee",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "beabadoobee",
+    "role": "performer"
+   }
+  ],
+  "act": "beabadoobee",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:gobi:1705:orville-peck",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Gobi",
+  "start": "17:05",
+  "end": "17:45",
+  "printed": "Orville Peck",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "orville-peck",
+    "role": "performer"
+   }
+  ],
+  "act": "orville-peck",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:gobi:1810:chicano-batman",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Gobi",
+  "start": "18:10",
+  "end": "19:00",
+  "printed": "Chicano Batman",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chicano-batman",
+    "role": "performer"
+   }
+  ],
+  "act": "chicano-batman",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:gobi:1925:ali-gatie",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Gobi",
+  "start": "19:25",
+  "end": "20:10",
+  "printed": "Ali Gatie",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ali-gatie",
+    "role": "performer"
+   }
+  ],
+  "act": "ali-gatie",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:gobi:2035:natanael-cano",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Gobi",
+  "start": "20:35",
+  "end": "21:15",
+  "printed": "Natanael Cano",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "natanael-cano",
+    "role": "performer"
+   }
+  ],
+  "act": "natanael-cano",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:gobi:2140:belly",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Gobi",
+  "start": "21:40",
+  "end": null,
+  "printed": "Belly",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "belly",
+    "role": "performer"
+   }
+  ],
+  "act": "belly",
+  "closing": true,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:mojave:1340:inglish",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Mojave",
+  "start": "13:40",
+  "end": "14:15",
+  "printed": "Inglish",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "inglish",
+    "role": "performer"
+   }
+  ],
+  "act": "inglish",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:mojave:1445:olivia-o-brien",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Mojave",
+  "start": "14:45",
+  "end": "15:30",
+  "printed": "Olivia O'Brien",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "olivia-o-brien",
+    "role": "performer"
+   }
+  ],
+  "act": "olivia-o-brien",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:mojave:1550:emotional-oranges",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Mojave",
+  "start": "15:50",
+  "end": "16:30",
+  "printed": "Emotional Oranges",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "emotional-oranges",
+    "role": "performer"
+   }
+  ],
+  "act": "emotional-oranges",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:mojave:1700:kim-petras",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Mojave",
+  "start": "17:00",
+  "end": "17:40",
+  "printed": "Kim Petras",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kim-petras",
+    "role": "performer"
+   }
+  ],
+  "act": "kim-petras",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:mojave:1805:fred-again",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Mojave",
+  "start": "18:05",
+  "end": "18:50",
+  "printed": "Fred again..",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fred-again",
+    "role": "performer"
+   }
+  ],
+  "act": "fred-again",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:mojave:1915:dave",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Mojave",
+  "start": "19:15",
+  "end": "20:00",
+  "printed": "Dave",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dave",
+    "role": "performer"
+   }
+  ],
+  "act": "dave",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:mojave:2030:maneskin",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Mojave",
+  "start": "20:30",
+  "end": "21:15",
+  "printed": "Måneskin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "maneskin",
+    "role": "performer"
+   }
+  ],
+  "act": "maneskin",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:mojave:2140:jessie-reyez",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Mojave",
+  "start": "21:40",
+  "end": "22:20",
+  "printed": "Jessie Reyez",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jessie-reyez",
+    "role": "performer"
+   }
+  ],
+  "act": "jessie-reyez",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:mojave:2240:the-blessed-madonna-honey-dijon",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Mojave",
+  "start": "22:40",
+  "end": null,
+  "printed": "The Blessed Madonna + Honey Dijon",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-blessed-madonna-honey-dijon",
+    "role": "act"
+   }
+  ],
+  "act": "the-blessed-madonna-honey-dijon",
+  "closing": true,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null,
+  "review": "\"+\" billing"
+ },
+ {
+  "id": "coachella-2022:d3:sahara:1315:cre-8",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Sahara",
+  "start": "13:15",
+  "end": "13:45",
+  "printed": "Cre-8",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cre-8",
+    "role": "performer"
+   }
+  ],
+  "act": "cre-8",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:sahara:1405:maxo-kream",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Sahara",
+  "start": "14:05",
+  "end": "14:50",
+  "printed": "Maxo Kream",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "maxo-kream",
+    "role": "performer"
+   }
+  ],
+  "act": "maxo-kream",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:sahara:1515:griselda",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Sahara",
+  "start": "15:15",
+  "end": "15:55",
+  "printed": "Griselda",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "griselda",
+    "role": "performer"
+   }
+  ],
+  "act": "griselda",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:sahara:1620:channel-tres",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Sahara",
+  "start": "16:20",
+  "end": "17:05",
+  "printed": "Channel Tres",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "channel-tres",
+    "role": "performer"
+   }
+  ],
+  "act": "channel-tres",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:sahara:1735:vince-staples",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Sahara",
+  "start": "17:35",
+  "end": "18:25",
+  "printed": "Vince Staples",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vince-staples",
+    "role": "performer"
+   }
+  ],
+  "act": "vince-staples",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:sahara:1850:duck-sauce",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Sahara",
+  "start": "18:50",
+  "end": "19:50",
+  "printed": "Duck Sauce",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "duck-sauce",
+    "role": "performer"
+   }
+  ],
+  "act": "duck-sauce",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:sahara:2020:duke-dumont",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Sahara",
+  "start": "20:20",
+  "end": "21:15",
+  "printed": "Duke Dumont",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "duke-dumont",
+    "role": "performer"
+   }
+  ],
+  "act": "duke-dumont",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:sahara:2140:denzel-curry",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Sahara",
+  "start": "21:40",
+  "end": null,
+  "printed": "Denzel Curry",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "denzel-curry",
+    "role": "performer"
+   }
+  ],
+  "act": "denzel-curry",
+  "closing": true,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:yuma:1200:cole-knight",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Yuma",
+  "start": "12:00",
+  "end": "13:15",
+  "printed": "Cole Knight",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cole-knight",
+    "role": "performer"
+   }
+  ],
+  "act": "cole-knight",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:yuma:1315:ameme",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Yuma",
+  "start": "13:15",
+  "end": "15:00",
+  "printed": "AMÉMÉ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ameme",
+    "role": "performer"
+   }
+  ],
+  "act": "ameme",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:yuma:1500:luttrell",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Yuma",
+  "start": "15:00",
+  "end": "16:45",
+  "printed": "Luttrell",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "luttrell",
+    "role": "performer"
+   }
+  ],
+  "act": "luttrell",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:yuma:1645:adam-port",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Yuma",
+  "start": "16:45",
+  "end": "19:00",
+  "printed": "Adam Port",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "adam-port",
+    "role": "performer"
+   }
+  ],
+  "act": "adam-port",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:yuma:1900:bedouin",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Yuma",
+  "start": "19:00",
+  "end": "20:30",
+  "printed": "Bedouin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bedouin",
+    "role": "performer"
+   }
+  ],
+  "act": "bedouin",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:yuma:2030:fatboy-slim",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Yuma",
+  "start": "20:30",
+  "end": "22:00",
+  "printed": "Fatboy Slim",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fatboy-slim",
+    "role": "performer"
+   }
+  ],
+  "act": "fatboy-slim",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d3:yuma:2200:michael-bibi",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-17",
+  "day": 3,
+  "stage": "Yuma",
+  "start": "22:00",
+  "end": null,
+  "printed": "Michael Bibi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "michael-bibi",
+    "role": "performer"
+   }
+  ],
+  "act": "michael-bibi",
+  "closing": true,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:coachella:1345:saish-k",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Coachella",
+  "start": "13:45",
+  "end": "14:15",
+  "printed": "Saish K",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "saish-k",
+    "role": "performer"
+   }
+  ],
+  "act": "saish-k",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:coachella:1440:princess-nokia",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Coachella",
+  "start": "14:40",
+  "end": "15:20",
+  "printed": "Princess Nokia",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "princess-nokia",
+    "role": "performer"
+   }
+  ],
+  "act": "princess-nokia",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:coachella:1540:mika",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Coachella",
+  "start": "15:40",
+  "end": "16:25",
+  "printed": "MIKA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mika",
+    "role": "performer"
+   }
+  ],
+  "act": "mika",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:coachella:1650:ari-lennox",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Coachella",
+  "start": "16:50",
+  "end": "17:35",
+  "printed": "Ari Lennox",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ari-lennox",
+    "role": "performer"
+   }
+  ],
+  "act": "ari-lennox",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:coachella:1800:anitta",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Coachella",
+  "start": "18:00",
+  "end": "18:45",
+  "printed": "Anitta",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "anitta",
+    "role": "performer"
+   }
+  ],
+  "act": "anitta",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:coachella:1910:grupo-firme",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Coachella",
+  "start": "19:10",
+  "end": "20:00",
+  "printed": "Grupo Firme",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "grupo-firme",
+    "role": "performer"
+   }
+  ],
+  "act": "grupo-firme",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:coachella:2025:lil-baby",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Coachella",
+  "start": "20:25",
+  "end": "21:10",
+  "printed": "Lil Baby",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lil-baby",
+    "role": "performer"
+   }
+  ],
+  "act": "lil-baby",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:coachella:2210:daniel-caesar",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Coachella",
+  "start": "22:10",
+  "end": "22:55",
+  "printed": "Daniel Caesar",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "daniel-caesar",
+    "role": "performer"
+   }
+  ],
+  "act": "daniel-caesar",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:coachella:2335:harry-styles",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Coachella",
+  "start": "23:35",
+  "end": null,
+  "printed": "Harry Styles",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "harry-styles",
+    "role": "performer"
+   }
+  ],
+  "act": "harry-styles",
+  "closing": true,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:outdoor:1400:coby",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Outdoor",
+  "start": "14:00",
+  "end": "14:40",
+  "printed": "Coby",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "coby",
+    "role": "performer"
+   }
+  ],
+  "act": "coby",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:outdoor:1455:the-hu",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Outdoor",
+  "start": "14:55",
+  "end": "15:35",
+  "printed": "The Hu",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-hu",
+    "role": "performer"
+   }
+  ],
+  "act": "the-hu",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:outdoor:1600:chelsea-cutler",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Outdoor",
+  "start": "16:00",
+  "end": "16:40",
+  "printed": "Chelsea Cutler",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chelsea-cutler",
+    "role": "performer"
+   }
+  ],
+  "act": "chelsea-cutler",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:outdoor:1705:omar-apollo",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Outdoor",
+  "start": "17:05",
+  "end": "17:50",
+  "printed": "Omar Apollo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "omar-apollo",
+    "role": "performer"
+   }
+  ],
+  "act": "omar-apollo",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:outdoor:1825:niki",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Outdoor",
+  "start": "18:25",
+  "end": "19:10",
+  "printed": "NIKI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "niki",
+    "role": "performer"
+   }
+  ],
+  "act": "niki",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:outdoor:1940:madeon",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Outdoor",
+  "start": "19:40",
+  "end": "20:35",
+  "printed": "Madeon",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "madeon",
+    "role": "performer"
+   }
+  ],
+  "act": "madeon",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:outdoor:2110:phoebe-bridgers",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Outdoor",
+  "start": "21:10",
+  "end": "22:10",
+  "printed": "Phoebe Bridgers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "phoebe-bridgers",
+    "role": "performer"
+   }
+  ],
+  "act": "phoebe-bridgers",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:outdoor:2240:louis-the-child",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Outdoor",
+  "start": "22:40",
+  "end": "23:35",
+  "printed": "Louis The Child",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "louis-the-child",
+    "role": "performer"
+   }
+  ],
+  "act": "louis-the-child",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:outdoor:0000:king-gizzard-and-the-lizard-wizard",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Outdoor",
+  "start": "00:00",
+  "end": null,
+  "printed": "King Gizzard and the Lizard Wizard",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "king-gizzard-and-the-lizard-wizard",
+    "role": "performer"
+   }
+  ],
+  "act": "king-gizzard-and-the-lizard-wizard",
+  "closing": true,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:sonora:1200:crudo",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Sonora",
+  "start": "12:00",
+  "end": "13:40",
+  "printed": "crudo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "crudo",
+    "role": "performer"
+   }
+  ],
+  "act": "crudo",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:sonora:1340:giselle-woo-and-the-night-owls",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Sonora",
+  "start": "13:40",
+  "end": "14:10",
+  "printed": "Giselle Woo & the Night Owls",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "giselle-woo-and-the-night-owls",
+    "role": "performer"
+   }
+  ],
+  "act": "giselle-woo-and-the-night-owls",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:sonora:1430:jean-dawson",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Sonora",
+  "start": "14:30",
+  "end": "15:05",
+  "printed": "Jean Dawson",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jean-dawson",
+    "role": "performer"
+   }
+  ],
+  "act": "jean-dawson",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:sonora:1530:code-orange",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Sonora",
+  "start": "15:30",
+  "end": "16:10",
+  "printed": "Code Orange",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "code-orange",
+    "role": "performer"
+   }
+  ],
+  "act": "code-orange",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:sonora:1635:the-chats",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Sonora",
+  "start": "16:35",
+  "end": "17:10",
+  "printed": "The Chats",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-chats",
+    "role": "performer"
+   }
+  ],
+  "act": "the-chats",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:sonora:1740:spiritualized",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Sonora",
+  "start": "17:40",
+  "end": "18:40",
+  "printed": "Spiritualized",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "spiritualized",
+    "role": "performer"
+   }
+  ],
+  "act": "spiritualized",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:sonora:1945:pup",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Sonora",
+  "start": "19:45",
+  "end": "20:25",
+  "printed": "PUP",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pup",
+    "role": "performer"
+   }
+  ],
+  "act": "pup",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:sonora:2100:amyl-and-the-sniffers",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Sonora",
+  "start": "21:00",
+  "end": "21:40",
+  "printed": "Amyl & the Sniffers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "amyl-and-the-sniffers",
+    "role": "performer"
+   }
+  ],
+  "act": "amyl-and-the-sniffers",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:sonora:2210:ela-minus",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Sonora",
+  "start": "22:10",
+  "end": "22:50",
+  "printed": "Ela Minus",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ela-minus",
+    "role": "performer"
+   }
+  ],
+  "act": "ela-minus",
+  "closing": true,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:gobi:1345:torres-martinez-birdsinging-and-dancing",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Gobi",
+  "start": "13:45",
+  "end": "14:00",
+  "printed": "Torres Martinez Birdsinging and Dancing",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "torres-martinez-birdsinging-and-dancing",
+    "role": "performer"
+   }
+  ],
+  "act": "torres-martinez-birdsinging-and-dancing",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:gobi:1415:arooj-aftab",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Gobi",
+  "start": "14:15",
+  "end": "14:55",
+  "printed": "Arooj Aftab",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "arooj-aftab",
+    "role": "performer"
+   }
+  ],
+  "act": "arooj-aftab",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:gobi:1520:the-regrettes",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Gobi",
+  "start": "15:20",
+  "end": "16:05",
+  "printed": "The Regrettes",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-regrettes",
+    "role": "performer"
+   }
+  ],
+  "act": "the-regrettes",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:gobi:1635:role-model",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Gobi",
+  "start": "16:35",
+  "end": "17:20",
+  "printed": "Role Model",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "role-model",
+    "role": "performer"
+   }
+  ],
+  "act": "role-model",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:gobi:1750:slowthai",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Gobi",
+  "start": "17:50",
+  "end": "18:35",
+  "printed": "slowthai",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "slowthai",
+    "role": "performer"
+   }
+  ],
+  "act": "slowthai",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:gobi:1900:the-marias",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Gobi",
+  "start": "19:00",
+  "end": "19:45",
+  "printed": "The Marías",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-marias",
+    "role": "performer"
+   }
+  ],
+  "act": "the-marias",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:gobi:2010:tokimonsta",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Gobi",
+  "start": "20:10",
+  "end": "21:00",
+  "printed": "TOKiMONSTA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tokimonsta",
+    "role": "performer"
+   }
+  ],
+  "act": "tokimonsta",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:gobi:2125:the-avalanches",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Gobi",
+  "start": "21:25",
+  "end": "22:15",
+  "printed": "The Avalanches",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-avalanches",
+    "role": "performer"
+   }
+  ],
+  "act": "the-avalanches",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:gobi:2245:epik-high",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Gobi",
+  "start": "22:45",
+  "end": "23:35",
+  "printed": "EPIK HIGH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "epik-high",
+    "role": "performer"
+   }
+  ],
+  "act": "epik-high",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:gobi:0005:badbadnotgood",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Gobi",
+  "start": "00:05",
+  "end": null,
+  "printed": "BADBADNOTGOOD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "badbadnotgood",
+    "role": "performer"
+   }
+  ],
+  "act": "badbadnotgood",
+  "closing": true,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:mojave:1300:meute",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Mojave",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "MEUTE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "meute",
+    "role": "performer"
+   }
+  ],
+  "act": "meute",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:mojave:1425:lawrence",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Mojave",
+  "start": "14:25",
+  "end": "14:55",
+  "printed": "Lawrence",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lawrence",
+    "role": "performer"
+   }
+  ],
+  "act": "lawrence",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:mojave:1520:raveena",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Mojave",
+  "start": "15:20",
+  "end": "16:00",
+  "printed": "Raveena",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "raveena",
+    "role": "performer"
+   }
+  ],
+  "act": "raveena",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:mojave:1625:still-woozy",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Mojave",
+  "start": "16:25",
+  "end": "17:05",
+  "printed": "Still Woozy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "still-woozy",
+    "role": "performer"
+   }
+  ],
+  "act": "still-woozy",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:mojave:1730:carly-rae-jepsen",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Mojave",
+  "start": "17:30",
+  "end": "18:15",
+  "printed": "Carly Rae Jepsen",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carly-rae-jepsen",
+    "role": "performer"
+   }
+  ],
+  "act": "carly-rae-jepsen",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:mojave:1845:idles",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Mojave",
+  "start": "18:45",
+  "end": "19:40",
+  "printed": "IDLES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "idles",
+    "role": "performer"
+   }
+  ],
+  "act": "idles",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:mojave:2010:run-the-jewels",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Mojave",
+  "start": "20:10",
+  "end": "20:55",
+  "printed": "Run The Jewels",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "run-the-jewels",
+    "role": "performer"
+   }
+  ],
+  "act": "run-the-jewels",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:mojave:2125:pink-sweat",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Mojave",
+  "start": "21:25",
+  "end": "22:10",
+  "printed": "Pink Sweat$",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pink-sweat",
+    "role": "performer"
+   }
+  ],
+  "act": "pink-sweat",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:mojave:2235:snoh-aalegra",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Mojave",
+  "start": "22:35",
+  "end": "23:20",
+  "printed": "Snoh Aalegra",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "snoh-aalegra",
+    "role": "performer"
+   }
+  ],
+  "act": "snoh-aalegra",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:mojave:2345:lane-8",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Mojave",
+  "start": "23:45",
+  "end": null,
+  "printed": "Lane 8",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lane-8",
+    "role": "performer"
+   }
+  ],
+  "act": "lane-8",
+  "closing": true,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:sahara:1215:gabe-real",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Sahara",
+  "start": "12:15",
+  "end": "13:05",
+  "printed": "Gabe Real",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gabe-real",
+    "role": "performer"
+   }
+  ],
+  "act": "gabe-real",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:sahara:1315:dj-lord",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Sahara",
+  "start": "13:15",
+  "end": "13:55",
+  "printed": "DJ Lord",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-lord",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-lord",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:sahara:1405:gg-magree",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Sahara",
+  "start": "14:05",
+  "end": "14:50",
+  "printed": "GG Magree",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gg-magree",
+    "role": "performer"
+   }
+  ],
+  "act": "gg-magree",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:sahara:1450:lost-kings",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Sahara",
+  "start": "14:50",
+  "end": "15:35",
+  "printed": "Lost Kings",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lost-kings",
+    "role": "performer"
+   }
+  ],
+  "act": "lost-kings",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:sahara:1535:john-summit",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Sahara",
+  "start": "15:35",
+  "end": "16:35",
+  "printed": "John Summit",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "john-summit",
+    "role": "performer"
+   }
+  ],
+  "act": "john-summit",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:sahara:1635:dom-dolla",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Sahara",
+  "start": "16:35",
+  "end": "17:35",
+  "printed": "Dom Dolla",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dom-dolla",
+    "role": "performer"
+   }
+  ],
+  "act": "dom-dolla",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:sahara:1800:city-girls",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Sahara",
+  "start": "18:00",
+  "end": "18:45",
+  "printed": "City Girls",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "city-girls",
+    "role": "performer"
+   }
+  ],
+  "act": "city-girls",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:sahara:1905:cordae",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Sahara",
+  "start": "19:05",
+  "end": "19:50",
+  "printed": "Cordae",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cordae",
+    "role": "performer"
+   }
+  ],
+  "act": "cordae",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:sahara:2010:black-coffee",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Sahara",
+  "start": "20:10",
+  "end": "21:10",
+  "printed": "Black Coffee",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "black-coffee",
+    "role": "performer"
+   }
+  ],
+  "act": "black-coffee",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:sahara:2135:baby-keem",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Sahara",
+  "start": "21:35",
+  "end": "22:20",
+  "printed": "Baby Keem",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "baby-keem",
+    "role": "performer"
+   }
+  ],
+  "act": "baby-keem",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:sahara:2245:big-sean",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Sahara",
+  "start": "22:45",
+  "end": "23:30",
+  "printed": "Big Sean",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "big-sean",
+    "role": "performer"
+   }
+  ],
+  "act": "big-sean",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:sahara:2355:slander",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Sahara",
+  "start": "23:55",
+  "end": null,
+  "printed": "SLANDER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "slander",
+    "role": "performer"
+   }
+  ],
+  "act": "slander",
+  "closing": true,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:yuma:1200:dear-humans",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Yuma",
+  "start": "12:00",
+  "end": "13:00",
+  "printed": "Dear Humans",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dear-humans",
+    "role": "performer"
+   }
+  ],
+  "act": "dear-humans",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:yuma:1300:sohmi",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Yuma",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "SOHMI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sohmi",
+    "role": "performer"
+   }
+  ],
+  "act": "sohmi",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:yuma:1400:logic1000",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Yuma",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "Logic1000",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "logic1000",
+    "role": "performer"
+   }
+  ],
+  "act": "logic1000",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:yuma:1500:jayda-g",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Yuma",
+  "start": "15:00",
+  "end": "16:15",
+  "printed": "Jayda G",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jayda-g",
+    "role": "performer"
+   }
+  ],
+  "act": "jayda-g",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:yuma:1615:purple-disco-machine",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Yuma",
+  "start": "16:15",
+  "end": "17:30",
+  "printed": "Purple Disco Machine",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "purple-disco-machine",
+    "role": "performer"
+   }
+  ],
+  "act": "purple-disco-machine",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:yuma:1730:daphni",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Yuma",
+  "start": "17:30",
+  "end": "18:45",
+  "printed": "Daphni",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "daphni",
+    "role": "performer"
+   }
+  ],
+  "act": "daphni",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:yuma:1845:damian-lazarus",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Yuma",
+  "start": "18:45",
+  "end": "20:15",
+  "printed": "Damian Lazarus",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "damian-lazarus",
+    "role": "performer"
+   }
+  ],
+  "act": "damian-lazarus",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:yuma:2015:peggy-gou",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Yuma",
+  "start": "20:15",
+  "end": "21:45",
+  "printed": "Peggy Gou",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "peggy-gou",
+    "role": "performer"
+   }
+  ],
+  "act": "peggy-gou",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:yuma:2145:the-martinez-brothers",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Yuma",
+  "start": "21:45",
+  "end": "23:15",
+  "printed": "The Martinez Brothers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-martinez-brothers",
+    "role": "performer"
+   }
+  ],
+  "act": "the-martinez-brothers",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d4:yuma:2315:artbat",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-22",
+  "day": 4,
+  "stage": "Yuma",
+  "start": "23:15",
+  "end": null,
+  "printed": "ARTBAT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "artbat",
+    "role": "performer"
+   }
+  ],
+  "act": "artbat",
+  "closing": true,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:coachella:1315:record-safari",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Coachella",
+  "start": "13:15",
+  "end": "13:45",
+  "printed": "Record Safari",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "record-safari",
+    "role": "performer"
+   }
+  ],
+  "act": "record-safari",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:coachella:1400:koffee",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Coachella",
+  "start": "14:00",
+  "end": "14:40",
+  "printed": "Koffee",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "koffee",
+    "role": "performer"
+   }
+  ],
+  "act": "koffee",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:coachella:1505:masego",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Coachella",
+  "start": "15:05",
+  "end": "15:55",
+  "printed": "Masego",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "masego",
+    "role": "performer"
+   }
+  ],
+  "act": "masego",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:coachella:1620:conan-gray",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Coachella",
+  "start": "16:20",
+  "end": "17:05",
+  "printed": "Conan Gray",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "conan-gray",
+    "role": "performer"
+   }
+  ],
+  "act": "conan-gray",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:coachella:1725:giveon",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Coachella",
+  "start": "17:25",
+  "end": "18:10",
+  "printed": "Giveon",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "giveon",
+    "role": "performer"
+   }
+  ],
+  "act": "giveon",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:coachella:1845:88rising",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Coachella",
+  "start": "18:45",
+  "end": "20:00",
+  "printed": "88rising",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "88rising",
+    "role": "performer"
+   }
+  ],
+  "act": "88rising",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:coachella:2030:flume",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Coachella",
+  "start": "20:30",
+  "end": "21:30",
+  "printed": "Flume",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "flume",
+    "role": "performer"
+   }
+  ],
+  "act": "flume",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:coachella:2200:megan-thee-stallion",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Coachella",
+  "start": "22:00",
+  "end": "22:45",
+  "printed": "Megan Thee Stallion",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "megan-thee-stallion",
+    "role": "performer"
+   }
+  ],
+  "act": "megan-thee-stallion",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:coachella:2330:billie-eilish",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Coachella",
+  "start": "23:30",
+  "end": null,
+  "printed": "Billie Eilish",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "billie-eilish",
+    "role": "performer"
+   }
+  ],
+  "act": "billie-eilish",
+  "closing": true,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:outdoor:1430:loboman-x-massio",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Outdoor",
+  "start": "14:30",
+  "end": "15:20",
+  "printed": "Loboman x Massio",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "loboman-x-massio",
+    "role": "act"
+   }
+  ],
+  "act": "loboman-x-massio",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null,
+  "review": "\"x\" billing whose sides are not both known acts"
+ },
+ {
+  "id": "coachella-2022:d5:outdoor:1535:beach-bunny",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Outdoor",
+  "start": "15:35",
+  "end": "16:20",
+  "printed": "Beach Bunny",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "beach-bunny",
+    "role": "performer"
+   }
+  ],
+  "act": "beach-bunny",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:outdoor:1640:wallows",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Outdoor",
+  "start": "16:40",
+  "end": "17:25",
+  "printed": "Wallows",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wallows",
+    "role": "performer"
+   }
+  ],
+  "act": "wallows",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:outdoor:1750:cuco",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Outdoor",
+  "start": "17:50",
+  "end": "18:40",
+  "printed": "Cuco",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cuco",
+    "role": "performer"
+   }
+  ],
+  "act": "cuco",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:outdoor:1910:disclosure",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Outdoor",
+  "start": "19:10",
+  "end": "20:25",
+  "printed": "Disclosure",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "disclosure",
+    "role": "performer"
+   }
+  ],
+  "act": "disclosure",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:outdoor:2100:danny-elfman",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Outdoor",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "Danny Elfman",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "danny-elfman",
+    "role": "performer"
+   }
+  ],
+  "act": "danny-elfman",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:outdoor:2245:stromae",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Outdoor",
+  "start": "22:45",
+  "end": null,
+  "printed": "Stromae",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "stromae",
+    "role": "performer"
+   }
+  ],
+  "act": "stromae",
+  "closing": true,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:sonora:1200:kuma",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Sonora",
+  "start": "12:00",
+  "end": "13:00",
+  "printed": "Kuma",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kuma",
+    "role": "performer"
+   }
+  ],
+  "act": "kuma",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:sonora:1300:yard-act",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Sonora",
+  "start": "13:00",
+  "end": "13:30",
+  "printed": "Yard Act",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yard-act",
+    "role": "performer"
+   }
+  ],
+  "act": "yard-act",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:sonora:1345:beach-goons",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Sonora",
+  "start": "13:45",
+  "end": "14:15",
+  "printed": "Beach Goons",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "beach-goons",
+    "role": "performer"
+   }
+  ],
+  "act": "beach-goons",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:sonora:1430:nilufer-yanya",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Sonora",
+  "start": "14:30",
+  "end": "15:10",
+  "printed": "Nilüfer Yanya",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nilufer-yanya",
+    "role": "performer"
+   }
+  ],
+  "act": "nilufer-yanya",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:sonora:1530:ed-maverick",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Sonora",
+  "start": "15:30",
+  "end": "16:10",
+  "printed": "Ed Maverick",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ed-maverick",
+    "role": "performer"
+   }
+  ],
+  "act": "ed-maverick",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:sonora:1640:nicki-nicole",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Sonora",
+  "start": "16:40",
+  "end": "17:20",
+  "printed": "Nicki Nicole",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nicki-nicole",
+    "role": "performer"
+   }
+  ],
+  "act": "nicki-nicole",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:sonora:1745:mannequin-pussy",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Sonora",
+  "start": "17:45",
+  "end": "18:25",
+  "printed": "Mannequin Pussy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mannequin-pussy",
+    "role": "performer"
+   }
+  ],
+  "act": "mannequin-pussy",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:sonora:1850:inner-wave",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Sonora",
+  "start": "18:50",
+  "end": "19:30",
+  "printed": "Inner Wave",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "inner-wave",
+    "role": "performer"
+   }
+  ],
+  "act": "inner-wave",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:sonora:2000:black-midi",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Sonora",
+  "start": "20:00",
+  "end": "20:50",
+  "printed": "black midi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "black-midi",
+    "role": "performer"
+   }
+  ],
+  "act": "black-midi",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:sonora:2115:molchat-doma",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Sonora",
+  "start": "21:15",
+  "end": "22:00",
+  "printed": "Molchat Doma",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "molchat-doma",
+    "role": "performer"
+   }
+  ],
+  "act": "molchat-doma",
+  "closing": true,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:gobi:1250:wave-groove",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Gobi",
+  "start": "12:50",
+  "end": "13:20",
+  "printed": "Wave Groove",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wave-groove",
+    "role": "performer"
+   }
+  ],
+  "act": "wave-groove",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:gobi:1335:alaina-castillo",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Gobi",
+  "start": "13:35",
+  "end": "14:15",
+  "printed": "Alaina Castillo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alaina-castillo",
+    "role": "performer"
+   }
+  ],
+  "act": "alaina-castillo",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:gobi:1440:surf-curse",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Gobi",
+  "start": "14:40",
+  "end": "15:20",
+  "printed": "Surf Curse",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "surf-curse",
+    "role": "performer"
+   }
+  ],
+  "act": "surf-curse",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:gobi:1545:l-imperatrice",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Gobi",
+  "start": "15:45",
+  "end": "16:25",
+  "printed": "L'Impératrice",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "l-imperatrice",
+    "role": "performer"
+   }
+  ],
+  "act": "l-imperatrice",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:gobi:1650:arlo-parks",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Gobi",
+  "start": "16:50",
+  "end": "17:35",
+  "printed": "Arlo Parks",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "arlo-parks",
+    "role": "performer"
+   }
+  ],
+  "act": "arlo-parks",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:gobi:1800:rina-sawayama",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Gobi",
+  "start": "18:00",
+  "end": "18:45",
+  "printed": "Rina Sawayama",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rina-sawayama",
+    "role": "performer"
+   }
+  ],
+  "act": "rina-sawayama",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:gobi:1915:caroline-polachek",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Gobi",
+  "start": "19:15",
+  "end": "20:00",
+  "printed": "Caroline Polachek",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "caroline-polachek",
+    "role": "performer"
+   }
+  ],
+  "act": "caroline-polachek",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:gobi:2025:pabllo-vittar",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Gobi",
+  "start": "20:25",
+  "end": "21:10",
+  "printed": "Pabllo Vittar",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pabllo-vittar",
+    "role": "performer"
+   }
+  ],
+  "act": "pabllo-vittar",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:gobi:2135:freddie-gibbs-and-madlib",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Gobi",
+  "start": "21:35",
+  "end": "22:25",
+  "printed": "Freddie Gibbs & Madlib",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "freddie-gibbs-and-madlib",
+    "role": "performer"
+   }
+  ],
+  "act": "freddie-gibbs-and-madlib",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:gobi:2250:hot-chip",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Gobi",
+  "start": "22:50",
+  "end": "23:35",
+  "printed": "Hot Chip",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hot-chip",
+    "role": "performer"
+   }
+  ],
+  "act": "hot-chip",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:gobi:2355:kyary-pamyu-pamyu",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Gobi",
+  "start": "23:55",
+  "end": null,
+  "printed": "Kyary Pamyu Pamyu",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kyary-pamyu-pamyu",
+    "role": "performer"
+   }
+  ],
+  "act": "kyary-pamyu-pamyu",
+  "closing": true,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:mojave:1315:sabeerah-najee",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Mojave",
+  "start": "13:15",
+  "end": "14:05",
+  "printed": "Sabeerah Najee",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sabeerah-najee",
+    "role": "performer"
+   }
+  ],
+  "act": "sabeerah-najee",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:mojave:1420:amber-mark",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Mojave",
+  "start": "14:20",
+  "end": "15:05",
+  "printed": "Amber Mark",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "amber-mark",
+    "role": "performer"
+   }
+  ],
+  "act": "amber-mark",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:mojave:1530:holly-humberstone",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Mojave",
+  "start": "15:30",
+  "end": "16:15",
+  "printed": "Holly Humberstone",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "holly-humberstone",
+    "role": "performer"
+   }
+  ],
+  "act": "holly-humberstone",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:mojave:1640:japanese-breakfast",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Mojave",
+  "start": "16:40",
+  "end": "17:25",
+  "printed": "Japanese Breakfast",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "japanese-breakfast",
+    "role": "performer"
+   }
+  ],
+  "act": "japanese-breakfast",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:mojave:1750:girl-in-red",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Mojave",
+  "start": "17:50",
+  "end": "18:35",
+  "printed": "girl in red",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "girl-in-red",
+    "role": "performer"
+   }
+  ],
+  "act": "girl-in-red",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:mojave:1900:turnstile",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Mojave",
+  "start": "19:00",
+  "end": "19:50",
+  "printed": "Turnstile",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "turnstile",
+    "role": "performer"
+   }
+  ],
+  "act": "turnstile",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:mojave:2015:steve-lacy",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Mojave",
+  "start": "20:15",
+  "end": "21:00",
+  "printed": "Steve Lacy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "steve-lacy",
+    "role": "performer"
+   }
+  ],
+  "act": "steve-lacy",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:mojave:2130:caribou",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Mojave",
+  "start": "21:30",
+  "end": "22:25",
+  "printed": "Caribou",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "caribou",
+    "role": "performer"
+   }
+  ],
+  "act": "caribou",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:mojave:2245:floating-points",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Mojave",
+  "start": "22:45",
+  "end": "23:40",
+  "printed": "Floating Points",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "floating-points",
+    "role": "performer"
+   }
+  ],
+  "act": "floating-points",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:mojave:2340:dj-koze",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Mojave",
+  "start": "23:40",
+  "end": null,
+  "printed": "DJ Koze",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-koze",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-koze",
+  "closing": true,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:sahara:1245:dj-susan",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Sahara",
+  "start": "12:45",
+  "end": "14:00",
+  "printed": "DJ Susan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-susan",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-susan",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:sahara:1410:vnssa",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Sahara",
+  "start": "14:10",
+  "end": "14:55",
+  "printed": "VNSSA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vnssa",
+    "role": "performer"
+   }
+  ],
+  "act": "vnssa",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:sahara:1455:whipped-cream",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Sahara",
+  "start": "14:55",
+  "end": "15:40",
+  "printed": "Whipped Cream",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "whipped-cream",
+    "role": "performer"
+   }
+  ],
+  "act": "whipped-cream",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:sahara:1600:j-i-d",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Sahara",
+  "start": "16:00",
+  "end": "16:45",
+  "printed": "J.I.D",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "j-i-d",
+    "role": "performer"
+   }
+  ],
+  "act": "j-i-d",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:sahara:1705:emo-nite",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Sahara",
+  "start": "17:05",
+  "end": "17:50",
+  "printed": "Emo Nite",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "emo-nite",
+    "role": "performer"
+   }
+  ],
+  "act": "emo-nite",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:sahara:1810:100-gecs",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Sahara",
+  "start": "18:10",
+  "end": "18:50",
+  "printed": "100 gecs",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "100-gecs",
+    "role": "performer"
+   }
+  ],
+  "act": "100-gecs",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:sahara:1900:tchami",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Sahara",
+  "start": "19:00",
+  "end": "19:55",
+  "printed": "Tchami",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tchami",
+    "role": "performer"
+   }
+  ],
+  "act": "tchami",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:sahara:2025:brockhampton",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Sahara",
+  "start": "20:25",
+  "end": "21:15",
+  "printed": "BROCKHAMPTON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "brockhampton",
+    "role": "performer"
+   }
+  ],
+  "act": "brockhampton",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:sahara:2140:rich-brian",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Sahara",
+  "start": "21:40",
+  "end": "22:25",
+  "printed": "Rich Brian",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rich-brian",
+    "role": "performer"
+   }
+  ],
+  "act": "rich-brian",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:sahara:2250:isaiah-rashad",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Sahara",
+  "start": "22:50",
+  "end": "23:35",
+  "printed": "Isaiah Rashad",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "isaiah-rashad",
+    "role": "performer"
+   }
+  ],
+  "act": "isaiah-rashad",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:sahara:0005:21-savage",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Sahara",
+  "start": "00:05",
+  "end": null,
+  "printed": "21 Savage",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "21-savage",
+    "role": "performer"
+   }
+  ],
+  "act": "21-savage",
+  "closing": true,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:yuma:1200:miane",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Yuma",
+  "start": "12:00",
+  "end": "12:45",
+  "printed": "Miane",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "miane",
+    "role": "performer"
+   }
+  ],
+  "act": "miane",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:yuma:1245:layla-benitez",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Yuma",
+  "start": "12:45",
+  "end": "14:00",
+  "printed": "Layla Benitez",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "layla-benitez",
+    "role": "performer"
+   }
+  ],
+  "act": "layla-benitez",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:yuma:1400:dj-holographic",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Yuma",
+  "start": "14:00",
+  "end": "15:15",
+  "printed": "DJ Holographic",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-holographic",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-holographic",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:yuma:1515:sama-abdulhadi",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Yuma",
+  "start": "15:15",
+  "end": "16:30",
+  "printed": "Sama' Abdulhadi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sama-abdulhadi",
+    "role": "performer"
+   }
+  ],
+  "act": "sama-abdulhadi",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:yuma:1630:paco-osuna",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Yuma",
+  "start": "16:30",
+  "end": "18:00",
+  "printed": "Paco Osuna",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "paco-osuna",
+    "role": "performer"
+   }
+  ],
+  "act": "paco-osuna",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:yuma:1800:anna",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Yuma",
+  "start": "18:00",
+  "end": "19:30",
+  "printed": "ANNA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "anna",
+    "role": "performer"
+   }
+  ],
+  "act": "anna",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:yuma:1930:chris-liebing",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Yuma",
+  "start": "19:30",
+  "end": "21:00",
+  "printed": "Chris Liebing",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chris-liebing",
+    "role": "performer"
+   }
+  ],
+  "act": "chris-liebing",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:yuma:2100:dixon",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Yuma",
+  "start": "21:00",
+  "end": "23:00",
+  "printed": "Dixon",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dixon",
+    "role": "performer"
+   }
+  ],
+  "act": "dixon",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d5:yuma:2300:richie-hawtin",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-23",
+  "day": 5,
+  "stage": "Yuma",
+  "start": "23:00",
+  "end": null,
+  "printed": "Richie Hawtin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "richie-hawtin",
+    "role": "performer"
+   }
+  ],
+  "act": "richie-hawtin",
+  "closing": true,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:coachella:1455:tiffany-tyson",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Coachella",
+  "start": "14:55",
+  "end": "15:45",
+  "printed": "Tiffany Tyson",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tiffany-tyson",
+    "role": "performer"
+   }
+  ],
+  "act": "tiffany-tyson",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:coachella:1610:banda-ms",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Coachella",
+  "start": "16:10",
+  "end": "16:50",
+  "printed": "Banda MS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "banda-ms",
+    "role": "performer"
+   }
+  ],
+  "act": "banda-ms",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:coachella:1720:maggie-rogers",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Coachella",
+  "start": "17:20",
+  "end": "18:05",
+  "printed": "Maggie Rogers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "maggie-rogers",
+    "role": "performer"
+   }
+  ],
+  "act": "maggie-rogers",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:coachella:1840:karol-g",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Coachella",
+  "start": "18:40",
+  "end": "19:30",
+  "printed": "Karol G",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "karol-g",
+    "role": "performer"
+   }
+  ],
+  "act": "karol-g",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:coachella:2020:doja-cat",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Coachella",
+  "start": "20:20",
+  "end": "21:20",
+  "printed": "Doja Cat",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "doja-cat",
+    "role": "performer"
+   }
+  ],
+  "act": "doja-cat",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:coachella:2220:swedish-house-mafia-x-the-weeknd",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Coachella",
+  "start": "22:20",
+  "end": null,
+  "printed": "Swedish House Mafia x The Weeknd",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "swedish-house-mafia-x-the-weeknd",
+    "role": "collab"
+   }
+  ],
+  "act": "swedish-house-mafia-x-the-weeknd",
+  "closing": true,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:outdoor:1300:jaqckglam",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Outdoor",
+  "start": "13:00",
+  "end": "13:45",
+  "printed": "Jaqckglam",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jaqckglam",
+    "role": "performer"
+   }
+  ],
+  "act": "jaqckglam",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:outdoor:1400:mariah-the-scientist",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Outdoor",
+  "start": "14:00",
+  "end": "14:35",
+  "printed": "Mariah the Scientist",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mariah-the-scientist",
+    "role": "performer"
+   }
+  ],
+  "act": "mariah-the-scientist",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:outdoor:1455:yola",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Outdoor",
+  "start": "14:55",
+  "end": "15:35",
+  "printed": "Yola",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yola",
+    "role": "performer"
+   }
+  ],
+  "act": "yola",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:outdoor:1600:alec-benjamin",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Outdoor",
+  "start": "16:00",
+  "end": "16:40",
+  "printed": "Alec Benjamin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alec-benjamin",
+    "role": "performer"
+   }
+  ],
+  "act": "alec-benjamin",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:outdoor:1705:finneas",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Outdoor",
+  "start": "17:05",
+  "end": "17:50",
+  "printed": "FINNEAS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "finneas",
+    "role": "performer"
+   }
+  ],
+  "act": "finneas",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:outdoor:1815:solomun",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Outdoor",
+  "start": "18:15",
+  "end": "19:15",
+  "printed": "Solomun",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "solomun",
+    "role": "performer"
+   }
+  ],
+  "act": "solomun",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:outdoor:1940:joji",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Outdoor",
+  "start": "19:40",
+  "end": "20:30",
+  "printed": "Joji",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "joji",
+    "role": "performer"
+   }
+  ],
+  "act": "joji",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:outdoor:2130:jamie-xx",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Outdoor",
+  "start": "21:30",
+  "end": null,
+  "printed": "Jamie xx",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jamie-xx",
+    "role": "performer"
+   }
+  ],
+  "act": "jamie-xx",
+  "closing": true,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:sonora:1200:argenis",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Sonora",
+  "start": "12:00",
+  "end": "13:25",
+  "printed": "Argenis",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "argenis",
+    "role": "performer"
+   }
+  ],
+  "act": "argenis",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:sonora:1325:carino",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Sonora",
+  "start": "13:25",
+  "end": "13:55",
+  "printed": "Cariño",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carino",
+    "role": "performer"
+   }
+  ],
+  "act": "carino",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:sonora:1420:alt-n-gun",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Sonora",
+  "start": "14:20",
+  "end": "15:00",
+  "printed": "Altın Gün",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alt-n-gun",
+    "role": "performer"
+   }
+  ],
+  "act": "alt-n-gun",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:sonora:1520:skegss",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Sonora",
+  "start": "15:20",
+  "end": "16:00",
+  "printed": "Skegss",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "skegss",
+    "role": "performer"
+   }
+  ],
+  "act": "skegss",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:sonora:1620:viagra-boys",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Sonora",
+  "start": "16:20",
+  "end": "17:00",
+  "printed": "Viagra Boys",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "viagra-boys",
+    "role": "performer"
+   }
+  ],
+  "act": "viagra-boys",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:sonora:1725:crumb",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Sonora",
+  "start": "17:25",
+  "end": "18:05",
+  "printed": "Crumb",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "crumb",
+    "role": "performer"
+   }
+  ],
+  "act": "crumb",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:sonora:1830:eyedress",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Sonora",
+  "start": "18:30",
+  "end": "19:10",
+  "printed": "Eyedress",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eyedress",
+    "role": "performer"
+   }
+  ],
+  "act": "eyedress",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:sonora:1940:current-joys",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Sonora",
+  "start": "19:40",
+  "end": "20:20",
+  "printed": "Current Joys",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "current-joys",
+    "role": "performer"
+   }
+  ],
+  "act": "current-joys",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:sonora:2120:nathy-peluso",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Sonora",
+  "start": "21:20",
+  "end": "22:00",
+  "printed": "Nathy Peluso",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nathy-peluso",
+    "role": "performer"
+   }
+  ],
+  "act": "nathy-peluso",
+  "closing": true,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:gobi:1300:jillesque",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Gobi",
+  "start": "13:00",
+  "end": "13:40",
+  "printed": "Jillesque",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jillesque",
+    "role": "performer"
+   }
+  ],
+  "act": "jillesque",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:gobi:1400:sampa-the-great",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Gobi",
+  "start": "14:00",
+  "end": "14:35",
+  "printed": "Sampa the Great",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sampa-the-great",
+    "role": "performer"
+   }
+  ],
+  "act": "sampa-the-great",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:gobi:1455:hayden-james",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Gobi",
+  "start": "14:55",
+  "end": "15:40",
+  "printed": "Hayden James",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hayden-james",
+    "role": "performer"
+   }
+  ],
+  "act": "hayden-james",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:gobi:1600:beabadoobee",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Gobi",
+  "start": "16:00",
+  "end": "16:40",
+  "printed": "beabadoobee",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "beabadoobee",
+    "role": "performer"
+   }
+  ],
+  "act": "beabadoobee",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:gobi:1705:orville-peck",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Gobi",
+  "start": "17:05",
+  "end": "17:45",
+  "printed": "Orville Peck",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "orville-peck",
+    "role": "performer"
+   }
+  ],
+  "act": "orville-peck",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:gobi:1810:chicano-batman",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Gobi",
+  "start": "18:10",
+  "end": "19:00",
+  "printed": "Chicano Batman",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chicano-batman",
+    "role": "performer"
+   }
+  ],
+  "act": "chicano-batman",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:gobi:1925:ali-gatie",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Gobi",
+  "start": "19:25",
+  "end": "20:10",
+  "printed": "Ali Gatie",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ali-gatie",
+    "role": "performer"
+   }
+  ],
+  "act": "ali-gatie",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:gobi:2035:natanael-cano",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Gobi",
+  "start": "20:35",
+  "end": "21:15",
+  "printed": "Natanael Cano",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "natanael-cano",
+    "role": "performer"
+   }
+  ],
+  "act": "natanael-cano",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:gobi:2140:belly",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Gobi",
+  "start": "21:40",
+  "end": null,
+  "printed": "Belly",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "belly",
+    "role": "performer"
+   }
+  ],
+  "act": "belly",
+  "closing": true,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:mojave:1315:yimbo",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Mojave",
+  "start": "13:15",
+  "end": "14:30",
+  "printed": "Yimbo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yimbo",
+    "role": "performer"
+   }
+  ],
+  "act": "yimbo",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:mojave:1445:olivia-o-brien",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Mojave",
+  "start": "14:45",
+  "end": "15:30",
+  "printed": "Olivia O'Brien",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "olivia-o-brien",
+    "role": "performer"
+   }
+  ],
+  "act": "olivia-o-brien",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:mojave:1550:emotional-oranges",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Mojave",
+  "start": "15:50",
+  "end": "16:30",
+  "printed": "Emotional Oranges",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "emotional-oranges",
+    "role": "performer"
+   }
+  ],
+  "act": "emotional-oranges",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:mojave:1700:kim-petras",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Mojave",
+  "start": "17:00",
+  "end": "17:40",
+  "printed": "Kim Petras",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kim-petras",
+    "role": "performer"
+   }
+  ],
+  "act": "kim-petras",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:mojave:1805:fred-again",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Mojave",
+  "start": "18:05",
+  "end": "18:50",
+  "printed": "Fred again..",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fred-again",
+    "role": "performer"
+   }
+  ],
+  "act": "fred-again",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:mojave:1915:dave",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Mojave",
+  "start": "19:15",
+  "end": "20:00",
+  "printed": "Dave",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dave",
+    "role": "performer"
+   }
+  ],
+  "act": "dave",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:mojave:2030:maneskin",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Mojave",
+  "start": "20:30",
+  "end": "21:15",
+  "printed": "Måneskin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "maneskin",
+    "role": "performer"
+   }
+  ],
+  "act": "maneskin",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:mojave:2140:jessie-reyez",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Mojave",
+  "start": "21:40",
+  "end": "22:20",
+  "printed": "Jessie Reyez",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jessie-reyez",
+    "role": "performer"
+   }
+  ],
+  "act": "jessie-reyez",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:mojave:2240:the-blessed-madonna-honey-dijon",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Mojave",
+  "start": "22:40",
+  "end": null,
+  "printed": "The Blessed Madonna + Honey Dijon",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-blessed-madonna-honey-dijon",
+    "role": "act"
+   }
+  ],
+  "act": "the-blessed-madonna-honey-dijon",
+  "closing": true,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null,
+  "review": "\"+\" billing"
+ },
+ {
+  "id": "coachella-2022:d6:sahara:1245:beijing-junglist",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Sahara",
+  "start": "12:45",
+  "end": "13:55",
+  "printed": "Beijing Junglist",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "beijing-junglist",
+    "role": "performer"
+   }
+  ],
+  "act": "beijing-junglist",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:sahara:1405:maxo-kream",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Sahara",
+  "start": "14:05",
+  "end": "14:50",
+  "printed": "Maxo Kream",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "maxo-kream",
+    "role": "performer"
+   }
+  ],
+  "act": "maxo-kream",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:sahara:1515:griselda",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Sahara",
+  "start": "15:15",
+  "end": "15:55",
+  "printed": "Griselda",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "griselda",
+    "role": "performer"
+   }
+  ],
+  "act": "griselda",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:sahara:1620:channel-tres",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Sahara",
+  "start": "16:20",
+  "end": "17:05",
+  "printed": "Channel Tres",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "channel-tres",
+    "role": "performer"
+   }
+  ],
+  "act": "channel-tres",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:sahara:1735:vince-staples",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Sahara",
+  "start": "17:35",
+  "end": "18:25",
+  "printed": "Vince Staples",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vince-staples",
+    "role": "performer"
+   }
+  ],
+  "act": "vince-staples",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:sahara:1850:duck-sauce",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Sahara",
+  "start": "18:50",
+  "end": "19:50",
+  "printed": "Duck Sauce",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "duck-sauce",
+    "role": "performer"
+   }
+  ],
+  "act": "duck-sauce",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:sahara:2020:duke-dumont",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Sahara",
+  "start": "20:20",
+  "end": "21:15",
+  "printed": "Duke Dumont",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "duke-dumont",
+    "role": "performer"
+   }
+  ],
+  "act": "duke-dumont",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:sahara:2140:denzel-curry",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Sahara",
+  "start": "21:40",
+  "end": null,
+  "printed": "Denzel Curry",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "denzel-curry",
+    "role": "performer"
+   }
+  ],
+  "act": "denzel-curry",
+  "closing": true,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:yuma:1200:cole-knight",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Yuma",
+  "start": "12:00",
+  "end": "13:00",
+  "printed": "Cole Knight",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cole-knight",
+    "role": "performer"
+   }
+  ],
+  "act": "cole-knight",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:yuma:1300:ameme",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Yuma",
+  "start": "13:00",
+  "end": "15:00",
+  "printed": "AMÉMÉ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ameme",
+    "role": "performer"
+   }
+  ],
+  "act": "ameme",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:yuma:1500:adam-port",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Yuma",
+  "start": "15:00",
+  "end": "17:00",
+  "printed": "Adam Port",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "adam-port",
+    "role": "performer"
+   }
+  ],
+  "act": "adam-port",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:yuma:1700:bedouin",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Yuma",
+  "start": "17:00",
+  "end": "19:00",
+  "printed": "Bedouin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bedouin",
+    "role": "performer"
+   }
+  ],
+  "act": "bedouin",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:yuma:1900:michael-bibi",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Yuma",
+  "start": "19:00",
+  "end": "20:30",
+  "printed": "Michael Bibi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "michael-bibi",
+    "role": "performer"
+   }
+  ],
+  "act": "michael-bibi",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:yuma:2030:fatboy-slim",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Yuma",
+  "start": "20:30",
+  "end": "22:30",
+  "printed": "Fatboy Slim",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fatboy-slim",
+    "role": "performer"
+   }
+  ],
+  "act": "fatboy-slim",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2022:d6:yuma:2230:luttrell",
+  "source": "edition",
+  "festivalId": "coachella-2022",
+  "festivalBrand": "coachella",
+  "year": 2022,
+  "date": "2022-04-24",
+  "day": 6,
+  "stage": "Yuma",
+  "start": "22:30",
+  "end": null,
+  "printed": "Luttrell",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "luttrell",
+    "role": "performer"
+   }
+  ],
+  "act": "luttrell",
+  "closing": true,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
   "id": "defqon1-2015:d1:blue:2000:max-enforcer",
   "source": "edition",
   "festivalId": "defqon1-2015",

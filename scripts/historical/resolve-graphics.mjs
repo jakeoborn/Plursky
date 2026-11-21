@@ -137,6 +137,15 @@ export const GRAPHIC_EDITIONS = {
     image: /ACL(?:-Schedule-|_FestivalSchedule_)[^"'\s/]+?\.png/i,
     days: [{ day: 1, date: "2022-10-07", token: /Fri-Wk1/i }, { day: 2, date: "2022-10-08", token: /Sat-Wk1/i }, { day: 3, date: "2022-10-09", token: /Sun-Wk1/i },
       { day: 4, date: "2022-10-14", token: /Fri-Wk2/i }, { day: 5, date: "2022-10-15", token: /Sat-Wk2/i }, { day: 6, date: "2022-10-16", token: /Sun-Wk2/i }] },
+  // Coachella 2022: coachella.com/schedule embeds one graphic per day under
+  // media-prd.coachella.com/content/content_images/232/, each a hashed name,
+  // so the token is the file's own name. Weekend 1's Sunday was re-issued
+  // (gmprJMads… → gd07bQrV…, capture 20220417004207); Weekend 2's three are
+  // on the May capture.
+  "coachella-2022": { year: 2022, page: "https://www.coachella.com/schedule", window: ["20220401", "20220531"],
+    image: /content_images\/232\/[A-Za-z0-9]{40}\.jpg/,
+    days: [{ day: 1, date: "2022-04-15", token: /^H1xpKD3d/ }, { day: 2, date: "2022-04-16", token: /^U0mrDaS8/ }, { day: 3, date: "2022-04-17", token: /^(gd07bQrV|gmprJMad)/ },
+      { day: 4, date: "2022-04-22", token: /^vDDIalfx/ }, { day: 5, date: "2022-04-23", token: /^9hx4C2KF/ }, { day: 6, date: "2022-04-24", token: /^zzf52cET/ }] },
 };
 
 // Webflow resized copies end "-p-500.png" or "-p-800.jpg"; keep only the original.

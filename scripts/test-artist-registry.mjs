@@ -187,9 +187,11 @@ const out = build();
   // END) and LAURA (OF MIAMI), each a parenthetical that is not sourced (the
   // Bunny (Rabbit in the Moon) rule): 214 rows. LAUFEY WITH THE CHICAGO
   // PHILHARMONIC is then ruled under the "with" rule (the orchestra's own event
-  // page bills the set as Laufey's): 213 rows. The cap stays at 214. Past 214,
-  // stop and report.
-  check(review.length <= 214, `review queue is ${review.length} rows (> 214 means stop and report)`);
+  // page bills the set as Laufey's): 213 rows. Coachella 2022 adds four, all
+  // pending with no claim: "The Blessed Madonna + Honey Dijon" (two rows, one
+  // per weekend's Sunday), "Loboman x Massio" (Weekend 2 Saturday) and PUP, a
+  // short name now at two brands (Lollapalooza 2017, Coachella 2022): 217 rows. The cap is 217. Past 217, stop and report.
+  check(review.length <= 217, `review queue is ${review.length} rows (> 217 means stop and report)`);
   check(review.every(r => r.reason) && excluded.every(e => e.reason && e.category), 'a review or excluded row without its reason');
   check(excluded.some(e => e.category === 'unnamed-slot'), 'control: no unnamed slot was excluded');
   // Bare non-acts never become artists; a NAMED kids act ("Special Guest: The

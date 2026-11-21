@@ -203,6 +203,27 @@
   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
  },
  {
+  "id": "coachella-2022:d3:mojave:2240:the-blessed-madonna-honey-dijon",
+  "printed": "The Blessed Madonna + Honey Dijon",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "coachella-2022:d5:outdoor:1430:loboman-x-massio",
+  "printed": "Loboman x Massio",
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "coachella-2022:d6:mojave:2240:the-blessed-madonna-honey-dijon",
+  "printed": "The Blessed Madonna + Honey Dijon",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
   "id": "defqon1-2015:d1:black:0000:mad-dog-ft-jeff",
   "printed": "Mad Dog ft. Jeff",
   "reason": "feat / with billing",
@@ -1372,6 +1393,20 @@
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
  },
  {
+  "id": "key:pup",
+  "printed": "PUP",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
+  "id": "key:j-i-d",
+  "printed": "J.I.D",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at Lollapalooza 2019 and Outside Lands 2023 (each on its own official lineup). Not merged into one arc until a first-party link shows it is the same act; the billings render separately."
+ },
+ {
   "id": "key:tdj",
   "printed": "TDJ",
   "reason": "very short name billed at more than one festival brand",
@@ -1454,13 +1489,6 @@
   "reason": "very short name billed at more than one festival brand",
   "pending": true,
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
- },
- {
-  "id": "key:j-i-d",
-  "printed": "J.I.D",
-  "reason": "very short name billed at more than one festival brand",
-  "pending": true,
-  "why": "Short name billed at Lollapalooza 2019 and Outside Lands 2023 (each on its own official lineup). Not merged into one arc until a first-party link shows it is the same act; the billings render separately."
  },
  {
   "id": "key:s-p-y",

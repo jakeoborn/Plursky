@@ -834,6 +834,52 @@
    }
   },
   {
+   "id": "coachella-2022",
+   "festivalId": "coachella",
+   "festivalName": "Coachella",
+   "name": "Coachella 2022",
+   "year": 2022,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2022-04-15",
+     "label": "Weekend 1 · Friday"
+    },
+    {
+     "day": 2,
+     "date": "2022-04-16",
+     "label": "Weekend 1 · Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2022-04-17",
+     "label": "Weekend 1 · Sunday"
+    },
+    {
+     "day": 4,
+     "date": "2022-04-22",
+     "label": "Weekend 2 · Friday"
+    },
+    {
+     "day": 5,
+     "date": "2022-04-23",
+     "label": "Weekend 2 · Saturday"
+    },
+    {
+     "day": 6,
+     "date": "2022-04-24",
+     "label": "Weekend 2 · Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 7,
+    "artists": 207,
+    "sets": 386
+   }
+  },
+  {
    "id": "coachella-2017",
    "festivalId": "coachella",
    "festivalName": "Coachella",
