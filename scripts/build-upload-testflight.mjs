@@ -38,7 +38,7 @@ import os from "node:os";
 import path from "node:path";
 import crypto from "node:crypto";
 import { execFileSync, spawnSync } from "node:child_process";
-import { awaitValidBuild, exportOptionsPlist, exportOptionsProblems, externalDistribution } from "./testflight-guard.mjs";
+import { awaitValidBuild, exportOptionsProblems, preUploadGuard } from "./testflight-guard.mjs";
 
 const APP_ID = "6768888507";
 const ASC_API = "https://api.appstoreconnect.apple.com";
@@ -324,13 +324,18 @@ if (DRY) {
 // Read-only ASC check BEFORE anything uploads: an external beta group or a
 // public link means a build could reach people outside the team, so the run
 // stops (testflight-guard.mjs). No bypass flag.
-const groups = await ascAll(`/v1/apps/${APP_ID}/betaGroups?fields[betaGroups]=name,isInternalGroup,publicLinkEnabled&limit=200`);
-const external = externalDistribution(groups);
-if (external.length) die(`internal-only guard: ${external.join("; ")} — not uploading`);
-say(`internal-only guard: ${groups.length} beta group(s), all internal, no public link`);
+// The same guard runs in both modes: --app-store changes only the export
+// plist, never whether the beta groups are checked.
+const pre = await preUploadGuard({
+  teamId: TEAM_ID, appStore: APP_STORE,
+  readAppGroups: () => ascAll(`/v1/apps/${APP_ID}/betaGroups?fields[betaGroups]=name,isInternalGroup,publicLinkEnabled&limit=200`),
+});
+if (pre.problems.length) die(`internal-only guard: ${pre.problems.join("; ")} — not uploading`);
+say(`internal-only guard: ${pre.groups.length} beta group(s), all internal, no public link`);
 
 const exportOpts = path.join(LOG_DIR, "ExportOptions.plist");
-fs.writeFileSync(exportOpts, exportOptionsPlist(TEAM_ID, { appStore: APP_STORE }));
+fs.writeFileSync(exportOpts, pre.xml);
+// Re-check the plist as written to disk, the file xcodebuild reads.
 const optProblems = exportOptionsProblems(fs.readFileSync(exportOpts, "utf8"), { appStore: APP_STORE });
 if (optProblems.length) die(`export guard: ${optProblems.join("; ")}`);
 say(APP_STORE ? "export: App Store build (testFlightInternalTestingOnly false)" : "export: internal TestFlight only");

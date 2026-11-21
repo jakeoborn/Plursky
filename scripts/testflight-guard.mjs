@@ -55,6 +55,20 @@ export function externalDistribution(groups) {
   return out;
 }
 
+// Everything that must pass BEFORE an upload, in one place, for BOTH modes:
+// the app's beta groups are read and checked (no external group, no public
+// link), then the export plist is built for the mode and checked. The group
+// guard is not mode-dependent: an App Store build can still be pushed to an
+// external TestFlight group, so --app-store never skips it.
+// Returns { problems, xml, groups }; the caller uploads only on no problems.
+export async function preUploadGuard({ teamId, appStore = false, readAppGroups }) {
+  const groups = await readAppGroups();
+  const problems = externalDistribution(groups);
+  const xml = exportOptionsPlist(teamId, { appStore });
+  problems.push(...exportOptionsProblems(xml, { appStore }));
+  return { problems, xml, groups };
+}
+
 // Wait for the uploaded build to be VALID, then read its beta groups. The
 // groups are never read while the build is PROCESSING (or in any state but
 // VALID): a group Apple attaches when processing finishes would otherwise be
