@@ -7269,6 +7269,21 @@
    ],
    "why": "Dreamstate SoCal 2026 sells this row as one co-billed set (official lineup and set-times pages, re-read 2026-11-20), and each half is a real artist already in the data. Each named artist is credited as co-billed; nothing is merged.",
    "source": "https://socal.dreamstateusa.com/lineup/set-times/"
+  },
+  {
+   "printed": "LAUFEY WITH THE CHICAGO PHILHARMONIC",
+   "performers": [
+    {
+     "name": "Laufey",
+     "role": "performer"
+    },
+    {
+     "name": "Chicago Philharmonic",
+     "role": "guest"
+    }
+   ],
+   "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set. The orchestra's own event page (https://chicagophilharmonic.org/events/lollapalooza-laufey/, read 2026-11-20) bills the same Friday 6:45-7:45 PM Bud Light set as Laufey's, with the Chicago Philharmonic playing it, not as a set of its own.",
+   "source": "https://www.lollapalooza.com/schedule"
   }
  ],
  "pending": [
@@ -7975,10 +7990,6 @@
   {
    "printed": "Kasparov & System Shock ft Diesel",
    "why": "Left as printed, one act: the \"&\" may join one act or two, and who is behind the \"ft\" is not sourced, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
-  },
-  {
-   "printed": "LAUFEY WITH THE CHICAGO PHILHARMONIC",
-   "why": "Left as printed, one act: Lollapalooza 2024's Friday grid prints Laufey \"with\" an orchestra, and no first-party page rules whether the orchestra is billed as an act of its own, so the billing is neither split nor credited to Laufey alone. Renders as its own billing until a first-party page rules it."
   },
   {
    "key": "flo",
