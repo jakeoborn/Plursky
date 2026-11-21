@@ -164,6 +164,10 @@ export const GRAPHIC_EDITIONS = {
     image: /content\/coachella2025\/c25-w[12]-(?:friday|saturday|sunday)\.jpg/,
     days: [{ day: 1, date: "2025-04-11", token: /^c25-w1-friday\./ }, { day: 2, date: "2025-04-12", token: /^c25-w1-saturday\./ }, { day: 3, date: "2025-04-13", token: /^c25-w1-sunday\./ },
       { day: 4, date: "2025-04-18", token: /^c25-w2-friday\./ }, { day: 5, date: "2025-04-19", token: /^c25-w2-saturday\./ }, { day: 6, date: "2025-04-20", token: /^c25-w2-sunday\./ }] },
+  "coachella-2026": { year: 2026, page: "https://www.coachella.com/schedule", window: ["20260401", "20260531"],
+    image: /content\/coachella-2026\/set-times-(?:friday|sat|sun|fri-wk2|sat-wk2|sun-wk2)\.jpg/,
+    days: [{ day: 1, date: "2026-04-10", token: /^set-times-friday\./ }, { day: 2, date: "2026-04-11", token: /^set-times-sat\./ }, { day: 3, date: "2026-04-12", token: /^set-times-sun\./ },
+      { day: 4, date: "2026-04-17", token: /^set-times-fri-wk2\./ }, { day: 5, date: "2026-04-18", token: /^set-times-sat-wk2\./ }, { day: 6, date: "2026-04-19", token: /^set-times-sun-wk2\./ }] },
 };
 
 // Webflow resized copies end "-p-500.png" or "-p-800.jpg"; keep only the original.
