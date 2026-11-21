@@ -37,7 +37,11 @@ export const OFFICIAL_HOSTS = {
   // III Points' own site. Its 2014 schedule page embedded one grid image per
   // day under www.iiipoints.com/Schedule/.
   "iii-points": ["iiipoints.com"],
-  "coachella": ["coachella.com"],
+  // coachella.com, plus one exact folder in AEG's blob store, where
+  // coachella.com/schedule embedded its 2025 set-times graphics.
+  // An entry with a "/" is a host+path prefix: it admits that folder only,
+  // never the host. Added 2026-11-21 (Plur thread), Coachella only.
+  "coachella": ["coachella.com", "aegwebprod.blob.core.windows.net/content/coachella2025/"],
   // 2012-2013 Las Vegas pages lived on the brand's root domain
   // (/LasVegas/music.php, /music.php). "=" matches that host alone, so the
   // other cities' subdomains (orlando., mexico.) are never Las Vegas's.
@@ -98,6 +102,14 @@ export const REHOST_HOSTS = {
 // A host is in a list when it is an entry or a subdomain of one; an entry
 // written "=host" matches that host alone.
 export const hostIn = (list, host) => (list || []).some(h => h.startsWith("=") ? host === h.slice(1) : host === h || host.endsWith("." + h));
+// A URL is in a list when its host is, or when host+path starts with an entry
+// that holds a "/" (a folder on a shared host). hostIn never matches such an
+// entry, so a folder entry admits that folder and nothing else on its host.
+export const urlIn = (list, url) => {
+  let u; try { u = new URL(url); } catch { return false; }
+  const host = u.hostname.replace(/^www\./, "");
+  return hostIn(list, host) || (list || []).some(h => h.includes("/") && h.endsWith("/") && (host + u.pathname).startsWith(h));
+};
 const rehostOf = host => Object.keys(REHOST_HOSTS).find(h => host === h || host.endsWith("." + h));
 
 // Where the page citing a graphic may live, by the graphic's host: EDM
@@ -116,6 +128,7 @@ const hostOf = u => { try { return new URL(u).hostname.replace(/^www\./, ""); } 
 
 const HHMM = /^([01]\d|2[0-3]):[0-5]\d$/;
 const WAYBACK = /^https:\/\/web\.archive\.org\/web\/(\d{14})\/(https?:\/\/[^/]+)\//;
+const WAYBACK_PREFIX = /^https:\/\/web\.archive\.org\/web\/\d{14}\//;
 
 function officialArchive(url, festivalId, year, p, label) {
   const m = WAYBACK.exec(url || "");
@@ -123,7 +136,7 @@ function officialArchive(url, festivalId, year, p, label) {
   // and a note citing a non-Wayback URL crashed on ts.startsWith.
   if (!m) { p.push(`${label}: "${url}" is not a Wayback archive URL`); return null; }
   const host = new URL(m[2]).hostname.replace(/^www\./, "");
-  if (!hostIn(OFFICIAL_HOSTS[festivalId], host))
+  if (!urlIn(OFFICIAL_HOSTS[festivalId], url.replace(WAYBACK_PREFIX, "")))
     p.push(`${label}: ${host} is not an official ${festivalId} property`);
   return m[1];
 }
