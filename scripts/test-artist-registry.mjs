@@ -187,9 +187,20 @@ const out = build();
   // END) and LAURA (OF MIAMI), each a parenthetical that is not sourced (the
   // Bunny (Rabbit in the Moon) rule): 214 rows. LAUFEY WITH THE CHICAGO
   // PHILHARMONIC is then ruled under the "with" rule (the orchestra's own event
-  // page bills the set as Laufey's): 213 rows. The cap stays at 214. Past 214,
-  // stop and report.
-  check(review.length <= 214, `review queue is ${review.length} rows (> 214 means stop and report)`);
+  // page bills the set as Laufey's): 213 rows. Coachella 2022 adds four, all
+  // pending with no claim: "The Blessed Madonna + Honey Dijon" (two rows, one
+  // per weekend's Sunday), "Loboman x Massio" (Weekend 2 Saturday) and PUP, a
+  // short name now at two brands (Lollapalooza 2017, Coachella 2022): 217 rows.
+  // Coachella 2010, 2011, 2023 and 2024 add fifteen, all pending with no claim,
+  // and drop one: "Loboman x Massio" now reads as a collab of two known acts
+  // (Loboman plays Coachella 2023 and 2024). The fifteen: "Thao with the Get
+  // Down Stay Down" and "Andy C. + GQ" (2011); "Dennis Cruz + PAWSA", "DJ Tennis
+  // + Carlita", "Fisher + Chris Lake" and "DPR LIVE + DPR IAN" (2023, two rows
+  // each, one per weekend); "Triste Juventud x TÓTEM" (2023) and "Triste
+  // Juventud x TOTEM" (2024); "Jamie xx x Floating Points x Daphni" (2024); and
+  // UMI and Maz, short names now at more than one brand: 231 rows. The cap is
+  // 231. Past 231, stop and report.
+  check(review.length <= 231, `review queue is ${review.length} rows (> 231 means stop and report)`);
   check(review.every(r => r.reason) && excluded.every(e => e.reason && e.category), 'a review or excluded row without its reason');
   check(excluded.some(e => e.category === 'unnamed-slot'), 'control: no unnamed slot was excluded');
   // Bare non-acts never become artists; a NAMED kids act ("Special Guest: The

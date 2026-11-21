@@ -523,6 +523,40 @@ export const EDITIONS = {
     timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
     dates: [["2017-04-14", "Friday"], ["2017-04-15", "Saturday"], ["2017-04-16", "Sunday"], ["2017-04-21", "Friday"], ["2017-04-22", "Saturday"], ["2017-04-23", "Sunday"]],
     dayLabels: ACL_WEEKEND_LABELS },
+  // 2010: one official set-times graphic per day on coachella.com/event/set-times
+  // (coachella.com/images/2010fri.jpg …). Each graphic prints its day and date.
+  // Five stages; one weekend.
+  "coachella-2010": { festivalId: "coachella", name: "Coachella 2010", year: 2010,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_image_transcription",
+    dates: [["2010-04-16", "Friday"], ["2010-04-17", "Saturday"], ["2010-04-18", "Sunday"]] },
+  // 2011: one official set-times graphic per day on coachella.com/event/set-times
+  // (coachella.com/images/ie6/800fri.jpg …). Six stages with the Oasis Dome; one
+  // weekend. The graphics print no date; the official poster does. Do LaB and
+  // the Heineken Dome were page text, not a graphic, and are not read.
+  "coachella-2011": { festivalId: "coachella", name: "Coachella 2011", year: 2011,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_image_transcription",
+    dates: [["2011-04-15", "Friday"], ["2011-04-16", "Saturday"], ["2011-04-17", "Sunday"]] },
+  // 2022: one official set-times graphic per day on coachella.com/schedule
+  // (media-prd.coachella.com), Weekend 1 then Weekend 2. Seven stages; Do
+  // LaB is not on the grids.
+  "coachella-2022": { festivalId: "coachella", name: "Coachella 2022", year: 2022,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_image_transcription",
+    dates: [["2022-04-15", "Friday"], ["2022-04-16", "Saturday"], ["2022-04-17", "Sunday"], ["2022-04-22", "Friday"], ["2022-04-23", "Saturday"], ["2022-04-24", "Sunday"]],
+    dayLabels: ACL_WEEKEND_LABELS },
+  // 2023: one official set-times graphic per day on coachella.com/schedule
+  // (coachella.com/coachella-2023/images/), Weekend 1 then Weekend 2. Seven
+  // stages; Do LaB and Despacio ("all weekend long") carry no timed grid.
+  "coachella-2023": { festivalId: "coachella", name: "Coachella 2023", year: 2023,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_image_transcription",
+    dates: [["2023-04-14", "Friday"], ["2023-04-15", "Saturday"], ["2023-04-16", "Sunday"], ["2023-04-21", "Friday"], ["2023-04-22", "Saturday"], ["2023-04-23", "Sunday"]],
+    dayLabels: ACL_WEEKEND_LABELS },
+  // 2024: one official set-times graphic per day on coachella.com/schedule
+  // (media-prd.coachella.com), Weekend 1 then Weekend 2. Eight stages: Quasar
+  // joins the seven.
+  "coachella-2024": { festivalId: "coachella", name: "Coachella 2024", year: 2024,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_image_transcription",
+    dates: [["2024-04-12", "Friday"], ["2024-04-13", "Saturday"], ["2024-04-14", "Sunday"], ["2024-04-19", "Friday"], ["2024-04-20", "Saturday"], ["2024-04-21", "Sunday"]],
+    dayLabels: ACL_WEEKEND_LABELS },
   // Tomorrowland 2013-2016: the official tomorrowland.com day timetables (a
   // Drupal page per day, format "tml-drupal", tml-drupal-schedule.mjs), each
   // captured after the festival. The page names each stage by its host that
