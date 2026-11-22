@@ -18156,25 +18156,6 @@
   "mainStage": false
  },
  {
-  "id": "ultra-miami-2026:ul35",
-  "source": "live",
-  "festivalId": "ultra-miami-2026",
-  "festivalBrand": "ultra-miami",
-  "year": 2026,
-  "date": "2026-03-27",
-  "day": 1,
-  "stage": "UMF Radio Stage",
-  "start": "20:15",
-  "end": "21:15",
-  "printed": "Special Guest b2b Special Guest",
-  "setTag": null,
-  "performers": [],
-  "act": "special-guest-b2b-special-guest",
-  "closing": false,
-  "stageLineage": "ultra-miami:umf-radio-stage",
-  "mainStage": false
- },
- {
   "id": "ultra-miami-2026:ul36",
   "source": "live",
   "festivalId": "ultra-miami-2026",
