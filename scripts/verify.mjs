@@ -578,8 +578,14 @@ if (fdata.length) {
     if (why.length) { console.log(`  ✗ ${id.padEnd(26)} ${why.join("; ")}`); gbad++; }
     else console.log(`  ok ${id.padEnd(26)} ${T.model} over ${T.ties.length} ties · rms ${O.rmsM} m · leave-one-out ${O.looRmsM} m${O.approximate ? " · approximate" : ""}`);
   }
+  // The check needs numpy. The python3 first on PATH can lack it (Homebrew's,
+  // on this Mac: TestFlight run 2026-11-20 died here), so use the first
+  // interpreter that imports it, and name a missing numpy as what it is,
+  // not as a map that fails its ties.
+  const py = ["python3", "/usr/bin/python3"].find(p => { try { execFileSync(p, ["-c", "import numpy"], { stdio: "ignore" }); return true; } catch { return false; } });
+  if (!py) fail("no python3 with numpy found (tried python3 and /usr/bin/python3): build-geo-plate.py check cannot run");
   try {
-    execFileSync("python3", [join(ROOT, "scripts", "build-geo-plate.py"), "check"], { cwd: ROOT, stdio: "inherit" });
+    execFileSync(py, [join(ROOT, "scripts", "build-geo-plate.py"), "check"], { cwd: ROOT, stdio: "inherit" });
   } catch { gbad++; }
   if (gbad) fail(`${gbad} fitted map(s) do not match their measured ties — rerun python3 scripts/build-geo-plate.py build <id> and copy its mapGeoref`);
   console.log(`  ✓ ${gseen} festival map(s) fitted to their venue from measured ties`);

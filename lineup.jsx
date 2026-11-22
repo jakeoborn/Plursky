@@ -2577,8 +2577,11 @@ function TimelineGrid({ lead, day, allDayArtists, state, setState, matchesActive
               borderRight: "1px solid var(--line)",
             }}>
               {HOURS.map(h => (
-                <div key={h.label} className="duo-data-s duo-ink3" style={{
-                  position: "absolute", top: minToTop(h.mins) - 7, right: 6, fontSize: 11, whiteSpace: "nowrap",
+                // Centred on its hour line, but never above the gutter's top:
+                // at -7 the first hour's label slid under the pinned stage
+                // headers and read as a clipped "1 PM" (#116).
+                <div key={h.label} data-grid-hour className="duo-data-s duo-ink3" style={{
+                  position: "absolute", top: Math.max(0, minToTop(h.mins) - 7), right: 6, fontSize: 11, whiteSpace: "nowrap",
                 }}>{h.label}</div>
               ))}
               {/* NOW docks to the gutter and stays there. It used to be
