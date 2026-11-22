@@ -1,0 +1,101 @@
+{
+  "id": "coachella-2010",
+  "method": "official_image_transcription",
+  "official": "http://www.coachella.com/event/set-times",
+  "window": [
+    "20100401",
+    "20100531"
+  ],
+  "pageCaptures": [
+    {
+      "captureTimestamp": "20100417064000",
+      "archivedUrl": "https://web.archive.org/web/20100417064000/http://www.coachella.com/event/set-times",
+      "sha256": "b04ecb7f942ea84de1096893a432d34aedf0ff376622e74b93d7a6c7f08d8498",
+      "images": [
+        "2010fri.jpg",
+        "2010sat.jpg",
+        "2010sun.jpg"
+      ]
+    },
+    {
+      "captureTimestamp": "20100503211914",
+      "archivedUrl": "https://web.archive.org/web/20100503211914/http://www.coachella.com/event/set-times",
+      "sha256": "cd34ff8254bc001b4e60275041ed60df0e55de52dedc44af6d36b8f34f3c2122",
+      "images": [
+        "2010fri.jpg",
+        "2010sat.jpg",
+        "2010sun.jpg"
+      ]
+    },
+    {
+      "captureTimestamp": "20100510091055",
+      "archivedUrl": "https://web.archive.org/web/20100510091055/http://www.coachella.com/event/set-times",
+      "sha256": "61c5d857b57a3fe95646b23146e959b790796ed413b5479f9623394c8288629e",
+      "images": [
+        "2010fri.jpg",
+        "2010sat.jpg",
+        "2010sun.jpg"
+      ]
+    }
+  ],
+  "days": [
+    {
+      "day": 1,
+      "date": "2010-04-16",
+      "pageCapture": "20100510091055",
+      "pageArchivedUrl": "https://web.archive.org/web/20100510091055/http://www.coachella.com/event/set-times",
+      "originalUrl": "http://coachella.com/images/2010fri.jpg",
+      "imageCapture": "20111111211333",
+      "imageArchivedUrl": "https://web.archive.org/web/20111111211333/http://coachella.com/images/2010fri.jpg",
+      "sha256": "55d9877c9f22bf9aef5e42c8eeb4f0cfcd8868084d10d61e1a2e353c89192de6",
+      "bytes": 104754,
+      "contentType": "image/jpeg",
+      "cacheFile": "3ed9a615c066b6191da75b63.bin",
+      "revisions": [
+        {
+          "file": "2010fri.jpg",
+          "firstSeen": "20100417064000"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2010-04-17",
+      "pageCapture": "20100510091055",
+      "pageArchivedUrl": "https://web.archive.org/web/20100510091055/http://www.coachella.com/event/set-times",
+      "originalUrl": "http://coachella.com/images/2010sat.jpg",
+      "imageCapture": "20111111211335",
+      "imageArchivedUrl": "https://web.archive.org/web/20111111211335/http://coachella.com/images/2010sat.jpg",
+      "sha256": "0517d96ae5b793f971aca803c7536f3739ce1c1fb6bb8ac68200fb2641a89d2a",
+      "bytes": 108205,
+      "contentType": "image/jpeg",
+      "cacheFile": "3cde503bd3bcd5826296f953.bin",
+      "revisions": [
+        {
+          "file": "2010sat.jpg",
+          "firstSeen": "20100417064000"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2010-04-18",
+      "pageCapture": "20100510091055",
+      "pageArchivedUrl": "https://web.archive.org/web/20100510091055/http://www.coachella.com/event/set-times",
+      "originalUrl": "http://coachella.com/images/2010sun.jpg",
+      "imageCapture": "20100523062813",
+      "imageArchivedUrl": "https://web.archive.org/web/20100523062813/http://coachella.com/images/2010sun.jpg",
+      "sha256": "e375aff63da3165d74d4661e01c24d9562eb7aa521b5dffce41d59b4e9b7e6d6",
+      "bytes": 107234,
+      "contentType": "image/jpeg",
+      "cacheFile": "7e7033eaebca2d55fc02bac3.bin",
+      "revisions": [
+        {
+          "file": "2010sun.jpg",
+          "firstSeen": "20100417064000"
+        }
+      ]
+    }
+  ],
+  "dropped": []
+}

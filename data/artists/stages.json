@@ -869,6 +869,32 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "coachella:oasis-dome",
+     "names": [
+      {
+       "printed": "Oasis Dome",
+       "editions": [
+        "coachella-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "coachella:quasar",
+     "names": [
+      {
+       "printed": "Quasar",
+       "editions": [
+        "coachella-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },
