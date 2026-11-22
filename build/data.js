@@ -789,7 +789,8 @@ var FESTIVALS_REGISTRY = [{
     id: "tomorrowland-winter-2027",
     officialEvent: {
       website: "https://winter.tomorrowland.com/",
-      observedAt: "2026-11-11"
+      tickets: "https://winter.tomorrowland.com/en/tickets/",
+      observedAt: "2026-11-22"
     },
     name: "Tomorrowland Winter 2027",
     shortName: "Tomorrowland Winter",
@@ -1014,7 +1015,8 @@ var FESTIVALS_REGISTRY = [{
     id: "lollapalooza-india-2027",
     officialEvent: {
       website: "https://lollaindia.com/",
-      observedAt: "2026-11-15"
+      tickets: "https://in.bookmyshow.com/events/lollapalooza-india-2027/ET00513740",
+      observedAt: "2026-11-22"
     },
     name: "Lollapalooza India 2027",
     shortName: "Lolla India",
@@ -1042,7 +1044,8 @@ var FESTIVALS_REGISTRY = [{
     id: "lollapalooza-argentina-2027",
     officialEvent: {
       website: "https://www.lollapaloozaar.com/",
-      observedAt: "2026-11-15"
+      tickets: "https://www.allaccess.com.ar/event/lollapalooza-2027",
+      observedAt: "2026-11-22"
     },
     name: "Lollapalooza Argentina 2027",
     shortName: "Lolla Argentina",
@@ -1070,7 +1073,8 @@ var FESTIVALS_REGISTRY = [{
     id: "lollapalooza-chile-2027",
     officialEvent: {
       website: "https://www.lollapaloozacl.com/",
-      observedAt: "2026-11-15"
+      tickets: "https://lollapaloozacl.com/precios/",
+      observedAt: "2026-11-22"
     },
     name: "Lollapalooza Chile 2027",
     shortName: "Lolla Chile",
@@ -1098,7 +1102,8 @@ var FESTIVALS_REGISTRY = [{
     id: "lollapalooza-brasil-2027",
     officialEvent: {
       website: "https://www.lollapaloozabr.com/",
-      observedAt: "2026-11-15"
+      tickets: "https://www.lollapaloozabr.com/ingressos",
+      observedAt: "2026-11-22"
     },
     name: "Lollapalooza Brasil 2027",
     shortName: "Lolla Brasil",
@@ -1814,6 +1819,7 @@ var FESTIVALS_REGISTRY = [{
       id: 548875,
       url: "https://mexico.electricdaisycarnival.com/",
       website: "https://mexico.edc.com/",
+      tickets: "https://mexico.edc.com/en/tickets/",
       observedAt: "2026-09-10"
     }
   },
