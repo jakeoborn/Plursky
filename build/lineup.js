@@ -3630,10 +3630,11 @@ function TimelineGrid({
       }
     }, HOURS.map(h => React.createElement("div", {
       key: h.label,
+      "data-grid-hour": true,
       className: "duo-data-s duo-ink3",
       style: {
         position: "absolute",
-        top: minToTop(h.mins) - 7,
+        top: Math.max(0, minToTop(h.mins) - 7),
         right: 6,
         fontSize: 11,
         whiteSpace: "nowrap"
