@@ -45,7 +45,6 @@ const FALLBACK = {
   // each needs an official tile in data/festival-art.js.
   "lollapalooza-india-2027": "official art not fetched yet; tile owed before the flip",
   "lollapalooza-chile-2027": "official art not fetched yet; tile owed before the flip",
-  "lollapalooza-brasil-2027": "official art not fetched yet; tile owed before the flip",
   "ultra-south-africa-2027": "official art not fetched yet; tile owed before the flip",
   "bottlerock-2027": "official art not fetched yet; tile owed before the flip",
   "suenos-2027": "official art not fetched yet; tile owed before the flip",

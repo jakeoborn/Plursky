@@ -381,4 +381,12 @@ window.PLURSKY_FESTIVAL_ART = Object.freeze({
     license: "CC BY 2.0 (Flickr upload reviewed by FlickreviewR (reviewed-pass, 2017-04-01)). Replaces the letter-tile fallback; Commons uploader, credit and EXIF checked 2026-11-23.",
     author: "Leonardo Samrani", licenseId: "CC-BY-2.0", licenseUrl: "https://creativecommons.org/licenses/by/2.0/", changes: "Cropped",
   },
+  "lollapalooza-brasil-2027": {
+    tile: "festival-art/tiles/lollapalooza-brasil-2027.webp", card: "festival-art/lollapalooza-brasil-2027.webp", width: 168, height: 168,
+    kind: "photo", sourcePage: "https://commons.wikimedia.org/wiki/File:Catavento_@_Lollapalooza_Brasil_2019_por_Hannah_Carvalho.jpg",
+    assetUrl: "https://upload.wikimedia.org/wikipedia/commons/b/b0/Catavento_%40_Lollapalooza_Brasil_2019_por_Hannah_Carvalho.jpg",
+    credit: "Jonas Bender Bustince, percussionist of Catavento, at Lollapalooza Brasil 2019. Photo by Hannah Carvalho, Wikimedia Commons", retrieved: "2026-11-23",
+    license: "CC BY-SA 2.0 (Flickr upload, licence reviewed 2021-08-02). Replaces the letter-tile fallback; Commons uploader, credit and EXIF checked 2026-11-23.",
+    author: "Hannah Carvalho", licenseId: "CC-BY-SA-2.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/2.0/", changes: "Cropped",
+  },
 });
