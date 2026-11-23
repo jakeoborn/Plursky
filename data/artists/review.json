@@ -630,6 +630,20 @@
   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
  },
  {
+  "id": "escape-halloween-2023:d1:sanitarium:0100:dj-isaac-b2b-saymyname-hardstyle",
+  "printed": "DJ ISAAC B2B SAYMYNAME (HARDSTYLE)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed: the parenthetical is not sourced as a name the act uses elsewhere (the Bunny (Rabbit in the Moon) rule), so the billing is neither merged with the bare name nor credited to anything the parenthetical names."
+ },
+ {
+  "id": "escape-halloween-2023:d2:wicked-woods:2245:black-sun-empire-b2b-the-upbeats-20-years-of-blackout",
+  "printed": "BLACK SUN EMPIRE B2B THE UPBEATS (20 YEARS OF BLACKOUT)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed: the parenthetical is not sourced as a name the act uses elsewhere (the Bunny (Rabbit in the Moon) rule), so the billing is neither merged with the bare name nor credited to anything the parenthetical names."
+ },
+ {
   "id": "governors-ball-2011:d1:gotham-stage:1855:big-boi-of-outkast",
   "printed": "Big Boi (of Outkast)",
   "reason": "parenthetical is not a known set tag",
