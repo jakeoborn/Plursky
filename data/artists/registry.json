@@ -2754,6 +2754,21 @@
   "links": []
  },
  {
+  "key": "acid-asian",
+  "name": "ACID ASIAN",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-brasil-2027:lbr27-acid-asian"
+  ],
+  "firstSeen": "2027-03-21",
+  "lastSeen": "2027-03-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "acid-pauli",
   "name": "Acid Pauli",
   "aliases": [],
@@ -3504,7 +3519,8 @@
   "billings": [
    "lollapalooza-2026:lo143",
    "portola-2026:pt2-adela",
-   "coachella-2027:coa27-adela"
+   "coachella-2027:coa27-adela",
+   "lollapalooza-brasil-2027:lbr27-adela"
   ],
   "firstSeen": "2026-08-02",
   "lastSeen": "2027-04-10",
@@ -11240,9 +11256,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "coachella-2027:coa27-angine-de-poitrine"
+   "coachella-2027:coa27-angine-de-poitrine",
+   "lollapalooza-brasil-2027:lbr27-angine-de-poitrine"
   ],
-  "firstSeen": "2027-04-09",
+  "firstSeen": "2027-03-19",
   "lastSeen": "2027-04-09",
   "photo": null,
   "links": []
@@ -20809,6 +20826,21 @@
   "links": []
  },
  {
+  "key": "bebe",
+  "name": "BEBÉ",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-brasil-2027:lbr27-bebe"
+  ],
+  "firstSeen": "2027-03-20",
+  "lastSeen": "2027-03-20",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "bebe-breaks",
   "name": "Bebe Breaks",
   "aliases": [
@@ -28431,6 +28463,7 @@
   "projects": [],
   "billings": [
    "coachella-2027:coa27-boy-harsher",
+   "lollapalooza-brasil-2027:lbr27-boy-harsher",
    "coachella-2024:d3:sonora:2120:boy-harsher",
    "coachella-2024:d6:sonora:2120:boy-harsher"
   ],
@@ -28523,6 +28556,7 @@
    "crssd-fall-2026:crssd-boys-noize",
    "hard-summer-2026:hs2-b3k-b2b-boys-noize",
    "arc-2026:arc-boys-noize-b2b-hiroko-yamamura-area909-d4",
+   "lollapalooza-brasil-2027:lbr27-boys-noize",
    "coachella-2011:d1:sahara:2330:boys-noize",
    "coachella-2026:d2:yuma:2145:boys-noize",
    "coachella-2026:d5:yuma:2145:boys-noize",
@@ -28539,7 +28573,7 @@
    "tomorrowland-2017:d2:i-love-techno:1630:boys-noize"
   ],
   "firstSeen": "2010-08-12",
-  "lastSeen": "2026-11-08",
+  "lastSeen": "2027-03-21",
   "photo": null,
   "links": []
  },
@@ -29882,6 +29916,21 @@
   "links": []
  },
  {
+  "key": "brime",
+  "name": "BRIME!!",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-brasil-2027:lbr27-brime"
+  ],
+  "firstSeen": "2027-03-20",
+  "lastSeen": "2027-03-20",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "brina-knauss",
   "name": "Brina Knauss",
   "aliases": [
@@ -31149,6 +31198,21 @@
   "links": []
  },
  {
+  "key": "budang",
+  "name": "BUDANG",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-brasil-2027:lbr27-budang"
+  ],
+  "firstSeen": "2027-03-20",
+  "lastSeen": "2027-03-20",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "buddy",
   "name": "Buddy",
   "aliases": [],
@@ -31237,6 +31301,21 @@
   ],
   "firstSeen": "2018-06-02",
   "lastSeen": "2018-06-02",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "buhr",
+  "name": "BUHR",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-brasil-2027:lbr27-buhr"
+  ],
+  "firstSeen": "2027-03-20",
+  "lastSeen": "2027-03-20",
   "photo": null,
   "links": []
  },
@@ -32312,6 +32391,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "lollapalooza-brasil-2027:lbr27-cage-the-elephant",
    "acl-2016:d2:honda:1830:cage-the-elephant",
    "acl-2016:d5:honda:1830:cage-the-elephant",
    "acl-2025:d1:american-express:1830:cage-the-elephant",
@@ -32328,7 +32408,7 @@
    "outside-lands-2017:d2:lands-end:1800:cage-the-elephant"
   ],
   "firstSeen": "2011-04-16",
-  "lastSeen": "2025-10-10",
+  "lastSeen": "2027-03-19",
   "photo": null,
   "links": []
  },
@@ -34153,6 +34233,7 @@
    "crssd-fall-2026:crssd-rossi-b2b-carlita",
    "arc-2026:arc-carlita-b2b-whomadewho-expansions-d4",
    "time-warp-2027:tw27-carlita-b2b-rossi",
+   "lollapalooza-brasil-2027:lbr27-carlita",
    "coachella-2024:d2:quasar:1700:carlita",
    "coachella-2024:d3:yuma:1930:carlita",
    "coachella-2024:d6:yuma:1930:carlita",
@@ -34419,6 +34500,21 @@
   ],
   "firstSeen": "2023-07-29",
   "lastSeen": "2024-11-10",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "carola-and-curol",
+  "name": "CAROLA & CUROL",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-brasil-2027:lbr27-carola-curol"
+  ],
+  "firstSeen": "2027-03-19",
+  "lastSeen": "2027-03-19",
   "photo": null,
   "links": []
  },
@@ -35171,6 +35267,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "lollapalooza-brasil-2027:lbr27-cat-dealers",
    "edc-las-vegas-2022:d1:kinetic-field:2035:cat-dealers",
    "edc-orlando-2021:d3:kinetic-field:1501:cat-dealers-b2b-dubdogz",
    "edc-orlando-2021:d3:corona-electric-beach:1930:cat-dealers",
@@ -35178,7 +35275,7 @@
    "tomorrowland-2023:d4:the-library:1500:cat-dealers"
   ],
   "firstSeen": "2021-11-14",
-  "lastSeen": "2023-07-28",
+  "lastSeen": "2027-03-19",
   "photo": null,
   "links": []
  },
@@ -35260,6 +35357,21 @@
   ],
   "firstSeen": "2014-06-07",
   "lastSeen": "2018-08-04",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "catica",
+  "name": "CATÏÇA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-brasil-2027:lbr27-catica"
+  ],
+  "firstSeen": "2027-03-21",
+  "lastSeen": "2027-03-21",
   "photo": null,
   "links": []
  },
@@ -36767,6 +36879,7 @@
    "acl-2026:af49",
    "lollapalooza-2026:lo56",
    "outside-lands-2026:os7",
+   "lollapalooza-brasil-2027:lbr27-charli-xcx",
    "coachella-2023:d2:coachella:1735:charli-xcx",
    "coachella-2023:d5:coachella:1725:charli-xcx",
    "coachella-2025:d2:coachella:1915:charli-xcx",
@@ -36779,7 +36892,7 @@
    "primavera-sound-2019:d2:primavera:0155:charli-xcx"
   ],
   "firstSeen": "2015-06-05",
-  "lastSeen": "2026-10-02",
+  "lastSeen": "2027-03-21",
   "photo": null,
   "links": []
  },
@@ -39837,6 +39950,21 @@
   "links": []
  },
  {
+  "key": "cica-moreira",
+  "name": "CIÇA MOREIRA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-brasil-2027:lbr27-cica-moreira"
+  ],
+  "firstSeen": "2027-03-21",
+  "lastSeen": "2027-03-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "cicale",
   "name": "CICALE",
   "aliases": [],
@@ -40492,6 +40620,21 @@
   "links": []
  },
  {
+  "key": "clarissa",
+  "name": "CLARISSA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-brasil-2027:lbr27-clarissa"
+  ],
+  "firstSeen": "2027-03-21",
+  "lastSeen": "2027-03-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "clark",
   "name": "Clark",
   "aliases": [],
@@ -40729,6 +40872,21 @@
   ],
   "firstSeen": "2014-07-20",
   "lastSeen": "2014-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "clementaum",
+  "name": "CLEMENTAUM",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-brasil-2027:lbr27-clementaum"
+  ],
+  "firstSeen": "2027-03-21",
+  "lastSeen": "2027-03-21",
   "photo": null,
   "links": []
  },
@@ -44584,6 +44742,21 @@
   ],
   "firstSeen": "2014-08-09",
   "lastSeen": "2025-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "criolo-amaro-e-dino",
+  "name": "CRIOLO, AMARO E DINO",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-brasil-2027:lbr27-criolo-amaro-e-dino"
+  ],
+  "firstSeen": "2027-03-21",
+  "lastSeen": "2027-03-21",
   "photo": null,
   "links": []
  },
@@ -49526,6 +49699,7 @@
   "projects": [],
   "billings": [
    "edc-orlando-2026:ecf12",
+   "lollapalooza-brasil-2027:lbr27-david-guetta",
    "beyond-wonderland-socal-2013:d1:queen-s-domain:2330:david-guetta",
    "coachella-2010:d2:sahara:2100:david-guetta",
    "coachella-2012:d2:sahara:2115:david-guetta",
@@ -49554,7 +49728,7 @@
    "ultra-miami-2024:d2:ultra-main-stage:2345:david-guetta"
   ],
   "firstSeen": "2010-04-17",
-  "lastSeen": "2026-11-06",
+  "lastSeen": "2027-03-19",
   "photo": null,
   "links": []
  },
@@ -50899,6 +51073,21 @@
   ],
   "firstSeen": "2014-06-07",
   "lastSeen": "2016-04-24",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "deafkids",
+  "name": "DEAFKIDS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-brasil-2027:lbr27-deafkids"
+  ],
+  "firstSeen": "2027-03-19",
+  "lastSeen": "2027-03-19",
   "photo": null,
   "links": []
  },
@@ -54175,12 +54364,13 @@
   "billings": [
    "lollapalooza-2026:lo127",
    "outside-lands-2026:os15",
+   "lollapalooza-brasil-2027:lbr27-die-spitz",
    "acl-2023:d2:tito-s-handmade-vodka:1145:die-spitz",
    "coachella-2026:d2:sonora:1400:die-spitz",
    "coachella-2026:d5:sonora:1400:die-spitz"
   ],
   "firstSeen": "2023-10-07",
-  "lastSeen": "2026-08-07",
+  "lastSeen": "2027-03-19",
   "photo": null,
   "links": []
  },
@@ -59554,6 +59744,21 @@
   "links": []
  },
  {
+  "key": "dj-ramemes",
+  "name": "DJ RAMEMES",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-brasil-2027:lbr27-dj-ramemes"
+  ],
+  "firstSeen": "2027-03-20",
+  "lastSeen": "2027-03-20",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dj-ray",
   "name": "DJ Ray",
   "aliases": [],
@@ -60354,6 +60559,21 @@
   ],
   "firstSeen": "2012-07-28",
   "lastSeen": "2012-07-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dj-tamy",
+  "name": "DJ TAMY",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-brasil-2027:lbr27-dj-tamy"
+  ],
+  "firstSeen": "2027-03-20",
+  "lastSeen": "2027-03-20",
   "photo": null,
   "links": []
  },
@@ -61909,6 +62129,7 @@
   "projects": [],
   "billings": [
    "governors-ball-2026:go43",
+   "lollapalooza-brasil-2027:lbr27-dominic-fike",
    "coachella-2023:d3:outdoor:1850:dominic-fike",
    "coachella-2023:d6:outdoor:1905:dominic-fike",
    "governors-ball-2024:d1:govballnyc:1830:dominic-fike",
@@ -61917,7 +62138,7 @@
    "outside-lands-2022:d3:lands-end:1705:dominic-fike"
   ],
   "firstSeen": "2022-07-31",
-  "lastSeen": "2026-06-07",
+  "lastSeen": "2027-03-20",
   "photo": null,
   "links": []
  },
@@ -67340,6 +67561,21 @@
   ],
   "firstSeen": "2017-11-11",
   "lastSeen": "2017-11-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "el-efecto",
+  "name": "EL EFECTO",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-brasil-2027:lbr27-el-efecto"
+  ],
+  "firstSeen": "2027-03-19",
+  "lastSeen": "2027-03-19",
   "photo": null,
   "links": []
  },
@@ -73887,6 +74123,21 @@
   "links": []
  },
  {
+  "key": "fernanda-martins",
+  "name": "FERNANDA MARTINS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-brasil-2027:lbr27-fernanda-martins"
+  ],
+  "firstSeen": "2027-03-21",
+  "lastSeen": "2027-03-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "fernanda-pistelli",
   "name": "Fernanda Pistelli",
   "aliases": [
@@ -74140,6 +74391,21 @@
   ],
   "firstSeen": "2010-04-16",
   "lastSeen": "2018-05-31",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "fezzo",
+  "name": "FEZZO",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-brasil-2027:lbr27-fezzo"
+  ],
+  "firstSeen": "2027-03-19",
+  "lastSeen": "2027-03-19",
   "photo": null,
   "links": []
  },
@@ -76426,6 +76692,21 @@
   "links": []
  },
  {
+  "key": "fontaines-d-c",
+  "name": "FONTAINES D.C.",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-brasil-2027:lbr27-fontaines-d-c"
+  ],
+  "firstSeen": "2027-03-21",
+  "lastSeen": "2027-03-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "foo-fighters",
   "name": "Foo Fighters",
   "aliases": [
@@ -76775,6 +77056,7 @@
    "iii-points-2026:iiip-four-tet",
    "portola-2026:pt2-four-tet",
    "coachella-2027:coa27-four-tet",
+   "lollapalooza-brasil-2027:lbr27-four-tet",
    "edc-las-vegas-2024:d2:circuit-grounds:2200:four-tet",
    "hard-summer-2025:d2:hard-stage:1815:four-tet",
    "lollapalooza-2024:d3:sonny-s:1845:four-tet",
@@ -81079,6 +81361,7 @@
    "governors-ball-2026:go42",
    "lollapalooza-2026:lo126",
    "outside-lands-2026:os18",
+   "lollapalooza-brasil-2027:lbr27-geese",
    "acl-2024:d2:t-mobile:1335:geese",
    "acl-2024:d5:t-mobile:1335:geese",
    "coachella-2026:d2:gobi:1815:geese",
@@ -81087,7 +81370,7 @@
    "lollapalooza-2024:d2:tito-s-handmade-vodka:1345:geese"
   ],
   "firstSeen": "2024-06-09",
-  "lastSeen": "2026-10-04",
+  "lastSeen": "2027-03-20",
   "photo": null,
   "links": []
  },
@@ -85295,6 +85578,21 @@
   ],
   "firstSeen": "2023-07-21",
   "lastSeen": "2026-03-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "grag-queen",
+  "name": "GRAG QUEEN",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-brasil-2027:lbr27-grag-queen"
+  ],
+  "firstSeen": "2027-03-20",
+  "lastSeen": "2027-03-20",
   "photo": null,
   "links": []
  },
@@ -103393,6 +103691,21 @@
   "links": []
  },
  {
+  "key": "joaquim",
+  "name": "JOAQUIM",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-brasil-2027:lbr27-joaquim"
+  ],
+  "firstSeen": "2027-03-20",
+  "lastSeen": "2027-03-20",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "joaquin-bamaca",
   "name": "Joaquin Bamaca",
   "aliases": [],
@@ -107399,6 +107712,7 @@
    "summerfest-2026:su291",
    "lollapalooza-2026:lo71",
    "coachella-2027:coa27-julia-wolf",
+   "lollapalooza-brasil-2027:lbr27-julia-wolf",
    "acl-2023:d1:tito-s-handmade-vodka:1315:julia-wolf"
   ],
   "firstSeen": "2023-10-06",
@@ -121435,6 +121749,7 @@
   "projects": [],
   "billings": [
    "coachella-2027:coa27-leon-bridges",
+   "lollapalooza-brasil-2027:lbr27-leon-bridges",
    "acl-2015:d1:honda:1600:leon-bridges",
    "acl-2015:d4:honda:1600:leon-bridges",
    "acl-2024:d1:american-express:1830:leon-bridges",
@@ -124782,6 +125097,7 @@
   "projects": [],
   "billings": [
    "acl-2026:as42",
+   "lollapalooza-brasil-2027:lbr27-lola-young",
    "acl-2024:d2:american-express:1420:lola-young",
    "acl-2024:d5:american-express:1420:lola-young",
    "coachella-2025:d1:mojave:1650:lola-young",
@@ -124789,7 +125105,7 @@
    "lollapalooza-2024:d2:bacardi:1715:lola-young"
   ],
   "firstSeen": "2024-08-02",
-  "lastSeen": "2026-10-03",
+  "lastSeen": "2027-03-19",
   "photo": null,
   "links": []
  },
@@ -127084,6 +127400,21 @@
   ],
   "firstSeen": "2026-05-17",
   "lastSeen": "2026-05-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "luana-flores",
+  "name": "LUANA FLORES",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-brasil-2027:lbr27-luana-flores"
+  ],
+  "firstSeen": "2027-03-20",
+  "lastSeen": "2027-03-20",
   "photo": null,
   "links": []
  },
@@ -131096,6 +131427,21 @@
   "links": []
  },
  {
+  "key": "majis",
+  "name": "MAJIS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-brasil-2027:lbr27-majis"
+  ],
+  "firstSeen": "2027-03-19",
+  "lastSeen": "2027-03-19",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "major",
   "name": "MAJOR.",
   "aliases": [],
@@ -131299,6 +131645,21 @@
   "links": []
  },
  {
+  "key": "make-u-sweat",
+  "name": "MAKE U SWEAT",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-brasil-2027:lbr27-make-u-sweat"
+  ],
+  "firstSeen": "2027-03-19",
+  "lastSeen": "2027-03-19",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "makeshift-prodigy",
   "name": "Makeshift Prodigy",
   "aliases": [],
@@ -131457,13 +131818,14 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "lollapalooza-brasil-2027:lbr27-malcolm-todd",
    "acl-2024:d3:t-mobile:1400:malcolm-todd",
    "acl-2024:d6:t-mobile:1400:malcolm-todd",
    "governors-ball-2024:d3:govballnyc:1520:malcolm-todd",
    "lollapalooza-2024:d2:bacardi:1600:malcolm-todd"
   ],
   "firstSeen": "2024-06-09",
-  "lastSeen": "2024-10-13",
+  "lastSeen": "2027-03-21",
   "photo": null,
   "links": []
  },
@@ -133685,6 +134047,21 @@
   "links": []
  },
  {
+  "key": "marina-diniz",
+  "name": "MARINA DINIZ",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-brasil-2027:lbr27-marina-diniz"
+  ],
+  "firstSeen": "2027-03-19",
+  "lastSeen": "2027-03-19",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "marino-canal",
   "name": "Marino Canal",
   "aliases": [],
@@ -134440,6 +134817,7 @@
    "ultra-miami-2026:ul119",
    "crssd-fall-2026:crssd-marlon-hoffstadt",
    "portola-2026:pt2-marlon-hoffstadt",
+   "lollapalooza-brasil-2027:lbr27-marlon-hoffstadt",
    "coachella-2026:d1:sahara:1815:marlon-hoffstadt",
    "coachella-2026:d4:sahara:1815:marlon-hoffstadt",
    "edc-las-vegas-2025:d3:kinetic-field:0300:marlon-hoffstadt",
@@ -134447,7 +134825,7 @@
    "lollapalooza-2025:d4:perry-s:1615:marlon-hoffstadt"
   ],
   "firstSeen": "2025-05-18",
-  "lastSeen": "2026-11-08",
+  "lastSeen": "2027-03-21",
   "photo": null,
   "links": []
  },
@@ -135152,6 +135530,21 @@
   ],
   "firstSeen": "2023-04-14",
   "lastSeen": "2027-01-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "mary-olivetti",
+  "name": "MARY OLIVETTI",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-brasil-2027:lbr27-mary-olivetti"
+  ],
+  "firstSeen": "2027-03-19",
+  "lastSeen": "2027-03-19",
   "photo": null,
   "links": []
  },
@@ -141018,6 +141411,7 @@
   "projects": [],
   "billings": [
    "governors-ball-2026:go34",
+   "lollapalooza-brasil-2027:lbr27-midnight-generation",
    "acl-2025:d3:tito-s-handmade-vodka:1630:midnight-generation",
    "acl-2025:d6:tito-s-handmade-vodka:1630:midnight-generation",
    "lollapalooza-2025:d2:bmi:1630:midnight-generation",
@@ -141025,7 +141419,7 @@
    "outside-lands-2025:d3:panhandle:1325:midnight-generation"
   ],
   "firstSeen": "2025-08-01",
-  "lastSeen": "2026-06-06",
+  "lastSeen": "2027-03-20",
   "photo": null,
   "links": []
  },
@@ -141603,7 +141997,8 @@
   "projects": [],
   "billings": [
    "portola-2026:pt1-mike-d-5d",
-   "coachella-2027:coa27-mike-d-5d"
+   "coachella-2027:coa27-mike-d-5d",
+   "lollapalooza-brasil-2027:lbr27-mike-d-5d"
   ],
   "firstSeen": "2026-09-26",
   "lastSeen": "2027-04-09",
@@ -142510,11 +142905,12 @@
    "iii-points-2026:iiip-mind-enterprises",
    "crssd-fall-2026:crssd-mind-enterprises",
    "portola-2026:pt2-mind-enterprises",
+   "lollapalooza-brasil-2027:lbr27-mind-enterprises",
    "coachella-2026:d2:sonora:2145:mind-enterprises",
    "coachella-2026:d5:sonora:2145:mind-enterprises"
   ],
   "firstSeen": "2026-04-11",
-  "lastSeen": "2026-10-16",
+  "lastSeen": "2027-03-21",
   "photo": null,
   "links": []
  },
@@ -143922,6 +144318,7 @@
    "crssd-fall-2026:crssd-mochakk",
    "portola-2026:pt2-mochakk",
    "arc-2026:arc-mochakk-expansions-d3",
+   "lollapalooza-brasil-2027:lbr27-mochakk",
    "coachella-2023:d1:yuma:2015:mochakk",
    "coachella-2023:d4:yuma:2015:mochakk",
    "coachella-2026:d3:sahara:1925:mochakk",
@@ -143931,7 +144328,7 @@
    "lollapalooza-2024:d1:perry-s:1915:mochakk"
   ],
   "firstSeen": "2023-04-14",
-  "lastSeen": "2026-09-27",
+  "lastSeen": "2027-03-20",
   "photo": null,
   "links": []
  },
@@ -149011,6 +149408,21 @@
   "links": []
  },
  {
+  "key": "nacao-zumbi",
+  "name": "NAÇÃO ZUMBI",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-brasil-2027:lbr27-nacao-zumbi"
+  ],
+  "firstSeen": "2027-03-19",
+  "lastSeen": "2027-03-19",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "nadastrom",
   "name": "Nadastrom",
   "aliases": [],
@@ -153712,6 +154124,7 @@
    "lollapalooza-2026:lo33",
    "portola-2026:pt2-ninajirachi",
    "lights-all-night-2026:lan-ninajirachi",
+   "lollapalooza-brasil-2027:lbr27-ninajirachi",
    "coachella-2026:d1:sonora:1910:ninajirachi",
    "coachella-2026:d4:sonora:1910:ninajirachi",
    "edc-las-vegas-2024:d1:kinetic-field:1900:ninajirachi",
@@ -153719,7 +154132,7 @@
    "lollapalooza-2023:d2:perry-s:1200:ninajirachi"
   ],
   "firstSeen": "2023-08-04",
-  "lastSeen": "2026-12-30",
+  "lastSeen": "2027-03-19",
   "photo": null,
   "links": []
  },
@@ -155765,6 +156178,21 @@
   ],
   "firstSeen": "2011-08-05",
   "lastSeen": "2011-08-05",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "nubia",
+  "name": "NÚBIA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-brasil-2027:lbr27-nubia"
+  ],
+  "firstSeen": "2027-03-21",
+  "lastSeen": "2027-03-21",
   "photo": null,
   "links": []
  },
@@ -160728,6 +161156,21 @@
   ],
   "firstSeen": "2025-07-26",
   "lastSeen": "2025-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "paira",
+  "name": "PAIRA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-brasil-2027:lbr27-paira"
+  ],
+  "firstSeen": "2027-03-20",
+  "lastSeen": "2027-03-20",
   "photo": null,
   "links": []
  },
@@ -168831,6 +169274,21 @@
   "links": []
  },
  {
+  "key": "psilosamples",
+  "name": "PSILOSAMPLES",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-brasil-2027:lbr27-psilosamples"
+  ],
+  "firstSeen": "2027-03-21",
+  "lastSeen": "2027-03-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "psognar",
   "name": "PsoGnar",
   "aliases": [],
@@ -170060,13 +170518,14 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "lollapalooza-brasil-2027:lbr27-queens-of-the-stone-age",
    "acl-2013:d1:bud-light:1930:queens-of-the-stone-age",
    "acl-2013:d4:bud-light:1930:queens-of-the-stone-age",
    "coachella-2014:d2:coachella:2140:queens-of-the-stone-age",
    "coachella-2014:d5:coachella:2135:queens-of-the-stone-age"
   ],
   "firstSeen": "2013-10-04",
-  "lastSeen": "2014-04-19",
+  "lastSeen": "2027-03-20",
   "photo": null,
   "links": []
  },
@@ -171532,6 +171991,21 @@
   "links": []
  },
  {
+  "key": "rakta",
+  "name": "RAKTA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-brasil-2027:lbr27-rakta"
+  ],
+  "firstSeen": "2027-03-19",
+  "lastSeen": "2027-03-19",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "ralph-covert",
   "name": "Ralph Covert",
   "aliases": [],
@@ -172577,13 +173051,14 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "lollapalooza-brasil-2027:lbr27-rawayana",
    "coachella-2025:d2:gobi:2300:rawayana",
    "coachella-2025:d5:gobi:2300:rawayana",
    "lollapalooza-2022:d2:bmi:1850:rawayana",
    "lollapalooza-2022:d2:bud-light-seltzer-sessions:1630:rawayana"
   ],
   "firstSeen": "2022-07-29",
-  "lastSeen": "2025-04-19",
+  "lastSeen": "2027-03-19",
   "photo": null,
   "links": []
  },
@@ -172719,6 +173194,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "lollapalooza-brasil-2027:lbr27-raye",
    "acl-2023:d4:honda:1610:raye",
    "coachella-2024:d2:mojave:1610:raye",
    "coachella-2024:d5:mojave:1610:raye",
@@ -172726,7 +173202,7 @@
    "lollapalooza-2024:d2:tito-s-handmade-vodka:1545:raye"
   ],
   "firstSeen": "2023-10-13",
-  "lastSeen": "2025-06-08",
+  "lastSeen": "2027-03-21",
   "photo": null,
   "links": []
  },
@@ -172918,6 +173394,21 @@
   ],
   "firstSeen": "2012-04-15",
   "lastSeen": "2024-08-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "real-no-ficcion",
+  "name": "REAL NO FICCÍON",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-brasil-2027:lbr27-real-no-ficcion"
+  ],
+  "firstSeen": "2027-03-21",
+  "lastSeen": "2027-03-21",
   "photo": null,
   "links": []
  },
@@ -177473,6 +177964,21 @@
   "links": []
  },
  {
+  "key": "rodrigo-amarante",
+  "name": "RODRIGO AMARANTE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-brasil-2027:lbr27-rodrigo-amarante"
+  ],
+  "firstSeen": "2027-03-20",
+  "lastSeen": "2027-03-20",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "rodrigo-vieira",
   "name": "Rodrigo Vieira",
   "aliases": [
@@ -181769,6 +182275,7 @@
   "billings": [
    "edc-lv-2026:cg14",
    "hard-summer-2026:hs2-sammy-virji",
+   "lollapalooza-brasil-2027:lbr27-sammy-virji",
    "acl-2025:d2:miller-lite:1915:sammy-virji",
    "coachella-2025:d3:sahara:1800:sammy-virji",
    "coachella-2025:d6:sahara:1800:sammy-virji",
@@ -181777,7 +182284,7 @@
    "shambhala-2024:d2:amp:0000:sammy-virji"
   ],
   "firstSeen": "2024-07-26",
-  "lastSeen": "2026-08-02",
+  "lastSeen": "2027-03-20",
   "photo": null,
   "links": []
  },
@@ -182534,6 +183041,21 @@
   ],
   "firstSeen": "2022-06-17",
   "lastSeen": "2022-06-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "santos-bravos",
+  "name": "SANTOS BRAVOS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-brasil-2027:lbr27-santos-bravos"
+  ],
+  "firstSeen": "2027-03-20",
+  "lastSeen": "2027-03-20",
   "photo": null,
   "links": []
  },
@@ -185630,6 +186152,21 @@
   ],
   "firstSeen": "2017-06-03",
   "lastSeen": "2017-06-03",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "seu-pereira-e-coletivo-401",
+  "name": "SEU PEREIRA E COLETIVO 401",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-brasil-2027:lbr27-seu-pereira-e-coletivo-401"
+  ],
+  "firstSeen": "2027-03-21",
+  "lastSeen": "2027-03-21",
   "photo": null,
   "links": []
  },
@@ -190828,13 +191365,14 @@
   "billings": [
    "governors-ball-2026:go40",
    "lollapalooza-2026:lo58",
+   "lollapalooza-brasil-2027:lbr27-slayyyter",
    "acl-2022:d2:miller-lite:1330:slayyyter",
    "coachella-2026:d1:mojave:1500:slayyyter",
    "coachella-2026:d4:mojave:1500:slayyyter",
    "escape-halloween-2024:d2:the-cauldron:1915:slayyyter-dj-set"
   ],
   "firstSeen": "2022-10-08",
-  "lastSeen": "2026-07-31",
+  "lastSeen": "2027-03-19",
   "photo": null,
   "links": []
  },
@@ -192147,6 +192685,7 @@
    "outside-lands-2026:os67",
    "hard-summer-2026:hs2-snow-strippers",
    "coachella-2027:coa27-snow-strippers",
+   "lollapalooza-brasil-2027:lbr27-snow-strippers",
    "coachella-2025:d3:sonora:2105:snow-strippers",
    "coachella-2025:d6:sonora:2105:snow-strippers"
   ],
@@ -193088,20 +193627,21 @@
  },
  {
   "key": "sombr",
-  "name": "SOMBR",
+  "name": "sombr",
   "aliases": [
-   "sombr"
+   "SOMBR"
   ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "lollapalooza-2026:lo4",
+   "lollapalooza-brasil-2027:lbr27-sombr",
    "coachella-2026:d2:outdoor:1905:sombr",
    "coachella-2026:d5:outdoor:1905:sombr"
   ],
   "firstSeen": "2026-04-11",
-  "lastSeen": "2026-07-30",
+  "lastSeen": "2027-03-19",
   "photo": null,
   "links": []
  },
@@ -205216,6 +205756,7 @@
   "projects": [],
   "billings": [
    "coachella-2027:coa27-the-avalanches",
+   "lollapalooza-brasil-2027:lbr27-the-avalanches",
    "coachella-2017:d1:mojave:1845:the-avalanches",
    "coachella-2017:d4:mojave:1835:the-avalanches",
    "coachella-2022:d1:gobi:2125:the-avalanches",
@@ -208712,6 +209253,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "lollapalooza-brasil-2027:lbr27-the-killers",
    "acl-2017:d3:american-express:2015:the-killers",
    "acl-2017:d6:american-express:untimed:the-killers",
    "acl-2025:d3:american-express:2030:the-killers",
@@ -208724,7 +209266,7 @@
    "outside-lands-2024:d1:lands-end:2025:the-killers"
   ],
   "firstSeen": "2013-08-02",
-  "lastSeen": "2025-10-12",
+  "lastSeen": "2027-03-20",
   "photo": null,
   "links": []
  },
@@ -210151,6 +210693,7 @@
   "billings": [
    "lollapalooza-2026:lo108",
    "coachella-2027:coa27-the-neighbourhood",
+   "lollapalooza-brasil-2027:lbr27-the-neighbourhood",
    "lollapalooza-2013:d1:petrillo:1200:the-neighbourhood",
    "lollapalooza-2018:d2:tito-s-handmade-vodka:untimed:the-neighbourhood",
    "outside-lands-2019:d1:lands-end:1535:the-neighbourhood"
@@ -211033,6 +211576,7 @@
   "projects": [],
   "billings": [
    "edc-lv-2026:c15",
+   "lollapalooza-brasil-2027:lbr27-the-prodigy",
    "coachella-2025:d1:mojave:2205:the-prodigy",
    "coachella-2025:d4:mojave:2205:the-prodigy",
    "sziget-2011:d5:pop-rock-main-stage:2130:the-prodigy-uk",
@@ -211040,7 +211584,7 @@
    "ultra-miami-2017:d2:live-stage:2245:the-prodigy"
   ],
   "firstSeen": "2011-08-12",
-  "lastSeen": "2026-05-16",
+  "lastSeen": "2027-03-21",
   "photo": null,
   "links": []
  },
@@ -217066,11 +217610,12 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "lollapalooza-brasil-2027:lbr27-tomora",
    "coachella-2026:d3:gobi:1945:tomora",
    "coachella-2026:d6:gobi:1945:tomora"
   ],
   "firstSeen": "2026-04-12",
-  "lastSeen": "2026-04-19",
+  "lastSeen": "2027-03-19",
   "photo": null,
   "links": []
  },
@@ -218393,6 +218938,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "lollapalooza-brasil-2027:lbr27-travis-scott",
    "acl-2018:d3:american-express:2045:travis-scott",
    "acl-2018:d6:american-express:2045:travis-scott",
    "coachella-2017:d1:outdoor:2135:travis-scott",
@@ -218403,7 +218949,7 @@
    "lollapalooza-2018:d1:bud-light:untimed:travis-scott"
   ],
   "firstSeen": "2017-04-14",
-  "lastSeen": "2025-04-19",
+  "lastSeen": "2027-03-19",
   "photo": null,
   "links": []
  },
@@ -224699,9 +225245,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "coachella-2027:coa27-violet-grohl"
+   "coachella-2027:coa27-violet-grohl",
+   "lollapalooza-brasil-2027:lbr27-violet-grohl"
   ],
-  "firstSeen": "2027-04-09",
+  "firstSeen": "2027-03-21",
   "lastSeen": "2027-04-09",
   "photo": null,
   "links": []
@@ -227622,6 +228169,21 @@
   ],
   "firstSeen": "2015-06-07",
   "lastSeen": "2015-06-07",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "weird-baile",
+  "name": "WEIRD BAILE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-brasil-2027:lbr27-weird-baile"
+  ],
+  "firstSeen": "2027-03-20",
+  "lastSeen": "2027-03-20",
   "photo": null,
   "links": []
  },
@@ -234347,6 +234909,21 @@
   ],
   "firstSeen": "2026-10-16",
   "lastSeen": "2026-10-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "zepelim-e-o-sopro-do-cao",
+  "name": "ZEPELIM E O SOPRO DO CÃO",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lollapalooza-brasil-2027:lbr27-zepelim-e-o-sopro-do-cao"
+  ],
+  "firstSeen": "2027-03-20",
+  "lastSeen": "2027-03-20",
   "photo": null,
   "links": []
  },

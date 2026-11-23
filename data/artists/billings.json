@@ -84731,6 +84731,1758 @@
   "mainStage": null
  },
  {
+  "id": "lollapalooza-brasil-2027:lbr27-travis-scott",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Travis Scott",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "travis-scott",
+    "role": "performer"
+   }
+  ],
+  "act": "travis-scott",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-david-guetta",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "David Guetta",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "david-guetta",
+    "role": "performer"
+   }
+  ],
+  "act": "david-guetta",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-sombr",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "sombr",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sombr",
+    "role": "performer"
+   }
+  ],
+  "act": "sombr",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-cage-the-elephant",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Cage The Elephant",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cage-the-elephant",
+    "role": "performer"
+   }
+  ],
+  "act": "cage-the-elephant",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-lola-young",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Lola Young",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lola-young",
+    "role": "performer"
+   }
+  ],
+  "act": "lola-young",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-slayyyter",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Slayyyter",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "slayyyter",
+    "role": "performer"
+   }
+  ],
+  "act": "slayyyter",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-tomora",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "TOMORA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tomora",
+    "role": "performer"
+   }
+  ],
+  "act": "tomora",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-leon-bridges",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Leon Bridges",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "leon-bridges",
+    "role": "performer"
+   }
+  ],
+  "act": "leon-bridges",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-angine-de-poitrine",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Angine De Poitrine",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "angine-de-poitrine",
+    "role": "performer"
+   }
+  ],
+  "act": "angine-de-poitrine",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-snow-strippers",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Snow Strippers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "snow-strippers",
+    "role": "performer"
+   }
+  ],
+  "act": "snow-strippers",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-ninajirachi",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Ninajirachi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ninajirachi",
+    "role": "performer"
+   }
+  ],
+  "act": "ninajirachi",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-die-spitz",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Die Spitz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "die-spitz",
+    "role": "performer"
+   }
+  ],
+  "act": "die-spitz",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-cat-dealers",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Cat Dealers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cat-dealers",
+    "role": "performer"
+   }
+  ],
+  "act": "cat-dealers",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-nacao-zumbi",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "NAÇÃO ZUMBI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nacao-zumbi",
+    "role": "performer"
+   }
+  ],
+  "act": "nacao-zumbi",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-fezzo",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "FEZZO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fezzo",
+    "role": "performer"
+   }
+  ],
+  "act": "fezzo",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-majis",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "MAJIS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "majis",
+    "role": "performer"
+   }
+  ],
+  "act": "majis",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-rawayana",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "RAWAYANA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rawayana",
+    "role": "performer"
+   }
+  ],
+  "act": "rawayana",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-carola-curol",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "CAROLA & CUROL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carola-and-curol",
+    "role": "performer"
+   }
+  ],
+  "act": "carola-and-curol",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-make-u-sweat",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "MAKE U SWEAT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "make-u-sweat",
+    "role": "performer"
+   }
+  ],
+  "act": "make-u-sweat",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-marina-diniz",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "MARINA DINIZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marina-diniz",
+    "role": "performer"
+   }
+  ],
+  "act": "marina-diniz",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-mary-olivetti",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "MARY OLIVETTI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mary-olivetti",
+    "role": "performer"
+   }
+  ],
+  "act": "mary-olivetti",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-el-efecto",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "EL EFECTO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "el-efecto",
+    "role": "performer"
+   }
+  ],
+  "act": "el-efecto",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-rakta",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "RAKTA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rakta",
+    "role": "performer"
+   }
+  ],
+  "act": "rakta",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-deafkids",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "DEAFKIDS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "deafkids",
+    "role": "performer"
+   }
+  ],
+  "act": "deafkids",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-the-killers",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "The Killers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-killers",
+    "role": "performer"
+   }
+  ],
+  "act": "the-killers",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-queens-of-the-stone-age",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Queens of the Stone Age",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "queens-of-the-stone-age",
+    "role": "performer"
+   }
+  ],
+  "act": "queens-of-the-stone-age",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-mochakk",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Mochakk",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mochakk",
+    "role": "performer"
+   }
+  ],
+  "act": "mochakk",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-dominic-fike",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Dominic Fike",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dominic-fike",
+    "role": "performer"
+   }
+  ],
+  "act": "dominic-fike",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-geese",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Geese",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "geese",
+    "role": "performer"
+   }
+  ],
+  "act": "geese",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-four-tet",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Four Tet",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "four-tet",
+    "role": "performer"
+   }
+  ],
+  "act": "four-tet",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-rodrigo-amarante",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "RODRIGO AMARANTE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rodrigo-amarante",
+    "role": "performer"
+   }
+  ],
+  "act": "rodrigo-amarante",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-mike-d-5d",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Mike D 5D",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mike-d-5d",
+    "role": "performer"
+   }
+  ],
+  "act": "mike-d-5d",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-sammy-virji",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Sammy Virji",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sammy-virji",
+    "role": "performer"
+   }
+  ],
+  "act": "sammy-virji",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-julia-wolf",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Julia Wolf",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "julia-wolf",
+    "role": "performer"
+   }
+  ],
+  "act": "julia-wolf",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-midnight-generation",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Midnight Generation",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "midnight-generation",
+    "role": "performer"
+   }
+  ],
+  "act": "midnight-generation",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-carlita",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Carlita",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carlita",
+    "role": "performer"
+   }
+  ],
+  "act": "carlita",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-brime",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "BRIME!!",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "brime",
+    "role": "performer"
+   }
+  ],
+  "act": "brime",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-budang",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "BUDANG",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "budang",
+    "role": "performer"
+   }
+  ],
+  "act": "budang",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-santos-bravos",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "SANTOS BRAVOS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "santos-bravos",
+    "role": "performer"
+   }
+  ],
+  "act": "santos-bravos",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-weird-baile",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "WEIRD BAILE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "weird-baile",
+    "role": "performer"
+   }
+  ],
+  "act": "weird-baile",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-grag-queen",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "GRAG QUEEN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "grag-queen",
+    "role": "performer"
+   }
+  ],
+  "act": "grag-queen",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-luana-flores",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "LUANA FLORES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "luana-flores",
+    "role": "performer"
+   }
+  ],
+  "act": "luana-flores",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-buhr",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "BUHR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "buhr",
+    "role": "performer"
+   }
+  ],
+  "act": "buhr",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-bebe",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "BEBÉ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bebe",
+    "role": "performer"
+   }
+  ],
+  "act": "bebe",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-zepelim-e-o-sopro-do-cao",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ZEPELIM E O SOPRO DO CÃO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zepelim-e-o-sopro-do-cao",
+    "role": "performer"
+   }
+  ],
+  "act": "zepelim-e-o-sopro-do-cao",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-dj-ramemes",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "DJ RAMEMES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-ramemes",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-ramemes",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-paira",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "PAIRA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "paira",
+    "role": "performer"
+   }
+  ],
+  "act": "paira",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-joaquim",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "JOAQUIM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "joaquim",
+    "role": "performer"
+   }
+  ],
+  "act": "joaquim",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-dj-tamy",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "DJ TAMY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-tamy",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-tamy",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-charli-xcx",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Charli XCX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "charli-xcx",
+    "role": "performer"
+   }
+  ],
+  "act": "charli-xcx",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-the-neighbourhood",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "The Neighbourhood",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-neighbourhood",
+    "role": "performer"
+   }
+  ],
+  "act": "the-neighbourhood",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-fontaines-d-c",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "FONTAINES D.C.",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fontaines-d-c",
+    "role": "performer"
+   }
+  ],
+  "act": "fontaines-d-c",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-the-prodigy",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "The Prodigy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-prodigy",
+    "role": "performer"
+   }
+  ],
+  "act": "the-prodigy",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-malcolm-todd",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "MALCOLM TODD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "malcolm-todd",
+    "role": "performer"
+   }
+  ],
+  "act": "malcolm-todd",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-raye",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "RAYE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "raye",
+    "role": "performer"
+   }
+  ],
+  "act": "raye",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-adela",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Adéla",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "adela",
+    "role": "performer"
+   }
+  ],
+  "act": "adela",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-marlon-hoffstadt",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Marlon Hoffstadt",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marlon-hoffstadt",
+    "role": "performer"
+   }
+  ],
+  "act": "marlon-hoffstadt",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-boys-noize",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Boys Noize",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "boys-noize",
+    "role": "performer"
+   }
+  ],
+  "act": "boys-noize",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-criolo-amaro-e-dino",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "CRIOLO, AMARO E DINO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "criolo-amaro-e-dino",
+    "role": "performer"
+   }
+  ],
+  "act": "criolo-amaro-e-dino",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-the-avalanches",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "The Avalanches",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-avalanches",
+    "role": "performer"
+   }
+  ],
+  "act": "the-avalanches",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-violet-grohl",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Violet Grohl",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "violet-grohl",
+    "role": "performer"
+   }
+  ],
+  "act": "violet-grohl",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-boy-harsher",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Boy Harsher",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "boy-harsher",
+    "role": "performer"
+   }
+  ],
+  "act": "boy-harsher",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-mind-enterprises",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Mind Enterprises",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mind-enterprises",
+    "role": "performer"
+   }
+  ],
+  "act": "mind-enterprises",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-clementaum",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "CLEMENTAUM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "clementaum",
+    "role": "performer"
+   }
+  ],
+  "act": "clementaum",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-fernanda-martins",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "FERNANDA MARTINS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fernanda-martins",
+    "role": "performer"
+   }
+  ],
+  "act": "fernanda-martins",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-acid-asian",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ACID ASIAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "acid-asian",
+    "role": "performer"
+   }
+  ],
+  "act": "acid-asian",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-catica",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "CATÏÇA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "catica",
+    "role": "performer"
+   }
+  ],
+  "act": "catica",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-real-no-ficcion",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "REAL NO FICCÍON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "real-no-ficcion",
+    "role": "performer"
+   }
+  ],
+  "act": "real-no-ficcion",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-nubia",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "NÚBIA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nubia",
+    "role": "performer"
+   }
+  ],
+  "act": "nubia",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-seu-pereira-e-coletivo-401",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "SEU PEREIRA E COLETIVO 401",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "seu-pereira-e-coletivo-401",
+    "role": "performer"
+   }
+  ],
+  "act": "seu-pereira-e-coletivo-401",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-psilosamples",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "PSILOSAMPLES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "psilosamples",
+    "role": "performer"
+   }
+  ],
+  "act": "psilosamples",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-cica-moreira",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "CIÇA MOREIRA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cica-moreira",
+    "role": "performer"
+   }
+  ],
+  "act": "cica-moreira",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-brasil-2027:lbr27-clarissa",
+  "source": "live",
+  "festivalId": "lollapalooza-brasil-2027",
+  "festivalBrand": "lollapalooza-brasil",
+  "year": 2027,
+  "date": "2027-03-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "CLARISSA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "clarissa",
+    "role": "performer"
+   }
+  ],
+  "act": "clarissa",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
   "id": "acl-2011:d1:amd:1225:asleep-at-the-wheel",
   "source": "edition",
   "festivalId": "acl-2011",
