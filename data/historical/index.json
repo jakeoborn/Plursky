@@ -1789,7 +1789,7 @@
    "name": "EDC Las Vegas 2017",
    "year": 2017,
    "timezone": "America/Los_Angeles",
-   "completeness": "lineup_only",
+   "completeness": "complete_schedule",
    "days": [
     {
      "day": 1,
@@ -1808,9 +1808,9 @@
     }
    ],
    "counts": {
-    "stages": 0,
-    "artists": 297,
-    "sets": 0
+    "stages": 12,
+    "artists": 292,
+    "sets": 299
    }
   },
   {
@@ -1820,7 +1820,7 @@
    "name": "EDC Las Vegas 2016",
    "year": 2016,
    "timezone": "America/Los_Angeles",
-   "completeness": "lineup_only",
+   "completeness": "complete_schedule",
    "days": [
     {
      "day": 1,
@@ -1839,9 +1839,9 @@
     }
    ],
    "counts": {
-    "stages": 0,
-    "artists": 281,
-    "sets": 0
+    "stages": 12,
+    "artists": 279,
+    "sets": 306
    }
   },
   {
@@ -2182,7 +2182,7 @@
    "name": "EDC Orlando 2016",
    "year": 2016,
    "timezone": "America/New_York",
-   "completeness": "lineup_only",
+   "completeness": "complete_schedule",
    "days": [
     {
      "day": 1,
@@ -2196,9 +2196,9 @@
     }
    ],
    "counts": {
-    "stages": 0,
-    "artists": 62,
-    "sets": 0
+    "stages": 3,
+    "artists": 59,
+    "sets": 59
    }
   },
   {

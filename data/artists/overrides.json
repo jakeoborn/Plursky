@@ -879,7 +879,10 @@
     }
    ],
    "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
-   "source": "https://www.dreamstateusa.com/set-times/"
+   "source": [
+    "https://www.dreamstateusa.com/set-times/",
+    "http://lasvegas.electricdaisycarnival.com/experience/set-times/"
+   ]
   },
   {
    "printed": "Gentech (Mark Sherry & Scot Project)",
@@ -7284,6 +7287,22 @@
    ],
    "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set. The orchestra's own event page (https://chicagophilharmonic.org/events/lollapalooza-laufey/, read 2026-11-20) bills the same Friday 6:45-7:45 PM Bud Light set as Laufey's, with the Chicago Philharmonic playing it, not as a set of its own.",
    "source": "https://www.lollapalooza.com/schedule"
+  },
+  {
+   "printed": "Pendulum (DJ Set) w/ MC Verse",
+   "performers": [
+    {
+     "name": "Pendulum",
+     "role": "performer"
+    },
+    {
+     "name": "MC Verse",
+     "role": "mc"
+    }
+   ],
+   "setTag": "DJ Set",
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set. \"(DJ Set)\" is the set tag.",
+   "source": "http://lasvegas.electricdaisycarnival.com/experience/set-times/"
   }
  ],
  "pending": [
@@ -8122,6 +8141,26 @@
   {
    "printed": "Pure NRG (Giuseppe Ottaviani & Solarstone)",
    "why": "Left as printed, one act: the parenthetical names the people or crew behind the billing, but no first-party page says how it splits. Renders as its own billing until one rules it."
+  },
+  {
+   "printed": "New World Punx (Ferry Corsten B2B Markus Schulz)",
+   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "key": "bot",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "printed": "Bonnie X Clyde",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Orri + Friends",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "key": "noa",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
   }
  ]
 }

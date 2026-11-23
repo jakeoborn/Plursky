@@ -1822,6 +1822,126 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "edc-lv:stage7",
+     "names": [
+      {
+       "printed": "STAGE7",
+       "editions": [
+        "edc-las-vegas-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:upsidedownhouse",
+     "names": [
+      {
+       "printed": "UPSIDEDOWNHOUSE",
+       "editions": [
+        "edc-las-vegas-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:wideawakeartcar",
+     "names": [
+      {
+       "printed": "WIDEAWAKEARTCAR",
+       "editions": [
+        "edc-las-vegas-2016",
+        "edc-las-vegas-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:kalliopeartcar",
+     "names": [
+      {
+       "printed": "KALLIOPEARTCAR",
+       "editions": [
+        "edc-las-vegas-2016",
+        "edc-las-vegas-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:boomboxartcar",
+     "names": [
+      {
+       "printed": "BOOMBOXARTCAR",
+       "editions": [
+        "edc-las-vegas-2016",
+        "edc-las-vegas-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:smirnoff-house",
+     "names": [
+      {
+       "printed": "SMIRNOFF HOUSE",
+       "editions": [
+        "edc-las-vegas-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:quantumvalley",
+     "names": [
+      {
+       "printed": "QUANTUMVALLEY",
+       "editions": [
+        "edc-las-vegas-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:upside-downhouse",
+     "names": [
+      {
+       "printed": "UPSIDE-DOWNHOUSE",
+       "editions": [
+        "edc-las-vegas-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:parliamentartcar",
+     "names": [
+      {
+       "printed": "PARLIAMENTARTCAR",
+       "editions": [
+        "edc-las-vegas-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },
