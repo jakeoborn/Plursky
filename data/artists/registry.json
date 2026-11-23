@@ -1962,6 +1962,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "tomorrowland-winter-2027:tmlw27-a-trak",
    "acl-2012:d1:honda:1715:a-trak",
    "coachella-2011:d1:sahara:1730:a-trak",
    "edc-las-vegas-2013:d2:cosmicmeadow:0315:a-trak",
@@ -1982,7 +1983,7 @@
    "tomorrowland-2022:d5:kara-savi:1900:a-trak"
   ],
   "firstSeen": "2011-04-15",
-  "lastSeen": "2022-07-23",
+  "lastSeen": "2027-03-22",
   "photo": null,
   "links": []
  },
@@ -4181,6 +4182,8 @@
    "ultra-miami-2026:ul120",
    "dwp-2026:dwp-afrojack",
    "tomorrowland-thailand-2026:tmlth-afrojack",
+   "tomorrowland-winter-2027:tmlw27-afrojack-d1",
+   "tomorrowland-winter-2027:tmlw27-afrojack-d3",
    "beyond-wonderland-socal-2013:d1:madhatter-s-castle:0030:afrojack",
    "coachella-2011:d1:sahara:1830:afrojack",
    "coachella-2012:d1:sahara:2135:afrojack",
@@ -4222,7 +4225,7 @@
    "ultra-miami-2025:d1:ultra-main-stage:2020:afrojack"
   ],
   "firstSeen": "2010-07-24",
-  "lastSeen": "2026-12-12",
+  "lastSeen": "2027-03-22",
   "photo": null,
   "links": []
  },
@@ -7845,6 +7848,8 @@
    "sunset-on-the-river-2027:sotr-alok",
    "dwp-2026:dwp-alok",
    "tomorrowland-thailand-2026:tmlth-alok",
+   "tomorrowland-winter-2027:tmlw27-alok-d5",
+   "tomorrowland-winter-2027:tmlw27-alok-d7",
    "beyond-wonderland-socal-2026:d2:queen-s-domain:2155:alok",
    "coachella-2025:d2:sahara:1610:alok",
    "coachella-2025:d5:sahara:1610:alok",
@@ -7870,7 +7875,7 @@
    "ultra-miami-2016:d2:ultra-main-stage:1300:alok"
   ],
   "firstSeen": "2016-03-19",
-  "lastSeen": "2027-02-20",
+  "lastSeen": "2027-03-26",
   "photo": null,
   "links": []
  },
@@ -8101,16 +8106,19 @@
  },
  {
   "key": "alt8",
-  "name": "ALT8",
-  "aliases": [],
+  "name": "Alt8",
+  "aliases": [
+   "ALT8"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul21"
+   "ultra-miami-2026:ul21",
+   "tomorrowland-winter-2027:tmlw27-alt8-b2b-emilija"
   ],
   "firstSeen": "2026-03-27",
-  "lastSeen": "2026-03-27",
+  "lastSeen": "2027-03-24",
   "photo": null,
   "links": []
  },
@@ -8852,13 +8860,14 @@
   "projects": [],
   "billings": [
    "tomorrowland-thailand-2026:tmlth-amber-broos-b2b-space-92",
+   "tomorrowland-winter-2027:tmlw27-amber-broos",
    "tomorrowland-2022:d3:freedom:1630:amber-broos",
    "tomorrowland-2022:d6:freedom:1730:amber-broos",
    "tomorrowland-2023:d2:mainstage:1925:amber-broos",
    "tomorrowland-2023:d4:freedom-by-bud:1630:amber-broos"
   ],
   "firstSeen": "2022-07-17",
-  "lastSeen": "2026-12-12",
+  "lastSeen": "2027-03-25",
   "photo": null,
   "links": []
  },
@@ -13004,6 +13013,7 @@
   "billings": [
    "edc-lv-2026:k3",
    "ultra-miami-2026:ul134",
+   "tomorrowland-winter-2027:tmlw27-argy",
    "defqon1-2015:d3:white:1330:argy",
    "dreamstate-socal-2025:d2:the-dream:2240:argy",
    "edc-las-vegas-2024:d3:quantum-valley:0430:argy",
@@ -13015,7 +13025,7 @@
    "ultra-miami-2024:d1:the-cove:1900:argy"
   ],
   "firstSeen": "2013-07-26",
-  "lastSeen": "2026-05-15",
+  "lastSeen": "2027-03-25",
   "photo": null,
   "links": []
  },
@@ -18715,10 +18725,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "tomorrowland-winter-2027:tmlw27-baron-b2b-meloko",
    "edc-las-vegas-2025:d3:ubuntu:2330:one-tribe-presents-ameme-b2b-baron"
   ],
   "firstSeen": "2025-05-18",
-  "lastSeen": "2025-05-18",
+  "lastSeen": "2027-03-20",
   "photo": null,
   "links": []
  },
@@ -22289,10 +22300,12 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-lv-2026:b14"
+   "edc-lv-2026:b14",
+   "tomorrowland-winter-2027:tmlw27-benwal",
+   "tomorrowland-winter-2027:tmlw27-benwal-b2b-olive-anguz"
   ],
   "firstSeen": "2026-05-16",
-  "lastSeen": "2026-05-16",
+  "lastSeen": "2027-03-22",
   "photo": null,
   "links": []
  },
@@ -22819,10 +22832,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "tomorrowland-winter-2027:tmlw27-bhaskar-b2b-brina-knauss",
    "tomorrowland-2023:d6:rise-by-coke-studio:1500:bhaskar"
   ],
   "firstSeen": "2023-07-30",
-  "lastSeen": "2023-07-30",
+  "lastSeen": "2027-03-25",
   "photo": null,
   "links": []
  },
@@ -25331,6 +25345,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "tomorrowland-winter-2027:tmlw27-blasterjaxx",
    "tomorrowland-2014:d2:super-you-and-me:1715:blasterjaxx",
    "tomorrowland-2014:d5:super-you-and-me:1600:blasterjaxx",
    "tomorrowland-2015:d2:mainstage:1730:blasterjaxx",
@@ -25342,7 +25357,7 @@
    "ultra-miami-2016:d1:ultra-main-stage:1630:blasterjaxx"
   ],
   "firstSeen": "2014-07-19",
-  "lastSeen": "2023-07-23",
+  "lastSeen": "2027-03-20",
   "photo": null,
   "links": []
  },
@@ -29581,6 +29596,22 @@
   "links": []
  },
  {
+  "key": "brian",
+  "name": "Brian",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-winter-2027:tmlw27-brian-d6",
+   "tomorrowland-winter-2027:tmlw27-brian-d7"
+  ],
+  "firstSeen": "2027-03-25",
+  "lastSeen": "2027-03-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "brian-cross",
   "name": "Brian Cross",
   "aliases": [],
@@ -29860,6 +29891,8 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "tomorrowland-winter-2027:tmlw27-bhaskar-b2b-brina-knauss",
+   "tomorrowland-winter-2027:tmlw27-brina-knauss",
    "edc-las-vegas-2024:d1:circuit-grounds:1900:brina-knauss",
    "tomorrowland-2019:d1:core:1530:brina-knauss",
    "tomorrowland-2022:d2:core:1900:brina-knauss",
@@ -29869,7 +29902,7 @@
    "ultra-miami-2023:d2:the-cove:1330:brina-knauss"
   ],
   "firstSeen": "2019-07-19",
-  "lastSeen": "2024-05-17",
+  "lastSeen": "2027-03-26",
   "photo": null,
   "links": []
  },
@@ -36928,6 +36961,8 @@
    "edc-thailand-2026:edcth-charlotte-de-witte",
    "coachella-2027:coa27-charlotte-de-witte",
    "time-warp-2027:tw27-charlotte-de-witte",
+   "tomorrowland-winter-2027:tmlw27-charlotte-de-witte-d5",
+   "tomorrowland-winter-2027:tmlw27-charlotte-de-witte-d7",
    "coachella-2024:d2:mojave:2005:charlotte-de-witte",
    "coachella-2024:d5:mojave:2005:charlotte-de-witte",
    "edc-las-vegas-2022:d1:circuit-grounds:0315:charlotte-de-witte",
@@ -39618,6 +39653,7 @@
   "projects": [],
   "billings": [
    "edc-lv-2026:k1",
+   "tomorrowland-winter-2027:tmlw27-chuckie",
    "beyond-wonderland-socal-2013:d1:queen-s-domain:2230:chuckie",
    "coachella-2011:d2:sahara:1715:chuckie",
    "edc-las-vegas-2012:d3:kineticfield:2140:chuckie",
@@ -39639,7 +39675,7 @@
    "tomorrowland-2023:d3:the-rose-garden:1800:chuckie"
   ],
   "firstSeen": "2010-07-25",
-  "lastSeen": "2026-05-15",
+  "lastSeen": "2027-03-26",
   "photo": null,
   "links": []
  },
@@ -47916,6 +47952,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "tomorrowland-winter-2027:tmlw27-dannic-b2b-dyro",
    "edc-las-vegas-2012:d1:discoverystage:1900:dannic",
    "edc-las-vegas-2013:d1:kineticfield:1900:dannic",
    "tomorrowland-2013:d3:cafeina:1730:dannic",
@@ -47932,7 +47969,7 @@
    "ultra-miami-2016:d1:umf-radio:2200:dannic"
   ],
   "firstSeen": "2012-06-08",
-  "lastSeen": "2023-07-30",
+  "lastSeen": "2027-03-26",
   "photo": null,
   "links": []
  },
@@ -49599,6 +49636,22 @@
   ],
   "firstSeen": "2016-04-24",
   "lastSeen": "2017-04-22",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "david-latour",
+  "name": "David Latour",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-winter-2027:tmlw27-david-latour-d5",
+   "tomorrowland-winter-2027:tmlw27-david-latour-d7"
+  ],
+  "firstSeen": "2027-03-24",
+  "lastSeen": "2027-03-26",
   "photo": null,
   "links": []
  },
@@ -54812,11 +54865,12 @@
   "projects": [],
   "billings": [
    "dwp-2026:dwp-dimitri-vegas",
+   "tomorrowland-winter-2027:tmlw27-dimitri-vegas",
    "edc-orlando-2024:d2:kinetic-field:2006:dimitri-vegas-b2b-steve-aoki",
    "escape-halloween-2025:d2:the-big-top:1900:dimitri-vegas"
   ],
   "firstSeen": "2024-11-09",
-  "lastSeen": "2026-12-11",
+  "lastSeen": "2027-03-25",
   "photo": null,
   "links": []
  },
@@ -54833,6 +54887,7 @@
   "billings": [
    "escape-halloween-2026:esc-dimitri-vegas-and-like-mike-d1",
    "tomorrowland-thailand-2026:tmlth-dimitri-vegas-and-like-mike",
+   "tomorrowland-winter-2027:tmlw27-dimitri-vegas-and-like-mike",
    "beyond-wonderland-socal-2012:d1:caterpillars-garden:1830:dimitri-vegas-and-like-mike",
    "edc-las-vegas-2012:d1:neongarden:0450:dimitri-vegas-and-like-mike",
    "edc-orlando-2017:d2:kineticfield:2002:dimitri-vegas-and-like-mike",
@@ -54873,7 +54928,7 @@
    "tomorrowland-2023:d5:mainstage:2235:dimitri-vegas-and-like-mike"
   ],
   "firstSeen": "2010-07-24",
-  "lastSeen": "2026-12-12",
+  "lastSeen": "2027-03-26",
   "photo": null,
   "links": []
  },
@@ -59759,6 +59814,21 @@
   "links": []
  },
  {
+  "key": "dj-schnake",
+  "name": "DJ Schnake",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-winter-2027:tmlw27-dj-schnake"
+  ],
+  "firstSeen": "2027-03-26",
+  "lastSeen": "2027-03-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dj-security",
   "name": "DJ Security",
   "aliases": [],
@@ -64569,6 +64639,7 @@
   ],
   "billings": [
    "tomorrowland-thailand-2026:tmlth-dubvision",
+   "tomorrowland-winter-2027:tmlw27-dubvision",
    "tomorrowland-2014:d2:v-sessions-vs-doorn:1430:dubvision",
    "tomorrowland-2018:d1:youphoria:1500:dubvision",
    "tomorrowland-2019:d1:lotus:1615:dubvision-b2b-raiden",
@@ -64579,7 +64650,7 @@
    "ultra-miami-2023:d2:umf-radio:2200:dubvision"
   ],
   "firstSeen": "2014-07-19",
-  "lastSeen": "2026-12-12",
+  "lastSeen": "2027-03-24",
   "photo": null,
   "links": []
  },
@@ -65470,6 +65541,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "tomorrowland-winter-2027:tmlw27-dannic-b2b-dyro",
    "edc-las-vegas-2013:d1:kineticfield:1930:dyro",
    "tomorrowland-2013:d3:cafeina:1830:dyro",
    "tomorrowland-2014:d2:mainstage:1600:dyro",
@@ -65484,7 +65556,7 @@
    "ultra-miami-2016:d2:ultra-main-stage:1400:dyro"
   ],
   "firstSeen": "2013-06-21",
-  "lastSeen": "2023-07-23",
+  "lastSeen": "2027-03-26",
   "photo": null,
   "links": []
  },
@@ -66909,6 +66981,21 @@
   "links": []
  },
  {
+  "key": "effe-serieus",
+  "name": "Effe Serieus",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-winter-2027:tmlw27-effe-serieus"
+  ],
+  "firstSeen": "2027-03-24",
+  "lastSeen": "2027-03-24",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "effin",
   "name": "Effin",
   "aliases": [
@@ -67986,15 +68073,19 @@
  {
   "key": "elfigo",
   "name": "Elfigo",
-  "aliases": [],
+  "aliases": [
+   "ELFIGO"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-elfigo"
+   "tomorrowland-thailand-2026:tmlth-elfigo",
+   "tomorrowland-winter-2027:tmlw27-elfigo-d6",
+   "tomorrowland-winter-2027:tmlw27-elfigo-d7"
   ],
   "firstSeen": "2026-12-11",
-  "lastSeen": "2026-12-11",
+  "lastSeen": "2027-03-26",
   "photo": null,
   "links": []
  },
@@ -69015,6 +69106,21 @@
   ],
   "firstSeen": "2018-08-04",
   "lastSeen": "2018-08-04",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "emilija",
+  "name": "Emilija",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-winter-2027:tmlw27-alt8-b2b-emilija"
+  ],
+  "firstSeen": "2027-03-24",
+  "lastSeen": "2027-03-24",
   "photo": null,
   "links": []
  },
@@ -79120,12 +79226,14 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "tomorrowland-winter-2027:tmlw27-funkhauser-d6",
+   "tomorrowland-winter-2027:tmlw27-funkhauser-d7",
    "tomorrowland-2022:d3:moosebar:1200:funkhauser",
    "tomorrowland-2022:d8:moosebar:1200:funkhauser",
    "tomorrowland-2023:d4:moosebar:2000:funkhauser"
   ],
   "firstSeen": "2022-07-17",
-  "lastSeen": "2023-07-28",
+  "lastSeen": "2027-03-26",
   "photo": null,
   "links": []
  },
@@ -85397,10 +85505,11 @@
   "billings": [
    "edc-lv-2026:c20",
    "nocturnal-wonderland-2026:nw-gravagerz",
-   "groove-cruise-2027:gc-gravagerz"
+   "groove-cruise-2027:gc-gravagerz",
+   "tomorrowland-winter-2027:tmlw27-gravagerz"
   ],
   "firstSeen": "2026-05-17",
-  "lastSeen": "2027-01-21",
+  "lastSeen": "2027-03-24",
   "photo": null,
   "links": []
  },
@@ -85893,13 +86002,14 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "tomorrowland-winter-2027:tmlw27-gregor-salto",
    "tomorrowland-2011:d2:cafeina:1830:gregor-salto",
    "tomorrowland-2013:d3:cafeina:2300:gregor-salto",
    "tomorrowland-2017:d4:spinnin-sessions:1700:gregor-salto",
    "tomorrowland-2022:d6:rose-garden:1700:gregor-salto"
   ],
   "firstSeen": "2011-07-23",
-  "lastSeen": "2022-07-24",
+  "lastSeen": "2027-03-22",
   "photo": null,
   "links": []
  },
@@ -87783,9 +87893,9 @@
   "key": "halo",
   "name": "Halo",
   "aliases": [
+   "HALŌ",
    "HALO",
-   "HALÕ",
-   "HALŌ"
+   "HALÕ"
   ],
   "kind": "performer",
   "parents": [],
@@ -87794,10 +87904,11 @@
    "ultra-miami-2026:ul49",
    "dwp-2026:dwp-halo",
    "tomorrowland-thailand-2026:tmlth-halo-d1",
-   "tomorrowland-thailand-2026:tmlth-halo-d3"
+   "tomorrowland-thailand-2026:tmlth-halo-d3",
+   "tomorrowland-winter-2027:tmlw27-halo"
   ],
   "firstSeen": "2026-03-28",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2027-03-23",
   "photo": null,
   "links": []
  },
@@ -88158,13 +88269,15 @@
    "dreamstate-socal-2026:dssc-hannah-laing-and-marie-vaunt",
    "edc-thailand-2026:edcth-hannah-laing",
    "tomorrowland-thailand-2026:tmlth-hannah-laing",
+   "tomorrowland-winter-2027:tmlw27-hannah-laing-d2",
+   "tomorrowland-winter-2027:tmlw27-hannah-laing-d3",
    "edc-las-vegas-2024:d2:stereo-bloom:2100:hannah-laing",
    "edc-las-vegas-2024:d2:rynobus:2300:hannah-laing",
    "edc-las-vegas-2025:d2:quantum-valley:2330:hannah-laing",
    "escape-halloween-2025:d1:the-warehouse:0045:hannah-laing"
   ],
   "firstSeen": "2024-05-18",
-  "lastSeen": "2026-12-19",
+  "lastSeen": "2027-03-22",
   "photo": null,
   "links": []
  },
@@ -88275,6 +88388,21 @@
   ],
   "firstSeen": "2017-04-16",
   "lastSeen": "2017-04-23",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "hansi",
+  "name": "Hansi",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-winter-2027:tmlw27-hansi"
+  ],
+  "firstSeen": "2027-03-25",
+  "lastSeen": "2027-03-25",
   "photo": null,
   "links": []
  },
@@ -93809,13 +93937,15 @@
    "lights-all-night-2026:lan-ian-asher",
    "dwp-2026:dwp-ian-asher",
    "tomorrowland-thailand-2026:tmlth-ian-asher",
+   "tomorrowland-winter-2027:tmlw27-ian-asher-d3",
+   "tomorrowland-winter-2027:tmlw27-ian-asher-d5",
    "beyond-wonderland-socal-2026:d1:queen-s-domain:1740:ian-asher",
    "beyond-wonderland-socal-2026:d2:caterpillar-s-garden:1500:ian-asher-b2b-wuki",
    "lollapalooza-2023:d4:tito-s-handmade-vodka:1945:ian-asher",
    "lollapalooza-2023:d4:perry-s:1200:ian-asher"
   ],
   "firstSeen": "2023-08-06",
-  "lastSeen": "2026-12-30",
+  "lastSeen": "2027-03-24",
   "photo": null,
   "links": []
  },
@@ -101200,6 +101330,12 @@
    "tomorrowland-thailand-2026:tmlth-jelle-dk-d1",
    "tomorrowland-thailand-2026:tmlth-jelle-dk-d2",
    "tomorrowland-thailand-2026:tmlth-jelle-dk-d3",
+   "tomorrowland-winter-2027:tmlw27-jelle-dk-d1",
+   "tomorrowland-winter-2027:tmlw27-jelle-dk-d2",
+   "tomorrowland-winter-2027:tmlw27-jelle-dk-d3",
+   "tomorrowland-winter-2027:tmlw27-jelle-dk-d4",
+   "tomorrowland-winter-2027:tmlw27-jelle-dk-d5",
+   "tomorrowland-winter-2027:tmlw27-jelle-dk-d7",
    "tomorrowland-2019:d2:moose-bar:1600:jelle-dk",
    "tomorrowland-2019:d4:moose-bar:2100:jelle-dk",
    "tomorrowland-2019:d5:moose-bar:1400:jelle-dk",
@@ -101209,7 +101345,7 @@
    "tomorrowland-2023:d1:moosebar:1200:jelle-dk"
   ],
   "firstSeen": "2019-07-20",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2027-03-26",
   "photo": null,
   "links": []
  },
@@ -101708,13 +101844,15 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "tomorrowland-winter-2027:tmlw27-jeroen-visser-d1",
+   "tomorrowland-winter-2027:tmlw27-jeroen-visser-d2",
    "tomorrowland-2019:d3:moose-bar:1400:jeroen-visser",
    "tomorrowland-2022:d1:moosebar:2100:jeroen-visser",
    "tomorrowland-2022:d9:moosebar:1200:jeroen-visser",
    "tomorrowland-2023:d2:moosebar:2000:jeroen-visser"
   ],
   "firstSeen": "2019-07-21",
-  "lastSeen": "2023-07-22",
+  "lastSeen": "2027-03-21",
   "photo": null,
   "links": []
  },
@@ -101776,10 +101914,12 @@
   "billings": [
    "tomorrowland-thailand-2026:tmlth-jerrooo-d1",
    "tomorrowland-thailand-2026:tmlth-jerrooo-d2",
-   "tomorrowland-thailand-2026:tmlth-jerrooo-d3"
+   "tomorrowland-thailand-2026:tmlth-jerrooo-d3",
+   "tomorrowland-winter-2027:tmlw27-jerrooo-d2",
+   "tomorrowland-winter-2027:tmlw27-jerrooo-d3"
   ],
   "firstSeen": "2026-12-11",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2027-03-22",
   "photo": null,
   "links": []
  },
@@ -104316,13 +104456,15 @@
   "projects": [],
   "billings": [
    "tomorrowland-thailand-2026:tmlth-john-newman",
+   "tomorrowland-winter-2027:tmlw27-john-newman-d5",
+   "tomorrowland-winter-2027:tmlw27-john-newman-d7",
    "coachella-2014:d3:gobi:2050:john-newman",
    "coachella-2014:d6:gobi:2050:john-newman",
    "tomorrowland-2023:d3:the-library:2000:john-newman",
    "tomorrowland-2023:d5:mainstage:1925:john-newman"
   ],
   "firstSeen": "2014-04-13",
-  "lastSeen": "2026-12-11",
+  "lastSeen": "2027-03-26",
   "photo": null,
   "links": []
  },
@@ -105524,6 +105666,8 @@
   "billings": [
    "ultra-miami-2026:ul84",
    "tomorrowland-thailand-2026:tmlth-joris-voorn-b2b-krystal-klear",
+   "tomorrowland-winter-2027:tmlw27-joris-voorn-b2b-kolsch",
+   "tomorrowland-winter-2027:tmlw27-joris-voorn",
    "tomorrowland-2010:d1:cafe-d-anvers-invites-cocoon:2300:joris-voorn",
    "tomorrowland-2012:d1:cafe-d-anvers:2100:joris-voorn",
    "tomorrowland-2013:d2:cocoon:1730:joris-voorn",
@@ -105546,7 +105690,7 @@
    "ultra-miami-2025:d2:megastructure:1610:joris-voorn-live"
   ],
   "firstSeen": "2010-07-24",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2027-03-26",
   "photo": null,
   "links": []
  },
@@ -109808,6 +109952,22 @@
   "links": []
  },
  {
+  "key": "karakals",
+  "name": "Karakals",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-winter-2027:tmlw27-karakals-d1",
+   "tomorrowland-winter-2027:tmlw27-karakals-d2"
+  ],
+  "firstSeen": "2027-03-20",
+  "lastSeen": "2027-03-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "karanyi",
   "name": "Karányi",
   "aliases": [],
@@ -112065,6 +112225,8 @@
    "tomorrowland-thailand-2026:tmlth-kevin-de-vries",
    "tomorrowland-thailand-2026:tmlth-kevin-de-vries-b2b-morten",
    "time-warp-2027:tw27-kevin-de-vries-b2b-maceo-plex",
+   "tomorrowland-winter-2027:tmlw27-kevin-de-vries-d5",
+   "tomorrowland-winter-2027:tmlw27-kevin-de-vries-d6",
    "edc-las-vegas-2024:d2:stereo-bloom:0030:kevin-de-vries",
    "edc-las-vegas-2024:d3:quantum-valley:0215:kevin-de-vries",
    "edc-orlando-2025:d1:neongarden:1930:kevin-de-vries",
@@ -115176,6 +115338,8 @@
   ],
   "billings": [
    "tomorrowland-thailand-2026:tmlth-kolsch",
+   "tomorrowland-winter-2027:tmlw27-kolsch",
+   "tomorrowland-winter-2027:tmlw27-joris-voorn-b2b-kolsch",
    "edc-orlando-2022:d1:neon-garden:1930:kolsch",
    "escape-halloween-2019:d1:sewer-district:2000:kolsch",
    "sonar-2016:d2:sonarpub:0355:kolsch-live",
@@ -115196,7 +115360,7 @@
    "ultra-miami-2024:d2:the-cove:2030:joris-voorn-b2b-kolsch"
   ],
   "firstSeen": "2016-06-17",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2027-03-22",
   "photo": null,
   "links": []
  },
@@ -115557,6 +115721,8 @@
    "ultra-miami-2026:ul84",
    "arc-2026:arc-korolova-b2b-kasia-midway-d1",
    "edc-thailand-2026:edcth-korolova",
+   "tomorrowland-winter-2027:tmlw27-korolova-d1",
+   "tomorrowland-winter-2027:tmlw27-korolova-d3",
    "edc-las-vegas-2025:d3:quantum-valley:0330:korolova",
    "edc-orlando-2023:d2:neon-garden:1600:franky-wah-b2b-korolova",
    "edc-orlando-2025:d3:kineticfield:1526:korolova",
@@ -115566,7 +115732,7 @@
    "ultra-miami-2025:d2:the-cove:1900:korolova"
   ],
   "firstSeen": "2023-07-23",
-  "lastSeen": "2026-12-18",
+  "lastSeen": "2027-03-22",
   "photo": null,
   "links": []
  },
@@ -115649,6 +115815,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "tomorrowland-winter-2027:tmlw27-koven",
    "edc-las-vegas-2022:d1:forest-house-art-car:0215:koven",
    "edc-las-vegas-2022:d2:basspod:2230:delta-heavy-b2b-koven-b2b-muzz",
    "edc-las-vegas-2024:d3:circuit-grounds:2000:koven",
@@ -115661,7 +115828,7 @@
    "tomorrowland-2023:d5:youphoria:1900:koven"
   ],
   "firstSeen": "2015-07-25",
-  "lastSeen": "2025-07-27",
+  "lastSeen": "2027-03-24",
   "photo": null,
   "links": []
  },
@@ -116694,6 +116861,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "tomorrowland-winter-2027:tmlw27-kungs",
    "coachella-2017:d1:sahara:1520:kungs",
    "coachella-2017:d4:sahara:1520:kungs",
    "escape-halloween-2017:d2:slaughterhouse:1800:kungs",
@@ -116710,7 +116878,7 @@
    "ultra-miami-2017:d2:worldwide-stage:1700:kungs"
   ],
   "firstSeen": "2017-03-25",
-  "lastSeen": "2023-07-29",
+  "lastSeen": "2027-03-21",
   "photo": null,
   "links": []
  },
@@ -121124,10 +121292,12 @@
   "projects": [],
   "billings": [
    "tomorrowland-thailand-2026:tmlth-lennert-wolfs",
+   "tomorrowland-winter-2027:tmlw27-lennert-wolfs-d2",
+   "tomorrowland-winter-2027:tmlw27-lennert-wolfs-d6",
    "tomorrowland-2023:d4:the-library:1300:lennert-wolfs"
   ],
   "firstSeen": "2023-07-28",
-  "lastSeen": "2026-12-11",
+  "lastSeen": "2027-03-25",
   "photo": null,
   "links": []
  },
@@ -123236,12 +123406,13 @@
   "billings": [
    "edc-lv-2026:cg19",
    "tomorrowland-thailand-2026:tmlth-linska",
+   "tomorrowland-winter-2027:tmlw27-linska",
    "coachella-2026:d6:quasar:1600:linska",
    "edc-las-vegas-2025:d1:stereo-bloom:1900:linska",
    "hard-summer-2025:d2:hard-stage:1500:linska"
   ],
   "firstSeen": "2025-05-16",
-  "lastSeen": "2026-12-11",
+  "lastSeen": "2027-03-23",
   "photo": null,
   "links": []
  },
@@ -123432,6 +123603,21 @@
   ],
   "firstSeen": "2025-04-11",
   "lastSeen": "2025-04-18",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "lisa-korver",
+  "name": "Lisa Korver",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-winter-2027:tmlw27-lisa-korver"
+  ],
+  "firstSeen": "2027-03-22",
+  "lastSeen": "2027-03-22",
   "photo": null,
   "links": []
  },
@@ -124140,6 +124326,7 @@
   "billings": [
    "edc-lv-2026:w15",
    "escape-halloween-2026:esc-lady-faith-b2b-lny-tnz-d1",
+   "tomorrowland-winter-2027:tmlw27-lny-tnz",
    "edc-las-vegas-2022:d1:wasteland:2230:lny-tnz",
    "tomorrowland-2015:d1:qult:2200:lny-tnz",
    "tomorrowland-2016:d3:barong-family:2300:lny-tnz",
@@ -124150,7 +124337,7 @@
    "tomorrowland-2023:d5:elixir:0000:lny-tnz"
   ],
   "firstSeen": "2015-07-24",
-  "lastSeen": "2026-10-30",
+  "lastSeen": "2027-03-25",
   "photo": null,
   "links": []
  },
@@ -125751,6 +125938,8 @@
   "billings": [
    "sunset-on-the-river-2027:sotr-lost-frequencies",
    "tomorrowland-thailand-2026:tmlth-lost-frequencies",
+   "tomorrowland-winter-2027:tmlw27-lost-frequencies-d5",
+   "tomorrowland-winter-2027:tmlw27-lost-frequencies-d7",
    "coachella-2016:d2:sahara:1615:lost-frequencies",
    "coachella-2016:d5:sahara:1615:lost-frequencies",
    "edc-las-vegas-2024:d3:kinetic-field:2100:lost-frequencies",
@@ -125772,7 +125961,7 @@
    "ultra-miami-2019:d3:umf-radio:2100:lost-frequencies"
   ],
   "firstSeen": "2015-07-26",
-  "lastSeen": "2027-02-20",
+  "lastSeen": "2027-03-26",
   "photo": null,
   "links": []
  },
@@ -127141,10 +127330,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "tomorrowland-winter-2027:tmlw27-lucca-van-damme",
    "tomorrowland-2023:d1:rise-by-coke-studio:1500:lucca-van-damme"
   ],
   "firstSeen": "2023-07-21",
-  "lastSeen": "2023-07-21",
+  "lastSeen": "2027-03-26",
   "photo": null,
   "links": []
  },
@@ -129327,6 +129517,7 @@
   "billings": [
    "hard-summer-2026:hs1-maceo-plex",
    "time-warp-2027:tw27-kevin-de-vries-b2b-maceo-plex",
+   "tomorrowland-winter-2027:tmlw27-maceo-plex",
    "beyond-wonderland-socal-2013:d1:cheshire-woods:2230:maceo-plex",
    "coachella-2014:d3:yuma:1900:maceo-plex",
    "coachella-2014:d6:yuma:1900:maceo-plex",
@@ -131748,6 +131939,7 @@
   "projects": [],
   "billings": [
    "tomorrowland-thailand-2026:tmlth-mandy",
+   "tomorrowland-winter-2027:tmlw27-mandy",
    "defqon1-2015:d2:purple:1500:mandy",
    "edc-las-vegas-2024:d3:wasteland:2130:mandy",
    "tomorrowland-2018:d6:freedom-stage-by-budweiser:1200:mandy",
@@ -131760,7 +131952,7 @@
    "tomorrowland-2023:d6:youphoria:1600:mandy"
   ],
   "firstSeen": "2015-06-20",
-  "lastSeen": "2026-12-11",
+  "lastSeen": "2027-03-26",
   "photo": null,
   "links": []
  },
@@ -132175,10 +132367,12 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-manuals"
+   "tomorrowland-thailand-2026:tmlth-manuals",
+   "tomorrowland-winter-2027:tmlw27-manuals-d5",
+   "tomorrowland-winter-2027:tmlw27-manuals-d7"
   ],
   "firstSeen": "2026-12-12",
-  "lastSeen": "2026-12-12",
+  "lastSeen": "2027-03-26",
   "photo": null,
   "links": []
  },
@@ -134436,10 +134630,11 @@
   ],
   "billings": [
    "iii-points-2026:iiip-marsolo",
-   "arc-2026:arc-jamback-b2b-marsolo-expansions-d3"
+   "arc-2026:arc-jamback-b2b-marsolo-expansions-d3",
+   "tomorrowland-winter-2027:tmlw27-marsolo"
   ],
   "firstSeen": "2026-09-06",
-  "lastSeen": "2026-10-17",
+  "lastSeen": "2027-03-21",
   "photo": null,
   "links": []
  },
@@ -135257,6 +135452,7 @@
   "billings": [
    "edc-lv-2026:q28",
    "ultra-miami-2026:ul16",
+   "tomorrowland-winter-2027:tmlw27-massano",
    "coachella-2025:d2:yuma:2000:mind-against-b2b-massano",
    "coachella-2025:d5:yuma:2000:mind-against-b2b-massano",
    "tomorrowland-2023:d6:crystal-garden:1600:massano",
@@ -135264,7 +135460,7 @@
    "ultra-miami-2025:d2:the-cove:2200:massano-b2b-chris-avantgarde"
   ],
   "firstSeen": "2023-07-30",
-  "lastSeen": "2026-05-17",
+  "lastSeen": "2027-03-23",
   "photo": null,
   "links": []
  },
@@ -135781,6 +135977,7 @@
   ],
   "billings": [
    "tomorrowland-thailand-2026:tmlth-matisse-and-sadko",
+   "tomorrowland-winter-2027:tmlw27-matisse-and-sadko",
    "tomorrowland-2016:d1:super-you-and-me:1700:matisse-and-sadko",
    "tomorrowland-2017:d2:stmpd-rcrds:1600:matisse-and-sadko",
    "tomorrowland-2018:d2:organ-of-harmony:1900:matisse-and-sadko",
@@ -135791,7 +135988,7 @@
    "ultra-miami-2022:d1:umf-radio:1945:matisse-and-sadko"
   ],
   "firstSeen": "2016-07-22",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2027-03-23",
   "photo": null,
   "links": []
  },
@@ -136449,6 +136646,8 @@
   "projects": [],
   "billings": [
    "tomorrowland-thailand-2026:tmlth-mattn",
+   "tomorrowland-winter-2027:tmlw27-mattn-d4",
+   "tomorrowland-winter-2027:tmlw27-mattn-d6",
    "tomorrowland-2016:d3:smash-the-house:1730:mattn",
    "tomorrowland-2017:d3:smash-the-house:1630:mattn",
    "tomorrowland-2017:d6:mainstage:1600:mattn",
@@ -136463,7 +136662,7 @@
    "tomorrowland-2023:d6:the-library:2000:mattn"
   ],
   "firstSeen": "2016-07-24",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2027-03-25",
   "photo": null,
   "links": []
  },
@@ -137952,6 +138151,24 @@
   "links": []
  },
  {
+  "key": "mc-stretch",
+  "name": "MC Stretch",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-winter-2027:tmlw27-mc-stretch-d4",
+   "tomorrowland-winter-2027:tmlw27-mc-stretch-d5",
+   "tomorrowland-winter-2027:tmlw27-mc-stretch-d6",
+   "tomorrowland-winter-2027:tmlw27-mc-stretch-d7"
+  ],
+  "firstSeen": "2027-03-23",
+  "lastSeen": "2027-03-26",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "mc-swift",
   "name": "Mc Swift",
   "aliases": [
@@ -138296,10 +138513,12 @@
   "projects": [],
   "billings": [
    "tomorrowland-thailand-2026:tmlth-meaghan",
+   "tomorrowland-winter-2027:tmlw27-meaghan-d4",
+   "tomorrowland-winter-2027:tmlw27-meaghan-d5",
    "tomorrowland-2023:d4:the-library:1200:meaghan"
   ],
   "firstSeen": "2023-07-28",
-  "lastSeen": "2026-12-12",
+  "lastSeen": "2027-03-24",
   "photo": null,
   "links": []
  },
@@ -139003,6 +139222,21 @@
   "links": []
  },
  {
+  "key": "meloko",
+  "name": "Meloko",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-winter-2027:tmlw27-baron-b2b-meloko"
+  ],
+  "firstSeen": "2027-03-20",
+  "lastSeen": "2027-03-20",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "meltmode",
   "name": "Meltmode",
   "aliases": [],
@@ -139412,11 +139646,12 @@
   "projects": [],
   "billings": [
    "tomorrowland-thailand-2026:tmlth-merow",
+   "tomorrowland-winter-2027:tmlw27-merow-b2b-moksi",
    "tomorrowland-2023:d2:youphoria:1300:merow",
    "tomorrowland-2023:d5:youphoria:1430:merow"
   ],
   "firstSeen": "2023-07-22",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2027-03-23",
   "photo": null,
   "links": []
  },
@@ -141761,6 +141996,21 @@
   "links": []
  },
  {
+  "key": "mila-journee",
+  "name": "Mila Journée",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-winter-2027:tmlw27-mila-journee"
+  ],
+  "firstSeen": "2027-03-23",
+  "lastSeen": "2027-03-23",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "milagres",
   "name": "Milagres",
   "aliases": [],
@@ -142917,6 +143167,8 @@
    "outside-lands-2026:os125",
    "edc-thailand-2026:edcth-miss-monique",
    "tomorrowland-thailand-2026:tmlth-miss-monique",
+   "tomorrowland-winter-2027:tmlw27-miss-monique-d4",
+   "tomorrowland-winter-2027:tmlw27-miss-monique-d5",
    "coachella-2024:d1:yuma:1500:miss-monique",
    "coachella-2024:d4:yuma:1500:miss-monique",
    "dreamstate-socal-2025:d2:the-dream:2140:miss-monique",
@@ -142929,7 +143181,22 @@
    "ultra-miami-2025:d1:megastructure:1730:miss-monique"
   ],
   "firstSeen": "2022-07-29",
-  "lastSeen": "2026-12-20",
+  "lastSeen": "2027-03-24",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "miss-puss",
+  "name": "Miss Puss",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-winter-2027:tmlw27-miss-puss-b2b-pat-b"
+  ],
+  "firstSeen": "2027-03-25",
+  "lastSeen": "2027-03-25",
   "photo": null,
   "links": []
  },
@@ -144032,6 +144299,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "tomorrowland-winter-2027:tmlw27-merow-b2b-moksi",
    "edc-orlando-2022:d3:kinetic-field:1425:moksi",
    "lollapalooza-2017:d2:tito-s-handmade-vodka:2000:moksi",
    "nocturnal-wonderland-2022:d1:wolves-den:1900:moksi",
@@ -144045,7 +144313,7 @@
    "tomorrowland-2022:d4:rose-garden:2145:moksi"
   ],
   "firstSeen": "2015-07-26",
-  "lastSeen": "2022-11-13",
+  "lastSeen": "2027-03-23",
   "photo": null,
   "links": []
  },
@@ -145519,6 +145787,8 @@
   "billings": [
    "escape-halloween-2026:esc-morten-d1",
    "tomorrowland-thailand-2026:tmlth-kevin-de-vries-b2b-morten",
+   "tomorrowland-winter-2027:tmlw27-morten-d1",
+   "tomorrowland-winter-2027:tmlw27-morten-d2",
    "edc-las-vegas-2025:d3:kinetic-field:2200:artbat-b2b-morten",
    "edc-orlando-2021:d1:kinetic-field:1610:morten",
    "edc-orlando-2021:d1:corona-electric-beach:2200:morten",
@@ -145530,7 +145800,7 @@
    "ultra-miami-2025:d2:ultra-main-stage:1650:morten"
   ],
   "firstSeen": "2016-03-19",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2027-03-21",
   "photo": null,
   "links": []
  },
@@ -145616,6 +145886,22 @@
   ],
   "firstSeen": "2016-06-03",
   "lastSeen": "2021-10-08",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "mosimann",
+  "name": "Mosimann",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-winter-2027:tmlw27-mosimann-d1",
+   "tomorrowland-winter-2027:tmlw27-mosimann-d4"
+  ],
+  "firstSeen": "2027-03-20",
+  "lastSeen": "2027-03-23",
   "photo": null,
   "links": []
  },
@@ -149894,10 +150180,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "tomorrowland-winter-2027:tmlw27-natte-visstick",
    "tomorrowland-2023:d4:rise-by-coke-studio:2230:natte-visstick"
   ],
   "firstSeen": "2023-07-28",
-  "lastSeen": "2023-07-28",
+  "lastSeen": "2027-03-21",
   "photo": null,
   "links": []
  },
@@ -152149,6 +152436,8 @@
    "edc-orlando-2026:ecs29",
    "arc-2026:arc-nico-moreno-expansions-d2",
    "tomorrowland-thailand-2026:tmlth-nico-moreno",
+   "tomorrowland-winter-2027:tmlw27-nico-moreno-d4",
+   "tomorrowland-winter-2027:tmlw27-nico-moreno-d5",
    "beyond-wonderland-socal-2026:d2:the-looking-glass:0030:nico-moreno",
    "edc-las-vegas-2025:d3:neon-garden:0300:nico-moreno-b2b-i-hate-models",
    "edc-orlando-2025:d3:neongarden:2230:nico-moreno",
@@ -152157,7 +152446,7 @@
    "ultra-miami-2025:d3:the-cove:2030:nico-moreno"
   ],
   "firstSeen": "2025-03-30",
-  "lastSeen": "2026-12-12",
+  "lastSeen": "2027-03-24",
   "photo": null,
   "links": []
  },
@@ -155242,6 +155531,8 @@
   "billings": [
    "tomorrowland-thailand-2026:tmlth-novah",
    "time-warp-2027:tw27-novah",
+   "tomorrowland-winter-2027:tmlw27-novah-d3",
+   "tomorrowland-winter-2027:tmlw27-novah-d6",
    "beyond-wonderland-socal-2026:d2:the-looking-glass:2000:novah",
    "dreamstate-socal-2025:d2:the-void:2300:novah",
    "tomorrowland-2023:d5:cage:1200:novah"
@@ -157208,6 +157499,21 @@
   "links": []
  },
  {
+  "key": "olive-anguz",
+  "name": "Olive Anguz",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-winter-2027:tmlw27-benwal-b2b-olive-anguz"
+  ],
+  "firstSeen": "2027-03-22",
+  "lastSeen": "2027-03-22",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "oliver",
   "name": "Oliver",
   "aliases": [
@@ -157269,6 +157575,8 @@
   "projects": [],
   "billings": [
    "countdown-nye-2026:cdny-oliver-heldens",
+   "tomorrowland-winter-2027:tmlw27-oliver-heldens",
+   "tomorrowland-winter-2027:tmlw27-oliver-heldens-b2b-tchami",
    "coachella-2015:d1:sahara:1800:oliver-heldens",
    "coachella-2015:d4:sahara:1800:oliver-heldens",
    "edc-orlando-2024:d1:kinetic-field:1853:oliver-heldens-b2b-benny-benassi",
@@ -157297,7 +157605,7 @@
    "ultra-miami-2025:d1:worldwide-stage:2015:oliver-heldens"
   ],
   "firstSeen": "2014-07-18",
-  "lastSeen": "2026-12-31",
+  "lastSeen": "2027-03-21",
   "photo": null,
   "links": []
  },
@@ -161842,6 +162150,8 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "tomorrowland-winter-2027:tmlw27-miss-puss-b2b-pat-b",
+   "tomorrowland-winter-2027:tmlw27-pat-b",
    "defqon1-2015:d2:brown:1500:pat-b",
    "tomorrowland-2015:d2:q-dance:1300:pat-b",
    "tomorrowland-2018:d4:amicorum-spectaculum-presents-theatre-formidable:1445:pat-b",
@@ -161849,7 +162159,7 @@
    "tomorrowland-2022:d1:youphoria:1530:pat-b"
   ],
   "firstSeen": "2015-06-20",
-  "lastSeen": "2022-07-15",
+  "lastSeen": "2027-03-26",
   "photo": null,
   "links": []
  },
@@ -168240,6 +168550,23 @@
   "links": []
  },
  {
+  "key": "prosit",
+  "name": "Prosit",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-winter-2027:tmlw27-prosit-d3",
+   "tomorrowland-winter-2027:tmlw27-prosit-d4",
+   "tomorrowland-winter-2027:tmlw27-prosit-d5"
+  ],
+  "firstSeen": "2027-03-22",
+  "lastSeen": "2027-03-24",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "prospa",
   "name": "Prospa",
   "aliases": [
@@ -169998,6 +170325,7 @@
   "projects": [],
   "billings": [
    "tomorrowland-thailand-2026:tmlth-quintino",
+   "tomorrowland-winter-2027:tmlw27-quintino",
    "edc-las-vegas-2012:d3:discoverystage:0000:quintino",
    "tomorrowland-2012:d2:blue-flame:1715:quintino",
    "tomorrowland-2013:d1:jacked:0000:quintino",
@@ -170018,7 +170346,7 @@
    "ultra-miami-2017:d3:umf-radio:1700:quintino"
   ],
   "firstSeen": "2012-06-10",
-  "lastSeen": "2026-12-13",
+  "lastSeen": "2027-03-26",
   "photo": null,
   "links": []
  },
@@ -178251,15 +178579,18 @@
  {
   "key": "row1",
   "name": "Row1",
-  "aliases": [],
+  "aliases": [
+   "ROW1"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-row1"
+   "tomorrowland-thailand-2026:tmlth-row1",
+   "tomorrowland-winter-2027:tmlw27-row1"
   ],
   "firstSeen": "2026-12-12",
-  "lastSeen": "2026-12-12",
+  "lastSeen": "2027-03-24",
   "photo": null,
   "links": []
  },
@@ -182329,6 +182660,7 @@
   "billings": [
    "ultra-miami-2026:ul24",
    "ultra-miami-2026:ul137",
+   "tomorrowland-winter-2027:tmlw27-sara-landry",
    "coachella-2025:d1:sahara:1810:sara-landry",
    "coachella-2025:d4:sahara:1810:sara-landry",
    "edc-las-vegas-2024:d3:circuit-grounds:2200:sara-landry",
@@ -182337,7 +182669,7 @@
    "hard-summer-2025:d1:harder-stage:2045:sara-landry"
   ],
   "firstSeen": "2024-05-19",
-  "lastSeen": "2026-03-29",
+  "lastSeen": "2027-03-23",
   "photo": null,
   "links": []
  },
@@ -185012,7 +185344,9 @@
   "billings": [
    "edc-lv-2026:w2",
    "arc-2026:arc-adri-n-mills-b2b-fumi-b2b-serafina-midway-d4",
-   "time-warp-2027:tw27-mischluft-b2b-serafina"
+   "time-warp-2027:tw27-mischluft-b2b-serafina",
+   "tomorrowland-winter-2027:tmlw27-serafina-d4",
+   "tomorrowland-winter-2027:tmlw27-serafina-d5"
   ],
   "firstSeen": "2026-05-15",
   "lastSeen": "2027-04-03",
@@ -190362,6 +190696,8 @@
    "lost-lands-2026:lls50",
    "edc-orlando-2026:ecu33",
    "decadence-arizona-2026:daz-slander",
+   "tomorrowland-winter-2027:tmlw27-slander-d4",
+   "tomorrowland-winter-2027:tmlw27-slander-d5",
    "beyond-wonderland-socal-2026:d2:queen-s-domain:2355:slander",
    "coachella-2022:d1:sahara:2355:slander",
    "coachella-2022:d4:sahara:2355:slander",
@@ -190383,7 +190719,7 @@
    "ultra-miami-2024:d1:ultra-main-stage:2010:slander"
   ],
   "firstSeen": "2016-03-18",
-  "lastSeen": "2026-12-30",
+  "lastSeen": "2027-03-24",
   "photo": null,
   "links": []
  },
@@ -193864,6 +194200,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "tomorrowland-winter-2027:tmlw27-sound-rush",
    "defqon1-2015:d3:uv:1430:sound-rush",
    "edc-las-vegas-2022:d2:wasteland:2230:sound-rush",
    "edc-las-vegas-2024:d1:wasteland:2330:sound-rush",
@@ -193877,7 +194214,7 @@
    "ultra-miami-2024:d2:umf-radio:1650:adrenalize-b2b-sound-rush"
   ],
   "firstSeen": "2015-06-21",
-  "lastSeen": "2024-05-17",
+  "lastSeen": "2027-03-25",
   "photo": null,
   "links": []
  },
@@ -194068,13 +194405,14 @@
   "billings": [
    "tomorrowland-thailand-2026:tmlth-amber-broos-b2b-space-92",
    "groove-cruise-2027:gc-space-92",
+   "tomorrowland-winter-2027:tmlw27-space-92",
    "dreamstate-socal-2025:d2:the-void:2200:space-92",
    "edc-orlando-2024:d3:kinetic-field:1432:space-92",
    "ultra-miami-2023:d2:megastructure:1400:popof-b2b-space-92-present-turbulences",
    "ultra-miami-2025:d3:the-cove:1600:popof-x-space-92-present-turbulences"
   ],
   "firstSeen": "2023-03-25",
-  "lastSeen": "2027-01-21",
+  "lastSeen": "2027-03-22",
   "photo": null,
   "links": []
  },
@@ -196490,6 +196828,7 @@
    "escape-halloween-2026:esc-steve-aoki-d1",
    "decadence-arizona-2026:daz-steve-aoki",
    "tomorrowland-thailand-2026:tmlth-steve-aoki",
+   "tomorrowland-winter-2027:tmlw27-steve-aoki",
    "beyond-wonderland-socal-2012:d1:caterpillars-garden:0045:steve-aoki",
    "edc-las-vegas-2024:d1:kinetic-field:0413:steve-aoki",
    "edc-orlando-2019:d1:kineticfield:2112:steve-aoki",
@@ -196522,7 +196861,7 @@
    "ultra-miami-2025:d3:ultra-main-stage:1620:steve-aoki"
   ],
   "firstSeen": "2011-07-23",
-  "lastSeen": "2026-12-31",
+  "lastSeen": "2027-03-23",
   "photo": null,
   "links": []
  },
@@ -197918,6 +198257,8 @@
   "billings": [
    "edc-lv-2026:w26",
    "tomorrowland-thailand-2026:tmlth-sub-zero-project",
+   "tomorrowland-winter-2027:tmlw27-sub-zero-project-d1",
+   "tomorrowland-winter-2027:tmlw27-sub-zero-project-d2",
    "beyond-wonderland-socal-2026:d1:cheshire-woods:2300:sub-zero-project",
    "edc-las-vegas-2022:d3:wasteland:0230:sub-zero-project",
    "edc-las-vegas-2024:d2:wasteland:0030:sub-zero-project",
@@ -197936,7 +198277,7 @@
    "ultra-miami-2025:d3:umf-radio:1600:sub-zero-project"
   ],
   "firstSeen": "2016-07-22",
-  "lastSeen": "2026-12-12",
+  "lastSeen": "2027-03-21",
   "photo": null,
   "links": []
  },
@@ -202851,6 +203192,7 @@
   ],
   "billings": [
    "countdown-nye-2026:cdny-tchami",
+   "tomorrowland-winter-2027:tmlw27-oliver-heldens-b2b-tchami",
    "coachella-2016:d3:sahara:1905:tchami",
    "coachella-2016:d6:sahara:1905:tchami",
    "coachella-2022:d2:sahara:1915:tchami",
@@ -202870,7 +203212,7 @@
    "ultra-miami-2023:d3:ultra-main-stage:1740:oliver-heldens-b2b-tchami"
   ],
   "firstSeen": "2016-03-20",
-  "lastSeen": "2026-12-31",
+  "lastSeen": "2027-03-21",
   "photo": null,
   "links": []
  },
@@ -203550,10 +203892,12 @@
   "billings": [
    "escape-halloween-2026:esc-telykast-d2",
    "lights-all-night-2026:lan-telykast",
+   "tomorrowland-winter-2027:tmlw27-telykast-d6",
+   "tomorrowland-winter-2027:tmlw27-telykast-d7",
    "edc-las-vegas-2022:d1:allegiant-rave-hangar:0100:telykast"
   ],
   "firstSeen": "2022-05-20",
-  "lastSeen": "2026-12-30",
+  "lastSeen": "2027-03-26",
   "photo": null,
   "links": []
  },
@@ -211241,10 +211585,12 @@
   "projects": [],
   "billings": [
    "edc-lv-2026:w13",
-   "ultra-miami-2026:ul95"
+   "ultra-miami-2026:ul95",
+   "tomorrowland-winter-2027:tmlw27-the-saints-d6",
+   "tomorrowland-winter-2027:tmlw27-the-saints-d7"
   ],
   "firstSeen": "2026-03-28",
-  "lastSeen": "2026-05-16",
+  "lastSeen": "2027-03-26",
   "photo": null,
   "links": []
  },
@@ -213524,13 +213870,14 @@
   "projects": [],
   "billings": [
    "tomorrowland-thailand-2026:tmlth-third-party",
+   "tomorrowland-winter-2027:tmlw27-third-party",
    "tomorrowland-2011:d3:versuz-invites-size-matters:1730:third-party",
    "tomorrowland-2017:d1:v-sessions:1700:third-party",
    "tomorrowland-2022:d5:mainstage:1630:third-party",
    "tomorrowland-2023:d6:the-rose-garden:1800:third-party"
   ],
   "firstSeen": "2011-07-24",
-  "lastSeen": "2026-12-12",
+  "lastSeen": "2027-03-22",
   "photo": null,
   "links": []
  },
@@ -214847,6 +215194,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "tomorrowland-winter-2027:tmlw27-timmy-trumpet",
    "edc-las-vegas-2022:d1:kinetic-field:0415:timmy-trumpet",
    "edc-las-vegas-2024:d3:circuit-grounds:0425:timmy-trumpet",
    "edc-orlando-2019:d1:kineticfield:1859:timmy-trumpet",
@@ -214868,7 +215216,7 @@
    "ultra-miami-2025:d1:ultra-main-stage:1650:timmy-trumpet"
   ],
   "firstSeen": "2016-07-22",
-  "lastSeen": "2025-03-28",
+  "lastSeen": "2027-03-24",
   "photo": null,
   "links": []
  },
@@ -233080,6 +233428,21 @@
   "links": []
  },
  {
+  "key": "yuuki-yoshiyama",
+  "name": "Yuuki Yoshiyama",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "tomorrowland-winter-2027:tmlw27-yuuki-yoshiyama"
+  ],
+  "firstSeen": "2027-03-21",
+  "lastSeen": "2027-03-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "yuzo-koshiro",
   "name": "Yuzo Koshiro",
   "aliases": [],
@@ -233206,6 +233569,7 @@
   "projects": [],
   "billings": [
    "tomorrowland-thailand-2026:tmlth-yves-v",
+   "tomorrowland-winter-2027:tmlw27-yves-v",
    "tomorrowland-2010:d1:mainstage:1400:yves-v",
    "tomorrowland-2011:d3:smash-the-house:1100:yves-v",
    "tomorrowland-2012:d2:v-sessions:1830:yves-v",
@@ -233234,7 +233598,7 @@
    "tomorrowland-2023:d6:rise-by-coke-studio:1900:yves-v"
   ],
   "firstSeen": "2010-07-24",
-  "lastSeen": "2026-12-12",
+  "lastSeen": "2027-03-21",
   "photo": null,
   "links": []
  },

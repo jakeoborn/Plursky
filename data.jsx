@@ -820,30 +820,6 @@ const FESTIVALS_REGISTRY = [
     region:    "North America",
   },
   {
-    // ── Tomorrowland Winter 2027 — Alpe d'Huez, France ──
-    // Added 2026-11-11 as a gated preview. Dates from winter.tomorrowland.com,
-    // read 2026-11-11: "MARCH 20–27, 2027 | ALPE D'HUEZ, FRANCE". No 2027
-    // lineup yet.
-    config: {
-      id:        "tomorrowland-winter-2027",
-      officialEvent: { website: "https://winter.tomorrowland.com/", tickets: "https://winter.tomorrowland.com/en/tickets/", observedAt: "2026-11-22" },
-      name:      "Tomorrowland Winter 2027",
-      shortName: "Tomorrowland Winter",
-      brand:     "Tomorrowland",
-      tagline:   "A week of music in the French Alps",
-      location:  "Alpe d'Huez, France",
-      locationShort: "Alpe d'Huez",
-      dates:     "Mar 20–27, 2027",
-      year:      2027,
-      // Night Print accent not measured yet (accent null = neutral print).
-      print: { accent: null, source: { url: "https://winter.tomorrowland.com/", observedAt: "2026-11-11" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
-    },
-    available: false,
-    accent:    "#93c5fd",
-    emoji:     "🏔️",
-    region:    "Europe",
-  },
-  {
     // ── EDC Las Vegas 2027 — Las Vegas Motor Speedway, Las Vegas NV ──
     // Added 2026-11-16 as a gated preview (Jake's field-test target).
     // SOURCE lasvegas.edc.com, read 2026-11-16: two weekends, "Dusk" May
@@ -5468,6 +5444,7 @@ const _WAVE1_IDS = [
   "day-zero-tulum-2027",
   "coachella-2027",
   "time-warp-2027",
+  "tomorrowland-winter-2027",
 ];
 const _WAVE1 = (typeof window !== "undefined" && window.PLURSKY_FESTIVALS) || {};
 for (const _id of _WAVE1_IDS) {
