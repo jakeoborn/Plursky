@@ -2351,6 +2351,21 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   }
 }
 
+// ── 1z-i. EDC photo import, end to end (#226) ───────────────────────────
+// One EXIF-dated EDC LV photo imports from Me, tags Peggy Gou (n4) from its
+// capture time, and shows under YOUR MOMENTS on her artist screen.
+{
+  console.log("▸ Photo import gate — EDC EXIF photo tags its set and shows on the artist");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-import.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`EDC photo import regression failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-v. Native picker video batch ──────────────────────────────────────
 // Twenty clips land through the web input AND through the mocked PHPicker
 // bridge one fetch at a time; a failed SAVE is not reported as unreadable.
