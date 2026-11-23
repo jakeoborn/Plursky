@@ -1,0 +1,26 @@
+{
+  "id": "countdown-nye-2015",
+  "method": "official_sources",
+  "official": "http://countdownnye.com/experience/set-times/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2015-12-31",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://countdownnye.com/experience/set-times/",
+          "archivedUrl": "https://web.archive.org/web/20160104183301/http://countdownnye.com/experience/set-times/",
+          "captureTimestamp": "20160104183301",
+          "printed": "Thursday, December 31",
+          "sha256": "8f4d0557d3aa34ad31e1d6ac8608330baf8df150691c23fb4a2a35b34da7a8bc",
+          "bytes": 109433,
+          "rows": 26,
+          "format": "day-tabs"
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": []
+}
