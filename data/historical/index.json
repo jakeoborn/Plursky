@@ -2913,7 +2913,7 @@
    "name": "HARD Summer 2024",
    "year": 2024,
    "timezone": "America/Los_Angeles",
-   "completeness": "lineup_only",
+   "completeness": "complete_schedule",
    "days": [
     {
      "day": 1,
@@ -2929,7 +2929,7 @@
    "counts": {
     "stages": 7,
     "artists": 96,
-    "sets": 0
+    "sets": 100
    }
   },
   {
@@ -2996,7 +2996,7 @@
    "name": "HARD Summer 2019",
    "year": 2019,
    "timezone": "America/Los_Angeles",
-   "completeness": "lineup_only",
+   "completeness": "complete_schedule",
    "days": [
     {
      "day": 1,
@@ -3010,9 +3010,9 @@
     }
    ],
    "counts": {
-    "stages": 0,
+    "stages": 6,
     "artists": 104,
-    "sets": 0
+    "sets": 111
    }
   },
   {
