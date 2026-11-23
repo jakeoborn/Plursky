@@ -35,6 +35,34 @@
   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
  },
  {
+  "id": "forbidden-kingdom-2027:fk27-alpha-omega-ac13-and-reaper",
+  "printed": "Alpha:Omega (AC13 & Reaper)",
+  "reason": "parenthetical names people",
+  "pending": true,
+  "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-hades-x-persephone",
+  "printed": "Hades x Persephone",
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-p-money-x-whiney",
+  "printed": "P Money x Whiney",
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-xo-jackie-boi-b2b-xclvsiv",
+  "printed": "Xó (Jackie Boi B2B Xclvsiv)",
+  "reason": "parenthetical names people",
+  "pending": true,
+  "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+ },
+ {
   "id": "acl-2012:d1:bud-light:1830:florence-the-machine",
   "printed": "Florence + The Machine",
   "reason": "\"+\" billing",
@@ -1211,6 +1239,13 @@
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
  },
  {
+  "id": "key:roi",
+  "printed": "ROI*",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
   "id": "key:joa",
   "printed": "JOA",
   "reason": "very short name billed at more than one festival brand",
@@ -1290,6 +1325,13 @@
  {
   "id": "key:jev",
   "printed": "Jev",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
+  "id": "key:s-y-n",
+  "printed": "S.Y.N",
   "reason": "very short name billed at more than one festival brand",
   "pending": true,
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
