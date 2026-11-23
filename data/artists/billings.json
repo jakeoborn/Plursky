@@ -226895,14 +226895,13 @@
   "performers": [
    {
     "key": "triste-juventud-x-totem",
-    "role": "act"
+    "role": "collab"
    }
   ],
   "act": "triste-juventud-x-totem",
   "closing": false,
   "stageLineage": "coachella:sonora",
-  "mainStage": null,
-  "review": "\"x\" billing whose sides are not both known acts"
+  "mainStage": null
  },
  {
   "id": "coachella-2023:d5:sonora:1300:horsegirl",
@@ -231051,14 +231050,13 @@
   "performers": [
    {
     "key": "triste-juventud-x-totem",
-    "role": "act"
+    "role": "collab"
    }
   ],
   "act": "triste-juventud-x-totem",
   "closing": false,
   "stageLineage": "coachella:sonora",
-  "mainStage": null,
-  "review": "\"x\" billing whose sides are not both known acts"
+  "mainStage": null
  },
  {
   "id": "coachella-2024:d2:sonora:1400:militarie-gun",
@@ -239169,14 +239167,13 @@
   "performers": [
    {
     "key": "triste-juventud-x-totem",
-    "role": "act"
+    "role": "collab"
    }
   ],
   "act": "triste-juventud-x-totem",
   "closing": false,
   "stageLineage": "coachella:sonora",
-  "mainStage": null,
-  "review": "\"x\" billing whose sides are not both known acts"
+  "mainStage": null
  },
  {
   "id": "coachella-2025:d2:sonora:1350:prison-affair",
@@ -245489,6 +245486,7811 @@
   "stageLineage": "coachella:quasar",
   "mainStage": null,
   "review": "\"x\" billing whose sides are not both known acts"
+ },
+ {
+  "id": "coachella-2026:d1:coachella:1615:record-safari",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Coachella",
+  "start": "16:15",
+  "end": "17:20",
+  "printed": "Record Safari",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "record-safari",
+    "role": "performer"
+   }
+  ],
+  "act": "record-safari",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:coachella:1730:teddy-swims",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Coachella",
+  "start": "17:30",
+  "end": "18:20",
+  "printed": "Teddy Swims",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "teddy-swims",
+    "role": "performer"
+   }
+  ],
+  "act": "teddy-swims",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:coachella:1900:the-xx",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Coachella",
+  "start": "19:00",
+  "end": "19:55",
+  "printed": "The xx",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-xx",
+    "role": "performer"
+   }
+  ],
+  "act": "the-xx",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:coachella:2105:sabrina-carpenter",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Coachella",
+  "start": "21:05",
+  "end": "22:35",
+  "printed": "Sabrina Carpenter",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sabrina-carpenter",
+    "role": "performer"
+   }
+  ],
+  "act": "sabrina-carpenter",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:coachella:0000:anyma",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Coachella",
+  "start": "00:00",
+  "end": null,
+  "printed": "Anyma",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "anyma",
+    "role": "performer"
+   }
+  ],
+  "act": "anyma",
+  "closing": true,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:outdoor:1450:tiffany-tyson",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Outdoor",
+  "start": "14:50",
+  "end": "15:50",
+  "printed": "Tiffany Tyson",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tiffany-tyson",
+    "role": "performer"
+   }
+  ],
+  "act": "tiffany-tyson",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:outdoor:1600:dabeull",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Outdoor",
+  "start": "16:00",
+  "end": "16:50",
+  "printed": "Dabeull",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dabeull",
+    "role": "performer"
+   }
+  ],
+  "act": "dabeull",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:outdoor:1720:lykke-li",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Outdoor",
+  "start": "17:20",
+  "end": "18:10",
+  "printed": "Lykke Li",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lykke-li",
+    "role": "performer"
+   }
+  ],
+  "act": "lykke-li",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:outdoor:1840:dijon",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Outdoor",
+  "start": "18:40",
+  "end": "19:30",
+  "printed": "Dijon",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dijon",
+    "role": "performer"
+   }
+  ],
+  "act": "dijon",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:outdoor:2005:turnstile",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Outdoor",
+  "start": "20:05",
+  "end": "21:00",
+  "printed": "Turnstile",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "turnstile",
+    "role": "performer"
+   }
+  ],
+  "act": "turnstile",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:outdoor:2235:disclosure",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Outdoor",
+  "start": "22:35",
+  "end": "23:50",
+  "printed": "Disclosure",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "disclosure",
+    "role": "performer"
+   }
+  ],
+  "act": "disclosure",
+  "closing": true,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:sonora:1300:doom-dave",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Sonora",
+  "start": "13:00",
+  "end": "13:40",
+  "printed": "Doom Dave",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "doom-dave",
+    "role": "performer"
+   }
+  ],
+  "act": "doom-dave",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:sonora:1340:febuary",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Sonora",
+  "start": "13:40",
+  "end": "14:10",
+  "printed": "Febuary",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "febuary",
+    "role": "performer"
+   }
+  ],
+  "act": "febuary",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:sonora:1435:carolina-durante",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Sonora",
+  "start": "14:35",
+  "end": "15:15",
+  "printed": "Carolina Durante",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carolina-durante",
+    "role": "performer"
+   }
+  ],
+  "act": "carolina-durante",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:sonora:1540:wednesday",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Sonora",
+  "start": "15:40",
+  "end": "16:20",
+  "printed": "Wednesday",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wednesday",
+    "role": "performer"
+   }
+  ],
+  "act": "wednesday",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:sonora:1650:fleshwater",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Sonora",
+  "start": "16:50",
+  "end": "17:30",
+  "printed": "Fleshwater",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fleshwater",
+    "role": "performer"
+   }
+  ],
+  "act": "fleshwater",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:sonora:1800:the-two-lips",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Sonora",
+  "start": "18:00",
+  "end": "18:40",
+  "printed": "The Two Lips",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-two-lips",
+    "role": "performer"
+   }
+  ],
+  "act": "the-two-lips",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:sonora:1910:ninajirachi",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Sonora",
+  "start": "19:10",
+  "end": "20:00",
+  "printed": "Ninajirachi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ninajirachi",
+    "role": "performer"
+   }
+  ],
+  "act": "ninajirachi",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:sonora:2025:cachirula-and-loojan",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Sonora",
+  "start": "20:25",
+  "end": "21:05",
+  "printed": "Cachirula & Loojan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cachirula-and-loojan",
+    "role": "performer"
+   }
+  ],
+  "act": "cachirula-and-loojan",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:sonora:2200:hot-mulligan",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Sonora",
+  "start": "22:00",
+  "end": "22:45",
+  "printed": "Hot Mulligan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hot-mulligan",
+    "role": "performer"
+   }
+  ],
+  "act": "hot-mulligan",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:sonora:2350:not-for-radio",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Sonora",
+  "start": "23:50",
+  "end": "00:50",
+  "printed": "Not For Radio",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "not-for-radio",
+    "role": "performer"
+   }
+  ],
+  "act": "not-for-radio",
+  "closing": true,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:gobi:1415:cahuilla-bird-singers-and-dancers",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Gobi",
+  "start": "14:15",
+  "end": "14:45",
+  "printed": "Cahuilla Bird Singers and Dancers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cahuilla-bird-singers-and-dancers",
+    "role": "performer"
+   }
+  ],
+  "act": "cahuilla-bird-singers-and-dancers",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:gobi:1455:bob-baker-marionettes",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Gobi",
+  "start": "14:55",
+  "end": "15:35",
+  "printed": "Bob Baker Marionettes",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bob-baker-marionettes",
+    "role": "performer"
+   }
+  ],
+  "act": "bob-baker-marionettes",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:gobi:1600:newdad",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Gobi",
+  "start": "16:00",
+  "end": "16:40",
+  "printed": "NewDad",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "newdad",
+    "role": "performer"
+   }
+  ],
+  "act": "newdad",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:gobi:1710:joyce-manor",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Gobi",
+  "start": "17:10",
+  "end": "17:50",
+  "printed": "Joyce Manor",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "joyce-manor",
+    "role": "performer"
+   }
+  ],
+  "act": "joyce-manor",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:gobi:1815:cmat",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Gobi",
+  "start": "18:15",
+  "end": "18:55",
+  "printed": "CMAT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cmat",
+    "role": "performer"
+   }
+  ],
+  "act": "cmat",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:gobi:1920:fakemink",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Gobi",
+  "start": "19:20",
+  "end": "20:00",
+  "printed": "fakemink",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fakemink",
+    "role": "performer"
+   }
+  ],
+  "act": "fakemink",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:gobi:2025:holly-humberstone",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Gobi",
+  "start": "20:25",
+  "end": "21:10",
+  "printed": "Holly Humberstone",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "holly-humberstone",
+    "role": "performer"
+   }
+  ],
+  "act": "holly-humberstone",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:gobi:2150:joost",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Gobi",
+  "start": "21:50",
+  "end": "22:35",
+  "printed": "Joost",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "joost",
+    "role": "performer"
+   }
+  ],
+  "act": "joost",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:gobi:2305:creepy-nuts",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Gobi",
+  "start": "23:05",
+  "end": "23:55",
+  "printed": "Creepy Nuts",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "creepy-nuts",
+    "role": "performer"
+   }
+  ],
+  "act": "creepy-nuts",
+  "closing": true,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:mojave:1400:novasoul",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Mojave",
+  "start": "14:00",
+  "end": "14:50",
+  "printed": "Novasoul",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "novasoul",
+    "role": "performer"
+   }
+  ],
+  "act": "novasoul",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:mojave:1500:slayyyter",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Mojave",
+  "start": "15:00",
+  "end": "15:45",
+  "printed": "Slayyyter",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "slayyyter",
+    "role": "performer"
+   }
+  ],
+  "act": "slayyyter",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:mojave:1615:bini",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Mojave",
+  "start": "16:15",
+  "end": "17:00",
+  "printed": "BINI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bini",
+    "role": "performer"
+   }
+  ],
+  "act": "bini",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:mojave:1730:central-cee",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Mojave",
+  "start": "17:30",
+  "end": "18:15",
+  "printed": "Central Cee",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "central-cee",
+    "role": "performer"
+   }
+  ],
+  "act": "central-cee",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:mojave:1845:devo",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Mojave",
+  "start": "18:45",
+  "end": "19:40",
+  "printed": "Devo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "devo",
+    "role": "performer"
+   }
+  ],
+  "act": "devo",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:mojave:2010:moby",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Mojave",
+  "start": "20:10",
+  "end": "21:00",
+  "printed": "Moby",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "moby",
+    "role": "performer"
+   }
+  ],
+  "act": "moby",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:mojave:2235:ethel-cain",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Mojave",
+  "start": "22:35",
+  "end": "23:25",
+  "printed": "Ethel Cain",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ethel-cain",
+    "role": "performer"
+   }
+  ],
+  "act": "ethel-cain",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:mojave:2355:blood-orange",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Mojave",
+  "start": "23:55",
+  "end": "00:45",
+  "printed": "Blood Orange",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "blood-orange",
+    "role": "performer"
+   }
+  ],
+  "act": "blood-orange",
+  "closing": true,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:sahara:1430:massio",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Sahara",
+  "start": "14:30",
+  "end": "15:35",
+  "printed": "MASSIO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "massio",
+    "role": "performer"
+   }
+  ],
+  "act": "massio",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:sahara:1545:youna",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Sahara",
+  "start": "15:45",
+  "end": "16:35",
+  "printed": "Youna",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "youna",
+    "role": "performer"
+   }
+  ],
+  "act": "youna",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:sahara:1650:hugel",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Sahara",
+  "start": "16:50",
+  "end": "17:50",
+  "printed": "HUGEL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hugel",
+    "role": "performer"
+   }
+  ],
+  "act": "hugel",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:sahara:1815:marlon-hoffstadt",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Sahara",
+  "start": "18:15",
+  "end": "19:15",
+  "printed": "Marlon Hoffstadt",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marlon-hoffstadt",
+    "role": "performer"
+   }
+  ],
+  "act": "marlon-hoffstadt",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:sahara:2000:katseye",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Sahara",
+  "start": "20:00",
+  "end": "20:45",
+  "printed": "KATSEYE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "katseye",
+    "role": "performer"
+   }
+  ],
+  "act": "katseye",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:sahara:2115:levity",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Sahara",
+  "start": "21:15",
+  "end": "22:20",
+  "printed": "Levity",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "levity",
+    "role": "performer"
+   }
+  ],
+  "act": "levity",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:sahara:2250:swae-lee",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Sahara",
+  "start": "22:50",
+  "end": "23:40",
+  "printed": "Swae Lee",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "swae-lee",
+    "role": "performer"
+   }
+  ],
+  "act": "swae-lee",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:sahara:0005:sexyy-red",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Sahara",
+  "start": "00:05",
+  "end": "00:55",
+  "printed": "Sexyy Red",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sexyy-red",
+    "role": "performer"
+   }
+  ],
+  "act": "sexyy-red",
+  "closing": true,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:yuma:1300:sahar-z",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Yuma",
+  "start": "13:00",
+  "end": "13:45",
+  "printed": "Sahar Z",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sahar-z",
+    "role": "performer"
+   }
+  ],
+  "act": "sahar-z",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:yuma:1345:jessica-brankka",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Yuma",
+  "start": "13:45",
+  "end": "14:45",
+  "printed": "Jessica Brankka",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jessica-brankka",
+    "role": "performer"
+   }
+  ],
+  "act": "jessica-brankka",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:yuma:1445:arodes",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Yuma",
+  "start": "14:45",
+  "end": "15:45",
+  "printed": "Arodes",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "arodes",
+    "role": "performer"
+   }
+  ],
+  "act": "arodes",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:yuma:1545:groove-armada",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Yuma",
+  "start": "15:45",
+  "end": "16:45",
+  "printed": "Groove Armada",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "groove-armada",
+    "role": "performer"
+   }
+  ],
+  "act": "groove-armada",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:yuma:1645:rossi-x-chloe-caillet",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Yuma",
+  "start": "16:45",
+  "end": "18:00",
+  "printed": "Rossi. x Chloé Caillet",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rossi-x-chloe-caillet",
+    "role": "collab"
+   }
+  ],
+  "act": "rossi-x-chloe-caillet",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:yuma:1800:kettama",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Yuma",
+  "start": "18:00",
+  "end": "19:15",
+  "printed": "Kettama",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kettama",
+    "role": "performer"
+   }
+  ],
+  "act": "kettama",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:yuma:1915:prospa",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Yuma",
+  "start": "19:15",
+  "end": "20:30",
+  "printed": "Prospa",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "prospa",
+    "role": "performer"
+   }
+  ],
+  "act": "prospa",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:yuma:2030:max-dean-x-luke-dean",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Yuma",
+  "start": "20:30",
+  "end": "21:45",
+  "printed": "Max Dean x Luke Dean",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "max-dean-x-luke-dean",
+    "role": "collab"
+   }
+  ],
+  "act": "max-dean-x-luke-dean",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:yuma:2145:max-styler",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Yuma",
+  "start": "21:45",
+  "end": "23:15",
+  "printed": "Max Styler",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "max-styler",
+    "role": "performer"
+   }
+  ],
+  "act": "max-styler",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:yuma:2315:gordo",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Yuma",
+  "start": "23:15",
+  "end": "00:55",
+  "printed": "Gordo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gordo",
+    "role": "performer"
+   }
+  ],
+  "act": "gordo",
+  "closing": true,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:quasar:1700:tiga",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Quasar",
+  "start": "17:00",
+  "end": "19:00",
+  "printed": "Tiga",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tiga",
+    "role": "performer"
+   }
+  ],
+  "act": "tiga",
+  "closing": false,
+  "stageLineage": "coachella:quasar",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:quasar:1900:deep-dish",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Quasar",
+  "start": "19:00",
+  "end": "21:00",
+  "printed": "Deep Dish",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "deep-dish",
+    "role": "performer"
+   }
+  ],
+  "act": "deep-dish",
+  "closing": false,
+  "stageLineage": "coachella:quasar",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d1:quasar:2100:pawsa",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-10",
+  "day": 1,
+  "stage": "Quasar",
+  "start": "21:00",
+  "end": "23:00",
+  "printed": "PAWSA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pawsa",
+    "role": "performer"
+   }
+  ],
+  "act": "pawsa",
+  "closing": true,
+  "stageLineage": "coachella:quasar",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:coachella:1615:jaqck-glam",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Coachella",
+  "start": "16:15",
+  "end": "17:20",
+  "printed": "Jaqck Glam",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jaqck-glam",
+    "role": "performer"
+   }
+  ],
+  "act": "jaqck-glam",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:coachella:1730:addison-rae",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Coachella",
+  "start": "17:30",
+  "end": "18:20",
+  "printed": "Addison Rae",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "addison-rae",
+    "role": "performer"
+   }
+  ],
+  "act": "addison-rae",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:coachella:1900:giveon",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Coachella",
+  "start": "19:00",
+  "end": "19:50",
+  "printed": "GIVĒON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "giveon",
+    "role": "performer"
+   }
+  ],
+  "act": "giveon",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:coachella:2100:the-strokes",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Coachella",
+  "start": "21:00",
+  "end": "22:10",
+  "printed": "The Strokes",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-strokes",
+    "role": "performer"
+   }
+  ],
+  "act": "the-strokes",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:coachella:2325:justin-bieber",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Coachella",
+  "start": "23:25",
+  "end": null,
+  "printed": "Justin Bieber",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "justin-bieber",
+    "role": "performer"
+   }
+  ],
+  "act": "justin-bieber",
+  "closing": true,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:outdoor:1440:blondshell",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Outdoor",
+  "start": "14:40",
+  "end": "15:25",
+  "printed": "Blondshell",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "blondshell",
+    "role": "performer"
+   }
+  ],
+  "act": "blondshell",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:outdoor:1555:los-hermanos-flores",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Outdoor",
+  "start": "15:55",
+  "end": "16:45",
+  "printed": "Los Hermanos Flores",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "los-hermanos-flores",
+    "role": "performer"
+   }
+  ],
+  "act": "los-hermanos-flores",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:outdoor:1710:alex-g",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Outdoor",
+  "start": "17:10",
+  "end": "18:00",
+  "printed": "Alex G",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alex-g",
+    "role": "performer"
+   }
+  ],
+  "act": "alex-g",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:outdoor:1905:sombr",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Outdoor",
+  "start": "19:05",
+  "end": "19:55",
+  "printed": "SOMBR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sombr",
+    "role": "performer"
+   }
+  ],
+  "act": "sombr",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:outdoor:2030:labrinth",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Outdoor",
+  "start": "20:30",
+  "end": "21:25",
+  "printed": "Labrinth",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "labrinth",
+    "role": "performer"
+   }
+  ],
+  "act": "labrinth",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:outdoor:2220:david-byrne",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Outdoor",
+  "start": "22:20",
+  "end": "23:20",
+  "printed": "David Byrne",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "david-byrne",
+    "role": "performer"
+   }
+  ],
+  "act": "david-byrne",
+  "closing": true,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:sonora:1300:triste-juventud",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Sonora",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "Triste Juventud",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "triste-juventud",
+    "role": "performer"
+   }
+  ],
+  "act": "triste-juventud",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:sonora:1400:die-spitz",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Sonora",
+  "start": "14:00",
+  "end": "14:40",
+  "printed": "Die Spitz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "die-spitz",
+    "role": "performer"
+   }
+  ],
+  "act": "die-spitz",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:sonora:1510:freak-slug",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Sonora",
+  "start": "15:10",
+  "end": "15:50",
+  "printed": "Freak Slug",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "freak-slug",
+    "role": "performer"
+   }
+  ],
+  "act": "freak-slug",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:sonora:1620:ecca-vandal",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Sonora",
+  "start": "16:20",
+  "end": "17:00",
+  "printed": "Ecca Vandal",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ecca-vandal",
+    "role": "performer"
+   }
+  ],
+  "act": "ecca-vandal",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:sonora:1730:ceremony",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Sonora",
+  "start": "17:30",
+  "end": "18:10",
+  "printed": "Ceremony",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ceremony",
+    "role": "performer"
+   }
+  ],
+  "act": "ceremony",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:sonora:1840:rusowsky",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Sonora",
+  "start": "18:40",
+  "end": "19:20",
+  "printed": "rusowsky",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rusowsky",
+    "role": "performer"
+   }
+  ],
+  "act": "rusowsky",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:sonora:1950:54-ultra",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Sonora",
+  "start": "19:50",
+  "end": "20:30",
+  "printed": "54 Ultra",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "54-ultra",
+    "role": "performer"
+   }
+  ],
+  "act": "54-ultra",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:sonora:2145:mind-enterprises",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Sonora",
+  "start": "21:45",
+  "end": "22:35",
+  "printed": "Mind Enterprises",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mind-enterprises",
+    "role": "performer"
+   }
+  ],
+  "act": "mind-enterprises",
+  "closing": true,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:gobi:1405:noga-erez",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Gobi",
+  "start": "14:05",
+  "end": "14:50",
+  "printed": "Noga Erez",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "noga-erez",
+    "role": "performer"
+   }
+  ],
+  "act": "noga-erez",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:gobi:1605:whatmore",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Gobi",
+  "start": "16:05",
+  "end": "16:45",
+  "printed": "WHATMORE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "whatmore",
+    "role": "performer"
+   }
+  ],
+  "act": "whatmore",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:gobi:1710:luisa-sonza",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Gobi",
+  "start": "17:10",
+  "end": "17:50",
+  "printed": "Luísa Sonza",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "luisa-sonza",
+    "role": "performer"
+   }
+  ],
+  "act": "luisa-sonza",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:gobi:1815:geese",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Gobi",
+  "start": "18:15",
+  "end": "19:00",
+  "printed": "Geese",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "geese",
+    "role": "performer"
+   }
+  ],
+  "act": "geese",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:gobi:1950:davido",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Gobi",
+  "start": "19:50",
+  "end": "20:35",
+  "printed": "Davido",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "davido",
+    "role": "performer"
+   }
+  ],
+  "act": "davido",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:gobi:2100:bia",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Gobi",
+  "start": "21:00",
+  "end": "21:45",
+  "printed": "BIA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bia",
+    "role": "performer"
+   }
+  ],
+  "act": "bia",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:gobi:2210:morat",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Gobi",
+  "start": "22:10",
+  "end": "23:00",
+  "printed": "Morat",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "morat",
+    "role": "performer"
+   }
+  ],
+  "act": "morat",
+  "closing": true,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:mojave:1500:jack-white",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Mojave",
+  "start": "15:00",
+  "end": "15:45",
+  "printed": "Jack White",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jack-white",
+    "role": "performer"
+   }
+  ],
+  "act": "jack-white",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:mojave:1630:fujii-kaze",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Mojave",
+  "start": "16:30",
+  "end": "17:20",
+  "printed": "Fujii Kaze",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fujii-kaze",
+    "role": "performer"
+   }
+  ],
+  "act": "fujii-kaze",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:mojave:1750:royel-otis",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Mojave",
+  "start": "17:50",
+  "end": "18:35",
+  "printed": "Royel Otis",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "royel-otis",
+    "role": "performer"
+   }
+  ],
+  "act": "royel-otis",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:mojave:1930:taemin",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Mojave",
+  "start": "19:30",
+  "end": "20:20",
+  "printed": "Taemin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "taemin",
+    "role": "performer"
+   }
+  ],
+  "act": "taemin",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:mojave:2055:pinkpantheress",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Mojave",
+  "start": "20:55",
+  "end": "21:45",
+  "printed": "PinkPantheress",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pinkpantheress",
+    "role": "performer"
+   }
+  ],
+  "act": "pinkpantheress",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:mojave:2215:interpol",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Mojave",
+  "start": "22:15",
+  "end": "23:15",
+  "printed": "Interpol",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "interpol",
+    "role": "performer"
+   }
+  ],
+  "act": "interpol",
+  "closing": true,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:sahara:1400:seek-one",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Sahara",
+  "start": "14:00",
+  "end": "14:45",
+  "printed": "Seek-One",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "seek-one",
+    "role": "performer"
+   }
+  ],
+  "act": "seek-one",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:sahara:1450:teed",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Sahara",
+  "start": "14:50",
+  "end": "15:50",
+  "printed": "TEED",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "teed",
+    "role": "performer"
+   }
+  ],
+  "act": "teed",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:sahara:1600:zulan",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Sahara",
+  "start": "16:00",
+  "end": "16:50",
+  "printed": "ZULAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zulan",
+    "role": "performer"
+   }
+  ],
+  "act": "zulan",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:sahara:1700:hamdi",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Sahara",
+  "start": "17:00",
+  "end": "17:55",
+  "printed": "Hamdi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hamdi",
+    "role": "performer"
+   }
+  ],
+  "act": "hamdi",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:sahara:1815:u-uk-uk1mat-u",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Sahara",
+  "start": "18:15",
+  "end": "19:10",
+  "printed": "¥ØU$UK€ ¥UK1MAT$U",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "you-uk-yuk1mat-u",
+    "role": "performer"
+   }
+  ],
+  "act": "you-uk-yuk1mat-u",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:sahara:2000:nine-inch-noize",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Sahara",
+  "start": "20:00",
+  "end": "20:45",
+  "printed": "Nine Inch Noize",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nine-inch-noize",
+    "role": "performer"
+   }
+  ],
+  "act": "nine-inch-noize",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:sahara:2110:rezz",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Sahara",
+  "start": "21:10",
+  "end": "22:05",
+  "printed": "REZZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rezz",
+    "role": "performer"
+   }
+  ],
+  "act": "rezz",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:sahara:2230:adriatique",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Sahara",
+  "start": "22:30",
+  "end": "23:25",
+  "printed": "Adriatique",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "adriatique",
+    "role": "performer"
+   }
+  ],
+  "act": "adriatique",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:sahara:2355:worship",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Sahara",
+  "start": "23:55",
+  "end": "00:55",
+  "printed": "Worship",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "worship",
+    "role": "performer"
+   }
+  ],
+  "act": "worship",
+  "closing": true,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:yuma:1300:yamagucci",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Yuma",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "Yamagucci",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yamagucci",
+    "role": "performer"
+   }
+  ],
+  "act": "yamagucci",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:yuma:1400:genesi",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Yuma",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "GENESI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "genesi",
+    "role": "performer"
+   }
+  ],
+  "act": "genesi",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:yuma:1500:riordan",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Yuma",
+  "start": "15:00",
+  "end": "16:15",
+  "printed": "Riordan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "riordan",
+    "role": "performer"
+   }
+  ],
+  "act": "riordan",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:yuma:1615:mahmut-orhan",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Yuma",
+  "start": "16:15",
+  "end": "17:30",
+  "printed": "Mahmut Orhan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mahmut-orhan",
+    "role": "performer"
+   }
+  ],
+  "act": "mahmut-orhan",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:yuma:1730:ben-sterling",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Yuma",
+  "start": "17:30",
+  "end": "18:45",
+  "printed": "Ben Sterling",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ben-sterling",
+    "role": "performer"
+   }
+  ],
+  "act": "ben-sterling",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:yuma:1845:sosa",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Yuma",
+  "start": "18:45",
+  "end": "20:15",
+  "printed": "SOSA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sosa",
+    "role": "performer"
+   }
+  ],
+  "act": "sosa",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:yuma:2015:bedouin",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Yuma",
+  "start": "20:15",
+  "end": "21:45",
+  "printed": "Bedouin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bedouin",
+    "role": "performer"
+   }
+  ],
+  "act": "bedouin",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:yuma:2145:boys-noize",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Yuma",
+  "start": "21:45",
+  "end": "23:00",
+  "printed": "Boys Noize",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "boys-noize",
+    "role": "performer"
+   }
+  ],
+  "act": "boys-noize",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:yuma:2300:armin-van-buuren-x-adam-beyer",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Yuma",
+  "start": "23:00",
+  "end": "00:55",
+  "printed": "Armin van Buuren x Adam Beyer",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "armin-van-buuren-x-adam-beyer",
+    "role": "collab"
+   }
+  ],
+  "act": "armin-van-buuren-x-adam-beyer",
+  "closing": true,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:quasar:1700:joezi",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Quasar",
+  "start": "17:00",
+  "end": "19:00",
+  "printed": "Joezi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "joezi",
+    "role": "performer"
+   }
+  ],
+  "act": "joezi",
+  "closing": false,
+  "stageLineage": "coachella:quasar",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d2:quasar:1900:afrojack-x-shimza",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Quasar",
+  "start": "19:00",
+  "end": "21:00",
+  "printed": "Afrojack x Shimza",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "afrojack-x-shimza",
+    "role": "act"
+   }
+  ],
+  "act": "afrojack-x-shimza",
+  "closing": false,
+  "stageLineage": "coachella:quasar",
+  "mainStage": null,
+  "review": "\"x\" billing whose sides are not both known acts"
+ },
+ {
+  "id": "coachella-2026:d2:quasar:2100:david-guetta",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-11",
+  "day": 2,
+  "stage": "Quasar",
+  "start": "21:00",
+  "end": "23:00",
+  "printed": "David Guetta",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "david-guetta",
+    "role": "performer"
+   }
+  ],
+  "act": "david-guetta",
+  "closing": true,
+  "stageLineage": "coachella:quasar",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:coachella:1445:gabe-real",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Coachella",
+  "start": "14:45",
+  "end": "15:30",
+  "printed": "Gabe Real",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gabe-real",
+    "role": "performer"
+   }
+  ],
+  "act": "gabe-real",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:coachella:1540:tijuana-panthers",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Coachella",
+  "start": "15:40",
+  "end": "16:15",
+  "printed": "Tijuana Panthers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tijuana-panthers",
+    "role": "performer"
+   }
+  ],
+  "act": "tijuana-panthers",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:coachella:1645:wet-leg",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Coachella",
+  "start": "16:45",
+  "end": "17:30",
+  "printed": "Wet Leg",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wet-leg",
+    "role": "performer"
+   }
+  ],
+  "act": "wet-leg",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:coachella:1810:major-lazer",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Coachella",
+  "start": "18:10",
+  "end": "19:10",
+  "printed": "Major Lazer",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "major-lazer",
+    "role": "performer"
+   }
+  ],
+  "act": "major-lazer",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:coachella:1950:young-thug",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Coachella",
+  "start": "19:50",
+  "end": "20:40",
+  "printed": "Young Thug",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "young-thug",
+    "role": "performer"
+   }
+  ],
+  "act": "young-thug",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:coachella:2155:karol-g",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Coachella",
+  "start": "21:55",
+  "end": null,
+  "printed": "KAROL G",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "karol-g",
+    "role": "performer"
+   }
+  ],
+  "act": "karol-g",
+  "closing": true,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:outdoor:1500:juicewon",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Outdoor",
+  "start": "15:00",
+  "end": "15:50",
+  "printed": "Juicewon",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "juicewon",
+    "role": "performer"
+   }
+  ],
+  "act": "juicewon",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:outdoor:1600:gigi-perez",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Outdoor",
+  "start": "16:00",
+  "end": "16:45",
+  "printed": "Gigi Perez",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gigi-perez",
+    "role": "performer"
+   }
+  ],
+  "act": "gigi-perez",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:outdoor:1715:clipse",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Outdoor",
+  "start": "17:15",
+  "end": "18:10",
+  "printed": "CLIPSE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "clipse",
+    "role": "performer"
+   }
+  ],
+  "act": "clipse",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:outdoor:1845:foster-the-people",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Outdoor",
+  "start": "18:45",
+  "end": "19:40",
+  "printed": "Foster the People",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "foster-the-people",
+    "role": "performer"
+   }
+  ],
+  "act": "foster-the-people",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:outdoor:2040:laufey",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Outdoor",
+  "start": "20:40",
+  "end": "21:40",
+  "printed": "Laufey",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "laufey",
+    "role": "performer"
+   }
+  ],
+  "act": "laufey",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:outdoor:2230:bigbang",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Outdoor",
+  "start": "22:30",
+  "end": "23:30",
+  "printed": "BIGBANG",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bigbang",
+    "role": "performer"
+   }
+  ],
+  "act": "bigbang",
+  "closing": true,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:sonora:1300:panda-and-chok",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Sonora",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "Panda & Chok",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "panda-and-chok",
+    "role": "performer"
+   }
+  ],
+  "act": "panda-and-chok",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:sonora:1400:glitterer",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Sonora",
+  "start": "14:00",
+  "end": "14:40",
+  "printed": "Glitterer",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "glitterer",
+    "role": "performer"
+   }
+  ],
+  "act": "glitterer",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:sonora:1510:model-actriz",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Sonora",
+  "start": "15:10",
+  "end": "15:50",
+  "printed": "Model/Actriz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "model-actriz",
+    "role": "performer"
+   }
+  ],
+  "act": "model-actriz",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:sonora:1620:jane-remover",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Sonora",
+  "start": "16:20",
+  "end": "17:00",
+  "printed": "Jane Remover",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jane-remover",
+    "role": "performer"
+   }
+  ],
+  "act": "jane-remover",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:sonora:1730:los-retros",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Sonora",
+  "start": "17:30",
+  "end": "18:10",
+  "printed": "Los Retros",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "los-retros",
+    "role": "performer"
+   }
+  ],
+  "act": "los-retros",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:sonora:1840:r-z",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Sonora",
+  "start": "18:40",
+  "end": "19:30",
+  "printed": "RØZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "roz",
+    "role": "performer"
+   }
+  ],
+  "act": "roz",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:sonora:2000:drain",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Sonora",
+  "start": "20:00",
+  "end": "20:40",
+  "printed": "DRAIN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "drain",
+    "role": "performer"
+   }
+  ],
+  "act": "drain",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:sonora:2110:french-police",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Sonora",
+  "start": "21:10",
+  "end": "22:00",
+  "printed": "French Police",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "french-police",
+    "role": "performer"
+   }
+  ],
+  "act": "french-police",
+  "closing": true,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:gobi:1405:flowerovlove",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Gobi",
+  "start": "14:05",
+  "end": "14:35",
+  "printed": "flowerovlove",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "flowerovlove",
+    "role": "performer"
+   }
+  ],
+  "act": "flowerovlove",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:gobi:1500:the-chats",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Gobi",
+  "start": "15:00",
+  "end": "15:40",
+  "printed": "The Chats",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-chats",
+    "role": "performer"
+   }
+  ],
+  "act": "the-chats",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:gobi:1605:cobrah",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Gobi",
+  "start": "16:05",
+  "end": "16:50",
+  "printed": "COBRAH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cobrah",
+    "role": "performer"
+   }
+  ],
+  "act": "cobrah",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:gobi:1715:oklou",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Gobi",
+  "start": "17:15",
+  "end": "18:00",
+  "printed": "Oklou",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "oklou",
+    "role": "performer"
+   }
+  ],
+  "act": "oklou",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:gobi:1830:black-flag",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Gobi",
+  "start": "18:30",
+  "end": "19:05",
+  "printed": "Black Flag",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "black-flag",
+    "role": "performer"
+   }
+  ],
+  "act": "black-flag",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:gobi:1945:tomora",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Gobi",
+  "start": "19:45",
+  "end": "20:35",
+  "printed": "TOMORA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tomora",
+    "role": "performer"
+   }
+  ],
+  "act": "tomora",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:gobi:2105:the-rapture",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Gobi",
+  "start": "21:05",
+  "end": "21:55",
+  "printed": "The Rapture",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-rapture",
+    "role": "performer"
+   }
+  ],
+  "act": "the-rapture",
+  "closing": true,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:mojave:1430:wyldeflower",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Mojave",
+  "start": "14:30",
+  "end": "15:10",
+  "printed": "wyldeflower",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wyldeflower",
+    "role": "performer"
+   }
+  ],
+  "act": "wyldeflower",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:mojave:1515:samia",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Mojave",
+  "start": "15:15",
+  "end": "15:55",
+  "printed": "Samia",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "samia",
+    "role": "performer"
+   }
+  ],
+  "act": "samia",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:mojave:1625:little-simz",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Mojave",
+  "start": "16:25",
+  "end": "17:10",
+  "printed": "Little Simz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "little-simz",
+    "role": "performer"
+   }
+  ],
+  "act": "little-simz",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:mojave:1735:suicidal-tendencies",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Mojave",
+  "start": "17:35",
+  "end": "18:25",
+  "printed": "Suicidal Tendencies",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "suicidal-tendencies",
+    "role": "performer"
+   }
+  ],
+  "act": "suicidal-tendencies",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:mojave:1910:iggy-pop",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Mojave",
+  "start": "19:10",
+  "end": "20:10",
+  "printed": "Iggy Pop",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "iggy-pop",
+    "role": "performer"
+   }
+  ],
+  "act": "iggy-pop",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:mojave:2045:fka-twigs",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Mojave",
+  "start": "20:45",
+  "end": "22:00",
+  "printed": "FKA twigs",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fka-twigs",
+    "role": "performer"
+   }
+  ],
+  "act": "fka-twigs",
+  "closing": true,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:sahara:1430:loboman",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Sahara",
+  "start": "14:30",
+  "end": "15:30",
+  "printed": "LOBOMAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "loboman",
+    "role": "performer"
+   }
+  ],
+  "act": "loboman",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:sahara:1535:girl-math-vnssa-x-nala",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Sahara",
+  "start": "15:35",
+  "end": "16:35",
+  "printed": "Girl Math (VNSSA x NALA)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "girl-math-vnssa-x-nala",
+    "role": "act"
+   }
+  ],
+  "act": "girl-math-vnssa-x-nala",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null,
+  "review": "parenthetical names people"
+ },
+ {
+  "id": "coachella-2026:d3:sahara:1645:bunt",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Sahara",
+  "start": "16:45",
+  "end": "17:45",
+  "printed": "BUNT.",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bunt",
+    "role": "performer"
+   }
+  ],
+  "act": "bunt",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:sahara:1810:duke-dumont",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Sahara",
+  "start": "18:10",
+  "end": "19:10",
+  "printed": "Duke Dumont",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "duke-dumont",
+    "role": "performer"
+   }
+  ],
+  "act": "duke-dumont",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:sahara:1925:mochakk",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Sahara",
+  "start": "19:25",
+  "end": "20:25",
+  "printed": "Mochakk",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mochakk",
+    "role": "performer"
+   }
+  ],
+  "act": "mochakk",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:sahara:2105:subtronics",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Sahara",
+  "start": "21:05",
+  "end": "22:05",
+  "printed": "Subtronics",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "subtronics",
+    "role": "performer"
+   }
+  ],
+  "act": "subtronics",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:sahara:2245:kaskade",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Sahara",
+  "start": "22:45",
+  "end": "23:55",
+  "printed": "Kaskade",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kaskade",
+    "role": "performer"
+   }
+  ],
+  "act": "kaskade",
+  "closing": true,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:yuma:1300:le-yora",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Yuma",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "LE YORA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "le-yora",
+    "role": "performer"
+   }
+  ],
+  "act": "le-yora",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:yuma:1400:azzecca",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Yuma",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "AZZECCA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "azzecca",
+    "role": "performer"
+   }
+  ],
+  "act": "azzecca",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:yuma:1500:and-friends",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Yuma",
+  "start": "15:00",
+  "end": "16:15",
+  "printed": "&friends",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "and-friends",
+    "role": "performer"
+   }
+  ],
+  "act": "and-friends",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:yuma:1615:mestiza",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Yuma",
+  "start": "16:15",
+  "end": "17:30",
+  "printed": "MËSTIZA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mestiza",
+    "role": "performer"
+   }
+  ],
+  "act": "mestiza",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:yuma:1730:carlita-x-josh-baker",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Yuma",
+  "start": "17:30",
+  "end": "19:00",
+  "printed": "Carlita x Josh Baker",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carlita-x-josh-baker",
+    "role": "collab"
+   }
+  ],
+  "act": "carlita-x-josh-baker",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:yuma:1900:royksopp",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Yuma",
+  "start": "19:00",
+  "end": "20:30",
+  "printed": "Röyksopp",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "royksopp",
+    "role": "performer"
+   }
+  ],
+  "act": "royksopp",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:yuma:2030:whomadewho",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Yuma",
+  "start": "20:30",
+  "end": "22:00",
+  "printed": "WhoMadeWho",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "whomadewho",
+    "role": "performer"
+   }
+  ],
+  "act": "whomadewho",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:yuma:2200:green-velvet-x-ayybo",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Yuma",
+  "start": "22:00",
+  "end": "23:55",
+  "printed": "Green Velvet x AYYBO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "green-velvet-x-ayybo",
+    "role": "collab"
+   }
+  ],
+  "act": "green-velvet-x-ayybo",
+  "closing": true,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:quasar:1600:jazzy",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Quasar",
+  "start": "16:00",
+  "end": "18:00",
+  "printed": "Jazzy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jazzy",
+    "role": "performer"
+   }
+  ],
+  "act": "jazzy",
+  "closing": false,
+  "stageLineage": "coachella:quasar",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d3:quasar:1800:joy-anonymous",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Quasar",
+  "start": "18:00",
+  "end": "20:00",
+  "printed": "JOY (Anonymous)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "joy-anonymous",
+    "role": "act"
+   }
+  ],
+  "act": "joy-anonymous",
+  "closing": false,
+  "stageLineage": "coachella:quasar",
+  "mainStage": null,
+  "review": "parenthetical is not a known set tag"
+ },
+ {
+  "id": "coachella-2026:d3:quasar:2000:fatboy-slim",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-12",
+  "day": 3,
+  "stage": "Quasar",
+  "start": "20:00",
+  "end": "22:00",
+  "printed": "Fatboy Slim",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fatboy-slim",
+    "role": "performer"
+   }
+  ],
+  "act": "fatboy-slim",
+  "closing": true,
+  "stageLineage": "coachella:quasar",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:coachella:1610:jaqck-glam",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Coachella",
+  "start": "16:10",
+  "end": "17:10",
+  "printed": "Jaqck Glam",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jaqck-glam",
+    "role": "performer"
+   }
+  ],
+  "act": "jaqck-glam",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:coachella:1720:teddy-swims",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Coachella",
+  "start": "17:20",
+  "end": "18:10",
+  "printed": "Teddy Swims",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "teddy-swims",
+    "role": "performer"
+   }
+  ],
+  "act": "teddy-swims",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:coachella:1900:the-xx",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Coachella",
+  "start": "19:00",
+  "end": "19:55",
+  "printed": "The xx",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-xx",
+    "role": "performer"
+   }
+  ],
+  "act": "the-xx",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:coachella:2100:sabrina-carpenter",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Coachella",
+  "start": "21:00",
+  "end": "22:40",
+  "printed": "Sabrina Carpenter",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sabrina-carpenter",
+    "role": "performer"
+   }
+  ],
+  "act": "sabrina-carpenter",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:coachella:0000:anyma",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Coachella",
+  "start": "00:00",
+  "end": null,
+  "printed": "Anyma",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "anyma",
+    "role": "performer"
+   }
+  ],
+  "act": "anyma",
+  "closing": true,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:outdoor:1450:jeremiah-red",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Outdoor",
+  "start": "14:50",
+  "end": "15:50",
+  "printed": "Jeremiah Red",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jeremiah-red",
+    "role": "performer"
+   }
+  ],
+  "act": "jeremiah-red",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:outdoor:1600:dabeull",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Outdoor",
+  "start": "16:00",
+  "end": "16:50",
+  "printed": "Dabeull",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dabeull",
+    "role": "performer"
+   }
+  ],
+  "act": "dabeull",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:outdoor:1720:lykke-li",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Outdoor",
+  "start": "17:20",
+  "end": "18:10",
+  "printed": "Lykke Li",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lykke-li",
+    "role": "performer"
+   }
+  ],
+  "act": "lykke-li",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:outdoor:1840:dijon",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Outdoor",
+  "start": "18:40",
+  "end": "19:30",
+  "printed": "Dijon",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dijon",
+    "role": "performer"
+   }
+  ],
+  "act": "dijon",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:outdoor:2005:turnstile",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Outdoor",
+  "start": "20:05",
+  "end": "21:00",
+  "printed": "Turnstile",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "turnstile",
+    "role": "performer"
+   }
+  ],
+  "act": "turnstile",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:outdoor:2240:disclosure",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Outdoor",
+  "start": "22:40",
+  "end": "23:55",
+  "printed": "Disclosure",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "disclosure",
+    "role": "performer"
+   }
+  ],
+  "act": "disclosure",
+  "closing": true,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:sonora:1300:jim-smith",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Sonora",
+  "start": "13:00",
+  "end": "13:40",
+  "printed": "Jim Smith",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jim-smith",
+    "role": "performer"
+   }
+  ],
+  "act": "jim-smith",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:sonora:1340:febuary",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Sonora",
+  "start": "13:40",
+  "end": "14:10",
+  "printed": "Febuary",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "febuary",
+    "role": "performer"
+   }
+  ],
+  "act": "febuary",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:sonora:1435:carolina-durante",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Sonora",
+  "start": "14:35",
+  "end": "15:15",
+  "printed": "Carolina Durante",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carolina-durante",
+    "role": "performer"
+   }
+  ],
+  "act": "carolina-durante",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:sonora:1540:wednesday",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Sonora",
+  "start": "15:40",
+  "end": "16:20",
+  "printed": "Wednesday",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wednesday",
+    "role": "performer"
+   }
+  ],
+  "act": "wednesday",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:sonora:1650:fleshwater",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Sonora",
+  "start": "16:50",
+  "end": "17:30",
+  "printed": "Fleshwater",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fleshwater",
+    "role": "performer"
+   }
+  ],
+  "act": "fleshwater",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:sonora:1800:the-two-lips",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Sonora",
+  "start": "18:00",
+  "end": "18:40",
+  "printed": "The Two Lips",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-two-lips",
+    "role": "performer"
+   }
+  ],
+  "act": "the-two-lips",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:sonora:1910:ninajirachi",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Sonora",
+  "start": "19:10",
+  "end": "20:00",
+  "printed": "Ninajirachi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ninajirachi",
+    "role": "performer"
+   }
+  ],
+  "act": "ninajirachi",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:sonora:2025:cachirula-and-loojan",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Sonora",
+  "start": "20:25",
+  "end": "21:05",
+  "printed": "Cachirula & Loojan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cachirula-and-loojan",
+    "role": "performer"
+   }
+  ],
+  "act": "cachirula-and-loojan",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:sonora:2210:hot-mulligan",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Sonora",
+  "start": "22:10",
+  "end": "22:55",
+  "printed": "Hot Mulligan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hot-mulligan",
+    "role": "performer"
+   }
+  ],
+  "act": "hot-mulligan",
+  "closing": true,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:gobi:1415:cahuilla-bird-singers-and-dancers",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Gobi",
+  "start": "14:15",
+  "end": "14:45",
+  "printed": "Cahuilla Bird Singers and Dancers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cahuilla-bird-singers-and-dancers",
+    "role": "performer"
+   }
+  ],
+  "act": "cahuilla-bird-singers-and-dancers",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:gobi:1455:bob-baker-marionettes",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Gobi",
+  "start": "14:55",
+  "end": "15:35",
+  "printed": "Bob Baker Marionettes",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bob-baker-marionettes",
+    "role": "performer"
+   }
+  ],
+  "act": "bob-baker-marionettes",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:gobi:1600:newdad",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Gobi",
+  "start": "16:00",
+  "end": "16:40",
+  "printed": "NewDad",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "newdad",
+    "role": "performer"
+   }
+  ],
+  "act": "newdad",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:gobi:1710:joyce-manor",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Gobi",
+  "start": "17:10",
+  "end": "17:50",
+  "printed": "Joyce Manor",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "joyce-manor",
+    "role": "performer"
+   }
+  ],
+  "act": "joyce-manor",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:gobi:1815:cmat",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Gobi",
+  "start": "18:15",
+  "end": "18:55",
+  "printed": "CMAT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cmat",
+    "role": "performer"
+   }
+  ],
+  "act": "cmat",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:gobi:1920:fakemink",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Gobi",
+  "start": "19:20",
+  "end": "20:00",
+  "printed": "fakemink",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fakemink",
+    "role": "performer"
+   }
+  ],
+  "act": "fakemink",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:gobi:2025:holly-humberstone",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Gobi",
+  "start": "20:25",
+  "end": "21:10",
+  "printed": "Holly Humberstone",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "holly-humberstone",
+    "role": "performer"
+   }
+  ],
+  "act": "holly-humberstone",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:gobi:2150:joost",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Gobi",
+  "start": "21:50",
+  "end": "22:35",
+  "printed": "Joost",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "joost",
+    "role": "performer"
+   }
+  ],
+  "act": "joost",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:gobi:2305:creepy-nuts",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Gobi",
+  "start": "23:05",
+  "end": "23:55",
+  "printed": "Creepy Nuts",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "creepy-nuts",
+    "role": "performer"
+   }
+  ],
+  "act": "creepy-nuts",
+  "closing": true,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:mojave:1400:el-ethos",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Mojave",
+  "start": "14:00",
+  "end": "14:50",
+  "printed": "El Ethos",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "el-ethos",
+    "role": "performer"
+   }
+  ],
+  "act": "el-ethos",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:mojave:1500:slayyyter",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Mojave",
+  "start": "15:00",
+  "end": "15:45",
+  "printed": "Slayyyter",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "slayyyter",
+    "role": "performer"
+   }
+  ],
+  "act": "slayyyter",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:mojave:1615:bini",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Mojave",
+  "start": "16:15",
+  "end": "17:00",
+  "printed": "BINI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bini",
+    "role": "performer"
+   }
+  ],
+  "act": "bini",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:mojave:1730:central-cee",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Mojave",
+  "start": "17:30",
+  "end": "18:15",
+  "printed": "Central Cee",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "central-cee",
+    "role": "performer"
+   }
+  ],
+  "act": "central-cee",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:mojave:1845:devo",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Mojave",
+  "start": "18:45",
+  "end": "19:40",
+  "printed": "Devo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "devo",
+    "role": "performer"
+   }
+  ],
+  "act": "devo",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:mojave:2010:moby",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Mojave",
+  "start": "20:10",
+  "end": "21:00",
+  "printed": "Moby",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "moby",
+    "role": "performer"
+   }
+  ],
+  "act": "moby",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:mojave:2245:ethel-cain",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Mojave",
+  "start": "22:45",
+  "end": "23:35",
+  "printed": "Ethel Cain",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ethel-cain",
+    "role": "performer"
+   }
+  ],
+  "act": "ethel-cain",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:mojave:0000:blood-orange",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Mojave",
+  "start": "00:00",
+  "end": "00:55",
+  "printed": "Blood Orange",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "blood-orange",
+    "role": "performer"
+   }
+  ],
+  "act": "blood-orange",
+  "closing": true,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:sahara:1430:bad-gal-gali",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Sahara",
+  "start": "14:30",
+  "end": "15:35",
+  "printed": "Bad Gal Gali",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bad-gal-gali",
+    "role": "performer"
+   }
+  ],
+  "act": "bad-gal-gali",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:sahara:1545:youna",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Sahara",
+  "start": "15:45",
+  "end": "16:35",
+  "printed": "Youna",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "youna",
+    "role": "performer"
+   }
+  ],
+  "act": "youna",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:sahara:1650:hugel",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Sahara",
+  "start": "16:50",
+  "end": "17:50",
+  "printed": "HUGEL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hugel",
+    "role": "performer"
+   }
+  ],
+  "act": "hugel",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:sahara:1815:marlon-hoffstadt",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Sahara",
+  "start": "18:15",
+  "end": "19:15",
+  "printed": "Marlon Hoffstadt",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marlon-hoffstadt",
+    "role": "performer"
+   }
+  ],
+  "act": "marlon-hoffstadt",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:sahara:2000:katseye",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Sahara",
+  "start": "20:00",
+  "end": "20:45",
+  "printed": "KATSEYE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "katseye",
+    "role": "performer"
+   }
+  ],
+  "act": "katseye",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:sahara:2115:levity",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Sahara",
+  "start": "21:15",
+  "end": "22:20",
+  "printed": "Levity",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "levity",
+    "role": "performer"
+   }
+  ],
+  "act": "levity",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:sahara:2250:swae-lee",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Sahara",
+  "start": "22:50",
+  "end": "23:40",
+  "printed": "Swae Lee",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "swae-lee",
+    "role": "performer"
+   }
+  ],
+  "act": "swae-lee",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:sahara:0005:sexyy-red",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Sahara",
+  "start": "00:05",
+  "end": "00:55",
+  "printed": "Sexyy Red",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sexyy-red",
+    "role": "performer"
+   }
+  ],
+  "act": "sexyy-red",
+  "closing": true,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:yuma:1300:sahar-z",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Yuma",
+  "start": "13:00",
+  "end": "13:45",
+  "printed": "Sahar Z",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sahar-z",
+    "role": "performer"
+   }
+  ],
+  "act": "sahar-z",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:yuma:1345:jessica-brankka",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Yuma",
+  "start": "13:45",
+  "end": "14:45",
+  "printed": "Jessica Brankka",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jessica-brankka",
+    "role": "performer"
+   }
+  ],
+  "act": "jessica-brankka",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:yuma:1445:arodes",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Yuma",
+  "start": "14:45",
+  "end": "15:45",
+  "printed": "Arodes",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "arodes",
+    "role": "performer"
+   }
+  ],
+  "act": "arodes",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:yuma:1545:groove-armada",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Yuma",
+  "start": "15:45",
+  "end": "17:00",
+  "printed": "Groove Armada",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "groove-armada",
+    "role": "performer"
+   }
+  ],
+  "act": "groove-armada",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:yuma:1700:rossi-x-chloe-caillet",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Yuma",
+  "start": "17:00",
+  "end": "18:15",
+  "printed": "Rossi. x Chloé Caillet",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rossi-x-chloe-caillet",
+    "role": "collab"
+   }
+  ],
+  "act": "rossi-x-chloe-caillet",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:yuma:1815:kettama",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Yuma",
+  "start": "18:15",
+  "end": "19:30",
+  "printed": "Kettama",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kettama",
+    "role": "performer"
+   }
+  ],
+  "act": "kettama",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:yuma:1930:prospa",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Yuma",
+  "start": "19:30",
+  "end": "20:45",
+  "printed": "Prospa",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "prospa",
+    "role": "performer"
+   }
+  ],
+  "act": "prospa",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:yuma:2045:max-dean-x-luke-dean",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Yuma",
+  "start": "20:45",
+  "end": "22:00",
+  "printed": "Max Dean x Luke Dean",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "max-dean-x-luke-dean",
+    "role": "collab"
+   }
+  ],
+  "act": "max-dean-x-luke-dean",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:yuma:2200:max-styler",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Yuma",
+  "start": "22:00",
+  "end": "23:15",
+  "printed": "Max Styler",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "max-styler",
+    "role": "performer"
+   }
+  ],
+  "act": "max-styler",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:yuma:2315:gordo",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Yuma",
+  "start": "23:15",
+  "end": "00:55",
+  "printed": "Gordo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gordo",
+    "role": "performer"
+   }
+  ],
+  "act": "gordo",
+  "closing": true,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:quasar:1700:darco",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Quasar",
+  "start": "17:00",
+  "end": "19:00",
+  "printed": "Darco",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "darco",
+    "role": "performer"
+   }
+  ],
+  "act": "darco",
+  "closing": false,
+  "stageLineage": "coachella:quasar",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:quasar:1900:franky-rizardo",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Quasar",
+  "start": "19:00",
+  "end": "21:00",
+  "printed": "Franky Rizardo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "franky-rizardo",
+    "role": "performer"
+   }
+  ],
+  "act": "franky-rizardo",
+  "closing": false,
+  "stageLineage": "coachella:quasar",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d4:quasar:2100:armin-van-buuren-x-adam-beyer",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-17",
+  "day": 4,
+  "stage": "Quasar",
+  "start": "21:00",
+  "end": "23:00",
+  "printed": "Armin van Buuren x Adam Beyer",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "armin-van-buuren-x-adam-beyer",
+    "role": "collab"
+   }
+  ],
+  "act": "armin-van-buuren-x-adam-beyer",
+  "closing": true,
+  "stageLineage": "coachella:quasar",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:coachella:1610:record-safari",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Coachella",
+  "start": "16:10",
+  "end": "17:15",
+  "printed": "Record Safari",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "record-safari",
+    "role": "performer"
+   }
+  ],
+  "act": "record-safari",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:coachella:1725:addison-rae",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Coachella",
+  "start": "17:25",
+  "end": "18:20",
+  "printed": "Addison Rae",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "addison-rae",
+    "role": "performer"
+   }
+  ],
+  "act": "addison-rae",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:coachella:1900:giveon",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Coachella",
+  "start": "19:00",
+  "end": "19:50",
+  "printed": "GIVĒON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "giveon",
+    "role": "performer"
+   }
+  ],
+  "act": "giveon",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:coachella:2100:the-strokes",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Coachella",
+  "start": "21:00",
+  "end": "22:10",
+  "printed": "The Strokes",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-strokes",
+    "role": "performer"
+   }
+  ],
+  "act": "the-strokes",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:coachella:2325:justin-bieber",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Coachella",
+  "start": "23:25",
+  "end": null,
+  "printed": "Justin Bieber",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "justin-bieber",
+    "role": "performer"
+   }
+  ],
+  "act": "justin-bieber",
+  "closing": true,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:outdoor:1440:blondshell",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Outdoor",
+  "start": "14:40",
+  "end": "15:25",
+  "printed": "Blondshell",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "blondshell",
+    "role": "performer"
+   }
+  ],
+  "act": "blondshell",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:outdoor:1555:los-hermanos-flores",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Outdoor",
+  "start": "15:55",
+  "end": "16:45",
+  "printed": "Los Hermanos Flores",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "los-hermanos-flores",
+    "role": "performer"
+   }
+  ],
+  "act": "los-hermanos-flores",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:outdoor:1710:alex-g",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Outdoor",
+  "start": "17:10",
+  "end": "18:00",
+  "printed": "Alex G",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alex-g",
+    "role": "performer"
+   }
+  ],
+  "act": "alex-g",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:outdoor:1905:sombr",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Outdoor",
+  "start": "19:05",
+  "end": "19:55",
+  "printed": "SOMBR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sombr",
+    "role": "performer"
+   }
+  ],
+  "act": "sombr",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:outdoor:2030:labrinth",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Outdoor",
+  "start": "20:30",
+  "end": "21:25",
+  "printed": "Labrinth",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "labrinth",
+    "role": "performer"
+   }
+  ],
+  "act": "labrinth",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:outdoor:2225:david-byrne",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Outdoor",
+  "start": "22:25",
+  "end": "23:25",
+  "printed": "David Byrne",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "david-byrne",
+    "role": "performer"
+   }
+  ],
+  "act": "david-byrne",
+  "closing": true,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:sonora:1300:buster-jarvis",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Sonora",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "Buster Jarvis",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "buster-jarvis",
+    "role": "performer"
+   }
+  ],
+  "act": "buster-jarvis",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:sonora:1400:die-spitz",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Sonora",
+  "start": "14:00",
+  "end": "14:40",
+  "printed": "Die Spitz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "die-spitz",
+    "role": "performer"
+   }
+  ],
+  "act": "die-spitz",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:sonora:1510:freak-slug",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Sonora",
+  "start": "15:10",
+  "end": "15:50",
+  "printed": "Freak Slug",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "freak-slug",
+    "role": "performer"
+   }
+  ],
+  "act": "freak-slug",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:sonora:1620:ecca-vandal",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Sonora",
+  "start": "16:20",
+  "end": "17:00",
+  "printed": "Ecca Vandal",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ecca-vandal",
+    "role": "performer"
+   }
+  ],
+  "act": "ecca-vandal",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:sonora:1730:ceremony",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Sonora",
+  "start": "17:30",
+  "end": "18:10",
+  "printed": "Ceremony",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ceremony",
+    "role": "performer"
+   }
+  ],
+  "act": "ceremony",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:sonora:1840:rusowsky",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Sonora",
+  "start": "18:40",
+  "end": "19:20",
+  "printed": "rusowsky",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rusowsky",
+    "role": "performer"
+   }
+  ],
+  "act": "rusowsky",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:sonora:1950:54-ultra",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Sonora",
+  "start": "19:50",
+  "end": "20:30",
+  "printed": "54 Ultra",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "54-ultra",
+    "role": "performer"
+   }
+  ],
+  "act": "54-ultra",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:sonora:2145:mind-enterprises",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Sonora",
+  "start": "21:45",
+  "end": "22:35",
+  "printed": "Mind Enterprises",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mind-enterprises",
+    "role": "performer"
+   }
+  ],
+  "act": "mind-enterprises",
+  "closing": true,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:gobi:1405:noga-erez",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Gobi",
+  "start": "14:05",
+  "end": "14:50",
+  "printed": "Noga Erez",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "noga-erez",
+    "role": "performer"
+   }
+  ],
+  "act": "noga-erez",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:gobi:1600:whatmore",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Gobi",
+  "start": "16:00",
+  "end": "16:40",
+  "printed": "WHATMORE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "whatmore",
+    "role": "performer"
+   }
+  ],
+  "act": "whatmore",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:gobi:1710:luisa-sonza",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Gobi",
+  "start": "17:10",
+  "end": "17:50",
+  "printed": "Luísa Sonza",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "luisa-sonza",
+    "role": "performer"
+   }
+  ],
+  "act": "luisa-sonza",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:gobi:1815:geese",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Gobi",
+  "start": "18:15",
+  "end": "19:00",
+  "printed": "Geese",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "geese",
+    "role": "performer"
+   }
+  ],
+  "act": "geese",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:gobi:1950:davido",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Gobi",
+  "start": "19:50",
+  "end": "20:35",
+  "printed": "Davido",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "davido",
+    "role": "performer"
+   }
+  ],
+  "act": "davido",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:gobi:2100:bia",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Gobi",
+  "start": "21:00",
+  "end": "21:45",
+  "printed": "BIA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bia",
+    "role": "performer"
+   }
+  ],
+  "act": "bia",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:gobi:2210:morat",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Gobi",
+  "start": "22:10",
+  "end": "23:00",
+  "printed": "Morat",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "morat",
+    "role": "performer"
+   }
+  ],
+  "act": "morat",
+  "closing": true,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:mojave:1500:kacey-musgraves",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Mojave",
+  "start": "15:00",
+  "end": "15:50",
+  "printed": "Kacey Musgraves",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kacey-musgraves",
+    "role": "performer"
+   }
+  ],
+  "act": "kacey-musgraves",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:mojave:1630:fujii-kaze",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Mojave",
+  "start": "16:30",
+  "end": "17:20",
+  "printed": "Fujii Kaze",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fujii-kaze",
+    "role": "performer"
+   }
+  ],
+  "act": "fujii-kaze",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:mojave:1750:royel-otis",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Mojave",
+  "start": "17:50",
+  "end": "18:35",
+  "printed": "Royel Otis",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "royel-otis",
+    "role": "performer"
+   }
+  ],
+  "act": "royel-otis",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:mojave:1930:taemin",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Mojave",
+  "start": "19:30",
+  "end": "20:20",
+  "printed": "Taemin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "taemin",
+    "role": "performer"
+   }
+  ],
+  "act": "taemin",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:mojave:2055:pinkpantheress",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Mojave",
+  "start": "20:55",
+  "end": "21:45",
+  "printed": "PinkPantheress",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pinkpantheress",
+    "role": "performer"
+   }
+  ],
+  "act": "pinkpantheress",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:mojave:2215:interpol",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Mojave",
+  "start": "22:15",
+  "end": "23:15",
+  "printed": "Interpol",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "interpol",
+    "role": "performer"
+   }
+  ],
+  "act": "interpol",
+  "closing": true,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:sahara:1400:fundido",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Sahara",
+  "start": "14:00",
+  "end": "14:45",
+  "printed": "Fundido",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fundido",
+    "role": "performer"
+   }
+  ],
+  "act": "fundido",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:sahara:1450:teed",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Sahara",
+  "start": "14:50",
+  "end": "15:50",
+  "printed": "TEED",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "teed",
+    "role": "performer"
+   }
+  ],
+  "act": "teed",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:sahara:1600:zulan",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Sahara",
+  "start": "16:00",
+  "end": "16:50",
+  "printed": "ZULAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zulan",
+    "role": "performer"
+   }
+  ],
+  "act": "zulan",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:sahara:1700:hamdi",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Sahara",
+  "start": "17:00",
+  "end": "17:55",
+  "printed": "Hamdi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hamdi",
+    "role": "performer"
+   }
+  ],
+  "act": "hamdi",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:sahara:1815:u-uk-uk1mat-u",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Sahara",
+  "start": "18:15",
+  "end": "19:10",
+  "printed": "¥ØU$UK€ ¥UK1MAT$U",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "you-uk-yuk1mat-u",
+    "role": "performer"
+   }
+  ],
+  "act": "you-uk-yuk1mat-u",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:sahara:2000:nine-inch-noize",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Sahara",
+  "start": "20:00",
+  "end": "20:45",
+  "printed": "Nine Inch Noize",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nine-inch-noize",
+    "role": "performer"
+   }
+  ],
+  "act": "nine-inch-noize",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:sahara:2115:adriatique",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Sahara",
+  "start": "21:15",
+  "end": "22:10",
+  "printed": "Adriatique",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "adriatique",
+    "role": "performer"
+   }
+  ],
+  "act": "adriatique",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:sahara:2235:worship",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Sahara",
+  "start": "22:35",
+  "end": "23:35",
+  "printed": "Worship",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "worship",
+    "role": "performer"
+   }
+  ],
+  "act": "worship",
+  "closing": true,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:yuma:1300:yamagucci",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Yuma",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "Yamagucci",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yamagucci",
+    "role": "performer"
+   }
+  ],
+  "act": "yamagucci",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:yuma:1400:genesi",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Yuma",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "GENESI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "genesi",
+    "role": "performer"
+   }
+  ],
+  "act": "genesi",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:yuma:1500:riordan",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Yuma",
+  "start": "15:00",
+  "end": "16:15",
+  "printed": "Riordan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "riordan",
+    "role": "performer"
+   }
+  ],
+  "act": "riordan",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:yuma:1615:mahmut-orhan",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Yuma",
+  "start": "16:15",
+  "end": "17:30",
+  "printed": "Mahmut Orhan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mahmut-orhan",
+    "role": "performer"
+   }
+  ],
+  "act": "mahmut-orhan",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:yuma:1730:ben-sterling",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Yuma",
+  "start": "17:30",
+  "end": "18:45",
+  "printed": "Ben Sterling",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ben-sterling",
+    "role": "performer"
+   }
+  ],
+  "act": "ben-sterling",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:yuma:1845:sosa",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Yuma",
+  "start": "18:45",
+  "end": "20:15",
+  "printed": "SOSA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sosa",
+    "role": "performer"
+   }
+  ],
+  "act": "sosa",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:yuma:2015:bedouin",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Yuma",
+  "start": "20:15",
+  "end": "21:45",
+  "printed": "Bedouin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bedouin",
+    "role": "performer"
+   }
+  ],
+  "act": "bedouin",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:yuma:2145:boys-noize",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Yuma",
+  "start": "21:45",
+  "end": "23:00",
+  "printed": "Boys Noize",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "boys-noize",
+    "role": "performer"
+   }
+  ],
+  "act": "boys-noize",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:yuma:2300:armin-van-buuren-x-adam-beyer",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Yuma",
+  "start": "23:00",
+  "end": "00:55",
+  "printed": "Armin van Buuren x Adam Beyer",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "armin-van-buuren-x-adam-beyer",
+    "role": "collab"
+   }
+  ],
+  "act": "armin-van-buuren-x-adam-beyer",
+  "closing": true,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:quasar:1700:devault",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Quasar",
+  "start": "17:00",
+  "end": "19:00",
+  "printed": "Devault",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "devault",
+    "role": "performer"
+   }
+  ],
+  "act": "devault",
+  "closing": false,
+  "stageLineage": "coachella:quasar",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:quasar:1900:madeon",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Quasar",
+  "start": "19:00",
+  "end": "20:15",
+  "printed": "Madeon",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "madeon",
+    "role": "performer"
+   }
+  ],
+  "act": "madeon",
+  "closing": false,
+  "stageLineage": "coachella:quasar",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d5:quasar:2015:dj-snake-x-rl-grime-x-flosstradamus",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Quasar",
+  "start": "20:15",
+  "end": "21:45",
+  "printed": "DJ Snake x RL Grime x Flosstradamus",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-snake-x-rl-grime-x-flosstradamus",
+    "role": "act"
+   }
+  ],
+  "act": "dj-snake-x-rl-grime-x-flosstradamus",
+  "closing": false,
+  "stageLineage": "coachella:quasar",
+  "mainStage": null,
+  "review": "\"x\" billing whose sides are not both known acts"
+ },
+ {
+  "id": "coachella-2026:d5:quasar:2145:dj-snake-x-knock2",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-18",
+  "day": 5,
+  "stage": "Quasar",
+  "start": "21:45",
+  "end": "23:00",
+  "printed": "DJ Snake x Knock2",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-snake-x-knock2",
+    "role": "collab"
+   }
+  ],
+  "act": "dj-snake-x-knock2",
+  "closing": true,
+  "stageLineage": "coachella:quasar",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:coachella:1445:gabe-real",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Coachella",
+  "start": "14:45",
+  "end": "15:30",
+  "printed": "Gabe Real",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gabe-real",
+    "role": "performer"
+   }
+  ],
+  "act": "gabe-real",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:coachella:1540:tijuana-panthers",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Coachella",
+  "start": "15:40",
+  "end": "16:15",
+  "printed": "Tijuana Panthers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tijuana-panthers",
+    "role": "performer"
+   }
+  ],
+  "act": "tijuana-panthers",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:coachella:1645:wet-leg",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Coachella",
+  "start": "16:45",
+  "end": "17:30",
+  "printed": "Wet Leg",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wet-leg",
+    "role": "performer"
+   }
+  ],
+  "act": "wet-leg",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:coachella:1810:major-lazer",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Coachella",
+  "start": "18:10",
+  "end": "19:10",
+  "printed": "Major Lazer",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "major-lazer",
+    "role": "performer"
+   }
+  ],
+  "act": "major-lazer",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:coachella:1950:young-thug",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Coachella",
+  "start": "19:50",
+  "end": "20:40",
+  "printed": "Young Thug",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "young-thug",
+    "role": "performer"
+   }
+  ],
+  "act": "young-thug",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:coachella:2210:karol-g",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Coachella",
+  "start": "22:10",
+  "end": null,
+  "printed": "KAROL G",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "karol-g",
+    "role": "performer"
+   }
+  ],
+  "act": "karol-g",
+  "closing": true,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:outdoor:1500:juicewon",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Outdoor",
+  "start": "15:00",
+  "end": "15:50",
+  "printed": "Juicewon",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "juicewon",
+    "role": "performer"
+   }
+  ],
+  "act": "juicewon",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:outdoor:1600:gigi-perez",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Outdoor",
+  "start": "16:00",
+  "end": "16:45",
+  "printed": "Gigi Perez",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gigi-perez",
+    "role": "performer"
+   }
+  ],
+  "act": "gigi-perez",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:outdoor:1715:clipse",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Outdoor",
+  "start": "17:15",
+  "end": "18:10",
+  "printed": "CLIPSE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "clipse",
+    "role": "performer"
+   }
+  ],
+  "act": "clipse",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:outdoor:1845:foster-the-people",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Outdoor",
+  "start": "18:45",
+  "end": "19:40",
+  "printed": "Foster the People",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "foster-the-people",
+    "role": "performer"
+   }
+  ],
+  "act": "foster-the-people",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:outdoor:2045:laufey",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Outdoor",
+  "start": "20:45",
+  "end": "21:45",
+  "printed": "Laufey",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "laufey",
+    "role": "performer"
+   }
+  ],
+  "act": "laufey",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:outdoor:2230:bigbang",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Outdoor",
+  "start": "22:30",
+  "end": "23:30",
+  "printed": "BIGBANG",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bigbang",
+    "role": "performer"
+   }
+  ],
+  "act": "bigbang",
+  "closing": true,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:sonora:1300:bulletballet",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Sonora",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "Bulletballet",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bulletballet",
+    "role": "performer"
+   }
+  ],
+  "act": "bulletballet",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:sonora:1400:glitterer",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Sonora",
+  "start": "14:00",
+  "end": "14:40",
+  "printed": "Glitterer",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "glitterer",
+    "role": "performer"
+   }
+  ],
+  "act": "glitterer",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:sonora:1510:model-actriz",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Sonora",
+  "start": "15:10",
+  "end": "15:50",
+  "printed": "Model/Actriz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "model-actriz",
+    "role": "performer"
+   }
+  ],
+  "act": "model-actriz",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:sonora:1620:jane-remover",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Sonora",
+  "start": "16:20",
+  "end": "17:00",
+  "printed": "Jane Remover",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jane-remover",
+    "role": "performer"
+   }
+  ],
+  "act": "jane-remover",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:sonora:1730:los-retros",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Sonora",
+  "start": "17:30",
+  "end": "18:10",
+  "printed": "Los Retros",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "los-retros",
+    "role": "performer"
+   }
+  ],
+  "act": "los-retros",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:sonora:1840:r-z",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Sonora",
+  "start": "18:40",
+  "end": "19:30",
+  "printed": "RØZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "roz",
+    "role": "performer"
+   }
+  ],
+  "act": "roz",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:sonora:2000:drain",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Sonora",
+  "start": "20:00",
+  "end": "20:40",
+  "printed": "DRAIN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "drain",
+    "role": "performer"
+   }
+  ],
+  "act": "drain",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:sonora:2110:french-police",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Sonora",
+  "start": "21:10",
+  "end": "22:00",
+  "printed": "French Police",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "french-police",
+    "role": "performer"
+   }
+  ],
+  "act": "french-police",
+  "closing": true,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:gobi:1405:flowerovlove",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Gobi",
+  "start": "14:05",
+  "end": "14:35",
+  "printed": "flowerovlove",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "flowerovlove",
+    "role": "performer"
+   }
+  ],
+  "act": "flowerovlove",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:gobi:1500:the-chats",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Gobi",
+  "start": "15:00",
+  "end": "15:40",
+  "printed": "The Chats",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-chats",
+    "role": "performer"
+   }
+  ],
+  "act": "the-chats",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:gobi:1605:cobrah",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Gobi",
+  "start": "16:05",
+  "end": "16:50",
+  "printed": "COBRAH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cobrah",
+    "role": "performer"
+   }
+  ],
+  "act": "cobrah",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:gobi:1715:oklou",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Gobi",
+  "start": "17:15",
+  "end": "18:00",
+  "printed": "Oklou",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "oklou",
+    "role": "performer"
+   }
+  ],
+  "act": "oklou",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:gobi:1830:black-flag",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Gobi",
+  "start": "18:30",
+  "end": "19:05",
+  "printed": "Black Flag",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "black-flag",
+    "role": "performer"
+   }
+  ],
+  "act": "black-flag",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:gobi:1945:tomora",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Gobi",
+  "start": "19:45",
+  "end": "20:35",
+  "printed": "TOMORA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tomora",
+    "role": "performer"
+   }
+  ],
+  "act": "tomora",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:gobi:2105:the-rapture",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Gobi",
+  "start": "21:05",
+  "end": "21:55",
+  "printed": "The Rapture",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-rapture",
+    "role": "performer"
+   }
+  ],
+  "act": "the-rapture",
+  "closing": true,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:mojave:1430:megatone",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Mojave",
+  "start": "14:30",
+  "end": "15:10",
+  "printed": "Megatone",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "megatone",
+    "role": "performer"
+   }
+  ],
+  "act": "megatone",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:mojave:1515:samia",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Mojave",
+  "start": "15:15",
+  "end": "15:55",
+  "printed": "Samia",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "samia",
+    "role": "performer"
+   }
+  ],
+  "act": "samia",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:mojave:1625:little-simz",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Mojave",
+  "start": "16:25",
+  "end": "17:10",
+  "printed": "Little Simz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "little-simz",
+    "role": "performer"
+   }
+  ],
+  "act": "little-simz",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:mojave:1735:suicidal-tendencies",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Mojave",
+  "start": "17:35",
+  "end": "18:25",
+  "printed": "Suicidal Tendencies",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "suicidal-tendencies",
+    "role": "performer"
+   }
+  ],
+  "act": "suicidal-tendencies",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:mojave:1910:iggy-pop",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Mojave",
+  "start": "19:10",
+  "end": "20:10",
+  "printed": "Iggy Pop",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "iggy-pop",
+    "role": "performer"
+   }
+  ],
+  "act": "iggy-pop",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:mojave:2045:fka-twigs",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Mojave",
+  "start": "20:45",
+  "end": "22:00",
+  "printed": "FKA twigs",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fka-twigs",
+    "role": "performer"
+   }
+  ],
+  "act": "fka-twigs",
+  "closing": true,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:sahara:1430:gingee",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Sahara",
+  "start": "14:30",
+  "end": "15:30",
+  "printed": "GINGEE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gingee",
+    "role": "performer"
+   }
+  ],
+  "act": "gingee",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:sahara:1535:girl-math-vnssa-x-nala",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Sahara",
+  "start": "15:35",
+  "end": "16:35",
+  "printed": "Girl Math (VNSSA x NALA)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "girl-math-vnssa-x-nala",
+    "role": "act"
+   }
+  ],
+  "act": "girl-math-vnssa-x-nala",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null,
+  "review": "parenthetical names people"
+ },
+ {
+  "id": "coachella-2026:d6:sahara:1645:bunt",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Sahara",
+  "start": "16:45",
+  "end": "17:45",
+  "printed": "BUNT.",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bunt",
+    "role": "performer"
+   }
+  ],
+  "act": "bunt",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:sahara:1810:duke-dumont",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Sahara",
+  "start": "18:10",
+  "end": "19:10",
+  "printed": "Duke Dumont",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "duke-dumont",
+    "role": "performer"
+   }
+  ],
+  "act": "duke-dumont",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:sahara:1925:mochakk",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Sahara",
+  "start": "19:25",
+  "end": "20:25",
+  "printed": "Mochakk",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mochakk",
+    "role": "performer"
+   }
+  ],
+  "act": "mochakk",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:sahara:2105:subtronics",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Sahara",
+  "start": "21:05",
+  "end": "22:05",
+  "printed": "Subtronics",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "subtronics",
+    "role": "performer"
+   }
+  ],
+  "act": "subtronics",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:sahara:2250:kaskade",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Sahara",
+  "start": "22:50",
+  "end": "23:55",
+  "printed": "Kaskade",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kaskade",
+    "role": "performer"
+   }
+  ],
+  "act": "kaskade",
+  "closing": true,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:yuma:1300:le-yora",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Yuma",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "LE YORA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "le-yora",
+    "role": "performer"
+   }
+  ],
+  "act": "le-yora",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:yuma:1400:azzecca",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Yuma",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "AZZECCA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "azzecca",
+    "role": "performer"
+   }
+  ],
+  "act": "azzecca",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:yuma:1500:and-friends",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Yuma",
+  "start": "15:00",
+  "end": "16:15",
+  "printed": "&friends",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "and-friends",
+    "role": "performer"
+   }
+  ],
+  "act": "and-friends",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:yuma:1615:mestiza",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Yuma",
+  "start": "16:15",
+  "end": "17:30",
+  "printed": "MËSTIZA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mestiza",
+    "role": "performer"
+   }
+  ],
+  "act": "mestiza",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:yuma:1730:carlita-x-josh-baker",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Yuma",
+  "start": "17:30",
+  "end": "19:00",
+  "printed": "Carlita x Josh Baker",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carlita-x-josh-baker",
+    "role": "collab"
+   }
+  ],
+  "act": "carlita-x-josh-baker",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:yuma:1900:royksopp",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Yuma",
+  "start": "19:00",
+  "end": "20:30",
+  "printed": "Röyksopp",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "royksopp",
+    "role": "performer"
+   }
+  ],
+  "act": "royksopp",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:yuma:2030:whomadewho",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Yuma",
+  "start": "20:30",
+  "end": "22:00",
+  "printed": "WhoMadeWho",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "whomadewho",
+    "role": "performer"
+   }
+  ],
+  "act": "whomadewho",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:yuma:2200:green-velvet-x-ayybo",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Yuma",
+  "start": "22:00",
+  "end": "23:55",
+  "printed": "Green Velvet x AYYBO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "green-velvet-x-ayybo",
+    "role": "collab"
+   }
+  ],
+  "act": "green-velvet-x-ayybo",
+  "closing": true,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:quasar:1600:linska",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Quasar",
+  "start": "16:00",
+  "end": "18:00",
+  "printed": "Linska",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "linska",
+    "role": "performer"
+   }
+  ],
+  "act": "linska",
+  "closing": false,
+  "stageLineage": "coachella:quasar",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:quasar:1800:lp-giobbi",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Quasar",
+  "start": "18:00",
+  "end": "20:00",
+  "printed": "LP Giobbi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lp-giobbi",
+    "role": "performer"
+   }
+  ],
+  "act": "lp-giobbi",
+  "closing": false,
+  "stageLineage": "coachella:quasar",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2026:d6:quasar:2000:sara-landry-s-blood-oath",
+  "source": "edition",
+  "festivalId": "coachella-2026",
+  "festivalBrand": "coachella",
+  "year": 2026,
+  "date": "2026-04-19",
+  "day": 6,
+  "stage": "Quasar",
+  "start": "20:00",
+  "end": "22:00",
+  "printed": "Sara Landry's Blood Oath",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sara-landry-s-blood-oath",
+    "role": "performer"
+   }
+  ],
+  "act": "sara-landry-s-blood-oath",
+  "closing": true,
+  "stageLineage": "coachella:quasar",
+  "mainStage": null
  },
  {
   "id": "defqon1-2015:d1:blue:2000:max-enforcer",
