@@ -1776,6 +1776,7 @@ function clearSetTrack(festivalId) {
   if (!had && !hadTaps) return false;
   delete all[festivalId];
   delete taps[festivalId];
+  _setTrackNativeClear();
   try {
     localStorage.setItem(SET_TRACK_STORE_KEY, JSON.stringify(all));
   } catch {}
@@ -1786,6 +1787,76 @@ function clearSetTrack(festivalId) {
     window.dispatchEvent(new CustomEvent(SET_TRACK_EVENT));
   } catch {}
   return true;
+}
+function clearAllSetTrack() {
+  try {
+    localStorage.removeItem(SET_TRACK_STORE_KEY);
+  } catch {}
+  try {
+    localStorage.removeItem(SET_TAP_STORE_KEY);
+  } catch {}
+  _setTrackNativeClear();
+  try {
+    window.dispatchEvent(new CustomEvent(SET_TRACK_EVENT));
+  } catch {}
+}
+function _setTrackHasAny() {
+  return Object.keys(_readSetTrackStore()).length > 0 || Object.keys(_readJsonStore(SET_TAP_STORE_KEY)).length > 0;
+}
+function _setTrackNative() {
+  var P = window.Capacitor?.isNativePlatform?.() && window.Capacitor?.Plugins?.SetTrack;
+  return P && typeof P.drain === "function" ? P : null;
+}
+function _setTrackNativeClear() {
+  var P = _setTrackNative();
+  if (P) {
+    try {
+      P.clear().catch(() => {});
+    } catch {}
+  }
+}
+var _setTrackNativeOn = false;
+var _setTrackInternal = false;
+function _setTrackNativeSet(r) {
+  if (!r) return;
+  var on = !!r.tracking,
+    internal = r.internal === undefined ? _setTrackInternal : !!r.internal;
+  if (on === _setTrackNativeOn && internal === _setTrackInternal) return;
+  _setTrackNativeOn = on;
+  _setTrackInternal = internal;
+  try {
+    window.dispatchEvent(new CustomEvent(SET_TRACK_EVENT));
+  } catch {}
+}
+function setTrackIngest(festivalId, fixes, cfg) {
+  var c = cfg || window._DATA_SETS && window._DATA_SETS[festivalId] && window._DATA_SETS[festivalId].config;
+  if (!festivalId || !c || !Array.isArray(fixes) || !fixes.length) return 0;
+  var samples = fixes.filter(f => f && typeof f.timestamp === "number" && (!f.festivalId || f.festivalId === festivalId)).slice().sort((x, y) => x.timestamp - y.timestamp);
+  var q = attendQualifyFixes(samples, attendEvidenceAnchors(c), STAGE_FIX_ATTEND);
+  if (!q.length) return 0;
+  var all = _readSetTrackStore();
+  var e = all[festivalId];
+  for (var f of q) e = setTrackAppend(e, f);
+  all[festivalId] = e;
+  try {
+    localStorage.setItem(SET_TRACK_STORE_KEY, JSON.stringify(all));
+  } catch {
+    return 0;
+  }
+  try {
+    window.dispatchEvent(new CustomEvent(SET_TRACK_EVENT));
+  } catch {}
+  return q.length;
+}
+var _setTrackDraining = null;
+function setTrackDrainNative() {
+  var P = _setTrackNative();
+  if (!P) return Promise.resolve(0);
+  if (_setTrackDraining) return _setTrackDraining;
+  _setTrackDraining = P.drain().then(r => setTrackIngest(r && r.festivalId, r && r.fixes || [])).catch(() => 0).finally(() => {
+    _setTrackDraining = null;
+  });
+  return _setTrackDraining;
 }
 var SET_TAP_STORE_KEY = "plursky_set_taps_v1";
 var SET_MANUAL_STORE_KEY = "plursky_set_manual_v1";
@@ -2114,6 +2185,7 @@ function setTrackSummary(artists, cfg = window.FESTIVAL_CONFIG) {
 }
 function SetTrackingWatcher() {
   var [, bump] = React.useReducer(x => x + 1, 0);
+  var native = !!_setTrackNative();
   var {
     active: bsActive
   } = useBatterySaver();
@@ -2130,7 +2202,43 @@ function SetTrackingWatcher() {
   }, []);
   var cfg = window.FESTIVAL_CONFIG;
   var fid = cfg && cfg.id;
-  var run = getSetTracking() === "on" && document.visibilityState !== "hidden" && setTrackEligibility(cfg, Date.now()) === "live";
+  var pref = getSetTracking() === "on";
+  var visible = document.visibilityState !== "hidden";
+  var elig = setTrackEligibility(cfg, Date.now());
+  React.useEffect(() => {
+    var P = _setTrackNative();
+    if (!P || !visible) return;
+    var alive = true;
+    try {
+      P.status().then(r => alive && _setTrackNativeSet(r)).catch(() => {});
+    } catch {}
+    setTrackDrainNative().then(() => {
+      if (!alive) return;
+      if (pref && fid && elig === "live") {
+        var ds = window._DATA_SETS && window._DATA_SETS[fid];
+        P.arm({
+          festivalId: fid,
+          windows: setTrackWindows(cfg, ds && ds.artists || window.ARTISTS || [], Date.now()),
+          saver: !!bsActive
+        }).then(r => alive && _setTrackNativeSet(r)).catch(() => {});
+      } else {
+        P.disarm().then(() => alive && _setTrackNativeSet({
+          tracking: false
+        })).catch(() => {});
+      }
+    });
+    var t = setInterval(() => {
+      setTrackDrainNative();
+      try {
+        P.status().then(r => alive && _setTrackNativeSet(r)).catch(() => {});
+      } catch {}
+    }, 60000);
+    return () => {
+      alive = false;
+      clearInterval(t);
+    };
+  }, [native, visible, pref, fid, elig, bsActive]);
+  var run = getSetTracking() === "on" && document.visibilityState !== "hidden" && setTrackEligibility(cfg, Date.now()) === "live" && !(native && _setTrackNativeOn);
   React.useEffect(() => {
     if (!run || !navigator.geolocation) return;
     var anchors = attendEvidenceAnchors(cfg);
@@ -3585,7 +3693,9 @@ function SetTrackingCard() {
   var calib = cfg ? stageCalibrationStatus(cfg) : null;
   var canCalibrate = !!(calib && calib.needed && phase === "live");
   var [calibrating, setCalibrating] = React.useState(false);
-  var status = elig === "no-stages" ? canCalibrate ? `${name}'s stages aren't measured yet. Calibrate them on site (${calib.done} of ${calib.needed} done) and sets can be timed on this phone.` : `${name}'s stages aren't measured yet, so sets can't be timed here.` : !on ? "Off. Plursky can note how long you stay at a stage during a set, to tell a full set from part of one." : elig === "live" ? "On. Counting while Plursky is open. Lock the screen and the count pauses." : elig === "ended" ? `On. ${name} is over, so nothing is counting.` : `On. It starts on ${name}'s festival days, and counts only while Plursky is open.`;
+  var native = !!_setTrackNative();
+  var anyData = native && _setTrackHasAny();
+  var status = elig === "no-stages" ? canCalibrate ? `${name}'s stages aren't measured yet. Calibrate them on site (${calib.done} of ${calib.needed} done) and sets can be timed on this phone.` : `${name}'s stages aren't measured yet, so sets can't be timed here.` : !on ? "Off. Plursky can note how long you stay at a stage during a set, to tell a full set from part of one." : elig === "ended" ? `On. ${name} is over, so nothing is counting.` : native ? elig === "live" ? _setTrackNativeOn ? "On. Counts during sets, even with the screen locked. iOS shows the location arrow while it runs." : "On. Counting while Plursky is open. Once set hours start, it keeps counting with the screen locked." : `On. On ${name}'s festival days, open Plursky once and it counts during sets, even with the screen locked.` : elig === "live" ? "On. Counting while Plursky is open. Lock the screen and the count pauses." : `On. It starts on ${name}'s festival days, and counts only while Plursky is open.`;
   return React.createElement("div", {
     "data-set-tracking-card": true,
     "data-set-tracking-state": on ? "on" : "off",
@@ -3635,7 +3745,7 @@ function SetTrackingCard() {
     style: {
       color: "var(--ink)"
     }
-  }, "Not recorded:"), " your exact location. Nothing leaves this phone.", React.createElement("br", null), "It counts only while Plursky is open, and you can turn it off here any time."), React.createElement("div", {
+  }, "Not recorded:"), " your exact location. Nothing leaves this phone.", React.createElement("br", null), native ? "It counts during set hours on festival days, screen locked too, once you've opened Plursky that day. iOS shows the location arrow while it runs. Turn it off here any time." : "It counts only while Plursky is open, and you can turn it off here any time."), React.createElement("div", {
     style: {
       display: "flex",
       gap: 8,
@@ -3688,7 +3798,14 @@ function SetTrackingCard() {
     "data-stage-calibrate-clear": true,
     onClick: () => clearStageCalibration(cfg.id),
     style: btn(false)
-  }, "Clear stage calibration")), reviewing && React.createElement(SetReviewSheet, {
+  }, "Clear stage calibration"), anyData && React.createElement("button", {
+    "data-set-tracking-delete-all": true,
+    onClick: clearAllSetTrack,
+    style: btn(false)
+  }, "Delete all set times")), native && _setTrackInternal && React.createElement(SetTrackBatteryTest, {
+    btn: btn,
+    body: body
+  }), reviewing && React.createElement(SetReviewSheet, {
     cfg: cfg,
     onClose: () => setReviewing(false)
   }), weekend && React.createElement(YourWeekendSheet, {
@@ -3698,6 +3815,59 @@ function SetTrackingCard() {
     cfg: cfg,
     onClose: () => setCalibrating(false)
   }));
+}
+function SetTrackBatteryTest({
+  btn,
+  body
+}) {
+  var [st, setSt] = React.useState(null);
+  var P = _setTrackNative();
+  var refresh = () => {
+    try {
+      P.status().then(setSt).catch(() => {});
+    } catch {}
+  };
+  React.useEffect(() => {
+    if (!P) return;
+    refresh();
+    var t = setInterval(refresh, 15000);
+    return () => clearInterval(t);
+  }, []);
+  if (!P || !_setTrackInternal) return null;
+  var running = !!(st && st.testUntil > Date.now());
+  var left = running ? Math.max(0, Math.round((st.testUntil - Date.now()) / 60000)) : 0;
+  return React.createElement("div", {
+    "data-set-track-battery-test": true,
+    style: {
+      marginTop: 14,
+      paddingTop: 12,
+      borderTop: "1px solid var(--s3)"
+    }
+  }, React.createElement("div", {
+    className: "duo-label",
+    style: {
+      color: "var(--ink-3)",
+      marginBottom: 6
+    }
+  }, "INTERNAL BUILD · BATTERY TEST"), React.createElement("div", {
+    style: body
+  }, running ? `Running: GPS as in a set window, nothing saved. ${left} min left, ${st.testFixes || 0} fixes so far. Lock the screen now.` : `Runs GPS for 60 min as in a set window, screen locked, saving nothing. Note the battery % before and after.${st && st.testFixes ? ` Last test: ${st.testFixes} fixes.` : ""}`), React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 8,
+      flexWrap: "wrap"
+    }
+  }, running ? React.createElement("button", {
+    "data-set-track-test-stop": true,
+    onClick: () => P.testStop().then(refresh).catch(refresh),
+    style: btn(false)
+  }, "Stop test") : React.createElement("button", {
+    "data-set-track-test-start": true,
+    onClick: () => P.testStart({
+      minutes: 60
+    }).then(refresh).catch(refresh),
+    style: btn(false)
+  }, "Start 60-min test")));
 }
 function stageCalibrationStatus(cfg) {
   if (!cfg || !cfg.id) return null;

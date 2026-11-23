@@ -1399,8 +1399,11 @@ function recordAttendanceFromGps(lat, lng, opts) {
 // stored is { stageId, from, to, src } and the last fix's stage and time:
 // never a coordinate, never synced, never in a backup. The verdict is not
 // stored here; surfaces ask attendanceVerdict (PR 4). Default off: nothing
-// watches until the user accepts the sheet in Me. Foreground only: no
-// background mode, no new permission, so a locked screen pauses the count.
+// watches until the user accepts the sheet in Me. On the web it is foreground
+// only: a locked screen pauses the count. In the iPhone app (SPEC-192 option
+// B) a session the user started in the app keeps counting with the screen
+// locked, during set hours only, on the same When In Use permission: no
+// Always, no region, no wake (see "The iPhone's screen-locked session").
 const SET_TRACK_PREF_KEY = "plursky_set_tracking_v1";    // "on" | "off" | absent = never asked
 const SET_TRACK_STORE_KEY = "plursky_set_intervals_v1";  // { [festivalId]: { last, runs } }
 const SET_TRACK_EVENT = "plursky-set-tracking-change";
@@ -1435,10 +1438,76 @@ function clearSetTrack(festivalId) {
   const had = festivalId in all, hadTaps = festivalId in taps;
   if (!had && !hadTaps) return false;
   delete all[festivalId]; delete taps[festivalId];
+  _setTrackNativeClear();
   try { localStorage.setItem(SET_TRACK_STORE_KEY, JSON.stringify(all)); } catch {}
   try { localStorage.setItem(SET_TAP_STORE_KEY, JSON.stringify(taps)); } catch {}
   try { window.dispatchEvent(new CustomEvent(SET_TRACK_EVENT)); } catch {}
   return true;
+}
+// Delete everything set tracking holds: every festival's runs and taps here
+// and any fix the iPhone has not handed over yet. Tracking stays on if it was.
+function clearAllSetTrack() {
+  try { localStorage.removeItem(SET_TRACK_STORE_KEY); } catch {}
+  try { localStorage.removeItem(SET_TAP_STORE_KEY); } catch {}
+  _setTrackNativeClear();
+  try { window.dispatchEvent(new CustomEvent(SET_TRACK_EVENT)); } catch {}
+}
+function _setTrackHasAny() {
+  return Object.keys(_readSetTrackStore()).length > 0 || Object.keys(_readJsonStore(SET_TAP_STORE_KEY)).length > 0;
+}
+
+// ── The iPhone's screen-locked session (SPEC-192 option B) ──
+// The SetTrack plugin starts a location session only when the page arms it
+// while visible, holds raw fixes taken inside the set windows
+// (setTrackWindows), and ends itself after the day's last window, at 20%
+// battery, or on Turn off. A drain is the only way a fix reaches the page:
+// each one goes through the same gate as the foreground watch
+// (attendQualifyFixes, measured stages only) against the festival it was
+// armed for, becomes a run, and the coordinates are gone (the plugin deletes
+// its copy on drain; nothing here keeps one).
+function _setTrackNative() {
+  const P = window.Capacitor?.isNativePlatform?.() && window.Capacitor?.Plugins?.SetTrack;
+  return P && typeof P.drain === "function" ? P : null;
+}
+function _setTrackNativeClear() {
+  const P = _setTrackNative();
+  if (P) { try { P.clear().catch(() => {}); } catch {} }
+}
+let _setTrackNativeOn = false;   // the plugin reported a running session
+let _setTrackInternal = false;   // TestFlight/Xcode build (the plugin says so)
+function _setTrackNativeSet(r) {
+  if (!r) return;
+  const on = !!r.tracking, internal = r.internal === undefined ? _setTrackInternal : !!r.internal;
+  if (on === _setTrackNativeOn && internal === _setTrackInternal) return;
+  _setTrackNativeOn = on; _setTrackInternal = internal;
+  try { window.dispatchEvent(new CustomEvent(SET_TRACK_EVENT)); } catch {}
+}
+// Raw fixes from a drain → runs. Pure apart from the store write.
+function setTrackIngest(festivalId, fixes, cfg) {
+  const c = cfg || (window._DATA_SETS && window._DATA_SETS[festivalId] && window._DATA_SETS[festivalId].config);
+  if (!festivalId || !c || !Array.isArray(fixes) || !fixes.length) return 0;
+  const samples = fixes.filter(f => f && typeof f.timestamp === "number" && (!f.festivalId || f.festivalId === festivalId))
+    .slice().sort((x, y) => x.timestamp - y.timestamp);
+  const q = attendQualifyFixes(samples, attendEvidenceAnchors(c), STAGE_FIX_ATTEND);
+  if (!q.length) return 0;
+  const all = _readSetTrackStore();
+  let e = all[festivalId];
+  for (const f of q) e = setTrackAppend(e, f);
+  all[festivalId] = e;
+  try { localStorage.setItem(SET_TRACK_STORE_KEY, JSON.stringify(all)); } catch { return 0; }
+  try { window.dispatchEvent(new CustomEvent(SET_TRACK_EVENT)); } catch {}
+  return q.length;
+}
+let _setTrackDraining = null;
+function setTrackDrainNative() {
+  const P = _setTrackNative();
+  if (!P) return Promise.resolve(0);
+  if (_setTrackDraining) return _setTrackDraining;
+  _setTrackDraining = P.drain()
+    .then(r => setTrackIngest(r && r.festivalId, (r && r.fixes) || []))
+    .catch(() => 0)
+    .finally(() => { _setTrackDraining = null; });
+  return _setTrackDraining;
 }
 
 // ── SPEC-200 Build 2: taps, corrections, and moments as evidence ──
@@ -1674,6 +1743,7 @@ function setTrackSummary(artists, cfg = window.FESTIVAL_CONFIG) {
 // stages. The fix's lat/lng live only inside the callback.
 function SetTrackingWatcher() {
   const [, bump] = React.useReducer(x => x + 1, 0);
+  const native = !!_setTrackNative();
   const { active: bsActive } = useBatterySaver();
   React.useEffect(() => {
     const on = () => bump();
@@ -1684,8 +1754,39 @@ function SetTrackingWatcher() {
   }, []);
   const cfg = window.FESTIVAL_CONFIG;
   const fid = cfg && cfg.id;
+  const pref = getSetTracking() === "on";
+  const visible = document.visibilityState !== "hidden";
+  const elig = setTrackEligibility(cfg, Date.now());
+  // iPhone app: arm the plugin with this festival's set hours while the page
+  // is visible (a When In Use session can only start in front), drain what it
+  // holds whenever the page is visible, and disarm when off or not a live
+  // day. A hide does NOT disarm: that is the point of option B.
+  React.useEffect(() => {
+    const P = _setTrackNative();
+    if (!P || !visible) return;
+    let alive = true;
+    try { P.status().then(r => alive && _setTrackNativeSet(r)).catch(() => {}); } catch {}
+    setTrackDrainNative().then(() => {
+      if (!alive) return;
+      if (pref && fid && elig === "live") {
+        const ds = window._DATA_SETS && window._DATA_SETS[fid];
+        P.arm({ festivalId: fid, windows: setTrackWindows(cfg, (ds && ds.artists) || window.ARTISTS || [], Date.now()), saver: !!bsActive })
+          .then(r => alive && _setTrackNativeSet(r)).catch(() => {});
+      } else {
+        P.disarm().then(() => alive && _setTrackNativeSet({ tracking: false })).catch(() => {});
+      }
+    });
+    const t = setInterval(() => {
+      setTrackDrainNative();
+      try { P.status().then(r => alive && _setTrackNativeSet(r)).catch(() => {}); } catch {}
+    }, 60000);
+    return () => { alive = false; clearInterval(t); };
+  }, [native, visible, pref, fid, elig, bsActive]);
+  // The foreground watch: the web, and the iPhone app while its session is
+  // not running (then the plugin counts, open or locked, and this stays off
+  // so the phone never runs two GPS watches).
   const run = getSetTracking() === "on" && document.visibilityState !== "hidden"
-    && setTrackEligibility(cfg, Date.now()) === "live";
+    && setTrackEligibility(cfg, Date.now()) === "live" && !(native && _setTrackNativeOn);
   React.useEffect(() => {
     if (!run || !navigator.geolocation) return;
     const anchors = attendEvidenceAnchors(cfg);
@@ -2663,8 +2764,10 @@ function BatterySaverCard() {
 
 // Settings card for MeScreen: the opt-in for set tracking and its off switch.
 // Turning it on goes through one plain consent panel (what is recorded, what
-// is not). The limit is always on screen: it counts only while Plursky is
-// open, so nothing here may imply a whole night was measured.
+// is not). The limit is always on screen: on the web it counts only while
+// Plursky is open; in the iPhone app it counts during set hours, screen
+// locked too, once Plursky was opened that day. Nothing here may imply a
+// whole night was measured.
 function SetTrackingCard() {
   const [, bump] = React.useReducer(x => x + 1, 0);
   const [asking, setAsking] = React.useState(false);
@@ -2690,12 +2793,18 @@ function SetTrackingCard() {
   const calib = cfg ? stageCalibrationStatus(cfg) : null;
   const canCalibrate = !!(calib && calib.needed && phase === "live");
   const [calibrating, setCalibrating] = React.useState(false);
+  const native = !!_setTrackNative();
+  const anyData = native && _setTrackHasAny();
   const status = elig === "no-stages" ? (canCalibrate
       ? `${name}'s stages aren't measured yet. Calibrate them on site (${calib.done} of ${calib.needed} done) and sets can be timed on this phone.`
       : `${name}'s stages aren't measured yet, so sets can't be timed here.`)
     : !on ? "Off. Plursky can note how long you stay at a stage during a set, to tell a full set from part of one."
-    : elig === "live" ? "On. Counting while Plursky is open. Lock the screen and the count pauses."
     : elig === "ended" ? `On. ${name} is over, so nothing is counting.`
+    : native ? (elig === "live"
+      ? (_setTrackNativeOn ? "On. Counts during sets, even with the screen locked. iOS shows the location arrow while it runs."
+        : "On. Counting while Plursky is open. Once set hours start, it keeps counting with the screen locked.")
+      : `On. On ${name}'s festival days, open Plursky once and it counts during sets, even with the screen locked.`)
+    : elig === "live" ? "On. Counting while Plursky is open. Lock the screen and the count pauses."
     : `On. It starts on ${name}'s festival days, and counts only while Plursky is open.`;
   return (
     <div data-set-tracking-card data-set-tracking-state={on ? "on" : "off"} data-set-tracking-elig={elig} style={{
@@ -2714,7 +2823,9 @@ function SetTrackingCard() {
           <div style={body}>
             <b style={{ color: "var(--ink)" }}>Recorded:</b> which stage you were at and when, during sets.<br/>
             <b style={{ color: "var(--ink)" }}>Not recorded:</b> your exact location. Nothing leaves this phone.<br/>
-            It counts only while Plursky is open, and you can turn it off here any time.
+            {native
+              ? "It counts during set hours on festival days, screen locked too, once you've opened Plursky that day. iOS shows the location arrow while it runs. Turn it off here any time."
+              : "It counts only while Plursky is open, and you can turn it off here any time."}
           </div>
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
             <button data-set-tracking-accept onClick={() => { setSetTracking(true); setAsking(false); }} style={btn(true)}>Turn on</button>
@@ -2743,11 +2854,45 @@ function SetTrackingCard() {
           {calib && calib.done > 0 && (
             <button data-stage-calibrate-clear onClick={() => clearStageCalibration(cfg.id)} style={btn(false)}>Clear stage calibration</button>
           )}
+          {anyData && (
+            <button data-set-tracking-delete-all onClick={clearAllSetTrack} style={btn(false)}>Delete all set times</button>
+          )}
         </div>
       )}
+      {native && _setTrackInternal && <SetTrackBatteryTest btn={btn} body={body} />}
       {reviewing && <SetReviewSheet cfg={cfg} onClose={() => setReviewing(false)} />}
       {weekend && <YourWeekendSheet cfg={cfg} onClose={() => setWeekend(false)} />}
       {calibrating && <StageCalibrateSheet cfg={cfg} onClose={() => setCalibrating(false)} />}
+    </div>
+  );
+}
+
+// Internal builds only (TestFlight, Xcode): a GPS battery test with the
+// screen locked, for the B copy figure (PROTOCOL-battery, screen-locked run).
+// The plugin answers internal:false in an App Store build and rejects
+// testStart there, so this row never renders and could not start anything.
+// The test runs GPS exactly as in a set window but writes no fix: only a
+// count, shown here when it ends.
+function SetTrackBatteryTest({ btn, body }) {
+  const [st, setSt] = React.useState(null);
+  const P = _setTrackNative();
+  const refresh = () => { try { P.status().then(setSt).catch(() => {}); } catch {} };
+  React.useEffect(() => { if (!P) return; refresh(); const t = setInterval(refresh, 15000); return () => clearInterval(t); }, []);
+  if (!P || !_setTrackInternal) return null;
+  const running = !!(st && st.testUntil > Date.now());
+  const left = running ? Math.max(0, Math.round((st.testUntil - Date.now()) / 60000)) : 0;
+  return (
+    <div data-set-track-battery-test style={{ marginTop: 14, paddingTop: 12, borderTop: "1px solid var(--s3)" }}>
+      <div className="duo-label" style={{ color: "var(--ink-3)", marginBottom: 6 }}>INTERNAL BUILD · BATTERY TEST</div>
+      <div style={body}>
+        {running ? `Running: GPS as in a set window, nothing saved. ${left} min left, ${st.testFixes || 0} fixes so far. Lock the screen now.`
+          : `Runs GPS for 60 min as in a set window, screen locked, saving nothing. Note the battery % before and after.${st && st.testFixes ? ` Last test: ${st.testFixes} fixes.` : ""}`}
+      </div>
+      <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+        {running
+          ? <button data-set-track-test-stop onClick={() => P.testStop().then(refresh).catch(refresh)} style={btn(false)}>Stop test</button>
+          : <button data-set-track-test-start onClick={() => P.testStart({ minutes: 60 }).then(refresh).catch(refresh)} style={btn(false)}>Start 60-min test</button>}
+      </div>
     </div>
   );
 }
