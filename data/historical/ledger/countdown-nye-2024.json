@@ -1,0 +1,25 @@
+{
+  "id": "countdown-nye-2024",
+  "method": "official_sources",
+  "official": "https://countdownnye.com/set-times/day-1/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2024-12-31",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://countdownnye.com/set-times/day-1/",
+          "archivedUrl": "https://web.archive.org/web/20250126054026/https://countdownnye.com/set-times/day-1/",
+          "captureTimestamp": "20250126054026",
+          "printed": "Tuesday, December 31",
+          "sha256": "f021edaba0b040be673fa9d0935b94f08ffbea3f078edc49cbab3394349a0ddb",
+          "bytes": 298499,
+          "rows": 57
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": []
+}

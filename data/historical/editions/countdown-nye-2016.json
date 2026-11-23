@@ -1,0 +1,898 @@
+{
+ "id": "countdown-nye-2016",
+ "festivalId": "countdown-nye",
+ "name": "Countdown NYE 2016",
+ "year": 2016,
+ "timezone": "America/Los_Angeles",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2016-12-30",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2016-12-31",
+   "label": "Saturday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "countdown-nye-2016:infinity",
+   "name": "INFINITY"
+  },
+  {
+   "id": "countdown-nye-2016:quantum",
+   "name": "QUANTUM"
+  },
+  {
+   "id": "countdown-nye-2016:resolution",
+   "name": "RESOLUTION"
+  }
+ ],
+ "artists": [
+  {
+   "id": "countdown-nye-2016:convex",
+   "name": "Convex",
+   "key": "convex",
+   "performers": [
+    "convex"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:electric-mantis",
+   "name": "Electric Mantis",
+   "key": "electric-mantis",
+   "performers": [
+    "electric-mantis"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:rezz",
+   "name": "Rezz",
+   "key": "rezz",
+   "performers": [
+    "rezz"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:anna-lunoe",
+   "name": "Anna Lunoe",
+   "key": "anna-lunoe",
+   "performers": [
+    "anna-lunoe"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:a-trak",
+   "name": "A-Trak",
+   "key": "a-trak",
+   "performers": [
+    "a-trak"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:kill-the-noise",
+   "name": "Kill The Noise",
+   "key": "kill-the-noise",
+   "performers": [
+    "kill-the-noise"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:baauer",
+   "name": "Baauer",
+   "key": "baauer",
+   "performers": [
+    "baauer"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:rl-grime",
+   "name": "RL Grime",
+   "key": "rl-grime",
+   "performers": [
+    "rl-grime"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:mahalo",
+   "name": "Mahalo",
+   "key": "mahalo",
+   "performers": [
+    "mahalo"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:adam-auburn",
+   "name": "Adam Auburn",
+   "key": "adam-auburn",
+   "performers": [
+    "adam-auburn"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:saint-wknd",
+   "name": "SAINT WKND",
+   "key": "saint-wknd",
+   "performers": [
+    "saint-wknd"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:louisahhh",
+   "name": "Louisahhh",
+   "key": "louisahhh",
+   "performers": [
+    "louisahhh"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:billy-kenny",
+   "name": "Billy Kenny",
+   "key": "billy-kenny",
+   "performers": [
+    "billy-kenny"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:kill-frenzy",
+   "name": "Kill Frenzy",
+   "key": "kill-frenzy",
+   "performers": [
+    "kill-frenzy"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:lane-8",
+   "name": "Lane 8",
+   "key": "lane-8",
+   "performers": [
+    "lane-8"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:justice-skolnik",
+   "name": "Justice Skolnik",
+   "key": "justice-skolnik",
+   "performers": [
+    "justice-skolnik"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:veniice",
+   "name": "Veniice",
+   "key": "veniice",
+   "performers": [
+    "veniice"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:cid",
+   "name": "CID",
+   "key": "cid",
+   "performers": [
+    "cid"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:firebeatz",
+   "name": "Firebeatz",
+   "key": "firebeatz",
+   "performers": [
+    "firebeatz"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:the-chainsmokers",
+   "name": "The Chainsmokers",
+   "key": "the-chainsmokers",
+   "performers": [
+    "the-chainsmokers"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:deorro",
+   "name": "Deorro",
+   "key": "deorro",
+   "performers": [
+    "deorro"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:makj",
+   "name": "MAKJ",
+   "key": "makj",
+   "performers": [
+    "makj"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:steve-aoki",
+   "name": "Steve Aoki",
+   "key": "steve-aoki",
+   "performers": [
+    "steve-aoki"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:seven-lions",
+   "name": "Seven Lions",
+   "key": "seven-lions",
+   "performers": [
+    "seven-lions"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:jace-mek",
+   "name": "Jace Mek",
+   "key": "jace-mek",
+   "performers": [
+    "jace-mek"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:awe",
+   "name": "AWE",
+   "key": "awe",
+   "performers": [
+    "awe"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:dr-fresch",
+   "name": "Dr. Fresch",
+   "key": "dr-fresch",
+   "performers": [
+    "dr-fresch"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:diplo",
+   "name": "Diplo",
+   "key": "diplo",
+   "performers": [
+    "diplo"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:4b",
+   "name": "4B",
+   "key": "4b",
+   "performers": [
+    "4b"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:rabbit-in-the-moon",
+   "name": "Rabbit In The Moon",
+   "key": "rabbit-in-the-moon",
+   "performers": [
+    "rabbit-in-the-moon"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:troyboi",
+   "name": "TroyBoi",
+   "key": "troyboi",
+   "performers": [
+    "troyboi"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:nghtmre",
+   "name": "NGHTMRE",
+   "key": "nghtmre",
+   "performers": [
+    "nghtmre"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:grandtheft",
+   "name": "Grandtheft",
+   "key": "grandtheft",
+   "performers": [
+    "grandtheft"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:blankface-b2b-maze",
+   "name": "Blankface B2B Maze",
+   "key": "blankface-b2b-maze",
+   "performers": [
+    "blankface",
+    "maze"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:snavs",
+   "name": "Snavs",
+   "key": "snavs",
+   "performers": [
+    "snavs"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:dimension-b2b-1991",
+   "name": "Dimension B2B 1991",
+   "key": "dimension-b2b-1991",
+   "performers": [
+    "dimension",
+    "1991"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:virtual-riot",
+   "name": "Virtual Riot",
+   "key": "virtual-riot",
+   "performers": [
+    "virtual-riot"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:tc",
+   "name": "TC",
+   "key": "tc",
+   "performers": [
+    "tc"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:ghastly",
+   "name": "Ghastly",
+   "key": "ghastly",
+   "performers": [
+    "ghastly"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:joyryde",
+   "name": "Joyryde",
+   "key": "joyryde",
+   "performers": [
+    "joyryde"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:san-holo",
+   "name": "San Holo",
+   "key": "san-holo",
+   "performers": [
+    "san-holo"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:zomboy",
+   "name": "Zomboy",
+   "key": "zomboy",
+   "performers": [
+    "zomboy"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:valentino-khan",
+   "name": "Valentino Khan",
+   "key": "valentino-khan",
+   "performers": [
+    "valentino-khan"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:kayoh-b2b-swage",
+   "name": "Kayoh B2B Swage",
+   "key": "kayoh-b2b-swage",
+   "performers": [
+    "kayoh",
+    "swage"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:bonnie-x-clyde",
+   "name": "Bonnie X Clyde",
+   "key": "bonnie-x-clyde",
+   "performers": [
+    "bonnie-x-clyde"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:matroda",
+   "name": "Matroda",
+   "key": "matroda",
+   "performers": [
+    "matroda"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:dzeko-and-torres",
+   "name": "Dzeko & Torres",
+   "key": "dzeko-and-torres",
+   "performers": [
+    "dzeko-and-torres"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:morgan-page",
+   "name": "Morgan Page",
+   "key": "morgan-page",
+   "performers": [
+    "morgan-page"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:w-and-w",
+   "name": "W&W",
+   "key": "w-and-w",
+   "performers": [
+    "w-and-w"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:showtek",
+   "name": "Showtek",
+   "key": "showtek",
+   "performers": [
+    "showtek"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:alesso",
+   "name": "Alesso",
+   "key": "alesso",
+   "performers": [
+    "alesso"
+   ]
+  },
+  {
+   "id": "countdown-nye-2016:zedd",
+   "name": "Zedd",
+   "key": "zedd",
+   "performers": [
+    "zedd"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "countdown-nye-2016:d1:infinity:1700:convex",
+   "artistId": "countdown-nye-2016:convex",
+   "day": 1,
+   "stageId": "countdown-nye-2016:infinity",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "countdown-nye-2016:d1:infinity:1800:electric-mantis",
+   "artistId": "countdown-nye-2016:electric-mantis",
+   "day": 1,
+   "stageId": "countdown-nye-2016:infinity",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "countdown-nye-2016:d1:infinity:1900:rezz",
+   "artistId": "countdown-nye-2016:rezz",
+   "day": 1,
+   "stageId": "countdown-nye-2016:infinity",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "countdown-nye-2016:d1:infinity:2000:anna-lunoe",
+   "artistId": "countdown-nye-2016:anna-lunoe",
+   "day": 1,
+   "stageId": "countdown-nye-2016:infinity",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "countdown-nye-2016:d1:infinity:2100:a-trak",
+   "artistId": "countdown-nye-2016:a-trak",
+   "day": 1,
+   "stageId": "countdown-nye-2016:infinity",
+   "start": "21:00",
+   "end": "22:15"
+  },
+  {
+   "id": "countdown-nye-2016:d1:infinity:2215:kill-the-noise",
+   "artistId": "countdown-nye-2016:kill-the-noise",
+   "day": 1,
+   "stageId": "countdown-nye-2016:infinity",
+   "start": "22:15",
+   "end": "23:30"
+  },
+  {
+   "id": "countdown-nye-2016:d1:infinity:2330:baauer",
+   "artistId": "countdown-nye-2016:baauer",
+   "day": 1,
+   "stageId": "countdown-nye-2016:infinity",
+   "start": "23:30",
+   "end": "00:45"
+  },
+  {
+   "id": "countdown-nye-2016:d1:infinity:0045:rl-grime",
+   "artistId": "countdown-nye-2016:rl-grime",
+   "day": 1,
+   "stageId": "countdown-nye-2016:infinity",
+   "start": "00:45",
+   "end": "02:00"
+  },
+  {
+   "id": "countdown-nye-2016:d1:quantum:1600:mahalo",
+   "artistId": "countdown-nye-2016:mahalo",
+   "day": 1,
+   "stageId": "countdown-nye-2016:quantum",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "countdown-nye-2016:d1:quantum:1700:adam-auburn",
+   "artistId": "countdown-nye-2016:adam-auburn",
+   "day": 1,
+   "stageId": "countdown-nye-2016:quantum",
+   "start": "17:00",
+   "end": "18:30"
+  },
+  {
+   "id": "countdown-nye-2016:d1:quantum:1830:saint-wknd",
+   "artistId": "countdown-nye-2016:saint-wknd",
+   "day": 1,
+   "stageId": "countdown-nye-2016:quantum",
+   "start": "18:30",
+   "end": "20:00"
+  },
+  {
+   "id": "countdown-nye-2016:d1:quantum:2000:louisahhh",
+   "artistId": "countdown-nye-2016:louisahhh",
+   "day": 1,
+   "stageId": "countdown-nye-2016:quantum",
+   "start": "20:00",
+   "end": "21:30"
+  },
+  {
+   "id": "countdown-nye-2016:d1:quantum:2130:billy-kenny",
+   "artistId": "countdown-nye-2016:billy-kenny",
+   "day": 1,
+   "stageId": "countdown-nye-2016:quantum",
+   "start": "21:30",
+   "end": "23:00"
+  },
+  {
+   "id": "countdown-nye-2016:d1:quantum:2300:kill-frenzy",
+   "artistId": "countdown-nye-2016:kill-frenzy",
+   "day": 1,
+   "stageId": "countdown-nye-2016:quantum",
+   "start": "23:00",
+   "end": "00:30"
+  },
+  {
+   "id": "countdown-nye-2016:d1:quantum:0030:lane-8",
+   "artistId": "countdown-nye-2016:lane-8",
+   "day": 1,
+   "stageId": "countdown-nye-2016:quantum",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "countdown-nye-2016:d1:resolution:1600:justice-skolnik",
+   "artistId": "countdown-nye-2016:justice-skolnik",
+   "day": 1,
+   "stageId": "countdown-nye-2016:resolution",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "countdown-nye-2016:d1:resolution:1700:veniice",
+   "artistId": "countdown-nye-2016:veniice",
+   "day": 1,
+   "stageId": "countdown-nye-2016:resolution",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "countdown-nye-2016:d1:resolution:1800:cid",
+   "artistId": "countdown-nye-2016:cid",
+   "day": 1,
+   "stageId": "countdown-nye-2016:resolution",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "countdown-nye-2016:d1:resolution:1900:firebeatz",
+   "artistId": "countdown-nye-2016:firebeatz",
+   "day": 1,
+   "stageId": "countdown-nye-2016:resolution",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "countdown-nye-2016:d1:resolution:2000:the-chainsmokers",
+   "artistId": "countdown-nye-2016:the-chainsmokers",
+   "day": 1,
+   "stageId": "countdown-nye-2016:resolution",
+   "start": "20:00",
+   "end": "21:15"
+  },
+  {
+   "id": "countdown-nye-2016:d1:resolution:2115:deorro",
+   "artistId": "countdown-nye-2016:deorro",
+   "day": 1,
+   "stageId": "countdown-nye-2016:resolution",
+   "start": "21:15",
+   "end": "22:30"
+  },
+  {
+   "id": "countdown-nye-2016:d1:resolution:2230:makj",
+   "artistId": "countdown-nye-2016:makj",
+   "day": 1,
+   "stageId": "countdown-nye-2016:resolution",
+   "start": "22:30",
+   "end": "23:30"
+  },
+  {
+   "id": "countdown-nye-2016:d1:resolution:2330:steve-aoki",
+   "artistId": "countdown-nye-2016:steve-aoki",
+   "day": 1,
+   "stageId": "countdown-nye-2016:resolution",
+   "start": "23:30",
+   "end": "00:45"
+  },
+  {
+   "id": "countdown-nye-2016:d1:resolution:0045:seven-lions",
+   "artistId": "countdown-nye-2016:seven-lions",
+   "day": 1,
+   "stageId": "countdown-nye-2016:resolution",
+   "start": "00:45",
+   "end": "02:00"
+  },
+  {
+   "id": "countdown-nye-2016:d2:infinity:1600:jace-mek",
+   "artistId": "countdown-nye-2016:jace-mek",
+   "day": 2,
+   "stageId": "countdown-nye-2016:infinity",
+   "start": "16:00",
+   "end": "17:15"
+  },
+  {
+   "id": "countdown-nye-2016:d2:infinity:1715:awe",
+   "artistId": "countdown-nye-2016:awe",
+   "day": 2,
+   "stageId": "countdown-nye-2016:infinity",
+   "start": "17:15",
+   "end": "18:15"
+  },
+  {
+   "id": "countdown-nye-2016:d2:infinity:1815:dr-fresch",
+   "artistId": "countdown-nye-2016:dr-fresch",
+   "day": 2,
+   "stageId": "countdown-nye-2016:infinity",
+   "start": "18:15",
+   "end": "19:15"
+  },
+  {
+   "id": "countdown-nye-2016:d2:infinity:1915:diplo",
+   "artistId": "countdown-nye-2016:diplo",
+   "day": 2,
+   "stageId": "countdown-nye-2016:infinity",
+   "start": "19:15",
+   "end": "20:30"
+  },
+  {
+   "id": "countdown-nye-2016:d2:infinity:2030:4b",
+   "artistId": "countdown-nye-2016:4b",
+   "day": 2,
+   "stageId": "countdown-nye-2016:infinity",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "countdown-nye-2016:d2:infinity:2130:rabbit-in-the-moon",
+   "artistId": "countdown-nye-2016:rabbit-in-the-moon",
+   "day": 2,
+   "stageId": "countdown-nye-2016:infinity",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "countdown-nye-2016:d2:infinity:2230:troyboi",
+   "artistId": "countdown-nye-2016:troyboi",
+   "day": 2,
+   "stageId": "countdown-nye-2016:infinity",
+   "start": "22:30",
+   "end": "23:30"
+  },
+  {
+   "id": "countdown-nye-2016:d2:infinity:2330:nghtmre",
+   "artistId": "countdown-nye-2016:nghtmre",
+   "day": 2,
+   "stageId": "countdown-nye-2016:infinity",
+   "start": "23:30",
+   "end": "00:45"
+  },
+  {
+   "id": "countdown-nye-2016:d2:infinity:0045:grandtheft",
+   "artistId": "countdown-nye-2016:grandtheft",
+   "day": 2,
+   "stageId": "countdown-nye-2016:infinity",
+   "start": "00:45",
+   "end": "02:00"
+  },
+  {
+   "id": "countdown-nye-2016:d2:quantum:1600:blankface-b2b-maze",
+   "artistId": "countdown-nye-2016:blankface-b2b-maze",
+   "day": 2,
+   "stageId": "countdown-nye-2016:quantum",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "countdown-nye-2016:d2:quantum:1700:snavs",
+   "artistId": "countdown-nye-2016:snavs",
+   "day": 2,
+   "stageId": "countdown-nye-2016:quantum",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "countdown-nye-2016:d2:quantum:1800:dimension-b2b-1991",
+   "artistId": "countdown-nye-2016:dimension-b2b-1991",
+   "day": 2,
+   "stageId": "countdown-nye-2016:quantum",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "countdown-nye-2016:d2:quantum:1900:virtual-riot",
+   "artistId": "countdown-nye-2016:virtual-riot",
+   "day": 2,
+   "stageId": "countdown-nye-2016:quantum",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "countdown-nye-2016:d2:quantum:2000:tc",
+   "artistId": "countdown-nye-2016:tc",
+   "day": 2,
+   "stageId": "countdown-nye-2016:quantum",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "countdown-nye-2016:d2:quantum:2100:ghastly",
+   "artistId": "countdown-nye-2016:ghastly",
+   "day": 2,
+   "stageId": "countdown-nye-2016:quantum",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "countdown-nye-2016:d2:quantum:2200:joyryde",
+   "artistId": "countdown-nye-2016:joyryde",
+   "day": 2,
+   "stageId": "countdown-nye-2016:quantum",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "countdown-nye-2016:d2:quantum:2300:san-holo",
+   "artistId": "countdown-nye-2016:san-holo",
+   "day": 2,
+   "stageId": "countdown-nye-2016:quantum",
+   "start": "23:00",
+   "end": "23:59"
+  },
+  {
+   "id": "countdown-nye-2016:d2:quantum:2359:zomboy",
+   "artistId": "countdown-nye-2016:zomboy",
+   "day": 2,
+   "stageId": "countdown-nye-2016:quantum",
+   "start": "23:59",
+   "end": "01:00"
+  },
+  {
+   "id": "countdown-nye-2016:d2:quantum:0100:valentino-khan",
+   "artistId": "countdown-nye-2016:valentino-khan",
+   "day": 2,
+   "stageId": "countdown-nye-2016:quantum",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "countdown-nye-2016:d2:resolution:1600:kayoh-b2b-swage",
+   "artistId": "countdown-nye-2016:kayoh-b2b-swage",
+   "day": 2,
+   "stageId": "countdown-nye-2016:resolution",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "countdown-nye-2016:d2:resolution:1700:bonnie-x-clyde",
+   "artistId": "countdown-nye-2016:bonnie-x-clyde",
+   "day": 2,
+   "stageId": "countdown-nye-2016:resolution",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "countdown-nye-2016:d2:resolution:1800:matroda",
+   "artistId": "countdown-nye-2016:matroda",
+   "day": 2,
+   "stageId": "countdown-nye-2016:resolution",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "countdown-nye-2016:d2:resolution:1900:dzeko-and-torres",
+   "artistId": "countdown-nye-2016:dzeko-and-torres",
+   "day": 2,
+   "stageId": "countdown-nye-2016:resolution",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "countdown-nye-2016:d2:resolution:2000:morgan-page",
+   "artistId": "countdown-nye-2016:morgan-page",
+   "day": 2,
+   "stageId": "countdown-nye-2016:resolution",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "countdown-nye-2016:d2:resolution:2100:w-and-w",
+   "artistId": "countdown-nye-2016:w-and-w",
+   "day": 2,
+   "stageId": "countdown-nye-2016:resolution",
+   "start": "21:00",
+   "end": "22:15"
+  },
+  {
+   "id": "countdown-nye-2016:d2:resolution:2215:showtek",
+   "artistId": "countdown-nye-2016:showtek",
+   "day": 2,
+   "stageId": "countdown-nye-2016:resolution",
+   "start": "22:15",
+   "end": "23:30"
+  },
+  {
+   "id": "countdown-nye-2016:d2:resolution:2330:alesso",
+   "artistId": "countdown-nye-2016:alesso",
+   "day": 2,
+   "stageId": "countdown-nye-2016:resolution",
+   "start": "23:30",
+   "end": "00:45"
+  },
+  {
+   "id": "countdown-nye-2016:d2:resolution:0050:zedd",
+   "artistId": "countdown-nye-2016:zedd",
+   "day": 2,
+   "stageId": "countdown-nye-2016:resolution",
+   "start": "00:50",
+   "end": "02:00"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "http://countdownnye.com/experience/set-times/",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20170101100522/http://countdownnye.com/experience/set-times/",
+    "captureTimestamp": "20170101100522",
+    "printed": "Friday, December 30",
+    "sha256": "248ff5179bedb8993fc10810a21e8a5efc71e147d190b11f0d8e5a7e61e721d2",
+    "rows": 24
+   },
+   {
+    "day": 2,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20170101100522/http://countdownnye.com/experience/set-times/",
+    "captureTimestamp": "20170101100522",
+    "printed": "Saturday, December 31",
+    "sha256": "248ff5179bedb8993fc10810a21e8a5efc71e147d190b11f0d8e5a7e61e721d2",
+    "rows": 28
+   }
+  ]
+ }
+}
