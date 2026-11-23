@@ -88523,6 +88523,2870 @@
   "mainStage": null
  },
  {
+  "id": "forbidden-kingdom-2027:fk27-2dy4",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "2DY4",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "2dy4",
+    "role": "performer"
+   }
+  ],
+  "act": "2dy4",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-9b49",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "9B49",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "9b49",
+    "role": "performer"
+   }
+  ],
+  "act": "9b49",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-a-hundred-drums-b2b-zen-selekta",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "A Hundred Drums B2B Zen Selekta",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "a-hundred-drums",
+    "role": "b2b"
+   },
+   {
+    "key": "zen-selekta",
+    "role": "b2b"
+   }
+  ],
+  "act": "a-hundred-drums-b2b-zen-selekta",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-advptive-b2b-dubba-d",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Advptive B2B Dubba D",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "advptive",
+    "role": "b2b"
+   },
+   {
+    "key": "dubba-d",
+    "role": "b2b"
+   }
+  ],
+  "act": "advptive-b2b-dubba-d",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-aeon-mode",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ÆON:MODE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "aeon-mode",
+    "role": "performer"
+   }
+  ],
+  "act": "aeon-mode",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-ag",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "AG",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ag",
+    "role": "performer"
+   }
+  ],
+  "act": "ag",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-all-the-reason",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "All The Reason",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "all-the-reason",
+    "role": "performer"
+   }
+  ],
+  "act": "all-the-reason",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-alleycvt",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ALLEYCVT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alleycvt",
+    "role": "performer"
+   }
+  ],
+  "act": "alleycvt",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-alpha-omega-ac13-and-reaper",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Alpha:Omega (AC13 & Reaper)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alpha-omega-ac13-and-reaper",
+    "role": "act"
+   }
+  ],
+  "act": "alpha-omega-ac13-and-reaper",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null,
+  "review": "parenthetical names people"
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-arcando",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Arcando",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "arcando",
+    "role": "performer"
+   }
+  ],
+  "act": "arcando",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-atliens",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ATLiens",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "atliens",
+    "role": "performer"
+   }
+  ],
+  "act": "atliens",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-avello",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "AVELLO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "avello",
+    "role": "performer"
+   }
+  ],
+  "act": "avello",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-bagha",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Bagha",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bagha",
+    "role": "performer"
+   }
+  ],
+  "act": "bagha",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-barrowz",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "BARROWZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "barrowz",
+    "role": "performer"
+   }
+  ],
+  "act": "barrowz",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-beastboi",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "beastboi.",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "beastboi",
+    "role": "performer"
+   }
+  ],
+  "act": "beastboi",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-big-florida",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Big Florida",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "big-florida",
+    "role": "performer"
+   }
+  ],
+  "act": "big-florida",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-black-tiger-sex-machine",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Black Tiger Sex Machine",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "black-tiger-sex-machine",
+    "role": "performer"
+   }
+  ],
+  "act": "black-tiger-sex-machine",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-bloom",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Bloom",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bloom",
+    "role": "performer"
+   }
+  ],
+  "act": "bloom",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-blossom",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Blossom",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "blossom",
+    "role": "performer"
+   }
+  ],
+  "act": "blossom",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-bonker",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Bonker",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bonker",
+    "role": "performer"
+   }
+  ],
+  "act": "bonker",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-bonkers",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Bonkers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bonkers",
+    "role": "performer"
+   }
+  ],
+  "act": "bonkers",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-bynz-b2b-inqu",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Bynz B2B Inqu",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bynz",
+    "role": "b2b"
+   },
+   {
+    "key": "inqu",
+    "role": "b2b"
+   }
+  ],
+  "act": "bynz-b2b-inqu",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-casey-club",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Casey Club",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "casey-club",
+    "role": "performer"
+   }
+  ],
+  "act": "casey-club",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-celo",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "CELO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "celo",
+    "role": "performer"
+   }
+  ],
+  "act": "celo",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-chassi",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Chassi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chassi",
+    "role": "performer"
+   }
+  ],
+  "act": "chassi",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-chozen",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "CHOZEN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chozen",
+    "role": "performer"
+   }
+  ],
+  "act": "chozen",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-codd-dubz",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Codd Dubz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "codd-dubz",
+    "role": "performer"
+   }
+  ],
+  "act": "codd-dubz",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-costa",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Costa",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "costa",
+    "role": "performer"
+   }
+  ],
+  "act": "costa",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-crankdat",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Crankdat",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "crankdat",
+    "role": "performer"
+   }
+  ],
+  "act": "crankdat",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-crizzly",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Crizzly",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "crizzly",
+    "role": "performer"
+   }
+  ],
+  "act": "crizzly",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-cyclops",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Cyclops",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cyclops",
+    "role": "performer"
+   }
+  ],
+  "act": "cyclops",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-debbie-check",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Debbie Check",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "debbie-check",
+    "role": "performer"
+   }
+  ],
+  "act": "debbie-check",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-discovery-project",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Discovery Project",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "discovery-project",
+    "role": "performer"
+   }
+  ],
+  "act": "discovery-project",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-dj-kang",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "DJ Kang",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-kang",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-kang",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-dpmo-presents-beastboi-b2b-funtcase-b2b-versa",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "DPMO Presents: beastboi. B2B FuntCase B2B Versa",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dpmo-presents-beastboi",
+    "role": "b2b"
+   },
+   {
+    "key": "funtcase",
+    "role": "b2b"
+   },
+   {
+    "key": "versa",
+    "role": "b2b"
+   }
+  ],
+  "act": "dpmo-presents-beastboi-b2b-funtcase-b2b-versa",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-excision",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Excision",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "excision",
+    "role": "performer"
+   }
+  ],
+  "act": "excision",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-fieldz-b2b-ophion",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Fieldz B2B Ophion",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fieldz",
+    "role": "b2b"
+   },
+   {
+    "key": "ophion",
+    "role": "b2b"
+   }
+  ],
+  "act": "fieldz-b2b-ophion",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-finnuh",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Finnuh",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "finnuh",
+    "role": "performer"
+   }
+  ],
+  "act": "finnuh",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-flozone-b2b-stvsh",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Flozone B2B STVSH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "flozone",
+    "role": "b2b"
+   },
+   {
+    "key": "stvsh",
+    "role": "b2b"
+   }
+  ],
+  "act": "flozone-b2b-stvsh",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-gamma",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "GAMMA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gamma",
+    "role": "performer"
+   }
+  ],
+  "act": "gamma",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-ghengar",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Ghengar",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ghengar",
+    "role": "performer"
+   }
+  ],
+  "act": "ghengar",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-gorillat-sunset-set",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "GorillaT (Sunset Set)",
+  "setTag": "Sunset Set",
+  "performers": [
+   {
+    "key": "gorillat",
+    "role": "performer"
+   }
+  ],
+  "act": "gorillat",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-grabbitz",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Grabbitz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "grabbitz",
+    "role": "performer"
+   }
+  ],
+  "act": "grabbitz",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-hades-x-persephone",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Hades x Persephone",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hades-x-persephone",
+    "role": "act"
+   }
+  ],
+  "act": "hades-x-persephone",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null,
+  "review": "\"x\" billing whose sides are not both known acts"
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-hekler",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Hekler",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hekler",
+    "role": "performer"
+   }
+  ],
+  "act": "hekler",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-hershe",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "HerShe",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hershe",
+    "role": "performer"
+   }
+  ],
+  "act": "hershe",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-hexx",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "HEXX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hexx",
+    "role": "performer"
+   }
+  ],
+  "act": "hexx",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-hol",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "HOL!",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hol",
+    "role": "performer"
+   }
+  ],
+  "act": "hol",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-hostage-situation",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Hostage Situation",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hostage-situation",
+    "role": "performer"
+   }
+  ],
+  "act": "hostage-situation",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-hurtbox",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Hurtbox",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hurtbox",
+    "role": "performer"
+   }
+  ],
+  "act": "hurtbox",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-inaktiv",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Inaktiv",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "inaktiv",
+    "role": "performer"
+   }
+  ],
+  "act": "inaktiv",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-infekt",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "INFEKT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "infekt",
+    "role": "performer"
+   }
+  ],
+  "act": "infekt",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-izzy-vadim-b2b-warlord",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Izzy Vadim B2B Warlord",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "izzy-vadim",
+    "role": "b2b"
+   },
+   {
+    "key": "warlord",
+    "role": "b2b"
+   }
+  ],
+  "act": "izzy-vadim-b2b-warlord",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-jessica-audiffred",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Jessica Audiffred",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jessica-audiffred",
+    "role": "performer"
+   }
+  ],
+  "act": "jessica-audiffred",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-jkyl-and-hyde",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Jkyl & Hyde",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jkyl-and-hyde",
+    "role": "performer"
+   }
+  ],
+  "act": "jkyl-and-hyde",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-joust",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "JOUST",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "joust",
+    "role": "performer"
+   }
+  ],
+  "act": "joust",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-justin-hawkes",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Justin Hawkes",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "justin-hawkes",
+    "role": "performer"
+   }
+  ],
+  "act": "justin-hawkes",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-kai-wachi",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Kai Wachi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kai-wachi",
+    "role": "performer"
+   }
+  ],
+  "act": "kai-wachi",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-klo",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Klo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "klo",
+    "role": "performer"
+   }
+  ],
+  "act": "klo",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-lagrimas",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Lagrimas",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lagrimas",
+    "role": "performer"
+   }
+  ],
+  "act": "lagrimas",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-layz",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "LAYZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "layz",
+    "role": "performer"
+   }
+  ],
+  "act": "layz",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-level-up",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Level Up",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "level-up",
+    "role": "performer"
+   }
+  ],
+  "act": "level-up",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-levity",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Levity",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "levity",
+    "role": "performer"
+   }
+  ],
+  "act": "levity",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-lucas-larvenz",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Lucas Larvenz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lucas-larvenz",
+    "role": "performer"
+   }
+  ],
+  "act": "lucas-larvenz",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-mad-dubz",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Mad Dubz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mad-dubz",
+    "role": "performer"
+   }
+  ],
+  "act": "mad-dubz",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-the-masquerade",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "The Masquerade",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-masquerade",
+    "role": "performer"
+   }
+  ],
+  "act": "the-masquerade",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-maylay-b2b-natty-lou",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "MAYLAY B2B Natty Lou",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "maylay",
+    "role": "b2b"
+   },
+   {
+    "key": "natty-lou",
+    "role": "b2b"
+   }
+  ],
+  "act": "maylay-b2b-natty-lou",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-mile32",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Mile32",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mile32",
+    "role": "performer"
+   }
+  ],
+  "act": "mile32",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-moceans",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "MOCEANS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "moceans",
+    "role": "performer"
+   }
+  ],
+  "act": "moceans",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-modal-nodes",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "MODAL NODES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "modal-nodes",
+    "role": "performer"
+   }
+  ],
+  "act": "modal-nodes",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-mvrda",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Mvrda",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mvrda",
+    "role": "performer"
+   }
+  ],
+  "act": "mvrda",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-mvtr",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "MVTR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mvtr",
+    "role": "performer"
+   }
+  ],
+  "act": "mvtr",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-mythm",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Mythm",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mythm",
+    "role": "performer"
+   }
+  ],
+  "act": "mythm",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-neotek",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Neotek",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "neotek",
+    "role": "performer"
+   }
+  ],
+  "act": "neotek",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-novuh-b2b-wohlsy",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Novuh B2B Wohlsy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "novuh",
+    "role": "b2b"
+   },
+   {
+    "key": "wohlsy",
+    "role": "b2b"
+   }
+  ],
+  "act": "novuh-b2b-wohlsy",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-otsukare",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Otsukare",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "otsukare",
+    "role": "performer"
+   }
+  ],
+  "act": "otsukare",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-ozztin",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "OZZTIN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ozztin",
+    "role": "performer"
+   }
+  ],
+  "act": "ozztin",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-p-money-x-whiney",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "P Money x Whiney",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "p-money-x-whiney",
+    "role": "act"
+   }
+  ],
+  "act": "p-money-x-whiney",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null,
+  "review": "\"x\" billing whose sides are not both known acts"
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-papajay",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "papajay",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "papajay",
+    "role": "performer"
+   }
+  ],
+  "act": "papajay",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-perry-wayne",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Perry Wayne",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "perry-wayne",
+    "role": "performer"
+   }
+  ],
+  "act": "perry-wayne",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-port-zero-presents-infekt-b2b-modal-nodes-b2b-roi",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Port Zero presents: INFEKT B2B MODAL NODES B2B roi*",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "port-zero-presents-infekt",
+    "role": "b2b"
+   },
+   {
+    "key": "modal-nodes",
+    "role": "b2b"
+   },
+   {
+    "key": "roi",
+    "role": "b2b"
+   }
+  ],
+  "act": "port-zero-presents-infekt-b2b-modal-nodes-b2b-roi",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-pretty-sweet",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Pretty Sweet",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pretty-sweet",
+    "role": "performer"
+   }
+  ],
+  "act": "pretty-sweet",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-primate",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Primate",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "primate",
+    "role": "performer"
+   }
+  ],
+  "act": "primate",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-raaket",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Raaket",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "raaket",
+    "role": "performer"
+   }
+  ],
+  "act": "raaket",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-ray-volpe",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Ray Volpe",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ray-volpe",
+    "role": "performer"
+   }
+  ],
+  "act": "ray-volpe",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-the-resistance",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "The Resistance",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-resistance",
+    "role": "performer"
+   }
+  ],
+  "act": "the-resistance",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-richard-finger",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Richard Finger",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "richard-finger",
+    "role": "performer"
+   }
+  ],
+  "act": "richard-finger",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-riot-ten",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Riot Ten",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "riot-ten",
+    "role": "performer"
+   }
+  ],
+  "act": "riot-ten",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-ruvlo",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "RUVLO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ruvlo",
+    "role": "performer"
+   }
+  ],
+  "act": "ruvlo",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-s-y-n-svdden-death-yvm3-nimda",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "S.Y.N (Svdden Death, yvm3, NIMDA)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "s-y-n",
+    "role": "project"
+   }
+  ],
+  "act": "s-y-n-svdden-death-yvm3-nimda",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-samplifire",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Samplifire",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "samplifire",
+    "role": "performer"
+   }
+  ],
+  "act": "samplifire",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-sando",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "SANDO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sando",
+    "role": "performer"
+   }
+  ],
+  "act": "sando",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-seeing-dubble",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Seeing Dubble",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "seeing-dubble",
+    "role": "performer"
+   }
+  ],
+  "act": "seeing-dubble",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-sfam",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "sfam",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sfam",
+    "role": "performer"
+   }
+  ],
+  "act": "sfam",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-shinobi",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Shinobi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "shinobi",
+    "role": "performer"
+   }
+  ],
+  "act": "shinobi",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-shiverz",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Shiverz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "shiverz",
+    "role": "performer"
+   }
+  ],
+  "act": "shiverz",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-shosh",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Shosh",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "shosh",
+    "role": "performer"
+   }
+  ],
+  "act": "shosh",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-sloth",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Sloth",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sloth",
+    "role": "performer"
+   }
+  ],
+  "act": "sloth",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-spoone",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Spoone",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "spoone",
+    "role": "performer"
+   }
+  ],
+  "act": "spoone",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-sqishi",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Sqishi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sqishi",
+    "role": "performer"
+   }
+  ],
+  "act": "sqishi",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-stayns",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "STAYNS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "stayns",
+    "role": "performer"
+   }
+  ],
+  "act": "stayns",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-steller",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Steller",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "steller",
+    "role": "performer"
+   }
+  ],
+  "act": "steller",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-sumthin-sumthin",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "sumthin sumthin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sumthin-sumthin",
+    "role": "performer"
+   }
+  ],
+  "act": "sumthin-sumthin",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-three-pux",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Three Pux",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "three-pux",
+    "role": "performer"
+   }
+  ],
+  "act": "three-pux",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-tynan",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Tynan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tynan",
+    "role": "performer"
+   }
+  ],
+  "act": "tynan",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-usaybflow",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Usaybflow",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "usaybflow",
+    "role": "performer"
+   }
+  ],
+  "act": "usaybflow",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-vanirz-b2b-yaki",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Vanirz B2B Yaki",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vanirz",
+    "role": "b2b"
+   },
+   {
+    "key": "yaki",
+    "role": "b2b"
+   }
+  ],
+  "act": "vanirz-b2b-yaki",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-vicky-b",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Vicky B",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vicky-b",
+    "role": "performer"
+   }
+  ],
+  "act": "vicky-b",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-vipete",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Vipete",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vipete",
+    "role": "performer"
+   }
+  ],
+  "act": "vipete",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-vyhara",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Vyhara",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vyhara",
+    "role": "performer"
+   }
+  ],
+  "act": "vyhara",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-wolfie",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Wolfie",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wolfie",
+    "role": "performer"
+   }
+  ],
+  "act": "wolfie",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-wook-appruvd",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Wook Appruvd",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wook-appruvd",
+    "role": "performer"
+   }
+  ],
+  "act": "wook-appruvd",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-wooli",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Wooli",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wooli",
+    "role": "performer"
+   }
+  ],
+  "act": "wooli",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-xo-jackie-boi-b2b-xclvsiv",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Xó (Jackie Boi B2B Xclvsiv)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "xo-jackie-boi-b2b-xclvsiv",
+    "role": "act"
+   }
+  ],
+  "act": "xo-jackie-boi-b2b-xclvsiv",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null,
+  "review": "parenthetical names people"
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-ydg",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "YDG",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ydg",
+    "role": "performer"
+   }
+  ],
+  "act": "ydg",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-zoey808",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Zoey808",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zoey808",
+    "role": "performer"
+   }
+  ],
+  "act": "zoey808",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-zouth",
+  "source": "live",
+  "festivalId": "forbidden-kingdom-2027",
+  "festivalBrand": "forbidden-kingdom",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Zouth",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zouth",
+    "role": "performer"
+   }
+  ],
+  "act": "zouth",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
   "id": "ubbi-dubbi-2027:ud27-3ballmty-sunset-set",
   "source": "live",
   "festivalId": "ubbi-dubbi-2027",

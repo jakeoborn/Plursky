@@ -63,6 +63,7 @@ const LOCAL = [
   `./data/festivals/tomorrowland-winter-2027.js?v=${APP_VER}`,
   `./data/festivals/lollapalooza-brasil-2027.js?v=${APP_VER}`,
   `./data/festivals/lollapalooza-chile-2027.js?v=${APP_VER}`,
+  `./data/festivals/forbidden-kingdom-2027.js?v=${APP_VER}`,
   `./data/festivals/ubbi-dubbi-2027.js?v=${APP_VER}`,
   // Licensed artist-photo ledger runtime (data/artist-photos/ledger.json → build-artist-photo-ledger.mjs).
   `./data/artist-photos.js?v=${APP_VER}`,
