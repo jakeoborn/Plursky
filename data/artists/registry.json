@@ -1623,6 +1623,21 @@
   "links": []
  },
  {
+  "key": "a-club-called-rhonda",
+  "name": "A Club Called Rhonda",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lightning-in-a-bottle-2027:lib27-a-club-called-rhonda"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "a-family-affair-featuring-dj-nico-digital-kitkat-and-freaky-emo",
   "name": "A Family Affair featuring DJ Nico, Digital KitKat & Freaky Emo",
   "aliases": [],
@@ -9239,6 +9254,7 @@
   "billings": [
    "ultra-miami-2026:ul137",
    "hard-summer-2026:hs2-amelie-lens",
+   "lightning-in-a-bottle-2027:lib27-amelie-lens",
    "coachella-2025:d2:yuma:2130:amelie-lens",
    "coachella-2025:d5:yuma:2130:amelie-lens",
    "edc-las-vegas-2025:d3:neon-garden:0130:amelie-lens",
@@ -10798,6 +10814,7 @@
   "billings": [
    "ultra-miami-2026:ul127",
    "edc-thailand-2026:edcth-andy-c",
+   "lightning-in-a-bottle-2027:lib27-andy-c",
    "beyond-wonderland-socal-2026:d1:caterpillar-s-garden:2255:andy-c",
    "edc-las-vegas-2013:d3:basspod:0120:andy-c-w-armanni-reign",
    "edc-las-vegas-2025:d1:basspod:2230:andy-c",
@@ -14044,6 +14061,21 @@
   "links": []
  },
  {
+  "key": "arthi",
+  "name": "Arthi",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lightning-in-a-bottle-2027:lib27-arthi"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "arthur-funkarelli",
   "name": "Arthur Funkarelli",
   "aliases": [],
@@ -15389,6 +15421,7 @@
   "projects": [],
   "billings": [
    "hard-summer-2026:hs1-x-club-b2b-atrip",
+   "lightning-in-a-bottle-2027:lib27-atrip",
    "outside-lands-2025:d1:soma:1335:atrip"
   ],
   "firstSeen": "2025-08-08",
@@ -17465,13 +17498,16 @@
  },
  {
   "key": "baby-j",
-  "name": "BABY J",
-  "aliases": [],
+  "name": "Baby J",
+  "aliases": [
+   "BABY J"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "portola-2026:pt2-baby-j"
+   "portola-2026:pt2-baby-j",
+   "lightning-in-a-bottle-2027:lib27-baby-j"
   ],
   "firstSeen": "2026-09-27",
   "lastSeen": "2026-09-27",
@@ -17850,13 +17886,16 @@
  {
   "key": "bad-juuju",
   "name": "Bad Juuju",
-  "aliases": [],
+  "aliases": [
+   "bad juuju"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "outside-lands-2026:os76",
-   "outside-lands-2026:os94"
+   "outside-lands-2026:os94",
+   "lightning-in-a-bottle-2027:lib27-bad-juuju"
   ],
   "firstSeen": "2026-08-08",
   "lastSeen": "2026-08-08",
@@ -19275,6 +19314,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "lightning-in-a-bottle-2027:lib27-basement-jaxx",
    "coachella-2025:d3:mojave:2000:basement-jaxx",
    "coachella-2025:d6:mojave:2000:basement-jaxx"
   ],
@@ -23844,11 +23884,14 @@
  {
   "key": "biishop",
   "name": "Biishop",
-  "aliases": [],
+  "aliases": [
+   "BiiSHOP"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "lightning-in-a-bottle-2027:lib27-biishop",
    "shambhala-2025:d4:secret-garden:2100:biishop"
   ],
   "firstSeen": "2025-07-27",
@@ -30103,6 +30146,21 @@
   "links": []
  },
  {
+  "key": "bridge",
+  "name": "BRIDGE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lightning-in-a-bottle-2027:lib27-bridge"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "bridgeman",
   "name": "Bridgeman",
   "aliases": [],
@@ -32115,6 +32173,7 @@
   "key": "bushbaby",
   "name": "Bushbaby",
   "aliases": [
+   "bushbaby",
    "BUSHBABY"
   ],
   "kind": "performer",
@@ -32124,7 +32183,8 @@
    "edc-lv-2026:s20",
    "hard-summer-2026:hs1-bushbaby",
    "arc-2026:arc-bushbaby-area909-d4",
-   "countdown-nye-2026:cdny-bushbaby"
+   "countdown-nye-2026:cdny-bushbaby",
+   "lightning-in-a-bottle-2027:lib27-bushbaby"
   ],
   "firstSeen": "2026-05-17",
   "lastSeen": "2027-01-01",
@@ -32805,6 +32865,21 @@
   ],
   "firstSeen": "2012-08-09",
   "lastSeen": "2013-08-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "cain-culto",
+  "name": "Cain Culto",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lightning-in-a-bottle-2027:lib27-cain-culto"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -34585,6 +34660,7 @@
    "time-warp-2027:tw27-carlita-b2b-rossi",
    "lollapalooza-brasil-2027:lbr27-carlita",
    "lollapalooza-chile-2027:lcl27-carlita",
+   "lightning-in-a-bottle-2027:lib27-carlita",
    "coachella-2024:d2:quasar:1700:carlita",
    "coachella-2024:d3:yuma:1930:carlita",
    "coachella-2024:d6:yuma:1930:carlita",
@@ -35009,6 +35085,21 @@
   ],
   "firstSeen": "2018-05-31",
   "lastSeen": "2018-05-31",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "carre",
+  "name": "Carré",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lightning-in-a-bottle-2027:lib27-carre"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -36796,6 +36887,7 @@
   "projects": [],
   "billings": [
    "escape-halloween-2026:esc-champion-d2",
+   "lightning-in-a-bottle-2027:lib27-champion",
    "edc-las-vegas-2025:d3:stereo-bloom:2100:champion"
   ],
   "firstSeen": "2025-05-18",
@@ -38888,6 +38980,7 @@
    "edc-lv-2026:b6",
    "portola-2026:pt1-chloe-caillet",
    "day-zero-tulum-2027:dzt-chloe-caillet",
+   "lightning-in-a-bottle-2027:lib27-chloe-caillet",
    "coachella-2023:d2:yuma:1400:chloe-caillet",
    "coachella-2023:d5:yuma:1400:chloe-caillet",
    "escape-halloween-2024:d1:wicked-woods:2000:chloe-caillet",
@@ -48586,6 +48679,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "lightning-in-a-bottle-2027:lib27-danni-g",
    "lightning-in-a-bottle-2018:d4:pagoda-bar:1430:danni-g",
    "lightning-in-a-bottle-2019:d5:grand-artique:0000:danni-g",
    "shambhala-2024:d2:living-room:1500:danni-g"
@@ -55139,6 +55233,21 @@
   "links": []
  },
  {
+  "key": "digital-mystikz-mala-coki",
+  "name": "Digital Mystikz (Mala + Coki)",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lightning-in-a-bottle-2027:lib27-digital-mystikz-mala-coki"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "digital-punk",
   "name": "Digital Punk",
   "aliases": [],
@@ -55954,6 +56063,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "lightning-in-a-bottle-2027:lib27-dirtwire",
    "coachella-2015:d1:do-lab:1425:dirtwire",
    "lightning-in-a-bottle-2018:d3:lightning:1750:dirtwire",
    "shambhala-2016:d2:living-room:2200:dirtwire",
@@ -56759,6 +56869,7 @@
    "edc-lv-2026:bp20",
    "lost-lands-2026:llw5",
    "ultra-miami-2026:ul59",
+   "lightning-in-a-bottle-2027:lib27-distinct-motive",
    "edc-las-vegas-2025:d1:basspod:0430:distinct-motive",
    "shambhala-2025:d3:amp:0030:skream-and-friends-ft-sgt-pokes-coki-distinct-motive-and-more"
   ],
@@ -57746,6 +57857,21 @@
   "links": []
  },
  {
+  "key": "dj-dave",
+  "name": "DJ_Dave",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lightning-in-a-bottle-2027:lib27-dj-dave"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dj-deevice",
   "name": "DJ Deevice",
   "aliases": [],
@@ -58496,7 +58622,8 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "coachella-2027:coa27-dj-habibeats"
+   "coachella-2027:coa27-dj-habibeats",
+   "lightning-in-a-bottle-2027:lib27-dj-habibeats"
   ],
   "firstSeen": "2027-04-11",
   "lastSeen": "2027-04-11",
@@ -59079,6 +59206,21 @@
   ],
   "firstSeen": "2011-04-16",
   "lastSeen": "2011-04-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dj-kerry",
+  "name": "DJ Kerry",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lightning-in-a-bottle-2027:lib27-dj-kerry"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -59728,6 +59870,7 @@
   "projects": [],
   "billings": [
    "outside-lands-2026:os134",
+   "lightning-in-a-bottle-2027:lib27-dj-minx",
    "edc-las-vegas-2024:d2:stereo-bloom:2200:kevin-saunderson-b2b-dj-minx",
    "edc-las-vegas-2024:d2:beatbox-boombox-art-car:0015:dj-minx",
    "outside-lands-2022:d3:soma-tent:1400:dj-minx",
@@ -63958,6 +64101,21 @@
   "links": []
  },
  {
+  "key": "dr-chaii",
+  "name": "Dr. Chaii",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lightning-in-a-bottle-2027:lib27-dr-chaii"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dr-defiant",
   "name": "Dr. Defiant",
   "aliases": [],
@@ -67805,6 +67963,7 @@
   "projects": [],
   "billings": [
    "lost-lands-2026:lls20",
+   "lightning-in-a-bottle-2027:lib27-effin",
    "nocturnal-wonderland-2022:d1:labyrinth:1700:effin",
    "shambhala-2025:d1:amp:2100:effin"
   ],
@@ -69316,6 +69475,21 @@
   "links": []
  },
  {
+  "key": "eliza-rose",
+  "name": "Eliza Rose",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lightning-in-a-bottle-2027:lib27-eliza-rose"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "elizabeth-mcqueen",
   "name": "Elizabeth McQueen",
   "aliases": [],
@@ -70425,6 +70599,21 @@
   ],
   "firstSeen": "2023-10-13",
   "lastSeen": "2023-10-13",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "en-vy",
+  "name": "En:vy",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lightning-in-a-bottle-2027:lib27-en-vy"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -74143,6 +74332,21 @@
   ],
   "firstSeen": "2025-04-12",
   "lastSeen": "2025-04-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "fcukers-djs",
+  "name": "Fcukers (DJs)",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lightning-in-a-bottle-2027:lib27-fcukers-djs"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -88551,6 +88755,7 @@
   "billings": [
    "edc-lv-2026:b11",
    "iii-points-2026:iiip-haai",
+   "lightning-in-a-bottle-2027:lib27-haai",
    "coachella-2025:d2:yuma:1300:haai",
    "coachella-2025:d5:yuma:1300:haai",
    "edc-las-vegas-2024:d1:bionic-jungle:0230:haai",
@@ -92732,6 +92937,7 @@
   "billings": [
    "iii-points-2026:iiip-honey-dijon",
    "arc-2026:arc-honey-dijon-grid-d4",
+   "lightning-in-a-bottle-2027:lib27-honey-dijon",
    "coachella-2017:d2:yuma:1330:honey-dijon",
    "coachella-2017:d5:yuma:1330:honey-dijon",
    "coachella-2024:d1:quasar:2030:honey-dijon",
@@ -94614,6 +94820,7 @@
   "billings": [
    "edc-lv-2026:bp4",
    "nocturnal-wonderland-2026:nw-hybrid-minds",
+   "lightning-in-a-bottle-2027:lib27-hybrid-minds",
    "edc-las-vegas-2022:d2:basspod:2040:hybrid-minds",
    "hard-summer-2025:d1:green-stage:1700:hybrid-minds",
    "ultra-miami-2022:d3:worldwide-stage:1430:hybrid-minds"
@@ -98994,6 +99201,7 @@
    "groove-cruise-2027:gc-jackie-hollander",
    "coachella-2027:coa27-jackie-hollander",
    "ubbi-dubbi-2027:ud27-jackie-hollander",
+   "lightning-in-a-bottle-2027:lib27-jackie-hollander",
    "edc-las-vegas-2024:d3:house-of-dunkin:2200:jackie-hollander",
    "edc-las-vegas-2025:d1:stereo-bloom:2000:jackie-hollander",
    "edc-orlando-2024:d1:stereo-bloom:1415:jackie-hollander",
@@ -102798,6 +103006,21 @@
   ],
   "firstSeen": "2019-07-26",
   "lastSeen": "2019-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "jennifer-loveless",
+  "name": "Jennifer Loveless",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lightning-in-a-bottle-2027:lib27-jennifer-loveless"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -109173,6 +109396,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "lightning-in-a-bottle-2027:lib27-jungle",
    "acl-2018:d1:barton-springs:1645:jungle",
    "acl-2018:d4:barton-springs:1645:jungle",
    "acl-2024:d2:miller-lite:1910:jungle",
@@ -109660,6 +109884,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "lightning-in-a-bottle-2027:lib27-justice-dj-set",
    "acl-2018:d2:honda:2030:justice",
    "acl-2018:d5:honda:2030:justice",
    "coachella-2012:d3:main-stage:1945:justice",
@@ -115962,6 +116187,7 @@
    "lost-lands-2026:llf26",
    "lollapalooza-2026:lo11",
    "forbidden-kingdom-2027:fk27-klo",
+   "lightning-in-a-bottle-2027:lib27-klo",
    "dreamstate-socal-2025:d1:beatbox-art-car:1700:klo",
    "primavera-sound-2015:d4:h-and-m-pro:2100:klo"
   ],
@@ -122936,6 +123162,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "lightning-in-a-bottle-2027:lib27-leon-vynehall",
    "primavera-sound-2016:d4:bowers-and-wilkins-sound-system:1430:leon-vynehall",
    "sonar-2019:d1:sonarvillage-by-estrella-damm:1900:leon-vynehall"
   ],
@@ -129635,7 +129862,8 @@
    "edc-lv-2026:b11",
    "outside-lands-2026:os28",
    "outside-lands-2026:os47",
-   "hard-summer-2026:hs1-luke-alessi"
+   "hard-summer-2026:hs1-luke-alessi",
+   "lightning-in-a-bottle-2027:lib27-luke-alessi"
   ],
   "firstSeen": "2026-05-16",
   "lastSeen": "2026-08-07",
@@ -136756,6 +136984,7 @@
    "edc-lv-2026:bp11",
    "iii-points-2026:iiip-mary-droppinz",
    "hard-summer-2026:hs1-mary-droppinz",
+   "lightning-in-a-bottle-2027:lib27-mary-droppinz",
    "beyond-wonderland-socal-2026:d1:mad-hatter-s-castle:1740:mary-droppinz",
    "edc-las-vegas-2022:d1:stereo-bloom:1900:mary-droppinz",
    "edc-las-vegas-2024:d3:cosmic-meadow:1900:mary-droppinz",
@@ -137621,6 +137850,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "lightning-in-a-bottle-2027:lib27-matisa",
    "edc-las-vegas-2024:d1:bionic-jungle:2200:sally-c-b2b-matisa"
   ],
   "firstSeen": "2024-05-17",
@@ -141952,6 +142182,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "lightning-in-a-bottle-2027:lib27-mia-koden",
    "shambhala-2025:d2:grove:2330:mia-koden"
   ],
   "firstSeen": "2025-07-25",
@@ -153056,7 +153287,8 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "lost-lands-2026:llf31"
+   "lost-lands-2026:llf31",
+   "lightning-in-a-bottle-2027:lib27-neumonic"
   ],
   "firstSeen": "2026-09-18",
   "lastSeen": "2026-09-18",
@@ -155165,6 +155397,7 @@
   "billings": [
    "lost-lands-2026:llw16",
    "nocturnal-wonderland-2026:nw-jkyl-and-hyde-b2b-nikita-the-wicked",
+   "lightning-in-a-bottle-2027:lib27-nikita-the-wicked",
    "escape-halloween-2025:d2:sewer-district:1800:nikita-the-wicked",
    "escape-halloween-2025:d2:casa-bacardi:2330:nikita-the-wicked"
   ],
@@ -155407,6 +155640,7 @@
   "projects": [],
   "billings": [
    "portola-2026:pt1-nimino",
+   "lightning-in-a-bottle-2027:lib27-nimino",
    "lollapalooza-2025:d4:perry-s:1345:nimino",
    "outside-lands-2025:d1:duboce-triangle:1830:nimino-dj-set",
    "outside-lands-2025:d1:panhandle:1635:nimino"
@@ -157275,6 +157509,7 @@
    "edc-lv-2026:c8",
    "lollapalooza-2026:lo66",
    "crssd-fall-2026:crssd-notion",
+   "lightning-in-a-bottle-2027:lib27-notion",
    "outside-lands-2025:d1:soma:1510:notion",
    "shambhala-2025:d4:amp:2130:notion"
   ],
@@ -160266,6 +160501,7 @@
    "iii-points-2026:iiip-ahmed-spins-b2b-omri",
    "edc-thailand-2026:edcth-omri",
    "coachella-2027:coa27-omri",
+   "lightning-in-a-bottle-2027:lib27-omri",
    "edc-las-vegas-2025:d3:bionic-jungle:2200:omri"
   ],
   "firstSeen": "2025-05-18",
@@ -170023,6 +170259,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "lightning-in-a-bottle-2027:lib27-pretty-lights",
    "acl-2011:d1:google:1930:pretty-lights",
    "acl-2024:d2:honda:2010:pretty-lights",
    "acl-2024:d5:honda:2010:pretty-lights",
@@ -173300,7 +173537,8 @@
    "crssd-fall-2026:crssd-rafael",
    "edc-thailand-2026:edcth-rafael",
    "day-zero-tulum-2027:dzt-rafael",
-   "coachella-2027:coa27-rafael"
+   "coachella-2027:coa27-rafael",
+   "lightning-in-a-bottle-2027:lib27-rafael"
   ],
   "firstSeen": "2026-09-26",
   "lastSeen": "2027-04-09",
@@ -177511,6 +177749,21 @@
   "links": []
  },
  {
+  "key": "riche",
+  "name": "RICHE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lightning-in-a-bottle-2027:lib27-riche"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "richie-gee",
   "name": "Richie Gee",
   "aliases": [],
@@ -178598,6 +178851,7 @@
   "projects": [],
   "billings": [
    "hard-summer-2026:hs2-rl-grime",
+   "lightning-in-a-bottle-2027:lib27-rl-grime",
    "acl-2019:d1:t-mobile:1830:rl-grime",
    "acl-2019:d4:t-mobile:1830:rl-grime",
    "coachella-2014:d2:mojave:1930:rl-grime",
@@ -183234,7 +183488,8 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "tomorrowland-thailand-2026:tmlth-saint-ludo"
+   "tomorrowland-thailand-2026:tmlth-saint-ludo",
+   "lightning-in-a-bottle-2027:lib27-saint-ludo"
   ],
   "firstSeen": "2026-12-11",
   "lastSeen": "2026-12-11",
@@ -184368,6 +184623,21 @@
   "links": []
  },
  {
+  "key": "sana-sana-musica",
+  "name": "Sana Sana Música",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lightning-in-a-bottle-2027:lib27-sana-sana-musica"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "sanatruja",
   "name": "Sanatruja",
   "aliases": [],
@@ -184946,6 +185216,21 @@
   ],
   "firstSeen": "2014-08-08",
   "lastSeen": "2014-08-08",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "saqib",
+  "name": "Saqib",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lightning-in-a-bottle-2027:lib27-saqib"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -185890,6 +186175,21 @@
   ],
   "firstSeen": "2024-08-04",
   "lastSeen": "2024-08-04",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "scarlett-o-malley",
+  "name": "Scarlett O'Malley",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lightning-in-a-bottle-2027:lib27-scarlett-o-malley"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -191730,7 +192030,9 @@
  {
   "key": "sippy",
   "name": "Sippy",
-  "aliases": [],
+  "aliases": [
+   "SIPPY"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
@@ -191738,7 +192040,8 @@
    "edc-lv-2026:bp13",
    "lost-lands-2026:llf46",
    "edc-orlando-2026:ecu32",
-   "nocturnal-wonderland-2026:nw-sippy"
+   "nocturnal-wonderland-2026:nw-sippy",
+   "lightning-in-a-bottle-2027:lib27-sippy"
   ],
   "firstSeen": "2026-05-17",
   "lastSeen": "2026-11-08",
@@ -194909,6 +195212,7 @@
    "edc-lv-2026:k5",
    "acl-2026:au44",
    "edc-thailand-2026:edcth-sofi-tukker",
+   "lightning-in-a-bottle-2027:lib27-sofi-tukker",
    "acl-2018:d2:tito-s-handmade-vodka:1630:sofi-tukker",
    "acl-2022:d2:miller-lite:1715:sofi-tukker",
    "acl-2022:d5:miller-lite:1715:sofi-tukker",
@@ -196113,6 +196417,21 @@
   ],
   "firstSeen": "2023-07-22",
   "lastSeen": "2023-07-22",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "soraya",
+  "name": "Soraya",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lightning-in-a-bottle-2027:lib27-soraya"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -197453,6 +197772,21 @@
   ],
   "firstSeen": "2012-07-01",
   "lastSeen": "2012-07-01",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "spektrum-and-adam",
+  "name": "Spektrum & Adam",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lightning-in-a-bottle-2027:lib27-spektrum-and-adam"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -205998,7 +206332,8 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "nocturnal-wonderland-2026:nw-dances-b2b-techno-tupac"
+   "nocturnal-wonderland-2026:nw-dances-b2b-techno-tupac",
+   "lightning-in-a-bottle-2027:lib27-techno-tupac"
   ],
   "firstSeen": "2026-09-19",
   "lastSeen": "2026-09-19",
@@ -206143,6 +206478,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "lightning-in-a-bottle-2027:lib27-teed",
    "coachella-2026:d2:sahara:1450:teed",
    "coachella-2026:d5:sahara:1450:teed"
   ],
@@ -210331,6 +210667,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "lightning-in-a-bottle-2027:lib27-the-glitch-mob",
    "acl-2014:d1:miller-lite:1915:the-glitch-mob",
    "acl-2014:d4:miller-lite:1915:the-glitch-mob",
    "coachella-2010:d3:sahara:1545:the-glitch-mob",
@@ -217345,6 +217682,7 @@
   "projects": [],
   "billings": [
    "iii-points-2026:iiip-tiffy-vera-b2b-thunderpony",
+   "lightning-in-a-bottle-2027:lib27-tiffy-vera",
    "edc-orlando-2025:d1:stereobloom:1300:tiffy-vera",
    "escape-halloween-2025:d2:feeding-grounds:1700:tiffy-vera",
    "escape-halloween-2025:d2:casa-bacardi:2200:tiffy-vera"
@@ -218131,6 +218469,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "lightning-in-a-bottle-2027:lib27-tinzo-jojo",
    "beyond-wonderland-socal-2026:d2:caterpillar-s-garden:1900:tinzo-jojo"
   ],
   "firstSeen": "2026-03-28",
@@ -225642,6 +225981,7 @@
   "billings": [
    "lollapalooza-2026:lo164",
    "coachella-2027:coa27-vandelux",
+   "lightning-in-a-bottle-2027:lib27-vandelux",
    "outside-lands-2024:d2:sutro:1450:vandelux"
   ],
   "firstSeen": "2024-08-10",
@@ -227744,6 +228084,21 @@
   ],
   "firstSeen": "2023-07-28",
   "lastSeen": "2023-07-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "vita",
+  "name": "VITA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lightning-in-a-bottle-2027:lib27-vita"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -230995,6 +231350,7 @@
    "lost-lands-2026:lls58",
    "edc-orlando-2026:ecf34",
    "lollapalooza-2026:lo116",
+   "lightning-in-a-bottle-2027:lib27-whethan",
    "coachella-2017:d3:do-lab:1615:whethan",
    "edc-orlando-2022:d3:circuit-grounds:1940:whethan",
    "escape-halloween-2025:d2:the-warehouse:0100:whethan",
@@ -233073,6 +233429,21 @@
   "links": []
  },
  {
+  "key": "womb-tang",
+  "name": "Womb Tang",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "lightning-in-a-bottle-2027:lib27-womb-tang"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "wonkywilla",
   "name": "Wonkywilla",
   "aliases": [],
@@ -233943,6 +234314,7 @@
    "hard-summer-2026:hs1-x-club-b2b-atrip",
    "arc-2026:arc-nia-archives-b2b-x-club-area909-d3",
    "tomorrowland-thailand-2026:tmlth-x-club",
+   "lightning-in-a-bottle-2027:lib27-x-club",
    "edc-las-vegas-2025:d1:bionic-jungle:0230:x-club"
   ],
   "firstSeen": "2025-05-16",
