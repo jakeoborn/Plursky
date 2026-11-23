@@ -1075,31 +1075,6 @@ const FESTIVALS_REGISTRY = [
     region:    "Latin America",
   },
   {
-    // ── Lollapalooza Brasil 2027 — Autódromo de Interlagos, São Paulo ──
-    // Added 2026-11-15 as a gated preview. Dates and venue from lollapaloozabr.com, read 2026-11-15: "19, 20 e 21 de
-    // Março 2027 / Autódromo de Interlagos - SP". The site gives only the
-    // three headliners per day in text (the full poster is an image), so no
-    // lineup is loaded yet.
-    config: {
-      id:        "lollapalooza-brasil-2027",
-      officialEvent: { website: "https://www.lollapaloozabr.com/", tickets: "https://www.lollapaloozabr.com/ingressos", observedAt: "2026-11-22" },
-      name:      "Lollapalooza Brasil 2027",
-      shortName: "Lolla Brasil",
-      brand:     "Lollapalooza",
-      tagline:   "Three days of Lollapalooza in São Paulo",
-      location:  "Autódromo de Interlagos · São Paulo, Brazil",
-      locationShort: "Autódromo de Interlagos",
-      dates:     "Mar 19–21, 2027",
-      year:      2027,
-      // Night Print accent not measured yet (accent null = neutral print).
-      print: { accent: null, source: { url: "https://www.lollapaloozabr.com/", observedAt: "2026-11-15" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
-    },
-    available: false,
-    accent:    "#22c55e",
-    emoji:     "🎪",
-    region:    "Latin America",
-  },
-  {
     // ── Ultra South Africa 2027 — Cape Town and Johannesburg ──
     // Added 2026-11-15 as a gated preview. Dates from ultrasouthafrica.com, read 2026-11-15: page title "Ultra
     // South Africa - 30 April, 1 May 2027". The CSV notes Cape Town on 30 April
@@ -5445,6 +5420,7 @@ const _WAVE1_IDS = [
   "coachella-2027",
   "time-warp-2027",
   "tomorrowland-winter-2027",
+  "lollapalooza-brasil-2027",
 ];
 const _WAVE1 = (typeof window !== "undefined" && window.PLURSKY_FESTIVALS) || {};
 for (const _id of _WAVE1_IDS) {
