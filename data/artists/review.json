@@ -266,13 +266,6 @@
   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
  },
  {
-  "id": "coachella-2023:d5:sonora:1200:triste-juventud-x-totem",
-  "printed": "Triste Juventud x TÓTEM",
-  "reason": "\"x\" billing whose sides are not both known acts",
-  "pending": true,
-  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
- },
- {
   "id": "coachella-2023:d5:yuma:1730:dj-tennis-carlita",
   "printed": "DJ Tennis + Carlita",
   "reason": "\"+\" billing",
@@ -294,22 +287,8 @@
   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
  },
  {
-  "id": "coachella-2024:d2:sonora:1300:triste-juventud-x-totem",
-  "printed": "Triste Juventud x TOTEM",
-  "reason": "\"x\" billing whose sides are not both known acts",
-  "pending": true,
-  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
- },
- {
   "id": "coachella-2024:d3:quasar:1815:jamie-xx-x-floating-points-x-daphni",
   "printed": "Jamie xx x Floating Points x Daphni",
-  "reason": "\"x\" billing whose sides are not both known acts",
-  "pending": true,
-  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
- },
- {
-  "id": "coachella-2025:d2:sonora:1300:triste-juventud-x-totem",
-  "printed": "Triste Juventud x Tótem",
   "reason": "\"x\" billing whose sides are not both known acts",
   "pending": true,
   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
@@ -341,6 +320,41 @@
   "reason": "\"x\" billing whose sides are not both known acts",
   "pending": true,
   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "coachella-2026:d2:quasar:1900:afrojack-x-shimza",
+  "printed": "Afrojack x Shimza",
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "coachella-2026:d3:sahara:1535:girl-math-vnssa-x-nala",
+  "printed": "Girl Math (VNSSA x NALA)",
+  "reason": "parenthetical names people",
+  "pending": true,
+  "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "coachella-2026:d3:quasar:1800:joy-anonymous",
+  "printed": "JOY (Anonymous)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed: the parenthetical is not sourced as a name the act uses elsewhere (the Bunny (Rabbit in the Moon) rule), so the billing is neither merged with the bare name nor credited to anything the parenthetical names."
+ },
+ {
+  "id": "coachella-2026:d5:quasar:2015:dj-snake-x-rl-grime-x-flosstradamus",
+  "printed": "DJ Snake x RL Grime x Flosstradamus",
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "coachella-2026:d6:sahara:1535:girl-math-vnssa-x-nala",
+  "printed": "Girl Math (VNSSA x NALA)",
+  "reason": "parenthetical names people",
+  "pending": true,
+  "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
  },
  {
   "id": "defqon1-2015:d1:black:0000:mad-dog-ft-jeff",

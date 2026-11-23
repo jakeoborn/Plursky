@@ -564,6 +564,12 @@ export const EDITIONS = {
     timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_image_transcription",
     dates: [["2025-04-11", "Friday"], ["2025-04-12", "Saturday"], ["2025-04-13", "Sunday"], ["2025-04-18", "Friday"], ["2025-04-19", "Saturday"], ["2025-04-20", "Sunday"]],
     dayLabels: ACL_WEEKEND_LABELS },
+  // 2026: as 2025, folder content/coachella-2026/. The lineup check reads
+  // the lineup app coachella.com/lineup embeds (check-insomniac-lineup.mjs).
+  "coachella-2026": { festivalId: "coachella", name: "Coachella 2026", year: 2026,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_image_transcription",
+    dates: [["2026-04-10", "Friday"], ["2026-04-11", "Saturday"], ["2026-04-12", "Sunday"], ["2026-04-17", "Friday"], ["2026-04-18", "Saturday"], ["2026-04-19", "Sunday"]],
+    dayLabels: ACL_WEEKEND_LABELS },
   // Tomorrowland 2013-2016: the official tomorrowland.com day timetables (a
   // Drupal page per day, format "tml-drupal", tml-drupal-schedule.mjs), each
   // captured after the festival. The page names each stage by its host that

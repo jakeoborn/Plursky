@@ -37,11 +37,11 @@ export const OFFICIAL_HOSTS = {
   // III Points' own site. Its 2014 schedule page embedded one grid image per
   // day under www.iiipoints.com/Schedule/.
   "iii-points": ["iiipoints.com"],
-  // coachella.com, plus one exact folder in AEG's blob store, where
-  // coachella.com/schedule embedded its 2025 set-times graphics.
+  // coachella.com, plus two exact folders in AEG's blob store, where
+  // coachella.com/schedule embedded its 2025 and 2026 set-times graphics.
   // An entry with a "/" is a host+path prefix: it admits that folder only,
   // never the host. Added 2026-11-21 (Plur thread), Coachella only.
-  "coachella": ["coachella.com", "aegwebprod.blob.core.windows.net/content/coachella2025/"],
+  "coachella": ["coachella.com", "aegwebprod.blob.core.windows.net/content/coachella2025/", "aegwebprod.blob.core.windows.net/content/coachella-2026/"],
   // 2012-2013 Las Vegas pages lived on the brand's root domain
   // (/LasVegas/music.php, /music.php). "=" matches that host alone, so the
   // other cities' subdomains (orlando., mexico.) are never Las Vegas's.

@@ -130,6 +130,7 @@
  "coachella-2023": { "stages": 7, "setsPerDay": [60, 62, 57, 59, 61, 55], "droppedPerDay": [0, 0, 0, 0, 0, 1] },
  "coachella-2024": { "stages": 8, "setsPerDay": [58, 59, 54, 56, 56, 53], "droppedPerDay": [0, 0, 0, 0, 0, 0] },
  "coachella-2025": { "stages": 8, "setsPerDay": [59, 56, 53, 59, 55, 53], "droppedPerDay": [0, 0, 0, 0, 0, 0] },
+ "coachella-2026": { "stages": 8, "setsPerDay": [59, 53, 51, 58, 53, 51], "droppedPerDay": [0, 0, 0, 0, 0, 0] },
  "tomorrowland-2010": { "stages": 25, "setsPerDay": [116, 111], "droppedPerDay": [0, 0] },
  "tomorrowland-2011": { "stages": 31, "setsPerDay": [94, 94, 103], "droppedPerDay": [0, 0, 0] },
  "tomorrowland-2012": { "stages": 36, "setsPerDay": [131, 127, 124], "droppedPerDay": [0, 0, 0] },
