@@ -1,0 +1,59 @@
+{
+ "id": "edc-las-vegas-2023",
+ "days": [
+  {
+   "day": 3,
+   "date": "2023-05-21",
+   "sha256": "9c45510188c2a72711e2f4c49d3051265a4b7c408f1f5460c66aec4244582869",
+   "imageUrl": "https://pbs.twimg.com/media/FwIXuUJXoAYDvI7?format=jpg&name=orig",
+   "reviewer": "Plursky history review (Claude Plur): Vision OCR cross-check and by-eye reading on 2x crops",
+   "reviewedAt": "2026-11-23",
+   "rowsConfirmed": 116,
+   "note": "Header read off the graphic: SUNDAY MAY 21",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 82,
+   "byEye": [
+    "d3 kineticFIELD 05:28-05:30 CLOSING CEREMONY: SUNRISE: by eye 5:28AM - 5:30AM",
+    "d3 kineticFIELD 04:16-05:28 KASKADE REDUX: by eye 4:16AM - 5:28AM",
+    "d3 kineticFIELD 04:13-04:16 INTERMEZZO: DESTINY: by eye 4:13AM - 4:16AM",
+    "d3 kineticFIELD 00:24-00:29 INTERMEZZO: CONNECT: by eye 12:24AM - 12:29AM",
+    "d3 kineticFIELD 22:10-22:16 OPENING CEREMONY: AWAKENING: by eye 10:10PM - 10:16PM",
+    "d3 kineticFIELD 20:00-21:05 SHIP WREK: by eye 8:00PM - 9:05PM",
+    "d3 kineticFIELD 19:00-20:00 MARTEN HØRGER: by eye 7:00PM - 8:00PM; the billing prints a slashed O",
+    "d3 cosmicMEADOW 04:15-05:30 BOOGIE T B2B DIRT MONKEY: by eye 4:15AM - 5:30AM",
+    "d3 cosmicMEADOW 01:38-03:00 WAX MOTIF: by eye 1:38AM - 3:00AM",
+    "d3 cosmicMEADOW 00:00-01:30 TCHAMI B2B AC SLATER: by eye 12:00AM - 1:30AM",
+    "d3 circuitGROUNDS 20:30-21:45 BLANKE: by eye 8:30PM - 9:45PM",
+    "d3 bassPOD 03:30-04:30 MIDNIGHT TYRANNOSAURUS: by eye 3:30AM - 4:30AM",
+    "d3 bassPOD 02:25-03:25 BLACK TIGER SEX MACHINE: by eye 2:25AM - 3:25AM",
+    "d3 bassPOD 19:00-19:40 BENSLEY B2B JUSTIN HAWKES: by eye 7:00PM - 7:40PM",
+    "d3 wasteLAND 02:30-03:30 GAMMER B2B TWEEKACORE: by eye 2:30AM - 3:30AM",
+    "d3 wasteLAND 01:30-02:30 BEN NICKY PRESENTS XTREME B2B SUB ZERO PROJECT: by eye 1:30AM - 2:30AM, billing over four lines",
+    "d3 wasteLAND 19:00-20:00 MROTEK: by eye 7:00PM - 8:00PM",
+    "d3 quantumVALLEY 01:00-02:15 SULTAN + SHEPARD: by eye 1:00AM - 2:15AM",
+    "d3 quantumVALLEY 00:00-01:00 YOTTO: by eye 12:00AM - 1:00AM",
+    "d3 quantumVALLEY 23:00-00:00 LANE 8: by eye 11:00PM - 12:00AM",
+    "d3 quantumVALLEY 20:00-21:00 8KAYS: by eye 8:00PM - 9:00PM",
+    "d3 quantumVALLEY 19:00-20:00 ANDEN: by eye 7:00PM - 8:00PM",
+    "d3 stereoBLOOM 20:15-21:15 GOODBOYS: by eye 8:15PM - 9:15PM",
+    "d3 parliamentARTCAR 20:30-21:45 OSCURE: by eye 8:30PM - 9:45PM",
+    "d3 parliamentARTCAR 20:15-20:30 ASSEMBLY: by eye 8:15PM - 8:30PM",
+    "d3 titanicsendARTCAR 04:35-05:30 SLANDER PRESENTS BEFORE DAWN: by eye 4:35AM - 5:30AM",
+    "d3 titanicsendARTCAR 03:30-04:35 GOODBOYS: by eye 3:30AM - 4:35AM",
+    "d3 titanicsendARTCAR 02:00-03:30 KALEENA ZANDERS: by eye 2:00AM - 3:30AM",
+    "d3 titanicsendARTCAR 00:30-02:00 ARMNHMR SPECIAL HOUSE SET: by eye 12:30AM - 2:00AM",
+    "d3 boomboxARTCAR 00:00-01:30 GRAFIX: by eye 12:00AM - 1:30AM",
+    "d3 boomboxARTCAR 20:15-21:30 TROUBLE: by eye 8:15PM - 9:30PM",
+    "d3 allegiantraveHANGAR 01:00-02:00 ROHAAN: by eye 1:00AM - 2:00AM",
+    "d3 allegiantraveHANGAR 00:00-01:00 SOFTEST HARD: by eye 12:00AM - 1:00AM",
+    "d3 allegiantraveHANGAR 19:00-20:00 YOKAI: by eye 7:00PM - 8:00PM"
+   ],
+   "printedReadings": [
+    "BLACK TIGER SEX MACHINE: gap 03:25-03:30 before next set is printed; PRE-EVENT GRAPHIC: no day-3 HTML capture exists; Sat graphic vs final HTML differed on Cosmic Meadow times (see sources.md)",
+    "DIMENSION: gap 02:20-02:25 printed; PRE-EVENT GRAPHIC: no day-3 HTML capture exists; Sat graphic vs final HTML differed on Cosmic Meadow times (see sources.md)",
+    "JAMES HYPE: PRINTED TYPO: start printed \"12:30PM\"; read as 12:30AM (follows ACRAZE B2B NOIZU, precedes CID 1:30AM); PRE-EVENT GRAPHIC: no day-3 HTML capture exists; Sat graphic vs final HTML differed on Cosmic Meadow times (see sources.md)",
+    "ACRAZE B2B NOIZU: PRINTED TYPO: end printed \"12:30PM\"; read as 12:30AM; PRE-EVENT GRAPHIC: no day-3 HTML capture exists; Sat graphic vs final HTML differed on Cosmic Meadow times (see sources.md)"
+   ]
+  }
+ ]
+}
