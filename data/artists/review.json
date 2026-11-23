@@ -511,6 +511,41 @@
   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
  },
  {
+  "id": "edc-las-vegas-2023:d1:bionic-jungle:2030:lovefingers-heidi-lawden",
+  "printed": "Lovefingers + Heidi Lawden",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:parliament-2-0-30th-anniversary-art-car:0000:bunny-rabbit-in-the-moon",
+  "printed": "Bunny (Rabbit in the Moon)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed: whether this is a Rabbit in the Moon member's set or a separate act is not sourced, so it is neither merged nor credited to Rabbit in the Moon."
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:parliament-2-0-30th-anniversary-art-car:0130:12th-planet-dnb",
+  "printed": "12th Planet (DNB)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed: the parenthetical is not sourced as a name the act uses elsewhere (the Bunny (Rabbit in the Moon) rule), so the billing is neither merged with the bare name nor credited to anything the parenthetical names."
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:neon-garden:1900:frame-declan-james-and-decoder",
+  "printed": "FRAME (DECLAN JAMES & DECODER)",
+  "reason": "parenthetical names people",
+  "pending": true,
+  "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:quantum-valley:0100:sultan-shepard",
+  "printed": "SULTAN + SHEPARD",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
   "id": "edc-las-vegas-2024:d1:wasteland:0130:hivemind-kayzo-x-space-laces-x-must-die",
   "printed": "Hivemind (Kayzo x Space Laces x Must Die!)",
   "reason": "parenthetical names people",

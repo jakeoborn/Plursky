@@ -629,7 +629,10 @@
     }
    ],
    "why": "The country code is the festival's own disambiguator for this name: kept whole, so it is never merged with another \"Corrupt\".",
-   "source": "https://orlando.electricdaisycarnival.com/lineup/set-times/"
+   "source": [
+    "https://orlando.electricdaisycarnival.com/lineup/set-times/",
+    "https://lasvegas.electricdaisycarnival.com/lineup/set-times/"
+   ]
   },
   {
    "printed": "Marian (BR)",
@@ -8113,6 +8116,22 @@
   },
   {
    "printed": "JOY (Anonymous)",
+   "why": "Left as printed: the parenthetical is not sourced as a name the act uses elsewhere (the Bunny (Rabbit in the Moon) rule), so the billing is neither merged with the bare name nor credited to anything the parenthetical names."
+  },
+  {
+   "printed": "Lovefingers + Heidi Lawden",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "SULTAN + SHEPARD",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "FRAME (DECLAN JAMES & DECODER)",
+   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "12th Planet (DNB)",
    "why": "Left as printed: the parenthetical is not sourced as a name the act uses elsewhere (the Bunny (Rabbit in the Moon) rule), so the billing is neither merged with the bare name nor credited to anything the parenthetical names."
   }
  ]

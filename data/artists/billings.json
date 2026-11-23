@@ -295999,6 +295999,8247 @@
   "mainStage": null
  },
  {
+  "id": "edc-las-vegas-2023:d1:kinetic-field:1900:carola",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Kinetic Field",
+  "start": "19:00",
+  "end": "20:05",
+  "printed": "Carola",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carola",
+    "role": "performer"
+   }
+  ],
+  "act": "carola",
+  "closing": false,
+  "stageLineage": "edc-lv:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:kinetic-field:2005:pauline-herr",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Kinetic Field",
+  "start": "20:05",
+  "end": "21:05",
+  "printed": "Pauline Herr",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pauline-herr",
+    "role": "performer"
+   }
+  ],
+  "act": "pauline-herr",
+  "closing": false,
+  "stageLineage": "edc-lv:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:kinetic-field:2105:kream",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Kinetic Field",
+  "start": "21:05",
+  "end": "22:10",
+  "printed": "Kream",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kream",
+    "role": "performer"
+   }
+  ],
+  "act": "kream",
+  "closing": false,
+  "stageLineage": "edc-lv:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:kinetic-field:2216:sidepiece",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Kinetic Field",
+  "start": "22:16",
+  "end": "23:16",
+  "printed": "SIDEPIECE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sidepiece",
+    "role": "performer"
+   }
+  ],
+  "act": "sidepiece",
+  "closing": false,
+  "stageLineage": "edc-lv:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:kinetic-field:2319:alison-wonderland",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Kinetic Field",
+  "start": "23:19",
+  "end": "00:24",
+  "printed": "Alison Wonderland",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alison-wonderland",
+    "role": "performer"
+   }
+  ],
+  "act": "alison-wonderland",
+  "closing": false,
+  "stageLineage": "edc-lv:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:kinetic-field:0027:david-guetta",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Kinetic Field",
+  "start": "00:27",
+  "end": "01:42",
+  "printed": "David Guetta",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "david-guetta",
+    "role": "performer"
+   }
+  ],
+  "act": "david-guetta",
+  "closing": false,
+  "stageLineage": "edc-lv:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:kinetic-field:0148:marshmello",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Kinetic Field",
+  "start": "01:48",
+  "end": "03:03",
+  "printed": "Marshmello",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marshmello",
+    "role": "performer"
+   }
+  ],
+  "act": "marshmello",
+  "closing": false,
+  "stageLineage": "edc-lv:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:kinetic-field:0306:malaa-b2b-wax-motif",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Kinetic Field",
+  "start": "03:06",
+  "end": "04:21",
+  "printed": "Malaa B2B Wax Motif",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "malaa",
+    "role": "b2b"
+   },
+   {
+    "key": "wax-motif",
+    "role": "b2b"
+   }
+  ],
+  "act": "malaa-b2b-wax-motif",
+  "closing": false,
+  "stageLineage": "edc-lv:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:kinetic-field:0424:galantis",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Kinetic Field",
+  "start": "04:24",
+  "end": "05:28",
+  "printed": "Galantis",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "galantis",
+    "role": "performer"
+   }
+  ],
+  "act": "galantis",
+  "closing": true,
+  "stageLineage": "edc-lv:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:cosmic-meadow:1700:nostalgix",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Cosmic Meadow",
+  "start": "17:00",
+  "end": "17:55",
+  "printed": "Nostalgix",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nostalgix",
+    "role": "performer"
+   }
+  ],
+  "act": "nostalgix",
+  "closing": false,
+  "stageLineage": "edc-lv:cosmic-meadow",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:cosmic-meadow:1755:james-hype",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Cosmic Meadow",
+  "start": "17:55",
+  "end": "18:55",
+  "printed": "James Hype",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "james-hype",
+    "role": "performer"
+   }
+  ],
+  "act": "james-hype",
+  "closing": false,
+  "stageLineage": "edc-lv:cosmic-meadow",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:cosmic-meadow:1900:frosttop",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Cosmic Meadow",
+  "start": "19:00",
+  "end": "20:20",
+  "printed": "FrostTop",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "frosttop",
+    "role": "performer"
+   }
+  ],
+  "act": "frosttop",
+  "closing": false,
+  "stageLineage": "edc-lv:cosmic-meadow",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:cosmic-meadow:2025:memba",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Cosmic Meadow",
+  "start": "20:25",
+  "end": "21:25",
+  "printed": "Memba",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "memba",
+    "role": "performer"
+   }
+  ],
+  "act": "memba",
+  "closing": false,
+  "stageLineage": "edc-lv:cosmic-meadow",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:cosmic-meadow:2130:kaivon",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Cosmic Meadow",
+  "start": "21:30",
+  "end": "22:30",
+  "printed": "Kaivon",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kaivon",
+    "role": "performer"
+   }
+  ],
+  "act": "kaivon",
+  "closing": false,
+  "stageLineage": "edc-lv:cosmic-meadow",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:cosmic-meadow:2230:matroda",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Cosmic Meadow",
+  "start": "22:30",
+  "end": "00:00",
+  "printed": "Matroda",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "matroda",
+    "role": "performer"
+   }
+  ],
+  "act": "matroda",
+  "closing": false,
+  "stageLineage": "edc-lv:cosmic-meadow",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:cosmic-meadow:0000:griz",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Cosmic Meadow",
+  "start": "00:00",
+  "end": "01:30",
+  "printed": "GRiZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "griz",
+    "role": "performer"
+   }
+  ],
+  "act": "griz",
+  "closing": false,
+  "stageLineage": "edc-lv:cosmic-meadow",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:cosmic-meadow:0135:said-the-sky",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Cosmic Meadow",
+  "start": "01:35",
+  "end": "02:40",
+  "printed": "Said The Sky",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "said-the-sky",
+    "role": "performer"
+   }
+  ],
+  "act": "said-the-sky",
+  "closing": false,
+  "stageLineage": "edc-lv:cosmic-meadow",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:cosmic-meadow:0240:armnhmr",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Cosmic Meadow",
+  "start": "02:40",
+  "end": "04:00",
+  "printed": "ARMNHMR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "armnhmr",
+    "role": "performer"
+   }
+  ],
+  "act": "armnhmr",
+  "closing": false,
+  "stageLineage": "edc-lv:cosmic-meadow",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:cosmic-meadow:0400:yetep",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Cosmic Meadow",
+  "start": "04:00",
+  "end": "05:30",
+  "printed": "yetep",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yetep",
+    "role": "performer"
+   }
+  ],
+  "act": "yetep",
+  "closing": true,
+  "stageLineage": "edc-lv:cosmic-meadow",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:circuit-grounds:1900:kill-script",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Circuit Grounds",
+  "start": "19:00",
+  "end": "20:30",
+  "printed": "Kill Script",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kill-script",
+    "role": "performer"
+   }
+  ],
+  "act": "kill-script",
+  "closing": false,
+  "stageLineage": "edc-lv:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:circuit-grounds:2030:anabel-englund",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Circuit Grounds",
+  "start": "20:30",
+  "end": "22:00",
+  "printed": "Anabel Englund",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "anabel-englund",
+    "role": "performer"
+   }
+  ],
+  "act": "anabel-englund",
+  "closing": false,
+  "stageLineage": "edc-lv:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:circuit-grounds:2200:meduza",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Circuit Grounds",
+  "start": "22:00",
+  "end": "23:30",
+  "printed": "Meduza",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "meduza",
+    "role": "performer"
+   }
+  ],
+  "act": "meduza",
+  "closing": false,
+  "stageLineage": "edc-lv:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:circuit-grounds:2330:fisher",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Circuit Grounds",
+  "start": "23:30",
+  "end": "01:00",
+  "printed": "Fisher",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fisher",
+    "role": "performer"
+   }
+  ],
+  "act": "fisher",
+  "closing": false,
+  "stageLineage": "edc-lv:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:circuit-grounds:0100:above-and-beyond",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Circuit Grounds",
+  "start": "01:00",
+  "end": "02:30",
+  "printed": "Above & Beyond",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "above-and-beyond",
+    "role": "performer"
+   }
+  ],
+  "act": "above-and-beyond",
+  "closing": false,
+  "stageLineage": "edc-lv:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:circuit-grounds:0230:duke-dumont",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Circuit Grounds",
+  "start": "02:30",
+  "end": "04:00",
+  "printed": "Duke Dumont",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "duke-dumont",
+    "role": "performer"
+   }
+  ],
+  "act": "duke-dumont",
+  "closing": false,
+  "stageLineage": "edc-lv:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:circuit-grounds:0400:vini-vici",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Circuit Grounds",
+  "start": "04:00",
+  "end": "05:30",
+  "printed": "Vini Vici",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vini-vici",
+    "role": "performer"
+   }
+  ],
+  "act": "vini-vici",
+  "closing": true,
+  "stageLineage": "edc-lv:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:neon-garden:1900:hint-of-lavender",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Neon Garden",
+  "start": "19:00",
+  "end": "20:30",
+  "printed": "Hint Of Lavender",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hint-of-lavender",
+    "role": "performer"
+   }
+  ],
+  "act": "hint-of-lavender",
+  "closing": false,
+  "stageLineage": "edc-lv:neon-garden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:neon-garden:2030:azzecca",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Neon Garden",
+  "start": "20:30",
+  "end": "22:00",
+  "printed": "Azzecca",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "azzecca",
+    "role": "performer"
+   }
+  ],
+  "act": "azzecca",
+  "closing": false,
+  "stageLineage": "edc-lv:neon-garden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:neon-garden:2200:eli-brown",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Neon Garden",
+  "start": "22:00",
+  "end": "23:30",
+  "printed": "Eli Brown",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eli-brown",
+    "role": "performer"
+   }
+  ],
+  "act": "eli-brown",
+  "closing": false,
+  "stageLineage": "edc-lv:neon-garden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:neon-garden:2330:artbat",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Neon Garden",
+  "start": "23:30",
+  "end": "01:00",
+  "printed": "ARTBAT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "artbat",
+    "role": "performer"
+   }
+  ],
+  "act": "artbat",
+  "closing": false,
+  "stageLineage": "edc-lv:neon-garden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:neon-garden:0100:patrick-topping",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Neon Garden",
+  "start": "01:00",
+  "end": "02:30",
+  "printed": "Patrick Topping",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "patrick-topping",
+    "role": "performer"
+   }
+  ],
+  "act": "patrick-topping",
+  "closing": false,
+  "stageLineage": "edc-lv:neon-garden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:neon-garden:0230:loco-dice-b2b-fisher",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Neon Garden",
+  "start": "02:30",
+  "end": "05:30",
+  "printed": "Loco Dice B2B Fisher",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "loco-dice",
+    "role": "b2b"
+   },
+   {
+    "key": "fisher",
+    "role": "b2b"
+   }
+  ],
+  "act": "loco-dice-b2b-fisher",
+  "closing": true,
+  "stageLineage": "edc-lv:neon-garden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:basspod:1900:fallen-b2b-richter-with-mc-dino",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Basspod",
+  "start": "19:00",
+  "end": "19:50",
+  "printed": "Fallen B2B Richter with MC Dino",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fallen",
+    "role": "b2b"
+   },
+   {
+    "key": "richter-with-mc-dino",
+    "role": "b2b"
+   }
+  ],
+  "act": "fallen-b2b-richter-with-mc-dino",
+  "closing": false,
+  "stageLineage": "edc-lv:basspod",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:basspod:1950:reaper",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Basspod",
+  "start": "19:50",
+  "end": "20:40",
+  "printed": "Reaper",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "reaper",
+    "role": "performer"
+   }
+  ],
+  "act": "reaper",
+  "closing": false,
+  "stageLineage": "edc-lv:basspod",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:basspod:2040:champagne-drip",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Basspod",
+  "start": "20:40",
+  "end": "21:30",
+  "printed": "Champagne Drip",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "champagne-drip",
+    "role": "performer"
+   }
+  ],
+  "act": "champagne-drip",
+  "closing": false,
+  "stageLineage": "edc-lv:basspod",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:basspod:2130:friction",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Basspod",
+  "start": "21:30",
+  "end": "22:30",
+  "printed": "Friction",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "friction",
+    "role": "performer"
+   }
+  ],
+  "act": "friction",
+  "closing": false,
+  "stageLineage": "edc-lv:basspod",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:basspod:2230:funtcase",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Basspod",
+  "start": "22:30",
+  "end": "23:30",
+  "printed": "FuntCase",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "funtcase",
+    "role": "performer"
+   }
+  ],
+  "act": "funtcase",
+  "closing": false,
+  "stageLineage": "edc-lv:basspod",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:basspod:2330:riot-ten-b2b-jessica-audiffred",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Basspod",
+  "start": "23:30",
+  "end": "00:30",
+  "printed": "Riot Ten B2B Jessica Audiffred",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "riot-ten",
+    "role": "b2b"
+   },
+   {
+    "key": "jessica-audiffred",
+    "role": "b2b"
+   }
+  ],
+  "act": "riot-ten-b2b-jessica-audiffred",
+  "closing": false,
+  "stageLineage": "edc-lv:basspod",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:basspod:0030:andy-c",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Basspod",
+  "start": "00:30",
+  "end": "01:30",
+  "printed": "Andy C",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "andy-c",
+    "role": "performer"
+   }
+  ],
+  "act": "andy-c",
+  "closing": false,
+  "stageLineage": "edc-lv:basspod",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:basspod:0130:sullivan-king-b2b-kai-wachi",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Basspod",
+  "start": "01:30",
+  "end": "02:30",
+  "printed": "Sullivan King B2B Kai Wachi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sullivan-king",
+    "role": "b2b"
+   },
+   {
+    "key": "kai-wachi",
+    "role": "b2b"
+   }
+  ],
+  "act": "sullivan-king-b2b-kai-wachi",
+  "closing": false,
+  "stageLineage": "edc-lv:basspod",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:basspod:0230:eptic",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Basspod",
+  "start": "02:30",
+  "end": "03:30",
+  "printed": "Eptic",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eptic",
+    "role": "performer"
+   }
+  ],
+  "act": "eptic",
+  "closing": false,
+  "stageLineage": "edc-lv:basspod",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:basspod:0330:barely-alive",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Basspod",
+  "start": "03:30",
+  "end": "04:30",
+  "printed": "Barely Alive",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "barely-alive",
+    "role": "performer"
+   }
+  ],
+  "act": "barely-alive",
+  "closing": false,
+  "stageLineage": "edc-lv:basspod",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:basspod:0430:eliminate",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Basspod",
+  "start": "04:30",
+  "end": "05:30",
+  "printed": "Eliminate",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eliminate",
+    "role": "performer"
+   }
+  ],
+  "act": "eliminate",
+  "closing": true,
+  "stageLineage": "edc-lv:basspod",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:wasteland:1900:lenny-dee",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Wasteland",
+  "start": "19:00",
+  "end": "20:30",
+  "printed": "Lenny Dee",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lenny-dee",
+    "role": "performer"
+   }
+  ],
+  "act": "lenny-dee",
+  "closing": false,
+  "stageLineage": "edc-lv:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:wasteland:2030:shei",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Wasteland",
+  "start": "20:30",
+  "end": "21:30",
+  "printed": "SHEI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "shei",
+    "role": "performer"
+   }
+  ],
+  "act": "shei",
+  "closing": false,
+  "stageLineage": "edc-lv:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:wasteland:2130:dr-phunk",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Wasteland",
+  "start": "21:30",
+  "end": "22:30",
+  "printed": "Dr Phunk",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dr-phunk",
+    "role": "performer"
+   }
+  ],
+  "act": "dr-phunk",
+  "closing": false,
+  "stageLineage": "edc-lv:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:wasteland:2230:warface",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Wasteland",
+  "start": "22:30",
+  "end": "23:30",
+  "printed": "Warface",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "warface",
+    "role": "performer"
+   }
+  ],
+  "act": "warface",
+  "closing": false,
+  "stageLineage": "edc-lv:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:wasteland:2330:sound-rush",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Wasteland",
+  "start": "23:30",
+  "end": "00:30",
+  "printed": "Sound Rush",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sound-rush",
+    "role": "performer"
+   }
+  ],
+  "act": "sound-rush",
+  "closing": false,
+  "stageLineage": "edc-lv:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:wasteland:0030:dj-isaac",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Wasteland",
+  "start": "00:30",
+  "end": "01:30",
+  "printed": "DJ Isaac",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-isaac",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-isaac",
+  "closing": false,
+  "stageLineage": "edc-lv:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:wasteland:0130:da-tweekaz",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Wasteland",
+  "start": "01:30",
+  "end": "02:30",
+  "printed": "Da Tweekaz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "da-tweekaz",
+    "role": "performer"
+   }
+  ],
+  "act": "da-tweekaz",
+  "closing": false,
+  "stageLineage": "edc-lv:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:wasteland:0230:lil-texas",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Wasteland",
+  "start": "02:30",
+  "end": "03:30",
+  "printed": "Lil Texas",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lil-texas",
+    "role": "performer"
+   }
+  ],
+  "act": "lil-texas",
+  "closing": false,
+  "stageLineage": "edc-lv:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:wasteland:0330:dj-anime",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Wasteland",
+  "start": "03:30",
+  "end": "04:30",
+  "printed": "DJ AniMe",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-anime",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-anime",
+  "closing": false,
+  "stageLineage": "edc-lv:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:wasteland:0430:omar-santana",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Wasteland",
+  "start": "04:30",
+  "end": "05:30",
+  "printed": "Omar Santana",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "omar-santana",
+    "role": "performer"
+   }
+  ],
+  "act": "omar-santana",
+  "closing": true,
+  "stageLineage": "edc-lv:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:quantum-valley:1900:dustin-husain",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Quantum Valley",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Dustin Husain",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dustin-husain",
+    "role": "performer"
+   }
+  ],
+  "act": "dustin-husain",
+  "closing": false,
+  "stageLineage": "edc-lv:quantum-valley",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:quantum-valley:2000:jerome-isma-ae",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Quantum Valley",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Jerome Isma-Ae",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jerome-isma-ae",
+    "role": "performer"
+   }
+  ],
+  "act": "jerome-isma-ae",
+  "closing": false,
+  "stageLineage": "edc-lv:quantum-valley",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:quantum-valley:2100:hana",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Quantum Valley",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "HANA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hana",
+    "role": "performer"
+   }
+  ],
+  "act": "hana",
+  "closing": false,
+  "stageLineage": "edc-lv:quantum-valley",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:quantum-valley:2200:pretty-pink",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Quantum Valley",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "Pretty Pink",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pretty-pink",
+    "role": "performer"
+   }
+  ],
+  "act": "pretty-pink",
+  "closing": false,
+  "stageLineage": "edc-lv:quantum-valley",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:quantum-valley:2300:matt-fax",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Quantum Valley",
+  "start": "23:00",
+  "end": "00:00",
+  "printed": "Matt Fax",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "matt-fax",
+    "role": "performer"
+   }
+  ],
+  "act": "matt-fax",
+  "closing": false,
+  "stageLineage": "edc-lv:quantum-valley",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:quantum-valley:0000:cosmic-gate",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Quantum Valley",
+  "start": "00:00",
+  "end": "01:00",
+  "printed": "Cosmic Gate",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cosmic-gate",
+    "role": "performer"
+   }
+  ],
+  "act": "cosmic-gate",
+  "closing": false,
+  "stageLineage": "edc-lv:quantum-valley",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:quantum-valley:0100:blastoyz",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Quantum Valley",
+  "start": "01:00",
+  "end": "02:00",
+  "printed": "Blastoyz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "blastoyz",
+    "role": "performer"
+   }
+  ],
+  "act": "blastoyz",
+  "closing": false,
+  "stageLineage": "edc-lv:quantum-valley",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:quantum-valley:0200:infected-mushroom",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Quantum Valley",
+  "start": "02:00",
+  "end": "03:00",
+  "printed": "Infected Mushroom",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "infected-mushroom",
+    "role": "performer"
+   }
+  ],
+  "act": "infected-mushroom",
+  "closing": false,
+  "stageLineage": "edc-lv:quantum-valley",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:quantum-valley:0300:ferry-corsten",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Quantum Valley",
+  "start": "03:00",
+  "end": "04:00",
+  "printed": "Ferry Corsten",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ferry-corsten",
+    "role": "performer"
+   }
+  ],
+  "act": "ferry-corsten",
+  "closing": false,
+  "stageLineage": "edc-lv:quantum-valley",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:quantum-valley:0400:paul-denton",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Quantum Valley",
+  "start": "04:00",
+  "end": "05:30",
+  "printed": "Paul Denton",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "paul-denton",
+    "role": "performer"
+   }
+  ],
+  "act": "paul-denton",
+  "closing": true,
+  "stageLineage": "edc-lv:quantum-valley",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:stereo-bloom:1900:miss-dre",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Stereo Bloom",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "MISS DRE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "miss-dre",
+    "role": "performer"
+   }
+  ],
+  "act": "miss-dre",
+  "closing": false,
+  "stageLineage": "edc-lv:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:stereo-bloom:2000:odd-mob",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Stereo Bloom",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Odd Mob",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "odd-mob",
+    "role": "performer"
+   }
+  ],
+  "act": "odd-mob",
+  "closing": false,
+  "stageLineage": "edc-lv:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:stereo-bloom:2100:san-pacho",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Stereo Bloom",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "San Pacho",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "san-pacho",
+    "role": "performer"
+   }
+  ],
+  "act": "san-pacho",
+  "closing": false,
+  "stageLineage": "edc-lv:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:stereo-bloom:2200:bleu-clair",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Stereo Bloom",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "Bleu Clair",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bleu-clair",
+    "role": "performer"
+   }
+  ],
+  "act": "bleu-clair",
+  "closing": false,
+  "stageLineage": "edc-lv:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:stereo-bloom:2300:biscits-b2b-martin-ikin",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Stereo Bloom",
+  "start": "23:00",
+  "end": "00:15",
+  "printed": "Biscits B2B Martin Ikin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "biscits",
+    "role": "b2b"
+   },
+   {
+    "key": "martin-ikin",
+    "role": "b2b"
+   }
+  ],
+  "act": "biscits-b2b-martin-ikin",
+  "closing": false,
+  "stageLineage": "edc-lv:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:stereo-bloom:0015:disco-lines",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Stereo Bloom",
+  "start": "00:15",
+  "end": "01:15",
+  "printed": "Disco Lines",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "disco-lines",
+    "role": "performer"
+   }
+  ],
+  "act": "disco-lines",
+  "closing": false,
+  "stageLineage": "edc-lv:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:stereo-bloom:0115:matroda-and-friends",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Stereo Bloom",
+  "start": "01:15",
+  "end": "02:30",
+  "printed": "Matroda & Friends",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "matroda-and-friends",
+    "role": "performer"
+   }
+  ],
+  "act": "matroda-and-friends",
+  "closing": false,
+  "stageLineage": "edc-lv:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:stereo-bloom:0230:hugel",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Stereo Bloom",
+  "start": "02:30",
+  "end": "03:30",
+  "printed": "Hugel",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hugel",
+    "role": "performer"
+   }
+  ],
+  "act": "hugel",
+  "closing": false,
+  "stageLineage": "edc-lv:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:stereo-bloom:0330:born-dirty",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Stereo Bloom",
+  "start": "03:30",
+  "end": "04:30",
+  "printed": "Born Dirty",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "born-dirty",
+    "role": "performer"
+   }
+  ],
+  "act": "born-dirty",
+  "closing": false,
+  "stageLineage": "edc-lv:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:stereo-bloom:0430:cloverdale",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Stereo Bloom",
+  "start": "04:30",
+  "end": "05:30",
+  "printed": "Cloverdale",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cloverdale",
+    "role": "performer"
+   }
+  ],
+  "act": "cloverdale",
+  "closing": true,
+  "stageLineage": "edc-lv:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:bionic-jungle:1900:lady-sinclair",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Bionic Jungle",
+  "start": "19:00",
+  "end": "20:30",
+  "printed": "Lady Sinclair",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lady-sinclair",
+    "role": "performer"
+   }
+  ],
+  "act": "lady-sinclair",
+  "closing": false,
+  "stageLineage": "edc-lv:bionic-jungle",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:bionic-jungle:2030:lovefingers-heidi-lawden",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Bionic Jungle",
+  "start": "20:30",
+  "end": "22:30",
+  "printed": "Lovefingers + Heidi Lawden",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lovefingers-heidi-lawden",
+    "role": "act"
+   }
+  ],
+  "act": "lovefingers-heidi-lawden",
+  "closing": false,
+  "stageLineage": "edc-lv:bionic-jungle",
+  "mainStage": null,
+  "review": "\"+\" billing"
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:bionic-jungle:2230:david-morales",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Bionic Jungle",
+  "start": "22:30",
+  "end": "00:00",
+  "printed": "David Morales",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "david-morales",
+    "role": "performer"
+   }
+  ],
+  "act": "david-morales",
+  "closing": false,
+  "stageLineage": "edc-lv:bionic-jungle",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:bionic-jungle:0000:louie-vega",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Bionic Jungle",
+  "start": "00:00",
+  "end": "02:00",
+  "printed": "Louie Vega",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "louie-vega",
+    "role": "performer"
+   }
+  ],
+  "act": "louie-vega",
+  "closing": false,
+  "stageLineage": "edc-lv:bionic-jungle",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:bionic-jungle:0200:mike-dunn",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Bionic Jungle",
+  "start": "02:00",
+  "end": "04:00",
+  "printed": "Mike Dunn",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mike-dunn",
+    "role": "performer"
+   }
+  ],
+  "act": "mike-dunn",
+  "closing": false,
+  "stageLineage": "edc-lv:bionic-jungle",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:bionic-jungle:0400:disco-dom",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Bionic Jungle",
+  "start": "04:00",
+  "end": "05:30",
+  "printed": "Disco Dom",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "disco-dom",
+    "role": "performer"
+   }
+  ],
+  "act": "disco-dom",
+  "closing": true,
+  "stageLineage": "edc-lv:bionic-jungle",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:parliament-2-0-30th-anniversary-art-car:1900:simfonik",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Parliament 2.0 30th Anniversary Art Car",
+  "start": "19:00",
+  "end": "20:15",
+  "printed": "simfonik",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "simfonik",
+    "role": "performer"
+   }
+  ],
+  "act": "simfonik",
+  "closing": false,
+  "stageLineage": "edc-lv:parliament-2-0-30th-anniversary-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:parliament-2-0-30th-anniversary-art-car:2015:marc-v",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Parliament 2.0 30th Anniversary Art Car",
+  "start": "20:15",
+  "end": "21:45",
+  "printed": "Marc V",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marc-v",
+    "role": "performer"
+   }
+  ],
+  "act": "marc-v",
+  "closing": false,
+  "stageLineage": "edc-lv:parliament-2-0-30th-anniversary-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:parliament-2-0-30th-anniversary-art-car:2145:lady-sinclair",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Parliament 2.0 30th Anniversary Art Car",
+  "start": "21:45",
+  "end": "22:45",
+  "printed": "Lady Sinclair",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lady-sinclair",
+    "role": "performer"
+   }
+  ],
+  "act": "lady-sinclair",
+  "closing": false,
+  "stageLineage": "edc-lv:parliament-2-0-30th-anniversary-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:parliament-2-0-30th-anniversary-art-car:2245:jason-blakemore",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Parliament 2.0 30th Anniversary Art Car",
+  "start": "22:45",
+  "end": "00:00",
+  "printed": "Jason Blakemore",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jason-blakemore",
+    "role": "performer"
+   }
+  ],
+  "act": "jason-blakemore",
+  "closing": false,
+  "stageLineage": "edc-lv:parliament-2-0-30th-anniversary-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:parliament-2-0-30th-anniversary-art-car:0000:frankie-bones",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Parliament 2.0 30th Anniversary Art Car",
+  "start": "00:00",
+  "end": "01:30",
+  "printed": "Frankie Bones",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "frankie-bones",
+    "role": "performer"
+   }
+  ],
+  "act": "frankie-bones",
+  "closing": false,
+  "stageLineage": "edc-lv:parliament-2-0-30th-anniversary-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:parliament-2-0-30th-anniversary-art-car:0130:dj-dan",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Parliament 2.0 30th Anniversary Art Car",
+  "start": "01:30",
+  "end": "03:00",
+  "printed": "DJ Dan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-dan",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-dan",
+  "closing": false,
+  "stageLineage": "edc-lv:parliament-2-0-30th-anniversary-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:parliament-2-0-30th-anniversary-art-car:0300:christopher-lawrence",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Parliament 2.0 30th Anniversary Art Car",
+  "start": "03:00",
+  "end": "04:15",
+  "printed": "Christopher Lawrence",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "christopher-lawrence",
+    "role": "performer"
+   }
+  ],
+  "act": "christopher-lawrence",
+  "closing": false,
+  "stageLineage": "edc-lv:parliament-2-0-30th-anniversary-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:parliament-2-0-30th-anniversary-art-car:0415:demigod",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Parliament 2.0 30th Anniversary Art Car",
+  "start": "04:15",
+  "end": "05:30",
+  "printed": "Demigod",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "demigod",
+    "role": "performer"
+   }
+  ],
+  "act": "demigod",
+  "closing": true,
+  "stageLineage": "edc-lv:parliament-2-0-30th-anniversary-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:titanic-s-end-art-car:1930:connor-q",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Titanic's End Art Car",
+  "start": "19:30",
+  "end": "21:30",
+  "printed": "Connor q",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "connor-q",
+    "role": "performer"
+   }
+  ],
+  "act": "connor-q",
+  "closing": false,
+  "stageLineage": "edc-lv:titanic-s-end-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:titanic-s-end-art-car:2130:dj-topgun",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Titanic's End Art Car",
+  "start": "21:30",
+  "end": "22:45",
+  "printed": "DJ Topgun",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-topgun",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-topgun",
+  "closing": false,
+  "stageLineage": "edc-lv:titanic-s-end-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:titanic-s-end-art-car:2245:alleycvt",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Titanic's End Art Car",
+  "start": "22:45",
+  "end": "00:00",
+  "printed": "ALLEYCVT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alleycvt",
+    "role": "performer"
+   }
+  ],
+  "act": "alleycvt",
+  "closing": false,
+  "stageLineage": "edc-lv:titanic-s-end-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:titanic-s-end-art-car:0000:chyl",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Titanic's End Art Car",
+  "start": "00:00",
+  "end": "01:30",
+  "printed": "CHYL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chyl",
+    "role": "performer"
+   }
+  ],
+  "act": "chyl",
+  "closing": false,
+  "stageLineage": "edc-lv:titanic-s-end-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:titanic-s-end-art-car:0130:habstrakt-distorted-reality",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Titanic's End Art Car",
+  "start": "01:30",
+  "end": "03:00",
+  "printed": "Habstrakt: Distorted Reality",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "habstrakt-distorted-reality",
+    "role": "performer"
+   }
+  ],
+  "act": "habstrakt-distorted-reality",
+  "closing": false,
+  "stageLineage": "edc-lv:titanic-s-end-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:titanic-s-end-art-car:0300:emo-nite",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Titanic's End Art Car",
+  "start": "03:00",
+  "end": "04:15",
+  "printed": "Emo Nite",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "emo-nite",
+    "role": "performer"
+   }
+  ],
+  "act": "emo-nite",
+  "closing": false,
+  "stageLineage": "edc-lv:titanic-s-end-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:titanic-s-end-art-car:0415:blake-webber",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Titanic's End Art Car",
+  "start": "04:15",
+  "end": "05:30",
+  "printed": "Blake Webber",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "blake-webber",
+    "role": "performer"
+   }
+  ],
+  "act": "blake-webber",
+  "closing": true,
+  "stageLineage": "edc-lv:titanic-s-end-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:boombox-art-car:1900:arman",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Boombox Art Car",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Arman.",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "arman",
+    "role": "performer"
+   }
+  ],
+  "act": "arman",
+  "closing": false,
+  "stageLineage": "edc-lv:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:boombox-art-car:2000:crespo",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Boombox Art Car",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Crespo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "crespo",
+    "role": "performer"
+   }
+  ],
+  "act": "crespo",
+  "closing": false,
+  "stageLineage": "edc-lv:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:boombox-art-car:2100:isaac-civil",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Boombox Art Car",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "Isaac Civil",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "isaac-civil",
+    "role": "performer"
+   }
+  ],
+  "act": "isaac-civil",
+  "closing": false,
+  "stageLineage": "edc-lv:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:boombox-art-car:2200:le-twins",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Boombox Art Car",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "Le Twins",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "le-twins",
+    "role": "performer"
+   }
+  ],
+  "act": "le-twins",
+  "closing": false,
+  "stageLineage": "edc-lv:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:boombox-art-car:2300:alec-monopoly",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Boombox Art Car",
+  "start": "23:00",
+  "end": "00:00",
+  "printed": "Alec Monopoly",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alec-monopoly",
+    "role": "performer"
+   }
+  ],
+  "act": "alec-monopoly",
+  "closing": false,
+  "stageLineage": "edc-lv:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:boombox-art-car:0000:harmson",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Boombox Art Car",
+  "start": "00:00",
+  "end": "01:00",
+  "printed": "Harmson",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "harmson",
+    "role": "performer"
+   }
+  ],
+  "act": "harmson",
+  "closing": false,
+  "stageLineage": "edc-lv:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:boombox-art-car:0100:tim-clark",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Boombox Art Car",
+  "start": "01:00",
+  "end": "02:00",
+  "printed": "Tim Clark",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tim-clark",
+    "role": "performer"
+   }
+  ],
+  "act": "tim-clark",
+  "closing": false,
+  "stageLineage": "edc-lv:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:boombox-art-car:0200:young-bombs",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Boombox Art Car",
+  "start": "02:00",
+  "end": "03:00",
+  "printed": "Young Bombs",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "young-bombs",
+    "role": "performer"
+   }
+  ],
+  "act": "young-bombs",
+  "closing": false,
+  "stageLineage": "edc-lv:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:boombox-art-car:0300:blake-webber",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Boombox Art Car",
+  "start": "03:00",
+  "end": "04:00",
+  "printed": "Blake Webber",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "blake-webber",
+    "role": "performer"
+   }
+  ],
+  "act": "blake-webber",
+  "closing": false,
+  "stageLineage": "edc-lv:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:boombox-art-car:0400:tones",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Boombox Art Car",
+  "start": "04:00",
+  "end": "05:30",
+  "printed": "Tones",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tones",
+    "role": "performer"
+   }
+  ],
+  "act": "tones",
+  "closing": true,
+  "stageLineage": "edc-lv:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:allegiant-rave-hangar:1900:bexxie",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Allegiant Rave Hangar",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Bexxie",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bexxie",
+    "role": "performer"
+   }
+  ],
+  "act": "bexxie",
+  "closing": false,
+  "stageLineage": "edc-lv:allegiant-rave-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:allegiant-rave-hangar:2000:discrete",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Allegiant Rave Hangar",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Discrete",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "discrete",
+    "role": "performer"
+   }
+  ],
+  "act": "discrete",
+  "closing": false,
+  "stageLineage": "edc-lv:allegiant-rave-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:allegiant-rave-hangar:2100:kaysin",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Allegiant Rave Hangar",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "Kaysin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kaysin",
+    "role": "performer"
+   }
+  ],
+  "act": "kaysin",
+  "closing": false,
+  "stageLineage": "edc-lv:allegiant-rave-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:allegiant-rave-hangar:2200:bones-b2b-lee-wells",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Allegiant Rave Hangar",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "Bones B2B Lee Wells",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bones",
+    "role": "b2b"
+   },
+   {
+    "key": "lee-wells",
+    "role": "b2b"
+   }
+  ],
+  "act": "bones-b2b-lee-wells",
+  "closing": false,
+  "stageLineage": "edc-lv:allegiant-rave-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:allegiant-rave-hangar:2300:camden-cox",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Allegiant Rave Hangar",
+  "start": "23:00",
+  "end": "00:00",
+  "printed": "Camden Cox",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "camden-cox",
+    "role": "performer"
+   }
+  ],
+  "act": "camden-cox",
+  "closing": false,
+  "stageLineage": "edc-lv:allegiant-rave-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:allegiant-rave-hangar:0000:tobehonest",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Allegiant Rave Hangar",
+  "start": "00:00",
+  "end": "01:00",
+  "printed": "TOBEHONEST",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tobehonest",
+    "role": "performer"
+   }
+  ],
+  "act": "tobehonest",
+  "closing": false,
+  "stageLineage": "edc-lv:allegiant-rave-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:allegiant-rave-hangar:0100:odd-mob",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Allegiant Rave Hangar",
+  "start": "01:00",
+  "end": "02:00",
+  "printed": "Odd Mob",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "odd-mob",
+    "role": "performer"
+   }
+  ],
+  "act": "odd-mob",
+  "closing": false,
+  "stageLineage": "edc-lv:allegiant-rave-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:allegiant-rave-hangar:0200:miss-dre",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Allegiant Rave Hangar",
+  "start": "02:00",
+  "end": "03:00",
+  "printed": "MISS DRE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "miss-dre",
+    "role": "performer"
+   }
+  ],
+  "act": "miss-dre",
+  "closing": false,
+  "stageLineage": "edc-lv:allegiant-rave-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:allegiant-rave-hangar:0300:abana",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Allegiant Rave Hangar",
+  "start": "03:00",
+  "end": "04:00",
+  "printed": "Abana",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "abana",
+    "role": "performer"
+   }
+  ],
+  "act": "abana",
+  "closing": false,
+  "stageLineage": "edc-lv:allegiant-rave-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d1:allegiant-rave-hangar:0400:manolo",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-19",
+  "day": 1,
+  "stage": "Allegiant Rave Hangar",
+  "start": "04:00",
+  "end": "05:00",
+  "printed": "Manolo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "manolo",
+    "role": "performer"
+   }
+  ],
+  "act": "manolo",
+  "closing": true,
+  "stageLineage": "edc-lv:allegiant-rave-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:kinetic-field:1900:korolova",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Kinetic Field",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Korolova",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "korolova",
+    "role": "performer"
+   }
+  ],
+  "act": "korolova",
+  "closing": false,
+  "stageLineage": "edc-lv:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:kinetic-field:2000:morten",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Kinetic Field",
+  "start": "20:00",
+  "end": "21:05",
+  "printed": "MORTEN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "morten",
+    "role": "performer"
+   }
+  ],
+  "act": "morten",
+  "closing": false,
+  "stageLineage": "edc-lv:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:kinetic-field:2105:valentino-khan",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Kinetic Field",
+  "start": "21:05",
+  "end": "22:10",
+  "printed": "Valentino Khan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "valentino-khan",
+    "role": "performer"
+   }
+  ],
+  "act": "valentino-khan",
+  "closing": false,
+  "stageLineage": "edc-lv:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:kinetic-field:2216:james-hype",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Kinetic Field",
+  "start": "22:16",
+  "end": "23:16",
+  "printed": "James Hype",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "james-hype",
+    "role": "performer"
+   }
+  ],
+  "act": "james-hype",
+  "closing": false,
+  "stageLineage": "edc-lv:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:kinetic-field:2319:boris-brejcha",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Kinetic Field",
+  "start": "23:19",
+  "end": "00:24",
+  "printed": "Boris Brejcha",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "boris-brejcha",
+    "role": "performer"
+   }
+  ],
+  "act": "boris-brejcha",
+  "closing": false,
+  "stageLineage": "edc-lv:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:kinetic-field:0027:tiesto",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Kinetic Field",
+  "start": "00:27",
+  "end": "01:42",
+  "printed": "Tiësto",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tiesto",
+    "role": "performer"
+   }
+  ],
+  "act": "tiesto",
+  "closing": false,
+  "stageLineage": "edc-lv:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:kinetic-field:0148:zedd",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Kinetic Field",
+  "start": "01:48",
+  "end": "03:03",
+  "printed": "Zedd",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zedd",
+    "role": "performer"
+   }
+  ],
+  "act": "zedd",
+  "closing": false,
+  "stageLineage": "edc-lv:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:kinetic-field:0306:chris-lake",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Kinetic Field",
+  "start": "03:06",
+  "end": "04:21",
+  "printed": "Chris Lake",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chris-lake",
+    "role": "performer"
+   }
+  ],
+  "act": "chris-lake",
+  "closing": false,
+  "stageLineage": "edc-lv:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:kinetic-field:0424:alok",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Kinetic Field",
+  "start": "04:24",
+  "end": "05:28",
+  "printed": "Alok",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alok",
+    "role": "performer"
+   }
+  ],
+  "act": "alok",
+  "closing": true,
+  "stageLineage": "edc-lv:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:cosmic-meadow:1900:nala",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Cosmic Meadow",
+  "start": "19:00",
+  "end": "20:30",
+  "printed": "Nala",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nala",
+    "role": "performer"
+   }
+  ],
+  "act": "nala",
+  "closing": false,
+  "stageLineage": "edc-lv:cosmic-meadow",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:cosmic-meadow:2030:cid-b2b-sage-armstrong",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Cosmic Meadow",
+  "start": "20:30",
+  "end": "21:45",
+  "printed": "CID B2B Sage Armstrong",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cid",
+    "role": "b2b"
+   },
+   {
+    "key": "sage-armstrong",
+    "role": "b2b"
+   }
+  ],
+  "act": "cid-b2b-sage-armstrong",
+  "closing": false,
+  "stageLineage": "edc-lv:cosmic-meadow",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:cosmic-meadow:2145:noizu",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Cosmic Meadow",
+  "start": "21:45",
+  "end": "23:00",
+  "printed": "Noizu",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "noizu",
+    "role": "performer"
+   }
+  ],
+  "act": "noizu",
+  "closing": false,
+  "stageLineage": "edc-lv:cosmic-meadow",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:cosmic-meadow:2305:kaytranada",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Cosmic Meadow",
+  "start": "23:05",
+  "end": "00:05",
+  "printed": "Kaytranada",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kaytranada",
+    "role": "performer"
+   }
+  ],
+  "act": "kaytranada",
+  "closing": false,
+  "stageLineage": "edc-lv:cosmic-meadow",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:cosmic-meadow:0010:zeds-dead-b2b-chase-and-status",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Cosmic Meadow",
+  "start": "00:10",
+  "end": "01:40",
+  "printed": "Zeds Dead B2B Chase & Status",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zeds-dead",
+    "role": "b2b"
+   },
+   {
+    "key": "chase-and-status",
+    "role": "b2b"
+   }
+  ],
+  "act": "zeds-dead-b2b-chase-and-status",
+  "closing": false,
+  "stageLineage": "edc-lv:cosmic-meadow",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:cosmic-meadow:0140:jstjr",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Cosmic Meadow",
+  "start": "01:40",
+  "end": "03:00",
+  "printed": "JSTJR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jstjr",
+    "role": "performer"
+   }
+  ],
+  "act": "jstjr",
+  "closing": false,
+  "stageLineage": "edc-lv:cosmic-meadow",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:cosmic-meadow:0300:sullivan-king",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Cosmic Meadow",
+  "start": "03:00",
+  "end": "04:00",
+  "printed": "Sullivan King",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sullivan-king",
+    "role": "performer"
+   }
+  ],
+  "act": "sullivan-king",
+  "closing": false,
+  "stageLineage": "edc-lv:cosmic-meadow",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:cosmic-meadow:0400:habstrakt",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Cosmic Meadow",
+  "start": "04:00",
+  "end": "05:30",
+  "printed": "Habstrakt",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "habstrakt",
+    "role": "performer"
+   }
+  ],
+  "act": "habstrakt",
+  "closing": true,
+  "stageLineage": "edc-lv:cosmic-meadow",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:circuit-grounds:1900:modapit",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Circuit Grounds",
+  "start": "19:00",
+  "end": "20:30",
+  "printed": "Modapit",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "modapit",
+    "role": "performer"
+   }
+  ],
+  "act": "modapit",
+  "closing": false,
+  "stageLineage": "edc-lv:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:circuit-grounds:2030:spencer-brown",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Circuit Grounds",
+  "start": "20:30",
+  "end": "21:45",
+  "printed": "Spencer Brown",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "spencer-brown",
+    "role": "performer"
+   }
+  ],
+  "act": "spencer-brown",
+  "closing": false,
+  "stageLineage": "edc-lv:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:circuit-grounds:2145:acraze",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Circuit Grounds",
+  "start": "21:45",
+  "end": "23:00",
+  "printed": "ACRAZE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "acraze",
+    "role": "performer"
+   }
+  ],
+  "act": "acraze",
+  "closing": false,
+  "stageLineage": "edc-lv:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:circuit-grounds:2300:dom-dolla",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Circuit Grounds",
+  "start": "23:00",
+  "end": "00:30",
+  "printed": "Dom Dolla",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dom-dolla",
+    "role": "performer"
+   }
+  ],
+  "act": "dom-dolla",
+  "closing": false,
+  "stageLineage": "edc-lv:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:circuit-grounds:0030:kaskade",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Circuit Grounds",
+  "start": "00:30",
+  "end": "02:00",
+  "printed": "Kaskade",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kaskade",
+    "role": "performer"
+   }
+  ],
+  "act": "kaskade",
+  "closing": false,
+  "stageLineage": "edc-lv:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:circuit-grounds:0200:subtronics",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Circuit Grounds",
+  "start": "02:00",
+  "end": "03:00",
+  "printed": "Subtronics",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "subtronics",
+    "role": "performer"
+   }
+  ],
+  "act": "subtronics",
+  "closing": false,
+  "stageLineage": "edc-lv:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:circuit-grounds:0415:afrojack-sunrise-set",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Circuit Grounds",
+  "start": "04:15",
+  "end": "05:30",
+  "printed": "Afrojack (Sunrise Set)",
+  "setTag": "Sunrise Set",
+  "performers": [
+   {
+    "key": "afrojack",
+    "role": "performer"
+   }
+  ],
+  "act": "afrojack",
+  "closing": true,
+  "stageLineage": "edc-lv:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:neon-garden:1900:ms-mada-b2b-bakke",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Neon Garden",
+  "start": "19:00",
+  "end": "20:30",
+  "printed": "Ms. Mada B2B Bakke",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ms-mada",
+    "role": "b2b"
+   },
+   {
+    "key": "bakke",
+    "role": "b2b"
+   }
+  ],
+  "act": "ms-mada-b2b-bakke",
+  "closing": false,
+  "stageLineage": "edc-lv:neon-garden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:neon-garden:2030:layla-benitez",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Neon Garden",
+  "start": "20:30",
+  "end": "22:00",
+  "printed": "Layla Benitez",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "layla-benitez",
+    "role": "performer"
+   }
+  ],
+  "act": "layla-benitez",
+  "closing": false,
+  "stageLineage": "edc-lv:neon-garden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:neon-garden:2200:paco-osuna",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Neon Garden",
+  "start": "22:00",
+  "end": "23:30",
+  "printed": "Paco Osuna",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "paco-osuna",
+    "role": "performer"
+   }
+  ],
+  "act": "paco-osuna",
+  "closing": false,
+  "stageLineage": "edc-lv:neon-garden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:neon-garden:2330:pawsa",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Neon Garden",
+  "start": "23:30",
+  "end": "01:00",
+  "printed": "PAWSA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pawsa",
+    "role": "performer"
+   }
+  ],
+  "act": "pawsa",
+  "closing": false,
+  "stageLineage": "edc-lv:neon-garden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:neon-garden:0100:the-martinez-brothers",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Neon Garden",
+  "start": "01:00",
+  "end": "02:30",
+  "printed": "The Martinez Brothers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-martinez-brothers",
+    "role": "performer"
+   }
+  ],
+  "act": "the-martinez-brothers",
+  "closing": false,
+  "stageLineage": "edc-lv:neon-garden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:neon-garden:0230:mochakk",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Neon Garden",
+  "start": "02:30",
+  "end": "04:00",
+  "printed": "Mochakk",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mochakk",
+    "role": "performer"
+   }
+  ],
+  "act": "mochakk",
+  "closing": false,
+  "stageLineage": "edc-lv:neon-garden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:neon-garden:0400:hot-since-82",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Neon Garden",
+  "start": "04:00",
+  "end": "05:30",
+  "printed": "Hot Since 82",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hot-since-82",
+    "role": "performer"
+   }
+  ],
+  "act": "hot-since-82",
+  "closing": true,
+  "stageLineage": "edc-lv:neon-garden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:basspod:1900:fury-b2b-nightstalker",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Basspod",
+  "start": "19:00",
+  "end": "19:50",
+  "printed": "Fury B2B Nightstalker",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fury",
+    "role": "b2b"
+   },
+   {
+    "key": "nightstalker",
+    "role": "b2b"
+   }
+  ],
+  "act": "fury-b2b-nightstalker",
+  "closing": false,
+  "stageLineage": "edc-lv:basspod",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:basspod:1950:hvdes",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Basspod",
+  "start": "19:50",
+  "end": "20:40",
+  "printed": "HVDES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hvdes",
+    "role": "performer"
+   }
+  ],
+  "act": "hvdes",
+  "closing": false,
+  "stageLineage": "edc-lv:basspod",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:basspod:2040:ray-volpe",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Basspod",
+  "start": "20:40",
+  "end": "21:30",
+  "printed": "Ray Volpe",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ray-volpe",
+    "role": "performer"
+   }
+  ],
+  "act": "ray-volpe",
+  "closing": false,
+  "stageLineage": "edc-lv:basspod",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:basspod:2130:metrik-b2b-grafix",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Basspod",
+  "start": "21:30",
+  "end": "22:30",
+  "printed": "Metrik B2B Grafix",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "metrik",
+    "role": "b2b"
+   },
+   {
+    "key": "grafix",
+    "role": "b2b"
+   }
+  ],
+  "act": "metrik-b2b-grafix",
+  "closing": false,
+  "stageLineage": "edc-lv:basspod",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:basspod:2230:space-laces",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Basspod",
+  "start": "22:30",
+  "end": "23:30",
+  "printed": "Space Laces",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "space-laces",
+    "role": "performer"
+   }
+  ],
+  "act": "space-laces",
+  "closing": false,
+  "stageLineage": "edc-lv:basspod",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:basspod:2330:netsky",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Basspod",
+  "start": "23:30",
+  "end": "00:30",
+  "printed": "Netsky",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "netsky",
+    "role": "performer"
+   }
+  ],
+  "act": "netsky",
+  "closing": false,
+  "stageLineage": "edc-lv:basspod",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:basspod:0030:excision-b2b-dion-timmer",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Basspod",
+  "start": "00:30",
+  "end": "01:30",
+  "printed": "Excision B2B Dion Timmer",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "excision",
+    "role": "b2b"
+   },
+   {
+    "key": "dion-timmer",
+    "role": "b2b"
+   }
+  ],
+  "act": "excision-b2b-dion-timmer",
+  "closing": false,
+  "stageLineage": "edc-lv:basspod",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:basspod:0130:svdden-death-into-the-inferno",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Basspod",
+  "start": "01:30",
+  "end": "02:30",
+  "printed": "Svdden Death: Into The Inferno",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "svdden-death-into-the-inferno",
+    "role": "performer"
+   }
+  ],
+  "act": "svdden-death-into-the-inferno",
+  "closing": false,
+  "stageLineage": "edc-lv:basspod",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:basspod:0230:wooli",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Basspod",
+  "start": "02:30",
+  "end": "03:30",
+  "printed": "Wooli",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wooli",
+    "role": "performer"
+   }
+  ],
+  "act": "wooli",
+  "closing": false,
+  "stageLineage": "edc-lv:basspod",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:basspod:0330:moody-good-throwback-set",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Basspod",
+  "start": "03:30",
+  "end": "04:30",
+  "printed": "Moody Good (Throwback Set)",
+  "setTag": "Throwback Set",
+  "performers": [
+   {
+    "key": "moody-good",
+    "role": "performer"
+   }
+  ],
+  "act": "moody-good",
+  "closing": false,
+  "stageLineage": "edc-lv:basspod",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:basspod:0430:12th-planet",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Basspod",
+  "start": "04:30",
+  "end": "05:30",
+  "printed": "12th Planet",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "12th-planet",
+    "role": "performer"
+   }
+  ],
+  "act": "12th-planet",
+  "closing": true,
+  "stageLineage": "edc-lv:basspod",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:wasteland:1900:suae",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Wasteland",
+  "start": "19:00",
+  "end": "20:30",
+  "printed": "Suae",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "suae",
+    "role": "performer"
+   }
+  ],
+  "act": "suae",
+  "closing": false,
+  "stageLineage": "edc-lv:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:wasteland:2030:dionysus-and-yosuf-present-bigger-stronger-faster",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Wasteland",
+  "start": "20:30",
+  "end": "21:30",
+  "printed": "Dionysus & Yosuf present: Bigger, Stronger, Faster",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bigger-stronger-faster",
+    "role": "project"
+   }
+  ],
+  "act": "dionysus-and-yosuf-present-bigger-stronger-faster",
+  "closing": false,
+  "stageLineage": "edc-lv:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:wasteland:2130:rebelion",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Wasteland",
+  "start": "21:30",
+  "end": "22:30",
+  "printed": "Rebelion",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rebelion",
+    "role": "performer"
+   }
+  ],
+  "act": "rebelion",
+  "closing": false,
+  "stageLineage": "edc-lv:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:wasteland:2230:audiofreq",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Wasteland",
+  "start": "22:30",
+  "end": "23:30",
+  "printed": "Audiofreq",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "audiofreq",
+    "role": "performer"
+   }
+  ],
+  "act": "audiofreq",
+  "closing": false,
+  "stageLineage": "edc-lv:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:wasteland:2330:lady-faith",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Wasteland",
+  "start": "23:30",
+  "end": "00:30",
+  "printed": "Lady Faith",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lady-faith",
+    "role": "performer"
+   }
+  ],
+  "act": "lady-faith",
+  "closing": false,
+  "stageLineage": "edc-lv:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:wasteland:0030:coone",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Wasteland",
+  "start": "00:30",
+  "end": "01:30",
+  "printed": "Coone",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "coone",
+    "role": "performer"
+   }
+  ],
+  "act": "coone",
+  "closing": false,
+  "stageLineage": "edc-lv:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:wasteland:0130:darren-styles",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Wasteland",
+  "start": "01:30",
+  "end": "02:30",
+  "printed": "Darren Styles",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "darren-styles",
+    "role": "performer"
+   }
+  ],
+  "act": "darren-styles",
+  "closing": false,
+  "stageLineage": "edc-lv:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:wasteland:0230:sub-zero-project",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Wasteland",
+  "start": "02:30",
+  "end": "03:30",
+  "printed": "Sub Zero Project",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sub-zero-project",
+    "role": "performer"
+   }
+  ],
+  "act": "sub-zero-project",
+  "closing": false,
+  "stageLineage": "edc-lv:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:wasteland:0330:warface-b2b-d-sturb",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Wasteland",
+  "start": "03:30",
+  "end": "04:30",
+  "printed": "Warface B2B D-Sturb",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "warface",
+    "role": "b2b"
+   },
+   {
+    "key": "d-sturb",
+    "role": "b2b"
+   }
+  ],
+  "act": "warface-b2b-d-sturb",
+  "closing": false,
+  "stageLineage": "edc-lv:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:wasteland:0430:softest-hard",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Wasteland",
+  "start": "04:30",
+  "end": "05:30",
+  "printed": "Softest Hard",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "softest-hard",
+    "role": "performer"
+   }
+  ],
+  "act": "softest-hard",
+  "closing": true,
+  "stageLineage": "edc-lv:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:quantum-valley:1900:yoshi-and-razner",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Quantum Valley",
+  "start": "19:00",
+  "end": "20:30",
+  "printed": "Yoshi & Razner",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yoshi-and-razner",
+    "role": "performer"
+   }
+  ],
+  "act": "yoshi-and-razner",
+  "closing": false,
+  "stageLineage": "edc-lv:quantum-valley",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:quantum-valley:2030:atdusk",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Quantum Valley",
+  "start": "20:30",
+  "end": "21:30",
+  "printed": "atDusk",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "atdusk",
+    "role": "performer"
+   }
+  ],
+  "act": "atdusk",
+  "closing": false,
+  "stageLineage": "edc-lv:quantum-valley",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:quantum-valley:2130:jorza",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Quantum Valley",
+  "start": "21:30",
+  "end": "22:30",
+  "printed": "Jorza",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jorza",
+    "role": "performer"
+   }
+  ],
+  "act": "jorza",
+  "closing": false,
+  "stageLineage": "edc-lv:quantum-valley",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:quantum-valley:2230:giuseppe-ottaviani",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Quantum Valley",
+  "start": "22:30",
+  "end": "23:30",
+  "printed": "Giuseppe Ottaviani",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "giuseppe-ottaviani",
+    "role": "performer"
+   }
+  ],
+  "act": "giuseppe-ottaviani",
+  "closing": false,
+  "stageLineage": "edc-lv:quantum-valley",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:quantum-valley:2330:ben-nicky-presents-emotional-havoc",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Quantum Valley",
+  "start": "23:30",
+  "end": "00:30",
+  "printed": "Ben Nicky presents Emotional Havoc",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "emotional-havoc",
+    "role": "project"
+   }
+  ],
+  "act": "ben-nicky-presents-emotional-havoc",
+  "closing": false,
+  "stageLineage": "edc-lv:quantum-valley",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:quantum-valley:0030:gareth-emery-presents-decades",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Quantum Valley",
+  "start": "00:30",
+  "end": "01:30",
+  "printed": "Gareth Emery presents Decades",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "decades",
+    "role": "project"
+   }
+  ],
+  "act": "gareth-emery-presents-decades",
+  "closing": false,
+  "stageLineage": "edc-lv:quantum-valley",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:quantum-valley:0130:vini-vici",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Quantum Valley",
+  "start": "01:30",
+  "end": "02:30",
+  "printed": "Vini Vici",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vini-vici",
+    "role": "performer"
+   }
+  ],
+  "act": "vini-vici",
+  "closing": false,
+  "stageLineage": "edc-lv:quantum-valley",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:quantum-valley:0230:will-atkinson",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Quantum Valley",
+  "start": "02:30",
+  "end": "03:30",
+  "printed": "Will Atkinson",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "will-atkinson",
+    "role": "performer"
+   }
+  ],
+  "act": "will-atkinson",
+  "closing": false,
+  "stageLineage": "edc-lv:quantum-valley",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:quantum-valley:0330:billy-gillies",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Quantum Valley",
+  "start": "03:30",
+  "end": "04:30",
+  "printed": "Billy Gillies",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "billy-gillies",
+    "role": "performer"
+   }
+  ],
+  "act": "billy-gillies",
+  "closing": false,
+  "stageLineage": "edc-lv:quantum-valley",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:quantum-valley:0430:triode",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Quantum Valley",
+  "start": "04:30",
+  "end": "05:30",
+  "printed": "Triode",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "triode",
+    "role": "performer"
+   }
+  ],
+  "act": "triode",
+  "closing": true,
+  "stageLineage": "edc-lv:quantum-valley",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:stereo-bloom:1900:camden-cox",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Stereo Bloom",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Camden Cox",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "camden-cox",
+    "role": "performer"
+   }
+  ],
+  "act": "camden-cox",
+  "closing": false,
+  "stageLineage": "edc-lv:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:stereo-bloom:2000:chaney",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Stereo Bloom",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Chaney",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chaney",
+    "role": "performer"
+   }
+  ],
+  "act": "chaney",
+  "closing": false,
+  "stageLineage": "edc-lv:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:stereo-bloom:2100:ferreck-dawn",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Stereo Bloom",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "Ferreck Dawn",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ferreck-dawn",
+    "role": "performer"
+   }
+  ],
+  "act": "ferreck-dawn",
+  "closing": false,
+  "stageLineage": "edc-lv:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:stereo-bloom:2200:miane",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Stereo Bloom",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "Miane",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "miane",
+    "role": "performer"
+   }
+  ],
+  "act": "miane",
+  "closing": false,
+  "stageLineage": "edc-lv:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:stereo-bloom:2300:westend",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Stereo Bloom",
+  "start": "23:00",
+  "end": "00:00",
+  "printed": "Westend",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "westend",
+    "role": "performer"
+   }
+  ],
+  "act": "westend",
+  "closing": false,
+  "stageLineage": "edc-lv:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:stereo-bloom:0000:dombresky",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Stereo Bloom",
+  "start": "00:00",
+  "end": "01:00",
+  "printed": "Dombresky",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dombresky",
+    "role": "performer"
+   }
+  ],
+  "act": "dombresky",
+  "closing": false,
+  "stageLineage": "edc-lv:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:stereo-bloom:0100:sonny-fodera",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Stereo Bloom",
+  "start": "01:00",
+  "end": "02:00",
+  "printed": "Sonny Fodera",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sonny-fodera",
+    "role": "performer"
+   }
+  ],
+  "act": "sonny-fodera",
+  "closing": false,
+  "stageLineage": "edc-lv:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:stereo-bloom:0200:mau-p",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Stereo Bloom",
+  "start": "02:00",
+  "end": "03:00",
+  "printed": "Mau P",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mau-p",
+    "role": "performer"
+   }
+  ],
+  "act": "mau-p",
+  "closing": false,
+  "stageLineage": "edc-lv:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:stereo-bloom:0300:tom-and-collins",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Stereo Bloom",
+  "start": "03:00",
+  "end": "04:15",
+  "printed": "Tom & Collins",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tom-and-collins",
+    "role": "performer"
+   }
+  ],
+  "act": "tom-and-collins",
+  "closing": false,
+  "stageLineage": "edc-lv:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:stereo-bloom:0415:bexxie",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Stereo Bloom",
+  "start": "04:15",
+  "end": "05:30",
+  "printed": "Bexxie",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bexxie",
+    "role": "performer"
+   }
+  ],
+  "act": "bexxie",
+  "closing": true,
+  "stageLineage": "edc-lv:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:bionic-jungle:1900:john-bryars",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Bionic Jungle",
+  "start": "19:00",
+  "end": "20:30",
+  "printed": "John Bryars",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "john-bryars",
+    "role": "performer"
+   }
+  ],
+  "act": "john-bryars",
+  "closing": false,
+  "stageLineage": "edc-lv:bionic-jungle",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:bionic-jungle:2030:ak-sports",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Bionic Jungle",
+  "start": "20:30",
+  "end": "21:30",
+  "printed": "AK Sports",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ak-sports",
+    "role": "performer"
+   }
+  ],
+  "act": "ak-sports",
+  "closing": false,
+  "stageLineage": "edc-lv:bionic-jungle",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:bionic-jungle:2130:salute",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Bionic Jungle",
+  "start": "21:30",
+  "end": "22:30",
+  "printed": "salute",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "salute",
+    "role": "performer"
+   }
+  ],
+  "act": "salute",
+  "closing": false,
+  "stageLineage": "edc-lv:bionic-jungle",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:bionic-jungle:2230:jamesjamesjames",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Bionic Jungle",
+  "start": "22:30",
+  "end": "00:00",
+  "printed": "jamesjamesjames",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jamesjamesjames",
+    "role": "performer"
+   }
+  ],
+  "act": "jamesjamesjames",
+  "closing": false,
+  "stageLineage": "edc-lv:bionic-jungle",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:bionic-jungle:0000:ben-ufo",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Bionic Jungle",
+  "start": "00:00",
+  "end": "01:30",
+  "printed": "Ben UFO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ben-ufo",
+    "role": "performer"
+   }
+  ],
+  "act": "ben-ufo",
+  "closing": false,
+  "stageLineage": "edc-lv:bionic-jungle",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:bionic-jungle:0130:danny-daze",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Bionic Jungle",
+  "start": "01:30",
+  "end": "03:00",
+  "printed": "Danny Daze",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "danny-daze",
+    "role": "performer"
+   }
+  ],
+  "act": "danny-daze",
+  "closing": false,
+  "stageLineage": "edc-lv:bionic-jungle",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:bionic-jungle:0300:sherelle",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Bionic Jungle",
+  "start": "03:00",
+  "end": "04:30",
+  "printed": "SHERELLE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sherelle",
+    "role": "performer"
+   }
+  ],
+  "act": "sherelle",
+  "closing": false,
+  "stageLineage": "edc-lv:bionic-jungle",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:bionic-jungle:0430:kettama",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Bionic Jungle",
+  "start": "04:30",
+  "end": "05:30",
+  "printed": "KETTAMA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kettama",
+    "role": "performer"
+   }
+  ],
+  "act": "kettama",
+  "closing": true,
+  "stageLineage": "edc-lv:bionic-jungle",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:parliament-2-0-30th-anniversary-art-car:1900:primal-luxe",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Parliament 2.0 30th Anniversary Art Car",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Primal Luxe",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "primal-luxe",
+    "role": "performer"
+   }
+  ],
+  "act": "primal-luxe",
+  "closing": false,
+  "stageLineage": "edc-lv:parliament-2-0-30th-anniversary-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:parliament-2-0-30th-anniversary-art-car:2100:30-year-dance-party",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Parliament 2.0 30th Anniversary Art Car",
+  "start": "21:00",
+  "end": "21:30",
+  "printed": "30 Year Dance Party",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "30-year-dance-party",
+    "role": "performer"
+   }
+  ],
+  "act": "30-year-dance-party",
+  "closing": false,
+  "stageLineage": "edc-lv:parliament-2-0-30th-anniversary-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:parliament-2-0-30th-anniversary-art-car:2130:simply-jeff",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Parliament 2.0 30th Anniversary Art Car",
+  "start": "21:30",
+  "end": "22:45",
+  "printed": "Simply Jeff",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "simply-jeff",
+    "role": "performer"
+   }
+  ],
+  "act": "simply-jeff",
+  "closing": false,
+  "stageLineage": "edc-lv:parliament-2-0-30th-anniversary-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:parliament-2-0-30th-anniversary-art-car:2245:machete",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Parliament 2.0 30th Anniversary Art Car",
+  "start": "22:45",
+  "end": "00:00",
+  "printed": "Machete",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "machete",
+    "role": "performer"
+   }
+  ],
+  "act": "machete",
+  "closing": false,
+  "stageLineage": "edc-lv:parliament-2-0-30th-anniversary-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:parliament-2-0-30th-anniversary-art-car:0000:bunny-rabbit-in-the-moon",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Parliament 2.0 30th Anniversary Art Car",
+  "start": "00:00",
+  "end": "01:30",
+  "printed": "Bunny (Rabbit in the Moon)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bunny-rabbit-in-the-moon",
+    "role": "act"
+   }
+  ],
+  "act": "bunny-rabbit-in-the-moon",
+  "closing": false,
+  "stageLineage": "edc-lv:parliament-2-0-30th-anniversary-art-car",
+  "mainStage": null,
+  "review": "parenthetical is not a known set tag"
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:parliament-2-0-30th-anniversary-art-car:0130:12th-planet-dnb",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Parliament 2.0 30th Anniversary Art Car",
+  "start": "01:30",
+  "end": "03:00",
+  "printed": "12th Planet (DNB)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "12th-planet-dnb",
+    "role": "act"
+   }
+  ],
+  "act": "12th-planet-dnb",
+  "closing": false,
+  "stageLineage": "edc-lv:parliament-2-0-30th-anniversary-art-car",
+  "mainStage": null,
+  "review": "parenthetical is not a known set tag"
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:parliament-2-0-30th-anniversary-art-car:0300:dj-trance",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Parliament 2.0 30th Anniversary Art Car",
+  "start": "03:00",
+  "end": "04:15",
+  "printed": "DJ Trance",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-trance",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-trance",
+  "closing": false,
+  "stageLineage": "edc-lv:parliament-2-0-30th-anniversary-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:parliament-2-0-30th-anniversary-art-car:0415:r-a-w",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Parliament 2.0 30th Anniversary Art Car",
+  "start": "04:15",
+  "end": "05:30",
+  "printed": "R.A.W.",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "r-a-w",
+    "role": "performer"
+   }
+  ],
+  "act": "r-a-w",
+  "closing": true,
+  "stageLineage": "edc-lv:parliament-2-0-30th-anniversary-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:titanic-s-end-art-car:1900:glittrcat",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Titanic's End Art Car",
+  "start": "19:00",
+  "end": "20:15",
+  "printed": "GlittrCat",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "glittrcat",
+    "role": "performer"
+   }
+  ],
+  "act": "glittrcat",
+  "closing": false,
+  "stageLineage": "edc-lv:titanic-s-end-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:titanic-s-end-art-car:2015:vulllgur",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Titanic's End Art Car",
+  "start": "20:15",
+  "end": "21:30",
+  "printed": "VUlllGUR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vulllgur",
+    "role": "performer"
+   }
+  ],
+  "act": "vulllgur",
+  "closing": false,
+  "stageLineage": "edc-lv:titanic-s-end-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:titanic-s-end-art-car:2130:hamdi",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Titanic's End Art Car",
+  "start": "21:30",
+  "end": "22:45",
+  "printed": "Hamdi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hamdi",
+    "role": "performer"
+   }
+  ],
+  "act": "hamdi",
+  "closing": false,
+  "stageLineage": "edc-lv:titanic-s-end-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:titanic-s-end-art-car:2245:rohaan",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Titanic's End Art Car",
+  "start": "22:45",
+  "end": "00:00",
+  "printed": "Rohaan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rohaan",
+    "role": "performer"
+   }
+  ],
+  "act": "rohaan",
+  "closing": false,
+  "stageLineage": "edc-lv:titanic-s-end-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:titanic-s-end-art-car:0000:og-nixin",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Titanic's End Art Car",
+  "start": "00:00",
+  "end": "01:30",
+  "printed": "OG Nixin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "og-nixin",
+    "role": "performer"
+   }
+  ],
+  "act": "og-nixin",
+  "closing": false,
+  "stageLineage": "edc-lv:titanic-s-end-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:titanic-s-end-art-car:0130:oddkidout",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Titanic's End Art Car",
+  "start": "01:30",
+  "end": "03:00",
+  "printed": "OddKidOut",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "oddkidout",
+    "role": "performer"
+   }
+  ],
+  "act": "oddkidout",
+  "closing": false,
+  "stageLineage": "edc-lv:titanic-s-end-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:titanic-s-end-art-car:0300:osyris",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Titanic's End Art Car",
+  "start": "03:00",
+  "end": "04:15",
+  "printed": "Osyris",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "osyris",
+    "role": "performer"
+   }
+  ],
+  "act": "osyris",
+  "closing": false,
+  "stageLineage": "edc-lv:titanic-s-end-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:titanic-s-end-art-car:0415:corey-divine",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Titanic's End Art Car",
+  "start": "04:15",
+  "end": "05:30",
+  "printed": "Corey Divine",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "corey-divine",
+    "role": "performer"
+   }
+  ],
+  "act": "corey-divine",
+  "closing": true,
+  "stageLineage": "edc-lv:titanic-s-end-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:boombox-art-car:1900:fredy-lane",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Boombox Art Car",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Fredy Lane",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fredy-lane",
+    "role": "performer"
+   }
+  ],
+  "act": "fredy-lane",
+  "closing": false,
+  "stageLineage": "edc-lv:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:boombox-art-car:2000:sean-lafayette",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Boombox Art Car",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Sean Lafayette",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sean-lafayette",
+    "role": "performer"
+   }
+  ],
+  "act": "sean-lafayette",
+  "closing": false,
+  "stageLineage": "edc-lv:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:boombox-art-car:2100:bingewatch",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Boombox Art Car",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "Bingewatch",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bingewatch",
+    "role": "performer"
+   }
+  ],
+  "act": "bingewatch",
+  "closing": false,
+  "stageLineage": "edc-lv:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:boombox-art-car:2200:matt-steffanina",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Boombox Art Car",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "Matt Steffanina",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "matt-steffanina",
+    "role": "performer"
+   }
+  ],
+  "act": "matt-steffanina",
+  "closing": false,
+  "stageLineage": "edc-lv:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:boombox-art-car:2300:masteria",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Boombox Art Car",
+  "start": "23:00",
+  "end": "00:00",
+  "printed": "Masteria",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "masteria",
+    "role": "performer"
+   }
+  ],
+  "act": "masteria",
+  "closing": false,
+  "stageLineage": "edc-lv:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:boombox-art-car:0000:qlank",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Boombox Art Car",
+  "start": "00:00",
+  "end": "01:00",
+  "printed": "Qlank",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "qlank",
+    "role": "performer"
+   }
+  ],
+  "act": "qlank",
+  "closing": false,
+  "stageLineage": "edc-lv:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:boombox-art-car:0100:bexxie",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Boombox Art Car",
+  "start": "01:00",
+  "end": "02:00",
+  "printed": "Bexxie",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bexxie",
+    "role": "performer"
+   }
+  ],
+  "act": "bexxie",
+  "closing": false,
+  "stageLineage": "edc-lv:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:boombox-art-car:0200:fetish",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Boombox Art Car",
+  "start": "02:00",
+  "end": "03:00",
+  "printed": "Fetish",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fetish",
+    "role": "performer"
+   }
+  ],
+  "act": "fetish",
+  "closing": false,
+  "stageLineage": "edc-lv:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:boombox-art-car:0300:carola",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Boombox Art Car",
+  "start": "03:00",
+  "end": "04:15",
+  "printed": "Carola",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carola",
+    "role": "performer"
+   }
+  ],
+  "act": "carola",
+  "closing": false,
+  "stageLineage": "edc-lv:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:boombox-art-car:0415:max-low",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Boombox Art Car",
+  "start": "04:15",
+  "end": "05:30",
+  "printed": "Max Low",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "max-low",
+    "role": "performer"
+   }
+  ],
+  "act": "max-low",
+  "closing": true,
+  "stageLineage": "edc-lv:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:allegiant-rave-hangar:1900:mvse",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Allegiant Rave Hangar",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "MVSE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mvse",
+    "role": "performer"
+   }
+  ],
+  "act": "mvse",
+  "closing": false,
+  "stageLineage": "edc-lv:allegiant-rave-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:allegiant-rave-hangar:2000:if-found-b2b-highlnd",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Allegiant Rave Hangar",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "If Found B2B Highlnd",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "if-found",
+    "role": "b2b"
+   },
+   {
+    "key": "highlnd",
+    "role": "b2b"
+   }
+  ],
+  "act": "if-found-b2b-highlnd",
+  "closing": false,
+  "stageLineage": "edc-lv:allegiant-rave-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:allegiant-rave-hangar:2100:tsu-nami-presents-club-tsu",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Allegiant Rave Hangar",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "Tsu Nami presents: Club Tsu",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "club-tsu",
+    "role": "project"
+   }
+  ],
+  "act": "tsu-nami-presents-club-tsu",
+  "closing": false,
+  "stageLineage": "edc-lv:allegiant-rave-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:allegiant-rave-hangar:2200:pauline-herr",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Allegiant Rave Hangar",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "Pauline Herr",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pauline-herr",
+    "role": "performer"
+   }
+  ],
+  "act": "pauline-herr",
+  "closing": false,
+  "stageLineage": "edc-lv:allegiant-rave-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:allegiant-rave-hangar:2300:yetep-throwback-set",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Allegiant Rave Hangar",
+  "start": "23:00",
+  "end": "00:00",
+  "printed": "yetep (Throwback Set)",
+  "setTag": "Throwback Set",
+  "performers": [
+   {
+    "key": "yetep",
+    "role": "performer"
+   }
+  ],
+  "act": "yetep",
+  "closing": false,
+  "stageLineage": "edc-lv:allegiant-rave-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:allegiant-rave-hangar:0000:armnhmr-progressive-house-trance-set",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Allegiant Rave Hangar",
+  "start": "00:00",
+  "end": "01:15",
+  "printed": "ARMNHMR (Progressive House / Trance Set)",
+  "setTag": "Progressive House / Trance Set",
+  "performers": [
+   {
+    "key": "armnhmr",
+    "role": "performer"
+   }
+  ],
+  "act": "armnhmr",
+  "closing": false,
+  "stageLineage": "edc-lv:allegiant-rave-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:allegiant-rave-hangar:0115:nurko",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Allegiant Rave Hangar",
+  "start": "01:15",
+  "end": "02:30",
+  "printed": "Nurko",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nurko",
+    "role": "performer"
+   }
+  ],
+  "act": "nurko",
+  "closing": false,
+  "stageLineage": "edc-lv:allegiant-rave-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:allegiant-rave-hangar:0230:sabai",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Allegiant Rave Hangar",
+  "start": "02:30",
+  "end": "03:30",
+  "printed": "Sabai",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sabai",
+    "role": "performer"
+   }
+  ],
+  "act": "sabai",
+  "closing": false,
+  "stageLineage": "edc-lv:allegiant-rave-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:allegiant-rave-hangar:0330:hoang",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Allegiant Rave Hangar",
+  "start": "03:30",
+  "end": "04:30",
+  "printed": "Hoang",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hoang",
+    "role": "performer"
+   }
+  ],
+  "act": "hoang",
+  "closing": false,
+  "stageLineage": "edc-lv:allegiant-rave-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d2:allegiant-rave-hangar:0430:klaxx",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-20",
+  "day": 2,
+  "stage": "Allegiant Rave Hangar",
+  "start": "04:30",
+  "end": "05:30",
+  "printed": "KLAXX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "klaxx",
+    "role": "performer"
+   }
+  ],
+  "act": "klaxx",
+  "closing": true,
+  "stageLineage": "edc-lv:allegiant-rave-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:kinetic-field:1900:marten-h-rger",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Kinetic Field",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "MARTEN HØRGER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marten-horger",
+    "role": "performer"
+   }
+  ],
+  "act": "marten-horger",
+  "closing": false,
+  "stageLineage": "edc-lv:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:kinetic-field:2000:ship-wrek",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Kinetic Field",
+  "start": "20:00",
+  "end": "21:05",
+  "printed": "SHIP WREK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ship-wrek",
+    "role": "performer"
+   }
+  ],
+  "act": "ship-wrek",
+  "closing": false,
+  "stageLineage": "edc-lv:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:kinetic-field:2105:dombresky",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Kinetic Field",
+  "start": "21:05",
+  "end": "22:10",
+  "printed": "DOMBRESKY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dombresky",
+    "role": "performer"
+   }
+  ],
+  "act": "dombresky",
+  "closing": false,
+  "stageLineage": "edc-lv:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:kinetic-field:2216:gareth-emery",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Kinetic Field",
+  "start": "22:16",
+  "end": "23:16",
+  "printed": "GARETH EMERY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gareth-emery",
+    "role": "performer"
+   }
+  ],
+  "act": "gareth-emery",
+  "closing": false,
+  "stageLineage": "edc-lv:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:kinetic-field:2319:loud-luxury",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Kinetic Field",
+  "start": "23:19",
+  "end": "00:24",
+  "printed": "LOUD LUXURY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "loud-luxury",
+    "role": "performer"
+   }
+  ],
+  "act": "loud-luxury",
+  "closing": false,
+  "stageLineage": "edc-lv:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:kinetic-field:0029:martin-garrix",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Kinetic Field",
+  "start": "00:29",
+  "end": "01:39",
+  "printed": "MARTIN GARRIX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "martin-garrix",
+    "role": "performer"
+   }
+  ],
+  "act": "martin-garrix",
+  "closing": false,
+  "stageLineage": "edc-lv:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:kinetic-field:0145:armin-van-buuren",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Kinetic Field",
+  "start": "01:45",
+  "end": "03:00",
+  "printed": "ARMIN VAN BUUREN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "armin-van-buuren",
+    "role": "performer"
+   }
+  ],
+  "act": "armin-van-buuren",
+  "closing": false,
+  "stageLineage": "edc-lv:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:kinetic-field:0303:slander",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Kinetic Field",
+  "start": "03:03",
+  "end": "04:13",
+  "printed": "SLANDER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "slander",
+    "role": "performer"
+   }
+  ],
+  "act": "slander",
+  "closing": false,
+  "stageLineage": "edc-lv:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:kinetic-field:0416:kaskade-redux",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Kinetic Field",
+  "start": "04:16",
+  "end": "05:28",
+  "printed": "KASKADE REDUX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kaskade-redux",
+    "role": "performer"
+   }
+  ],
+  "act": "kaskade-redux",
+  "closing": true,
+  "stageLineage": "edc-lv:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:cosmic-meadow:1900:tobehonest",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Cosmic Meadow",
+  "start": "19:00",
+  "end": "20:30",
+  "printed": "TOBEHONEST",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tobehonest",
+    "role": "performer"
+   }
+  ],
+  "act": "tobehonest",
+  "closing": false,
+  "stageLineage": "edc-lv:cosmic-meadow",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:cosmic-meadow:2030:capozzi",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Cosmic Meadow",
+  "start": "20:30",
+  "end": "21:30",
+  "printed": "CAPOZZI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "capozzi",
+    "role": "performer"
+   }
+  ],
+  "act": "capozzi",
+  "closing": false,
+  "stageLineage": "edc-lv:cosmic-meadow",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:cosmic-meadow:2130:j-worra",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Cosmic Meadow",
+  "start": "21:30",
+  "end": "22:45",
+  "printed": "J. WORRA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "j-worra",
+    "role": "performer"
+   }
+  ],
+  "act": "j-worra",
+  "closing": false,
+  "stageLineage": "edc-lv:cosmic-meadow",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:cosmic-meadow:2245:chris-lorenzo",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Cosmic Meadow",
+  "start": "22:45",
+  "end": "00:00",
+  "printed": "CHRIS LORENZO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chris-lorenzo",
+    "role": "performer"
+   }
+  ],
+  "act": "chris-lorenzo",
+  "closing": false,
+  "stageLineage": "edc-lv:cosmic-meadow",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:cosmic-meadow:0000:tchami-b2b-ac-slater",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Cosmic Meadow",
+  "start": "00:00",
+  "end": "01:30",
+  "printed": "TCHAMI B2B AC SLATER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tchami",
+    "role": "b2b"
+   },
+   {
+    "key": "ac-slater",
+    "role": "b2b"
+   }
+  ],
+  "act": "tchami-b2b-ac-slater",
+  "closing": false,
+  "stageLineage": "edc-lv:cosmic-meadow",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:cosmic-meadow:0138:wax-motif",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Cosmic Meadow",
+  "start": "01:38",
+  "end": "03:00",
+  "printed": "WAX MOTIF",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wax-motif",
+    "role": "performer"
+   }
+  ],
+  "act": "wax-motif",
+  "closing": false,
+  "stageLineage": "edc-lv:cosmic-meadow",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:cosmic-meadow:0300:sonny-fodera",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Cosmic Meadow",
+  "start": "03:00",
+  "end": "04:15",
+  "printed": "SONNY FODERA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sonny-fodera",
+    "role": "performer"
+   }
+  ],
+  "act": "sonny-fodera",
+  "closing": false,
+  "stageLineage": "edc-lv:cosmic-meadow",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:cosmic-meadow:0415:boogie-t-b2b-dirt-monkey",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Cosmic Meadow",
+  "start": "04:15",
+  "end": "05:30",
+  "printed": "BOOGIE T B2B DIRT MONKEY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "boogie-t",
+    "role": "b2b"
+   },
+   {
+    "key": "dirt-monkey",
+    "role": "b2b"
+   }
+  ],
+  "act": "boogie-t-b2b-dirt-monkey",
+  "closing": true,
+  "stageLineage": "edc-lv:cosmic-meadow",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:circuit-grounds:1900:tsu-nami",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Circuit Grounds",
+  "start": "19:00",
+  "end": "20:30",
+  "printed": "TSU NAMI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tsu-nami",
+    "role": "performer"
+   }
+  ],
+  "act": "tsu-nami",
+  "closing": false,
+  "stageLineage": "edc-lv:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:circuit-grounds:2030:blanke",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Circuit Grounds",
+  "start": "20:30",
+  "end": "21:45",
+  "printed": "BLANKE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "blanke",
+    "role": "performer"
+   }
+  ],
+  "act": "blanke",
+  "closing": false,
+  "stageLineage": "edc-lv:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:circuit-grounds:2145:peekaboo",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Circuit Grounds",
+  "start": "21:45",
+  "end": "23:00",
+  "printed": "PEEKABOO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "peekaboo",
+    "role": "performer"
+   }
+  ],
+  "act": "peekaboo",
+  "closing": false,
+  "stageLineage": "edc-lv:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:circuit-grounds:2300:deorro",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Circuit Grounds",
+  "start": "23:00",
+  "end": "00:15",
+  "printed": "DEORRO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "deorro",
+    "role": "performer"
+   }
+  ],
+  "act": "deorro",
+  "closing": false,
+  "stageLineage": "edc-lv:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:circuit-grounds:0015:marshmello-b2b-svdden-death",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Circuit Grounds",
+  "start": "00:15",
+  "end": "01:30",
+  "printed": "MARSHMELLO B2B SVDDEN DEATH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marshmello",
+    "role": "b2b"
+   },
+   {
+    "key": "svdden-death",
+    "role": "b2b"
+   }
+  ],
+  "act": "marshmello-b2b-svdden-death",
+  "closing": false,
+  "stageLineage": "edc-lv:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:circuit-grounds:0130:excision",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Circuit Grounds",
+  "start": "01:30",
+  "end": "02:45",
+  "printed": "EXCISION",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "excision",
+    "role": "performer"
+   }
+  ],
+  "act": "excision",
+  "closing": false,
+  "stageLineage": "edc-lv:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:circuit-grounds:0245:yellow-claw",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Circuit Grounds",
+  "start": "02:45",
+  "end": "04:00",
+  "printed": "YELLOW CLAW",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yellow-claw",
+    "role": "performer"
+   }
+  ],
+  "act": "yellow-claw",
+  "closing": false,
+  "stageLineage": "edc-lv:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:circuit-grounds:0400:saymyname",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Circuit Grounds",
+  "start": "04:00",
+  "end": "05:30",
+  "printed": "SAYMYNAME",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "saymyname",
+    "role": "performer"
+   }
+  ],
+  "act": "saymyname",
+  "closing": true,
+  "stageLineage": "edc-lv:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:neon-garden:1900:frame-declan-james-and-decoder",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Neon Garden",
+  "start": "19:00",
+  "end": "20:30",
+  "printed": "FRAME (DECLAN JAMES & DECODER)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "frame-declan-james-and-decoder",
+    "role": "act"
+   }
+  ],
+  "act": "frame-declan-james-and-decoder",
+  "closing": false,
+  "stageLineage": "edc-lv:neon-garden",
+  "mainStage": null,
+  "review": "parenthetical names people"
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:neon-garden:2030:ellen-allien",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Neon Garden",
+  "start": "20:30",
+  "end": "22:00",
+  "printed": "ELLEN ALLIEN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ellen-allien",
+    "role": "performer"
+   }
+  ],
+  "act": "ellen-allien",
+  "closing": false,
+  "stageLineage": "edc-lv:neon-garden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:neon-garden:2200:will-clarke",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Neon Garden",
+  "start": "22:00",
+  "end": "23:30",
+  "printed": "WILL CLARKE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "will-clarke",
+    "role": "performer"
+   }
+  ],
+  "act": "will-clarke",
+  "closing": false,
+  "stageLineage": "edc-lv:neon-garden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:neon-garden:2330:jeff-mills",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Neon Garden",
+  "start": "23:30",
+  "end": "01:00",
+  "printed": "JEFF MILLS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jeff-mills",
+    "role": "performer"
+   }
+  ],
+  "act": "jeff-mills",
+  "closing": false,
+  "stageLineage": "edc-lv:neon-garden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:neon-garden:0100:i-hate-models",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Neon Garden",
+  "start": "01:00",
+  "end": "02:30",
+  "printed": "I HATE MODELS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "i-hate-models",
+    "role": "performer"
+   }
+  ],
+  "act": "i-hate-models",
+  "closing": false,
+  "stageLineage": "edc-lv:neon-garden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:neon-garden:0230:reinier-zonneveld-live",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Neon Garden",
+  "start": "02:30",
+  "end": "04:00",
+  "printed": "REINIER ZONNEVELD LIVE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "reinier-zonneveld-live",
+    "role": "performer"
+   }
+  ],
+  "act": "reinier-zonneveld-live",
+  "closing": false,
+  "stageLineage": "edc-lv:neon-garden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:neon-garden:0400:999999999",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Neon Garden",
+  "start": "04:00",
+  "end": "05:30",
+  "printed": "999999999",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "999999999",
+    "role": "performer"
+   }
+  ],
+  "act": "999999999",
+  "closing": true,
+  "stageLineage": "edc-lv:neon-garden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:basspod:1900:bensley-b2b-justin-hawkes",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Basspod",
+  "start": "19:00",
+  "end": "19:40",
+  "printed": "BENSLEY B2B JUSTIN HAWKES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bensley",
+    "role": "b2b"
+   },
+   {
+    "key": "justin-hawkes",
+    "role": "b2b"
+   }
+  ],
+  "act": "bensley-b2b-justin-hawkes",
+  "closing": false,
+  "stageLineage": "edc-lv:basspod",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:basspod:1940:a-hundred-drums",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Basspod",
+  "start": "19:40",
+  "end": "20:30",
+  "printed": "A HUNDRED DRUMS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "a-hundred-drums",
+    "role": "performer"
+   }
+  ],
+  "act": "a-hundred-drums",
+  "closing": false,
+  "stageLineage": "edc-lv:basspod",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:basspod:2030:hol",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Basspod",
+  "start": "20:30",
+  "end": "21:20",
+  "printed": "HOL!",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hol",
+    "role": "performer"
+   }
+  ],
+  "act": "hol",
+  "closing": false,
+  "stageLineage": "edc-lv:basspod",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:basspod:2120:imanu",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Basspod",
+  "start": "21:20",
+  "end": "22:20",
+  "printed": "IMANU",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "imanu",
+    "role": "performer"
+   }
+  ],
+  "act": "imanu",
+  "closing": false,
+  "stageLineage": "edc-lv:basspod",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:basspod:2220:borgore-b2b-level-up",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Basspod",
+  "start": "22:20",
+  "end": "23:20",
+  "printed": "BORGORE B2B LEVEL UP",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "borgore",
+    "role": "b2b"
+   },
+   {
+    "key": "level-up",
+    "role": "b2b"
+   }
+  ],
+  "act": "borgore-b2b-level-up",
+  "closing": false,
+  "stageLineage": "edc-lv:basspod",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:basspod:2320:boogie-t",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Basspod",
+  "start": "23:20",
+  "end": "00:20",
+  "printed": "BOOGIE T",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "boogie-t",
+    "role": "performer"
+   }
+  ],
+  "act": "boogie-t",
+  "closing": false,
+  "stageLineage": "edc-lv:basspod",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:basspod:0020:griztronics",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Basspod",
+  "start": "00:20",
+  "end": "01:20",
+  "printed": "GRIZTRONICS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "griztronics",
+    "role": "performer"
+   }
+  ],
+  "act": "griztronics",
+  "closing": false,
+  "stageLineage": "edc-lv:basspod",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:basspod:0120:dimension",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Basspod",
+  "start": "01:20",
+  "end": "02:20",
+  "printed": "DIMENSION",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dimension",
+    "role": "performer"
+   }
+  ],
+  "act": "dimension",
+  "closing": false,
+  "stageLineage": "edc-lv:basspod",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:basspod:0225:black-tiger-sex-machine",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Basspod",
+  "start": "02:25",
+  "end": "03:25",
+  "printed": "BLACK TIGER SEX MACHINE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "black-tiger-sex-machine",
+    "role": "performer"
+   }
+  ],
+  "act": "black-tiger-sex-machine",
+  "closing": false,
+  "stageLineage": "edc-lv:basspod",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:basspod:0330:midnight-tyrannosaurus",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Basspod",
+  "start": "03:30",
+  "end": "04:30",
+  "printed": "MIDNIGHT TYRANNOSAURUS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "midnight-tyrannosaurus",
+    "role": "performer"
+   }
+  ],
+  "act": "midnight-tyrannosaurus",
+  "closing": false,
+  "stageLineage": "edc-lv:basspod",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:basspod:0430:gentlemens-club",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Basspod",
+  "start": "04:30",
+  "end": "05:30",
+  "printed": "GENTLEMENS CLUB",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gentlemens-club",
+    "role": "performer"
+   }
+  ],
+  "act": "gentlemens-club",
+  "closing": true,
+  "stageLineage": "edc-lv:basspod",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:wasteland:1900:mrotek",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Wasteland",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "MROTEK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mrotek",
+    "role": "performer"
+   }
+  ],
+  "act": "mrotek",
+  "closing": false,
+  "stageLineage": "edc-lv:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:wasteland:2000:soren",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Wasteland",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "SOREN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "soren",
+    "role": "performer"
+   }
+  ],
+  "act": "soren",
+  "closing": false,
+  "stageLineage": "edc-lv:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:wasteland:2100:rob-gee-30-years",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Wasteland",
+  "start": "21:00",
+  "end": "21:30",
+  "printed": "ROB GEE 30 YEARS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rob-gee-30-years",
+    "role": "performer"
+   }
+  ],
+  "act": "rob-gee-30-years",
+  "closing": false,
+  "stageLineage": "edc-lv:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:wasteland:2130:d-sturb",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Wasteland",
+  "start": "21:30",
+  "end": "22:30",
+  "printed": "D-STURB",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "d-sturb",
+    "role": "performer"
+   }
+  ],
+  "act": "d-sturb",
+  "closing": false,
+  "stageLineage": "edc-lv:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:wasteland:2230:adrenalize",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Wasteland",
+  "start": "22:30",
+  "end": "23:30",
+  "printed": "ADRENALIZE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "adrenalize",
+    "role": "performer"
+   }
+  ],
+  "act": "adrenalize",
+  "closing": false,
+  "stageLineage": "edc-lv:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:wasteland:2330:code-black",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Wasteland",
+  "start": "23:30",
+  "end": "00:30",
+  "printed": "CODE BLACK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "code-black",
+    "role": "performer"
+   }
+  ],
+  "act": "code-black",
+  "closing": false,
+  "stageLineage": "edc-lv:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:wasteland:0030:brennan-heart",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Wasteland",
+  "start": "00:30",
+  "end": "01:30",
+  "printed": "BRENNAN HEART",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "brennan-heart",
+    "role": "performer"
+   }
+  ],
+  "act": "brennan-heart",
+  "closing": false,
+  "stageLineage": "edc-lv:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:wasteland:0130:ben-nicky-presents-xtreme-b2b-sub-zero-project",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Wasteland",
+  "start": "01:30",
+  "end": "02:30",
+  "printed": "BEN NICKY PRESENTS XTREME B2B SUB ZERO PROJECT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ben-nicky-presents-xtreme",
+    "role": "b2b"
+   },
+   {
+    "key": "sub-zero-project",
+    "role": "b2b"
+   }
+  ],
+  "act": "ben-nicky-presents-xtreme-b2b-sub-zero-project",
+  "closing": false,
+  "stageLineage": "edc-lv:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:wasteland:0230:gammer-b2b-tweekacore",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Wasteland",
+  "start": "02:30",
+  "end": "03:30",
+  "printed": "GAMMER B2B TWEEKACORE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gammer",
+    "role": "b2b"
+   },
+   {
+    "key": "tweekacore",
+    "role": "b2b"
+   }
+  ],
+  "act": "gammer-b2b-tweekacore",
+  "closing": false,
+  "stageLineage": "edc-lv:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:wasteland:0330:deadly-guns",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Wasteland",
+  "start": "03:30",
+  "end": "04:30",
+  "printed": "DEADLY GUNS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "deadly-guns",
+    "role": "performer"
+   }
+  ],
+  "act": "deadly-guns",
+  "closing": false,
+  "stageLineage": "edc-lv:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:wasteland:0430:levenkhan",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Wasteland",
+  "start": "04:30",
+  "end": "05:30",
+  "printed": "LEVENKHAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "levenkhan",
+    "role": "performer"
+   }
+  ],
+  "act": "levenkhan",
+  "closing": true,
+  "stageLineage": "edc-lv:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:quantum-valley:1900:anden",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Quantum Valley",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "ANDEN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "anden",
+    "role": "performer"
+   }
+  ],
+  "act": "anden",
+  "closing": false,
+  "stageLineage": "edc-lv:quantum-valley",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:quantum-valley:2000:8kays",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Quantum Valley",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "8KAYS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "8kays",
+    "role": "performer"
+   }
+  ],
+  "act": "8kays",
+  "closing": false,
+  "stageLineage": "edc-lv:quantum-valley",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:quantum-valley:2100:enamour",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Quantum Valley",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "ENAMOUR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "enamour",
+    "role": "performer"
+   }
+  ],
+  "act": "enamour",
+  "closing": false,
+  "stageLineage": "edc-lv:quantum-valley",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:quantum-valley:2200:le-youth",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Quantum Valley",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "LE YOUTH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "le-youth",
+    "role": "performer"
+   }
+  ],
+  "act": "le-youth",
+  "closing": false,
+  "stageLineage": "edc-lv:quantum-valley",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:quantum-valley:2300:lane-8",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Quantum Valley",
+  "start": "23:00",
+  "end": "00:00",
+  "printed": "LANE 8",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lane-8",
+    "role": "performer"
+   }
+  ],
+  "act": "lane-8",
+  "closing": false,
+  "stageLineage": "edc-lv:quantum-valley",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:quantum-valley:0000:yotto",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Quantum Valley",
+  "start": "00:00",
+  "end": "01:00",
+  "printed": "YOTTO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yotto",
+    "role": "performer"
+   }
+  ],
+  "act": "yotto",
+  "closing": false,
+  "stageLineage": "edc-lv:quantum-valley",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:quantum-valley:0100:sultan-shepard",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Quantum Valley",
+  "start": "01:00",
+  "end": "02:15",
+  "printed": "SULTAN + SHEPARD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sultan-shepard",
+    "role": "act"
+   }
+  ],
+  "act": "sultan-shepard",
+  "closing": false,
+  "stageLineage": "edc-lv:quantum-valley",
+  "mainStage": null,
+  "review": "\"+\" billing"
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:quantum-valley:0215:franky-wah",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Quantum Valley",
+  "start": "02:15",
+  "end": "03:30",
+  "printed": "FRANKY WAH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "franky-wah",
+    "role": "performer"
+   }
+  ],
+  "act": "franky-wah",
+  "closing": false,
+  "stageLineage": "edc-lv:quantum-valley",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:quantum-valley:0330:township-rebellion",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Quantum Valley",
+  "start": "03:30",
+  "end": "04:30",
+  "printed": "TOWNSHIP REBELLION",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "township-rebellion",
+    "role": "performer"
+   }
+  ],
+  "act": "township-rebellion",
+  "closing": false,
+  "stageLineage": "edc-lv:quantum-valley",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:quantum-valley:0430:space-motion",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Quantum Valley",
+  "start": "04:30",
+  "end": "05:30",
+  "printed": "SPACE MOTION",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "space-motion",
+    "role": "performer"
+   }
+  ],
+  "act": "space-motion",
+  "closing": true,
+  "stageLineage": "edc-lv:quantum-valley",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:stereo-bloom:2015:goodboys",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Stereo Bloom",
+  "start": "20:15",
+  "end": "21:15",
+  "printed": "GOODBOYS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "goodboys",
+    "role": "performer"
+   }
+  ],
+  "act": "goodboys",
+  "closing": false,
+  "stageLineage": "edc-lv:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:stereo-bloom:2115:hannah-wants",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Stereo Bloom",
+  "start": "21:15",
+  "end": "22:15",
+  "printed": "HANNAH WANTS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hannah-wants",
+    "role": "performer"
+   }
+  ],
+  "act": "hannah-wants",
+  "closing": false,
+  "stageLineage": "edc-lv:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:stereo-bloom:2215:deeper-purpose",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Stereo Bloom",
+  "start": "22:15",
+  "end": "23:15",
+  "printed": "DEEPER PURPOSE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "deeper-purpose",
+    "role": "performer"
+   }
+  ],
+  "act": "deeper-purpose",
+  "closing": false,
+  "stageLineage": "edc-lv:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:stereo-bloom:2315:acraze-b2b-noizu",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Stereo Bloom",
+  "start": "23:15",
+  "end": "00:30",
+  "printed": "ACRAZE B2B NOIZU",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "acraze",
+    "role": "b2b"
+   },
+   {
+    "key": "noizu",
+    "role": "b2b"
+   }
+  ],
+  "act": "acraze-b2b-noizu",
+  "closing": false,
+  "stageLineage": "edc-lv:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:stereo-bloom:0030:james-hype",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Stereo Bloom",
+  "start": "00:30",
+  "end": "01:30",
+  "printed": "JAMES HYPE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "james-hype",
+    "role": "performer"
+   }
+  ],
+  "act": "james-hype",
+  "closing": false,
+  "stageLineage": "edc-lv:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:stereo-bloom:0130:cid",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Stereo Bloom",
+  "start": "01:30",
+  "end": "02:30",
+  "printed": "CID",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cid",
+    "role": "performer"
+   }
+  ],
+  "act": "cid",
+  "closing": false,
+  "stageLineage": "edc-lv:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:stereo-bloom:0230:joshwa",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Stereo Bloom",
+  "start": "02:30",
+  "end": "03:30",
+  "printed": "JOSHWA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "joshwa",
+    "role": "performer"
+   }
+  ],
+  "act": "joshwa",
+  "closing": false,
+  "stageLineage": "edc-lv:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:stereo-bloom:0330:jaded",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Stereo Bloom",
+  "start": "03:30",
+  "end": "04:30",
+  "printed": "JADED",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jaded",
+    "role": "performer"
+   }
+  ],
+  "act": "jaded",
+  "closing": false,
+  "stageLineage": "edc-lv:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:stereo-bloom:0430:abana",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Stereo Bloom",
+  "start": "04:30",
+  "end": "05:30",
+  "printed": "ABANA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "abana",
+    "role": "performer"
+   }
+  ],
+  "act": "abana",
+  "closing": true,
+  "stageLineage": "edc-lv:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:bionic-jungle:1900:baggi",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Bionic Jungle",
+  "start": "19:00",
+  "end": "20:30",
+  "printed": "BAGGI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "baggi",
+    "role": "performer"
+   }
+  ],
+  "act": "baggi",
+  "closing": false,
+  "stageLineage": "edc-lv:bionic-jungle",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:bionic-jungle:2030:things-you-say",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Bionic Jungle",
+  "start": "20:30",
+  "end": "22:00",
+  "printed": "THINGS YOU SAY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "things-you-say",
+    "role": "performer"
+   }
+  ],
+  "act": "things-you-say",
+  "closing": false,
+  "stageLineage": "edc-lv:bionic-jungle",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:bionic-jungle:2200:fred-everything",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Bionic Jungle",
+  "start": "22:00",
+  "end": "00:00",
+  "printed": "FRED EVERYTHING",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fred-everything",
+    "role": "performer"
+   }
+  ],
+  "act": "fred-everything",
+  "closing": false,
+  "stageLineage": "edc-lv:bionic-jungle",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:bionic-jungle:0000:dennis-ferrer",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Bionic Jungle",
+  "start": "00:00",
+  "end": "02:00",
+  "printed": "DENNIS FERRER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dennis-ferrer",
+    "role": "performer"
+   }
+  ],
+  "act": "dennis-ferrer",
+  "closing": false,
+  "stageLineage": "edc-lv:bionic-jungle",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:bionic-jungle:0200:dj-minx",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Bionic Jungle",
+  "start": "02:00",
+  "end": "04:00",
+  "printed": "DJ MINX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-minx",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-minx",
+  "closing": false,
+  "stageLineage": "edc-lv:bionic-jungle",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:bionic-jungle:0400:todd-terry",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Bionic Jungle",
+  "start": "04:00",
+  "end": "05:30",
+  "printed": "TODD TERRY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "todd-terry",
+    "role": "performer"
+   }
+  ],
+  "act": "todd-terry",
+  "closing": true,
+  "stageLineage": "edc-lv:bionic-jungle",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:boombox-art-car:1900:nightstalker",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Boombox Art Car",
+  "start": "19:00",
+  "end": "20:15",
+  "printed": "NIGHTSTALKER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nightstalker",
+    "role": "performer"
+   }
+  ],
+  "act": "nightstalker",
+  "closing": false,
+  "stageLineage": "edc-lv:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:boombox-art-car:2015:trouble",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Boombox Art Car",
+  "start": "20:15",
+  "end": "21:30",
+  "printed": "TROUBLE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "trouble",
+    "role": "performer"
+   }
+  ],
+  "act": "trouble",
+  "closing": false,
+  "stageLineage": "edc-lv:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:boombox-art-car:2130:no-etiquette",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Boombox Art Car",
+  "start": "21:30",
+  "end": "22:45",
+  "printed": "NO ETIQUETTE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "no-etiquette",
+    "role": "performer"
+   }
+  ],
+  "act": "no-etiquette",
+  "closing": false,
+  "stageLineage": "edc-lv:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:boombox-art-car:2245:skellytn-b2b-dr-apollo",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Boombox Art Car",
+  "start": "22:45",
+  "end": "00:00",
+  "printed": "SKELLYTN B2B DR. APOLLO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "skellytn",
+    "role": "b2b"
+   },
+   {
+    "key": "dr-apollo",
+    "role": "b2b"
+   }
+  ],
+  "act": "skellytn-b2b-dr-apollo",
+  "closing": false,
+  "stageLineage": "edc-lv:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:boombox-art-car:0000:grafix",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Boombox Art Car",
+  "start": "00:00",
+  "end": "01:30",
+  "printed": "GRAFIX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "grafix",
+    "role": "performer"
+   }
+  ],
+  "act": "grafix",
+  "closing": false,
+  "stageLineage": "edc-lv:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:boombox-art-car:0130:luude",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Boombox Art Car",
+  "start": "01:30",
+  "end": "02:30",
+  "printed": "LUUDE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "luude",
+    "role": "performer"
+   }
+  ],
+  "act": "luude",
+  "closing": false,
+  "stageLineage": "edc-lv:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:boombox-art-car:0230:12th-planet-b2b-airglo",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Boombox Art Car",
+  "start": "02:30",
+  "end": "04:00",
+  "printed": "12TH PLANET B2B AIRGLO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "12th-planet",
+    "role": "b2b"
+   },
+   {
+    "key": "airglo",
+    "role": "b2b"
+   }
+  ],
+  "act": "12th-planet-b2b-airglo",
+  "closing": false,
+  "stageLineage": "edc-lv:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:boombox-art-car:0400:kj-sawka-of-pendulum-dnb-set",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Boombox Art Car",
+  "start": "04:00",
+  "end": "05:30",
+  "printed": "KJ SAWKA OF PENDULUM (DNB SET)",
+  "setTag": "DNB SET",
+  "performers": [
+   {
+    "key": "kj-sawka-of-pendulum",
+    "role": "performer"
+   }
+  ],
+  "act": "kj-sawka-of-pendulum",
+  "closing": true,
+  "stageLineage": "edc-lv:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:allegiant-rave-hangar:1900:yokai",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Allegiant Rave Hangar",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "YOKAI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yokai",
+    "role": "performer"
+   }
+  ],
+  "act": "yokai",
+  "closing": false,
+  "stageLineage": "edc-lv:allegiant-rave-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:allegiant-rave-hangar:2000:airglo",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Allegiant Rave Hangar",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "AIRGLO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "airglo",
+    "role": "performer"
+   }
+  ],
+  "act": "airglo",
+  "closing": false,
+  "stageLineage": "edc-lv:allegiant-rave-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:allegiant-rave-hangar:2100:corrupt-uk",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Allegiant Rave Hangar",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "CORRUPT (UK)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "corrupt-uk",
+    "role": "performer"
+   }
+  ],
+  "act": "corrupt-uk",
+  "closing": false,
+  "stageLineage": "edc-lv:allegiant-rave-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:allegiant-rave-hangar:2200:capozzi",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Allegiant Rave Hangar",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "CAPOZZI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "capozzi",
+    "role": "performer"
+   }
+  ],
+  "act": "capozzi",
+  "closing": false,
+  "stageLineage": "edc-lv:allegiant-rave-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:allegiant-rave-hangar:2300:oddkidout",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Allegiant Rave Hangar",
+  "start": "23:00",
+  "end": "00:00",
+  "printed": "ODDKIDOUT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "oddkidout",
+    "role": "performer"
+   }
+  ],
+  "act": "oddkidout",
+  "closing": false,
+  "stageLineage": "edc-lv:allegiant-rave-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:allegiant-rave-hangar:0000:softest-hard",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Allegiant Rave Hangar",
+  "start": "00:00",
+  "end": "01:00",
+  "printed": "SOFTEST HARD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "softest-hard",
+    "role": "performer"
+   }
+  ],
+  "act": "softest-hard",
+  "closing": false,
+  "stageLineage": "edc-lv:allegiant-rave-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:allegiant-rave-hangar:0100:rohaan",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "Allegiant Rave Hangar",
+  "start": "01:00",
+  "end": "02:00",
+  "printed": "ROHAAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rohaan",
+    "role": "performer"
+   }
+  ],
+  "act": "rohaan",
+  "closing": true,
+  "stageLineage": "edc-lv:allegiant-rave-hangar",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:parliamentartcar:2015:assembly",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "parliamentARTCAR",
+  "start": "20:15",
+  "end": "20:30",
+  "printed": "ASSEMBLY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "assembly",
+    "role": "performer"
+   }
+  ],
+  "act": "assembly",
+  "closing": false,
+  "stageLineage": "edc-lv:parliamentartcar",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:parliamentartcar:2030:oscure",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "parliamentARTCAR",
+  "start": "20:30",
+  "end": "21:45",
+  "printed": "OSCURE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "oscure",
+    "role": "performer"
+   }
+  ],
+  "act": "oscure",
+  "closing": false,
+  "stageLineage": "edc-lv:parliamentartcar",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:parliamentartcar:2145:lenny-v",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "parliamentARTCAR",
+  "start": "21:45",
+  "end": "23:00",
+  "printed": "LENNY V",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lenny-v",
+    "role": "performer"
+   }
+  ],
+  "act": "lenny-v",
+  "closing": false,
+  "stageLineage": "edc-lv:parliamentartcar",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:parliamentartcar:2300:thee-o",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "parliamentARTCAR",
+  "start": "23:00",
+  "end": "00:15",
+  "printed": "THEE-O",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "thee-o",
+    "role": "performer"
+   }
+  ],
+  "act": "thee-o",
+  "closing": false,
+  "stageLineage": "edc-lv:parliamentartcar",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:parliamentartcar:0015:baggi",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "parliamentARTCAR",
+  "start": "00:15",
+  "end": "01:30",
+  "printed": "BAGGI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "baggi",
+    "role": "performer"
+   }
+  ],
+  "act": "baggi",
+  "closing": false,
+  "stageLineage": "edc-lv:parliamentartcar",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:parliamentartcar:0300:fester",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "parliamentARTCAR",
+  "start": "03:00",
+  "end": "04:15",
+  "printed": "FESTER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fester",
+    "role": "performer"
+   }
+  ],
+  "act": "fester",
+  "closing": false,
+  "stageLineage": "edc-lv:parliamentartcar",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:parliamentartcar:0415:neon-black",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "parliamentARTCAR",
+  "start": "04:15",
+  "end": "05:30",
+  "printed": "NEON BLACK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "neon-black",
+    "role": "performer"
+   }
+  ],
+  "act": "neon-black",
+  "closing": true,
+  "stageLineage": "edc-lv:parliamentartcar",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:titanicsendartcar:1900:ksofresko",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "titanicsendARTCAR",
+  "start": "19:00",
+  "end": "20:15",
+  "printed": "KSOFRESKO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ksofresko",
+    "role": "performer"
+   }
+  ],
+  "act": "ksofresko",
+  "closing": false,
+  "stageLineage": "edc-lv:titanicsendartcar",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:titanicsendartcar:2015:bakr",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "titanicsendARTCAR",
+  "start": "20:15",
+  "end": "21:30",
+  "printed": "BAKR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bakr",
+    "role": "performer"
+   }
+  ],
+  "act": "bakr",
+  "closing": false,
+  "stageLineage": "edc-lv:titanicsendartcar",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:titanicsendartcar:2130:orso",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "titanicsendARTCAR",
+  "start": "21:30",
+  "end": "23:00",
+  "printed": "ORSO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "orso",
+    "role": "performer"
+   }
+  ],
+  "act": "orso",
+  "closing": false,
+  "stageLineage": "edc-lv:titanicsendartcar",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:titanicsendartcar:2300:dj-honey",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "titanicsendARTCAR",
+  "start": "23:00",
+  "end": "00:30",
+  "printed": "DJ HONEY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-honey",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-honey",
+  "closing": false,
+  "stageLineage": "edc-lv:titanicsendartcar",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:titanicsendartcar:0030:armnhmr-special-house-set",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "titanicsendARTCAR",
+  "start": "00:30",
+  "end": "02:00",
+  "printed": "ARMNHMR SPECIAL HOUSE SET",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "armnhmr-special-house-set",
+    "role": "performer"
+   }
+  ],
+  "act": "armnhmr-special-house-set",
+  "closing": false,
+  "stageLineage": "edc-lv:titanicsendartcar",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:titanicsendartcar:0200:kaleena-zanders",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "titanicsendARTCAR",
+  "start": "02:00",
+  "end": "03:30",
+  "printed": "KALEENA ZANDERS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kaleena-zanders",
+    "role": "performer"
+   }
+  ],
+  "act": "kaleena-zanders",
+  "closing": false,
+  "stageLineage": "edc-lv:titanicsendartcar",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:titanicsendartcar:0330:goodboys",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "titanicsendARTCAR",
+  "start": "03:30",
+  "end": "04:35",
+  "printed": "GOODBOYS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "goodboys",
+    "role": "performer"
+   }
+  ],
+  "act": "goodboys",
+  "closing": false,
+  "stageLineage": "edc-lv:titanicsendartcar",
+  "mainStage": null
+ },
+ {
+  "id": "edc-las-vegas-2023:d3:titanicsendartcar:0435:slander-presents-before-dawn",
+  "source": "edition",
+  "festivalId": "edc-las-vegas-2023",
+  "festivalBrand": "edc-lv",
+  "year": 2023,
+  "date": "2023-05-21",
+  "day": 3,
+  "stage": "titanicsendARTCAR",
+  "start": "04:35",
+  "end": "05:30",
+  "printed": "SLANDER PRESENTS BEFORE DAWN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "before-dawn",
+    "role": "project"
+   }
+  ],
+  "act": "slander-presents-before-dawn",
+  "closing": true,
+  "stageLineage": "edc-lv:titanicsendartcar",
+  "mainStage": null
+ },
+ {
   "id": "edc-las-vegas-2024:d1:kinetic-field:0413:steve-aoki",
   "source": "edition",
   "festivalId": "edc-las-vegas-2024",
