@@ -421,4 +421,12 @@ window.PLURSKY_FESTIVAL_ART = Object.freeze({
     license: "CC BY 2.0 (Flickr upload reviewed by FlickreviewR (reviewed-pass, 2016-09-01)). Replaces the letter-tile fallback; Commons uploader, credit and EXIF checked 2026-11-23.",
     author: "Tobias Franz", licenseId: "CC-BY-2.0", licenseUrl: "https://creativecommons.org/licenses/by/2.0/", changes: "Cropped",
   },
+  "bumbershoot-2027": {
+    tile: "festival-art/tiles/bumbershoot-2027.webp", card: "festival-art/bumbershoot-2027.webp", width: 168, height: 168,
+    kind: "photo", sourcePage: "https://commons.wikimedia.org/wiki/File:Cyclecide-carousel-Bumbershoot07.jpg",
+    assetUrl: "https://upload.wikimedia.org/wikipedia/commons/3/32/Cyclecide-carousel-Bumbershoot07.jpg",
+    credit: "Cyclecide pedal-powered carousel at Bumbershoot 2007. Photo by Dave Cohoe, Wikimedia Commons", retrieved: "2026-11-23",
+    license: "CC BY 3.0 (uploader is the photographer). Replaces the letter-tile fallback; Commons uploader, credit and EXIF checked 2026-11-23.",
+    author: "Dave Cohoe", licenseId: "CC-BY-3.0", licenseUrl: "https://creativecommons.org/licenses/by/3.0/", changes: "Cropped",
+  },
 });
