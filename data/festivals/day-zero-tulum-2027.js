@@ -97,7 +97,8 @@
     print: { accent: null, source: { url: "https://dayzerofestival.com/tulum/", observedAt: "2026-11-12" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
     officialEvent: {
       website: "https://dayzerofestival.com/tulum/",
-      observedAt: "2026-11-12",
+      tickets: "https://day-zero-tulum.ingresse.com/",
+      observedAt: "2026-11-22",
     },
     // Quintana Roo is UTC-5 all year (no DST).
     startMs: Date.UTC(2027, 0, 9, 5, 0, 0),    // Jan 9 00:00 local

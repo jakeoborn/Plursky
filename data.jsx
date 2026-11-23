@@ -826,7 +826,7 @@ const FESTIVALS_REGISTRY = [
     // lineup yet.
     config: {
       id:        "tomorrowland-winter-2027",
-      officialEvent: { website: "https://winter.tomorrowland.com/", observedAt: "2026-11-11" },
+      officialEvent: { website: "https://winter.tomorrowland.com/", tickets: "https://winter.tomorrowland.com/en/tickets/", observedAt: "2026-11-22" },
       name:      "Tomorrowland Winter 2027",
       shortName: "Tomorrowland Winter",
       brand:     "Tomorrowland",
@@ -1034,7 +1034,7 @@ const FESTIVALS_REGISTRY = [
     // 2027 lineup in text yet.
     config: {
       id:        "lollapalooza-india-2027",
-      officialEvent: { website: "https://lollaindia.com/", observedAt: "2026-11-15" },
+      officialEvent: { website: "https://lollaindia.com/", tickets: "https://in.bookmyshow.com/events/lollapalooza-india-2027/ET00513740", observedAt: "2026-11-22" },
       name:      "Lollapalooza India 2027",
       shortName: "Lolla India",
       brand:     "Lollapalooza",
@@ -1057,7 +1057,7 @@ const FESTIVALS_REGISTRY = [
     // San Isidro 12, 13 y 14 de Marzo 2027". No 2027 lineup in text yet.
     config: {
       id:        "lollapalooza-argentina-2027",
-      officialEvent: { website: "https://www.lollapaloozaar.com/", observedAt: "2026-11-15" },
+      officialEvent: { website: "https://www.lollapaloozaar.com/", tickets: "https://www.allaccess.com.ar/event/lollapalooza-2027", observedAt: "2026-11-22" },
       name:      "Lollapalooza Argentina 2027",
       shortName: "Lolla Argentina",
       brand:     "Lollapalooza",
@@ -1081,7 +1081,7 @@ const FESTIVALS_REGISTRY = [
     // 2027 lineup in text yet.
     config: {
       id:        "lollapalooza-chile-2027",
-      officialEvent: { website: "https://www.lollapaloozacl.com/", observedAt: "2026-11-15" },
+      officialEvent: { website: "https://www.lollapaloozacl.com/", tickets: "https://lollapaloozacl.com/precios/", observedAt: "2026-11-22" },
       name:      "Lollapalooza Chile 2027",
       shortName: "Lolla Chile",
       brand:     "Lollapalooza",
@@ -1106,7 +1106,7 @@ const FESTIVALS_REGISTRY = [
     // lineup is loaded yet.
     config: {
       id:        "lollapalooza-brasil-2027",
-      officialEvent: { website: "https://www.lollapaloozabr.com/", observedAt: "2026-11-15" },
+      officialEvent: { website: "https://www.lollapaloozabr.com/", tickets: "https://www.lollapaloozabr.com/ingressos", observedAt: "2026-11-22" },
       name:      "Lollapalooza Brasil 2027",
       shortName: "Lolla Brasil",
       brand:     "Lollapalooza",
@@ -1938,7 +1938,7 @@ const FESTIVALS_REGISTRY = [
       year:      2027,
       // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
       print: { accent: "#CC2831", source: { url: "https://mexico.edc.com/wp-content/assets/css/edcmexico.min.css?ver=2.2.41", observedAt: "2026-10-09", seenAs: "Site stylesheet: `a { color:#cc2831 }`, `button { background-color:#cc2831 }`, `.button--outline` border/text, hover #a10710 (7 uses); the homepage HTML also inlines `button{background-color: #cc2831;}`.", confidence: "high" }, note: "No <meta theme-color> (only WordPress's admin default custom property), so the first-party sheet's link + primary-button red is the accent, confirmed by the same hex inlined in the page." },
-      officialEvent: { id: 548875, url: "https://mexico.electricdaisycarnival.com/", website: "https://mexico.edc.com/", observedAt: "2026-09-10" },
+      officialEvent: { id: 548875, url: "https://mexico.electricdaisycarnival.com/", website: "https://mexico.edc.com/", tickets: "https://mexico.edc.com/en/tickets/", observedAt: "2026-09-10" },
     },
     available: false,
     accent:    "#f43f5e",

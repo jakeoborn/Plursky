@@ -237422,6 +237422,8075 @@
   "mainStage": null
  },
  {
+  "id": "coachella-2025:d1:coachella:1500:gabe-real",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Coachella",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "Gabe Real",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gabe-real",
+    "role": "performer"
+   }
+  ],
+  "act": "gabe-real",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:coachella:1620:thee-sacred-souls",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Coachella",
+  "start": "16:20",
+  "end": "17:10",
+  "printed": "Thee Sacred Souls",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "thee-sacred-souls",
+    "role": "performer"
+   }
+  ],
+  "act": "thee-sacred-souls",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:coachella:1740:marina",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Coachella",
+  "start": "17:40",
+  "end": "18:30",
+  "printed": "MARINA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marina",
+    "role": "performer"
+   }
+  ],
+  "act": "marina",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:coachella:1910:benson-boone",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Coachella",
+  "start": "19:10",
+  "end": "20:05",
+  "printed": "Benson Boone",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "benson-boone",
+    "role": "performer"
+   }
+  ],
+  "act": "benson-boone",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:coachella:2100:missy-elliott",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Coachella",
+  "start": "21:00",
+  "end": "21:55",
+  "printed": "Missy Elliott",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "missy-elliott",
+    "role": "performer"
+   }
+  ],
+  "act": "missy-elliott",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:coachella:2310:lady-gaga",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Coachella",
+  "start": "23:10",
+  "end": null,
+  "printed": "Lady Gaga",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lady-gaga",
+    "role": "performer"
+   }
+  ],
+  "act": "lady-gaga",
+  "closing": true,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:outdoor:1450:tiffany-tyson",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Outdoor",
+  "start": "14:50",
+  "end": "15:50",
+  "printed": "Tiffany Tyson",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tiffany-tyson",
+    "role": "performer"
+   }
+  ],
+  "act": "tiffany-tyson",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:outdoor:1605:seun-kuti-and-egypt-80",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Outdoor",
+  "start": "16:05",
+  "end": "16:55",
+  "printed": "Seun Kuti & Egypt 80",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "seun-kuti-and-egypt-80",
+    "role": "performer"
+   }
+  ],
+  "act": "seun-kuti-and-egypt-80",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:outdoor:1725:the-go-go-s",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Outdoor",
+  "start": "17:25",
+  "end": "18:15",
+  "printed": "The Go-Go's",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-go-go-s",
+    "role": "performer"
+   }
+  ],
+  "act": "the-go-go-s",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:outdoor:1845:tyla",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Outdoor",
+  "start": "18:45",
+  "end": "19:30",
+  "printed": "Tyla",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tyla",
+    "role": "performer"
+   }
+  ],
+  "act": "tyla",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:outdoor:2020:the-marias",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Outdoor",
+  "start": "20:20",
+  "end": "21:20",
+  "printed": "The Marías",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-marias",
+    "role": "performer"
+   }
+  ],
+  "act": "the-marias",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:outdoor:2210:parcels",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Outdoor",
+  "start": "22:10",
+  "end": null,
+  "printed": "Parcels",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "parcels",
+    "role": "performer"
+   }
+  ],
+  "act": "parcels",
+  "closing": true,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:sonora:1300:doom-dave",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Sonora",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "Doom Dave",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "doom-dave",
+    "role": "performer"
+   }
+  ],
+  "act": "doom-dave",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:sonora:1400:glixen",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Sonora",
+  "start": "14:00",
+  "end": "14:30",
+  "printed": "Glixen",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "glixen",
+    "role": "performer"
+   }
+  ],
+  "act": "glixen",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:sonora:1500:vs-self",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Sonora",
+  "start": "15:00",
+  "end": "15:30",
+  "printed": "vs self",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vs-self",
+    "role": "performer"
+   }
+  ],
+  "act": "vs-self",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:sonora:1550:tops",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Sonora",
+  "start": "15:50",
+  "end": "16:30",
+  "printed": "TOPS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tops",
+    "role": "performer"
+   }
+  ],
+  "act": "tops",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:sonora:1700:julie",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Sonora",
+  "start": "17:00",
+  "end": "17:40",
+  "printed": "julie",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "julie",
+    "role": "performer"
+   }
+  ],
+  "act": "julie",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:sonora:1810:kneecap",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Sonora",
+  "start": "18:10",
+  "end": "19:00",
+  "printed": "KNEECAP",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kneecap",
+    "role": "performer"
+   }
+  ],
+  "act": "kneecap",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:sonora:1930:los-mirlos",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Sonora",
+  "start": "19:30",
+  "end": "20:10",
+  "printed": "Los Mirlos",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "los-mirlos",
+    "role": "performer"
+   }
+  ],
+  "act": "los-mirlos",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:sonora:2040:speed",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Sonora",
+  "start": "20:40",
+  "end": "21:20",
+  "printed": "SPEED",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "speed",
+    "role": "performer"
+   }
+  ],
+  "act": "speed",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:sonora:2200:hitech",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Sonora",
+  "start": "22:00",
+  "end": null,
+  "printed": "HiTech",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hitech",
+    "role": "performer"
+   }
+  ],
+  "act": "hitech",
+  "closing": true,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:gobi:1320:saison",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Gobi",
+  "start": "13:20",
+  "end": "14:05",
+  "printed": "Saison.",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "saison",
+    "role": "performer"
+   }
+  ],
+  "act": "saison",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:gobi:1415:parisi",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Gobi",
+  "start": "14:15",
+  "end": "15:05",
+  "printed": "PARISI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "parisi",
+    "role": "performer"
+   }
+  ],
+  "act": "parisi",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:gobi:1530:maribou-state",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Gobi",
+  "start": "15:30",
+  "end": "16:20",
+  "printed": "Maribou State",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "maribou-state",
+    "role": "performer"
+   }
+  ],
+  "act": "maribou-state",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:gobi:1645:4batz",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Gobi",
+  "start": "16:45",
+  "end": "17:25",
+  "printed": "4batz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "4batz",
+    "role": "performer"
+   }
+  ],
+  "act": "4batz",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:gobi:1755:d4vd",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Gobi",
+  "start": "17:55",
+  "end": "18:35",
+  "printed": "d4vd",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "d4vd",
+    "role": "performer"
+   }
+  ],
+  "act": "d4vd",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:gobi:1900:a-g-cook",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Gobi",
+  "start": "19:00",
+  "end": "19:45",
+  "printed": "A. G. Cook",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "a-g-cook",
+    "role": "performer"
+   }
+  ],
+  "act": "a-g-cook",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:gobi:2015:artemas",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Gobi",
+  "start": "20:15",
+  "end": "21:00",
+  "printed": "Artemas",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "artemas",
+    "role": "performer"
+   }
+  ],
+  "act": "artemas",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:gobi:2130:ca7riel-and-paco-amoroso",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Gobi",
+  "start": "21:30",
+  "end": "22:15",
+  "printed": "CA7RIEL & Paco Amoroso",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ca7riel-and-paco-amoroso",
+    "role": "performer"
+   }
+  ],
+  "act": "ca7riel-and-paco-amoroso",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:gobi:2240:indo-warehouse",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Gobi",
+  "start": "22:40",
+  "end": null,
+  "printed": "Indo Warehouse",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "indo-warehouse",
+    "role": "performer"
+   }
+  ],
+  "act": "indo-warehouse",
+  "closing": true,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:mojave:1330:sincerely-manolo",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Mojave",
+  "start": "13:30",
+  "end": "14:20",
+  "printed": "Sincerely, Manolo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sincerely-manolo",
+    "role": "performer"
+   }
+  ],
+  "act": "sincerely-manolo",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:mojave:1435:ravyn-lenae",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Mojave",
+  "start": "14:35",
+  "end": "15:15",
+  "printed": "Ravyn Lenae",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ravyn-lenae",
+    "role": "performer"
+   }
+  ],
+  "act": "ravyn-lenae",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:mojave:1540:saint-jhn",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Mojave",
+  "start": "15:40",
+  "end": "16:20",
+  "printed": "SAINt JHN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "saint-jhn",
+    "role": "performer"
+   }
+  ],
+  "act": "saint-jhn",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:mojave:1650:lola-young",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Mojave",
+  "start": "16:50",
+  "end": "17:35",
+  "printed": "Lola Young",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lola-young",
+    "role": "performer"
+   }
+  ],
+  "act": "lola-young",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:mojave:1805:djo",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Mojave",
+  "start": "18:05",
+  "end": "18:50",
+  "printed": "Djo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "djo",
+    "role": "performer"
+   }
+  ],
+  "act": "djo",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:mojave:1920:eyedress",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Mojave",
+  "start": "19:20",
+  "end": "20:05",
+  "printed": "Eyedress",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eyedress",
+    "role": "performer"
+   }
+  ],
+  "act": "eyedress",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:mojave:2035:miike-snow",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Mojave",
+  "start": "20:35",
+  "end": "21:25",
+  "printed": "Miike Snow",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "miike-snow",
+    "role": "performer"
+   }
+  ],
+  "act": "miike-snow",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:mojave:2205:the-prodigy",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Mojave",
+  "start": "22:05",
+  "end": null,
+  "printed": "The Prodigy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-prodigy",
+    "role": "performer"
+   }
+  ],
+  "act": "the-prodigy",
+  "closing": true,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:sahara:1345:massio",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Sahara",
+  "start": "13:45",
+  "end": "14:45",
+  "printed": "MASSIO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "massio",
+    "role": "performer"
+   }
+  ],
+  "act": "massio",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:sahara:1455:austin-millz",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Sahara",
+  "start": "14:55",
+  "end": "15:45",
+  "printed": "Austin Millz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "austin-millz",
+    "role": "performer"
+   }
+  ],
+  "act": "austin-millz",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:sahara:1600:chris-lorenzo",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Sahara",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Chris Lorenzo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chris-lorenzo",
+    "role": "performer"
+   }
+  ],
+  "act": "chris-lorenzo",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:sahara:1715:three-6-mafia",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Sahara",
+  "start": "17:15",
+  "end": "17:55",
+  "printed": "Three 6 Mafia",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "three-6-mafia",
+    "role": "performer"
+   }
+  ],
+  "act": "three-6-mafia",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:sahara:1810:sara-landry",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Sahara",
+  "start": "18:10",
+  "end": "19:05",
+  "printed": "Sara Landry",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sara-landry",
+    "role": "performer"
+   }
+  ],
+  "act": "sara-landry",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:sahara:1945:lisa",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Sahara",
+  "start": "19:45",
+  "end": "20:40",
+  "printed": "LISA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lisa",
+    "role": "performer"
+   }
+  ],
+  "act": "lisa",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:sahara:2110:yeat",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Sahara",
+  "start": "21:10",
+  "end": "21:55",
+  "printed": "Yeat",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yeat",
+    "role": "performer"
+   }
+  ],
+  "act": "yeat",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:sahara:2225:glorilla",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Sahara",
+  "start": "22:25",
+  "end": "23:10",
+  "printed": "GloRilla",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "glorilla",
+    "role": "performer"
+   }
+  ],
+  "act": "glorilla",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:sahara:2350:mustard",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Sahara",
+  "start": "23:50",
+  "end": null,
+  "printed": "Mustard",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mustard",
+    "role": "performer"
+   }
+  ],
+  "act": "mustard",
+  "closing": true,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:yuma:1300:erez",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Yuma",
+  "start": "13:00",
+  "end": "13:45",
+  "printed": "EREZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "erez",
+    "role": "performer"
+   }
+  ],
+  "act": "erez",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:yuma:1345:coco-and-breezy",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Yuma",
+  "start": "13:45",
+  "end": "14:45",
+  "printed": "Coco & Breezy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "coco-and-breezy",
+    "role": "performer"
+   }
+  ],
+  "act": "coco-and-breezy",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:yuma:1445:moon-boots",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Yuma",
+  "start": "14:45",
+  "end": "15:45",
+  "printed": "Moon Boots",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "moon-boots",
+    "role": "performer"
+   }
+  ],
+  "act": "moon-boots",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:yuma:1545:shermanology",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Yuma",
+  "start": "15:45",
+  "end": "16:45",
+  "printed": "Shermanology",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "shermanology",
+    "role": "performer"
+   }
+  ],
+  "act": "shermanology",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:yuma:1645:damian-lazarus",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Yuma",
+  "start": "16:45",
+  "end": "17:45",
+  "printed": "Damian Lazarus",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "damian-lazarus",
+    "role": "performer"
+   }
+  ],
+  "act": "damian-lazarus",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:yuma:1745:beltran",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Yuma",
+  "start": "17:45",
+  "end": "19:00",
+  "printed": "Beltran",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "beltran",
+    "role": "performer"
+   }
+  ],
+  "act": "beltran",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:yuma:1900:tinlicker",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Yuma",
+  "start": "19:00",
+  "end": "20:15",
+  "printed": "Tinlicker",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tinlicker",
+    "role": "performer"
+   }
+  ],
+  "act": "tinlicker",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:yuma:2015:pete-tong-b2b-ahmed-spins",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Yuma",
+  "start": "20:15",
+  "end": "21:45",
+  "printed": "Pete Tong b2b Ahmed Spins",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pete-tong",
+    "role": "b2b"
+   },
+   {
+    "key": "ahmed-spins",
+    "role": "b2b"
+   }
+  ],
+  "act": "pete-tong-b2b-ahmed-spins",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:yuma:2145:chris-stussy",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Yuma",
+  "start": "21:45",
+  "end": "23:15",
+  "printed": "Chris Stussy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chris-stussy",
+    "role": "performer"
+   }
+  ],
+  "act": "chris-stussy",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:yuma:2315:vintage-culture",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Yuma",
+  "start": "23:15",
+  "end": null,
+  "printed": "Vintage Culture",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vintage-culture",
+    "role": "performer"
+   }
+  ],
+  "act": "vintage-culture",
+  "closing": true,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:quasar:1700:coco-and-breezy-x-kaleena-zanders",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Quasar",
+  "start": "17:00",
+  "end": "19:00",
+  "printed": "Coco & Breezy x Kaleena Zanders",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "coco-and-breezy-x-kaleena-zanders",
+    "role": "collab"
+   }
+  ],
+  "act": "coco-and-breezy-x-kaleena-zanders",
+  "closing": false,
+  "stageLineage": "coachella:quasar",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d1:quasar:1900:the-martinez-brothers-x-loco-dice",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-11",
+  "day": 1,
+  "stage": "Quasar",
+  "start": "19:00",
+  "end": null,
+  "printed": "The Martinez Brothers x Loco Dice",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-martinez-brothers-x-loco-dice",
+    "role": "collab"
+   }
+  ],
+  "act": "the-martinez-brothers-x-loco-dice",
+  "closing": true,
+  "stageLineage": "coachella:quasar",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:coachella:1445:skrause",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Coachella",
+  "start": "14:45",
+  "end": "15:45",
+  "printed": "skrause",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "skrause",
+    "role": "performer"
+   }
+  ],
+  "act": "skrause",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:coachella:1600:jimmy-eat-world",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Coachella",
+  "start": "16:00",
+  "end": "16:50",
+  "printed": "Jimmy Eat World",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jimmy-eat-world",
+    "role": "performer"
+   }
+  ],
+  "act": "jimmy-eat-world",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:coachella:1725:t-pain",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Coachella",
+  "start": "17:25",
+  "end": "18:15",
+  "printed": "T-Pain",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "t-pain",
+    "role": "performer"
+   }
+  ],
+  "act": "t-pain",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:coachella:1915:charli-xcx",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Coachella",
+  "start": "19:15",
+  "end": "20:10",
+  "printed": "Charli xcx",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "charli-xcx",
+    "role": "performer"
+   }
+  ],
+  "act": "charli-xcx",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:coachella:2105:green-day",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Coachella",
+  "start": "21:05",
+  "end": "22:45",
+  "printed": "Green Day",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "green-day",
+    "role": "performer"
+   }
+  ],
+  "act": "green-day",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:coachella:2340:travis-scott",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Coachella",
+  "start": "23:40",
+  "end": null,
+  "printed": "Travis Scott",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "travis-scott",
+    "role": "performer"
+   }
+  ],
+  "act": "travis-scott",
+  "closing": true,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:outdoor:1445:megatone",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Outdoor",
+  "start": "14:45",
+  "end": "15:45",
+  "printed": "Megatone",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "megatone",
+    "role": "performer"
+   }
+  ],
+  "act": "megatone",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:outdoor:1600:tink",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Outdoor",
+  "start": "16:00",
+  "end": "16:35",
+  "printed": "Tink",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tink",
+    "role": "performer"
+   }
+  ],
+  "act": "tink",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:outdoor:1705:japanese-breakfast",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Outdoor",
+  "start": "17:05",
+  "end": "17:50",
+  "printed": "Japanese Breakfast",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "japanese-breakfast",
+    "role": "performer"
+   }
+  ],
+  "act": "japanese-breakfast",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:outdoor:1825:gustavo-dudamel-and-la-phil",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Outdoor",
+  "start": "18:25",
+  "end": "19:15",
+  "printed": "Gustavo Dudamel & LA Phil",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gustavo-dudamel-and-la-phil",
+    "role": "performer"
+   }
+  ],
+  "act": "gustavo-dudamel-and-la-phil",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:outdoor:2015:clairo",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Outdoor",
+  "start": "20:15",
+  "end": "21:05",
+  "printed": "Clairo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "clairo",
+    "role": "performer"
+   }
+  ],
+  "act": "clairo",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:outdoor:2145:above-and-beyond",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Outdoor",
+  "start": "21:45",
+  "end": "22:45",
+  "printed": "Above & Beyond",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "above-and-beyond",
+    "role": "performer"
+   }
+  ],
+  "act": "above-and-beyond",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:outdoor:2320:the-original-misfits",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Outdoor",
+  "start": "23:20",
+  "end": null,
+  "printed": "The Original Misfits",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-original-misfits",
+    "role": "performer"
+   }
+  ],
+  "act": "the-original-misfits",
+  "closing": true,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:sonora:1300:triste-juventud-x-totem",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Sonora",
+  "start": "13:00",
+  "end": "13:50",
+  "printed": "Triste Juventud x Tótem",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "triste-juventud-x-totem",
+    "role": "act"
+   }
+  ],
+  "act": "triste-juventud-x-totem",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null,
+  "review": "\"x\" billing whose sides are not both known acts"
+ },
+ {
+  "id": "coachella-2025:d2:sonora:1350:prison-affair",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Sonora",
+  "start": "13:50",
+  "end": "14:20",
+  "printed": "Prison Affair",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "prison-affair",
+    "role": "performer"
+   }
+  ],
+  "act": "prison-affair",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:sonora:1440:together-pangea",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Sonora",
+  "start": "14:40",
+  "end": "15:20",
+  "printed": "Together Pangea",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "together-pangea",
+    "role": "performer"
+   }
+  ],
+  "act": "together-pangea",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:sonora:1550:judeline",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Sonora",
+  "start": "15:50",
+  "end": "16:30",
+  "printed": "Judeline",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "judeline",
+    "role": "performer"
+   }
+  ],
+  "act": "judeline",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:sonora:1700:underscores",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Sonora",
+  "start": "17:00",
+  "end": "17:40",
+  "printed": "underscores",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "underscores",
+    "role": "performer"
+   }
+  ],
+  "act": "underscores",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:sonora:1810:blonde-redhead",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Sonora",
+  "start": "18:10",
+  "end": "19:00",
+  "printed": "Blonde Redhead",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "blonde-redhead",
+    "role": "performer"
+   }
+  ],
+  "act": "blonde-redhead",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:sonora:2030:vtss",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Sonora",
+  "start": "20:30",
+  "end": "21:20",
+  "printed": "VTSS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vtss",
+    "role": "performer"
+   }
+  ],
+  "act": "vtss",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:sonora:2150:el-malilla",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Sonora",
+  "start": "21:50",
+  "end": null,
+  "printed": "El Malilla",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "el-malilla",
+    "role": "performer"
+   }
+  ],
+  "act": "el-malilla",
+  "closing": true,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:gobi:1330:elusive",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Gobi",
+  "start": "13:30",
+  "end": "14:00",
+  "printed": "Elusive",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "elusive",
+    "role": "performer"
+   }
+  ],
+  "act": "elusive",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:gobi:1410:medium-build",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Gobi",
+  "start": "14:10",
+  "end": "14:50",
+  "printed": "Medium Build",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "medium-build",
+    "role": "performer"
+   }
+  ],
+  "act": "medium-build",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:gobi:1605:glass-beams",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Gobi",
+  "start": "16:05",
+  "end": "16:50",
+  "printed": "Glass Beams",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "glass-beams",
+    "role": "performer"
+   }
+  ],
+  "act": "glass-beams",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:gobi:1715:viagra-boys",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Gobi",
+  "start": "17:15",
+  "end": "18:00",
+  "printed": "Viagra Boys",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "viagra-boys",
+    "role": "performer"
+   }
+  ],
+  "act": "viagra-boys",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:gobi:1830:2hollis",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Gobi",
+  "start": "18:30",
+  "end": "19:15",
+  "printed": "2hollis",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "2hollis",
+    "role": "performer"
+   }
+  ],
+  "act": "2hollis",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:gobi:2020:darkside",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Gobi",
+  "start": "20:20",
+  "end": "21:10",
+  "printed": "Darkside",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "darkside",
+    "role": "performer"
+   }
+  ],
+  "act": "darkside",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:gobi:2140:beth-gibbons",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Gobi",
+  "start": "21:40",
+  "end": "22:30",
+  "printed": "Beth Gibbons",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "beth-gibbons",
+    "role": "performer"
+   }
+  ],
+  "act": "beth-gibbons",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:gobi:2300:rawayana",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Gobi",
+  "start": "23:00",
+  "end": null,
+  "printed": "Rawayana",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rawayana",
+    "role": "performer"
+   }
+  ],
+  "act": "rawayana",
+  "closing": true,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:mojave:1400:record-safari",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Mojave",
+  "start": "14:00",
+  "end": "14:50",
+  "printed": "Record Safari",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "record-safari",
+    "role": "performer"
+   }
+  ],
+  "act": "record-safari",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:mojave:1510:weezer",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Mojave",
+  "start": "15:10",
+  "end": "15:55",
+  "printed": "Weezer",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "weezer",
+    "role": "performer"
+   }
+  ],
+  "act": "weezer",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:mojave:1645:yo-gabba-gabba",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Mojave",
+  "start": "16:45",
+  "end": "17:30",
+  "printed": "Yo Gabba Gabba!",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yo-gabba-gabba",
+    "role": "performer"
+   }
+  ],
+  "act": "yo-gabba-gabba",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:mojave:1755:sam-fender",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Mojave",
+  "start": "17:55",
+  "end": "18:40",
+  "printed": "Sam Fender",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sam-fender",
+    "role": "performer"
+   }
+  ],
+  "act": "sam-fender",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:mojave:1915:ivan-cornejo",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Mojave",
+  "start": "19:15",
+  "end": "20:00",
+  "printed": "Ivan Cornejo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ivan-cornejo",
+    "role": "performer"
+   }
+  ],
+  "act": "ivan-cornejo",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:mojave:2025:hanumankind",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Mojave",
+  "start": "20:25",
+  "end": "21:05",
+  "printed": "Hanumankind",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hanumankind",
+    "role": "performer"
+   }
+  ],
+  "act": "hanumankind",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:mojave:2145:horsegiirl",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Mojave",
+  "start": "21:45",
+  "end": "22:30",
+  "printed": "horsegiirL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "horsegiirl",
+    "role": "performer"
+   }
+  ],
+  "act": "horsegiirl",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:mojave:2300:the-dare",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Mojave",
+  "start": "23:00",
+  "end": null,
+  "printed": "The Dare",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-dare",
+    "role": "performer"
+   }
+  ],
+  "act": "the-dare",
+  "closing": true,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:sahara:1350:talon",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Sahara",
+  "start": "13:50",
+  "end": "14:50",
+  "printed": "Talón",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "talon",
+    "role": "performer"
+   }
+  ],
+  "act": "talon",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:sahara:1505:salute",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Sahara",
+  "start": "15:05",
+  "end": "15:55",
+  "printed": "salute",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "salute",
+    "role": "performer"
+   }
+  ],
+  "act": "salute",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:sahara:1610:alok",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Sahara",
+  "start": "16:10",
+  "end": "17:05",
+  "printed": "Alok",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alok",
+    "role": "performer"
+   }
+  ],
+  "act": "alok",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:sahara:1725:disco-lines",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Sahara",
+  "start": "17:25",
+  "end": "18:25",
+  "printed": "Disco Lines",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "disco-lines",
+    "role": "performer"
+   }
+  ],
+  "act": "disco-lines",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:sahara:1845:shoreline-mafia",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Sahara",
+  "start": "18:45",
+  "end": "19:30",
+  "printed": "Shoreline Mafia",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "shoreline-mafia",
+    "role": "performer"
+   }
+  ],
+  "act": "shoreline-mafia",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:sahara:2035:enhypen",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Sahara",
+  "start": "20:35",
+  "end": "21:20",
+  "printed": "ENHYPEN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "enhypen",
+    "role": "performer"
+   }
+  ],
+  "act": "enhypen",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:sahara:2150:mau-p",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Sahara",
+  "start": "21:50",
+  "end": "22:50",
+  "printed": "Mau P",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mau-p",
+    "role": "performer"
+   }
+  ],
+  "act": "mau-p",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:sahara:2330:keinemusik",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Sahara",
+  "start": "23:30",
+  "end": null,
+  "printed": "Keinemusik",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "keinemusik",
+    "role": "performer"
+   }
+  ],
+  "act": "keinemusik",
+  "closing": true,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:yuma:1300:haai",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Yuma",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "HAAi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "haai",
+    "role": "performer"
+   }
+  ],
+  "act": "haai",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:yuma:1400:dj-gigola",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Yuma",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "DJ Gigola",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-gigola",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-gigola",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:yuma:1500:layton-giordani",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Yuma",
+  "start": "15:00",
+  "end": "16:15",
+  "printed": "Layton Giordani",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "layton-giordani",
+    "role": "performer"
+   }
+  ],
+  "act": "layton-giordani",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:yuma:1615:klangkuenstler",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Yuma",
+  "start": "16:15",
+  "end": "17:30",
+  "printed": "Klangkuenstler",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "klangkuenstler",
+    "role": "performer"
+   }
+  ],
+  "act": "klangkuenstler",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:yuma:1730:indira-paganotto",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Yuma",
+  "start": "17:30",
+  "end": "18:45",
+  "printed": "Indira Paganotto",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "indira-paganotto",
+    "role": "performer"
+   }
+  ],
+  "act": "indira-paganotto",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:yuma:1845:infected-mushroom",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Yuma",
+  "start": "18:45",
+  "end": "20:00",
+  "printed": "Infected Mushroom",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "infected-mushroom",
+    "role": "performer"
+   }
+  ],
+  "act": "infected-mushroom",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:yuma:2000:mind-against-b2b-massano",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Yuma",
+  "start": "20:00",
+  "end": "21:30",
+  "printed": "Mind Against b2b Massano",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mind-against",
+    "role": "b2b"
+   },
+   {
+    "key": "massano",
+    "role": "b2b"
+   }
+  ],
+  "act": "mind-against-b2b-massano",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:yuma:2130:amelie-lens",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Yuma",
+  "start": "21:30",
+  "end": "23:00",
+  "printed": "Amelie Lens",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "amelie-lens",
+    "role": "performer"
+   }
+  ],
+  "act": "amelie-lens",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:yuma:2300:eli-brown",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Yuma",
+  "start": "23:00",
+  "end": null,
+  "printed": "Eli Brown",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eli-brown",
+    "role": "performer"
+   }
+  ],
+  "act": "eli-brown",
+  "closing": true,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d2:quasar:1800:fcukers-dj-set-x-haai",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Quasar",
+  "start": "18:00",
+  "end": "20:15",
+  "printed": "Fcukers DJ set x HAAi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fcukers-dj-set-x-haai",
+    "role": "act"
+   }
+  ],
+  "act": "fcukers-dj-set-x-haai",
+  "closing": false,
+  "stageLineage": "coachella:quasar",
+  "mainStage": null,
+  "review": "\"x\" billing whose sides are not both known acts"
+ },
+ {
+  "id": "coachella-2025:d2:quasar:2015:barry-can-t-swim-x-2manydjs-x-salute",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-12",
+  "day": 2,
+  "stage": "Quasar",
+  "start": "20:15",
+  "end": null,
+  "printed": "Barry Can't Swim x 2manydjs x salute",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "barry-can-t-swim-x-2manydjs-x-salute",
+    "role": "act"
+   }
+  ],
+  "act": "barry-can-t-swim-x-2manydjs-x-salute",
+  "closing": true,
+  "stageLineage": "coachella:quasar",
+  "mainStage": null,
+  "review": "\"x\" billing whose sides are not both known acts"
+ },
+ {
+  "id": "coachella-2025:d3:coachella:1500:jaqck-glam",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Coachella",
+  "start": "15:00",
+  "end": "15:55",
+  "printed": "Jaqck Glam",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jaqck-glam",
+    "role": "performer"
+   }
+  ],
+  "act": "jaqck-glam",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:coachella:1605:shaboozey",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Coachella",
+  "start": "16:05",
+  "end": "16:50",
+  "printed": "Shaboozey",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "shaboozey",
+    "role": "performer"
+   }
+  ],
+  "act": "shaboozey",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:coachella:1725:beabadoobee",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Coachella",
+  "start": "17:25",
+  "end": "18:15",
+  "printed": "beabadoobee",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "beabadoobee",
+    "role": "performer"
+   }
+  ],
+  "act": "beabadoobee",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:coachella:1900:junior-h",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Coachella",
+  "start": "19:00",
+  "end": "19:50",
+  "printed": "Junior H",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "junior-h",
+    "role": "performer"
+   }
+  ],
+  "act": "junior-h",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:coachella:2035:megan-thee-stallion",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Coachella",
+  "start": "20:35",
+  "end": "21:25",
+  "printed": "Megan Thee Stallion",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "megan-thee-stallion",
+    "role": "performer"
+   }
+  ],
+  "act": "megan-thee-stallion",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:coachella:2225:post-malone",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Coachella",
+  "start": "22:25",
+  "end": null,
+  "printed": "Post Malone",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "post-malone",
+    "role": "performer"
+   }
+  ],
+  "act": "post-malone",
+  "closing": true,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:outdoor:1540:meute",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Outdoor",
+  "start": "15:40",
+  "end": "16:30",
+  "printed": "MEUTE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "meute",
+    "role": "performer"
+   }
+  ],
+  "act": "meute",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:outdoor:1700:keshi",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Outdoor",
+  "start": "17:00",
+  "end": "17:45",
+  "printed": "Keshi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "keshi",
+    "role": "performer"
+   }
+  ],
+  "act": "keshi",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:outdoor:1815:still-woozy",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Outdoor",
+  "start": "18:15",
+  "end": "19:00",
+  "printed": "Still Woozy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "still-woozy",
+    "role": "performer"
+   }
+  ],
+  "act": "still-woozy",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:outdoor:1945:jennie",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Outdoor",
+  "start": "19:45",
+  "end": "20:35",
+  "printed": "Jennie",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jennie",
+    "role": "performer"
+   }
+  ],
+  "act": "jennie",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:outdoor:2110:zedd",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Outdoor",
+  "start": "21:10",
+  "end": "22:10",
+  "printed": "Zedd",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zedd",
+    "role": "performer"
+   }
+  ],
+  "act": "zedd",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:outdoor:2255:polo-and-pan",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Outdoor",
+  "start": "22:55",
+  "end": null,
+  "printed": "Polo & Pan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "polo-and-pan",
+    "role": "performer"
+   }
+  ],
+  "act": "polo-and-pan",
+  "closing": true,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:sonora:1300:sin-rastro",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Sonora",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "Sin Rastro",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sin-rastro",
+    "role": "performer"
+   }
+  ],
+  "act": "sin-rastro",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:sonora:1400:kumo-99",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Sonora",
+  "start": "14:00",
+  "end": "14:30",
+  "printed": "Kumo 99",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kumo-99",
+    "role": "performer"
+   }
+  ],
+  "act": "kumo-99",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:sonora:1500:bob-vylan",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Sonora",
+  "start": "15:00",
+  "end": "15:40",
+  "printed": "Bob Vylan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bob-vylan",
+    "role": "performer"
+   }
+  ],
+  "act": "bob-vylan",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:sonora:1610:wisp",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Sonora",
+  "start": "16:10",
+  "end": "16:50",
+  "printed": "Wisp",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wisp",
+    "role": "performer"
+   }
+  ],
+  "act": "wisp",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:sonora:1720:soft-play",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Sonora",
+  "start": "17:20",
+  "end": "18:00",
+  "printed": "SOFT PLAY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "soft-play",
+    "role": "performer"
+   }
+  ],
+  "act": "soft-play",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:sonora:1830:circle-jerks",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Sonora",
+  "start": "18:30",
+  "end": "19:10",
+  "printed": "Circle Jerks",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "circle-jerks",
+    "role": "performer"
+   }
+  ],
+  "act": "circle-jerks",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:sonora:1940:ginger-root",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Sonora",
+  "start": "19:40",
+  "end": "20:35",
+  "printed": "Ginger Root",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ginger-root",
+    "role": "performer"
+   }
+  ],
+  "act": "ginger-root",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:sonora:2105:snow-strippers",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Sonora",
+  "start": "21:05",
+  "end": null,
+  "printed": "Snow Strippers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "snow-strippers",
+    "role": "performer"
+   }
+  ],
+  "act": "snow-strippers",
+  "closing": true,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:gobi:1330:wavegroove",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Gobi",
+  "start": "13:30",
+  "end": "14:25",
+  "printed": "waveGroove",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wavegroove",
+    "role": "performer"
+   }
+  ],
+  "act": "wavegroove",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:gobi:1440:hope-tala",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Gobi",
+  "start": "14:40",
+  "end": "15:20",
+  "printed": "Hope Tala",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hope-tala",
+    "role": "performer"
+   }
+  ],
+  "act": "hope-tala",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:gobi:1545:the-beaches",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Gobi",
+  "start": "15:45",
+  "end": "16:30",
+  "printed": "The Beaches",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-beaches",
+    "role": "performer"
+   }
+  ],
+  "act": "the-beaches",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:gobi:1700:amaarae",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Gobi",
+  "start": "17:00",
+  "end": "17:45",
+  "printed": "Amaarae",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "amaarae",
+    "role": "performer"
+   }
+  ],
+  "act": "amaarae",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:gobi:1820:mohamed-ramadan",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Gobi",
+  "start": "18:20",
+  "end": "19:00",
+  "printed": "Mohamed Ramadan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mohamed-ramadan",
+    "role": "performer"
+   }
+  ],
+  "act": "mohamed-ramadan",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:gobi:1925:bigxthaplug",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Gobi",
+  "start": "19:25",
+  "end": "20:05",
+  "printed": "BigXthaPlug",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bigxthaplug",
+    "role": "performer"
+   }
+  ],
+  "act": "bigxthaplug",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:gobi:2035:arca",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Gobi",
+  "start": "20:35",
+  "end": "21:25",
+  "printed": "Arca",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "arca",
+    "role": "performer"
+   }
+  ],
+  "act": "arca",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:gobi:2155:amyl-and-the-sniffers",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Gobi",
+  "start": "21:55",
+  "end": null,
+  "printed": "Amyl and the Sniffers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "amyl-and-the-sniffers",
+    "role": "performer"
+   }
+  ],
+  "act": "amyl-and-the-sniffers",
+  "closing": true,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:mojave:1345:pennywild",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Mojave",
+  "start": "13:45",
+  "end": "14:45",
+  "printed": "PENNYWILD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pennywild",
+    "role": "performer"
+   }
+  ],
+  "act": "pennywild",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:mojave:1500:fcukers",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Mojave",
+  "start": "15:00",
+  "end": "15:40",
+  "printed": "Fcukers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fcukers",
+    "role": "performer"
+   }
+  ],
+  "act": "fcukers",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:mojave:1610:muni-long",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Mojave",
+  "start": "16:10",
+  "end": "16:55",
+  "printed": "Muni Long",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "muni-long",
+    "role": "performer"
+   }
+  ],
+  "act": "muni-long",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:mojave:1725:jessie-murph",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Mojave",
+  "start": "17:25",
+  "end": "18:10",
+  "printed": "Jessie Murph",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jessie-murph",
+    "role": "performer"
+   }
+  ],
+  "act": "jessie-murph",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:mojave:1840:rema",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Mojave",
+  "start": "18:40",
+  "end": "19:25",
+  "printed": "Rema",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rema",
+    "role": "performer"
+   }
+  ],
+  "act": "rema",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:mojave:2000:basement-jaxx",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Mojave",
+  "start": "20:00",
+  "end": "20:50",
+  "printed": "Basement Jaxx",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "basement-jaxx",
+    "role": "performer"
+   }
+  ],
+  "act": "basement-jaxx",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:mojave:2125:kraftwerk",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Mojave",
+  "start": "21:25",
+  "end": null,
+  "printed": "Kraftwerk",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kraftwerk",
+    "role": "performer"
+   }
+  ],
+  "act": "kraftwerk",
+  "closing": true,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:sahara:1400:tom-breu",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Sahara",
+  "start": "14:00",
+  "end": "15:30",
+  "printed": "Tom Breu",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tom-breu",
+    "role": "performer"
+   }
+  ],
+  "act": "tom-breu",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:sahara:1540:interplanetary-criminal",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Sahara",
+  "start": "15:40",
+  "end": "16:40",
+  "printed": "Interplanetary Criminal",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "interplanetary-criminal",
+    "role": "performer"
+   }
+  ],
+  "act": "interplanetary-criminal",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:sahara:1700:ben-bohmer",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Sahara",
+  "start": "17:00",
+  "end": "17:45",
+  "printed": "Ben Böhmer",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ben-bohmer",
+    "role": "performer"
+   }
+  ],
+  "act": "ben-bohmer",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:sahara:1800:sammy-virji",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Sahara",
+  "start": "18:00",
+  "end": "18:50",
+  "printed": "Sammy Virji",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sammy-virji",
+    "role": "performer"
+   }
+  ],
+  "act": "sammy-virji",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:sahara:1900:boris-brejcha",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Sahara",
+  "start": "19:00",
+  "end": "19:50",
+  "printed": "Boris Brejcha",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "boris-brejcha",
+    "role": "performer"
+   }
+  ],
+  "act": "boris-brejcha",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:sahara:2010:chase-and-status",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Sahara",
+  "start": "20:10",
+  "end": "21:10",
+  "printed": "Chase & Status",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chase-and-status",
+    "role": "performer"
+   }
+  ],
+  "act": "chase-and-status",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:sahara:2135:ty-dolla-ign",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Sahara",
+  "start": "21:35",
+  "end": "22:20",
+  "printed": "Ty Dolla $ign",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ty-dolla-ign",
+    "role": "performer"
+   }
+  ],
+  "act": "ty-dolla-ign",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:sahara:2255:xg",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Sahara",
+  "start": "22:55",
+  "end": null,
+  "printed": "XG",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "xg",
+    "role": "performer"
+   }
+  ],
+  "act": "xg",
+  "closing": true,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:yuma:1300:yulia-niko",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Yuma",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "Yulia Niko",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yulia-niko",
+    "role": "performer"
+   }
+  ],
+  "act": "yulia-niko",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:yuma:1400:ameme",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Yuma",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "AMÉMÉ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ameme",
+    "role": "performer"
+   }
+  ],
+  "act": "ameme",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:yuma:1500:desiree",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Yuma",
+  "start": "15:00",
+  "end": "16:30",
+  "printed": "DESIREE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "desiree",
+    "role": "performer"
+   }
+  ],
+  "act": "desiree",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:yuma:1630:tripolism",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Yuma",
+  "start": "16:30",
+  "end": "18:00",
+  "printed": "Tripolism",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tripolism",
+    "role": "performer"
+   }
+  ],
+  "act": "tripolism",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:yuma:1800:sparrow-and-barbossa",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Yuma",
+  "start": "18:00",
+  "end": "19:30",
+  "printed": "Sparrow & Barbossa",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sparrow-and-barbossa",
+    "role": "performer"
+   }
+  ],
+  "act": "sparrow-and-barbossa",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:yuma:1930:dennis-cruz",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Yuma",
+  "start": "19:30",
+  "end": "21:00",
+  "printed": "Dennis Cruz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dennis-cruz",
+    "role": "performer"
+   }
+  ],
+  "act": "dennis-cruz",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:yuma:2100:francis-mercier",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Yuma",
+  "start": "21:00",
+  "end": "22:30",
+  "printed": "Francis Mercier",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "francis-mercier",
+    "role": "performer"
+   }
+  ],
+  "act": "francis-mercier",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:yuma:2230:dixon-b2b-jimi-jules",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Yuma",
+  "start": "22:30",
+  "end": null,
+  "printed": "Dixon b2b Jimi Jules",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dixon",
+    "role": "b2b"
+   },
+   {
+    "key": "jimi-jules",
+    "role": "b2b"
+   }
+  ],
+  "act": "dixon-b2b-jimi-jules",
+  "closing": true,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:quasar:1700:odd-mob",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Quasar",
+  "start": "17:00",
+  "end": "19:00",
+  "printed": "Odd Mob",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "odd-mob",
+    "role": "performer"
+   }
+  ],
+  "act": "odd-mob",
+  "closing": false,
+  "stageLineage": "coachella:quasar",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d3:quasar:1900:tiesto",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-13",
+  "day": 3,
+  "stage": "Quasar",
+  "start": "19:00",
+  "end": null,
+  "printed": "Tiësto",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tiesto",
+    "role": "performer"
+   }
+  ],
+  "act": "tiesto",
+  "closing": true,
+  "stageLineage": "coachella:quasar",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:coachella:1500:gabe-real",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Coachella",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "Gabe Real",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gabe-real",
+    "role": "performer"
+   }
+  ],
+  "act": "gabe-real",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:coachella:1620:thee-sacred-souls",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Coachella",
+  "start": "16:20",
+  "end": "17:10",
+  "printed": "Thee Sacred Souls",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "thee-sacred-souls",
+    "role": "performer"
+   }
+  ],
+  "act": "thee-sacred-souls",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:coachella:1740:marina",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Coachella",
+  "start": "17:40",
+  "end": "18:30",
+  "printed": "MARINA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marina",
+    "role": "performer"
+   }
+  ],
+  "act": "marina",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:coachella:1910:benson-boone",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Coachella",
+  "start": "19:10",
+  "end": "20:05",
+  "printed": "Benson Boone",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "benson-boone",
+    "role": "performer"
+   }
+  ],
+  "act": "benson-boone",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:coachella:2100:missy-elliott",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Coachella",
+  "start": "21:00",
+  "end": "21:55",
+  "printed": "Missy Elliott",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "missy-elliott",
+    "role": "performer"
+   }
+  ],
+  "act": "missy-elliott",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:coachella:2310:lady-gaga",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Coachella",
+  "start": "23:10",
+  "end": null,
+  "printed": "Lady Gaga",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lady-gaga",
+    "role": "performer"
+   }
+  ],
+  "act": "lady-gaga",
+  "closing": true,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:outdoor:1450:juicewon",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Outdoor",
+  "start": "14:50",
+  "end": "15:50",
+  "printed": "Juicewon",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "juicewon",
+    "role": "performer"
+   }
+  ],
+  "act": "juicewon",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:outdoor:1605:seun-kuti-and-egypt-80",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Outdoor",
+  "start": "16:05",
+  "end": "16:55",
+  "printed": "Seun Kuti & Egypt 80",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "seun-kuti-and-egypt-80",
+    "role": "performer"
+   }
+  ],
+  "act": "seun-kuti-and-egypt-80",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:outdoor:1725:the-go-go-s",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Outdoor",
+  "start": "17:25",
+  "end": "18:15",
+  "printed": "The Go-Go's",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-go-go-s",
+    "role": "performer"
+   }
+  ],
+  "act": "the-go-go-s",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:outdoor:1845:tyla",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Outdoor",
+  "start": "18:45",
+  "end": "19:30",
+  "printed": "Tyla",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tyla",
+    "role": "performer"
+   }
+  ],
+  "act": "tyla",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:outdoor:2020:the-marias",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Outdoor",
+  "start": "20:20",
+  "end": "21:20",
+  "printed": "The Marías",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-marias",
+    "role": "performer"
+   }
+  ],
+  "act": "the-marias",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:outdoor:2210:parcels",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Outdoor",
+  "start": "22:10",
+  "end": null,
+  "printed": "Parcels",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "parcels",
+    "role": "performer"
+   }
+  ],
+  "act": "parcels",
+  "closing": true,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:sonora:1300:jim-smith",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Sonora",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "Jim Smith",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jim-smith",
+    "role": "performer"
+   }
+  ],
+  "act": "jim-smith",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:sonora:1400:glixen",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Sonora",
+  "start": "14:00",
+  "end": "14:30",
+  "printed": "Glixen",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "glixen",
+    "role": "performer"
+   }
+  ],
+  "act": "glixen",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:sonora:1500:vs-self",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Sonora",
+  "start": "15:00",
+  "end": "15:30",
+  "printed": "vs self",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vs-self",
+    "role": "performer"
+   }
+  ],
+  "act": "vs-self",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:sonora:1550:tops",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Sonora",
+  "start": "15:50",
+  "end": "16:30",
+  "printed": "TOPS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tops",
+    "role": "performer"
+   }
+  ],
+  "act": "tops",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:sonora:1700:julie",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Sonora",
+  "start": "17:00",
+  "end": "17:40",
+  "printed": "julie",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "julie",
+    "role": "performer"
+   }
+  ],
+  "act": "julie",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:sonora:1810:kneecap",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Sonora",
+  "start": "18:10",
+  "end": "19:00",
+  "printed": "KNEECAP",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kneecap",
+    "role": "performer"
+   }
+  ],
+  "act": "kneecap",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:sonora:1930:los-mirlos",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Sonora",
+  "start": "19:30",
+  "end": "20:10",
+  "printed": "Los Mirlos",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "los-mirlos",
+    "role": "performer"
+   }
+  ],
+  "act": "los-mirlos",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:sonora:2040:speed",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Sonora",
+  "start": "20:40",
+  "end": "21:20",
+  "printed": "SPEED",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "speed",
+    "role": "performer"
+   }
+  ],
+  "act": "speed",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:sonora:2200:hitech",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Sonora",
+  "start": "22:00",
+  "end": null,
+  "printed": "HiTech",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hitech",
+    "role": "performer"
+   }
+  ],
+  "act": "hitech",
+  "closing": true,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:gobi:1320:busterkun",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Gobi",
+  "start": "13:20",
+  "end": "14:05",
+  "printed": "Busterkun",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "busterkun",
+    "role": "performer"
+   }
+  ],
+  "act": "busterkun",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:gobi:1415:parisi",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Gobi",
+  "start": "14:15",
+  "end": "15:05",
+  "printed": "PARISI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "parisi",
+    "role": "performer"
+   }
+  ],
+  "act": "parisi",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:gobi:1530:maribou-state",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Gobi",
+  "start": "15:30",
+  "end": "16:20",
+  "printed": "Maribou State",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "maribou-state",
+    "role": "performer"
+   }
+  ],
+  "act": "maribou-state",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:gobi:1645:4batz",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Gobi",
+  "start": "16:45",
+  "end": "17:25",
+  "printed": "4batz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "4batz",
+    "role": "performer"
+   }
+  ],
+  "act": "4batz",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:gobi:1755:d4vd",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Gobi",
+  "start": "17:55",
+  "end": "18:35",
+  "printed": "d4vd",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "d4vd",
+    "role": "performer"
+   }
+  ],
+  "act": "d4vd",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:gobi:1900:a-g-cook",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Gobi",
+  "start": "19:00",
+  "end": "19:45",
+  "printed": "A. G. Cook",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "a-g-cook",
+    "role": "performer"
+   }
+  ],
+  "act": "a-g-cook",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:gobi:2015:artemas",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Gobi",
+  "start": "20:15",
+  "end": "21:00",
+  "printed": "Artemas",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "artemas",
+    "role": "performer"
+   }
+  ],
+  "act": "artemas",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:gobi:2130:ca7riel-and-paco-amoroso",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Gobi",
+  "start": "21:30",
+  "end": "22:15",
+  "printed": "CA7RIEL & Paco Amoroso",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ca7riel-and-paco-amoroso",
+    "role": "performer"
+   }
+  ],
+  "act": "ca7riel-and-paco-amoroso",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:gobi:2240:indo-warehouse",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Gobi",
+  "start": "22:40",
+  "end": null,
+  "printed": "Indo Warehouse",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "indo-warehouse",
+    "role": "performer"
+   }
+  ],
+  "act": "indo-warehouse",
+  "closing": true,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:mojave:1330:gingee",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Mojave",
+  "start": "13:30",
+  "end": "14:20",
+  "printed": "GINGEE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gingee",
+    "role": "performer"
+   }
+  ],
+  "act": "gingee",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:mojave:1435:ravyn-lenae",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Mojave",
+  "start": "14:35",
+  "end": "15:15",
+  "printed": "Ravyn Lenae",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ravyn-lenae",
+    "role": "performer"
+   }
+  ],
+  "act": "ravyn-lenae",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:mojave:1540:saint-jhn",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Mojave",
+  "start": "15:40",
+  "end": "16:20",
+  "printed": "SAINt JHN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "saint-jhn",
+    "role": "performer"
+   }
+  ],
+  "act": "saint-jhn",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:mojave:1650:lola-young",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Mojave",
+  "start": "16:50",
+  "end": "17:35",
+  "printed": "Lola Young",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lola-young",
+    "role": "performer"
+   }
+  ],
+  "act": "lola-young",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:mojave:1805:djo",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Mojave",
+  "start": "18:05",
+  "end": "18:50",
+  "printed": "Djo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "djo",
+    "role": "performer"
+   }
+  ],
+  "act": "djo",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:mojave:1920:eyedress",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Mojave",
+  "start": "19:20",
+  "end": "20:05",
+  "printed": "Eyedress",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eyedress",
+    "role": "performer"
+   }
+  ],
+  "act": "eyedress",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:mojave:2035:miike-snow",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Mojave",
+  "start": "20:35",
+  "end": "21:25",
+  "printed": "Miike Snow",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "miike-snow",
+    "role": "performer"
+   }
+  ],
+  "act": "miike-snow",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:mojave:2205:the-prodigy",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Mojave",
+  "start": "22:05",
+  "end": null,
+  "printed": "The Prodigy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-prodigy",
+    "role": "performer"
+   }
+  ],
+  "act": "the-prodigy",
+  "closing": true,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:sahara:1345:loboman",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Sahara",
+  "start": "13:45",
+  "end": "14:45",
+  "printed": "Loboman",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "loboman",
+    "role": "performer"
+   }
+  ],
+  "act": "loboman",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:sahara:1455:austin-millz",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Sahara",
+  "start": "14:55",
+  "end": "15:45",
+  "printed": "Austin Millz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "austin-millz",
+    "role": "performer"
+   }
+  ],
+  "act": "austin-millz",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:sahara:1600:chris-lorenzo",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Sahara",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Chris Lorenzo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chris-lorenzo",
+    "role": "performer"
+   }
+  ],
+  "act": "chris-lorenzo",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:sahara:1715:three-6-mafia",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Sahara",
+  "start": "17:15",
+  "end": "17:55",
+  "printed": "Three 6 Mafia",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "three-6-mafia",
+    "role": "performer"
+   }
+  ],
+  "act": "three-6-mafia",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:sahara:1810:sara-landry",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Sahara",
+  "start": "18:10",
+  "end": "19:05",
+  "printed": "Sara Landry",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sara-landry",
+    "role": "performer"
+   }
+  ],
+  "act": "sara-landry",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:sahara:1945:lisa",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Sahara",
+  "start": "19:45",
+  "end": "20:40",
+  "printed": "LISA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lisa",
+    "role": "performer"
+   }
+  ],
+  "act": "lisa",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:sahara:2110:yeat",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Sahara",
+  "start": "21:10",
+  "end": "21:55",
+  "printed": "Yeat",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yeat",
+    "role": "performer"
+   }
+  ],
+  "act": "yeat",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:sahara:2225:glorilla",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Sahara",
+  "start": "22:25",
+  "end": "23:10",
+  "printed": "GloRilla",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "glorilla",
+    "role": "performer"
+   }
+  ],
+  "act": "glorilla",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:sahara:2350:mustard",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Sahara",
+  "start": "23:50",
+  "end": null,
+  "printed": "Mustard",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mustard",
+    "role": "performer"
+   }
+  ],
+  "act": "mustard",
+  "closing": true,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:yuma:1300:erez",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Yuma",
+  "start": "13:00",
+  "end": "13:45",
+  "printed": "EREZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "erez",
+    "role": "performer"
+   }
+  ],
+  "act": "erez",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:yuma:1345:coco-and-breezy",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Yuma",
+  "start": "13:45",
+  "end": "14:45",
+  "printed": "Coco & Breezy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "coco-and-breezy",
+    "role": "performer"
+   }
+  ],
+  "act": "coco-and-breezy",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:yuma:1445:moon-boots",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Yuma",
+  "start": "14:45",
+  "end": "15:45",
+  "printed": "Moon Boots",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "moon-boots",
+    "role": "performer"
+   }
+  ],
+  "act": "moon-boots",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:yuma:1545:shermanology",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Yuma",
+  "start": "15:45",
+  "end": "16:45",
+  "printed": "Shermanology",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "shermanology",
+    "role": "performer"
+   }
+  ],
+  "act": "shermanology",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:yuma:1645:damian-lazarus",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Yuma",
+  "start": "16:45",
+  "end": "17:45",
+  "printed": "Damian Lazarus",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "damian-lazarus",
+    "role": "performer"
+   }
+  ],
+  "act": "damian-lazarus",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:yuma:1745:beltran",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Yuma",
+  "start": "17:45",
+  "end": "19:00",
+  "printed": "Beltran",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "beltran",
+    "role": "performer"
+   }
+  ],
+  "act": "beltran",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:yuma:1900:tinlicker",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Yuma",
+  "start": "19:00",
+  "end": "20:15",
+  "printed": "Tinlicker",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tinlicker",
+    "role": "performer"
+   }
+  ],
+  "act": "tinlicker",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:yuma:2015:pete-tong-b2b-ahmed-spins",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Yuma",
+  "start": "20:15",
+  "end": "21:45",
+  "printed": "Pete Tong b2b Ahmed Spins",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pete-tong",
+    "role": "b2b"
+   },
+   {
+    "key": "ahmed-spins",
+    "role": "b2b"
+   }
+  ],
+  "act": "pete-tong-b2b-ahmed-spins",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:yuma:2145:chris-stussy",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Yuma",
+  "start": "21:45",
+  "end": "23:15",
+  "printed": "Chris Stussy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chris-stussy",
+    "role": "performer"
+   }
+  ],
+  "act": "chris-stussy",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:yuma:2315:vintage-culture",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Yuma",
+  "start": "23:15",
+  "end": null,
+  "printed": "Vintage Culture",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vintage-culture",
+    "role": "performer"
+   }
+  ],
+  "act": "vintage-culture",
+  "closing": true,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:quasar:1700:rafael-x-miluhska",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Quasar",
+  "start": "17:00",
+  "end": "19:00",
+  "printed": "Rafael x Miluhska",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rafael-x-miluhska",
+    "role": "collab"
+   }
+  ],
+  "act": "rafael-x-miluhska",
+  "closing": false,
+  "stageLineage": "coachella:quasar",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d4:quasar:1900:testpilot-x-zhu",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-18",
+  "day": 4,
+  "stage": "Quasar",
+  "start": "19:00",
+  "end": null,
+  "printed": "Testpilot x Zhu",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "testpilot-x-zhu",
+    "role": "collab"
+   }
+  ],
+  "act": "testpilot-x-zhu",
+  "closing": true,
+  "stageLineage": "coachella:quasar",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:coachella:1445:record-safari",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Coachella",
+  "start": "14:45",
+  "end": "15:45",
+  "printed": "Record Safari",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "record-safari",
+    "role": "performer"
+   }
+  ],
+  "act": "record-safari",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:coachella:1600:jimmy-eat-world",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Coachella",
+  "start": "16:00",
+  "end": "16:50",
+  "printed": "Jimmy Eat World",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jimmy-eat-world",
+    "role": "performer"
+   }
+  ],
+  "act": "jimmy-eat-world",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:coachella:1725:t-pain",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Coachella",
+  "start": "17:25",
+  "end": "18:15",
+  "printed": "T-Pain",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "t-pain",
+    "role": "performer"
+   }
+  ],
+  "act": "t-pain",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:coachella:1915:charli-xcx",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Coachella",
+  "start": "19:15",
+  "end": "20:10",
+  "printed": "Charli xcx",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "charli-xcx",
+    "role": "performer"
+   }
+  ],
+  "act": "charli-xcx",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:coachella:2105:green-day",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Coachella",
+  "start": "21:05",
+  "end": "22:45",
+  "printed": "Green Day",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "green-day",
+    "role": "performer"
+   }
+  ],
+  "act": "green-day",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:coachella:2340:travis-scott",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Coachella",
+  "start": "23:40",
+  "end": null,
+  "printed": "Travis Scott",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "travis-scott",
+    "role": "performer"
+   }
+  ],
+  "act": "travis-scott",
+  "closing": true,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:outdoor:1445:skrause",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Outdoor",
+  "start": "14:45",
+  "end": "15:45",
+  "printed": "skrause",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "skrause",
+    "role": "performer"
+   }
+  ],
+  "act": "skrause",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:outdoor:1600:tink",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Outdoor",
+  "start": "16:00",
+  "end": "16:35",
+  "printed": "Tink",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tink",
+    "role": "performer"
+   }
+  ],
+  "act": "tink",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:outdoor:1705:japanese-breakfast",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Outdoor",
+  "start": "17:05",
+  "end": "17:50",
+  "printed": "Japanese Breakfast",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "japanese-breakfast",
+    "role": "performer"
+   }
+  ],
+  "act": "japanese-breakfast",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:outdoor:1825:gustavo-dudamel-and-la-phil",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Outdoor",
+  "start": "18:25",
+  "end": "19:15",
+  "printed": "Gustavo Dudamel & LA Phil",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gustavo-dudamel-and-la-phil",
+    "role": "performer"
+   }
+  ],
+  "act": "gustavo-dudamel-and-la-phil",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:outdoor:2015:clairo",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Outdoor",
+  "start": "20:15",
+  "end": "21:05",
+  "printed": "Clairo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "clairo",
+    "role": "performer"
+   }
+  ],
+  "act": "clairo",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:outdoor:2145:above-and-beyond",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Outdoor",
+  "start": "21:45",
+  "end": "22:45",
+  "printed": "Above & Beyond",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "above-and-beyond",
+    "role": "performer"
+   }
+  ],
+  "act": "above-and-beyond",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:outdoor:2320:the-original-misfits",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Outdoor",
+  "start": "23:20",
+  "end": null,
+  "printed": "The Original Misfits",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-original-misfits",
+    "role": "performer"
+   }
+  ],
+  "act": "the-original-misfits",
+  "closing": true,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:sonora:1300:buster-jarvis",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Sonora",
+  "start": "13:00",
+  "end": "13:50",
+  "printed": "Buster Jarvis",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "buster-jarvis",
+    "role": "performer"
+   }
+  ],
+  "act": "buster-jarvis",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:sonora:1350:prison-affair",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Sonora",
+  "start": "13:50",
+  "end": "14:20",
+  "printed": "Prison Affair",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "prison-affair",
+    "role": "performer"
+   }
+  ],
+  "act": "prison-affair",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:sonora:1440:together-pangea",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Sonora",
+  "start": "14:40",
+  "end": "15:20",
+  "printed": "Together Pangea",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "together-pangea",
+    "role": "performer"
+   }
+  ],
+  "act": "together-pangea",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:sonora:1550:judeline",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Sonora",
+  "start": "15:50",
+  "end": "16:30",
+  "printed": "Judeline",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "judeline",
+    "role": "performer"
+   }
+  ],
+  "act": "judeline",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:sonora:1700:underscores",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Sonora",
+  "start": "17:00",
+  "end": "17:40",
+  "printed": "underscores",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "underscores",
+    "role": "performer"
+   }
+  ],
+  "act": "underscores",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:sonora:1810:blonde-redhead",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Sonora",
+  "start": "18:10",
+  "end": "19:00",
+  "printed": "Blonde Redhead",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "blonde-redhead",
+    "role": "performer"
+   }
+  ],
+  "act": "blonde-redhead",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:sonora:2030:vtss",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Sonora",
+  "start": "20:30",
+  "end": "21:20",
+  "printed": "VTSS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vtss",
+    "role": "performer"
+   }
+  ],
+  "act": "vtss",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:sonora:2150:el-malilla",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Sonora",
+  "start": "21:50",
+  "end": null,
+  "printed": "El Malilla",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "el-malilla",
+    "role": "performer"
+   }
+  ],
+  "act": "el-malilla",
+  "closing": true,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:gobi:1330:rick-g",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Gobi",
+  "start": "13:30",
+  "end": "14:00",
+  "printed": "Rick G",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rick-g",
+    "role": "performer"
+   }
+  ],
+  "act": "rick-g",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:gobi:1410:medium-build",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Gobi",
+  "start": "14:10",
+  "end": "14:50",
+  "printed": "Medium Build",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "medium-build",
+    "role": "performer"
+   }
+  ],
+  "act": "medium-build",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:gobi:1605:glass-beams",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Gobi",
+  "start": "16:05",
+  "end": "16:50",
+  "printed": "Glass Beams",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "glass-beams",
+    "role": "performer"
+   }
+  ],
+  "act": "glass-beams",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:gobi:1715:viagra-boys",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Gobi",
+  "start": "17:15",
+  "end": "18:00",
+  "printed": "Viagra Boys",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "viagra-boys",
+    "role": "performer"
+   }
+  ],
+  "act": "viagra-boys",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:gobi:1830:2hollis",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Gobi",
+  "start": "18:30",
+  "end": "19:15",
+  "printed": "2hollis",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "2hollis",
+    "role": "performer"
+   }
+  ],
+  "act": "2hollis",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:gobi:2020:darkside",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Gobi",
+  "start": "20:20",
+  "end": "21:10",
+  "printed": "Darkside",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "darkside",
+    "role": "performer"
+   }
+  ],
+  "act": "darkside",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:gobi:2140:beth-gibbons",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Gobi",
+  "start": "21:40",
+  "end": "22:30",
+  "printed": "Beth Gibbons",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "beth-gibbons",
+    "role": "performer"
+   }
+  ],
+  "act": "beth-gibbons",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:gobi:2300:rawayana",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Gobi",
+  "start": "23:00",
+  "end": null,
+  "printed": "Rawayana",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rawayana",
+    "role": "performer"
+   }
+  ],
+  "act": "rawayana",
+  "closing": true,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:mojave:1500:ed-sheeran",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Mojave",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "Ed Sheeran",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ed-sheeran",
+    "role": "performer"
+   }
+  ],
+  "act": "ed-sheeran",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:mojave:1645:yo-gabba-gabba",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Mojave",
+  "start": "16:45",
+  "end": "17:30",
+  "printed": "Yo Gabba Gabba!",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yo-gabba-gabba",
+    "role": "performer"
+   }
+  ],
+  "act": "yo-gabba-gabba",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:mojave:1755:sam-fender",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Mojave",
+  "start": "17:55",
+  "end": "18:40",
+  "printed": "Sam Fender",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sam-fender",
+    "role": "performer"
+   }
+  ],
+  "act": "sam-fender",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:mojave:1915:ivan-cornejo",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Mojave",
+  "start": "19:15",
+  "end": "20:00",
+  "printed": "Ivan Cornejo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ivan-cornejo",
+    "role": "performer"
+   }
+  ],
+  "act": "ivan-cornejo",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:mojave:2025:hanumankind",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Mojave",
+  "start": "20:25",
+  "end": "21:05",
+  "printed": "Hanumankind",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hanumankind",
+    "role": "performer"
+   }
+  ],
+  "act": "hanumankind",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:mojave:2145:horsegiirl",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Mojave",
+  "start": "21:45",
+  "end": "22:30",
+  "printed": "horsegiirL",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "horsegiirl",
+    "role": "performer"
+   }
+  ],
+  "act": "horsegiirl",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:mojave:2300:the-dare",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Mojave",
+  "start": "23:00",
+  "end": null,
+  "printed": "The Dare",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-dare",
+    "role": "performer"
+   }
+  ],
+  "act": "the-dare",
+  "closing": true,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:sahara:1350:talon",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Sahara",
+  "start": "13:50",
+  "end": "14:50",
+  "printed": "Talón",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "talon",
+    "role": "performer"
+   }
+  ],
+  "act": "talon",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:sahara:1505:salute",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Sahara",
+  "start": "15:05",
+  "end": "15:55",
+  "printed": "salute",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "salute",
+    "role": "performer"
+   }
+  ],
+  "act": "salute",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:sahara:1610:alok",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Sahara",
+  "start": "16:10",
+  "end": "17:05",
+  "printed": "Alok",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alok",
+    "role": "performer"
+   }
+  ],
+  "act": "alok",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:sahara:1725:disco-lines",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Sahara",
+  "start": "17:25",
+  "end": "18:25",
+  "printed": "Disco Lines",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "disco-lines",
+    "role": "performer"
+   }
+  ],
+  "act": "disco-lines",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:sahara:1845:shoreline-mafia",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Sahara",
+  "start": "18:45",
+  "end": "19:30",
+  "printed": "Shoreline Mafia",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "shoreline-mafia",
+    "role": "performer"
+   }
+  ],
+  "act": "shoreline-mafia",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:sahara:2035:enhypen",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Sahara",
+  "start": "20:35",
+  "end": "21:20",
+  "printed": "ENHYPEN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "enhypen",
+    "role": "performer"
+   }
+  ],
+  "act": "enhypen",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:sahara:2150:mau-p",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Sahara",
+  "start": "21:50",
+  "end": "22:50",
+  "printed": "Mau P",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mau-p",
+    "role": "performer"
+   }
+  ],
+  "act": "mau-p",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:sahara:2330:keinemusik",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Sahara",
+  "start": "23:30",
+  "end": null,
+  "printed": "Keinemusik",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "keinemusik",
+    "role": "performer"
+   }
+  ],
+  "act": "keinemusik",
+  "closing": true,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:yuma:1300:haai",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Yuma",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "HAAi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "haai",
+    "role": "performer"
+   }
+  ],
+  "act": "haai",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:yuma:1400:dj-gigola",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Yuma",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "DJ Gigola",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-gigola",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-gigola",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:yuma:1500:layton-giordani",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Yuma",
+  "start": "15:00",
+  "end": "16:15",
+  "printed": "Layton Giordani",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "layton-giordani",
+    "role": "performer"
+   }
+  ],
+  "act": "layton-giordani",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:yuma:1615:klangkuenstler",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Yuma",
+  "start": "16:15",
+  "end": "17:30",
+  "printed": "Klangkuenstler",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "klangkuenstler",
+    "role": "performer"
+   }
+  ],
+  "act": "klangkuenstler",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:yuma:1730:indira-paganotto",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Yuma",
+  "start": "17:30",
+  "end": "18:45",
+  "printed": "Indira Paganotto",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "indira-paganotto",
+    "role": "performer"
+   }
+  ],
+  "act": "indira-paganotto",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:yuma:1845:infected-mushroom",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Yuma",
+  "start": "18:45",
+  "end": "20:00",
+  "printed": "Infected Mushroom",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "infected-mushroom",
+    "role": "performer"
+   }
+  ],
+  "act": "infected-mushroom",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:yuma:2000:mind-against-b2b-massano",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Yuma",
+  "start": "20:00",
+  "end": "21:30",
+  "printed": "Mind Against b2b Massano",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mind-against",
+    "role": "b2b"
+   },
+   {
+    "key": "massano",
+    "role": "b2b"
+   }
+  ],
+  "act": "mind-against-b2b-massano",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:yuma:2130:amelie-lens",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Yuma",
+  "start": "21:30",
+  "end": "23:00",
+  "printed": "Amelie Lens",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "amelie-lens",
+    "role": "performer"
+   }
+  ],
+  "act": "amelie-lens",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:yuma:2300:eli-brown",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Yuma",
+  "start": "23:00",
+  "end": null,
+  "printed": "Eli Brown",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eli-brown",
+    "role": "performer"
+   }
+  ],
+  "act": "eli-brown",
+  "closing": true,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:quasar:1800:tripolism-x-erez",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Quasar",
+  "start": "18:00",
+  "end": "20:00",
+  "printed": "Tripolism x EREZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tripolism-x-erez",
+    "role": "collab"
+   }
+  ],
+  "act": "tripolism-x-erez",
+  "closing": false,
+  "stageLineage": "coachella:quasar",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d5:quasar:2000:kaskade-redux-x-idris",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-19",
+  "day": 5,
+  "stage": "Quasar",
+  "start": "20:00",
+  "end": null,
+  "printed": "Kaskade Redux x IDRIS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kaskade-redux-x-idris",
+    "role": "act"
+   }
+  ],
+  "act": "kaskade-redux-x-idris",
+  "closing": true,
+  "stageLineage": "coachella:quasar",
+  "mainStage": null,
+  "review": "\"x\" billing whose sides are not both known acts"
+ },
+ {
+  "id": "coachella-2025:d6:coachella:1500:jaqck-glam",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Coachella",
+  "start": "15:00",
+  "end": "15:55",
+  "printed": "Jaqck Glam",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jaqck-glam",
+    "role": "performer"
+   }
+  ],
+  "act": "jaqck-glam",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:coachella:1605:shaboozey",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Coachella",
+  "start": "16:05",
+  "end": "16:50",
+  "printed": "Shaboozey",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "shaboozey",
+    "role": "performer"
+   }
+  ],
+  "act": "shaboozey",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:coachella:1725:beabadoobee",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Coachella",
+  "start": "17:25",
+  "end": "18:15",
+  "printed": "beabadoobee",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "beabadoobee",
+    "role": "performer"
+   }
+  ],
+  "act": "beabadoobee",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:coachella:1900:junior-h",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Coachella",
+  "start": "19:00",
+  "end": "19:50",
+  "printed": "Junior H",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "junior-h",
+    "role": "performer"
+   }
+  ],
+  "act": "junior-h",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:coachella:2035:megan-thee-stallion",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Coachella",
+  "start": "20:35",
+  "end": "21:25",
+  "printed": "Megan Thee Stallion",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "megan-thee-stallion",
+    "role": "performer"
+   }
+  ],
+  "act": "megan-thee-stallion",
+  "closing": false,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:coachella:2225:post-malone",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Coachella",
+  "start": "22:25",
+  "end": null,
+  "printed": "Post Malone",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "post-malone",
+    "role": "performer"
+   }
+  ],
+  "act": "post-malone",
+  "closing": true,
+  "stageLineage": "coachella:coachella",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:outdoor:1540:meute",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Outdoor",
+  "start": "15:40",
+  "end": "16:30",
+  "printed": "MEUTE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "meute",
+    "role": "performer"
+   }
+  ],
+  "act": "meute",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:outdoor:1700:keshi",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Outdoor",
+  "start": "17:00",
+  "end": "17:45",
+  "printed": "Keshi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "keshi",
+    "role": "performer"
+   }
+  ],
+  "act": "keshi",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:outdoor:1815:still-woozy",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Outdoor",
+  "start": "18:15",
+  "end": "19:00",
+  "printed": "Still Woozy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "still-woozy",
+    "role": "performer"
+   }
+  ],
+  "act": "still-woozy",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:outdoor:1945:jennie",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Outdoor",
+  "start": "19:45",
+  "end": "20:35",
+  "printed": "Jennie",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jennie",
+    "role": "performer"
+   }
+  ],
+  "act": "jennie",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:outdoor:2110:zedd",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Outdoor",
+  "start": "21:10",
+  "end": "22:10",
+  "printed": "Zedd",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zedd",
+    "role": "performer"
+   }
+  ],
+  "act": "zedd",
+  "closing": false,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:outdoor:2255:polo-and-pan",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Outdoor",
+  "start": "22:55",
+  "end": null,
+  "printed": "Polo & Pan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "polo-and-pan",
+    "role": "performer"
+   }
+  ],
+  "act": "polo-and-pan",
+  "closing": true,
+  "stageLineage": "coachella:outdoor",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:sonora:1300:salado",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Sonora",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "Salado",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "salado",
+    "role": "performer"
+   }
+  ],
+  "act": "salado",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:sonora:1400:kumo-99",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Sonora",
+  "start": "14:00",
+  "end": "14:30",
+  "printed": "Kumo 99",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kumo-99",
+    "role": "performer"
+   }
+  ],
+  "act": "kumo-99",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:sonora:1500:bob-vylan",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Sonora",
+  "start": "15:00",
+  "end": "15:40",
+  "printed": "Bob Vylan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bob-vylan",
+    "role": "performer"
+   }
+  ],
+  "act": "bob-vylan",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:sonora:1610:wisp",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Sonora",
+  "start": "16:10",
+  "end": "16:50",
+  "printed": "Wisp",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wisp",
+    "role": "performer"
+   }
+  ],
+  "act": "wisp",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:sonora:1720:soft-play",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Sonora",
+  "start": "17:20",
+  "end": "18:00",
+  "printed": "SOFT PLAY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "soft-play",
+    "role": "performer"
+   }
+  ],
+  "act": "soft-play",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:sonora:1830:circle-jerks",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Sonora",
+  "start": "18:30",
+  "end": "19:10",
+  "printed": "Circle Jerks",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "circle-jerks",
+    "role": "performer"
+   }
+  ],
+  "act": "circle-jerks",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:sonora:1940:ginger-root",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Sonora",
+  "start": "19:40",
+  "end": "20:35",
+  "printed": "Ginger Root",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ginger-root",
+    "role": "performer"
+   }
+  ],
+  "act": "ginger-root",
+  "closing": false,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:sonora:2105:snow-strippers",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Sonora",
+  "start": "21:05",
+  "end": null,
+  "printed": "Snow Strippers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "snow-strippers",
+    "role": "performer"
+   }
+  ],
+  "act": "snow-strippers",
+  "closing": true,
+  "stageLineage": "coachella:sonora",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:gobi:1330:ksofresko",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Gobi",
+  "start": "13:30",
+  "end": "14:25",
+  "printed": "KsoFresko",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ksofresko",
+    "role": "performer"
+   }
+  ],
+  "act": "ksofresko",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:gobi:1440:hope-tala",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Gobi",
+  "start": "14:40",
+  "end": "15:20",
+  "printed": "Hope Tala",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hope-tala",
+    "role": "performer"
+   }
+  ],
+  "act": "hope-tala",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:gobi:1545:the-beaches",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Gobi",
+  "start": "15:45",
+  "end": "16:30",
+  "printed": "The Beaches",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-beaches",
+    "role": "performer"
+   }
+  ],
+  "act": "the-beaches",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:gobi:1700:amaarae",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Gobi",
+  "start": "17:00",
+  "end": "17:45",
+  "printed": "Amaarae",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "amaarae",
+    "role": "performer"
+   }
+  ],
+  "act": "amaarae",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:gobi:1820:mohamed-ramadan",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Gobi",
+  "start": "18:20",
+  "end": "19:00",
+  "printed": "Mohamed Ramadan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mohamed-ramadan",
+    "role": "performer"
+   }
+  ],
+  "act": "mohamed-ramadan",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:gobi:1925:bigxthaplug",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Gobi",
+  "start": "19:25",
+  "end": "20:05",
+  "printed": "BigXthaPlug",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bigxthaplug",
+    "role": "performer"
+   }
+  ],
+  "act": "bigxthaplug",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:gobi:2035:arca",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Gobi",
+  "start": "20:35",
+  "end": "21:25",
+  "printed": "Arca",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "arca",
+    "role": "performer"
+   }
+  ],
+  "act": "arca",
+  "closing": false,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:gobi:2155:amyl-and-the-sniffers",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Gobi",
+  "start": "21:55",
+  "end": null,
+  "printed": "Amyl and the Sniffers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "amyl-and-the-sniffers",
+    "role": "performer"
+   }
+  ],
+  "act": "amyl-and-the-sniffers",
+  "closing": true,
+  "stageLineage": "coachella:gobi",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:mojave:1345:canyon-cody",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Mojave",
+  "start": "13:45",
+  "end": "14:45",
+  "printed": "Canyon Cody",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "canyon-cody",
+    "role": "performer"
+   }
+  ],
+  "act": "canyon-cody",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:mojave:1500:fcukers",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Mojave",
+  "start": "15:00",
+  "end": "15:40",
+  "printed": "Fcukers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fcukers",
+    "role": "performer"
+   }
+  ],
+  "act": "fcukers",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:mojave:1610:muni-long",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Mojave",
+  "start": "16:10",
+  "end": "16:55",
+  "printed": "Muni Long",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "muni-long",
+    "role": "performer"
+   }
+  ],
+  "act": "muni-long",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:mojave:1725:jessie-murph",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Mojave",
+  "start": "17:25",
+  "end": "18:10",
+  "printed": "Jessie Murph",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jessie-murph",
+    "role": "performer"
+   }
+  ],
+  "act": "jessie-murph",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:mojave:1840:rema",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Mojave",
+  "start": "18:40",
+  "end": "19:25",
+  "printed": "Rema",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rema",
+    "role": "performer"
+   }
+  ],
+  "act": "rema",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:mojave:2000:basement-jaxx",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Mojave",
+  "start": "20:00",
+  "end": "20:50",
+  "printed": "Basement Jaxx",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "basement-jaxx",
+    "role": "performer"
+   }
+  ],
+  "act": "basement-jaxx",
+  "closing": false,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:mojave:2125:kraftwerk",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Mojave",
+  "start": "21:25",
+  "end": null,
+  "printed": "Kraftwerk",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kraftwerk",
+    "role": "performer"
+   }
+  ],
+  "act": "kraftwerk",
+  "closing": true,
+  "stageLineage": "coachella:mojave",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:sahara:1400:tom-breu",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Sahara",
+  "start": "14:00",
+  "end": "15:30",
+  "printed": "Tom Breu",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tom-breu",
+    "role": "performer"
+   }
+  ],
+  "act": "tom-breu",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:sahara:1540:interplanetary-criminal",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Sahara",
+  "start": "15:40",
+  "end": "16:40",
+  "printed": "Interplanetary Criminal",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "interplanetary-criminal",
+    "role": "performer"
+   }
+  ],
+  "act": "interplanetary-criminal",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:sahara:1700:ben-bohmer",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Sahara",
+  "start": "17:00",
+  "end": "17:45",
+  "printed": "Ben Böhmer",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ben-bohmer",
+    "role": "performer"
+   }
+  ],
+  "act": "ben-bohmer",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:sahara:1800:sammy-virji",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Sahara",
+  "start": "18:00",
+  "end": "18:50",
+  "printed": "Sammy Virji",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sammy-virji",
+    "role": "performer"
+   }
+  ],
+  "act": "sammy-virji",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:sahara:1900:boris-brejcha",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Sahara",
+  "start": "19:00",
+  "end": "19:50",
+  "printed": "Boris Brejcha",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "boris-brejcha",
+    "role": "performer"
+   }
+  ],
+  "act": "boris-brejcha",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:sahara:2010:chase-and-status",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Sahara",
+  "start": "20:10",
+  "end": "21:10",
+  "printed": "Chase & Status",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chase-and-status",
+    "role": "performer"
+   }
+  ],
+  "act": "chase-and-status",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:sahara:2135:ty-dolla-ign",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Sahara",
+  "start": "21:35",
+  "end": "22:20",
+  "printed": "Ty Dolla $ign",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ty-dolla-ign",
+    "role": "performer"
+   }
+  ],
+  "act": "ty-dolla-ign",
+  "closing": false,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:sahara:2255:xg",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Sahara",
+  "start": "22:55",
+  "end": null,
+  "printed": "XG",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "xg",
+    "role": "performer"
+   }
+  ],
+  "act": "xg",
+  "closing": true,
+  "stageLineage": "coachella:sahara",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:yuma:1300:yulia-niko",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Yuma",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "Yulia Niko",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yulia-niko",
+    "role": "performer"
+   }
+  ],
+  "act": "yulia-niko",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:yuma:1400:ameme",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Yuma",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "AMÉMÉ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ameme",
+    "role": "performer"
+   }
+  ],
+  "act": "ameme",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:yuma:1500:desiree",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Yuma",
+  "start": "15:00",
+  "end": "16:30",
+  "printed": "DESIREE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "desiree",
+    "role": "performer"
+   }
+  ],
+  "act": "desiree",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:yuma:1630:tripolism",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Yuma",
+  "start": "16:30",
+  "end": "18:00",
+  "printed": "Tripolism",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tripolism",
+    "role": "performer"
+   }
+  ],
+  "act": "tripolism",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:yuma:1800:sparrow-and-barbossa",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Yuma",
+  "start": "18:00",
+  "end": "19:30",
+  "printed": "Sparrow & Barbossa",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sparrow-and-barbossa",
+    "role": "performer"
+   }
+  ],
+  "act": "sparrow-and-barbossa",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:yuma:1930:dennis-cruz",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Yuma",
+  "start": "19:30",
+  "end": "21:00",
+  "printed": "Dennis Cruz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dennis-cruz",
+    "role": "performer"
+   }
+  ],
+  "act": "dennis-cruz",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:yuma:2100:francis-mercier",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Yuma",
+  "start": "21:00",
+  "end": "22:30",
+  "printed": "Francis Mercier",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "francis-mercier",
+    "role": "performer"
+   }
+  ],
+  "act": "francis-mercier",
+  "closing": false,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:yuma:2230:dixon-b2b-jimi-jules",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Yuma",
+  "start": "22:30",
+  "end": null,
+  "printed": "Dixon b2b Jimi Jules",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dixon",
+    "role": "b2b"
+   },
+   {
+    "key": "jimi-jules",
+    "role": "b2b"
+   }
+  ],
+  "act": "dixon-b2b-jimi-jules",
+  "closing": true,
+  "stageLineage": "coachella:yuma",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:quasar:1700:azzecca-x-annicka",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Quasar",
+  "start": "17:00",
+  "end": "19:00",
+  "printed": "Azzecca x Annicka",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "azzecca-x-annicka",
+    "role": "collab"
+   }
+  ],
+  "act": "azzecca-x-annicka",
+  "closing": false,
+  "stageLineage": "coachella:quasar",
+  "mainStage": null
+ },
+ {
+  "id": "coachella-2025:d6:quasar:1900:alesso-body-hi-x-gorgon-city",
+  "source": "edition",
+  "festivalId": "coachella-2025",
+  "festivalBrand": "coachella",
+  "year": 2025,
+  "date": "2025-04-20",
+  "day": 6,
+  "stage": "Quasar",
+  "start": "19:00",
+  "end": null,
+  "printed": "Alesso Body Hi x Gorgon City",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alesso-body-hi-x-gorgon-city",
+    "role": "act"
+   }
+  ],
+  "act": "alesso-body-hi-x-gorgon-city",
+  "closing": true,
+  "stageLineage": "coachella:quasar",
+  "mainStage": null,
+  "review": "\"x\" billing whose sides are not both known acts"
+ },
+ {
   "id": "defqon1-2015:d1:blue:2000:max-enforcer",
   "source": "edition",
   "festivalId": "defqon1-2015",

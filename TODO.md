@@ -146,6 +146,10 @@ Re-run any claim here with `node scripts/anchor-residuals.mjs`.
 - [x] **Re-verify Govball `snapchat`** — settled via the official 2026
       patron map in #320 (north/south conflict closed; blind waiver re-dated).
 
+## 🖼️ FESTIVAL ART + NEW FAMILIES — tracker rows (2026-11-22, main `c118352a`)
+- [ ] **Official art for 17 registry festivals with no art entry** (strict audit on main `c118352a`, 2026-11-22; each shows its letter tile, which `scripts/test-festival-art.mjs` accepts as the fallback): bass-canyon-2027, bottlerock-2027, bumbershoot-2027, day-zero-tulum-2027, edc-lv-2027, lightning-in-a-bottle-2027, lollapalooza-argentina-2027, lollapalooza-brasil-2027, lollapalooza-chile-2027, lollapalooza-india-2027, medusa-2027, sonar-2027, suenos-2027, time-warp-2027, tomorrowland-winter-2027, ultra-south-africa-2027, world-club-dome-2027. Each tile needs first-party art with its provenance in `festival-art/PROVENANCE.md`; nothing traced, nothing generated to look official.
+- [ ] **Rolling Loud Orlando 2026 (May 8–10)**: not in the registry or the census. A new festival family, built from official sources only, one festival per session, after the lineup batch. Tracker row, not a build yet.
+
 ## 🎪 MULTI-FESTIVAL EXPANSION WAVE — full spec: `docs/SPEC-add-festivals.md` (2026-06-06)
 Why: the Radiate partnership pitch (drafted, **HOLDING — NOT sent**; copy in Jake's Mail drafts → radtherhino@radiatetheworld.com) needs festival coverage matching Radiate's biggest communities first. One festival per fresh session:
 1. [ ] **Electric Forest** (Jun 25–28 — TIME-CRITICAL, 93k Radiate members) + prerequisite refactor: data.jsx `_isACL` ternary → `_DATA_SETS` registry lookup; also generalize `_artistsForFestival` (spotify.jsx)

@@ -687,6 +687,8 @@
   "billings": [
    "governors-ball-2026:go24",
    "hard-summer-2026:hs2-2hollis",
+   "coachella-2025:d2:gobi:1830:2hollis",
+   "coachella-2025:d5:gobi:1830:2hollis",
    "lollapalooza-2024:d3:sonny-s:1415:2hollis",
    "lollapalooza-2025:d1:the-grove:1945:2hollis",
    "outside-lands-2025:d2:sutro:1905:2hollis"
@@ -983,6 +985,22 @@
   ],
   "firstSeen": "2016-03-18",
   "lastSeen": "2024-11-10",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "4batz",
+  "name": "4batz",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d1:gobi:1645:4batz",
+   "coachella-2025:d4:gobi:1645:4batz"
+  ],
+  "firstSeen": "2025-04-11",
+  "lastSeen": "2025-04-18",
   "photo": null,
   "links": []
  },
@@ -1580,6 +1598,22 @@
   ],
   "firstSeen": "2023-08-13",
   "lastSeen": "2023-08-13",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "a-g-cook",
+  "name": "A. G. Cook",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d1:gobi:1900:a-g-cook",
+   "coachella-2025:d4:gobi:1900:a-g-cook"
+  ],
+  "firstSeen": "2025-04-11",
+  "lastSeen": "2025-04-18",
   "photo": null,
   "links": []
  },
@@ -2465,6 +2499,8 @@
    "edc-thailand-2026:edcth-above-and-beyond",
    "acl-2023:d1:t-mobile:1900:above-and-beyond",
    "acl-2023:d4:t-mobile:1900:above-and-beyond",
+   "coachella-2025:d2:outdoor:2145:above-and-beyond",
+   "coachella-2025:d5:outdoor:2145:above-and-beyond",
    "dreamstate-socal-2019:d2:the-dream:2300:above-and-beyond",
    "dreamstate-socal-2024:d2:the-dream:2200:above-and-beyond",
    "edc-las-vegas-2012:d1:circuitgrounds:0030:above-and-beyond",
@@ -4679,6 +4715,8 @@
    "edc-lv-2026:n10",
    "iii-points-2026:iiip-ahmed-spins-b2b-omri",
    "time-warp-2027:tw27-ahmed-spins",
+   "coachella-2025:d1:yuma:2015:pete-tong-b2b-ahmed-spins",
+   "coachella-2025:d4:yuma:2015:pete-tong-b2b-ahmed-spins",
    "edc-las-vegas-2025:d2:stereo-bloom:2100:ahmed-spins",
    "edc-las-vegas-2025:d3:bionic-jungle:0200:ben-sterling-b2b-ahmed-spins",
    "edc-orlando-2024:d2:stereo-bloom:1900:ahmed-spins-b2b-jaden-thompson"
@@ -6097,6 +6135,21 @@
   ],
   "firstSeen": "2011-07-22",
   "lastSeen": "2027-02-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "alesso-body-hi-x-gorgon-city",
+  "name": "Alesso Body Hi x Gorgon City",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d6:quasar:1900:alesso-body-hi-x-gorgon-city"
+  ],
+  "firstSeen": "2025-04-20",
+  "lastSeen": "2025-04-20",
   "photo": null,
   "links": []
  },
@@ -7755,6 +7808,8 @@
    "dwp-2026:dwp-alok",
    "tomorrowland-thailand-2026:tmlth-alok",
    "beyond-wonderland-socal-2026:d2:queen-s-domain:2155:alok",
+   "coachella-2025:d2:sahara:1610:alok",
+   "coachella-2025:d5:sahara:1610:alok",
    "edc-las-vegas-2022:d3:kinetic-field:2309:alok",
    "edc-las-vegas-2025:d1:kinetic-field:2100:alok",
    "edc-orlando-2022:d3:kinetic-field:2014:alok",
@@ -8511,14 +8566,18 @@
  },
  {
   "key": "amaarae",
-  "name": "AMAARAE",
-  "aliases": [],
+  "name": "Amaarae",
+  "aliases": [
+   "AMAARAE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "acl-2023:d2:ihg-hotels-and-resorts:1515:amaarae",
    "acl-2023:d5:ihg-hotels-and-resorts:1515:amaarae",
+   "coachella-2025:d3:gobi:1700:amaarae",
+   "coachella-2025:d6:gobi:1700:amaarae",
    "governors-ball-2025:d3:kiehl-s:1430:amaarae",
    "lollapalooza-2025:d2:lakeshore:1740:amaarae"
   ],
@@ -8978,6 +9037,8 @@
   "billings": [
    "ultra-miami-2026:ul137",
    "hard-summer-2026:hs2-amelie-lens",
+   "coachella-2025:d2:yuma:2130:amelie-lens",
+   "coachella-2025:d5:yuma:2130:amelie-lens",
    "edc-las-vegas-2025:d3:neon-garden:0130:amelie-lens",
    "edc-orlando-2021:d3:neon-garden:2100:amelie-lens",
    "edc-orlando-2024:d3:neon-garden:2230:amelie-lens",
@@ -9030,6 +9091,8 @@
    "tomorrowland-thailand-2026:tmlth-ameme-b2b-honeyluv",
    "coachella-2022:d3:yuma:1315:ameme",
    "coachella-2022:d6:yuma:1300:ameme",
+   "coachella-2025:d3:yuma:1400:ameme",
+   "coachella-2025:d6:yuma:1400:ameme",
    "edc-las-vegas-2025:d2:stereo-bloom:0145:ameme",
    "edc-las-vegas-2025:d3:ubuntu:2330:one-tribe-presents-ameme-b2b-baron",
    "edc-orlando-2024:d2:stereo-bloom:2015:ameme-b2b-honeyluv",
@@ -9560,9 +9623,9 @@
  },
  {
   "key": "amyl-and-the-sniffers",
-  "name": "Amyl & the Sniffers",
+  "name": "Amyl and the Sniffers",
   "aliases": [
-   "Amyl and the Sniffers",
+   "Amyl & the Sniffers",
    "Amyl and The Sniffers",
    "Amyl And The Sniffers",
    "AMYL AND THE SNIFFERS"
@@ -9575,6 +9638,8 @@
    "summerfest-2026:su69",
    "coachella-2022:d1:sonora:2100:amyl-and-the-sniffers",
    "coachella-2022:d4:sonora:2100:amyl-and-the-sniffers",
+   "coachella-2025:d3:gobi:2155:amyl-and-the-sniffers",
+   "coachella-2025:d6:gobi:2155:amyl-and-the-sniffers",
    "outside-lands-2024:d2:twin-peaks:1610:amyl-and-the-sniffers",
    "primavera-sound-2019:d3:adidas-originals:0000:amyl-and-the-sniffers"
   ],
@@ -11635,7 +11700,9 @@
   "aliases": [],
   "kind": "performer",
   "parents": [],
-  "projects": [],
+  "projects": [
+   "azzecca-x-annicka"
+  ],
   "billings": [
    "edc-las-vegas-2025:d1:circuit-grounds:1900:annicka",
    "hard-summer-2025:d1:pink-stage:1400:annicka"
@@ -12637,12 +12704,14 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "coachella-2025:d3:gobi:2035:arca",
+   "coachella-2025:d6:gobi:2035:arca",
    "primavera-sound-2018:d3:pitchfork:0215:arca",
    "sonar-2017:d2:sonarhall:2100:arca-live-and-jesse-kanda-av",
    "sonar-2022:d3:sonarpub-by-thunder-bitch:2325:arca"
   ],
   "firstSeen": "2017-06-15",
-  "lastSeen": "2022-06-18",
+  "lastSeen": "2025-04-20",
   "photo": null,
   "links": []
  },
@@ -13683,11 +13752,13 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "coachella-2025:d1:gobi:2015:artemas",
+   "coachella-2025:d4:gobi:2015:artemas",
    "governors-ball-2025:d2:kiehl-s:1645:artemas",
    "lollapalooza-2025:d4:the-grove:1945:artemas",
    "outside-lands-2025:d2:sutro:1745:artemas"
   ],
-  "firstSeen": "2025-06-07",
+  "firstSeen": "2025-04-11",
   "lastSeen": "2025-08-09",
   "photo": null,
   "links": []
@@ -15614,6 +15685,22 @@
   "links": []
  },
  {
+  "key": "austin-millz",
+  "name": "Austin Millz",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d1:sahara:1455:austin-millz",
+   "coachella-2025:d4:sahara:1455:austin-millz"
+  ],
+  "firstSeen": "2025-04-11",
+  "lastSeen": "2025-04-18",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "austra",
   "name": "Austra",
   "aliases": [],
@@ -16539,7 +16626,9 @@
   ],
   "kind": "performer",
   "parents": [],
-  "projects": [],
+  "projects": [
+   "azzecca-x-annicka"
+  ],
   "billings": [
    "edc-orlando-2026:ecf5",
    "portola-2026:pt2-azzecca",
@@ -16552,6 +16641,24 @@
   ],
   "firstSeen": "2023-11-12",
   "lastSeen": "2026-12-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "azzecca-x-annicka",
+  "name": "Azzecca x Annicka",
+  "aliases": [],
+  "kind": "collab",
+  "parents": [
+   "annicka",
+   "azzecca"
+  ],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d6:quasar:1700:azzecca-x-annicka"
+  ],
+  "firstSeen": "2025-04-20",
+  "lastSeen": "2025-04-20",
   "photo": null,
   "links": []
  },
@@ -18585,6 +18692,21 @@
   "links": []
  },
  {
+  "key": "barry-can-t-swim-x-2manydjs-x-salute",
+  "name": "Barry Can't Swim x 2manydjs x salute",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d2:quasar:2015:barry-can-t-swim-x-2manydjs-x-salute"
+  ],
+  "firstSeen": "2025-04-12",
+  "lastSeen": "2025-04-12",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "barry-fore",
   "name": "Barry Fore",
   "aliases": [],
@@ -18807,6 +18929,22 @@
   ],
   "firstSeen": "2011-08-06",
   "lastSeen": "2011-08-06",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "basement-jaxx",
+  "name": "Basement Jaxx",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d3:mojave:2000:basement-jaxx",
+   "coachella-2025:d6:mojave:2000:basement-jaxx"
+  ],
+  "firstSeen": "2025-04-13",
+  "lastSeen": "2025-04-20",
   "photo": null,
   "links": []
  },
@@ -19981,6 +20119,8 @@
    "lollapalooza-2026:lo145",
    "coachella-2022:d3:gobi:1600:beabadoobee",
    "coachella-2022:d6:gobi:1600:beabadoobee",
+   "coachella-2025:d3:coachella:1725:beabadoobee",
+   "coachella-2025:d6:coachella:1725:beabadoobee",
    "lollapalooza-2023:d2:tito-s-handmade-vodka:1600:beabadoobee",
    "outside-lands-2023:d3:twin-peaks:1655:beabadoobee"
   ],
@@ -21107,6 +21247,8 @@
    "decadence-arizona-2026:daz-beltran",
    "coachella-2027:coa27-beltran",
    "time-warp-2027:tw27-beltran-b2b-ben-sterling",
+   "coachella-2025:d1:yuma:1745:beltran",
+   "coachella-2025:d4:yuma:1745:beltran",
    "edc-las-vegas-2025:d2:neon-garden:2200:beltran",
    "edc-las-vegas-2025:d3:bionic-jungle:0330:ben-sterling-b2b-beltran",
    "edc-orlando-2024:d2:neon-garden:1800:beltran",
@@ -21159,6 +21301,8 @@
   "projects": [],
   "billings": [
    "outside-lands-2026:os80",
+   "coachella-2025:d3:sahara:1700:ben-bohmer",
+   "coachella-2025:d6:sahara:1700:ben-bohmer",
    "edc-las-vegas-2022:d1:neon-garden:0400:ben-bohmer-live",
    "lollapalooza-2024:d4:bacardi:2100:ben-bohmer",
    "tomorrowland-2018:d4:tulip:1230:ben-bohmer"
@@ -22013,14 +22157,18 @@
  },
  {
   "key": "benson-boone",
-  "name": "BENSON BOONE",
-  "aliases": [],
+  "name": "Benson Boone",
+  "aliases": [
+   "BENSON BOONE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "acl-2024:d2:honda:1810:benson-boone",
    "acl-2024:d5:honda:1810:benson-boone",
+   "coachella-2025:d1:coachella:1910:benson-boone",
+   "coachella-2025:d4:coachella:1910:benson-boone",
    "governors-ball-2025:d1:kiehl-s:1945:benson-boone",
    "lollapalooza-2024:d1:ihg-hotels-and-resorts:2000:benson-boone"
   ],
@@ -22381,6 +22529,22 @@
   ],
   "firstSeen": "2022-07-22",
   "lastSeen": "2022-07-22",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "beth-gibbons",
+  "name": "Beth Gibbons",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d2:gobi:2140:beth-gibbons",
+   "coachella-2025:d5:gobi:2140:beth-gibbons"
+  ],
+  "firstSeen": "2025-04-12",
+  "lastSeen": "2025-04-19",
   "photo": null,
   "links": []
  },
@@ -23239,6 +23403,8 @@
   "projects": [],
   "billings": [
    "acl-2023:d2:american-express:1230:bigxthaplug",
+   "coachella-2025:d3:gobi:1925:bigxthaplug",
+   "coachella-2025:d6:gobi:1925:bigxthaplug",
    "governors-ball-2025:d1:govballnyc:1530:bigxthaplug",
    "lollapalooza-2024:d1:ihg-hotels-and-resorts:1415:bigxthaplug",
    "outside-lands-2025:d3:twin-peaks:1715:bigxthaplug"
@@ -25533,6 +25699,22 @@
   "links": []
  },
  {
+  "key": "blonde-redhead",
+  "name": "Blonde Redhead",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d2:sonora:1810:blonde-redhead",
+   "coachella-2025:d5:sonora:1810:blonde-redhead"
+  ],
+  "firstSeen": "2025-04-12",
+  "lastSeen": "2025-04-19",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "blondfire",
   "name": "Blondfire",
   "aliases": [],
@@ -26312,6 +26494,22 @@
   ],
   "firstSeen": "2023-08-12",
   "lastSeen": "2023-08-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "bob-vylan",
+  "name": "Bob Vylan",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d3:sonora:1500:bob-vylan",
+   "coachella-2025:d6:sonora:1500:bob-vylan"
+  ],
+  "firstSeen": "2025-04-13",
+  "lastSeen": "2025-04-20",
   "photo": null,
   "links": []
  },
@@ -27548,6 +27746,8 @@
    "coachella-2027:coa27-boris-brejcha",
    "coachella-2023:d3:sahara:2320:boris-brejcha",
    "coachella-2023:d6:sahara:2145:boris-brejcha",
+   "coachella-2025:d3:sahara:1900:boris-brejcha",
+   "coachella-2025:d6:sahara:1900:boris-brejcha",
    "edc-las-vegas-2022:d1:circuit-grounds:0200:boris-brejcha",
    "tomorrowland-2018:d6:atmosphere:1600:boris-brejcha",
    "tomorrowland-2019:d4:mainstage:1450:boris-brejcha",
@@ -31348,10 +31548,26 @@
   "billings": [
    "coachella-2022:d2:sonora:1200:buster-jarvis",
    "coachella-2023:d2:sonora:1200:buster-jarvis",
-   "coachella-2024:d5:sonora:1300:buster-jarvis"
+   "coachella-2024:d5:sonora:1300:buster-jarvis",
+   "coachella-2025:d5:sonora:1300:buster-jarvis"
   ],
   "firstSeen": "2022-04-16",
-  "lastSeen": "2024-04-20",
+  "lastSeen": "2025-04-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "busterkun",
+  "name": "Busterkun",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d4:gobi:1320:busterkun"
+  ],
+  "firstSeen": "2025-04-18",
+  "lastSeen": "2025-04-18",
   "photo": null,
   "links": []
  },
@@ -31739,10 +31955,12 @@
   "projects": [],
   "billings": [
    "acl-2025:d6:beatbox:1730:ca7riel-and-paco-amoroso",
+   "coachella-2025:d1:gobi:2130:ca7riel-and-paco-amoroso",
+   "coachella-2025:d4:gobi:2130:ca7riel-and-paco-amoroso",
    "lollapalooza-2025:d3:lakeshore:1755:ca7riel-and-paco-amoroso",
    "outside-lands-2025:d3:sutro:1615:ca7riel-and-paco-amoroso"
   ],
-  "firstSeen": "2025-08-02",
+  "firstSeen": "2025-04-11",
   "lastSeen": "2025-10-12",
   "photo": null,
   "links": []
@@ -32847,10 +33065,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "coachella-2024:d6:sahara:1400:canyon-cody"
+   "coachella-2024:d6:sahara:1400:canyon-cody",
+   "coachella-2025:d6:mojave:1345:canyon-cody"
   ],
   "firstSeen": "2024-04-21",
-  "lastSeen": "2024-04-21",
+  "lastSeen": "2025-04-20",
   "photo": null,
   "links": []
  },
@@ -36237,6 +36456,8 @@
    "outside-lands-2026:os7",
    "coachella-2023:d2:coachella:1735:charli-xcx",
    "coachella-2023:d5:coachella:1725:charli-xcx",
+   "coachella-2025:d2:coachella:1915:charli-xcx",
+   "coachella-2025:d5:coachella:1915:charli-xcx",
    "governors-ball-2015:d1:honda-stage:1500:charli-xcx",
    "governors-ball-2017:d1:big-apple:1545:charli-xcx",
    "lollapalooza-2015:d2:sprint:1500:charli-xcx",
@@ -36627,6 +36848,8 @@
    "arc-2026:arc-chase-and-status-grid-d1",
    "coachella-2027:coa27-chase-and-status",
    "coachella-2011:d3:sahara:2030:chase-and-status",
+   "coachella-2025:d3:sahara:2010:chase-and-status",
+   "coachella-2025:d6:sahara:2010:chase-and-status",
    "edc-las-vegas-2012:d3:neongarden:2330:chase-and-status",
    "edc-las-vegas-2025:d1:kinetic-field:0237:dom-dolla-b2b-chase-and-status",
    "edc-las-vegas-2025:d2:basspod:0030:chase-and-status",
@@ -38289,6 +38512,8 @@
    "edc-orlando-2026:ecf11",
    "crssd-fall-2026:crssd-chris-lorenzo",
    "hard-summer-2026:hs1-chris-lorenzo",
+   "coachella-2025:d1:sahara:1600:chris-lorenzo",
+   "coachella-2025:d4:sahara:1600:chris-lorenzo",
    "edc-las-vegas-2022:d2:kinetic-field:0415:ac-slater-b2b-chris-lorenzo",
    "edc-orlando-2024:d3:kinetic-field:1732:fly-with-us-ac-slater-b2b-chris-lorenzo-sunset-set",
    "escape-halloween-2025:d2:feeding-grounds:2315:chris-lorenzo",
@@ -38478,6 +38703,8 @@
    "arc-2026:arc-chris-stussy-expansions-d1",
    "coachella-2023:d1:yuma:1300:chris-stussy",
    "coachella-2023:d4:yuma:1300:chris-stussy",
+   "coachella-2025:d1:yuma:2145:chris-stussy",
+   "coachella-2025:d4:yuma:2145:chris-stussy",
    "edc-orlando-2023:d2:neon-garden:1715:chris-stussy",
    "escape-halloween-2022:d1:sewer-district:1800:chris-stussy",
    "ultra-miami-2023:d1:megastructure:1715:chris-stussy"
@@ -39542,6 +39769,22 @@
   "links": []
  },
  {
+  "key": "circle-jerks",
+  "name": "Circle Jerks",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d3:sonora:1830:circle-jerks",
+   "coachella-2025:d6:sonora:1830:circle-jerks"
+  ],
+  "firstSeen": "2025-04-13",
+  "lastSeen": "2025-04-20",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "circle-k-w-mc-collaborator",
   "name": "CIRCLE K W/MC COLLABORATOR",
   "aliases": [],
@@ -39798,6 +40041,8 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "coachella-2025:d2:outdoor:2015:clairo",
+   "coachella-2025:d5:outdoor:2015:clairo",
    "governors-ball-2019:d2:govballnyc-stage:1500:clairo",
    "governors-ball-2025:d3:kiehl-s:1730:clairo",
    "lollapalooza-2018:d2:american-eagle:untimed:clairo",
@@ -40903,8 +41148,12 @@
   ],
   "kind": "performer",
   "parents": [],
-  "projects": [],
+  "projects": [
+   "coco-and-breezy-x-kaleena-zanders"
+  ],
   "billings": [
+   "coachella-2025:d1:yuma:1345:coco-and-breezy",
+   "coachella-2025:d4:yuma:1345:coco-and-breezy",
    "edc-las-vegas-2022:d3:stereo-bloom:2000:coco-and-breezy",
    "edc-las-vegas-2022:d3:forest-house-art-car:0000:coco-and-breezy",
    "edc-orlando-2022:d2:stereo-bloom:1615:coco-and-breezy",
@@ -40915,6 +41164,24 @@
   ],
   "firstSeen": "2022-05-22",
   "lastSeen": "2025-11-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "coco-and-breezy-x-kaleena-zanders",
+  "name": "Coco & Breezy x Kaleena Zanders",
+  "aliases": [],
+  "kind": "collab",
+  "parents": [
+   "coco-and-breezy",
+   "kaleena-zanders"
+  ],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d1:quasar:1700:coco-and-breezy-x-kaleena-zanders"
+  ],
+  "firstSeen": "2025-04-11",
+  "lastSeen": "2025-04-11",
   "photo": null,
   "links": []
  },
@@ -45691,17 +45958,21 @@
  {
   "key": "d4vd",
   "name": "D4VD",
-  "aliases": [],
+  "aliases": [
+   "d4vd"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "acl-2023:d4:ihg-hotels-and-resorts:1710:d4vd",
+   "coachella-2025:d1:gobi:1755:d4vd",
+   "coachella-2025:d4:gobi:1755:d4vd",
    "governors-ball-2024:d2:ihg-hotels-and-resorts:1700:d4vd",
    "lollapalooza-2024:d1:tito-s-handmade-vodka:1545:d4vd"
   ],
   "firstSeen": "2023-10-13",
-  "lastSeen": "2024-08-01",
+  "lastSeen": "2025-04-18",
   "photo": null,
   "links": []
  },
@@ -46433,6 +46704,8 @@
    "coachella-2014:d4:yuma:1530:damian-lazarus",
    "coachella-2022:d1:yuma:1845:damian-lazarus",
    "coachella-2022:d4:yuma:1845:damian-lazarus",
+   "coachella-2025:d1:yuma:1645:damian-lazarus",
+   "coachella-2025:d4:yuma:1645:damian-lazarus",
    "edc-las-vegas-2013:d3:neongarden:2300:damian-lazarus",
    "lightning-in-a-bottle-2019:d5:woogie:1800:damian-lazarus",
    "nocturnal-wonderland-2012:d2:upside-down-room:1800:damian-lazarus",
@@ -48006,18 +48279,22 @@
  },
  {
   "key": "darkside",
-  "name": "DARKSIDE",
-  "aliases": [],
+  "name": "Darkside",
+  "aliases": [
+   "DARKSIDE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "coachella-2014:d2:gobi:2250:darkside",
    "coachella-2014:d5:gobi:2250:darkside",
+   "coachella-2025:d2:gobi:2020:darkside",
+   "coachella-2025:d5:gobi:2020:darkside",
    "lollapalooza-2014:d3:the-grove:2045:darkside"
   ],
   "firstSeen": "2014-04-12",
-  "lastSeen": "2014-08-03",
+  "lastSeen": "2025-04-19",
   "photo": null,
   "links": []
  },
@@ -51997,6 +52274,8 @@
    "ultra-miami-2026:ul143",
    "arc-2026:arc-dennis-cruz-b2b-ben-sterling-expansions-d3",
    "time-warp-2027:tw27-dennis-cruz",
+   "coachella-2025:d3:yuma:1930:dennis-cruz",
+   "coachella-2025:d6:yuma:1930:dennis-cruz",
    "edc-las-vegas-2022:d1:neon-garden:2200:dennis-cruz",
    "edc-las-vegas-2025:d2:neon-garden:0300:dennis-cruz",
    "edc-orlando-2023:d2:neon-garden:1830:blond-ish-b2b-dennis-cruz",
@@ -52565,6 +52844,22 @@
   ],
   "firstSeen": "2019-07-18",
   "lastSeen": "2019-07-18",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "desiree",
+  "name": "DESIREE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d3:yuma:1500:desiree",
+   "coachella-2025:d6:yuma:1500:desiree"
+  ],
+  "firstSeen": "2025-04-13",
+  "lastSeen": "2025-04-20",
   "photo": null,
   "links": []
  },
@@ -55045,6 +55340,8 @@
    "groove-cruise-2027:gc-disco-lines",
    "acl-2025:d3:miller-lite:1715:disco-lines",
    "acl-2025:d6:miller-lite:1715:disco-lines",
+   "coachella-2025:d2:sahara:1725:disco-lines",
+   "coachella-2025:d5:sahara:1725:disco-lines",
    "edc-las-vegas-2025:d3:cosmic-meadow:0430:disco-lines",
    "edc-orlando-2022:d3:stereo-bloom:1745:disco-lines",
    "edc-orlando-2023:d3:circuit-grounds:1945:disco-lines",
@@ -55541,6 +55838,8 @@
    "coachella-2017:d4:yuma:1935:dixon",
    "coachella-2022:d2:yuma:2100:dixon",
    "coachella-2022:d5:yuma:2100:dixon",
+   "coachella-2025:d3:yuma:2230:dixon-b2b-jimi-jules",
+   "coachella-2025:d6:yuma:2230:dixon-b2b-jimi-jules",
    "escape-halloween-2024:d1:the-cauldron:0000:dixon",
    "outside-lands-2022:d3:soma-tent:1530:dixon",
    "primavera-sound-2015:d3:ray-ban:0400:dixon",
@@ -55557,7 +55856,7 @@
    "tomorrowland-2023:d3:atmosphere:2030:dixon"
   ],
   "firstSeen": "2013-07-26",
-  "lastSeen": "2024-10-25",
+  "lastSeen": "2025-04-20",
   "photo": null,
   "links": []
  },
@@ -57013,10 +57312,12 @@
    "edc-lv-2026:c19",
    "ultra-miami-2026:ul155",
    "arc-2026:arc-dj-gigola-b2b-skin-on-skin-area909-d3",
+   "coachella-2025:d2:yuma:1400:dj-gigola",
+   "coachella-2025:d5:yuma:1400:dj-gigola",
    "edc-las-vegas-2025:d2:bionic-jungle:0015:dj-gigola",
    "hard-summer-2025:d2:purple-stage:1830:ki-ki-b2b-dj-gigola"
   ],
-  "firstSeen": "2025-05-17",
+  "firstSeen": "2025-04-12",
   "lastSeen": "2026-09-06",
   "photo": null,
   "links": []
@@ -60304,6 +60605,8 @@
    "outside-lands-2026:os55",
    "acl-2025:d2:lady-bird:1930:djo",
    "acl-2025:d5:lady-bird:1930:djo",
+   "coachella-2025:d1:mojave:1805:djo",
+   "coachella-2025:d4:mojave:1805:djo",
    "lollapalooza-2022:d4:bud-light-seltzer:1515:djo",
    "lollapalooza-2025:d2:t-mobile:1840:djo"
   ],
@@ -61716,16 +62019,19 @@
  },
  {
   "key": "doom-dave",
-  "name": "doom dave",
-  "aliases": [],
+  "name": "Doom Dave",
+  "aliases": [
+   "doom dave"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "coachella-2024:d1:sonora:1300:doom-dave"
+   "coachella-2024:d1:sonora:1300:doom-dave",
+   "coachella-2025:d1:sonora:1300:doom-dave"
   ],
   "firstSeen": "2024-04-12",
-  "lastSeen": "2024-04-12",
+  "lastSeen": "2025-04-11",
   "photo": null,
   "links": []
  },
@@ -65628,9 +65934,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "summerfest-2026:su148"
+   "summerfest-2026:su148",
+   "coachella-2025:d5:mojave:1500:ed-sheeran"
   ],
-  "firstSeen": "2026-06-25",
+  "firstSeen": "2025-04-19",
   "lastSeen": "2026-06-25",
   "photo": null,
   "links": []
@@ -66589,6 +66896,22 @@
   "links": []
  },
  {
+  "key": "el-malilla",
+  "name": "El Malilla",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d2:sonora:2150:el-malilla",
+   "coachella-2025:d5:sonora:2150:el-malilla"
+  ],
+  "firstSeen": "2025-04-12",
+  "lastSeen": "2025-04-19",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "el-mato-a-un-policia-motorizado-feat-amaia-j-y-manu-ferron",
   "name": "EL MATÓ A UN POLICÍA MOTORIZADO FEAT. AMAIA, J Y MANU FERRÓN",
   "aliases": [],
@@ -67315,6 +67638,8 @@
    "lollapalooza-2026:lo158",
    "decadence-arizona-2026:daz-eli-brown",
    "groove-cruise-2027:gc-eli-brown",
+   "coachella-2025:d2:yuma:2300:eli-brown",
+   "coachella-2025:d5:yuma:2300:eli-brown",
    "edc-las-vegas-2024:d2:circuit-grounds:0215:eli-brown-b2b-hi-lo",
    "edc-las-vegas-2024:d2:stereo-bloom:2315:eli-brown",
    "edc-las-vegas-2025:d1:circuit-grounds:0330:eli-brown",
@@ -67996,10 +68321,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "coachella-2024:d2:gobi:1315:elusive"
+   "coachella-2024:d2:gobi:1315:elusive",
+   "coachella-2025:d2:gobi:1330:elusive"
   ],
   "firstSeen": "2024-04-13",
-  "lastSeen": "2024-04-13",
+  "lastSeen": "2025-04-12",
   "photo": null,
   "links": []
  },
@@ -68824,6 +69150,22 @@
   "links": []
  },
  {
+  "key": "enhypen",
+  "name": "ENHYPEN",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d2:sahara:2035:enhypen",
+   "coachella-2025:d5:sahara:2035:enhypen"
+  ],
+  "firstSeen": "2025-04-12",
+  "lastSeen": "2025-04-19",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "enigma",
   "name": "Enigma",
   "aliases": [],
@@ -69129,12 +69471,16 @@
   "aliases": [],
   "kind": "performer",
   "parents": [],
-  "projects": [],
+  "projects": [
+   "tripolism-x-erez"
+  ],
   "billings": [
+   "coachella-2025:d1:yuma:1300:erez",
+   "coachella-2025:d4:yuma:1300:erez",
    "outside-lands-2023:d2:the-music-den-by-toyota:1510:erez-dj-set"
   ],
   "firstSeen": "2023-08-12",
-  "lastSeen": "2023-08-12",
+  "lastSeen": "2025-04-18",
   "photo": null,
   "links": []
  },
@@ -70743,10 +71089,12 @@
    "acl-2024:d5:american-express:1620:eyedress",
    "coachella-2022:d3:sonora:1830:eyedress",
    "coachella-2022:d6:sonora:1830:eyedress",
+   "coachella-2025:d1:mojave:1920:eyedress",
+   "coachella-2025:d4:mojave:1920:eyedress",
    "lollapalooza-2024:d3:bacardi:1715:eyedress"
   ],
   "firstSeen": "2022-04-17",
-  "lastSeen": "2024-10-12",
+  "lastSeen": "2025-04-18",
   "photo": null,
   "links": []
  },
@@ -72308,6 +72656,8 @@
    "ultra-miami-2026:ul153",
    "governors-ball-2026:go55",
    "portola-2026:pt1-fcukers",
+   "coachella-2025:d3:mojave:1500:fcukers",
+   "coachella-2025:d6:mojave:1500:fcukers",
    "edc-las-vegas-2025:d2:bionic-jungle:2245:fcukers-dj-set",
    "governors-ball-2024:d3:ihg-hotels-and-resorts:1255:fcukers",
    "hard-summer-2025:d2:purple-stage:1635:fcukers",
@@ -72317,6 +72667,21 @@
   ],
   "firstSeen": "2024-06-09",
   "lastSeen": "2026-10-04",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "fcukers-dj-set-x-haai",
+  "name": "Fcukers DJ set x HAAi",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d2:quasar:1800:fcukers-dj-set-x-haai"
+  ],
+  "firstSeen": "2025-04-12",
+  "lastSeen": "2025-04-12",
   "photo": null,
   "links": []
  },
@@ -76177,6 +76542,8 @@
   "billings": [
    "coachella-2023:d2:yuma:1300:francis-mercier",
    "coachella-2023:d5:yuma:1300:francis-mercier",
+   "coachella-2025:d3:yuma:2100:francis-mercier",
+   "coachella-2025:d6:yuma:2100:francis-mercier",
    "edc-las-vegas-2022:d2:allegiant-rave-hangar:0000:francis-mercier",
    "edc-las-vegas-2022:d3:stereo-bloom:1900:francis-mercier",
    "edc-las-vegas-2025:d2:stereo-bloom:2315:francis-mercier",
@@ -79036,10 +79403,12 @@
    "coachella-2022:d3:coachella:1330:gabe-real",
    "coachella-2022:d4:sahara:1215:gabe-real",
    "coachella-2023:d6:outdoor:1300:gabe-real",
-   "coachella-2024:d2:outdoor:1605:gabe-real"
+   "coachella-2024:d2:outdoor:1605:gabe-real",
+   "coachella-2025:d1:coachella:1500:gabe-real",
+   "coachella-2025:d4:coachella:1500:gabe-real"
   ],
   "firstSeen": "2011-04-15",
-  "lastSeen": "2024-04-13",
+  "lastSeen": "2025-04-18",
   "photo": null,
   "links": []
  },
@@ -81464,16 +81833,19 @@
  {
   "key": "gingee",
   "name": "Gingee",
-  "aliases": [],
+  "aliases": [
+   "GINGEE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "coachella-2022:d2:outdoor:1345:gingee",
-   "coachella-2023:d3:gobi:1230:gingee"
+   "coachella-2023:d3:gobi:1230:gingee",
+   "coachella-2025:d4:mojave:1330:gingee"
   ],
   "firstSeen": "2022-04-16",
-  "lastSeen": "2023-04-16",
+  "lastSeen": "2025-04-18",
   "photo": null,
   "links": []
  },
@@ -81507,6 +81879,22 @@
   ],
   "firstSeen": "2019-05-09",
   "lastSeen": "2019-05-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "ginger-root",
+  "name": "Ginger Root",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d3:sonora:1940:ginger-root",
+   "coachella-2025:d6:sonora:1940:ginger-root"
+  ],
+  "firstSeen": "2025-04-13",
+  "lastSeen": "2025-04-20",
   "photo": null,
   "links": []
  },
@@ -82165,6 +82553,8 @@
   "billings": [
    "acl-2024:d3:tito-s-handmade-vodka:1445:glass-beams",
    "acl-2024:d6:tito-s-handmade-vodka:1445:glass-beams",
+   "coachella-2025:d2:gobi:1605:glass-beams",
+   "coachella-2025:d5:gobi:1605:glass-beams",
    "lollapalooza-2025:d1:the-grove:1715:glass-beams",
    "shambhala-2025:d3:living-room:2230:glass-beams"
   ],
@@ -82251,6 +82641,22 @@
   "links": []
  },
  {
+  "key": "glixen",
+  "name": "Glixen",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d1:sonora:1400:glixen",
+   "coachella-2025:d4:sonora:1400:glixen"
+  ],
+  "firstSeen": "2025-04-11",
+  "lastSeen": "2025-04-18",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "glockenbach",
   "name": "Glockenbach",
   "aliases": [],
@@ -82294,7 +82700,9 @@
    "acl-2023:d3:t-mobile:1730:glorilla",
    "acl-2023:d4:t-mobile:1710:glorilla",
    "coachella-2023:d3:coachella:1540:glorilla",
-   "coachella-2023:d6:coachella:1540:glorilla"
+   "coachella-2023:d6:coachella:1540:glorilla",
+   "coachella-2025:d1:sahara:2225:glorilla",
+   "coachella-2025:d4:sahara:2225:glorilla"
   ],
   "firstSeen": "2023-04-16",
   "lastSeen": "2026-08-07",
@@ -84567,11 +84975,13 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "coachella-2025:d2:coachella:2105:green-day",
+   "coachella-2025:d5:coachella:2105:green-day",
    "lollapalooza-2022:d4:t-mobile:2015:green-day",
    "outside-lands-2022:d2:lands-end:2020:green-day"
   ],
   "firstSeen": "2022-07-31",
-  "lastSeen": "2022-08-06",
+  "lastSeen": "2025-04-19",
   "photo": null,
   "links": []
  },
@@ -86101,6 +86511,22 @@
   "links": []
  },
  {
+  "key": "gustavo-dudamel-and-la-phil",
+  "name": "Gustavo Dudamel & LA Phil",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d2:outdoor:1825:gustavo-dudamel-and-la-phil",
+   "coachella-2025:d5:outdoor:1825:gustavo-dudamel-and-la-phil"
+  ],
+  "firstSeen": "2025-04-12",
+  "lastSeen": "2025-04-19",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "guti",
   "name": "Guti",
   "aliases": [
@@ -86358,6 +86784,8 @@
   "billings": [
    "edc-lv-2026:b11",
    "iii-points-2026:iiip-haai",
+   "coachella-2025:d2:yuma:1300:haai",
+   "coachella-2025:d5:yuma:1300:haai",
    "edc-las-vegas-2024:d1:bionic-jungle:0230:haai",
    "sonar-2019:d3:sonarclub:0205:haai",
    "tomorrowland-2023:d4:core:1930:haai"
@@ -87256,6 +87684,22 @@
   ],
   "firstSeen": "2017-04-16",
   "lastSeen": "2017-04-23",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "hanumankind",
+  "name": "Hanumankind",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d2:mojave:2025:hanumankind",
+   "coachella-2025:d5:mojave:2025:hanumankind"
+  ],
+  "firstSeen": "2025-04-12",
+  "lastSeen": "2025-04-19",
   "photo": null,
   "links": []
  },
@@ -89841,6 +90285,22 @@
   "links": []
  },
  {
+  "key": "hitech",
+  "name": "HiTech",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d1:sonora:2200:hitech",
+   "coachella-2025:d4:sonora:2200:hitech"
+  ],
+  "firstSeen": "2025-04-11",
+  "lastSeen": "2025-04-18",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "hito",
   "name": "Hito",
   "aliases": [
@@ -90740,9 +91200,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "coachella-2025:d3:gobi:1440:hope-tala",
+   "coachella-2025:d6:gobi:1440:hope-tala",
    "outside-lands-2025:d3:sutro:1500:hope-tala"
   ],
-  "firstSeen": "2025-08-10",
+  "firstSeen": "2025-04-13",
   "lastSeen": "2025-08-10",
   "photo": null,
   "links": []
@@ -90853,9 +91315,11 @@
    "crssd-fall-2026:crssd-horsegiirl",
    "portola-2026:pt2-horsegiirl",
    "edc-thailand-2026:edcth-horsegiirl",
+   "coachella-2025:d2:mojave:2145:horsegiirl",
+   "coachella-2025:d5:mojave:2145:horsegiirl",
    "edc-las-vegas-2025:d2:bionic-jungle:0145:horsegiirl"
   ],
-  "firstSeen": "2025-05-17",
+  "firstSeen": "2025-04-12",
   "lastSeen": "2026-12-19",
   "photo": null,
   "links": []
@@ -94000,6 +94464,8 @@
    "edc-lv-2026:n17",
    "escape-halloween-2026:esc-indira-paganotto-d2",
    "time-warp-2027:tw27-indira-paganotto",
+   "coachella-2025:d2:yuma:1730:indira-paganotto",
+   "coachella-2025:d5:yuma:1730:indira-paganotto",
    "dreamstate-socal-2023:d1:the-sequence:2200:indira-paganotto",
    "edc-las-vegas-2022:d2:neon-garden:1900:indira-paganotto",
    "edc-las-vegas-2024:d3:neon-garden:0215:indira-paganotto",
@@ -94028,6 +94494,22 @@
   ],
   "firstSeen": "2012-09-21",
   "lastSeen": "2013-06-21",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "indo-warehouse",
+  "name": "Indo Warehouse",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d1:gobi:2240:indo-warehouse",
+   "coachella-2025:d4:gobi:2240:indo-warehouse"
+  ],
+  "firstSeen": "2025-04-11",
+  "lastSeen": "2025-04-18",
   "photo": null,
   "links": []
  },
@@ -94061,6 +94543,8 @@
    "tomorrowland-thailand-2026:tmlth-infected-mushroom",
    "beyond-wonderland-socal-2026:d2:cheshire-woods:2300:infected-mushroom",
    "coachella-2010:d3:sahara:1845:infected-mushroom",
+   "coachella-2025:d2:yuma:1845:infected-mushroom",
+   "coachella-2025:d5:yuma:1845:infected-mushroom",
    "dreamstate-socal-2016:d1:the-sequence:0000:infected-mushroom-psytrance-dj-set",
    "dreamstate-socal-2023:d1:the-sequence:0000:infected-mushroom",
    "edc-las-vegas-2024:d1:quantum-valley:0200:infected-mushroom",
@@ -94775,6 +95259,8 @@
    "iii-points-2026:iiip-interplanetary-criminal",
    "hard-summer-2026:hs1-interplanetary-criminal-b2b-main-p",
    "beyond-wonderland-socal-2026:d2:queen-s-domain:1955:interplanetary-criminal",
+   "coachella-2025:d3:sahara:1540:interplanetary-criminal",
+   "coachella-2025:d6:sahara:1540:interplanetary-criminal",
    "edc-las-vegas-2024:d2:bionic-jungle:2115:interplanetary-criminal",
    "edc-las-vegas-2025:d3:stereo-bloom:2315:interplanetary-criminal",
    "ultra-miami-2025:d1:umf-radio:1730:skream-b2b-interplanetary-criminal"
@@ -95427,18 +95913,22 @@
  },
  {
   "key": "ivan-cornejo",
-  "name": "IVAN CORNEJO",
-  "aliases": [],
+  "name": "Ivan Cornejo",
+  "aliases": [
+   "IVAN CORNEJO"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "acl-2023:d3:miller-lite:1715:ivan-cornejo",
    "acl-2023:d6:miller-lite:1715:ivan-cornejo",
+   "coachella-2025:d2:mojave:1915:ivan-cornejo",
+   "coachella-2025:d5:mojave:1915:ivan-cornejo",
    "lollapalooza-2023:d3:tito-s-handmade-vodka:1545:ivan-cornejo"
   ],
   "firstSeen": "2023-08-05",
-  "lastSeen": "2023-10-15",
+  "lastSeen": "2025-04-19",
   "photo": null,
   "links": []
  },
@@ -98608,6 +99098,8 @@
    "acl-2025:d5:beatbox:1930:japanese-breakfast",
    "coachella-2022:d2:mojave:1640:japanese-breakfast",
    "coachella-2022:d5:mojave:1640:japanese-breakfast",
+   "coachella-2025:d2:outdoor:1705:japanese-breakfast",
+   "coachella-2025:d5:outdoor:1705:japanese-breakfast",
    "lollapalooza-2019:d2:tito-s-handmade-vodka:untimed:japanese-breakfast",
    "lollapalooza-2019:d2:vip-lolla-lounge:untimed:japanese-breakfast-solo"
   ],
@@ -98626,10 +99118,12 @@
   "billings": [
    "coachella-2023:d3:outdoor:1340:jaqck-glam",
    "coachella-2024:d2:coachella:1545:jaqck-glam",
-   "coachella-2024:d4:coachella:1540:jaqck-glam"
+   "coachella-2024:d4:coachella:1540:jaqck-glam",
+   "coachella-2025:d3:coachella:1500:jaqck-glam",
+   "coachella-2025:d6:coachella:1500:jaqck-glam"
   ],
   "firstSeen": "2023-04-16",
-  "lastSeen": "2024-04-19",
+  "lastSeen": "2025-04-20",
   "photo": null,
   "links": []
  },
@@ -100260,9 +100754,11 @@
   "projects": [],
   "billings": [
    "governors-ball-2026:go50",
-   "lollapalooza-2026:lo113"
+   "lollapalooza-2026:lo113",
+   "coachella-2025:d3:outdoor:1945:jennie",
+   "coachella-2025:d6:outdoor:1945:jennie"
   ],
-  "firstSeen": "2026-06-07",
+  "firstSeen": "2025-04-13",
   "lastSeen": "2026-08-01",
   "photo": null,
   "links": []
@@ -101018,6 +101514,8 @@
    "summerfest-2026:su193",
    "acl-2021:d3:lady-bird:1300:jessie-murph",
    "acl-2021:d6:lady-bird:1300:jessie-murph",
+   "coachella-2025:d3:mojave:1725:jessie-murph",
+   "coachella-2025:d6:mojave:1725:jessie-murph",
    "governors-ball-2024:d2:govballnyc:1515:jessie-murph",
    "lollapalooza-2023:d1:bacardi:1600:jessie-murph",
    "outside-lands-2023:d2:twin-peaks:1555:jessie-murph"
@@ -101419,10 +101917,11 @@
    "coachella-2017:d1:sonora:1200:jim-smith",
    "coachella-2022:d1:sonora:1200:jim-smith",
    "coachella-2023:d1:sonora:1200:jim-smith",
-   "coachella-2024:d4:sonora:1300:jim-smith"
+   "coachella-2024:d4:sonora:1300:jim-smith",
+   "coachella-2025:d4:sonora:1300:jim-smith"
   ],
   "firstSeen": "2017-04-14",
-  "lastSeen": "2024-04-19",
+  "lastSeen": "2025-04-18",
   "photo": null,
   "links": []
  },
@@ -101469,6 +101968,8 @@
   "projects": [],
   "billings": [
    "coachella-2027:coa27-jimi-jules",
+   "coachella-2025:d3:yuma:2230:dixon-b2b-jimi-jules",
+   "coachella-2025:d6:yuma:2230:dixon-b2b-jimi-jules",
    "tomorrowland-2022:d6:core:1800:jimi-jules-b2b-trikk",
    "tomorrowland-2023:d4:core:2100:trikk-b2b-jimi-jules"
   ],
@@ -101543,10 +102044,12 @@
    "acl-2013:d1:samsung-galaxy:1430:jimmy-eat-world",
    "acl-2013:d4:samsung-galaxy:1430:jimmy-eat-world",
    "coachella-2011:d3:outdoor:1650:jimmy-eat-world",
+   "coachella-2025:d2:coachella:1600:jimmy-eat-world",
+   "coachella-2025:d5:coachella:1600:jimmy-eat-world",
    "lollapalooza-2021:d1:bud-light-seltzer:1700:jimmy-eat-world"
   ],
   "firstSeen": "2011-04-17",
-  "lastSeen": "2021-07-29",
+  "lastSeen": "2025-04-19",
   "photo": null,
   "links": []
  },
@@ -105749,6 +106252,22 @@
   "links": []
  },
  {
+  "key": "judeline",
+  "name": "Judeline",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d2:sonora:1550:judeline",
+   "coachella-2025:d5:sonora:1550:judeline"
+  ],
+  "firstSeen": "2025-04-12",
+  "lastSeen": "2025-04-19",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "judge",
   "name": "JUDGE",
   "aliases": [],
@@ -105836,10 +106355,11 @@
    "coachella-2022:d1:coachella:1345:juicewon",
    "coachella-2023:d1:outdoor:1300:juicewon",
    "coachella-2023:d5:mojave:1250:juicewon",
-   "coachella-2024:d5:outdoor:1700:juicewon"
+   "coachella-2024:d5:outdoor:1700:juicewon",
+   "coachella-2025:d4:outdoor:1450:juicewon"
   ],
   "firstSeen": "2014-04-20",
-  "lastSeen": "2024-04-20",
+  "lastSeen": "2025-04-18",
   "photo": null,
   "links": []
  },
@@ -106243,19 +106763,21 @@
  },
  {
   "key": "julie",
-  "name": "JULIE",
+  "name": "julie",
   "aliases": [
-   "julie"
+   "JULIE"
   ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "acl-2025:d6:american-express:1430:julie",
+   "coachella-2025:d1:sonora:1700:julie",
+   "coachella-2025:d4:sonora:1700:julie",
    "lollapalooza-2025:d1:lakeshore:1400:julie",
    "outside-lands-2025:d3:panhandle:1805:julie"
   ],
-  "firstSeen": "2025-07-31",
+  "firstSeen": "2025-04-11",
   "lastSeen": "2025-10-12",
   "photo": null,
   "links": []
@@ -106575,6 +107097,22 @@
   ],
   "firstSeen": "2012-07-29",
   "lastSeen": "2012-07-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "junior-h",
+  "name": "Junior H",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d3:coachella:1900:junior-h",
+   "coachella-2025:d6:coachella:1900:junior-h"
+  ],
+  "firstSeen": "2025-04-13",
+  "lastSeen": "2025-04-20",
   "photo": null,
   "links": []
  },
@@ -107997,7 +108535,9 @@
   ],
   "kind": "performer",
   "parents": [],
-  "projects": [],
+  "projects": [
+   "coco-and-breezy-x-kaleena-zanders"
+  ],
   "billings": [
    "beyond-wonderland-gorge-2026:d1:caterpillar-s-garden:1930:kaleena-zanders",
    "edc-las-vegas-2022:d3:forest-house-art-car:2015:kaleena-zanders",
@@ -109054,6 +109594,21 @@
   "links": []
  },
  {
+  "key": "kaskade-redux-x-idris",
+  "name": "Kaskade Redux x IDRIS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d5:quasar:2000:kaskade-redux-x-idris"
+  ],
+  "firstSeen": "2025-04-19",
+  "lastSeen": "2025-04-19",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "kasparov",
   "name": "Kasparov",
   "aliases": [],
@@ -109909,10 +110464,12 @@
   "projects": [],
   "billings": [
    "coachella-2023:d2:yuma:2300:keinemusik",
-   "coachella-2023:d5:yuma:2300:keinemusik"
+   "coachella-2023:d5:yuma:2300:keinemusik",
+   "coachella-2025:d2:sahara:2330:keinemusik",
+   "coachella-2025:d5:sahara:2330:keinemusik"
   ],
   "firstSeen": "2023-04-15",
-  "lastSeen": "2023-04-22",
+  "lastSeen": "2025-04-19",
   "photo": null,
   "links": []
  },
@@ -110630,6 +111187,22 @@
   ],
   "firstSeen": "2024-08-01",
   "lastSeen": "2024-08-01",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "keshi",
+  "name": "Keshi",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d3:outdoor:1700:keshi",
+   "coachella-2025:d6:outdoor:1700:keshi"
+  ],
+  "firstSeen": "2025-04-13",
+  "lastSeen": "2025-04-20",
   "photo": null,
   "links": []
  },
@@ -112954,6 +113527,8 @@
    "edc-lv-2026:n19",
    "edc-orlando-2026:ecu20",
    "beyond-wonderland-socal-2026:d1:the-looking-glass:0030:klangkuenstler",
+   "coachella-2025:d2:yuma:1615:klangkuenstler",
+   "coachella-2025:d5:yuma:1615:klangkuenstler",
    "dreamstate-socal-2023:d1:the-void:2300:klangkuenstler",
    "edc-las-vegas-2024:d3:neon-garden:0045:klangkuenstler",
    "edc-orlando-2024:d3:neon-garden:1800:klangkuenstler",
@@ -113221,6 +113796,22 @@
   ],
   "firstSeen": "2014-08-08",
   "lastSeen": "2018-05-25",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "kneecap",
+  "name": "KNEECAP",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d1:sonora:1810:kneecap",
+   "coachella-2025:d4:sonora:1810:kneecap"
+  ],
+  "firstSeen": "2025-04-11",
+  "lastSeen": "2025-04-18",
   "photo": null,
   "links": []
  },
@@ -114480,6 +115071,22 @@
   "links": []
  },
  {
+  "key": "kraftwerk",
+  "name": "Kraftwerk",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d3:mojave:2125:kraftwerk",
+   "coachella-2025:d6:mojave:2125:kraftwerk"
+  ],
+  "firstSeen": "2025-04-13",
+  "lastSeen": "2025-04-20",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "krafty-kuts",
   "name": "Krafty Kuts",
   "aliases": [],
@@ -115159,13 +115766,16 @@
  {
   "key": "ksofresko",
   "name": "KsoFresKo",
-  "aliases": [],
+  "aliases": [
+   "KsoFresko"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "hard-summer-2026:hs2-ksofresko",
    "groove-cruise-2027:gc-ksofresko",
+   "coachella-2025:d6:gobi:1330:ksofresko",
    "edc-las-vegas-2022:d2:pariah-express-art-car:2130:ksofresko",
    "edc-las-vegas-2022:d3:boombox-art-car:1900:ksofresko"
   ],
@@ -115307,6 +115917,22 @@
   ],
   "firstSeen": "2026-10-16",
   "lastSeen": "2026-10-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "kumo-99",
+  "name": "Kumo 99",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d3:sonora:1400:kumo-99",
+   "coachella-2025:d6:sonora:1400:kumo-99"
+  ],
+  "firstSeen": "2025-04-13",
+  "lastSeen": "2025-04-20",
   "photo": null,
   "links": []
  },
@@ -116705,10 +117331,12 @@
   "projects": [],
   "billings": [
    "coachella-2017:d2:coachella:2320:lady-gaga",
-   "coachella-2017:d5:coachella:2310:lady-gaga"
+   "coachella-2017:d5:coachella:2310:lady-gaga",
+   "coachella-2025:d1:coachella:2310:lady-gaga",
+   "coachella-2025:d4:coachella:2310:lady-gaga"
   ],
   "firstSeen": "2017-04-15",
-  "lastSeen": "2017-04-22",
+  "lastSeen": "2025-04-18",
   "photo": null,
   "links": []
  },
@@ -118655,6 +119283,8 @@
    "edc-lv-2026:k21",
    "crssd-fall-2026:crssd-layton-giordani",
    "beyond-wonderland-socal-2026:d1:the-looking-glass:2300:layton-giordani",
+   "coachella-2025:d2:yuma:1500:layton-giordani",
+   "coachella-2025:d5:yuma:1500:layton-giordani",
    "edc-las-vegas-2025:d1:circuit-grounds:0430:layton-giordani",
    "edc-orlando-2019:d2:neongarden:1500:layton-giordani",
    "edc-orlando-2025:d1:neongarden:2230:adam-beyer-b2b-layton-giordani",
@@ -122049,6 +122679,22 @@
   "links": []
  },
  {
+  "key": "lisa",
+  "name": "LISA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d1:sahara:1945:lisa",
+   "coachella-2025:d4:sahara:1945:lisa"
+  ],
+  "firstSeen": "2025-04-11",
+  "lastSeen": "2025-04-18",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "lisa-lashes",
   "name": "Lisa Lashes",
   "aliases": [],
@@ -122876,10 +123522,11 @@
   ],
   "billings": [
    "coachella-2023:d3:sahara:1325:loboman",
-   "coachella-2024:d2:sahara:1400:loboman"
+   "coachella-2024:d2:sahara:1400:loboman",
+   "coachella-2025:d4:sahara:1345:loboman"
   ],
   "firstSeen": "2023-04-16",
-  "lastSeen": "2024-04-13",
+  "lastSeen": "2025-04-18",
   "photo": null,
   "links": []
  },
@@ -122993,7 +123640,9 @@
   ],
   "kind": "performer",
   "parents": [],
-  "projects": [],
+  "projects": [
+   "the-martinez-brothers-x-loco-dice"
+  ],
   "billings": [
    "edc-thailand-2026:edcth-loco-dice",
    "time-warp-2027:tw27-loco-dice",
@@ -123202,6 +123851,8 @@
    "acl-2026:as42",
    "acl-2024:d2:american-express:1420:lola-young",
    "acl-2024:d5:american-express:1420:lola-young",
+   "coachella-2025:d1:mojave:1650:lola-young",
+   "coachella-2025:d4:mojave:1650:lola-young",
    "lollapalooza-2024:d2:bacardi:1715:lola-young"
   ],
   "firstSeen": "2024-08-02",
@@ -124107,6 +124758,22 @@
   ],
   "firstSeen": "2025-08-08",
   "lastSeen": "2025-08-08",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "los-mirlos",
+  "name": "Los Mirlos",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d1:sonora:1930:los-mirlos",
+   "coachella-2025:d4:sonora:1930:los-mirlos"
+  ],
+  "firstSeen": "2025-04-11",
+  "lastSeen": "2025-04-18",
   "photo": null,
   "links": []
  },
@@ -131878,6 +132545,8 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "coachella-2025:d1:gobi:1530:maribou-state",
+   "coachella-2025:d4:gobi:1530:maribou-state",
    "lollapalooza-2025:d4:the-grove:1830:maribou-state",
    "primavera-sound-2019:d2:lotus:0355:maribou-state",
    "sonar-2018:d3:sonarvillage-by-estrella-damm:2000:maribou-state"
@@ -131996,11 +132665,13 @@
   "billings": [
    "acl-2025:d2:american-express:1630:marina",
    "acl-2025:d5:american-express:1630:marina",
+   "coachella-2025:d1:coachella:1740:marina",
+   "coachella-2025:d4:coachella:1740:marina",
    "governors-ball-2025:d2:govballnyc:1715:marina",
    "lollapalooza-2025:d3:t-mobile:1655:marina",
    "outside-lands-2025:d1:twin-peaks:1720:marina"
   ],
-  "firstSeen": "2025-06-07",
+  "firstSeen": "2025-04-11",
   "lastSeen": "2025-10-11",
   "photo": null,
   "links": []
@@ -133794,6 +134465,8 @@
   "billings": [
    "edc-lv-2026:q28",
    "ultra-miami-2026:ul16",
+   "coachella-2025:d2:yuma:2000:mind-against-b2b-massano",
+   "coachella-2025:d5:yuma:2000:mind-against-b2b-massano",
    "tomorrowland-2023:d6:crystal-garden:1600:massano",
    "ultra-miami-2024:d1:the-cove:2030:massano-b2b-chris-avantgarde",
    "ultra-miami-2025:d2:the-cove:2200:massano-b2b-chris-avantgarde"
@@ -133871,7 +134544,9 @@
  {
   "key": "massio",
   "name": "Massio",
-  "aliases": [],
+  "aliases": [
+   "MASSIO"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [
@@ -133879,10 +134554,11 @@
   ],
   "billings": [
    "coachella-2022:d3:gobi:1310:massio",
+   "coachella-2025:d1:sahara:1345:massio",
    "lightning-in-a-bottle-2019:d5:favela:1545:massio"
   ],
   "firstSeen": "2019-05-12",
-  "lastSeen": "2022-04-17",
+  "lastSeen": "2025-04-11",
   "photo": null,
   "links": []
  },
@@ -135035,6 +135711,8 @@
    "arc-2026:arc-mau-p-grid-d2",
    "edc-thailand-2026:edcth-mau-p",
    "time-warp-2027:tw27-mau-p",
+   "coachella-2025:d2:sahara:2150:mau-p",
+   "coachella-2025:d5:sahara:2150:mau-p",
    "edc-las-vegas-2024:d3:kinetic-field:2206:mau-p",
    "edc-las-vegas-2025:d2:circuit-grounds:2230:mau-p",
    "edc-orlando-2023:d2:stereo-bloom:2100:mau-p",
@@ -136867,12 +137545,14 @@
   "billings": [
    "acl-2024:d3:miller-lite:1525:medium-build",
    "acl-2024:d6:miller-lite:1525:medium-build",
+   "coachella-2025:d2:gobi:1410:medium-build",
+   "coachella-2025:d5:gobi:1410:medium-build",
    "lollapalooza-2024:d4:bacardi:1715:medium-build",
    "lollapalooza-2024:d4:toyota-music-den:1500:medium-build",
    "outside-lands-2024:d2:panhandle:1700:medium-build"
   ],
   "firstSeen": "2024-08-04",
-  "lastSeen": "2024-10-13",
+  "lastSeen": "2025-04-19",
   "photo": null,
   "links": []
  },
@@ -137179,12 +137859,14 @@
    "acl-2021:d4:honda:1800:megan-thee-stallion",
    "coachella-2022:d2:coachella:2205:megan-thee-stallion",
    "coachella-2022:d5:coachella:2200:megan-thee-stallion",
+   "coachella-2025:d3:coachella:2035:megan-thee-stallion",
+   "coachella-2025:d6:coachella:2035:megan-thee-stallion",
    "lollapalooza-2021:d3:t-mobile:1845:megan-thee-stallion",
    "lollapalooza-2024:d1:t-mobile:2100:megan-thee-stallion",
    "outside-lands-2023:d3:lands-end:1820:megan-thee-stallion"
   ],
   "firstSeen": "2019-10-12",
-  "lastSeen": "2024-08-01",
+  "lastSeen": "2025-04-20",
   "photo": null,
   "links": []
  },
@@ -137211,10 +137893,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "coachella-2017:d6:sahara:1220:megatone"
+   "coachella-2017:d6:sahara:1220:megatone",
+   "coachella-2025:d2:outdoor:1445:megatone"
   ],
   "firstSeen": "2017-04-23",
-  "lastSeen": "2017-04-23",
+  "lastSeen": "2025-04-12",
   "photo": null,
   "links": []
  },
@@ -138369,10 +139052,12 @@
   "projects": [],
   "billings": [
    "coachella-2022:d1:mojave:1320:meute",
-   "coachella-2022:d4:mojave:1300:meute"
+   "coachella-2022:d4:mojave:1300:meute",
+   "coachella-2025:d3:outdoor:1540:meute",
+   "coachella-2025:d6:outdoor:1540:meute"
   ],
   "firstSeen": "2022-04-15",
-  "lastSeen": "2022-04-22",
+  "lastSeen": "2025-04-20",
   "photo": null,
   "links": []
  },
@@ -139624,6 +140309,8 @@
    "coachella-2012:d5:outdoor:2210:miike-snow",
    "coachella-2016:d3:mojave:2145:miike-snow",
    "coachella-2016:d6:mojave:2145:miike-snow",
+   "coachella-2025:d1:mojave:2035:miike-snow",
+   "coachella-2025:d4:mojave:2035:miike-snow",
    "hard-summer-2012:d1:hard-stage:2205:miike-snow",
    "lollapalooza-2012:d3:sony:1915:miike-snow",
    "lollapalooza-2016:d2:lakeshore:1900:miike-snow",
@@ -139631,7 +140318,7 @@
    "ultra-miami-2016:d1:live-stage:2300:miike-snow"
   ],
   "firstSeen": "2010-04-18",
-  "lastSeen": "2016-10-09",
+  "lastSeen": "2025-04-18",
   "photo": null,
   "links": []
  },
@@ -140607,7 +141294,9 @@
   "aliases": [],
   "kind": "performer",
   "parents": [],
-  "projects": [],
+  "projects": [
+   "rafael-x-miluhska"
+  ],
   "billings": [
    "iii-points-2026:iiip-malone-b2b-miluhska",
    "hard-summer-2026:hs2-miluhska"
@@ -140717,6 +141406,8 @@
   "billings": [
    "ultra-miami-2026:ul134",
    "tomorrowland-thailand-2026:tmlth-mind-against",
+   "coachella-2025:d2:yuma:2000:mind-against-b2b-massano",
+   "coachella-2025:d5:yuma:2000:mind-against-b2b-massano",
    "edc-las-vegas-2024:d3:quantum-valley:0330:mind-against",
    "sonar-2016:d2:sonarclub:0215:mind-against",
    "tomorrowland-2018:d3:atmosphere:1630:mind-against",
@@ -141517,6 +142208,22 @@
   ],
   "firstSeen": "2017-08-04",
   "lastSeen": "2021-10-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "missy-elliott",
+  "name": "Missy Elliott",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d1:coachella:2100:missy-elliott",
+   "coachella-2025:d4:coachella:2100:missy-elliott"
+  ],
+  "firstSeen": "2025-04-11",
+  "lastSeen": "2025-04-18",
   "photo": null,
   "links": []
  },
@@ -142425,6 +143132,22 @@
   "links": []
  },
  {
+  "key": "mohamed-ramadan",
+  "name": "Mohamed Ramadan",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d3:gobi:1820:mohamed-ramadan",
+   "coachella-2025:d6:gobi:1820:mohamed-ramadan"
+  ],
+  "firstSeen": "2025-04-13",
+  "lastSeen": "2025-04-20",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "moistbreezy",
   "name": "moistbreezy",
   "aliases": [],
@@ -143280,12 +144003,14 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "coachella-2025:d1:yuma:1445:moon-boots",
+   "coachella-2025:d4:yuma:1445:moon-boots",
    "edc-orlando-2021:d2:neon-garden:1530:moon-boots",
    "electric-forest-2014:d4:forest-stage:2215:moon-boots",
    "outside-lands-2015:d2:the-house-by-heineken:1630:moon-boots"
   ],
   "firstSeen": "2014-06-29",
-  "lastSeen": "2021-11-13",
+  "lastSeen": "2025-04-18",
   "photo": null,
   "links": []
  },
@@ -145796,6 +146521,22 @@
   "links": []
  },
  {
+  "key": "muni-long",
+  "name": "Muni Long",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d3:mojave:1610:muni-long",
+   "coachella-2025:d6:mojave:1610:muni-long"
+  ],
+  "firstSeen": "2025-04-13",
+  "lastSeen": "2025-04-20",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "munroe",
   "name": "Munroe",
   "aliases": [],
@@ -146132,6 +146873,8 @@
   "projects": [],
   "billings": [
    "lollapalooza-2026:lo68",
+   "coachella-2025:d1:sahara:2350:mustard",
+   "coachella-2025:d4:sahara:2350:mustard",
    "tomorrowland-2016:d3:barong-family:1800:mustard"
   ],
   "firstSeen": "2016-07-24",
@@ -154784,6 +155527,7 @@
    "edc-thailand-2026:edcth-odd-mob",
    "coachella-2027:coa27-odd-mob",
    "beyond-wonderland-gorge-2026:d2:queen-s-valley:2000:odd-mob",
+   "coachella-2025:d3:quasar:1700:odd-mob",
    "edc-las-vegas-2024:d2:cosmic-meadow:2015:odd-mob",
    "edc-las-vegas-2025:d2:cosmic-meadow:0330:odd-mob",
    "edc-las-vegas-2025:d3:stereo-bloom:2200:odd-mob",
@@ -159542,6 +160286,8 @@
    "acl-2026:au12",
    "iii-points-2026:iiip-parcels",
    "portola-2026:pt2-parcels",
+   "coachella-2025:d1:outdoor:2210:parcels",
+   "coachella-2025:d4:outdoor:2210:parcels",
    "outside-lands-2022:d2:sutro:1900:parcels"
   ],
   "firstSeen": "2022-08-06",
@@ -159665,14 +160411,18 @@
  {
   "key": "parisi",
   "name": "Parisi",
-  "aliases": [],
+  "aliases": [
+   "PARISI"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul146"
+   "ultra-miami-2026:ul146",
+   "coachella-2025:d1:gobi:1415:parisi",
+   "coachella-2025:d4:gobi:1415:parisi"
   ],
-  "firstSeen": "2026-03-29",
+  "firstSeen": "2025-04-11",
   "lastSeen": "2026-03-29",
   "photo": null,
   "links": []
@@ -161701,14 +162451,17 @@
  {
   "key": "pennywild",
   "name": "Pennywild",
-  "aliases": [],
+  "aliases": [
+   "PENNYWILD"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "beyond-wonderland-socal-2026:d1:beatbox:2030:pennywild"
+   "beyond-wonderland-socal-2026:d1:beatbox:2030:pennywild",
+   "coachella-2025:d3:mojave:1345:pennywild"
   ],
-  "firstSeen": "2026-03-27",
+  "firstSeen": "2025-04-13",
   "lastSeen": "2026-03-27",
   "photo": null,
   "links": []
@@ -162261,6 +163014,8 @@
   "billings": [
    "coachella-2015:d1:yuma:1915:pete-tong",
    "coachella-2015:d4:yuma:2035:pete-tong",
+   "coachella-2025:d1:yuma:2015:pete-tong-b2b-ahmed-spins",
+   "coachella-2025:d4:yuma:2015:pete-tong-b2b-ahmed-spins",
    "edc-las-vegas-2013:d3:neongarden:2200:pete-tong",
    "tomorrowland-2012:d3:pearl:1600:pete-tong",
    "tomorrowland-2013:d2:v-sessions:1730:pete-tong",
@@ -162269,7 +163024,7 @@
    "tomorrowland-2018:d6:core:1800:pete-tong"
   ],
   "firstSeen": "2012-07-29",
-  "lastSeen": "2018-07-29",
+  "lastSeen": "2025-04-18",
   "photo": null,
   "links": []
  },
@@ -165094,6 +165849,8 @@
    "decadence-arizona-2026:daz-polo-and-pan",
    "acl-2025:d3:miller-lite:1915:polo-and-pan",
    "acl-2025:d6:miller-lite:1915:polo-and-pan",
+   "coachella-2025:d3:outdoor:2255:polo-and-pan",
+   "coachella-2025:d6:outdoor:2255:polo-and-pan",
    "lollapalooza-2022:d4:discord:2100:polo-and-pan",
    "outside-lands-2022:d2:sutro:2030:polo-and-pan",
    "sonar-2022:d2:sonarvillage-by-estrella-damm:2000:polo-and-pan"
@@ -165553,6 +166310,8 @@
   "projects": [],
   "billings": [
    "summerfest-2026:su239",
+   "coachella-2025:d3:coachella:2225:post-malone",
+   "coachella-2025:d6:coachella:2225:post-malone",
    "governors-ball-2018:d1:honda-stage:1845:post-malone",
    "governors-ball-2024:d1:govballnyc:2030:post-malone",
    "lollapalooza-2018:d2:bud-light:untimed:post-malone",
@@ -166327,6 +167086,22 @@
   ],
   "firstSeen": "2015-06-05",
   "lastSeen": "2015-06-05",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "prison-affair",
+  "name": "Prison Affair",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d2:sonora:1350:prison-affair",
+   "coachella-2025:d5:sonora:1350:prison-affair"
+  ],
+  "firstSeen": "2025-04-12",
+  "lastSeen": "2025-04-19",
   "photo": null,
   "links": []
  },
@@ -169105,7 +169880,9 @@
   "aliases": [],
   "kind": "performer",
   "parents": [],
-  "projects": [],
+  "projects": [
+   "rafael-x-miluhska"
+  ],
   "billings": [
    "iii-points-2026:iiip-brunello-b2b-rafael",
    "crssd-fall-2026:crssd-rafael",
@@ -169130,6 +169907,24 @@
   ],
   "firstSeen": "2025-03-30",
   "lastSeen": "2025-03-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "rafael-x-miluhska",
+  "name": "Rafael x Miluhska",
+  "aliases": [],
+  "kind": "collab",
+  "parents": [
+   "miluhska",
+   "rafael"
+  ],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d4:quasar:1700:rafael-x-miluhska"
+  ],
+  "firstSeen": "2025-04-18",
+  "lastSeen": "2025-04-18",
   "photo": null,
   "links": []
  },
@@ -170483,6 +171278,8 @@
    "governors-ball-2026:go30",
    "acl-2018:d1:tito-s-handmade-vodka:1315:ravyn-lenae",
    "acl-2018:d4:tito-s-handmade-vodka:1315:ravyn-lenae",
+   "coachella-2025:d1:mojave:1435:ravyn-lenae",
+   "coachella-2025:d4:mojave:1435:ravyn-lenae",
    "governors-ball-2019:d2:bacardi-stage:1545:ravyn-lenae",
    "lollapalooza-2025:d2:lakeshore:1540:ravyn-lenae"
   ],
@@ -170525,17 +171322,21 @@
  },
  {
   "key": "rawayana",
-  "name": "RAWAYANA",
-  "aliases": [],
+  "name": "Rawayana",
+  "aliases": [
+   "RAWAYANA"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "coachella-2025:d2:gobi:2300:rawayana",
+   "coachella-2025:d5:gobi:2300:rawayana",
    "lollapalooza-2022:d2:bmi:1850:rawayana",
    "lollapalooza-2022:d2:bud-light-seltzer-sessions:1630:rawayana"
   ],
   "firstSeen": "2022-07-29",
-  "lastSeen": "2022-07-29",
+  "lastSeen": "2025-04-19",
   "photo": null,
   "links": []
  },
@@ -171322,10 +172123,12 @@
    "coachella-2023:d1:coachella:1450:record-safari",
    "coachella-2023:d4:mojave:1230:record-safari",
    "coachella-2024:d1:coachella:1540:record-safari",
-   "coachella-2024:d5:coachella:1545:record-safari"
+   "coachella-2024:d5:coachella:1545:record-safari",
+   "coachella-2025:d2:mojave:1400:record-safari",
+   "coachella-2025:d5:coachella:1445:record-safari"
   ],
   "firstSeen": "2016-04-17",
-  "lastSeen": "2024-04-20",
+  "lastSeen": "2025-04-19",
   "photo": null,
   "links": []
  },
@@ -172123,16 +172926,20 @@
  },
  {
   "key": "rema",
-  "name": "REMA",
-  "aliases": [],
+  "name": "Rema",
+  "aliases": [
+   "REMA"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "coachella-2025:d3:mojave:1840:rema",
+   "coachella-2025:d6:mojave:1840:rema",
    "lollapalooza-2023:d1:coinbase:1745:rema"
   ],
   "firstSeen": "2023-08-03",
-  "lastSeen": "2023-08-03",
+  "lastSeen": "2025-04-20",
   "photo": null,
   "links": []
  },
@@ -173426,6 +174233,21 @@
   ],
   "firstSeen": "2023-07-23",
   "lastSeen": "2023-07-23",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "rick-g",
+  "name": "Rick G",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d5:gobi:1330:rick-g"
+  ],
+  "firstSeen": "2025-04-19",
+  "lastSeen": "2025-04-19",
   "photo": null,
   "links": []
  },
@@ -178773,12 +179595,14 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "coachella-2025:d1:mojave:1540:saint-jhn",
+   "coachella-2025:d4:mojave:1540:saint-jhn",
    "governors-ball-2017:d3:honda:1330:saint-jhn",
    "lollapalooza-2017:d2:pepsi:1250:saint-jhn",
    "lollapalooza-2021:d1:lake-shore:1745:saint-jhn"
   ],
   "firstSeen": "2017-06-04",
-  "lastSeen": "2021-07-29",
+  "lastSeen": "2025-04-18",
   "photo": null,
   "links": []
  },
@@ -178903,6 +179727,21 @@
   "links": []
  },
  {
+  "key": "saison",
+  "name": "Saison.",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d1:gobi:1320:saison"
+  ],
+  "firstSeen": "2025-04-11",
+  "lastSeen": "2025-04-11",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "saka",
   "name": "Saka",
   "aliases": [
@@ -178934,6 +179773,21 @@
   ],
   "firstSeen": "2022-07-31",
   "lastSeen": "2023-07-22",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "salado",
+  "name": "Salado",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d6:sonora:1300:salado"
+  ],
+  "firstSeen": "2025-04-20",
+  "lastSeen": "2025-04-20",
   "photo": null,
   "links": []
  },
@@ -179047,10 +179901,12 @@
    "crssd-fall-2026:crssd-salute",
    "hard-summer-2026:hs1-salute",
    "arc-2026:arc-salute-area909-d2",
+   "coachella-2025:d2:sahara:1505:salute",
+   "coachella-2025:d5:sahara:1505:salute",
    "lollapalooza-2025:d3:the-grove:1350:salute",
    "shambhala-2025:d3:the-pagoda:0045:salute"
   ],
-  "firstSeen": "2025-07-26",
+  "firstSeen": "2025-04-12",
   "lastSeen": "2026-09-26",
   "photo": null,
   "links": []
@@ -179307,12 +180163,14 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "coachella-2025:d2:mojave:1755:sam-fender",
+   "coachella-2025:d5:mojave:1755:sam-fender",
    "lollapalooza-2019:d3:bud-light:untimed:sam-fender",
    "lollapalooza-2022:d1:tito-s-handmade-vodka:1400:sam-fender",
    "outside-lands-2022:d2:lands-end:1420:sam-fender"
   ],
   "firstSeen": "2019-08-03",
-  "lastSeen": "2022-08-06",
+  "lastSeen": "2025-04-19",
   "photo": null,
   "links": []
  },
@@ -179608,6 +180466,8 @@
    "edc-lv-2026:cg14",
    "hard-summer-2026:hs2-sammy-virji",
    "acl-2025:d2:miller-lite:1915:sammy-virji",
+   "coachella-2025:d3:sahara:1800:sammy-virji",
+   "coachella-2025:d6:sahara:1800:sammy-virji",
    "lollapalooza-2025:d4:perry-s:1745:sammy-virji",
    "outside-lands-2025:d3:sutro:1850:sammy-virji",
    "shambhala-2024:d2:amp:0000:sammy-virji"
@@ -180496,6 +181356,8 @@
   "billings": [
    "ultra-miami-2026:ul24",
    "ultra-miami-2026:ul137",
+   "coachella-2025:d1:sahara:1810:sara-landry",
+   "coachella-2025:d4:sahara:1810:sara-landry",
    "edc-las-vegas-2024:d3:circuit-grounds:2200:sara-landry",
    "edc-las-vegas-2025:d1:kinetic-field:2318:sara-landry",
    "edc-orlando-2025:d1:kineticfield:1957:sara-landry",
@@ -183444,10 +184306,12 @@
   "billings": [
    "coachella-2012:d3:outdoor:1510:seun-kuti-and-egypt-80",
    "coachella-2012:d6:outdoor:1510:seun-kuti-and-egypt-80",
+   "coachella-2025:d1:outdoor:1605:seun-kuti-and-egypt-80",
+   "coachella-2025:d4:outdoor:1605:seun-kuti-and-egypt-80",
    "electric-forest-2015:d3:ranch-arena:1545:seun-kuti-and-egypt-80"
   ],
   "firstSeen": "2012-04-15",
-  "lastSeen": "2015-06-27",
+  "lastSeen": "2025-04-18",
   "photo": null,
   "links": []
  },
@@ -183744,10 +184608,12 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "coachella-2025:d3:coachella:1605:shaboozey",
+   "coachella-2025:d6:coachella:1605:shaboozey",
    "outside-lands-2024:d1:sutro:1530:shaboozey"
   ],
   "firstSeen": "2024-08-09",
-  "lastSeen": "2024-08-09",
+  "lastSeen": "2025-04-20",
   "photo": null,
   "links": []
  },
@@ -184773,13 +185639,15 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "coachella-2025:d1:yuma:1545:shermanology",
+   "coachella-2025:d4:yuma:1545:shermanology",
    "edc-las-vegas-2012:d2:discoverystage:0000:shermanology",
    "edc-orlando-2022:d2:neon-garden:1400:shermanology",
    "tomorrowland-2013:d1:jacked:2200:shermanology",
    "tomorrowland-2014:d6:smash-the-house:1700:bassjackers-b2b-shermanology"
   ],
   "firstSeen": "2012-06-09",
-  "lastSeen": "2022-11-12",
+  "lastSeen": "2025-04-18",
   "photo": null,
   "links": []
  },
@@ -185285,6 +186153,22 @@
   ],
   "firstSeen": "2010-04-17",
   "lastSeen": "2010-04-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "shoreline-mafia",
+  "name": "Shoreline Mafia",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d2:sahara:1845:shoreline-mafia",
+   "coachella-2025:d5:sahara:1845:shoreline-mafia"
+  ],
+  "firstSeen": "2025-04-12",
+  "lastSeen": "2025-04-19",
   "photo": null,
   "links": []
  },
@@ -186800,6 +187684,21 @@
   "links": []
  },
  {
+  "key": "sin-rastro",
+  "name": "Sin Rastro",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d3:sonora:1300:sin-rastro"
+  ],
+  "firstSeen": "2025-04-13",
+  "lastSeen": "2025-04-13",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "sincera",
   "name": "SINCERA",
   "aliases": [],
@@ -186844,6 +187743,7 @@
   "projects": [],
   "billings": [
    "coachella-2024:d1:sahara:1400:sincerely-manolo",
+   "coachella-2025:d1:mojave:1330:sincerely-manolo",
    "escape-halloween-2025:d1:the-cage:1600:sincerely-manolo"
   ],
   "firstSeen": "2024-04-12",
@@ -187996,6 +188896,22 @@
   ],
   "firstSeen": "2011-08-04",
   "lastSeen": "2016-08-06",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "skrause",
+  "name": "skrause",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d2:coachella:1445:skrause",
+   "coachella-2025:d5:outdoor:1445:skrause"
+  ],
+  "firstSeen": "2025-04-12",
+  "lastSeen": "2025-04-19",
   "photo": null,
   "links": []
  },
@@ -189885,9 +190801,11 @@
    "lollapalooza-2026:lo36",
    "outside-lands-2026:os67",
    "hard-summer-2026:hs2-snow-strippers",
-   "coachella-2027:coa27-snow-strippers"
+   "coachella-2027:coa27-snow-strippers",
+   "coachella-2025:d3:sonora:2105:snow-strippers",
+   "coachella-2025:d6:sonora:2105:snow-strippers"
   ],
-  "firstSeen": "2026-03-28",
+  "firstSeen": "2025-04-13",
   "lastSeen": "2027-04-09",
   "photo": null,
   "links": []
@@ -190238,6 +191156,22 @@
   ],
   "firstSeen": "2017-06-16",
   "lastSeen": "2017-06-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "soft-play",
+  "name": "SOFT PLAY",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d3:sonora:1720:soft-play",
+   "coachella-2025:d6:sonora:1720:soft-play"
+  ],
+  "firstSeen": "2025-04-13",
+  "lastSeen": "2025-04-20",
   "photo": null,
   "links": []
  },
@@ -192362,6 +193296,22 @@
   "links": []
  },
  {
+  "key": "sparrow-and-barbossa",
+  "name": "Sparrow & Barbossa",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d3:yuma:1800:sparrow-and-barbossa",
+   "coachella-2025:d6:yuma:1800:sparrow-and-barbossa"
+  ],
+  "firstSeen": "2025-04-13",
+  "lastSeen": "2025-04-20",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "speaker-honey",
   "name": "SPEAKER HONEY",
   "aliases": [],
@@ -192562,6 +193512,22 @@
   ],
   "firstSeen": "2012-07-28",
   "lastSeen": "2019-05-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "speed",
+  "name": "SPEED",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d1:sonora:2040:speed",
+   "coachella-2025:d4:sonora:2040:speed"
+  ],
+  "firstSeen": "2025-04-11",
+  "lastSeen": "2025-04-18",
   "photo": null,
   "links": []
  },
@@ -195063,6 +196029,8 @@
    "acl-2024:d2:miller-lite:1710:still-woozy",
    "coachella-2022:d1:mojave:1625:still-woozy",
    "coachella-2022:d4:mojave:1625:still-woozy",
+   "coachella-2025:d3:outdoor:1815:still-woozy",
+   "coachella-2025:d6:outdoor:1815:still-woozy",
    "governors-ball-2019:d1:american-eagle-stage:1245:still-woozy",
    "lollapalooza-2019:d4:tito-s-handmade-vodka:untimed:still-woozy",
    "lollapalooza-2022:d1:t-mobile:1615:still-woozy",
@@ -199164,18 +200132,22 @@
  },
  {
   "key": "t-pain",
-  "name": "T-PAIN",
-  "aliases": [],
+  "name": "T-Pain",
+  "aliases": [
+   "T-PAIN"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "acl-2025:d3:american-express:1830:t-pain",
    "acl-2025:d6:american-express:1830:t-pain",
+   "coachella-2025:d2:coachella:1725:t-pain",
+   "coachella-2025:d5:coachella:1725:t-pain",
    "governors-ball-2025:d1:govballnyc:1700:t-pain",
    "lollapalooza-2025:d2:bud-light:1630:t-pain"
   ],
-  "firstSeen": "2025-06-06",
+  "firstSeen": "2025-04-12",
   "lastSeen": "2025-10-12",
   "photo": null,
   "links": []
@@ -199913,9 +200885,9 @@
  },
  {
   "key": "talon",
-  "name": "Talon",
+  "name": "Talón",
   "aliases": [
-   "Talón",
+   "Talon",
    "TALON"
   ],
   "kind": "performer",
@@ -199926,6 +200898,8 @@
    "coachella-2023:d2:yuma:1200:talon",
    "coachella-2023:d5:yuma:1200:talon",
    "coachella-2024:d3:coachella:1430:talon",
+   "coachella-2025:d2:sahara:1350:talon",
+   "coachella-2025:d5:sahara:1350:talon",
    "edc-las-vegas-2022:d2:wasteland:1950:talon",
    "ultra-miami-2023:d3:umf-radio:1200:talon"
   ],
@@ -202080,7 +203054,9 @@
   ],
   "kind": "performer",
   "parents": [],
-  "projects": [],
+  "projects": [
+   "testpilot-x-zhu"
+  ],
   "billings": [
    "coachella-2023:d1:yuma:2145:testpilot",
    "coachella-2023:d4:yuma:2145:testpilot",
@@ -202091,6 +203067,24 @@
   ],
   "firstSeen": "2019-03-31",
   "lastSeen": "2023-04-21",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "testpilot-x-zhu",
+  "name": "Testpilot x Zhu",
+  "aliases": [],
+  "kind": "collab",
+  "parents": [
+   "testpilot",
+   "zhu"
+  ],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d4:quasar:1900:testpilot-x-zhu"
+  ],
+  "firstSeen": "2025-04-18",
+  "lastSeen": "2025-04-18",
   "photo": null,
   "links": []
  },
@@ -203037,6 +204031,8 @@
    "acl-2019:d4:american-express:1230:the-beaches",
    "acl-2024:d2:t-mobile:1520:the-beaches",
    "acl-2024:d5:t-mobile:1520:the-beaches",
+   "coachella-2025:d3:gobi:1545:the-beaches",
+   "coachella-2025:d6:gobi:1545:the-beaches",
    "governors-ball-2025:d1:the-grove:1700:the-beaches",
    "lollapalooza-2023:d1:bud-light:1315:the-beaches"
   ],
@@ -204188,9 +205184,11 @@
    "governors-ball-2026:go11",
    "acl-2025:d3:miller-lite:1515:the-dare",
    "acl-2025:d6:miller-lite:1515:the-dare",
+   "coachella-2025:d2:mojave:2300:the-dare",
+   "coachella-2025:d5:mojave:2300:the-dare",
    "lollapalooza-2025:d2:the-grove:1715:the-dare"
   ],
-  "firstSeen": "2025-08-01",
+  "firstSeen": "2025-04-12",
   "lastSeen": "2026-06-05",
   "photo": null,
   "links": []
@@ -205332,6 +206330,22 @@
   ],
   "firstSeen": "2010-04-18",
   "lastSeen": "2024-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "the-go-go-s",
+  "name": "The Go-Go's",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d1:outdoor:1725:the-go-go-s",
+   "coachella-2025:d4:outdoor:1725:the-go-go-s"
+  ],
+  "firstSeen": "2025-04-11",
+  "lastSeen": "2025-04-18",
   "photo": null,
   "links": []
  },
@@ -207097,6 +208111,8 @@
    "acl-2024:d4:t-mobile:1930:the-marias",
    "coachella-2022:d1:gobi:1750:the-marias",
    "coachella-2022:d4:gobi:1900:the-marias",
+   "coachella-2025:d1:outdoor:2020:the-marias",
+   "coachella-2025:d4:outdoor:2020:the-marias",
    "lollapalooza-2022:d4:tito-s-handmade-vodka:1615:the-marias",
    "lollapalooza-2025:d4:bud-light:1900:the-marias",
    "outside-lands-2019:d1:panhandle:1630:the-marias",
@@ -207130,7 +208146,9 @@
   ],
   "kind": "performer",
   "parents": [],
-  "projects": [],
+  "projects": [
+   "the-martinez-brothers-x-loco-dice"
+  ],
   "billings": [
    "ultra-miami-2026:ul144",
    "coachella-2014:d3:yuma:1345:the-martinez-brothers",
@@ -207155,6 +208173,24 @@
   ],
   "firstSeen": "2013-09-21",
   "lastSeen": "2026-03-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "the-martinez-brothers-x-loco-dice",
+  "name": "The Martinez Brothers x Loco Dice",
+  "aliases": [],
+  "kind": "collab",
+  "parents": [
+   "loco-dice",
+   "the-martinez-brothers"
+  ],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d1:quasar:1900:the-martinez-brothers-x-loco-dice"
+  ],
+  "firstSeen": "2025-04-11",
+  "lastSeen": "2025-04-11",
   "photo": null,
   "links": []
  },
@@ -208046,6 +209082,22 @@
   "links": []
  },
  {
+  "key": "the-original-misfits",
+  "name": "The Original Misfits",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d2:outdoor:2320:the-original-misfits",
+   "coachella-2025:d5:outdoor:2320:the-original-misfits"
+  ],
+  "firstSeen": "2025-04-12",
+  "lastSeen": "2025-04-19",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "the-originalz",
   "name": "The Originalz",
   "aliases": [],
@@ -208566,6 +209618,8 @@
   "projects": [],
   "billings": [
    "edc-lv-2026:c15",
+   "coachella-2025:d1:mojave:2205:the-prodigy",
+   "coachella-2025:d4:mojave:2205:the-prodigy",
    "sziget-2011:d5:pop-rock-main-stage:2130:the-prodigy-uk",
    "ultra-miami-2016:d2:live-stage:2300:the-prodigy",
    "ultra-miami-2017:d2:live-stage:2245:the-prodigy"
@@ -211058,6 +212112,8 @@
    "governors-ball-2026:go37",
    "acl-2023:d1:honda:1425:thee-sacred-souls",
    "acl-2023:d4:honda:1425:thee-sacred-souls",
+   "coachella-2025:d1:coachella:1620:thee-sacred-souls",
+   "coachella-2025:d4:coachella:1620:thee-sacred-souls",
    "lollapalooza-2023:d3:t-mobile:1445:thee-sacred-souls"
   ],
   "firstSeen": "2023-08-05",
@@ -211711,9 +212767,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "summerfest-2026:su395"
+   "summerfest-2026:su395",
+   "coachella-2025:d1:sahara:1715:three-6-mafia",
+   "coachella-2025:d4:sahara:1715:three-6-mafia"
   ],
-  "firstSeen": "2026-07-04",
+  "firstSeen": "2025-04-11",
   "lastSeen": "2026-07-04",
   "photo": null,
   "links": []
@@ -212105,6 +213163,7 @@
    "coachella-2027:coa27-tiesto",
    "beyond-wonderland-socal-2026:d1:queen-s-domain:0045:tiesto",
    "coachella-2010:d2:coachella:2340:tiesto",
+   "coachella-2025:d3:quasar:1900:tiesto",
    "dreamstate-socal-2025:d2:the-dream:2345:tiesto-trance-set",
    "edc-las-vegas-2012:d2:kineticfield:0230:tiesto",
    "edc-las-vegas-2013:d2:kineticfield:0130:tiesto",
@@ -212201,10 +213260,11 @@
    "coachella-2022:d6:coachella:1455:tiffany-tyson",
    "coachella-2023:d5:outdoor:1340:tiffany-tyson",
    "coachella-2024:d3:outdoor:1555:tiffany-tyson",
+   "coachella-2025:d1:outdoor:1450:tiffany-tyson",
    "outside-lands-2022:d3:soma-tent:1230:mphd-b2b-tiffany-tyson"
   ],
   "firstSeen": "2022-04-24",
-  "lastSeen": "2024-04-14",
+  "lastSeen": "2025-04-11",
   "photo": null,
   "links": []
  },
@@ -212843,6 +213903,22 @@
   "links": []
  },
  {
+  "key": "tink",
+  "name": "Tink",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d2:outdoor:1600:tink",
+   "coachella-2025:d5:outdoor:1600:tink"
+  ],
+  "firstSeen": "2025-04-12",
+  "lastSeen": "2025-04-19",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "tinlicker",
   "name": "Tinlicker",
   "aliases": [
@@ -212853,6 +213929,8 @@
   "projects": [],
   "billings": [
    "edc-lv-2026:q26",
+   "coachella-2025:d1:yuma:1900:tinlicker",
+   "coachella-2025:d4:yuma:1900:tinlicker",
    "edc-las-vegas-2022:d1:circuit-grounds:2000:tinlicker",
    "outside-lands-2023:d3:soma-tent:1630:tinlicker",
    "tomorrowland-2018:d1:garden-of-madness:1400:tinlicker",
@@ -213693,6 +214771,22 @@
   "links": []
  },
  {
+  "key": "together-pangea",
+  "name": "Together Pangea",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d2:sonora:1440:together-pangea",
+   "coachella-2025:d5:sonora:1440:together-pangea"
+  ],
+  "firstSeen": "2025-04-12",
+  "lastSeen": "2025-04-19",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "toitoy-boys",
   "name": "Toitoy Boys",
   "aliases": [],
@@ -213884,6 +214978,22 @@
   ],
   "firstSeen": "2014-07-26",
   "lastSeen": "2015-07-25",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "tom-breu",
+  "name": "Tom Breu",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d3:sahara:1400:tom-breu",
+   "coachella-2025:d6:sahara:1400:tom-breu"
+  ],
+  "firstSeen": "2025-04-13",
+  "lastSeen": "2025-04-20",
   "photo": null,
   "links": []
  },
@@ -215064,6 +216174,8 @@
   "projects": [],
   "billings": [
    "acl-2025:d5:beatbox:1345:tops",
+   "coachella-2025:d1:sonora:1550:tops",
+   "coachella-2025:d4:sonora:1550:tops",
    "outside-lands-2023:d2:panhandle:1510:tops"
   ],
   "firstSeen": "2023-08-12",
@@ -215834,11 +216946,13 @@
    "acl-2018:d6:american-express:2045:travis-scott",
    "coachella-2017:d1:outdoor:2135:travis-scott",
    "coachella-2017:d4:outdoor:2135:travis-scott",
+   "coachella-2025:d2:coachella:2340:travis-scott",
+   "coachella-2025:d5:coachella:2340:travis-scott",
    "governors-ball-2018:d2:gov-ball-nyc-stage:2130:travis-scott",
    "lollapalooza-2018:d1:bud-light:untimed:travis-scott"
   ],
   "firstSeen": "2017-04-14",
-  "lastSeen": "2018-10-14",
+  "lastSeen": "2025-04-19",
   "photo": null,
   "links": []
  },
@@ -216346,6 +217460,42 @@
   "links": []
  },
  {
+  "key": "tripolism",
+  "name": "Tripolism",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [
+   "tripolism-x-erez"
+  ],
+  "billings": [
+   "coachella-2025:d3:yuma:1630:tripolism",
+   "coachella-2025:d6:yuma:1630:tripolism"
+  ],
+  "firstSeen": "2025-04-13",
+  "lastSeen": "2025-04-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "tripolism-x-erez",
+  "name": "Tripolism x EREZ",
+  "aliases": [],
+  "kind": "collab",
+  "parents": [
+   "erez",
+   "tripolism"
+  ],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d5:quasar:1800:tripolism-x-erez"
+  ],
+  "firstSeen": "2025-04-19",
+  "lastSeen": "2025-04-19",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "tripped",
   "name": "Tripped",
   "aliases": [],
@@ -216477,6 +217627,7 @@
   "key": "triste-juventud-x-totem",
   "name": "Triste Juventud x TOTEM",
   "aliases": [
+   "Triste Juventud x Tótem",
    "Triste Juventud x TÓTEM"
   ],
   "kind": "performer",
@@ -216484,10 +217635,11 @@
   "projects": [],
   "billings": [
    "coachella-2023:d5:sonora:1200:triste-juventud-x-totem",
-   "coachella-2024:d2:sonora:1300:triste-juventud-x-totem"
+   "coachella-2024:d2:sonora:1300:triste-juventud-x-totem",
+   "coachella-2025:d2:sonora:1300:triste-juventud-x-totem"
   ],
   "firstSeen": "2023-04-22",
-  "lastSeen": "2024-04-13",
+  "lastSeen": "2025-04-12",
   "photo": null,
   "links": []
  },
@@ -218087,17 +219239,21 @@
  },
  {
   "key": "ty-dolla-ign",
-  "name": "TY DOLLA $IGN",
-  "aliases": [],
+  "name": "Ty Dolla $ign",
+  "aliases": [
+   "TY DOLLA $IGN"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "coachella-2025:d3:sahara:2135:ty-dolla-ign",
+   "coachella-2025:d6:sahara:2135:ty-dolla-ign",
    "governors-ball-2019:d2:american-eagle-stage:1745:ty-dolla-ign",
    "ultra-miami-2017:d3:umf-radio:2130:ty-dolla-ign"
   ],
   "firstSeen": "2017-03-26",
-  "lastSeen": "2019-06-01",
+  "lastSeen": "2025-04-20",
   "photo": null,
   "links": []
  },
@@ -218260,6 +219416,8 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "coachella-2025:d1:outdoor:1845:tyla",
+   "coachella-2025:d4:outdoor:1845:tyla",
    "governors-ball-2025:d1:kiehl-s:1615:tyla",
    "lollapalooza-2024:d1:t-mobile:1515:tyla",
    "outside-lands-2024:d1:sutro:1805:tyla"
@@ -219119,6 +220277,8 @@
    "portola-2026:pt2-underscores",
    "hard-summer-2026:hs2-underscores",
    "coachella-2027:coa27-underscores",
+   "coachella-2025:d2:sonora:1700:underscores",
+   "coachella-2025:d5:sonora:1700:underscores",
    "governors-ball-2024:d1:ihg-hotels-and-resorts:1345:underscores",
    "lollapalooza-2022:d1:t-mobile:1245:underscores",
    "outside-lands-2024:d1:panhandle:1635:underscores"
@@ -221162,7 +222322,9 @@
   "billings": [
    "lollapalooza-2026:lo37",
    "coachella-2022:d3:sonora:1620:viagra-boys",
-   "coachella-2022:d6:sonora:1620:viagra-boys"
+   "coachella-2022:d6:sonora:1620:viagra-boys",
+   "coachella-2025:d2:gobi:1715:viagra-boys",
+   "coachella-2025:d5:gobi:1715:viagra-boys"
   ],
   "firstSeen": "2022-04-17",
   "lastSeen": "2026-07-30",
@@ -221953,6 +223115,8 @@
    "coachella-2027:coa27-vintage-culture",
    "coachella-2023:d1:sahara:1720:vintage-culture",
    "coachella-2023:d4:sahara:1700:vintage-culture",
+   "coachella-2025:d1:yuma:2315:vintage-culture",
+   "coachella-2025:d4:yuma:2315:vintage-culture",
    "edc-las-vegas-2022:d2:kinetic-field:2309:vintage-culture",
    "edc-las-vegas-2022:d2:parliament-art-car:0100:vintage-culture",
    "edc-las-vegas-2022:d3:stereo-bloom:0000:vintage-culture-b2b-james-hype",
@@ -223017,6 +224181,22 @@
   "links": []
  },
  {
+  "key": "vs-self",
+  "name": "vs self",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d1:sonora:1500:vs-self",
+   "coachella-2025:d4:sonora:1500:vs-self"
+  ],
+  "firstSeen": "2025-04-11",
+  "lastSeen": "2025-04-18",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "vsyana",
   "name": "vsyana",
   "aliases": [],
@@ -223045,6 +224225,8 @@
    "portola-2026:pt2-vtss",
    "hard-summer-2026:hs2-vtss",
    "edc-thailand-2026:edcth-vtss",
+   "coachella-2025:d2:sonora:2030:vtss",
+   "coachella-2025:d5:sonora:2030:vtss",
    "edc-las-vegas-2024:d2:bionic-jungle:0330:vtss",
    "ultra-miami-2025:d1:umf-radio:2030:vtss"
   ],
@@ -224490,10 +225672,11 @@
   "projects": [],
   "billings": [
    "coachella-2015:d6:mojave:1120:wavegroove",
-   "coachella-2024:d3:gobi:1415:wavegroove"
+   "coachella-2024:d3:gobi:1415:wavegroove",
+   "coachella-2025:d3:gobi:1330:wavegroove"
   ],
   "firstSeen": "2015-04-19",
-  "lastSeen": "2024-04-14",
+  "lastSeen": "2025-04-13",
   "photo": null,
   "links": []
  },
@@ -224944,6 +226127,7 @@
   "billings": [
    "coachella-2027:coa27-weezer",
    "acl-2012:d1:amd:1815:weezer",
+   "coachella-2025:d2:mojave:1510:weezer",
    "outside-lands-2022:d3:lands-end:1825:weezer"
   ],
   "firstSeen": "2012-10-12",
@@ -227138,6 +228322,8 @@
   "projects": [],
   "billings": [
    "governors-ball-2026:go23",
+   "coachella-2025:d3:sonora:1610:wisp",
+   "coachella-2025:d6:sonora:1610:wisp",
    "lollapalooza-2024:d2:bacardi:1350:wisp",
    "outside-lands-2024:d3:sutro:1400:wisp"
   ],
@@ -228632,6 +229818,22 @@
   "links": []
  },
  {
+  "key": "xg",
+  "name": "XG",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d3:sahara:2255:xg",
+   "coachella-2025:d6:sahara:2255:xg"
+  ],
+  "firstSeen": "2025-04-13",
+  "lastSeen": "2025-04-20",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "xijaro-and-pitch",
   "name": "XiJaro & Pitch",
   "aliases": [],
@@ -229316,6 +230518,22 @@
   "links": []
  },
  {
+  "key": "yeat",
+  "name": "Yeat",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d1:sahara:2110:yeat",
+   "coachella-2025:d4:sahara:2110:yeat"
+  ],
+  "firstSeen": "2025-04-11",
+  "lastSeen": "2025-04-18",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "yeek",
   "name": "Yeek",
   "aliases": [],
@@ -229658,6 +230876,22 @@
   ],
   "firstSeen": "2014-10-12",
   "lastSeen": "2014-10-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "yo-gabba-gabba",
+  "name": "Yo Gabba Gabba!",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "coachella-2025:d2:mojave:1645:yo-gabba-gabba",
+   "coachella-2025:d5:mojave:1645:yo-gabba-gabba"
+  ],
+  "firstSeen": "2025-04-12",
+  "lastSeen": "2025-04-19",
   "photo": null,
   "links": []
  },
@@ -230520,10 +231754,12 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "coachella-2025:d3:yuma:1300:yulia-niko",
+   "coachella-2025:d6:yuma:1300:yulia-niko",
    "outside-lands-2024:d1:soma:1255:yulia-niko"
   ],
   "firstSeen": "2024-08-09",
-  "lastSeen": "2024-08-09",
+  "lastSeen": "2025-04-20",
   "photo": null,
   "links": []
  },
@@ -231393,6 +232629,8 @@
    "coachella-2014:d4:sahara:2205:zedd",
    "coachella-2016:d2:outdoor:2130:zedd",
    "coachella-2016:d5:outdoor:2130:zedd",
+   "coachella-2025:d3:outdoor:2110:zedd",
+   "coachella-2025:d6:outdoor:2110:zedd",
    "edc-las-vegas-2022:d3:kinetic-field:0017:zedd",
    "edc-las-vegas-2024:d2:kinetic-field:0147:zedd",
    "edc-orlando-2017:d2:circuitgrounds:2245:zedd",
@@ -231676,7 +232914,9 @@
   ],
   "kind": "performer",
   "parents": [],
-  "projects": [],
+  "projects": [
+   "testpilot-x-zhu"
+  ],
   "billings": [
    "ultra-miami-2026:ul149",
    "acl-2017:d3:barton-springs:1930:zhu",

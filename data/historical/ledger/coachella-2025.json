@@ -1,0 +1,331 @@
+{
+  "id": "coachella-2025",
+  "method": "official_image_transcription",
+  "official": "https://www.coachella.com/schedule",
+  "window": [
+    "20250401",
+    "20250531"
+  ],
+  "pageCaptures": [
+    {
+      "captureTimestamp": "20250406080511",
+      "archivedUrl": "https://web.archive.org/web/20250406080511/https://www.coachella.com/schedule",
+      "sha256": "6946fb9f53be40d9ce2e7c4966070eafb1c4882e6f9ef12e9f3949b286262501",
+      "images": [
+        "c25-w1-friday.jpg",
+        "c25-w1-saturday.jpg",
+        "c25-w1-sunday.jpg",
+        "c25-w2-friday.jpg",
+        "c25-w2-saturday.jpg",
+        "c25-w2-sunday.jpg"
+      ]
+    },
+    {
+      "captureTimestamp": "20250407023333",
+      "archivedUrl": "https://web.archive.org/web/20250407023333/https://www.coachella.com/schedule",
+      "sha256": "2b0c51ac7f80aa81a9388de6591338768b320efaed9fc13f51415ddf9ac0670a",
+      "images": [
+        "c25-w1-friday.jpg",
+        "c25-w1-saturday.jpg",
+        "c25-w1-sunday.jpg",
+        "c25-w2-friday.jpg",
+        "c25-w2-saturday.jpg",
+        "c25-w2-sunday.jpg"
+      ]
+    },
+    {
+      "captureTimestamp": "20250410120341",
+      "archivedUrl": "https://web.archive.org/web/20250410120341/https://www.coachella.com/schedule",
+      "sha256": "1e98dd1cfda8df46836b15917f1308272b682c1540bc97a50f68e29491b7936f",
+      "images": [
+        "c25-w1-friday.jpg",
+        "c25-w1-saturday.jpg",
+        "c25-w1-sunday.jpg",
+        "c25-w2-friday.jpg",
+        "c25-w2-saturday.jpg",
+        "c25-w2-sunday.jpg"
+      ]
+    },
+    {
+      "captureTimestamp": "20250411080659",
+      "archivedUrl": "https://web.archive.org/web/20250411080659/https://www.coachella.com/schedule",
+      "sha256": "235c9c155e06ddd67cdc908461da951620f2afe9452db9d897379e7703cb0941",
+      "images": [
+        "c25-w1-friday.jpg",
+        "c25-w1-saturday.jpg",
+        "c25-w1-sunday.jpg",
+        "c25-w2-friday.jpg",
+        "c25-w2-saturday.jpg",
+        "c25-w2-sunday.jpg"
+      ]
+    },
+    {
+      "captureTimestamp": "20250411202627",
+      "archivedUrl": "https://web.archive.org/web/20250411202627/https://www.coachella.com/schedule",
+      "sha256": "60bf4c4eb02784eb3d6856c203f3124f9f2b1134b17eacf3e30f12b60105ccc5",
+      "images": [
+        "c25-w1-friday.jpg",
+        "c25-w1-saturday.jpg",
+        "c25-w1-sunday.jpg",
+        "c25-w2-friday.jpg",
+        "c25-w2-saturday.jpg",
+        "c25-w2-sunday.jpg"
+      ]
+    },
+    {
+      "captureTimestamp": "20250411221250",
+      "archivedUrl": "https://web.archive.org/web/20250411221250/https://www.coachella.com/schedule",
+      "sha256": "7d346e401f3ed83d74845503b32664d73df641541f03b0edda2dc48abca0f64d",
+      "images": [
+        "c25-w1-friday.jpg",
+        "c25-w1-saturday.jpg",
+        "c25-w1-sunday.jpg",
+        "c25-w2-friday.jpg",
+        "c25-w2-saturday.jpg",
+        "c25-w2-sunday.jpg"
+      ]
+    },
+    {
+      "captureTimestamp": "20250412025919",
+      "archivedUrl": "https://web.archive.org/web/20250412025919/https://www.coachella.com/schedule",
+      "sha256": "013991d34d6ff2a33125881db5f8fab08ae39b91604723e9ffda61181968861a",
+      "images": [
+        "c25-w1-friday.jpg",
+        "c25-w1-saturday.jpg",
+        "c25-w1-sunday.jpg",
+        "c25-w2-friday.jpg",
+        "c25-w2-saturday.jpg",
+        "c25-w2-sunday.jpg"
+      ]
+    },
+    {
+      "captureTimestamp": "20250412092758",
+      "archivedUrl": "https://web.archive.org/web/20250412092758/https://www.coachella.com/schedule",
+      "sha256": "e0e89fceee8fb535a6b550b030a39ba348a9c173746728159d81ade7a2c512a3",
+      "images": [
+        "c25-w1-friday.jpg",
+        "c25-w1-saturday.jpg",
+        "c25-w1-sunday.jpg",
+        "c25-w2-friday.jpg",
+        "c25-w2-saturday.jpg",
+        "c25-w2-sunday.jpg"
+      ]
+    },
+    {
+      "captureTimestamp": "20250413081556",
+      "archivedUrl": "https://web.archive.org/web/20250413081556/https://www.coachella.com/schedule",
+      "sha256": "45c54aae088ba07c3f4cb347cb443dd4e75168c9a26bbecc3b99a8f6c045243b",
+      "images": [
+        "c25-w1-friday.jpg",
+        "c25-w1-saturday.jpg",
+        "c25-w1-sunday.jpg",
+        "c25-w2-friday.jpg",
+        "c25-w2-saturday.jpg",
+        "c25-w2-sunday.jpg"
+      ]
+    },
+    {
+      "captureTimestamp": "20250414021737",
+      "archivedUrl": "https://web.archive.org/web/20250414021737/https://www.coachella.com/schedule",
+      "sha256": "b935f716ed122a2f52a90f122487ace42522de8fe24f5afae8c9c4e97f1dc8eb",
+      "images": [
+        "c25-w1-friday.jpg",
+        "c25-w1-saturday.jpg",
+        "c25-w1-sunday.jpg",
+        "c25-w2-friday.jpg",
+        "c25-w2-saturday.jpg",
+        "c25-w2-sunday.jpg"
+      ]
+    },
+    {
+      "captureTimestamp": "20250414122352",
+      "archivedUrl": "https://web.archive.org/web/20250414122352/https://www.coachella.com/schedule",
+      "sha256": "9a08c3a351ec0e2f152458501845d56821259290bf4e3bca6119d26004c8970c",
+      "images": [
+        "c25-w1-friday.jpg",
+        "c25-w1-saturday.jpg",
+        "c25-w1-sunday.jpg",
+        "c25-w2-friday.jpg",
+        "c25-w2-saturday.jpg",
+        "c25-w2-sunday.jpg"
+      ]
+    },
+    {
+      "captureTimestamp": "20250417120155",
+      "archivedUrl": "https://web.archive.org/web/20250417120155/https://www.coachella.com/schedule",
+      "sha256": "9cf3df99c6b33867016a0a7135b79cbdef9952478a131ef22217cf62c88b43ce",
+      "images": [
+        "c25-w2-friday.jpg",
+        "c25-w2-saturday.jpg",
+        "c25-w2-sunday.jpg"
+      ]
+    },
+    {
+      "captureTimestamp": "20250418204620",
+      "archivedUrl": "https://web.archive.org/web/20250418204620/https://www.coachella.com/schedule",
+      "sha256": "8722a5c8288af31a3990846890060504b4585823f5ae5ece7c6fbf64989adec9",
+      "images": [
+        "c25-w2-friday.jpg",
+        "c25-w2-saturday.jpg",
+        "c25-w2-sunday.jpg"
+      ]
+    },
+    {
+      "captureTimestamp": "20250419070910",
+      "archivedUrl": "https://web.archive.org/web/20250419070910/https://www.coachella.com/schedule",
+      "sha256": "f0f44268779a498ae9a0950a6746e48519942c2a80689174926a69206248637c",
+      "images": [
+        "c25-w2-friday.jpg",
+        "c25-w2-saturday.jpg",
+        "c25-w2-sunday.jpg"
+      ]
+    },
+    {
+      "captureTimestamp": "20250419213932",
+      "archivedUrl": "https://web.archive.org/web/20250419213932/https://www.coachella.com/schedule",
+      "sha256": "db4461cf7fa0fbb8a2745682c6a7675222454bcfa1141a4ad72aaec4910a2ba4",
+      "images": [
+        "c25-w2-friday.jpg",
+        "c25-w2-saturday.jpg",
+        "c25-w2-sunday.jpg"
+      ]
+    },
+    {
+      "captureTimestamp": "20250421021401",
+      "archivedUrl": "https://web.archive.org/web/20250421021401/https://www.coachella.com/schedule",
+      "sha256": "313d5046d0e3cc95ef89042bbc2d7ee460a4c81117b3c2e7d781dfd0fd8d11d7",
+      "images": [
+        "c25-w2-friday.jpg",
+        "c25-w2-saturday.jpg",
+        "c25-w2-sunday.jpg"
+      ]
+    },
+    {
+      "captureTimestamp": "20250421122639",
+      "archivedUrl": "https://web.archive.org/web/20250421122639/https://www.coachella.com/schedule",
+      "sha256": "479dc3ecca67cca9f7cf90edefd5f6fcb5acd44a142197a554e5a662dc1ef0bc",
+      "images": [
+        "c25-w2-friday.jpg",
+        "c25-w2-saturday.jpg",
+        "c25-w2-sunday.jpg"
+      ]
+    }
+  ],
+  "days": [
+    {
+      "day": 1,
+      "date": "2025-04-11",
+      "pageCapture": "20250414122352",
+      "pageArchivedUrl": "https://web.archive.org/web/20250414122352/https://www.coachella.com/schedule",
+      "originalUrl": "https://aegwebprod.blob.core.windows.net/content/coachella2025/c25-w1-friday.jpg",
+      "imageCapture": "20250413125601",
+      "imageArchivedUrl": "https://web.archive.org/web/20250413125601/https://aegwebprod.blob.core.windows.net/content/coachella2025/c25-w1-friday.jpg",
+      "sha256": "f293caa1d81b4e55624033b481167e36725019aed52297f6d8ee63e1305b77f5",
+      "bytes": 539377,
+      "contentType": "image/jpeg",
+      "cacheFile": "cc456a6ca0c47da5cbcd3604.bin",
+      "revisions": [
+        {
+          "file": "c25-w1-friday.jpg",
+          "firstSeen": "20250406080511"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2025-04-12",
+      "pageCapture": "20250414122352",
+      "pageArchivedUrl": "https://web.archive.org/web/20250414122352/https://www.coachella.com/schedule",
+      "originalUrl": "https://aegwebprod.blob.core.windows.net/content/coachella2025/c25-w1-saturday.jpg",
+      "imageCapture": "20250413125614",
+      "imageArchivedUrl": "https://web.archive.org/web/20250413125614/https://aegwebprod.blob.core.windows.net/content/coachella2025/c25-w1-saturday.jpg",
+      "sha256": "8e7eeed4e78190a5055c716c73772c7b398ded84418485c3e01e78c82bd2d823",
+      "bytes": 296813,
+      "contentType": "image/jpeg",
+      "cacheFile": "a8cf041587280a6605e6444e.bin",
+      "revisions": [
+        {
+          "file": "c25-w1-saturday.jpg",
+          "firstSeen": "20250406080511"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2025-04-13",
+      "pageCapture": "20250414122352",
+      "pageArchivedUrl": "https://web.archive.org/web/20250414122352/https://www.coachella.com/schedule",
+      "originalUrl": "https://aegwebprod.blob.core.windows.net/content/coachella2025/c25-w1-sunday.jpg",
+      "imageCapture": "20250413125638",
+      "imageArchivedUrl": "https://web.archive.org/web/20250413125638/https://aegwebprod.blob.core.windows.net/content/coachella2025/c25-w1-sunday.jpg",
+      "sha256": "ccdcbf04d3c3a99d8c2c10b90e7e093293b569c596f0fc3a6da303e9d910ef4b",
+      "bytes": 512646,
+      "contentType": "image/jpeg",
+      "cacheFile": "834d75c4e3a717be9615257f.bin",
+      "revisions": [
+        {
+          "file": "c25-w1-sunday.jpg",
+          "firstSeen": "20250406080511"
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2025-04-18",
+      "pageCapture": "20250421122639",
+      "pageArchivedUrl": "https://web.archive.org/web/20250421122639/https://www.coachella.com/schedule",
+      "originalUrl": "https://aegwebprod.blob.core.windows.net/content/coachella2025/c25-w2-friday.jpg",
+      "imageCapture": "20250417120209",
+      "imageArchivedUrl": "https://web.archive.org/web/20250417120209/https://aegwebprod.blob.core.windows.net/content/coachella2025/c25-w2-friday.jpg",
+      "sha256": "700b3a5f2fc39e20f7fbf39fe95c9d964404fb1d5b96513a4a3bdb941dab9983",
+      "bytes": 532885,
+      "contentType": "image/jpeg",
+      "cacheFile": "735842e1b1b3e47264d72bf9.bin",
+      "revisions": [
+        {
+          "file": "c25-w2-friday.jpg",
+          "firstSeen": "20250406080511"
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "date": "2025-04-19",
+      "pageCapture": "20250421122639",
+      "pageArchivedUrl": "https://web.archive.org/web/20250421122639/https://www.coachella.com/schedule",
+      "originalUrl": "https://aegwebprod.blob.core.windows.net/content/coachella2025/c25-w2-saturday.jpg",
+      "imageCapture": "20250417120214",
+      "imageArchivedUrl": "https://web.archive.org/web/20250417120214/https://aegwebprod.blob.core.windows.net/content/coachella2025/c25-w2-saturday.jpg",
+      "sha256": "994545f63474bfe1296d8553808b18581b914afa1e1c659874c2984dd818fd48",
+      "bytes": 294445,
+      "contentType": "image/jpeg",
+      "cacheFile": "32cb4e1e671ce9e8d0517ad4.bin",
+      "revisions": [
+        {
+          "file": "c25-w2-saturday.jpg",
+          "firstSeen": "20250406080511"
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "date": "2025-04-20",
+      "pageCapture": "20250421122639",
+      "pageArchivedUrl": "https://web.archive.org/web/20250421122639/https://www.coachella.com/schedule",
+      "originalUrl": "https://aegwebprod.blob.core.windows.net/content/coachella2025/c25-w2-sunday.jpg",
+      "imageCapture": "20250417120212",
+      "imageArchivedUrl": "https://web.archive.org/web/20250417120212/https://aegwebprod.blob.core.windows.net/content/coachella2025/c25-w2-sunday.jpg",
+      "sha256": "f9fcd12bf5e468e6412e79e505e54dbe360424851d07c2313b821d13632f2db6",
+      "bytes": 513580,
+      "contentType": "image/jpeg",
+      "cacheFile": "1231a8f27f6be3b494dfcc5f.bin",
+      "revisions": [
+        {
+          "file": "c25-w2-sunday.jpg",
+          "firstSeen": "20250406080511"
+        }
+      ]
+    }
+  ],
+  "dropped": []
+}
