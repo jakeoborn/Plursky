@@ -86483,6 +86483,2046 @@
   "mainStage": null
  },
  {
+  "id": "lollapalooza-chile-2027:lcl27-charli-xcx",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-12",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Charli XCX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "charli-xcx",
+    "role": "performer"
+   }
+  ],
+  "act": "charli-xcx",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-david-guetta",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-12",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "David Guetta",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "david-guetta",
+    "role": "performer"
+   }
+  ],
+  "act": "david-guetta",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-sombr",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-12",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "sombr",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sombr",
+    "role": "performer"
+   }
+  ],
+  "act": "sombr",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-dominic-fike",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-12",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Dominic Fike",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dominic-fike",
+    "role": "performer"
+   }
+  ],
+  "act": "dominic-fike",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-cage-the-elephant",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-12",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Cage The Elephant",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cage-the-elephant",
+    "role": "performer"
+   }
+  ],
+  "act": "cage-the-elephant",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-lola-young",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-12",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Lola Young",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lola-young",
+    "role": "performer"
+   }
+  ],
+  "act": "lola-young",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-tomora",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-12",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "TOMORA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tomora",
+    "role": "performer"
+   }
+  ],
+  "act": "tomora",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-leon-bridges",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-12",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Leon Bridges",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "leon-bridges",
+    "role": "performer"
+   }
+  ],
+  "act": "leon-bridges",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-gondwana-and-quique-neira",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-12",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "GONDWANA & QUIQUE NEIRA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gondwana-and-quique-neira",
+    "role": "performer"
+   }
+  ],
+  "act": "gondwana-and-quique-neira",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-ana-tijoux",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-12",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Ana Tijoux",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ana-tijoux",
+    "role": "performer"
+   }
+  ],
+  "act": "ana-tijoux",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-snow-strippers",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-12",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Snow Strippers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "snow-strippers",
+    "role": "performer"
+   }
+  ],
+  "act": "snow-strippers",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-yorghaki",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-12",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "YORGHAKI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yorghaki",
+    "role": "performer"
+   }
+  ],
+  "act": "yorghaki",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-ninajirachi",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-12",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Ninajirachi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ninajirachi",
+    "role": "performer"
+   }
+  ],
+  "act": "ninajirachi",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-amaia",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-12",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "AMAIA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "amaia",
+    "role": "performer"
+   }
+  ],
+  "act": "amaia",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-sfdk",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-12",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "SFDK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sfdk",
+    "role": "performer"
+   }
+  ],
+  "act": "sfdk",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-leo-rey",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-12",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "LEO REY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "leo-rey",
+    "role": "performer"
+   }
+  ],
+  "act": "leo-rey",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-boy-harsher",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-12",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Boy Harsher",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "boy-harsher",
+    "role": "performer"
+   }
+  ],
+  "act": "boy-harsher",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-congreso",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-12",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "CONGRESO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "congreso",
+    "role": "performer"
+   }
+  ],
+  "act": "congreso",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-dinamarca",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-12",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Dinamarca",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dinamarca",
+    "role": "performer"
+   }
+  ],
+  "act": "dinamarca",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-violet-grohl",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-12",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Violet Grohl",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "violet-grohl",
+    "role": "performer"
+   }
+  ],
+  "act": "violet-grohl",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-hermanos-ilabaca",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-12",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "HERMANOS ILABACA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hermanos-ilabaca",
+    "role": "performer"
+   }
+  ],
+  "act": "hermanos-ilabaca",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-we-are-the-grand",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-12",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "WE ARE THE GRAND",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "we-are-the-grand",
+    "role": "performer"
+   }
+  ],
+  "act": "we-are-the-grand",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-lorna",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-12",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "LORNA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lorna",
+    "role": "performer"
+   }
+  ],
+  "act": "lorna",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-olivia-garcia",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-12",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "OLIVIA GARCÍA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "olivia-garcia",
+    "role": "performer"
+   }
+  ],
+  "act": "olivia-garcia",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-white-mj",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-12",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "WHITE MJ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "white-mj",
+    "role": "performer"
+   }
+  ],
+  "act": "white-mj",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-nando-garcia",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-12",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "NANDO GARCÍA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nando-garcia",
+    "role": "performer"
+   }
+  ],
+  "act": "nando-garcia",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-rootz-hifi-d1",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-12",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ROOTZ HIFI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rootz-hifi",
+    "role": "performer"
+   }
+  ],
+  "act": "rootz-hifi",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-javiera-electra",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-12",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "JAVIERA ELECTRA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "javiera-electra",
+    "role": "performer"
+   }
+  ],
+  "act": "javiera-electra",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-la-ramona",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-12",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "LA RAMONA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "la-ramona",
+    "role": "performer"
+   }
+  ],
+  "act": "la-ramona",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-vibrational-echoes",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-12",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "VIBRATIONAL ECHOES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vibrational-echoes",
+    "role": "performer"
+   }
+  ],
+  "act": "vibrational-echoes",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-the-killers",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-13",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "The Killers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-killers",
+    "role": "performer"
+   }
+  ],
+  "act": "the-killers",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-the-neighbourhood",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-13",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "The Neighbourhood",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-neighbourhood",
+    "role": "performer"
+   }
+  ],
+  "act": "the-neighbourhood",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-fontaines-d-c",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-13",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "FONTAINES D.C.",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fontaines-d-c",
+    "role": "performer"
+   }
+  ],
+  "act": "fontaines-d-c",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-the-prodigy",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-13",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "The Prodigy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-prodigy",
+    "role": "performer"
+   }
+  ],
+  "act": "the-prodigy",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-malcolm-todd",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-13",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "MALCOLM TODD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "malcolm-todd",
+    "role": "performer"
+   }
+  ],
+  "act": "malcolm-todd",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-raye",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-13",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "RAYE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "raye",
+    "role": "performer"
+   }
+  ],
+  "act": "raye",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-adela",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-13",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Adéla",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "adela",
+    "role": "performer"
+   }
+  ],
+  "act": "adela",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-marlon-hoffstadt",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-13",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Marlon Hoffstadt",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marlon-hoffstadt",
+    "role": "performer"
+   }
+  ],
+  "act": "marlon-hoffstadt",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-alex-anwandter",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-13",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ALEX ANWANDTER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alex-anwandter",
+    "role": "performer"
+   }
+  ],
+  "act": "alex-anwandter",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-santaferia",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-13",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "SANTAFERIA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "santaferia",
+    "role": "performer"
+   }
+  ],
+  "act": "santaferia",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-javiera-mena",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-13",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "JAVIERA MENA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "javiera-mena",
+    "role": "performer"
+   }
+  ],
+  "act": "javiera-mena",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-lucky-brown",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-13",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "LUCKY BROWN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lucky-brown",
+    "role": "performer"
+   }
+  ],
+  "act": "lucky-brown",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-boys-noize",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-13",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Boys Noize",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "boys-noize",
+    "role": "performer"
+   }
+  ],
+  "act": "boys-noize",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-ela-taubert",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-13",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ELA TAUBERT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ela-taubert",
+    "role": "performer"
+   }
+  ],
+  "act": "ela-taubert",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-santos-bravos",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-13",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "SANTOS BRAVOS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "santos-bravos",
+    "role": "performer"
+   }
+  ],
+  "act": "santos-bravos",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-los-tetas",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-13",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "LOS TETAS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "los-tetas",
+    "role": "performer"
+   }
+  ],
+  "act": "los-tetas",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-saramalacara",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-13",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "SARAMALACARA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "saramalacara",
+    "role": "performer"
+   }
+  ],
+  "act": "saramalacara",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-natalia-lacunza",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-13",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "NATALIA LACUNZA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "natalia-lacunza",
+    "role": "performer"
+   }
+  ],
+  "act": "natalia-lacunza",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-mind-enterprises",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-13",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Mind Enterprises",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mind-enterprises",
+    "role": "performer"
+   }
+  ],
+  "act": "mind-enterprises",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-pascual-arroyo",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-13",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "PASCUAL ARROYO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pascual-arroyo",
+    "role": "performer"
+   }
+  ],
+  "act": "pascual-arroyo",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-kuina",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-13",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "KUINA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kuina",
+    "role": "performer"
+   }
+  ],
+  "act": "kuina",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-catalina-y-las-bordonas-de-oro",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-13",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "CATALINA Y LAS BORDONAS DE ORO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "catalina-y-las-bordonas-de-oro",
+    "role": "performer"
+   }
+  ],
+  "act": "catalina-y-las-bordonas-de-oro",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-teodioteodio",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-13",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "TEODIOTEODIO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "teodioteodio",
+    "role": "performer"
+   }
+  ],
+  "act": "teodioteodio",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-iza-tkm",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-13",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "IZA TKM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "iza-tkm",
+    "role": "performer"
+   }
+  ],
+  "act": "iza-tkm",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-ryan",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-13",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "RYAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ryan",
+    "role": "performer"
+   }
+  ],
+  "act": "ryan",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-rootz-hifi-d2",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-13",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ROOTZ HIFI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rootz-hifi",
+    "role": "performer"
+   }
+  ],
+  "act": "rootz-hifi",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-travis-scott",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-14",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Travis Scott",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "travis-scott",
+    "role": "performer"
+   }
+  ],
+  "act": "travis-scott",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-queens-of-the-stone-age",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-14",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Queens of the Stone Age",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "queens-of-the-stone-age",
+    "role": "performer"
+   }
+  ],
+  "act": "queens-of-the-stone-age",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-rawayana",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-14",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Rawayana",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rawayana",
+    "role": "performer"
+   }
+  ],
+  "act": "rawayana",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-geese",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-14",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Geese",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "geese",
+    "role": "performer"
+   }
+  ],
+  "act": "geese",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-slayyyter",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-14",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Slayyyter",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "slayyyter",
+    "role": "performer"
+   }
+  ],
+  "act": "slayyyter",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-four-tet",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-14",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Four Tet",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "four-tet",
+    "role": "performer"
+   }
+  ],
+  "act": "four-tet",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-francisca-valenzuela",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-14",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Francisca Valenzuela",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "francisca-valenzuela",
+    "role": "performer"
+   }
+  ],
+  "act": "francisca-valenzuela",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-angine-de-poitrine",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-14",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Angine De Poitrine",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "angine-de-poitrine",
+    "role": "performer"
+   }
+  ],
+  "act": "angine-de-poitrine",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-cuarteto-de-nos",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-14",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "CUARTETO DE NOS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cuarteto-de-nos",
+    "role": "performer"
+   }
+  ],
+  "act": "cuarteto-de-nos",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-julia-wolf",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-14",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Julia Wolf",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "julia-wolf",
+    "role": "performer"
+   }
+  ],
+  "act": "julia-wolf",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-sammy-virji",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-14",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Sammy Virji",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sammy-virji",
+    "role": "performer"
+   }
+  ],
+  "act": "sammy-virji",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-carlita",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-14",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Carlita",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carlita",
+    "role": "performer"
+   }
+  ],
+  "act": "carlita",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-pedro-capo",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-14",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "PEDRO CAPÓ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pedro-capo",
+    "role": "performer"
+   }
+  ],
+  "act": "pedro-capo",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-princesa-alba",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-14",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "PRINCESA ALBA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "princesa-alba",
+    "role": "performer"
+   }
+  ],
+  "act": "princesa-alba",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-midnight-generation",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-14",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Midnight Generation",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "midnight-generation",
+    "role": "performer"
+   }
+  ],
+  "act": "midnight-generation",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-alain-johannes-trio",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-14",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ALAIN JOHANNES TRÍO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alain-johannes-trio",
+    "role": "performer"
+   }
+  ],
+  "act": "alain-johannes-trio",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-angela-torres",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-14",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ANGELA TORRES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "angela-torres",
+    "role": "performer"
+   }
+  ],
+  "act": "angela-torres",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-tiga",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-14",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Tiga",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tiga",
+    "role": "performer"
+   }
+  ],
+  "act": "tiga",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-die-spitz",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-14",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Die Spitz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "die-spitz",
+    "role": "performer"
+   }
+  ],
+  "act": "die-spitz",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-dj-raff",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-14",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "DJ RAFF",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-raff",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-raff",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-the-alive",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-14",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "THE ALIVE!",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-alive",
+    "role": "performer"
+   }
+  ],
+  "act": "the-alive",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-estoy-bien",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-14",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ESTOY BIEN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "estoy-bien",
+    "role": "performer"
+   }
+  ],
+  "act": "estoy-bien",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-estereo-fam",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-14",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ESTÉREO FAM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "estereo-fam",
+    "role": "performer"
+   }
+  ],
+  "act": "estereo-fam",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-javicrespo",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-14",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "JAVICRESPO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "javicrespo",
+    "role": "performer"
+   }
+  ],
+  "act": "javicrespo",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-roce-de-mente",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-14",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ROCE DE MENTE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "roce-de-mente",
+    "role": "performer"
+   }
+  ],
+  "act": "roce-de-mente",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-valentino-merlo",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-14",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "VALENTINO MERLO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "valentino-merlo",
+    "role": "performer"
+   }
+  ],
+  "act": "valentino-merlo",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-rootz-hifi-d3",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-14",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ROOTZ HIFI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rootz-hifi",
+    "role": "performer"
+   }
+  ],
+  "act": "rootz-hifi",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-alicia-y-las-hormigas",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-14",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ALICIA Y LAS HORMIGAS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alicia-y-las-hormigas",
+    "role": "performer"
+   }
+  ],
+  "act": "alicia-y-las-hormigas",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lollapalooza-chile-2027:lcl27-yellow-fever",
+  "source": "live",
+  "festivalId": "lollapalooza-chile-2027",
+  "festivalBrand": "lollapalooza-chile",
+  "year": 2027,
+  "date": "2027-03-14",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "YELLOW FEVER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yellow-fever",
+    "role": "performer"
+   }
+  ],
+  "act": "yellow-fever",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
   "id": "acl-2011:d1:amd:1225:asleep-at-the-wheel",
   "source": "edition",
   "festivalId": "acl-2011",

@@ -1051,30 +1051,6 @@ const FESTIVALS_REGISTRY = [
     region:    "Latin America",
   },
   {
-    // ── Lollapalooza Chile 2027 — Parque O'Higgins, Santiago ──
-    // Added 2026-11-15 as a gated preview. Dates and venue from lollapaloozacl.com, read 2026-11-15: page title
-    // "Lollapalooza Chile – 12, 13 Y 14 DE MARZ0 2027 | PARQUE O'HIGGINS". No
-    // 2027 lineup in text yet.
-    config: {
-      id:        "lollapalooza-chile-2027",
-      officialEvent: { website: "https://www.lollapaloozacl.com/", tickets: "https://lollapaloozacl.com/precios/", observedAt: "2026-11-22" },
-      name:      "Lollapalooza Chile 2027",
-      shortName: "Lolla Chile",
-      brand:     "Lollapalooza",
-      tagline:   "Three days of Lollapalooza in Santiago",
-      location:  "Parque O'Higgins · Santiago, Chile",
-      locationShort: "Parque O'Higgins",
-      dates:     "Mar 12–14, 2027",
-      year:      2027,
-      // Night Print accent not measured yet (accent null = neutral print).
-      print: { accent: null, source: { url: "https://www.lollapaloozacl.com/", observedAt: "2026-11-15" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
-    },
-    available: false,
-    accent:    "#ef4444",
-    emoji:     "🎪",
-    region:    "Latin America",
-  },
-  {
     // ── Ultra South Africa 2027 — Cape Town and Johannesburg ──
     // Added 2026-11-15 as a gated preview. Dates from ultrasouthafrica.com, read 2026-11-15: page title "Ultra
     // South Africa - 30 April, 1 May 2027". The CSV notes Cape Town on 30 April
@@ -5421,6 +5397,7 @@ const _WAVE1_IDS = [
   "time-warp-2027",
   "tomorrowland-winter-2027",
   "lollapalooza-brasil-2027",
+  "lollapalooza-chile-2027",
 ];
 const _WAVE1 = (typeof window !== "undefined" && window.PLURSKY_FESTIVALS) || {};
 for (const _id of _WAVE1_IDS) {
