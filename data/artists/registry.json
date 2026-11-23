@@ -884,6 +884,21 @@
   "links": []
  },
  {
+  "key": "3ballmty",
+  "name": "3BALLMTY",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ubbi-dubbi-2027:ud27-3ballmty-sunset-set"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "3lau",
   "name": "3LAU",
   "aliases": [],
@@ -2841,6 +2856,7 @@
    "edc-orlando-2026:ecs2",
    "countdown-nye-2026:cdny-acraze",
    "sunset-on-the-river-2027:sotr-acraze",
+   "ubbi-dubbi-2027:ud27-acraze",
    "edc-las-vegas-2022:d1:kinetic-field:2130:acraze",
    "edc-las-vegas-2022:d1:cosmic-meadow:1800:acraze",
    "edc-las-vegas-2024:d2:kinetic-field:0413:acraze-b2b-kream",
@@ -3898,6 +3914,7 @@
    "lost-lands-2026:llu1",
    "edc-orlando-2026:ecf2",
    "escape-halloween-2026:esc-adventure-club-d2",
+   "ubbi-dubbi-2027:ud27-adventure-club-sunset-set",
    "coachella-2014:d3:sahara:2110:adventure-club",
    "coachella-2014:d6:sahara:2110:adventure-club",
    "edc-las-vegas-2012:d1:basspod:0430:adventure-club",
@@ -20691,6 +20708,21 @@
   "links": []
  },
  {
+  "key": "beastboi",
+  "name": "BEASTBOI.",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ubbi-dubbi-2027:ud27-beastboi"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "beat-bros",
   "name": "Beat Bros",
   "aliases": [],
@@ -28741,7 +28773,8 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "lollapalooza-2026:lo62"
+   "lollapalooza-2026:lo62",
+   "ubbi-dubbi-2027:ud27-bradeazy"
   ],
   "firstSeen": "2026-07-31",
   "lastSeen": "2026-07-31",
@@ -31085,6 +31118,21 @@
   ],
   "firstSeen": "2023-11-10",
   "lastSeen": "2026-11-08",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "bryce-alakai",
+  "name": "BRYCE ALAKAI",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ubbi-dubbi-2027:ud27-bryce-alakai"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -53160,6 +53208,7 @@
   "billings": [
    "edc-orlando-2026:ecu10",
    "nocturnal-wonderland-2026:nw-deorro",
+   "ubbi-dubbi-2027:ud27-deorro",
    "beyond-wonderland-socal-2026:d2:queen-s-domain:2255:deorro",
    "coachella-2014:d1:sahara:1550:deorro",
    "coachella-2014:d4:sahara:1550:deorro",
@@ -55050,6 +55099,7 @@
   ],
   "billings": [
    "dwp-2026:dwp-dimension",
+   "ubbi-dubbi-2027:ud27-dimension",
    "edc-las-vegas-2024:d3:basspod:2330:dimension",
    "edc-las-vegas-2025:d2:kinetic-field:2000:dimension",
    "edc-orlando-2021:d2:circuit-grounds:1800:dimension",
@@ -56347,7 +56397,8 @@
   "projects": [],
   "billings": [
    "lost-lands-2026:llu11",
-   "groove-cruise-2027:gc-distant-matter"
+   "groove-cruise-2027:gc-distant-matter",
+   "ubbi-dubbi-2027:ud27-distant-matter"
   ],
   "firstSeen": "2026-09-20",
   "lastSeen": "2027-01-21",
@@ -66509,7 +66560,8 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "countdown-nye-2026:cdny-ecchi-mp4"
+   "countdown-nye-2026:cdny-ecchi-mp4",
+   "ubbi-dubbi-2027:ud27-ecchi-mp4"
   ],
   "firstSeen": "2027-01-01",
   "lastSeen": "2027-01-01",
@@ -69154,6 +69206,21 @@
   ],
   "firstSeen": "2026-10-17",
   "lastSeen": "2026-10-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "elmefti",
+  "name": "ELMEFTI",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ubbi-dubbi-2027:ud27-elmefti"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -76481,6 +76548,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "ubbi-dubbi-2027:ud27-flozone-b2b-stvsh",
    "edc-orlando-2025:d3:stereobloom:1400:flozone"
   ],
   "firstSeen": "2025-11-09",
@@ -76549,6 +76617,7 @@
   "billings": [
    "edc-lv-2026:bp9",
    "lost-lands-2026:lls22",
+   "ubbi-dubbi-2027:ud27-flux-pavilion",
    "edc-las-vegas-2012:d3:neongarden:0400:flux-pavilion",
    "lollapalooza-2025:d3:perry-s:1530:flux-pavilion",
    "nocturnal-wonderland-2018:d1:labyrinth:0100:flux-pavilion",
@@ -80809,6 +80878,7 @@
   "projects": [],
   "billings": [
    "escape-halloween-2026:esc-galantis-d2",
+   "ubbi-dubbi-2027:ud27-galantis",
    "coachella-2014:d2:gobi:2135:galantis",
    "coachella-2014:d5:gobi:2135:galantis",
    "coachella-2017:d3:sahara:2045:galantis",
@@ -92005,6 +92075,7 @@
    "edc-lv-2026:c29",
    "edc-orlando-2026:ecu14",
    "ultra-miami-2026:ul128",
+   "ubbi-dubbi-2027:ud27-holy-priest",
    "beyond-wonderland-socal-2026:d1:mad-hatter-s-castle:2140:holy-priest"
   ],
   "firstSeen": "2026-03-27",
@@ -95271,6 +95342,7 @@
    "lost-lands-2026:lls30",
    "ultra-miami-2026:ul4",
    "nocturnal-wonderland-2026:nw-illenium",
+   "ubbi-dubbi-2027:ud27-illenium",
    "acl-2018:d3:miller-lite:1900:illenium",
    "acl-2018:d6:miller-lite:1900:illenium",
    "edc-las-vegas-2022:d3:kinetic-field:0139:illenium",
@@ -98318,6 +98390,7 @@
    "edc-thailand-2026:edcth-jackie-hollander",
    "groove-cruise-2027:gc-jackie-hollander",
    "coachella-2027:coa27-jackie-hollander",
+   "ubbi-dubbi-2027:ud27-jackie-hollander",
    "edc-las-vegas-2024:d3:house-of-dunkin:2200:jackie-hollander",
    "edc-las-vegas-2025:d1:stereo-bloom:2000:jackie-hollander",
    "edc-orlando-2024:d1:stereo-bloom:1415:jackie-hollander",
@@ -101166,6 +101239,21 @@
   "links": []
  },
  {
+  "key": "jay-pryor",
+  "name": "JAY PRYOR",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ubbi-dubbi-2027:ud27-jay-pryor"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "jay-reeve",
   "name": "Jay Reeve",
   "aliases": [],
@@ -102773,6 +102861,7 @@
    "edc-orlando-2026:ecu17",
    "ultra-miami-2026:ul33",
    "countdown-nye-2026:cdny-jessica-audiffred",
+   "ubbi-dubbi-2027:ud27-jessica-audiffred",
    "edc-las-vegas-2022:d1:basspod:1950:jessica-audiffred",
    "edc-las-vegas-2024:d1:basspod:2230:jessica-audiffred",
    "edc-las-vegas-2025:d2:basspod:2230:jessica-audiffred-b2b-layz",
@@ -106697,6 +106786,21 @@
   "links": []
  },
  {
+  "key": "josh-fawaz",
+  "name": "JOSH FAWAZ",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ubbi-dubbi-2027:ud27-josh-fawaz"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "josh-fudge",
   "name": "JOSH FUDGE",
   "aliases": [],
@@ -108706,6 +108810,7 @@
    "nocturnal-wonderland-2026:nw-juos",
    "escape-halloween-2026:esc-andruss-b2b-juos-d2",
    "escape-halloween-2026:esc-juos-d2",
+   "ubbi-dubbi-2027:ud27-juos-b2b-rommii",
    "edc-orlando-2025:d2:casabacardi:2000:juos",
    "escape-halloween-2025:d2:casa-bacardi:0045:juos",
    "outside-lands-2025:d1:casa-bacardi:1830:juos"
@@ -109964,6 +110069,7 @@
    "coco-and-breezy-x-kaleena-zanders"
   ],
   "billings": [
+   "ubbi-dubbi-2027:ud27-kaleena-zanders",
    "beyond-wonderland-gorge-2026:d1:caterpillar-s-garden:1930:kaleena-zanders",
    "edc-las-vegas-2022:d3:forest-house-art-car:2015:kaleena-zanders",
    "edc-orlando-2022:d3:stereo-bloom:1430:kaleena-zanders",
@@ -119994,6 +120100,7 @@
    "outside-lands-2026:os59",
    "outside-lands-2026:os93",
    "groove-cruise-2027:gc-laszewo",
+   "ubbi-dubbi-2027:ud27-laszewo-sunset-set",
    "beyond-wonderland-socal-2026:d1:caterpillar-s-garden:2055:aszewo",
    "edc-orlando-2022:d3:circuit-grounds:1425:laszewo",
    "edc-orlando-2025:d3:circuitgrounds:1625:aszewo"
@@ -120641,6 +120748,7 @@
   "projects": [],
   "billings": [
    "countdown-nye-2026:cdny-lavern",
+   "ubbi-dubbi-2027:ud27-lavern",
    "edc-las-vegas-2025:d1:kinetic-field:1900:lavern",
    "edc-las-vegas-2025:d1:forest-house:0200:lavern",
    "edc-orlando-2025:d1:kineticfield:1526:lavern"
@@ -123705,6 +123813,7 @@
    "ultra-miami-2026:ul12",
    "dwp-2026:dwp-lilly-palmer",
    "tomorrowland-thailand-2026:tmlth-lilly-palmer",
+   "ubbi-dubbi-2027:ud27-lilly-palmer",
    "beyond-wonderland-socal-2026:d2:the-looking-glass:2130:lilly-palmer",
    "dreamstate-socal-2025:d2:the-void:0000:lilly-palmer",
    "edc-las-vegas-2024:d1:neon-garden:2200:lilly-palmer",
@@ -127785,6 +127894,21 @@
   "links": []
  },
  {
+  "key": "luca-agnelli",
+  "name": "LUCA AGNELLI",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ubbi-dubbi-2027:ud27-luca-agnelli"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "luca-bacchetti",
   "name": "Luca Bacchetti",
   "aliases": [],
@@ -128081,6 +128205,21 @@
   ],
   "firstSeen": "2026-09-20",
   "lastSeen": "2027-01-21",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "luciana",
+  "name": "LUCIANA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ubbi-dubbi-2027:ud27-luciana"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -134178,6 +134317,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "ubbi-dubbi-2027:ud27-mariana-bo",
    "tomorrowland-2019:d4:garden-of-madness:1530:mariana-bo",
    "tomorrowland-2022:d1:the-library:1700:mariana-bo",
    "tomorrowland-2023:d6:rise-by-coke-studio:2300:mariana-bo"
@@ -144439,6 +144579,21 @@
   "links": []
  },
  {
+  "key": "mk-marc-kinchen",
+  "name": "MK (MARC KINCHEN)",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ubbi-dubbi-2027:ud27-mk-marc-kinchen"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "mke-live-groove-summerfest-edition",
   "name": "MKE Live Groove: Summerfest Edition",
   "aliases": [],
@@ -150686,6 +150841,21 @@
   "links": []
  },
  {
+  "key": "nate-band",
+  "name": "NATE BAND",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ubbi-dubbi-2027:ud27-nate-band"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "nate-campbell",
   "name": "NATE CAMPBELL",
   "aliases": [],
@@ -152426,6 +152596,7 @@
    "lost-lands-2026:llf32",
    "nocturnal-wonderland-2026:nw-nghtmre",
    "countdown-nye-2026:cdny-nghtmre",
+   "ubbi-dubbi-2027:ud27-nghtmre",
    "edc-las-vegas-2024:d1:basspod:2330:nghtmre",
    "edc-las-vegas-2025:d3:circuit-grounds:0115:slander-b2b-nghtmre",
    "edc-orlando-2017:d2:kineticfield:1858:nghtmre",
@@ -152580,6 +152751,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "ubbi-dubbi-2027:ud27-nic-vans",
    "escape-halloween-2025:d1:beatbox-art-car:2000:nic-vans"
   ],
   "firstSeen": "2025-10-31",
@@ -161972,6 +162144,7 @@
   "projects": [],
   "billings": [
    "dreamstate-socal-2026:dssc-panteros666",
+   "ubbi-dubbi-2027:ud27-panteros666-b2b-pawlowski",
    "edc-las-vegas-2024:d2:bionic-jungle:2000:panteros666",
    "escape-halloween-2025:d1:the-warehouse:1900:panteros666"
   ],
@@ -163954,6 +164127,21 @@
   ],
   "firstSeen": "2019-05-31",
   "lastSeen": "2019-05-31",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "pawlowski",
+  "name": "PAWLOWSKI",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ubbi-dubbi-2027:ud27-panteros666-b2b-pawlowski"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -171743,6 +171931,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "ubbi-dubbi-2027:ud27-rad-cat",
    "edc-las-vegas-2022:d2:rynobus:0315:rad-cat",
    "nocturnal-wonderland-2019:d1:parliament-art-car:1600:rad-cat"
   ],
@@ -176170,7 +176359,8 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "lost-lands-2026:llf41"
+   "lost-lands-2026:llf41",
+   "ubbi-dubbi-2027:ud27-richard-finger"
   ],
   "firstSeen": "2026-09-18",
   "lastSeen": "2026-09-18",
@@ -178882,6 +179072,7 @@
   "billings": [
    "edc-orlando-2026:ecs44",
    "escape-halloween-2026:esc-rommii-d2",
+   "ubbi-dubbi-2027:ud27-juos-b2b-rommii",
    "edc-las-vegas-2024:d2:house-of-dunkin:2100:rommii"
   ],
   "firstSeen": "2024-05-18",
@@ -197915,6 +198106,7 @@
    "decadence-arizona-2026:daz-steve-aoki",
    "tomorrowland-thailand-2026:tmlth-steve-aoki",
    "tomorrowland-winter-2027:tmlw27-steve-aoki",
+   "ubbi-dubbi-2027:ud27-steve-aoki",
    "beyond-wonderland-socal-2012:d1:caterpillars-garden:0045:steve-aoki",
    "edc-las-vegas-2024:d1:kinetic-field:0413:steve-aoki",
    "edc-orlando-2019:d1:kineticfield:2112:steve-aoki",
@@ -199088,6 +199280,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "ubbi-dubbi-2027:ud27-flozone-b2b-stvsh",
    "hard-summer-2025:d1:green-stage:1400:stvsh"
   ],
   "firstSeen": "2025-08-02",
@@ -200026,6 +200219,7 @@
    "lost-lands-2026:llf48",
    "ultra-miami-2026:ul130",
    "decadence-colorado-2026:dec-sullivan-king",
+   "ubbi-dubbi-2027:ud27-sullivan-king-sunset-set",
    "beyond-wonderland-socal-2026:d2:mad-hatter-s-castle:2245:sullivan-king",
    "edc-las-vegas-2025:d1:basspod:0130:sullivan-king",
    "edc-orlando-2022:d1:circuit-grounds:2015:sullivan-king",
@@ -221267,6 +221461,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "ubbi-dubbi-2027:ud27-tvboo",
    "beyond-wonderland-gorge-2026:d1:mad-hatter-s-castle:2030:tvboo",
    "lightning-in-a-bottle-2019:d2:the-stacks:1745:tvboo"
   ],
@@ -227610,6 +227805,21 @@
   "links": []
  },
  {
+  "key": "wankdat-crankdat-b2b-wooli",
+  "name": "Wankdat (Crankdat B2B Wooli)",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ubbi-dubbi-2027:ud27-wankdat-crankdat-b2b-wooli"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "wankelmut",
   "name": "Wankelmut",
   "aliases": [],
@@ -228827,6 +229037,21 @@
   ],
   "firstSeen": "2022-07-22",
   "lastSeen": "2022-07-22",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "welker",
+  "name": "WELKER",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "ubbi-dubbi-2027:ud27-welker"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -235562,6 +235787,7 @@
   "billings": [
    "lost-lands-2026:llh12",
    "decadence-arizona-2026:daz-a-hundred-drums-b2b-zen-selekta",
+   "ubbi-dubbi-2027:ud27-zen-selekta",
    "escape-halloween-2025:d1:sewer-district:1645:zen-selekta",
    "shambhala-2024:d3:amp:1800:zen-selekta"
   ],
@@ -236168,6 +236394,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "ubbi-dubbi-2027:ud27-zorza",
    "edc-orlando-2024:d3:neon-garden:1300:zorza",
    "ultra-miami-2025:d2:umf-radio:1300:zorza"
   ],

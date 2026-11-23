@@ -8114,6 +8114,14 @@
   {
    "printed": "JOY (Anonymous)",
    "why": "Left as printed: the parenthetical is not sourced as a name the act uses elsewhere (the Bunny (Rabbit in the Moon) rule), so the billing is neither merged with the bare name nor credited to anything the parenthetical names."
+  },
+  {
+   "printed": "MK (MARC KINCHEN)",
+   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Wankdat (Crankdat B2B Wooli)",
+   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
   }
  ]
 }

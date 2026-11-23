@@ -88523,6 +88523,1028 @@
   "mainStage": null
  },
  {
+  "id": "ubbi-dubbi-2027:ud27-3ballmty-sunset-set",
+  "source": "live",
+  "festivalId": "ubbi-dubbi-2027",
+  "festivalBrand": "ubbi-dubbi",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "3BALLMTY (Sunset Set)",
+  "setTag": "Sunset Set",
+  "performers": [
+   {
+    "key": "3ballmty",
+    "role": "performer"
+   }
+  ],
+  "act": "3ballmty",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-acraze",
+  "source": "live",
+  "festivalId": "ubbi-dubbi-2027",
+  "festivalBrand": "ubbi-dubbi",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Acraze",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "acraze",
+    "role": "performer"
+   }
+  ],
+  "act": "acraze",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-adventure-club-sunset-set",
+  "source": "live",
+  "festivalId": "ubbi-dubbi-2027",
+  "festivalBrand": "ubbi-dubbi",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Adventure Club (Sunset Set)",
+  "setTag": "Sunset Set",
+  "performers": [
+   {
+    "key": "adventure-club",
+    "role": "performer"
+   }
+  ],
+  "act": "adventure-club",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-beastboi",
+  "source": "live",
+  "festivalId": "ubbi-dubbi-2027",
+  "festivalBrand": "ubbi-dubbi",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "BEASTBOI.",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "beastboi",
+    "role": "performer"
+   }
+  ],
+  "act": "beastboi",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-bradeazy",
+  "source": "live",
+  "festivalId": "ubbi-dubbi-2027",
+  "festivalBrand": "ubbi-dubbi",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Bradeazy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bradeazy",
+    "role": "performer"
+   }
+  ],
+  "act": "bradeazy",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-bryce-alakai",
+  "source": "live",
+  "festivalId": "ubbi-dubbi-2027",
+  "festivalBrand": "ubbi-dubbi",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "BRYCE ALAKAI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bryce-alakai",
+    "role": "performer"
+   }
+  ],
+  "act": "bryce-alakai",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-deorro",
+  "source": "live",
+  "festivalId": "ubbi-dubbi-2027",
+  "festivalBrand": "ubbi-dubbi",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Deorro",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "deorro",
+    "role": "performer"
+   }
+  ],
+  "act": "deorro",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-dimension",
+  "source": "live",
+  "festivalId": "ubbi-dubbi-2027",
+  "festivalBrand": "ubbi-dubbi",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Dimension",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dimension",
+    "role": "performer"
+   }
+  ],
+  "act": "dimension",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-distant-matter",
+  "source": "live",
+  "festivalId": "ubbi-dubbi-2027",
+  "festivalBrand": "ubbi-dubbi",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Distant Matter",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "distant-matter",
+    "role": "performer"
+   }
+  ],
+  "act": "distant-matter",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-ecchi-mp4",
+  "source": "live",
+  "festivalId": "ubbi-dubbi-2027",
+  "festivalBrand": "ubbi-dubbi",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ECCHI.MP4",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ecchi-mp4",
+    "role": "performer"
+   }
+  ],
+  "act": "ecchi-mp4",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-elmefti",
+  "source": "live",
+  "festivalId": "ubbi-dubbi-2027",
+  "festivalBrand": "ubbi-dubbi",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ELMEFTI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "elmefti",
+    "role": "performer"
+   }
+  ],
+  "act": "elmefti",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-flozone-b2b-stvsh",
+  "source": "live",
+  "festivalId": "ubbi-dubbi-2027",
+  "festivalBrand": "ubbi-dubbi",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "FLOZONE B2B STVSH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "flozone",
+    "role": "b2b"
+   },
+   {
+    "key": "stvsh",
+    "role": "b2b"
+   }
+  ],
+  "act": "flozone-b2b-stvsh",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-flux-pavilion",
+  "source": "live",
+  "festivalId": "ubbi-dubbi-2027",
+  "festivalBrand": "ubbi-dubbi",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Flux Pavilion",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "flux-pavilion",
+    "role": "performer"
+   }
+  ],
+  "act": "flux-pavilion",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-galantis",
+  "source": "live",
+  "festivalId": "ubbi-dubbi-2027",
+  "festivalBrand": "ubbi-dubbi",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Galantis",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "galantis",
+    "role": "performer"
+   }
+  ],
+  "act": "galantis",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-holy-priest",
+  "source": "live",
+  "festivalId": "ubbi-dubbi-2027",
+  "festivalBrand": "ubbi-dubbi",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Holy Priest",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "holy-priest",
+    "role": "performer"
+   }
+  ],
+  "act": "holy-priest",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-illenium",
+  "source": "live",
+  "festivalId": "ubbi-dubbi-2027",
+  "festivalBrand": "ubbi-dubbi",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Illenium",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "illenium",
+    "role": "performer"
+   }
+  ],
+  "act": "illenium",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-jackie-hollander",
+  "source": "live",
+  "festivalId": "ubbi-dubbi-2027",
+  "festivalBrand": "ubbi-dubbi",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Jackie Hollander",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jackie-hollander",
+    "role": "performer"
+   }
+  ],
+  "act": "jackie-hollander",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-jay-pryor",
+  "source": "live",
+  "festivalId": "ubbi-dubbi-2027",
+  "festivalBrand": "ubbi-dubbi",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "JAY PRYOR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jay-pryor",
+    "role": "performer"
+   }
+  ],
+  "act": "jay-pryor",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-jessica-audiffred",
+  "source": "live",
+  "festivalId": "ubbi-dubbi-2027",
+  "festivalBrand": "ubbi-dubbi",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Jessica Audiffred",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jessica-audiffred",
+    "role": "performer"
+   }
+  ],
+  "act": "jessica-audiffred",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-josh-fawaz",
+  "source": "live",
+  "festivalId": "ubbi-dubbi-2027",
+  "festivalBrand": "ubbi-dubbi",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "JOSH FAWAZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "josh-fawaz",
+    "role": "performer"
+   }
+  ],
+  "act": "josh-fawaz",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-juos-b2b-rommii",
+  "source": "live",
+  "festivalId": "ubbi-dubbi-2027",
+  "festivalBrand": "ubbi-dubbi",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Juos B2B Rommii",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "juos",
+    "role": "b2b"
+   },
+   {
+    "key": "rommii",
+    "role": "b2b"
+   }
+  ],
+  "act": "juos-b2b-rommii",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-kaleena-zanders",
+  "source": "live",
+  "festivalId": "ubbi-dubbi-2027",
+  "festivalBrand": "ubbi-dubbi",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Kaleena Zanders",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kaleena-zanders",
+    "role": "performer"
+   }
+  ],
+  "act": "kaleena-zanders",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-laszewo-sunset-set",
+  "source": "live",
+  "festivalId": "ubbi-dubbi-2027",
+  "festivalBrand": "ubbi-dubbi",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Laszewo (Sunset Set)",
+  "setTag": "Sunset Set",
+  "performers": [
+   {
+    "key": "laszewo",
+    "role": "performer"
+   }
+  ],
+  "act": "laszewo",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-lavern",
+  "source": "live",
+  "festivalId": "ubbi-dubbi-2027",
+  "festivalBrand": "ubbi-dubbi",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Lavern",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lavern",
+    "role": "performer"
+   }
+  ],
+  "act": "lavern",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-lilly-palmer",
+  "source": "live",
+  "festivalId": "ubbi-dubbi-2027",
+  "festivalBrand": "ubbi-dubbi",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Lilly Palmer",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lilly-palmer",
+    "role": "performer"
+   }
+  ],
+  "act": "lilly-palmer",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-luca-agnelli",
+  "source": "live",
+  "festivalId": "ubbi-dubbi-2027",
+  "festivalBrand": "ubbi-dubbi",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "LUCA AGNELLI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "luca-agnelli",
+    "role": "performer"
+   }
+  ],
+  "act": "luca-agnelli",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-luciana",
+  "source": "live",
+  "festivalId": "ubbi-dubbi-2027",
+  "festivalBrand": "ubbi-dubbi",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "LUCIANA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "luciana",
+    "role": "performer"
+   }
+  ],
+  "act": "luciana",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-mariana-bo",
+  "source": "live",
+  "festivalId": "ubbi-dubbi-2027",
+  "festivalBrand": "ubbi-dubbi",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Mariana Bo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mariana-bo",
+    "role": "performer"
+   }
+  ],
+  "act": "mariana-bo",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-mk-marc-kinchen",
+  "source": "live",
+  "festivalId": "ubbi-dubbi-2027",
+  "festivalBrand": "ubbi-dubbi",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "MK (MARC KINCHEN)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mk-marc-kinchen",
+    "role": "act"
+   }
+  ],
+  "act": "mk-marc-kinchen",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null,
+  "review": "parenthetical is not a known set tag"
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-nate-band",
+  "source": "live",
+  "festivalId": "ubbi-dubbi-2027",
+  "festivalBrand": "ubbi-dubbi",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "NATE BAND",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nate-band",
+    "role": "performer"
+   }
+  ],
+  "act": "nate-band",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-nghtmre",
+  "source": "live",
+  "festivalId": "ubbi-dubbi-2027",
+  "festivalBrand": "ubbi-dubbi",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Nghtmre",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nghtmre",
+    "role": "performer"
+   }
+  ],
+  "act": "nghtmre",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-nic-vans",
+  "source": "live",
+  "festivalId": "ubbi-dubbi-2027",
+  "festivalBrand": "ubbi-dubbi",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "NIC VANS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nic-vans",
+    "role": "performer"
+   }
+  ],
+  "act": "nic-vans",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-panteros666-b2b-pawlowski",
+  "source": "live",
+  "festivalId": "ubbi-dubbi-2027",
+  "festivalBrand": "ubbi-dubbi",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Panteros666 B2B PAWLOWSKI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "panteros666",
+    "role": "b2b"
+   },
+   {
+    "key": "pawlowski",
+    "role": "b2b"
+   }
+  ],
+  "act": "panteros666-b2b-pawlowski",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-rad-cat",
+  "source": "live",
+  "festivalId": "ubbi-dubbi-2027",
+  "festivalBrand": "ubbi-dubbi",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Rad Cat",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rad-cat",
+    "role": "performer"
+   }
+  ],
+  "act": "rad-cat",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-richard-finger",
+  "source": "live",
+  "festivalId": "ubbi-dubbi-2027",
+  "festivalBrand": "ubbi-dubbi",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Richard Finger",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "richard-finger",
+    "role": "performer"
+   }
+  ],
+  "act": "richard-finger",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-steve-aoki",
+  "source": "live",
+  "festivalId": "ubbi-dubbi-2027",
+  "festivalBrand": "ubbi-dubbi",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Steve Aoki",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "steve-aoki",
+    "role": "performer"
+   }
+  ],
+  "act": "steve-aoki",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-sullivan-king-sunset-set",
+  "source": "live",
+  "festivalId": "ubbi-dubbi-2027",
+  "festivalBrand": "ubbi-dubbi",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Sullivan King (Sunset Set)",
+  "setTag": "Sunset Set",
+  "performers": [
+   {
+    "key": "sullivan-king",
+    "role": "performer"
+   }
+  ],
+  "act": "sullivan-king",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-tvboo",
+  "source": "live",
+  "festivalId": "ubbi-dubbi-2027",
+  "festivalBrand": "ubbi-dubbi",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "TVBOO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tvboo",
+    "role": "performer"
+   }
+  ],
+  "act": "tvboo",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-wankdat-crankdat-b2b-wooli",
+  "source": "live",
+  "festivalId": "ubbi-dubbi-2027",
+  "festivalBrand": "ubbi-dubbi",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Wankdat (Crankdat B2B Wooli)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wankdat-crankdat-b2b-wooli",
+    "role": "act"
+   }
+  ],
+  "act": "wankdat-crankdat-b2b-wooli",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null,
+  "review": "parenthetical names people"
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-welker",
+  "source": "live",
+  "festivalId": "ubbi-dubbi-2027",
+  "festivalBrand": "ubbi-dubbi",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "WELKER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "welker",
+    "role": "performer"
+   }
+  ],
+  "act": "welker",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-zen-selekta",
+  "source": "live",
+  "festivalId": "ubbi-dubbi-2027",
+  "festivalBrand": "ubbi-dubbi",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Zen Selekta",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zen-selekta",
+    "role": "performer"
+   }
+  ],
+  "act": "zen-selekta",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-zorza",
+  "source": "live",
+  "festivalId": "ubbi-dubbi-2027",
+  "festivalBrand": "ubbi-dubbi",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Zorza",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zorza",
+    "role": "performer"
+   }
+  ],
+  "act": "zorza",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
   "id": "acl-2011:d1:amd:1225:asleep-at-the-wheel",
   "source": "edition",
   "festivalId": "acl-2011",
