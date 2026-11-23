@@ -373,4 +373,12 @@ window.PLURSKY_FESTIVAL_ART = Object.freeze({
     license: "CC0 1.0 (public domain). The official O.Z.O.R.A. site serves only its ticket shop and logo (checked 2026-11-14).",
     author: "Artem Kavalerov", licenseId: "CC0-1.0", licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/", changes: "Cropped",
   },
+  "lollapalooza-argentina-2027": {
+    tile: "festival-art/tiles/lollapalooza-argentina-2027.webp", card: "festival-art/lollapalooza-argentina-2027.webp", width: 168, height: 168,
+    kind: "photo", sourcePage: "https://commons.wikimedia.org/wiki/File:Lollapalooza_Argentina_2015.jpg",
+    assetUrl: "https://upload.wikimedia.org/wikipedia/commons/2/2a/Lollapalooza_Argentina_2015.jpg",
+    credit: "Crowd at the stage, Lollapalooza Argentina 2015. Photo by Leonardo Samrani, Wikimedia Commons", retrieved: "2026-11-23",
+    license: "CC BY 2.0 (Flickr upload reviewed by FlickreviewR (reviewed-pass, 2017-04-01)). Replaces the letter-tile fallback; Commons uploader, credit and EXIF checked 2026-11-23.",
+    author: "Leonardo Samrani", licenseId: "CC-BY-2.0", licenseUrl: "https://creativecommons.org/licenses/by/2.0/", changes: "Cropped",
+  },
 });
