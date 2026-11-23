@@ -161866,6 +161866,1744 @@
   "mainStage": null
  },
  {
+  "id": "beyond-wonderland-socal-2016:d1:queen-s-domain:1600:adam-auburn",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-18",
+  "day": 1,
+  "stage": "QUEEN'S DOMAIN",
+  "start": "16:00",
+  "end": "17:15",
+  "printed": "Adam Auburn",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "adam-auburn",
+    "role": "performer"
+   }
+  ],
+  "act": "adam-auburn",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:queen-s-domain",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d1:queen-s-domain:1715:go-freek",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-18",
+  "day": 1,
+  "stage": "QUEEN'S DOMAIN",
+  "start": "17:15",
+  "end": "18:45",
+  "printed": "Go Freek",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "go-freek",
+    "role": "performer"
+   }
+  ],
+  "act": "go-freek",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:queen-s-domain",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d1:queen-s-domain:1845:vindata",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-18",
+  "day": 1,
+  "stage": "QUEEN'S DOMAIN",
+  "start": "18:45",
+  "end": "19:45",
+  "printed": "Vindata",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vindata",
+    "role": "performer"
+   }
+  ],
+  "act": "vindata",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:queen-s-domain",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d1:queen-s-domain:1945:chris-lake",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-18",
+  "day": 1,
+  "stage": "QUEEN'S DOMAIN",
+  "start": "19:45",
+  "end": "21:00",
+  "printed": "Chris Lake",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chris-lake",
+    "role": "performer"
+   }
+  ],
+  "act": "chris-lake",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:queen-s-domain",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d1:queen-s-domain:2100:marshmello",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-18",
+  "day": 1,
+  "stage": "QUEEN'S DOMAIN",
+  "start": "21:00",
+  "end": "22:15",
+  "printed": "Marshmello",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marshmello",
+    "role": "performer"
+   }
+  ],
+  "act": "marshmello",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:queen-s-domain",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d1:queen-s-domain:2215:galantis",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-18",
+  "day": 1,
+  "stage": "QUEEN'S DOMAIN",
+  "start": "22:15",
+  "end": "23:25",
+  "printed": "Galantis",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "galantis",
+    "role": "performer"
+   }
+  ],
+  "act": "galantis",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:queen-s-domain",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d1:queen-s-domain:2330:carnage",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-18",
+  "day": 1,
+  "stage": "QUEEN'S DOMAIN",
+  "start": "23:30",
+  "end": "00:30",
+  "printed": "Carnage",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carnage",
+    "role": "performer"
+   }
+  ],
+  "act": "carnage",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:queen-s-domain",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d1:queen-s-domain:0030:dada-life",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-18",
+  "day": 1,
+  "stage": "QUEEN'S DOMAIN",
+  "start": "00:30",
+  "end": "02:00",
+  "printed": "Dada Life",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dada-life",
+    "role": "performer"
+   }
+  ],
+  "act": "dada-life",
+  "closing": true,
+  "stageLineage": "beyond-wonderland-socal:queen-s-domain",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d1:outer-realm:1600:leiel",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-18",
+  "day": 1,
+  "stage": "OUTER REALM",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Leiel",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "leiel",
+    "role": "performer"
+   }
+  ],
+  "act": "leiel",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:outer-realm",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d1:outer-realm:1700:jorn-van-deynhoven",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-18",
+  "day": 1,
+  "stage": "OUTER REALM",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Jorn van Deynhoven",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jorn-van-deynhoven",
+    "role": "performer"
+   }
+  ],
+  "act": "jorn-van-deynhoven",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:outer-realm",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d1:outer-realm:1800:will-atkinson",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-18",
+  "day": 1,
+  "stage": "OUTER REALM",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Will Atkinson",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "will-atkinson",
+    "role": "performer"
+   }
+  ],
+  "act": "will-atkinson",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:outer-realm",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d1:outer-realm:1900:vini-vici",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-18",
+  "day": 1,
+  "stage": "OUTER REALM",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Vini Vici",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vini-vici",
+    "role": "performer"
+   }
+  ],
+  "act": "vini-vici",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:outer-realm",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d1:outer-realm:2000:bryan-kearney",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-18",
+  "day": 1,
+  "stage": "OUTER REALM",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Bryan Kearney",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bryan-kearney",
+    "role": "performer"
+   }
+  ],
+  "act": "bryan-kearney",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:outer-realm",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d1:outer-realm:2100:myon-and-shane-54-trance-showcase",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-18",
+  "day": 1,
+  "stage": "OUTER REALM",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "Myon & Shane 54 (Trance Showcase)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "myon-and-shane-54-trance-showcase",
+    "role": "act"
+   }
+  ],
+  "act": "myon-and-shane-54-trance-showcase",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:outer-realm",
+  "mainStage": null,
+  "review": "parenthetical is not a known set tag"
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d1:outer-realm:2200:pure-nrg-giuseppe-ottaviani-and-solarstone",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-18",
+  "day": 1,
+  "stage": "OUTER REALM",
+  "start": "22:00",
+  "end": "23:30",
+  "printed": "Pure NRG (Giuseppe Ottaviani & Solarstone)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pure-nrg-giuseppe-ottaviani-and-solarstone",
+    "role": "act"
+   }
+  ],
+  "act": "pure-nrg-giuseppe-ottaviani-and-solarstone",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:outer-realm",
+  "mainStage": null,
+  "review": "parenthetical names people"
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d1:outer-realm:2330:andrew-rayel",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-18",
+  "day": 1,
+  "stage": "OUTER REALM",
+  "start": "23:30",
+  "end": "01:00",
+  "printed": "Andrew Rayel",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "andrew-rayel",
+    "role": "performer"
+   }
+  ],
+  "act": "andrew-rayel",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:outer-realm",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d1:outer-realm:0100:ferry-corsten-presents-gouryella",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-18",
+  "day": 1,
+  "stage": "OUTER REALM",
+  "start": "01:00",
+  "end": "02:00",
+  "printed": "Ferry Corsten presents Gouryella",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gouryella",
+    "role": "project"
+   }
+  ],
+  "act": "ferry-corsten-presents-gouryella",
+  "closing": true,
+  "stageLineage": "beyond-wonderland-socal:outer-realm",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d1:cheshire-woods:1600:trent-cantrelle",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-18",
+  "day": 1,
+  "stage": "CHESHIRE WOODS",
+  "start": "16:00",
+  "end": "17:15",
+  "printed": "Trent Cantrelle",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "trent-cantrelle",
+    "role": "performer"
+   }
+  ],
+  "act": "trent-cantrelle",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:cheshire-woods",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d1:cheshire-woods:1715:billy-kenny",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-18",
+  "day": 1,
+  "stage": "CHESHIRE WOODS",
+  "start": "17:15",
+  "end": "18:30",
+  "printed": "Billy Kenny",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "billy-kenny",
+    "role": "performer"
+   }
+  ],
+  "act": "billy-kenny",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:cheshire-woods",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d1:cheshire-woods:1830:patrick-topping",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-18",
+  "day": 1,
+  "stage": "CHESHIRE WOODS",
+  "start": "18:30",
+  "end": "20:00",
+  "printed": "Patrick Topping",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "patrick-topping",
+    "role": "performer"
+   }
+  ],
+  "act": "patrick-topping",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:cheshire-woods",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d1:cheshire-woods:2000:waze-and-odyssey",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-18",
+  "day": 1,
+  "stage": "CHESHIRE WOODS",
+  "start": "20:00",
+  "end": "22:30",
+  "printed": "Waze & Odyssey",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "waze-and-odyssey",
+    "role": "performer"
+   }
+  ],
+  "act": "waze-and-odyssey",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:cheshire-woods",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d1:cheshire-woods:2230:kink",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-18",
+  "day": 1,
+  "stage": "CHESHIRE WOODS",
+  "start": "22:30",
+  "end": "00:30",
+  "printed": "KiNK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kink",
+    "role": "performer"
+   }
+  ],
+  "act": "kink",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:cheshire-woods",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d1:cheshire-woods:0030:armand-van-helden",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-18",
+  "day": 1,
+  "stage": "CHESHIRE WOODS",
+  "start": "00:30",
+  "end": "02:00",
+  "printed": "Armand Van Helden",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "armand-van-helden",
+    "role": "performer"
+   }
+  ],
+  "act": "armand-van-helden",
+  "closing": true,
+  "stageLineage": "beyond-wonderland-socal:cheshire-woods",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d1:upside-down-room:1700:shagge",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-18",
+  "day": 1,
+  "stage": "UPSIDE-DOWN ROOM",
+  "start": "17:00",
+  "end": "19:00",
+  "printed": "Shagge",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "shagge",
+    "role": "performer"
+   }
+  ],
+  "act": "shagge",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:upside-down-room",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d1:upside-down-room:1900:dj-coolwhip",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-18",
+  "day": 1,
+  "stage": "UPSIDE-DOWN ROOM",
+  "start": "19:00",
+  "end": "22:00",
+  "printed": "DJ Coolwhip",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-coolwhip",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-coolwhip",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:upside-down-room",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d1:upside-down-room:2200:graham-funke",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-18",
+  "day": 1,
+  "stage": "UPSIDE-DOWN ROOM",
+  "start": "22:00",
+  "end": "00:00",
+  "printed": "Graham Funke",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "graham-funke",
+    "role": "performer"
+   }
+  ],
+  "act": "graham-funke",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:upside-down-room",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d1:upside-down-room:0000:shagge",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-18",
+  "day": 1,
+  "stage": "UPSIDE-DOWN ROOM",
+  "start": "00:00",
+  "end": "02:00",
+  "printed": "Shagge",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "shagge",
+    "role": "performer"
+   }
+  ],
+  "act": "shagge",
+  "closing": true,
+  "stageLineage": "beyond-wonderland-socal:upside-down-room",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d1:boombox-art-car:1600:pw-jones",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-18",
+  "day": 1,
+  "stage": "BOOMBOX ART CAR",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "PW Jones",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pw-jones",
+    "role": "performer"
+   }
+  ],
+  "act": "pw-jones",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d1:boombox-art-car:1700:the-real-deal-montiel",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-18",
+  "day": 1,
+  "stage": "BOOMBOX ART CAR",
+  "start": "17:00",
+  "end": "18:30",
+  "printed": "The Real Deal Montiel",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-real-deal-montiel",
+    "role": "performer"
+   }
+  ],
+  "act": "the-real-deal-montiel",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d1:boombox-art-car:1830:johnny-darko",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-18",
+  "day": 1,
+  "stage": "BOOMBOX ART CAR",
+  "start": "18:30",
+  "end": "20:00",
+  "printed": "Johnny Darko",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "johnny-darko",
+    "role": "performer"
+   }
+  ],
+  "act": "johnny-darko",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d1:boombox-art-car:2000:neon-black",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-18",
+  "day": 1,
+  "stage": "BOOMBOX ART CAR",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Neon Black",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "neon-black",
+    "role": "performer"
+   }
+  ],
+  "act": "neon-black",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d1:boombox-art-car:2100:roy-wilkins",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-18",
+  "day": 1,
+  "stage": "BOOMBOX ART CAR",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "Roy Wilkins",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "roy-wilkins",
+    "role": "performer"
+   }
+  ],
+  "act": "roy-wilkins",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d1:boombox-art-car:2200:moni",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-18",
+  "day": 1,
+  "stage": "BOOMBOX ART CAR",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "Moni",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "moni",
+    "role": "performer"
+   }
+  ],
+  "act": "moni",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d1:boombox-art-car:2300:ruff-hauser",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-18",
+  "day": 1,
+  "stage": "BOOMBOX ART CAR",
+  "start": "23:00",
+  "end": "00:00",
+  "printed": "Ruff Hauser",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ruff-hauser",
+    "role": "performer"
+   }
+  ],
+  "act": "ruff-hauser",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d1:boombox-art-car:0000:trouble",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-18",
+  "day": 1,
+  "stage": "BOOMBOX ART CAR",
+  "start": "00:00",
+  "end": "01:00",
+  "printed": "Trouble",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "trouble",
+    "role": "performer"
+   }
+  ],
+  "act": "trouble",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d1:boombox-art-car:0100:brandon-elliot",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-18",
+  "day": 1,
+  "stage": "BOOMBOX ART CAR",
+  "start": "01:00",
+  "end": "02:00",
+  "printed": "Brandon Elliot",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "brandon-elliot",
+    "role": "performer"
+   }
+  ],
+  "act": "brandon-elliot",
+  "closing": true,
+  "stageLineage": "beyond-wonderland-socal:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d2:queen-s-domain:1600:biggs",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-19",
+  "day": 2,
+  "stage": "QUEEN'S DOMAIN",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Biggs",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "biggs",
+    "role": "performer"
+   }
+  ],
+  "act": "biggs",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:queen-s-domain",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d2:queen-s-domain:1700:sleepy-tom",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-19",
+  "day": 2,
+  "stage": "QUEEN'S DOMAIN",
+  "start": "17:00",
+  "end": "18:15",
+  "printed": "Sleepy Tom",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sleepy-tom",
+    "role": "performer"
+   }
+  ],
+  "act": "sleepy-tom",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:queen-s-domain",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d2:queen-s-domain:1815:klingande",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-19",
+  "day": 2,
+  "stage": "QUEEN'S DOMAIN",
+  "start": "18:15",
+  "end": "19:30",
+  "printed": "Klingande",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "klingande",
+    "role": "performer"
+   }
+  ],
+  "act": "klingande",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:queen-s-domain",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d2:queen-s-domain:1930:slander",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-19",
+  "day": 2,
+  "stage": "QUEEN'S DOMAIN",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "Slander",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "slander",
+    "role": "performer"
+   }
+  ],
+  "act": "slander",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:queen-s-domain",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d2:queen-s-domain:2030:alesso",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-19",
+  "day": 2,
+  "stage": "QUEEN'S DOMAIN",
+  "start": "20:30",
+  "end": "22:00",
+  "printed": "Alesso",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alesso",
+    "role": "performer"
+   }
+  ],
+  "act": "alesso",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:queen-s-domain",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d2:queen-s-domain:2200:seven-lions",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-19",
+  "day": 2,
+  "stage": "QUEEN'S DOMAIN",
+  "start": "22:00",
+  "end": "23:15",
+  "printed": "Seven Lions",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "seven-lions",
+    "role": "performer"
+   }
+  ],
+  "act": "seven-lions",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:queen-s-domain",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d2:queen-s-domain:2320:yellow-claw",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-19",
+  "day": 2,
+  "stage": "QUEEN'S DOMAIN",
+  "start": "23:20",
+  "end": "00:30",
+  "printed": "Yellow Claw",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yellow-claw",
+    "role": "performer"
+   }
+  ],
+  "act": "yellow-claw",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:queen-s-domain",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d2:queen-s-domain:0030:deorro",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-19",
+  "day": 2,
+  "stage": "QUEEN'S DOMAIN",
+  "start": "00:30",
+  "end": "02:00",
+  "printed": "Deorro",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "deorro",
+    "role": "performer"
+   }
+  ],
+  "act": "deorro",
+  "closing": true,
+  "stageLineage": "beyond-wonderland-socal:queen-s-domain",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d2:outer-realm:1600:lumberjvck",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-19",
+  "day": 2,
+  "stage": "OUTER REALM",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "LUMBERJVCK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lumberjvck",
+    "role": "performer"
+   }
+  ],
+  "act": "lumberjvck",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:outer-realm",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d2:outer-realm:1700:spag-heddy",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-19",
+  "day": 2,
+  "stage": "OUTER REALM",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Spag Heddy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "spag-heddy",
+    "role": "performer"
+   }
+  ],
+  "act": "spag-heddy",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:outer-realm",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d2:outer-realm:1800:kasra-b2b-enei-b2b-mefjus",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-19",
+  "day": 2,
+  "stage": "OUTER REALM",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Kasra B2B Enei B2B Mefjus",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kasra",
+    "role": "b2b"
+   },
+   {
+    "key": "enei",
+    "role": "b2b"
+   },
+   {
+    "key": "mefjus",
+    "role": "b2b"
+   }
+  ],
+  "act": "kasra-b2b-enei-b2b-mefjus",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:outer-realm",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d2:outer-realm:1900:calyx-and-teebee",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-19",
+  "day": 2,
+  "stage": "OUTER REALM",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Calyx & TeeBee",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "calyx-and-teebee",
+    "role": "performer"
+   }
+  ],
+  "act": "calyx-and-teebee",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:outer-realm",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d2:outer-realm:2000:delta-heavy",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-19",
+  "day": 2,
+  "stage": "OUTER REALM",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Delta Heavy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "delta-heavy",
+    "role": "performer"
+   }
+  ],
+  "act": "delta-heavy",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:outer-realm",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d2:outer-realm:2100:troyboi",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-19",
+  "day": 2,
+  "stage": "OUTER REALM",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "TroyBoi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "troyboi",
+    "role": "performer"
+   }
+  ],
+  "act": "troyboi",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:outer-realm",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d2:outer-realm:2200:bro-safari",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-19",
+  "day": 2,
+  "stage": "OUTER REALM",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "Bro Safari",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bro-safari",
+    "role": "performer"
+   }
+  ],
+  "act": "bro-safari",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:outer-realm",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d2:outer-realm:2300:nghtmre",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-19",
+  "day": 2,
+  "stage": "OUTER REALM",
+  "start": "23:00",
+  "end": "00:00",
+  "printed": "NGHTMRE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nghtmre",
+    "role": "performer"
+   }
+  ],
+  "act": "nghtmre",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:outer-realm",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d2:outer-realm:0000:ghastly",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-19",
+  "day": 2,
+  "stage": "OUTER REALM",
+  "start": "00:00",
+  "end": "01:00",
+  "printed": "Ghastly",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ghastly",
+    "role": "performer"
+   }
+  ],
+  "act": "ghastly",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:outer-realm",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d2:outer-realm:0100:datsik",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-19",
+  "day": 2,
+  "stage": "OUTER REALM",
+  "start": "01:00",
+  "end": "02:00",
+  "printed": "Datsik",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "datsik",
+    "role": "performer"
+   }
+  ],
+  "act": "datsik",
+  "closing": true,
+  "stageLineage": "beyond-wonderland-socal:outer-realm",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d2:cheshire-woods:1600:billy-kenny",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-19",
+  "day": 2,
+  "stage": "CHESHIRE WOODS",
+  "start": "16:00",
+  "end": "17:15",
+  "printed": "Billy Kenny",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "billy-kenny",
+    "role": "performer"
+   }
+  ],
+  "act": "billy-kenny",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:cheshire-woods",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d2:cheshire-woods:1715:sonny-fodera",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-19",
+  "day": 2,
+  "stage": "CHESHIRE WOODS",
+  "start": "17:15",
+  "end": "18:30",
+  "printed": "Sonny Fodera",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sonny-fodera",
+    "role": "performer"
+   }
+  ],
+  "act": "sonny-fodera",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:cheshire-woods",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d2:cheshire-woods:1830:my-nu-leng",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-19",
+  "day": 2,
+  "stage": "CHESHIRE WOODS",
+  "start": "18:30",
+  "end": "19:45",
+  "printed": "My Nu Leng",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "my-nu-leng",
+    "role": "performer"
+   }
+  ],
+  "act": "my-nu-leng",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:cheshire-woods",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d2:cheshire-woods:1945:will-clarke",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-19",
+  "day": 2,
+  "stage": "CHESHIRE WOODS",
+  "start": "19:45",
+  "end": "21:00",
+  "printed": "Will Clarke",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "will-clarke",
+    "role": "performer"
+   }
+  ],
+  "act": "will-clarke",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:cheshire-woods",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d2:cheshire-woods:2100:redlight",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-19",
+  "day": 2,
+  "stage": "CHESHIRE WOODS",
+  "start": "21:00",
+  "end": "22:15",
+  "printed": "Redlight",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "redlight",
+    "role": "performer"
+   }
+  ],
+  "act": "redlight",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:cheshire-woods",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d2:cheshire-woods:2215:jimmy-edgar",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-19",
+  "day": 2,
+  "stage": "CHESHIRE WOODS",
+  "start": "22:15",
+  "end": "23:30",
+  "printed": "Jimmy Edgar",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jimmy-edgar",
+    "role": "performer"
+   }
+  ],
+  "act": "jimmy-edgar",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:cheshire-woods",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d2:cheshire-woods:2330:adriatique",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-19",
+  "day": 2,
+  "stage": "CHESHIRE WOODS",
+  "start": "23:30",
+  "end": "00:45",
+  "printed": "Adriatique",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "adriatique",
+    "role": "performer"
+   }
+  ],
+  "act": "adriatique",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:cheshire-woods",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d2:cheshire-woods:0045:pan-pot",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-19",
+  "day": 2,
+  "stage": "CHESHIRE WOODS",
+  "start": "00:45",
+  "end": "02:00",
+  "printed": "Pan-Pot",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pan-pot",
+    "role": "performer"
+   }
+  ],
+  "act": "pan-pot",
+  "closing": true,
+  "stageLineage": "beyond-wonderland-socal:cheshire-woods",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d2:upside-down-room:1700:shagge",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-19",
+  "day": 2,
+  "stage": "UPSIDE-DOWN ROOM",
+  "start": "17:00",
+  "end": "19:00",
+  "printed": "Shagge",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "shagge",
+    "role": "performer"
+   }
+  ],
+  "act": "shagge",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:upside-down-room",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d2:upside-down-room:1900:dj-coolwhip",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-19",
+  "day": 2,
+  "stage": "UPSIDE-DOWN ROOM",
+  "start": "19:00",
+  "end": "22:00",
+  "printed": "DJ Coolwhip",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-coolwhip",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-coolwhip",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:upside-down-room",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d2:upside-down-room:2200:graham-funke",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-19",
+  "day": 2,
+  "stage": "UPSIDE-DOWN ROOM",
+  "start": "22:00",
+  "end": "00:00",
+  "printed": "Graham Funke",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "graham-funke",
+    "role": "performer"
+   }
+  ],
+  "act": "graham-funke",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:upside-down-room",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d2:upside-down-room:0000:shagge",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-19",
+  "day": 2,
+  "stage": "UPSIDE-DOWN ROOM",
+  "start": "00:00",
+  "end": "02:00",
+  "printed": "Shagge",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "shagge",
+    "role": "performer"
+   }
+  ],
+  "act": "shagge",
+  "closing": true,
+  "stageLineage": "beyond-wonderland-socal:upside-down-room",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d2:boombox-art-car:1800:pw-jones",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-19",
+  "day": 2,
+  "stage": "BOOMBOX ART CAR",
+  "start": "18:00",
+  "end": "19:30",
+  "printed": "PW Jones",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pw-jones",
+    "role": "performer"
+   }
+  ],
+  "act": "pw-jones",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d2:boombox-art-car:1930:cammakid",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-19",
+  "day": 2,
+  "stage": "BOOMBOX ART CAR",
+  "start": "19:30",
+  "end": "20:45",
+  "printed": "Cammakid",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cammakid",
+    "role": "performer"
+   }
+  ],
+  "act": "cammakid",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d2:boombox-art-car:2045:barrels",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-19",
+  "day": 2,
+  "stage": "BOOMBOX ART CAR",
+  "start": "20:45",
+  "end": "22:00",
+  "printed": "Barrels",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "barrels",
+    "role": "performer"
+   }
+  ],
+  "act": "barrels",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d2:boombox-art-car:2200:cstnza",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-19",
+  "day": 2,
+  "stage": "BOOMBOX ART CAR",
+  "start": "22:00",
+  "end": "23:15",
+  "printed": "CSTNZA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cstnza",
+    "role": "performer"
+   }
+  ],
+  "act": "cstnza",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d2:boombox-art-car:2315:zander",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-19",
+  "day": 2,
+  "stage": "BOOMBOX ART CAR",
+  "start": "23:15",
+  "end": "00:30",
+  "printed": "Zander",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zander",
+    "role": "performer"
+   }
+  ],
+  "act": "zander",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d2:boombox-art-car:0030:jack-eye-jones",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2016",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2016,
+  "date": "2016-03-19",
+  "day": 2,
+  "stage": "BOOMBOX ART CAR",
+  "start": "00:30",
+  "end": "02:00",
+  "printed": "Jack Eye Jones",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jack-eye-jones",
+    "role": "performer"
+   }
+  ],
+  "act": "jack-eye-jones",
+  "closing": true,
+  "stageLineage": "beyond-wonderland-socal:boombox-art-car",
+  "mainStage": null
+ },
+ {
   "id": "beyond-wonderland-socal-2026:d1:queen-s-domain:0045:tiesto",
   "source": "edition",
   "festivalId": "beyond-wonderland-socal-2026",

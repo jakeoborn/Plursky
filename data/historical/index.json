@@ -772,7 +772,7 @@
    "name": "Beyond Wonderland SoCal 2016",
    "year": 2016,
    "timezone": "America/Los_Angeles",
-   "completeness": "lineup_only",
+   "completeness": "complete_schedule",
    "days": [
     {
      "day": 1,
@@ -786,9 +786,9 @@
     }
    ],
    "counts": {
-    "stages": 0,
-    "artists": 68,
-    "sets": 0
+    "stages": 5,
+    "artists": 65,
+    "sets": 72
    }
   },
   {

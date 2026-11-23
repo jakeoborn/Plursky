@@ -168,6 +168,20 @@
   "why": "Left as printed, one act: who is behind the \"feat.\" or \"with\" is not sourced, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
  },
  {
+  "id": "beyond-wonderland-socal-2016:d1:outer-realm:2100:myon-and-shane-54-trance-showcase",
+  "printed": "Myon & Shane 54 (Trance Showcase)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed: the parenthetical is not sourced as a name the act uses elsewhere (the Bunny (Rabbit in the Moon) rule), so the billing is neither merged with the bare name nor credited to anything the parenthetical names."
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d1:outer-realm:2200:pure-nrg-giuseppe-ottaviani-and-solarstone",
+  "printed": "Pure NRG (Giuseppe Ottaviani & Solarstone)",
+  "reason": "parenthetical names people",
+  "pending": true,
+  "why": "Left as printed, one act: the parenthetical names the people or crew behind the billing, but no first-party page says how it splits. Renders as its own billing until one rules it."
+ },
+ {
   "id": "beyond-wonderland-socal-2026:d2:caterpillar-s-garden:1900:tinzo-jojo",
   "printed": "Tinzo + Jojo",
   "reason": "\"+\" billing",

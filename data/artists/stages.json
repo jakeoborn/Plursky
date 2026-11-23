@@ -728,6 +728,45 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "beyond-wonderland-socal:outer-realm",
+     "names": [
+      {
+       "printed": "OUTER REALM",
+       "editions": [
+        "beyond-wonderland-socal-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "beyond-wonderland-socal:upside-down-room",
+     "names": [
+      {
+       "printed": "UPSIDE-DOWN ROOM",
+       "editions": [
+        "beyond-wonderland-socal-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "beyond-wonderland-socal:boombox-art-car",
+     "names": [
+      {
+       "printed": "BOOMBOX ART CAR",
+       "editions": [
+        "beyond-wonderland-socal-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },

@@ -3002,6 +3002,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "beyond-wonderland-socal-2016:d1:queen-s-domain:1600:adam-auburn",
    "edc-las-vegas-2022:d1:rynobus:2300:adam-auburn",
    "edc-orlando-2019:d2:kineticfield:1300:adam-auburn",
    "nocturnal-wonderland-2013:d1:labyrinth:1500:adam-auburn"
@@ -3832,6 +3833,7 @@
   "billings": [
    "edc-lv-2026:n5",
    "ultra-miami-2026:ul135",
+   "beyond-wonderland-socal-2016:d2:cheshire-woods:2330:adriatique",
    "coachella-2024:d1:yuma:2145:adriatique",
    "coachella-2024:d4:yuma:2145:adriatique",
    "coachella-2026:d2:sahara:2230:adriatique",
@@ -3849,7 +3851,7 @@
    "tomorrowland-2023:d6:crystal-garden:2030:adriatique",
    "ultra-miami-2024:d2:megastructure:2130:adriatique"
   ],
-  "firstSeen": "2016-07-23",
+  "firstSeen": "2016-03-19",
   "lastSeen": "2026-05-15",
   "photo": null,
   "links": []
@@ -6163,6 +6165,7 @@
    "decadence-colorado-2026:dec-alesso",
    "countdown-nye-2026:cdny-alesso",
    "sunset-on-the-river-2027:sotr-alesso",
+   "beyond-wonderland-socal-2016:d2:queen-s-domain:2030:alesso",
    "coachella-2012:d1:sahara:1955:alesso",
    "coachella-2012:d4:sahara:1955:alesso",
    "coachella-2014:d3:sahara:1815:alesso",
@@ -10567,6 +10570,7 @@
   "billings": [
    "edc-lv-2026:q15",
    "edc-thailand-2026:edcth-andrew-rayel",
+   "beyond-wonderland-socal-2016:d1:outer-realm:2330:andrew-rayel",
    "dreamstate-socal-2016:d1:the-dream:2300:andrew-rayel",
    "edc-las-vegas-2022:d3:quantum-valley:0000:andrew-rayel",
    "edc-las-vegas-2024:d1:quantum-valley:2300:andrew-rayel",
@@ -13416,12 +13420,13 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "beyond-wonderland-socal-2016:d1:cheshire-woods:0030:armand-van-helden",
    "edc-las-vegas-2025:d1:circuit-grounds:2130:armand-van-helden",
    "nocturnal-wonderland-2022:d1:sunken-garden:2115:armand-van-helden",
    "tomorrowland-2018:d5:organ-of-harmony:2230:armand-van-helden",
    "tomorrowland-2019:d5:lotus:2350:armand-van-helden"
   ],
-  "firstSeen": "2018-07-28",
+  "firstSeen": "2016-03-18",
   "lastSeen": "2025-05-16",
   "photo": null,
   "links": []
@@ -18831,6 +18836,21 @@
   "links": []
  },
  {
+  "key": "barrels",
+  "name": "Barrels",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2016:d2:boombox-art-car:2045:barrels"
+  ],
+  "firstSeen": "2016-03-19",
+  "lastSeen": "2016-03-19",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "barrington-levy",
   "name": "Barrington Levy",
   "aliases": [],
@@ -23594,6 +23614,21 @@
   "links": []
  },
  {
+  "key": "biggs",
+  "name": "Biggs",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2016:d2:queen-s-domain:1600:biggs"
+  ],
+  "firstSeen": "2016-03-19",
+  "lastSeen": "2016-03-19",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "bigott",
   "name": "Bigott",
   "aliases": [],
@@ -23937,11 +23972,13 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "beyond-wonderland-socal-2016:d1:cheshire-woods:1715:billy-kenny",
+   "beyond-wonderland-socal-2016:d2:cheshire-woods:1600:billy-kenny",
    "coachella-2017:d4:do-lab:1900:billy-kenny",
    "nocturnal-wonderland-2017:d2:sunken-garden:2130:billy-kenny",
    "tomorrowland-2017:d1:my-house:1430:billy-kenny"
   ],
-  "firstSeen": "2017-04-21",
+  "firstSeen": "2016-03-18",
   "lastSeen": "2017-09-16",
   "photo": null,
   "links": []
@@ -29039,10 +29076,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "beyond-wonderland-socal-2016:d1:boombox-art-car:0100:brandon-elliot",
    "edc-las-vegas-2022:d2:boombox-art-car:2330:brandon-elliot",
    "escape-halloween-2025:d2:danse-macabre:1700:brandon-elliot"
   ],
-  "firstSeen": "2022-05-21",
+  "firstSeen": "2016-03-18",
   "lastSeen": "2025-11-01",
   "photo": null,
   "links": []
@@ -30254,6 +30292,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "beyond-wonderland-socal-2016:d2:outer-realm:2200:bro-safari",
    "edc-las-vegas-2013:d1:basspod:2320:bro-safari",
    "electric-forest-2014:d2:tripolee:2330:bro-safari",
    "lollapalooza-2016:d2:perry-s:1645:bro-safari",
@@ -31028,6 +31067,7 @@
    "key4050"
   ],
   "billings": [
+   "beyond-wonderland-socal-2016:d1:outer-realm:2000:bryan-kearney",
    "dreamstate-socal-2023:d1:the-dream:1955:bryan-kearney",
    "dreamstate-socal-2025:d2:the-vision:0000:bryan-kearney",
    "edc-las-vegas-2013:d1:basscon:2100:bryan-kearney",
@@ -32972,12 +33012,14 @@
   "key": "calyx-and-teebee",
   "name": "Calyx & Teebee",
   "aliases": [
+   "Calyx & TeeBee",
    "CALYX & TEEBEE"
   ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "beyond-wonderland-socal-2016:d2:outer-realm:1900:calyx-and-teebee",
    "edc-orlando-2019:d2:circuitgrounds:1600:calyx-and-teebee",
    "nocturnal-wonderland-2011:d1:sunken-garden:0000:calyx-and-teebee",
    "tomorrowland-2016:d2:star-warz:2330:calyx-and-teebee-ft-lx-one"
@@ -33206,6 +33248,21 @@
   "projects": [],
   "billings": [
    "ultra-miami-2016:d2:resistance:1200:camilo-franco"
+  ],
+  "firstSeen": "2016-03-19",
+  "lastSeen": "2016-03-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "cammakid",
+  "name": "Cammakid",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2016:d2:boombox-art-car:1930:cammakid"
   ],
   "firstSeen": "2016-03-19",
   "lastSeen": "2016-03-19",
@@ -34517,6 +34574,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "beyond-wonderland-socal-2016:d1:queen-s-domain:2330:carnage",
    "coachella-2014:d1:sahara:1815:carnage",
    "coachella-2014:d4:sahara:1815:carnage",
    "edc-las-vegas-2013:d2:basspod:2145:carnage",
@@ -38960,6 +39018,7 @@
    "decadence-arizona-2026:daz-chris-lake",
    "acl-2021:d3:miller-lite:1730:chris-lake",
    "acl-2021:d6:miller-lite:1730:chris-lake",
+   "beyond-wonderland-socal-2016:d1:queen-s-domain:1945:chris-lake",
    "edc-las-vegas-2012:d2:kineticfield:1920:chris-lake",
    "edc-las-vegas-2022:d1:circuit-grounds:2330:chris-lake",
    "edc-orlando-2019:d3:circuitgrounds:1920:chris-lake",
@@ -45445,6 +45504,21 @@
   "links": []
  },
  {
+  "key": "cstnza",
+  "name": "CSTNZA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2016:d2:boombox-art-car:2200:cstnza"
+  ],
+  "firstSeen": "2016-03-19",
+  "lastSeen": "2016-03-19",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "cualli",
   "name": "Cualli",
   "aliases": [],
@@ -46824,6 +46898,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "beyond-wonderland-socal-2016:d1:queen-s-domain:0030:dada-life",
    "coachella-2012:d3:sahara:1730:dada-life",
    "coachella-2012:d6:sahara:1715:dada-life",
    "edc-las-vegas-2012:d3:kineticfield:0400:dada-life",
@@ -49268,6 +49343,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "beyond-wonderland-socal-2016:d2:outer-realm:0100:datsik",
    "coachella-2012:d1:sahara:2350:datsik",
    "coachella-2012:d4:sahara:2350:datsik",
    "edc-las-vegas-2012:d1:neongarden:2325:datsik",
@@ -52558,6 +52634,7 @@
    "edc-lv-2026:bp6",
    "lost-lands-2026:lls17",
    "beyond-wonderland-socal-2013:d1:chess-village:0100:delta-heavy",
+   "beyond-wonderland-socal-2016:d2:outer-realm:2000:delta-heavy",
    "beyond-wonderland-socal-2026:d2:the-sea-of-wonder:2350:delta-heavy",
    "edc-las-vegas-2012:d3:basspod:2300:delta-heavy",
    "edc-las-vegas-2013:d3:basspod:0440:delta-heavy",
@@ -53160,6 +53237,7 @@
   "billings": [
    "edc-orlando-2026:ecu10",
    "nocturnal-wonderland-2026:nw-deorro",
+   "beyond-wonderland-socal-2016:d2:queen-s-domain:0030:deorro",
    "beyond-wonderland-socal-2026:d2:queen-s-domain:2255:deorro",
    "coachella-2014:d1:sahara:1550:deorro",
    "coachella-2014:d4:sahara:1550:deorro",
@@ -57192,6 +57270,22 @@
   ],
   "firstSeen": "2018-09-15",
   "lastSeen": "2018-09-15",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dj-coolwhip",
+  "name": "DJ Coolwhip",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2016:d1:upside-down-room:1900:dj-coolwhip",
+   "beyond-wonderland-socal-2016:d2:upside-down-room:1900:dj-coolwhip"
+  ],
+  "firstSeen": "2016-03-18",
+  "lastSeen": "2016-03-19",
   "photo": null,
   "links": []
  },
@@ -70068,10 +70162,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "beyond-wonderland-socal-2016:d2:outer-realm:1800:kasra-b2b-enei-b2b-mefjus",
    "sonar-2022:d2:sonarlab-by-resident-advisor:0130:critical-soundsystem-kasra-halogenix-enei-mc-jakes",
    "tomorrowland-2019:d5:cage:2200:enei"
   ],
-  "firstSeen": "2019-07-27",
+  "firstSeen": "2016-03-19",
   "lastSeen": "2022-06-17",
   "photo": null,
   "links": []
@@ -80809,6 +80904,7 @@
   "projects": [],
   "billings": [
    "escape-halloween-2026:esc-galantis-d2",
+   "beyond-wonderland-socal-2016:d1:queen-s-domain:2215:galantis",
    "coachella-2014:d2:gobi:2135:galantis",
    "coachella-2014:d5:gobi:2135:galantis",
    "coachella-2017:d3:sahara:2045:galantis",
@@ -82361,13 +82457,14 @@
   ],
   "billings": [
    "lost-lands-2026:llu17",
+   "beyond-wonderland-socal-2016:d2:outer-realm:0000:ghastly",
    "coachella-2016:d1:do-lab:2000:ghastly",
    "escape-halloween-2017:d1:ghouls-graveyard:2200:ghastly",
    "lollapalooza-2018:d3:perry-s:untimed:ghastly",
    "shambhala-2016:d4:fractal-forest:0130:ghastly",
    "ultra-miami-2019:d3:worldwide-stage:2100:ghastly"
   ],
-  "firstSeen": "2016-04-15",
+  "firstSeen": "2016-03-19",
   "lastSeen": "2026-09-20",
   "photo": null,
   "links": []
@@ -84041,6 +84138,21 @@
   "links": []
  },
  {
+  "key": "go-freek",
+  "name": "Go Freek",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2016:d1:queen-s-domain:1715:go-freek"
+  ],
+  "firstSeen": "2016-03-18",
+  "lastSeen": "2016-03-18",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "go-yie",
   "name": "Go'Yie",
   "aliases": [],
@@ -85484,12 +85596,13 @@
   ],
   "projects": [],
   "billings": [
+   "beyond-wonderland-socal-2016:d1:outer-realm:0100:ferry-corsten-presents-gouryella",
    "dreamstate-socal-2016:d2:the-dream:0100:ferry-corsten-presents-gouryella",
    "dreamstate-socal-2024:d2:the-dream:2045:ferry-corsten-presents-gouryella",
    "tomorrowland-2016:d1:tranceaddict:0000:ferry-corsten-pres-gouryella",
    "ultra-miami-2017:d3:megastructure:1900:ferry-corsten-presents-gouryella"
   ],
-  "firstSeen": "2016-07-22",
+  "firstSeen": "2016-03-18",
   "lastSeen": "2024-11-23",
   "photo": null,
   "links": []
@@ -85820,6 +85933,22 @@
   ],
   "firstSeen": "2025-08-03",
   "lastSeen": "2025-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "graham-funke",
+  "name": "Graham Funke",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2016:d1:upside-down-room:2200:graham-funke",
+   "beyond-wonderland-socal-2016:d2:upside-down-room:2200:graham-funke"
+  ],
+  "firstSeen": "2016-03-18",
+  "lastSeen": "2016-03-19",
   "photo": null,
   "links": []
  },
@@ -98062,6 +98191,21 @@
   "links": []
  },
  {
+  "key": "jack-eye-jones",
+  "name": "Jack Eye Jones",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2016:d2:boombox-art-car:0030:jack-eye-jones"
+  ],
+  "firstSeen": "2016-03-19",
+  "lastSeen": "2016-03-19",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "jack-garratt",
   "name": "Jack Garratt",
   "aliases": [
@@ -103396,11 +103540,12 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "beyond-wonderland-socal-2016:d2:cheshire-woods:2215:jimmy-edgar",
    "electric-forest-2014:d1:tripolee:1815:jimmy-edgar",
    "outside-lands-2015:d2:the-house-by-heineken:1830:jimmy-edgar"
   ],
   "firstSeen": "2014-06-26",
-  "lastSeen": "2015-08-08",
+  "lastSeen": "2016-03-19",
   "photo": null,
   "links": []
  },
@@ -105301,6 +105446,21 @@
   "links": []
  },
  {
+  "key": "johnny-darko",
+  "name": "Johnny Darko",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2016:d1:boombox-art-car:1830:johnny-darko"
+  ],
+  "firstSeen": "2016-03-18",
+  "lastSeen": "2016-03-18",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "johnny-monsoon",
   "name": "Johnny Monsoon",
   "aliases": [],
@@ -106307,14 +106467,15 @@
  },
  {
   "key": "jorn-van-deynhoven",
-  "name": "Jorn Van Deynhoven",
+  "name": "Jorn van Deynhoven",
   "aliases": [
-   "Jorn van Deynhoven"
+   "Jorn Van Deynhoven"
   ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "beyond-wonderland-socal-2016:d1:outer-realm:1700:jorn-van-deynhoven",
    "dreamstate-socal-2016:d1:the-vision:2100:jorn-van-deynhoven",
    "tomorrowland-2014:d1:tranceaddict:1500:jorn-van-deynhoven",
    "tomorrowland-2014:d4:tranceaddict:2100:jorn-van-deynhoven"
@@ -111122,10 +111283,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "beyond-wonderland-socal-2016:d2:outer-realm:1800:kasra-b2b-enei-b2b-mefjus",
    "sonar-2022:d2:sonarlab-by-resident-advisor:0130:critical-soundsystem-kasra-halogenix-enei-mc-jakes",
    "tomorrowland-2019:d5:cage:2000:kasra"
   ],
-  "firstSeen": "2019-07-27",
+  "firstSeen": "2016-03-19",
   "lastSeen": "2022-06-17",
   "photo": null,
   "links": []
@@ -114659,6 +114821,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "beyond-wonderland-socal-2016:d1:cheshire-woods:2230:kink",
    "tomorrowland-2011:d3:cafe-d-anvers-invites-ovum-recordings:1715:kink",
    "tomorrowland-2013:d1:desperados:1930:kink",
    "tomorrowland-2014:d1:we-play-house-recordings:2000:kink",
@@ -115126,6 +115289,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "beyond-wonderland-socal-2016:d2:queen-s-domain:1815:klingande",
    "tomorrowland-2014:d3:bakermat-and-friends:1700:klingande",
    "tomorrowland-2014:d6:bakermat-and-friends:1400:klingande",
    "tomorrowland-2015:d3:bakermat-and-friends:1500:klingande",
@@ -121569,9 +121733,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "beyond-wonderland-socal-2016:d1:outer-realm:1600:leiel",
    "dreamstate-socal-2016:d2:the-sequence:1700:leiel"
   ],
-  "firstSeen": "2016-11-26",
+  "firstSeen": "2016-03-18",
   "lastSeen": "2016-11-26",
   "photo": null,
   "links": []
@@ -128977,9 +129142,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "beyond-wonderland-socal-2016:d2:outer-realm:1600:lumberjvck",
    "edc-las-vegas-2025:d3:forest-house:0430:lumberjvck"
   ],
-  "firstSeen": "2025-05-18",
+  "firstSeen": "2016-03-19",
   "lastSeen": "2025-05-18",
   "photo": null,
   "links": []
@@ -135325,6 +135491,7 @@
   "billings": [
    "decadence-colorado-2026:dec-marshmello",
    "countdown-nye-2026:cdny-marshmello",
+   "beyond-wonderland-socal-2016:d1:queen-s-domain:2100:marshmello",
    "coachella-2017:d3:sahara:2155:marshmello",
    "coachella-2017:d6:sahara:2155:marshmello",
    "edc-orlando-2017:d1:kineticfield:2242:marshmello",
@@ -135343,7 +135510,7 @@
    "ultra-miami-2019:d1:ultra-main-stage:0030:marshmello",
    "ultra-miami-2023:d2:ultra-main-stage:2245:marshmello"
   ],
-  "firstSeen": "2016-03-20",
+  "firstSeen": "2016-03-18",
   "lastSeen": "2027-01-01",
   "photo": null,
   "links": []
@@ -139485,9 +139652,10 @@
   "projects": [],
   "billings": [
    "lost-lands-2026:lls40",
+   "beyond-wonderland-socal-2016:d2:outer-realm:1800:kasra-b2b-enei-b2b-mefjus",
    "tomorrowland-2019:d5:cage:2100:mefjus-ft-mc-maksim"
   ],
-  "firstSeen": "2019-07-27",
+  "firstSeen": "2016-03-19",
   "lastSeen": "2026-09-19",
   "photo": null,
   "links": []
@@ -145332,10 +145500,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "beyond-wonderland-socal-2016:d1:boombox-art-car:2200:moni",
    "edc-las-vegas-2022:d1:pariah-express-art-car:2130:moni",
    "edc-las-vegas-2022:d2:boombox-art-car:0415:moni"
   ],
-  "firstSeen": "2022-05-20",
+  "firstSeen": "2016-03-18",
   "lastSeen": "2022-05-21",
   "photo": null,
   "links": []
@@ -149132,10 +149301,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "beyond-wonderland-socal-2016:d2:cheshire-woods:1830:my-nu-leng",
    "shambhala-2014:d2:pagoda:2300:my-nu-leng"
   ],
   "firstSeen": "2014-08-08",
-  "lastSeen": "2014-08-08",
+  "lastSeen": "2016-03-19",
   "photo": null,
   "links": []
  },
@@ -149346,6 +149516,21 @@
   ],
   "firstSeen": "2012-07-29",
   "lastSeen": "2012-07-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "myon-and-shane-54-trance-showcase",
+  "name": "Myon & Shane 54 (Trance Showcase)",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2016:d1:outer-realm:2100:myon-and-shane-54-trance-showcase"
+  ],
+  "firstSeen": "2016-03-18",
+  "lastSeen": "2016-03-18",
   "photo": null,
   "links": []
  },
@@ -151586,9 +151771,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "beyond-wonderland-socal-2016:d1:boombox-art-car:2000:neon-black",
    "edc-las-vegas-2024:d3:blacklight-bar:2345:neon-black"
   ],
-  "firstSeen": "2024-05-19",
+  "firstSeen": "2016-03-18",
   "lastSeen": "2024-05-19",
   "photo": null,
   "links": []
@@ -152426,6 +152612,7 @@
    "lost-lands-2026:llf32",
    "nocturnal-wonderland-2026:nw-nghtmre",
    "countdown-nye-2026:cdny-nghtmre",
+   "beyond-wonderland-socal-2016:d2:outer-realm:2300:nghtmre",
    "edc-las-vegas-2024:d1:basspod:2330:nghtmre",
    "edc-las-vegas-2025:d3:circuit-grounds:0115:slander-b2b-nghtmre",
    "edc-orlando-2017:d2:kineticfield:1858:nghtmre",
@@ -161799,6 +161986,7 @@
   "projects": [],
   "billings": [
    "time-warp-2027:tw27-pan-pot",
+   "beyond-wonderland-socal-2016:d2:cheshire-woods:0045:pan-pot",
    "edc-orlando-2017:d2:neongarden:1900:pan-pot",
    "escape-halloween-2017:d2:cannibals-tea-party:2130:pan-pot",
    "tomorrowland-2014:d2:ketaloco:2300:pan-pot",
@@ -163318,6 +163506,7 @@
   "billings": [
    "nocturnal-wonderland-2026:nw-patrick-topping",
    "decadence-arizona-2026:daz-patrick-topping",
+   "beyond-wonderland-socal-2016:d1:cheshire-woods:1830:patrick-topping",
    "coachella-2017:d3:yuma:1400:patrick-topping",
    "coachella-2017:d6:yuma:1400:patrick-topping",
    "edc-orlando-2021:d1:neon-garden:1600:patrick-topping",
@@ -170193,6 +170382,21 @@
   "links": []
  },
  {
+  "key": "pure-nrg-giuseppe-ottaviani-and-solarstone",
+  "name": "Pure NRG (Giuseppe Ottaviani & Solarstone)",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2016:d1:outer-realm:2200:pure-nrg-giuseppe-ottaviani-and-solarstone"
+  ],
+  "firstSeen": "2016-03-18",
+  "lastSeen": "2016-03-18",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "purenrg",
   "name": "PureNRG",
   "aliases": [],
@@ -170490,6 +170694,22 @@
   ],
   "firstSeen": "2016-07-29",
   "lastSeen": "2016-07-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "pw-jones",
+  "name": "PW Jones",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2016:d1:boombox-art-car:1600:pw-jones",
+   "beyond-wonderland-socal-2016:d2:boombox-art-car:1800:pw-jones"
+  ],
+  "firstSeen": "2016-03-18",
+  "lastSeen": "2016-03-19",
   "photo": null,
   "links": []
  },
@@ -174604,11 +174824,12 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "beyond-wonderland-socal-2016:d2:cheshire-woods:2100:redlight",
    "nocturnal-wonderland-2017:d1:sunken-garden:2215:redlight",
    "nocturnal-wonderland-2019:d1:sunken-garden:2200:redlight",
    "outside-lands-2016:d1:the-house-by-heineken:1630:redlight"
   ],
-  "firstSeen": "2016-08-05",
+  "firstSeen": "2016-03-19",
   "lastSeen": "2019-09-14",
   "photo": null,
   "links": []
@@ -179680,9 +179901,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "beyond-wonderland-socal-2016:d1:boombox-art-car:2100:roy-wilkins",
    "edc-las-vegas-2022:d2:boombox-art-car:2215:ruff-hauser-b2b-roy-wilkins"
   ],
-  "firstSeen": "2022-05-21",
+  "firstSeen": "2016-03-18",
   "lastSeen": "2022-05-21",
   "photo": null,
   "links": []
@@ -180254,6 +180476,7 @@
   "billings": [
    "beyond-wonderland-socal-2012:d1:wide-awake-art-car:2100:ruff-hauser",
    "beyond-wonderland-socal-2013:d1:discovery-project:0100:ruff-hauser",
+   "beyond-wonderland-socal-2016:d1:boombox-art-car:2300:ruff-hauser",
    "coachella-2014:d6:do-lab:1200:ruff-hauser",
    "edc-las-vegas-2012:d2:wide-awake-art-car:0230:ruff-hauser",
    "edc-las-vegas-2013:d1:wide-awake-art-car:0200:ruff-hauser",
@@ -186798,6 +187021,7 @@
    "decadence-colorado-2026:dec-seven-lions",
    "countdown-nye-2026:cdny-seven-lions",
    "beyond-wonderland-gorge-2026:d1:queen-s-valley:2330:seven-lions",
+   "beyond-wonderland-socal-2016:d2:queen-s-domain:2200:seven-lions",
    "edc-las-vegas-2022:d1:kinetic-field:0032:seven-lions",
    "edc-las-vegas-2024:d3:circuit-grounds:2302:seven-lions",
    "edc-orlando-2017:d1:kineticfield:2000:seven-lions",
@@ -187106,6 +187330,24 @@
   ],
   "firstSeen": "2019-06-02",
   "lastSeen": "2023-10-07",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "shagge",
+  "name": "Shagge",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2016:d1:upside-down-room:1700:shagge",
+   "beyond-wonderland-socal-2016:d1:upside-down-room:0000:shagge",
+   "beyond-wonderland-socal-2016:d2:upside-down-room:1700:shagge",
+   "beyond-wonderland-socal-2016:d2:upside-down-room:0000:shagge"
+  ],
+  "firstSeen": "2016-03-18",
+  "lastSeen": "2016-03-19",
   "photo": null,
   "links": []
  },
@@ -191778,6 +192020,7 @@
    "decadence-arizona-2026:daz-slander",
    "tomorrowland-winter-2027:tmlw27-slander-d4",
    "tomorrowland-winter-2027:tmlw27-slander-d5",
+   "beyond-wonderland-socal-2016:d2:queen-s-domain:1930:slander",
    "beyond-wonderland-socal-2026:d2:queen-s-domain:2355:slander",
    "coachella-2022:d1:sahara:2355:slander",
    "coachella-2022:d4:sahara:2355:slander",
@@ -192048,6 +192291,21 @@
   ],
   "firstSeen": "2012-06-02",
   "lastSeen": "2012-06-02",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "sleepy-tom",
+  "name": "Sleepy Tom",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2016:d2:queen-s-domain:1700:sleepy-tom"
+  ],
+  "firstSeen": "2016-03-19",
+  "lastSeen": "2016-03-19",
   "photo": null,
   "links": []
  },
@@ -194521,6 +194779,7 @@
   "projects": [],
   "billings": [
    "crssd-fall-2026:crssd-sonny-fodera",
+   "beyond-wonderland-socal-2016:d2:cheshire-woods:1715:sonny-fodera",
    "beyond-wonderland-socal-2026:d2:caterpillar-s-garden:0000:sonny-fodera",
    "escape-halloween-2021:d2:sanitarium:2300:sonny-fodera",
    "tomorrowland-2017:d3:cafeina:1930:sonny-fodera",
@@ -194528,7 +194787,7 @@
    "tomorrowland-2023:d1:the-library:2000:sonny-fodera",
    "ultra-miami-2025:d3:ultra-main-stage:1515:sonny-fodera"
   ],
-  "firstSeen": "2017-07-23",
+  "firstSeen": "2016-03-19",
   "lastSeen": "2026-09-26",
   "photo": null,
   "links": []
@@ -195681,9 +195940,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "beyond-wonderland-socal-2016:d2:outer-realm:1700:spag-heddy",
    "tomorrowland-2019:d4:kara-savi:1800:spag-heddy"
   ],
-  "firstSeen": "2019-07-26",
+  "firstSeen": "2016-03-19",
   "lastSeen": "2019-07-26",
   "photo": null,
   "links": []
@@ -212364,6 +212624,21 @@
   "links": []
  },
  {
+  "key": "the-real-deal-montiel",
+  "name": "The Real Deal Montiel",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2016:d1:boombox-art-car:1700:the-real-deal-montiel"
+  ],
+  "firstSeen": "2016-03-18",
+  "lastSeen": "2016-03-18",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "the-red-clay-strays",
   "name": "THE RED CLAY STRAYS",
   "aliases": [],
@@ -219682,12 +219957,13 @@
   "projects": [],
   "billings": [
    "beyond-wonderland-socal-2013:d1:queen-s-domain:1830:trent-cantrelle",
+   "beyond-wonderland-socal-2016:d1:cheshire-woods:1600:trent-cantrelle",
    "coachella-2015:d3:yuma:1130:trent-cantrelle",
    "coachella-2015:d6:yuma:1130:trent-cantrelle",
    "nocturnal-wonderland-2011:d1:alice-s-house:1500:trent-cantrelle"
   ],
   "firstSeen": "2011-09-23",
-  "lastSeen": "2015-04-19",
+  "lastSeen": "2016-03-18",
   "photo": null,
   "links": []
  },
@@ -220451,6 +220727,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "beyond-wonderland-socal-2016:d1:boombox-art-car:0000:trouble",
    "edc-las-vegas-2022:d1:boombox-art-car:0415:trouble",
    "edc-las-vegas-2022:d3:boombox-art-car:0415:trouble",
    "edc-las-vegas-2024:d2:meta-phoenix:1900:trouble",
@@ -220523,6 +220800,7 @@
    "countdown-nye-2026:cdny-troyboi",
    "acl-2019:d1:t-mobile:1630:troyboi",
    "acl-2019:d4:t-mobile:1630:troyboi",
+   "beyond-wonderland-socal-2016:d2:outer-realm:2100:troyboi",
    "beyond-wonderland-socal-2026:d1:mad-hatter-s-castle:2245:troyboi",
    "edc-las-vegas-2024:d2:cosmic-meadow:0300:troyboi",
    "edc-orlando-2017:d1:circuitgrounds:2000:troyboi",
@@ -220535,7 +220813,7 @@
    "shambhala-2025:d2:amp:0015:troyboi",
    "sonar-2016:d3:sonarvillage-by-estrella-damm:1900:troyboi"
   ],
-  "firstSeen": "2016-06-18",
+  "firstSeen": "2016-03-19",
   "lastSeen": "2027-01-01",
   "photo": null,
   "links": []
@@ -225618,17 +225896,20 @@
  },
  {
   "key": "vindata",
-  "name": "VINDATA",
-  "aliases": [],
+  "name": "Vindata",
+  "aliases": [
+   "VINDATA"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "beyond-wonderland-socal-2016:d1:queen-s-domain:1845:vindata",
    "nocturnal-wonderland-2017:d1:labyrinth:2210:vindata",
    "ultra-miami-2016:d2:umf-radio:1600:vindata",
    "ultra-miami-2017:d2:umf-radio:1545:vindata"
   ],
-  "firstSeen": "2016-03-19",
+  "firstSeen": "2016-03-18",
   "lastSeen": "2017-09-15",
   "photo": null,
   "links": []
@@ -225646,6 +225927,7 @@
    "ultra-miami-2026:ul11",
    "dreamstate-socal-2026:dssc-vini-vici",
    "tomorrowland-thailand-2026:tmlth-vini-vici",
+   "beyond-wonderland-socal-2016:d1:outer-realm:1900:vini-vici",
    "beyond-wonderland-socal-2026:d2:cheshire-woods:0100:vini-vici",
    "dreamstate-socal-2016:d2:the-sequence:2100:vini-vici",
    "dreamstate-socal-2019:d2:the-sequence:2200:vini-vici",
@@ -225673,7 +225955,7 @@
    "ultra-miami-2023:d3:ultra-main-stage:1530:vini-vici",
    "ultra-miami-2025:d2:umf-radio:2000:vini-vici"
   ],
-  "firstSeen": "2016-07-23",
+  "firstSeen": "2016-03-18",
   "lastSeen": "2026-12-11",
   "photo": null,
   "links": []
@@ -228552,15 +228834,18 @@
  },
  {
   "key": "waze-and-odyssey",
-  "name": "WAZE & ODYSSEY",
-  "aliases": [],
+  "name": "Waze & Odyssey",
+  "aliases": [
+   "WAZE & ODYSSEY"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "beyond-wonderland-socal-2016:d1:cheshire-woods:2000:waze-and-odyssey",
    "nocturnal-wonderland-2018:d2:sunken-garden:1915:waze-and-odyssey"
   ],
-  "firstSeen": "2018-09-15",
+  "firstSeen": "2016-03-18",
   "lastSeen": "2018-09-15",
   "photo": null,
   "links": []
@@ -230312,6 +230597,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "beyond-wonderland-socal-2016:d1:outer-realm:1800:will-atkinson",
    "dreamstate-socal-2016:d2:the-vision:2200:will-atkinson",
    "dreamstate-socal-2023:d1:the-dream:1755:will-atkinson",
    "dreamstate-socal-2025:d1:the-void:2100:will-atkinson",
@@ -230319,7 +230605,7 @@
    "tomorrowland-2018:d6:arch:2245:will-atkinson",
    "tomorrowland-2019:d2:freedom-stage-by-budweiser:1430:will-atkinson"
   ],
-  "firstSeen": "2016-11-26",
+  "firstSeen": "2016-03-18",
   "lastSeen": "2025-11-21",
   "photo": null,
   "links": []
@@ -230353,6 +230639,7 @@
   "projects": [],
   "billings": [
    "arc-2026:arc-will-clarke-midway-d3",
+   "beyond-wonderland-socal-2016:d2:cheshire-woods:1945:will-clarke",
    "coachella-2017:d5:do-lab:1730:will-clarke",
    "coachella-2024:d2:yuma:1730:will-clarke",
    "coachella-2024:d5:yuma:1730:will-clarke",
@@ -230362,7 +230649,7 @@
    "lightning-in-a-bottle-2018:d2:woogie:1800:will-clarke",
    "nocturnal-wonderland-2017:d1:sunken-garden:2330:will-clarke"
   ],
-  "firstSeen": "2017-04-22",
+  "firstSeen": "2016-03-19",
   "lastSeen": "2026-09-06",
   "photo": null,
   "links": []
@@ -233284,6 +233571,7 @@
   "billings": [
    "tomorrowland-thailand-2026:tmlth-flosstradamus-b2b-yellow-claw",
    "tomorrowland-thailand-2026:tmlth-yellow-claw",
+   "beyond-wonderland-socal-2016:d2:queen-s-domain:2320:yellow-claw",
    "coachella-2015:d2:sahara:1645:yellow-claw",
    "coachella-2015:d5:sahara:1530:yellow-claw",
    "edc-las-vegas-2022:d2:cosmic-meadow:0130:yellow-claw",
@@ -235204,6 +235492,21 @@
   ],
   "firstSeen": "2026-10-16",
   "lastSeen": "2026-10-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "zander",
+  "name": "Zander",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "beyond-wonderland-socal-2016:d2:boombox-art-car:2315:zander"
+  ],
+  "firstSeen": "2016-03-19",
+  "lastSeen": "2016-03-19",
   "photo": null,
   "links": []
  },
