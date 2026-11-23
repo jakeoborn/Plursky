@@ -15,7 +15,7 @@ import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { execFileSync } from "node:child_process";
-import { validateEdition } from "./historical/validate.mjs";
+import { validateEdition, hostIn, urlIn, OFFICIAL_HOSTS } from "./historical/validate.mjs";
 import { buildEdition, droppedRows, performerKeys, artistKey, readSheet } from "./historical/build-editions.mjs";
 import { lineupDropReason, ACTIVITIES, EDITIONS, KEPT_STAGES, dropReason } from "./historical/editions.mjs";
 import { activeTab, parseDayTabs, stageFor } from "./historical/import-gather.mjs";
@@ -1692,6 +1692,21 @@ ok(instant("2025-05-16", "04:13", 12, -420) === "2025-05-17T11:13:00.000Z",
   }
   const c17 = editions["coachella-2017"];
   if (c17) mustFail("a complete schedule claims a missing stage", m => { m.coverage = { asOf: "2026-11-12", missing: [{ stage: "X", days: [1], when: "Friday" }] }; }, c17, undefined, /coverage differs from the edition registry/);
+  // Coachella 2025's graphics sit in AEG's shared blob store. Its
+  // OFFICIAL_HOSTS entry is a folder: the folder is official, the host and
+  // every other folder on it are not.
+  const c25 = editions["coachella-2025"];
+  ok(!!c25, "control: coachella-2025 is built (else the folder checks pass vacuously)");
+  if (c25) {
+    const BLOB = "aegwebprod.blob.core.windows.net";
+    ok(!hostIn(OFFICIAL_HOSTS.coachella, BLOB), "a folder entry must not admit its host alone");
+    ok(urlIn(OFFICIAL_HOSTS.coachella, `https://${BLOB}/content/coachella2025/c25-w1-friday.jpg`), "control: a graphic in the 2025 folder is official");
+    const img = m => m.provenance.captures.find(c => c.day === 1);
+    mustFail("a graphic in another folder of the same blob store", m => { const c = img(m); c.imageArchivedUrl = c.imageArchivedUrl.replace("/content/coachella2025/", "/content/edc2025/"); }, c25, undefined, /not an official coachella property/);
+    mustFail("a graphic in a folder that only shares the prefix's stem", m => { const c = img(m); c.imageArchivedUrl = c.imageArchivedUrl.replace("/content/coachella2025/", "/content/coachella2025x/"); }, c25, undefined, /not an official coachella property/);
+    mustFail("a graphic at the blob store's root", m => { const c = img(m); c.imageArchivedUrl = c.imageArchivedUrl.replace("/content/coachella2025/", "/"); }, c25, undefined, /not an official coachella property/);
+    mustFail("a dot-segment walking out of the folder", m => { const c = img(m); c.imageArchivedUrl = c.imageArchivedUrl.replace("/content/coachella2025/", "/content/coachella2025/../edc2025/"); }, c25, undefined, /not an official coachella property/);
+  }
 
   // Parser fixtures: the real markup shapes, and the traps.
   const li = (name, extra = "") => `<li><span><a href="#modal-lineup-artist" data-artist-id="1" data-artist-name="${name}"${extra}>${name}</a></span></li>`;
