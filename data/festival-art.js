@@ -397,4 +397,12 @@ window.PLURSKY_FESTIVAL_ART = Object.freeze({
     license: "CC0 1.0 (public domain) (own work). Replaces the letter-tile fallback; Commons uploader, credit and EXIF checked 2026-11-23.",
     author: "Jorge Morales Piderit", licenseId: "CC0-1.0", licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/", changes: "Cropped",
   },
+  "ultra-south-africa-2027": {
+    tile: "festival-art/tiles/ultra-south-africa-2027.webp", card: "festival-art/ultra-south-africa-2027.webp", width: 168, height: 168,
+    kind: "photo", sourcePage: "https://commons.wikimedia.org/wiki/File:Ultra_South_Africa.JPG",
+    assetUrl: "https://upload.wikimedia.org/wikipedia/commons/f/f5/Ultra_South_Africa.JPG",
+    credit: "Crowd and stage at Ultra South Africa. Photo by Emad2710, Wikimedia Commons", retrieved: "2026-11-23",
+    license: "CC BY-SA 4.0 (own work). Replaces the letter-tile fallback; Commons uploader, credit and EXIF checked 2026-11-23.",
+    author: "Emad2710", licenseId: "CC-BY-SA-4.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/", changes: "Cropped",
+  },
 });
