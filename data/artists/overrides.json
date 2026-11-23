@@ -542,7 +542,10 @@
     }
    ],
    "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
-   "source": "https://lasvegas.electricdaisycarnival.com/lineup/set-times"
+   "source": [
+    "https://lasvegas.electricdaisycarnival.com/lineup/set-times",
+    "https://countdownnye.com/set-times/day-1/"
+   ]
   },
   {
    "printed": "One Tribe Presents (AMÉMÉ B2B Baron)",
@@ -8149,6 +8152,10 @@
   {
    "printed": "Wankdat (Crankdat B2B Wooli)",
    "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Bonnie X Clyde",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
   },
   {
    "printed": "Fcukers (DJs)",
