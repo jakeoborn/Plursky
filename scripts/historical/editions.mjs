@@ -557,6 +557,13 @@ export const EDITIONS = {
     timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_image_transcription",
     dates: [["2024-04-12", "Friday"], ["2024-04-13", "Saturday"], ["2024-04-14", "Sunday"], ["2024-04-19", "Friday"], ["2024-04-20", "Saturday"], ["2024-04-21", "Sunday"]],
     dayLabels: ACL_WEEKEND_LABELS },
+  // 2025: one official set-times graphic per day, embedded by
+  // coachella.com/schedule from AEG's blob store (aegwebprod, folder
+  // content/coachella2025/), Weekend 1 then Weekend 2. Eight stages, as in 2024.
+  "coachella-2025": { festivalId: "coachella", name: "Coachella 2025", year: 2025,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_image_transcription",
+    dates: [["2025-04-11", "Friday"], ["2025-04-12", "Saturday"], ["2025-04-13", "Sunday"], ["2025-04-18", "Friday"], ["2025-04-19", "Saturday"], ["2025-04-20", "Sunday"]],
+    dayLabels: ACL_WEEKEND_LABELS },
   // Tomorrowland 2013-2016: the official tomorrowland.com day timetables (a
   // Drupal page per day, format "tml-drupal", tml-drupal-schedule.mjs), each
   // captured after the festival. The page names each stage by its host that

@@ -199,10 +199,19 @@ const out = build();
   // each, one per weekend); "Triste Juventud x TÓTEM" (2023) and "Triste
   // Juventud x TOTEM" (2024); "Jamie xx x Floating Points x Daphni" (2024); and
   // UMI and Maz, short names now at more than one brand: 231 rows. The cap is
-  // 231. Past 231, stop and report.
-  check(review.length <= 231, `review queue is ${review.length} rows (> 231 means stop and report)`);
+  // 231.
+  // Coachella 2025 adds five, all pending with no claim: "Triste Juventud x
+  // Tótem", "Fcukers DJ set x HAAi", "Barry Can't Swim x 2manydjs x salute",
+  // "Kaskade Redux x IDRIS" and "Alesso Body Hi x Gorgon City": 236 rows.
+  // The cap is 1000 (Jake's typed "we can go cap 1000", 2026-11-22), in place
+  // of 236/238. Past 1000, stop and report.
+  check(review.length <= 1000, `review queue is ${review.length} rows (> 1000 means stop and report)`);
   check(review.every(r => r.reason) && excluded.every(e => e.reason && e.category), 'a review or excluded row without its reason');
   check(excluded.some(e => e.category === 'unnamed-slot'), 'control: no unnamed slot was excluded');
+  // #308: every billing names at least one performer; an all-unnamed b2b is excluded.
+  const empty = billings.filter(b => !b.performers || b.performers.length === 0);
+  check(empty.length === 0, `billing(s) with no performer: ${empty.map(b => b.id).join(', ')}`);
+  check(parseBilling('Special Guest b2b Special Guest').performers.length === 0, 'an all-unnamed b2b should parse to no performers');
   // Bare non-acts never become artists; a NAMED kids act ("Special Guest: The
   // Happiness Club") is a real billing and stays.
   check(!registry.some(r => /^(special-guest|surprise-guest|fireworks|closing-fireworks|tba|silent-disco)$/.test(r.key)), 'a non-act became an artist');
@@ -252,6 +261,36 @@ const out = build();
     const rec = sources.get(o.printed);
     check(rec, `ruling matches no billing: "${o.printed}"`);
     for (const u of [].concat(o.source)) check(rec && rec.has(u), `ruling "${o.printed}" cites ${u}, not a page that billing was recorded from`);
+  }
+  // #309: a ruling is evidence only where its page printed the act. Every row
+  // a ruling applies to must have been recorded from one of the ruling's own
+  // sources, not just from some page that printed the same text at another
+  // festival. Rows below use a ruling whose source is another page, and no
+  // read has yet confirmed their own page prints the act. Each stays listed,
+  // NOT VERIFIED, until a read adds its page to the ruling or rules it
+  // per festival. A listed row that becomes cited fails as stale.
+  const RULING_SRC_UNVERIFIED = new Set([
+    'lights-all-night-2026:lan-skull-machine-black-tiger-sex-machine-x-kai-wachi',
+    'defqon1-2015:d2:brown:1800:mark-with-a-k',
+    'edc-las-vegas-2024:d1:quantum-valley:2000:paul-oakenfold-full-on-fluoro',
+    'edc-las-vegas-2024:d2:cosmic-meadow:0400:worship-sub-focus-b2b-dimension-b2b-culture-shock-b2b-1991',
+    'edc-las-vegas-2024:d2:basspod:1900:fallen-with-mc-dino',
+    'edc-orlando-2024:d2:circuit-grounds:1300:fury-with-mc-dino',
+    'electric-forest-2014:d2:tripolee:1330:fury-mc-dino',
+    'ultra-miami-2016:d2:ultra-main-stage:1915:tiesto-sunset-slot',
+    'ultra-miami-2019:d1:worldwide-stage:2330:dog-blood-skrillex-boys-noize',
+    'ultra-miami-2022:d2:live-stage:2300:kshmr-the-live-experience',
+  ]);
+  {
+    const rulingOf = new Map((ov.billing || []).map(o => [o.printed, [].concat(o.source)]));
+    const dropped = new Set(out.excluded.map(e => e.id));
+    const uncited = out.rows.filter(r => rulingOf.has(r.printed) && !dropped.has(r.id) && !rulingOf.get(r.printed).includes(r.src));
+    const unlisted = uncited.filter(r => !RULING_SRC_UNVERIFIED.has(r.id));
+    check(unlisted.length === 0, `a ruling applied where its source never printed the row: ${unlisted.slice(0, 5).map(r => `${r.id} (${r.src})`).join(', ')}`);
+    const live = new Set(uncited.map(r => r.id));
+    const stale = [...RULING_SRC_UNVERIFIED].filter(id => !live.has(id));
+    check(stale.length === 0, `stale RULING_SRC_UNVERIFIED entries (now cited, or gone): ${stale.join(', ')}`);
+    check(uncited.length >= 1 || RULING_SRC_UNVERIFIED.size === 0, 'control: the per-row source check read no rows');
   }
   const ids = new Set(review.map(r => r.id)), printed = new Set(review.map(r => r.printed));
   for (const o of ov.pending || []) check(o.key ? ids.has(`key:${o.key}`) : printed.has(o.printed), `stale pending entry: ${o.key || o.printed}`);
