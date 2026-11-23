@@ -49,6 +49,7 @@ The last five festivals that still showed initials now have a photo. Cards are 7
 | `lollapalooza-brasil-2027.webp` | https://commons.wikimedia.org/wiki/File:Catavento_@_Lollapalooza_Brasil_2019_por_Hannah_Carvalho.jpg | CC BY-SA 2.0, Hannah Carvalho. Jonas Bender Bustince, percussionist of Catavento, at Lollapalooza Brasil 2019. |
 | `lollapalooza-chile-2027.webp` | https://commons.wikimedia.org/wiki/File:Entrada_de_Lollapalooza_Chile_2013.jpg | CC0 1.0 (public domain), Jorge Morales Piderit. Entrance to Lollapalooza Chile 2013. |
 | `ultra-south-africa-2027.webp` | https://commons.wikimedia.org/wiki/File:Ultra_South_Africa.JPG | CC BY-SA 4.0, Emad2710. Crowd and stage at Ultra South Africa. |
+| `lightning-in-a-bottle-2027.webp` | https://commons.wikimedia.org/wiki/File:Lightning_in_a_Bottle_2011.jpg | CC BY 2.0, Adam Wiggins. Woogie stage at Lightning in a Bottle 2011. |
 
 Day Zero Tulum 2027 has no art (2026-11-15): the site image's reuse was never granted, Commons has no Day Zero photo and the site publishes no press kit. It shows its tinted letter tile until a cleared image exists.
 

@@ -405,4 +405,12 @@ window.PLURSKY_FESTIVAL_ART = Object.freeze({
     license: "CC BY-SA 4.0 (own work). Replaces the letter-tile fallback; Commons uploader, credit and EXIF checked 2026-11-23.",
     author: "Emad2710", licenseId: "CC-BY-SA-4.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/4.0/", changes: "Cropped",
   },
+  "lightning-in-a-bottle-2027": {
+    tile: "festival-art/tiles/lightning-in-a-bottle-2027.webp", card: "festival-art/lightning-in-a-bottle-2027.webp", width: 168, height: 168,
+    kind: "photo", sourcePage: "https://commons.wikimedia.org/wiki/File:Lightning_in_a_Bottle_2011.jpg",
+    assetUrl: "https://upload.wikimedia.org/wikipedia/commons/f/f5/Lightning_in_a_Bottle_2011.jpg",
+    credit: "Woogie stage at Lightning in a Bottle 2011. Photo by Adam Wiggins, Wikimedia Commons", retrieved: "2026-11-23",
+    license: "CC BY 2.0 (Flickr upload reviewed by FlickreviewR (reviewed-pass, 2014-12)). Replaces the letter-tile fallback; Commons uploader, credit and EXIF checked 2026-11-23.",
+    author: "Adam Wiggins", licenseId: "CC-BY-2.0", licenseUrl: "https://creativecommons.org/licenses/by/2.0/", changes: "Cropped",
+  },
 });
