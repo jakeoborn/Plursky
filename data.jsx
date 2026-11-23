@@ -1148,30 +1148,6 @@ const FESTIVALS_REGISTRY = [
     region:    "North America",
   },
   {
-    // ── Lightning in a Bottle 2027 — Buena Vista Lake, CA ──
-    // Added 2026-11-17 as a gated preview. Dates and venue from libfestival.org, read 2026-11-17: page title
-    // "Lightning in a Bottle 2027 | May 26-30, Buena Vista Lake, CA" and "Lightning
-    // in a Bottle returns May 26–30, 2027 to Buena Vista Lake, CA". No 2027 lineup yet.
-    config: {
-      id:        "lightning-in-a-bottle-2027",
-      officialEvent: { website: "https://www.libfestival.org/", observedAt: "2026-11-17" },
-      name:      "Lightning in a Bottle 2027",
-      shortName: "LiB",
-      brand:     "Lightning in a Bottle",
-      tagline:   "Five days of music, art and camping by Do LaB",
-      location:  "Buena Vista Lake, CA",
-      locationShort: "Buena Vista Lake",
-      dates:     "May 26–30, 2027",
-      year:      2027,
-      // Night Print accent not measured yet (accent null = neutral print).
-      print: { accent: null, source: { url: "https://www.libfestival.org/", observedAt: "2026-11-17" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
-    },
-    available: false,
-    accent:    "#f59e0b",
-    emoji:     "⚡",
-    region:    "North America",
-  },
-  {
     // ── World Club Dome 2027 — Deutsche Bank Park, Frankfurt ──
     // Added 2026-11-17 as a gated preview. Dates and venue from worldclubdome.com, read 2026-11-17: page title
     // "World Club Dome 2027 | Frankfurt, 4.–6. Juni" and "World Club Dome Festival
@@ -5398,6 +5374,7 @@ const _WAVE1_IDS = [
   "tomorrowland-winter-2027",
   "lollapalooza-brasil-2027",
   "lollapalooza-chile-2027",
+  "lightning-in-a-bottle-2027",
 ];
 const _WAVE1 = (typeof window !== "undefined" && window.PLURSKY_FESTIVALS) || {};
 for (const _id of _WAVE1_IDS) {

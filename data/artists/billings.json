@@ -88523,6 +88523,1665 @@
   "mainStage": null
  },
  {
+  "id": "lightning-in-a-bottle-2027:lib27-justice-dj-set",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Justice (DJ Set)",
+  "setTag": "DJ Set",
+  "performers": [
+   {
+    "key": "justice",
+    "role": "performer"
+   }
+  ],
+  "act": "justice",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-jungle",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Jungle",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jungle",
+    "role": "performer"
+   }
+  ],
+  "act": "jungle",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-sofi-tukker",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "SOFI TUKKER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sofi-tukker",
+    "role": "performer"
+   }
+  ],
+  "act": "sofi-tukker",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-pretty-lights",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Pretty Lights",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pretty-lights",
+    "role": "performer"
+   }
+  ],
+  "act": "pretty-lights",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-amelie-lens",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Amelie Lens",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "amelie-lens",
+    "role": "performer"
+   }
+  ],
+  "act": "amelie-lens",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-basement-jaxx",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Basement Jaxx",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "basement-jaxx",
+    "role": "performer"
+   }
+  ],
+  "act": "basement-jaxx",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-rl-grime",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "RL Grime",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rl-grime",
+    "role": "performer"
+   }
+  ],
+  "act": "rl-grime",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-whethan",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Whethan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "whethan",
+    "role": "performer"
+   }
+  ],
+  "act": "whethan",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-honey-dijon",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Honey Dijon",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "honey-dijon",
+    "role": "performer"
+   }
+  ],
+  "act": "honey-dijon",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-dj-habibeats",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "DJ Habibeats",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-habibeats",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-habibeats",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-carlita",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Carlita",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carlita",
+    "role": "performer"
+   }
+  ],
+  "act": "carlita",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-notion",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "NOTION",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "notion",
+    "role": "performer"
+   }
+  ],
+  "act": "notion",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-fcukers-djs",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Fcukers (DJs)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fcukers-djs",
+    "role": "act"
+   }
+  ],
+  "act": "fcukers-djs",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null,
+  "review": "parenthetical is not a known set tag"
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-nimino",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "nimino",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nimino",
+    "role": "performer"
+   }
+  ],
+  "act": "nimino",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-vandelux",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Vandelux",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vandelux",
+    "role": "performer"
+   }
+  ],
+  "act": "vandelux",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-chloe-caillet",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Chloé Caillet",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chloe-caillet",
+    "role": "performer"
+   }
+  ],
+  "act": "chloe-caillet",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-the-glitch-mob",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "The Glitch Mob",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-glitch-mob",
+    "role": "performer"
+   }
+  ],
+  "act": "the-glitch-mob",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-hybrid-minds",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Hybrid Minds",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hybrid-minds",
+    "role": "performer"
+   }
+  ],
+  "act": "hybrid-minds",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-andy-c",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Andy C",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "andy-c",
+    "role": "performer"
+   }
+  ],
+  "act": "andy-c",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-baby-j",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Baby J",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "baby-j",
+    "role": "performer"
+   }
+  ],
+  "act": "baby-j",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-dj-minx",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "DJ Minx",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-minx",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-minx",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-digital-mystikz-mala-coki",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Digital Mystikz (Mala + Coki)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "digital-mystikz-mala-coki",
+    "role": "act"
+   }
+  ],
+  "act": "digital-mystikz-mala-coki",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null,
+  "review": "parenthetical names people"
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-mary-droppinz",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Mary Droppinz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mary-droppinz",
+    "role": "performer"
+   }
+  ],
+  "act": "mary-droppinz",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-haai",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "HAAi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "haai",
+    "role": "performer"
+   }
+  ],
+  "act": "haai",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-effin",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Effin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "effin",
+    "role": "performer"
+   }
+  ],
+  "act": "effin",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-distinct-motive",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Distinct Motive",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "distinct-motive",
+    "role": "performer"
+   }
+  ],
+  "act": "distinct-motive",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-teed",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "TEED",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "teed",
+    "role": "performer"
+   }
+  ],
+  "act": "teed",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-rafael",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Rafael",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rafael",
+    "role": "performer"
+   }
+  ],
+  "act": "rafael",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-x-club",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "X CLUB.",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "x-club",
+    "role": "performer"
+   }
+  ],
+  "act": "x-club",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-bushbaby",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "bushbaby",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bushbaby",
+    "role": "performer"
+   }
+  ],
+  "act": "bushbaby",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-luke-alessi",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Luke Alessi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "luke-alessi",
+    "role": "performer"
+   }
+  ],
+  "act": "luke-alessi",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-atrip",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ATRIP",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "atrip",
+    "role": "performer"
+   }
+  ],
+  "act": "atrip",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-tinzo-jojo",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Tinzo + Jojo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tinzo-jojo",
+    "role": "act"
+   }
+  ],
+  "act": "tinzo-jojo",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null,
+  "review": "\"+\" billing"
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-dj-dave",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "DJ_Dave",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-dave",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-dave",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-leon-vynehall",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Leon Vynehall",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "leon-vynehall",
+    "role": "performer"
+   }
+  ],
+  "act": "leon-vynehall",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-jackie-hollander",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Jackie Hollander",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jackie-hollander",
+    "role": "performer"
+   }
+  ],
+  "act": "jackie-hollander",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-dirtwire",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Dirtwire",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dirtwire",
+    "role": "performer"
+   }
+  ],
+  "act": "dirtwire",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-eliza-rose",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Eliza Rose",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eliza-rose",
+    "role": "performer"
+   }
+  ],
+  "act": "eliza-rose",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-omri",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "OMRI.",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "omri",
+    "role": "performer"
+   }
+  ],
+  "act": "omri",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-cain-culto",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Cain Culto",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cain-culto",
+    "role": "performer"
+   }
+  ],
+  "act": "cain-culto",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-champion",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Champion",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "champion",
+    "role": "performer"
+   }
+  ],
+  "act": "champion",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-sippy",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "SIPPY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sippy",
+    "role": "performer"
+   }
+  ],
+  "act": "sippy",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-nikita-the-wicked",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Nikita, the Wicked",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nikita-the-wicked",
+    "role": "performer"
+   }
+  ],
+  "act": "nikita-the-wicked",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-saint-ludo",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Saint Ludo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "saint-ludo",
+    "role": "performer"
+   }
+  ],
+  "act": "saint-ludo",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-bridge",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "BRIDGE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bridge",
+    "role": "performer"
+   }
+  ],
+  "act": "bridge",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-a-club-called-rhonda",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "A Club Called Rhonda",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "a-club-called-rhonda",
+    "role": "performer"
+   }
+  ],
+  "act": "a-club-called-rhonda",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-jennifer-loveless",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Jennifer Loveless",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jennifer-loveless",
+    "role": "performer"
+   }
+  ],
+  "act": "jennifer-loveless",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-en-vy",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "En:vy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "en-vy",
+    "role": "performer"
+   }
+  ],
+  "act": "en-vy",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-mia-koden",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Mia Koden",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mia-koden",
+    "role": "performer"
+   }
+  ],
+  "act": "mia-koden",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-neumonic",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Neumonic",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "neumonic",
+    "role": "performer"
+   }
+  ],
+  "act": "neumonic",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-dr-chaii",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Dr. Chaii",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dr-chaii",
+    "role": "performer"
+   }
+  ],
+  "act": "dr-chaii",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-vita",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "VITA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vita",
+    "role": "performer"
+   }
+  ],
+  "act": "vita",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-klo",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Klo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "klo",
+    "role": "performer"
+   }
+  ],
+  "act": "klo",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-tiffy-vera",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Tiffy Vera",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tiffy-vera",
+    "role": "performer"
+   }
+  ],
+  "act": "tiffy-vera",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-arthi",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Arthi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "arthi",
+    "role": "performer"
+   }
+  ],
+  "act": "arthi",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-matisa",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Matisa",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "matisa",
+    "role": "performer"
+   }
+  ],
+  "act": "matisa",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-bad-juuju",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "bad juuju",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bad-juuju",
+    "role": "performer"
+   }
+  ],
+  "act": "bad-juuju",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-biishop",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "BiiSHOP",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "biishop",
+    "role": "performer"
+   }
+  ],
+  "act": "biishop",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-carre",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Carré",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carre",
+    "role": "performer"
+   }
+  ],
+  "act": "carre",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-danni-g",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Danni G",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "danni-g",
+    "role": "performer"
+   }
+  ],
+  "act": "danni-g",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-dj-kerry",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "DJ Kerry",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-kerry",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-kerry",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-riche",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "RICHE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "riche",
+    "role": "performer"
+   }
+  ],
+  "act": "riche",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-sana-sana-musica",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Sana Sana Música",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sana-sana-musica",
+    "role": "performer"
+   }
+  ],
+  "act": "sana-sana-musica",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-saqib",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Saqib",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "saqib",
+    "role": "performer"
+   }
+  ],
+  "act": "saqib",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-scarlett-o-malley",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Scarlett O'Malley",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "scarlett-o-malley",
+    "role": "performer"
+   }
+  ],
+  "act": "scarlett-o-malley",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-soraya",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Soraya",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "soraya",
+    "role": "performer"
+   }
+  ],
+  "act": "soraya",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-spektrum-and-adam",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Spektrum & Adam",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "spektrum-and-adam",
+    "role": "performer"
+   }
+  ],
+  "act": "spektrum-and-adam",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-techno-tupac",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Techno Tupac",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "techno-tupac",
+    "role": "performer"
+   }
+  ],
+  "act": "techno-tupac",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-womb-tang",
+  "source": "live",
+  "festivalId": "lightning-in-a-bottle-2027",
+  "festivalBrand": "lightning-in-a-bottle",
+  "year": 2027,
+  "date": null,
+  "day": null,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Womb Tang",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "womb-tang",
+    "role": "performer"
+   }
+  ],
+  "act": "womb-tang",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
   "id": "acl-2011:d1:amd:1225:asleep-at-the-wheel",
   "source": "edition",
   "festivalId": "acl-2011",
