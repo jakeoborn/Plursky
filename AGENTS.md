@@ -179,6 +179,20 @@ then, treat "private" as "founder's eyes on this machine only".
 
 Docs-only, so no `vNNN` bump (§2 rule 3).
 
+### Builder contract (issue #300, Jake approved 2026-10-12 and 2026-11-22)
+
+For Claude and Codex build sessions:
+
+1. **One PR per task.** No PR means a Blocked-on-Jake note that names the blocker.
+2. **Every PR carries a build receipt:** task id, files touched, tests run and their results, pixels for UI, and the build number for TestFlight.
+3. **Every merged PR gets one line in `ops/build-ledger.jsonl`.** One JSON object per line, in the shape the file already uses (`date`, `pr`, `task`, `lane`, `head`, `merge`, `mainAfter`, `version`, `mergedAt`, `ci`, `receipt`). The Live Work Board stays the human scoreboard; the ledger is the machine-readable one. Ledger lines can land in a later ledger-only PR. Never rewrite or drop a line that is already there.
+4. **One open PR per feature lane.** Update it in place rather than opening a second one (the #297 hold pattern).
+5. **No zero-output sessions.** Ship something, or say exactly why not.
+6. **A receipt is a claim** until CI and the pixel or review gates pass, and it must match the diff.
+7. **Blocked means logged and parked,** never idle-looping.
+
+This contract adds no CI gate. It sits beside §0 (approval) and §4 (definition of done), and changes neither.
+
 ### Festival flips (rescued from issue #18, 2026-08-22 — the issue is closed, this rule is not)
 
 **No public-facing flips without founder word.** Every festival scaffold PR
