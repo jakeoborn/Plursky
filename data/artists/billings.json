@@ -264007,6 +264007,4487 @@
   "mainStage": null
  },
  {
+  "id": "countdown-nye-2015:d1:infinity-stage:1600:planet-rock",
+  "source": "edition",
+  "festivalId": "countdown-nye-2015",
+  "festivalBrand": "countdown-nye",
+  "year": 2015,
+  "date": "2015-12-31",
+  "day": 1,
+  "stage": "INFINITY STAGE",
+  "start": "16:00",
+  "end": "18:00",
+  "printed": "Planet Rock",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "planet-rock",
+    "role": "performer"
+   }
+  ],
+  "act": "planet-rock",
+  "closing": false,
+  "stageLineage": "countdown-nye:infinity-stage",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2015:d1:infinity-stage:1800:kayoh",
+  "source": "edition",
+  "festivalId": "countdown-nye-2015",
+  "festivalBrand": "countdown-nye",
+  "year": 2015,
+  "date": "2015-12-31",
+  "day": 1,
+  "stage": "INFINITY STAGE",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Kayoh",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kayoh",
+    "role": "performer"
+   }
+  ],
+  "act": "kayoh",
+  "closing": false,
+  "stageLineage": "countdown-nye:infinity-stage",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2015:d1:infinity-stage:1900:what-so-not",
+  "source": "edition",
+  "festivalId": "countdown-nye-2015",
+  "festivalBrand": "countdown-nye",
+  "year": 2015,
+  "date": "2015-12-31",
+  "day": 1,
+  "stage": "INFINITY STAGE",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "What So Not",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "what-so-not",
+    "role": "performer"
+   }
+  ],
+  "act": "what-so-not",
+  "closing": false,
+  "stageLineage": "countdown-nye:infinity-stage",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2015:d1:infinity-stage:2000:oliver-heldens",
+  "source": "edition",
+  "festivalId": "countdown-nye-2015",
+  "festivalBrand": "countdown-nye",
+  "year": 2015,
+  "date": "2015-12-31",
+  "day": 1,
+  "stage": "INFINITY STAGE",
+  "start": "20:00",
+  "end": "21:15",
+  "printed": "Oliver Heldens",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "oliver-heldens",
+    "role": "performer"
+   }
+  ],
+  "act": "oliver-heldens",
+  "closing": false,
+  "stageLineage": "countdown-nye:infinity-stage",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2015:d1:infinity-stage:2115:trippy-turtle",
+  "source": "edition",
+  "festivalId": "countdown-nye-2015",
+  "festivalBrand": "countdown-nye",
+  "year": 2015,
+  "date": "2015-12-31",
+  "day": 1,
+  "stage": "INFINITY STAGE",
+  "start": "21:15",
+  "end": "22:30",
+  "printed": "Trippy Turtle",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "trippy-turtle",
+    "role": "performer"
+   }
+  ],
+  "act": "trippy-turtle",
+  "closing": false,
+  "stageLineage": "countdown-nye:infinity-stage",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2015:d1:infinity-stage:2230:alison-wonderland",
+  "source": "edition",
+  "festivalId": "countdown-nye-2015",
+  "festivalBrand": "countdown-nye",
+  "year": 2015,
+  "date": "2015-12-31",
+  "day": 1,
+  "stage": "INFINITY STAGE",
+  "start": "22:30",
+  "end": "23:45",
+  "printed": "Alison Wonderland",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alison-wonderland",
+    "role": "performer"
+   }
+  ],
+  "act": "alison-wonderland",
+  "closing": false,
+  "stageLineage": "countdown-nye:infinity-stage",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2015:d1:infinity-stage:2345:tjr",
+  "source": "edition",
+  "festivalId": "countdown-nye-2015",
+  "festivalBrand": "countdown-nye",
+  "year": 2015,
+  "date": "2015-12-31",
+  "day": 1,
+  "stage": "INFINITY STAGE",
+  "start": "23:45",
+  "end": "01:00",
+  "printed": "TJR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tjr",
+    "role": "performer"
+   }
+  ],
+  "act": "tjr",
+  "closing": false,
+  "stageLineage": "countdown-nye:infinity-stage",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2015:d1:infinity-stage:0100:sleepy-tom",
+  "source": "edition",
+  "festivalId": "countdown-nye-2015",
+  "festivalBrand": "countdown-nye",
+  "year": 2015,
+  "date": "2015-12-31",
+  "day": 1,
+  "stage": "INFINITY STAGE",
+  "start": "01:00",
+  "end": "02:00",
+  "printed": "Sleepy Tom",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sleepy-tom",
+    "role": "performer"
+   }
+  ],
+  "act": "sleepy-tom",
+  "closing": true,
+  "stageLineage": "countdown-nye:infinity-stage",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2015:d1:quantum-stage:1600:nightstalker",
+  "source": "edition",
+  "festivalId": "countdown-nye-2015",
+  "festivalBrand": "countdown-nye",
+  "year": 2015,
+  "date": "2015-12-31",
+  "day": 1,
+  "stage": "QUANTUM STAGE",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Nightstalker",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nightstalker",
+    "role": "performer"
+   }
+  ],
+  "act": "nightstalker",
+  "closing": false,
+  "stageLineage": "countdown-nye:quantum-stage",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2015:d1:quantum-stage:1700:fallen",
+  "source": "edition",
+  "festivalId": "countdown-nye-2015",
+  "festivalBrand": "countdown-nye",
+  "year": 2015,
+  "date": "2015-12-31",
+  "day": 1,
+  "stage": "QUANTUM STAGE",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Fallen",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fallen",
+    "role": "performer"
+   }
+  ],
+  "act": "fallen",
+  "closing": false,
+  "stageLineage": "countdown-nye:quantum-stage",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2015:d1:quantum-stage:1800:cyantific-b2b-mob-tactics-b2b-insideinfo",
+  "source": "edition",
+  "festivalId": "countdown-nye-2015",
+  "festivalBrand": "countdown-nye",
+  "year": 2015,
+  "date": "2015-12-31",
+  "day": 1,
+  "stage": "QUANTUM STAGE",
+  "start": "18:00",
+  "end": "20:00",
+  "printed": "Cyantific B2B Mob Tactics B2B InsideInfo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cyantific",
+    "role": "b2b"
+   },
+   {
+    "key": "mob-tactics",
+    "role": "b2b"
+   },
+   {
+    "key": "insideinfo",
+    "role": "b2b"
+   }
+  ],
+  "act": "cyantific-b2b-mob-tactics-b2b-insideinfo",
+  "closing": false,
+  "stageLineage": "countdown-nye:quantum-stage",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2015:d1:quantum-stage:2000:megalodon-b2b-truth",
+  "source": "edition",
+  "festivalId": "countdown-nye-2015",
+  "festivalBrand": "countdown-nye",
+  "year": 2015,
+  "date": "2015-12-31",
+  "day": 1,
+  "stage": "QUANTUM STAGE",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Megalodon B2B Truth",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "megalodon",
+    "role": "b2b"
+   },
+   {
+    "key": "truth",
+    "role": "b2b"
+   }
+  ],
+  "act": "megalodon-b2b-truth",
+  "closing": false,
+  "stageLineage": "countdown-nye:quantum-stage",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2015:d1:quantum-stage:2100:minnesota-b2b-g-jones",
+  "source": "edition",
+  "festivalId": "countdown-nye-2015",
+  "festivalBrand": "countdown-nye",
+  "year": 2015,
+  "date": "2015-12-31",
+  "day": 1,
+  "stage": "QUANTUM STAGE",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "Minnesota B2B G Jones",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "minnesota",
+    "role": "b2b"
+   },
+   {
+    "key": "g-jones",
+    "role": "b2b"
+   }
+  ],
+  "act": "minnesota-b2b-g-jones",
+  "closing": false,
+  "stageLineage": "countdown-nye:quantum-stage",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2015:d1:quantum-stage:2200:metrik-b2b-tc",
+  "source": "edition",
+  "festivalId": "countdown-nye-2015",
+  "festivalBrand": "countdown-nye",
+  "year": 2015,
+  "date": "2015-12-31",
+  "day": 1,
+  "stage": "QUANTUM STAGE",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "Metrik B2B TC",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "metrik",
+    "role": "b2b"
+   },
+   {
+    "key": "tc",
+    "role": "b2b"
+   }
+  ],
+  "act": "metrik-b2b-tc",
+  "closing": false,
+  "stageLineage": "countdown-nye:quantum-stage",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2015:d1:quantum-stage:2300:eptic-b2b-habstrakt",
+  "source": "edition",
+  "festivalId": "countdown-nye-2015",
+  "festivalBrand": "countdown-nye",
+  "year": 2015,
+  "date": "2015-12-31",
+  "day": 1,
+  "stage": "QUANTUM STAGE",
+  "start": "23:00",
+  "end": "00:00",
+  "printed": "Eptic B2B Habstrakt",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eptic",
+    "role": "b2b"
+   },
+   {
+    "key": "habstrakt",
+    "role": "b2b"
+   }
+  ],
+  "act": "eptic-b2b-habstrakt",
+  "closing": false,
+  "stageLineage": "countdown-nye:quantum-stage",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2015:d1:quantum-stage:0000:cookie-monsta-b2b-funtcase",
+  "source": "edition",
+  "festivalId": "countdown-nye-2015",
+  "festivalBrand": "countdown-nye",
+  "year": 2015,
+  "date": "2015-12-31",
+  "day": 1,
+  "stage": "QUANTUM STAGE",
+  "start": "00:00",
+  "end": "01:00",
+  "printed": "Cookie Monsta B2B FuntCase",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cookie-monsta",
+    "role": "b2b"
+   },
+   {
+    "key": "funtcase",
+    "role": "b2b"
+   }
+  ],
+  "act": "cookie-monsta-b2b-funtcase",
+  "closing": false,
+  "stageLineage": "countdown-nye:quantum-stage",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2015:d1:quantum-stage:0100:delta-heavy",
+  "source": "edition",
+  "festivalId": "countdown-nye-2015",
+  "festivalBrand": "countdown-nye",
+  "year": 2015,
+  "date": "2015-12-31",
+  "day": 1,
+  "stage": "QUANTUM STAGE",
+  "start": "01:00",
+  "end": "02:00",
+  "printed": "Delta Heavy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "delta-heavy",
+    "role": "performer"
+   }
+  ],
+  "act": "delta-heavy",
+  "closing": true,
+  "stageLineage": "countdown-nye:quantum-stage",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2015:d1:resolution-stage:1600:fransis-derelle",
+  "source": "edition",
+  "festivalId": "countdown-nye-2015",
+  "festivalBrand": "countdown-nye",
+  "year": 2015,
+  "date": "2015-12-31",
+  "day": 1,
+  "stage": "RESOLUTION STAGE",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Fransis Derelle",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fransis-derelle",
+    "role": "performer"
+   }
+  ],
+  "act": "fransis-derelle",
+  "closing": false,
+  "stageLineage": "countdown-nye:resolution-stage",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2015:d1:resolution-stage:1700:baggi",
+  "source": "edition",
+  "festivalId": "countdown-nye-2015",
+  "festivalBrand": "countdown-nye",
+  "year": 2015,
+  "date": "2015-12-31",
+  "day": 1,
+  "stage": "RESOLUTION STAGE",
+  "start": "17:00",
+  "end": "18:25",
+  "printed": "Baggi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "baggi",
+    "role": "performer"
+   }
+  ],
+  "act": "baggi",
+  "closing": false,
+  "stageLineage": "countdown-nye:resolution-stage",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2015:d1:resolution-stage:1825:pierce-fulton",
+  "source": "edition",
+  "festivalId": "countdown-nye-2015",
+  "festivalBrand": "countdown-nye",
+  "year": 2015,
+  "date": "2015-12-31",
+  "day": 1,
+  "stage": "RESOLUTION STAGE",
+  "start": "18:25",
+  "end": "19:55",
+  "printed": "Pierce Fulton",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pierce-fulton",
+    "role": "performer"
+   }
+  ],
+  "act": "pierce-fulton",
+  "closing": false,
+  "stageLineage": "countdown-nye:resolution-stage",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2015:d1:resolution-stage:1955:mercer",
+  "source": "edition",
+  "festivalId": "countdown-nye-2015",
+  "festivalBrand": "countdown-nye",
+  "year": 2015,
+  "date": "2015-12-31",
+  "day": 1,
+  "stage": "RESOLUTION STAGE",
+  "start": "19:55",
+  "end": "20:55",
+  "printed": "Mercer",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mercer",
+    "role": "performer"
+   }
+  ],
+  "act": "mercer",
+  "closing": false,
+  "stageLineage": "countdown-nye:resolution-stage",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2015:d1:resolution-stage:2055:yellow-claw",
+  "source": "edition",
+  "festivalId": "countdown-nye-2015",
+  "festivalBrand": "countdown-nye",
+  "year": 2015,
+  "date": "2015-12-31",
+  "day": 1,
+  "stage": "RESOLUTION STAGE",
+  "start": "20:55",
+  "end": "21:55",
+  "printed": "Yellow Claw",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yellow-claw",
+    "role": "performer"
+   }
+  ],
+  "act": "yellow-claw",
+  "closing": false,
+  "stageLineage": "countdown-nye:resolution-stage",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2015:d1:resolution-stage:2155:flux-pavilion",
+  "source": "edition",
+  "festivalId": "countdown-nye-2015",
+  "festivalBrand": "countdown-nye",
+  "year": 2015,
+  "date": "2015-12-31",
+  "day": 1,
+  "stage": "RESOLUTION STAGE",
+  "start": "21:55",
+  "end": "22:55",
+  "printed": "Flux Pavilion",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "flux-pavilion",
+    "role": "performer"
+   }
+  ],
+  "act": "flux-pavilion",
+  "closing": false,
+  "stageLineage": "countdown-nye:resolution-stage",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2015:d1:resolution-stage:2255:carnage",
+  "source": "edition",
+  "festivalId": "countdown-nye-2015",
+  "festivalBrand": "countdown-nye",
+  "year": 2015,
+  "date": "2015-12-31",
+  "day": 1,
+  "stage": "RESOLUTION STAGE",
+  "start": "22:55",
+  "end": "23:55",
+  "printed": "Carnage",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carnage",
+    "role": "performer"
+   }
+  ],
+  "act": "carnage",
+  "closing": false,
+  "stageLineage": "countdown-nye:resolution-stage",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2015:d1:resolution-stage:0000:dj-snake",
+  "source": "edition",
+  "festivalId": "countdown-nye-2015",
+  "festivalBrand": "countdown-nye",
+  "year": 2015,
+  "date": "2015-12-31",
+  "day": 1,
+  "stage": "RESOLUTION STAGE",
+  "start": "00:00",
+  "end": "01:00",
+  "printed": "DJ Snake",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-snake",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-snake",
+  "closing": false,
+  "stageLineage": "countdown-nye:resolution-stage",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2015:d1:resolution-stage:0100:kaskade",
+  "source": "edition",
+  "festivalId": "countdown-nye-2015",
+  "festivalBrand": "countdown-nye",
+  "year": 2015,
+  "date": "2015-12-31",
+  "day": 1,
+  "stage": "RESOLUTION STAGE",
+  "start": "01:00",
+  "end": "02:00",
+  "printed": "Kaskade",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kaskade",
+    "role": "performer"
+   }
+  ],
+  "act": "kaskade",
+  "closing": true,
+  "stageLineage": "countdown-nye:resolution-stage",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d1:infinity:1700:convex",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-30",
+  "day": 1,
+  "stage": "INFINITY",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Convex",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "convex",
+    "role": "performer"
+   }
+  ],
+  "act": "convex",
+  "closing": false,
+  "stageLineage": "countdown-nye:infinity",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d1:infinity:1800:electric-mantis",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-30",
+  "day": 1,
+  "stage": "INFINITY",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Electric Mantis",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "electric-mantis",
+    "role": "performer"
+   }
+  ],
+  "act": "electric-mantis",
+  "closing": false,
+  "stageLineage": "countdown-nye:infinity",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d1:infinity:1900:rezz",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-30",
+  "day": 1,
+  "stage": "INFINITY",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Rezz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rezz",
+    "role": "performer"
+   }
+  ],
+  "act": "rezz",
+  "closing": false,
+  "stageLineage": "countdown-nye:infinity",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d1:infinity:2000:anna-lunoe",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-30",
+  "day": 1,
+  "stage": "INFINITY",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Anna Lunoe",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "anna-lunoe",
+    "role": "performer"
+   }
+  ],
+  "act": "anna-lunoe",
+  "closing": false,
+  "stageLineage": "countdown-nye:infinity",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d1:infinity:2100:a-trak",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-30",
+  "day": 1,
+  "stage": "INFINITY",
+  "start": "21:00",
+  "end": "22:15",
+  "printed": "A-Trak",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "a-trak",
+    "role": "performer"
+   }
+  ],
+  "act": "a-trak",
+  "closing": false,
+  "stageLineage": "countdown-nye:infinity",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d1:infinity:2215:kill-the-noise",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-30",
+  "day": 1,
+  "stage": "INFINITY",
+  "start": "22:15",
+  "end": "23:30",
+  "printed": "Kill The Noise",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kill-the-noise",
+    "role": "performer"
+   }
+  ],
+  "act": "kill-the-noise",
+  "closing": false,
+  "stageLineage": "countdown-nye:infinity",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d1:infinity:2330:baauer",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-30",
+  "day": 1,
+  "stage": "INFINITY",
+  "start": "23:30",
+  "end": "00:45",
+  "printed": "Baauer",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "baauer",
+    "role": "performer"
+   }
+  ],
+  "act": "baauer",
+  "closing": false,
+  "stageLineage": "countdown-nye:infinity",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d1:infinity:0045:rl-grime",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-30",
+  "day": 1,
+  "stage": "INFINITY",
+  "start": "00:45",
+  "end": "02:00",
+  "printed": "RL Grime",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rl-grime",
+    "role": "performer"
+   }
+  ],
+  "act": "rl-grime",
+  "closing": true,
+  "stageLineage": "countdown-nye:infinity",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d1:quantum:1600:mahalo",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-30",
+  "day": 1,
+  "stage": "QUANTUM",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Mahalo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mahalo",
+    "role": "performer"
+   }
+  ],
+  "act": "mahalo",
+  "closing": false,
+  "stageLineage": "countdown-nye:quantum",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d1:quantum:1700:adam-auburn",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-30",
+  "day": 1,
+  "stage": "QUANTUM",
+  "start": "17:00",
+  "end": "18:30",
+  "printed": "Adam Auburn",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "adam-auburn",
+    "role": "performer"
+   }
+  ],
+  "act": "adam-auburn",
+  "closing": false,
+  "stageLineage": "countdown-nye:quantum",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d1:quantum:1830:saint-wknd",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-30",
+  "day": 1,
+  "stage": "QUANTUM",
+  "start": "18:30",
+  "end": "20:00",
+  "printed": "SAINT WKND",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "saint-wknd",
+    "role": "performer"
+   }
+  ],
+  "act": "saint-wknd",
+  "closing": false,
+  "stageLineage": "countdown-nye:quantum",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d1:quantum:2000:louisahhh",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-30",
+  "day": 1,
+  "stage": "QUANTUM",
+  "start": "20:00",
+  "end": "21:30",
+  "printed": "Louisahhh",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "louisahhh",
+    "role": "performer"
+   }
+  ],
+  "act": "louisahhh",
+  "closing": false,
+  "stageLineage": "countdown-nye:quantum",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d1:quantum:2130:billy-kenny",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-30",
+  "day": 1,
+  "stage": "QUANTUM",
+  "start": "21:30",
+  "end": "23:00",
+  "printed": "Billy Kenny",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "billy-kenny",
+    "role": "performer"
+   }
+  ],
+  "act": "billy-kenny",
+  "closing": false,
+  "stageLineage": "countdown-nye:quantum",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d1:quantum:2300:kill-frenzy",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-30",
+  "day": 1,
+  "stage": "QUANTUM",
+  "start": "23:00",
+  "end": "00:30",
+  "printed": "Kill Frenzy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kill-frenzy",
+    "role": "performer"
+   }
+  ],
+  "act": "kill-frenzy",
+  "closing": false,
+  "stageLineage": "countdown-nye:quantum",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d1:quantum:0030:lane-8",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-30",
+  "day": 1,
+  "stage": "QUANTUM",
+  "start": "00:30",
+  "end": "02:00",
+  "printed": "Lane 8",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lane-8",
+    "role": "performer"
+   }
+  ],
+  "act": "lane-8",
+  "closing": true,
+  "stageLineage": "countdown-nye:quantum",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d1:resolution:1600:justice-skolnik",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-30",
+  "day": 1,
+  "stage": "RESOLUTION",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Justice Skolnik",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "justice-skolnik",
+    "role": "performer"
+   }
+  ],
+  "act": "justice-skolnik",
+  "closing": false,
+  "stageLineage": "countdown-nye:resolution",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d1:resolution:1700:veniice",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-30",
+  "day": 1,
+  "stage": "RESOLUTION",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Veniice",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "veniice",
+    "role": "performer"
+   }
+  ],
+  "act": "veniice",
+  "closing": false,
+  "stageLineage": "countdown-nye:resolution",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d1:resolution:1800:cid",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-30",
+  "day": 1,
+  "stage": "RESOLUTION",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "CID",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cid",
+    "role": "performer"
+   }
+  ],
+  "act": "cid",
+  "closing": false,
+  "stageLineage": "countdown-nye:resolution",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d1:resolution:1900:firebeatz",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-30",
+  "day": 1,
+  "stage": "RESOLUTION",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Firebeatz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "firebeatz",
+    "role": "performer"
+   }
+  ],
+  "act": "firebeatz",
+  "closing": false,
+  "stageLineage": "countdown-nye:resolution",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d1:resolution:2000:the-chainsmokers",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-30",
+  "day": 1,
+  "stage": "RESOLUTION",
+  "start": "20:00",
+  "end": "21:15",
+  "printed": "The Chainsmokers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-chainsmokers",
+    "role": "performer"
+   }
+  ],
+  "act": "the-chainsmokers",
+  "closing": false,
+  "stageLineage": "countdown-nye:resolution",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d1:resolution:2115:deorro",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-30",
+  "day": 1,
+  "stage": "RESOLUTION",
+  "start": "21:15",
+  "end": "22:30",
+  "printed": "Deorro",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "deorro",
+    "role": "performer"
+   }
+  ],
+  "act": "deorro",
+  "closing": false,
+  "stageLineage": "countdown-nye:resolution",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d1:resolution:2230:makj",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-30",
+  "day": 1,
+  "stage": "RESOLUTION",
+  "start": "22:30",
+  "end": "23:30",
+  "printed": "MAKJ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "makj",
+    "role": "performer"
+   }
+  ],
+  "act": "makj",
+  "closing": false,
+  "stageLineage": "countdown-nye:resolution",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d1:resolution:2330:steve-aoki",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-30",
+  "day": 1,
+  "stage": "RESOLUTION",
+  "start": "23:30",
+  "end": "00:45",
+  "printed": "Steve Aoki",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "steve-aoki",
+    "role": "performer"
+   }
+  ],
+  "act": "steve-aoki",
+  "closing": false,
+  "stageLineage": "countdown-nye:resolution",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d1:resolution:0045:seven-lions",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-30",
+  "day": 1,
+  "stage": "RESOLUTION",
+  "start": "00:45",
+  "end": "02:00",
+  "printed": "Seven Lions",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "seven-lions",
+    "role": "performer"
+   }
+  ],
+  "act": "seven-lions",
+  "closing": true,
+  "stageLineage": "countdown-nye:resolution",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d2:infinity:1600:jace-mek",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-31",
+  "day": 2,
+  "stage": "INFINITY",
+  "start": "16:00",
+  "end": "17:15",
+  "printed": "Jace Mek",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jace-mek",
+    "role": "performer"
+   }
+  ],
+  "act": "jace-mek",
+  "closing": false,
+  "stageLineage": "countdown-nye:infinity",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d2:infinity:1715:awe",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-31",
+  "day": 2,
+  "stage": "INFINITY",
+  "start": "17:15",
+  "end": "18:15",
+  "printed": "AWE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "awe",
+    "role": "performer"
+   }
+  ],
+  "act": "awe",
+  "closing": false,
+  "stageLineage": "countdown-nye:infinity",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d2:infinity:1815:dr-fresch",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-31",
+  "day": 2,
+  "stage": "INFINITY",
+  "start": "18:15",
+  "end": "19:15",
+  "printed": "Dr. Fresch",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dr-fresch",
+    "role": "performer"
+   }
+  ],
+  "act": "dr-fresch",
+  "closing": false,
+  "stageLineage": "countdown-nye:infinity",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d2:infinity:1915:diplo",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-31",
+  "day": 2,
+  "stage": "INFINITY",
+  "start": "19:15",
+  "end": "20:30",
+  "printed": "Diplo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "diplo",
+    "role": "performer"
+   }
+  ],
+  "act": "diplo",
+  "closing": false,
+  "stageLineage": "countdown-nye:infinity",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d2:infinity:2030:4b",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-31",
+  "day": 2,
+  "stage": "INFINITY",
+  "start": "20:30",
+  "end": "21:30",
+  "printed": "4B",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "4b",
+    "role": "performer"
+   }
+  ],
+  "act": "4b",
+  "closing": false,
+  "stageLineage": "countdown-nye:infinity",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d2:infinity:2130:rabbit-in-the-moon",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-31",
+  "day": 2,
+  "stage": "INFINITY",
+  "start": "21:30",
+  "end": "22:30",
+  "printed": "Rabbit In The Moon",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rabbit-in-the-moon",
+    "role": "performer"
+   }
+  ],
+  "act": "rabbit-in-the-moon",
+  "closing": false,
+  "stageLineage": "countdown-nye:infinity",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d2:infinity:2230:troyboi",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-31",
+  "day": 2,
+  "stage": "INFINITY",
+  "start": "22:30",
+  "end": "23:30",
+  "printed": "TroyBoi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "troyboi",
+    "role": "performer"
+   }
+  ],
+  "act": "troyboi",
+  "closing": false,
+  "stageLineage": "countdown-nye:infinity",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d2:infinity:2330:nghtmre",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-31",
+  "day": 2,
+  "stage": "INFINITY",
+  "start": "23:30",
+  "end": "00:45",
+  "printed": "NGHTMRE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nghtmre",
+    "role": "performer"
+   }
+  ],
+  "act": "nghtmre",
+  "closing": false,
+  "stageLineage": "countdown-nye:infinity",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d2:infinity:0045:grandtheft",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-31",
+  "day": 2,
+  "stage": "INFINITY",
+  "start": "00:45",
+  "end": "02:00",
+  "printed": "Grandtheft",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "grandtheft",
+    "role": "performer"
+   }
+  ],
+  "act": "grandtheft",
+  "closing": true,
+  "stageLineage": "countdown-nye:infinity",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d2:quantum:1600:blankface-b2b-maze",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-31",
+  "day": 2,
+  "stage": "QUANTUM",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Blankface B2B Maze",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "blankface",
+    "role": "b2b"
+   },
+   {
+    "key": "maze",
+    "role": "b2b"
+   }
+  ],
+  "act": "blankface-b2b-maze",
+  "closing": false,
+  "stageLineage": "countdown-nye:quantum",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d2:quantum:1700:snavs",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-31",
+  "day": 2,
+  "stage": "QUANTUM",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Snavs",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "snavs",
+    "role": "performer"
+   }
+  ],
+  "act": "snavs",
+  "closing": false,
+  "stageLineage": "countdown-nye:quantum",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d2:quantum:1800:dimension-b2b-1991",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-31",
+  "day": 2,
+  "stage": "QUANTUM",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Dimension B2B 1991",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dimension",
+    "role": "b2b"
+   },
+   {
+    "key": "1991",
+    "role": "b2b"
+   }
+  ],
+  "act": "dimension-b2b-1991",
+  "closing": false,
+  "stageLineage": "countdown-nye:quantum",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d2:quantum:1900:virtual-riot",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-31",
+  "day": 2,
+  "stage": "QUANTUM",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Virtual Riot",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "virtual-riot",
+    "role": "performer"
+   }
+  ],
+  "act": "virtual-riot",
+  "closing": false,
+  "stageLineage": "countdown-nye:quantum",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d2:quantum:2000:tc",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-31",
+  "day": 2,
+  "stage": "QUANTUM",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "TC",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tc",
+    "role": "performer"
+   }
+  ],
+  "act": "tc",
+  "closing": false,
+  "stageLineage": "countdown-nye:quantum",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d2:quantum:2100:ghastly",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-31",
+  "day": 2,
+  "stage": "QUANTUM",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "Ghastly",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ghastly",
+    "role": "performer"
+   }
+  ],
+  "act": "ghastly",
+  "closing": false,
+  "stageLineage": "countdown-nye:quantum",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d2:quantum:2200:joyryde",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-31",
+  "day": 2,
+  "stage": "QUANTUM",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "Joyryde",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "joyryde",
+    "role": "performer"
+   }
+  ],
+  "act": "joyryde",
+  "closing": false,
+  "stageLineage": "countdown-nye:quantum",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d2:quantum:2300:san-holo",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-31",
+  "day": 2,
+  "stage": "QUANTUM",
+  "start": "23:00",
+  "end": "23:59",
+  "printed": "San Holo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "san-holo",
+    "role": "performer"
+   }
+  ],
+  "act": "san-holo",
+  "closing": false,
+  "stageLineage": "countdown-nye:quantum",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d2:quantum:2359:zomboy",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-31",
+  "day": 2,
+  "stage": "QUANTUM",
+  "start": "23:59",
+  "end": "01:00",
+  "printed": "Zomboy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zomboy",
+    "role": "performer"
+   }
+  ],
+  "act": "zomboy",
+  "closing": false,
+  "stageLineage": "countdown-nye:quantum",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d2:quantum:0100:valentino-khan",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-31",
+  "day": 2,
+  "stage": "QUANTUM",
+  "start": "01:00",
+  "end": "02:00",
+  "printed": "Valentino Khan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "valentino-khan",
+    "role": "performer"
+   }
+  ],
+  "act": "valentino-khan",
+  "closing": true,
+  "stageLineage": "countdown-nye:quantum",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d2:resolution:1600:kayoh-b2b-swage",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-31",
+  "day": 2,
+  "stage": "RESOLUTION",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Kayoh B2B Swage",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kayoh",
+    "role": "b2b"
+   },
+   {
+    "key": "swage",
+    "role": "b2b"
+   }
+  ],
+  "act": "kayoh-b2b-swage",
+  "closing": false,
+  "stageLineage": "countdown-nye:resolution",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d2:resolution:1700:bonnie-x-clyde",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-31",
+  "day": 2,
+  "stage": "RESOLUTION",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Bonnie X Clyde",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bonnie-x-clyde",
+    "role": "act"
+   }
+  ],
+  "act": "bonnie-x-clyde",
+  "closing": false,
+  "stageLineage": "countdown-nye:resolution",
+  "mainStage": null,
+  "review": "\"x\" billing whose sides are not both known acts"
+ },
+ {
+  "id": "countdown-nye-2016:d2:resolution:1800:matroda",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-31",
+  "day": 2,
+  "stage": "RESOLUTION",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Matroda",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "matroda",
+    "role": "performer"
+   }
+  ],
+  "act": "matroda",
+  "closing": false,
+  "stageLineage": "countdown-nye:resolution",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d2:resolution:1900:dzeko-and-torres",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-31",
+  "day": 2,
+  "stage": "RESOLUTION",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Dzeko & Torres",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dzeko-and-torres",
+    "role": "performer"
+   }
+  ],
+  "act": "dzeko-and-torres",
+  "closing": false,
+  "stageLineage": "countdown-nye:resolution",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d2:resolution:2000:morgan-page",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-31",
+  "day": 2,
+  "stage": "RESOLUTION",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Morgan Page",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "morgan-page",
+    "role": "performer"
+   }
+  ],
+  "act": "morgan-page",
+  "closing": false,
+  "stageLineage": "countdown-nye:resolution",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d2:resolution:2100:w-and-w",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-31",
+  "day": 2,
+  "stage": "RESOLUTION",
+  "start": "21:00",
+  "end": "22:15",
+  "printed": "W&W",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "w-and-w",
+    "role": "performer"
+   }
+  ],
+  "act": "w-and-w",
+  "closing": false,
+  "stageLineage": "countdown-nye:resolution",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d2:resolution:2215:showtek",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-31",
+  "day": 2,
+  "stage": "RESOLUTION",
+  "start": "22:15",
+  "end": "23:30",
+  "printed": "Showtek",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "showtek",
+    "role": "performer"
+   }
+  ],
+  "act": "showtek",
+  "closing": false,
+  "stageLineage": "countdown-nye:resolution",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d2:resolution:2330:alesso",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-31",
+  "day": 2,
+  "stage": "RESOLUTION",
+  "start": "23:30",
+  "end": "00:45",
+  "printed": "Alesso",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alesso",
+    "role": "performer"
+   }
+  ],
+  "act": "alesso",
+  "closing": false,
+  "stageLineage": "countdown-nye:resolution",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2016:d2:resolution:0050:zedd",
+  "source": "edition",
+  "festivalId": "countdown-nye-2016",
+  "festivalBrand": "countdown-nye",
+  "year": 2016,
+  "date": "2016-12-31",
+  "day": 2,
+  "stage": "RESOLUTION",
+  "start": "00:50",
+  "end": "02:00",
+  "printed": "Zedd",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zedd",
+    "role": "performer"
+   }
+  ],
+  "act": "zedd",
+  "closing": true,
+  "stageLineage": "countdown-nye:resolution",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:mothership:1600:david-steven",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Mothership",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "David Steven",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "david-steven",
+    "role": "performer"
+   }
+  ],
+  "act": "david-steven",
+  "closing": false,
+  "stageLineage": "countdown-nye:mothership",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:mothership:1700:lost-kings",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Mothership",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Lost Kings",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lost-kings",
+    "role": "performer"
+   }
+  ],
+  "act": "lost-kings",
+  "closing": false,
+  "stageLineage": "countdown-nye:mothership",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:mothership:1800:cid",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Mothership",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "CID",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cid",
+    "role": "performer"
+   }
+  ],
+  "act": "cid",
+  "closing": false,
+  "stageLineage": "countdown-nye:mothership",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:mothership:1900:elephante",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Mothership",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Elephante",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "elephante",
+    "role": "performer"
+   }
+  ],
+  "act": "elephante",
+  "closing": false,
+  "stageLineage": "countdown-nye:mothership",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:mothership:2000:the-chainsmokers",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Mothership",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "The Chainsmokers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-chainsmokers",
+    "role": "performer"
+   }
+  ],
+  "act": "the-chainsmokers",
+  "closing": false,
+  "stageLineage": "countdown-nye:mothership",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:mothership:2100:oliver-heldens",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Mothership",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "Oliver Heldens",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "oliver-heldens",
+    "role": "performer"
+   }
+  ],
+  "act": "oliver-heldens",
+  "closing": false,
+  "stageLineage": "countdown-nye:mothership",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:mothership:2200:said-the-sky",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Mothership",
+  "start": "22:00",
+  "end": "23:10",
+  "printed": "Said The Sky",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "said-the-sky",
+    "role": "performer"
+   }
+  ],
+  "act": "said-the-sky",
+  "closing": false,
+  "stageLineage": "countdown-nye:mothership",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:mothership:2310:alesso",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Mothership",
+  "start": "23:10",
+  "end": "00:40",
+  "printed": "Alesso",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alesso",
+    "role": "performer"
+   }
+  ],
+  "act": "alesso",
+  "closing": false,
+  "stageLineage": "countdown-nye:mothership",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:mothership:0045:galantis",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Mothership",
+  "start": "00:45",
+  "end": "02:00",
+  "printed": "Galantis",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "galantis",
+    "role": "performer"
+   }
+  ],
+  "act": "galantis",
+  "closing": true,
+  "stageLineage": "countdown-nye:mothership",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:nebula:1600:fomo",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Nebula",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "FOMO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fomo",
+    "role": "performer"
+   }
+  ],
+  "act": "fomo",
+  "closing": false,
+  "stageLineage": "countdown-nye:nebula",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:nebula:1700:tisoki",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Nebula",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Tisoki",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tisoki",
+    "role": "performer"
+   }
+  ],
+  "act": "tisoki",
+  "closing": false,
+  "stageLineage": "countdown-nye:nebula",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:nebula:1800:atliens",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Nebula",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "ATLiens",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "atliens",
+    "role": "performer"
+   }
+  ],
+  "act": "atliens",
+  "closing": false,
+  "stageLineage": "countdown-nye:nebula",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:nebula:1900:gryffin-dj-set",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Nebula",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Gryffin (DJ Set)",
+  "setTag": "DJ Set",
+  "performers": [
+   {
+    "key": "gryffin",
+    "role": "performer"
+   }
+  ],
+  "act": "gryffin",
+  "closing": false,
+  "stageLineage": "countdown-nye:nebula",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:nebula:2000:nitti-gritti",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Nebula",
+  "start": "20:00",
+  "end": "21:10",
+  "printed": "Nitti Gritti",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nitti-gritti",
+    "role": "performer"
+   }
+  ],
+  "act": "nitti-gritti",
+  "closing": false,
+  "stageLineage": "countdown-nye:nebula",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:nebula:2110:saymyname",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Nebula",
+  "start": "21:10",
+  "end": "22:10",
+  "printed": "SAYMYNAME",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "saymyname",
+    "role": "performer"
+   }
+  ],
+  "act": "saymyname",
+  "closing": false,
+  "stageLineage": "countdown-nye:nebula",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:nebula:2210:jai-wolf-dj-set",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Nebula",
+  "start": "22:10",
+  "end": "23:10",
+  "printed": "Jai Wolf (DJ Set)",
+  "setTag": "DJ Set",
+  "performers": [
+   {
+    "key": "jai-wolf",
+    "role": "performer"
+   }
+  ],
+  "act": "jai-wolf",
+  "closing": false,
+  "stageLineage": "countdown-nye:nebula",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:nebula:2315:porter-robinson-dj-set",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Nebula",
+  "start": "23:15",
+  "end": "00:30",
+  "printed": "Porter Robinson (DJ Set)",
+  "setTag": "DJ Set",
+  "performers": [
+   {
+    "key": "porter-robinson",
+    "role": "performer"
+   }
+  ],
+  "act": "porter-robinson",
+  "closing": false,
+  "stageLineage": "countdown-nye:nebula",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:nebula:0035:12th-planet",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Nebula",
+  "start": "00:35",
+  "end": "02:00",
+  "printed": "12th Planet",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "12th-planet",
+    "role": "performer"
+   }
+  ],
+  "act": "12th-planet",
+  "closing": true,
+  "stageLineage": "countdown-nye:nebula",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:area-51:1600:richter-b2b-fallen-mc-dino",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Area 51",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Richter B2B Fallen + MC Dino",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "richter",
+    "role": "b2b"
+   },
+   {
+    "key": "fallen-mc-dino",
+    "role": "b2b"
+   }
+  ],
+  "act": "richter-b2b-fallen-mc-dino",
+  "closing": false,
+  "stageLineage": "countdown-nye:area-51",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:area-51:1700:eliminate",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Area 51",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Eliminate",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eliminate",
+    "role": "performer"
+   }
+  ],
+  "act": "eliminate",
+  "closing": false,
+  "stageLineage": "countdown-nye:area-51",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:area-51:1800:raiser",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Area 51",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Raiser",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "raiser",
+    "role": "performer"
+   }
+  ],
+  "act": "raiser",
+  "closing": false,
+  "stageLineage": "countdown-nye:area-51",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:area-51:1900:metrik-b2b-tc",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Area 51",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Metrik B2B TC",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "metrik",
+    "role": "b2b"
+   },
+   {
+    "key": "tc",
+    "role": "b2b"
+   }
+  ],
+  "act": "metrik-b2b-tc",
+  "closing": false,
+  "stageLineage": "countdown-nye:area-51",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:area-51:2000:etc-etc",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Area 51",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "ETC!ETC!",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "etc-etc",
+    "role": "performer"
+   }
+  ],
+  "act": "etc-etc",
+  "closing": false,
+  "stageLineage": "countdown-nye:area-51",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:area-51:2100:blunts-and-blondes",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Area 51",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "Blunts & Blondes",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "blunts-and-blondes",
+    "role": "performer"
+   }
+  ],
+  "act": "blunts-and-blondes",
+  "closing": false,
+  "stageLineage": "countdown-nye:area-51",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:area-51:2200:jstjr",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Area 51",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "JSTJR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jstjr",
+    "role": "performer"
+   }
+  ],
+  "act": "jstjr",
+  "closing": false,
+  "stageLineage": "countdown-nye:area-51",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:area-51:2300:gentlemens-club",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Area 51",
+  "start": "23:00",
+  "end": "23:59",
+  "printed": "Gentlemens Club",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gentlemens-club",
+    "role": "performer"
+   }
+  ],
+  "act": "gentlemens-club",
+  "closing": false,
+  "stageLineage": "countdown-nye:area-51",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:area-51:0001:svdden-death-presents-voyd",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Area 51",
+  "start": "00:01",
+  "end": "01:00",
+  "printed": "Svdden Death presents Voyd",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "voyd",
+    "role": "project"
+   }
+  ],
+  "act": "svdden-death-presents-voyd",
+  "closing": false,
+  "stageLineage": "countdown-nye:area-51",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:area-51:0100:borgore",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Area 51",
+  "start": "01:00",
+  "end": "02:00",
+  "printed": "Borgore",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "borgore",
+    "role": "performer"
+   }
+  ],
+  "act": "borgore",
+  "closing": true,
+  "stageLineage": "countdown-nye:area-51",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:twilight-zone:1600:tom-and-collins",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Twilight Zone",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Tom & Collins",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tom-and-collins",
+    "role": "performer"
+   }
+  ],
+  "act": "tom-and-collins",
+  "closing": false,
+  "stageLineage": "countdown-nye:twilight-zone",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:twilight-zone:1700:luke-andy",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Twilight Zone",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Luke Andy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "luke-andy",
+    "role": "performer"
+   }
+  ],
+  "act": "luke-andy",
+  "closing": false,
+  "stageLineage": "countdown-nye:twilight-zone",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:twilight-zone:1800:franklyn-watts-b2b-steady-rock",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Twilight Zone",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Franklyn Watts B2B Steady Rock",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "franklyn-watts",
+    "role": "b2b"
+   },
+   {
+    "key": "steady-rock",
+    "role": "b2b"
+   }
+  ],
+  "act": "franklyn-watts-b2b-steady-rock",
+  "closing": false,
+  "stageLineage": "countdown-nye:twilight-zone",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:twilight-zone:1900:codes",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Twilight Zone",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Codes",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "codes",
+    "role": "performer"
+   }
+  ],
+  "act": "codes",
+  "closing": false,
+  "stageLineage": "countdown-nye:twilight-zone",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:twilight-zone:2000:vnssa",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Twilight Zone",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "VNSSA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vnssa",
+    "role": "performer"
+   }
+  ],
+  "act": "vnssa",
+  "closing": false,
+  "stageLineage": "countdown-nye:twilight-zone",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:twilight-zone:2100:noizu",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Twilight Zone",
+  "start": "21:00",
+  "end": "22:15",
+  "printed": "Noizu",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "noizu",
+    "role": "performer"
+   }
+  ],
+  "act": "noizu",
+  "closing": false,
+  "stageLineage": "countdown-nye:twilight-zone",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:twilight-zone:2215:dr-fresch",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Twilight Zone",
+  "start": "22:15",
+  "end": "23:30",
+  "printed": "Dr. Fresch",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dr-fresch",
+    "role": "performer"
+   }
+  ],
+  "act": "dr-fresch",
+  "closing": false,
+  "stageLineage": "countdown-nye:twilight-zone",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:twilight-zone:2330:chris-lorenzo",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Twilight Zone",
+  "start": "23:30",
+  "end": "00:45",
+  "printed": "Chris Lorenzo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chris-lorenzo",
+    "role": "performer"
+   }
+  ],
+  "act": "chris-lorenzo",
+  "closing": false,
+  "stageLineage": "countdown-nye:twilight-zone",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:twilight-zone:0045:dombresky",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Twilight Zone",
+  "start": "00:45",
+  "end": "02:00",
+  "printed": "Dombresky",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dombresky",
+    "role": "performer"
+   }
+  ],
+  "act": "dombresky",
+  "closing": true,
+  "stageLineage": "countdown-nye:twilight-zone",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:biosphere:1600:no-pants-party",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Biosphere",
+  "start": "16:00",
+  "end": "18:30",
+  "printed": "No Pants Party",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "no-pants-party",
+    "role": "performer"
+   }
+  ],
+  "act": "no-pants-party",
+  "closing": false,
+  "stageLineage": "countdown-nye:biosphere",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:biosphere:1830:luke-andy",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Biosphere",
+  "start": "18:30",
+  "end": "19:30",
+  "printed": "Luke Andy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "luke-andy",
+    "role": "performer"
+   }
+  ],
+  "act": "luke-andy",
+  "closing": false,
+  "stageLineage": "countdown-nye:biosphere",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:biosphere:1930:adam-auburn",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Biosphere",
+  "start": "19:30",
+  "end": "21:00",
+  "printed": "Adam Auburn",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "adam-auburn",
+    "role": "performer"
+   }
+  ],
+  "act": "adam-auburn",
+  "closing": false,
+  "stageLineage": "countdown-nye:biosphere",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:biosphere:2100:franklyn-watts",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Biosphere",
+  "start": "21:00",
+  "end": "22:30",
+  "printed": "Franklyn Watts",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "franklyn-watts",
+    "role": "performer"
+   }
+  ],
+  "act": "franklyn-watts",
+  "closing": false,
+  "stageLineage": "countdown-nye:biosphere",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:biosphere:2230:steady-rock",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Biosphere",
+  "start": "22:30",
+  "end": "23:58",
+  "printed": "Steady Rock",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "steady-rock",
+    "role": "performer"
+   }
+  ],
+  "act": "steady-rock",
+  "closing": false,
+  "stageLineage": "countdown-nye:biosphere",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:biosphere:0001:lucati",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Biosphere",
+  "start": "00:01",
+  "end": "02:00",
+  "printed": "Lucati",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lucati",
+    "role": "performer"
+   }
+  ],
+  "act": "lucati",
+  "closing": true,
+  "stageLineage": "countdown-nye:biosphere",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:area-151:1600:chris-jay",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Area 151",
+  "start": "16:00",
+  "end": "17:40",
+  "printed": "Chris Jay",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chris-jay",
+    "role": "performer"
+   }
+  ],
+  "act": "chris-jay",
+  "closing": false,
+  "stageLineage": "countdown-nye:area-151",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:area-151:1740:moni",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Area 151",
+  "start": "17:40",
+  "end": "18:50",
+  "printed": "Moni",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "moni",
+    "role": "performer"
+   }
+  ],
+  "act": "moni",
+  "closing": false,
+  "stageLineage": "countdown-nye:area-151",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:area-151:1850:brandon-elliot",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Area 151",
+  "start": "18:50",
+  "end": "20:00",
+  "printed": "Brandon Elliot",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "brandon-elliot",
+    "role": "performer"
+   }
+  ],
+  "act": "brandon-elliot",
+  "closing": false,
+  "stageLineage": "countdown-nye:area-151",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:area-151:2000:roy-wilkins",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Area 151",
+  "start": "20:00",
+  "end": "21:10",
+  "printed": "Roy Wilkins",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "roy-wilkins",
+    "role": "performer"
+   }
+  ],
+  "act": "roy-wilkins",
+  "closing": false,
+  "stageLineage": "countdown-nye:area-151",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:area-151:2110:ruff-hauser",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Area 151",
+  "start": "21:10",
+  "end": "22:20",
+  "printed": "Ruff Hauser",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ruff-hauser",
+    "role": "performer"
+   }
+  ],
+  "act": "ruff-hauser",
+  "closing": false,
+  "stageLineage": "countdown-nye:area-151",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2019:d1:area-151:0100:cats-and-boots-b2b",
+  "source": "edition",
+  "festivalId": "countdown-nye-2019",
+  "festivalBrand": "countdown-nye",
+  "year": 2019,
+  "date": "2019-12-31",
+  "day": 1,
+  "stage": "Area 151",
+  "start": "01:00",
+  "end": "02:00",
+  "printed": "Cats & Boots B2B",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cats-and-boots-b2b",
+    "role": "performer"
+   }
+  ],
+  "act": "cats-and-boots-b2b",
+  "closing": true,
+  "stageLineage": "countdown-nye:area-151",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:the-mothership:1600:low-mileage",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "The Mothership",
+  "start": "16:00",
+  "end": "16:40",
+  "printed": "Low Mileage",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "low-mileage",
+    "role": "performer"
+   }
+  ],
+  "act": "low-mileage",
+  "closing": false,
+  "stageLineage": "countdown-nye:the-mothership",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:the-mothership:1640:lavern",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "The Mothership",
+  "start": "16:40",
+  "end": "17:40",
+  "printed": "Lavern",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lavern",
+    "role": "performer"
+   }
+  ],
+  "act": "lavern",
+  "closing": false,
+  "stageLineage": "countdown-nye:the-mothership",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:the-mothership:1740:diplo",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "The Mothership",
+  "start": "17:40",
+  "end": "18:40",
+  "printed": "Diplo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "diplo",
+    "role": "performer"
+   }
+  ],
+  "act": "diplo",
+  "closing": false,
+  "stageLineage": "countdown-nye:the-mothership",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:the-mothership:1840:w-and-w",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "The Mothership",
+  "start": "18:40",
+  "end": "19:40",
+  "printed": "W&W",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "w-and-w",
+    "role": "performer"
+   }
+  ],
+  "act": "w-and-w",
+  "closing": false,
+  "stageLineage": "countdown-nye:the-mothership",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:the-mothership:1940:chris-lake",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "The Mothership",
+  "start": "19:40",
+  "end": "20:55",
+  "printed": "Chris Lake",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chris-lake",
+    "role": "performer"
+   }
+  ],
+  "act": "chris-lake",
+  "closing": false,
+  "stageLineage": "countdown-nye:the-mothership",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:the-mothership:2100:galantis",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "The Mothership",
+  "start": "21:00",
+  "end": "22:10",
+  "printed": "Galantis",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "galantis",
+    "role": "performer"
+   }
+  ],
+  "act": "galantis",
+  "closing": false,
+  "stageLineage": "countdown-nye:the-mothership",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:the-mothership:2210:knock2",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "The Mothership",
+  "start": "22:10",
+  "end": "23:25",
+  "printed": "Knock2",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "knock2",
+    "role": "performer"
+   }
+  ],
+  "act": "knock2",
+  "closing": false,
+  "stageLineage": "countdown-nye:the-mothership",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:the-mothership:2330:zedd",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "The Mothership",
+  "start": "23:30",
+  "end": "00:45",
+  "printed": "Zedd",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zedd",
+    "role": "performer"
+   }
+  ],
+  "act": "zedd",
+  "closing": false,
+  "stageLineage": "countdown-nye:the-mothership",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:the-mothership:0045:marshmello",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "The Mothership",
+  "start": "00:45",
+  "end": "02:00",
+  "printed": "Marshmello",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marshmello",
+    "role": "performer"
+   }
+  ],
+  "act": "marshmello",
+  "closing": true,
+  "stageLineage": "countdown-nye:the-mothership",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:nebula:1600:musubi",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "Nebula",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Musubi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "musubi",
+    "role": "performer"
+   }
+  ],
+  "act": "musubi",
+  "closing": false,
+  "stageLineage": "countdown-nye:nebula",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:nebula:1700:oddkidout",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "Nebula",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "OddKidOut",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "oddkidout",
+    "role": "performer"
+   }
+  ],
+  "act": "oddkidout",
+  "closing": false,
+  "stageLineage": "countdown-nye:nebula",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:nebula:1800:rossy",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "Nebula",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Rossy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rossy",
+    "role": "performer"
+   }
+  ],
+  "act": "rossy",
+  "closing": false,
+  "stageLineage": "countdown-nye:nebula",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:nebula:1900:pickle",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "Nebula",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Pickle",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pickle",
+    "role": "performer"
+   }
+  ],
+  "act": "pickle",
+  "closing": false,
+  "stageLineage": "countdown-nye:nebula",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:nebula:2000:deorro",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "Nebula",
+  "start": "20:00",
+  "end": "21:15",
+  "printed": "Deorro",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "deorro",
+    "role": "performer"
+   }
+  ],
+  "act": "deorro",
+  "closing": false,
+  "stageLineage": "countdown-nye:nebula",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:nebula:2115:joyryde",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "Nebula",
+  "start": "21:15",
+  "end": "22:15",
+  "printed": "JOYRYDE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "joyryde",
+    "role": "performer"
+   }
+  ],
+  "act": "joyryde",
+  "closing": false,
+  "stageLineage": "countdown-nye:nebula",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:nebula:2215:jauz",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "Nebula",
+  "start": "22:15",
+  "end": "23:30",
+  "printed": "Jauz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jauz",
+    "role": "performer"
+   }
+  ],
+  "act": "jauz",
+  "closing": false,
+  "stageLineage": "countdown-nye:nebula",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:nebula:2330:troyboi",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "Nebula",
+  "start": "23:30",
+  "end": "00:45",
+  "printed": "TroyBoi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "troyboi",
+    "role": "performer"
+   }
+  ],
+  "act": "troyboi",
+  "closing": false,
+  "stageLineage": "countdown-nye:nebula",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:nebula:0045:zeds-dead",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "Nebula",
+  "start": "00:45",
+  "end": "02:00",
+  "printed": "Zeds Dead",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zeds-dead",
+    "role": "performer"
+   }
+  ],
+  "act": "zeds-dead",
+  "closing": true,
+  "stageLineage": "countdown-nye:nebula",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:area-51:1600:siren",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "Area 51",
+  "start": "16:00",
+  "end": "16:50",
+  "printed": "Siren",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "siren",
+    "role": "performer"
+   }
+  ],
+  "act": "siren",
+  "closing": false,
+  "stageLineage": "countdown-nye:area-51",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:area-51:1650:dennett",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "Area 51",
+  "start": "16:50",
+  "end": "17:50",
+  "printed": "Dennett",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dennett",
+    "role": "performer"
+   }
+  ],
+  "act": "dennett",
+  "closing": false,
+  "stageLineage": "countdown-nye:area-51",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:area-51:1750:ghost-in-real-life",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "Area 51",
+  "start": "17:50",
+  "end": "18:50",
+  "printed": "Ghost in Real Life",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ghost-in-real-life",
+    "role": "performer"
+   }
+  ],
+  "act": "ghost-in-real-life",
+  "closing": false,
+  "stageLineage": "countdown-nye:area-51",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:area-51:1850:layz",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "Area 51",
+  "start": "18:50",
+  "end": "19:50",
+  "printed": "LAYZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "layz",
+    "role": "performer"
+   }
+  ],
+  "act": "layz",
+  "closing": false,
+  "stageLineage": "countdown-nye:area-51",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:area-51:1950:reaper",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "Area 51",
+  "start": "19:50",
+  "end": "20:50",
+  "printed": "Reaper",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "reaper",
+    "role": "performer"
+   }
+  ],
+  "act": "reaper",
+  "closing": false,
+  "stageLineage": "countdown-nye:area-51",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:area-51:2050:inzo",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "Area 51",
+  "start": "20:50",
+  "end": "21:50",
+  "printed": "INZO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "inzo",
+    "role": "performer"
+   }
+  ],
+  "act": "inzo",
+  "closing": false,
+  "stageLineage": "countdown-nye:area-51",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:area-51:2150:deathpact",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "Area 51",
+  "start": "21:50",
+  "end": "22:50",
+  "printed": "Deathpact",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "deathpact",
+    "role": "performer"
+   }
+  ],
+  "act": "deathpact",
+  "closing": false,
+  "stageLineage": "countdown-nye:area-51",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:area-51:2250:liquid-stranger",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "Area 51",
+  "start": "22:50",
+  "end": "23:50",
+  "printed": "Liquid Stranger",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "liquid-stranger",
+    "role": "performer"
+   }
+  ],
+  "act": "liquid-stranger",
+  "closing": false,
+  "stageLineage": "countdown-nye:area-51",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:area-51:2355:black-tiger-sex-machine",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "Area 51",
+  "start": "23:55",
+  "end": "00:55",
+  "printed": "Black Tiger Sex Machine",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "black-tiger-sex-machine",
+    "role": "performer"
+   }
+  ],
+  "act": "black-tiger-sex-machine",
+  "closing": false,
+  "stageLineage": "countdown-nye:area-51",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:area-51:0100:zomboy",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "Area 51",
+  "start": "01:00",
+  "end": "02:00",
+  "printed": "Zomboy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zomboy",
+    "role": "performer"
+   }
+  ],
+  "act": "zomboy",
+  "closing": true,
+  "stageLineage": "countdown-nye:area-51",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:twilight-zone:1600:clawz",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "Twilight Zone",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Clawz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "clawz",
+    "role": "performer"
+   }
+  ],
+  "act": "clawz",
+  "closing": false,
+  "stageLineage": "countdown-nye:twilight-zone",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:twilight-zone:1700:carv",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "Twilight Zone",
+  "start": "17:00",
+  "end": "18:30",
+  "printed": "Carv",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carv",
+    "role": "performer"
+   }
+  ],
+  "act": "carv",
+  "closing": false,
+  "stageLineage": "countdown-nye:twilight-zone",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:twilight-zone:1830:biia",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "Twilight Zone",
+  "start": "18:30",
+  "end": "20:00",
+  "printed": "BIIA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "biia",
+    "role": "performer"
+   }
+  ],
+  "act": "biia",
+  "closing": false,
+  "stageLineage": "countdown-nye:twilight-zone",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:twilight-zone:2000:gravedgr",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "Twilight Zone",
+  "start": "20:00",
+  "end": "21:30",
+  "printed": "GRAVEDGR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gravedgr",
+    "role": "performer"
+   }
+  ],
+  "act": "gravedgr",
+  "closing": false,
+  "stageLineage": "countdown-nye:twilight-zone",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:twilight-zone:2130:lilly-palmer",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "Twilight Zone",
+  "start": "21:30",
+  "end": "23:00",
+  "printed": "Lilly Palmer",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lilly-palmer",
+    "role": "performer"
+   }
+  ],
+  "act": "lilly-palmer",
+  "closing": false,
+  "stageLineage": "countdown-nye:twilight-zone",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:twilight-zone:2330:shl-mo",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "Twilight Zone",
+  "start": "23:30",
+  "end": "00:30",
+  "printed": "Shlømo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "shlomo",
+    "role": "performer"
+   }
+  ],
+  "act": "shlomo",
+  "closing": false,
+  "stageLineage": "countdown-nye:twilight-zone",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:twilight-zone:0030:basswell",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "Twilight Zone",
+  "start": "00:30",
+  "end": "02:00",
+  "printed": "Basswell",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "basswell",
+    "role": "performer"
+   }
+  ],
+  "act": "basswell",
+  "closing": true,
+  "stageLineage": "countdown-nye:twilight-zone",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:galactik-gate:1600:raecola",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "Galactik Gate",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "RaeCola",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "raecola",
+    "role": "performer"
+   }
+  ],
+  "act": "raecola",
+  "closing": false,
+  "stageLineage": "countdown-nye:galactik-gate",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:galactik-gate:1700:ky-william",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "Galactik Gate",
+  "start": "17:00",
+  "end": "18:15",
+  "printed": "Ky William",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ky-william",
+    "role": "performer"
+   }
+  ],
+  "act": "ky-william",
+  "closing": false,
+  "stageLineage": "countdown-nye:galactik-gate",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:galactik-gate:1815:tobehonest",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "Galactik Gate",
+  "start": "18:15",
+  "end": "19:30",
+  "printed": "TOBEHONEST",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tobehonest",
+    "role": "performer"
+   }
+  ],
+  "act": "tobehonest",
+  "closing": false,
+  "stageLineage": "countdown-nye:galactik-gate",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:galactik-gate:1930:omnom",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "Galactik Gate",
+  "start": "19:30",
+  "end": "20:45",
+  "printed": "Omnom",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "omnom",
+    "role": "performer"
+   }
+  ],
+  "act": "omnom",
+  "closing": false,
+  "stageLineage": "countdown-nye:galactik-gate",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:galactik-gate:2045:girl-math-vnssa-b2b-nala",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "Galactik Gate",
+  "start": "20:45",
+  "end": "22:00",
+  "printed": "Girl Math (VNSSA B2B Nala)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "girl-math",
+    "role": "project"
+   }
+  ],
+  "act": "girl-math-vnssa-b2b-nala",
+  "closing": false,
+  "stageLineage": "countdown-nye:galactik-gate",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:galactik-gate:2200:biscits",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "Galactik Gate",
+  "start": "22:00",
+  "end": "23:15",
+  "printed": "Biscits",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "biscits",
+    "role": "performer"
+   }
+  ],
+  "act": "biscits",
+  "closing": false,
+  "stageLineage": "countdown-nye:galactik-gate",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:galactik-gate:2315:westend",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "Galactik Gate",
+  "start": "23:15",
+  "end": "00:30",
+  "printed": "Westend",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "westend",
+    "role": "performer"
+   }
+  ],
+  "act": "westend",
+  "closing": false,
+  "stageLineage": "countdown-nye:galactik-gate",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:galactik-gate:0030:wax-motif",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "Galactik Gate",
+  "start": "00:30",
+  "end": "02:00",
+  "printed": "Wax Motif",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wax-motif",
+    "role": "performer"
+   }
+  ],
+  "act": "wax-motif",
+  "closing": true,
+  "stageLineage": "countdown-nye:galactik-gate",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:beatbox-boombox-art-car:1800:cyboy",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "BeatBox Boombox Art Car",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Cyboy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cyboy",
+    "role": "performer"
+   }
+  ],
+  "act": "cyboy",
+  "closing": false,
+  "stageLineage": "countdown-nye:beatbox-boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:beatbox-boombox-art-car:1900:paije",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "BeatBox Boombox Art Car",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Paije",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "paije",
+    "role": "performer"
+   }
+  ],
+  "act": "paije",
+  "closing": false,
+  "stageLineage": "countdown-nye:beatbox-boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:beatbox-boombox-art-car:2000:ivarr",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "BeatBox Boombox Art Car",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Ivarr",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ivarr",
+    "role": "performer"
+   }
+  ],
+  "act": "ivarr",
+  "closing": false,
+  "stageLineage": "countdown-nye:beatbox-boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:beatbox-boombox-art-car:2100:woof-logik",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "BeatBox Boombox Art Car",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "Woof Logik",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "woof-logik",
+    "role": "performer"
+   }
+  ],
+  "act": "woof-logik",
+  "closing": false,
+  "stageLineage": "countdown-nye:beatbox-boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:beatbox-boombox-art-car:2200:luca-lush",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "BeatBox Boombox Art Car",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "Luca Lush",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "luca-lush",
+    "role": "performer"
+   }
+  ],
+  "act": "luca-lush",
+  "closing": false,
+  "stageLineage": "countdown-nye:beatbox-boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:beatbox-boombox-art-car:2300:jstjr-b2b-secret-guests",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "BeatBox Boombox Art Car",
+  "start": "23:00",
+  "end": "00:00",
+  "printed": "JSTJR B2B Secret Guests",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jstjr",
+    "role": "b2b"
+   },
+   {
+    "key": "secret-guests",
+    "role": "b2b"
+   }
+  ],
+  "act": "jstjr-b2b-secret-guests",
+  "closing": true,
+  "stageLineage": "countdown-nye:beatbox-boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:alien-red-light-district:1600:lessandro",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "Alien Red Light District",
+  "start": "16:00",
+  "end": "17:20",
+  "printed": "Lessandro",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lessandro",
+    "role": "performer"
+   }
+  ],
+  "act": "lessandro",
+  "closing": false,
+  "stageLineage": "countdown-nye:alien-red-light-district",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:alien-red-light-district:1720:the-brands",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "Alien Red Light District",
+  "start": "17:20",
+  "end": "18:40",
+  "printed": "The Brands",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-brands",
+    "role": "performer"
+   }
+  ],
+  "act": "the-brands",
+  "closing": false,
+  "stageLineage": "countdown-nye:alien-red-light-district",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:alien-red-light-district:1840:skye",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "Alien Red Light District",
+  "start": "18:40",
+  "end": "19:50",
+  "printed": "SKYE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "skye",
+    "role": "performer"
+   }
+  ],
+  "act": "skye",
+  "closing": false,
+  "stageLineage": "countdown-nye:alien-red-light-district",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:alien-red-light-district:1950:johnjose",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "Alien Red Light District",
+  "start": "19:50",
+  "end": "21:00",
+  "printed": "JOHNJOSÉ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "johnjose",
+    "role": "performer"
+   }
+  ],
+  "act": "johnjose",
+  "closing": false,
+  "stageLineage": "countdown-nye:alien-red-light-district",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:alien-red-light-district:2100:ruff-hauser-b2b-roy-wilkins",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "Alien Red Light District",
+  "start": "21:00",
+  "end": "22:15",
+  "printed": "Ruff Hauser B2B Roy Wilkins",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ruff-hauser",
+    "role": "b2b"
+   },
+   {
+    "key": "roy-wilkins",
+    "role": "b2b"
+   }
+  ],
+  "act": "ruff-hauser-b2b-roy-wilkins",
+  "closing": false,
+  "stageLineage": "countdown-nye:alien-red-light-district",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:alien-red-light-district:2215:el-monk",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "Alien Red Light District",
+  "start": "22:15",
+  "end": "23:30",
+  "printed": "El Monk",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "el-monk",
+    "role": "performer"
+   }
+  ],
+  "act": "el-monk",
+  "closing": false,
+  "stageLineage": "countdown-nye:alien-red-light-district",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:alien-red-light-district:2330:skonka",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "Alien Red Light District",
+  "start": "23:30",
+  "end": "00:45",
+  "printed": "Skonka",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "skonka",
+    "role": "performer"
+   }
+  ],
+  "act": "skonka",
+  "closing": false,
+  "stageLineage": "countdown-nye:alien-red-light-district",
+  "mainStage": null
+ },
+ {
+  "id": "countdown-nye-2024:d1:alien-red-light-district:0045:brandon-elliot-b2b-candl",
+  "source": "edition",
+  "festivalId": "countdown-nye-2024",
+  "festivalBrand": "countdown-nye",
+  "year": 2024,
+  "date": "2024-12-31",
+  "day": 1,
+  "stage": "Alien Red Light District",
+  "start": "00:45",
+  "end": "02:00",
+  "printed": "Brandon Elliot B2B Candl",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "brandon-elliot",
+    "role": "b2b"
+   },
+   {
+    "key": "candl",
+    "role": "b2b"
+   }
+  ],
+  "act": "brandon-elliot-b2b-candl",
+  "closing": true,
+  "stageLineage": "countdown-nye:alien-red-light-district",
+  "mainStage": null
+ },
+ {
   "id": "defqon1-2015:d1:blue:2000:max-enforcer",
   "source": "edition",
   "festivalId": "defqon1-2015",
