@@ -357,6 +357,13 @@
   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
  },
  {
+  "id": "countdown-nye-2016:d2:resolution:1700:bonnie-x-clyde",
+  "printed": "Bonnie X Clyde",
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
   "id": "defqon1-2015:d1:black:0000:mad-dog-ft-jeff",
   "printed": "Mad Dog ft. Jeff",
   "reason": "feat / with billing",
@@ -1554,6 +1561,20 @@
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
  },
  {
+  "id": "key:tc",
+  "printed": "TC",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
+  "id": "key:4b",
+  "printed": "4B",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
   "id": "key:tdj",
   "printed": "TDJ",
   "reason": "very short name billed at more than one festival brand",
@@ -1596,13 +1617,6 @@
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
  },
  {
-  "id": "key:4b",
-  "printed": "4B",
-  "reason": "very short name billed at more than one festival brand",
-  "pending": true,
-  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
- },
- {
   "id": "key:r-d",
   "printed": "R/D",
   "reason": "very short name billed at more than one festival brand",
@@ -1640,13 +1654,6 @@
  {
   "id": "key:s-p-y",
   "printed": "S.P.Y",
-  "reason": "very short name billed at more than one festival brand",
-  "pending": true,
-  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
- },
- {
-  "id": "key:tc",
-  "printed": "TC",
   "reason": "very short name billed at more than one festival brand",
   "pending": true,
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
