@@ -501,34 +501,6 @@ const FESTIVALS_REGISTRY = [
     region:    "North America",
   },
   {
-    // ── Ubbi Dubbi 2027 — Panther Island Pavilion, Fort Worth TX ──
-    // Added 2026-11-11 as a gated preview. Disco Presents. Dates and venue from
-    // ubbidubbifestival.com, read 2026-11-11: "join us April 23 & 24 at Panther
-    // Island Pavilion in Ft. Worth", page title "Ubbi Dubbi Festival 2027".
-    // The 2027 lineup IS announced, but the official site carries it only as a
-    // poster image, and the text press relays read 2026-11-11 name about half
-    // of it. No partial lineup ships: this becomes a data/festivals/ module
-    // once the full list is readable from an official or complete source.
-    config: {
-      id:        "ubbi-dubbi-2027",
-      officialEvent: { website: "https://ubbidubbifestival.com/", observedAt: "2026-11-11" },
-      name:      "Ubbi Dubbi 2027",
-      shortName: "Ubbi Dubbi",
-      brand:     "Ubbi Dubbi",
-      tagline:   "Two days of house and bass in Fort Worth",
-      location:  "Panther Island Pavilion · Fort Worth, TX",
-      locationShort: "Panther Island Pavilion",
-      dates:     "Apr 23–24, 2027",
-      year:      2027,
-      // Night Print accent not measured yet (accent null = neutral print).
-      print: { accent: null, source: { url: "https://ubbidubbifestival.com/", observedAt: "2026-11-11" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
-    },
-    available: false,
-    accent:    "#f472b6",
-    emoji:     "🍭",
-    region:    "North America",
-  },
-  {
     // ── Movement 2027 — Hart Plaza, Detroit MI ──
     // Added 2026-11-11 as a gated preview. Dates from movementfestival.com/faqs,
     // read 2026-11-11: "Movement 2027 will take place Memorial Day Weekend,
@@ -5371,6 +5343,7 @@ const _WAVE1_IDS = [
   "lollapalooza-brasil-2027",
   "lollapalooza-chile-2027",
   "forbidden-kingdom-2027",
+  "ubbi-dubbi-2027",
 ];
 const _WAVE1 = (typeof window !== "undefined" && window.PLURSKY_FESTIVALS) || {};
 for (const _id of _WAVE1_IDS) {

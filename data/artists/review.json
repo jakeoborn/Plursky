@@ -63,6 +63,20 @@
   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
  },
  {
+  "id": "ubbi-dubbi-2027:ud27-mk-marc-kinchen",
+  "printed": "MK (MARC KINCHEN)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-wankdat-crankdat-b2b-wooli",
+  "printed": "Wankdat (Crankdat B2B Wooli)",
+  "reason": "parenthetical names people",
+  "pending": true,
+  "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+ },
+ {
   "id": "acl-2012:d1:bud-light:1830:florence-the-machine",
   "printed": "Florence + The Machine",
   "reason": "\"+\" billing",
