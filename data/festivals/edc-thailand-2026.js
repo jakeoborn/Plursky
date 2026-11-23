@@ -180,7 +180,8 @@
     print: { accent: null, source: { url: "https://thailand.edc.com/en/", observedAt: "2026-11-11" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
     officialEvent: {
       website: "https://thailand.edc.com/en/",
-      observedAt: "2026-11-11",
+      tickets: "https://thailand.edc.com/en/tickets/",
+      observedAt: "2026-11-22",
     },
     // Thailand is ICT (UTC+7), no DST. Hours from RA, not official (header).
     startMs: Date.UTC(2026, 11, 18, 8, 0, 0),   // Dec 18 15:00 ICT

@@ -36,6 +36,7 @@ const geo = page => page.evaluate(() => {
   return { vh: innerHeight, docH: document.documentElement.scrollHeight, gridTop: r(g) && Math.round(r(g).top), gridBottom: r(g) && Math.round(r(g).bottom),
     leadTop: lead ? Math.round(r(lead).top) : null, leadBottom: lead ? Math.round(r(lead).bottom) : null, leadLeft: lead ? Math.round(r(lead).left) : null, leadH: lead ? lead.offsetHeight : 0,
     headTop: head ? Math.round(r(head).top) : null, headLeft: head ? Math.round(r(head).left) : null,
+    headBottom: head ? Math.round(r(head).bottom) : null, hour0Top: (h0 => h0 ? Math.round(r(h0).top) : null)(g && g.querySelector("[data-grid-hour]")),
     tabTop: tab ? Math.round(r(tab.parentElement).top) : null, fab: !!document.querySelector('button[aria-label="Search artists, stages, genres"]'),
     saveDay: !!document.querySelector("[data-save-day]"), scrollers, scrollTop: g && g.scrollTop, scrollH: g && g.scrollHeight, clientH: g && g.clientHeight };
 });
@@ -49,7 +50,16 @@ try {
     check(g0.docH === g0.vh, `${k}: document = viewport (${g0.docH}/${g0.vh})`);
     check(g0.scrollers === 1, `${k}: exactly one vertical scroller (${g0.scrollers})`);
     check(!g0.fab, `${k}: no floating Search pill over the grid`);
-    check(g0.leadH > 0 && g0.leadTop === g0.gridTop && g0.headTop >= g0.leadBottom - 1, `${k}: utility stack sits above the stage headers inside the grid`);
+    check(g0.hour0Top != null && g0.hour0Top >= g0.headBottom - 1, `${k}: the first hour label clears the stage headers (${g0.hour0Top} vs ${g0.headBottom})`);
+    // The stack is conditional since #510 put Search in the header: empty at
+    // rest (the grid starts at the stage headers), filled by the search row
+    // once the header's Search is tapped. Test it filled.
+    check(g0.leadH === 0 || day === 4, `${k}: nothing stacks above the grid at rest (lead ${g0.leadH}px)`);
+    const opened = await page.evaluate(() => { const b = [...document.querySelectorAll("[data-lineup-search-open], [data-lineup-search-toggle]")].find(e => e.offsetParent); if (b) b.click(); return !!b; });
+    check(opened, `${k}: the header's Search control is on screen`);
+    await page.waitForTimeout(300);
+    const gs = await geo(page);
+    check(gs.leadH > 0 && gs.leadTop === gs.gridTop && gs.headTop >= gs.leadBottom - 1, `${k}: utility stack sits above the stage headers inside the grid`);
     await page.mouse.move(w / 2, h * 0.6);
     for (let i = 0; i < 8; i++) { await page.mouse.wheel(0, 120); await page.waitForTimeout(70); }
     await page.waitForTimeout(400);
@@ -87,9 +97,12 @@ try {
   const l = await page.evaluate(() => {
     const s = document.querySelector('input[aria-label="Search the lineup"]'), list = document.querySelector("[data-lineup-scroll]");
     return { search: !!s, above: s && list && s.getBoundingClientRect().bottom <= list.getBoundingClientRect().top + 1,
-             fab: !!document.querySelector('button[aria-label="Search artists, stages, genres"]'), lead: !!document.querySelector("[data-grid-lead]") };
+             fab: !!document.querySelector('button[aria-label="Search artists, stages, genres"]'), lead: !!document.querySelector("[data-grid-lead]"),
+             headerSearch: [...document.querySelectorAll("[data-lineup-search-open], [data-lineup-search-toggle]")].some(e => e.offsetParent) };
   });
-  check(l.search && l.above && l.fab && !l.lead, `list mode unchanged: search above the list, Search pill present, no grid lead (${JSON.stringify(l)})`);
+  // Since #510 list mode searches from the header too: no inline field at
+  // rest, no floating pill, no grid lead.
+  check(l.headerSearch && !l.search && !l.fab && !l.lead, `list mode: Search lives in the header, no floating pill, no grid lead (${JSON.stringify(l)})`);
   await page.screenshot({ path: join(OUT, `${TAG}-390x844-list.png`) });
   check(errors.length === 0, "list: no page errors");
   await ctx.close();

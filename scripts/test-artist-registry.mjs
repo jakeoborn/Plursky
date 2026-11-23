@@ -199,10 +199,19 @@ const out = build();
   // each, one per weekend); "Triste Juventud x TÓTEM" (2023) and "Triste
   // Juventud x TOTEM" (2024); "Jamie xx x Floating Points x Daphni" (2024); and
   // UMI and Maz, short names now at more than one brand: 231 rows. The cap is
-  // 231. Past 231, stop and report.
-  check(review.length <= 231, `review queue is ${review.length} rows (> 231 means stop and report)`);
+  // 231.
+  // Coachella 2025 adds five, all pending with no claim: "Triste Juventud x
+  // Tótem", "Fcukers DJ set x HAAi", "Barry Can't Swim x 2manydjs x salute",
+  // "Kaskade Redux x IDRIS" and "Alesso Body Hi x Gorgon City": 236 rows.
+  // The cap is 1000 (Jake's typed "we can go cap 1000", 2026-11-22), in place
+  // of 236/238. Past 1000, stop and report.
+  check(review.length <= 1000, `review queue is ${review.length} rows (> 1000 means stop and report)`);
   check(review.every(r => r.reason) && excluded.every(e => e.reason && e.category), 'a review or excluded row without its reason');
   check(excluded.some(e => e.category === 'unnamed-slot'), 'control: no unnamed slot was excluded');
+  // #308: every billing names at least one performer; an all-unnamed b2b is excluded.
+  const empty = billings.filter(b => !b.performers || b.performers.length === 0);
+  check(empty.length === 0, `billing(s) with no performer: ${empty.map(b => b.id).join(', ')}`);
+  check(parseBilling('Special Guest b2b Special Guest').performers.length === 0, 'an all-unnamed b2b should parse to no performers');
   // Bare non-acts never become artists; a NAMED kids act ("Special Guest: The
   // Happiness Club") is a real billing and stays.
   check(!registry.some(r => /^(special-guest|surprise-guest|fireworks|closing-fireworks|tba|silent-disco)$/.test(r.key)), 'a non-act became an artist');
