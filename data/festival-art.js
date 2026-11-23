@@ -389,4 +389,12 @@ window.PLURSKY_FESTIVAL_ART = Object.freeze({
     license: "CC BY-SA 2.0 (Flickr upload, licence reviewed 2021-08-02). Replaces the letter-tile fallback; Commons uploader, credit and EXIF checked 2026-11-23.",
     author: "Hannah Carvalho", licenseId: "CC-BY-SA-2.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/2.0/", changes: "Cropped",
   },
+  "lollapalooza-chile-2027": {
+    tile: "festival-art/tiles/lollapalooza-chile-2027.webp", card: "festival-art/lollapalooza-chile-2027.webp", width: 168, height: 168,
+    kind: "photo", sourcePage: "https://commons.wikimedia.org/wiki/File:Entrada_de_Lollapalooza_Chile_2013.jpg",
+    assetUrl: "https://upload.wikimedia.org/wikipedia/commons/c/c7/Entrada_de_Lollapalooza_Chile_2013.jpg",
+    credit: "Entrance to Lollapalooza Chile 2013. Photo by Jorge Morales Piderit, Wikimedia Commons", retrieved: "2026-11-23",
+    license: "CC0 1.0 (public domain) (own work). Replaces the letter-tile fallback; Commons uploader, credit and EXIF checked 2026-11-23.",
+    author: "Jorge Morales Piderit", licenseId: "CC0-1.0", licenseUrl: "https://creativecommons.org/publicdomain/zero/1.0/", changes: "Cropped",
+  },
 });

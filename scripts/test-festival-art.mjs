@@ -44,7 +44,6 @@ const FALLBACK = {
   // Added 2026-11-15 by festival batch 6, after photo pass 2;
   // each needs an official tile in data/festival-art.js.
   "lollapalooza-india-2027": "official art not fetched yet; tile owed before the flip",
-  "lollapalooza-chile-2027": "official art not fetched yet; tile owed before the flip",
   "ultra-south-africa-2027": "official art not fetched yet; tile owed before the flip",
   "bottlerock-2027": "official art not fetched yet; tile owed before the flip",
   "suenos-2027": "official art not fetched yet; tile owed before the flip",
