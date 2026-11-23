@@ -381323,6 +381323,5138 @@
   "mainStage": null
  },
  {
+  "id": "hard-summer-2019:d1:hard-stage:1300:ravell",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "HARD Stage",
+  "start": "13:00",
+  "end": "13:30",
+  "printed": "Ravell",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ravell",
+    "role": "performer"
+   }
+  ],
+  "act": "ravell",
+  "closing": false,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:hard-stage:1330:kaivon",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "HARD Stage",
+  "start": "13:30",
+  "end": "14:25",
+  "printed": "Kaivon",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kaivon",
+    "role": "performer"
+   }
+  ],
+  "act": "kaivon",
+  "closing": false,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:hard-stage:1425:young-franco",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "HARD Stage",
+  "start": "14:25",
+  "end": "15:35",
+  "printed": "Young Franco",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "young-franco",
+    "role": "performer"
+   }
+  ],
+  "act": "young-franco",
+  "closing": false,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:hard-stage:1540:kasbo",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "HARD Stage",
+  "start": "15:40",
+  "end": "16:40",
+  "printed": "Kasbo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kasbo",
+    "role": "performer"
+   }
+  ],
+  "act": "kasbo",
+  "closing": false,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:hard-stage:1700:rick-ross",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "HARD Stage",
+  "start": "17:00",
+  "end": "17:35",
+  "printed": "Rick Ross",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rick-ross",
+    "role": "performer"
+   }
+  ],
+  "act": "rick-ross",
+  "closing": false,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:hard-stage:1745:ghastly",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "HARD Stage",
+  "start": "17:45",
+  "end": "18:45",
+  "printed": "Ghastly",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ghastly",
+    "role": "performer"
+   }
+  ],
+  "act": "ghastly",
+  "closing": false,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:hard-stage:1845:flosstradamus-b2b-4b",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "HARD Stage",
+  "start": "18:45",
+  "end": "19:45",
+  "printed": "Flosstradamus B2B 4B",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "flosstradamus",
+    "role": "b2b"
+   },
+   {
+    "key": "4b",
+    "role": "b2b"
+   }
+  ],
+  "act": "flosstradamus-b2b-4b",
+  "closing": false,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:hard-stage:2015:dillon-francis",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "HARD Stage",
+  "start": "20:15",
+  "end": "21:15",
+  "printed": "Dillon Francis",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dillon-francis",
+    "role": "performer"
+   }
+  ],
+  "act": "dillon-francis",
+  "closing": false,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:hard-stage:2200:kid-cudi",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "HARD Stage",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "Kid Cudi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kid-cudi",
+    "role": "performer"
+   }
+  ],
+  "act": "kid-cudi",
+  "closing": true,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:harder-stage:1350:lick",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "HARDER Stage",
+  "start": "13:50",
+  "end": "14:50",
+  "printed": "Lick",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lick",
+    "role": "performer"
+   }
+  ],
+  "act": "lick",
+  "closing": false,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:harder-stage:1450:gg-magree",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "HARDER Stage",
+  "start": "14:50",
+  "end": "15:50",
+  "printed": "GG Magree",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gg-magree",
+    "role": "performer"
+   }
+  ],
+  "act": "gg-magree",
+  "closing": false,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:harder-stage:1550:holy-goof",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "HARDER Stage",
+  "start": "15:50",
+  "end": "16:50",
+  "printed": "Holy Goof",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "holy-goof",
+    "role": "performer"
+   }
+  ],
+  "act": "holy-goof",
+  "closing": false,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:harder-stage:1650:born-dirty",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "HARDER Stage",
+  "start": "16:50",
+  "end": "17:50",
+  "printed": "Born Dirty",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "born-dirty",
+    "role": "performer"
+   }
+  ],
+  "act": "born-dirty",
+  "closing": false,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:harder-stage:1750:droeloe",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "HARDER Stage",
+  "start": "17:50",
+  "end": "18:50",
+  "printed": "Droeloe",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "droeloe",
+    "role": "performer"
+   }
+  ],
+  "act": "droeloe",
+  "closing": false,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:harder-stage:1850:whethan",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "HARDER Stage",
+  "start": "18:50",
+  "end": "19:50",
+  "printed": "Whethan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "whethan",
+    "role": "performer"
+   }
+  ],
+  "act": "whethan",
+  "closing": false,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:harder-stage:1955:what-so-not",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "HARDER Stage",
+  "start": "19:55",
+  "end": "20:55",
+  "printed": "What So Not",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "what-so-not",
+    "role": "performer"
+   }
+  ],
+  "act": "what-so-not",
+  "closing": false,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:harder-stage:2100:excision-b2b-nghtmre",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "HARDER Stage",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "Excision B2B NGHTMRE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "excision",
+    "role": "b2b"
+   },
+   {
+    "key": "nghtmre",
+    "role": "b2b"
+   }
+  ],
+  "act": "excision-b2b-nghtmre",
+  "closing": false,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:harder-stage:2200:alison-wonderland",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "HARDER Stage",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "Alison Wonderland",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alison-wonderland",
+    "role": "performer"
+   }
+  ],
+  "act": "alison-wonderland",
+  "closing": true,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:purple-tent:1300:the-candy-rain",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "Purple Tent",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "The Candy Rain",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-candy-rain",
+    "role": "performer"
+   }
+  ],
+  "act": "the-candy-rain",
+  "closing": false,
+  "stageLineage": "hard-summer:purple-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:purple-tent:1400:sosupersam",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "Purple Tent",
+  "start": "14:00",
+  "end": "14:55",
+  "printed": "Sosupersam",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sosupersam",
+    "role": "performer"
+   }
+  ],
+  "act": "sosupersam",
+  "closing": false,
+  "stageLineage": "hard-summer:purple-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:purple-tent:1505:armani-white",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "Purple Tent",
+  "start": "15:05",
+  "end": "15:35",
+  "printed": "Armani White",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "armani-white",
+    "role": "performer"
+   }
+  ],
+  "act": "armani-white",
+  "closing": false,
+  "stageLineage": "hard-summer:purple-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:purple-tent:1540:andre-power",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "Purple Tent",
+  "start": "15:40",
+  "end": "16:40",
+  "printed": "Andre Power",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "andre-power",
+    "role": "performer"
+   }
+  ],
+  "act": "andre-power",
+  "closing": false,
+  "stageLineage": "hard-summer:purple-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:purple-tent:1645:la-leakers",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "Purple Tent",
+  "start": "16:45",
+  "end": "17:15",
+  "printed": "LA Leakers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "la-leakers",
+    "role": "performer"
+   }
+  ],
+  "act": "la-leakers",
+  "closing": false,
+  "stageLineage": "hard-summer:purple-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:purple-tent:1720:ohgeesy",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "Purple Tent",
+  "start": "17:20",
+  "end": "17:50",
+  "printed": "Ohgeesy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ohgeesy",
+    "role": "performer"
+   }
+  ],
+  "act": "ohgeesy",
+  "closing": false,
+  "stageLineage": "hard-summer:purple-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:purple-tent:1755:lil-tjay",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "Purple Tent",
+  "start": "17:55",
+  "end": "18:25",
+  "printed": "Lil Tjay",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lil-tjay",
+    "role": "performer"
+   }
+  ],
+  "act": "lil-tjay",
+  "closing": false,
+  "stageLineage": "hard-summer:purple-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:purple-tent:1830:2-craze-and-four-color-zack",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "Purple Tent",
+  "start": "18:30",
+  "end": "19:30",
+  "printed": "2¢ (Craze & Four Color Zack)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "2-craze-and-four-color-zack",
+    "role": "act"
+   }
+  ],
+  "act": "2-craze-and-four-color-zack",
+  "closing": false,
+  "stageLineage": "hard-summer:purple-tent",
+  "mainStage": null,
+  "review": "parenthetical names people"
+ },
+ {
+  "id": "hard-summer-2019:d1:purple-tent:1935:lil-mosey",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "Purple Tent",
+  "start": "19:35",
+  "end": "20:05",
+  "printed": "Lil Mosey",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lil-mosey",
+    "role": "performer"
+   }
+  ],
+  "act": "lil-mosey",
+  "closing": false,
+  "stageLineage": "hard-summer:purple-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:purple-tent:2010:shlohmo",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "Purple Tent",
+  "start": "20:10",
+  "end": "21:10",
+  "printed": "Shlohmo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "shlohmo",
+    "role": "performer"
+   }
+  ],
+  "act": "shlohmo",
+  "closing": false,
+  "stageLineage": "hard-summer:purple-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:purple-tent:2115:sheck-wes",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "Purple Tent",
+  "start": "21:15",
+  "end": "22:00",
+  "printed": "Sheck Wes",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sheck-wes",
+    "role": "performer"
+   }
+  ],
+  "act": "sheck-wes",
+  "closing": true,
+  "stageLineage": "hard-summer:purple-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:green-tent:1300:benda",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "Green Tent",
+  "start": "13:00",
+  "end": "13:45",
+  "printed": "Benda",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "benda",
+    "role": "performer"
+   }
+  ],
+  "act": "benda",
+  "closing": false,
+  "stageLineage": "hard-summer:green-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:green-tent:1345:dack-janiels",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "Green Tent",
+  "start": "13:45",
+  "end": "14:35",
+  "printed": "Dack Janiels",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dack-janiels",
+    "role": "performer"
+   }
+  ],
+  "act": "dack-janiels",
+  "closing": false,
+  "stageLineage": "hard-summer:green-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:green-tent:1435:g-rex",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "Green Tent",
+  "start": "14:35",
+  "end": "15:30",
+  "printed": "G-Rex",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "g-rex",
+    "role": "performer"
+   }
+  ],
+  "act": "g-rex",
+  "closing": false,
+  "stageLineage": "hard-summer:green-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:green-tent:1530:wuki",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "Green Tent",
+  "start": "15:30",
+  "end": "16:30",
+  "printed": "Wuki",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wuki",
+    "role": "performer"
+   }
+  ],
+  "act": "wuki",
+  "closing": false,
+  "stageLineage": "hard-summer:green-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:green-tent:1630:hucci",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "Green Tent",
+  "start": "16:30",
+  "end": "17:30",
+  "printed": "Hucci",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hucci",
+    "role": "performer"
+   }
+  ],
+  "act": "hucci",
+  "closing": false,
+  "stageLineage": "hard-summer:green-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:green-tent:1730:habstrakt",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "Green Tent",
+  "start": "17:30",
+  "end": "18:25",
+  "printed": "Habstrakt",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "habstrakt",
+    "role": "performer"
+   }
+  ],
+  "act": "habstrakt",
+  "closing": false,
+  "stageLineage": "hard-summer:green-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:green-tent:1825:diesel-shaquille-o-neal",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "Green Tent",
+  "start": "18:25",
+  "end": "19:05",
+  "printed": "Diesel (Shaquille O'Neal)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "diesel-shaquille-o-neal",
+    "role": "act"
+   }
+  ],
+  "act": "diesel-shaquille-o-neal",
+  "closing": false,
+  "stageLineage": "hard-summer:green-tent",
+  "mainStage": null,
+  "review": "parenthetical is not a known set tag"
+ },
+ {
+  "id": "hard-summer-2019:d1:green-tent:1905:space-jesus",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "Green Tent",
+  "start": "19:05",
+  "end": "20:00",
+  "printed": "Space Jesus",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "space-jesus",
+    "role": "performer"
+   }
+  ],
+  "act": "space-jesus",
+  "closing": false,
+  "stageLineage": "hard-summer:green-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:green-tent:2000:12th-planet",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "Green Tent",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "12th Planet",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "12th-planet",
+    "role": "performer"
+   }
+  ],
+  "act": "12th-planet",
+  "closing": false,
+  "stageLineage": "hard-summer:green-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:green-tent:2100:gta-and-friends",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "Green Tent",
+  "start": "21:00",
+  "end": "23:00",
+  "printed": "GTA & Friends",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gta-and-friends",
+    "role": "performer"
+   }
+  ],
+  "act": "gta-and-friends",
+  "closing": true,
+  "stageLineage": "hard-summer:green-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:pink-tent:1300:ms-mada",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "Pink Tent",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "Ms. Mada",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ms-mada",
+    "role": "performer"
+   }
+  ],
+  "act": "ms-mada",
+  "closing": false,
+  "stageLineage": "hard-summer:pink-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:pink-tent:1400:vnssa",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "Pink Tent",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "VNSSA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vnssa",
+    "role": "performer"
+   }
+  ],
+  "act": "vnssa",
+  "closing": false,
+  "stageLineage": "hard-summer:pink-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:pink-tent:1500:amtrac",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "Pink Tent",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "Amtrac",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "amtrac",
+    "role": "performer"
+   }
+  ],
+  "act": "amtrac",
+  "closing": false,
+  "stageLineage": "hard-summer:pink-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:pink-tent:1600:omnom",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "Pink Tent",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Omnom",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "omnom",
+    "role": "performer"
+   }
+  ],
+  "act": "omnom",
+  "closing": false,
+  "stageLineage": "hard-summer:pink-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:pink-tent:1700:dombresky",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "Pink Tent",
+  "start": "17:00",
+  "end": "18:30",
+  "printed": "Dombresky",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dombresky",
+    "role": "performer"
+   }
+  ],
+  "act": "dombresky",
+  "closing": false,
+  "stageLineage": "hard-summer:pink-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:pink-tent:1830:kyle-watson",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "Pink Tent",
+  "start": "18:30",
+  "end": "20:00",
+  "printed": "Kyle Watson",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kyle-watson",
+    "role": "performer"
+   }
+  ],
+  "act": "kyle-watson",
+  "closing": false,
+  "stageLineage": "hard-summer:pink-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:pink-tent:2000:loco-dice",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "Pink Tent",
+  "start": "20:00",
+  "end": "21:40",
+  "printed": "Loco Dice",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "loco-dice",
+    "role": "performer"
+   }
+  ],
+  "act": "loco-dice",
+  "closing": false,
+  "stageLineage": "hard-summer:pink-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:pink-tent:2145:dj-snake-b2b-malaa",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "Pink Tent",
+  "start": "21:45",
+  "end": "23:00",
+  "printed": "DJ Snake B2B Malaa",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-snake",
+    "role": "b2b"
+   },
+   {
+    "key": "malaa",
+    "role": "b2b"
+   }
+  ],
+  "act": "dj-snake-b2b-malaa",
+  "closing": true,
+  "stageLineage": "hard-summer:pink-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:corona-electric-beach:1300:pass-the-40",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "Corona Electric Beach",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "Pass The 40",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pass-the-40",
+    "role": "performer"
+   }
+  ],
+  "act": "pass-the-40",
+  "closing": false,
+  "stageLineage": "hard-summer:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:corona-electric-beach:1400:luke-andy",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "Corona Electric Beach",
+  "start": "14:00",
+  "end": "15:30",
+  "printed": "Luke Andy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "luke-andy",
+    "role": "performer"
+   }
+  ],
+  "act": "luke-andy",
+  "closing": false,
+  "stageLineage": "hard-summer:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:corona-electric-beach:1530:morelia",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "Corona Electric Beach",
+  "start": "15:30",
+  "end": "16:45",
+  "printed": "Morelia",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "morelia",
+    "role": "performer"
+   }
+  ],
+  "act": "morelia",
+  "closing": false,
+  "stageLineage": "hard-summer:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:corona-electric-beach:1645:franklyn-watts-b2b-steady-rock",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "Corona Electric Beach",
+  "start": "16:45",
+  "end": "18:15",
+  "printed": "Franklyn Watts B2B Steady Rock",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "franklyn-watts",
+    "role": "b2b"
+   },
+   {
+    "key": "steady-rock",
+    "role": "b2b"
+   }
+  ],
+  "act": "franklyn-watts-b2b-steady-rock",
+  "closing": false,
+  "stageLineage": "hard-summer:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:corona-electric-beach:1815:born-dirty",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "Corona Electric Beach",
+  "start": "18:15",
+  "end": "19:15",
+  "printed": "Born Dirty",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "born-dirty",
+    "role": "performer"
+   }
+  ],
+  "act": "born-dirty",
+  "closing": false,
+  "stageLineage": "hard-summer:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:corona-electric-beach:1915:justin-martin",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "Corona Electric Beach",
+  "start": "19:15",
+  "end": "20:30",
+  "printed": "Justin Martin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "justin-martin",
+    "role": "performer"
+   }
+  ],
+  "act": "justin-martin",
+  "closing": false,
+  "stageLineage": "hard-summer:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:corona-electric-beach:2030:vnssa",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "Corona Electric Beach",
+  "start": "20:30",
+  "end": "21:45",
+  "printed": "VNSSA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vnssa",
+    "role": "performer"
+   }
+  ],
+  "act": "vnssa",
+  "closing": false,
+  "stageLineage": "hard-summer:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d1:corona-electric-beach:2145:lucati",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-03",
+  "day": 1,
+  "stage": "Corona Electric Beach",
+  "start": "21:45",
+  "end": "23:00",
+  "printed": "Lucati",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lucati",
+    "role": "performer"
+   }
+  ],
+  "act": "lucati",
+  "closing": true,
+  "stageLineage": "hard-summer:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:hard-stage:1300:2-deep",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "HARD Stage",
+  "start": "13:00",
+  "end": "13:40",
+  "printed": "2 Deep",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "2-deep",
+    "role": "performer"
+   }
+  ],
+  "act": "2-deep",
+  "closing": false,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:hard-stage:1340:lp-giobbi",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "HARD Stage",
+  "start": "13:40",
+  "end": "14:40",
+  "printed": "LP Giobbi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lp-giobbi",
+    "role": "performer"
+   }
+  ],
+  "act": "lp-giobbi",
+  "closing": false,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:hard-stage:1445:baynk",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "HARD Stage",
+  "start": "14:45",
+  "end": "15:45",
+  "printed": "Baynk",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "baynk",
+    "role": "performer"
+   }
+  ],
+  "act": "baynk",
+  "closing": false,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:hard-stage:1550:anna-lunoe",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "HARD Stage",
+  "start": "15:50",
+  "end": "16:50",
+  "printed": "Anna Lunoe",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "anna-lunoe",
+    "role": "performer"
+   }
+  ],
+  "act": "anna-lunoe",
+  "closing": false,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:hard-stage:1655:ookay-live",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "HARD Stage",
+  "start": "16:55",
+  "end": "17:55",
+  "printed": "Ookay (Live)",
+  "setTag": "Live",
+  "performers": [
+   {
+    "key": "ookay",
+    "role": "performer"
+   }
+  ],
+  "act": "ookay",
+  "closing": false,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:hard-stage:1800:duke-dumont",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "HARD Stage",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Duke Dumont",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "duke-dumont",
+    "role": "performer"
+   }
+  ],
+  "act": "duke-dumont",
+  "closing": false,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:hard-stage:1920:juice-wrld",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "HARD Stage",
+  "start": "19:20",
+  "end": "19:50",
+  "printed": "Juice WRLD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "juice-wrld",
+    "role": "performer"
+   }
+  ],
+  "act": "juice-wrld",
+  "closing": false,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:hard-stage:2000:zhu-b2b-tchami",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "HARD Stage",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Zhu B2B Tchami",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zhu",
+    "role": "b2b"
+   },
+   {
+    "key": "tchami",
+    "role": "b2b"
+   }
+  ],
+  "act": "zhu-b2b-tchami",
+  "closing": false,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:hard-stage:2145:major-lazer",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "HARD Stage",
+  "start": "21:45",
+  "end": "23:00",
+  "printed": "Major Lazer",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "major-lazer",
+    "role": "performer"
+   }
+  ],
+  "act": "major-lazer",
+  "closing": true,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:harder-stage:1350:black-caviar",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "HARDER Stage",
+  "start": "13:50",
+  "end": "14:50",
+  "printed": "Black Caviar",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "black-caviar",
+    "role": "performer"
+   }
+  ],
+  "act": "black-caviar",
+  "closing": false,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:harder-stage:1450:noizu",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "HARDER Stage",
+  "start": "14:50",
+  "end": "15:50",
+  "printed": "Noizu",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "noizu",
+    "role": "performer"
+   }
+  ],
+  "act": "noizu",
+  "closing": false,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:harder-stage:1550:dom-dolla",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "HARDER Stage",
+  "start": "15:50",
+  "end": "16:50",
+  "printed": "Dom Dolla",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dom-dolla",
+    "role": "performer"
+   }
+  ],
+  "act": "dom-dolla",
+  "closing": false,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:harder-stage:1650:graves",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "HARDER Stage",
+  "start": "16:50",
+  "end": "17:50",
+  "printed": "graves",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "graves",
+    "role": "performer"
+   }
+  ],
+  "act": "graves",
+  "closing": false,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:harder-stage:1750:yultron",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "HARDER Stage",
+  "start": "17:50",
+  "end": "18:50",
+  "printed": "Yultron",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yultron",
+    "role": "performer"
+   }
+  ],
+  "act": "yultron",
+  "closing": false,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:harder-stage:1850:a-trak-b2b-yehme2",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "HARDER Stage",
+  "start": "18:50",
+  "end": "19:50",
+  "printed": "A-Trak B2B YehMe2",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "a-trak",
+    "role": "b2b"
+   },
+   {
+    "key": "yehme2",
+    "role": "b2b"
+   }
+  ],
+  "act": "a-trak-b2b-yehme2",
+  "closing": false,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:harder-stage:1950:claude-vonstroke",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "HARDER Stage",
+  "start": "19:50",
+  "end": "20:50",
+  "printed": "Claude VonStroke",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "claude-vonstroke",
+    "role": "performer"
+   }
+  ],
+  "act": "claude-vonstroke",
+  "closing": false,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:harder-stage:2050:kayzo",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "HARDER Stage",
+  "start": "20:50",
+  "end": "21:50",
+  "printed": "Kayzo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kayzo",
+    "role": "performer"
+   }
+  ],
+  "act": "kayzo",
+  "closing": false,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:harder-stage:2200:rl-grime",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "HARDER Stage",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "RL Grime",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rl-grime",
+    "role": "performer"
+   }
+  ],
+  "act": "rl-grime",
+  "closing": true,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:purple-tent:1300:blesst",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "Purple Tent",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "Blesst",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "blesst",
+    "role": "performer"
+   }
+  ],
+  "act": "blesst",
+  "closing": false,
+  "stageLineage": "hard-summer:purple-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:purple-tent:1400:cam-girl",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "Purple Tent",
+  "start": "14:00",
+  "end": "14:55",
+  "printed": "Cam Girl",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cam-girl",
+    "role": "performer"
+   }
+  ],
+  "act": "cam-girl",
+  "closing": false,
+  "stageLineage": "hard-summer:purple-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:purple-tent:1500:djds",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "Purple Tent",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "DJDS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "djds",
+    "role": "performer"
+   }
+  ],
+  "act": "djds",
+  "closing": false,
+  "stageLineage": "hard-summer:purple-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:purple-tent:1605:dreamdoll",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "Purple Tent",
+  "start": "16:05",
+  "end": "16:35",
+  "printed": "DreamDoll",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dreamdoll",
+    "role": "performer"
+   }
+  ],
+  "act": "dreamdoll",
+  "closing": false,
+  "stageLineage": "hard-summer:purple-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:purple-tent:1640:robotaki",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "Purple Tent",
+  "start": "16:40",
+  "end": "17:40",
+  "printed": "Robotaki",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "robotaki",
+    "role": "performer"
+   }
+  ],
+  "act": "robotaki",
+  "closing": false,
+  "stageLineage": "hard-summer:purple-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:purple-tent:1745:diablo",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "Purple Tent",
+  "start": "17:45",
+  "end": "18:45",
+  "printed": "Diablo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "diablo",
+    "role": "performer"
+   }
+  ],
+  "act": "diablo",
+  "closing": false,
+  "stageLineage": "hard-summer:purple-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:purple-tent:1850:madeintyo",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "Purple Tent",
+  "start": "18:50",
+  "end": "19:30",
+  "printed": "MadeinTYO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "madeintyo",
+    "role": "performer"
+   }
+  ],
+  "act": "madeintyo",
+  "closing": false,
+  "stageLineage": "hard-summer:purple-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:purple-tent:1935:jpegmafia",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "Purple Tent",
+  "start": "19:35",
+  "end": "20:20",
+  "printed": "JPEGMAFIA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jpegmafia",
+    "role": "performer"
+   }
+  ],
+  "act": "jpegmafia",
+  "closing": false,
+  "stageLineage": "hard-summer:purple-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:purple-tent:2025:soulja-boy",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "Purple Tent",
+  "start": "20:25",
+  "end": "20:55",
+  "printed": "Soulja Boy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "soulja-boy",
+    "role": "performer"
+   }
+  ],
+  "act": "soulja-boy",
+  "closing": false,
+  "stageLineage": "hard-summer:purple-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:purple-tent:2100:kenny-beats",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "Purple Tent",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "Kenny Beats",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kenny-beats",
+    "role": "performer"
+   }
+  ],
+  "act": "kenny-beats",
+  "closing": false,
+  "stageLineage": "hard-summer:purple-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:purple-tent:2215:gunna",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "Purple Tent",
+  "start": "22:15",
+  "end": "23:00",
+  "printed": "Gunna",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gunna",
+    "role": "performer"
+   }
+  ],
+  "act": "gunna",
+  "closing": true,
+  "stageLineage": "hard-summer:purple-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:green-tent:1300:subset",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "Green Tent",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "Subset",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "subset",
+    "role": "performer"
+   }
+  ],
+  "act": "subset",
+  "closing": false,
+  "stageLineage": "hard-summer:green-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:green-tent:1400:zia",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "Green Tent",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "ZÍA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zia",
+    "role": "performer"
+   }
+  ],
+  "act": "zia",
+  "closing": false,
+  "stageLineage": "hard-summer:green-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:green-tent:1500:blanke",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "Green Tent",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "Blanke",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "blanke",
+    "role": "performer"
+   }
+  ],
+  "act": "blanke",
+  "closing": false,
+  "stageLineage": "hard-summer:green-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:green-tent:1600:gravedgr",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "Green Tent",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "GRAVEDGR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gravedgr",
+    "role": "performer"
+   }
+  ],
+  "act": "gravedgr",
+  "closing": false,
+  "stageLineage": "hard-summer:green-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:green-tent:1700:hekler",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "Green Tent",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Hekler",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hekler",
+    "role": "performer"
+   }
+  ],
+  "act": "hekler",
+  "closing": false,
+  "stageLineage": "hard-summer:green-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:green-tent:1800:subtronics-b2b-dirt-monkey",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "Green Tent",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Subtronics B2B Dirt Monkey",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "subtronics",
+    "role": "b2b"
+   },
+   {
+    "key": "dirt-monkey",
+    "role": "b2b"
+   }
+  ],
+  "act": "subtronics-b2b-dirt-monkey",
+  "closing": false,
+  "stageLineage": "hard-summer:green-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:green-tent:1900:gammer",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "Green Tent",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Gammer",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gammer",
+    "role": "performer"
+   }
+  ],
+  "act": "gammer",
+  "closing": false,
+  "stageLineage": "hard-summer:green-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:green-tent:2000:kill-the-noise",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "Green Tent",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Kill The Noise",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kill-the-noise",
+    "role": "performer"
+   }
+  ],
+  "act": "kill-the-noise",
+  "closing": false,
+  "stageLineage": "hard-summer:green-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:green-tent:2100:herobust",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "Green Tent",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "Herobust",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "herobust",
+    "role": "performer"
+   }
+  ],
+  "act": "herobust",
+  "closing": false,
+  "stageLineage": "hard-summer:green-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:green-tent:2200:flux-pavilion-b2b-netsky",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "Green Tent",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "Flux Pavilion B2B Netsky",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "flux-pavilion",
+    "role": "b2b"
+   },
+   {
+    "key": "netsky",
+    "role": "b2b"
+   }
+  ],
+  "act": "flux-pavilion-b2b-netsky",
+  "closing": true,
+  "stageLineage": "hard-summer:green-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:pink-tent:1300:rick-trainor",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "Pink Tent",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "Rick Trainor",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rick-trainor",
+    "role": "performer"
+   }
+  ],
+  "act": "rick-trainor",
+  "closing": false,
+  "stageLineage": "hard-summer:pink-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:pink-tent:1400:monki",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "Pink Tent",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "Monki",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "monki",
+    "role": "performer"
+   }
+  ],
+  "act": "monki",
+  "closing": false,
+  "stageLineage": "hard-summer:pink-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:pink-tent:1500:dateless-b2b-lucati",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "Pink Tent",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "Dateless B2B Lucati",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dateless",
+    "role": "b2b"
+   },
+   {
+    "key": "lucati",
+    "role": "b2b"
+   }
+  ],
+  "act": "dateless-b2b-lucati",
+  "closing": false,
+  "stageLineage": "hard-summer:pink-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:pink-tent:1600:lauren-lane",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "Pink Tent",
+  "start": "16:00",
+  "end": "17:30",
+  "printed": "Lauren Lane",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lauren-lane",
+    "role": "performer"
+   }
+  ],
+  "act": "lauren-lane",
+  "closing": false,
+  "stageLineage": "hard-summer:pink-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:pink-tent:1735:amok-will-clarke-sian",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "Pink Tent",
+  "start": "17:35",
+  "end": "18:35",
+  "printed": "AMOK (Will Clarke + Sian)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "amok-will-clarke-sian",
+    "role": "act"
+   }
+  ],
+  "act": "amok-will-clarke-sian",
+  "closing": false,
+  "stageLineage": "hard-summer:pink-tent",
+  "mainStage": null,
+  "review": "parenthetical names people"
+ },
+ {
+  "id": "hard-summer-2019:d2:pink-tent:1840:justin-martin",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "Pink Tent",
+  "start": "18:40",
+  "end": "19:50",
+  "printed": "Justin Martin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "justin-martin",
+    "role": "performer"
+   }
+  ],
+  "act": "justin-martin",
+  "closing": false,
+  "stageLineage": "hard-summer:pink-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:pink-tent:2000:moon-boots",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "Pink Tent",
+  "start": "20:00",
+  "end": "22:00",
+  "printed": "Moon Boots",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "moon-boots",
+    "role": "performer"
+   }
+  ],
+  "act": "moon-boots",
+  "closing": false,
+  "stageLineage": "hard-summer:pink-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:pink-tent:2200:anti-up",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "Pink Tent",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "Anti Up",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "anti-up",
+    "role": "performer"
+   }
+  ],
+  "act": "anti-up",
+  "closing": true,
+  "stageLineage": "hard-summer:pink-tent",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:corona-electric-beach:1300:sharps",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "Corona Electric Beach",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "Sharps",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sharps",
+    "role": "performer"
+   }
+  ],
+  "act": "sharps",
+  "closing": false,
+  "stageLineage": "hard-summer:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:corona-electric-beach:1400:throwdown",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "Corona Electric Beach",
+  "start": "14:00",
+  "end": "15:30",
+  "printed": "Throwdown",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "throwdown",
+    "role": "performer"
+   }
+  ],
+  "act": "throwdown",
+  "closing": false,
+  "stageLineage": "hard-summer:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:corona-electric-beach:1530:choppa-dunks",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "Corona Electric Beach",
+  "start": "15:30",
+  "end": "16:45",
+  "printed": "Choppa Dunks",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "choppa-dunks",
+    "role": "performer"
+   }
+  ],
+  "act": "choppa-dunks",
+  "closing": false,
+  "stageLineage": "hard-summer:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:corona-electric-beach:1645:dack-janiels",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "Corona Electric Beach",
+  "start": "16:45",
+  "end": "18:00",
+  "printed": "Dack Janiels",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dack-janiels",
+    "role": "performer"
+   }
+  ],
+  "act": "dack-janiels",
+  "closing": false,
+  "stageLineage": "hard-summer:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:corona-electric-beach:1800:wuki-and-friends",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "Corona Electric Beach",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Wuki & Friends",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wuki-and-friends",
+    "role": "performer"
+   }
+  ],
+  "act": "wuki-and-friends",
+  "closing": false,
+  "stageLineage": "hard-summer:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:corona-electric-beach:1900:ookay",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "Corona Electric Beach",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Ookay",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ookay",
+    "role": "performer"
+   }
+  ],
+  "act": "ookay",
+  "closing": false,
+  "stageLineage": "hard-summer:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:corona-electric-beach:2000:blanke",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "Corona Electric Beach",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Blanke",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "blanke",
+    "role": "performer"
+   }
+  ],
+  "act": "blanke",
+  "closing": false,
+  "stageLineage": "hard-summer:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:corona-electric-beach:2100:graves",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "Corona Electric Beach",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "graves",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "graves",
+    "role": "performer"
+   }
+  ],
+  "act": "graves",
+  "closing": false,
+  "stageLineage": "hard-summer:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2019:d2:corona-electric-beach:2200:zia",
+  "source": "edition",
+  "festivalId": "hard-summer-2019",
+  "festivalBrand": "hard-summer",
+  "year": 2019,
+  "date": "2019-08-04",
+  "day": 2,
+  "stage": "Corona Electric Beach",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "ZÍA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zia",
+    "role": "performer"
+   }
+  ],
+  "act": "zia",
+  "closing": true,
+  "stageLineage": "hard-summer:corona-electric-beach",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:hard-stage:1400:etari",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "HARD Stage",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "Etari",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "etari",
+    "role": "performer"
+   }
+  ],
+  "act": "etari",
+  "closing": false,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:hard-stage:1500:lake-hills",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "HARD Stage",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "Lake Hills",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lake-hills",
+    "role": "performer"
+   }
+  ],
+  "act": "lake-hills",
+  "closing": false,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:hard-stage:1600:bunt",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "HARD Stage",
+  "start": "16:00",
+  "end": "17:15",
+  "printed": "BUNT.",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bunt",
+    "role": "performer"
+   }
+  ],
+  "act": "bunt",
+  "closing": false,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:hard-stage:1715:skepta-mas-tiempo",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "HARD Stage",
+  "start": "17:15",
+  "end": "18:25",
+  "printed": "Skepta (Más Tiempo)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "skepta-mas-tiempo",
+    "role": "act"
+   }
+  ],
+  "act": "skepta-mas-tiempo",
+  "closing": false,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null,
+  "review": "parenthetical is not a known set tag"
+ },
+ {
+  "id": "hard-summer-2024:d1:hard-stage:1825:cloonee",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "HARD Stage",
+  "start": "18:25",
+  "end": "19:35",
+  "printed": "Cloonee",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cloonee",
+    "role": "performer"
+   }
+  ],
+  "act": "cloonee",
+  "closing": false,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:hard-stage:2000:nelly-furtado",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "HARD Stage",
+  "start": "20:00",
+  "end": "20:45",
+  "printed": "Nelly Furtado",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nelly-furtado",
+    "role": "performer"
+   }
+  ],
+  "act": "nelly-furtado",
+  "closing": false,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:hard-stage:2130:disclosure",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "HARD Stage",
+  "start": "21:30",
+  "end": "23:00",
+  "printed": "Disclosure",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "disclosure",
+    "role": "performer"
+   }
+  ],
+  "act": "disclosure",
+  "closing": true,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:harder-stage:1400:beme",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "HARDER Stage",
+  "start": "14:00",
+  "end": "15:20",
+  "printed": "BEME",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "beme",
+    "role": "performer"
+   }
+  ],
+  "act": "beme",
+  "closing": false,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:harder-stage:1520:carola",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "HARDER Stage",
+  "start": "15:20",
+  "end": "16:20",
+  "printed": "Carola",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carola",
+    "role": "performer"
+   }
+  ],
+  "act": "carola",
+  "closing": false,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:harder-stage:1620:33-below",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "HARDER Stage",
+  "start": "16:20",
+  "end": "17:20",
+  "printed": "33 Below",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "33-below",
+    "role": "performer"
+   }
+  ],
+  "act": "33-below",
+  "closing": false,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:harder-stage:1720:ayybo",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "HARDER Stage",
+  "start": "17:20",
+  "end": "18:20",
+  "printed": "AYYBO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ayybo",
+    "role": "performer"
+   }
+  ],
+  "act": "ayybo",
+  "closing": false,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:harder-stage:1820:san-pacho",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "HARDER Stage",
+  "start": "18:20",
+  "end": "19:20",
+  "printed": "San Pacho",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "san-pacho",
+    "role": "performer"
+   }
+  ],
+  "act": "san-pacho",
+  "closing": false,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:harder-stage:1920:sidepiece",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "HARDER Stage",
+  "start": "19:20",
+  "end": "20:20",
+  "printed": "SIDEPIECE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sidepiece",
+    "role": "performer"
+   }
+  ],
+  "act": "sidepiece",
+  "closing": false,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:harder-stage:2020:wax-motif",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "HARDER Stage",
+  "start": "20:20",
+  "end": "21:20",
+  "printed": "Wax Motif",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wax-motif",
+    "role": "performer"
+   }
+  ],
+  "act": "wax-motif",
+  "closing": false,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:harder-stage:2140:rezzmau5",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "HARDER Stage",
+  "start": "21:40",
+  "end": "23:00",
+  "printed": "Rezzmau5",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rezzmau5",
+    "role": "performer"
+   }
+  ],
+  "act": "rezzmau5",
+  "closing": true,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:green-stage:1400:nazaar",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "Green Stage",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "NAZAAR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nazaar",
+    "role": "performer"
+   }
+  ],
+  "act": "nazaar",
+  "closing": false,
+  "stageLineage": "hard-summer:green-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:green-stage:1500:notion",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "Green Stage",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "Notion",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "notion",
+    "role": "performer"
+   }
+  ],
+  "act": "notion",
+  "closing": false,
+  "stageLineage": "hard-summer:green-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:green-stage:1600:saka-b2b-fly",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "Green Stage",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Saka B2B Fly",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "saka",
+    "role": "b2b"
+   },
+   {
+    "key": "fly",
+    "role": "b2b"
+   }
+  ],
+  "act": "saka-b2b-fly",
+  "closing": false,
+  "stageLineage": "hard-summer:green-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:green-stage:1700:infekt",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "Green Stage",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "INFEKT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "infekt",
+    "role": "performer"
+   }
+  ],
+  "act": "infekt",
+  "closing": false,
+  "stageLineage": "hard-summer:green-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:green-stage:1800:reaper",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "Green Stage",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Reaper",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "reaper",
+    "role": "performer"
+   }
+  ],
+  "act": "reaper",
+  "closing": false,
+  "stageLineage": "hard-summer:green-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:green-stage:1900:hamdi",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "Green Stage",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Hamdi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hamdi",
+    "role": "performer"
+   }
+  ],
+  "act": "hamdi",
+  "closing": false,
+  "stageLineage": "hard-summer:green-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:green-stage:2000:dimension",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "Green Stage",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Dimension",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dimension",
+    "role": "performer"
+   }
+  ],
+  "act": "dimension",
+  "closing": false,
+  "stageLineage": "hard-summer:green-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:green-stage:2100:sub-focus",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "Green Stage",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "Sub Focus",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sub-focus",
+    "role": "performer"
+   }
+  ],
+  "act": "sub-focus",
+  "closing": false,
+  "stageLineage": "hard-summer:green-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:green-stage:2200:zeds-dead",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "Green Stage",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "Zeds Dead",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zeds-dead",
+    "role": "performer"
+   }
+  ],
+  "act": "zeds-dead",
+  "closing": true,
+  "stageLineage": "hard-summer:green-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:purple-stage:1400:bianca-oblivion",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "Purple Stage",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "Bianca Oblivion",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bianca-oblivion",
+    "role": "performer"
+   }
+  ],
+  "act": "bianca-oblivion",
+  "closing": false,
+  "stageLineage": "hard-summer:purple-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:purple-stage:1500:pocket",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "Purple Stage",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "Pocket",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pocket",
+    "role": "performer"
+   }
+  ],
+  "act": "pocket",
+  "closing": false,
+  "stageLineage": "hard-summer:purple-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:purple-stage:1600:ketboi69-kettama-b2b-partiboi69",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "Purple Stage",
+  "start": "16:00",
+  "end": "17:20",
+  "printed": "Ketboi69 (KETTAMA B2B Partiboi69)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ketboi69-kettama-b2b-partiboi69",
+    "role": "act"
+   }
+  ],
+  "act": "ketboi69-kettama-b2b-partiboi69",
+  "closing": false,
+  "stageLineage": "hard-summer:purple-stage",
+  "mainStage": null,
+  "review": "parenthetical names people"
+ },
+ {
+  "id": "hard-summer-2024:d1:purple-stage:1720:interplanetary-criminal",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "Purple Stage",
+  "start": "17:20",
+  "end": "18:25",
+  "printed": "Interplanetary Criminal",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "interplanetary-criminal",
+    "role": "performer"
+   }
+  ],
+  "act": "interplanetary-criminal",
+  "closing": false,
+  "stageLineage": "hard-summer:purple-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:purple-stage:1830:channel-tres",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "Purple Stage",
+  "start": "18:30",
+  "end": "19:30",
+  "printed": "Channel Tres",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "channel-tres",
+    "role": "performer"
+   }
+  ],
+  "act": "channel-tres",
+  "closing": false,
+  "stageLineage": "hard-summer:purple-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:purple-stage:1950:jamie-xx",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "Purple Stage",
+  "start": "19:50",
+  "end": "21:20",
+  "printed": "Jamie xx",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jamie-xx",
+    "role": "performer"
+   }
+  ],
+  "act": "jamie-xx",
+  "closing": false,
+  "stageLineage": "hard-summer:purple-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:purple-stage:2130:boys-noize",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "Purple Stage",
+  "start": "21:30",
+  "end": "23:00",
+  "printed": "Boys Noize",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "boys-noize",
+    "role": "performer"
+   }
+  ],
+  "act": "boys-noize",
+  "closing": true,
+  "stageLineage": "hard-summer:purple-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:pink-stage:1400:hayes-bradley",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "Pink Stage",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "Hayes Bradley",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hayes-bradley",
+    "role": "performer"
+   }
+  ],
+  "act": "hayes-bradley",
+  "closing": false,
+  "stageLineage": "hard-summer:pink-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:pink-stage:1500:cole-knight",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "Pink Stage",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "Cole Knight",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cole-knight",
+    "role": "performer"
+   }
+  ],
+  "act": "cole-knight",
+  "closing": false,
+  "stageLineage": "hard-summer:pink-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:pink-stage:1600:invt",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "Pink Stage",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "INVT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "invt",
+    "role": "performer"
+   }
+  ],
+  "act": "invt",
+  "closing": false,
+  "stageLineage": "hard-summer:pink-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:pink-stage:1700:ranger-trucco",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "Pink Stage",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Ranger Trucco",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ranger-trucco",
+    "role": "performer"
+   }
+  ],
+  "act": "ranger-trucco",
+  "closing": false,
+  "stageLineage": "hard-summer:pink-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:pink-stage:1800:chloe-caillet",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "Pink Stage",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Chloé Caillet",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chloe-caillet",
+    "role": "performer"
+   }
+  ],
+  "act": "chloe-caillet",
+  "closing": false,
+  "stageLineage": "hard-summer:pink-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:pink-stage:1900:chris-stussy",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "Pink Stage",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Chris Stussy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chris-stussy",
+    "role": "performer"
+   }
+  ],
+  "act": "chris-stussy",
+  "closing": false,
+  "stageLineage": "hard-summer:pink-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:pink-stage:2000:seth-troxler-b2b-dj-tennis",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "Pink Stage",
+  "start": "20:00",
+  "end": "21:30",
+  "printed": "Seth Troxler B2B DJ Tennis",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "seth-troxler",
+    "role": "b2b"
+   },
+   {
+    "key": "dj-tennis",
+    "role": "b2b"
+   }
+  ],
+  "act": "seth-troxler-b2b-dj-tennis",
+  "closing": false,
+  "stageLineage": "hard-summer:pink-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:pink-stage:2130:mochakk",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "Pink Stage",
+  "start": "21:30",
+  "end": "23:00",
+  "printed": "Mochakk",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mochakk",
+    "role": "performer"
+   }
+  ],
+  "act": "mochakk",
+  "closing": true,
+  "stageLineage": "hard-summer:pink-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:beatbox-boombox-art-car:1400:voisan",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "Beatbox Boombox Art Car",
+  "start": "14:00",
+  "end": "15:30",
+  "printed": "Voisan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "voisan",
+    "role": "performer"
+   }
+  ],
+  "act": "voisan",
+  "closing": false,
+  "stageLineage": "hard-summer:beatbox-boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:beatbox-boombox-art-car:1530:cc-love",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "Beatbox Boombox Art Car",
+  "start": "15:30",
+  "end": "17:00",
+  "printed": "CC Love",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cc-love",
+    "role": "performer"
+   }
+  ],
+  "act": "cc-love",
+  "closing": false,
+  "stageLineage": "hard-summer:beatbox-boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:beatbox-boombox-art-car:1700:bolo",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "Beatbox Boombox Art Car",
+  "start": "17:00",
+  "end": "18:30",
+  "printed": "BOLO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bolo",
+    "role": "performer"
+   }
+  ],
+  "act": "bolo",
+  "closing": false,
+  "stageLineage": "hard-summer:beatbox-boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:beatbox-boombox-art-car:1830:fun2bjane-b2b-mad-gavs",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "Beatbox Boombox Art Car",
+  "start": "18:30",
+  "end": "20:00",
+  "printed": "fun2bjane B2B mad gavs",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fun2bjane",
+    "role": "b2b"
+   },
+   {
+    "key": "mad-gavs",
+    "role": "b2b"
+   }
+  ],
+  "act": "fun2bjane-b2b-mad-gavs",
+  "closing": false,
+  "stageLineage": "hard-summer:beatbox-boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:beatbox-boombox-art-car:2000:etari",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "Beatbox Boombox Art Car",
+  "start": "20:00",
+  "end": "21:30",
+  "printed": "Etari",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "etari",
+    "role": "performer"
+   }
+  ],
+  "act": "etari",
+  "closing": false,
+  "stageLineage": "hard-summer:beatbox-boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:beatbox-boombox-art-car:2130:panteros666",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "Beatbox Boombox Art Car",
+  "start": "21:30",
+  "end": "23:00",
+  "printed": "Panteros666",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "panteros666",
+    "role": "performer"
+   }
+  ],
+  "act": "panteros666",
+  "closing": true,
+  "stageLineage": "hard-summer:beatbox-boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:jose-cuervo-locals-only-stage:1400:dina",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "Jose Cuervo Locals Only Stage",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "Dina",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dina",
+    "role": "performer"
+   }
+  ],
+  "act": "dina",
+  "closing": false,
+  "stageLineage": "hard-summer:jose-cuervo-locals-only-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:jose-cuervo-locals-only-stage:1500:noir-jbw",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "Jose Cuervo Locals Only Stage",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "Noir JBW",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "noir-jbw",
+    "role": "performer"
+   }
+  ],
+  "act": "noir-jbw",
+  "closing": false,
+  "stageLineage": "hard-summer:jose-cuervo-locals-only-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:jose-cuervo-locals-only-stage:1600:mapamota",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "Jose Cuervo Locals Only Stage",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Mapamota",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mapamota",
+    "role": "performer"
+   }
+  ],
+  "act": "mapamota",
+  "closing": false,
+  "stageLineage": "hard-summer:jose-cuervo-locals-only-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:jose-cuervo-locals-only-stage:1700:baexploitation",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "Jose Cuervo Locals Only Stage",
+  "start": "17:00",
+  "end": "18:30",
+  "printed": "Baexploitation",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "baexploitation",
+    "role": "performer"
+   }
+  ],
+  "act": "baexploitation",
+  "closing": false,
+  "stageLineage": "hard-summer:jose-cuervo-locals-only-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:jose-cuervo-locals-only-stage:1830:bianca-maieli",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "Jose Cuervo Locals Only Stage",
+  "start": "18:30",
+  "end": "20:00",
+  "printed": "Bianca Maieli",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bianca-maieli",
+    "role": "performer"
+   }
+  ],
+  "act": "bianca-maieli",
+  "closing": false,
+  "stageLineage": "hard-summer:jose-cuervo-locals-only-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:jose-cuervo-locals-only-stage:2000:joaqu-n",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "Jose Cuervo Locals Only Stage",
+  "start": "20:00",
+  "end": "21:30",
+  "printed": "Joaqu.n",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "joaqu-n",
+    "role": "performer"
+   }
+  ],
+  "act": "joaqu-n",
+  "closing": false,
+  "stageLineage": "hard-summer:jose-cuervo-locals-only-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d1:jose-cuervo-locals-only-stage:2130:bianca-oblivion",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-03",
+  "day": 1,
+  "stage": "Jose Cuervo Locals Only Stage",
+  "start": "21:30",
+  "end": "23:00",
+  "printed": "Bianca Oblivion",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bianca-oblivion",
+    "role": "performer"
+   }
+  ],
+  "act": "bianca-oblivion",
+  "closing": true,
+  "stageLineage": "hard-summer:jose-cuervo-locals-only-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:hard-stage:1400:teko",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "HARD Stage",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "Teko",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "teko",
+    "role": "performer"
+   }
+  ],
+  "act": "teko",
+  "closing": false,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:hard-stage:1500:camden-cox",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "HARD Stage",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "Camden Cox",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "camden-cox",
+    "role": "performer"
+   }
+  ],
+  "act": "camden-cox",
+  "closing": false,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:hard-stage:1600:sosa",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "HARD Stage",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Sosa",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sosa",
+    "role": "performer"
+   }
+  ],
+  "act": "sosa",
+  "closing": false,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:hard-stage:1700:matroda",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "HARD Stage",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Matroda",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "matroda",
+    "role": "performer"
+   }
+  ],
+  "act": "matroda",
+  "closing": false,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:hard-stage:1800:sofi-tukker-dj-set",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "HARD Stage",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Sofi Tukker (DJ Set)",
+  "setTag": "DJ Set",
+  "performers": [
+   {
+    "key": "sofi-tukker",
+    "role": "performer"
+   }
+  ],
+  "act": "sofi-tukker",
+  "closing": false,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:hard-stage:1900:tchami-x-malaa-no-redemption",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "HARD Stage",
+  "start": "19:00",
+  "end": "20:10",
+  "printed": "Tchami x Malaa: No Redemption",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tchami-x-malaa-no-redemption",
+    "role": "act"
+   }
+  ],
+  "act": "tchami-x-malaa-no-redemption",
+  "closing": false,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null,
+  "review": "\"x\" billing whose sides are not both known acts"
+ },
+ {
+  "id": "hard-summer-2024:d2:hard-stage:2030:fisher-chris-lake-under-construction",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "HARD Stage",
+  "start": "20:30",
+  "end": "22:00",
+  "printed": "Fisher + Chris Lake: Under Construction",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fisher-chris-lake-under-construction",
+    "role": "act"
+   }
+  ],
+  "act": "fisher-chris-lake-under-construction",
+  "closing": true,
+  "stageLineage": "hard-summer:hard-stage",
+  "mainStage": null,
+  "review": "\"+\" billing"
+ },
+ {
+  "id": "hard-summer-2024:d2:harder-stage:1400:mary-droppinz",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "HARDER Stage",
+  "start": "14:00",
+  "end": "15:30",
+  "printed": "Mary Droppinz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mary-droppinz",
+    "role": "performer"
+   }
+  ],
+  "act": "mary-droppinz",
+  "closing": false,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:harder-stage:1530:gudfella",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "HARDER Stage",
+  "start": "15:30",
+  "end": "16:30",
+  "printed": "GUDFELLA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gudfella",
+    "role": "performer"
+   }
+  ],
+  "act": "gudfella",
+  "closing": false,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:harder-stage:1630:dj-susan",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "HARDER Stage",
+  "start": "16:30",
+  "end": "17:45",
+  "printed": "DJ Susan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-susan",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-susan",
+  "closing": false,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:harder-stage:1745:levity",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "HARDER Stage",
+  "start": "17:45",
+  "end": "18:45",
+  "printed": "Levity",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "levity",
+    "role": "performer"
+   }
+  ],
+  "act": "levity",
+  "closing": false,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:harder-stage:1845:juelz",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "HARDER Stage",
+  "start": "18:45",
+  "end": "19:45",
+  "printed": "Juelz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "juelz",
+    "role": "performer"
+   }
+  ],
+  "act": "juelz",
+  "closing": false,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:harder-stage:1945:troyboi",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "HARDER Stage",
+  "start": "19:45",
+  "end": "21:00",
+  "printed": "TroyBoi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "troyboi",
+    "role": "performer"
+   }
+  ],
+  "act": "troyboi",
+  "closing": false,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:harder-stage:2100:subtronics",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "HARDER Stage",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "Subtronics",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "subtronics",
+    "role": "performer"
+   }
+  ],
+  "act": "subtronics",
+  "closing": true,
+  "stageLineage": "hard-summer:harder-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:green-stage:1400:curra",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "Green Stage",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "Curra",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "curra",
+    "role": "performer"
+   }
+  ],
+  "act": "curra",
+  "closing": false,
+  "stageLineage": "hard-summer:green-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:green-stage:1500:alleycvt",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "Green Stage",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "ALLEYCVT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alleycvt",
+    "role": "performer"
+   }
+  ],
+  "act": "alleycvt",
+  "closing": false,
+  "stageLineage": "hard-summer:green-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:green-stage:1600:level-up",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "Green Stage",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Level Up",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "level-up",
+    "role": "performer"
+   }
+  ],
+  "act": "level-up",
+  "closing": false,
+  "stageLineage": "hard-summer:green-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:green-stage:1700:kanine",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "Green Stage",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Kanine",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kanine",
+    "role": "performer"
+   }
+  ],
+  "act": "kanine",
+  "closing": false,
+  "stageLineage": "hard-summer:green-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:green-stage:1800:hedex",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "Green Stage",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Hedex",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hedex",
+    "role": "performer"
+   }
+  ],
+  "act": "hedex",
+  "closing": false,
+  "stageLineage": "hard-summer:green-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:green-stage:1900:armnhmr",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "Green Stage",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "ARMNHMR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "armnhmr",
+    "role": "performer"
+   }
+  ],
+  "act": "armnhmr",
+  "closing": false,
+  "stageLineage": "hard-summer:green-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:green-stage:2000:chase-and-status",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "Green Stage",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Chase & Status",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chase-and-status",
+    "role": "performer"
+   }
+  ],
+  "act": "chase-and-status",
+  "closing": false,
+  "stageLineage": "hard-summer:green-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:green-stage:2100:dillon-francis-moombahton-set",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "Green Stage",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "Dillon Francis (Moombahton Set)",
+  "setTag": "Moombahton Set",
+  "performers": [
+   {
+    "key": "dillon-francis",
+    "role": "performer"
+   }
+  ],
+  "act": "dillon-francis",
+  "closing": true,
+  "stageLineage": "hard-summer:green-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:purple-stage:1400:fun2bjane",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "Purple Stage",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "fun2bjane",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fun2bjane",
+    "role": "performer"
+   }
+  ],
+  "act": "fun2bjane",
+  "closing": false,
+  "stageLineage": "hard-summer:purple-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:purple-stage:1500:dj-dials",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "Purple Stage",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "DJ Dials",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-dials",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-dials",
+  "closing": false,
+  "stageLineage": "hard-summer:purple-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:purple-stage:1600:panteros666",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "Purple Stage",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Panteros666",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "panteros666",
+    "role": "performer"
+   }
+  ],
+  "act": "panteros666",
+  "closing": false,
+  "stageLineage": "hard-summer:purple-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:purple-stage:1700:jyoty",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "Purple Stage",
+  "start": "17:00",
+  "end": "18:15",
+  "printed": "Jyoty",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jyoty",
+    "role": "performer"
+   }
+  ],
+  "act": "jyoty",
+  "closing": false,
+  "stageLineage": "hard-summer:purple-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:purple-stage:1815:kenny-beats",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "Purple Stage",
+  "start": "18:15",
+  "end": "19:15",
+  "printed": "Kenny Beats",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kenny-beats",
+    "role": "performer"
+   }
+  ],
+  "act": "kenny-beats",
+  "closing": false,
+  "stageLineage": "hard-summer:purple-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:purple-stage:1930:elderbrook",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "Purple Stage",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "Elderbrook",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "elderbrook",
+    "role": "performer"
+   }
+  ],
+  "act": "elderbrook",
+  "closing": false,
+  "stageLineage": "hard-summer:purple-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:purple-stage:2100:major-lazer",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "Purple Stage",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "Major Lazer",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "major-lazer",
+    "role": "performer"
+   }
+  ],
+  "act": "major-lazer",
+  "closing": true,
+  "stageLineage": "hard-summer:purple-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:pink-stage:1400:lupa",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "Pink Stage",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "LUPA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lupa",
+    "role": "performer"
+   }
+  ],
+  "act": "lupa",
+  "closing": false,
+  "stageLineage": "hard-summer:pink-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:pink-stage:1500:ahadadream",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "Pink Stage",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "Ahadadream",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ahadadream",
+    "role": "performer"
+   }
+  ],
+  "act": "ahadadream",
+  "closing": false,
+  "stageLineage": "hard-summer:pink-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:pink-stage:1600:honeyluv-b2b-bontan",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "Pink Stage",
+  "start": "16:00",
+  "end": "17:30",
+  "printed": "HoneyLuv B2B Bontan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "honeyluv",
+    "role": "b2b"
+   },
+   {
+    "key": "bontan",
+    "role": "b2b"
+   }
+  ],
+  "act": "honeyluv-b2b-bontan",
+  "closing": false,
+  "stageLineage": "hard-summer:pink-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:pink-stage:1730:kerri-chandler",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "Pink Stage",
+  "start": "17:30",
+  "end": "18:30",
+  "printed": "Kerri Chandler",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kerri-chandler",
+    "role": "performer"
+   }
+  ],
+  "act": "kerri-chandler",
+  "closing": false,
+  "stageLineage": "hard-summer:pink-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:pink-stage:1830:beltran-b2b-classmatic",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "Pink Stage",
+  "start": "18:30",
+  "end": "19:50",
+  "printed": "Beltran B2B Classmatic",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "beltran",
+    "role": "b2b"
+   },
+   {
+    "key": "classmatic",
+    "role": "b2b"
+   }
+  ],
+  "act": "beltran-b2b-classmatic",
+  "closing": false,
+  "stageLineage": "hard-summer:pink-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:pink-stage:1950:dj-heartstring",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "Pink Stage",
+  "start": "19:50",
+  "end": "20:50",
+  "printed": "DJ Heartstring",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-heartstring",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-heartstring",
+  "closing": false,
+  "stageLineage": "hard-summer:pink-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:pink-stage:2050:eli-brown",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "Pink Stage",
+  "start": "20:50",
+  "end": "22:00",
+  "printed": "Eli Brown",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eli-brown",
+    "role": "performer"
+   }
+  ],
+  "act": "eli-brown",
+  "closing": true,
+  "stageLineage": "hard-summer:pink-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:beatbox-boombox-art-car:1400:kiah-g",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "Beatbox Boombox Art Car",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "Kiah G",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kiah-g",
+    "role": "performer"
+   }
+  ],
+  "act": "kiah-g",
+  "closing": false,
+  "stageLineage": "hard-summer:beatbox-boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:beatbox-boombox-art-car:1500:lechuga",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "Beatbox Boombox Art Car",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "Lechuga",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lechuga",
+    "role": "performer"
+   }
+  ],
+  "act": "lechuga",
+  "closing": false,
+  "stageLineage": "hard-summer:beatbox-boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:beatbox-boombox-art-car:1600:baby-com",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "Beatbox Boombox Art Car",
+  "start": "16:00",
+  "end": "17:30",
+  "printed": "baby.com",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "baby-com",
+    "role": "performer"
+   }
+  ],
+  "act": "baby-com",
+  "closing": false,
+  "stageLineage": "hard-summer:beatbox-boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:beatbox-boombox-art-car:1730:giselle-peppers",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "Beatbox Boombox Art Car",
+  "start": "17:30",
+  "end": "19:00",
+  "printed": "Giselle Peppers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "giselle-peppers",
+    "role": "performer"
+   }
+  ],
+  "act": "giselle-peppers",
+  "closing": false,
+  "stageLineage": "hard-summer:beatbox-boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:beatbox-boombox-art-car:1900:mesme",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "Beatbox Boombox Art Car",
+  "start": "19:00",
+  "end": "20:30",
+  "printed": "Mesmé",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mesme",
+    "role": "performer"
+   }
+  ],
+  "act": "mesme",
+  "closing": false,
+  "stageLineage": "hard-summer:beatbox-boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:beatbox-boombox-art-car:2030:lake-hills",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "Beatbox Boombox Art Car",
+  "start": "20:30",
+  "end": "22:00",
+  "printed": "Lake Hills",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lake-hills",
+    "role": "performer"
+   }
+  ],
+  "act": "lake-hills",
+  "closing": true,
+  "stageLineage": "hard-summer:beatbox-boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:jose-cuervo-locals-only-stage:1400:soul-purpose",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "Jose Cuervo Locals Only Stage",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "Soul Purpose",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "soul-purpose",
+    "role": "performer"
+   }
+  ],
+  "act": "soul-purpose",
+  "closing": false,
+  "stageLineage": "hard-summer:jose-cuervo-locals-only-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:jose-cuervo-locals-only-stage:1500:capes",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "Jose Cuervo Locals Only Stage",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "Capes",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "capes",
+    "role": "performer"
+   }
+  ],
+  "act": "capes",
+  "closing": false,
+  "stageLineage": "hard-summer:jose-cuervo-locals-only-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:jose-cuervo-locals-only-stage:1600:trax-unit",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "Jose Cuervo Locals Only Stage",
+  "start": "16:00",
+  "end": "17:30",
+  "printed": "Trax Unit",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "trax-unit",
+    "role": "performer"
+   }
+  ],
+  "act": "trax-unit",
+  "closing": false,
+  "stageLineage": "hard-summer:jose-cuervo-locals-only-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:jose-cuervo-locals-only-stage:1730:cherry-lee",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "Jose Cuervo Locals Only Stage",
+  "start": "17:30",
+  "end": "19:00",
+  "printed": "Cherry Lee",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cherry-lee",
+    "role": "performer"
+   }
+  ],
+  "act": "cherry-lee",
+  "closing": false,
+  "stageLineage": "hard-summer:jose-cuervo-locals-only-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:jose-cuervo-locals-only-stage:1900:laalls-b2b-cerulean",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "Jose Cuervo Locals Only Stage",
+  "start": "19:00",
+  "end": "20:30",
+  "printed": "LAALLS B2B cerulean",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "laalls",
+    "role": "b2b"
+   },
+   {
+    "key": "cerulean",
+    "role": "b2b"
+   }
+  ],
+  "act": "laalls-b2b-cerulean",
+  "closing": false,
+  "stageLineage": "hard-summer:jose-cuervo-locals-only-stage",
+  "mainStage": null
+ },
+ {
+  "id": "hard-summer-2024:d2:jose-cuervo-locals-only-stage:2030:sisters-of-sound-maddy-maia-b2b-tottie",
+  "source": "edition",
+  "festivalId": "hard-summer-2024",
+  "festivalBrand": "hard-summer",
+  "year": 2024,
+  "date": "2024-08-04",
+  "day": 2,
+  "stage": "Jose Cuervo Locals Only Stage",
+  "start": "20:30",
+  "end": "22:00",
+  "printed": "Sisters of Sound (Maddy Maia B2B Tottie)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sisters-of-sound-maddy-maia-b2b-tottie",
+    "role": "act"
+   }
+  ],
+  "act": "sisters-of-sound-maddy-maia-b2b-tottie",
+  "closing": true,
+  "stageLineage": "hard-summer:jose-cuervo-locals-only-stage",
+  "mainStage": null,
+  "review": "parenthetical names people"
+ },
+ {
   "id": "hard-summer-2025:d1:hard-stage:2100:feid",
   "source": "edition",
   "festivalId": "hard-summer-2025",

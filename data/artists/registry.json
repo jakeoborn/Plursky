@@ -219,6 +219,7 @@
    "electric-forest-2012:d3:tripolee:2230:12th-planet",
    "electric-forest-2014:d2:tripolee:2230:12th-planet",
    "hard-summer-2012:d2:harder-stage:2120:12th-planet",
+   "hard-summer-2019:d1:green-tent:2000:12th-planet",
    "lollapalooza-2011:d3:perry-s:1700:12th-planet",
    "nocturnal-wonderland-2011:d1:sunken-garden:0100:12th-planet",
    "nocturnal-wonderland-2012:d2:sunken-garden:2330:12th-planet",
@@ -383,6 +384,36 @@
   ],
   "firstSeen": "2013-08-04",
   "lastSeen": "2018-06-02",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "2-craze-and-four-color-zack",
+  "name": "2¢ (Craze & Four Color Zack)",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2019:d1:purple-tent:1830:2-craze-and-four-color-zack"
+  ],
+  "firstSeen": "2019-08-03",
+  "lastSeen": "2019-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "2-deep",
+  "name": "2 Deep",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2019:d2:hard-stage:1300:2-deep"
+  ],
+  "firstSeen": "2019-08-04",
+  "lastSeen": "2019-08-04",
   "photo": null,
   "links": []
  },
@@ -861,9 +892,10 @@
   "projects": [],
   "billings": [
    "countdown-nye-2026:cdny-33-below",
-   "edc-las-vegas-2025:d3:stereo-bloom:0315:33-below-b2b-mph"
+   "edc-las-vegas-2025:d3:stereo-bloom:0315:33-below-b2b-mph",
+   "hard-summer-2024:d1:harder-stage:1620:33-below"
   ],
-  "firstSeen": "2025-05-18",
+  "firstSeen": "2024-08-03",
   "lastSeen": "2027-01-01",
   "photo": null,
   "links": []
@@ -976,6 +1008,7 @@
    "edc-orlando-2022:d1:kinetic-field:1629:4b",
    "edc-orlando-2022:d1:corona-electric-beach:2300:4b-b2b-mikey-barreneche",
    "edc-orlando-2024:d3:circuit-grounds:1530:4b-b2b-jstjr",
+   "hard-summer-2019:d1:hard-stage:1845:flosstradamus-b2b-4b",
    "lollapalooza-2018:d1:perry-s:untimed:4b",
    "nocturnal-wonderland-2018:d1:wolves-den:2205:4b",
    "nocturnal-wonderland-2021:d1:wolves-den:2000:4b",
@@ -1974,6 +2007,7 @@
    "governors-ball-2015:d3:honda-stage:1645:a-trak",
    "hard-summer-2012:d1:fool-s-gold-clubhouse:2350:a-trak",
    "hard-summer-2012:d2:hard-stage:1845:a-trak",
+   "hard-summer-2019:d2:harder-stage:1850:a-trak-b2b-yehme2",
    "lollapalooza-2017:d1:perry-s:1745:a-trak",
    "nocturnal-wonderland-2021:d1:sunken-garden:2200:a-trak",
    "outside-lands-2013:d3:twin-peaks:1710:a-trak",
@@ -4684,6 +4718,7 @@
   "projects": [],
   "billings": [
    "crssd-fall-2026:crssd-ahadadream",
+   "hard-summer-2024:d2:pink-stage:1500:ahadadream",
    "lollapalooza-2024:d3:sonny-s:1305:ahadadream-b2b-manara",
    "shambhala-2025:d3:the-pagoda:2200:ahadadream",
    "ultra-miami-2025:d1:umf-radio:2130:ahadadream"
@@ -7289,6 +7324,7 @@
    "edc-orlando-2024:d1:kinetic-field:2114:kaskade-b2b-alison-wonderland",
    "electric-forest-2015:d4:tripolee:1700:alison-wonderland",
    "escape-halloween-2024:d1:the-grimm:2315:alison-wonderland",
+   "hard-summer-2019:d1:harder-stage:2200:alison-wonderland",
    "lollapalooza-2015:d3:perry-s:1330:alison-wonderland",
    "lollapalooza-2017:d3:perry-s:1800:alison-wonderland",
    "lollapalooza-2021:d4:solana-x-perry-s:2030:alison-wonderland",
@@ -7653,11 +7689,12 @@
    "edc-thailand-2026:edcth-alleycvt",
    "edc-las-vegas-2025:d3:circuit-grounds:1900:alleycvt",
    "edc-orlando-2025:d3:stereobloom:2000:alleycvt",
+   "hard-summer-2024:d2:green-stage:1500:alleycvt",
    "lollapalooza-2025:d2:perry-s:1515:alleycvt",
    "shambhala-2025:d3:the-village:0200:alleycvt",
    "ultra-miami-2025:d3:worldwide-stage:1515:alleycvt-b2b-jessica-audiffred"
   ],
-  "firstSeen": "2025-03-30",
+  "firstSeen": "2024-08-04",
   "lastSeen": "2026-12-31",
   "photo": null,
   "links": []
@@ -9460,6 +9497,21 @@
   "links": []
  },
  {
+  "key": "amok-will-clarke-sian",
+  "name": "AMOK (Will Clarke + Sian)",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2019:d2:pink-tent:1735:amok-will-clarke-sian"
+  ],
+  "firstSeen": "2019-08-04",
+  "lastSeen": "2019-08-04",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "amon-tobin-isam-2-0",
   "name": "Amon Tobin : ISAM 2.0",
   "aliases": [],
@@ -9639,10 +9691,11 @@
   "billings": [
    "coachella-2017:d3:do-lab:1945:amtrac",
    "hard-summer-2012:d2:rbma-discotheque:1710:amtrac",
+   "hard-summer-2019:d1:pink-tent:1500:amtrac",
    "shambhala-2015:d4:fractal-forest:0400:amtrac"
   ],
   "firstSeen": "2012-08-04",
-  "lastSeen": "2017-04-16",
+  "lastSeen": "2019-08-03",
   "photo": null,
   "links": []
  },
@@ -10273,6 +10326,7 @@
   "billings": [
    "coachella-2017:d1:sahara:1225:andre-power",
    "edc-las-vegas-2025:d3:ubuntu:2030:andre-power",
+   "hard-summer-2019:d1:purple-tent:1540:andre-power",
    "outside-lands-2019:d3:the-house-by-heineken:1700:andre-power-soulection"
   ],
   "firstSeen": "2017-04-14",
@@ -11695,6 +11749,7 @@
    "coachella-2017:d3:sahara:1410:anna-lunoe",
    "coachella-2017:d6:sahara:1410:anna-lunoe",
    "electric-forest-2014:d3:tripolee:1500:anna-lunoe",
+   "hard-summer-2019:d2:hard-stage:1550:anna-lunoe",
    "lollapalooza-2014:d2:perry-s:1200:anna-lunoe",
    "outside-lands-2022:d2:twin-peaks:1555:anna-lunoe",
    "tomorrowland-2018:d4:arch:1830:anna-lunoe"
@@ -12209,9 +12264,10 @@
   "projects": [],
   "billings": [
    "coachella-2024:d1:mojave:2315:anti-up",
-   "coachella-2024:d4:mojave:2315:anti-up"
+   "coachella-2024:d4:mojave:2315:anti-up",
+   "hard-summer-2019:d2:pink-tent:2200:anti-up"
   ],
-  "firstSeen": "2024-04-12",
+  "firstSeen": "2019-08-04",
   "lastSeen": "2024-04-19",
   "photo": null,
   "links": []
@@ -13452,9 +13508,10 @@
   "projects": [],
   "billings": [
    "acl-2019:d5:t-mobile:1145:armani-white",
+   "hard-summer-2019:d1:purple-tent:1505:armani-white",
    "lollapalooza-2024:d3:t-mobile:1315:armani-white"
   ],
-  "firstSeen": "2019-10-12",
+  "firstSeen": "2019-08-03",
   "lastSeen": "2024-08-03",
   "photo": null,
   "links": []
@@ -13607,6 +13664,7 @@
    "edc-orlando-2022:d2:corona-electric-beach:2300:armnhmr",
    "edc-orlando-2023:d3:circuit-grounds:1630:armnhmr",
    "escape-halloween-2021:d1:the-grimm:1830:armnhmr",
+   "hard-summer-2024:d2:green-stage:1900:armnhmr",
    "lollapalooza-2023:d2:perry-s:1630:armnhmr",
    "nocturnal-wonderland-2018:d1:wolves-den:2005:armnhmr",
    "outside-lands-2025:d1:twin-peaks:1855:armnhmr",
@@ -16700,9 +16758,10 @@
    "beyond-wonderland-gorge-2026:d2:caterpillar-s-garden:2200:ayybo",
    "edc-las-vegas-2025:d2:cosmic-meadow:0200:ayybo",
    "edc-orlando-2025:d1:stereobloom:2000:ayybo",
+   "hard-summer-2024:d1:harder-stage:1720:ayybo",
    "outside-lands-2024:d3:soma:1425:ayybo"
   ],
-  "firstSeen": "2024-08-11",
+  "firstSeen": "2024-08-03",
   "lastSeen": "2026-11-07",
   "photo": null,
   "links": []
@@ -17318,6 +17377,21 @@
   ],
   "firstSeen": "2015-05-30",
   "lastSeen": "2015-05-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "baby-com",
+  "name": "baby.com",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2024:d2:beatbox-boombox-art-car:1600:baby-com"
+  ],
+  "firstSeen": "2024-08-04",
+  "lastSeen": "2024-08-04",
   "photo": null,
   "links": []
  },
@@ -17966,6 +18040,21 @@
   ],
   "firstSeen": "2021-11-12",
   "lastSeen": "2021-11-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "baexploitation",
+  "name": "Baexploitation",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2024:d1:jose-cuervo-locals-only-stage:1700:baexploitation"
+  ],
+  "firstSeen": "2024-08-03",
+  "lastSeen": "2024-08-03",
   "photo": null,
   "links": []
  },
@@ -20057,16 +20146,19 @@
  },
  {
   "key": "baynk",
-  "name": "BAYNK",
-  "aliases": [],
+  "name": "Baynk",
+  "aliases": [
+   "BAYNK"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "hard-summer-2019:d2:hard-stage:1445:baynk",
    "lollapalooza-2019:d2:tito-s-handmade-vodka:untimed:baynk"
   ],
   "firstSeen": "2019-08-02",
-  "lastSeen": "2019-08-02",
+  "lastSeen": "2019-08-04",
   "photo": null,
   "links": []
  },
@@ -21446,10 +21538,26 @@
    "edc-las-vegas-2025:d2:neon-garden:2200:beltran",
    "edc-las-vegas-2025:d3:bionic-jungle:0330:ben-sterling-b2b-beltran",
    "edc-orlando-2024:d2:neon-garden:1800:beltran",
-   "edc-orlando-2025:d2:neongarden:2115:beltran"
+   "edc-orlando-2025:d2:neongarden:2115:beltran",
+   "hard-summer-2024:d2:pink-stage:1830:beltran-b2b-classmatic"
   ],
-  "firstSeen": "2024-11-09",
+  "firstSeen": "2024-08-04",
   "lastSeen": "2027-04-10",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "beme",
+  "name": "BEME",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2024:d1:harder-stage:1400:beme"
+  ],
+  "firstSeen": "2024-08-03",
+  "lastSeen": "2024-08-03",
   "photo": null,
   "links": []
  },
@@ -22038,9 +22146,10 @@
    "lost-lands-2026:llf6",
    "edc-orlando-2026:ecf6",
    "edc-orlando-2023:d2:circuit-grounds:1500:benda",
-   "escape-halloween-2019:d2:crazy-town:2000:benda"
+   "escape-halloween-2019:d2:crazy-town:2000:benda",
+   "hard-summer-2019:d1:green-tent:1300:benda"
   ],
-  "firstSeen": "2019-10-26",
+  "firstSeen": "2019-08-03",
   "lastSeen": "2026-11-06",
   "photo": null,
   "links": []
@@ -22971,6 +23080,21 @@
   "links": []
  },
  {
+  "key": "bianca-maieli",
+  "name": "Bianca Maieli",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2024:d1:jose-cuervo-locals-only-stage:1830:bianca-maieli"
+  ],
+  "firstSeen": "2024-08-03",
+  "lastSeen": "2024-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "bianca-oblivion",
   "name": "Bianca Oblivion",
   "aliases": [
@@ -22982,6 +23106,8 @@
   "billings": [
    "hard-summer-2026:hs2-bianca-oblivion-b2b-star-eyes",
    "edc-las-vegas-2024:d2:bionic-jungle:1900:bianca-oblivion",
+   "hard-summer-2024:d1:purple-stage:1400:bianca-oblivion",
+   "hard-summer-2024:d1:jose-cuervo-locals-only-stage:2130:bianca-oblivion",
    "shambhala-2025:d4:living-room:2330:bianca-oblivion"
   ],
   "firstSeen": "2024-05-18",
@@ -24740,15 +24866,18 @@
  },
  {
   "key": "black-caviar",
-  "name": "BLACK CAVIAR",
-  "aliases": [],
+  "name": "Black Caviar",
+  "aliases": [
+   "BLACK CAVIAR"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2019:d3:kineticfield:1300:black-caviar"
+   "edc-orlando-2019:d3:kineticfield:1300:black-caviar",
+   "hard-summer-2019:d2:harder-stage:1350:black-caviar"
   ],
-  "firstSeen": "2019-11-10",
+  "firstSeen": "2019-08-04",
   "lastSeen": "2019-11-10",
   "photo": null,
   "links": []
@@ -25408,10 +25537,12 @@
   "projects": [],
   "billings": [
    "beyond-wonderland-gorge-2026:d2:queen-s-valley:1900:blanke",
+   "hard-summer-2019:d2:green-tent:1500:blanke",
+   "hard-summer-2019:d2:corona-electric-beach:2000:blanke",
    "lollapalooza-2023:d2:perry-s:1320:blanke",
    "nocturnal-wonderland-2022:d2:labyrinth:1800:blanke"
   ],
-  "firstSeen": "2022-09-18",
+  "firstSeen": "2019-08-04",
   "lastSeen": "2026-06-28",
   "photo": null,
   "links": []
@@ -25643,6 +25774,21 @@
   ],
   "firstSeen": "2015-10-02",
   "lastSeen": "2015-10-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "blesst",
+  "name": "Blesst",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2019:d2:purple-tent:1300:blesst"
+  ],
+  "firstSeen": "2019-08-04",
+  "lastSeen": "2019-08-04",
   "photo": null,
   "links": []
  },
@@ -27243,10 +27389,11 @@
    "edc-orlando-2024:d2:casa-bacardi:1600:bolo",
    "edc-orlando-2025:d3:casabacardi:2130:bolo",
    "escape-halloween-2024:d1:casa-bacardi:2115:bolo",
+   "hard-summer-2024:d1:beatbox-boombox-art-car:1700:bolo",
    "hard-summer-2025:d1:harder-stage:1600:bolo",
    "outside-lands-2025:d3:casa-bacardi:1545:bolo"
   ],
-  "firstSeen": "2024-10-25",
+  "firstSeen": "2024-08-03",
   "lastSeen": "2027-04-11",
   "photo": null,
   "links": []
@@ -27569,6 +27716,7 @@
   "billings": [
    "edc-las-vegas-2025:d2:stereo-bloom:0300:bontan-b2b-calussa",
    "edc-orlando-2024:d1:neon-garden:1630:honeyluv-b2b-bontan",
+   "hard-summer-2024:d2:pink-stage:1600:honeyluv-b2b-bontan",
    "tomorrowland-2014:d1:desperados:1930:bontan",
    "tomorrowland-2014:d5:desperados:1930:bontan",
    "tomorrowland-2018:d2:amicorum-spectaculum-presents-theatre-formidable:1530:bontan"
@@ -28075,6 +28223,8 @@
    "edc-orlando-2019:d2:stereobloom:1845:born-dirty",
    "edc-orlando-2021:d3:stereo-bloom:1615:born-dirty",
    "edc-orlando-2021:d3:corona-electric-beach:2030:lp-giobbi-b2b-born-dirty",
+   "hard-summer-2019:d1:harder-stage:1650:born-dirty",
+   "hard-summer-2019:d1:corona-electric-beach:1815:born-dirty",
    "lollapalooza-2019:d4:perry-s:untimed:born-dirty",
    "nocturnal-wonderland-2017:d2:temple-noctem:2215:born-dirty",
    "ultra-miami-2019:d1:worldwide-stage:1400:born-dirty"
@@ -28631,6 +28781,7 @@
    "edc-las-vegas-2025:d2:cosmic-meadow:0230:boys-noize",
    "escape-halloween-2017:d2:chopping-block:0045:boys-noize-live",
    "hard-summer-2012:d1:hard-stage:0050:boys-noize",
+   "hard-summer-2024:d1:purple-stage:2130:boys-noize",
    "lollapalooza-2015:d2:perry-s:1745:boys-noize",
    "outside-lands-2014:d2:panhandle:1955:boys-noize",
    "shambhala-2016:d2:pagoda:0230:boys-noize",
@@ -31629,10 +31780,11 @@
    "groove-cruise-2027:gc-bunt",
    "coachella-2026:d3:sahara:1645:bunt",
    "coachella-2026:d6:sahara:1645:bunt",
+   "hard-summer-2024:d1:hard-stage:1600:bunt",
    "lollapalooza-2025:d2:perry-s:1615:bunt",
    "outside-lands-2025:d1:panhandle:1945:bunt"
   ],
-  "firstSeen": "2025-08-01",
+  "firstSeen": "2024-08-03",
   "lastSeen": "2027-01-21",
   "photo": null,
   "links": []
@@ -33005,6 +33157,21 @@
   "links": []
  },
  {
+  "key": "cam-girl",
+  "name": "Cam Girl",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2019:d2:purple-tent:1400:cam-girl"
+  ],
+  "firstSeen": "2019-08-04",
+  "lastSeen": "2019-08-04",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "camarones-orquesta-guitarristica",
   "name": "Camarones Orquesta Guitarrística",
   "aliases": [],
@@ -33030,11 +33197,12 @@
   "projects": [],
   "billings": [
    "edc-las-vegas-2024:d2:cosmic-meadow:1900:camden-cox",
+   "hard-summer-2024:d2:hard-stage:1500:camden-cox",
    "lollapalooza-2024:d1:tito-s-handmade-vodka:1945:camden-cox",
    "lollapalooza-2024:d1:perry-s:1200:camden-cox"
   ],
   "firstSeen": "2024-05-18",
-  "lastSeen": "2024-08-01",
+  "lastSeen": "2024-08-04",
   "photo": null,
   "links": []
  },
@@ -33506,9 +33674,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "hard-summer-2026:hs1-capes"
+   "hard-summer-2026:hs1-capes",
+   "hard-summer-2024:d2:jose-cuervo-locals-only-stage:1500:capes"
   ],
-  "firstSeen": "2026-08-01",
+  "firstSeen": "2024-08-04",
   "lastSeen": "2026-08-01",
   "photo": null,
   "links": []
@@ -34562,6 +34731,7 @@
   "billings": [
    "edc-orlando-2023:d2:kinetic-field:1412:carola",
    "edc-orlando-2024:d3:casa-bacardi:2000:carola",
+   "hard-summer-2024:d1:harder-stage:1520:carola",
    "lollapalooza-2023:d1:tito-s-handmade-vodka:2000:carola",
    "lollapalooza-2023:d1:perry-s:1300:carola",
    "tomorrowland-2023:d5:mainstage:1515:carola"
@@ -35691,9 +35861,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2026:ecs38"
+   "edc-orlando-2026:ecs38",
+   "hard-summer-2024:d1:beatbox-boombox-art-car:1530:cc-love"
   ],
-  "firstSeen": "2026-11-07",
+  "firstSeen": "2024-08-03",
   "lastSeen": "2026-11-07",
   "photo": null,
   "links": []
@@ -36135,6 +36306,21 @@
   ],
   "firstSeen": "2017-06-17",
   "lastSeen": "2017-06-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "cerulean",
+  "name": "cerulean",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2024:d2:jose-cuervo-locals-only-stage:1900:laalls-b2b-cerulean"
+  ],
+  "firstSeen": "2024-08-04",
+  "lastSeen": "2024-08-04",
   "photo": null,
   "links": []
  },
@@ -36671,6 +36857,7 @@
    "acl-2021:d6:vrbo:1730:channel-tres",
    "coachella-2022:d3:sahara:1620:channel-tres",
    "coachella-2022:d6:sahara:1620:channel-tres",
+   "hard-summer-2024:d1:purple-stage:1830:channel-tres",
    "lightning-in-a-bottle-2019:d5:lightning:1730:channel-tres",
    "outside-lands-2024:d2:sutro:1900:channel-tres",
    "primavera-sound-2019:d4:lotus:2100:channel-tres",
@@ -37366,6 +37553,7 @@
    "edc-las-vegas-2025:d1:kinetic-field:0237:dom-dolla-b2b-chase-and-status",
    "edc-las-vegas-2025:d2:basspod:0030:chase-and-status",
    "edc-orlando-2025:d3:circuitgrounds:2045:chase-and-status",
+   "hard-summer-2024:d2:green-stage:2000:chase-and-status",
    "lollapalooza-2014:d2:perry-s:1900:chase-and-status",
    "lollapalooza-2025:d3:perry-s:1930:chase-and-status",
    "ultra-miami-2017:d2:live-stage:2115:chase-and-status",
@@ -37820,15 +38008,18 @@
  },
  {
   "key": "cherry-lee",
-  "name": "CHERRY LEE",
-  "aliases": [],
+  "name": "Cherry Lee",
+  "aliases": [
+   "CHERRY LEE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "escape-halloween-2024:d1:the-cauldron:1600:cherry-lee"
+   "escape-halloween-2024:d1:the-cauldron:1600:cherry-lee",
+   "hard-summer-2024:d2:jose-cuervo-locals-only-stage:1730:cherry-lee"
   ],
-  "firstSeen": "2024-10-25",
+  "firstSeen": "2024-08-04",
   "lastSeen": "2024-10-25",
   "photo": null,
   "links": []
@@ -38589,6 +38780,7 @@
    "coachella-2023:d5:yuma:1400:chloe-caillet",
    "escape-halloween-2024:d1:wicked-woods:2000:chloe-caillet",
    "escape-halloween-2024:d1:the-cauldron:1730:chloe-caillet",
+   "hard-summer-2024:d1:pink-stage:1800:chloe-caillet",
    "tomorrowland-2023:d1:core:1600:chloe-caillet",
    "ultra-miami-2025:d3:megastructure:1500:chloe-caillet"
   ],
@@ -38735,6 +38927,21 @@
   ],
   "firstSeen": "2021-07-30",
   "lastSeen": "2021-07-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "choppa-dunks",
+  "name": "Choppa Dunks",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2019:d2:corona-electric-beach:1530:choppa-dunks"
+  ],
+  "firstSeen": "2019-08-04",
+  "lastSeen": "2019-08-04",
   "photo": null,
   "links": []
  },
@@ -39221,6 +39428,7 @@
    "coachella-2025:d4:yuma:2145:chris-stussy",
    "edc-orlando-2023:d2:neon-garden:1715:chris-stussy",
    "escape-halloween-2022:d1:sewer-district:1800:chris-stussy",
+   "hard-summer-2024:d1:pink-stage:1900:chris-stussy",
    "ultra-miami-2023:d1:megastructure:1715:chris-stussy"
   ],
   "firstSeen": "2022-10-28",
@@ -40793,9 +41001,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-las-vegas-2025:d1:cosmic-meadow:1730:sosa-b2b-classmatic"
+   "edc-las-vegas-2025:d1:cosmic-meadow:1730:sosa-b2b-classmatic",
+   "hard-summer-2024:d2:pink-stage:1830:beltran-b2b-classmatic"
   ],
-  "firstSeen": "2025-05-16",
+  "firstSeen": "2024-08-04",
   "lastSeen": "2025-05-16",
   "photo": null,
   "links": []
@@ -40861,6 +41070,7 @@
    "edc-las-vegas-2013:d2:cosmicmeadow:0415:claude-vonstroke",
    "electric-forest-2015:d3:tripolee:0145:claude-vonstroke",
    "hard-summer-2012:d2:rbma-discotheque:2320:claude-vonstroke",
+   "hard-summer-2019:d2:harder-stage:1950:claude-vonstroke",
    "outside-lands-2017:d2:twin-peaks:1900:claude-vonstroke",
    "outside-lands-2022:d2:soma-tent:2015:claude-vonstroke",
    "outside-lands-2025:d2:soma:2010:claude-vonstroke",
@@ -41237,6 +41447,7 @@
    "edc-orlando-2025:d2:neongarden:2230:cloonee",
    "escape-halloween-2022:d2:sanitarium:2000:cloonee",
    "escape-halloween-2024:d2:feeding-grounds:0030:cloonee",
+   "hard-summer-2024:d1:hard-stage:1825:cloonee",
    "lollapalooza-2025:d1:dollapalooza:1750:cloonee",
    "tomorrowland-2023:d3:crystal-garden:1900:cloonee"
   ],
@@ -42260,7 +42471,8 @@
    "coachella-2022:d6:yuma:1200:cole-knight",
    "edc-las-vegas-2025:d2:neon-garden:1900:cole-knight",
    "edc-las-vegas-2025:d3:bionic-jungle:2030:cole-knight",
-   "edc-orlando-2025:d2:neongarden:1300:cole-knight"
+   "edc-orlando-2025:d2:neongarden:1300:cole-knight",
+   "hard-summer-2024:d1:pink-stage:1500:cole-knight"
   ],
   "firstSeen": "2022-04-17",
   "lastSeen": "2026-10-17",
@@ -45674,6 +45886,21 @@
   "links": []
  },
  {
+  "key": "curra",
+  "name": "Curra",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2024:d2:green-stage:1400:curra"
+  ],
+  "firstSeen": "2024-08-04",
+  "lastSeen": "2024-08-04",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "current-93",
   "name": "CURRENT 93",
   "aliases": [],
@@ -46806,6 +47033,8 @@
   "billings": [
    "nocturnal-wonderland-2026:nw-dack-janiels-b2b-mongrel",
    "escape-halloween-2021:d1:psycho-circus:1600:dack-janiels",
+   "hard-summer-2019:d1:green-tent:1345:dack-janiels",
+   "hard-summer-2019:d2:corona-electric-beach:1645:dack-janiels",
    "nocturnal-wonderland-2018:d1:labyrinth:1800:dack-janiels"
   ],
   "firstSeen": "2018-09-14",
@@ -49245,16 +49474,19 @@
  },
  {
   "key": "dateless",
-  "name": "DATELESS",
-  "aliases": [],
+  "name": "Dateless",
+  "aliases": [
+   "DATELESS"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "hard-summer-2019:d2:pink-tent:1500:dateless-b2b-lucati",
    "nocturnal-wonderland-2018:d2:sunken-garden:1800:dateless"
   ],
   "firstSeen": "2018-09-15",
-  "lastSeen": "2018-09-15",
+  "lastSeen": "2019-08-04",
   "photo": null,
   "links": []
  },
@@ -54249,11 +54481,12 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "hard-summer-2019:d2:purple-tent:1745:diablo",
    "lollapalooza-2019:d3:perry-s:untimed:diablo",
    "ultra-miami-2019:d1:worldwide-stage:1500:diablo"
   ],
   "firstSeen": "2019-03-29",
-  "lastSeen": "2019-08-03",
+  "lastSeen": "2019-08-04",
   "photo": null,
   "links": []
  },
@@ -54618,10 +54851,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "hard-summer-2019:d1:green-tent:1825:diesel-shaquille-o-neal",
    "lollapalooza-2019:d4:perry-s:untimed:diesel-shaquille-o-neal",
    "outside-lands-2023:d1:twin-peaks:1720:diesel-shaquille-o-neal"
   ],
-  "firstSeen": "2019-08-04",
+  "firstSeen": "2019-08-03",
   "lastSeen": "2023-08-11",
   "photo": null,
   "links": []
@@ -54963,6 +55197,8 @@
    "escape-halloween-2019:d1:the-grimm:2315:dillon-francis",
    "governors-ball-2013:d1:hondastage:1645:dillon-francis",
    "hard-summer-2012:d2:owsla-tent:2210:dillon-francis",
+   "hard-summer-2019:d1:hard-stage:2015:dillon-francis",
+   "hard-summer-2024:d2:green-stage:2100:dillon-francis-moombahton-set",
    "lollapalooza-2015:d1:perry-s:1900:dillon-francis",
    "lollapalooza-2018:d2:perry-s:untimed:dillon-francis",
    "nocturnal-wonderland-2017:d1:wolves-den:0100:dillon-francis",
@@ -55053,6 +55289,7 @@
    "edc-las-vegas-2024:d3:basspod:2330:dimension",
    "edc-las-vegas-2025:d2:kinetic-field:2000:dimension",
    "edc-orlando-2021:d2:circuit-grounds:1800:dimension",
+   "hard-summer-2024:d1:green-stage:2000:dimension",
    "shambhala-2024:d4:the-village:0000:dimension",
    "tomorrowland-2016:d1:tranceaddict:1300:dimension",
    "tomorrowland-2017:d4:netsky-and-friends:1700:dimension",
@@ -55316,6 +55553,21 @@
   "links": []
  },
  {
+  "key": "dina",
+  "name": "Dina",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2024:d1:jose-cuervo-locals-only-stage:1400:dina"
+  ],
+  "firstSeen": "2024-08-03",
+  "lastSeen": "2024-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dinamarca",
   "name": "Dinamarca",
   "aliases": [],
@@ -55498,6 +55750,7 @@
   "billings": [
    "lost-lands-2026:llh3",
    "edc-orlando-2023:d1:circuit-grounds:1815:dirt-monkey-b2b-subdocta",
+   "hard-summer-2019:d2:green-tent:1800:subtronics-b2b-dirt-monkey",
    "nocturnal-wonderland-2018:d1:labyrinth:1900:dirt-monkey",
    "shambhala-2025:d4:the-village:0300:dirt-monkey"
   ],
@@ -55913,6 +56166,7 @@
    "coachella-2026:d1:outdoor:2235:disclosure",
    "coachella-2026:d4:outdoor:2240:disclosure",
    "governors-ball-2014:d2:honda-stage:1645:disclosure",
+   "hard-summer-2024:d1:hard-stage:2130:disclosure",
    "lightning-in-a-bottle-2019:d5:lightning:0030:disclosure-dj-set",
    "lollapalooza-2013:d1:the-grove:1800:disclosure",
    "lollapalooza-2016:d3:bud-light:2030:disclosure",
@@ -57419,10 +57673,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "hard-summer-2024:d2:purple-stage:1500:dj-dials",
    "outside-lands-2014:d1:the-house-by-heineken:1330:dj-dials"
   ],
   "firstSeen": "2014-08-08",
-  "lastSeen": "2014-08-08",
+  "lastSeen": "2024-08-04",
   "photo": null,
   "links": []
  },
@@ -58185,7 +58440,8 @@
   "billings": [
    "arc-2026:arc-dj-heartstring-b2b-baugruppe90-area909-d4",
    "escape-halloween-2026:esc-dj-heartstring-d2",
-   "edc-las-vegas-2024:d2:bionic-jungle:2230:dj-heartstring"
+   "edc-las-vegas-2024:d2:bionic-jungle:2230:dj-heartstring",
+   "hard-summer-2024:d2:pink-stage:1950:dj-heartstring"
   ],
   "firstSeen": "2024-05-18",
   "lastSeen": "2026-10-31",
@@ -60393,6 +60649,7 @@
    "escape-halloween-2017:d1:slaughterhouse:0045:dj-snake",
    "escape-halloween-2021:d1:the-grimm:0045:dj-snake",
    "escape-halloween-2025:d1:the-big-top:0035:marshmello-b2b-dj-snake",
+   "hard-summer-2019:d1:pink-tent:2145:dj-snake-b2b-malaa",
    "lollapalooza-2015:d1:perry-s:1745:dj-snake",
    "lollapalooza-2017:d2:perry-s:2030:dj-snake",
    "nocturnal-wonderland-2019:d2:wolves-den:2245:dj-snake",
@@ -60672,7 +60929,8 @@
   "projects": [],
   "billings": [
    "groove-cruise-2027:gc-dj-susan",
-   "coachella-2022:d5:sahara:1245:dj-susan"
+   "coachella-2022:d5:sahara:1245:dj-susan",
+   "hard-summer-2024:d2:harder-stage:1630:dj-susan"
   ],
   "firstSeen": "2022-04-23",
   "lastSeen": "2027-01-21",
@@ -60758,6 +61016,7 @@
    "coachella-2014:d4:do-lab:2200:dj-tennis",
    "edc-orlando-2019:d1:neongarden:1800:tiga-b2b-dj-tennis",
    "escape-halloween-2017:d2:cannibals-tea-party:2000:dj-tennis",
+   "hard-summer-2024:d1:pink-stage:2000:seth-troxler-b2b-dj-tennis",
    "iii-points-2014:d2:mindmelt:2240:dj-tennis",
    "primavera-sound-2017:d2:ray-ban:0400:dj-tennis",
    "sonar-2019:d3:sonarpub-by-thunder-bitch:0250:dj-tennis",
@@ -61366,6 +61625,21 @@
   ],
   "firstSeen": "2026-06-18",
   "lastSeen": "2026-07-04",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "djds",
+  "name": "DJDS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2019:d2:purple-tent:1500:djds"
+  ],
+  "firstSeen": "2019-08-04",
+  "lastSeen": "2019-08-04",
   "photo": null,
   "links": []
  },
@@ -62116,6 +62390,7 @@
    "edc-orlando-2022:d2:kinetic-field:1730:dom-dolla-sunset-set",
    "edc-orlando-2023:d2:neon-garden:2200:dom-dolla",
    "edc-orlando-2025:d3:kineticfield:2223:dom-dolla",
+   "hard-summer-2019:d2:harder-stage:1550:dom-dolla",
    "hard-summer-2025:d2:hard-stage:2020:dom-dolla",
    "lollapalooza-2023:d1:perry-s:1915:dom-dolla",
    "lollapalooza-2025:d1:dollapalooza:2030:dom-dolla",
@@ -62155,6 +62430,7 @@
    "edc-orlando-2023:d1:stereo-bloom:2230:dombresky",
    "edc-orlando-2025:d2:stereobloom:2230:dombresky",
    "escape-halloween-2019:d2:psycho-circus:1800:dombresky",
+   "hard-summer-2019:d1:pink-tent:1700:dombresky",
    "lollapalooza-2021:d1:solana-x-perry-s:1515:dombresky",
    "nocturnal-wonderland-2017:d1:sunken-garden:2000:dombresky",
    "outside-lands-2025:d2:soma:1645:dombresky",
@@ -64089,6 +64365,21 @@
   "links": []
  },
  {
+  "key": "dreamdoll",
+  "name": "DreamDoll",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2019:d2:purple-tent:1605:dreamdoll"
+  ],
+  "firstSeen": "2019-08-04",
+  "lastSeen": "2019-08-04",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dreamers",
   "name": "Dreamers",
   "aliases": [
@@ -64339,13 +64630,16 @@
  },
  {
   "key": "droeloe",
-  "name": "DROELOE",
-  "aliases": [],
+  "name": "Droeloe",
+  "aliases": [
+   "DROELOE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "escape-halloween-2017:d2:chopping-block:1815:droeloe",
+   "hard-summer-2019:d1:harder-stage:1750:droeloe",
    "lollapalooza-2018:d3:tito-s-handmade-vodka:untimed:droeloe",
    "tomorrowland-2017:d1:monstercat:1600:droeloe",
    "tomorrowland-2019:d1:rose-garden:1600:droeloe",
@@ -65206,6 +65500,7 @@
    "coachella-2026:d6:sahara:1810:duke-dumont",
    "escape-halloween-2017:d2:slaughterhouse:2300:duke-dumont",
    "escape-halloween-2019:d1:the-grimm:2145:duke-dumont",
+   "hard-summer-2019:d2:hard-stage:1800:duke-dumont",
    "iii-points-2014:d1:mainframe:0145:duke-dumont",
    "lollapalooza-2014:d2:perry-s:1515:duke-dumont",
    "lollapalooza-2016:d2:perry-s:1800:duke-dumont",
@@ -68074,6 +68369,7 @@
    "acl-2024:d4:miller-lite:1910:elderbrook",
    "coachella-2023:d2:sahara:1730:elderbrook",
    "coachella-2023:d5:sahara:1730:elderbrook",
+   "hard-summer-2024:d2:purple-stage:1930:elderbrook",
    "lollapalooza-2021:d4:grubhub:1450:elderbrook",
    "shambhala-2025:d3:the-pagoda:2315:elderbrook-dj-set",
    "tomorrowland-2022:d9:crystal-garden:1700:elderbrook",
@@ -68560,6 +68856,7 @@
    "edc-orlando-2025:d2:kineticfield:1844:eli-brown",
    "escape-halloween-2022:d1:sewer-district:2000:eli-brown",
    "escape-halloween-2025:d2:the-big-top:2215:eli-brown",
+   "hard-summer-2024:d2:pink-stage:2050:eli-brown",
    "nocturnal-wonderland-2019:d2:sunken-garden:1900:eli-brown",
    "tomorrowland-2022:d4:crystal-garden:0000:eli-brown",
    "tomorrowland-2023:d1:atmosphere:1800:eli-brown",
@@ -71165,9 +71462,11 @@
   "billings": [
    "outside-lands-2026:os121",
    "hard-summer-2026:hs2-etari",
-   "escape-halloween-2025:d1:the-warehouse:1600:etari"
+   "escape-halloween-2025:d1:the-warehouse:1600:etari",
+   "hard-summer-2024:d1:hard-stage:1400:etari",
+   "hard-summer-2024:d1:beatbox-boombox-art-car:2000:etari"
   ],
-  "firstSeen": "2025-10-31",
+  "firstSeen": "2024-08-03",
   "lastSeen": "2026-08-09",
   "photo": null,
   "links": []
@@ -71883,6 +72182,7 @@
    "edc-orlando-2025:d2:circuitgrounds:2300:excision",
    "electric-forest-2014:d2:tripolee:0145:excision",
    "escape-halloween-2019:d1:psycho-circus:0100:excision",
+   "hard-summer-2019:d1:harder-stage:2100:excision-b2b-nghtmre",
    "lollapalooza-2016:d1:perry-s:1900:excision",
    "lollapalooza-2018:d4:perry-s:untimed:excision",
    "nocturnal-wonderland-2013:d1:labyrinth:1900:excision",
@@ -75340,6 +75640,21 @@
   "links": []
  },
  {
+  "key": "fisher-chris-lake-under-construction",
+  "name": "Fisher + Chris Lake: Under Construction",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2024:d2:hard-stage:2030:fisher-chris-lake-under-construction"
+  ],
+  "firstSeen": "2024-08-04",
+  "lastSeen": "2024-08-04",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "fistful-of-mercy",
   "name": "Fistful of Mercy",
   "aliases": [],
@@ -76393,6 +76708,7 @@
    "electric-forest-2013:d3:tripolee:2330:flosstradamus",
    "escape-halloween-2017:d1:ghouls-graveyard:0100:flosstradamus",
    "escape-halloween-2022:d2:feeding-grounds:2245:flosstradamus",
+   "hard-summer-2019:d1:hard-stage:1845:flosstradamus-b2b-4b",
    "lollapalooza-2014:d3:perry-s:1730:flosstradamus",
    "lollapalooza-2016:d1:perry-s:2030:flosstradamus",
    "nocturnal-wonderland-2021:d1:labyrinth:2300:flosstradamus",
@@ -76550,6 +76866,7 @@
    "edc-lv-2026:bp9",
    "lost-lands-2026:lls22",
    "edc-las-vegas-2012:d3:neongarden:0400:flux-pavilion",
+   "hard-summer-2019:d2:green-tent:2200:flux-pavilion-b2b-netsky",
    "lollapalooza-2025:d3:perry-s:1530:flux-pavilion",
    "nocturnal-wonderland-2018:d1:labyrinth:0100:flux-pavilion",
    "nocturnal-wonderland-2021:d2:wolves-den:2200:flux-pavilion",
@@ -76613,13 +76930,16 @@
  },
  {
   "key": "fly",
-  "name": "FLY",
-  "aliases": [],
+  "name": "Fly",
+  "aliases": [
+   "FLY"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "lights-all-night-2026:lan-fly",
+   "hard-summer-2024:d1:green-stage:1600:saka-b2b-fly",
    "nocturnal-wonderland-2022:d1:labyrinth:1500:fly"
   ],
   "firstSeen": "2022-09-17",
@@ -77945,6 +78265,21 @@
   ],
   "firstSeen": "2016-07-29",
   "lastSeen": "2016-07-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "franklyn-watts",
+  "name": "Franklyn Watts",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2019:d1:corona-electric-beach:1645:franklyn-watts-b2b-steady-rock"
+  ],
+  "firstSeen": "2019-08-03",
+  "lastSeen": "2019-08-03",
   "photo": null,
   "links": []
  },
@@ -79469,6 +79804,8 @@
   "billings": [
    "hard-summer-2026:hs2-fun2bjane",
    "edc-las-vegas-2024:d2:blacklight-bar:0000:fun2bjane-b2b-mad-gavs",
+   "hard-summer-2024:d1:beatbox-boombox-art-car:1830:fun2bjane-b2b-mad-gavs",
+   "hard-summer-2024:d2:purple-stage:1400:fun2bjane",
    "hard-summer-2025:d2:green-stage:1400:fun2bjane"
   ],
   "firstSeen": "2024-05-18",
@@ -80398,6 +80735,21 @@
   "links": []
  },
  {
+  "key": "g-rex",
+  "name": "G-Rex",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2019:d1:green-tent:1435:g-rex"
+  ],
+  "firstSeen": "2019-08-03",
+  "lastSeen": "2019-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "g-s-t",
   "name": "G.S.T.",
   "aliases": [],
@@ -80892,6 +81244,7 @@
   "projects": [],
   "billings": [
    "escape-halloween-2026:esc-gammer-d1",
+   "hard-summer-2019:d2:green-tent:1900:gammer",
    "tomorrowland-2019:d1:rose-garden:1700:gammer",
    "tomorrowland-2022:d3:youphoria:1730:gammer",
    "ultra-miami-2022:d3:umf-radio:2100:gammer"
@@ -82321,6 +82674,7 @@
    "coachella-2022:d1:sahara:1405:gg-magree",
    "coachella-2022:d4:sahara:1405:gg-magree",
    "escape-halloween-2019:d2:sanitarium:1945:gg-magree",
+   "hard-summer-2019:d1:harder-stage:1450:gg-magree",
    "lollapalooza-2019:d4:perry-s:untimed:gg-magree",
    "tomorrowland-2022:d9:youphoria:1630:gg-magree",
    "ultra-miami-2017:d3:worldwide-stage:1200:gg-magree",
@@ -82363,6 +82717,7 @@
    "lost-lands-2026:llu17",
    "coachella-2016:d1:do-lab:2000:ghastly",
    "escape-halloween-2017:d1:ghouls-graveyard:2200:ghastly",
+   "hard-summer-2019:d1:hard-stage:1745:ghastly",
    "lollapalooza-2018:d3:perry-s:untimed:ghastly",
    "shambhala-2016:d4:fractal-forest:0130:ghastly",
    "ultra-miami-2019:d3:worldwide-stage:2100:ghastly"
@@ -83382,9 +83737,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2024:d1:casa-bacardi:2200:giselle-peppers"
+   "edc-orlando-2024:d1:casa-bacardi:2200:giselle-peppers",
+   "hard-summer-2024:d2:beatbox-boombox-art-car:1730:giselle-peppers"
   ],
-  "firstSeen": "2024-11-08",
+  "firstSeen": "2024-08-04",
   "lastSeen": "2024-11-08",
   "photo": null,
   "links": []
@@ -86036,24 +86392,29 @@
    "edc-lv-2026:w7",
    "countdown-nye-2026:cdny-gravedgr",
    "beyond-wonderland-socal-2026:d1:cheshire-woods:1900:gravedgr",
-   "edc-las-vegas-2024:d2:wasteland:2130:gravedgr"
+   "edc-las-vegas-2024:d2:wasteland:2130:gravedgr",
+   "hard-summer-2019:d2:green-tent:1600:gravedgr"
   ],
-  "firstSeen": "2024-05-18",
+  "firstSeen": "2019-08-04",
   "lastSeen": "2026-12-31",
   "photo": null,
   "links": []
  },
  {
   "key": "graves",
-  "name": "GRAVES",
-  "aliases": [],
+  "name": "graves",
+  "aliases": [
+   "GRAVES"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2019:d3:circuitgrounds:1515:graves"
+   "edc-orlando-2019:d3:circuitgrounds:1515:graves",
+   "hard-summer-2019:d2:harder-stage:1650:graves",
+   "hard-summer-2019:d2:corona-electric-beach:2100:graves"
   ],
-  "firstSeen": "2019-11-10",
+  "firstSeen": "2019-08-04",
   "lastSeen": "2019-11-10",
   "photo": null,
   "links": []
@@ -87276,6 +87637,21 @@
   "links": []
  },
  {
+  "key": "gta-and-friends",
+  "name": "GTA & Friends",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2019:d1:green-tent:2100:gta-and-friends"
+  ],
+  "firstSeen": "2019-08-03",
+  "lastSeen": "2019-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "gtronic",
   "name": "Gtronic",
   "aliases": [],
@@ -87434,6 +87810,7 @@
    "groove-cruise-2027:gc-gudfella",
    "edc-las-vegas-2025:d3:cosmic-meadow:1900:gudfella",
    "edc-las-vegas-2025:d3:metaphoenix:0130:gudfella",
+   "hard-summer-2024:d2:harder-stage:1530:gudfella",
    "lollapalooza-2024:d2:perry-s:1200:gudfella"
   ],
   "firstSeen": "2024-08-02",
@@ -87578,10 +87955,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "hard-summer-2019:d2:purple-tent:2215:gunna",
    "lollapalooza-2019:d3:american-eagle:untimed:gunna"
   ],
   "firstSeen": "2019-08-03",
-  "lastSeen": "2019-08-03",
+  "lastSeen": "2019-08-04",
   "photo": null,
   "links": []
  },
@@ -88049,6 +88427,7 @@
    "edc-las-vegas-2022:d3:cosmic-meadow:1730:bijou-b2b-habstrakt",
    "edc-las-vegas-2024:d2:cosmic-meadow:2130:joyryde-b2b-habstrakt",
    "edc-orlando-2019:d1:kineticfield:1526:habstrakt",
+   "hard-summer-2019:d1:green-tent:1730:habstrakt",
    "hard-summer-2025:d1:harder-stage:1700:habstrakt-b2b-jstjr",
    "hard-summer-2025:d1:beatbox-boombox-art-car:1930:habstrakt",
    "lollapalooza-2022:d4:solana-x-perry-s:1415:habstrakt",
@@ -88464,7 +88843,8 @@
    "coachella-2026:d5:sahara:1700:hamdi",
    "edc-las-vegas-2024:d1:cosmic-meadow:2145:hamdi",
    "edc-orlando-2024:d1:circuit-grounds:1710:hamdi",
-   "escape-halloween-2024:d2:sewer-district:2045:hamdi"
+   "escape-halloween-2024:d2:sewer-district:2045:hamdi",
+   "hard-summer-2024:d1:green-stage:1900:hamdi"
   ],
   "firstSeen": "2024-05-17",
   "lastSeen": "2026-12-20",
@@ -89644,6 +90024,21 @@
   "links": []
  },
  {
+  "key": "hayes-bradley",
+  "name": "Hayes Bradley",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2024:d1:pink-stage:1400:hayes-bradley"
+  ],
+  "firstSeen": "2024-08-03",
+  "lastSeen": "2024-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "hayes-carll",
   "name": "Hayes Carll",
   "aliases": [],
@@ -90151,6 +90546,7 @@
    "edc-las-vegas-2024:d2:basspod:2330:hedex",
    "edc-las-vegas-2025:d2:cosmic-meadow:0430:hedex",
    "edc-orlando-2024:d1:circuit-grounds:1920:hedex",
+   "hard-summer-2024:d2:green-stage:1800:hedex",
    "shambhala-2024:d3:the-village:2330:hedex",
    "ultra-miami-2024:d2:worldwide-stage:1930:hedex",
    "ultra-miami-2025:d2:worldwide-stage:2030:hedex"
@@ -90250,9 +90646,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "nocturnal-wonderland-2026:nw-hekler"
+   "nocturnal-wonderland-2026:nw-hekler",
+   "hard-summer-2019:d2:green-tent:1700:hekler"
   ],
-  "firstSeen": "2026-09-19",
+  "firstSeen": "2019-08-04",
   "lastSeen": "2026-09-19",
   "photo": null,
   "links": []
@@ -90794,12 +91191,13 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "hard-summer-2019:d2:green-tent:2100:herobust",
    "lollapalooza-2014:d2:perry-s:1300:herobust",
    "lollapalooza-2018:d4:perry-s:untimed:herobust",
    "shambhala-2015:d4:amphitheatre:0130:herobust"
   ],
   "firstSeen": "2014-08-02",
-  "lastSeen": "2018-08-05",
+  "lastSeen": "2019-08-04",
   "photo": null,
   "links": []
  },
@@ -91954,6 +92352,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "hard-summer-2019:d1:harder-stage:1550:holy-goof",
    "tomorrowland-2018:d4:rose-garden:1530:holy-goof",
    "tomorrowland-2019:d2:garden-of-madness:1700:holy-goof",
    "tomorrowland-2022:d5:crystal-garden:1630:holy-goof"
@@ -92264,6 +92663,7 @@
    "edc-orlando-2024:d1:neon-garden:1630:honeyluv-b2b-bontan",
    "edc-orlando-2024:d2:stereo-bloom:2015:ameme-b2b-honeyluv",
    "escape-halloween-2022:d2:sanitarium:1715:honeyluv",
+   "hard-summer-2024:d2:pink-stage:1600:honeyluv-b2b-bontan",
    "outside-lands-2022:d2:the-house-by-heineken:1530:honeyluv",
    "outside-lands-2024:d3:soma:1555:honeyluv-b2b-jaden-thompson",
    "tomorrowland-2023:d1:crystal-garden:1500:honeyluv"
@@ -93139,6 +93539,21 @@
   ],
   "firstSeen": "2012-08-10",
   "lastSeen": "2014-08-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "hucci",
+  "name": "Hucci",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2019:d1:green-tent:1630:hucci"
+  ],
+  "firstSeen": "2019-08-03",
+  "lastSeen": "2019-08-03",
   "photo": null,
   "links": []
  },
@@ -95862,9 +96277,10 @@
    "nocturnal-wonderland-2026:nw-infekt-b2b-virtual-riot",
    "beyond-wonderland-gorge-2026:d1:mad-hatter-s-castle:2330:riot-ten-b2b-infekt",
    "edc-las-vegas-2025:d2:basspod:2130:infekt",
-   "edc-orlando-2025:d2:circuitgrounds:1800:infekt"
+   "edc-orlando-2025:d2:circuitgrounds:1800:infekt",
+   "hard-summer-2024:d1:green-stage:1700:infekt"
   ],
-  "firstSeen": "2025-05-17",
+  "firstSeen": "2024-08-03",
   "lastSeen": "2026-09-19",
   "photo": null,
   "links": []
@@ -96516,6 +96932,7 @@
    "coachella-2025:d6:sahara:1540:interplanetary-criminal",
    "edc-las-vegas-2024:d2:bionic-jungle:2115:interplanetary-criminal",
    "edc-las-vegas-2025:d3:stereo-bloom:2315:interplanetary-criminal",
+   "hard-summer-2024:d1:purple-stage:1720:interplanetary-criminal",
    "ultra-miami-2025:d1:umf-radio:1730:skream-b2b-interplanetary-criminal"
   ],
   "firstSeen": "2024-05-18",
@@ -96608,9 +97025,10 @@
   "billings": [
    "iii-points-2026:iiip-invt",
    "arc-2026:arc-invt-grid-d1",
-   "edc-las-vegas-2025:d1:bionic-jungle:2015:invt"
+   "edc-las-vegas-2025:d1:bionic-jungle:2015:invt",
+   "hard-summer-2024:d1:pink-stage:1600:invt"
   ],
-  "firstSeen": "2025-05-16",
+  "firstSeen": "2024-08-03",
   "lastSeen": "2026-10-16",
   "photo": null,
   "links": []
@@ -99808,6 +100226,7 @@
    "coachella-2015:d6:gobi:2020:jamie-xx",
    "coachella-2022:d3:outdoor:2130:jamie-xx",
    "coachella-2022:d6:outdoor:2130:jamie-xx",
+   "hard-summer-2024:d1:purple-stage:1950:jamie-xx",
    "iii-points-2014:d2:mainframe:0145:jamie-xx",
    "outside-lands-2018:d2:sutro:1935:jamie-xx",
    "outside-lands-2025:d3:sutro:2020:jamie-xx",
@@ -103949,6 +104368,21 @@
   "links": []
  },
  {
+  "key": "joaqu-n",
+  "name": "Joaqu.n",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2024:d1:jose-cuervo-locals-only-stage:2000:joaqu-n"
+  ],
+  "firstSeen": "2024-08-03",
+  "lastSeen": "2024-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "joaquim",
   "name": "JOAQUIM",
   "aliases": [],
@@ -107323,6 +107757,7 @@
   "projects": [],
   "billings": [
    "governors-ball-2025:d1:the-grove:1945:jpegmafia",
+   "hard-summer-2019:d2:purple-tent:1935:jpegmafia",
    "lollapalooza-2021:d4:grubhub:1715:jpegmafia",
    "lollapalooza-2025:d3:lakeshore:1945:jpegmafia",
    "primavera-sound-2019:d4:adidas-originals:0320:jpegmafia"
@@ -107725,10 +108160,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "hard-summer-2024:d2:harder-stage:1845:juelz",
    "shambhala-2024:d4:the-village:0300:juelz"
   ],
   "firstSeen": "2024-07-28",
-  "lastSeen": "2024-07-28",
+  "lastSeen": "2024-08-04",
   "photo": null,
   "links": []
  },
@@ -107744,6 +108180,21 @@
   ],
   "firstSeen": "2012-04-21",
   "lastSeen": "2012-04-21",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "juice-wrld",
+  "name": "Juice WRLD",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2019:d2:hard-stage:1920:juice-wrld"
+  ],
+  "firstSeen": "2019-08-04",
+  "lastSeen": "2019-08-04",
   "photo": null,
   "links": []
  },
@@ -109071,6 +109522,8 @@
    "edc-orlando-2022:d2:stereo-bloom:2130:justin-martin",
    "electric-forest-2014:d1:tripolee:2200:justin-martin",
    "hard-summer-2012:d2:rbma-discotheque:2120:justin-martin",
+   "hard-summer-2019:d1:corona-electric-beach:1915:justin-martin",
+   "hard-summer-2019:d2:pink-tent:1840:justin-martin",
    "outside-lands-2012:d1:the-dome-by-heineken:1800:justin-martin",
    "outside-lands-2019:d2:panhandle:1950:justin-martin",
    "shambhala-2011:d2:pagoda:0230:justin-martin",
@@ -109403,6 +109856,7 @@
   "billings": [
    "portola-2026:pt1-jyoty",
    "edc-las-vegas-2024:d1:bionic-jungle:2330:jyoty",
+   "hard-summer-2024:d2:purple-stage:1700:jyoty",
    "sonar-2022:d3:sonarvillage-by-estrella-damm:1650:jyoty"
   ],
   "firstSeen": "2022-06-18",
@@ -109884,9 +110338,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2026:ecu18"
+   "edc-orlando-2026:ecu18",
+   "hard-summer-2019:d1:hard-stage:1330:kaivon"
   ],
-  "firstSeen": "2026-11-08",
+  "firstSeen": "2019-08-03",
   "lastSeen": "2026-11-08",
   "photo": null,
   "links": []
@@ -110383,6 +110838,7 @@
    "edc-orlando-2026:ecf8",
    "edc-thailand-2026:edcth-kanine-b2b-sota",
    "edc-las-vegas-2022:d3:basspod:2040:friction-b2b-kanine",
+   "hard-summer-2024:d2:green-stage:1700:kanine",
    "shambhala-2025:d3:the-village:2230:kanine",
    "tomorrowland-2022:d5:crystal-garden:1930:kanine",
    "tomorrowland-2022:d7:rose-garden:2000:kanine"
@@ -110896,6 +111352,7 @@
   "projects": [],
   "billings": [
    "decadence-colorado-2026:dec-kasbo",
+   "hard-summer-2019:d1:hard-stage:1540:kasbo",
    "lollapalooza-2024:d1:perry-s:1500:kasbo",
    "ultra-miami-2019:d1:umf-radio:2030:kasbo"
   ],
@@ -111664,6 +112121,7 @@
    "edc-orlando-2023:d1:circuit-grounds:2130:kayzo",
    "escape-halloween-2022:d2:feeding-grounds:0045:kayzo",
    "escape-halloween-2025:d1:feeding-grounds:0000:kayzo",
+   "hard-summer-2019:d2:harder-stage:2050:kayzo",
    "lollapalooza-2018:d1:perry-s:untimed:kayzo",
    "tomorrowland-2018:d1:rose-garden:1900:kayzo",
    "tomorrowland-2019:d4:kara-savi:2100:kayzo",
@@ -112347,9 +112805,11 @@
    "acl-2024:d2:tito-s-handmade-vodka:1820:kenny-beats",
    "coachella-2023:d2:sahara:1620:kenny-beats",
    "coachella-2023:d5:sahara:1620:kenny-beats",
+   "hard-summer-2019:d2:purple-tent:2100:kenny-beats",
+   "hard-summer-2024:d2:purple-stage:1815:kenny-beats",
    "lollapalooza-2024:d3:sonny-s:1610:kenny-beats"
   ],
-  "firstSeen": "2023-04-15",
+  "firstSeen": "2019-08-04",
   "lastSeen": "2024-10-05",
   "photo": null,
   "links": []
@@ -112546,19 +113006,20 @@
  },
  {
   "key": "kerri-chandler",
-  "name": "Kerri chandler",
+  "name": "Kerri Chandler",
   "aliases": [
-   "Kerri Chandler"
+   "Kerri chandler"
   ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "hard-summer-2024:d2:pink-stage:1730:kerri-chandler",
    "sonar-2016:d2:sonarlab:0130:kerri-chandler",
    "tomorrowland-2013:d2:derrick-carter-presents-family-and-friends:1800:kerri-chandler"
   ],
   "firstSeen": "2013-07-27",
-  "lastSeen": "2016-06-17",
+  "lastSeen": "2024-08-04",
   "photo": null,
   "links": []
  },
@@ -112680,6 +113141,21 @@
   ],
   "firstSeen": "2025-03-28",
   "lastSeen": "2025-03-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "ketboi69-kettama-b2b-partiboi69",
+  "name": "Ketboi69 (KETTAMA B2B Partiboi69)",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2024:d1:purple-stage:1600:ketboi69-kettama-b2b-partiboi69"
+  ],
+  "firstSeen": "2024-08-03",
+  "lastSeen": "2024-08-03",
   "photo": null,
   "links": []
  },
@@ -113399,6 +113875,21 @@
   "links": []
  },
  {
+  "key": "kiah-g",
+  "name": "Kiah G",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2024:d2:beatbox-boombox-art-car:1400:kiah-g"
+  ],
+  "firstSeen": "2024-08-04",
+  "lastSeen": "2024-08-04",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "kian",
   "name": "Kian",
   "aliases": [],
@@ -113540,6 +114031,7 @@
    "coachella-2014:d5:coachella:1740:kid-cudi",
    "coachella-2024:d6:sahara:1710:kid-cudi",
    "governors-ball-2012:d1:honda-stage:2150:kid-cudi",
+   "hard-summer-2019:d1:hard-stage:2200:kid-cudi",
    "lollapalooza-2011:d3:perry-s:2100:kid-cudi",
    "lollapalooza-2015:d2:bud-light:1845:kid-cudi",
    "sziget-2011:d7:burn-party-arena:1930:kid-cudi-usa"
@@ -113979,6 +114471,7 @@
    "edc-las-vegas-2012:d1:neongarden:2025:kill-the-noise",
    "edc-las-vegas-2013:d3:cosmicmeadow:2315:kill-the-noise",
    "electric-forest-2013:d2:tripolee:2330:kill-the-noise",
+   "hard-summer-2019:d2:green-tent:2000:kill-the-noise",
    "lollapalooza-2013:d3:perry-s:1515:kill-the-noise",
    "nocturnal-wonderland-2013:d1:queen-s-grounds:2200:kill-the-noise",
    "nocturnal-wonderland-2018:d2:labyrinth:2210:kill-the-noise",
@@ -118083,9 +118576,10 @@
    "coachella-2023:d1:yuma:1400:kyle-watson",
    "coachella-2023:d4:yuma:1400:kyle-watson",
    "edc-las-vegas-2025:d1:stereo-bloom:2115:kyle-watson",
+   "hard-summer-2019:d1:pink-tent:1830:kyle-watson",
    "shambhala-2024:d2:the-pagoda:2140:kyle-watson"
   ],
-  "firstSeen": "2023-04-14",
+  "firstSeen": "2019-08-03",
   "lastSeen": "2025-05-16",
   "photo": null,
   "links": []
@@ -118486,6 +118980,21 @@
   "links": []
  },
  {
+  "key": "la-leakers",
+  "name": "LA Leakers",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2019:d1:purple-tent:1645:la-leakers"
+  ],
+  "firstSeen": "2019-08-03",
+  "lastSeen": "2019-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "la-lom",
   "name": "LA LOM",
   "aliases": [],
@@ -118607,6 +119116,21 @@
   ],
   "firstSeen": "2019-05-31",
   "lastSeen": "2019-05-31",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "laalls",
+  "name": "LAALLS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2024:d2:jose-cuervo-locals-only-stage:1900:laalls-b2b-cerulean"
+  ],
+  "firstSeen": "2024-08-04",
+  "lastSeen": "2024-08-04",
   "photo": null,
   "links": []
  },
@@ -119172,9 +119696,11 @@
   "projects": [],
   "billings": [
    "hard-summer-2026:hs1-lake-hills-b2b-nyx",
-   "edc-las-vegas-2025:d1:bionic-jungle:1900:lake-hills"
+   "edc-las-vegas-2025:d1:bionic-jungle:1900:lake-hills",
+   "hard-summer-2024:d1:hard-stage:1500:lake-hills",
+   "hard-summer-2024:d2:beatbox-boombox-art-car:2030:lake-hills"
   ],
-  "firstSeen": "2025-05-16",
+  "firstSeen": "2024-08-03",
   "lastSeen": "2026-08-01",
   "photo": null,
   "links": []
@@ -120423,10 +120949,11 @@
    "coachella-2015:d2:yuma:1410:lauren-lane",
    "coachella-2015:d5:yuma:1410:lauren-lane",
    "escape-halloween-2017:d2:cannibals-tea-party:1700:lauren-lane",
+   "hard-summer-2019:d2:pink-tent:1600:lauren-lane",
    "tomorrowland-2017:d3:ants:1500:lauren-lane"
   ],
   "firstSeen": "2015-04-11",
-  "lastSeen": "2017-10-28",
+  "lastSeen": "2019-08-04",
   "photo": null,
   "links": []
  },
@@ -121176,6 +121703,21 @@
   ],
   "firstSeen": "2023-07-23",
   "lastSeen": "2023-07-23",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "lechuga",
+  "name": "Lechuga",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2024:d2:beatbox-boombox-art-car:1500:lechuga"
+  ],
+  "firstSeen": "2024-08-04",
+  "lastSeen": "2024-08-04",
   "photo": null,
   "links": []
  },
@@ -122478,6 +123020,7 @@
    "edc-las-vegas-2025:d2:basspod:0330:level-up",
    "edc-orlando-2023:d1:circuit-grounds:1615:level-up",
    "escape-halloween-2024:d1:sewer-district:2100:level-up",
+   "hard-summer-2024:d2:green-stage:1600:level-up",
    "lollapalooza-2021:d2:solana-x-perry-s:1200:level-up",
    "ultra-miami-2025:d2:worldwide-stage:1320:level-up"
   ],
@@ -122560,11 +123103,12 @@
    "coachella-2026:d1:sahara:2115:levity",
    "coachella-2026:d4:sahara:2115:levity",
    "edc-las-vegas-2025:d3:basspod:2130:levity",
+   "hard-summer-2024:d2:harder-stage:1745:levity",
    "lollapalooza-2025:d3:perry-s:1815:levity",
    "outside-lands-2025:d3:twin-peaks:1540:levity",
    "shambhala-2025:d4:the-pagoda:2200:levity"
   ],
-  "firstSeen": "2025-05-18",
+  "firstSeen": "2024-08-04",
   "lastSeen": "2026-12-31",
   "photo": null,
   "links": []
@@ -123091,9 +123635,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "hard-summer-2019:d1:harder-stage:1350:lick",
    "nocturnal-wonderland-2019:d1:labyrinth:1700:lick"
   ],
-  "firstSeen": "2019-09-14",
+  "firstSeen": "2019-08-03",
   "lastSeen": "2019-09-14",
   "photo": null,
   "links": []
@@ -123500,6 +124045,21 @@
   "links": []
  },
  {
+  "key": "lil-mosey",
+  "name": "Lil Mosey",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2019:d1:purple-tent:1935:lil-mosey"
+  ],
+  "firstSeen": "2019-08-03",
+  "lastSeen": "2019-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "lil-moss-and-friends",
   "name": "Lil Moss & Friends",
   "aliases": [],
@@ -123605,6 +124165,21 @@
   ],
   "firstSeen": "2019-07-28",
   "lastSeen": "2019-07-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "lil-tjay",
+  "name": "Lil Tjay",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2019:d1:purple-tent:1755:lil-tjay"
+  ],
+  "firstSeen": "2019-08-03",
+  "lastSeen": "2019-08-03",
   "photo": null,
   "links": []
  },
@@ -125211,6 +125786,7 @@
    "edc-orlando-2019:d1:neongarden:2000:loco-dice",
    "edc-orlando-2023:d2:neon-garden:2015:loco-dice",
    "escape-halloween-2021:d1:sewer-district:0000:loco-dice-b2b-nicole-moudaber",
+   "hard-summer-2019:d1:pink-tent:2000:loco-dice",
    "hard-summer-2025:d1:pink-stage:1900:loco-dice",
    "tomorrowland-2010:d2:cafe-d-anvers-celebrates-15-years-of-ovum-recordings:2000:loco-dice",
    "tomorrowland-2011:d3:cafe-d-anvers-invites-ovum-recordings:1800:loco-dice",
@@ -127642,6 +128218,7 @@
    "edc-las-vegas-2022:d3:forest-house-art-car:0130:lp-giobbi",
    "edc-orlando-2021:d3:stereo-bloom:1730:lp-giobbi-sunset",
    "edc-orlando-2021:d3:corona-electric-beach:2030:lp-giobbi-b2b-born-dirty",
+   "hard-summer-2019:d2:hard-stage:1340:lp-giobbi",
    "lollapalooza-2021:d4:solana-x-perry-s:1245:lp-giobbi",
    "lollapalooza-2022:d2:solana-x-perry-s:1630:lp-giobbi",
    "nocturnal-wonderland-2021:d1:sunken-garden:1700:lp-giobbi",
@@ -127649,7 +128226,7 @@
    "tomorrowland-2022:d5:mainstage:1530:lp-giobbi",
    "tomorrowland-2023:d1:crystal-garden:1730:lp-giobbi"
   ],
-  "firstSeen": "2021-08-01",
+  "firstSeen": "2019-08-04",
   "lastSeen": "2027-01-09",
   "photo": null,
   "links": []
@@ -127967,9 +128544,11 @@
    "edc-las-vegas-2022:d3:stereo-bloom:0330:lucati",
    "escape-halloween-2019:d2:psycho-circus:1600:lucati",
    "escape-halloween-2021:d2:sanitarium:1830:lucati",
+   "hard-summer-2019:d1:corona-electric-beach:2145:lucati",
+   "hard-summer-2019:d2:pink-tent:1500:dateless-b2b-lucati",
    "nocturnal-wonderland-2021:d2:wolves-den:1600:lucati"
   ],
-  "firstSeen": "2019-10-26",
+  "firstSeen": "2019-08-03",
   "lastSeen": "2022-05-22",
   "photo": null,
   "links": []
@@ -128763,6 +129342,21 @@
   "links": []
  },
  {
+  "key": "luke-andy",
+  "name": "Luke Andy",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2019:d1:corona-electric-beach:1400:luke-andy"
+  ],
+  "firstSeen": "2019-08-03",
+  "lastSeen": "2019-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "luke-combs",
   "name": "Luke Combs",
   "aliases": [
@@ -129244,10 +129838,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-las-vegas-2022:d3:rynobus:0300:lupa"
+   "edc-las-vegas-2022:d3:rynobus:0300:lupa",
+   "hard-summer-2024:d2:pink-stage:1400:lupa"
   ],
   "firstSeen": "2022-05-22",
-  "lastSeen": "2022-05-22",
+  "lastSeen": "2024-08-04",
   "photo": null,
   "links": []
  },
@@ -130501,10 +131096,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-las-vegas-2024:d2:blacklight-bar:0000:fun2bjane-b2b-mad-gavs"
+   "edc-las-vegas-2024:d2:blacklight-bar:0000:fun2bjane-b2b-mad-gavs",
+   "hard-summer-2024:d1:beatbox-boombox-art-car:1830:fun2bjane-b2b-mad-gavs"
   ],
   "firstSeen": "2024-05-18",
-  "lastSeen": "2024-05-18",
+  "lastSeen": "2024-08-03",
   "photo": null,
   "links": []
  },
@@ -130763,10 +131359,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "hard-summer-2019:d2:purple-tent:1850:madeintyo",
    "lollapalooza-2017:d3:bmi:1850:madeintyo"
   ],
   "firstSeen": "2017-08-05",
-  "lastSeen": "2017-08-05",
+  "lastSeen": "2019-08-04",
   "photo": null,
   "links": []
  },
@@ -131865,6 +132462,8 @@
    "electric-forest-2012:d3:tripolee:0200:major-lazer",
    "governors-ball-2012:d1:hype-machine-stage:1635:major-lazer",
    "governors-ball-2019:d2:honda-stage:2145:major-lazer",
+   "hard-summer-2019:d2:hard-stage:2145:major-lazer",
+   "hard-summer-2024:d2:purple-stage:2100:major-lazer",
    "lollapalooza-2013:d3:perry-s:1900:major-lazer",
    "lollapalooza-2016:d2:bud-light:2030:major-lazer",
    "outside-lands-2011:d3:twin-peaks:1640:major-lazer",
@@ -132130,6 +132729,7 @@
    "coachella-2023:d1:sahara:1615:malaa",
    "coachella-2023:d4:sahara:1555:malaa",
    "edc-orlando-2023:d2:kinetic-field:1727:malaa-b2b-wax-motif-sunset-set",
+   "hard-summer-2019:d1:pink-tent:2145:dj-snake-b2b-malaa",
    "lollapalooza-2018:d2:perry-s:untimed:malaa",
    "nocturnal-wonderland-2019:d2:wolves-den:2130:malaa",
    "nocturnal-wonderland-2021:d2:labyrinth:2300:malaa",
@@ -133187,6 +133787,21 @@
   ],
   "firstSeen": "2017-07-29",
   "lastSeen": "2017-07-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "mapamota",
+  "name": "Mapamota",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2024:d1:jose-cuervo-locals-only-stage:1600:mapamota"
+  ],
+  "firstSeen": "2024-08-03",
+  "lastSeen": "2024-08-03",
   "photo": null,
   "links": []
  },
@@ -135844,6 +136459,7 @@
    "edc-las-vegas-2024:d3:meta-phoenix:2245:mary-droppinz",
    "edc-orlando-2024:d3:circuit-grounds:1430:mary-droppinz",
    "escape-halloween-2024:d2:feeding-grounds:1800:mary-droppinz-ukg-set",
+   "hard-summer-2024:d2:harder-stage:1400:mary-droppinz",
    "lollapalooza-2025:d2:perry-s:1200:mary-droppinz",
    "lollapalooza-2025:d2:tito-s-handmade-vodka:1930:mary-droppinz",
    "shambhala-2024:d2:living-room:0130:mary-droppinz"
@@ -136847,6 +137463,7 @@
    "edc-orlando-2022:d3:corona-electric-beach:2300:matroda-b2b-bleu-clair",
    "edc-orlando-2024:d2:kinetic-field:1853:matroda",
    "escape-halloween-2025:d2:feeding-grounds:0030:matroda",
+   "hard-summer-2024:d2:hard-stage:1700:matroda",
    "lollapalooza-2023:d4:perry-s:1415:matroda",
    "nocturnal-wonderland-2021:d2:wolves-den:1800:matroda",
    "nocturnal-wonderland-2022:d2:sunken-garden:2300:matroda",
@@ -140477,9 +141094,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "hard-summer-2026:hs1-mesme"
+   "hard-summer-2026:hs1-mesme",
+   "hard-summer-2024:d2:beatbox-boombox-art-car:1900:mesme"
   ],
-  "firstSeen": "2026-08-01",
+  "firstSeen": "2024-08-04",
   "lastSeen": "2026-08-01",
   "photo": null,
   "links": []
@@ -144680,6 +145298,7 @@
    "coachella-2026:d6:sahara:1925:mochakk",
    "edc-las-vegas-2025:d1:circuit-grounds:2300:mochakk",
    "edc-orlando-2024:d2:neon-garden:2100:mochakk",
+   "hard-summer-2024:d1:pink-stage:2130:mochakk",
    "lollapalooza-2024:d1:perry-s:1915:mochakk"
   ],
   "firstSeen": "2023-04-14",
@@ -145439,6 +146058,21 @@
   "links": []
  },
  {
+  "key": "monki",
+  "name": "Monki",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2019:d2:pink-tent:1400:monki"
+  ],
+  "firstSeen": "2019-08-04",
+  "lastSeen": "2019-08-04",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "monochrome-av",
   "name": "Monochrome AV",
   "aliases": [],
@@ -145870,6 +146504,7 @@
    "coachella-2025:d4:yuma:1445:moon-boots",
    "edc-orlando-2021:d2:neon-garden:1530:moon-boots",
    "electric-forest-2014:d4:forest-stage:2215:moon-boots",
+   "hard-summer-2019:d2:pink-tent:2000:moon-boots",
    "outside-lands-2015:d2:the-house-by-heineken:1630:moon-boots"
   ],
   "firstSeen": "2014-06-29",
@@ -146278,6 +146913,7 @@
    "escape-halloween-2026:esc-morelia-b2b-pixie-dust-d1",
    "edc-las-vegas-2022:d3:boombox-art-car:0000:morelia",
    "escape-halloween-2025:d1:danse-macabre:2300:morelia",
+   "hard-summer-2019:d1:corona-electric-beach:1530:morelia",
    "nocturnal-wonderland-2018:d2:sunken-garden:1700:morelia"
   ],
   "firstSeen": "2018-09-15",
@@ -147979,9 +148615,10 @@
   "billings": [
    "iii-points-2026:iiip-silvie-loto-b2b-ms-mada",
    "edc-las-vegas-2022:d3:neon-garden:1900:ms-mada",
-   "edc-las-vegas-2022:d3:bionic-jungle:0130:ms-mada"
+   "edc-las-vegas-2022:d3:bionic-jungle:0130:ms-mada",
+   "hard-summer-2019:d1:pink-tent:1300:ms-mada"
   ],
-  "firstSeen": "2022-05-22",
+  "firstSeen": "2019-08-03",
   "lastSeen": "2026-10-17",
   "photo": null,
   "links": []
@@ -151128,6 +151765,21 @@
   "links": []
  },
  {
+  "key": "nazaar",
+  "name": "NAZAAR",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2024:d1:green-stage:1400:nazaar"
+  ],
+  "firstSeen": "2024-08-03",
+  "lastSeen": "2024-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "ncbm",
   "name": "NCBM",
   "aliases": [],
@@ -151470,6 +152122,21 @@
   ],
   "firstSeen": "2018-10-06",
   "lastSeen": "2018-10-06",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "nelly-furtado",
+  "name": "Nelly Furtado",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2024:d1:hard-stage:2000:nelly-furtado"
+  ],
+  "firstSeen": "2024-08-03",
+  "lastSeen": "2024-08-03",
   "photo": null,
   "links": []
  },
@@ -151939,6 +152606,7 @@
    "edc-las-vegas-2025:d2:basspod:0230:netsky",
    "edc-orlando-2024:d2:circuit-grounds:1755:netsky",
    "escape-halloween-2024:d2:sewer-district:2145:netsky",
+   "hard-summer-2019:d2:green-tent:2200:flux-pavilion-b2b-netsky",
    "nocturnal-wonderland-2013:d1:queen-s-grounds:2100:netsky",
    "nocturnal-wonderland-2018:d1:labyrinth:2300:netsky-dj-set",
    "tomorrowland-2011:d2:star-warz:2300:netsky",
@@ -152433,6 +153101,7 @@
    "edc-orlando-2021:d1:corona-electric-beach:2300:nghtmre",
    "escape-halloween-2017:d2:ghouls-graveyard:0030:nghtmre",
    "escape-halloween-2025:d2:sewer-district:2215:nghtmre-b2b-peekaboo",
+   "hard-summer-2019:d1:harder-stage:2100:excision-b2b-nghtmre",
    "lollapalooza-2015:d3:palladia:2030:nghtmre",
    "lollapalooza-2017:d3:perry-s:1645:nghtmre",
    "nocturnal-wonderland-2021:d1:wolves-den:2200:nghtmre",
@@ -155441,6 +156110,21 @@
   "links": []
  },
  {
+  "key": "noir-jbw",
+  "name": "Noir JBW",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2024:d1:jose-cuervo-locals-only-stage:1500:noir-jbw"
+  ],
+  "firstSeen": "2024-08-03",
+  "lastSeen": "2024-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "noise-mafia",
   "name": "Noise Mafia",
   "aliases": [
@@ -155584,6 +156268,7 @@
    "edc-orlando-2021:d3:stereo-bloom:1930:noizu",
    "edc-orlando-2023:d1:kinetic-field:1627:noizu",
    "edc-orlando-2024:d1:stereo-bloom:2045:noizu",
+   "hard-summer-2019:d2:harder-stage:1450:noizu",
    "lollapalooza-2018:d2:perry-s:untimed:noizu",
    "lollapalooza-2024:d2:perry-s:1520:noizu",
    "outside-lands-2022:d2:the-house-by-heineken:1700:noizu",
@@ -156199,10 +156884,11 @@
    "edc-lv-2026:c8",
    "lollapalooza-2026:lo66",
    "crssd-fall-2026:crssd-notion",
+   "hard-summer-2024:d1:green-stage:1500:notion",
    "outside-lands-2025:d1:soma:1510:notion",
    "shambhala-2025:d4:amp:2130:notion"
   ],
-  "firstSeen": "2025-07-27",
+  "firstSeen": "2024-08-03",
   "lastSeen": "2026-09-26",
   "photo": null,
   "links": []
@@ -158022,6 +158708,21 @@
   "links": []
  },
  {
+  "key": "ohgeesy",
+  "name": "Ohgeesy",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2019:d1:purple-tent:1720:ohgeesy"
+  ],
+  "firstSeen": "2019-08-03",
+  "lastSeen": "2019-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "oi-va-voi",
   "name": "Oi Va Voi",
   "aliases": [],
@@ -159151,6 +159852,7 @@
    "edc-orlando-2025:d2:stereobloom:2000:omnom",
    "escape-halloween-2024:d1:the-grimm:1745:omnom",
    "escape-halloween-2024:d1:casa-bacardi:2300:omnom",
+   "hard-summer-2019:d1:pink-tent:1600:omnom",
    "lightning-in-a-bottle-2019:d3:woogie:1600:omnom"
   ],
   "firstSeen": "2019-05-10",
@@ -159546,6 +160248,8 @@
   "projects": [],
   "billings": [
    "ultra-miami-2026:ul31",
+   "hard-summer-2019:d2:hard-stage:1655:ookay-live",
+   "hard-summer-2019:d2:corona-electric-beach:1900:ookay",
    "lollapalooza-2017:d2:perry-s:1430:ookay",
    "nocturnal-wonderland-2017:d2:wolves-den:2145:ookay-live",
    "shambhala-2014:d4:village:2000:ookay",
@@ -161973,7 +162677,9 @@
   "billings": [
    "dreamstate-socal-2026:dssc-panteros666",
    "edc-las-vegas-2024:d2:bionic-jungle:2000:panteros666",
-   "escape-halloween-2025:d1:the-warehouse:1900:panteros666"
+   "escape-halloween-2025:d1:the-warehouse:1900:panteros666",
+   "hard-summer-2024:d1:beatbox-boombox-art-car:2130:panteros666",
+   "hard-summer-2024:d2:purple-stage:1600:panteros666"
   ],
   "firstSeen": "2024-05-18",
   "lastSeen": "2026-11-20",
@@ -162934,6 +163640,21 @@
   ],
   "firstSeen": "2014-10-11",
   "lastSeen": "2014-10-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "pass-the-40",
+  "name": "Pass The 40",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2019:d1:corona-electric-beach:1300:pass-the-40"
+  ],
+  "firstSeen": "2019-08-03",
+  "lastSeen": "2019-08-03",
   "photo": null,
   "links": []
  },
@@ -167676,6 +168397,7 @@
    "edc-las-vegas-2024:d3:meta-phoenix:2130:pocket",
    "edc-las-vegas-2025:d2:metaphoenix:0130:pocket",
    "edc-las-vegas-2025:d3:stereo-bloom:2000:pocket-b2b-sam-binga",
+   "hard-summer-2024:d1:purple-stage:1500:pocket",
    "shambhala-2025:d4:living-room:0230:pocket"
   ],
   "firstSeen": "2024-05-19",
@@ -172853,7 +173575,8 @@
    "beyond-wonderland-socal-2026:d1:the-sea-of-wonder:1950:ranger-trucco",
    "edc-las-vegas-2024:d3:bionic-jungle:2300:ranger-trucco",
    "edc-orlando-2025:d1:stereobloom:1730:luke-dean-b2b-ranger-trucco-sunset-set",
-   "escape-halloween-2021:d2:sanitarium:1600:ranger-trucco"
+   "escape-halloween-2021:d2:sanitarium:1600:ranger-trucco",
+   "hard-summer-2024:d1:pink-stage:1700:ranger-trucco"
   ],
   "firstSeen": "2021-10-30",
   "lastSeen": "2027-01-21",
@@ -173363,10 +174086,11 @@
   "projects": [],
   "billings": [
    "coachella-2014:d2:sahara:1130:ravell",
-   "coachella-2014:d5:sahara:1130:ravell"
+   "coachella-2014:d5:sahara:1130:ravell",
+   "hard-summer-2019:d1:hard-stage:1300:ravell"
   ],
   "firstSeen": "2014-04-12",
-  "lastSeen": "2014-04-19",
+  "lastSeen": "2019-08-03",
   "photo": null,
   "links": []
  },
@@ -173910,6 +174634,7 @@
    "edc-las-vegas-2022:d3:corona-stage:2300:reaper",
    "edc-orlando-2021:d2:circuit-grounds:1600:reaper",
    "edc-orlando-2021:d2:corona-electric-beach:2100:reaper",
+   "hard-summer-2024:d1:green-stage:1800:reaper",
    "nocturnal-wonderland-2021:d2:labyrinth:1700:reaper"
   ],
   "firstSeen": "2021-09-19",
@@ -175882,6 +176607,21 @@
   "links": []
  },
  {
+  "key": "rezzmau5",
+  "name": "Rezzmau5",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2024:d1:harder-stage:2140:rezzmau5"
+  ],
+  "firstSeen": "2024-08-03",
+  "lastSeen": "2024-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "rf-shannon",
   "name": "RF Shannon",
   "aliases": [],
@@ -176438,6 +177178,36 @@
   ],
   "firstSeen": "2025-04-19",
   "lastSeen": "2025-04-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "rick-ross",
+  "name": "Rick Ross",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2019:d1:hard-stage:1700:rick-ross"
+  ],
+  "firstSeen": "2019-08-03",
+  "lastSeen": "2019-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "rick-trainor",
+  "name": "Rick Trainor",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2019:d2:pink-tent:1300:rick-trainor"
+  ],
+  "firstSeen": "2019-08-04",
+  "lastSeen": "2019-08-04",
   "photo": null,
   "links": []
  },
@@ -177328,6 +178098,7 @@
    "electric-forest-2013:d1:tripolee:2330:rl-grime",
    "escape-halloween-2019:d2:the-grimm:2300:rl-grime",
    "escape-halloween-2025:d2:sewer-district:0045:rl-grime",
+   "hard-summer-2019:d2:harder-stage:2200:rl-grime",
    "lollapalooza-2015:d2:perry-s:1630:rl-grime",
    "lollapalooza-2019:d3:perry-s:untimed:rl-grime",
    "outside-lands-2015:d1:twin-peaks:1715:rl-grime",
@@ -178055,6 +178826,21 @@
   ],
   "firstSeen": "2012-08-12",
   "lastSeen": "2015-04-18",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "robotaki",
+  "name": "Robotaki",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2019:d2:purple-tent:1640:robotaki"
+  ],
+  "firstSeen": "2019-08-04",
+  "lastSeen": "2019-08-04",
   "photo": null,
   "links": []
  },
@@ -182056,11 +182842,12 @@
   "projects": [],
   "billings": [
    "edc-orlando-2022:d1:circuit-grounds:1415:saka",
+   "hard-summer-2024:d1:green-stage:1600:saka-b2b-fly",
    "shambhala-2024:d4:amp:1930:saka",
    "ultra-miami-2022:d2:umf-radio:1200:saka"
   ],
   "firstSeen": "2022-03-26",
-  "lastSeen": "2024-07-28",
+  "lastSeen": "2024-08-03",
   "photo": null,
   "links": []
  },
@@ -183040,7 +183827,8 @@
    "escape-halloween-2026:esc-san-pacho-d2",
    "edc-las-vegas-2024:d1:stereo-bloom:0100:matroda-b2b-san-pacho",
    "edc-orlando-2023:d1:stereo-bloom:1630:san-pacho",
-   "edc-orlando-2025:d2:stereobloom:1730:san-pacho-sunset-set"
+   "edc-orlando-2025:d2:stereobloom:1730:san-pacho-sunset-set",
+   "hard-summer-2024:d1:harder-stage:1820:san-pacho"
   ],
   "firstSeen": "2023-11-10",
   "lastSeen": "2026-10-31",
@@ -186605,6 +187393,7 @@
    "iii-points-2026:iiip-seth-troxler",
    "time-warp-2027:tw27-seth-troxler",
    "edc-las-vegas-2012:d2:cosmicmeadow:2000:seth-troxler",
+   "hard-summer-2024:d1:pink-stage:2000:seth-troxler-b2b-dj-tennis",
    "outside-lands-2024:d3:soma:2010:seth-troxler",
    "primavera-sound-2018:d3:desperados-club:1900:seth-troxler",
    "tomorrowland-2012:d2:cocoon-heroes:1630:seth-troxler",
@@ -187611,16 +188400,19 @@
  },
  {
   "key": "sharps",
-  "name": "SHARPS",
-  "aliases": [],
+  "name": "Sharps",
+  "aliases": [
+   "SHARPS"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-orlando-2017:d1:corona-electric-beach:1530:sharps"
+   "edc-orlando-2017:d1:corona-electric-beach:1530:sharps",
+   "hard-summer-2019:d2:corona-electric-beach:1300:sharps"
   ],
   "firstSeen": "2017-11-10",
-  "lastSeen": "2017-11-10",
+  "lastSeen": "2019-08-04",
   "photo": null,
   "links": []
  },
@@ -187904,6 +188696,7 @@
   "projects": [],
   "billings": [
    "governors-ball-2019:d3:honda-stage:1910:sheck-wes",
+   "hard-summer-2019:d1:purple-tent:2115:sheck-wes",
    "lollapalooza-2019:d4:perry-s:untimed:sheck-wes",
    "outside-lands-2019:d3:twin-peaks:1705:sheck-wes",
    "sonar-2019:d3:sonarpub-by-thunder-bitch:2330:sheck-wes"
@@ -188390,6 +189183,7 @@
   "billings": [
    "coachella-2014:d1:gobi:1900:shlohmo",
    "coachella-2014:d4:gobi:1900:shlohmo",
+   "hard-summer-2019:d1:purple-tent:2010:shlohmo",
    "shambhala-2024:d3:grove:0230:shlohmo"
   ],
   "firstSeen": "2014-04-11",
@@ -189211,6 +190005,7 @@
    "edc-orlando-2024:d3:circuit-grounds:2040:sidepiece",
    "escape-halloween-2022:d2:sanitarium:2130:sidepiece",
    "escape-halloween-2025:d1:the-big-top:1955:sidepiece",
+   "hard-summer-2024:d1:harder-stage:1920:sidepiece",
    "lollapalooza-2022:d3:solana-x-perry-s:1715:sidepiece",
    "outside-lands-2024:d1:soma:2025:sidepiece",
    "tomorrowland-2022:d1:crystal-garden:1730:sidepiece"
@@ -190641,6 +191436,21 @@
   "links": []
  },
  {
+  "key": "sisters-of-sound-maddy-maia-b2b-tottie",
+  "name": "Sisters of Sound (Maddy Maia B2B Tottie)",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2024:d2:jose-cuervo-locals-only-stage:2030:sisters-of-sound-maddy-maia-b2b-tottie"
+  ],
+  "firstSeen": "2024-08-04",
+  "lastSeen": "2024-08-04",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "sistersun",
   "name": "Sistersun",
   "aliases": [],
@@ -191029,15 +191839,18 @@
  },
  {
   "key": "skepta-mas-tiempo",
-  "name": "Skepta Más Tiempo",
-  "aliases": [],
+  "name": "Skepta (Más Tiempo)",
+  "aliases": [
+   "Skepta Más Tiempo"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-las-vegas-2025:d1:neon-garden:2315:skepta-mas-tiempo"
+   "edc-las-vegas-2025:d1:neon-garden:2315:skepta-mas-tiempo",
+   "hard-summer-2024:d1:hard-stage:1715:skepta-mas-tiempo"
   ],
-  "firstSeen": "2025-05-16",
+  "firstSeen": "2024-08-03",
   "lastSeen": "2025-05-16",
   "photo": null,
   "links": []
@@ -193512,6 +194325,7 @@
    "coachella-2023:d5:outdoor:1835:sofi-tukker",
    "edc-las-vegas-2024:d3:cosmic-meadow:2300:sofi-tukker-dj-set",
    "edc-orlando-2025:d3:kineticfield:1957:sofi-tukker",
+   "hard-summer-2024:d2:hard-stage:1800:sofi-tukker-dj-set",
    "lightning-in-a-bottle-2018:d2:lightning:2115:sofi-tukker",
    "lollapalooza-2017:d4:bmi:1900:sofi-tukker",
    "lollapalooza-2023:d1:bud-light:1700:sofi-tukker",
@@ -194785,6 +195599,7 @@
    "edc-las-vegas-2025:d1:cosmic-meadow:1730:sosa-b2b-classmatic",
    "edc-las-vegas-2025:d2:neon-garden:2045:sosa",
    "edc-orlando-2025:d2:neongarden:1845:sosa",
+   "hard-summer-2024:d2:hard-stage:1600:sosa",
    "hard-summer-2025:d1:pink-stage:2030:sosa"
   ],
   "firstSeen": "2024-05-19",
@@ -194855,6 +195670,21 @@
   ],
   "firstSeen": "2026-06-19",
   "lastSeen": "2026-08-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "sosupersam",
+  "name": "Sosupersam",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2019:d1:purple-tent:1400:sosupersam"
+  ],
+  "firstSeen": "2019-08-03",
+  "lastSeen": "2019-08-03",
   "photo": null,
   "links": []
  },
@@ -194994,7 +195824,8 @@
   "billings": [
    "edc-las-vegas-2022:d1:rynobus:1900:soul-purpose",
    "edc-las-vegas-2024:d2:blacklight-bar:2245:soul-purpose",
-   "edc-las-vegas-2025:d1:metaphoenix:1900:soul-purpose"
+   "edc-las-vegas-2025:d1:metaphoenix:1900:soul-purpose",
+   "hard-summer-2024:d2:jose-cuervo-locals-only-stage:1400:soul-purpose"
   ],
   "firstSeen": "2022-05-20",
   "lastSeen": "2025-05-16",
@@ -195097,6 +195928,21 @@
   ],
   "firstSeen": "2026-06-27",
   "lastSeen": "2026-06-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "soulja-boy",
+  "name": "Soulja Boy",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2019:d2:purple-tent:2025:soulja-boy"
+  ],
+  "firstSeen": "2019-08-04",
+  "lastSeen": "2019-08-04",
   "photo": null,
   "links": []
  },
@@ -195544,6 +196390,7 @@
   "projects": [],
   "billings": [
    "coachella-2017:d3:do-lab:1830:space-jesus",
+   "hard-summer-2019:d1:green-tent:1905:space-jesus",
    "lollapalooza-2018:d1:perry-s:untimed:space-jesus",
    "nocturnal-wonderland-2018:d2:labyrinth:2010:space-jesus",
    "shambhala-2015:d1:amphitheatre:1930:space-jesus",
@@ -195551,7 +196398,7 @@
    "ultra-miami-2019:d3:worldwide-stage:2000:space-jesus"
   ],
   "firstSeen": "2015-08-06",
-  "lastSeen": "2019-03-31",
+  "lastSeen": "2019-08-03",
   "photo": null,
   "links": []
  },
@@ -197251,6 +198098,21 @@
   ],
   "firstSeen": "2016-04-17",
   "lastSeen": "2016-04-24",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "steady-rock",
+  "name": "Steady Rock",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2019:d1:corona-electric-beach:1645:franklyn-watts-b2b-steady-rock"
+  ],
+  "firstSeen": "2019-08-03",
+  "lastSeen": "2019-08-03",
   "photo": null,
   "links": []
  },
@@ -199261,6 +200123,7 @@
    "edc-las-vegas-2013:d1:basspod:0015:sub-focus",
    "edc-las-vegas-2024:d3:circuit-grounds:2100:sub-focus",
    "edc-orlando-2025:d1:circuitgrounds:1730:sub-focus-sunset-set",
+   "hard-summer-2024:d1:green-stage:2100:sub-focus",
    "nocturnal-wonderland-2017:d2:sunken-garden:2330:sub-focus",
    "nocturnal-wonderland-2021:d2:sunken-garden:2300:sub-focus",
    "shambhala-2016:d3:village:0130:sub-focus"
@@ -199578,6 +200441,21 @@
   "links": []
  },
  {
+  "key": "subset",
+  "name": "Subset",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2019:d2:green-tent:1300:subset"
+  ],
+  "firstSeen": "2019-08-04",
+  "lastSeen": "2019-08-04",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "subshift",
   "name": "Subshift",
   "aliases": [],
@@ -199682,6 +200560,8 @@
    "edc-orlando-2023:d1:circuit-grounds:2245:subtronics",
    "edc-orlando-2025:d3:kineticfield:2105:subtronics",
    "escape-halloween-2022:d1:feeding-grounds:0100:subtronics",
+   "hard-summer-2019:d2:green-tent:1800:subtronics-b2b-dirt-monkey",
+   "hard-summer-2024:d2:harder-stage:2100:subtronics",
    "lollapalooza-2021:d2:solana-x-perry-s:1800:subtronics",
    "lollapalooza-2023:d2:perry-s:2030:subtronics",
    "nocturnal-wonderland-2019:d1:labyrinth:2100:subtronics",
@@ -199689,7 +200569,7 @@
    "ultra-miami-2023:d2:worldwide-stage:2300:subtronics",
    "ultra-miami-2025:d1:ultra-main-stage:1755:subtronics"
   ],
-  "firstSeen": "2019-09-14",
+  "firstSeen": "2019-08-04",
   "lastSeen": "2026-12-31",
   "photo": null,
   "links": []
@@ -204286,6 +205166,7 @@
    "edc-las-vegas-2022:d3:cosmic-meadow:0010:tchami",
    "edc-orlando-2021:d2:kinetic-field:1732:tchami-sunset",
    "escape-halloween-2021:d2:sanitarium:0030:tchami",
+   "hard-summer-2019:d2:hard-stage:2000:zhu-b2b-tchami",
    "lollapalooza-2016:d1:perry-s:1745:tchami",
    "lollapalooza-2021:d1:solana-x-perry-s:1915:tchami",
    "tomorrowland-2017:d4:mainstage:2000:tchami",
@@ -204333,6 +205214,21 @@
   ],
   "firstSeen": "2018-07-21",
   "lastSeen": "2018-07-21",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "tchami-x-malaa-no-redemption",
+  "name": "Tchami x Malaa: No Redemption",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2024:d2:hard-stage:1900:tchami-x-malaa-no-redemption"
+  ],
+  "firstSeen": "2024-08-04",
+  "lastSeen": "2024-08-04",
   "photo": null,
   "links": []
  },
@@ -204882,10 +205778,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-las-vegas-2024:d2:beatbox-boombox-art-car:2030:teko"
+   "edc-las-vegas-2024:d2:beatbox-boombox-art-car:2030:teko",
+   "hard-summer-2024:d2:hard-stage:1400:teko"
   ],
   "firstSeen": "2024-05-18",
-  "lastSeen": "2024-05-18",
+  "lastSeen": "2024-08-04",
   "photo": null,
   "links": []
  },
@@ -207217,6 +208114,21 @@
   ],
   "firstSeen": "2018-05-27",
   "lastSeen": "2019-08-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "the-candy-rain",
+  "name": "The Candy Rain",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2019:d1:purple-tent:1300:the-candy-rain"
+  ],
+  "firstSeen": "2019-08-03",
+  "lastSeen": "2019-08-03",
   "photo": null,
   "links": []
  },
@@ -215397,6 +216309,21 @@
   "links": []
  },
  {
+  "key": "throwdown",
+  "name": "Throwdown",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2019:d2:corona-electric-beach:1400:throwdown"
+  ],
+  "firstSeen": "2019-08-04",
+  "lastSeen": "2019-08-04",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "thugfucker",
   "name": "THUGFUCKER",
   "aliases": [],
@@ -219543,9 +220470,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "hard-summer-2024:d2:jose-cuervo-locals-only-stage:1600:trax-unit",
    "hard-summer-2025:d2:pink-stage:1400:trax-unit"
   ],
-  "firstSeen": "2025-08-03",
+  "firstSeen": "2024-08-04",
   "lastSeen": "2025-08-03",
   "photo": null,
   "links": []
@@ -220529,6 +221457,7 @@
    "edc-orlando-2022:d3:circuit-grounds:2040:troyboi",
    "edc-orlando-2024:d1:circuit-grounds:2020:troyboi",
    "escape-halloween-2025:d2:sewer-district:2330:troyboi",
+   "hard-summer-2024:d2:harder-stage:1945:troyboi",
    "lollapalooza-2018:d4:perry-s:untimed:troyboi",
    "shambhala-2016:d2:grove:0130:troyboi",
    "shambhala-2016:d4:amphitheatre:0000:troyboi",
@@ -226426,6 +227355,8 @@
    "edc-orlando-2019:d2:stereobloom:1620:vnssa",
    "edc-orlando-2022:d2:stereo-bloom:2015:j-worra-b2b-vnssa",
    "escape-halloween-2021:d2:sanitarium:2000:vnssa",
+   "hard-summer-2019:d1:pink-tent:1400:vnssa",
+   "hard-summer-2019:d1:corona-electric-beach:2030:vnssa",
    "hard-summer-2025:d1:harder-stage:1815:walker-and-royce-b2b-vnssa",
    "lightning-in-a-bottle-2019:d3:woogie:1400:vnssa",
    "lollapalooza-2021:d3:solana-x-perry-s:1400:vnssa",
@@ -226480,6 +227411,21 @@
   ],
   "firstSeen": "2024-10-25",
   "lastSeen": "2024-10-25",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "voisan",
+  "name": "Voisan",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2024:d1:beatbox-boombox-art-car:1400:voisan"
+  ],
+  "firstSeen": "2024-08-03",
+  "lastSeen": "2024-08-03",
   "photo": null,
   "links": []
  },
@@ -228415,6 +229361,7 @@
    "edc-orlando-2022:d3:stereo-bloom:2115:wax-motif",
    "edc-orlando-2023:d2:kinetic-field:1727:malaa-b2b-wax-motif-sunset-set",
    "escape-halloween-2022:d1:the-grimm:2045:wax-motif",
+   "hard-summer-2024:d1:harder-stage:2020:wax-motif",
    "lollapalooza-2017:d4:perry-s:1415:wax-motif",
    "lollapalooza-2023:d4:perry-s:1530:wax-motif",
    "outside-lands-2019:d1:the-house-by-heineken:1700:wax-motif",
@@ -229274,6 +230221,7 @@
    "electric-forest-2014:d4:tripolee:1930:what-so-not",
    "escape-halloween-2019:d2:sanitarium:2245:what-so-not",
    "escape-halloween-2025:d2:the-warehouse:0000:what-so-not",
+   "hard-summer-2019:d1:harder-stage:1955:what-so-not",
    "lollapalooza-2015:d1:perry-s:1515:what-so-not",
    "lollapalooza-2018:d4:perry-s:untimed:what-so-not",
    "shambhala-2014:d3:pagoda:0030:what-so-not",
@@ -229353,6 +230301,7 @@
    "coachella-2017:d3:do-lab:1615:whethan",
    "edc-orlando-2022:d3:circuit-grounds:1940:whethan",
    "escape-halloween-2025:d2:the-warehouse:0100:whethan",
+   "hard-summer-2019:d1:harder-stage:1850:whethan",
    "lollapalooza-2017:d4:tito-s-handmade-vodka:2000:whethan",
    "lollapalooza-2019:d2:american-eagle:untimed:whethan",
    "outside-lands-2018:d2:panhandle:1810:whethan",
@@ -232010,6 +232959,7 @@
    "edc-las-vegas-2024:d3:kinetic-field:2000:wuki",
    "edc-orlando-2025:d3:circuitgrounds:1525:wuki",
    "escape-halloween-2019:d2:sanitarium:1830:wuki",
+   "hard-summer-2019:d1:green-tent:1530:wuki",
    "nocturnal-wonderland-2017:d2:temple-noctem:0045:wuki",
    "nocturnal-wonderland-2021:d2:labyrinth:2000:wuki",
    "shambhala-2025:d3:fractal-forest:0000:wuki"
@@ -232027,9 +232977,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-las-vegas-2022:d1:corona-stage:0145:wuki-and-friends"
+   "edc-las-vegas-2022:d1:corona-stage:0145:wuki-and-friends",
+   "hard-summer-2019:d2:corona-electric-beach:1800:wuki-and-friends"
   ],
-  "firstSeen": "2022-05-20",
+  "firstSeen": "2019-08-04",
   "lastSeen": "2022-05-20",
   "photo": null,
   "links": []
@@ -233256,6 +234207,21 @@
   "links": []
  },
  {
+  "key": "yehme2",
+  "name": "YehMe2",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2019:d2:harder-stage:1850:a-trak-b2b-yehme2"
+  ],
+  "firstSeen": "2019-08-04",
+  "lastSeen": "2019-08-04",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "yelle",
   "name": "Yelle",
   "aliases": [],
@@ -234131,15 +235097,18 @@
  },
  {
   "key": "young-franco",
-  "name": "YOUNG FRANCO",
-  "aliases": [],
+  "name": "Young Franco",
+  "aliases": [
+   "YOUNG FRANCO"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "hard-summer-2019:d1:hard-stage:1425:young-franco",
    "lollapalooza-2022:d2:solana-x-perry-s:1200:young-franco"
   ],
-  "firstSeen": "2022-07-29",
+  "firstSeen": "2019-08-03",
   "lastSeen": "2022-07-29",
   "photo": null,
   "links": []
@@ -234517,6 +235486,7 @@
   "projects": [],
   "billings": [
    "edc-orlando-2019:d1:circuitgrounds:1840:yultron",
+   "hard-summer-2019:d2:harder-stage:1750:yultron",
    "lollapalooza-2019:d2:perry-s:untimed:yultron"
   ],
   "firstSeen": "2019-08-02",
@@ -235444,6 +236414,7 @@
    "edc-orlando-2024:d1:circuit-grounds:2245:zeds-dead",
    "electric-forest-2012:d2:tripolee:2345:zeds-dead",
    "electric-forest-2014:d1:ranch-arena:0000:zeds-dead",
+   "hard-summer-2024:d1:green-stage:2200:zeds-dead",
    "lollapalooza-2012:d3:perry-s:1900:zeds-dead",
    "lollapalooza-2017:d4:perry-s:2030:zeds-dead",
    "lollapalooza-2024:d4:perry-s:2045:zeds-dead",
@@ -235703,6 +236674,7 @@
    "edc-las-vegas-2022:d3:circuit-grounds:2335:zhu",
    "edc-orlando-2019:d3:circuitgrounds:2255:zhu",
    "governors-ball-2019:d2:bacardi-stage:2000:zhu",
+   "hard-summer-2019:d2:hard-stage:2000:zhu-b2b-tchami",
    "lightning-in-a-bottle-2018:d4:lightning:0030:zhu",
    "lollapalooza-2016:d4:pepsi:2100:zhu",
    "lollapalooza-2022:d1:solana-x-perry-s:2030:zhu",
@@ -235710,6 +236682,22 @@
   ],
   "firstSeen": "2016-04-16",
   "lastSeen": "2026-03-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "zia",
+  "name": "ZÍA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "hard-summer-2019:d2:green-tent:1400:zia",
+   "hard-summer-2019:d2:corona-electric-beach:2200:zia"
+  ],
+  "firstSeen": "2019-08-04",
+  "lastSeen": "2019-08-04",
   "photo": null,
   "links": []
  },

@@ -2968,6 +2968,71 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "hard-summer:purple-tent",
+     "names": [
+      {
+       "printed": "Purple Tent",
+       "editions": [
+        "hard-summer-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "hard-summer:green-tent",
+     "names": [
+      {
+       "printed": "Green Tent",
+       "editions": [
+        "hard-summer-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "hard-summer:pink-tent",
+     "names": [
+      {
+       "printed": "Pink Tent",
+       "editions": [
+        "hard-summer-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "hard-summer:corona-electric-beach",
+     "names": [
+      {
+       "printed": "Corona Electric Beach",
+       "editions": [
+        "hard-summer-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "hard-summer:jose-cuervo-locals-only-stage",
+     "names": [
+      {
+       "printed": "Jose Cuervo Locals Only Stage",
+       "editions": [
+        "hard-summer-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },
