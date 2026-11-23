@@ -208,6 +208,10 @@ const out = build();
   check(review.length <= 1000, `review queue is ${review.length} rows (> 1000 means stop and report)`);
   check(review.every(r => r.reason) && excluded.every(e => e.reason && e.category), 'a review or excluded row without its reason');
   check(excluded.some(e => e.category === 'unnamed-slot'), 'control: no unnamed slot was excluded');
+  // #308: every billing names at least one performer; an all-unnamed b2b is excluded.
+  const empty = billings.filter(b => !b.performers || b.performers.length === 0);
+  check(empty.length === 0, `billing(s) with no performer: ${empty.map(b => b.id).join(', ')}`);
+  check(parseBilling('Special Guest b2b Special Guest').performers.length === 0, 'an all-unnamed b2b should parse to no performers');
   // Bare non-acts never become artists; a NAMED kids act ("Special Guest: The
   // Happiness Club") is a real billing and stays.
   check(!registry.some(r => /^(special-guest|surprise-guest|fireworks|closing-fireworks|tba|silent-disco)$/.test(r.key)), 'a non-act became an artist');
