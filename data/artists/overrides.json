@@ -524,7 +524,10 @@
     }
    ],
    "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
-   "source": "https://countdownnye.com/lineup/"
+   "source": [
+    "https://countdownnye.com/lineup/",
+    "https://www.forbiddenkingdomfestival.com/lineup/"
+   ]
   },
   {
    "printed": "Girl Math (VNSSA B2B Nala)",
@@ -8117,6 +8120,30 @@
   {
    "printed": "JOY (Anonymous)",
    "why": "Left as printed: the parenthetical is not sourced as a name the act uses elsewhere (the Bunny (Rabbit in the Moon) rule), so the billing is neither merged with the bare name nor credited to anything the parenthetical names."
+  },
+  {
+   "printed": "Alpha:Omega (AC13 & Reaper)",
+   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Hades x Persephone",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "P Money x Whiney",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Xó (Jackie Boi B2B Xclvsiv)",
+   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "key": "roi",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "s-y-n",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
   },
   {
    "printed": "Bonnie X Clyde",

@@ -624,7 +624,8 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "lost-lands-2026:lls1"
+   "lost-lands-2026:lls1",
+   "forbidden-kingdom-2027:fk27-2dy4"
   ],
   "firstSeen": "2026-09-19",
   "lastSeen": "2026-09-19",
@@ -1464,6 +1465,21 @@
   "links": []
  },
  {
+  "key": "9b49",
+  "name": "9B49",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-9b49"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "a-and-z-vs-omar-sherif",
   "name": "A & Z vs Omar Sherif",
   "aliases": [],
@@ -1633,6 +1649,7 @@
   "projects": [],
   "billings": [
    "decadence-arizona-2026:daz-a-hundred-drums-b2b-zen-selekta",
+   "forbidden-kingdom-2027:fk27-a-hundred-drums-b2b-zen-selekta",
    "edc-orlando-2025:d2:circuitgrounds:1400:a-hundred-drums",
    "ultra-miami-2022:d2:worldwide-stage:1300:a-hundred-drums",
    "ultra-miami-2023:d2:worldwide-stage:1400:a-hundred-drums"
@@ -3923,6 +3940,21 @@
   "links": []
  },
  {
+  "key": "advptive",
+  "name": "Advptive",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-advptive-b2b-dubba-d"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "ae-ther",
   "name": "Ae:ther",
   "aliases": [],
@@ -3941,14 +3973,16 @@
   "key": "aeon-mode",
   "name": "Æon:Mode",
   "aliases": [
-   "AEON:MODE"
+   "AEON:MODE",
+   "ÆON:MODE"
   ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
    "edc-lv-2026:bp33",
-   "lost-lands-2026:lls2"
+   "lost-lands-2026:lls2",
+   "forbidden-kingdom-2027:fk27-aeon-mode"
   ],
   "firstSeen": "2026-05-17",
   "lastSeen": "2026-09-19",
@@ -4491,6 +4525,21 @@
   ],
   "firstSeen": "2023-07-29",
   "lastSeen": "2023-07-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "ag",
+  "name": "AG",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-ag"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -7439,7 +7488,8 @@
   "projects": [],
   "billings": [
    "lost-lands-2026:lls3",
-   "escape-halloween-2026:esc-all-the-reason-d1"
+   "escape-halloween-2026:esc-all-the-reason-d1",
+   "forbidden-kingdom-2027:fk27-all-the-reason"
   ],
   "firstSeen": "2026-09-19",
   "lastSeen": "2026-10-30",
@@ -7660,6 +7710,7 @@
    "outside-lands-2026:os48",
    "decadence-colorado-2026:dec-alleycvt",
    "edc-thailand-2026:edcth-alleycvt",
+   "forbidden-kingdom-2027:fk27-alleycvt",
    "edc-las-vegas-2025:d3:circuit-grounds:1900:alleycvt",
    "edc-orlando-2025:d3:stereobloom:2000:alleycvt",
    "lollapalooza-2025:d2:perry-s:1515:alleycvt",
@@ -7981,6 +8032,21 @@
   ],
   "firstSeen": "2017-03-26",
   "lastSeen": "2026-12-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "alpha-omega-ac13-and-reaper",
+  "name": "Alpha:Omega (AC13 & Reaper)",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-alpha-omega-ac13-and-reaper"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -12912,6 +12978,21 @@
   "links": []
  },
  {
+  "key": "arcando",
+  "name": "Arcando",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-arcando"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "archers-of-loaf",
   "name": "Archers Of Loaf",
   "aliases": [],
@@ -15082,6 +15163,7 @@
    "edc-orlando-2026:ecu5",
    "lights-all-night-2026:lan-atliens",
    "edc-thailand-2026:edcth-atliens",
+   "forbidden-kingdom-2027:fk27-atliens",
    "beyond-wonderland-socal-2026:d1:mad-hatter-s-castle:2345:atliens",
    "countdown-nye-2019:d1:nebula:1800:atliens",
    "edc-las-vegas-2022:d3:basspod:0330:atliens",
@@ -16201,6 +16283,7 @@
    "edc-orlando-2026:ecs7",
    "lollapalooza-2026:lo63",
    "lights-all-night-2026:lan-avello",
+   "forbidden-kingdom-2027:fk27-avello",
    "beyond-wonderland-socal-2026:d1:caterpillar-s-garden:1755:avello",
    "edc-orlando-2022:d2:corona-electric-beach:1500:avello",
    "edc-orlando-2022:d3:circuit-grounds:1300:avello",
@@ -18071,6 +18154,21 @@
   "links": []
  },
  {
+  "key": "bagha",
+  "name": "Bagha",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-bagha"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "baha-men",
   "name": "Baha Men",
   "aliases": [],
@@ -18870,6 +18968,21 @@
   ],
   "firstSeen": "2012-10-14",
   "lastSeen": "2012-10-14",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "barrowz",
+  "name": "BARROWZ",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-barrowz"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -20716,6 +20829,21 @@
   ],
   "firstSeen": "2013-08-03",
   "lastSeen": "2013-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "beastboi",
+  "name": "beastboi.",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-beastboi"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -23319,7 +23447,8 @@
   "billings": [
    "lost-lands-2026:lls7",
    "edc-orlando-2026:ecf7",
-   "ultra-miami-2026:ul123"
+   "ultra-miami-2026:ul123",
+   "forbidden-kingdom-2027:fk27-big-florida"
   ],
   "firstSeen": "2026-03-29",
   "lastSeen": "2026-11-06",
@@ -25061,6 +25190,7 @@
    "edc-lv-2026:c28",
    "lost-lands-2026:llu53",
    "decadence-colorado-2026:dec-black-tiger-sex-machine",
+   "forbidden-kingdom-2027:fk27-black-tiger-sex-machine",
    "beyond-wonderland-gorge-2026:d2:queen-s-valley:2205:black-tiger-sex-machine",
    "beyond-wonderland-socal-2026:d2:mad-hatter-s-castle:2345:black-tiger-sex-machine",
    "countdown-nye-2024:d1:area-51:2355:black-tiger-sex-machine",
@@ -26187,6 +26317,21 @@
   "links": []
  },
  {
+  "key": "bloom",
+  "name": "Bloom",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-bloom"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "blossom",
   "name": "Blossom",
   "aliases": [
@@ -26197,6 +26342,7 @@
   "projects": [],
   "billings": [
    "lost-lands-2026:lls2",
+   "forbidden-kingdom-2027:fk27-blossom",
    "edc-las-vegas-2022:d2:circuit-grounds:1900:blossom",
    "escape-halloween-2022:d1:the-grimm:1700:blossom",
    "lollapalooza-2021:d1:solana-x-perry-s:1300:blossom"
@@ -27530,6 +27676,36 @@
   ],
   "firstSeen": "2026-10-17",
   "lastSeen": "2026-10-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "bonker",
+  "name": "Bonker",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-bonker"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "bonkers",
+  "name": "Bonkers",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-bonkers"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -32142,6 +32318,21 @@
   "links": []
  },
  {
+  "key": "bynz",
+  "name": "Bynz",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-bynz-b2b-inqu"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "byor",
   "name": "BYOR",
   "aliases": [],
@@ -34982,6 +35173,7 @@
   "projects": [],
   "billings": [
    "lost-lands-2026:llf9",
+   "forbidden-kingdom-2027:fk27-casey-club",
    "shambhala-2025:d1:amp:1400:casey-club"
   ],
   "firstSeen": "2025-07-24",
@@ -36056,6 +36248,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "forbidden-kingdom-2027:fk27-celo",
    "edc-las-vegas-2024:d1:beatbox-boombox-art-car:0200:celo",
    "edc-las-vegas-2025:d2:beatbox-art-car:0215:celo",
    "edc-orlando-2021:d1:rynobus:2100:celo",
@@ -37588,6 +37781,7 @@
   "projects": [],
   "billings": [
    "lost-lands-2026:llw4",
+   "forbidden-kingdom-2027:fk27-chassi",
    "beyond-wonderland-socal-2026:d2:beatbox:1900:chassi-k-pop-set",
    "escape-halloween-2024:d2:beatbox-boombox-art-car:2330:chassi"
   ],
@@ -38822,7 +39016,8 @@
   "projects": [],
   "billings": [
    "lost-lands-2026:lls11",
-   "countdown-nye-2026:cdny-chozen"
+   "countdown-nye-2026:cdny-chozen",
+   "forbidden-kingdom-2027:fk27-chozen"
   ],
   "firstSeen": "2026-09-19",
   "lastSeen": "2027-01-01",
@@ -41915,7 +42110,8 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "lost-lands-2026:llu9"
+   "lost-lands-2026:llu9",
+   "forbidden-kingdom-2027:fk27-codd-dubz"
   ],
   "firstSeen": "2026-09-20",
   "lastSeen": "2026-09-20",
@@ -44043,6 +44239,21 @@
   "links": []
  },
  {
+  "key": "costa",
+  "name": "Costa",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-costa"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "coucou-chloe",
   "name": "COUCOU CHLOE",
   "aliases": [],
@@ -44507,6 +44718,7 @@
   "billings": [
    "lost-lands-2026:llu2",
    "decadence-colorado-2026:dec-crankdat",
+   "forbidden-kingdom-2027:fk27-crankdat",
    "edc-las-vegas-2024:d2:basspod:0430:crankdat",
    "edc-las-vegas-2025:d1:cosmic-meadow:0200:crankdat",
    "edc-las-vegas-2025:d3:basspod:0130:crankdat-b2b-tape-b",
@@ -45095,6 +45307,7 @@
   "projects": [],
   "billings": [
    "lost-lands-2026:llf10",
+   "forbidden-kingdom-2027:fk27-crizzly",
    "beyond-wonderland-socal-2012:d1:chess-village:1630:crizzly",
    "beyond-wonderland-socal-2013:d1:chess-village:2200:crizzly",
    "beyond-wonderland-socal-2013:d1:discovery-project:0000:crizzly",
@@ -46198,7 +46411,8 @@
   "billings": [
    "edc-lv-2026:bp31",
    "lost-lands-2026:lls15",
-   "escape-halloween-2026:esc-cyclops-d1"
+   "escape-halloween-2026:esc-cyclops-d1",
+   "forbidden-kingdom-2027:fk27-cyclops"
   ],
   "firstSeen": "2026-05-15",
   "lastSeen": "2026-10-30",
@@ -51594,6 +51808,21 @@
   "links": []
  },
  {
+  "key": "debbie-check",
+  "name": "Debbie Check",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-debbie-check"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "debbiesthuglife",
   "name": "debbiesthuglife",
   "aliases": [],
@@ -56316,7 +56545,8 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "countdown-nye-2026:cdny-discovery-project"
+   "countdown-nye-2026:cdny-discovery-project",
+   "forbidden-kingdom-2027:fk27-discovery-project"
   ],
   "firstSeen": "2026-12-31",
   "lastSeen": "2026-12-31",
@@ -58764,6 +58994,21 @@
   ],
   "firstSeen": "2016-03-18",
   "lastSeen": "2017-03-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dj-kang",
+  "name": "DJ Kang",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-dj-kang"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -63609,6 +63854,21 @@
   "links": []
  },
  {
+  "key": "dpmo-presents-beastboi",
+  "name": "DPMO Presents: beastboi.",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-dpmo-presents-beastboi-b2b-funtcase-b2b-versa"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dpr-ian-dpr-live",
   "name": "DPR IAN + DPR LIVE",
   "aliases": [],
@@ -64966,6 +65226,21 @@
   ],
   "firstSeen": "2013-07-27",
   "lastSeen": "2013-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dubba-d",
+  "name": "Dubba D",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-advptive-b2b-dubba-d"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -72008,6 +72283,7 @@
    "ultra-miami-2026:ul54",
    "escape-halloween-2026:esc-excision-d1",
    "decadence-colorado-2026:dec-excision",
+   "forbidden-kingdom-2027:fk27-excision",
    "coachella-2011:d1:sahara:1430:excision",
    "edc-las-vegas-2012:d1:neongarden:0125:excision",
    "edc-las-vegas-2022:d2:basspod:0130:excision-detox-set",
@@ -74873,6 +75149,21 @@
   "links": []
  },
  {
+  "key": "fieldz",
+  "name": "Fieldz",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-fieldz-b2b-ophion"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "fifi",
   "name": "FIFI",
   "aliases": [],
@@ -75146,13 +75437,16 @@
  },
  {
   "key": "finnuh",
-  "name": "FINNUH",
-  "aliases": [],
+  "name": "Finnuh",
+  "aliases": [
+   "FINNUH"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "lost-lands-2026:llu16"
+   "lost-lands-2026:llu16",
+   "forbidden-kingdom-2027:fk27-finnuh"
   ],
   "firstSeen": "2026-09-20",
   "lastSeen": "2026-09-20",
@@ -76630,12 +76924,15 @@
  },
  {
   "key": "flozone",
-  "name": "FLOZONE",
-  "aliases": [],
+  "name": "Flozone",
+  "aliases": [
+   "FLOZONE"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "forbidden-kingdom-2027:fk27-flozone-b2b-stvsh",
    "edc-orlando-2025:d3:stereobloom:1400:flozone"
   ],
   "firstSeen": "2025-11-09",
@@ -79931,6 +80228,7 @@
    "edc-lv-2026:bp9",
    "lost-lands-2026:llh4",
    "lost-lands-2026:llf63",
+   "forbidden-kingdom-2027:fk27-dpmo-presents-beastboi-b2b-funtcase-b2b-versa",
    "countdown-nye-2015:d1:quantum-stage:0000:cookie-monsta-b2b-funtcase",
    "edc-las-vegas-2012:d1:basspod:0130:funtcase",
    "edc-las-vegas-2022:d1:basspod:2230:doctor-p-b2b-funtcase-classics-set",
@@ -81070,6 +81368,21 @@
   ],
   "firstSeen": "2019-10-25",
   "lastSeen": "2019-10-25",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "gamma",
+  "name": "GAMMA",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-gamma"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -82611,6 +82924,7 @@
    "edc-lv-2026:bp25",
    "lost-lands-2026:lls24",
    "countdown-nye-2026:cdny-ghengar",
+   "forbidden-kingdom-2027:fk27-ghengar",
    "edc-las-vegas-2024:d3:basspod:2230:ghastly-presents-ghengar",
    "escape-halloween-2024:d1:sewer-district:2200:ghastly-presents-ghengar"
   ],
@@ -85461,6 +85775,7 @@
    "edc-lv-2026:bp24",
    "decadence-colorado-2026:dec-gorillat",
    "countdown-nye-2026:cdny-gorillat",
+   "forbidden-kingdom-2027:fk27-gorillat-sunset-set",
    "beyond-wonderland-socal-2026:d2:mad-hatter-s-castle:1745:gorillat",
    "edc-orlando-2025:d1:circuitgrounds:1630:gorillat"
   ],
@@ -85733,6 +86048,7 @@
   "billings": [
    "lost-lands-2026:llu18",
    "summerfest-2026:su160",
+   "forbidden-kingdom-2027:fk27-grabbitz",
    "beyond-wonderland-gorge-2026:d1:mad-hatter-s-castle:1830:grabbitz",
    "lollapalooza-2022:d3:solana-x-perry-s:1330:grabbitz"
   ],
@@ -88263,6 +88579,21 @@
   "links": []
  },
  {
+  "key": "hades-x-persephone",
+  "name": "Hades x Persephone",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-hades-x-persephone"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "hadone",
   "name": "Hadone",
   "aliases": [],
@@ -90450,7 +90781,8 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "nocturnal-wonderland-2026:nw-hekler"
+   "nocturnal-wonderland-2026:nw-hekler",
+   "forbidden-kingdom-2027:fk27-hekler"
   ],
   "firstSeen": "2026-09-19",
   "lastSeen": "2026-09-19",
@@ -91045,7 +91377,8 @@
   "billings": [
    "lost-lands-2026:llw9",
    "escape-halloween-2026:esc-hershe-d1",
-   "lights-all-night-2026:lan-hershe"
+   "lights-all-night-2026:lan-hershe",
+   "forbidden-kingdom-2027:fk27-hershe"
   ],
   "firstSeen": "2026-09-16",
   "lastSeen": "2026-12-30",
@@ -91115,6 +91448,21 @@
   ],
   "firstSeen": "2019-07-26",
   "lastSeen": "2019-07-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "hexx",
+  "name": "HEXX",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-hexx"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -91932,6 +92280,7 @@
    "lost-lands-2026:llf19",
    "ultra-miami-2026:ul63",
    "countdown-nye-2026:cdny-hol",
+   "forbidden-kingdom-2027:fk27-hol",
    "edc-las-vegas-2024:d1:basspod:0230:hol",
    "edc-orlando-2025:d2:circuitgrounds:1900:hol",
    "lollapalooza-2024:d4:perry-s:1530:hol"
@@ -92782,7 +93131,8 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "lost-lands-2026:llu20"
+   "lost-lands-2026:llu20",
+   "forbidden-kingdom-2027:fk27-hostage-situation"
   ],
   "firstSeen": "2026-09-20",
   "lastSeen": "2026-09-20",
@@ -93967,7 +94317,8 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "lost-lands-2026:llu21"
+   "lost-lands-2026:llu21",
+   "forbidden-kingdom-2027:fk27-hurtbox"
   ],
   "firstSeen": "2026-09-20",
   "lastSeen": "2026-09-20",
@@ -95826,6 +96177,21 @@
   "links": []
  },
  {
+  "key": "inaktiv",
+  "name": "Inaktiv",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-inaktiv"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "inbal",
   "name": "Inbal",
   "aliases": [],
@@ -96060,6 +96426,7 @@
    "edc-lv-2026:bp15",
    "lost-lands-2026:llf20",
    "nocturnal-wonderland-2026:nw-infekt-b2b-virtual-riot",
+   "forbidden-kingdom-2027:fk27-infekt",
    "beyond-wonderland-gorge-2026:d1:mad-hatter-s-castle:2330:riot-ten-b2b-infekt",
    "edc-las-vegas-2025:d2:basspod:2130:infekt",
    "edc-orlando-2025:d2:circuitgrounds:1800:infekt"
@@ -96498,6 +96865,21 @@
   ],
   "firstSeen": "2017-07-29",
   "lastSeen": "2017-07-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "inqu",
+  "name": "Inqu",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-bynz-b2b-inqu"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -97663,7 +98045,8 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "lost-lands-2026:llw11"
+   "lost-lands-2026:llw11",
+   "forbidden-kingdom-2027:fk27-izzy-vadim-b2b-warlord"
   ],
   "firstSeen": "2026-09-16",
   "lastSeen": "2026-09-16",
@@ -103007,6 +103390,7 @@
    "edc-orlando-2026:ecu17",
    "ultra-miami-2026:ul33",
    "countdown-nye-2026:cdny-jessica-audiffred",
+   "forbidden-kingdom-2027:fk27-jessica-audiffred",
    "edc-las-vegas-2022:d1:basspod:1950:jessica-audiffred",
    "edc-las-vegas-2024:d1:basspod:2230:jessica-audiffred",
    "edc-las-vegas-2025:d2:basspod:2230:jessica-audiffred-b2b-layz",
@@ -103861,7 +104245,8 @@
    "lost-lands-2026:llf24",
    "edc-orlando-2026:ecs19",
    "nocturnal-wonderland-2026:nw-jkyl-and-hyde-b2b-nikita-the-wicked",
-   "decadence-arizona-2026:daz-jkyl-and-hyde"
+   "decadence-arizona-2026:daz-jkyl-and-hyde",
+   "forbidden-kingdom-2027:fk27-jkyl-and-hyde"
   ],
   "firstSeen": "2026-09-18",
   "lastSeen": "2026-12-31",
@@ -107305,6 +107690,21 @@
   "links": []
  },
  {
+  "key": "joust",
+  "name": "JOUST",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-joust"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "jovanotti",
   "name": "Jovanotti",
   "aliases": [],
@@ -109261,6 +109661,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "forbidden-kingdom-2027:fk27-justin-hawkes",
    "beyond-wonderland-socal-2026:d2:the-sea-of-wonder:1750:justin-hawkes",
    "edc-las-vegas-2022:d1:forest-house-art-car:2130:justin-hawkes"
   ],
@@ -110013,6 +110414,7 @@
    "lost-lands-2026:lls35",
    "ultra-miami-2026:ul65",
    "escape-halloween-2026:esc-kai-wachi-d1",
+   "forbidden-kingdom-2027:fk27-kai-wachi",
    "edc-las-vegas-2022:d1:basspod:0430:kai-wachi",
    "edc-las-vegas-2024:d3:basspod:0230:kai-wachi",
    "edc-orlando-2022:d2:circuit-grounds:1900:kai-wachi-b2b-kompany",
@@ -115465,6 +115867,7 @@
    "edc-lv-2026:s18",
    "lost-lands-2026:llf26",
    "lollapalooza-2026:lo11",
+   "forbidden-kingdom-2027:fk27-klo",
    "dreamstate-socal-2025:d1:beatbox-art-car:1700:klo",
    "primavera-sound-2015:d4:h-and-m-pro:2100:klo"
   ],
@@ -119341,6 +119744,21 @@
   "links": []
  },
  {
+  "key": "lagrimas",
+  "name": "Lagrimas",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-lagrimas"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "lagrimas-de-oro",
   "name": "Lagrimas de Oro",
   "aliases": [],
@@ -121083,6 +121501,7 @@
    "edc-orlando-2026:ecs22",
    "ultra-miami-2026:ul126",
    "nocturnal-wonderland-2026:nw-layz",
+   "forbidden-kingdom-2027:fk27-layz",
    "beyond-wonderland-socal-2026:d2:mad-hatter-s-castle:1945:layz",
    "countdown-nye-2024:d1:area-51:1850:layz",
    "edc-las-vegas-2024:d1:basspod:2130:layz",
@@ -122768,6 +123187,7 @@
    "edc-orlando-2026:ecf22",
    "escape-halloween-2026:esc-level-up-d1",
    "lights-all-night-2026:lan-level-up",
+   "forbidden-kingdom-2027:fk27-level-up",
    "edc-las-vegas-2022:d3:basspod:1950:level-up",
    "edc-las-vegas-2024:d2:basspod:0130:subtronics-b2b-level-up",
    "edc-las-vegas-2025:d2:basspod:0330:level-up",
@@ -122852,6 +123272,7 @@
    "iii-points-2026:iiip-levity-b2b-taiki-nulight",
    "decadence-colorado-2026:dec-levity",
    "decadence-arizona-2026:daz-levity",
+   "forbidden-kingdom-2027:fk27-levity",
    "coachella-2026:d1:sahara:2115:levity",
    "coachella-2026:d4:sahara:2115:levity",
    "edc-las-vegas-2025:d3:basspod:2130:levity",
@@ -128284,6 +128705,21 @@
   "links": []
  },
  {
+  "key": "lucas-larvenz",
+  "name": "Lucas Larvenz",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-lucas-larvenz"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "lucati",
   "name": "Lucati",
   "aliases": [
@@ -130834,6 +131270,7 @@
    "lost-lands-2026:llw2",
    "lost-lands-2026:llu27",
    "lights-all-night-2026:lan-mad-dubz-b2b-vktm",
+   "forbidden-kingdom-2027:fk27-mad-dubz",
    "beyond-wonderland-gorge-2026:d1:mad-hatter-s-castle:1730:mad-dubz"
   ],
   "firstSeen": "2026-06-27",
@@ -138596,6 +139033,21 @@
   "links": []
  },
  {
+  "key": "maylay",
+  "name": "MAYLAY",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-maylay-b2b-natty-lou"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "maysaa",
   "name": "Maysaa",
   "aliases": [],
@@ -143205,7 +143657,8 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "lost-lands-2026:llw13"
+   "lost-lands-2026:llw13",
+   "forbidden-kingdom-2027:fk27-mile32"
   ],
   "firstSeen": "2026-09-16",
   "lastSeen": "2026-09-16",
@@ -145038,6 +145491,21 @@
   "links": []
  },
  {
+  "key": "moceans",
+  "name": "MOCEANS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-moceans"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "mochakk",
   "name": "Mochakk",
   "aliases": [
@@ -145075,7 +145543,9 @@
   "projects": [],
   "billings": [
    "lost-lands-2026:llu28",
-   "escape-halloween-2026:esc-modal-nodes-d1"
+   "escape-halloween-2026:esc-modal-nodes-d1",
+   "forbidden-kingdom-2027:fk27-modal-nodes",
+   "forbidden-kingdom-2027:fk27-port-zero-presents-infekt-b2b-modal-nodes-b2b-roi"
   ],
   "firstSeen": "2026-09-20",
   "lastSeen": "2026-10-30",
@@ -149350,6 +149820,21 @@
   "links": []
  },
  {
+  "key": "mvrda",
+  "name": "Mvrda",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-mvrda"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "mvrvels",
   "name": "MVRVELS",
   "aliases": [],
@@ -149376,6 +149861,21 @@
   ],
   "firstSeen": "2022-08-06",
   "lastSeen": "2022-08-06",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "mvtr",
+  "name": "MVTR",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-mvtr"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -149970,6 +150470,7 @@
   "projects": [],
   "billings": [
    "lost-lands-2026:lls43",
+   "forbidden-kingdom-2027:fk27-mythm",
    "shambhala-2024:d3:amp:2000:mythm"
   ],
   "firstSeen": "2024-07-27",
@@ -151387,6 +151888,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "forbidden-kingdom-2027:fk27-maylay-b2b-natty-lou",
    "tomorrowland-2023:d6:cage:1500:natty-lou"
   ],
   "firstSeen": "2023-07-30",
@@ -152148,7 +152650,8 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "lost-lands-2026:lls44"
+   "lost-lands-2026:lls44",
+   "forbidden-kingdom-2027:fk27-neotek"
   ],
   "firstSeen": "2026-09-19",
   "lastSeen": "2026-09-19",
@@ -156800,6 +157303,21 @@
   "links": []
  },
  {
+  "key": "novuh",
+  "name": "Novuh",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-novuh-b2b-wohlsy"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "noyznthehood",
   "name": "NOYZNTHEHOOD",
   "aliases": [],
@@ -160112,6 +160630,21 @@
   "links": []
  },
  {
+  "key": "ophion",
+  "name": "Ophion",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-fieldz-b2b-ophion"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "opiuo",
   "name": "Opiuo",
   "aliases": [],
@@ -160977,7 +161510,8 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "lost-lands-2026:llh14"
+   "lost-lands-2026:llh14",
+   "forbidden-kingdom-2027:fk27-otsukare"
   ],
   "firstSeen": "2026-09-17",
   "lastSeen": "2026-09-17",
@@ -161622,6 +162156,21 @@
   "links": []
  },
  {
+  "key": "ozztin",
+  "name": "OZZTIN",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-ozztin"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "p-haze-3",
   "name": "P.HAZE 3",
   "aliases": [],
@@ -161650,6 +162199,21 @@
   ],
   "firstSeen": "2019-08-09",
   "lastSeen": "2019-08-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "p-money-x-whiney",
+  "name": "P Money x Whiney",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-p-money-x-whiney"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -162555,6 +163119,21 @@
   ],
   "firstSeen": "2012-07-01",
   "lastSeen": "2014-06-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "papajay",
+  "name": "papajay",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-papajay"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -165377,6 +165956,21 @@
   ],
   "firstSeen": "2010-04-16",
   "lastSeen": "2010-04-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "perry-wayne",
+  "name": "Perry Wayne",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-perry-wayne"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -168714,6 +169308,21 @@
   "links": []
  },
  {
+  "key": "port-zero-presents-infekt",
+  "name": "Port Zero presents: INFEKT",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-port-zero-presents-infekt-b2b-modal-nodes-b2b-roi"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "portals",
   "name": "Portals",
   "aliases": [],
@@ -169340,7 +169949,8 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "lost-lands-2026:llu32"
+   "lost-lands-2026:llu32",
+   "forbidden-kingdom-2027:fk27-pretty-sweet"
   ],
   "firstSeen": "2026-09-20",
   "lastSeen": "2026-09-20",
@@ -169385,6 +169995,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "forbidden-kingdom-2027:fk27-primate",
    "tomorrowland-2012:d3:daily-dubstep-invites-wheel-and-deal:1300:primate",
    "tomorrowland-2014:d6:daily-dubstep:1500:primate",
    "tomorrowland-2023:d4:the-rose-garden:1200:primate"
@@ -172026,6 +172637,21 @@
   "links": []
  },
  {
+  "key": "raaket",
+  "name": "Raaket",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-raaket"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "rabbit-in-the-moon",
   "name": "Rabbit In The Moon",
   "aliases": [
@@ -174077,6 +174703,7 @@
    "lost-lands-2026:llf48",
    "edc-orlando-2026:ecs30",
    "ultra-miami-2026:ul130",
+   "forbidden-kingdom-2027:fk27-ray-volpe",
    "edc-las-vegas-2025:d2:basspod:2330:ray-volpe",
    "edc-orlando-2022:d2:circuit-grounds:1700:ray-volpe",
    "edc-orlando-2024:d2:circuit-grounds:1855:ray-volpe",
@@ -176643,7 +177270,8 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "lost-lands-2026:llf41"
+   "lost-lands-2026:llf41",
+   "forbidden-kingdom-2027:fk27-richard-finger"
   ],
   "firstSeen": "2026-09-18",
   "lastSeen": "2026-09-18",
@@ -177394,6 +178022,7 @@
   "billings": [
    "lost-lands-2026:llw17",
    "ultra-miami-2026:ul37",
+   "forbidden-kingdom-2027:fk27-riot-ten",
    "beyond-wonderland-gorge-2026:d1:mad-hatter-s-castle:2330:riot-ten-b2b-infekt",
    "edc-las-vegas-2022:d1:basspod:2330:riot-ten",
    "edc-las-vegas-2025:d1:basspod:0030:riot-ten",
@@ -179064,13 +179693,16 @@
  },
  {
   "key": "roi",
-  "name": "ROI*",
-  "aliases": [],
+  "name": "roi*",
+  "aliases": [
+   "ROI*"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "lost-lands-2026:llu34"
+   "lost-lands-2026:llu34",
+   "forbidden-kingdom-2027:fk27-port-zero-presents-infekt-b2b-modal-nodes-b2b-roi"
   ],
   "firstSeen": "2026-09-20",
   "lastSeen": "2026-09-20",
@@ -181333,6 +181965,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "forbidden-kingdom-2027:fk27-ruvlo",
    "edc-orlando-2023:d2:rynobus-art-car:2300:ruvlo"
   ],
   "firstSeen": "2023-11-11",
@@ -181848,7 +182481,8 @@
   ],
   "projects": [],
   "billings": [
-   "countdown-nye-2026:cdny-s-y-n-svdden-death-yvm3-nimda"
+   "countdown-nye-2026:cdny-s-y-n-svdden-death-yvm3-nimda",
+   "forbidden-kingdom-2027:fk27-s-y-n-svdden-death-yvm3-nimda"
   ],
   "firstSeen": "2026-12-31",
   "lastSeen": "2026-12-31",
@@ -183352,6 +183986,7 @@
    "edc-lv-2026:bp15",
    "lost-lands-2026:llf20",
    "nocturnal-wonderland-2026:nw-kompany-b2b-samplifire",
+   "forbidden-kingdom-2027:fk27-samplifire",
    "edc-las-vegas-2025:d2:basspod:2040:samplifire"
   ],
   "firstSeen": "2025-05-17",
@@ -183636,6 +184271,21 @@
   ],
   "firstSeen": "2010-08-11",
   "lastSeen": "2022-03-25",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "sando",
+  "name": "SANDO",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-sando"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -186419,6 +187069,21 @@
   "links": []
  },
  {
+  "key": "seeing-dubble",
+  "name": "Seeing Dubble",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-seeing-dubble"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "seek-one",
   "name": "Seek-One",
   "aliases": [],
@@ -187438,6 +188103,21 @@
   ],
   "firstSeen": "2025-08-10",
   "lastSeen": "2026-08-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "sfam",
+  "name": "sfam",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-sfam"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -188759,7 +189439,8 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "iii-points-2026:iiip-shinobi"
+   "iii-points-2026:iiip-shinobi",
+   "forbidden-kingdom-2027:fk27-shinobi"
   ],
   "firstSeen": "2026-10-17",
   "lastSeen": "2026-10-17",
@@ -188871,12 +189552,15 @@
  },
  {
   "key": "shiverz",
-  "name": "SHIVERZ",
-  "aliases": [],
+  "name": "Shiverz",
+  "aliases": [
+   "SHIVERZ"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "forbidden-kingdom-2027:fk27-shiverz",
    "escape-halloween-2022:d1:feeding-grounds:1750:shiverz"
   ],
   "firstSeen": "2022-10-28",
@@ -189110,6 +189794,21 @@
   ],
   "firstSeen": "2010-07-24",
   "lastSeen": "2010-07-24",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "shosh",
+  "name": "Shosh",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-shosh"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -192891,6 +193590,7 @@
   "projects": [],
   "billings": [
    "edc-orlando-2026:ecf33",
+   "forbidden-kingdom-2027:fk27-sloth",
    "edc-orlando-2019:d1:wideawakeartcar:1600:sloth",
    "edc-orlando-2021:d1:circuit-grounds:1300:sloth",
    "edc-orlando-2023:d2:rynobus-art-car:1700:sloth",
@@ -196990,6 +197690,21 @@
   "links": []
  },
  {
+  "key": "spoone",
+  "name": "Spoone",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-spoone"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "spor",
   "name": "SPOR",
   "aliases": [],
@@ -197066,13 +197781,16 @@
  },
  {
   "key": "sqishi",
-  "name": "SQISHI",
-  "aliases": [],
+  "name": "Sqishi",
+  "aliases": [
+   "SQISHI"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "lost-lands-2026:llu40"
+   "lost-lands-2026:llu40",
+   "forbidden-kingdom-2027:fk27-sqishi"
   ],
   "firstSeen": "2026-09-20",
   "lastSeen": "2026-09-20",
@@ -197751,6 +198469,21 @@
   "links": []
  },
  {
+  "key": "stayns",
+  "name": "STAYNS",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-stayns"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "staysick",
   "name": "Staysick",
   "aliases": [],
@@ -198053,6 +198786,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "forbidden-kingdom-2027:fk27-steller",
    "edc-las-vegas-2025:d3:basspod:1950:steller",
    "edc-orlando-2021:d2:circuit-grounds:1500:steller",
    "lollapalooza-2022:d3:solana-x-perry-s:1240:steller"
@@ -199632,6 +200366,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "forbidden-kingdom-2027:fk27-flozone-b2b-stvsh",
    "hard-summer-2025:d1:green-stage:1400:stvsh"
   ],
   "firstSeen": "2025-08-02",
@@ -200651,11 +201386,14 @@
  {
   "key": "sumthin-sumthin",
   "name": "Sumthin Sumthin",
-  "aliases": [],
+  "aliases": [
+   "sumthin sumthin"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "forbidden-kingdom-2027:fk27-sumthin-sumthin",
    "nocturnal-wonderland-2019:d1:labyrinth:1600:sumthin-sumthin"
   ],
   "firstSeen": "2019-09-14",
@@ -211294,6 +212032,21 @@
   "links": []
  },
  {
+  "key": "the-masquerade",
+  "name": "The Masquerade",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-the-masquerade"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "the-matthew-herbert-brexit-big-band",
   "name": "The Matthew Herbert Brexit Big Band",
   "aliases": [],
@@ -213026,6 +213779,7 @@
   "billings": [
    "lost-lands-2026:llf49",
    "decadence-colorado-2026:dec-the-resistance",
+   "forbidden-kingdom-2027:fk27-the-resistance",
    "defqon1-2015:d3:indigo:1300:the-resistance"
   ],
   "firstSeen": "2015-06-21",
@@ -215905,6 +216659,21 @@
   ],
   "firstSeen": "2010-07-24",
   "lastSeen": "2018-07-21",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "three-pux",
+  "name": "Three Pux",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-three-pux"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -222821,7 +223590,8 @@
   "projects": [],
   "billings": [
    "lost-lands-2026:llf52",
-   "countdown-nye-2026:cdny-heyz-b2b-tynan"
+   "countdown-nye-2026:cdny-heyz-b2b-tynan",
+   "forbidden-kingdom-2027:fk27-tynan"
   ],
   "firstSeen": "2026-09-18",
   "lastSeen": "2027-01-01",
@@ -224108,7 +224878,8 @@
   "projects": [],
   "billings": [
    "lost-lands-2026:llw6",
-   "lost-lands-2026:llu44"
+   "lost-lands-2026:llu44",
+   "forbidden-kingdom-2027:fk27-usaybflow"
   ],
   "firstSeen": "2026-09-16",
   "lastSeen": "2026-09-20",
@@ -224772,6 +225543,21 @@
   "links": []
  },
  {
+  "key": "vanirz",
+  "name": "Vanirz",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-vanirz-b2b-yaki"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "vansire",
   "name": "Vansire",
   "aliases": [],
@@ -225257,6 +226043,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "forbidden-kingdom-2027:fk27-dpmo-presents-beastboi-b2b-funtcase-b2b-versa",
    "shambhala-2024:d4:secret-garden:0000:versa"
   ],
   "firstSeen": "2024-07-28",
@@ -225730,6 +226517,21 @@
   ],
   "firstSeen": "2015-07-26",
   "lastSeen": "2016-03-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "vicky-b",
+  "name": "Vicky B",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-vicky-b"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -226486,6 +227288,21 @@
   ],
   "firstSeen": "2025-08-01",
   "lastSeen": "2026-05-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "vipete",
+  "name": "Vipete",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-vipete"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -227572,6 +228389,21 @@
   "links": []
  },
  {
+  "key": "vyhara",
+  "name": "Vyhara",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-vyhara"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "vynx",
   "name": "VYNX",
   "aliases": [],
@@ -228431,7 +229263,8 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "lost-lands-2026:llu46"
+   "lost-lands-2026:llu46",
+   "forbidden-kingdom-2027:fk27-izzy-vadim-b2b-warlord"
   ],
   "firstSeen": "2026-09-20",
   "lastSeen": "2026-09-20",
@@ -231767,6 +232600,21 @@
   "links": []
  },
  {
+  "key": "wohlsy",
+  "name": "Wohlsy",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-novuh-b2b-wohlsy"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "wolf-alice",
   "name": "Wolf Alice",
   "aliases": [
@@ -231866,7 +232714,8 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "nocturnal-wonderland-2026:nw-wolfie"
+   "nocturnal-wonderland-2026:nw-wolfie",
+   "forbidden-kingdom-2027:fk27-wolfie"
   ],
   "firstSeen": "2026-09-19",
   "lastSeen": "2026-09-19",
@@ -232214,6 +233063,21 @@
   "links": []
  },
  {
+  "key": "wook-appruvd",
+  "name": "Wook Appruvd",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-wook-appruvd"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "wooli",
   "name": "Wooli",
   "aliases": [
@@ -232229,6 +233093,7 @@
    "edc-lv-2026:cg6",
    "lost-lands-2026:llf56",
    "edc-orlando-2026:ecf35",
+   "forbidden-kingdom-2027:fk27-wooli",
    "beyond-wonderland-gorge-2026:d1:queen-s-valley:2230:wooli",
    "edc-las-vegas-2024:d2:basspod:0030:wooli",
    "edc-orlando-2022:d3:circuit-grounds:1840:wooli",
@@ -233218,6 +234083,21 @@
   "links": []
  },
  {
+  "key": "xo-jackie-boi-b2b-xclvsiv",
+  "name": "Xó (Jackie Boi B2B Xclvsiv)",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-xo-jackie-boi-b2b-xclvsiv"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "xols",
   "name": "XOLS",
   "aliases": [],
@@ -233401,6 +234281,21 @@
   ],
   "firstSeen": "2019-07-20",
   "lastSeen": "2019-07-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "yaki",
+  "name": "Yaki",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-vanirz-b2b-yaki"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -233718,6 +234613,7 @@
    "edc-lv-2026:bp5",
    "escape-halloween-2026:esc-ydg-d1",
    "lights-all-night-2026:lan-ydg",
+   "forbidden-kingdom-2027:fk27-ydg",
    "beyond-wonderland-gorge-2026:d2:mad-hatter-s-castle:2025:ydg",
    "beyond-wonderland-socal-2026:d1:mad-hatter-s-castle:1840:ydg",
    "edc-las-vegas-2025:d3:basspod:2230:ydg",
@@ -236166,6 +237062,7 @@
   "billings": [
    "lost-lands-2026:llh12",
    "decadence-arizona-2026:daz-a-hundred-drums-b2b-zen-selekta",
+   "forbidden-kingdom-2027:fk27-a-hundred-drums-b2b-zen-selekta",
    "escape-halloween-2025:d1:sewer-district:1645:zen-selekta",
    "shambhala-2024:d3:amp:1800:zen-selekta"
   ],
@@ -236562,6 +237459,7 @@
   "projects": [],
   "billings": [
    "lost-lands-2026:llu52",
+   "forbidden-kingdom-2027:fk27-zoey808",
    "escape-halloween-2025:d2:sewer-district:1700:zoey808"
   ],
   "firstSeen": "2025-11-01",
@@ -236779,6 +237677,21 @@
   ],
   "firstSeen": "2024-11-10",
   "lastSeen": "2025-03-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "zouth",
+  "name": "Zouth",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "forbidden-kingdom-2027:fk27-zouth"
+  ],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
