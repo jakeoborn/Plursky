@@ -47,7 +47,6 @@ const FALLBACK = {
   "bottlerock-2027": "official art not fetched yet; tile owed before the flip",
   "suenos-2027": "official art not fetched yet; tile owed before the flip",
   "bumbershoot-2027": "official art not fetched yet; tile owed before the flip",
-  "world-club-dome-2027": "official art not fetched yet; tile owed before the flip",
   "bass-canyon-2027": "official art not fetched yet; tile owed before the flip",
   "medusa-2027": "official art not fetched yet; tile owed before the flip",
 };

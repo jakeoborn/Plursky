@@ -413,4 +413,12 @@ window.PLURSKY_FESTIVAL_ART = Object.freeze({
     license: "CC BY 2.0 (Flickr upload reviewed by FlickreviewR (reviewed-pass, 2014-12)). Replaces the letter-tile fallback; Commons uploader, credit and EXIF checked 2026-11-23.",
     author: "Adam Wiggins", licenseId: "CC-BY-2.0", licenseUrl: "https://creativecommons.org/licenses/by/2.0/", changes: "Cropped",
   },
+  "world-club-dome-2027": {
+    tile: "festival-art/tiles/world-club-dome-2027.webp", card: "festival-art/world-club-dome-2027.webp", width: 168, height: 168,
+    kind: "photo", sourcePage: "https://commons.wikimedia.org/wiki/File:World_Club_Dome_2013.jpg",
+    assetUrl: "https://upload.wikimedia.org/wikipedia/commons/f/ff/World_Club_Dome_2013.jpg",
+    credit: "Lasers over the crowd at BigCityBeats World Club Dome Frankfurt 2013. Photo by Tobias Franz, Wikimedia Commons", retrieved: "2026-11-23",
+    license: "CC BY 2.0 (Flickr upload reviewed by FlickreviewR (reviewed-pass, 2016-09-01)). Replaces the letter-tile fallback; Commons uploader, credit and EXIF checked 2026-11-23.",
+    author: "Tobias Franz", licenseId: "CC-BY-2.0", licenseUrl: "https://creativecommons.org/licenses/by/2.0/", changes: "Cropped",
+  },
 });
