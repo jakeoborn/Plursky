@@ -2430,7 +2430,7 @@
    "name": "Escape Halloween 2023",
    "year": 2023,
    "timezone": "America/Los_Angeles",
-   "completeness": "lineup_only",
+   "completeness": "complete_schedule",
    "days": [
     {
      "day": 1,
@@ -2445,8 +2445,8 @@
    ],
    "counts": {
     "stages": 5,
-    "artists": 89,
-    "sets": 0
+    "artists": 88,
+    "sets": 88
    }
   },
   {

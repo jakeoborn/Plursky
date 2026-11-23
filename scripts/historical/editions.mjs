@@ -746,7 +746,7 @@ export const EDITIONS = {
     timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
     dates: [["2024-08-03", "Saturday"], ["2024-08-04", "Sunday"]] },
   "escape-halloween-2023": { festivalId: "escape-halloween", name: "Escape Halloween 2023", year: 2023,
-    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
     dates: [["2023-10-27", "Friday"], ["2023-10-28", "Saturday"]] },
   "edc-las-vegas-2019": { festivalId: "edc-lv", name: "EDC Las Vegas 2019", year: 2019,
     timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
