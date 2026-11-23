@@ -202,9 +202,10 @@ const out = build();
   // 231.
   // Coachella 2025 adds five, all pending with no claim: "Triste Juventud x
   // Tótem", "Fcukers DJ set x HAAi", "Barry Can't Swim x 2manydjs x salute",
-  // "Kaskade Redux x IDRIS" and "Alesso Body Hi x Gorgon City": 236 rows. The
-  // cap is 236. Past 236, stop and report.
-  check(review.length <= 236, `review queue is ${review.length} rows (> 236 means stop and report)`);
+  // "Kaskade Redux x IDRIS" and "Alesso Body Hi x Gorgon City": 236 rows.
+  // The cap is 1000 (Jake's typed "we can go cap 1000", 2026-11-22), in place
+  // of 236/238. Past 1000, stop and report.
+  check(review.length <= 1000, `review queue is ${review.length} rows (> 1000 means stop and report)`);
   check(review.every(r => r.reason) && excluded.every(e => e.reason && e.category), 'a review or excluded row without its reason');
   check(excluded.some(e => e.category === 'unnamed-slot'), 'control: no unnamed slot was excluded');
   // Bare non-acts never become artists; a NAMED kids act ("Special Guest: The
