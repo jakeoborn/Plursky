@@ -542,7 +542,10 @@
     }
    ],
    "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
-   "source": "https://lasvegas.electricdaisycarnival.com/lineup/set-times"
+   "source": [
+    "https://lasvegas.electricdaisycarnival.com/lineup/set-times",
+    "https://countdownnye.com/set-times/day-1/"
+   ]
   },
   {
    "printed": "One Tribe Presents (AMÉMÉ B2B Baron)",
@@ -8141,6 +8144,54 @@
   {
    "key": "s-y-n",
    "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "printed": "MK (MARC KINCHEN)",
+   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Wankdat (Crankdat B2B Wooli)",
+   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Bonnie X Clyde",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Fcukers (DJs)",
+   "why": "Left as printed, one act: \"(DJs)\" is not one of the registry's set tags, so the billing is neither merged with the bare name nor split. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Digital Mystikz (Mala + Coki)",
+   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Tchami x Malaa: No Redemption",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Fisher + Chris Lake: Under Construction",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "2¢ (Craze & Four Color Zack)",
+   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "AMOK (Will Clarke + Sian)",
+   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Ketboi69 (KETTAMA B2B Partiboi69)",
+   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Sisters of Sound (Maddy Maia B2B Tottie)",
+   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Skepta (Más Tiempo)",
+   "why": "Left as printed: the parenthetical is not sourced as a name the act uses elsewhere (the Bunny (Rabbit in the Moon) rule), so the billing is neither merged with the bare name nor credited to anything the parenthetical names."
   },
   {
    "printed": "DJ ISAAC B2B SAYMYNAME (HARDSTYLE)",
