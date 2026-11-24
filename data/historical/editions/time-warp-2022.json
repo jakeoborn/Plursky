@@ -1,0 +1,336 @@
+{
+ "id": "time-warp-2022",
+ "festivalId": "time-warp",
+ "name": "Time Warp Germany 2022",
+ "year": 2022,
+ "timezone": "Europe/Berlin",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2022-10-28",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2022-10-29",
+   "label": "Saturday"
+  }
+ ],
+ "stages": [],
+ "artists": [
+  {
+   "id": "time-warp-2022:amelie-lens",
+   "name": "Amelie Lens",
+   "key": "amelie-lens",
+   "performers": [
+    "amelie-lens"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2022:denis-sulta",
+   "name": "Denis Sulta",
+   "key": "denis-sulta",
+   "performers": [
+    "denis-sulta"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2022:enrico-sangiuliano",
+   "name": "Enrico Sangiuliano",
+   "key": "enrico-sangiuliano",
+   "performers": [
+    "enrico-sangiuliano"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2022:joseph-capriati",
+   "name": "Joseph Capriati",
+   "key": "joseph-capriati",
+   "performers": [
+    "joseph-capriati"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2022:loco-dice",
+   "name": "Loco Dice",
+   "key": "loco-dice",
+   "performers": [
+    "loco-dice"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2022:maceo-plex",
+   "name": "Maceo Plex",
+   "key": "maceo-plex",
+   "performers": [
+    "maceo-plex"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2022:pan-pot",
+   "name": "PAN-POT",
+   "key": "pan-pot",
+   "performers": [
+    "pan-pot"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2022:perel",
+   "name": "Perel",
+   "key": "perel",
+   "performers": [
+    "perel"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2022:reinier-zonneveld-live",
+   "name": "Reinier Zonneveld (Live)",
+   "key": "reinier-zonneveld-live",
+   "performers": [
+    "reinier-zonneveld-live"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2022:richie-hawtin",
+   "name": "Richie Hawtin",
+   "key": "richie-hawtin",
+   "performers": [
+    "richie-hawtin"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2022:sama-abdulhadi",
+   "name": "Sama' Abdulhadi",
+   "key": "sama-abdulhadi",
+   "performers": [
+    "sama-abdulhadi"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2022:adam-beyer",
+   "name": "Adam Beyer",
+   "key": "adam-beyer",
+   "performers": [
+    "adam-beyer"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2022:dax-j",
+   "name": "Dax J",
+   "key": "dax-j",
+   "performers": [
+    "dax-j"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2022:hector-oaks",
+   "name": "Héctor Oaks",
+   "key": "hector-oaks",
+   "performers": [
+    "hector-oaks"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2022:kas-st",
+   "name": "KAS:ST",
+   "key": "kas-st",
+   "performers": [
+    "kas-st"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2022:kobosil",
+   "name": "Kobosil",
+   "key": "kobosil",
+   "performers": [
+    "kobosil"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2022:kolsch",
+   "name": "Kölsch",
+   "key": "kolsch",
+   "performers": [
+    "kolsch"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2022:marr-n",
+   "name": "MARRØN",
+   "key": "marr-n",
+   "performers": [
+    "marr-n"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2022:paula-temple",
+   "name": "Paula Temple",
+   "key": "paula-temple",
+   "performers": [
+    "paula-temple"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2022:peggy-gou",
+   "name": "Peggy Gou",
+   "key": "peggy-gou",
+   "performers": [
+    "peggy-gou"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2022:solomun",
+   "name": "Solomun",
+   "key": "solomun",
+   "performers": [
+    "solomun"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2022:sven-vath",
+   "name": "Sven Väth",
+   "key": "sven-vath",
+   "performers": [
+    "sven-vath"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2022:vtss",
+   "name": "VTSS",
+   "key": "vtss",
+   "performers": [
+    "vtss"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "official_lineup_html",
+  "official": "https://www.time-warp.de/22/lineup",
+  "captures": [
+   {
+    "page": "lineup",
+    "archivedUrl": "https://web.archive.org/web/20230205011620/https://www.time-warp.de/22/lineup",
+    "captureTimestamp": "20230205011620",
+    "sha256": "988265a30777e5ce8cf624cf594237de35470787753cf603c220b50caebb6ec9"
+   }
+  ]
+ }
+}

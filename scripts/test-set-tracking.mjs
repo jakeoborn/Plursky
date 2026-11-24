@@ -147,7 +147,7 @@ let sChecks = 0, sFailed = 0;
 const sCheck = (ok, msg) => { sChecks++; if (!ok) { sFailed++; console.log("  ✗ " + msg); } };
 const watcher = (chrome.match(/function SetTrackingWatcher\(\)[\s\S]*?\n}\n/) || [""])[0];
 sCheck(!!watcher, "SetTrackingWatcher exists in chrome.jsx");
-sCheck(/getSetTracking\(\) === "on"/.test(watcher), "the watcher runs only when the user turned it on (default off)");
+sCheck(/getSetTracking\(fid\) === "on"/.test(watcher), "the watcher runs only when the user turned it on for this festival (default off)");
 sCheck(/document\.visibilityState !== "hidden"/.test(watcher), "the watcher runs only while the page is visible");
 const fnBody = name => (chrome.match(new RegExp(`async function ${name}\\([\\s\\S]*?\\n}\\n`)) || [""])[0];
 for (const name of ["setTrackStillHere", "stageCalibrateNow"]) {
@@ -160,12 +160,12 @@ sCheck(/visibilityState === "hidden"\) _fgEpoch\+\+/.test(chrome), "a hide inval
 sCheck(/setTrackEligibility\(cfg, Date\.now\(\)\) === "live"/.test(watcher), "the watcher runs only on a live festival day with measured stages");
 sCheck(/attendQualifyFixes\(/.test(watcher) && /attendEvidenceAnchors\(cfg\)/.test(watcher), "the watcher uses the one fix gate on measured anchors");
 sCheck(/clearWatch\(id\)/.test(watcher), "the watcher clears its watch on teardown");
-sCheck(/function getSetTracking\(\)[\s\S]{0,200}: null/.test(chrome), "an unset pref reads as never asked (null), not on");
+sCheck(/function getSetTracking\(festivalId[^)]*\)[\s\S]{0,200}: null/.test(chrome), "an unset pref reads as never asked (null), not on");
 sCheck(/setTrackRecord\(fid, q\[0\]\)/.test(watcher) && !/setTrackRecord\([^)]*(lat|lng|coords)/.test(chrome), "only the qualified { ms, stageId } is recorded");
 sCheck(/state\.tab !== "landing" && <SetTrackingWatcher \/>/.test(app), "app.jsx mounts the watcher off General Home only");
 sCheck(/<BatterySaverCard \/>\s*<SetTrackingCard \/>/.test(spot), "Me → Settings shows the set-tracking card (the off switch)");
-sCheck(/data-set-tracking-off onClick=\{\(\) => setSetTracking\(false\)\}/.test(chrome), "the card's Turn off button switches it off");
-sCheck(/data-set-tracking-accept onClick=\{\(\) => \{ setSetTracking\(true\)/.test(chrome) && /data-set-tracking-consent/.test(chrome), "turning it on goes through the consent panel");
+sCheck(/data-set-tracking-off onClick=\{\(\) => setSetTracking\(false, cfg && cfg\.id\)\}/.test(chrome), "the card's Turn off button switches it off for this festival");
+sCheck(/data-set-tracking-accept onClick=\{\(\) => \{ setSetTracking\(true, cfg && cfg\.id\)/.test(chrome) && /data-set-tracking-consent/.test(chrome), "turning it on goes through the consent panel");
 sCheck(/Lock the screen and the count pauses/.test(chrome) && /only while Plursky is open/.test(chrome), "the card states the foreground-only limit");
 const vfn = (chrome.match(/function setTrackVerdict\([\s\S]*?\n}\n/) || [""])[0];
 sCheck(/attendanceVerdict\(a, iv, cfg[,)]/.test(vfn) && /attendanceVerdictLabel\(v\)/.test(vfn), "PR 4: setTrackVerdict asks attendanceVerdict and its label (no second rule)");
@@ -312,6 +312,15 @@ if (!process.env.SET_TRACKING_SKIP_BROWSER) {
       const c2 = await fgRun("calib", ["hide", "show"]);
       aCheck(c2.cb && c2.status === "hidden" && !(await calib()).includes("ultra-miami-2026"), `${tag} calibration: hidden and back before the fix lands → still nothing stored (${JSON.stringify(c2)})`);
       await page.evaluate(() => localStorage.removeItem("plursky_set_taps_v1")); await page.waitForTimeout(300);
+      // Per festival (SPEC-212 W3): a yes for another festival does not run
+      // this one's watch, and this festival's own yes does.
+      const gA = await geo();
+      await page.evaluate(() => { localStorage.setItem("plursky_set_tracking_v2", JSON.stringify({ "edc-lv-2026": "on", "ultra-miami-2026": "off" }));
+        window.dispatchEvent(new CustomEvent("plursky-set-tracking-change")); }); await page.waitForTimeout(300);
+      aCheck(await card.getAttribute("data-set-tracking-state") === "off" && (await geo()).cleared === gA.cleared + 1, `${tag} only EDC opted in, Ultra live → Ultra's watch stops and its card says off`);
+      const gB = await geo();
+      await page.evaluate(() => setSetTracking(true)); await page.waitForTimeout(300);
+      aCheck(await card.getAttribute("data-set-tracking-state") === "on" && (await geo()).calls === gB.calls + 1 && /On for /.test(await card.innerText()), `${tag} Ultra's own yes → its watch starts, and the card names the festival`);
       const g0 = await geo();
       await page.locator("#__t [data-set-tracking-off]").click(); await page.waitForTimeout(300);
       aCheck(await card.getAttribute("data-set-tracking-state") === "off" && (await geo()).cleared === g0.cleared + 1, `${tag} Turn off → off, the watch is cleared`);
