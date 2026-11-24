@@ -1,0 +1,472 @@
+{
+ "id": "countdown-nye-2015",
+ "festivalId": "countdown-nye",
+ "name": "Countdown NYE 2015",
+ "year": 2015,
+ "timezone": "America/Los_Angeles",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2015-12-31",
+   "label": "Thursday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "countdown-nye-2015:infinity-stage",
+   "name": "INFINITY STAGE"
+  },
+  {
+   "id": "countdown-nye-2015:quantum-stage",
+   "name": "QUANTUM STAGE"
+  },
+  {
+   "id": "countdown-nye-2015:resolution-stage",
+   "name": "RESOLUTION STAGE"
+  }
+ ],
+ "artists": [
+  {
+   "id": "countdown-nye-2015:planet-rock",
+   "name": "Planet Rock",
+   "key": "planet-rock",
+   "performers": [
+    "planet-rock"
+   ]
+  },
+  {
+   "id": "countdown-nye-2015:kayoh",
+   "name": "Kayoh",
+   "key": "kayoh",
+   "performers": [
+    "kayoh"
+   ]
+  },
+  {
+   "id": "countdown-nye-2015:what-so-not",
+   "name": "What So Not",
+   "key": "what-so-not",
+   "performers": [
+    "what-so-not"
+   ]
+  },
+  {
+   "id": "countdown-nye-2015:oliver-heldens",
+   "name": "Oliver Heldens",
+   "key": "oliver-heldens",
+   "performers": [
+    "oliver-heldens"
+   ]
+  },
+  {
+   "id": "countdown-nye-2015:trippy-turtle",
+   "name": "Trippy Turtle",
+   "key": "trippy-turtle",
+   "performers": [
+    "trippy-turtle"
+   ]
+  },
+  {
+   "id": "countdown-nye-2015:alison-wonderland",
+   "name": "Alison Wonderland",
+   "key": "alison-wonderland",
+   "performers": [
+    "alison-wonderland"
+   ]
+  },
+  {
+   "id": "countdown-nye-2015:tjr",
+   "name": "TJR",
+   "key": "tjr",
+   "performers": [
+    "tjr"
+   ]
+  },
+  {
+   "id": "countdown-nye-2015:sleepy-tom",
+   "name": "Sleepy Tom",
+   "key": "sleepy-tom",
+   "performers": [
+    "sleepy-tom"
+   ]
+  },
+  {
+   "id": "countdown-nye-2015:nightstalker",
+   "name": "Nightstalker",
+   "key": "nightstalker",
+   "performers": [
+    "nightstalker"
+   ]
+  },
+  {
+   "id": "countdown-nye-2015:fallen",
+   "name": "Fallen",
+   "key": "fallen",
+   "performers": [
+    "fallen"
+   ]
+  },
+  {
+   "id": "countdown-nye-2015:cyantific-b2b-mob-tactics-b2b-insideinfo",
+   "name": "Cyantific B2B Mob Tactics B2B InsideInfo",
+   "key": "cyantific-b2b-mob-tactics-b2b-insideinfo",
+   "performers": [
+    "cyantific",
+    "mob-tactics",
+    "insideinfo"
+   ]
+  },
+  {
+   "id": "countdown-nye-2015:megalodon-b2b-truth",
+   "name": "Megalodon B2B Truth",
+   "key": "megalodon-b2b-truth",
+   "performers": [
+    "megalodon",
+    "truth"
+   ]
+  },
+  {
+   "id": "countdown-nye-2015:minnesota-b2b-g-jones",
+   "name": "Minnesota B2B G Jones",
+   "key": "minnesota-b2b-g-jones",
+   "performers": [
+    "minnesota",
+    "g-jones"
+   ]
+  },
+  {
+   "id": "countdown-nye-2015:metrik-b2b-tc",
+   "name": "Metrik B2B TC",
+   "key": "metrik-b2b-tc",
+   "performers": [
+    "metrik",
+    "tc"
+   ]
+  },
+  {
+   "id": "countdown-nye-2015:eptic-b2b-habstrakt",
+   "name": "Eptic B2B Habstrakt",
+   "key": "eptic-b2b-habstrakt",
+   "performers": [
+    "eptic",
+    "habstrakt"
+   ]
+  },
+  {
+   "id": "countdown-nye-2015:cookie-monsta-b2b-funtcase",
+   "name": "Cookie Monsta B2B FuntCase",
+   "key": "cookie-monsta-b2b-funtcase",
+   "performers": [
+    "cookie-monsta",
+    "funtcase"
+   ]
+  },
+  {
+   "id": "countdown-nye-2015:delta-heavy",
+   "name": "Delta Heavy",
+   "key": "delta-heavy",
+   "performers": [
+    "delta-heavy"
+   ]
+  },
+  {
+   "id": "countdown-nye-2015:fransis-derelle",
+   "name": "Fransis Derelle",
+   "key": "fransis-derelle",
+   "performers": [
+    "fransis-derelle"
+   ]
+  },
+  {
+   "id": "countdown-nye-2015:baggi",
+   "name": "Baggi",
+   "key": "baggi",
+   "performers": [
+    "baggi"
+   ]
+  },
+  {
+   "id": "countdown-nye-2015:pierce-fulton",
+   "name": "Pierce Fulton",
+   "key": "pierce-fulton",
+   "performers": [
+    "pierce-fulton"
+   ]
+  },
+  {
+   "id": "countdown-nye-2015:mercer",
+   "name": "Mercer",
+   "key": "mercer",
+   "performers": [
+    "mercer"
+   ]
+  },
+  {
+   "id": "countdown-nye-2015:yellow-claw",
+   "name": "Yellow Claw",
+   "key": "yellow-claw",
+   "performers": [
+    "yellow-claw"
+   ]
+  },
+  {
+   "id": "countdown-nye-2015:flux-pavilion",
+   "name": "Flux Pavilion",
+   "key": "flux-pavilion",
+   "performers": [
+    "flux-pavilion"
+   ]
+  },
+  {
+   "id": "countdown-nye-2015:carnage",
+   "name": "Carnage",
+   "key": "carnage",
+   "performers": [
+    "carnage"
+   ]
+  },
+  {
+   "id": "countdown-nye-2015:dj-snake",
+   "name": "DJ Snake",
+   "key": "dj-snake",
+   "performers": [
+    "dj-snake"
+   ]
+  },
+  {
+   "id": "countdown-nye-2015:kaskade",
+   "name": "Kaskade",
+   "key": "kaskade",
+   "performers": [
+    "kaskade"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "countdown-nye-2015:d1:infinity-stage:1600:planet-rock",
+   "artistId": "countdown-nye-2015:planet-rock",
+   "day": 1,
+   "stageId": "countdown-nye-2015:infinity-stage",
+   "start": "16:00",
+   "end": "18:00"
+  },
+  {
+   "id": "countdown-nye-2015:d1:infinity-stage:1800:kayoh",
+   "artistId": "countdown-nye-2015:kayoh",
+   "day": 1,
+   "stageId": "countdown-nye-2015:infinity-stage",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "countdown-nye-2015:d1:infinity-stage:1900:what-so-not",
+   "artistId": "countdown-nye-2015:what-so-not",
+   "day": 1,
+   "stageId": "countdown-nye-2015:infinity-stage",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "countdown-nye-2015:d1:infinity-stage:2000:oliver-heldens",
+   "artistId": "countdown-nye-2015:oliver-heldens",
+   "day": 1,
+   "stageId": "countdown-nye-2015:infinity-stage",
+   "start": "20:00",
+   "end": "21:15"
+  },
+  {
+   "id": "countdown-nye-2015:d1:infinity-stage:2115:trippy-turtle",
+   "artistId": "countdown-nye-2015:trippy-turtle",
+   "day": 1,
+   "stageId": "countdown-nye-2015:infinity-stage",
+   "start": "21:15",
+   "end": "22:30"
+  },
+  {
+   "id": "countdown-nye-2015:d1:infinity-stage:2230:alison-wonderland",
+   "artistId": "countdown-nye-2015:alison-wonderland",
+   "day": 1,
+   "stageId": "countdown-nye-2015:infinity-stage",
+   "start": "22:30",
+   "end": "23:45"
+  },
+  {
+   "id": "countdown-nye-2015:d1:infinity-stage:2345:tjr",
+   "artistId": "countdown-nye-2015:tjr",
+   "day": 1,
+   "stageId": "countdown-nye-2015:infinity-stage",
+   "start": "23:45",
+   "end": "01:00"
+  },
+  {
+   "id": "countdown-nye-2015:d1:infinity-stage:0100:sleepy-tom",
+   "artistId": "countdown-nye-2015:sleepy-tom",
+   "day": 1,
+   "stageId": "countdown-nye-2015:infinity-stage",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "countdown-nye-2015:d1:quantum-stage:1600:nightstalker",
+   "artistId": "countdown-nye-2015:nightstalker",
+   "day": 1,
+   "stageId": "countdown-nye-2015:quantum-stage",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "countdown-nye-2015:d1:quantum-stage:1700:fallen",
+   "artistId": "countdown-nye-2015:fallen",
+   "day": 1,
+   "stageId": "countdown-nye-2015:quantum-stage",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "countdown-nye-2015:d1:quantum-stage:1800:cyantific-b2b-mob-tactics-b2b-insideinfo",
+   "artistId": "countdown-nye-2015:cyantific-b2b-mob-tactics-b2b-insideinfo",
+   "day": 1,
+   "stageId": "countdown-nye-2015:quantum-stage",
+   "start": "18:00",
+   "end": "20:00"
+  },
+  {
+   "id": "countdown-nye-2015:d1:quantum-stage:2000:megalodon-b2b-truth",
+   "artistId": "countdown-nye-2015:megalodon-b2b-truth",
+   "day": 1,
+   "stageId": "countdown-nye-2015:quantum-stage",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "countdown-nye-2015:d1:quantum-stage:2100:minnesota-b2b-g-jones",
+   "artistId": "countdown-nye-2015:minnesota-b2b-g-jones",
+   "day": 1,
+   "stageId": "countdown-nye-2015:quantum-stage",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "countdown-nye-2015:d1:quantum-stage:2200:metrik-b2b-tc",
+   "artistId": "countdown-nye-2015:metrik-b2b-tc",
+   "day": 1,
+   "stageId": "countdown-nye-2015:quantum-stage",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "countdown-nye-2015:d1:quantum-stage:2300:eptic-b2b-habstrakt",
+   "artistId": "countdown-nye-2015:eptic-b2b-habstrakt",
+   "day": 1,
+   "stageId": "countdown-nye-2015:quantum-stage",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "countdown-nye-2015:d1:quantum-stage:0000:cookie-monsta-b2b-funtcase",
+   "artistId": "countdown-nye-2015:cookie-monsta-b2b-funtcase",
+   "day": 1,
+   "stageId": "countdown-nye-2015:quantum-stage",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "countdown-nye-2015:d1:quantum-stage:0100:delta-heavy",
+   "artistId": "countdown-nye-2015:delta-heavy",
+   "day": 1,
+   "stageId": "countdown-nye-2015:quantum-stage",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "countdown-nye-2015:d1:resolution-stage:1600:fransis-derelle",
+   "artistId": "countdown-nye-2015:fransis-derelle",
+   "day": 1,
+   "stageId": "countdown-nye-2015:resolution-stage",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "countdown-nye-2015:d1:resolution-stage:1700:baggi",
+   "artistId": "countdown-nye-2015:baggi",
+   "day": 1,
+   "stageId": "countdown-nye-2015:resolution-stage",
+   "start": "17:00",
+   "end": "18:25"
+  },
+  {
+   "id": "countdown-nye-2015:d1:resolution-stage:1825:pierce-fulton",
+   "artistId": "countdown-nye-2015:pierce-fulton",
+   "day": 1,
+   "stageId": "countdown-nye-2015:resolution-stage",
+   "start": "18:25",
+   "end": "19:55"
+  },
+  {
+   "id": "countdown-nye-2015:d1:resolution-stage:1955:mercer",
+   "artistId": "countdown-nye-2015:mercer",
+   "day": 1,
+   "stageId": "countdown-nye-2015:resolution-stage",
+   "start": "19:55",
+   "end": "20:55"
+  },
+  {
+   "id": "countdown-nye-2015:d1:resolution-stage:2055:yellow-claw",
+   "artistId": "countdown-nye-2015:yellow-claw",
+   "day": 1,
+   "stageId": "countdown-nye-2015:resolution-stage",
+   "start": "20:55",
+   "end": "21:55"
+  },
+  {
+   "id": "countdown-nye-2015:d1:resolution-stage:2155:flux-pavilion",
+   "artistId": "countdown-nye-2015:flux-pavilion",
+   "day": 1,
+   "stageId": "countdown-nye-2015:resolution-stage",
+   "start": "21:55",
+   "end": "22:55"
+  },
+  {
+   "id": "countdown-nye-2015:d1:resolution-stage:2255:carnage",
+   "artistId": "countdown-nye-2015:carnage",
+   "day": 1,
+   "stageId": "countdown-nye-2015:resolution-stage",
+   "start": "22:55",
+   "end": "23:55"
+  },
+  {
+   "id": "countdown-nye-2015:d1:resolution-stage:0000:dj-snake",
+   "artistId": "countdown-nye-2015:dj-snake",
+   "day": 1,
+   "stageId": "countdown-nye-2015:resolution-stage",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "countdown-nye-2015:d1:resolution-stage:0100:kaskade",
+   "artistId": "countdown-nye-2015:kaskade",
+   "day": 1,
+   "stageId": "countdown-nye-2015:resolution-stage",
+   "start": "01:00",
+   "end": "02:00"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "http://countdownnye.com/experience/set-times/",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20160104183301/http://countdownnye.com/experience/set-times/",
+    "captureTimestamp": "20160104183301",
+    "printed": "Thursday, December 31",
+    "sha256": "8f4d0557d3aa34ad31e1d6ac8608330baf8df150691c23fb4a2a35b34da7a8bc",
+    "rows": 26
+   }
+  ]
+ }
+}

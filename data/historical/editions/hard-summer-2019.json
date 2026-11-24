@@ -5,7 +5,7 @@
  "year": 2019,
  "timezone": "America/Los_Angeles",
  "rolloverHour": 6,
- "completeness": "lineup_only",
+ "completeness": "complete_schedule",
  "days": [
   {
    "day": 1,
@@ -18,455 +18,79 @@
    "label": "Sunday"
   }
  ],
- "stages": [],
+ "stages": [
+  {
+   "id": "hard-summer-2019:hard-stage",
+   "name": "HARD Stage"
+  },
+  {
+   "id": "hard-summer-2019:harder-stage",
+   "name": "HARDER Stage"
+  },
+  {
+   "id": "hard-summer-2019:purple-tent",
+   "name": "Purple Tent"
+  },
+  {
+   "id": "hard-summer-2019:green-tent",
+   "name": "Green Tent"
+  },
+  {
+   "id": "hard-summer-2019:pink-tent",
+   "name": "Pink Tent"
+  },
+  {
+   "id": "hard-summer-2019:corona-electric-beach",
+   "name": "Corona Electric Beach"
+  }
+ ],
  "artists": [
   {
-   "id": "hard-summer-2019:12th-planet",
-   "name": "12th Planet",
-   "key": "12th-planet",
+   "id": "hard-summer-2019:ravell",
+   "name": "Ravell",
+   "key": "ravell",
    "performers": [
-    "12th-planet"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
+    "ravell"
    ]
   },
   {
-   "id": "hard-summer-2019:2-deep",
-   "name": "2 Deep",
-   "key": "2-deep",
+   "id": "hard-summer-2019:kaivon",
+   "name": "Kaivon",
+   "key": "kaivon",
    "performers": [
-    "2-deep"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
+    "kaivon"
    ]
   },
   {
-   "id": "hard-summer-2019:2-craze-and-four-color-zack",
-   "name": "2¢ (Craze & Four Color Zack)",
-   "key": "2-craze-and-four-color-zack",
+   "id": "hard-summer-2019:young-franco",
+   "name": "Young Franco",
+   "key": "young-franco",
    "performers": [
-    "2-craze-and-four-color-zack"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
+    "young-franco"
    ]
   },
   {
-   "id": "hard-summer-2019:a-trak-b2b-yehme2",
-   "name": "A-Trak B2B YehMe2",
-   "key": "a-trak-b2b-yehme2",
+   "id": "hard-summer-2019:kasbo",
+   "name": "Kasbo",
+   "key": "kasbo",
    "performers": [
-    "a-trak",
-    "yehme2"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
+    "kasbo"
    ]
   },
   {
-   "id": "hard-summer-2019:alison-wonderland",
-   "name": "Alison Wonderland",
-   "key": "alison-wonderland",
+   "id": "hard-summer-2019:rick-ross",
+   "name": "Rick Ross",
+   "key": "rick-ross",
    "performers": [
-    "alison-wonderland"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
+    "rick-ross"
    ]
   },
   {
-   "id": "hard-summer-2019:amok-will-clarke-sian",
-   "name": "AMOK (Will Clarke + Sian)",
-   "key": "amok-will-clarke-sian",
+   "id": "hard-summer-2019:ghastly",
+   "name": "Ghastly",
+   "key": "ghastly",
    "performers": [
-    "amok-will-clarke-sian"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:amtrac",
-   "name": "Amtrac",
-   "key": "amtrac",
-   "performers": [
-    "amtrac"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:andre-power",
-   "name": "Andre Power",
-   "key": "andre-power",
-   "performers": [
-    "andre-power"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:anna-lunoe",
-   "name": "Anna Lunoe",
-   "key": "anna-lunoe",
-   "performers": [
-    "anna-lunoe"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:anti-up",
-   "name": "Anti Up",
-   "key": "anti-up",
-   "performers": [
-    "anti-up"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:armani-white",
-   "name": "Armani White",
-   "key": "armani-white",
-   "performers": [
-    "armani-white"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:baynk",
-   "name": "Baynk",
-   "key": "baynk",
-   "performers": [
-    "baynk"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:benda",
-   "name": "Benda",
-   "key": "benda",
-   "performers": [
-    "benda"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:black-caviar",
-   "name": "Black Caviar",
-   "key": "black-caviar",
-   "performers": [
-    "black-caviar"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:blanke",
-   "name": "Blanke",
-   "key": "blanke",
-   "performers": [
-    "blanke"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:blesst",
-   "name": "Blesst",
-   "key": "blesst",
-   "performers": [
-    "blesst"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:born-dirty",
-   "name": "Born Dirty",
-   "key": "born-dirty",
-   "performers": [
-    "born-dirty"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:cam-girl",
-   "name": "Cam Girl",
-   "key": "cam-girl",
-   "performers": [
-    "cam-girl"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:the-candy-rain",
-   "name": "The Candy Rain",
-   "key": "the-candy-rain",
-   "performers": [
-    "the-candy-rain"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:choppa-dunks",
-   "name": "Choppa Dunks",
-   "key": "choppa-dunks",
-   "performers": [
-    "choppa-dunks"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:claude-vonstroke",
-   "name": "Claude VonStroke",
-   "key": "claude-vonstroke",
-   "performers": [
-    "claude-vonstroke"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:dack-janiels",
-   "name": "Dack Janiels",
-   "key": "dack-janiels",
-   "performers": [
-    "dack-janiels"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    },
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:dateless-b2b-lucati",
-   "name": "Dateless B2B Lucati",
-   "key": "dateless-b2b-lucati",
-   "performers": [
-    "dateless",
-    "lucati"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:diablo",
-   "name": "Diablo",
-   "key": "diablo",
-   "performers": [
-    "diablo"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:diesel-shaquille-o-neal",
-   "name": "Diesel (Shaquille O'Neal)",
-   "key": "diesel-shaquille-o-neal",
-   "performers": [
-    "diesel-shaquille-o-neal"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:dillon-francis",
-   "name": "Dillon Francis",
-   "key": "dillon-francis",
-   "performers": [
-    "dillon-francis"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:dj-snake-b2b-malaa",
-   "name": "DJ Snake B2B Malaa",
-   "key": "dj-snake-b2b-malaa",
-   "performers": [
-    "dj-snake",
-    "malaa"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:djds",
-   "name": "DJDS",
-   "key": "djds",
-   "performers": [
-    "djds"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:dom-dolla",
-   "name": "Dom Dolla",
-   "key": "dom-dolla",
-   "performers": [
-    "dom-dolla"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:dombresky",
-   "name": "Dombresky",
-   "key": "dombresky",
-   "performers": [
-    "dombresky"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:dreamdoll",
-   "name": "DreamDoll",
-   "key": "dreamdoll",
-   "performers": [
-    "dreamdoll"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:droeloe",
-   "name": "Droeloe",
-   "key": "droeloe",
-   "performers": [
-    "droeloe"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:duke-dumont",
-   "name": "Duke Dumont",
-   "key": "duke-dumont",
-   "performers": [
-    "duke-dumont"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:excision-b2b-nghtmre",
-   "name": "Excision B2B NGHTMRE",
-   "key": "excision-b2b-nghtmre",
-   "performers": [
-    "excision",
-    "nghtmre"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
+    "ghastly"
    ]
   },
   {
@@ -476,25 +100,352 @@
    "performers": [
     "flosstradamus",
     "4b"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
    ]
   },
   {
-   "id": "hard-summer-2019:flux-pavilion-b2b-netsky",
-   "name": "Flux Pavilion B2B Netsky",
-   "key": "flux-pavilion-b2b-netsky",
+   "id": "hard-summer-2019:dillon-francis",
+   "name": "Dillon Francis",
+   "key": "dillon-francis",
    "performers": [
-    "flux-pavilion",
-    "netsky"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
+    "dillon-francis"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:kid-cudi",
+   "name": "Kid Cudi",
+   "key": "kid-cudi",
+   "performers": [
+    "kid-cudi"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:lick",
+   "name": "Lick",
+   "key": "lick",
+   "performers": [
+    "lick"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:gg-magree",
+   "name": "GG Magree",
+   "key": "gg-magree",
+   "performers": [
+    "gg-magree"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:holy-goof",
+   "name": "Holy Goof",
+   "key": "holy-goof",
+   "performers": [
+    "holy-goof"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:born-dirty",
+   "name": "Born Dirty",
+   "key": "born-dirty",
+   "performers": [
+    "born-dirty"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:droeloe",
+   "name": "Droeloe",
+   "key": "droeloe",
+   "performers": [
+    "droeloe"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:whethan",
+   "name": "Whethan",
+   "key": "whethan",
+   "performers": [
+    "whethan"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:what-so-not",
+   "name": "What So Not",
+   "key": "what-so-not",
+   "performers": [
+    "what-so-not"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:excision-b2b-nghtmre",
+   "name": "Excision B2B NGHTMRE",
+   "key": "excision-b2b-nghtmre",
+   "performers": [
+    "excision",
+    "nghtmre"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:alison-wonderland",
+   "name": "Alison Wonderland",
+   "key": "alison-wonderland",
+   "performers": [
+    "alison-wonderland"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:the-candy-rain",
+   "name": "The Candy Rain",
+   "key": "the-candy-rain",
+   "performers": [
+    "the-candy-rain"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:sosupersam",
+   "name": "Sosupersam",
+   "key": "sosupersam",
+   "performers": [
+    "sosupersam"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:armani-white",
+   "name": "Armani White",
+   "key": "armani-white",
+   "performers": [
+    "armani-white"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:andre-power",
+   "name": "Andre Power",
+   "key": "andre-power",
+   "performers": [
+    "andre-power"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:la-leakers",
+   "name": "LA Leakers",
+   "key": "la-leakers",
+   "performers": [
+    "la-leakers"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:ohgeesy",
+   "name": "Ohgeesy",
+   "key": "ohgeesy",
+   "performers": [
+    "ohgeesy"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:lil-tjay",
+   "name": "Lil Tjay",
+   "key": "lil-tjay",
+   "performers": [
+    "lil-tjay"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:2-craze-and-four-color-zack",
+   "name": "2¢ (Craze & Four Color Zack)",
+   "key": "2-craze-and-four-color-zack",
+   "performers": [
+    "2-craze-and-four-color-zack"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:lil-mosey",
+   "name": "Lil Mosey",
+   "key": "lil-mosey",
+   "performers": [
+    "lil-mosey"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:shlohmo",
+   "name": "Shlohmo",
+   "key": "shlohmo",
+   "performers": [
+    "shlohmo"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:sheck-wes",
+   "name": "Sheck Wes",
+   "key": "sheck-wes",
+   "performers": [
+    "sheck-wes"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:benda",
+   "name": "Benda",
+   "key": "benda",
+   "performers": [
+    "benda"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:dack-janiels",
+   "name": "Dack Janiels",
+   "key": "dack-janiels",
+   "performers": [
+    "dack-janiels"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:g-rex",
+   "name": "G-Rex",
+   "key": "g-rex",
+   "performers": [
+    "g-rex"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:wuki",
+   "name": "Wuki",
+   "key": "wuki",
+   "performers": [
+    "wuki"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:hucci",
+   "name": "Hucci",
+   "key": "hucci",
+   "performers": [
+    "hucci"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:habstrakt",
+   "name": "Habstrakt",
+   "key": "habstrakt",
+   "performers": [
+    "habstrakt"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:diesel-shaquille-o-neal",
+   "name": "Diesel (Shaquille O'Neal)",
+   "key": "diesel-shaquille-o-neal",
+   "performers": [
+    "diesel-shaquille-o-neal"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:space-jesus",
+   "name": "Space Jesus",
+   "key": "space-jesus",
+   "performers": [
+    "space-jesus"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:12th-planet",
+   "name": "12th Planet",
+   "key": "12th-planet",
+   "performers": [
+    "12th-planet"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:gta-and-friends",
+   "name": "GTA & Friends",
+   "key": "gta-and-friends",
+   "performers": [
+    "gta-and-friends"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:ms-mada",
+   "name": "Ms. Mada",
+   "key": "ms-mada",
+   "performers": [
+    "ms-mada"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:vnssa",
+   "name": "VNSSA",
+   "key": "vnssa",
+   "performers": [
+    "vnssa"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:amtrac",
+   "name": "Amtrac",
+   "key": "amtrac",
+   "performers": [
+    "amtrac"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:omnom",
+   "name": "Omnom",
+   "key": "omnom",
+   "performers": [
+    "omnom"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:dombresky",
+   "name": "Dombresky",
+   "key": "dombresky",
+   "performers": [
+    "dombresky"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:kyle-watson",
+   "name": "Kyle Watson",
+   "key": "kyle-watson",
+   "performers": [
+    "kyle-watson"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:loco-dice",
+   "name": "Loco Dice",
+   "key": "loco-dice",
+   "performers": [
+    "loco-dice"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:dj-snake-b2b-malaa",
+   "name": "DJ Snake B2B Malaa",
+   "key": "dj-snake-b2b-malaa",
+   "performers": [
+    "dj-snake",
+    "malaa"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:pass-the-40",
+   "name": "Pass The 40",
+   "key": "pass-the-40",
+   "performers": [
+    "pass-the-40"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:luke-andy",
+   "name": "Luke Andy",
+   "key": "luke-andy",
+   "performers": [
+    "luke-andy"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:morelia",
+   "name": "Morelia",
+   "key": "morelia",
+   "performers": [
+    "morelia"
    ]
   },
   {
@@ -504,206 +455,6 @@
    "performers": [
     "franklyn-watts",
     "steady-rock"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:g-rex",
-   "name": "G-Rex",
-   "key": "g-rex",
-   "performers": [
-    "g-rex"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:gammer",
-   "name": "Gammer",
-   "key": "gammer",
-   "performers": [
-    "gammer"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:gg-magree",
-   "name": "GG Magree",
-   "key": "gg-magree",
-   "performers": [
-    "gg-magree"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:ghastly",
-   "name": "Ghastly",
-   "key": "ghastly",
-   "performers": [
-    "ghastly"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:gravedgr",
-   "name": "GRAVEDGR",
-   "key": "gravedgr",
-   "performers": [
-    "gravedgr"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:graves",
-   "name": "graves",
-   "key": "graves",
-   "performers": [
-    "graves"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:gta-and-friends",
-   "name": "GTA & Friends",
-   "key": "gta-and-friends",
-   "performers": [
-    "gta-and-friends"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:gunna",
-   "name": "Gunna",
-   "key": "gunna",
-   "performers": [
-    "gunna"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:habstrakt",
-   "name": "Habstrakt",
-   "key": "habstrakt",
-   "performers": [
-    "habstrakt"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:hekler",
-   "name": "Hekler",
-   "key": "hekler",
-   "performers": [
-    "hekler"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:herobust",
-   "name": "Herobust",
-   "key": "herobust",
-   "performers": [
-    "herobust"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:holy-goof",
-   "name": "Holy Goof",
-   "key": "holy-goof",
-   "performers": [
-    "holy-goof"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:hucci",
-   "name": "Hucci",
-   "key": "hucci",
-   "performers": [
-    "hucci"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:jpegmafia",
-   "name": "JPEGMAFIA",
-   "key": "jpegmafia",
-   "performers": [
-    "jpegmafia"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:juice-wrld",
-   "name": "Juice WRLD",
-   "key": "juice-wrld",
-   "performers": [
-    "juice-wrld"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
    ]
   },
   {
@@ -712,196 +463,6 @@
    "key": "justin-martin",
    "performers": [
     "justin-martin"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    },
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:kaivon",
-   "name": "Kaivon",
-   "key": "kaivon",
-   "performers": [
-    "kaivon"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:kasbo",
-   "name": "Kasbo",
-   "key": "kasbo",
-   "performers": [
-    "kasbo"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:kayzo",
-   "name": "Kayzo",
-   "key": "kayzo",
-   "performers": [
-    "kayzo"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:kenny-beats",
-   "name": "Kenny Beats",
-   "key": "kenny-beats",
-   "performers": [
-    "kenny-beats"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:kid-cudi",
-   "name": "Kid Cudi",
-   "key": "kid-cudi",
-   "performers": [
-    "kid-cudi"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:kill-the-noise",
-   "name": "Kill The Noise",
-   "key": "kill-the-noise",
-   "performers": [
-    "kill-the-noise"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:kyle-watson",
-   "name": "Kyle Watson",
-   "key": "kyle-watson",
-   "performers": [
-    "kyle-watson"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:la-leakers",
-   "name": "LA Leakers",
-   "key": "la-leakers",
-   "performers": [
-    "la-leakers"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:lauren-lane",
-   "name": "Lauren Lane",
-   "key": "lauren-lane",
-   "performers": [
-    "lauren-lane"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:lick",
-   "name": "Lick",
-   "key": "lick",
-   "performers": [
-    "lick"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:lil-mosey",
-   "name": "Lil Mosey",
-   "key": "lil-mosey",
-   "performers": [
-    "lil-mosey"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:lil-tjay",
-   "name": "Lil Tjay",
-   "key": "lil-tjay",
-   "performers": [
-    "lil-tjay"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:loco-dice",
-   "name": "Loco Dice",
-   "key": "loco-dice",
-   "performers": [
-    "loco-dice"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:lp-giobbi",
-   "name": "LP Giobbi",
-   "key": "lp-giobbi",
-   "performers": [
-    "lp-giobbi"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
    ]
   },
   {
@@ -910,141 +471,38 @@
    "key": "lucati",
    "performers": [
     "lucati"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
    ]
   },
   {
-   "id": "hard-summer-2019:luke-andy",
-   "name": "Luke Andy",
-   "key": "luke-andy",
+   "id": "hard-summer-2019:2-deep",
+   "name": "2 Deep",
+   "key": "2-deep",
    "performers": [
-    "luke-andy"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
+    "2-deep"
    ]
   },
   {
-   "id": "hard-summer-2019:madeintyo",
-   "name": "MadeinTYO",
-   "key": "madeintyo",
+   "id": "hard-summer-2019:lp-giobbi",
+   "name": "LP Giobbi",
+   "key": "lp-giobbi",
    "performers": [
-    "madeintyo"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
+    "lp-giobbi"
    ]
   },
   {
-   "id": "hard-summer-2019:major-lazer",
-   "name": "Major Lazer",
-   "key": "major-lazer",
+   "id": "hard-summer-2019:baynk",
+   "name": "Baynk",
+   "key": "baynk",
    "performers": [
-    "major-lazer"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
+    "baynk"
    ]
   },
   {
-   "id": "hard-summer-2019:monki",
-   "name": "Monki",
-   "key": "monki",
+   "id": "hard-summer-2019:anna-lunoe",
+   "name": "Anna Lunoe",
+   "key": "anna-lunoe",
    "performers": [
-    "monki"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:moon-boots",
-   "name": "Moon Boots",
-   "key": "moon-boots",
-   "performers": [
-    "moon-boots"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:morelia",
-   "name": "Morelia",
-   "key": "morelia",
-   "performers": [
-    "morelia"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:ms-mada",
-   "name": "Ms. Mada",
-   "key": "ms-mada",
-   "performers": [
-    "ms-mada"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:noizu",
-   "name": "Noizu",
-   "key": "noizu",
-   "performers": [
-    "noizu"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:ohgeesy",
-   "name": "Ohgeesy",
-   "key": "ohgeesy",
-   "performers": [
-    "ohgeesy"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:omnom",
-   "name": "Omnom",
-   "key": "omnom",
-   "performers": [
-    "omnom"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
+    "anna-lunoe"
    ]
   },
   {
@@ -1053,281 +511,22 @@
    "key": "ookay-live",
    "performers": [
     "ookay-live"
-   ],
-   "appearances": []
-  },
-  {
-   "id": "hard-summer-2019:pass-the-40",
-   "name": "Pass The 40",
-   "key": "pass-the-40",
-   "performers": [
-    "pass-the-40"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
    ]
   },
   {
-   "id": "hard-summer-2019:ravell",
-   "name": "Ravell",
-   "key": "ravell",
+   "id": "hard-summer-2019:duke-dumont",
+   "name": "Duke Dumont",
+   "key": "duke-dumont",
    "performers": [
-    "ravell"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
+    "duke-dumont"
    ]
   },
   {
-   "id": "hard-summer-2019:rick-ross",
-   "name": "Rick Ross",
-   "key": "rick-ross",
+   "id": "hard-summer-2019:juice-wrld",
+   "name": "Juice WRLD",
+   "key": "juice-wrld",
    "performers": [
-    "rick-ross"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:rick-trainor",
-   "name": "Rick Trainor",
-   "key": "rick-trainor",
-   "performers": [
-    "rick-trainor"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:rl-grime",
-   "name": "RL Grime",
-   "key": "rl-grime",
-   "performers": [
-    "rl-grime"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:robotaki",
-   "name": "Robotaki",
-   "key": "robotaki",
-   "performers": [
-    "robotaki"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:sharps",
-   "name": "Sharps",
-   "key": "sharps",
-   "performers": [
-    "sharps"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:sheck-wes",
-   "name": "Sheck Wes",
-   "key": "sheck-wes",
-   "performers": [
-    "sheck-wes"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:shlohmo",
-   "name": "Shlohmo",
-   "key": "shlohmo",
-   "performers": [
-    "shlohmo"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:sosupersam",
-   "name": "Sosupersam",
-   "key": "sosupersam",
-   "performers": [
-    "sosupersam"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:soulja-boy",
-   "name": "Soulja Boy",
-   "key": "soulja-boy",
-   "performers": [
-    "soulja-boy"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:space-jesus",
-   "name": "Space Jesus",
-   "key": "space-jesus",
-   "performers": [
-    "space-jesus"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:subset",
-   "name": "Subset",
-   "key": "subset",
-   "performers": [
-    "subset"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:subtronics-b2b-dirt-monkey",
-   "name": "Subtronics B2B Dirt Monkey",
-   "key": "subtronics-b2b-dirt-monkey",
-   "performers": [
-    "subtronics",
-    "dirt-monkey"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:throwdown",
-   "name": "Throwdown",
-   "key": "throwdown",
-   "performers": [
-    "throwdown"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:vnssa",
-   "name": "VNSSA",
-   "key": "vnssa",
-   "performers": [
-    "vnssa"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:what-so-not",
-   "name": "What So Not",
-   "key": "what-so-not",
-   "performers": [
-    "what-so-not"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:whethan",
-   "name": "Whethan",
-   "key": "whethan",
-   "performers": [
-    "whethan"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:wuki",
-   "name": "Wuki",
-   "key": "wuki",
-   "performers": [
-    "wuki"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:young-franco",
-   "name": "Young Franco",
-   "key": "young-franco",
-   "performers": [
-    "young-franco"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "hard-summer-2019:yultron",
-   "name": "Yultron",
-   "key": "yultron",
-   "performers": [
-    "yultron"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
+    "juice-wrld"
    ]
   },
   {
@@ -1337,11 +536,183 @@
    "performers": [
     "zhu",
     "tchami"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
+   ]
+  },
+  {
+   "id": "hard-summer-2019:major-lazer",
+   "name": "Major Lazer",
+   "key": "major-lazer",
+   "performers": [
+    "major-lazer"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:black-caviar",
+   "name": "Black Caviar",
+   "key": "black-caviar",
+   "performers": [
+    "black-caviar"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:noizu",
+   "name": "Noizu",
+   "key": "noizu",
+   "performers": [
+    "noizu"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:dom-dolla",
+   "name": "Dom Dolla",
+   "key": "dom-dolla",
+   "performers": [
+    "dom-dolla"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:graves",
+   "name": "graves",
+   "key": "graves",
+   "performers": [
+    "graves"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:yultron",
+   "name": "Yultron",
+   "key": "yultron",
+   "performers": [
+    "yultron"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:a-trak-b2b-yehme2",
+   "name": "A-Trak B2B YehMe2",
+   "key": "a-trak-b2b-yehme2",
+   "performers": [
+    "a-trak",
+    "yehme2"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:claude-vonstroke",
+   "name": "Claude VonStroke",
+   "key": "claude-vonstroke",
+   "performers": [
+    "claude-vonstroke"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:kayzo",
+   "name": "Kayzo",
+   "key": "kayzo",
+   "performers": [
+    "kayzo"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:rl-grime",
+   "name": "RL Grime",
+   "key": "rl-grime",
+   "performers": [
+    "rl-grime"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:blesst",
+   "name": "Blesst",
+   "key": "blesst",
+   "performers": [
+    "blesst"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:cam-girl",
+   "name": "Cam Girl",
+   "key": "cam-girl",
+   "performers": [
+    "cam-girl"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:djds",
+   "name": "DJDS",
+   "key": "djds",
+   "performers": [
+    "djds"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:dreamdoll",
+   "name": "DreamDoll",
+   "key": "dreamdoll",
+   "performers": [
+    "dreamdoll"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:robotaki",
+   "name": "Robotaki",
+   "key": "robotaki",
+   "performers": [
+    "robotaki"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:diablo",
+   "name": "Diablo",
+   "key": "diablo",
+   "performers": [
+    "diablo"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:madeintyo",
+   "name": "MadeinTYO",
+   "key": "madeintyo",
+   "performers": [
+    "madeintyo"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:jpegmafia",
+   "name": "JPEGMAFIA",
+   "key": "jpegmafia",
+   "performers": [
+    "jpegmafia"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:soulja-boy",
+   "name": "Soulja Boy",
+   "key": "soulja-boy",
+   "performers": [
+    "soulja-boy"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:kenny-beats",
+   "name": "Kenny Beats",
+   "key": "kenny-beats",
+   "performers": [
+    "kenny-beats"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:gunna",
+   "name": "Gunna",
+   "key": "gunna",
+   "performers": [
+    "gunna"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:subset",
+   "name": "Subset",
+   "key": "subset",
+   "performers": [
+    "subset"
    ]
   },
   {
@@ -1350,24 +721,153 @@
    "key": "zia",
    "performers": [
     "zia"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
    ]
   },
   {
-   "id": "hard-summer-2019:ookay",
-   "name": "Ookay",
-   "key": "ookay",
+   "id": "hard-summer-2019:blanke",
+   "name": "Blanke",
+   "key": "blanke",
    "performers": [
-    "ookay"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
+    "blanke"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:gravedgr",
+   "name": "GRAVEDGR",
+   "key": "gravedgr",
+   "performers": [
+    "gravedgr"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:hekler",
+   "name": "Hekler",
+   "key": "hekler",
+   "performers": [
+    "hekler"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:subtronics-b2b-dirt-monkey",
+   "name": "Subtronics B2B Dirt Monkey",
+   "key": "subtronics-b2b-dirt-monkey",
+   "performers": [
+    "subtronics",
+    "dirt-monkey"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:gammer",
+   "name": "Gammer",
+   "key": "gammer",
+   "performers": [
+    "gammer"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:kill-the-noise",
+   "name": "Kill The Noise",
+   "key": "kill-the-noise",
+   "performers": [
+    "kill-the-noise"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:herobust",
+   "name": "Herobust",
+   "key": "herobust",
+   "performers": [
+    "herobust"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:flux-pavilion-b2b-netsky",
+   "name": "Flux Pavilion B2B Netsky",
+   "key": "flux-pavilion-b2b-netsky",
+   "performers": [
+    "flux-pavilion",
+    "netsky"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:rick-trainor",
+   "name": "Rick Trainor",
+   "key": "rick-trainor",
+   "performers": [
+    "rick-trainor"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:monki",
+   "name": "Monki",
+   "key": "monki",
+   "performers": [
+    "monki"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:dateless-b2b-lucati",
+   "name": "Dateless B2B Lucati",
+   "key": "dateless-b2b-lucati",
+   "performers": [
+    "dateless",
+    "lucati"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:lauren-lane",
+   "name": "Lauren Lane",
+   "key": "lauren-lane",
+   "performers": [
+    "lauren-lane"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:amok-will-clarke-sian",
+   "name": "AMOK (Will Clarke + Sian)",
+   "key": "amok-will-clarke-sian",
+   "performers": [
+    "amok-will-clarke-sian"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:moon-boots",
+   "name": "Moon Boots",
+   "key": "moon-boots",
+   "performers": [
+    "moon-boots"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:anti-up",
+   "name": "Anti Up",
+   "key": "anti-up",
+   "performers": [
+    "anti-up"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:sharps",
+   "name": "Sharps",
+   "key": "sharps",
+   "performers": [
+    "sharps"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:throwdown",
+   "name": "Throwdown",
+   "key": "throwdown",
+   "performers": [
+    "throwdown"
+   ]
+  },
+  {
+   "id": "hard-summer-2019:choppa-dunks",
+   "name": "Choppa Dunks",
+   "key": "choppa-dunks",
+   "performers": [
+    "choppa-dunks"
    ]
   },
   {
@@ -1376,24 +876,928 @@
    "key": "wuki-and-friends",
    "performers": [
     "wuki-and-friends"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
+   ]
+  },
+  {
+   "id": "hard-summer-2019:ookay",
+   "name": "Ookay",
+   "key": "ookay",
+   "performers": [
+    "ookay"
    ]
   }
  ],
- "sets": [],
+ "sets": [
+  {
+   "id": "hard-summer-2019:d1:hard-stage:1300:ravell",
+   "artistId": "hard-summer-2019:ravell",
+   "day": 1,
+   "stageId": "hard-summer-2019:hard-stage",
+   "start": "13:00",
+   "end": "13:30"
+  },
+  {
+   "id": "hard-summer-2019:d1:hard-stage:1330:kaivon",
+   "artistId": "hard-summer-2019:kaivon",
+   "day": 1,
+   "stageId": "hard-summer-2019:hard-stage",
+   "start": "13:30",
+   "end": "14:25"
+  },
+  {
+   "id": "hard-summer-2019:d1:hard-stage:1425:young-franco",
+   "artistId": "hard-summer-2019:young-franco",
+   "day": 1,
+   "stageId": "hard-summer-2019:hard-stage",
+   "start": "14:25",
+   "end": "15:35"
+  },
+  {
+   "id": "hard-summer-2019:d1:hard-stage:1540:kasbo",
+   "artistId": "hard-summer-2019:kasbo",
+   "day": 1,
+   "stageId": "hard-summer-2019:hard-stage",
+   "start": "15:40",
+   "end": "16:40"
+  },
+  {
+   "id": "hard-summer-2019:d1:hard-stage:1700:rick-ross",
+   "artistId": "hard-summer-2019:rick-ross",
+   "day": 1,
+   "stageId": "hard-summer-2019:hard-stage",
+   "start": "17:00",
+   "end": "17:35"
+  },
+  {
+   "id": "hard-summer-2019:d1:hard-stage:1745:ghastly",
+   "artistId": "hard-summer-2019:ghastly",
+   "day": 1,
+   "stageId": "hard-summer-2019:hard-stage",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "hard-summer-2019:d1:hard-stage:1845:flosstradamus-b2b-4b",
+   "artistId": "hard-summer-2019:flosstradamus-b2b-4b",
+   "day": 1,
+   "stageId": "hard-summer-2019:hard-stage",
+   "start": "18:45",
+   "end": "19:45"
+  },
+  {
+   "id": "hard-summer-2019:d1:hard-stage:2015:dillon-francis",
+   "artistId": "hard-summer-2019:dillon-francis",
+   "day": 1,
+   "stageId": "hard-summer-2019:hard-stage",
+   "start": "20:15",
+   "end": "21:15"
+  },
+  {
+   "id": "hard-summer-2019:d1:hard-stage:2200:kid-cudi",
+   "artistId": "hard-summer-2019:kid-cudi",
+   "day": 1,
+   "stageId": "hard-summer-2019:hard-stage",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "hard-summer-2019:d1:harder-stage:1350:lick",
+   "artistId": "hard-summer-2019:lick",
+   "day": 1,
+   "stageId": "hard-summer-2019:harder-stage",
+   "start": "13:50",
+   "end": "14:50"
+  },
+  {
+   "id": "hard-summer-2019:d1:harder-stage:1450:gg-magree",
+   "artistId": "hard-summer-2019:gg-magree",
+   "day": 1,
+   "stageId": "hard-summer-2019:harder-stage",
+   "start": "14:50",
+   "end": "15:50"
+  },
+  {
+   "id": "hard-summer-2019:d1:harder-stage:1550:holy-goof",
+   "artistId": "hard-summer-2019:holy-goof",
+   "day": 1,
+   "stageId": "hard-summer-2019:harder-stage",
+   "start": "15:50",
+   "end": "16:50"
+  },
+  {
+   "id": "hard-summer-2019:d1:harder-stage:1650:born-dirty",
+   "artistId": "hard-summer-2019:born-dirty",
+   "day": 1,
+   "stageId": "hard-summer-2019:harder-stage",
+   "start": "16:50",
+   "end": "17:50"
+  },
+  {
+   "id": "hard-summer-2019:d1:harder-stage:1750:droeloe",
+   "artistId": "hard-summer-2019:droeloe",
+   "day": 1,
+   "stageId": "hard-summer-2019:harder-stage",
+   "start": "17:50",
+   "end": "18:50"
+  },
+  {
+   "id": "hard-summer-2019:d1:harder-stage:1850:whethan",
+   "artistId": "hard-summer-2019:whethan",
+   "day": 1,
+   "stageId": "hard-summer-2019:harder-stage",
+   "start": "18:50",
+   "end": "19:50"
+  },
+  {
+   "id": "hard-summer-2019:d1:harder-stage:1955:what-so-not",
+   "artistId": "hard-summer-2019:what-so-not",
+   "day": 1,
+   "stageId": "hard-summer-2019:harder-stage",
+   "start": "19:55",
+   "end": "20:55"
+  },
+  {
+   "id": "hard-summer-2019:d1:harder-stage:2100:excision-b2b-nghtmre",
+   "artistId": "hard-summer-2019:excision-b2b-nghtmre",
+   "day": 1,
+   "stageId": "hard-summer-2019:harder-stage",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "hard-summer-2019:d1:harder-stage:2200:alison-wonderland",
+   "artistId": "hard-summer-2019:alison-wonderland",
+   "day": 1,
+   "stageId": "hard-summer-2019:harder-stage",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "hard-summer-2019:d1:purple-tent:1300:the-candy-rain",
+   "artistId": "hard-summer-2019:the-candy-rain",
+   "day": 1,
+   "stageId": "hard-summer-2019:purple-tent",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "hard-summer-2019:d1:purple-tent:1400:sosupersam",
+   "artistId": "hard-summer-2019:sosupersam",
+   "day": 1,
+   "stageId": "hard-summer-2019:purple-tent",
+   "start": "14:00",
+   "end": "14:55"
+  },
+  {
+   "id": "hard-summer-2019:d1:purple-tent:1505:armani-white",
+   "artistId": "hard-summer-2019:armani-white",
+   "day": 1,
+   "stageId": "hard-summer-2019:purple-tent",
+   "start": "15:05",
+   "end": "15:35"
+  },
+  {
+   "id": "hard-summer-2019:d1:purple-tent:1540:andre-power",
+   "artistId": "hard-summer-2019:andre-power",
+   "day": 1,
+   "stageId": "hard-summer-2019:purple-tent",
+   "start": "15:40",
+   "end": "16:40"
+  },
+  {
+   "id": "hard-summer-2019:d1:purple-tent:1645:la-leakers",
+   "artistId": "hard-summer-2019:la-leakers",
+   "day": 1,
+   "stageId": "hard-summer-2019:purple-tent",
+   "start": "16:45",
+   "end": "17:15"
+  },
+  {
+   "id": "hard-summer-2019:d1:purple-tent:1720:ohgeesy",
+   "artistId": "hard-summer-2019:ohgeesy",
+   "day": 1,
+   "stageId": "hard-summer-2019:purple-tent",
+   "start": "17:20",
+   "end": "17:50"
+  },
+  {
+   "id": "hard-summer-2019:d1:purple-tent:1755:lil-tjay",
+   "artistId": "hard-summer-2019:lil-tjay",
+   "day": 1,
+   "stageId": "hard-summer-2019:purple-tent",
+   "start": "17:55",
+   "end": "18:25"
+  },
+  {
+   "id": "hard-summer-2019:d1:purple-tent:1830:2-craze-and-four-color-zack",
+   "artistId": "hard-summer-2019:2-craze-and-four-color-zack",
+   "day": 1,
+   "stageId": "hard-summer-2019:purple-tent",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "hard-summer-2019:d1:purple-tent:1935:lil-mosey",
+   "artistId": "hard-summer-2019:lil-mosey",
+   "day": 1,
+   "stageId": "hard-summer-2019:purple-tent",
+   "start": "19:35",
+   "end": "20:05"
+  },
+  {
+   "id": "hard-summer-2019:d1:purple-tent:2010:shlohmo",
+   "artistId": "hard-summer-2019:shlohmo",
+   "day": 1,
+   "stageId": "hard-summer-2019:purple-tent",
+   "start": "20:10",
+   "end": "21:10"
+  },
+  {
+   "id": "hard-summer-2019:d1:purple-tent:2115:sheck-wes",
+   "artistId": "hard-summer-2019:sheck-wes",
+   "day": 1,
+   "stageId": "hard-summer-2019:purple-tent",
+   "start": "21:15",
+   "end": "22:00"
+  },
+  {
+   "id": "hard-summer-2019:d1:green-tent:1300:benda",
+   "artistId": "hard-summer-2019:benda",
+   "day": 1,
+   "stageId": "hard-summer-2019:green-tent",
+   "start": "13:00",
+   "end": "13:45"
+  },
+  {
+   "id": "hard-summer-2019:d1:green-tent:1345:dack-janiels",
+   "artistId": "hard-summer-2019:dack-janiels",
+   "day": 1,
+   "stageId": "hard-summer-2019:green-tent",
+   "start": "13:45",
+   "end": "14:35"
+  },
+  {
+   "id": "hard-summer-2019:d1:green-tent:1435:g-rex",
+   "artistId": "hard-summer-2019:g-rex",
+   "day": 1,
+   "stageId": "hard-summer-2019:green-tent",
+   "start": "14:35",
+   "end": "15:30"
+  },
+  {
+   "id": "hard-summer-2019:d1:green-tent:1530:wuki",
+   "artistId": "hard-summer-2019:wuki",
+   "day": 1,
+   "stageId": "hard-summer-2019:green-tent",
+   "start": "15:30",
+   "end": "16:30"
+  },
+  {
+   "id": "hard-summer-2019:d1:green-tent:1630:hucci",
+   "artistId": "hard-summer-2019:hucci",
+   "day": 1,
+   "stageId": "hard-summer-2019:green-tent",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "hard-summer-2019:d1:green-tent:1730:habstrakt",
+   "artistId": "hard-summer-2019:habstrakt",
+   "day": 1,
+   "stageId": "hard-summer-2019:green-tent",
+   "start": "17:30",
+   "end": "18:25"
+  },
+  {
+   "id": "hard-summer-2019:d1:green-tent:1825:diesel-shaquille-o-neal",
+   "artistId": "hard-summer-2019:diesel-shaquille-o-neal",
+   "day": 1,
+   "stageId": "hard-summer-2019:green-tent",
+   "start": "18:25",
+   "end": "19:05"
+  },
+  {
+   "id": "hard-summer-2019:d1:green-tent:1905:space-jesus",
+   "artistId": "hard-summer-2019:space-jesus",
+   "day": 1,
+   "stageId": "hard-summer-2019:green-tent",
+   "start": "19:05",
+   "end": "20:00"
+  },
+  {
+   "id": "hard-summer-2019:d1:green-tent:2000:12th-planet",
+   "artistId": "hard-summer-2019:12th-planet",
+   "day": 1,
+   "stageId": "hard-summer-2019:green-tent",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "hard-summer-2019:d1:green-tent:2100:gta-and-friends",
+   "artistId": "hard-summer-2019:gta-and-friends",
+   "day": 1,
+   "stageId": "hard-summer-2019:green-tent",
+   "start": "21:00",
+   "end": "23:00"
+  },
+  {
+   "id": "hard-summer-2019:d1:pink-tent:1300:ms-mada",
+   "artistId": "hard-summer-2019:ms-mada",
+   "day": 1,
+   "stageId": "hard-summer-2019:pink-tent",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "hard-summer-2019:d1:pink-tent:1400:vnssa",
+   "artistId": "hard-summer-2019:vnssa",
+   "day": 1,
+   "stageId": "hard-summer-2019:pink-tent",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "hard-summer-2019:d1:pink-tent:1500:amtrac",
+   "artistId": "hard-summer-2019:amtrac",
+   "day": 1,
+   "stageId": "hard-summer-2019:pink-tent",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "hard-summer-2019:d1:pink-tent:1600:omnom",
+   "artistId": "hard-summer-2019:omnom",
+   "day": 1,
+   "stageId": "hard-summer-2019:pink-tent",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "hard-summer-2019:d1:pink-tent:1700:dombresky",
+   "artistId": "hard-summer-2019:dombresky",
+   "day": 1,
+   "stageId": "hard-summer-2019:pink-tent",
+   "start": "17:00",
+   "end": "18:30"
+  },
+  {
+   "id": "hard-summer-2019:d1:pink-tent:1830:kyle-watson",
+   "artistId": "hard-summer-2019:kyle-watson",
+   "day": 1,
+   "stageId": "hard-summer-2019:pink-tent",
+   "start": "18:30",
+   "end": "20:00"
+  },
+  {
+   "id": "hard-summer-2019:d1:pink-tent:2000:loco-dice",
+   "artistId": "hard-summer-2019:loco-dice",
+   "day": 1,
+   "stageId": "hard-summer-2019:pink-tent",
+   "start": "20:00",
+   "end": "21:40"
+  },
+  {
+   "id": "hard-summer-2019:d1:pink-tent:2145:dj-snake-b2b-malaa",
+   "artistId": "hard-summer-2019:dj-snake-b2b-malaa",
+   "day": 1,
+   "stageId": "hard-summer-2019:pink-tent",
+   "start": "21:45",
+   "end": "23:00"
+  },
+  {
+   "id": "hard-summer-2019:d1:corona-electric-beach:1300:pass-the-40",
+   "artistId": "hard-summer-2019:pass-the-40",
+   "day": 1,
+   "stageId": "hard-summer-2019:corona-electric-beach",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "hard-summer-2019:d1:corona-electric-beach:1400:luke-andy",
+   "artistId": "hard-summer-2019:luke-andy",
+   "day": 1,
+   "stageId": "hard-summer-2019:corona-electric-beach",
+   "start": "14:00",
+   "end": "15:30"
+  },
+  {
+   "id": "hard-summer-2019:d1:corona-electric-beach:1530:morelia",
+   "artistId": "hard-summer-2019:morelia",
+   "day": 1,
+   "stageId": "hard-summer-2019:corona-electric-beach",
+   "start": "15:30",
+   "end": "16:45"
+  },
+  {
+   "id": "hard-summer-2019:d1:corona-electric-beach:1645:franklyn-watts-b2b-steady-rock",
+   "artistId": "hard-summer-2019:franklyn-watts-b2b-steady-rock",
+   "day": 1,
+   "stageId": "hard-summer-2019:corona-electric-beach",
+   "start": "16:45",
+   "end": "18:15"
+  },
+  {
+   "id": "hard-summer-2019:d1:corona-electric-beach:1815:born-dirty",
+   "artistId": "hard-summer-2019:born-dirty",
+   "day": 1,
+   "stageId": "hard-summer-2019:corona-electric-beach",
+   "start": "18:15",
+   "end": "19:15"
+  },
+  {
+   "id": "hard-summer-2019:d1:corona-electric-beach:1915:justin-martin",
+   "artistId": "hard-summer-2019:justin-martin",
+   "day": 1,
+   "stageId": "hard-summer-2019:corona-electric-beach",
+   "start": "19:15",
+   "end": "20:30"
+  },
+  {
+   "id": "hard-summer-2019:d1:corona-electric-beach:2030:vnssa",
+   "artistId": "hard-summer-2019:vnssa",
+   "day": 1,
+   "stageId": "hard-summer-2019:corona-electric-beach",
+   "start": "20:30",
+   "end": "21:45"
+  },
+  {
+   "id": "hard-summer-2019:d1:corona-electric-beach:2145:lucati",
+   "artistId": "hard-summer-2019:lucati",
+   "day": 1,
+   "stageId": "hard-summer-2019:corona-electric-beach",
+   "start": "21:45",
+   "end": "23:00"
+  },
+  {
+   "id": "hard-summer-2019:d2:hard-stage:1300:2-deep",
+   "artistId": "hard-summer-2019:2-deep",
+   "day": 2,
+   "stageId": "hard-summer-2019:hard-stage",
+   "start": "13:00",
+   "end": "13:40"
+  },
+  {
+   "id": "hard-summer-2019:d2:hard-stage:1340:lp-giobbi",
+   "artistId": "hard-summer-2019:lp-giobbi",
+   "day": 2,
+   "stageId": "hard-summer-2019:hard-stage",
+   "start": "13:40",
+   "end": "14:40"
+  },
+  {
+   "id": "hard-summer-2019:d2:hard-stage:1445:baynk",
+   "artistId": "hard-summer-2019:baynk",
+   "day": 2,
+   "stageId": "hard-summer-2019:hard-stage",
+   "start": "14:45",
+   "end": "15:45"
+  },
+  {
+   "id": "hard-summer-2019:d2:hard-stage:1550:anna-lunoe",
+   "artistId": "hard-summer-2019:anna-lunoe",
+   "day": 2,
+   "stageId": "hard-summer-2019:hard-stage",
+   "start": "15:50",
+   "end": "16:50"
+  },
+  {
+   "id": "hard-summer-2019:d2:hard-stage:1655:ookay-live",
+   "artistId": "hard-summer-2019:ookay-live",
+   "day": 2,
+   "stageId": "hard-summer-2019:hard-stage",
+   "start": "16:55",
+   "end": "17:55"
+  },
+  {
+   "id": "hard-summer-2019:d2:hard-stage:1800:duke-dumont",
+   "artistId": "hard-summer-2019:duke-dumont",
+   "day": 2,
+   "stageId": "hard-summer-2019:hard-stage",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "hard-summer-2019:d2:hard-stage:1920:juice-wrld",
+   "artistId": "hard-summer-2019:juice-wrld",
+   "day": 2,
+   "stageId": "hard-summer-2019:hard-stage",
+   "start": "19:20",
+   "end": "19:50"
+  },
+  {
+   "id": "hard-summer-2019:d2:hard-stage:2000:zhu-b2b-tchami",
+   "artistId": "hard-summer-2019:zhu-b2b-tchami",
+   "day": 2,
+   "stageId": "hard-summer-2019:hard-stage",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "hard-summer-2019:d2:hard-stage:2145:major-lazer",
+   "artistId": "hard-summer-2019:major-lazer",
+   "day": 2,
+   "stageId": "hard-summer-2019:hard-stage",
+   "start": "21:45",
+   "end": "23:00"
+  },
+  {
+   "id": "hard-summer-2019:d2:harder-stage:1350:black-caviar",
+   "artistId": "hard-summer-2019:black-caviar",
+   "day": 2,
+   "stageId": "hard-summer-2019:harder-stage",
+   "start": "13:50",
+   "end": "14:50"
+  },
+  {
+   "id": "hard-summer-2019:d2:harder-stage:1450:noizu",
+   "artistId": "hard-summer-2019:noizu",
+   "day": 2,
+   "stageId": "hard-summer-2019:harder-stage",
+   "start": "14:50",
+   "end": "15:50"
+  },
+  {
+   "id": "hard-summer-2019:d2:harder-stage:1550:dom-dolla",
+   "artistId": "hard-summer-2019:dom-dolla",
+   "day": 2,
+   "stageId": "hard-summer-2019:harder-stage",
+   "start": "15:50",
+   "end": "16:50"
+  },
+  {
+   "id": "hard-summer-2019:d2:harder-stage:1650:graves",
+   "artistId": "hard-summer-2019:graves",
+   "day": 2,
+   "stageId": "hard-summer-2019:harder-stage",
+   "start": "16:50",
+   "end": "17:50"
+  },
+  {
+   "id": "hard-summer-2019:d2:harder-stage:1750:yultron",
+   "artistId": "hard-summer-2019:yultron",
+   "day": 2,
+   "stageId": "hard-summer-2019:harder-stage",
+   "start": "17:50",
+   "end": "18:50"
+  },
+  {
+   "id": "hard-summer-2019:d2:harder-stage:1850:a-trak-b2b-yehme2",
+   "artistId": "hard-summer-2019:a-trak-b2b-yehme2",
+   "day": 2,
+   "stageId": "hard-summer-2019:harder-stage",
+   "start": "18:50",
+   "end": "19:50"
+  },
+  {
+   "id": "hard-summer-2019:d2:harder-stage:1950:claude-vonstroke",
+   "artistId": "hard-summer-2019:claude-vonstroke",
+   "day": 2,
+   "stageId": "hard-summer-2019:harder-stage",
+   "start": "19:50",
+   "end": "20:50"
+  },
+  {
+   "id": "hard-summer-2019:d2:harder-stage:2050:kayzo",
+   "artistId": "hard-summer-2019:kayzo",
+   "day": 2,
+   "stageId": "hard-summer-2019:harder-stage",
+   "start": "20:50",
+   "end": "21:50"
+  },
+  {
+   "id": "hard-summer-2019:d2:harder-stage:2200:rl-grime",
+   "artistId": "hard-summer-2019:rl-grime",
+   "day": 2,
+   "stageId": "hard-summer-2019:harder-stage",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "hard-summer-2019:d2:purple-tent:1300:blesst",
+   "artistId": "hard-summer-2019:blesst",
+   "day": 2,
+   "stageId": "hard-summer-2019:purple-tent",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "hard-summer-2019:d2:purple-tent:1400:cam-girl",
+   "artistId": "hard-summer-2019:cam-girl",
+   "day": 2,
+   "stageId": "hard-summer-2019:purple-tent",
+   "start": "14:00",
+   "end": "14:55"
+  },
+  {
+   "id": "hard-summer-2019:d2:purple-tent:1500:djds",
+   "artistId": "hard-summer-2019:djds",
+   "day": 2,
+   "stageId": "hard-summer-2019:purple-tent",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "hard-summer-2019:d2:purple-tent:1605:dreamdoll",
+   "artistId": "hard-summer-2019:dreamdoll",
+   "day": 2,
+   "stageId": "hard-summer-2019:purple-tent",
+   "start": "16:05",
+   "end": "16:35"
+  },
+  {
+   "id": "hard-summer-2019:d2:purple-tent:1640:robotaki",
+   "artistId": "hard-summer-2019:robotaki",
+   "day": 2,
+   "stageId": "hard-summer-2019:purple-tent",
+   "start": "16:40",
+   "end": "17:40"
+  },
+  {
+   "id": "hard-summer-2019:d2:purple-tent:1745:diablo",
+   "artistId": "hard-summer-2019:diablo",
+   "day": 2,
+   "stageId": "hard-summer-2019:purple-tent",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "hard-summer-2019:d2:purple-tent:1850:madeintyo",
+   "artistId": "hard-summer-2019:madeintyo",
+   "day": 2,
+   "stageId": "hard-summer-2019:purple-tent",
+   "start": "18:50",
+   "end": "19:30"
+  },
+  {
+   "id": "hard-summer-2019:d2:purple-tent:1935:jpegmafia",
+   "artistId": "hard-summer-2019:jpegmafia",
+   "day": 2,
+   "stageId": "hard-summer-2019:purple-tent",
+   "start": "19:35",
+   "end": "20:20"
+  },
+  {
+   "id": "hard-summer-2019:d2:purple-tent:2025:soulja-boy",
+   "artistId": "hard-summer-2019:soulja-boy",
+   "day": 2,
+   "stageId": "hard-summer-2019:purple-tent",
+   "start": "20:25",
+   "end": "20:55"
+  },
+  {
+   "id": "hard-summer-2019:d2:purple-tent:2100:kenny-beats",
+   "artistId": "hard-summer-2019:kenny-beats",
+   "day": 2,
+   "stageId": "hard-summer-2019:purple-tent",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "hard-summer-2019:d2:purple-tent:2215:gunna",
+   "artistId": "hard-summer-2019:gunna",
+   "day": 2,
+   "stageId": "hard-summer-2019:purple-tent",
+   "start": "22:15",
+   "end": "23:00"
+  },
+  {
+   "id": "hard-summer-2019:d2:green-tent:1300:subset",
+   "artistId": "hard-summer-2019:subset",
+   "day": 2,
+   "stageId": "hard-summer-2019:green-tent",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "hard-summer-2019:d2:green-tent:1400:zia",
+   "artistId": "hard-summer-2019:zia",
+   "day": 2,
+   "stageId": "hard-summer-2019:green-tent",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "hard-summer-2019:d2:green-tent:1500:blanke",
+   "artistId": "hard-summer-2019:blanke",
+   "day": 2,
+   "stageId": "hard-summer-2019:green-tent",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "hard-summer-2019:d2:green-tent:1600:gravedgr",
+   "artistId": "hard-summer-2019:gravedgr",
+   "day": 2,
+   "stageId": "hard-summer-2019:green-tent",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "hard-summer-2019:d2:green-tent:1700:hekler",
+   "artistId": "hard-summer-2019:hekler",
+   "day": 2,
+   "stageId": "hard-summer-2019:green-tent",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "hard-summer-2019:d2:green-tent:1800:subtronics-b2b-dirt-monkey",
+   "artistId": "hard-summer-2019:subtronics-b2b-dirt-monkey",
+   "day": 2,
+   "stageId": "hard-summer-2019:green-tent",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "hard-summer-2019:d2:green-tent:1900:gammer",
+   "artistId": "hard-summer-2019:gammer",
+   "day": 2,
+   "stageId": "hard-summer-2019:green-tent",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "hard-summer-2019:d2:green-tent:2000:kill-the-noise",
+   "artistId": "hard-summer-2019:kill-the-noise",
+   "day": 2,
+   "stageId": "hard-summer-2019:green-tent",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "hard-summer-2019:d2:green-tent:2100:herobust",
+   "artistId": "hard-summer-2019:herobust",
+   "day": 2,
+   "stageId": "hard-summer-2019:green-tent",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "hard-summer-2019:d2:green-tent:2200:flux-pavilion-b2b-netsky",
+   "artistId": "hard-summer-2019:flux-pavilion-b2b-netsky",
+   "day": 2,
+   "stageId": "hard-summer-2019:green-tent",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "hard-summer-2019:d2:pink-tent:1300:rick-trainor",
+   "artistId": "hard-summer-2019:rick-trainor",
+   "day": 2,
+   "stageId": "hard-summer-2019:pink-tent",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "hard-summer-2019:d2:pink-tent:1400:monki",
+   "artistId": "hard-summer-2019:monki",
+   "day": 2,
+   "stageId": "hard-summer-2019:pink-tent",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "hard-summer-2019:d2:pink-tent:1500:dateless-b2b-lucati",
+   "artistId": "hard-summer-2019:dateless-b2b-lucati",
+   "day": 2,
+   "stageId": "hard-summer-2019:pink-tent",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "hard-summer-2019:d2:pink-tent:1600:lauren-lane",
+   "artistId": "hard-summer-2019:lauren-lane",
+   "day": 2,
+   "stageId": "hard-summer-2019:pink-tent",
+   "start": "16:00",
+   "end": "17:30"
+  },
+  {
+   "id": "hard-summer-2019:d2:pink-tent:1735:amok-will-clarke-sian",
+   "artistId": "hard-summer-2019:amok-will-clarke-sian",
+   "day": 2,
+   "stageId": "hard-summer-2019:pink-tent",
+   "start": "17:35",
+   "end": "18:35"
+  },
+  {
+   "id": "hard-summer-2019:d2:pink-tent:1840:justin-martin",
+   "artistId": "hard-summer-2019:justin-martin",
+   "day": 2,
+   "stageId": "hard-summer-2019:pink-tent",
+   "start": "18:40",
+   "end": "19:50"
+  },
+  {
+   "id": "hard-summer-2019:d2:pink-tent:2000:moon-boots",
+   "artistId": "hard-summer-2019:moon-boots",
+   "day": 2,
+   "stageId": "hard-summer-2019:pink-tent",
+   "start": "20:00",
+   "end": "22:00"
+  },
+  {
+   "id": "hard-summer-2019:d2:pink-tent:2200:anti-up",
+   "artistId": "hard-summer-2019:anti-up",
+   "day": 2,
+   "stageId": "hard-summer-2019:pink-tent",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "hard-summer-2019:d2:corona-electric-beach:1300:sharps",
+   "artistId": "hard-summer-2019:sharps",
+   "day": 2,
+   "stageId": "hard-summer-2019:corona-electric-beach",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "hard-summer-2019:d2:corona-electric-beach:1400:throwdown",
+   "artistId": "hard-summer-2019:throwdown",
+   "day": 2,
+   "stageId": "hard-summer-2019:corona-electric-beach",
+   "start": "14:00",
+   "end": "15:30"
+  },
+  {
+   "id": "hard-summer-2019:d2:corona-electric-beach:1530:choppa-dunks",
+   "artistId": "hard-summer-2019:choppa-dunks",
+   "day": 2,
+   "stageId": "hard-summer-2019:corona-electric-beach",
+   "start": "15:30",
+   "end": "16:45"
+  },
+  {
+   "id": "hard-summer-2019:d2:corona-electric-beach:1645:dack-janiels",
+   "artistId": "hard-summer-2019:dack-janiels",
+   "day": 2,
+   "stageId": "hard-summer-2019:corona-electric-beach",
+   "start": "16:45",
+   "end": "18:00"
+  },
+  {
+   "id": "hard-summer-2019:d2:corona-electric-beach:1800:wuki-and-friends",
+   "artistId": "hard-summer-2019:wuki-and-friends",
+   "day": 2,
+   "stageId": "hard-summer-2019:corona-electric-beach",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "hard-summer-2019:d2:corona-electric-beach:1900:ookay",
+   "artistId": "hard-summer-2019:ookay",
+   "day": 2,
+   "stageId": "hard-summer-2019:corona-electric-beach",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "hard-summer-2019:d2:corona-electric-beach:2000:blanke",
+   "artistId": "hard-summer-2019:blanke",
+   "day": 2,
+   "stageId": "hard-summer-2019:corona-electric-beach",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "hard-summer-2019:d2:corona-electric-beach:2100:graves",
+   "artistId": "hard-summer-2019:graves",
+   "day": 2,
+   "stageId": "hard-summer-2019:corona-electric-beach",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "hard-summer-2019:d2:corona-electric-beach:2200:zia",
+   "artistId": "hard-summer-2019:zia",
+   "day": 2,
+   "stageId": "hard-summer-2019:corona-electric-beach",
+   "start": "22:00",
+   "end": "23:00"
+  }
+ ],
  "provenance": {
-  "extractionMethod": "official_lineup_html",
-  "official": "https://www.hardsummer.com/lineup/",
+  "extractionMethod": "official_sources",
+  "official": "https://www.hardsummer.com/lineup/set-times/",
   "captures": [
    {
-    "page": "lineup",
-    "archivedUrl": "https://web.archive.org/web/20191214223132/https://www.hardsummer.com/lineup/",
-    "captureTimestamp": "20191214223132",
-    "sha256": "02860ca7beff5a39fc33be9d7f3522ee4ac886c7171b591174ff88ca0989343a"
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20190819130007/https://www.hardsummer.com/lineup/set-times/day-1/",
+    "captureTimestamp": "20190819130007",
+    "printed": "Saturday, August 03",
+    "sha256": "278bb24740a099fd536600b52ab1bedb7897cc96389bf097bccf76d67e9ca19f",
+    "rows": 55
+   },
+   {
+    "day": 2,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20191214222359/https://www.hardsummer.com/lineup/set-times/day-2/",
+    "captureTimestamp": "20191214222359",
+    "printed": "Sunday, August 04",
+    "sha256": "14e415593c794ac8a8608f4f9b04b8c063404d2ef0d4ef0ef02ca35d1c7ff4ba",
+    "rows": 56
    }
   ]
  }

@@ -728,6 +728,45 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "beyond-wonderland-socal:outer-realm",
+     "names": [
+      {
+       "printed": "OUTER REALM",
+       "editions": [
+        "beyond-wonderland-socal-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "beyond-wonderland-socal:upside-down-room",
+     "names": [
+      {
+       "printed": "UPSIDE-DOWN ROOM",
+       "editions": [
+        "beyond-wonderland-socal-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "beyond-wonderland-socal:boombox-art-car",
+     "names": [
+      {
+       "printed": "BOOMBOX ART CAR",
+       "editions": [
+        "beyond-wonderland-socal-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },
@@ -890,6 +929,221 @@
        "printed": "Quasar",
        "editions": [
         "coachella-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
+  "countdown-nye": {
+   "lineages": [
+    {
+     "id": "countdown-nye:infinity-stage",
+     "names": [
+      {
+       "printed": "INFINITY STAGE",
+       "editions": [
+        "countdown-nye-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "countdown-nye:quantum-stage",
+     "names": [
+      {
+       "printed": "QUANTUM STAGE",
+       "editions": [
+        "countdown-nye-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "countdown-nye:resolution-stage",
+     "names": [
+      {
+       "printed": "RESOLUTION STAGE",
+       "editions": [
+        "countdown-nye-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "countdown-nye:infinity",
+     "names": [
+      {
+       "printed": "INFINITY",
+       "editions": [
+        "countdown-nye-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "countdown-nye:quantum",
+     "names": [
+      {
+       "printed": "QUANTUM",
+       "editions": [
+        "countdown-nye-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "countdown-nye:resolution",
+     "names": [
+      {
+       "printed": "RESOLUTION",
+       "editions": [
+        "countdown-nye-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "countdown-nye:mothership",
+     "names": [
+      {
+       "printed": "Mothership",
+       "editions": [
+        "countdown-nye-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "countdown-nye:nebula",
+     "names": [
+      {
+       "printed": "Nebula",
+       "editions": [
+        "countdown-nye-2019",
+        "countdown-nye-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "countdown-nye:area-51",
+     "names": [
+      {
+       "printed": "Area 51",
+       "editions": [
+        "countdown-nye-2019",
+        "countdown-nye-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "countdown-nye:twilight-zone",
+     "names": [
+      {
+       "printed": "Twilight Zone",
+       "editions": [
+        "countdown-nye-2019",
+        "countdown-nye-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "countdown-nye:biosphere",
+     "names": [
+      {
+       "printed": "Biosphere",
+       "editions": [
+        "countdown-nye-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "countdown-nye:area-151",
+     "names": [
+      {
+       "printed": "Area 151",
+       "editions": [
+        "countdown-nye-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "countdown-nye:the-mothership",
+     "names": [
+      {
+       "printed": "The Mothership",
+       "editions": [
+        "countdown-nye-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "countdown-nye:galactik-gate",
+     "names": [
+      {
+       "printed": "Galactik Gate",
+       "editions": [
+        "countdown-nye-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "countdown-nye:beatbox-boombox-art-car",
+     "names": [
+      {
+       "printed": "BeatBox Boombox Art Car",
+       "editions": [
+        "countdown-nye-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "countdown-nye:alien-red-light-district",
+     "names": [
+      {
+       "printed": "Alien Red Light District",
+       "editions": [
+        "countdown-nye-2024"
        ]
       }
      ],
@@ -1778,6 +2032,171 @@
        "printed": "Discovery Project",
        "editions": [
         "edc-las-vegas-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:stage7",
+     "names": [
+      {
+       "printed": "STAGE7",
+       "editions": [
+        "edc-las-vegas-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:upsidedownhouse",
+     "names": [
+      {
+       "printed": "UPSIDEDOWNHOUSE",
+       "editions": [
+        "edc-las-vegas-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:wideawakeartcar",
+     "names": [
+      {
+       "printed": "WIDEAWAKEARTCAR",
+       "editions": [
+        "edc-las-vegas-2016",
+        "edc-las-vegas-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:kalliopeartcar",
+     "names": [
+      {
+       "printed": "KALLIOPEARTCAR",
+       "editions": [
+        "edc-las-vegas-2016",
+        "edc-las-vegas-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:boomboxartcar",
+     "names": [
+      {
+       "printed": "BOOMBOXARTCAR",
+       "editions": [
+        "edc-las-vegas-2016",
+        "edc-las-vegas-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:smirnoff-house",
+     "names": [
+      {
+       "printed": "SMIRNOFF HOUSE",
+       "editions": [
+        "edc-las-vegas-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:quantumvalley",
+     "names": [
+      {
+       "printed": "QUANTUMVALLEY",
+       "editions": [
+        "edc-las-vegas-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:upside-downhouse",
+     "names": [
+      {
+       "printed": "UPSIDE-DOWNHOUSE",
+       "editions": [
+        "edc-las-vegas-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:parliamentartcar",
+     "names": [
+      {
+       "printed": "PARLIAMENTARTCAR",
+       "editions": [
+        "edc-las-vegas-2017"
+       ]
+      },
+      {
+       "printed": "parliamentARTCAR",
+       "editions": [
+        "edc-las-vegas-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:parliament-2-0-30th-anniversary-art-car",
+     "names": [
+      {
+       "printed": "Parliament 2.0 30th Anniversary Art Car",
+       "editions": [
+        "edc-las-vegas-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:titanic-s-end-art-car",
+     "names": [
+      {
+       "printed": "Titanic's End Art Car",
+       "editions": [
+        "edc-las-vegas-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:titanicsendartcar",
+     "names": [
+      {
+       "printed": "titanicsendARTCAR",
+       "editions": [
+        "edc-las-vegas-2023"
        ]
       }
      ],
@@ -2963,6 +3382,71 @@
        "printed": "OWSLA Tent",
        "editions": [
         "hard-summer-2012"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "hard-summer:purple-tent",
+     "names": [
+      {
+       "printed": "Purple Tent",
+       "editions": [
+        "hard-summer-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "hard-summer:green-tent",
+     "names": [
+      {
+       "printed": "Green Tent",
+       "editions": [
+        "hard-summer-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "hard-summer:pink-tent",
+     "names": [
+      {
+       "printed": "Pink Tent",
+       "editions": [
+        "hard-summer-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "hard-summer:corona-electric-beach",
+     "names": [
+      {
+       "printed": "Corona Electric Beach",
+       "editions": [
+        "hard-summer-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "hard-summer:jose-cuervo-locals-only-stage",
+     "names": [
+      {
+       "printed": "Jose Cuervo Locals Only Stage",
+       "editions": [
+        "hard-summer-2024"
        ]
       }
      ],

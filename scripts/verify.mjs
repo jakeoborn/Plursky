@@ -578,8 +578,14 @@ if (fdata.length) {
     if (why.length) { console.log(`  ✗ ${id.padEnd(26)} ${why.join("; ")}`); gbad++; }
     else console.log(`  ok ${id.padEnd(26)} ${T.model} over ${T.ties.length} ties · rms ${O.rmsM} m · leave-one-out ${O.looRmsM} m${O.approximate ? " · approximate" : ""}`);
   }
+  // The check needs numpy. The python3 first on PATH can lack it (Homebrew's,
+  // on this Mac: TestFlight run 2026-11-20 died here), so use the first
+  // interpreter that imports it, and name a missing numpy as what it is,
+  // not as a map that fails its ties.
+  const py = ["python3", "/usr/bin/python3"].find(p => { try { execFileSync(p, ["-c", "import numpy"], { stdio: "ignore" }); return true; } catch { return false; } });
+  if (!py) fail("no python3 with numpy found (tried python3 and /usr/bin/python3): build-geo-plate.py check cannot run");
   try {
-    execFileSync("python3", [join(ROOT, "scripts", "build-geo-plate.py"), "check"], { cwd: ROOT, stdio: "inherit" });
+    execFileSync(py, [join(ROOT, "scripts", "build-geo-plate.py"), "check"], { cwd: ROOT, stdio: "inherit" });
   } catch { gbad++; }
   if (gbad) fail(`${gbad} fitted map(s) do not match their measured ties — rerun python3 scripts/build-geo-plate.py build <id> and copy its mapGeoref`);
   console.log(`  ✓ ${gseen} festival map(s) fitted to their venue from measured ties`);
@@ -2342,6 +2348,21 @@ if (process.argv.includes("--parse-only")) process.exit(0);
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`mixed-import regression failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── 1z-i. EDC photo import, end to end (#226) ───────────────────────────
+// One EXIF-dated EDC LV photo imports from Me, tags Peggy Gou (n4) from its
+// capture time, and shows under YOUR MOMENTS on her artist screen.
+{
+  console.log("▸ Photo import gate — EDC EXIF photo tags its set and shows on the artist");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-import.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`EDC photo import regression failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 

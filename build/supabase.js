@@ -2187,6 +2187,10 @@ async function sbLiveShareUpdate(token, partial) {
     update.lat = partial.gps.lat;
     update.lng = partial.gps.lng;
     update.accuracy = partial.gps.accuracy;
+  } else if (partial && "gps" in partial) {
+    update.lat = null;
+    update.lng = null;
+    update.accuracy = null;
   }
   if (partial && "stageId" in partial) update.stage_id = partial.stageId || null;
   if (Object.keys(update).length === 1) return {
