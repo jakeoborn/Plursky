@@ -173523,6 +173523,2206 @@
   "mainStage": null
  },
  {
+  "id": "beyond-wonderland-socal-2019:d1:queen-s-domain:1700:grlskout",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "Queen's Domain",
+  "start": "17:00",
+  "end": "17:35",
+  "printed": "Grlskout",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "grlskout",
+    "role": "performer"
+   }
+  ],
+  "act": "grlskout",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:queen-s-domain",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:queen-s-domain:1735:fatum",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "Queen's Domain",
+  "start": "17:35",
+  "end": "18:20",
+  "printed": "Fatum",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fatum",
+    "role": "performer"
+   }
+  ],
+  "act": "fatum",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:queen-s-domain",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:queen-s-domain:1820:habstrakt",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "Queen's Domain",
+  "start": "18:20",
+  "end": "19:20",
+  "printed": "Habstrakt",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "habstrakt",
+    "role": "performer"
+   }
+  ],
+  "act": "habstrakt",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:queen-s-domain",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:queen-s-domain:1920:salvatore-ganacci",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "Queen's Domain",
+  "start": "19:20",
+  "end": "20:20",
+  "printed": "Salvatore Ganacci",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "salvatore-ganacci",
+    "role": "performer"
+   }
+  ],
+  "act": "salvatore-ganacci",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:queen-s-domain",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:queen-s-domain:2020:timmy-trumpet",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "Queen's Domain",
+  "start": "20:20",
+  "end": "21:20",
+  "printed": "Timmy Trumpet",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "timmy-trumpet",
+    "role": "performer"
+   }
+  ],
+  "act": "timmy-trumpet",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:queen-s-domain",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:queen-s-domain:2120:carnage",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "Queen's Domain",
+  "start": "21:20",
+  "end": "22:20",
+  "printed": "Carnage",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carnage",
+    "role": "performer"
+   }
+  ],
+  "act": "carnage",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:queen-s-domain",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:queen-s-domain:2220:don-diablo",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "Queen's Domain",
+  "start": "22:20",
+  "end": "23:20",
+  "printed": "Don Diablo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "don-diablo",
+    "role": "performer"
+   }
+  ],
+  "act": "don-diablo",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:queen-s-domain",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:queen-s-domain:2320:armin-van-buuren",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "Queen's Domain",
+  "start": "23:20",
+  "end": "00:50",
+  "printed": "Armin van Buuren",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "armin-van-buuren",
+    "role": "performer"
+   }
+  ],
+  "act": "armin-van-buuren",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:queen-s-domain",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:queen-s-domain:0055:rezz",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "Queen's Domain",
+  "start": "00:55",
+  "end": "02:00",
+  "printed": "Rezz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rezz",
+    "role": "performer"
+   }
+  ],
+  "act": "rezz",
+  "closing": true,
+  "stageLineage": "beyond-wonderland-socal:queen-s-domain",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:mad-hatter-s-castle:1700:soothslayer",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "Mad Hatter's Castle",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Soothslayer",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "soothslayer",
+    "role": "performer"
+   }
+  ],
+  "act": "soothslayer",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:mad-hatter-s-castle",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:mad-hatter-s-castle:1800:benda",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "Mad Hatter's Castle",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Benda",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "benda",
+    "role": "performer"
+   }
+  ],
+  "act": "benda",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:mad-hatter-s-castle",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:mad-hatter-s-castle:1900:raiser",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "Mad Hatter's Castle",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Raiser",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "raiser",
+    "role": "performer"
+   }
+  ],
+  "act": "raiser",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:mad-hatter-s-castle",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:mad-hatter-s-castle:2000:badklaat",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "Mad Hatter's Castle",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "BadKlaat",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "badklaat",
+    "role": "performer"
+   }
+  ],
+  "act": "badklaat",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:mad-hatter-s-castle",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:mad-hatter-s-castle:2100:dubloadz",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "Mad Hatter's Castle",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "Dubloadz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dubloadz",
+    "role": "performer"
+   }
+  ],
+  "act": "dubloadz",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:mad-hatter-s-castle",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:mad-hatter-s-castle:2200:camo-and-krooked",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "Mad Hatter's Castle",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "Camo & Krooked",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "camo-and-krooked",
+    "role": "performer"
+   }
+  ],
+  "act": "camo-and-krooked",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:mad-hatter-s-castle",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:mad-hatter-s-castle:2300:rusko",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "Mad Hatter's Castle",
+  "start": "23:00",
+  "end": "00:00",
+  "printed": "Rusko",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rusko",
+    "role": "performer"
+   }
+  ],
+  "act": "rusko",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:mad-hatter-s-castle",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:mad-hatter-s-castle:0000:ganja-white-night",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "Mad Hatter's Castle",
+  "start": "00:00",
+  "end": "01:00",
+  "printed": "Ganja White Night",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ganja-white-night",
+    "role": "performer"
+   }
+  ],
+  "act": "ganja-white-night",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:mad-hatter-s-castle",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:mad-hatter-s-castle:0100:flux-pavilion",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "Mad Hatter's Castle",
+  "start": "01:00",
+  "end": "02:00",
+  "printed": "Flux Pavilion",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "flux-pavilion",
+    "role": "performer"
+   }
+  ],
+  "act": "flux-pavilion",
+  "closing": true,
+  "stageLineage": "beyond-wonderland-socal:mad-hatter-s-castle",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:caterpillar-s-garden:1700:leiel",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "Caterpillar's Garden",
+  "start": "17:00",
+  "end": "18:30",
+  "printed": "Leiel",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "leiel",
+    "role": "performer"
+   }
+  ],
+  "act": "leiel",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:caterpillar-s-garden",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:caterpillar-s-garden:1830:ganesh",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "Caterpillar's Garden",
+  "start": "18:30",
+  "end": "19:30",
+  "printed": "Ganesh",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ganesh",
+    "role": "performer"
+   }
+  ],
+  "act": "ganesh",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:caterpillar-s-garden",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:caterpillar-s-garden:1930:kristina-sky",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "Caterpillar's Garden",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "Kristina Sky",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kristina-sky",
+    "role": "performer"
+   }
+  ],
+  "act": "kristina-sky",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:caterpillar-s-garden",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:caterpillar-s-garden:2030:cold-blue",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "Caterpillar's Garden",
+  "start": "20:30",
+  "end": "21:30",
+  "printed": "Cold Blue",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cold-blue",
+    "role": "performer"
+   }
+  ],
+  "act": "cold-blue",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:caterpillar-s-garden",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:caterpillar-s-garden:2130:david-gravell",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "Caterpillar's Garden",
+  "start": "21:30",
+  "end": "22:30",
+  "printed": "David Gravell",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "david-gravell",
+    "role": "performer"
+   }
+  ],
+  "act": "david-gravell",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:caterpillar-s-garden",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:caterpillar-s-garden:2230:aly-and-fila",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "Caterpillar's Garden",
+  "start": "22:30",
+  "end": "23:45",
+  "printed": "Aly & Fila",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "aly-and-fila",
+    "role": "performer"
+   }
+  ],
+  "act": "aly-and-fila",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:caterpillar-s-garden",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:caterpillar-s-garden:2345:liquid-soul",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "Caterpillar's Garden",
+  "start": "23:45",
+  "end": "01:00",
+  "printed": "Liquid Soul",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "liquid-soul",
+    "role": "performer"
+   }
+  ],
+  "act": "liquid-soul",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:caterpillar-s-garden",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:caterpillar-s-garden:0100:andrew-rayel",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "Caterpillar's Garden",
+  "start": "01:00",
+  "end": "02:00",
+  "printed": "Andrew Rayel",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "andrew-rayel",
+    "role": "performer"
+   }
+  ],
+  "act": "andrew-rayel",
+  "closing": true,
+  "stageLineage": "beyond-wonderland-socal:caterpillar-s-garden",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:cheshire-woods:1700:jay-robinson",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "Cheshire Woods",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Jay Robinson",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jay-robinson",
+    "role": "performer"
+   }
+  ],
+  "act": "jay-robinson",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:cheshire-woods",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:cheshire-woods:1800:monstergetdown",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "Cheshire Woods",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Monstergetdown",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "monstergetdown",
+    "role": "performer"
+   }
+  ],
+  "act": "monstergetdown",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:cheshire-woods",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:cheshire-woods:1900:attlas",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "Cheshire Woods",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "ATTLAS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "attlas",
+    "role": "performer"
+   }
+  ],
+  "act": "attlas",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:cheshire-woods",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:cheshire-woods:2000:13",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "Cheshire Woods",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "13",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "13",
+    "role": "performer"
+   }
+  ],
+  "act": "13",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:cheshire-woods",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:cheshire-woods:2100:i-o",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "Cheshire Woods",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "i_o",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "i-o",
+    "role": "performer"
+   }
+  ],
+  "act": "i-o",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:cheshire-woods",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:cheshire-woods:2200:no-mana",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "Cheshire Woods",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "No Mana",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "no-mana",
+    "role": "performer"
+   }
+  ],
+  "act": "no-mana",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:cheshire-woods",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:cheshire-woods:2300:feed-me",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "Cheshire Woods",
+  "start": "23:00",
+  "end": "00:00",
+  "printed": "Feed Me",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "feed-me",
+    "role": "performer"
+   }
+  ],
+  "act": "feed-me",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:cheshire-woods",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:cheshire-woods:0000:testpilot",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "Cheshire Woods",
+  "start": "00:00",
+  "end": "02:00",
+  "printed": "Testpilot",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "testpilot",
+    "role": "performer"
+   }
+  ],
+  "act": "testpilot",
+  "closing": true,
+  "stageLineage": "beyond-wonderland-socal:cheshire-woods",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:wide-awake-art-car:1700:fenix-fury",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "Wide Awake Art Car",
+  "start": "17:00",
+  "end": "18:30",
+  "printed": "Fenix Fury",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fenix-fury",
+    "role": "performer"
+   }
+  ],
+  "act": "fenix-fury",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:wide-awake-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:wide-awake-art-car:1830:dj-low",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "Wide Awake Art Car",
+  "start": "18:30",
+  "end": "20:00",
+  "printed": "DJ Low",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-low",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-low",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:wide-awake-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:wide-awake-art-car:2000:d-zeledon",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "Wide Awake Art Car",
+  "start": "20:00",
+  "end": "21:30",
+  "printed": "D. Zeledon",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "d-zeledon",
+    "role": "performer"
+   }
+  ],
+  "act": "d-zeledon",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:wide-awake-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:wide-awake-art-car:2130:daniel-minaya",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "Wide Awake Art Car",
+  "start": "21:30",
+  "end": "23:00",
+  "printed": "Daniel Minaya",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "daniel-minaya",
+    "role": "performer"
+   }
+  ],
+  "act": "daniel-minaya",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:wide-awake-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:wide-awake-art-car:2300:meirlin",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "Wide Awake Art Car",
+  "start": "23:00",
+  "end": "00:30",
+  "printed": "Meirlin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "meirlin",
+    "role": "performer"
+   }
+  ],
+  "act": "meirlin",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:wide-awake-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:wide-awake-art-car:0030:rico-rox",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "Wide Awake Art Car",
+  "start": "00:30",
+  "end": "02:00",
+  "printed": "Rico Rox",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rico-rox",
+    "role": "performer"
+   }
+  ],
+  "act": "rico-rox",
+  "closing": true,
+  "stageLineage": "beyond-wonderland-socal:wide-awake-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:the-looking-glass:1700:nes",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "The Looking Glass",
+  "start": "17:00",
+  "end": "18:30",
+  "printed": "Nes",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nes",
+    "role": "performer"
+   }
+  ],
+  "act": "nes",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:the-looking-glass",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:the-looking-glass:1830:chris-jay-b2b-neon-black",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "The Looking Glass",
+  "start": "18:30",
+  "end": "20:00",
+  "printed": "Chris Jay B2B Neon Black",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chris-jay",
+    "role": "b2b"
+   },
+   {
+    "key": "neon-black",
+    "role": "b2b"
+   }
+  ],
+  "act": "chris-jay-b2b-neon-black",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:the-looking-glass",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:the-looking-glass:2000:el-monk-b2b-skonka",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "The Looking Glass",
+  "start": "20:00",
+  "end": "21:30",
+  "printed": "El Monk B2B Skonka",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "el-monk",
+    "role": "b2b"
+   },
+   {
+    "key": "skonka",
+    "role": "b2b"
+   }
+  ],
+  "act": "el-monk-b2b-skonka",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:the-looking-glass",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:the-looking-glass:2130:sammy-legs",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "The Looking Glass",
+  "start": "21:30",
+  "end": "23:00",
+  "printed": "Sammy Legs",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sammy-legs",
+    "role": "performer"
+   }
+  ],
+  "act": "sammy-legs",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:the-looking-glass",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:the-looking-glass:2300:josh-billings-b2b-nonfiction",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "The Looking Glass",
+  "start": "23:00",
+  "end": "00:30",
+  "printed": "Josh Billings B2B Nonfiction",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "josh-billings",
+    "role": "b2b"
+   },
+   {
+    "key": "nonfiction",
+    "role": "b2b"
+   }
+  ],
+  "act": "josh-billings-b2b-nonfiction",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:the-looking-glass",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d1:the-looking-glass:0030:freefall",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-22",
+  "day": 1,
+  "stage": "The Looking Glass",
+  "start": "00:30",
+  "end": "02:00",
+  "printed": "FreeFall",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "freefall",
+    "role": "performer"
+   }
+  ],
+  "act": "freefall",
+  "closing": true,
+  "stageLineage": "beyond-wonderland-socal:the-looking-glass",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:queen-s-domain:1700:wenzday",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "Queen's Domain",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Wenzday",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wenzday",
+    "role": "performer"
+   }
+  ],
+  "act": "wenzday",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:queen-s-domain",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:queen-s-domain:1800:hook-n-sling",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "Queen's Domain",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Hook N Sling",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hook-n-sling",
+    "role": "performer"
+   }
+  ],
+  "act": "hook-n-sling",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:queen-s-domain",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:queen-s-domain:1900:moksi",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "Queen's Domain",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Moksi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "moksi",
+    "role": "performer"
+   }
+  ],
+  "act": "moksi",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:queen-s-domain",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:queen-s-domain:2000:audien",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "Queen's Domain",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Audien",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "audien",
+    "role": "performer"
+   }
+  ],
+  "act": "audien",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:queen-s-domain",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:queen-s-domain:2100:joyryde",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "Queen's Domain",
+  "start": "21:00",
+  "end": "22:10",
+  "printed": "JOYRYDE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "joyryde",
+    "role": "performer"
+   }
+  ],
+  "act": "joyryde",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:queen-s-domain",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:queen-s-domain:2210:deorro",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "Queen's Domain",
+  "start": "22:10",
+  "end": "23:20",
+  "printed": "Deorro",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "deorro",
+    "role": "performer"
+   }
+  ],
+  "act": "deorro",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:queen-s-domain",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:queen-s-domain:2320:seven-lions",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "Queen's Domain",
+  "start": "23:20",
+  "end": "00:20",
+  "printed": "Seven Lions",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "seven-lions",
+    "role": "performer"
+   }
+  ],
+  "act": "seven-lions",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:queen-s-domain",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:queen-s-domain:0030:deadmau5",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "Queen's Domain",
+  "start": "00:30",
+  "end": "02:00",
+  "printed": "Deadmau5",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "deadmau5",
+    "role": "performer"
+   }
+  ],
+  "act": "deadmau5",
+  "closing": true,
+  "stageLineage": "beyond-wonderland-socal:queen-s-domain",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:wide-awake-art-car:1700:adam-auburn",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "Wide Awake Art Car",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Adam Auburn",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "adam-auburn",
+    "role": "performer"
+   }
+  ],
+  "act": "adam-auburn",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:wide-awake-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:wide-awake-art-car:1800:hydrah",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "Wide Awake Art Car",
+  "start": "18:00",
+  "end": "19:30",
+  "printed": "Hydrah",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hydrah",
+    "role": "performer"
+   }
+  ],
+  "act": "hydrah",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:wide-awake-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:wide-awake-art-car:1930:astley",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "Wide Awake Art Car",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "Astley",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "astley",
+    "role": "performer"
+   }
+  ],
+  "act": "astley",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:wide-awake-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:wide-awake-art-car:2030:nick-ledesma",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "Wide Awake Art Car",
+  "start": "20:30",
+  "end": "22:30",
+  "printed": "Nick Ledesma",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nick-ledesma",
+    "role": "performer"
+   }
+  ],
+  "act": "nick-ledesma",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:wide-awake-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:wide-awake-art-car:2230:ravell",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "Wide Awake Art Car",
+  "start": "22:30",
+  "end": "00:30",
+  "printed": "Ravell",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ravell",
+    "role": "performer"
+   }
+  ],
+  "act": "ravell",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:wide-awake-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:wide-awake-art-car:0030:january-black",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "Wide Awake Art Car",
+  "start": "00:30",
+  "end": "02:00",
+  "printed": "January Black",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "january-black",
+    "role": "performer"
+   }
+  ],
+  "act": "january-black",
+  "closing": true,
+  "stageLineage": "beyond-wonderland-socal:wide-awake-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:the-looking-glass:1700:johnny-darko",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "The Looking Glass",
+  "start": "17:00",
+  "end": "18:30",
+  "printed": "Johnny Darko",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "johnny-darko",
+    "role": "performer"
+   }
+  ],
+  "act": "johnny-darko",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:the-looking-glass",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:the-looking-glass:1830:moni",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "The Looking Glass",
+  "start": "18:30",
+  "end": "20:00",
+  "printed": "Moni",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "moni",
+    "role": "performer"
+   }
+  ],
+  "act": "moni",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:the-looking-glass",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:the-looking-glass:2000:roy-wilkins",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "The Looking Glass",
+  "start": "20:00",
+  "end": "21:30",
+  "printed": "Roy Wilkins",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "roy-wilkins",
+    "role": "performer"
+   }
+  ],
+  "act": "roy-wilkins",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:the-looking-glass",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:the-looking-glass:2130:brandon-elliot",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "The Looking Glass",
+  "start": "21:30",
+  "end": "23:00",
+  "printed": "Brandon Elliot",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "brandon-elliot",
+    "role": "performer"
+   }
+  ],
+  "act": "brandon-elliot",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:the-looking-glass",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:the-looking-glass:2300:ruff-hauser",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "The Looking Glass",
+  "start": "23:00",
+  "end": "00:30",
+  "printed": "Ruff Hauser",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ruff-hauser",
+    "role": "performer"
+   }
+  ],
+  "act": "ruff-hauser",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:the-looking-glass",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:the-looking-glass:0030:cats-and-boots-records-b2b",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "The Looking Glass",
+  "start": "00:30",
+  "end": "02:00",
+  "printed": "Cats & Boots Records B2B",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cats-and-boots-records-b2b",
+    "role": "performer"
+   }
+  ],
+  "act": "cats-and-boots-records-b2b",
+  "closing": true,
+  "stageLineage": "beyond-wonderland-socal:the-looking-glass",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:mad-hatter-s-castle:1700:someones-daughter",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "Mad Hatter's Castle",
+  "start": "17:00",
+  "end": "17:40",
+  "printed": "Someones Daughter",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "someones-daughter",
+    "role": "performer"
+   }
+  ],
+  "act": "someones-daughter",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:mad-hatter-s-castle",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:mad-hatter-s-castle:1740:rawtek",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "Mad Hatter's Castle",
+  "start": "17:40",
+  "end": "18:40",
+  "printed": "Rawtek",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rawtek",
+    "role": "performer"
+   }
+  ],
+  "act": "rawtek",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:mad-hatter-s-castle",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:mad-hatter-s-castle:1840:cray",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "Mad Hatter's Castle",
+  "start": "18:40",
+  "end": "19:40",
+  "printed": "CRAY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cray",
+    "role": "performer"
+   }
+  ],
+  "act": "cray",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:mad-hatter-s-castle",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:mad-hatter-s-castle:1940:yehme2",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "Mad Hatter's Castle",
+  "start": "19:40",
+  "end": "20:40",
+  "printed": "YehMe2",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yehme2",
+    "role": "performer"
+   }
+  ],
+  "act": "yehme2",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:mad-hatter-s-castle",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:mad-hatter-s-castle:2040:eprom",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "Mad Hatter's Castle",
+  "start": "20:40",
+  "end": "21:40",
+  "printed": "Eprom",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eprom",
+    "role": "performer"
+   }
+  ],
+  "act": "eprom",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:mad-hatter-s-castle",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:mad-hatter-s-castle:2140:ekali",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "Mad Hatter's Castle",
+  "start": "21:40",
+  "end": "22:40",
+  "printed": "Ekali",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ekali",
+    "role": "performer"
+   }
+  ],
+  "act": "ekali",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:mad-hatter-s-castle",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:mad-hatter-s-castle:2255:zhu",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "Mad Hatter's Castle",
+  "start": "22:55",
+  "end": "23:55",
+  "printed": "Zhu",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zhu",
+    "role": "performer"
+   }
+  ],
+  "act": "zhu",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:mad-hatter-s-castle",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:mad-hatter-s-castle:0005:said-the-sky",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "Mad Hatter's Castle",
+  "start": "00:05",
+  "end": "01:00",
+  "printed": "Said The Sky",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "said-the-sky",
+    "role": "performer"
+   }
+  ],
+  "act": "said-the-sky",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:mad-hatter-s-castle",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:mad-hatter-s-castle:0100:saymyname",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "Mad Hatter's Castle",
+  "start": "01:00",
+  "end": "02:00",
+  "printed": "SAYMYNAME",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "saymyname",
+    "role": "performer"
+   }
+  ],
+  "act": "saymyname",
+  "closing": true,
+  "stageLineage": "beyond-wonderland-socal:mad-hatter-s-castle",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:caterpillar-s-garden:1700:madgrrl",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "Caterpillar's Garden",
+  "start": "17:00",
+  "end": "18:30",
+  "printed": "Madgrrl",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "madgrrl",
+    "role": "performer"
+   }
+  ],
+  "act": "madgrrl",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:caterpillar-s-garden",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:caterpillar-s-garden:1830:dr-phunk",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "Caterpillar's Garden",
+  "start": "18:30",
+  "end": "20:00",
+  "printed": "Dr Phunk",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dr-phunk",
+    "role": "performer"
+   }
+  ],
+  "act": "dr-phunk",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:caterpillar-s-garden",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:caterpillar-s-garden:2000:dj-stephanie",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "Caterpillar's Garden",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "DJ Stephanie",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-stephanie",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-stephanie",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:caterpillar-s-garden",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:caterpillar-s-garden:2100:lady-faith",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "Caterpillar's Garden",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "Lady Faith",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lady-faith",
+    "role": "performer"
+   }
+  ],
+  "act": "lady-faith",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:caterpillar-s-garden",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:caterpillar-s-garden:2200:audiofreq",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "Caterpillar's Garden",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "Audiofreq",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "audiofreq",
+    "role": "performer"
+   }
+  ],
+  "act": "audiofreq",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:caterpillar-s-garden",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:caterpillar-s-garden:2300:dj-isaac",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "Caterpillar's Garden",
+  "start": "23:00",
+  "end": "00:00",
+  "printed": "DJ Isaac",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-isaac",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-isaac",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:caterpillar-s-garden",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:caterpillar-s-garden:0000:darren-styles",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "Caterpillar's Garden",
+  "start": "00:00",
+  "end": "01:00",
+  "printed": "Darren Styles",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "darren-styles",
+    "role": "performer"
+   }
+  ],
+  "act": "darren-styles",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:caterpillar-s-garden",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:caterpillar-s-garden:0100:lil-texas",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "Caterpillar's Garden",
+  "start": "01:00",
+  "end": "02:00",
+  "printed": "Lil Texas",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lil-texas",
+    "role": "performer"
+   }
+  ],
+  "act": "lil-texas",
+  "closing": true,
+  "stageLineage": "beyond-wonderland-socal:caterpillar-s-garden",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:cheshire-woods:1700:morelia",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "Cheshire Woods",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Morelia",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "morelia",
+    "role": "performer"
+   }
+  ],
+  "act": "morelia",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:cheshire-woods",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:cheshire-woods:1800:kendoll",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "Cheshire Woods",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Kendoll",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kendoll",
+    "role": "performer"
+   }
+  ],
+  "act": "kendoll",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:cheshire-woods",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:cheshire-woods:1900:eyes-everywhere",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "Cheshire Woods",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Eyes Everywhere",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eyes-everywhere",
+    "role": "performer"
+   }
+  ],
+  "act": "eyes-everywhere",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:cheshire-woods",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:cheshire-woods:2000:codes",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "Cheshire Woods",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Codes",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "codes",
+    "role": "performer"
+   }
+  ],
+  "act": "codes",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:cheshire-woods",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:cheshire-woods:2100:sage-armstrong-b2b-j-worra",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "Cheshire Woods",
+  "start": "21:00",
+  "end": "22:15",
+  "printed": "Sage Armstrong B2B J. Worra",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sage-armstrong",
+    "role": "b2b"
+   },
+   {
+    "key": "j-worra",
+    "role": "b2b"
+   }
+  ],
+  "act": "sage-armstrong-b2b-j-worra",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:cheshire-woods",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:cheshire-woods:2215:wax-motif",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "Cheshire Woods",
+  "start": "22:15",
+  "end": "23:30",
+  "printed": "Wax Motif",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wax-motif",
+    "role": "performer"
+   }
+  ],
+  "act": "wax-motif",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:cheshire-woods",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:cheshire-woods:2330:bijou",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "Cheshire Woods",
+  "start": "23:30",
+  "end": "00:45",
+  "printed": "BIJOU",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bijou",
+    "role": "performer"
+   }
+  ],
+  "act": "bijou",
+  "closing": false,
+  "stageLineage": "beyond-wonderland-socal:cheshire-woods",
+  "mainStage": null
+ },
+ {
+  "id": "beyond-wonderland-socal-2019:d2:cheshire-woods:0045:noizu",
+  "source": "edition",
+  "festivalId": "beyond-wonderland-socal-2019",
+  "festivalBrand": "beyond-wonderland-socal",
+  "year": 2019,
+  "date": "2019-03-23",
+  "day": 2,
+  "stage": "Cheshire Woods",
+  "start": "00:45",
+  "end": "02:00",
+  "printed": "Noizu",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "noizu",
+    "role": "performer"
+   }
+  ],
+  "act": "noizu",
+  "closing": true,
+  "stageLineage": "beyond-wonderland-socal:cheshire-woods",
+  "mainStage": null
+ },
+ {
   "id": "beyond-wonderland-socal-2026:d1:queen-s-domain:0045:tiesto",
   "source": "edition",
   "festivalId": "beyond-wonderland-socal-2026",

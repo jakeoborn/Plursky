@@ -746,7 +746,7 @@
    "name": "Beyond Wonderland SoCal 2019",
    "year": 2019,
    "timezone": "America/Los_Angeles",
-   "completeness": "lineup_only",
+   "completeness": "complete_schedule",
    "days": [
     {
      "day": 1,
@@ -762,7 +762,7 @@
    "counts": {
     "stages": 6,
     "artists": 91,
-    "sets": 0
+    "sets": 91
    }
   },
   {
