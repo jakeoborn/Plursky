@@ -227,6 +227,14 @@ export const EDITIONS = {
     timezone: "Europe/Budapest", rolloverHour: 8, method: "official_sources",
     dates: [["2011-08-08", "Monday"], ["2011-08-09", "Tuesday"], ["2011-08-10", "Wednesday"], ["2011-08-11", "Thursday"], ["2011-08-12", "Friday"], ["2011-08-13", "Saturday"], ["2011-08-14", "Sunday"]],
     coverage: { asOf: "2026-11-18", missing: [{ stage: "26 other stages and 6 venues", days: [1, 2, 3, 4, 5, 6, 7], when: "listed in the programme, days not read" }] } },
+  // Defqon.1 2013: the festival's own timetable page (defqon1.nl/timetable/,
+  // format "defqon-grid", defqon-grid-lineup.mjs), captured the week before.
+  // It draws each act as a block on an hour axis and prints no time, so the
+  // edition is a lineup: day and area per act. Friday is The Gathering at the
+  // Blue; Sunday's Closing is drawn across the areas, so its acts carry no area.
+  "defqon1-2013": { festivalId: "defqon1", name: "Defqon.1 2013", year: 2013,
+    timezone: "Europe/Amsterdam", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2013-06-21", "Friday"], ["2013-06-22", "Saturday"], ["2013-06-23", "Sunday"]] },
   // Defqon.1 2015: the festival's own timetable (defqon1.nl/en/timetable/,
   // format "defqon-areas", defqon-schedule.mjs), one page for the whole
   // weekend, captured two days after it. Friday is The Gathering, Saturday
@@ -794,7 +802,7 @@ export const EDITIONS = {
     timezone: "America/Mexico_City", rolloverHour: 6, method: "official_lineup_html",
     dates: [["2020-02-28", "Friday"], ["2020-02-29", "Saturday"], ["2020-03-01", "Sunday"]] },
   "beyond-wonderland-socal-2019": { festivalId: "beyond-wonderland-socal", name: "Beyond Wonderland SoCal 2019", year: 2019,
-    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
     dates: [["2019-03-22", "Friday"], ["2019-03-23", "Saturday"]] },
   "countdown-nye-2015": { festivalId: "countdown-nye", name: "Countdown NYE 2015", year: 2015,
     timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",

@@ -3059,6 +3059,31 @@ function HomeMemoriesStrip({
       return false;
     }
   })();
+  var plusActive = _isPlusSub();
+  var weekendReady = plusActive && !!recapReady && recapHookFestivalOver(window.FESTIVAL_CONFIG, Date.now());
+  var [winBack, setWinBack] = React.useState(null);
+  var [plusOpen, setPlusOpen] = React.useState(false);
+  var recapNight = recapReady ? recapReady.night : null;
+  React.useEffect(() => {
+    if (recapNight == null || plusActive) {
+      setWinBack(null);
+      return;
+    }
+    var alive = true;
+    _winBackOffer().then(o => {
+      var copy = o ? winBackCopy(o) : null;
+      if (!alive) return;
+      setWinBack(copy);
+      if (copy) _plusEvent("plus_winback_view", {
+        product_id: o.productId,
+        displayed_price: o.offerPrice,
+        trigger: "recap"
+      });
+    }).catch(() => {});
+    return () => {
+      alive = false;
+    };
+  }, [recapNight, plusActive]);
   var playHighlights = () => {
     if (!recapReady || !highlightReel) return;
     _markRecapSeen(recapReady.night, recapReady.moments.length);
@@ -3191,7 +3216,7 @@ function HomeMemoriesStrip({
         textTransform: "uppercase",
         color: "var(--text-2)"
       }
-    }, morningAfter ? "Last night in 15s" : "Recap ready"), React.createElement("span", {
+    }, weekendReady ? "Your weekend is ready" : morningAfter ? "Last night in 15s" : "Recap ready"), React.createElement("span", {
       style: {
         display: "block",
         fontSize: 17,
@@ -3233,8 +3258,62 @@ function HomeMemoriesStrip({
       strokeLinecap: "round"
     }, React.createElement("path", {
       d: "M6 6 L18 18 M18 6 L6 18"
-    })))));
-  })(), React.createElement(FieldMediaRow, null, recent.map(m => React.createElement(_HomeMemoryThumb, {
+    })))), winBack && React.createElement("button", {
+      "data-recap-winback": true,
+      onClick: () => setPlusOpen(true),
+      style: {
+        width: "100%",
+        display: "flex",
+        alignItems: "center",
+        gap: 8,
+        minHeight: 44,
+        padding: "8px 0 0",
+        border: "none",
+        background: "none",
+        cursor: "pointer",
+        textAlign: "left",
+        color: "var(--ink)"
+      }
+    }, React.createElement("span", {
+      style: {
+        flex: 1,
+        minWidth: 0
+      }
+    }, React.createElement("span", {
+      style: {
+        display: "block",
+        fontSize: 15,
+        lineHeight: "20px",
+        fontWeight: 600
+      }
+    }, winBack.headline), React.createElement("span", {
+      style: {
+        display: "block",
+        fontSize: 13,
+        lineHeight: "18px",
+        color: "var(--text-2)",
+        marginTop: 2
+      }
+    }, winBack.line)), React.createElement("svg", {
+      "aria-hidden": "true",
+      width: "14",
+      height: "14",
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: "2",
+      strokeLinecap: "round",
+      style: {
+        flexShrink: 0,
+        color: "var(--text-2)"
+      }
+    }, React.createElement("path", {
+      d: "M9 6 L15 12 L9 18"
+    }))));
+  })(), plusOpen && React.createElement(PlusSheet, {
+    feature: "everything in Plursky+",
+    onClose: () => setPlusOpen(false)
+  }), React.createElement(FieldMediaRow, null, recent.map(m => React.createElement(_HomeMemoryThumb, {
     key: m.id,
     moment: m,
     onClick: () => go(m.night || NOW.day)
@@ -12214,6 +12293,11 @@ function MeScreen({
   var [socialOpen, setSocialOpen] = React.useState(true);
   var [plusOpen, setPlusOpen] = React.useState(false);
   useDeclareModal(plusOpen);
+  var [, plusBump] = React.useReducer(x => x + 1, 0);
+  React.useEffect(() => {
+    window.addEventListener("plursky-plus-change", plusBump);
+    return () => window.removeEventListener("plursky-plus-change", plusBump);
+  }, []);
   var plusActive = _isPlusSub();
   var [setsCaught, setSetsCaught] = React.useState(getAttendedCount);
   React.useEffect(() => {
@@ -12316,56 +12400,7 @@ function MeScreen({
       lineHeight: 1.35,
       overflowWrap: "anywhere"
     }
-  })), plusActive ? React.createElement("div", {
-    style: {
-      display: "flex",
-      alignItems: "center",
-      gap: 12,
-      width: "100%",
-      padding: "14px 16px",
-      marginBottom: 14,
-      background: "var(--s2)",
-      boxShadow: "var(--e1)",
-      borderRadius: "var(--rad-md)",
-      color: "var(--ink)",
-      textAlign: "left"
-    }
-  }, React.createElement("span", {
-    style: {
-      width: 30,
-      height: 30,
-      borderRadius: "50%",
-      flexShrink: 0,
-      background: "var(--signal)",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      color: "var(--on-signal)",
-      fontSize: 16,
-      fontWeight: 700,
-      lineHeight: 1
-    }
-  }, "+"), React.createElement("div", {
-    style: {
-      flex: 1,
-      minWidth: 0
-    }
-  }, React.createElement("div", {
-    className: "duo-headline"
-  }, "Plursky+"), React.createElement("div", {
-    className: "duo-label duo-ink3",
-    style: {
-      marginTop: 4
-    }
-  }, "Active · thank you")), React.createElement("span", {
-    className: "mono",
-    style: {
-      fontSize: 10,
-      letterSpacing: 1.2,
-      color: "var(--success)",
-      fontWeight: 700
-    }
-  }, "✓")) : React.createElement("button", {
+  })), plusActive ? React.createElement(PlusActiveRow, null) : React.createElement("button", {
     onClick: () => setPlusOpen(true),
     "aria-label": "Plursky Plus — see what's included and subscribe",
     style: {
@@ -14249,7 +14284,106 @@ async function _initRevenueCat() {
 }
 function _syncEntitlements(info) {
   var active = info?.entitlements?.active?.[RC_ENTITLEMENT];
+  _setPlusRenewal(plusRenewalState(info));
   _setPlusSub(!!active);
+}
+var PLUS_RENEWAL_KEY = "plursky_plus_renewal_v1";
+var PLUS_MANAGE_URL = "https://apps.apple.com/account/subscriptions";
+var _PLUS_RENEWING_PLANS = {
+  [RC_PRODUCT_IDS.monthly]: "Monthly",
+  [RC_PRODUCT_IDS.annual]: "Annual"
+};
+function plusRenewalState(info) {
+  var ent = info?.entitlements?.active?.[RC_ENTITLEMENT];
+  if (!ent || typeof ent !== "object") return null;
+  var plan = _PLUS_RENEWING_PLANS[ent.productIdentifier] || null;
+  var until = typeof ent.expirationDate === "string" ? Date.parse(ent.expirationDate) : NaN;
+  if (!plan || !Number.isFinite(until)) return {
+    state: "lasting",
+    untilMs: null,
+    plan: null
+  };
+  if (ent.billingIssueDetectedAt) return {
+    state: "billing",
+    untilMs: until,
+    plan
+  };
+  if (ent.willRenew === false) return {
+    state: "ending",
+    untilMs: until,
+    plan
+  };
+  if (ent.willRenew === true) return {
+    state: "renewing",
+    untilMs: until,
+    plan
+  };
+  return {
+    state: "lasting",
+    untilMs: null,
+    plan
+  };
+}
+function _plusRenewal() {
+  try {
+    var r = JSON.parse(localStorage.getItem(PLUS_RENEWAL_KEY) || "null");
+    return r && ["lasting", "renewing", "ending", "billing"].includes(r.state) ? r : null;
+  } catch {
+    return null;
+  }
+}
+function _setPlusRenewal(r) {
+  var next = r ? JSON.stringify({
+    state: r.state,
+    untilMs: Number.isFinite(r.untilMs) ? r.untilMs : null,
+    plan: r.plan || null
+  }) : null;
+  var prev = null;
+  try {
+    prev = localStorage.getItem(PLUS_RENEWAL_KEY);
+    if (next) localStorage.setItem(PLUS_RENEWAL_KEY, next);else localStorage.removeItem(PLUS_RENEWAL_KEY);
+  } catch {}
+  if (prev !== next) {
+    try {
+      window.dispatchEvent(new CustomEvent("plursky-plus-change", {
+        detail: {
+          renewal: true
+        }
+      }));
+    } catch {}
+  }
+}
+function plusRenewalCopy(r) {
+  var day = ms => {
+    try {
+      return new Date(ms).toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric"
+      });
+    } catch {
+      return "";
+    }
+  };
+  if (!r || r.state === "lasting" || !Number.isFinite(r.untilMs)) return {
+    line: "Active · thank you",
+    note: null,
+    cta: null
+  };
+  if (r.state === "renewing") return {
+    line: `${r.plan} · renews ${day(r.untilMs)}`,
+    note: null,
+    cta: "Manage"
+  };
+  if (r.state === "ending") return {
+    line: `${r.plan} · ends ${day(r.untilMs)}`,
+    note: `Renewal is off, so Plursky+ stops on ${day(r.untilMs)}. To keep it, turn renewal back on in your Apple subscriptions.`,
+    cta: "Keep Plursky+"
+  };
+  return {
+    line: `${r.plan} · payment issue`,
+    note: "Apple couldn't take the renewal payment. Update your payment method in your Apple subscriptions to keep Plursky+.",
+    cta: "Update payment"
+  };
 }
 var _IAP_DEV_HOSTS = ["localhost", "127.0.0.1", "[::1]", "::1", ""];
 function _iapDevHost() {
@@ -14569,6 +14703,144 @@ if (window.Capacitor?.isNativePlatform?.()) {
     })).catch(() => {});
   } catch {}
 }
+var WINBACK_MAX_LAPSE_DAYS = 90;
+var WINBACK_STOREFRONTS = ["USA"];
+var WINBACK_PRODUCT_ID = RC_PRODUCT_IDS.monthly;
+function winBackEligibility(customerInfo, storefront, nowMs) {
+  var DAY = 86400000;
+  if (!customerInfo || typeof customerInfo !== "object") return {
+    eligible: false,
+    reason: "no-customer-info"
+  };
+  if (customerInfo.entitlements?.active?.[RC_ENTITLEMENT]) return {
+    eligible: false,
+    reason: "active"
+  };
+  var raw = customerInfo.allExpirationDates?.[WINBACK_PRODUCT_ID];
+  var exp = typeof raw === "string" ? Date.parse(raw) : NaN;
+  if (!Number.isFinite(exp)) return {
+    eligible: false,
+    reason: "never-monthly"
+  };
+  if (exp > nowMs) return {
+    eligible: false,
+    reason: "not-lapsed"
+  };
+  var lapsedDays = (nowMs - exp) / DAY;
+  if (lapsedDays > WINBACK_MAX_LAPSE_DAYS) return {
+    eligible: false,
+    reason: "lapsed-too-long",
+    lapsedDays
+  };
+  if (typeof storefront !== "string" || !storefront) return {
+    eligible: false,
+    reason: "unknown-storefront",
+    lapsedDays
+  };
+  if (!WINBACK_STOREFRONTS.includes(storefront.toUpperCase())) return {
+    eligible: false,
+    reason: "storefront",
+    lapsedDays
+  };
+  return {
+    eligible: true,
+    reason: "lapsed",
+    lapsedDays
+  };
+}
+function winBackCopy(offer) {
+  if (!offer || typeof offer.offerPrice !== "string" || !offer.offerPrice || typeof offer.regularPrice !== "string" || !offer.regularPrice || !Number.isInteger(offer.cycles) || offer.cycles < 1) return null;
+  var n = offer.cycles,
+    unit = offer.periodUnit === "MONTH" && offer.periodNumberOfUnits === 1 ? "month" : null;
+  if (!unit) return null;
+  return {
+    headline: "Welcome back to Plursky+",
+    line: `${offer.offerPrice}/${unit} for ${n} ${unit}${n === 1 ? "" : "s"}, then ${offer.regularPrice}/${unit}. Cancel anytime.`,
+    cta: `Resubscribe for ${offer.offerPrice}/${unit}`
+  };
+}
+function recapHookFestivalOver(cfg, nowMs) {
+  var end = cfg && cfg.endMs;
+  return Number.isFinite(end) && Number.isFinite(nowMs) && nowMs >= end;
+}
+async function _winBackStorefront() {
+  try {
+    if (!window.Capacitor?.isNativePlatform?.() || typeof window.ShazamPlugin?.storefront !== "function") return null;
+    var r = await _withTimeout(window.ShazamPlugin.storefront(), 3000, "Storefront");
+    return r && typeof r.countryCode === "string" && r.countryCode || null;
+  } catch {
+    return null;
+  }
+}
+async function _winBackOffer(nowMs = Date.now()) {
+  if (!window.Capacitor?.isNativePlatform?.()) return null;
+  if (!_rcInitialized) await _initRevenueCat();
+  if (!_rcInitialized) return null;
+  try {
+    var Purchases = _rcPlugin();
+    var offerings = await _withTimeout(Purchases.getOfferings(), 10000, "Win-back offering lookup");
+    var current = offerings?.current;
+    if (current?.metadata?.winback_enabled !== true) return null;
+    var {
+      customerInfo
+    } = await _withTimeout(Purchases.getCustomerInfo(), 10000, "Win-back customer info");
+    var elig = winBackEligibility(customerInfo, await _winBackStorefront(), nowMs);
+    if (!elig.eligible) return null;
+    var pkg = (current.availablePackages || []).find(p => p.product?.identifier === WINBACK_PRODUCT_ID);
+    var regularPrice = pkg?.product?.priceString;
+    if (!pkg || typeof regularPrice !== "string" || !regularPrice) return null;
+    var res = await _withTimeout(Purchases.getEligibleWinBackOffersForPackage({
+      aPackage: pkg
+    }), 10000, "Win-back eligibility");
+    var wb = (res?.eligibleWinBackOffers || [])[0];
+    if (!wb) return null;
+    var offer = {
+      productId: WINBACK_PRODUCT_ID,
+      offerId: wb.identifier || null,
+      offerPrice: wb.priceString,
+      regularPrice,
+      cycles: wb.cycles,
+      periodUnit: wb.periodUnit,
+      periodNumberOfUnits: wb.periodNumberOfUnits
+    };
+    return winBackCopy(offer) ? {
+      ...offer,
+      pkg,
+      winBackOffer: wb
+    } : null;
+  } catch (e) {
+    console.warn("[plursky-iap] win-back offer unavailable:", _iapMsg(e));
+    return null;
+  }
+}
+async function _purchaseWinBack(offer) {
+  if (!offer?.pkg || !offer?.winBackOffer) return {
+    success: false,
+    error: "Offer not available"
+  };
+  try {
+    var {
+      customerInfo
+    } = await _withTimeout(_rcPlugin().purchasePackageWithWinBackOffer({
+      aPackage: offer.pkg,
+      winBackOffer: offer.winBackOffer
+    }), 45000, "StoreKit purchase sheet");
+    _syncEntitlements(customerInfo);
+    return {
+      success: !!customerInfo?.entitlements?.active?.[RC_ENTITLEMENT]
+    };
+  } catch (e) {
+    if (e?.userCancelled === true || e?.code === "1" || e?.message?.includes("cancelled")) return {
+      success: false,
+      cancelled: true
+    };
+    console.error("[plursky-iap] win-back purchase error:", _iapMsg(e));
+    return {
+      success: false,
+      error: _iapMsg(e)
+    };
+  }
+}
 var PLUS_EVENT_KEY = "plursky_plus_events";
 var _PLUS_EVENT_PROPS = ["entry_feature", "view_number", "is_native", "storefront", "rescue_eligible", "rescue_trigger", "product_id", "displayed_price", "trigger", "discount_product_id", "result"];
 function _plusEvent(name, props = {}) {
@@ -14616,6 +14888,119 @@ function _setPlusSub(v) {
       }));
     } catch {}
   }
+}
+function PlusActiveRow() {
+  var [, bump] = React.useReducer(x => x + 1, 0);
+  React.useEffect(() => {
+    window.addEventListener("plursky-plus-change", bump);
+    return () => window.removeEventListener("plursky-plus-change", bump);
+  }, []);
+  var r = _plusRenewal();
+  var copy = plusRenewalCopy(r);
+  var save = !!r && (r.state === "ending" || r.state === "billing");
+  var seen = React.useRef(null);
+  React.useEffect(() => {
+    if (!save || seen.current === r.state) return;
+    seen.current = r.state;
+    _plusEvent("plus_save_view", {
+      trigger: r.state
+    });
+  }, [save, r && r.state]);
+  return React.createElement("div", {
+    "data-plus-active": r ? r.state : "lasting",
+    style: {
+      width: "100%",
+      padding: "14px 16px",
+      marginBottom: 14,
+      background: "var(--s2)",
+      boxShadow: "var(--e1)",
+      borderRadius: "var(--rad-md)",
+      color: "var(--ink)",
+      textAlign: "left",
+      boxSizing: "border-box"
+    }
+  }, React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 12
+    }
+  }, React.createElement("span", {
+    "aria-hidden": "true",
+    style: {
+      width: 30,
+      height: 30,
+      borderRadius: "50%",
+      flexShrink: 0,
+      background: "var(--signal)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      color: "var(--on-signal)",
+      fontSize: 16,
+      fontWeight: 700,
+      lineHeight: 1
+    }
+  }, "+"), React.createElement("div", {
+    style: {
+      flex: 1,
+      minWidth: 0
+    }
+  }, React.createElement("div", {
+    className: "duo-headline"
+  }, "Plursky+"), React.createElement("div", {
+    "data-plus-active-line": true,
+    className: "duo-label duo-ink3",
+    style: {
+      marginTop: 4,
+      overflowWrap: "anywhere"
+    }
+  }, copy.line)), !save && React.createElement("span", {
+    "aria-hidden": "true",
+    className: "mono",
+    style: {
+      fontSize: 10,
+      letterSpacing: 1.2,
+      color: "var(--success)",
+      fontWeight: 700
+    }
+  }, "✓")), copy.note && React.createElement("div", {
+    "data-plus-save-note": true,
+    style: {
+      font: "400 14px/1.43 var(--f-ui)",
+      color: "var(--ink-2)",
+      marginTop: 10
+    }
+  }, copy.note), copy.cta && React.createElement("a", {
+    "data-plus-manage": true,
+    href: PLUS_MANAGE_URL,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    onClick: () => {
+      if (save) _plusEvent("plus_save_tap", {
+        trigger: r.state
+      });
+    },
+    style: {
+      display: "inline-flex",
+      alignItems: "center",
+      justifyContent: "center",
+      minHeight: 44,
+      marginTop: 10,
+      padding: "8px 16px",
+      boxSizing: "border-box",
+      maxWidth: "100%",
+      textAlign: "center",
+      borderRadius: 22,
+      textDecoration: "none",
+      fontFamily: "var(--f-ui)",
+      fontSize: 14,
+      fontWeight: 650,
+      border: save ? "none" : "1px solid var(--line-2)",
+      background: save ? "var(--acc)" : "transparent",
+      color: save ? "var(--on-acc)" : "var(--ink)"
+    }
+  }, copy.cta));
 }
 try {
   _initRevenueCat();
@@ -14976,8 +15361,30 @@ function PlusGate({
       dead = true;
     };
   }, [rescue?.rescueEligibleAt]);
+  var [winBack, setWinBack] = React.useState(null);
+  var winBackSeen = React.useRef(false);
+  React.useEffect(() => {
+    if (!nativeBuy) return;
+    var dead = false;
+    _winBackOffer().then(o => {
+      if (!dead) setWinBack(o);
+    });
+    return () => {
+      dead = true;
+    };
+  }, []);
+  var winBackCopyNow = winBack ? winBackCopy(winBack) : null;
+  var showWinBack = nativeBuy && !!winBackCopyNow && (!(layout === "sheet" && typeof onStep === "function") || step === "plans");
+  React.useEffect(() => {
+    if (!showWinBack || winBackSeen.current) return;
+    winBackSeen.current = true;
+    _plusEvent("plus_winback_view", {
+      product_id: winBack.productId,
+      displayed_price: winBack.offerPrice
+    });
+  }, [showWinBack]);
   var rescueTrigger = rescue?.rescueTrigger || null;
-  var showRescue = nativeBuy && !!rescue?.rescueEligibleAt && !rescue.rescuePurchased && !!rescueOffer && (!(layout === "sheet" && typeof onStep === "function") || step === "plans");
+  var showRescue = !showWinBack && nativeBuy && !!rescue?.rescueEligibleAt && !rescue.rescuePurchased && !!rescueOffer && (!(layout === "sheet" && typeof onStep === "function") || step === "plans");
   React.useEffect(() => {
     if (!showRescue || rescueSeen.current) return;
     rescueSeen.current = true;
@@ -15044,6 +15451,39 @@ function PlusGate({
         product_id: target,
         rescue_trigger: trig
       });
+      setBuyError(e?.message || "Purchase could not be completed.");
+    } finally {
+      setBusy(false);
+      setPending(null);
+    }
+  };
+  var handleWinBack = async () => {
+    setBusy(true);
+    setPending("winback");
+    setBuyError(null);
+    _plusEvent("plus_purchase_start", {
+      product_id: winBack.productId,
+      displayed_price: winBack.offerPrice,
+      trigger: "winback"
+    });
+    try {
+      var result = await _withTimeout(_purchaseWinBack(winBack), 50000, "Purchase");
+      var outcome = result.success ? "success" : result.cancelled ? "cancel" : /timed out/i.test(result.error || "") ? "timeout" : "error";
+      _plusEvent("plus_purchase_result", {
+        result: outcome,
+        product_id: winBack.productId,
+        trigger: "winback"
+      });
+      if (result.success) {
+        _plusEvent("plus_entitlement_active", {
+          product_id: winBack.productId,
+          trigger: "winback"
+        });
+        window.location.reload();
+        return;
+      }
+      if (!result.cancelled) setBuyError(result.error || "Purchase could not be completed.");
+    } catch (e) {
       setBuyError(e?.message || "Purchase could not be completed.");
     } finally {
       setBusy(false);
@@ -15184,7 +15624,57 @@ function PlusGate({
       lineHeight: "18px",
       color: "var(--warn)"
     }
-  }, buyError, " You are only charged when Apple confirms — nothing was charged for this attempt."), !showPlans ? null : canBuy ? React.createElement(React.Fragment, null, showRescue && React.createElement("section", {
+  }, buyError, " You are only charged when Apple confirms — nothing was charged for this attempt."), !showPlans ? null : canBuy ? React.createElement(React.Fragment, null, showWinBack && React.createElement("section", {
+    "data-winback": true,
+    "aria-label": "Win-back offer",
+    style: {
+      marginTop: 16,
+      padding: "14px 14px 12px",
+      borderRadius: 14,
+      background: "var(--paper-2)",
+      border: "1.5px solid var(--signal)"
+    }
+  }, React.createElement("div", {
+    style: {
+      fontSize: 11,
+      lineHeight: "14px",
+      fontWeight: 600,
+      letterSpacing: "0.04em",
+      textTransform: "uppercase",
+      color: "var(--signal)"
+    }
+  }, "Monthly · returning member"), React.createElement("div", {
+    "data-winback-headline": true,
+    style: {
+      marginTop: 4,
+      fontSize: 17,
+      lineHeight: "22px",
+      fontWeight: 700
+    }
+  }, winBackCopyNow.headline), React.createElement("div", {
+    "data-winback-line": true,
+    style: {
+      marginTop: 2,
+      fontSize: 13,
+      lineHeight: "18px",
+      color: "var(--text-2)",
+      fontVariantNumeric: "tabular-nums"
+    }
+  }, winBackCopyNow.line), React.createElement(FieldButton, {
+    "data-winback-buy": true,
+    onClick: handleWinBack,
+    disabled: busy,
+    style: {
+      marginTop: 12
+    }
+  }, pending === "winback" ? "Processing…" : winBackCopyNow.cta), React.createElement("p", {
+    style: {
+      margin: "8px 0 0",
+      fontSize: 12,
+      lineHeight: "17px",
+      color: "var(--text-2)"
+    }
+  }, "Auto-renews monthly at ", winBack.regularPrice, " after the offer until you cancel in Settings.")), showRescue && React.createElement("section", {
     "aria-label": "Festival launch price",
     style: {
       marginTop: 16,
@@ -15267,6 +15757,7 @@ function PlusGate({
       disabled: busy,
       style: {
         display: "flex",
+        flexWrap: "wrap",
         alignItems: "center",
         gap: 12,
         minHeight: 64,
@@ -15296,8 +15787,9 @@ function PlusGate({
         fontWeight: 800
       }
     }, on ? "✓" : ""), React.createElement("span", {
+      "data-plan-name": true,
       style: {
-        flex: 1,
+        flex: "1 1 120px",
         minWidth: 0
       }
     }, React.createElement("span", {
@@ -15315,7 +15807,9 @@ function PlusGate({
         color: "var(--text-2)"
       }
     }, p.sub)), React.createElement("span", {
+      "data-plan-price": true,
       style: {
+        marginLeft: "auto",
         fontSize: 17,
         lineHeight: "22px",
         fontWeight: 600,
@@ -15335,7 +15829,7 @@ function PlusGate({
     style: {
       marginTop: 16
     }
-  }, pending && pending !== RESCUE_PRODUCT_ID ? "Processing…" : waitingForPrice ? "Loading App Store price…" : selected.cta), PLANS.map(p => React.createElement("p", {
+  }, pending && pending !== RESCUE_PRODUCT_ID && pending !== "winback" ? "Processing…" : waitingForPrice ? "Loading App Store price…" : selected.cta), PLANS.map(p => React.createElement("p", {
     key: p.id,
     style: {
       margin: "10px 0 0",

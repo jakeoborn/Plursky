@@ -95,7 +95,7 @@
  "nocturnal-wonderland-2012": { "stages": 7, "setsPerDay": [39, 56], "droppedPerDay": [0, 0] },
  "nocturnal-wonderland-2013": { "stages": 5, "setsPerDay": [45], "droppedPerDay": [0] },
  "beyond-wonderland-socal-2013": { "stages": 5, "setsPerDay": [42], "droppedPerDay": [0] },
- "beyond-wonderland-socal-2019": { "artists": 91, "stages": 6, "appearancesPerDay": [46, 45], "dropped": 0 },
+ "beyond-wonderland-socal-2019": { "stages": 6, "setsPerDay": [46, 45], "droppedPerDay": [0, 0] },
  "countdown-nye-2015": { "stages": 3, "setsPerDay": [26], "droppedPerDay": [0] },
  "countdown-nye-2016": { "stages": 3, "setsPerDay": [24,  28], "droppedPerDay": [0,  0] },
  "countdown-nye-2019": { "stages": 6, "setsPerDay": [49], "droppedPerDay": [2] },
@@ -182,5 +182,6 @@
  "sonar-2022": { "stages": 8, "setsPerDay": [24, 46, 45], "droppedPerDay": [0, 0, 0] },
  "sziget-2010": { "stages": 5, "setsPerDay": [2, 6, 28, 27, 28, 28, 27], "droppedPerDay": [0, 0, 0, 0, 0, 0, 0] },
  "sziget-2011": { "stages": 5, "setsPerDay": [1, 6, 20, 20, 19, 20, 19], "droppedPerDay": [0, 0, 0, 0, 0, 0, 0] },
+ "defqon1-2013": { "artists": 158, "stages": 11, "appearancesPerDay": [4, 109, 53], "dropped": 0 },
  "defqon1-2015": { "stages": 14, "setsPerDay": [11, 133, 77], "droppedPerDay": [0, 0, 0] }
 }
