@@ -1,0 +1,96 @@
+{
+  "id": "defqon1-2013",
+  "method": "official_lineup_html",
+  "official": "http://defqon1.nl/timetable/",
+  "chosen": "20130616100129",
+  "archivedUrl": "https://web.archive.org/web/20130616100129/http://defqon1.nl/timetable/",
+  "sha256": "2c9cf3bbedd183cca3ee7b26afcf7621fe58eef7090e219068a4b19ece5753e6",
+  "title": "DEFQON.1 FESTIVAL - TIME-TABLE",
+  "relayedVia": "firecrawl",
+  "stageOrder": [
+    "Blue",
+    "Red",
+    "Black",
+    "Gold",
+    "UV",
+    "Magenta",
+    "Green",
+    "Silver",
+    "Purple",
+    "White",
+    "Orange"
+  ],
+  "parts": [
+    {
+      "day": 1,
+      "heading": "The Gathering @ The Blue",
+      "row": "Blue",
+      "stage": "Blue",
+      "acts": [
+        "Frontliner",
+        "We R (Brennan Heart, Code Black & Toneshifterz)",
+        "Headhunterz",
+        "Zatox"
+      ],
+      "hosts": [
+        "Hosted By Villain & Ruffian"
+      ]
+    },
+    {
+      "day": 2,
+      "heading": "Nightparty",
+      "row": "Red",
+      "stage": "Red",
+      "acts": [
+        "Isaac",
+        "DV8 Rocks",
+        "Max Enforcer",
+        "The Viper"
+      ],
+      "hosts": [
+        "Hosted By Ruffian"
+      ]
+    },
+    {
+      "day": 3,
+      "heading": "The Closing",
+      "row": "Black",
+      "stage": "",
+      "acts": [
+        "Coone",
+        "Wildstylez",
+        "Gunz 4 Hire"
+      ],
+      "hosts": [
+        "Hosted By Villain"
+      ]
+    }
+  ],
+  "segments": [
+    {
+      "day": 2,
+      "stage": "Red",
+      "segment": "End show"
+    }
+  ],
+  "considered": [
+    {
+      "captureTimestamp": "20130616100129",
+      "archivedUrl": "https://web.archive.org/web/20130616100129/http://defqon1.nl/timetable/",
+      "sha256": "2c9cf3bbedd183cca3ee7b26afcf7621fe58eef7090e219068a4b19ece5753e6",
+      "bytes": 32560,
+      "via": "firecrawl",
+      "title": "DEFQON.1 FESTIVAL - TIME-TABLE",
+      "titled": true,
+      "dated": true,
+      "valid": true,
+      "days": [
+        "Friday 21 June 2013",
+        "Saturday 22 June 2013",
+        "Sunday 23 June 2013"
+      ],
+      "billings": 158
+    }
+  ],
+  "dropped": []
+}
