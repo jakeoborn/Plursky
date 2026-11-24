@@ -84,6 +84,9 @@ export const OFFICIAL_HOSTS = {
   "sziget": ["sziget.hu", "szigetfestival.com"],
   // defqon1.nl: Defqon.1's own site, where each year's timetable lived.
   "defqon1": ["defqon1.nl"],
+  // time-warp.de: Time Warp's own site; each Mannheim edition has its own
+  // sub-site (/22/ for 2022) with a lineup page.
+  "time-warp": ["time-warp.de"],
 };
 
 // Where an official graphic may be re-hosted for an `official_sources`
@@ -218,7 +221,13 @@ export function validateEdition(e, { expected, review, dropped = [] } = {}) {
     const url = c.archivedUrl || c.pageArchivedUrl;
     const where = c.day ? `day ${c.day}` : `${c.page || "?"} page`;
     const ts = officialArchive(url, e.festivalId, e.year, p, `${e.id} ${where}`);
-    if (ts && !ts.startsWith(String(e.year)) && !earlyNextYear(ts, e)) p.push(`${e.id} ${where}: page capture ${ts} is not from ${e.year}`);
+    // Time Warp keeps each Mannheim edition's lineup at its own address
+    // (time-warp.de/<yy>/lineup) under a header naming that edition, so a
+    // capture from the year after cannot be a later year's lineup (2022's
+    // survives only in a Feb 2023 capture).
+    const yearPage = c.page === "lineup" && e.festivalId === "time-warp" && ts?.startsWith(String(e.year + 1))
+      && new RegExp(`^https?://(www\\.)?time-warp\\.de/${String(e.year).slice(2)}/lineup$`).test((url || "").replace(/^https:\/\/web\.archive\.org\/web\/\d{14}\//, ""));
+    if (ts && !ts.startsWith(String(e.year)) && !earlyNextYear(ts, e) && !yearPage) p.push(`${e.id} ${where}: page capture ${ts} is not from ${e.year}`);
     if (c.imageArchivedUrl) officialArchive(c.imageArchivedUrl, e.festivalId, e.year, p, `${e.id} ${where} graphic`);
     if (!/^[0-9a-f]{64}$/.test(c.sha256 || "")) p.push(`${e.id} ${where}: artifact hash missing`);
   }
