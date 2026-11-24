@@ -1165,6 +1165,108 @@ const FESTIVALS_REGISTRY = [
     region:    "Europe",
   },
   {
+    // ── Project GLOW 2027 — RFK Festival Grounds, Washington DC ──
+    // Added 2026-11-18 as a gated preview. Dates and venue from projectglowfest.com
+    // (page title, read 2026-11-18): "Project GLOW | June 5 + 6, 2027 | RFK Festival
+    // Grounds"; insomniac.com's Project Glow page gives "June 5 + 6, 2027 ·
+    // Washington, DC". No 2027 lineup yet.
+    config: {
+      id:        "project-glow-2027",
+      officialEvent: { website: "https://projectglowfest.com/", observedAt: "2026-11-18" },
+      name:      "Project GLOW 2027",
+      shortName: "Project GLOW",
+      brand:     "Project GLOW",
+      tagline:   "Two days of dance music at the RFK Festival Grounds",
+      location:  "RFK Festival Grounds · Washington, DC",
+      locationShort: "RFK Festival Grounds",
+      dates:     "Jun 5–6, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://projectglowfest.com/", observedAt: "2026-11-18" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#a855f7",
+    emoji:     "✨",
+    region:    "North America",
+  },
+  {
+    // ── Beyond Wonderland Midwest 2027 — Chicagoland Speedway ──
+    // Added 2026-11-18 as a gated preview. Formerly Beyond Wonderland Chicago at
+    // Northerly Island. Dates from midwest.beyondwonderland.com (page title, read
+    // 2026-11-18): "June 10 + 11 + 12 + 13, 2027". Venue from Insomniac's press
+    // release of 2026-06-15 (press.insomniac.com): relocates "to Chicagoland
+    // Speedway"; that release gave June 11-13, the site now lists four days.
+    // City as insomniac.com lists it: "Chicago, IL". No 2027 lineup yet.
+    config: {
+      id:        "beyond-wonderland-midwest-2027",
+      officialEvent: { website: "https://midwest.beyondwonderland.com/", observedAt: "2026-11-18" },
+      name:      "Beyond Wonderland Midwest 2027",
+      shortName: "Beyond Midwest",
+      brand:     "Beyond Wonderland",
+      tagline:   "Beyond Wonderland's Midwest edition, now at Chicagoland Speedway",
+      location:  "Chicagoland Speedway · Chicago, IL",
+      locationShort: "Chicagoland Speedway",
+      dates:     "Jun 10–13, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://midwest.beyondwonderland.com/", observedAt: "2026-11-18" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#ec4899",
+    emoji:     "🐇",
+    region:    "North America",
+  },
+  {
+    // ── Lost In Dreams 2027 — LA State Historic Park, Los Angeles ──
+    // Added 2026-11-18 as a gated preview. Dates and venue from
+    // lostindreamsfestival.com (page title, read 2026-11-18): "Lost in Dreams
+    // Festival | July 10+11, 2027 | LA State Historic Park". No 2027 lineup yet.
+    config: {
+      id:        "lost-in-dreams-2027",
+      officialEvent: { website: "https://www.lostindreamsfestival.com/", observedAt: "2026-11-18" },
+      name:      "Lost In Dreams 2027",
+      shortName: "Lost In Dreams",
+      brand:     "Lost In Dreams",
+      tagline:   "Two days of art, music and lucid dreams",
+      location:  "LA State Historic Park · Los Angeles, CA",
+      locationShort: "LA State Historic Park",
+      dates:     "Jul 10–11, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://www.lostindreamsfestival.com/", observedAt: "2026-11-18" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#818cf8",
+    emoji:     "🌙",
+    region:    "North America",
+  },
+  {
+    // ── Wasteland Southern California 2027 — San Bernardino, CA ──
+    // Added 2026-11-18 as a gated preview. Dates from wastelandfest.com (page
+    // title, read 2026-11-18): "Wasteland Southern California | September 3 + 4,
+    // 2027"; insomniac.com's San Bernardino festivals list gives "September 3 + 4,
+    // 2027 · San Bernardino, CA". The 2027 venue isn't named yet (2026 was NOS
+    // Event Center). No 2027 lineup yet.
+    config: {
+      id:        "wasteland-2027",
+      officialEvent: { website: "https://www.wastelandfest.com/", observedAt: "2026-11-18" },
+      name:      "Wasteland Southern California 2027",
+      shortName: "Wasteland",
+      brand:     "Wasteland",
+      tagline:   "SoCal's hard dance festival from Basscon, Mutate and Unreal",
+      location:  "San Bernardino, CA",
+      locationShort: "San Bernardino",
+      dates:     "Sep 3–4, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://www.wastelandfest.com/", observedAt: "2026-11-18" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#f97316",
+    emoji:     "☢️",
+    region:    "North America",
+  },
+  {
     // ── Lost Lands 2026 — Legend Valley, Thornville OH ──
     // Flip 2026-09-11: stage + set time per act come from the Lost Lands app
     // schedule (app v10.0.0, as captured 2026-09-10); the SCHEDULE block

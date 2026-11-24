@@ -1,158 +1,49 @@
 {
   "id": "beyond-wonderland-socal-2019",
-  "method": "official_lineup_html",
-  "official": "https://beyondwonderland.com/lineup/",
-  "chosen": "20191019031520",
-  "archivedUrl": "https://web.archive.org/web/20191019031520/https://beyondwonderland.com/lineup/",
-  "sha256": "876b6083bbc6f1962119547454c5e91cb36c31f9abcd6a8af9eacafa93dbadf6",
-  "title": "Lineup – Beyond Wonderland SoCal 2019",
-  "relayedVia": "firecrawl",
-  "tabs": [
-    "Alphabetical 91",
-    "By Day 91",
-    "By Stage 91"
-  ],
-  "stageOrder": [
-    "Queen's Domain",
-    "Mad Hatter's Castle",
-    "Caterpillar's Garden",
-    "Cheshire Woods",
-    "Wide Awake Art Car",
-    "The Looking Glass"
-  ],
-  "crossTab": [
-    "By Stage heading \"Mad Hatter's Castle (Friday)\" read as stage \"Mad Hatter's Castle\" on day 1",
-    "By Stage heading \"Mad Hatter's Castle (Saturday)\" read as stage \"Mad Hatter's Castle\" on day 2",
-    "By Stage heading \"Caterpillar's Garden (Friday)\" read as stage \"Caterpillar's Garden\" on day 1",
-    "By Stage heading \"Caterpillar's Garden (Saturday)\" read as stage \"Caterpillar's Garden\" on day 2",
-    "By Stage heading \"Cheshire Woods (Friday)\" read as stage \"Cheshire Woods\" on day 1",
-    "By Stage heading \"Cheshire Woods (Saturday)\" read as stage \"Cheshire Woods\" on day 2"
-  ],
-  "considered": [
+  "method": "official_sources",
+  "official": "https://beyondwonderland.com/lineup/set-times/",
+  "days": [
     {
-      "captureTimestamp": "20190326190518",
-      "archivedUrl": "https://web.archive.org/web/20190326190518/https://beyondwonderland.com/lineup/",
-      "sha256": "eaa9f997c6015ded39e2650f752d7edb9583372467c1c613177634b377f16405",
-      "bytes": 120108,
-      "via": "firecrawl",
-      "title": "Lineup – Beyond Wonderland SoCal 2019",
-      "valid": true,
-      "titled": true,
-      "dated": true,
-      "days": [
-        "Friday, March 22",
-        "Saturday, March 23"
-      ],
-      "billings": 91,
-      "diffVsChosen": [
-        "added by the final: BIJOU",
-        "added by the final: deadmau5",
-        "removed by the final: Bijou",
-        "removed by the final: Deadmau5"
+      "day": 1,
+      "date": "2019-03-22",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://beyondwonderland.com/lineup/set-times/day-1/",
+          "archivedUrl": "https://web.archive.org/web/20190720112414/https://beyondwonderland.com/lineup/set-times/day-1/",
+          "captureTimestamp": "20190720112414",
+          "printed": "Friday, March 22",
+          "sha256": "40322e56a376303a7763afce2263b78e9e9bfa24092769d8b59d763e6bbfb15b",
+          "bytes": 269860,
+          "rows": 46
+        }
       ]
     },
     {
-      "captureTimestamp": "20190514055910",
-      "archivedUrl": "https://web.archive.org/web/20190514055910/https://beyondwonderland.com/lineup/",
-      "sha256": "f78fa6c0ee922becf8b74e61ff7119faa0b662790a0d7599c2a634ed9cc58996",
-      "bytes": 123451,
-      "via": "firecrawl",
-      "title": "Lineup – Beyond Wonderland SoCal 2019",
-      "valid": true,
-      "titled": true,
-      "dated": true,
-      "days": [
-        "Friday, March 22",
-        "Saturday, March 23"
-      ],
-      "billings": 91,
-      "diffVsChosen": [
-        "added by the final: BIJOU",
-        "added by the final: deadmau5",
-        "removed by the final: Bijou",
-        "removed by the final: Deadmau5"
+      "day": 2,
+      "date": "2019-03-23",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://beyondwonderland.com/lineup/set-times/day-2/",
+          "archivedUrl": "https://web.archive.org/web/20190720114248/https://beyondwonderland.com/lineup/set-times/day-2/",
+          "captureTimestamp": "20190720114248",
+          "printed": "Saturday, March 23",
+          "sha256": "2b20e50e0da00a6088e749bfcaf3751ba11e5f8f1b0ea13f9bace242e5d21a5b",
+          "bytes": 241164,
+          "rows": 45
+        }
       ]
-    },
-    {
-      "captureTimestamp": "20190720122031",
-      "archivedUrl": "https://web.archive.org/web/20190720122031/https://beyondwonderland.com/lineup/",
-      "sha256": "6ee46a527422127137a4718b439f372c97f0135b1aa792a3b52ea70bfc762792",
-      "bytes": 123642,
-      "via": "firecrawl",
-      "title": "Lineup – Beyond Wonderland SoCal 2019",
-      "valid": true,
-      "titled": true,
-      "dated": true,
-      "days": [
-        "Friday, March 22",
-        "Saturday, March 23"
-      ],
-      "billings": 91,
-      "diffVsChosen": [
-        "added by the final: deadmau5",
-        "removed by the final: Deadmau5"
-      ]
-    },
-    {
-      "captureTimestamp": "20190917214930",
-      "archivedUrl": "https://web.archive.org/web/20190917214930/https://beyondwonderland.com/lineup/",
-      "sha256": "dab37fcc9d6d688dbe7a543028f7f66de76647013d77e0c7f4a00640423c48e1",
-      "bytes": 123676,
-      "via": "firecrawl",
-      "title": "Lineup – Beyond Wonderland SoCal 2019",
-      "valid": true,
-      "titled": true,
-      "dated": true,
-      "days": [
-        "Friday, March 22",
-        "Saturday, March 23"
-      ],
-      "billings": 91,
-      "diffVsChosen": []
-    },
-    {
-      "captureTimestamp": "20191019031520",
-      "archivedUrl": "https://web.archive.org/web/20191019031520/https://beyondwonderland.com/lineup/",
-      "sha256": "876b6083bbc6f1962119547454c5e91cb36c31f9abcd6a8af9eacafa93dbadf6",
-      "bytes": 123696,
-      "via": "firecrawl",
-      "title": "Lineup – Beyond Wonderland SoCal 2019",
-      "valid": true,
-      "titled": true,
-      "dated": true,
-      "days": [
-        "Friday, March 22",
-        "Saturday, March 23"
-      ],
-      "billings": 91,
-      "diffVsChosen": []
-    },
-    {
-      "captureTimestamp": "20191122065901",
-      "archivedUrl": "https://web.archive.org/web/20191122065901/https://beyondwonderland.com/lineup/",
-      "sha256": "ae867fa52ef8e2c2a0c3f6df7b733c84553dbe9364bedb9921f2a8d0b646153d",
-      "bytes": 39095,
-      "via": "firecrawl",
-      "title": "Lineup – Beyond Wonderland SoCal 2020",
-      "valid": false,
-      "titled": false,
-      "dated": false,
-      "days": [],
-      "billings": 0
-    },
-    {
-      "captureTimestamp": "20191210223609",
-      "archivedUrl": "https://web.archive.org/web/20191210223609/https://beyondwonderland.com/lineup/",
-      "sha256": "56ca23582baec582a8627bdc442baa78808dac3b285377cff896e78409fde83c",
-      "bytes": 39035,
-      "via": "firecrawl",
-      "title": "Lineup – Beyond Wonderland SoCal 2020",
-      "valid": false,
-      "titled": false,
-      "dated": false,
-      "days": [],
-      "billings": 0
     }
   ],
-  "dropped": []
+  "excluded": [],
+  "dropped": [],
+  "crossTab": [
+    "Set-times heading \"Caterpillar's Garden (Friday)\" read as stage \"Caterpillar's Garden\" on day 1 (its own day)",
+    "Set-times heading \"Caterpillar's Garden (Saturday)\" read as stage \"Caterpillar's Garden\" on day 2 (its own day)",
+    "Set-times heading \"Cheshire Woods (Friday)\" read as stage \"Cheshire Woods\" on day 1 (its own day)",
+    "Set-times heading \"Cheshire Woods (Saturday)\" read as stage \"Cheshire Woods\" on day 2 (its own day)",
+    "Set-times heading \"Mad Hatter's Castle (Friday)\" read as stage \"Mad Hatter's Castle\" on day 1 (its own day)",
+    "Set-times heading \"Mad Hatter's Castle (Saturday)\" read as stage \"Mad Hatter's Castle\" on day 2 (its own day)"
+  ]
 }
