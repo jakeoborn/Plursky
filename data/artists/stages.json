@@ -767,6 +767,84 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "beyond-wonderland-socal:mad-hatter-s-castle-friday",
+     "names": [
+      {
+       "printed": "Mad Hatter's Castle (Friday)",
+       "editions": [
+        "beyond-wonderland-socal-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "beyond-wonderland-socal:caterpillar-s-garden-friday",
+     "names": [
+      {
+       "printed": "Caterpillar's Garden (Friday)",
+       "editions": [
+        "beyond-wonderland-socal-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "beyond-wonderland-socal:cheshire-woods-friday",
+     "names": [
+      {
+       "printed": "Cheshire Woods (Friday)",
+       "editions": [
+        "beyond-wonderland-socal-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "beyond-wonderland-socal:mad-hatter-s-castle-saturday",
+     "names": [
+      {
+       "printed": "Mad Hatter's Castle (Saturday)",
+       "editions": [
+        "beyond-wonderland-socal-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "beyond-wonderland-socal:caterpillar-s-garden-saturday",
+     "names": [
+      {
+       "printed": "Caterpillar's Garden (Saturday)",
+       "editions": [
+        "beyond-wonderland-socal-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "beyond-wonderland-socal:cheshire-woods-saturday",
+     "names": [
+      {
+       "printed": "Cheshire Woods (Saturday)",
+       "editions": [
+        "beyond-wonderland-socal-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },
