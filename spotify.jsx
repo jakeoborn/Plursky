@@ -6222,7 +6222,51 @@ function _libraryGroupChrome(group) {
   };
 }
 
-function LibraryGroupCard({ group, onOpenLightbox, onArtistClick, onReview, bulkRetag, renderNote }) {
+// "May 16, 2026 · 10:00 PM" from a stored takenAt ("YYYY-MM-DD HH:MM", with or
+// without seconds). Anything else is shown as stored, never guessed at.
+function _reviewShotLabel(takenAt) {
+  const t = String(takenAt || "");
+  const p = t.match(/^(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2})/);
+  if (!p) return t;
+  const day = new Date(+p[1], +p[2] - 1, +p[3]).toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" });
+  const time = typeof fmt12 === "function" ? fmt12(`${p[4]}:${p[5]}`) : `${p[4]}:${p[5]}`;
+  return `${day} · ${time}`;
+}
+
+// #228: settle one festival conflict. Keep is always offered; Move only to a
+// festival the review names as claiming the capture time (_festivalMoveTargets).
+function _FestivalReviewRow({ moment, onOpen, onSettle }) {
+  const targets = _festivalMoveTargets(moment.festivalReview);
+  const nameOf = (id) => window._DATA_SETS?.[id]?.config?.name || id;
+  const btn = (primary) => ({
+    minHeight: 44, padding: "0 12px", borderRadius: "var(--rad-sm)", border: "none", cursor: "pointer",
+    background: primary ? "var(--s3)" : "transparent", color: "var(--ink)",
+    boxShadow: primary ? "none" : "inset 0 0 0 1px var(--line-2)",
+    fontSize: 14, lineHeight: 1.3, fontWeight: 650, fontFamily: "inherit", textAlign: "left",
+  });
+  return (
+    <div data-festival-review={moment.id} style={{ display: "flex", gap: 10, alignItems: "flex-start", marginTop: 10 }}>
+      <div style={{ width: 48, height: 48, flexShrink: 0 }}>
+        <_GridTile moment={moment} onClick={onOpen} />
+      </div>
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <div className="duo-body-s duo-ink2" style={{ overflowWrap: "anywhere" }}>
+          Shot {_reviewShotLabel(moment.takenAt)}
+        </div>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginTop: 6 }}>
+          {targets.map(id => (
+            <button key={id} data-settle="move" data-target={id} style={btn(true)}
+              onClick={() => onSettle(moment, "move", id)}>Move to {nameOf(id)}</button>
+          ))}
+          <button data-settle="keep" style={btn(targets.length === 0)}
+            onClick={() => onSettle(moment, "keep")}>Keep here</button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function LibraryGroupCard({ group, onOpenLightbox, onArtistClick, onReview, onSettle, bulkRetag, renderNote }) {
   const chrome = _libraryGroupChrome(group);
   const n = group.count;
   const notes = group.notes || [];
@@ -6320,6 +6364,12 @@ function LibraryGroupCard({ group, onOpenLightbox, onArtistClick, onReview, bulk
           {group.duplicates.length} duplicate {group.duplicates.length === 1 ? "record" : "records"} of this media · View
         </button>
       )}
+
+      {/* #228: each festival conflict gets its own Keep / Move. */}
+      {group.kind === "review" && onSettle && (group.media || []).concat(notes).filter(m => m.festivalReview).map(m => (
+        <_FestivalReviewRow key={m.id} moment={m} onSettle={onSettle}
+          onOpen={() => { const i = group.ordered.indexOf(m); onOpenLightbox(i >= 0 ? group.ordered : [m], Math.max(0, i)); }} />
+      ))}
 
       {/* Retag without going through Manage, where the work actually is. */}
       {group.kind === "review" && chrome.retag.length > 0 && onReview && (
@@ -7129,6 +7179,16 @@ function MemoriesScreen({ state, setState }) {
     }
     _writeMoments(next);
     setAll(next);
+  };
+
+  // #228: Keep / Move on a Needs Review festival conflict. Re-reads from disk
+  // first, like handleUpdate, and writes nothing when the action does not apply.
+  const handleSettleFestival = (moment, action, targetId) => {
+    const next = _settleFestivalReview(_readMoments(), moment.id, action, targetId);
+    if (!next) return;
+    _writeMoments(next);
+    setAll(next);
+    try { window.plurskyHaptic?.("LIGHT"); } catch {}
   };
 
   // 0.4: move a moment to the night its song proves. handleUpdate CANNOT do
@@ -8005,6 +8065,7 @@ function MemoriesScreen({ state, setState }) {
                         onOpenLightbox={openLightbox}
                         onArtistClick={(id) => setState(s => ({ ...s, artist: id }))}
                         onReview={(ms) => setReview(ms.map(m => ({ momentId: m.id })))}
+                        onSettle={handleSettleFestival}
                         renderNote={(m) => (
                           <MomentCard moment={m} idx={0} total={1} groupMoments={[m]}
                             onOpenLightbox={openLightbox} onDelete={handleDelete} onUpdate={handleUpdate}
@@ -8247,7 +8308,6 @@ function MeScreen({ state, setState }) {
     window.addEventListener("plursky-attended-change", refresh);
     return () => window.removeEventListener("plursky-attended-change", refresh);
   }, []);
-  const daysHere = NOW.day || 0;
   const savedCount = savedInLineup(state.saved).length;
   // Earned-badge count for the 4-card grid — same source of truth as
   // BadgesSection (v227: the old hand-mirrored copy here desynced and
@@ -8260,9 +8320,20 @@ function MeScreen({ state, setState }) {
   // Tagline — "DAY N OF EDC LV 2026" once the festival is live, otherwise
   // a pre-festival countdown line with the date range.
   const _cfg = window.FESTIVAL_CONFIG || {};
-  const tagline = daysHere
-    ? `DAY ${daysHere} OF ${(_cfg.shortName || _cfg.brand || "").toUpperCase()}`
-    : `${(_cfg.shortName || _cfg.brand || "").toUpperCase()} · ${(_cfg.dates || "").toUpperCase()}`;
+  // NOW.day falls back to the next set's day, so before and after the
+  // festival it still says 1; only a running night makes it "Day N".
+  const passLive = !!NOW.night && !_mePostFest;
+  const _fname = (_cfg.shortName || _cfg.brand || "").toUpperCase();
+  const tagline = passLive
+    ? `DAY ${NOW.night} OF ${_fname}`
+    : `${_fname}${_cfg.dates ? ` · ${_cfg.dates.toUpperCase()}` : ""}`;
+  // The pass's photo: the festival's licensed art, as on the chooser.
+  const _passRec = typeof festivalArtFor === "function" ? festivalArtFor(_cfg.id) : null;
+  const [passFailed, setPassFailed] = React.useState(false);
+  const passPhoto = _passRec && /^festival-art\/[a-z0-9-]+\.webp$/.test(_passRec.card || "") && !passFailed ? _passRec.card : null;
+  const passCredit = passPhoto && _passRec.author && _passRec.licenseId && _passRec.licenseUrl
+    ? { author: _passRec.author, sourceUrl: _passRec.sourcePage, license: _passRec.licenseId, licenseUrl: _passRec.licenseUrl, changes: _passRec.changes }
+    : null;
 
   return (
     <Screen bg="var(--paper)">
@@ -8270,47 +8341,50 @@ function MeScreen({ state, setState }) {
         <TopBar title="Me" tight />
       </div>
       <ScrollBody ref={useStaggerFade("me")} style={{ padding: "10px 20px 94px" }}>
-        {/* ── 1. Identity: the board's header row. Avatar (photo or
-            initial, accent ring), name, the festival-day line, and the
-            ping code as a code chip with its colour dot. ────────── */}
-        <div data-animate style={{ display: "flex", alignItems: "center", gap: 12, padding: "4px 0 16px" }}>
-          <div
-            onClick={profile ? undefined : promptName}
-            style={{
-              width: 52, height: 52, borderRadius: 999, flexShrink: 0,
-              background: profile?.image ? "transparent" : "var(--s3)",
-              boxShadow: "0 0 0 1.5px var(--acc)",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              overflow: "hidden",
-              cursor: profile ? "default" : "pointer",
-            }}
-          >
-            {profile?.image ? (
-              <img src={profile.image} alt="" style={{
-                width: "100%", height: "100%", objectFit: "cover",
-              }}/>
-            ) : (
-              <span style={{ font: "700 19px/1 var(--f-ui)", color: "var(--ink)" }}>{initial}</span>
+        {/* ── 1. Identity: a festival pass. The festival's own licensed
+            photo behind your avatar, name and ping code, with the day line
+            as the pass's stamp. With no photo for this festival the card
+            keeps its shape on the accent wash. ─────────────────────── */}
+        <section data-animate data-me-pass aria-label="Your festival pass" style={{ margin: "4px 0 16px" }}>
+          <div className={`me-pass${passPhoto ? "" : " plain"}`}>
+            {passPhoto && (
+              <span className="me-pass-media" aria-hidden="true">
+                <img src={`./${passPhoto}`} alt="" decoding="async" onError={() => setPassFailed(true)} />
+                <span className="me-pass-scrim" />
+              </span>
             )}
+            <span className="me-pass-stamp">{passLive && <i aria-hidden="true" />}<span>{tagline}</span></span>
+            <div className="me-pass-who">
+              <div
+                onClick={profile ? undefined : promptName}
+                className="me-pass-avatar"
+                style={{ cursor: profile ? "default" : "pointer" }}
+              >
+                {profile?.image ? (
+                  <img src={profile.image} alt="" />
+                ) : (
+                  <span>{initial}</span>
+                )}
+              </div>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                {rawName ? (
+                  <div className="duo-name me-pass-name">{displayName}</div>
+                ) : (
+                  // An empty account is designed, not a dash: the one thing to
+                  // do here is say who you are.
+                  <button data-me-add-name className="me-pass-add" onClick={promptName}>Add your name</button>
+                )}
+                <span className="me-pass-code">
+                  <span aria-hidden="true" style={{ width: 7, height: 7, borderRadius: 999, background: pingColor, display: "inline-block", flexShrink: 0 }}/>
+                  <span>PING · {pingCode}{setsCaught > 0 ? ` · ${setsCaught} SET${setsCaught === 1 ? "" : "S"} CAUGHT` : ""}</span>
+                </span>
+              </div>
+            </div>
           </div>
-          <div style={{ flex: 1, minWidth: 0 }}>
-            {rawName ? (
-              <div className="duo-headline duo-name" style={{ fontSize: 21, color: "var(--ink)" }}>{displayName}</div>
-            ) : (
-              // An empty account is designed, not a dash: the one thing to
-              // do here is say who you are.
-              <button data-me-add-name onClick={promptName} style={{
-                padding: 0, minHeight: 32, border: "none", background: "none", cursor: "pointer",
-                font: "600 17px/1.3 var(--f-ui)", color: "var(--acc-ink)", textAlign: "left",
-              }}>Add your name</button>
-            )}
-            <div className="duo-label duo-ink3" style={{ marginTop: 4 }}>{tagline}{setsCaught > 0 ? ` · ${setsCaught} SET${setsCaught === 1 ? "" : "S"} CAUGHT` : ""}</div>
-            <span className="duo-code" style={{ display: "inline-flex", alignItems: "center", gap: 6, marginTop: 8 }}>
-              <span aria-hidden="true" style={{ width: 6, height: 6, borderRadius: 999, background: pingColor, display: "inline-block" }}/>
-              PING · {pingCode}
-            </span>
-          </div>
-        </div>
+          {passCredit && typeof PhotoCredit === "function" && (
+            <PhotoCredit className="spot-credit" credit={passCredit} style={{ padding: "0 2px", lineHeight: 1.35, overflowWrap: "anywhere" }} />
+          )}
+        </section>
 
         {/* ── Plursky+ entry (v249) ─────────────────────────────
             UNCONDITIONAL BY DESIGN. Every other paywall entry is content-
@@ -9018,6 +9092,13 @@ function _reconcileFestivalStamps(moments) {
         if (m.festivalReview) { delete m.festivalReview; changed = true; }
         continue;
       }
+      // A person kept this exact stamp for this exact capture time in Needs
+      // Review (#228). The same conflict is not flagged again; a different
+      // stamp or capture time is a new conflict and is judged below.
+      if (_festivalConflictSettled(m)) {
+        if (m.festivalReview) { delete m.festivalReview; changed = true; }
+        continue;
+      }
       const claimant = claims.length === 1 ? claims[0] : null;
       const cfg = claimant ? window._DATA_SETS?.[claimant]?.config : null;
       const date = claimant ? _momentTakenAtToDateParts(m.takenAt) : null;
@@ -9029,15 +9110,8 @@ function _reconcileFestivalStamps(moments) {
       const machineStamp = m.festivalStampSource === "active-fallback"
         || (!m.festivalStampSource && m.festivalAttribution === "unresolved");
       if (claimant && night != null && !m.dateUnverified && machineStamp) {
-        // All three dependent fields in one step: festivalId with the old night
-        // or the old bucket would file it under a night the festival never had.
-        m.festivalId = claimant;
-        m.festivalAttribution = "capture-time";
-        m.festivalStampSource = "capture-time";
-        m.night = night;
-        delete m.festivalCandidates;
-        delete m.festivalReview;
-        if (String(night) !== String(bucket)) moves.push({ from: bucket, to: String(night), moment: m });
+        const move = _restampMoment(m, bucket, claimant, night, "capture-time");
+        if (move) moves.push(move);
         changed = true;
         continue;
       }
@@ -9060,12 +9134,86 @@ function _reconcileFestivalStamps(moments) {
       }
     }
   }
+  _applyMomentMoves(moments, moves);
+  return changed;
+}
+
+// Files a moment under another festival: festivalId, night and bucket in one
+// step, because festivalId with the old night or the old bucket would file it
+// under a night the festival never had. The boot pass above and Needs
+// Review's Move (#228) both go through here: one repair, two doors. Returns
+// the bucket move for _applyMomentMoves, or null when the bucket is unchanged.
+function _restampMoment(m, bucket, festivalId, night, source) {
+  m.festivalId = festivalId;
+  m.festivalAttribution = source;
+  m.festivalStampSource = source;
+  m.night = night;
+  delete m.festivalCandidates;
+  delete m.festivalReview;
+  delete m.festivalSettled;
+  return String(night) !== String(bucket) ? { from: String(bucket), to: String(night), moment: m } : null;
+}
+
+function _applyMomentMoves(moments, moves) {
   for (const move of moves) {
-    moments[move.from] = moments[move.from].filter(x => x !== move.moment);
+    moments[move.from] = (moments[move.from] || []).filter(x => x !== move.moment);
     if (!moments[move.from].length) delete moments[move.from];
     moments[move.to] = [...(moments[move.to] || []), move.moment];
   }
-  return changed;
+}
+
+// #228: Keep records which conflict was settled, so a later change to the
+// stamp or the capture time is judged afresh instead of staying settled.
+function _festivalConflictSettled(m) {
+  const k = m && m.festivalSettled;
+  return !!k && k.festivalId === m.festivalId && k.takenAt === m.takenAt;
+}
+
+// The festivals a flagged moment may move to: only ones its review names as
+// claiming the capture time, that are loaded, and that are not its current
+// stamp. "no-claimant" has nowhere true to go, so it offers none.
+function _festivalMoveTargets(review) {
+  if (!review || review.reason === "no-claimant") return [];
+  const named = Array.isArray(review.candidates) && review.candidates.length ? review.candidates
+    : review.claimant ? [review.claimant] : [];
+  return named.filter((id, i) => id && named.indexOf(id) === i && id !== review.existingFestivalId && !!window._DATA_SETS?.[id]?.config);
+}
+
+// #228: a person settles a festival conflict from Needs Review.
+//   keep: the stamp stays; the stamp is the user's now, and this conflict is
+//         recorded as settled so the boot pass does not flag it again.
+//   move: re-files the moment under a festival the review names, through the
+//         boot pass's own _restampMoment, with the night recomputed from that
+//         festival's calendar.
+// Returns a new store, or null when the action does not apply (no review,
+// a target the review does not name, or no night for the capture time).
+function _settleFestivalReview(all, momentId, action, targetId) {
+  const next = { ...(all || {}) };
+  for (const bucket of Object.keys(next)) {
+    const arr = next[bucket];
+    if (!Array.isArray(arr)) continue;
+    const i = arr.findIndex(x => x && x.id === momentId);
+    if (i < 0) continue;
+    const m = { ...arr[i] };
+    if (!m.festivalReview || !m.festivalId) return null;
+    if (action === "keep") {
+      m.festivalStampSource = "user";
+      m.festivalSettled = { festivalId: m.festivalId, takenAt: m.takenAt };
+      delete m.festivalReview;
+      next[bucket] = arr.map((x, j) => (j === i ? m : x));
+      return next;
+    }
+    if (action !== "move" || !_festivalMoveTargets(m.festivalReview).includes(targetId)) return null;
+    const cfg = window._DATA_SETS[targetId].config;
+    const date = _momentTakenAtToDateParts(m.takenAt);
+    const night = date ? _photoFestivalNight(date, cfg, null) : null;
+    if (night == null) return null;
+    const move = _restampMoment(m, bucket, targetId, night, "user");
+    next[bucket] = arr.map((x, j) => (j === i ? m : x));
+    if (move) _applyMomentMoves(next, [move]);
+    return next;
+  }
+  return null;
 }
 
 function _maybeAutoArchive() {

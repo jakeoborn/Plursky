@@ -419,7 +419,8 @@
     print: { accent: null, source: { url: "https://thailand.tomorrowland.com/en/", observedAt: "2026-11-11" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
     officialEvent: {
       website: "https://thailand.tomorrowland.com/en/",
-      observedAt: "2026-11-11",
+      tickets: "https://thailand.tomorrowland.com/en/tickets/festival-passes/",
+      observedAt: "2026-11-22",
     },
     // Thailand is ICT (UTC+7), no DST. Hours from the official terms (header).
     startMs: Date.UTC(2026, 11, 11, 6, 0, 0),   // Dec 11 13:00 ICT

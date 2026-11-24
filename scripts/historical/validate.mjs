@@ -6,6 +6,8 @@ import { EDITIONS, KEPT_STAGES, PRINTED_LONG_SETS, PRINTED_NON_LATIN, dropReason
 import { printedDate as govBallDate } from "./govball-wp-schedule.mjs";
 import { tabDate as primaveraDate } from "./primavera-horarios-schedule.mjs";
 import { tabRun as primaveraRun } from "./primavera-completos-schedule.mjs";
+import { tabDate as szigetDate } from "./sziget-days-schedule.mjs";
+import { headerDate as defqonDate } from "./defqon-schedule.mjs";
 import { cardDate as lollaCardDate } from "./lolla-lineup.mjs";
 import { printedDate as insomniacDate } from "./insomniac-music-schedule.mjs";
 import { titleDate as tmlTitleDate } from "./tml-drupal-schedule.mjs";
@@ -19,20 +21,35 @@ import { citeToken, datedLabel, dayMinutes, graphicPrints, receiptGaps, sameGrap
 // official source, however accurate it looks.
 export const OFFICIAL_HOSTS = {
   "governors-ball": ["governorsballmusicfestival.com", "cdn.prod.website-files.com"],
-  "lollapalooza": ["lollapalooza.com", "cdn.prod.website-files.com"],
+  // assets-global.website-files.com (the older Webflow CDN hostname, as for
+  // ACL below): the archived 2021-2023 lollapalooza.com/schedule captures
+  // embed their daily grids from it. Extended to Lollapalooza on 2026-11-19
+  // (Plur thread), Lollapalooza grids only; the image must still be embedded
+  // on an archived official page and carry its hash and review entry.
+  "lollapalooza": ["lollapalooza.com", "cdn.prod.website-files.com", "assets-global.website-files.com"],
   // hardfest.com: HARD's own site, where HARD Summer 2012's page lived
   // (/hardsummer/) before the festival had its own domain.
   "hard-summer": ["hardsummer.com", "hardfest.com"],
   "electric-forest": ["electricforestfestival.com", "electricforest.com"],
-  "coachella": ["coachella.com"],
+  // Ultra's own site. Its WordPress uploads serve resized copies
+  // ("-1600x1000.jpg"); only those were archived for 2024.
+  "ultra-miami": ["ultramusicfestival.com", "legacy.ultramusicfestival.com"],
+  // III Points' own site. Its 2014 schedule page embedded one grid image per
+  // day under www.iiipoints.com/Schedule/.
+  "iii-points": ["iiipoints.com"],
+  // coachella.com, plus two exact folders in AEG's blob store, where
+  // coachella.com/schedule embedded its 2025 and 2026 set-times graphics.
+  // An entry with a "/" is a host+path prefix: it admits that folder only,
+  // never the host. Added 2026-11-21 (Plur thread), Coachella only.
+  "coachella": ["coachella.com", "aegwebprod.blob.core.windows.net/content/coachella2025/", "aegwebprod.blob.core.windows.net/content/coachella-2026/"],
   // 2012-2013 Las Vegas pages lived on the brand's root domain
   // (/LasVegas/music.php, /music.php). "=" matches that host alone, so the
   // other cities' subdomains (orlando., mexico.) are never Las Vegas's.
   "edc-lv": ["lasvegas.electricdaisycarnival.com", "=electricdaisycarnival.com"],
   // assets-global.website-files.com is the same Webflow CDN under its older
   // hostname: every archived 2022 aclfestival.com/schedule capture embeds the
-  // grids from it (/626ab670470f4322713394d1/). Allowed for ACL only (Instinct
-  // ruling, SPEC-182, 2026-11-06); the image must still be embedded on an
+  // grids from it (/626ab670470f4322713394d1/). Allowed for ACL (Instinct
+  // ruling, SPEC-182, 2026-11-06) and, since 2026-11-19, Lollapalooza only; the image must still be embedded on an
   // archived official page and carry its hash and review entry.
   "acl": ["aclfestival.com", "cdn.prod.website-files.com", "assets-global.website-files.com"],
   // The 2012 and 2013 SoCal lineups lived on the root domain (lineup.php).
@@ -62,6 +79,11 @@ export const OFFICIAL_HOSTS = {
   // sonar.es: Sónar Barcelona's own site; each year's timetable lives at
   // /en/<year>/schedules.
   "sonar": ["sonar.es"],
+  // sziget.hu: the festival's own site through 2013 (its English programme
+  // lived at /festival_english/programs); szigetfestival.com is its site today.
+  "sziget": ["sziget.hu", "szigetfestival.com"],
+  // defqon1.nl: Defqon.1's own site, where each year's timetable lived.
+  "defqon1": ["defqon1.nl"],
 };
 
 // Where an official graphic may be re-hosted for an `official_sources`
@@ -80,6 +102,14 @@ export const REHOST_HOSTS = {
 // A host is in a list when it is an entry or a subdomain of one; an entry
 // written "=host" matches that host alone.
 export const hostIn = (list, host) => (list || []).some(h => h.startsWith("=") ? host === h.slice(1) : host === h || host.endsWith("." + h));
+// A URL is in a list when its host is, or when host+path starts with an entry
+// that holds a "/" (a folder on a shared host). hostIn never matches such an
+// entry, so a folder entry admits that folder and nothing else on its host.
+export const urlIn = (list, url) => {
+  let u; try { u = new URL(url); } catch { return false; }
+  const host = u.hostname.replace(/^www\./, "");
+  return hostIn(list, host) || (list || []).some(h => h.includes("/") && h.endsWith("/") && (host + u.pathname).startsWith(h));
+};
 const rehostOf = host => Object.keys(REHOST_HOSTS).find(h => host === h || host.endsWith("." + h));
 
 // Where the page citing a graphic may live, by the graphic's host: EDM
@@ -98,12 +128,15 @@ const hostOf = u => { try { return new URL(u).hostname.replace(/^www\./, ""); } 
 
 const HHMM = /^([01]\d|2[0-3]):[0-5]\d$/;
 const WAYBACK = /^https:\/\/web\.archive\.org\/web\/(\d{14})\/(https?:\/\/[^/]+)\//;
+const WAYBACK_PREFIX = /^https:\/\/web\.archive\.org\/web\/\d{14}\//;
 
 function officialArchive(url, festivalId, year, p, label) {
   const m = WAYBACK.exec(url || "");
-  if (!m) return p.push(`${label}: "${url}" is not a Wayback archive URL`);
+  // Report and return nothing: returning p.push() handed callers a number,
+  // and a note citing a non-Wayback URL crashed on ts.startsWith.
+  if (!m) { p.push(`${label}: "${url}" is not a Wayback archive URL`); return null; }
   const host = new URL(m[2]).hostname.replace(/^www\./, "");
-  if (!hostIn(OFFICIAL_HOSTS[festivalId], host))
+  if (!urlIn(OFFICIAL_HOSTS[festivalId], url.replace(WAYBACK_PREFIX, "")))
     p.push(`${label}: ${host} is not an official ${festivalId} property`);
   return m[1];
 }
@@ -472,6 +505,20 @@ function officialSources(e, meta, p) {
         // "Friday May 29"); its weekday must fall on that date in the year.
         if (primaveraDate(c.printed, e.year) !== date || !(c.tabs || []).includes(c.printed) || !/Parc del Fòrum/.test(c.heading || ""))
           p.push(`${tag}: the page's day tab "${c.printed}" (heading "${c.heading}") does not print ${date} at Parc del Fòrum`);
+      } else if (c.format === "sziget-days") {
+        // Sziget's day programme prints each day as a tab with no year
+        // ("August 14. Saturday"); its weekday must fall on that date in the
+        // year, the tab must be one of the page's own, and the page must be
+        // the English programme's day page for that date.
+        if (szigetDate(c.printed, e.year) !== date || !(c.tabs || []).includes(c.printed)
+          || !new RegExp(`/festival_english/programs/-/days\\?day=${date}&`).test(c.archivedUrl || ""))
+          p.push(`${tag}: the page's day tab "${c.printed}" at ${c.archivedUrl} does not print ${date}`);
+      } else if (c.format === "defqon-areas") {
+        // Defqon.1's 2015 timetable heads each part of the weekend with its
+        // weekday, date, year and hours ("Friday • 19 June 2015 • 20:00 -
+        // 01:00"), and the page's own title names the edition's timetable.
+        if (defqonDate(c.printed, e.year) !== date || c.named !== `Timetable - Defqon.1 ${e.year}`)
+          p.push(`${tag}: the page's heading "${c.printed}" (titled "${c.named}") does not print ${date}`);
       } else if (c.format === "sonar-calendar") {
         // Sónar's timetable heads each of a day's sessions with the weekday
         // and the day of the month ("Friday 19 | Sónar by Day"), no year; the

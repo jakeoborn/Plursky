@@ -1,0 +1,105 @@
+{
+  "id": "ultra-miami-2025",
+  "method": "official_image_transcription",
+  "official": "https://ultramusicfestival.com/lineup/set-times/",
+  "window": [
+    "20250301",
+    "20250330"
+  ],
+  "pageCaptures": [
+    {
+      "captureTimestamp": "20250326184852",
+      "archivedUrl": "https://web.archive.org/web/20250326184852/https://ultramusicfestival.com/lineup/set-times/",
+      "sha256": "79c0594b66df3e8c0a2c6bfd97415fadd0fdb24b9d01e8e18b6c9bf9232e31af",
+      "images": [
+        "ULTRA2025-SET-TIMES-website-4.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20250328165508",
+      "archivedUrl": "https://web.archive.org/web/20250328165508/https://ultramusicfestival.com/lineup/set-times/",
+      "sha256": "2991a21e22df0c4206dba7ec9cbee96bddb45526625ce2f247fdfc4e56fd2bf4",
+      "images": [
+        "ULTRA2025-SET-TIMES-website-4.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20250329172430",
+      "archivedUrl": "https://web.archive.org/web/20250329172430/https://ultramusicfestival.com/lineup/set-times/",
+      "sha256": "a3f7dc2eae6474ca5c41ca23a42ea12eddf2589404d35f8cedd97051ce601ff4",
+      "images": [
+        "ULTRA2025-SET-TIMES-website-4.png"
+      ]
+    }
+  ],
+  "days": [
+    {
+      "day": 1,
+      "date": "2025-03-28",
+      "pageCapture": "20250329172430",
+      "pageArchivedUrl": "https://web.archive.org/web/20250329172430/https://ultramusicfestival.com/lineup/set-times/",
+      "originalUrl": "https://ultramusicfestival.com/wp-content/uploads/2025/03/ULTRA2025-SET-TIMES-website-4.png",
+      "imageCapture": "20250326194410",
+      "imageArchivedUrl": "https://web.archive.org/web/20250326194410/https://ultramusicfestival.com/wp-content/uploads/2025/03/ULTRA2025-SET-TIMES-website-4.png",
+      "sha256": "c2b464afd97bc0e30a0ca1b6477857bfd11ed0cb7ac15106cf225d4d37283c35",
+      "bytes": 344718,
+      "contentType": "image/png",
+      "cacheFile": "3b43764397af0d3c7b49416a.bin",
+      "revisions": [
+        {
+          "file": "ULTRA2025-SET-TIMES-website-4.png",
+          "firstSeen": "20250326184852"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2025-03-29",
+      "pageCapture": "20250329172430",
+      "pageArchivedUrl": "https://web.archive.org/web/20250329172430/https://ultramusicfestival.com/lineup/set-times/",
+      "originalUrl": "https://ultramusicfestival.com/wp-content/uploads/2025/03/ULTRA2025-SET-TIMES-website-4.png",
+      "imageCapture": "20250326194410",
+      "imageArchivedUrl": "https://web.archive.org/web/20250326194410/https://ultramusicfestival.com/wp-content/uploads/2025/03/ULTRA2025-SET-TIMES-website-4.png",
+      "sha256": "c2b464afd97bc0e30a0ca1b6477857bfd11ed0cb7ac15106cf225d4d37283c35",
+      "bytes": 344718,
+      "contentType": "image/png",
+      "cacheFile": "3b43764397af0d3c7b49416a.bin",
+      "revisions": [
+        {
+          "file": "ULTRA2025-SET-TIMES-website-4.png",
+          "firstSeen": "20250326184852"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2025-03-30",
+      "pageCapture": "20250329172430",
+      "pageArchivedUrl": "https://web.archive.org/web/20250329172430/https://ultramusicfestival.com/lineup/set-times/",
+      "originalUrl": "https://ultramusicfestival.com/wp-content/uploads/2025/03/ULTRA2025-SET-TIMES-website-4.png",
+      "imageCapture": "20250326194410",
+      "imageArchivedUrl": "https://web.archive.org/web/20250326194410/https://ultramusicfestival.com/wp-content/uploads/2025/03/ULTRA2025-SET-TIMES-website-4.png",
+      "sha256": "c2b464afd97bc0e30a0ca1b6477857bfd11ed0cb7ac15106cf225d4d37283c35",
+      "bytes": 344718,
+      "contentType": "image/png",
+      "cacheFile": "3b43764397af0d3c7b49416a.bin",
+      "revisions": [
+        {
+          "file": "ULTRA2025-SET-TIMES-website-4.png",
+          "firstSeen": "20250326184852"
+        }
+      ]
+    }
+  ],
+  "dropped": [
+    {
+      "day": 3,
+      "stage": "ULTRA MAIN STAGE",
+      "start": "17:25",
+      "end": null,
+      "billing": "SPECIAL GUEST",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    }
+  ]
+}

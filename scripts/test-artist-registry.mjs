@@ -164,11 +164,59 @@ const out = build();
   // 2016-2019 and 2022 add six: four billings whose "&" may join one act or
   // two (Congo Natty feat. ... Nãnci & Phoebe, bRUNA & Wooky + Alba G.
   // Corral, Ratkje & Barruk, LAO & Wasted Fates) and two short names also
-  // billed at Primavera Sound (MOW, Za!): 193 rows. Past 193, stop and
-  // report.
-  check(review.length <= 193, `review queue is ${review.length} rows (> 193 means stop and report)`);
+  // billed at Primavera Sound (MOW, Za!): 193 rows. Sziget 2010-2011 adds
+  // one: a feat. list whose guests are printed with nicknames in quotes
+  // (Muzsikas feat. Ildiko Toth "Fecske" and Zoltan Farkas "Batyu"); its
+  // country-tagged billings ("The Cribs (UK)") are ruled under its house
+  // style: 194 rows. Defqon.1 2015 adds four: three billings joined by "ft."
+  // or "with" (Mad Dog ft. Jeff, Kasparov & System Shock ft Diesel, Qlubtempo
+  // Parade with Pavo, Pila, Trilok & Chiren) and one "a.k.a." parenthetical
+  // (Elkabass (a.k.a. The Prophet)): 198 rows. Lollapalooza 2024 and
+  // Governors Ball 2024 add two: a billing joined by "with" (LAUFEY WITH THE
+  // CHICAGO PHILHARMONIC) and a short name now at three brands (FLO): 200
+  // rows. Ultra Miami 2022 and 2023 add three: an "x" billing whose sides are
+  // not both known acts (KVSH X PONTIFEXX), a "+" billing (ASH TRÉS + MOSES
+  // JAZZ) and a short name now at two brands (Kx5): 203 rows. Lollapalooza
+  // 2021 to 2023 add eight, all pending with no claim: four "x" or "+"
+  // billings (TOMORROW X TOGETHER twice, KOSINE X FRAYNE VIBEZ, DPR IAN + DPR
+  // LIVE), a BONNIE X CLYDE billing under its existing pending entry, and
+  // three short names now at more than one brand (CAM, BIA, YG): 211 rows.
+  // Ultra Miami 2016, 2017 and 2019 add one, pending with no claim: a second
+  // BONNIE X CLYDE billing (2019 Saturday) under its existing pending entry:
+  // 212 rows. III Points 2014 adds two, pending with no claim: VI (THE DEEP
+  // END) and LAURA (OF MIAMI), each a parenthetical that is not sourced (the
+  // Bunny (Rabbit in the Moon) rule): 214 rows. LAUFEY WITH THE CHICAGO
+  // PHILHARMONIC is then ruled under the "with" rule (the orchestra's own event
+  // page bills the set as Laufey's): 213 rows. Coachella 2022 adds four, all
+  // pending with no claim: "The Blessed Madonna + Honey Dijon" (two rows, one
+  // per weekend's Sunday), "Loboman x Massio" (Weekend 2 Saturday) and PUP, a
+  // short name now at two brands (Lollapalooza 2017, Coachella 2022): 217 rows.
+  // Coachella 2010, 2011, 2023 and 2024 add fifteen, all pending with no claim,
+  // and drop one: "Loboman x Massio" now reads as a collab of two known acts
+  // (Loboman plays Coachella 2023 and 2024). The fifteen: "Thao with the Get
+  // Down Stay Down" and "Andy C. + GQ" (2011); "Dennis Cruz + PAWSA", "DJ Tennis
+  // + Carlita", "Fisher + Chris Lake" and "DPR LIVE + DPR IAN" (2023, two rows
+  // each, one per weekend); "Triste Juventud x TÓTEM" (2023) and "Triste
+  // Juventud x TOTEM" (2024); "Jamie xx x Floating Points x Daphni" (2024); and
+  // UMI and Maz, short names now at more than one brand: 231 rows. The cap is
+  // 231.
+  // Coachella 2025 adds five, all pending with no claim: "Triste Juventud x
+  // Tótem", "Fcukers DJ set x HAAi", "Barry Can't Swim x 2manydjs x salute",
+  // "Kaskade Redux x IDRIS" and "Alesso Body Hi x Gorgon City": 236 rows.
+  // Coachella 2026 adds five, all pending with no claim, and drops three: 2026
+  // prints "Triste Juventud" alone, so the three "Triste Juventud x Tótem" rows
+  // (2023, 2024, 2025) now read as a collab of known acts. The five: "Afrojack
+  // x Shimza", "DJ Snake x RL Grime x Flosstradamus", "JOY (Anonymous)" and
+  // "Girl Math (VNSSA x NALA)" (two rows, one per weekend's Sunday): 238 rows.
+  // The cap is 1000 (Jake's typed "we can go cap 1000", 2026-11-22), in place
+  // of 236/238. Past 1000, stop and report.
+  check(review.length <= 1000, `review queue is ${review.length} rows (> 1000 means stop and report)`);
   check(review.every(r => r.reason) && excluded.every(e => e.reason && e.category), 'a review or excluded row without its reason');
   check(excluded.some(e => e.category === 'unnamed-slot'), 'control: no unnamed slot was excluded');
+  // #308: every billing names at least one performer; an all-unnamed b2b is excluded.
+  const empty = billings.filter(b => !b.performers || b.performers.length === 0);
+  check(empty.length === 0, `billing(s) with no performer: ${empty.map(b => b.id).join(', ')}`);
+  check(parseBilling('Special Guest b2b Special Guest').performers.length === 0, 'an all-unnamed b2b should parse to no performers');
   // Bare non-acts never become artists; a NAMED kids act ("Special Guest: The
   // Happiness Club") is a real billing and stays.
   check(!registry.some(r => /^(special-guest|surprise-guest|fireworks|closing-fireworks|tba|silent-disco)$/.test(r.key)), 'a non-act became an artist');
@@ -219,12 +267,44 @@ const out = build();
     check(rec, `ruling matches no billing: "${o.printed}"`);
     for (const u of [].concat(o.source)) check(rec && rec.has(u), `ruling "${o.printed}" cites ${u}, not a page that billing was recorded from`);
   }
+  // #309: a ruling is evidence only where its page printed the act. Every row
+  // a ruling applies to must have been recorded from one of the ruling's own
+  // sources, not just from some page that printed the same text at another
+  // festival. Rows below use a ruling whose source is another page, and no
+  // read has yet confirmed their own page prints the act. Each stays listed,
+  // NOT VERIFIED, until a read adds its page to the ruling or rules it
+  // per festival. A listed row that becomes cited fails as stale.
+  const RULING_SRC_UNVERIFIED = new Set([
+    'lights-all-night-2026:lan-skull-machine-black-tiger-sex-machine-x-kai-wachi',
+    'defqon1-2015:d2:brown:1800:mark-with-a-k',
+    'edc-las-vegas-2024:d1:quantum-valley:2000:paul-oakenfold-full-on-fluoro',
+    'edc-las-vegas-2024:d2:cosmic-meadow:0400:worship-sub-focus-b2b-dimension-b2b-culture-shock-b2b-1991',
+    'edc-las-vegas-2024:d2:basspod:1900:fallen-with-mc-dino',
+    'edc-orlando-2024:d2:circuit-grounds:1300:fury-with-mc-dino',
+    'electric-forest-2014:d2:tripolee:1330:fury-mc-dino',
+    'ultra-miami-2016:d2:ultra-main-stage:1915:tiesto-sunset-slot',
+    'ultra-miami-2019:d1:worldwide-stage:2330:dog-blood-skrillex-boys-noize',
+    'ultra-miami-2022:d2:live-stage:2300:kshmr-the-live-experience',
+  ]);
+  {
+    const rulingOf = new Map((ov.billing || []).map(o => [o.printed, [].concat(o.source)]));
+    const dropped = new Set(out.excluded.map(e => e.id));
+    const uncited = out.rows.filter(r => rulingOf.has(r.printed) && !dropped.has(r.id) && !rulingOf.get(r.printed).includes(r.src));
+    const unlisted = uncited.filter(r => !RULING_SRC_UNVERIFIED.has(r.id));
+    check(unlisted.length === 0, `a ruling applied where its source never printed the row: ${unlisted.slice(0, 5).map(r => `${r.id} (${r.src})`).join(', ')}`);
+    const live = new Set(uncited.map(r => r.id));
+    const stale = [...RULING_SRC_UNVERIFIED].filter(id => !live.has(id));
+    check(stale.length === 0, `stale RULING_SRC_UNVERIFIED entries (now cited, or gone): ${stale.join(', ')}`);
+    check(uncited.length >= 1 || RULING_SRC_UNVERIFIED.size === 0, 'control: the per-row source check read no rows');
+  }
   const ids = new Set(review.map(r => r.id)), printed = new Set(review.map(r => r.printed));
   for (const o of ov.pending || []) check(o.key ? ids.has(`key:${o.key}`) : printed.has(o.printed), `stale pending entry: ${o.key || o.printed}`);
   const by = t => billings.find(b => b.printed === t);
   const roles = b => b && b.performers.map(x => `${x.key}:${x.role}`).join(' ');
   check(roles(by('Fallen with MC Dino')) === 'fallen:performer mc-dino:mc', `MC ruling: ${roles(by('Fallen with MC Dino'))}`);
-  check(roles(by('BT + Matt Fax')) === 'bt:cobilled matt-fax:cobilled', `co-billed ruling: ${roles(by('BT + Matt Fax'))}`);
+  // A past edition's billing, so a lineup refresh cannot remove the fixture
+  // (BT + Matt Fax left the Dreamstate SoCal 2026 lineup on 2026-11-20).
+  check(roles(by('Nosaj Thing + Daito Manabe')) === 'nosaj-thing:cobilled daito-manabe:cobilled', `co-billed ruling: ${roles(by('Nosaj Thing + Daito Manabe'))}`);
   const a = by('Above & Beyond (Anjunabeats Classics)');
   check(roles(a) === 'above-and-beyond:performer' && a.setTag === 'Anjunabeats Classics', `set-tag ruling: ${JSON.stringify(a && { p: roles(a), t: a.setTag })}`);
   const key = registry.find(r => r.key === 'key4050'), bk = registry.find(r => r.key === 'bryan-kearney');
@@ -251,7 +331,13 @@ const out = build();
   check(solo >= 3000, `control: only ${solo} solo billings compared`);
   check(!off.length, `app photo key differs from the registry key for ${off.length}: ${off.slice(0, 3)}`);
   // Outside the folded letters, the key is the historical library's slug.
-  const plain = out.billings.map(b => b.printed).filter(t => !/[¥ØøÆæŒœßŁłĐđÞþð]/.test(t));
+  // Every folded letter folds in both cases: the table had ð but not Ð, so
+  // Lollapalooza 2024's "DAÐI FREYR" keyed apart from "Daði Freyr".
+  const pairs = 'ØøÆæŒœŁłĐđÞþÐð';
+  for (let i = 0; i < pairs.length; i += 2)
+    check(artistKey(`A${pairs[i]}B`) === artistKey(`a${pairs[i + 1]}b`) && artistKey(`a${pairs[i]}b`) !== 'a-b', `${pairs[i]} / ${pairs[i + 1]} fold to different keys`);
+  check(artistKey('DAÐI FREYR') === artistKey('Daði Freyr'), 'DAÐI FREYR and Daði Freyr are two keys');
+  const plain = out.billings.map(b => b.printed).filter(t => !/[¥ØøÆæŒœßŁłĐđÞþÐð]/.test(t));
   check(plain.every(t => keyOf(t) === slug(t)), 'keyOf drifted from the historical slug');
 }
 

@@ -773,7 +773,7 @@ window.WELCOME_DATA = /*__WELCOME_DATA__*/null;
     var p = (f.past || []).slice(0, 8);
     if (!p.length) return "";
     return '<div class="years"><span class="lbl">Earlier years</span>' + p.map(function (e) {
-      return '<a href="' + editionHref(e.id) + '" aria-label="' + esc(e.name) + ' in Past Festivals">' + e.year + '</a>';
+      return '<a href="' + editionHref(e.id) + '" aria-label="' + esc(e.name) + ' in Past Festivals' + (e.datesOnly ? ', lineup coming' : '') + '">' + e.year + '</a>';
     }).join("") + ((f.past || []).length > p.length && f.page ? '<a href="' + esc(f.page) + '">All ' + f.past.length + '</a>' : "") + '</div>';
   }
   function actionHTML(f) {
@@ -930,7 +930,7 @@ window.WELCOME_DATA = /*__WELCOME_DATA__*/null;
         '<div class="nrow"><span class="num">01</span><span><b>Scan my weekend.</b><small>On iPhone, Plursky reads your camera roll for ' + esc(f.short) + '\'s nights and finds every photo and clip. No hand-picking.</small></span><span class="tag live">New</span></div>' +
         '<div class="nrow"><span class="num">02</span><span><b>Sorted by set.</b><small>Each shot lands on the set you were at, by time and place. On the web, add your photos in Memories.</small></span><span class="tag live">Live</span></div>' +
         '<div class="nrow"><span class="num">03</span><span><b>Recap and playlist.</b><small>A story-sized recap and an Apple Music playlist of the sets you saw.</small></span><span class="tag live">Live</span></div>' +
-        (ys.length ? '<div style="height:18px"></div><span class="kick">Been before?</span><div class="years">' + ys.map(function (e) { return '<a href="' + editionHref(e.id) + '">' + e.year + '</a>'; }).join("") + '</div><p class="fine">Earlier years open in Past Festivals, with the stages and sets the festival published. Photo sorting covers ' + esc(f.name) + '.</p>' : "") +
+        (ys.length ? '<div style="height:18px"></div><span class="kick">Been before?</span><div class="years">' + ys.map(function (e) { return '<a href="' + editionHref(e.id) + '">' + e.year + '</a>'; }).join("") + '</div><p class="fine">Earlier years open in Past Festivals, with the stages and sets the festival published where Plursky has them. Photo sorting covers ' + esc(f.name) + '.</p>' : "") +
         '<div style="height:14px"></div><a class="btn" style="width:100%" href="https://apps.apple.com/us/app/plursky-live/id6768888507" rel="noopener">Get the iPhone app to scan</a></div>';
       nextB.textContent = "Open my Memories";
     } else if (s === 1) {

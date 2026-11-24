@@ -14,11 +14,11 @@
 // whole printing here, so it never borrows one member's photo; the avatar
 // splits a b2b into faces itself.
 (function (g) {
-  var LETTERS = { "¥": "Y", "Ø": "O", "ø": "o", "Æ": "AE", "æ": "ae", "Œ": "OE", "œ": "oe", "ß": "ss", "Ł": "L", "ł": "l", "Đ": "D", "đ": "d", "Þ": "Th", "þ": "th", "ð": "d" };
+  var LETTERS = { "¥": "Y", "Ø": "O", "ø": "o", "Æ": "AE", "æ": "ae", "Œ": "OE", "œ": "oe", "ß": "ss", "Ł": "L", "ł": "l", "Đ": "D", "đ": "d", "Þ": "Th", "þ": "th", "Ð": "D", "ð": "d" };
   var SET_TAG = /^(?:.*\bset|sunrise|sunset|live|hybrid|in the round|unmasked)$/i;
   var PEOPLE_IN_PARENS = /\s[x×+]\s|\sb[23]b\s|,|\s&\s/i;
   function foldKey(s) {
-    return String(s).replace(/[¥ØøÆæŒœßŁłĐđÞþð]/g, function (c) { return LETTERS[c]; })
+    return String(s).replace(/[¥ØøÆæŒœßŁłĐđÞþÐð]/g, function (c) { return LETTERS[c]; })
       .normalize("NFKD").replace(/[̀-ͯ]/g, "")
       .toLowerCase().replace(/&/g, " and ").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "x";
   }

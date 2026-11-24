@@ -1,0 +1,128 @@
+{
+  "id": "ultra-miami-2017",
+  "method": "official_image_transcription",
+  "official": "https://ultramusicfestival.com/lineup/",
+  "window": [
+    "20170301",
+    "20170331"
+  ],
+  "pageCaptures": [
+    {
+      "captureTimestamp": "20170306164453",
+      "archivedUrl": "https://web.archive.org/web/20170306164453/https://ultramusicfestival.com/lineup/",
+      "sha256": "e005147a4fa688e00e65a76c4e146666b56d599c68f50af01dcd8ff1ed9e517b",
+      "images": []
+    },
+    {
+      "captureTimestamp": "20170313155829",
+      "archivedUrl": "https://web.archive.org/web/20170313155829/https://ultramusicfestival.com/lineup/",
+      "sha256": "034bed18f1d6371a64df9050140a1daf6cbfd30a940f4efa5271bb6bf175e444",
+      "images": []
+    },
+    {
+      "captureTimestamp": "20170320152917",
+      "archivedUrl": "https://web.archive.org/web/20170320152917/https://ultramusicfestival.com/lineup/",
+      "sha256": "dfe99cc460c97231656306aa09358124b8b1e43facaccf7782c9ca4e6671abd4",
+      "images": [
+        "miami-lineup-phase3-4.jpg"
+      ]
+    }
+  ],
+  "days": [
+    {
+      "day": 1,
+      "date": "2017-03-24",
+      "pageCapture": "20170320152917",
+      "pageArchivedUrl": "https://web.archive.org/web/20170320152917/https://ultramusicfestival.com/lineup/",
+      "originalUrl": "https://ultramusicfestival.com/wp-content/uploads/2016/11/miami-lineup-phase3-4.jpg",
+      "imageCapture": "20170320152948",
+      "imageArchivedUrl": "https://web.archive.org/web/20170320152948/https://ultramusicfestival.com/wp-content/uploads/2016/11/miami-lineup-phase3-4.jpg",
+      "sha256": "5d49415b215580180c223c541a193407bada4649e77aca5239d73ed0dc593fe1",
+      "bytes": 861232,
+      "contentType": "image/jpeg",
+      "cacheFile": "4ce8f6d68b9b774ee040e944.bin",
+      "revisions": [
+        {
+          "file": "miami-lineup-phase3-4.jpg",
+          "firstSeen": "20170320152917"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2017-03-25",
+      "pageCapture": "20170320152917",
+      "pageArchivedUrl": "https://web.archive.org/web/20170320152917/https://ultramusicfestival.com/lineup/",
+      "originalUrl": "https://ultramusicfestival.com/wp-content/uploads/2016/11/miami-lineup-phase3-4.jpg",
+      "imageCapture": "20170320152948",
+      "imageArchivedUrl": "https://web.archive.org/web/20170320152948/https://ultramusicfestival.com/wp-content/uploads/2016/11/miami-lineup-phase3-4.jpg",
+      "sha256": "5d49415b215580180c223c541a193407bada4649e77aca5239d73ed0dc593fe1",
+      "bytes": 861232,
+      "contentType": "image/jpeg",
+      "cacheFile": "4ce8f6d68b9b774ee040e944.bin",
+      "revisions": [
+        {
+          "file": "miami-lineup-phase3-4.jpg",
+          "firstSeen": "20170320152917"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2017-03-26",
+      "pageCapture": "20170320152917",
+      "pageArchivedUrl": "https://web.archive.org/web/20170320152917/https://ultramusicfestival.com/lineup/",
+      "originalUrl": "https://ultramusicfestival.com/wp-content/uploads/2016/11/miami-lineup-phase3-4.jpg",
+      "imageCapture": "20170320152948",
+      "imageArchivedUrl": "https://web.archive.org/web/20170320152948/https://ultramusicfestival.com/wp-content/uploads/2016/11/miami-lineup-phase3-4.jpg",
+      "sha256": "5d49415b215580180c223c541a193407bada4649e77aca5239d73ed0dc593fe1",
+      "bytes": 861232,
+      "contentType": "image/jpeg",
+      "cacheFile": "4ce8f6d68b9b774ee040e944.bin",
+      "revisions": [
+        {
+          "file": "miami-lineup-phase3-4.jpg",
+          "firstSeen": "20170320152917"
+        }
+      ]
+    }
+  ],
+  "dropped": [
+    {
+      "day": 1,
+      "stage": "ARCADIA THE SPIDER",
+      "start": "20:30",
+      "end": null,
+      "billing": "ARCADIA LANDING SHOW",
+      "category": "show-segment",
+      "reason": "Arcadia stage show printed between sets, not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "ARCADIA THE SPIDER",
+      "start": "20:30",
+      "end": null,
+      "billing": "ARCADIA LANDING SHOW",
+      "category": "show-segment",
+      "reason": "Arcadia stage show printed between sets, not a billed performance"
+    },
+    {
+      "day": 2,
+      "stage": "UMF RADIO",
+      "start": "22:00",
+      "end": null,
+      "billing": "SPECIAL GUEST",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    },
+    {
+      "day": 3,
+      "stage": "ARCADIA THE SPIDER",
+      "start": "20:30",
+      "end": null,
+      "billing": "ARCADIA LANDING SHOW",
+      "category": "show-segment",
+      "reason": "Arcadia stage show printed between sets, not a billed performance"
+    }
+  ]
+}

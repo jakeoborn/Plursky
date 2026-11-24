@@ -63,6 +63,8 @@ paste the `.p8` or a Spotify *secret* into chat.
 
 ## 8. Ship discipline
 - Push direct to `main` (it's the deploy) once validated.
+- Builder contract (one PR per task, a receipt per PR, a ledger line per merge in
+  `ops/build-ledger.jsonl`): AGENTS.md §4 "Builder contract".
 - End commit messages with: `Co-Authored-By: Claude Opus 4.8 (1M context) <noreply@anthropic.com>`
 - Verify visually / on intent before claiming a feature works (web vs device).
 

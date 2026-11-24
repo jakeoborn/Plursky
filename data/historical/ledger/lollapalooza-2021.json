@@ -1,0 +1,416 @@
+{
+  "id": "lollapalooza-2021",
+  "method": "official_image_transcription",
+  "official": "https://www.lollapalooza.com/schedule",
+  "window": [
+    "20210601",
+    "20211231"
+  ],
+  "pageCaptures": [
+    {
+      "captureTimestamp": "20210611035645",
+      "archivedUrl": "https://web.archive.org/web/20210611035645/https://www.lollapalooza.com/schedule",
+      "sha256": "3aaa37142bceb96b961959fb926e6296d0173f2390e1195116fe7fee9ebde879",
+      "images": [
+        "60c23fa68c9a9b33913cb90d_LP21-Grid-V4_01-Thurs.png",
+        "60c23fa62c29e95984294c80_LP21-Grid-V4_02-Fri.png",
+        "60c23fa61539d53a93b53804_LP21-Grid-V4_03-Sat.png",
+        "60c2cddbb2cc006971641724_LP21-Grid-V5_04-Sun.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20210623194244",
+      "archivedUrl": "https://web.archive.org/web/20210623194244/https://www.lollapalooza.com/schedule",
+      "sha256": "48fdf6ac6e5cea452986e6202358c95b244a1216e5fc2c5644495a9354b0a7ad",
+      "images": [
+        "60cbc0f4028f9ee5a92169da_LP21-Grid-V5_01-Thurs.png",
+        "60cbc10ec28c0c380cd588b5_LP21-Grid-V5_02-Fri.png",
+        "60cbc150c28c0c9c3fd588ff_LP21-Grid-V5_03-Sat.png",
+        "60cbc0cc95ba362becfa2bc7_LP21-Grid-V5_04-Sun%20(1).png"
+      ]
+    },
+    {
+      "captureTimestamp": "20210624212205",
+      "archivedUrl": "https://web.archive.org/web/20210624212205/https://www.lollapalooza.com/schedule",
+      "sha256": "81895c492c5d07b8516cfcd22cb1d454e057891c8e53931bfef6e17a09b58614",
+      "images": [
+        "60cbc0f4028f9ee5a92169da_LP21-Grid-V5_01-Thurs.png",
+        "60cbc10ec28c0c380cd588b5_LP21-Grid-V5_02-Fri.png",
+        "60cbc150c28c0c9c3fd588ff_LP21-Grid-V5_03-Sat.png",
+        "60cbc0cc95ba362becfa2bc7_LP21-Grid-V5_04-Sun%20(1).png"
+      ]
+    },
+    {
+      "captureTimestamp": "20210722123559",
+      "archivedUrl": "https://web.archive.org/web/20210722123559/https://www.lollapalooza.com/schedule",
+      "sha256": "04773a2bffe13528ef74c1765b8b144019c5fa7ff5a2cf118765051045374042",
+      "images": [
+        "60f87e8bd728b3df5f063212_LP21-GRID-V11_01-Thurs.png",
+        "60f87e9dfab14e6831a9c5a2_LP21-GRID-V11_02-Fri.png",
+        "60f87eae66a4216d5677dbdd_LP21-GRID-V11_03-Sat.png",
+        "60f87ec3ba86a1241d897acf_LP21-GRID-V11_04-Sun.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20210728015411",
+      "archivedUrl": "https://web.archive.org/web/20210728015411/https://www.lollapalooza.com/schedule",
+      "sha256": "2c4410741dbffd3fa4a81c2bd266a35a470e209428172b3227230c353bf6b702",
+      "images": [
+        "61001c1e48b4c74ef55618fa_LP21-GRID-V12_01-Thurs.png",
+        "61001c31fa0f285d04c090ac_LP21-GRID-V12_02-Fri.png",
+        "61001c48397ee501f809d606_LP21-GRID-V12_03-Sat.png",
+        "61001c57066f2e518d546704_LP21-GRID-V12_04-Sun.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20210728213458",
+      "archivedUrl": "https://web.archive.org/web/20210728213458/https://www.lollapalooza.com/schedule",
+      "sha256": "37b951d384c2d801ef7439d87597a96a4c7f55ac78713e418e1dfcb692cc97a2",
+      "images": [
+        "6101b1b092b6d1fe1809539b_LP21-GRID-V13_01-Thurs.png",
+        "6101bb613f9800a7381b6064_LP21-GRID-V13_02-Fri%20(1).png",
+        "61001c48397ee501f809d606_LP21-GRID-V12_03-Sat.png",
+        "61001c57066f2e518d546704_LP21-GRID-V12_04-Sun.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20210730010343",
+      "archivedUrl": "https://web.archive.org/web/20210730010343/https://www.lollapalooza.com/schedule",
+      "sha256": "00068917dd6cae58934ceeda10140356f6ee76ae4944c0391613bf95f9bcb5b6",
+      "images": [
+        "610312d5cdacfba4938a1a9a_LP21-GRID-V15_01-Thurs-01.png",
+        "6103116d03291a720587dfa3_LP21-GRID-V15_02-Fri.png",
+        "61001c57066f2e518d546704_LP21-GRID-V12_04-Sun.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20210730124339",
+      "archivedUrl": "https://web.archive.org/web/20210730124339/https://www.lollapalooza.com/schedule",
+      "sha256": "84130c541aef7937b926095c2aab852ac377a0e4c56d25aab503cfc68ea88433",
+      "images": [
+        "610312d5cdacfba4938a1a9a_LP21-GRID-V15_01-Thurs-01.png",
+        "6103116d03291a720587dfa3_LP21-GRID-V15_02-Fri.png",
+        "61001c57066f2e518d546704_LP21-GRID-V12_04-Sun.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20210809044155",
+      "archivedUrl": "https://web.archive.org/web/20210809044155/https://www.lollapalooza.com/schedule",
+      "sha256": "e80a2b995a2704caba83c765d3f345b277caca564a6c06e2c4cfb92cf54cab0b",
+      "images": [
+        "610312d5cdacfba4938a1a9a_LP21-GRID-V15_01-Thurs-01.png",
+        "61045e1ea63e4eae86ba4e4a_LP21-GRID-V15_02-Fri%20(1).png",
+        "6105b66e2f3ee98b2039445a_LP21-GRID-V15_03-Sat%20(2).png"
+      ]
+    },
+    {
+      "captureTimestamp": "20210812005336",
+      "archivedUrl": "https://web.archive.org/web/20210812005336/https://www.lollapalooza.com/schedule",
+      "sha256": "8c028905a8f8fc360fcb442b519d051b9fe3596f9a946e3b1151bdde90d4e265",
+      "images": [
+        "610312d5cdacfba4938a1a9a_LP21-GRID-V15_01-Thurs-01.png",
+        "61045e1ea63e4eae86ba4e4a_LP21-GRID-V15_02-Fri%20(1).png",
+        "6105b66e2f3ee98b2039445a_LP21-GRID-V15_03-Sat%20(2).png"
+      ]
+    },
+    {
+      "captureTimestamp": "20210924021705",
+      "archivedUrl": "https://web.archive.org/web/20210924021705/https://www.lollapalooza.com/schedule",
+      "sha256": "67490e649f08f1fbce957a0cd7390b1da883afcf568b83b4cbd8aa35a61b0dcf",
+      "images": [
+        "610312d5cdacfba4938a1a9a_LP21-GRID-V15_01-Thurs-01.png",
+        "61045e1ea63e4eae86ba4e4a_LP21-GRID-V15_02-Fri%20(1).png",
+        "6105b66e2f3ee98b2039445a_LP21-GRID-V15_03-Sat%20(2).png"
+      ]
+    },
+    {
+      "captureTimestamp": "20211022115857",
+      "archivedUrl": "https://web.archive.org/web/20211022115857/https://www.lollapalooza.com/schedule",
+      "sha256": "5dd314e55f2ec8de35d4ff883bf02213870e5bcdc1a1776b5bd33305766ec74b",
+      "images": [
+        "610312d5cdacfba4938a1a9a_LP21-GRID-V15_01-Thurs-01.png",
+        "61045e1ea63e4eae86ba4e4a_LP21-GRID-V15_02-Fri%20(1).png",
+        "6105b66e2f3ee98b2039445a_LP21-GRID-V15_03-Sat%20(2).png"
+      ]
+    },
+    {
+      "captureTimestamp": "20211120025130",
+      "archivedUrl": "https://web.archive.org/web/20211120025130/https://www.lollapalooza.com/schedule",
+      "sha256": "b5390345de28474b9e0433050da1649493f99c21af235be51097a0d6069e7b6c",
+      "images": [
+        "610312d5cdacfba4938a1a9a_LP21-GRID-V15_01-Thurs-01.png",
+        "61045e1ea63e4eae86ba4e4a_LP21-GRID-V15_02-Fri%20(1).png",
+        "6105b66e2f3ee98b2039445a_LP21-GRID-V15_03-Sat%20(2).png"
+      ]
+    }
+  ],
+  "days": [
+    {
+      "day": 1,
+      "date": "2021-07-29",
+      "pageCapture": "20211120025130",
+      "pageArchivedUrl": "https://web.archive.org/web/20211120025130/https://www.lollapalooza.com/schedule",
+      "originalUrl": "https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/610312d5cdacfba4938a1a9a_LP21-GRID-V15_01-Thurs-01.png",
+      "imageCapture": "20211205165625",
+      "imageArchivedUrl": "https://web.archive.org/web/20211205165625/https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/610312d5cdacfba4938a1a9a_LP21-GRID-V15_01-Thurs-01.png",
+      "sha256": "b93ab8e9f87bfee8096e696ecaa34827ad48438a6d7ea687841ea3b6370a6eef",
+      "bytes": 1616352,
+      "contentType": "image/png",
+      "cacheFile": "60fe2f30684a211a9c3e7997.bin",
+      "revisions": [
+        {
+          "file": "60c23fa68c9a9b33913cb90d_LP21-Grid-V4_01-Thurs.png",
+          "firstSeen": "20210611035645"
+        },
+        {
+          "file": "60cbc0f4028f9ee5a92169da_LP21-Grid-V5_01-Thurs.png",
+          "firstSeen": "20210623194244"
+        },
+        {
+          "file": "60f87e8bd728b3df5f063212_LP21-GRID-V11_01-Thurs.png",
+          "firstSeen": "20210722123559"
+        },
+        {
+          "file": "61001c1e48b4c74ef55618fa_LP21-GRID-V12_01-Thurs.png",
+          "firstSeen": "20210728015411"
+        },
+        {
+          "file": "6101b1b092b6d1fe1809539b_LP21-GRID-V13_01-Thurs.png",
+          "firstSeen": "20210728213458"
+        },
+        {
+          "file": "610312d5cdacfba4938a1a9a_LP21-GRID-V15_01-Thurs-01.png",
+          "firstSeen": "20210730010343"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2021-07-30",
+      "pageCapture": "20211120025130",
+      "pageArchivedUrl": "https://web.archive.org/web/20211120025130/https://www.lollapalooza.com/schedule",
+      "originalUrl": "https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/61045e1ea63e4eae86ba4e4a_LP21-GRID-V15_02-Fri%20(1).png",
+      "imageCapture": "20211126225138",
+      "imageArchivedUrl": "https://web.archive.org/web/20211126225138/https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/61045e1ea63e4eae86ba4e4a_LP21-GRID-V15_02-Fri%20(1).png",
+      "sha256": "be548368fb79abe05795c79fe89456d058cf80c0d5bccc7575beb3c9359fb29d",
+      "bytes": 1093314,
+      "contentType": "image/png",
+      "cacheFile": "91f984234e12148d70592511.bin",
+      "revisions": [
+        {
+          "file": "60c23fa62c29e95984294c80_LP21-Grid-V4_02-Fri.png",
+          "firstSeen": "20210611035645"
+        },
+        {
+          "file": "60cbc10ec28c0c380cd588b5_LP21-Grid-V5_02-Fri.png",
+          "firstSeen": "20210623194244"
+        },
+        {
+          "file": "60f87e9dfab14e6831a9c5a2_LP21-GRID-V11_02-Fri.png",
+          "firstSeen": "20210722123559"
+        },
+        {
+          "file": "61001c31fa0f285d04c090ac_LP21-GRID-V12_02-Fri.png",
+          "firstSeen": "20210728015411"
+        },
+        {
+          "file": "6101bb613f9800a7381b6064_LP21-GRID-V13_02-Fri%20(1).png",
+          "firstSeen": "20210728213458"
+        },
+        {
+          "file": "6103116d03291a720587dfa3_LP21-GRID-V15_02-Fri.png",
+          "firstSeen": "20210730010343"
+        },
+        {
+          "file": "61045e1ea63e4eae86ba4e4a_LP21-GRID-V15_02-Fri%20(1).png",
+          "firstSeen": "20210809044155"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2021-07-31",
+      "pageCapture": "20211120025130",
+      "pageArchivedUrl": "https://web.archive.org/web/20211120025130/https://www.lollapalooza.com/schedule",
+      "originalUrl": "https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/6105b66e2f3ee98b2039445a_LP21-GRID-V15_03-Sat%20(2).png",
+      "imageCapture": "20211205182449",
+      "imageArchivedUrl": "https://web.archive.org/web/20211205182449/https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/6105b66e2f3ee98b2039445a_LP21-GRID-V15_03-Sat%20(2).png",
+      "sha256": "c07b6777b34f2e78285e59ba92afd6064c852eeb35742c234d17f4de3fc4d24d",
+      "bytes": 1085703,
+      "contentType": "image/png",
+      "cacheFile": "057fa633265bc53ec0072ccd.bin",
+      "revisions": [
+        {
+          "file": "60c23fa61539d53a93b53804_LP21-Grid-V4_03-Sat.png",
+          "firstSeen": "20210611035645"
+        },
+        {
+          "file": "60cbc150c28c0c9c3fd588ff_LP21-Grid-V5_03-Sat.png",
+          "firstSeen": "20210623194244"
+        },
+        {
+          "file": "60f87eae66a4216d5677dbdd_LP21-GRID-V11_03-Sat.png",
+          "firstSeen": "20210722123559"
+        },
+        {
+          "file": "61001c48397ee501f809d606_LP21-GRID-V12_03-Sat.png",
+          "firstSeen": "20210728015411"
+        },
+        {
+          "file": "6105b66e2f3ee98b2039445a_LP21-GRID-V15_03-Sat%20(2).png",
+          "firstSeen": "20210809044155"
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2021-08-01",
+      "pageCapture": "20210730124339",
+      "pageArchivedUrl": "https://web.archive.org/web/20210730124339/https://www.lollapalooza.com/schedule",
+      "originalUrl": "https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/61001c57066f2e518d546704_LP21-GRID-V12_04-Sun.png",
+      "imageCapture": "20210730010655",
+      "imageArchivedUrl": "https://web.archive.org/web/20210730010655/https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/61001c57066f2e518d546704_LP21-GRID-V12_04-Sun.png",
+      "sha256": "4fc2fc7876ad967e8829fdcb7ee15a6b618a78a0c0cc53d61fbfb27dc7a8b76c",
+      "bytes": 1724120,
+      "contentType": "image/png",
+      "cacheFile": "22172afe53bbdde96dfdef14.bin",
+      "revisions": [
+        {
+          "file": "60c2cddbb2cc006971641724_LP21-Grid-V5_04-Sun.png",
+          "firstSeen": "20210611035645"
+        },
+        {
+          "file": "60cbc0cc95ba362becfa2bc7_LP21-Grid-V5_04-Sun%20(1).png",
+          "firstSeen": "20210623194244"
+        },
+        {
+          "file": "60f87ec3ba86a1241d897acf_LP21-GRID-V11_04-Sun.png",
+          "firstSeen": "20210722123559"
+        },
+        {
+          "file": "61001c57066f2e518d546704_LP21-GRID-V12_04-Sun.png",
+          "firstSeen": "20210728015411"
+        }
+      ]
+    }
+  ],
+  "dropped": [
+    {
+      "day": 1,
+      "stage": "BONUS TRACKS",
+      "start": "18:25",
+      "end": null,
+      "billing": "HULU INTERVIEW W/ STEVE AOKI",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 1,
+      "stage": "BONUS TRACKS",
+      "start": "18:45",
+      "end": null,
+      "billing": "AMORPHOUS",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 2,
+      "stage": "BONUS TRACKS",
+      "start": "15:10",
+      "end": null,
+      "billing": "HULU INTERVIEW W/ WHITE REAPER",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 2,
+      "stage": "BONUS TRACKS",
+      "start": "16:00",
+      "end": null,
+      "billing": "TOBI LOU",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 2,
+      "stage": "BONUS TRACKS",
+      "start": "16:45",
+      "end": null,
+      "billing": "BOB'S DANCE SHOP",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 2,
+      "stage": "BONUS TRACKS",
+      "start": "18:45",
+      "end": null,
+      "billing": "BEST OF CHICAGO DRAG",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 3,
+      "stage": "BUD LIGHT SELTZER SESSIONS",
+      "start": "18:00",
+      "end": null,
+      "billing": "SPECIAL GUEST",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    },
+    {
+      "day": 3,
+      "stage": "BONUS TRACKS",
+      "start": "14:45",
+      "end": null,
+      "billing": "SPECIAL GUEST",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 3,
+      "stage": "BONUS TRACKS",
+      "start": "16:45",
+      "end": null,
+      "billing": "BOB'S DANCE SHOP",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 3,
+      "stage": "BONUS TRACKS",
+      "start": "18:45",
+      "end": null,
+      "billing": "BEST OF CHICAGO DRAG",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 4,
+      "stage": "BONUS TRACKS",
+      "start": "14:30",
+      "end": null,
+      "billing": "SPECIAL GUEST",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 4,
+      "stage": "BONUS TRACKS",
+      "start": "16:30",
+      "end": null,
+      "billing": "SPECIAL GUEST",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 4,
+      "stage": "BONUS TRACKS",
+      "start": "18:15",
+      "end": null,
+      "billing": "BEST OF CHICAGO DRAG",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    }
+  ]
+}

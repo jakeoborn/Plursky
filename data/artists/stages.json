@@ -728,6 +728,45 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "beyond-wonderland-socal:outer-realm",
+     "names": [
+      {
+       "printed": "OUTER REALM",
+       "editions": [
+        "beyond-wonderland-socal-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "beyond-wonderland-socal:upside-down-room",
+     "names": [
+      {
+       "printed": "UPSIDE-DOWN ROOM",
+       "editions": [
+        "beyond-wonderland-socal-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "beyond-wonderland-socal:boombox-art-car",
+     "names": [
+      {
+       "printed": "BOOMBOX ART CAR",
+       "editions": [
+        "beyond-wonderland-socal-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },
@@ -869,6 +908,247 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "coachella:oasis-dome",
+     "names": [
+      {
+       "printed": "Oasis Dome",
+       "editions": [
+        "coachella-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "coachella:quasar",
+     "names": [
+      {
+       "printed": "Quasar",
+       "editions": [
+        "coachella-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
+  "countdown-nye": {
+   "lineages": [
+    {
+     "id": "countdown-nye:infinity-stage",
+     "names": [
+      {
+       "printed": "INFINITY STAGE",
+       "editions": [
+        "countdown-nye-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "countdown-nye:quantum-stage",
+     "names": [
+      {
+       "printed": "QUANTUM STAGE",
+       "editions": [
+        "countdown-nye-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "countdown-nye:resolution-stage",
+     "names": [
+      {
+       "printed": "RESOLUTION STAGE",
+       "editions": [
+        "countdown-nye-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "countdown-nye:infinity",
+     "names": [
+      {
+       "printed": "INFINITY",
+       "editions": [
+        "countdown-nye-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "countdown-nye:quantum",
+     "names": [
+      {
+       "printed": "QUANTUM",
+       "editions": [
+        "countdown-nye-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "countdown-nye:resolution",
+     "names": [
+      {
+       "printed": "RESOLUTION",
+       "editions": [
+        "countdown-nye-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "countdown-nye:mothership",
+     "names": [
+      {
+       "printed": "Mothership",
+       "editions": [
+        "countdown-nye-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "countdown-nye:nebula",
+     "names": [
+      {
+       "printed": "Nebula",
+       "editions": [
+        "countdown-nye-2019",
+        "countdown-nye-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "countdown-nye:area-51",
+     "names": [
+      {
+       "printed": "Area 51",
+       "editions": [
+        "countdown-nye-2019",
+        "countdown-nye-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "countdown-nye:twilight-zone",
+     "names": [
+      {
+       "printed": "Twilight Zone",
+       "editions": [
+        "countdown-nye-2019",
+        "countdown-nye-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "countdown-nye:biosphere",
+     "names": [
+      {
+       "printed": "Biosphere",
+       "editions": [
+        "countdown-nye-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "countdown-nye:area-151",
+     "names": [
+      {
+       "printed": "Area 151",
+       "editions": [
+        "countdown-nye-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "countdown-nye:the-mothership",
+     "names": [
+      {
+       "printed": "The Mothership",
+       "editions": [
+        "countdown-nye-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "countdown-nye:galactik-gate",
+     "names": [
+      {
+       "printed": "Galactik Gate",
+       "editions": [
+        "countdown-nye-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "countdown-nye:beatbox-boombox-art-car",
+     "names": [
+      {
+       "printed": "BeatBox Boombox Art Car",
+       "editions": [
+        "countdown-nye-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "countdown-nye:alien-red-light-district",
+     "names": [
+      {
+       "printed": "Alien Red Light District",
+       "editions": [
+        "countdown-nye-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },
@@ -915,6 +1195,192 @@
     }
    ]
   },
+  "defqon1": {
+   "lineages": [
+    {
+     "id": "defqon1:blue",
+     "names": [
+      {
+       "printed": "Blue",
+       "editions": [
+        "defqon1-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "defqon1:black",
+     "names": [
+      {
+       "printed": "Black",
+       "editions": [
+        "defqon1-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "defqon1:red",
+     "names": [
+      {
+       "printed": "Red",
+       "editions": [
+        "defqon1-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "defqon1:brown",
+     "names": [
+      {
+       "printed": "Brown",
+       "editions": [
+        "defqon1-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "defqon1:uv",
+     "names": [
+      {
+       "printed": "UV",
+       "editions": [
+        "defqon1-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "defqon1:gold",
+     "names": [
+      {
+       "printed": "Gold",
+       "editions": [
+        "defqon1-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "defqon1:magenta",
+     "names": [
+      {
+       "printed": "Magenta",
+       "editions": [
+        "defqon1-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "defqon1:silver",
+     "names": [
+      {
+       "printed": "Silver",
+       "editions": [
+        "defqon1-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "defqon1:indigo",
+     "names": [
+      {
+       "printed": "Indigo",
+       "editions": [
+        "defqon1-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "defqon1:yellow",
+     "names": [
+      {
+       "printed": "Yellow",
+       "editions": [
+        "defqon1-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "defqon1:white",
+     "names": [
+      {
+       "printed": "White",
+       "editions": [
+        "defqon1-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "defqon1:purple",
+     "names": [
+      {
+       "printed": "Purple",
+       "editions": [
+        "defqon1-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "defqon1:afterparty",
+     "names": [
+      {
+       "printed": "Afterparty",
+       "editions": [
+        "defqon1-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "defqon1:orange",
+     "names": [
+      {
+       "printed": "Orange",
+       "editions": [
+        "defqon1-2015"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
   "dreamstate-socal": {
    "lineages": [
     {
@@ -934,9 +1400,23 @@
         "dreamstate-socal-2019",
         "dreamstate-socal-2024"
        ]
+      },
+      {
+       "printed": "Dream",
+       "editions": [
+        "dreamstate-socal-2026"
+       ]
       }
      ],
-     "joins": [],
+     "joins": [
+      {
+       "from": "The Dream",
+       "to": "Dream",
+       "why": "The official 2026 set-times pages print this stage as \"The Dream\"; the app's stage list names it \"Dream\". Same stage, the article dropped.",
+       "source": "https://socal.dreamstateusa.com/lineup/set-times/",
+       "observedAt": "2026-11-20"
+      }
+     ],
      "mainStage": null
     },
     {
@@ -956,9 +1436,23 @@
         "dreamstate-socal-2019",
         "dreamstate-socal-2024"
        ]
+      },
+      {
+       "printed": "Sequence",
+       "editions": [
+        "dreamstate-socal-2026"
+       ]
       }
      ],
-     "joins": [],
+     "joins": [
+      {
+       "from": "The Sequence",
+       "to": "Sequence",
+       "why": "The official 2026 set-times pages print this stage as \"The Sequence\"; the app's stage list names it \"Sequence\". Same stage, the article dropped.",
+       "source": "https://socal.dreamstateusa.com/lineup/set-times/",
+       "observedAt": "2026-11-20"
+      }
+     ],
      "mainStage": null
     },
     {
@@ -978,9 +1472,23 @@
         "dreamstate-socal-2019",
         "dreamstate-socal-2024"
        ]
+      },
+      {
+       "printed": "Vision",
+       "editions": [
+        "dreamstate-socal-2026"
+       ]
       }
      ],
-     "joins": [],
+     "joins": [
+      {
+       "from": "The Vision",
+       "to": "Vision",
+       "why": "The official 2026 set-times pages print this stage as \"The Vision\"; the app's stage list names it \"Vision\". Same stage, the article dropped.",
+       "source": "https://socal.dreamstateusa.com/lineup/set-times/",
+       "observedAt": "2026-11-20"
+      }
+     ],
      "mainStage": null
     },
     {
@@ -1011,9 +1519,23 @@
        "editions": [
         "dreamstate-socal-2024"
        ]
+      },
+      {
+       "printed": "Void",
+       "editions": [
+        "dreamstate-socal-2026"
+       ]
       }
      ],
-     "joins": [],
+     "joins": [
+      {
+       "from": "The Void",
+       "to": "Void",
+       "why": "The official 2026 set-times pages print this stage as \"The Void\"; the app's stage list names it \"Void\". Same stage, the article dropped.",
+       "source": "https://socal.dreamstateusa.com/lineup/set-times/",
+       "observedAt": "2026-11-20"
+      }
+     ],
      "mainStage": null
     },
     {
@@ -1510,6 +2032,171 @@
        "printed": "Discovery Project",
        "editions": [
         "edc-las-vegas-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:stage7",
+     "names": [
+      {
+       "printed": "STAGE7",
+       "editions": [
+        "edc-las-vegas-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:upsidedownhouse",
+     "names": [
+      {
+       "printed": "UPSIDEDOWNHOUSE",
+       "editions": [
+        "edc-las-vegas-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:wideawakeartcar",
+     "names": [
+      {
+       "printed": "WIDEAWAKEARTCAR",
+       "editions": [
+        "edc-las-vegas-2016",
+        "edc-las-vegas-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:kalliopeartcar",
+     "names": [
+      {
+       "printed": "KALLIOPEARTCAR",
+       "editions": [
+        "edc-las-vegas-2016",
+        "edc-las-vegas-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:boomboxartcar",
+     "names": [
+      {
+       "printed": "BOOMBOXARTCAR",
+       "editions": [
+        "edc-las-vegas-2016",
+        "edc-las-vegas-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:smirnoff-house",
+     "names": [
+      {
+       "printed": "SMIRNOFF HOUSE",
+       "editions": [
+        "edc-las-vegas-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:quantumvalley",
+     "names": [
+      {
+       "printed": "QUANTUMVALLEY",
+       "editions": [
+        "edc-las-vegas-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:upside-downhouse",
+     "names": [
+      {
+       "printed": "UPSIDE-DOWNHOUSE",
+       "editions": [
+        "edc-las-vegas-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:parliamentartcar",
+     "names": [
+      {
+       "printed": "PARLIAMENTARTCAR",
+       "editions": [
+        "edc-las-vegas-2017"
+       ]
+      },
+      {
+       "printed": "parliamentARTCAR",
+       "editions": [
+        "edc-las-vegas-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:parliament-2-0-30th-anniversary-art-car",
+     "names": [
+      {
+       "printed": "Parliament 2.0 30th Anniversary Art Car",
+       "editions": [
+        "edc-las-vegas-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:titanic-s-end-art-car",
+     "names": [
+      {
+       "printed": "Titanic's End Art Car",
+       "editions": [
+        "edc-las-vegas-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:titanicsendartcar",
+     "names": [
+      {
+       "printed": "titanicsendARTCAR",
+       "editions": [
+        "edc-las-vegas-2023"
        ]
       }
      ],
@@ -2449,6 +3136,32 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "governors-ball:gopuff",
+     "names": [
+      {
+       "printed": "GOPUFF",
+       "editions": [
+        "governors-ball-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "governors-ball:ihg-hotels-and-resorts",
+     "names": [
+      {
+       "printed": "IHG HOTELS & RESORTS",
+       "editions": [
+        "governors-ball-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },
@@ -2674,6 +3387,71 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "hard-summer:purple-tent",
+     "names": [
+      {
+       "printed": "Purple Tent",
+       "editions": [
+        "hard-summer-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "hard-summer:green-tent",
+     "names": [
+      {
+       "printed": "Green Tent",
+       "editions": [
+        "hard-summer-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "hard-summer:pink-tent",
+     "names": [
+      {
+       "printed": "Pink Tent",
+       "editions": [
+        "hard-summer-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "hard-summer:corona-electric-beach",
+     "names": [
+      {
+       "printed": "Corona Electric Beach",
+       "editions": [
+        "hard-summer-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "hard-summer:jose-cuervo-locals-only-stage",
+     "names": [
+      {
+       "printed": "Jose Cuervo Locals Only Stage",
+       "editions": [
+        "hard-summer-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },
@@ -2842,6 +3620,58 @@
        "printed": "444",
        "editions": [
         "iii-points-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "iii-points:mainframe",
+     "names": [
+      {
+       "printed": "MAINFRAME",
+       "editions": [
+        "iii-points-2014"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "iii-points:mindmelt",
+     "names": [
+      {
+       "printed": "MINDMELT",
+       "editions": [
+        "iii-points-2014"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "iii-points:sector3",
+     "names": [
+      {
+       "printed": "SECTOR3",
+       "editions": [
+        "iii-points-2014"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "iii-points:skatespace",
+     "names": [
+      {
+       "printed": "SKATESPACE",
+       "editions": [
+        "iii-points-2014"
        ]
       }
      ],
@@ -3561,6 +4391,127 @@
        "printed": "Kidzapalooza Presented By Lifeway",
        "editions": [
         "lollapalooza-2018"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:bacardi",
+     "names": [
+      {
+       "printed": "BACARDÍ",
+       "editions": [
+        "lollapalooza-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:ihg-hotels-and-resorts",
+     "names": [
+      {
+       "printed": "IHG HOTELS & RESORTS",
+       "editions": [
+        "lollapalooza-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:sonny-s",
+     "names": [
+      {
+       "printed": "SONNY'S",
+       "editions": [
+        "lollapalooza-2024"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:bud-light-seltzer",
+     "names": [
+      {
+       "printed": "BUD LIGHT SELTZER",
+       "editions": [
+        "lollapalooza-2021",
+        "lollapalooza-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:grubhub",
+     "names": [
+      {
+       "printed": "GRUBHUB",
+       "editions": [
+        "lollapalooza-2021"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:solana-x-perry-s",
+     "names": [
+      {
+       "printed": "SOLANA X PERRY'S",
+       "editions": [
+        "lollapalooza-2021",
+        "lollapalooza-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:bud-light-seltzer-sessions",
+     "names": [
+      {
+       "printed": "BUD LIGHT SELTZER SESSIONS",
+       "editions": [
+        "lollapalooza-2021",
+        "lollapalooza-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:discord",
+     "names": [
+      {
+       "printed": "DISCORD",
+       "editions": [
+        "lollapalooza-2022"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "lollapalooza:coinbase",
+     "names": [
+      {
+       "printed": "COINBASE",
+       "editions": [
+        "lollapalooza-2022",
+        "lollapalooza-2023"
        ]
       }
      ],
@@ -5608,6 +6559,133 @@
        "printed": "AmFam House",
        "editions": [
         "summerfest-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
+  "sziget": {
+   "lineages": [
+    {
+     "id": "sziget:main-stage",
+     "names": [
+      {
+       "printed": "Main Stage",
+       "editions": [
+        "sziget-2010"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sziget:world-music-stage",
+     "names": [
+      {
+       "printed": "World Music Stage",
+       "editions": [
+        "sziget-2010"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sziget:mtv-headbangers-ball-stage",
+     "names": [
+      {
+       "printed": "MTV Headbangers Ball Stage",
+       "editions": [
+        "sziget-2010"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sziget:a38-wan2-stage",
+     "names": [
+      {
+       "printed": "A38-wan2 stage",
+       "editions": [
+        "sziget-2010"
+       ]
+      },
+      {
+       "printed": "A38-WAN2 Stage",
+       "editions": [
+        "sziget-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sziget:party-arena",
+     "names": [
+      {
+       "printed": "Party Arena",
+       "editions": [
+        "sziget-2010"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sziget:pop-rock-main-stage",
+     "names": [
+      {
+       "printed": "Pop-Rock Main Stage",
+       "editions": [
+        "sziget-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sziget:rock-metal-main-stage",
+     "names": [
+      {
+       "printed": "Rock-Metal Main Stage",
+       "editions": [
+        "sziget-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sziget:pesti-est-world-music-main-stage",
+     "names": [
+      {
+       "printed": "Pesti Est World Music Main Stage",
+       "editions": [
+        "sziget-2011"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "sziget:burn-party-arena",
+     "names": [
+      {
+       "printed": "Burn Party Arena",
+       "editions": [
+        "sziget-2011"
        ]
       }
      ],
@@ -8213,6 +9291,137 @@
        "printed": "Oasis",
        "editions": [
         "ultra-miami-2026"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "ultra-miami:umf-radio",
+     "names": [
+      {
+       "printed": "UMF RADIO",
+       "editions": [
+        "ultra-miami-2024",
+        "ultra-miami-2025"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "ultra-miami:carl-cox-and-friends",
+     "names": [
+      {
+       "printed": "CARL COX & FRIENDS",
+       "editions": [
+        "ultra-miami-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "ultra-miami:resistance",
+     "names": [
+      {
+       "printed": "RESISTANCE",
+       "editions": [
+        "ultra-miami-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "ultra-miami:stage-7",
+     "names": [
+      {
+       "printed": "STAGE 7",
+       "editions": [
+        "ultra-miami-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "ultra-miami:i-m-in-a-state-of-trance",
+     "names": [
+      {
+       "printed": "I'M IN A STATE OF TRANCE",
+       "editions": [
+        "ultra-miami-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "ultra-miami:arcadia-the-spider",
+     "names": [
+      {
+       "printed": "ARCADIA THE SPIDER",
+       "editions": [
+        "ultra-miami-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "ultra-miami:biscayne",
+     "names": [
+      {
+       "printed": "BISCAYNE",
+       "editions": [
+        "ultra-miami-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "ultra-miami:live-arena",
+     "names": [
+      {
+       "printed": "LIVE ARENA",
+       "editions": [
+        "ultra-miami-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "ultra-miami:reflector",
+     "names": [
+      {
+       "printed": "REFLECTOR",
+       "editions": [
+        "ultra-miami-2019"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "ultra-miami:arrival",
+     "names": [
+      {
+       "printed": "ARRIVAL",
+       "editions": [
+        "ultra-miami-2019"
        ]
       }
      ],

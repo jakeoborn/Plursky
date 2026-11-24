@@ -13,6 +13,7 @@
 
 import { chromium } from 'playwright';
 import { spawn } from 'node:child_process';
+import { serverReady } from './lib/server-ready.mjs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -23,16 +24,12 @@ function startServer() {
   const proc = spawn('python3', ['-m', 'http.server', String(PORT), '--bind', '127.0.0.1'], {
     cwd: root, stdio: ['ignore', 'pipe', 'pipe'],
   });
-  return new Promise((resolve, reject) => {
-    const start = Date.now();
-    (function tick() {
-      fetch(`http://127.0.0.1:${PORT}/index.html`).then(r => {
-        if (r.ok) resolve(proc); else setTimeout(tick, 100);
-      }).catch(() => {
-        if (Date.now() - start > 5000) reject(new Error('server failed to start'));
-        else setTimeout(tick, 100);
-      });
-    })();
+  // serverReady reads each probe's body: an unread body crashes undici
+  // (`assert(!this.paused)`) when python's http.server closes the socket.
+  return serverReady(`http://127.0.0.1:${PORT}/index.html`).then(ok => {
+    if (ok) return proc;
+    proc.kill();
+    throw new Error('server failed to start');
   });
 }
 

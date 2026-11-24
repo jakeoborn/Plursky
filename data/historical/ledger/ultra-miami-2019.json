@@ -1,0 +1,121 @@
+{
+  "id": "ultra-miami-2019",
+  "method": "official_image_transcription",
+  "official": "https://ultramusicfestival.com/lineup/",
+  "window": [
+    "20190301",
+    "20190331"
+  ],
+  "pageCaptures": [
+    {
+      "captureTimestamp": "20190302101922",
+      "archivedUrl": "https://web.archive.org/web/20190302101922/https://ultramusicfestival.com/lineup/",
+      "sha256": "8429ed9afecb75b308e6dfcbff88f6052d68d32eb2a3ecfbb9adf74e5b4d5e72",
+      "images": []
+    },
+    {
+      "captureTimestamp": "20190309053343",
+      "archivedUrl": "https://web.archive.org/web/20190309053343/https://ultramusicfestival.com/lineup/",
+      "sha256": "eacd839e97d8b6456d4bbf09448f3677243a8b159bcc614242c471c58bcdc792",
+      "images": []
+    },
+    {
+      "captureTimestamp": "20190322061840",
+      "archivedUrl": "https://web.archive.org/web/20190322061840/https://ultramusicfestival.com/lineup/",
+      "sha256": "cbafa12053a11d23df5f7b0d9dc9822a7ed55bcf163eb3fefb3cd406db35fd99",
+      "images": [
+        "miami-lineup-times-2019-1.jpg"
+      ]
+    },
+    {
+      "captureTimestamp": "20190330072829",
+      "archivedUrl": "https://web.archive.org/web/20190330072829/https://ultramusicfestival.com/lineup/",
+      "sha256": "bfef16afc689b7f34e8a4f933836da9f39ee04e4d74fdd090c264d9d4d54058d",
+      "images": [
+        "miami-lineup-times-2019-5.jpg"
+      ]
+    }
+  ],
+  "days": [
+    {
+      "day": 1,
+      "date": "2019-03-29",
+      "pageCapture": "20190330072829",
+      "pageArchivedUrl": "https://web.archive.org/web/20190330072829/https://ultramusicfestival.com/lineup/",
+      "originalUrl": "https://ultramusicfestival.com/wp-content/uploads/2019/03/miami-lineup-times-2019-5.jpg",
+      "imageCapture": "20190331025830",
+      "imageArchivedUrl": "https://web.archive.org/web/20190331025830/https://ultramusicfestival.com/wp-content/uploads/2019/03/miami-lineup-times-2019-5.jpg",
+      "sha256": "b8dc541e7f913a5c7998b4e5d61e34935a14e40249f59d551d22de88e41f6fa7",
+      "bytes": 669413,
+      "contentType": "image/jpeg",
+      "cacheFile": "d388e0324fce013b20c47795.bin",
+      "revisions": [
+        {
+          "file": "miami-lineup-times-2019-1.jpg",
+          "firstSeen": "20190322061840"
+        },
+        {
+          "file": "miami-lineup-times-2019-5.jpg",
+          "firstSeen": "20190330072829"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2019-03-30",
+      "pageCapture": "20190330072829",
+      "pageArchivedUrl": "https://web.archive.org/web/20190330072829/https://ultramusicfestival.com/lineup/",
+      "originalUrl": "https://ultramusicfestival.com/wp-content/uploads/2019/03/miami-lineup-times-2019-5.jpg",
+      "imageCapture": "20190331025830",
+      "imageArchivedUrl": "https://web.archive.org/web/20190331025830/https://ultramusicfestival.com/wp-content/uploads/2019/03/miami-lineup-times-2019-5.jpg",
+      "sha256": "b8dc541e7f913a5c7998b4e5d61e34935a14e40249f59d551d22de88e41f6fa7",
+      "bytes": 669413,
+      "contentType": "image/jpeg",
+      "cacheFile": "d388e0324fce013b20c47795.bin",
+      "revisions": [
+        {
+          "file": "miami-lineup-times-2019-1.jpg",
+          "firstSeen": "20190322061840"
+        },
+        {
+          "file": "miami-lineup-times-2019-5.jpg",
+          "firstSeen": "20190330072829"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2019-03-31",
+      "pageCapture": "20190330072829",
+      "pageArchivedUrl": "https://web.archive.org/web/20190330072829/https://ultramusicfestival.com/lineup/",
+      "originalUrl": "https://ultramusicfestival.com/wp-content/uploads/2019/03/miami-lineup-times-2019-5.jpg",
+      "imageCapture": "20190331025830",
+      "imageArchivedUrl": "https://web.archive.org/web/20190331025830/https://ultramusicfestival.com/wp-content/uploads/2019/03/miami-lineup-times-2019-5.jpg",
+      "sha256": "b8dc541e7f913a5c7998b4e5d61e34935a14e40249f59d551d22de88e41f6fa7",
+      "bytes": 669413,
+      "contentType": "image/jpeg",
+      "cacheFile": "d388e0324fce013b20c47795.bin",
+      "revisions": [
+        {
+          "file": "miami-lineup-times-2019-1.jpg",
+          "firstSeen": "20190322061840"
+        },
+        {
+          "file": "miami-lineup-times-2019-5.jpg",
+          "firstSeen": "20190330072829"
+        }
+      ]
+    }
+  ],
+  "dropped": [
+    {
+      "day": 2,
+      "stage": "MEGASTRUCTURE",
+      "start": "17:00",
+      "end": null,
+      "billing": "SECRET GUEST",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    }
+  ]
+}

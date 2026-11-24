@@ -993,6 +993,96 @@ var _lineupUnsplitRange = n => {
     return "";
   }
 };
+function _lineupHeadliners(dayArtists) {
+  var timed = a => !!a.start && !setTimesUnconfirmed(a);
+  var late = (x, y) => (timed(y) ? toNightMin(y.start) : -1) - (timed(x) ? toNightMin(x.start) : -1);
+  var billed = dayArtists.filter(isTopBilled);
+  if (billed.length) return {
+    acts: billed.slice().sort(late).slice(0, 3),
+    billed: true
+  };
+  var acts = [];
+  var _loop3 = function (st) {
+      var sets = dayArtists.filter(a => a.stage === st.id && timed(a));
+      if (!sets.length) return 0;
+      acts.push(sets.slice().sort(late)[0]);
+      if (acts.length === 3) return 1;
+    },
+    _ret;
+  for (var st of STAGES) {
+    _ret = _loop3(st);
+    if (_ret === 0) continue;
+    if (_ret === 1) break;
+  }
+  return {
+    acts,
+    billed: false
+  };
+}
+function LineupHeadliners({
+  acts,
+  billed,
+  dayLabel,
+  onOpen
+}) {
+  var rec = typeof festivalArtFor === "function" ? festivalArtFor(FESTIVAL_CONFIG.id) : null;
+  var [failed, setFailed] = React.useState(false);
+  var photo = rec && /^festival-art\/[a-z0-9-]+\.webp$/.test(rec.card || "") && !failed ? rec.card : null;
+  var credit = photo && rec.author && rec.licenseId && rec.licenseUrl ? {
+    author: rec.author,
+    sourceUrl: rec.sourcePage,
+    license: rec.licenseId,
+    licenseUrl: rec.licenseUrl,
+    changes: rec.changes
+  } : null;
+  var word = billed ? topTierLabel(acts.length > 1) : "Closing the night";
+  return React.createElement("section", {
+    "data-lineup-headliners": true,
+    "aria-label": `${dayLabel} ${word.toLowerCase()}`,
+    style: {
+      margin: "8px 0 12px"
+    }
+  }, React.createElement("div", {
+    className: `lh-card${photo ? "" : " plain"}`
+  }, photo && React.createElement("span", {
+    className: "lh-media",
+    "aria-hidden": "true"
+  }, React.createElement("img", {
+    src: `./${photo}`,
+    alt: "",
+    decoding: "async",
+    onError: () => setFailed(true)
+  }), React.createElement("span", {
+    className: "lh-scrim"
+  })), React.createElement("span", {
+    className: "lh-eyebrow"
+  }, dayLabel, " · ", word), React.createElement("ol", {
+    className: "lh-list"
+  }, acts.map((a, i) => {
+    var stage = (STAGES.find(s => s.id === a.stage) || UNPLACED_STAGE).name;
+    var when = a.start && !setTimesUnconfirmed(a) ? fmt12(a.start) : null;
+    return React.createElement("li", {
+      key: a.id
+    }, React.createElement("button", {
+      "data-lineup-headliner": a.id,
+      className: "lh-act",
+      onClick: () => onOpen(a.id),
+      "aria-label": `${a.name}${when ? ", " + when : ""}${stage ? ", " + stage : ""}`
+    }, React.createElement("span", {
+      className: `lh-name${i === 0 ? " top" : ""}`
+    }, actDisplayName(a.name)), React.createElement("span", {
+      className: "lh-meta"
+    }, [when, stage].filter(Boolean).join(" · "))));
+  }))), credit && typeof PhotoCredit === "function" && React.createElement(PhotoCredit, {
+    className: "spot-credit",
+    credit: credit,
+    style: {
+      padding: "0 2px",
+      lineHeight: 1.35,
+      overflowWrap: "anywhere"
+    }
+  }));
+}
 function LineupScreen({
   state,
   setState
@@ -1165,6 +1255,8 @@ function LineupScreen({
   React.useLayoutEffect(() => {
     var tail = document.querySelector("[data-lineup-scroll] [data-open-tail]");
     if (tail) tail.style.height = "0px";
+    var sc = viewMode === "list" && document.querySelector("[data-lineup-scroll]");
+    if (sc && sc.scrollTop < 24 && collapsedRef.current) setCollapsed(false);
   }, [filter, stageFilter, genreFilter, tierFilter, sortBy, q]);
   React.useLayoutEffect(() => {
     if (viewMode === "list") {
@@ -2107,7 +2199,23 @@ function LineupScreen({
       marginTop: 2,
       fontWeight: 400
     }
-  }, "The full lineup is here. Save the acts you want and the schedule fills itself in as soon as ", FESTIVAL_CONFIG.shortName || "the festival", " publishes it.")), gridLead && (() => {
+  }, "The full lineup is here. Save the acts you want and the schedule fills itself in as soon as ", FESTIVAL_CONFIG.shortName || "the festival", " publishes it.")), viewMode === "list" && filter === "all" && !q.trim() && !_chipFilterActive && NOW.night !== day && (() => {
+    var {
+      acts,
+      billed
+    } = _lineupHeadliners(dayArtists);
+    if (!acts.length) return null;
+    var dayLabel = FESTIVAL_CONFIG.dayDates?.[day]?.name || DAYS.find(d => d.n === day)?.label || `Day ${day}`;
+    return React.createElement(LineupHeadliners, {
+      acts: acts,
+      billed: billed,
+      dayLabel: dayLabel,
+      onOpen: id => setState({
+        ...state,
+        artist: id
+      })
+    });
+  })(), gridLead && (() => {
     var dayMeta = DAYS.find(x => x.n === day);
     var dayArt = lineupFor(weekendFilter).filter(a => a.day === day).filter(a => weekendFilter === "all" || a.weekend === weekendFilter || a.weekend === "both");
     return React.createElement("div", {
@@ -3060,7 +3168,7 @@ function SavedSidebar({
 function fitGridBlocks(root) {
   if (!root) return;
   var cols = new Map();
-  var _loop3 = function (b) {
+  var _loop4 = function (b) {
       var name = b.querySelector("[data-grid-name]"),
         time = b.querySelector("[data-grid-time]");
       if (!name) return 0;
@@ -3088,10 +3196,10 @@ function fitGridBlocks(root) {
         b.dataset.gridGrown = "1";
       }
     },
-    _ret;
+    _ret2;
   for (var b of root.querySelectorAll("[data-grid-block]")) {
-    _ret = _loop3(b);
-    if (_ret === 0) continue;
+    _ret2 = _loop4(b);
+    if (_ret2 === 0) continue;
   }
   for (var col of [...cols.values()].flatMap(m => [...m.values()])) {
     col.sort((a, b) => a.dataset.top - b.dataset.top);
@@ -3522,10 +3630,11 @@ function TimelineGrid({
       }
     }, HOURS.map(h => React.createElement("div", {
       key: h.label,
+      "data-grid-hour": true,
       className: "duo-data-s duo-ink3",
       style: {
         position: "absolute",
-        top: minToTop(h.mins) - 7,
+        top: Math.max(0, minToTop(h.mins) - 7),
         right: 6,
         fontSize: 11,
         whiteSpace: "nowrap"
@@ -4530,7 +4639,7 @@ function planShareDraft(savedIds, displayName, cfg = FESTIVAL_CONFIG, now = Date
   var acts = activeLineup(list).filter(a => ids.has(a.id)).sort((a, b) => a.day - b.day || compareSetsByTime(a, b, STAGES));
   var rows = [];
   var left = 0;
-  var _loop4 = function (a) {
+  var _loop5 = function (a) {
     var t = setTimingMin(a);
     var dd = artistDayDate(a, now, list),
       base = cfg.dayDates && cfg.dayDates[a.day];
@@ -4556,7 +4665,7 @@ function planShareDraft(savedIds, displayName, cfg = FESTIVAL_CONFIG, now = Date
     });
   };
   for (var a of acts) {
-    if (_loop4(a)) continue;
+    if (_loop5(a)) continue;
   }
   rows.sort((x, y) => x.night.midnightUtc - y.night.midnightUtc);
   if (typeof cfg.endMs !== "number") return {
@@ -5241,7 +5350,7 @@ async function shareLineupImage(state) {
     label: d.label,
     date: d.date.toUpperCase()
   }]));
-  var _loop5 = async function (a) {
+  var _loop6 = async function (a) {
     if (a.day !== lastDay) {
       lastDay = a.day;
       var dm = dayMeta[a.day];
@@ -5284,7 +5393,7 @@ async function shareLineupImage(state) {
     if (y > H - 180) return 1;
   };
   for (var a of saved) {
-    if (await _loop5(a)) break;
+    if (await _loop6(a)) break;
   }
   ctx.fillStyle = "#1a120d";
   ctx.font = '500 22px "Geist Mono", monospace';

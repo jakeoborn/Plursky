@@ -1,0 +1,119 @@
+{
+ "id": "lollapalooza-2021",
+ "days": [
+  {
+   "day": 1,
+   "date": "2021-07-29",
+   "sha256": "b93ab8e9f87bfee8096e696ecaa34827ad48438a6d7ea687841ea3b6370a6eef",
+   "originalUrl": "https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/610312d5cdacfba4938a1a9a_LP21-GRID-V15_01-Thurs-01.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20211205165625/https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/610312d5cdacfba4938a1a9a_LP21-GRID-V15_01-Thurs-01.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-19T23:08:25.141Z",
+   "rowsConfirmed": 48,
+   "note": "Header read off the graphic: THURSDAY, JULY 29, 2021. Printed hour axis 12 PM to 10 PM; every start reads its meridiem off that axis. BUD LIGHT SELTZER SESSIONS and BONUS TRACKS footer strips hand-transcribed; they print a start only (openEnd). BONUS TRACKS rows are kept as printed and dropped by the existing Bonus Tracks stage rule. Stage names as printed in the header (SOLANA X PERRY'S, LAKE SHORE). MOTHERFOLK is printed under a NEW ADDITION! tag. Closing T-MOBILE set (MILEY CYRUS) prints a start only (openEnd).",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 43,
+   "corrections": [
+    "BLACK PUMAS: artist \"BLACK W PUMAS\" → \"BLACK PUMAS\"",
+    "PLAYBOI CARTI: artist \"PLAYBOI BS CARTI\" → \"PLAYBOI CARTI\"",
+    "MILEY CYRUS: artist \"MILEY 8 CYRUS\" → \"MILEY CYRUS\""
+   ],
+   "ocrMissed": [
+    "BUD LIGHT SELTZER SESSIONS 14:30 CHRISTIAN FRENCH",
+    "BUD LIGHT SELTZER SESSIONS 16:30 ALMOST MONDAY",
+    "BUD LIGHT SELTZER SESSIONS 18:30 CLEVER",
+    "BONUS TRACKS 18:25 HULU INTERVIEW W/ STEVE AOKI",
+    "BONUS TRACKS 18:45 AMORPHOUS"
+   ],
+   "ocrExtra": []
+  },
+  {
+   "day": 2,
+   "date": "2021-07-30",
+   "sha256": "be548368fb79abe05795c79fe89456d058cf80c0d5bccc7575beb3c9359fb29d",
+   "originalUrl": "https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/61045e1ea63e4eae86ba4e4a_LP21-GRID-V15_02-Fri%20(1).png",
+   "imageArchivedUrl": "https://web.archive.org/web/20211126225138/https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/61045e1ea63e4eae86ba4e4a_LP21-GRID-V15_02-Fri%20(1).png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-19T23:08:25.161Z",
+   "rowsConfirmed": 50,
+   "note": "Header read off the graphic: FRIDAY, JULY 30, 2021. The chosen file is the later re-upload \"LP21-GRID-V15_02-Fri (1).png\". Printed hour axis 12 PM to 10 PM; every start reads its meridiem off that axis. BUD LIGHT SELTZER SESSIONS and BONUS TRACKS footer strips hand-transcribed; they print a start only (openEnd). BONUS TRACKS rows are kept as printed and dropped by the existing Bonus Tracks stage rule. Stage names as printed in the header (SOLANA X PERRY'S, LAKE SHORE). $UICIDEBOY$ is printed with dollar signs. Closing T-MOBILE set (TYLER, THE CREATOR) prints a start only (openEnd).",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 43,
+   "corrections": [
+    "$UICIDEBOY$: artist \"SUICIDEBOYS\" → \"$UICIDEBOY$\"",
+    "RODDY RICCH: artist \"RODDY ®w RICCH\" → \"RODDY RICCH\"",
+    "TYLER, THE CREATOR: artist \"TVLER THE CREATOR\" → \"TYLER, THE CREATOR\""
+   ],
+   "ocrMissed": [
+    "BUD LIGHT SELTZER SESSIONS 14:30 JOY OLADOKUN",
+    "BUD LIGHT SELTZER SESSIONS 16:30 TAI VERDES",
+    "BUD LIGHT SELTZER SESSIONS 18:30 JAKE WESLEY ROGERS",
+    "BONUS TRACKS 15:10 HULU INTERVIEW W/ WHITE REAPER",
+    "BONUS TRACKS 16:00 TOBI LOU",
+    "BONUS TRACKS 16:45 BOB'S DANCE SHOP",
+    "BONUS TRACKS 18:45 BEST OF CHICAGO DRAG"
+   ],
+   "ocrExtra": []
+  },
+  {
+   "day": 3,
+   "date": "2021-07-31",
+   "sha256": "c07b6777b34f2e78285e59ba92afd6064c852eeb35742c234d17f4de3fc4d24d",
+   "originalUrl": "https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/6105b66e2f3ee98b2039445a_LP21-GRID-V15_03-Sat%20(2).png",
+   "imageArchivedUrl": "https://web.archive.org/web/20211205182449/https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/6105b66e2f3ee98b2039445a_LP21-GRID-V15_03-Sat%20(2).png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-19T23:08:25.164Z",
+   "rowsConfirmed": 49,
+   "note": "Header read off the graphic: SATURDAY, JULY 31, 2021. The chosen file is the later re-upload \"LP21-GRID-V15_03-Sat (2).png\". Printed hour axis 12 PM to 10 PM; every start reads its meridiem off that axis. BUD LIGHT SELTZER SESSIONS and BONUS TRACKS footer strips hand-transcribed; they print a start only (openEnd). BONUS TRACKS rows are kept as printed and dropped by the existing Bonus Tracks stage rule. Stage names as printed in the header (SOLANA X PERRY'S, LAKE SHORE). Two footer slots print SPECIAL GUEST (unnamed slots). Closing T-MOBILE set (POST MALONE) prints a start only (openEnd).",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 43,
+   "corrections": [
+    "LIMP BIZKIT: artist \"LIMP B5 BIZKIT\" → \"LIMP BIZKIT\"",
+    "PORCHES: artist \"ORCHE\" → \"PORCHES\"",
+    "WENZDAY: artist \"WENZDAV\" → \"WENZDAY\"",
+    "VNSSA: artist \"UNSSA\" → \"VNSSA\"",
+    "YOUNG THE GIANT: artist \"YOUNGBE THE GIANT\" → \"YOUNG THE GIANT\"",
+    "MEGAN THEE STALLION: artist \"MFGAN G THEE STALLION\" → \"MEGAN THEE STALLION\""
+   ],
+   "ocrMissed": [
+    "BUD LIGHT SELTZER SESSIONS 14:30 JAC ROSS",
+    "BUD LIGHT SELTZER SESSIONS 16:30 RENCE",
+    "BUD LIGHT SELTZER SESSIONS 18:00 SPECIAL GUEST",
+    "BONUS TRACKS 14:45 SPECIAL GUEST",
+    "BONUS TRACKS 16:45 BOB'S DANCE SHOP",
+    "BONUS TRACKS 18:45 BEST OF CHICAGO DRAG"
+   ],
+   "ocrExtra": []
+  },
+  {
+   "day": 4,
+   "date": "2021-08-01",
+   "sha256": "4fc2fc7876ad967e8829fdcb7ee15a6b618a78a0c0cc53d61fbfb27dc7a8b76c",
+   "originalUrl": "https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/61001c57066f2e518d546704_LP21-GRID-V12_04-Sun.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20210730010655/https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/61001c57066f2e518d546704_LP21-GRID-V12_04-Sun.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-19T23:08:25.165Z",
+   "rowsConfirmed": 51,
+   "note": "Header read off the graphic: SUNDAY, AUGUST 1, 2021. Printed hour axis 12 PM to 10 PM; every start reads its meridiem off that axis. BUD LIGHT SELTZER SESSIONS and BONUS TRACKS footer strips hand-transcribed; they print a start only (openEnd). BONUS TRACKS rows are kept as printed and dropped by the existing Bonus Tracks stage rule. Stage names as printed in the header (SOLANA X PERRY'S, LAKE SHORE). MUSIC IN THE KEY OF CHICAGO is kept as billed. Two BONUS TRACKS slots print SPECIAL GUEST. Closing T-MOBILE set (FOO FIGHTERS) prints a start only (openEnd).",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 45,
+   "corrections": [
+    "DERMOT KENNEDY: artist \"DERMOT& KENNEDY\" → \"DERMOT KENNEDY\"",
+    "OTTTO: artist \"OTTTО\" → \"OTTTO\"",
+    "YELLOW CLAW: artist \"VELLOW CLAW\" → \"YELLOW CLAW\"",
+    "FLIPP DINERO: artist \"PO UNE aTTbINLI\" → \"FLIPP DINERO\"",
+    "YOUNG THUG: artist \"YOUNG BE THUG\" → \"YOUNG THUG\"",
+    "MODEST MOUSE: artist \"MODEST58 MOUSE\" → \"MODEST MOUSE\""
+   ],
+   "ocrMissed": [
+    "BUD LIGHT SELTZER SESSIONS 14:30 MOB RICH",
+    "BUD LIGHT SELTZER SESSIONS 16:30 RIZ LA VIE",
+    "BUD LIGHT SELTZER SESSIONS 18:30 SARAH BARRIOS",
+    "BONUS TRACKS 14:30 SPECIAL GUEST",
+    "BONUS TRACKS 16:30 SPECIAL GUEST",
+    "BONUS TRACKS 18:15 BEST OF CHICAGO DRAG"
+   ],
+   "ocrExtra": []
+  }
+ ]
+}

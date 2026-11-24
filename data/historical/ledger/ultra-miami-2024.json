@@ -1,0 +1,129 @@
+{
+  "id": "ultra-miami-2024",
+  "method": "official_image_transcription",
+  "official": "https://ultramusicfestival.com/set-times/",
+  "window": [
+    "20240301",
+    "20240331"
+  ],
+  "pageCaptures": [
+    {
+      "captureTimestamp": "20240321044559",
+      "archivedUrl": "https://web.archive.org/web/20240321044559/https://ultramusicfestival.com/set-times/",
+      "sha256": "a3d6bc2b69b35aab716647f4364f53c04c96e516f4981b701fddbb57bd56ff0b",
+      "images": [
+        "ULTRA2024_SET-TIMES_22-1600x1000.jpg",
+        "ULTRA2024_SET-TIMES_23-2-1600x1000.jpeg",
+        "ULTRA2024_SET-TIMES_24-2-1600x1000.jpg"
+      ]
+    },
+    {
+      "captureTimestamp": "20240323225029",
+      "archivedUrl": "https://web.archive.org/web/20240323225029/https://ultramusicfestival.com/set-times/",
+      "sha256": "7f44d4db7ed8806b0605238749d14c77d62479c0bfbde1a68a5b8c2742744ed4",
+      "images": [
+        "ULTRA2024_SET-TIMES_22-1600x1000.jpg",
+        "ULTRA2024_SET-TIMES_Sat-Complete-1-1600x1000.jpg",
+        "ULTRA2024_SET-TIMES_24-2-1600x1000.jpg"
+      ]
+    },
+    {
+      "captureTimestamp": "20240324200008",
+      "archivedUrl": "https://web.archive.org/web/20240324200008/https://ultramusicfestival.com/set-times/",
+      "sha256": "73f6beb3c671a9ea36a9d5b436d9241c51f28ab2dfb1a294818aeae7909a7fe7",
+      "images": [
+        "ULTRA2024_SET-TIMES_22-1600x1000.jpg",
+        "ULTRA2024_SET-TIMES_Sat-Complete-1-1600x1000.jpg",
+        "ULTRA2024_SET-TIMES_Sun-Complete-2-1600x1000.jpg"
+      ]
+    },
+    {
+      "captureTimestamp": "20240327233123",
+      "archivedUrl": "https://web.archive.org/web/20240327233123/https://ultramusicfestival.com/set-times/",
+      "sha256": "eb76f3ce820f10b25127be29a65758888c80f5b1ca59ed88bc7ad5e3042f51de",
+      "images": [
+        "ULTRA2024_SET-TIMES_22-1600x1000.jpg",
+        "ULTRA2024_SET-TIMES_Sat-Complete-1-1600x1000.jpg",
+        "ULTRA2024_SET-TIMES_Sun-Complete-2-1600x1000.jpg"
+      ]
+    }
+  ],
+  "days": [
+    {
+      "day": 1,
+      "date": "2024-03-22",
+      "pageCapture": "20240327233123",
+      "pageArchivedUrl": "https://web.archive.org/web/20240327233123/https://ultramusicfestival.com/set-times/",
+      "originalUrl": "https://ultramusicfestival.com/wp-content/uploads/2024/03/ULTRA2024_SET-TIMES_22-1600x1000.jpg",
+      "imageCapture": "20240329132933",
+      "imageArchivedUrl": "https://web.archive.org/web/20240329132933/https://ultramusicfestival.com/wp-content/uploads/2024/03/ULTRA2024_SET-TIMES_22-1600x1000.jpg",
+      "sha256": "371335f74335c3fafeec9b9f21fcf2bebb86d44115cf2dd0e026042d361a8a62",
+      "bytes": 281874,
+      "contentType": "image/jpeg",
+      "cacheFile": "7c634306c421f48c6e6a9bfe.bin",
+      "revisions": [
+        {
+          "file": "ULTRA2024_SET-TIMES_22-1600x1000.jpg",
+          "firstSeen": "20240321044559"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2024-03-23",
+      "pageCapture": "20240327233123",
+      "pageArchivedUrl": "https://web.archive.org/web/20240327233123/https://ultramusicfestival.com/set-times/",
+      "originalUrl": "https://ultramusicfestival.com/wp-content/uploads/2024/03/ULTRA2024_SET-TIMES_Sat-Complete-1-1600x1000.jpg",
+      "imageCapture": "20240330001003",
+      "imageArchivedUrl": "https://web.archive.org/web/20240330001003/https://ultramusicfestival.com/wp-content/uploads/2024/03/ULTRA2024_SET-TIMES_Sat-Complete-1-1600x1000.jpg",
+      "sha256": "804ca44326d68fc21e80c8edda637ec7780a9b95a4bbf4d4e39df3f37d53d42e",
+      "bytes": 289354,
+      "contentType": "image/jpeg",
+      "cacheFile": "0a1293d77f4bbab7a5dc93c9.bin",
+      "revisions": [
+        {
+          "file": "ULTRA2024_SET-TIMES_23-2-1600x1000.jpeg",
+          "firstSeen": "20240321044559"
+        },
+        {
+          "file": "ULTRA2024_SET-TIMES_Sat-Complete-1-1600x1000.jpg",
+          "firstSeen": "20240323225029"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2024-03-24",
+      "pageCapture": "20240327233123",
+      "pageArchivedUrl": "https://web.archive.org/web/20240327233123/https://ultramusicfestival.com/set-times/",
+      "originalUrl": "https://ultramusicfestival.com/wp-content/uploads/2024/03/ULTRA2024_SET-TIMES_Sun-Complete-2-1600x1000.jpg",
+      "imageCapture": "20240331004356",
+      "imageArchivedUrl": "https://web.archive.org/web/20240331004356/https://ultramusicfestival.com/wp-content/uploads/2024/03/ULTRA2024_SET-TIMES_Sun-Complete-2-1600x1000.jpg",
+      "sha256": "37d325d0dd3ca7d87fccedb18e8fbc77fe2f02a803dc67971c11363c2c218dcb",
+      "bytes": 302391,
+      "contentType": "image/jpeg",
+      "cacheFile": "45bc99572a94ebe73244e894.bin",
+      "revisions": [
+        {
+          "file": "ULTRA2024_SET-TIMES_24-2-1600x1000.jpg",
+          "firstSeen": "20240321044559"
+        },
+        {
+          "file": "ULTRA2024_SET-TIMES_Sun-Complete-2-1600x1000.jpg",
+          "firstSeen": "20240324200008"
+        }
+      ]
+    }
+  ],
+  "dropped": [
+    {
+      "day": 1,
+      "stage": "UMF RADIO",
+      "start": "20:00",
+      "end": null,
+      "billing": "SPECIAL GUEST",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    }
+  ]
+}

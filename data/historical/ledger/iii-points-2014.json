@@ -1,0 +1,81 @@
+{
+  "id": "iii-points-2014",
+  "method": "official_image_transcription",
+  "official": "http://iiipoints.com/schedule/",
+  "window": [
+    "20141001",
+    "20141231"
+  ],
+  "pageCaptures": [
+    {
+      "captureTimestamp": "20141020054914",
+      "archivedUrl": "https://web.archive.org/web/20141020054914/http://iiipoints.com/schedule/",
+      "sha256": "3614e3d97b0edf75149880ffc5fcb44b072e59378d006a5bcaf44b93f84d7e33",
+      "images": [
+        "friday.png",
+        "saturday.png",
+        "sunday.png"
+      ]
+    }
+  ],
+  "days": [
+    {
+      "day": 1,
+      "date": "2014-10-10",
+      "pageCapture": "20141020054914",
+      "pageArchivedUrl": "https://web.archive.org/web/20141020054914/http://iiipoints.com/schedule/",
+      "originalUrl": "http://www.iiipoints.com/Schedule/friday.png",
+      "imageCapture": "20141221130014",
+      "imageArchivedUrl": "https://web.archive.org/web/20141221130014/http://www.iiipoints.com/Schedule/friday.png",
+      "sha256": "0b95ed8e6cf9e8c64e9a0b6a484dd832b7f0910757e6c2dd69658934f2a388ae",
+      "bytes": 469032,
+      "contentType": "image/png",
+      "cacheFile": "8a5488d50fa4fb13868c344b.bin",
+      "revisions": [
+        {
+          "file": "friday.png",
+          "firstSeen": "20141020054914"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2014-10-11",
+      "pageCapture": "20141020054914",
+      "pageArchivedUrl": "https://web.archive.org/web/20141020054914/http://iiipoints.com/schedule/",
+      "originalUrl": "http://www.iiipoints.com/Schedule/saturday.png",
+      "imageCapture": "20141221122016",
+      "imageArchivedUrl": "https://web.archive.org/web/20141221122016/http://www.iiipoints.com/Schedule/saturday.png",
+      "sha256": "8dab31522798917a0c77fc7b262b56983364cfda79f7aae000a131c3c894db7f",
+      "bytes": 407413,
+      "contentType": "image/png",
+      "cacheFile": "2f15eb1f25b282df06d8f556.bin",
+      "revisions": [
+        {
+          "file": "saturday.png",
+          "firstSeen": "20141020054914"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2014-10-12",
+      "pageCapture": "20141020054914",
+      "pageArchivedUrl": "https://web.archive.org/web/20141020054914/http://iiipoints.com/schedule/",
+      "originalUrl": "http://www.iiipoints.com/Schedule/sunday.png",
+      "imageCapture": "20141221122459",
+      "imageArchivedUrl": "https://web.archive.org/web/20141221122459/http://www.iiipoints.com/Schedule/sunday.png",
+      "sha256": "819fbb097889c705f87807adb90eaaafca4f4c8b48c118df55958c9d48daea25",
+      "bytes": 457202,
+      "contentType": "image/png",
+      "cacheFile": "3e9fe141e48310326c2db7dc.bin",
+      "revisions": [
+        {
+          "file": "sunday.png",
+          "firstSeen": "20141020054914"
+        }
+      ]
+    }
+  ],
+  "dropped": []
+}

@@ -197,10 +197,15 @@
 
   const CONFIG = {
     id:        "decadence-colorado-2026",
-    officialEvent: { website: "https://decadencenye.com/", observedAt: "2026-11-11" },
+    officialEvent: { website: "https://decadencenye.com/", tickets: "https://decadencenye.com/tickets/ga-tickets/", observedAt: "2026-11-22" },
     // Where the lineup rows came from (the SOURCE note above), as data so the
     // public /f/ page can cite it. observedAt = the date it was read.
     lineupSource: { url: "https://decadencenye.com/lineup/", observedAt: "2026-09-10", official: true },
+    // Where the venue was read. The home and ticket pages say only "Denver,
+    // CO"; /venue-info/ names the building and address (re-read 2026-11-17,
+    // SPEC-212 W2, matching `venue` below). The truth audit reads this page
+    // when the official home page does not name the venue.
+    venueSource: { url: "https://decadencenye.com/venue-info/", observedAt: "2026-11-17", official: true },
     name:      "Decadence Colorado 2026",
     shortName: "Decadence",
     brand:     "Decadence NYE",

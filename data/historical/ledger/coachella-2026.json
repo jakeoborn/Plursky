@@ -1,0 +1,300 @@
+{
+  "id": "coachella-2026",
+  "method": "official_image_transcription",
+  "official": "https://www.coachella.com/schedule",
+  "window": [
+    "20260401",
+    "20260531"
+  ],
+  "pageCaptures": [
+    {
+      "captureTimestamp": "20260407043442",
+      "archivedUrl": "https://web.archive.org/web/20260407043442/https://www.coachella.com/schedule",
+      "sha256": "47c90c47e9fed7d90ace4261f13a7453e60a54435ccf3630100cf126ef0085bf",
+      "images": [
+        "set-times-friday.jpg",
+        "set-times-sat.jpg",
+        "set-times-sun.jpg"
+      ]
+    },
+    {
+      "captureTimestamp": "20260407223524",
+      "archivedUrl": "https://web.archive.org/web/20260407223524/https://www.coachella.com/schedule",
+      "sha256": "6f51b5d8d1b0d0ab5cfe819c63503d2ce8580c5c1ec36c463fe2de2ac7b49c9d",
+      "images": [
+        "set-times-friday.jpg",
+        "set-times-sat.jpg",
+        "set-times-sun.jpg"
+      ]
+    },
+    {
+      "captureTimestamp": "20260410004152",
+      "archivedUrl": "https://web.archive.org/web/20260410004152/https://www.coachella.com/schedule",
+      "sha256": "d197c3a65d75b03ac9c642665004ccadac0d7cfe1ea22a76608b8a1ceb9122ba",
+      "images": [
+        "set-times-friday.jpg",
+        "set-times-sat.jpg",
+        "set-times-sun.jpg"
+      ]
+    },
+    {
+      "captureTimestamp": "20260412014431",
+      "archivedUrl": "https://web.archive.org/web/20260412014431/https://www.coachella.com/schedule",
+      "sha256": "a72ab9f60ce23af9f5d2de65da3106c2cc48d4202359b16a87afe88c817b8d50",
+      "images": [
+        "set-times-friday.jpg",
+        "set-times-sat.jpg",
+        "set-times-sun.jpg"
+      ]
+    },
+    {
+      "captureTimestamp": "20260414221953",
+      "archivedUrl": "https://web.archive.org/web/20260414221953/https://www.coachella.com/schedule",
+      "sha256": "81c6c12f4230e0b3add2ef0735ea9f6fa26156359d5db5658d048cea3151322f",
+      "images": [
+        "set-times-friday.jpg",
+        "set-times-sat.jpg",
+        "set-times-sun.jpg"
+      ]
+    },
+    {
+      "captureTimestamp": "20260415194928",
+      "archivedUrl": "https://web.archive.org/web/20260415194928/https://www.coachella.com/schedule",
+      "sha256": "5d8a3640e77470939fd8574ae8cc0bea4f4464de163c2c8fec8cb17b4bdebc7e",
+      "images": [
+        "set-times-fri-wk2.jpg",
+        "set-times-sat-wk2.jpg",
+        "set-times-sun-wk2.jpg"
+      ]
+    },
+    {
+      "captureTimestamp": "20260418002355",
+      "archivedUrl": "https://web.archive.org/web/20260418002355/https://www.coachella.com/schedule",
+      "sha256": "55351a16656447255c3c39e8ff8e7899da3d4bb747170f2b7585169f62b7b80d",
+      "images": [
+        "set-times-fri-wk2.jpg",
+        "set-times-sat-wk2.jpg",
+        "set-times-sun-wk2.jpg"
+      ]
+    }
+  ],
+  "days": [
+    {
+      "day": 1,
+      "date": "2026-04-10",
+      "pageCapture": "20260414221953",
+      "pageArchivedUrl": "https://web.archive.org/web/20260414221953/https://www.coachella.com/schedule",
+      "originalUrl": "https://aegwebprod.blob.core.windows.net/content/coachella-2026/set-times-friday.jpg",
+      "imageCapture": "20260414221954",
+      "imageArchivedUrl": "https://web.archive.org/web/20260414221954/https://aegwebprod.blob.core.windows.net/content/coachella-2026/set-times-friday.jpg",
+      "sha256": "1c2acf04a7e478823a1e7ae4cc125aa581ef38243d38aa626d24f0ac516c7c2a",
+      "bytes": 520160,
+      "contentType": "image/jpeg",
+      "cacheFile": "7f558432074e879512ab5057.bin",
+      "revisions": [
+        {
+          "file": "set-times-friday.jpg",
+          "firstSeen": "20260407043442"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2026-04-11",
+      "pageCapture": "20260414221953",
+      "pageArchivedUrl": "https://web.archive.org/web/20260414221953/https://www.coachella.com/schedule",
+      "originalUrl": "https://aegwebprod.blob.core.windows.net/content/coachella-2026/set-times-sat.jpg",
+      "imageCapture": "20260414221954",
+      "imageArchivedUrl": "https://web.archive.org/web/20260414221954/https://aegwebprod.blob.core.windows.net/content/coachella-2026/set-times-sat.jpg",
+      "sha256": "a1edd3e958c745e129936caedd8af301f944bea276362d2538c8734d5f59d93c",
+      "bytes": 440923,
+      "contentType": "image/jpeg",
+      "cacheFile": "399824c5d3e87c876c0c5857.bin",
+      "revisions": [
+        {
+          "file": "set-times-sat.jpg",
+          "firstSeen": "20260407043442"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2026-04-12",
+      "pageCapture": "20260414221953",
+      "pageArchivedUrl": "https://web.archive.org/web/20260414221953/https://www.coachella.com/schedule",
+      "originalUrl": "https://aegwebprod.blob.core.windows.net/content/coachella-2026/set-times-sun.jpg",
+      "imageCapture": "20260414221954",
+      "imageArchivedUrl": "https://web.archive.org/web/20260414221954/https://aegwebprod.blob.core.windows.net/content/coachella-2026/set-times-sun.jpg",
+      "sha256": "71bf6f7a48f04d408ea10d2ef94d684fa9d42f44f63bd4ea5cdc845120cd34db",
+      "bytes": 569431,
+      "contentType": "image/jpeg",
+      "cacheFile": "1536c4eac9f87de37a3e9f4a.bin",
+      "revisions": [
+        {
+          "file": "set-times-sun.jpg",
+          "firstSeen": "20260407043442"
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2026-04-17",
+      "pageCapture": "20260418002355",
+      "pageArchivedUrl": "https://web.archive.org/web/20260418002355/https://www.coachella.com/schedule",
+      "originalUrl": "https://aegwebprod.blob.core.windows.net/content/coachella-2026/set-times-fri-wk2.jpg",
+      "imageCapture": "20260418002357",
+      "imageArchivedUrl": "https://web.archive.org/web/20260418002357/https://aegwebprod.blob.core.windows.net/content/coachella-2026/set-times-fri-wk2.jpg",
+      "sha256": "63be4e7c4cfecdb9f60b6fa56c6ff50c58138704ab888ec3edc33039ba86c0dd",
+      "bytes": 318608,
+      "contentType": "image/jpeg",
+      "cacheFile": "ba8ab7e20acd633cbd157d14.bin",
+      "revisions": [
+        {
+          "file": "set-times-fri-wk2.jpg",
+          "firstSeen": "20260415194928"
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "date": "2026-04-18",
+      "pageCapture": "20260418002355",
+      "pageArchivedUrl": "https://web.archive.org/web/20260418002355/https://www.coachella.com/schedule",
+      "originalUrl": "https://aegwebprod.blob.core.windows.net/content/coachella-2026/set-times-sat-wk2.jpg",
+      "imageCapture": "20260418002357",
+      "imageArchivedUrl": "https://web.archive.org/web/20260418002357/https://aegwebprod.blob.core.windows.net/content/coachella-2026/set-times-sat-wk2.jpg",
+      "sha256": "fe76e016a76449c0e6ae01c5f4225293f4d649debe0871b5b4319e82868a0207",
+      "bytes": 279969,
+      "contentType": "image/jpeg",
+      "cacheFile": "6372a21ad22cfa863fc23344.bin",
+      "revisions": [
+        {
+          "file": "set-times-sat-wk2.jpg",
+          "firstSeen": "20260415194928"
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "date": "2026-04-19",
+      "pageCapture": "20260418002355",
+      "pageArchivedUrl": "https://web.archive.org/web/20260418002355/https://www.coachella.com/schedule",
+      "originalUrl": "https://aegwebprod.blob.core.windows.net/content/coachella-2026/set-times-sun-wk2.jpg",
+      "imageCapture": "20260418002357",
+      "imageArchivedUrl": "https://web.archive.org/web/20260418002357/https://aegwebprod.blob.core.windows.net/content/coachella-2026/set-times-sun-wk2.jpg",
+      "sha256": "6cc0b6820f5aa16d9ae3ea2f80064adbe4d5fbcca845c81108c0b81d907c5b83",
+      "bytes": 355738,
+      "contentType": "image/jpeg",
+      "cacheFile": "8c3847c7f1b082444267f03a.bin",
+      "revisions": [
+        {
+          "file": "set-times-sun-wk2.jpg",
+          "firstSeen": "20260415194928"
+        }
+      ]
+    }
+  ],
+  "dropped": [],
+  "lineupCheck": {
+    "page": "https://www.coachella.com/lineup",
+    "archivedUrl": "https://web.archive.org/web/20260415132913/https://www.coachella.com/lineup",
+    "captureTimestamp": "20260415132913",
+    "sha256": "affc89bce921502b61acb30cbabe77c94f375d887568d80d3ec271badb057e6b",
+    "title": "Coachella Valley Music & Arts Festival",
+    "staleTitle": true,
+    "identityText": "APR 10-12 & 17-19, 2026",
+    "data": {
+      "url": "https://events.aegamp.com/app/711/2g4uo3jiai93brm3/shows.json",
+      "archivedUrl": "https://web.archive.org/web/20260409001657/https://events.aegamp.com/app/711/2g4uo3jiai93brm3/shows.json",
+      "captureTimestamp": "20260409001657",
+      "sha256": "2b5320490677532c57781e482dd4b6e93bc4cedaa5176bea121b7b95bb2f14fd"
+    },
+    "billings": 220,
+    "matched": 168,
+    "aliased": [
+      {
+        "lineup": "Chloé Caillet x Rossi.",
+        "setTimes": "Rossi. x Chloé Caillet"
+      },
+      {
+        "lineup": "Röyksopp (DJ Set)",
+        "setTimes": "Röyksopp"
+      },
+      {
+        "lineup": "Worship (Sub Focus, Dimension, Culture Shock, 1991)",
+        "setTimes": "Worship"
+      },
+      {
+        "lineup": "Groove Armada (DJ Set)",
+        "setTimes": "Groove Armada"
+      },
+      {
+        "lineup": "Linksa",
+        "setTimes": "Linska"
+      }
+    ],
+    "unmatched": [],
+    "setTimesOnly": [
+      "Jeremiah Red",
+      "Jim Smith",
+      "El Ethos",
+      "Bad Gal Gali",
+      "Buster Jarvis",
+      "Kacey Musgraves",
+      "Fundido",
+      "Bulletballet",
+      "Megatone",
+      "GINGEE"
+    ],
+    "offGraphic": [
+      "Lambrini Girls",
+      "DJ Snake's Pardon My French",
+      "Soraya",
+      "Fifi",
+      "1tbsp",
+      "Bullet Tooth",
+      "MCR-T",
+      "Effin",
+      "SURPRISE",
+      "Robin Schulz",
+      "jigitz",
+      "Wale",
+      "Andy C",
+      "Radiohead Motion Picture House: Kid A Mnesia",
+      "Zerb",
+      "Lumia",
+      "REDKĒ",
+      "Baalti",
+      "NIIKO X SWAE",
+      "Roddy Lima",
+      "Joshwa",
+      "Coi Leray",
+      "Baby J",
+      "Sean Paul",
+      "Starjunk 95",
+      "Andruss",
+      "Mild Minds",
+      "Tinashe (dj)",
+      "oskar med k",
+      "Less Than Jake",
+      "Motion City Soundtrack",
+      "andhim",
+      "nimino",
+      "Anfisa Letyago",
+      "Soul Purpose",
+      "Cincity",
+      "Jackie Hollander",
+      "Brunello",
+      "Poolside's Daytime Disco",
+      "Deer Jade",
+      "Omar+",
+      "OMNOM",
+      "Whethan",
+      "Disco Lines",
+      "ØZI",
+      "Kryptogram",
+      "Sander Kleinenberg"
+    ],
+    "staleOffGraphic": []
+  }
+}
