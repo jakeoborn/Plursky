@@ -1,0 +1,840 @@
+{
+ "id": "countdown-nye-2019",
+ "festivalId": "countdown-nye",
+ "name": "Countdown NYE 2019",
+ "year": 2019,
+ "timezone": "America/Los_Angeles",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2019-12-31",
+   "label": "Tuesday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "countdown-nye-2019:mothership",
+   "name": "Mothership"
+  },
+  {
+   "id": "countdown-nye-2019:nebula",
+   "name": "Nebula"
+  },
+  {
+   "id": "countdown-nye-2019:area-51",
+   "name": "Area 51"
+  },
+  {
+   "id": "countdown-nye-2019:twilight-zone",
+   "name": "Twilight Zone"
+  },
+  {
+   "id": "countdown-nye-2019:biosphere",
+   "name": "Biosphere"
+  },
+  {
+   "id": "countdown-nye-2019:area-151",
+   "name": "Area 151"
+  }
+ ],
+ "artists": [
+  {
+   "id": "countdown-nye-2019:david-steven",
+   "name": "David Steven",
+   "key": "david-steven",
+   "performers": [
+    "david-steven"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:lost-kings",
+   "name": "Lost Kings",
+   "key": "lost-kings",
+   "performers": [
+    "lost-kings"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:cid",
+   "name": "CID",
+   "key": "cid",
+   "performers": [
+    "cid"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:elephante",
+   "name": "Elephante",
+   "key": "elephante",
+   "performers": [
+    "elephante"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:the-chainsmokers",
+   "name": "The Chainsmokers",
+   "key": "the-chainsmokers",
+   "performers": [
+    "the-chainsmokers"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:oliver-heldens",
+   "name": "Oliver Heldens",
+   "key": "oliver-heldens",
+   "performers": [
+    "oliver-heldens"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:said-the-sky",
+   "name": "Said The Sky",
+   "key": "said-the-sky",
+   "performers": [
+    "said-the-sky"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:alesso",
+   "name": "Alesso",
+   "key": "alesso",
+   "performers": [
+    "alesso"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:galantis",
+   "name": "Galantis",
+   "key": "galantis",
+   "performers": [
+    "galantis"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:fomo",
+   "name": "FOMO",
+   "key": "fomo",
+   "performers": [
+    "fomo"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:tisoki",
+   "name": "Tisoki",
+   "key": "tisoki",
+   "performers": [
+    "tisoki"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:atliens",
+   "name": "ATLiens",
+   "key": "atliens",
+   "performers": [
+    "atliens"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:gryffin-dj-set",
+   "name": "Gryffin (DJ Set)",
+   "key": "gryffin-dj-set",
+   "performers": [
+    "gryffin-dj-set"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:nitti-gritti",
+   "name": "Nitti Gritti",
+   "key": "nitti-gritti",
+   "performers": [
+    "nitti-gritti"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:saymyname",
+   "name": "SAYMYNAME",
+   "key": "saymyname",
+   "performers": [
+    "saymyname"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:jai-wolf-dj-set",
+   "name": "Jai Wolf (DJ Set)",
+   "key": "jai-wolf-dj-set",
+   "performers": [
+    "jai-wolf-dj-set"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:porter-robinson-dj-set",
+   "name": "Porter Robinson (DJ Set)",
+   "key": "porter-robinson-dj-set",
+   "performers": [
+    "porter-robinson-dj-set"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:12th-planet",
+   "name": "12th Planet",
+   "key": "12th-planet",
+   "performers": [
+    "12th-planet"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:richter-b2b-fallen-mc-dino",
+   "name": "Richter B2B Fallen + MC Dino",
+   "key": "richter-b2b-fallen-mc-dino",
+   "performers": [
+    "richter",
+    "fallen-mc-dino"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:eliminate",
+   "name": "Eliminate",
+   "key": "eliminate",
+   "performers": [
+    "eliminate"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:raiser",
+   "name": "Raiser",
+   "key": "raiser",
+   "performers": [
+    "raiser"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:metrik-b2b-tc",
+   "name": "Metrik B2B TC",
+   "key": "metrik-b2b-tc",
+   "performers": [
+    "metrik",
+    "tc"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:etc-etc",
+   "name": "ETC!ETC!",
+   "key": "etc-etc",
+   "performers": [
+    "etc-etc"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:blunts-and-blondes",
+   "name": "Blunts & Blondes",
+   "key": "blunts-and-blondes",
+   "performers": [
+    "blunts-and-blondes"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:jstjr",
+   "name": "JSTJR",
+   "key": "jstjr",
+   "performers": [
+    "jstjr"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:gentlemens-club",
+   "name": "Gentlemens Club",
+   "key": "gentlemens-club",
+   "performers": [
+    "gentlemens-club"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:svdden-death-presents-voyd",
+   "name": "Svdden Death presents Voyd",
+   "key": "svdden-death-presents-voyd",
+   "performers": [
+    "svdden-death-presents-voyd"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:borgore",
+   "name": "Borgore",
+   "key": "borgore",
+   "performers": [
+    "borgore"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:tom-and-collins",
+   "name": "Tom & Collins",
+   "key": "tom-and-collins",
+   "performers": [
+    "tom-and-collins"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:luke-andy",
+   "name": "Luke Andy",
+   "key": "luke-andy",
+   "performers": [
+    "luke-andy"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:franklyn-watts-b2b-steady-rock",
+   "name": "Franklyn Watts B2B Steady Rock",
+   "key": "franklyn-watts-b2b-steady-rock",
+   "performers": [
+    "franklyn-watts",
+    "steady-rock"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:codes",
+   "name": "Codes",
+   "key": "codes",
+   "performers": [
+    "codes"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:vnssa",
+   "name": "VNSSA",
+   "key": "vnssa",
+   "performers": [
+    "vnssa"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:noizu",
+   "name": "Noizu",
+   "key": "noizu",
+   "performers": [
+    "noizu"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:dr-fresch",
+   "name": "Dr. Fresch",
+   "key": "dr-fresch",
+   "performers": [
+    "dr-fresch"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:chris-lorenzo",
+   "name": "Chris Lorenzo",
+   "key": "chris-lorenzo",
+   "performers": [
+    "chris-lorenzo"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:dombresky",
+   "name": "Dombresky",
+   "key": "dombresky",
+   "performers": [
+    "dombresky"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:no-pants-party",
+   "name": "No Pants Party",
+   "key": "no-pants-party",
+   "performers": [
+    "no-pants-party"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:adam-auburn",
+   "name": "Adam Auburn",
+   "key": "adam-auburn",
+   "performers": [
+    "adam-auburn"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:franklyn-watts",
+   "name": "Franklyn Watts",
+   "key": "franklyn-watts",
+   "performers": [
+    "franklyn-watts"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:steady-rock",
+   "name": "Steady Rock",
+   "key": "steady-rock",
+   "performers": [
+    "steady-rock"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:lucati",
+   "name": "Lucati",
+   "key": "lucati",
+   "performers": [
+    "lucati"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:chris-jay",
+   "name": "Chris Jay",
+   "key": "chris-jay",
+   "performers": [
+    "chris-jay"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:moni",
+   "name": "Moni",
+   "key": "moni",
+   "performers": [
+    "moni"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:brandon-elliot",
+   "name": "Brandon Elliot",
+   "key": "brandon-elliot",
+   "performers": [
+    "brandon-elliot"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:roy-wilkins",
+   "name": "Roy Wilkins",
+   "key": "roy-wilkins",
+   "performers": [
+    "roy-wilkins"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:ruff-hauser",
+   "name": "Ruff Hauser",
+   "key": "ruff-hauser",
+   "performers": [
+    "ruff-hauser"
+   ]
+  },
+  {
+   "id": "countdown-nye-2019:cats-and-boots-b2b",
+   "name": "Cats & Boots B2B",
+   "key": "cats-and-boots-b2b",
+   "performers": [
+    "cats-and-boots-b2b"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "countdown-nye-2019:d1:mothership:1600:david-steven",
+   "artistId": "countdown-nye-2019:david-steven",
+   "day": 1,
+   "stageId": "countdown-nye-2019:mothership",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "countdown-nye-2019:d1:mothership:1700:lost-kings",
+   "artistId": "countdown-nye-2019:lost-kings",
+   "day": 1,
+   "stageId": "countdown-nye-2019:mothership",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "countdown-nye-2019:d1:mothership:1800:cid",
+   "artistId": "countdown-nye-2019:cid",
+   "day": 1,
+   "stageId": "countdown-nye-2019:mothership",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "countdown-nye-2019:d1:mothership:1900:elephante",
+   "artistId": "countdown-nye-2019:elephante",
+   "day": 1,
+   "stageId": "countdown-nye-2019:mothership",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "countdown-nye-2019:d1:mothership:2000:the-chainsmokers",
+   "artistId": "countdown-nye-2019:the-chainsmokers",
+   "day": 1,
+   "stageId": "countdown-nye-2019:mothership",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "countdown-nye-2019:d1:mothership:2100:oliver-heldens",
+   "artistId": "countdown-nye-2019:oliver-heldens",
+   "day": 1,
+   "stageId": "countdown-nye-2019:mothership",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "countdown-nye-2019:d1:mothership:2200:said-the-sky",
+   "artistId": "countdown-nye-2019:said-the-sky",
+   "day": 1,
+   "stageId": "countdown-nye-2019:mothership",
+   "start": "22:00",
+   "end": "23:10"
+  },
+  {
+   "id": "countdown-nye-2019:d1:mothership:2310:alesso",
+   "artistId": "countdown-nye-2019:alesso",
+   "day": 1,
+   "stageId": "countdown-nye-2019:mothership",
+   "start": "23:10",
+   "end": "00:40"
+  },
+  {
+   "id": "countdown-nye-2019:d1:mothership:0045:galantis",
+   "artistId": "countdown-nye-2019:galantis",
+   "day": 1,
+   "stageId": "countdown-nye-2019:mothership",
+   "start": "00:45",
+   "end": "02:00"
+  },
+  {
+   "id": "countdown-nye-2019:d1:nebula:1600:fomo",
+   "artistId": "countdown-nye-2019:fomo",
+   "day": 1,
+   "stageId": "countdown-nye-2019:nebula",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "countdown-nye-2019:d1:nebula:1700:tisoki",
+   "artistId": "countdown-nye-2019:tisoki",
+   "day": 1,
+   "stageId": "countdown-nye-2019:nebula",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "countdown-nye-2019:d1:nebula:1800:atliens",
+   "artistId": "countdown-nye-2019:atliens",
+   "day": 1,
+   "stageId": "countdown-nye-2019:nebula",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "countdown-nye-2019:d1:nebula:1900:gryffin-dj-set",
+   "artistId": "countdown-nye-2019:gryffin-dj-set",
+   "day": 1,
+   "stageId": "countdown-nye-2019:nebula",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "countdown-nye-2019:d1:nebula:2000:nitti-gritti",
+   "artistId": "countdown-nye-2019:nitti-gritti",
+   "day": 1,
+   "stageId": "countdown-nye-2019:nebula",
+   "start": "20:00",
+   "end": "21:10"
+  },
+  {
+   "id": "countdown-nye-2019:d1:nebula:2110:saymyname",
+   "artistId": "countdown-nye-2019:saymyname",
+   "day": 1,
+   "stageId": "countdown-nye-2019:nebula",
+   "start": "21:10",
+   "end": "22:10"
+  },
+  {
+   "id": "countdown-nye-2019:d1:nebula:2210:jai-wolf-dj-set",
+   "artistId": "countdown-nye-2019:jai-wolf-dj-set",
+   "day": 1,
+   "stageId": "countdown-nye-2019:nebula",
+   "start": "22:10",
+   "end": "23:10"
+  },
+  {
+   "id": "countdown-nye-2019:d1:nebula:2315:porter-robinson-dj-set",
+   "artistId": "countdown-nye-2019:porter-robinson-dj-set",
+   "day": 1,
+   "stageId": "countdown-nye-2019:nebula",
+   "start": "23:15",
+   "end": "00:30"
+  },
+  {
+   "id": "countdown-nye-2019:d1:nebula:0035:12th-planet",
+   "artistId": "countdown-nye-2019:12th-planet",
+   "day": 1,
+   "stageId": "countdown-nye-2019:nebula",
+   "start": "00:35",
+   "end": "02:00"
+  },
+  {
+   "id": "countdown-nye-2019:d1:area-51:1600:richter-b2b-fallen-mc-dino",
+   "artistId": "countdown-nye-2019:richter-b2b-fallen-mc-dino",
+   "day": 1,
+   "stageId": "countdown-nye-2019:area-51",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "countdown-nye-2019:d1:area-51:1700:eliminate",
+   "artistId": "countdown-nye-2019:eliminate",
+   "day": 1,
+   "stageId": "countdown-nye-2019:area-51",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "countdown-nye-2019:d1:area-51:1800:raiser",
+   "artistId": "countdown-nye-2019:raiser",
+   "day": 1,
+   "stageId": "countdown-nye-2019:area-51",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "countdown-nye-2019:d1:area-51:1900:metrik-b2b-tc",
+   "artistId": "countdown-nye-2019:metrik-b2b-tc",
+   "day": 1,
+   "stageId": "countdown-nye-2019:area-51",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "countdown-nye-2019:d1:area-51:2000:etc-etc",
+   "artistId": "countdown-nye-2019:etc-etc",
+   "day": 1,
+   "stageId": "countdown-nye-2019:area-51",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "countdown-nye-2019:d1:area-51:2100:blunts-and-blondes",
+   "artistId": "countdown-nye-2019:blunts-and-blondes",
+   "day": 1,
+   "stageId": "countdown-nye-2019:area-51",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "countdown-nye-2019:d1:area-51:2200:jstjr",
+   "artistId": "countdown-nye-2019:jstjr",
+   "day": 1,
+   "stageId": "countdown-nye-2019:area-51",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "countdown-nye-2019:d1:area-51:2300:gentlemens-club",
+   "artistId": "countdown-nye-2019:gentlemens-club",
+   "day": 1,
+   "stageId": "countdown-nye-2019:area-51",
+   "start": "23:00",
+   "end": "23:59"
+  },
+  {
+   "id": "countdown-nye-2019:d1:area-51:0001:svdden-death-presents-voyd",
+   "artistId": "countdown-nye-2019:svdden-death-presents-voyd",
+   "day": 1,
+   "stageId": "countdown-nye-2019:area-51",
+   "start": "00:01",
+   "end": "01:00"
+  },
+  {
+   "id": "countdown-nye-2019:d1:area-51:0100:borgore",
+   "artistId": "countdown-nye-2019:borgore",
+   "day": 1,
+   "stageId": "countdown-nye-2019:area-51",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "countdown-nye-2019:d1:twilight-zone:1600:tom-and-collins",
+   "artistId": "countdown-nye-2019:tom-and-collins",
+   "day": 1,
+   "stageId": "countdown-nye-2019:twilight-zone",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "countdown-nye-2019:d1:twilight-zone:1700:luke-andy",
+   "artistId": "countdown-nye-2019:luke-andy",
+   "day": 1,
+   "stageId": "countdown-nye-2019:twilight-zone",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "countdown-nye-2019:d1:twilight-zone:1800:franklyn-watts-b2b-steady-rock",
+   "artistId": "countdown-nye-2019:franklyn-watts-b2b-steady-rock",
+   "day": 1,
+   "stageId": "countdown-nye-2019:twilight-zone",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "countdown-nye-2019:d1:twilight-zone:1900:codes",
+   "artistId": "countdown-nye-2019:codes",
+   "day": 1,
+   "stageId": "countdown-nye-2019:twilight-zone",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "countdown-nye-2019:d1:twilight-zone:2000:vnssa",
+   "artistId": "countdown-nye-2019:vnssa",
+   "day": 1,
+   "stageId": "countdown-nye-2019:twilight-zone",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "countdown-nye-2019:d1:twilight-zone:2100:noizu",
+   "artistId": "countdown-nye-2019:noizu",
+   "day": 1,
+   "stageId": "countdown-nye-2019:twilight-zone",
+   "start": "21:00",
+   "end": "22:15"
+  },
+  {
+   "id": "countdown-nye-2019:d1:twilight-zone:2215:dr-fresch",
+   "artistId": "countdown-nye-2019:dr-fresch",
+   "day": 1,
+   "stageId": "countdown-nye-2019:twilight-zone",
+   "start": "22:15",
+   "end": "23:30"
+  },
+  {
+   "id": "countdown-nye-2019:d1:twilight-zone:2330:chris-lorenzo",
+   "artistId": "countdown-nye-2019:chris-lorenzo",
+   "day": 1,
+   "stageId": "countdown-nye-2019:twilight-zone",
+   "start": "23:30",
+   "end": "00:45"
+  },
+  {
+   "id": "countdown-nye-2019:d1:twilight-zone:0045:dombresky",
+   "artistId": "countdown-nye-2019:dombresky",
+   "day": 1,
+   "stageId": "countdown-nye-2019:twilight-zone",
+   "start": "00:45",
+   "end": "02:00"
+  },
+  {
+   "id": "countdown-nye-2019:d1:biosphere:1600:no-pants-party",
+   "artistId": "countdown-nye-2019:no-pants-party",
+   "day": 1,
+   "stageId": "countdown-nye-2019:biosphere",
+   "start": "16:00",
+   "end": "18:30"
+  },
+  {
+   "id": "countdown-nye-2019:d1:biosphere:1830:luke-andy",
+   "artistId": "countdown-nye-2019:luke-andy",
+   "day": 1,
+   "stageId": "countdown-nye-2019:biosphere",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "countdown-nye-2019:d1:biosphere:1930:adam-auburn",
+   "artistId": "countdown-nye-2019:adam-auburn",
+   "day": 1,
+   "stageId": "countdown-nye-2019:biosphere",
+   "start": "19:30",
+   "end": "21:00"
+  },
+  {
+   "id": "countdown-nye-2019:d1:biosphere:2100:franklyn-watts",
+   "artistId": "countdown-nye-2019:franklyn-watts",
+   "day": 1,
+   "stageId": "countdown-nye-2019:biosphere",
+   "start": "21:00",
+   "end": "22:30"
+  },
+  {
+   "id": "countdown-nye-2019:d1:biosphere:2230:steady-rock",
+   "artistId": "countdown-nye-2019:steady-rock",
+   "day": 1,
+   "stageId": "countdown-nye-2019:biosphere",
+   "start": "22:30",
+   "end": "23:58"
+  },
+  {
+   "id": "countdown-nye-2019:d1:biosphere:0001:lucati",
+   "artistId": "countdown-nye-2019:lucati",
+   "day": 1,
+   "stageId": "countdown-nye-2019:biosphere",
+   "start": "00:01",
+   "end": "02:00"
+  },
+  {
+   "id": "countdown-nye-2019:d1:area-151:1600:chris-jay",
+   "artistId": "countdown-nye-2019:chris-jay",
+   "day": 1,
+   "stageId": "countdown-nye-2019:area-151",
+   "start": "16:00",
+   "end": "17:40"
+  },
+  {
+   "id": "countdown-nye-2019:d1:area-151:1740:moni",
+   "artistId": "countdown-nye-2019:moni",
+   "day": 1,
+   "stageId": "countdown-nye-2019:area-151",
+   "start": "17:40",
+   "end": "18:50"
+  },
+  {
+   "id": "countdown-nye-2019:d1:area-151:1850:brandon-elliot",
+   "artistId": "countdown-nye-2019:brandon-elliot",
+   "day": 1,
+   "stageId": "countdown-nye-2019:area-151",
+   "start": "18:50",
+   "end": "20:00"
+  },
+  {
+   "id": "countdown-nye-2019:d1:area-151:2000:roy-wilkins",
+   "artistId": "countdown-nye-2019:roy-wilkins",
+   "day": 1,
+   "stageId": "countdown-nye-2019:area-151",
+   "start": "20:00",
+   "end": "21:10"
+  },
+  {
+   "id": "countdown-nye-2019:d1:area-151:2110:ruff-hauser",
+   "artistId": "countdown-nye-2019:ruff-hauser",
+   "day": 1,
+   "stageId": "countdown-nye-2019:area-151",
+   "start": "21:10",
+   "end": "22:20"
+  },
+  {
+   "id": "countdown-nye-2019:d1:area-151:0100:cats-and-boots-b2b",
+   "artistId": "countdown-nye-2019:cats-and-boots-b2b",
+   "day": 1,
+   "stageId": "countdown-nye-2019:area-151",
+   "start": "01:00",
+   "end": "02:00"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://countdownnye.com/lineup/settimes/",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20200512034801/https://countdownnye.com/lineup/settimes/",
+    "captureTimestamp": "20200512034801",
+    "printed": "Tuesday, December 31",
+    "sha256": "09e93fbc1f0391f4f77a3697c43e9fc378290e2de48f3c9f0eb7286c13f27aeb",
+    "rows": 51
+   }
+  ]
+ }
+}

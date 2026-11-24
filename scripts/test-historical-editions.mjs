@@ -1746,24 +1746,45 @@ ok(instant("2025-05-16", "04:13", 12, -420) === "2025-05-17T11:13:00.000Z",
 
   // Undated pages (EDC 2016/2017): the lineup only as `var artist_data`, no
   // tabs and no days. Proven by title alone, and never over a By Day tab.
+  // Those editions now carry set times, so the tests run against a frozen
+  // fixture (scripts/fixtures/historical-undated-lineup.json): EDC Orlando
+  // 2016 and EDC Las Vegas 2017 as they were, undated and lineup-only,
+  // swapped in under their own ids for this block and restored after it.
+  const UF = JSON.parse(readFileSync(join(ROOT, "scripts/fixtures/historical-undated-lineup.json"), "utf8"));
+  const UO = "edc-orlando-2016", UL = "edc-las-vegas-2017";
+  const live = { o: EDITIONS[UO], ol: LINEUP_EDITIONS[UO], l: EDITIONS[UL] };
+  EDITIONS[UO] = UF.orlando2016.registry; LINEUP_EDITIONS[UO] = UF.orlando2016.lineupPage;
+  EDITIONS[UL] = UF.registry;
+  try {
   const adata = (title, names) => `<title>${title}</title><script>\n    var artist_data = ${JSON.stringify({ artists: names.map(name => ({ name, image: "x.jpg", link: "y" })) })};\n</script>`;
   const und = parseLineupPage(adata("LINEUP - EDC Orlando 2016", ["Zed", "Alpha &amp; Beta", "Secret Guest", "Zed"]));
   ok(JSON.stringify(und.tabs) === JSON.stringify([{ tab: "Alphabetical", groups: [{ head: null, acts: ["Zed", "Alpha & Beta", "Secret Guest", "Zed"] }] }]),
     `artist_data is read as one Alphabetical tab, every name in page order (got ${JSON.stringify(und.tabs)})`);
-  ok(provesEdition(und, "edc-orlando-2016").valid, "an undated page titled with the edition proves an undated edition");
-  ok(!provesEdition(parseLineupPage(adata("LINEUP - EDC Orlando 2017", ["Zed"])), "edc-orlando-2016").valid, "an undated page titled with another year does not");
+  ok(provesEdition(und, UO).valid, "an undated page titled with the edition proves an undated edition");
+  ok(!provesEdition(parseLineupPage(adata("LINEUP - EDC Orlando 2017", ["Zed"])), UO).valid, "an undated page titled with another year does not");
   ok(!provesEdition(und, "edc-orlando-2015").valid, "an undated page never proves a dated edition");
-  ok(!provesEdition(parseLineupPage(page("EDC Orlando 2016", ["Friday, November 11", "Saturday, November 12"])), "edc-orlando-2016").valid,
+  ok(!provesEdition(parseLineupPage(page("EDC Orlando 2016", ["Friday, November 11", "Saturday, November 12"])), UO).valid,
     "a page that prints days does not pass as an undated edition: its dates must be proven instead");
   ok(!parseLineupPage("<title>x</title><script>var artist_data = {broken};</script>").tabs.length, "unparseable artist_data is no lineup");
   for (const [t, want] of [["EDC Las Vegas | June 17–19, 2016 | Las Vegas Motor Speedway", "2016-06-17,2016-06-18,2016-06-19"],
     ["EDC Orlando | November 4 – 5, 2016 | Tinker Field", "2016-11-04,2016-11-05"], ["EDC Las Vegas | Las Vegas Motor Speedway", ""],
     ["EDC | June 19–17, 2016", ""], ["Lineup | Smarch 4–5, 2016", ""]])
     ok(printedRange(t).join(",") === want, `home page title "${t}" prints ${want || "no dates"} (got ${printedRange(t).join(",") || "none"})`);
-  const ur = lineupRows(und, "edc-orlando-2016");
+  const ur = lineupRows(und, UO);
   ok(ur.rows.filter(r => r.artist === "Zed").length === 1 && ur.rows.every(r => r.day === "" && r.stage === ""), "a name listed twice is one billing, with no day and no stage");
   ok(ur.findings.length === 1 && ur.findings[0].startsWith("Zed: alphabetical ×2"), `only the repeated name is a ledger finding on an undated page (got ${ur.findings.join("; ")})`);
-  // A title that names no year proves nothing alone: its captures are read
+  // The frozen undated edition still fails every way an undated lineup can.
+  const lv17 = UF.edition;
+  const mustFailU = (label, mutate, e, by) => {
+    const m = clone(e); mutate(m); mutations++;
+    const p = validateEdition(m, { expected: UF.expected, review: undefined, dropped: clone(UF.dropped) });
+    ok(p.some(x => by.test(x)), `mutation not caught by ${by}: ${label}`);
+  };
+  ok(!validateEdition(clone(lv17), { expected: UF.expected, review: undefined, dropped: clone(UF.dropped) }).length, "the frozen undated edition is valid as it stands");
+  mustFailU("an undated lineup gains a day", m => { m.artists[0].appearances.push({ day: 1 }); }, lv17, /undated lineup, but an artist carries a day/);
+  mustFailU("an undated lineup loses its note", m => { delete m.notes; }, lv17, /notes differ|printed no days/);
+  mustFailU("an undated lineup no longer marked undated", m => { delete m.undated; }, lv17, /day 1 has no billed artist/);
+  // (Run while the frozen editions are swapped in.) A title that names no year proves nothing alone: its captures are read
   // only up to `until`, at most two weeks after the festival's last day.
   for (const [id, w] of Object.entries(LINEUP_EDITIONS)) {
     const ed = EDITIONS[id];
@@ -1772,13 +1793,8 @@ ok(instant("2025-05-16", "04:13", 12, -420) === "2025-05-17T11:13:00.000Z",
     const last = Date.parse(ed.dates.at(-1)[0]), until = w.until && Date.parse(`${w.until.slice(0, 4)}-${w.until.slice(4, 6)}-${w.until.slice(6)}`);
     ok(until && until >= last && until - last <= 14 * 86400000, `${id}: an undated page whose title names no year needs until within two weeks after the festival`);
   }
-  const lv17 = editions["edc-las-vegas-2017"];
-  if (lv17) {
-    mustFail("an undated lineup gains a day", m => { m.artists[0].appearances.push({ day: 1 }); }, lv17, undefined, /undated lineup, but an artist carries a day/);
-    mustFail("an undated lineup loses its note", m => { delete m.notes; }, lv17, undefined, /notes differ|printed no days/);
-    mustFail("an undated lineup no longer marked undated", m => { delete m.undated; }, lv17, undefined, /day 1 has no billed artist/);
-    mustFail("a dated lineup marked undated", m => { m.undated = true; }, noc, undefined, /the edition registry says false/);
-  }
+  } finally { EDITIONS[UO] = live.o; LINEUP_EDITIONS[UO] = live.ol; EDITIONS[UL] = live.l; }
+  mustFail("a dated lineup marked undated", m => { m.undated = true; }, noc, undefined, /the edition registry says false/);
 }
 
 // ── 4. isolation from the live app ──

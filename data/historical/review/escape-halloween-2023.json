@@ -1,0 +1,73 @@
+{
+ "id": "escape-halloween-2023",
+ "days": [
+  {
+   "day": 1,
+   "date": "2023-10-27",
+   "sha256": "62ea81b104c501ecc1d9908c619a5e54bc84c1472c520b63e3fdfcc3a1d3e764",
+   "imageUrl": "https://pbs.twimg.com/media/F9OgdsVawAAkW72?format=jpg&name=orig",
+   "reviewer": "Plursky history review (Claude Plur): Vision OCR cross-check and by-eye reading on 2x crops",
+   "reviewedAt": "2026-11-23",
+   "rowsConfirmed": 46,
+   "note": "Header read off the graphic: FRIDAY, OCT 27",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 39,
+   "byEye": [
+    "d1 SEWER DISTRICT 22:00-23:30 LOCO DICE: printed 10:00PM - 11:30AM; the next set (JAMIE JONES) starts 11:30PM, so read as 23:30",
+    "d1 FEEDING GROUNDS 22:00-23:00 K?D B2B 1788-L: by eye 10:00PM - 11:00PM; the billing prints a question mark",
+    "d1 FEEDING GROUNDS 20:00-21:00 HE$H: by eye 8:00PM - 9:00PM; the billing prints a dollar sign",
+    "d1 SANITARIUM 22:00-23:00 LNY TNZ: by eye 10:00PM - 11:00PM",
+    "d1 SANITARIUM 20:30-21:00 CODE BLACK: BLACKOUT: by eye 8:30PM - 9:00PM",
+    "d1 SANITARIUM 20:00-20:30 CODE BLACK: by eye 8:00PM - 8:30PM",
+    "d1 SANITARIUM 19:00-20:00 KELTEK: by eye 7:00PM - 8:00PM"
+   ],
+   "printedReadings": [
+    "LOCO DICE: PRINTED TYPO: end printed \"11:30AM\"; read as 11:30PM (next set starts 11:30 PM)"
+   ]
+  },
+  {
+   "day": 2,
+   "date": "2023-10-28",
+   "sha256": "62ea81b104c501ecc1d9908c619a5e54bc84c1472c520b63e3fdfcc3a1d3e764",
+   "imageUrl": "https://pbs.twimg.com/media/F9OgdsVawAAkW72?format=jpg&name=orig",
+   "reviewer": "Plursky history review (Claude Plur): Vision OCR cross-check and by-eye reading on 2x crops",
+   "reviewedAt": "2026-11-23",
+   "rowsConfirmed": 42,
+   "note": "Header read off the graphic: SATURDAY, OCT 28",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 42,
+   "byEye": [],
+   "printedReadings": []
+  },
+  {
+   "day": 1,
+   "date": "2023-10-27",
+   "sha256": "b8c937ed5248776ba6a29d997e7b42ec3588a12af2a587e0cfe3b45d43783293",
+   "imageUrl": "https://pbs.twimg.com/media/F9OgedUawAE9xLw?format=jpg&name=orig",
+   "reviewer": "Plursky history review (Claude Plur): Vision OCR cross-check and by-eye reading on 2x crops",
+   "reviewedAt": "2026-11-23",
+   "rowsConfirmed": 11,
+   "note": "Header read off the graphic: FRIDAY, OCT 27",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 11,
+   "byEye": [],
+   "printedReadings": []
+  },
+  {
+   "day": 2,
+   "date": "2023-10-28",
+   "sha256": "b8c937ed5248776ba6a29d997e7b42ec3588a12af2a587e0cfe3b45d43783293",
+   "imageUrl": "https://pbs.twimg.com/media/F9OgedUawAE9xLw?format=jpg&name=orig",
+   "reviewer": "Plursky history review (Claude Plur): Vision OCR cross-check and by-eye reading on 2x crops",
+   "reviewedAt": "2026-11-23",
+   "rowsConfirmed": 10,
+   "note": "Header read off the graphic: SATURDAY, OCT 28",
+   "method": "every row checked against the graphic: Vision OCR of the whole graphic at 1x and 2x matched each billing and its printed range; every row OCR could not match on both was read by eye on a 2x crop",
+   "ocrMatchedBoth": 10,
+   "byEye": [],
+   "printedReadings": [
+    "CAT & MAOMI: CRAZY TOWN silent disco; printed \"MAOMI\" (possibly \"Naomi\"), not corrected; DROP? silent disco (non-main stage) — keep or drop per build policy"
+   ]
+  }
+ ]
+}

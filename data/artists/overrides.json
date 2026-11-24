@@ -524,7 +524,10 @@
     }
    ],
    "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
-   "source": "https://countdownnye.com/lineup/"
+   "source": [
+    "https://countdownnye.com/lineup/",
+    "https://www.forbiddenkingdomfestival.com/lineup/"
+   ]
   },
   {
    "printed": "Girl Math (VNSSA B2B Nala)",
@@ -539,7 +542,10 @@
     }
    ],
    "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
-   "source": "https://lasvegas.electricdaisycarnival.com/lineup/set-times"
+   "source": [
+    "https://lasvegas.electricdaisycarnival.com/lineup/set-times",
+    "https://countdownnye.com/set-times/day-1/"
+   ]
   },
   {
    "printed": "One Tribe Presents (AMÉMÉ B2B Baron)",
@@ -879,7 +885,10 @@
     }
    ],
    "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
-   "source": "https://www.dreamstateusa.com/set-times/"
+   "source": [
+    "https://www.dreamstateusa.com/set-times/",
+    "http://lasvegas.electricdaisycarnival.com/experience/set-times/"
+   ]
   },
   {
    "printed": "Gentech (Mark Sherry & Scot Project)",
@@ -7284,6 +7293,46 @@
    ],
    "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set. The orchestra's own event page (https://chicagophilharmonic.org/events/lollapalooza-laufey/, read 2026-11-20) bills the same Friday 6:45-7:45 PM Bud Light set as Laufey's, with the Chicago Philharmonic playing it, not as a set of its own.",
    "source": "https://www.lollapalooza.com/schedule"
+  },
+  {
+   "printed": "Pendulum (DJ Set) w/ MC Verse",
+   "performers": [
+    {
+     "name": "Pendulum",
+     "role": "performer"
+    },
+    {
+     "name": "MC Verse",
+     "role": "mc"
+    }
+   ],
+   "setTag": "DJ Set",
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set. \"(DJ Set)\" is the set tag.",
+   "source": "http://lasvegas.electricdaisycarnival.com/experience/set-times/"
+  },
+  {
+   "printed": "Lost Frequencie (Sunset Set)",
+   "performers": [
+    {
+     "name": "Lost Frequencies",
+     "role": "performer"
+    }
+   ],
+   "setTag": "Sunset Set",
+   "why": "EDC Mexico 2027's official lineup page misspells the act as \"Lost Frequencie\" (same page, both its A–Z and Sunday lists). It is Lost Frequencies, billed at the 2026 and 2027 Tomorrowland Winter editions under the full name. \"(Sunset Set)\" is the set tag.",
+   "source": "https://mexico.edc.com/en/lineup/"
+  },
+  {
+   "printed": "Secret Echoes \"Live\"",
+   "performers": [
+    {
+     "name": "Secret Echoes",
+     "role": "performer"
+    }
+   ],
+   "setTag": "Live",
+   "why": "The page prints the set tag in quotes instead of parentheses (\"Live\"). The act is Secret Echoes and \"Live\" is the set tag, not part of the name.",
+   "source": "https://mexico.edc.com/en/lineup/"
   }
  ],
  "pending": [
@@ -8114,6 +8163,122 @@
   {
    "printed": "JOY (Anonymous)",
    "why": "Left as printed: the parenthetical is not sourced as a name the act uses elsewhere (the Bunny (Rabbit in the Moon) rule), so the billing is neither merged with the bare name nor credited to anything the parenthetical names."
+  },
+  {
+   "printed": "Alpha:Omega (AC13 & Reaper)",
+   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Hades x Persephone",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "P Money x Whiney",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Xó (Jackie Boi B2B Xclvsiv)",
+   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "key": "roi",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "s-y-n",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "printed": "MK (MARC KINCHEN)",
+   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Wankdat (Crankdat B2B Wooli)",
+   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Bonnie X Clyde",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Fcukers (DJs)",
+   "why": "Left as printed, one act: \"(DJs)\" is not one of the registry's set tags, so the billing is neither merged with the bare name nor split. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Digital Mystikz (Mala + Coki)",
+   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Tchami x Malaa: No Redemption",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Fisher + Chris Lake: Under Construction",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "2¢ (Craze & Four Color Zack)",
+   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "AMOK (Will Clarke + Sian)",
+   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Ketboi69 (KETTAMA B2B Partiboi69)",
+   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Sisters of Sound (Maddy Maia B2B Tottie)",
+   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Skepta (Más Tiempo)",
+   "why": "Left as printed: the parenthetical is not sourced as a name the act uses elsewhere (the Bunny (Rabbit in the Moon) rule), so the billing is neither merged with the bare name nor credited to anything the parenthetical names."
+  },
+  {
+   "printed": "DJ ISAAC B2B SAYMYNAME (HARDSTYLE)",
+   "why": "Left as printed: the parenthetical is not sourced as a name the act uses elsewhere (the Bunny (Rabbit in the Moon) rule), so the billing is neither merged with the bare name nor credited to anything the parenthetical names."
+  },
+  {
+   "printed": "BLACK SUN EMPIRE B2B THE UPBEATS (20 YEARS OF BLACKOUT)",
+   "why": "Left as printed: the parenthetical is not sourced as a name the act uses elsewhere (the Bunny (Rabbit in the Moon) rule), so the billing is neither merged with the bare name nor credited to anything the parenthetical names."
+  },
+  {
+   "printed": "Myon & Shane 54 (Trance Showcase)",
+   "why": "Left as printed: the parenthetical is not sourced as a name the act uses elsewhere (the Bunny (Rabbit in the Moon) rule), so the billing is neither merged with the bare name nor credited to anything the parenthetical names."
+  },
+  {
+   "printed": "Pure NRG (Giuseppe Ottaviani & Solarstone)",
+   "why": "Left as printed, one act: the parenthetical names the people or crew behind the billing, but no first-party page says how it splits. Renders as its own billing until one rules it."
+  },
+  {
+   "printed": "New World Punx (Ferry Corsten B2B Markus Schulz)",
+   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "key": "bot",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "printed": "Orri + Friends",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "key": "noa",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "awe",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "printed": "John Askew + Simon Patterson",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Maho + Alzada",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
   }
  ]
 }

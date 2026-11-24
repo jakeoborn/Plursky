@@ -501,62 +501,6 @@ const FESTIVALS_REGISTRY = [
     region:    "North America",
   },
   {
-    // ── Forbidden Kingdom 2027 — Central Florida Fairgrounds, Orlando FL ──
-    // Added 2026-11-10 as a gated preview. Dates from Insomniac's own press
-    // release, read 2026-11-10: "next year's edition will take place at the
-    // Central Florida Fairgrounds across three days from April 23-25, 2027",
-    // "100+ artists ... across three days and five stages".
-    // https://press.insomniac.com/blog/forbidden-kingdom-will-return-to-central-florida-fairgrounds-in-2027
-    // No 2027 lineup, set times or map yet. When they publish, this becomes a
-    // data/festivals/ module and scripts/fetch-insomniac-settimes.mjs applies.
-    config: {
-      id:        "forbidden-kingdom-2027",
-      officialEvent: { website: "https://www.forbiddenkingdomfestival.com/", observedAt: "2026-11-10" },
-      name:      "Forbidden Kingdom 2027",
-      shortName: "Forbidden Kingdom",
-      brand:     "Forbidden Kingdom",
-      tagline:   "Three days, five stages in Orlando",
-      location:  "Central Florida Fairgrounds · Orlando, FL",
-      locationShort: "Central Florida Fairgrounds",
-      dates:     "Apr 23–25, 2027",
-      year:      2027,
-      // Night Print accent not measured yet (accent null = neutral print).
-      print: { accent: null, source: { url: "https://www.forbiddenkingdomfestival.com/", observedAt: "2026-11-10" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
-    },
-    available: false,
-    accent:    "#a3e635",
-    emoji:     "🐉",
-    region:    "North America",
-  },
-  {
-    // ── Ubbi Dubbi 2027 — Panther Island Pavilion, Fort Worth TX ──
-    // Added 2026-11-11 as a gated preview. Disco Presents. Dates and venue from
-    // ubbidubbifestival.com, read 2026-11-11: "join us April 23 & 24 at Panther
-    // Island Pavilion in Ft. Worth", page title "Ubbi Dubbi Festival 2027".
-    // The 2027 lineup IS announced, but the official site carries it only as a
-    // poster image, and the text press relays read 2026-11-11 name about half
-    // of it. No partial lineup ships: this becomes a data/festivals/ module
-    // once the full list is readable from an official or complete source.
-    config: {
-      id:        "ubbi-dubbi-2027",
-      officialEvent: { website: "https://ubbidubbifestival.com/", observedAt: "2026-11-11" },
-      name:      "Ubbi Dubbi 2027",
-      shortName: "Ubbi Dubbi",
-      brand:     "Ubbi Dubbi",
-      tagline:   "Two days of house and bass in Fort Worth",
-      location:  "Panther Island Pavilion · Fort Worth, TX",
-      locationShort: "Panther Island Pavilion",
-      dates:     "Apr 23–24, 2027",
-      year:      2027,
-      // Night Print accent not measured yet (accent null = neutral print).
-      print: { accent: null, source: { url: "https://ubbidubbifestival.com/", observedAt: "2026-11-11" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
-    },
-    available: false,
-    accent:    "#f472b6",
-    emoji:     "🍭",
-    region:    "North America",
-  },
-  {
     // ── Movement 2027 — Hart Plaza, Detroit MI ──
     // Added 2026-11-11 as a gated preview. Dates from movementfestival.com/faqs,
     // read 2026-11-11: "Movement 2027 will take place Memorial Day Weekend,
@@ -1145,30 +1089,6 @@ const FESTIVALS_REGISTRY = [
     available: false,
     accent:    "#eab308",
     emoji:     "☂️",
-    region:    "North America",
-  },
-  {
-    // ── Lightning in a Bottle 2027 — Buena Vista Lake, CA ──
-    // Added 2026-11-17 as a gated preview. Dates and venue from libfestival.org, read 2026-11-17: page title
-    // "Lightning in a Bottle 2027 | May 26-30, Buena Vista Lake, CA" and "Lightning
-    // in a Bottle returns May 26–30, 2027 to Buena Vista Lake, CA". No 2027 lineup yet.
-    config: {
-      id:        "lightning-in-a-bottle-2027",
-      officialEvent: { website: "https://www.libfestival.org/", observedAt: "2026-11-17" },
-      name:      "Lightning in a Bottle 2027",
-      shortName: "LiB",
-      brand:     "Lightning in a Bottle",
-      tagline:   "Five days of music, art and camping by Do LaB",
-      location:  "Buena Vista Lake, CA",
-      locationShort: "Buena Vista Lake",
-      dates:     "May 26–30, 2027",
-      year:      2027,
-      // Night Print accent not measured yet (accent null = neutral print).
-      print: { accent: null, source: { url: "https://www.libfestival.org/", observedAt: "2026-11-17" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
-    },
-    available: false,
-    accent:    "#f59e0b",
-    emoji:     "⚡",
     region:    "North America",
   },
   {
@@ -1845,33 +1765,10 @@ const FESTIVALS_REGISTRY = [
   // checked (EDC Mexico, BW SoCal, BW Gorge) carry a 2027 page TITLE over
   // the 2026 LINEUP — a scraper that trusts the title ships last year's acts.
   // Scaffold each one from its own lineup page only after that page says 2027.
-  {
-    // SOURCE mexico.edc.com (301 from mexico.electricdaisycarnival.com):
-    // title "EDC Mexico | 19-21 Febrero, 2027 | Mexico City", venue
-    // "AUTÓDROMO HERMANOS RODRÍGUEZ". #113 reported a first-wave 2027 lineup;
-    // /lineup/ is titled "EDC Mexico 2026" and lists Feb 20/21/22 — the 2026
-    // edition. No 2027 lineup is published.
-    config: {
-      id:        "edc-mexico-2027",
-      name:      "EDC Mexico 2027",
-      shortName: "EDC Mexico",
-      brand:     "EDC",
-      tagline:   "Three days at the Autódromo",
-      // ", Mexico" is load-bearing: gen-festival-pages' place() reads the tail
-      // as addressCountry, and would otherwise leave the JSON-LD countryless.
-      location:  "Autódromo Hermanos Rodríguez · Mexico City, Mexico",
-      locationShort: "Autódromo Hermanos Rodríguez",
-      dates:     "Feb 19–21, 2027",
-      year:      2027,
-      // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
-      print: { accent: "#CC2831", source: { url: "https://mexico.edc.com/wp-content/assets/css/edcmexico.min.css?ver=2.2.41", observedAt: "2026-10-09", seenAs: "Site stylesheet: `a { color:#cc2831 }`, `button { background-color:#cc2831 }`, `.button--outline` border/text, hover #a10710 (7 uses); the homepage HTML also inlines `button{background-color: #cc2831;}`.", confidence: "high" }, note: "No <meta theme-color> (only WordPress's admin default custom property), so the first-party sheet's link + primary-button red is the accent, confirmed by the same hex inlined in the page." },
-      officialEvent: { id: 548875, url: "https://mexico.electricdaisycarnival.com/", website: "https://mexico.edc.com/", tickets: "https://mexico.edc.com/en/tickets/", observedAt: "2026-09-10" },
-    },
-    available: false,
-    accent:    "#f43f5e",
-    emoji:     "🌼",
-    region:    "Latin America",
-  },
+  // edc-mexico-2027 is a festival module now: data/festivals/edc-mexico-2027.js.
+  // Re-read 2026-11-24, its page flipped the other way: the day lists are dated
+  // Feb 19-21, 2027 while the <title> still says 2026. Trust the dated lists,
+  // never the title. BW SoCal's list still matches its 2026 bill (129 of 139).
   {
     // SOURCE socal.beyondwonderland.com: "March 26+27, 2027". /hours-and-info/:
     // "NOS Events Center, 689 S. E St, San Bernardino, CA 92408", hours TBA,
@@ -5428,6 +5325,10 @@ const _WAVE1_IDS = [
   "tomorrowland-winter-2027",
   "lollapalooza-brasil-2027",
   "lollapalooza-chile-2027",
+  "forbidden-kingdom-2027",
+  "ubbi-dubbi-2027",
+  "lightning-in-a-bottle-2027",
+  "edc-mexico-2027",
 ];
 const _WAVE1 = (typeof window !== "undefined" && window.PLURSKY_FESTIVALS) || {};
 for (const _id of _WAVE1_IDS) {
