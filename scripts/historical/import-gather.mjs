@@ -135,11 +135,13 @@ export const activeTab = html => /class="[^"]*button-blocks--active[^"]*"[^>]*>(
 // Each pane comes back under its own tab label, with ranges as printed.
 const plain = s => s.replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").replace(/&#0?39;|&#8217;/g, "'").replace(/\s+/g, " ").trim();
 export function parseDayTabs(html) {
-  const labels = new Map([...html.matchAll(/<li id="day_([a-z0-9_]+)"[^>]*>([^<]+)</g)].map(m => [m[1], plain(m[2])]));
-  const panes = [...html.matchAll(/<div role="tabpanel" class="tab-pane[^"]*" id="([a-z0-9_]+)">/g)];
+  // Pane ids are snake case on Dreamstate 2016 ("friday_november_25") and
+  // camel case on Countdown 2015 ("ThursdayDecember31").
+  const labels = new Map([...html.matchAll(/<li id="day_([A-Za-z0-9_]+)"[^>]*>([^<]+)</g)].map(m => [m[1], plain(m[2])]));
+  const panes = [...html.matchAll(/<div role="tabpanel" class="tab-pane[^"]*" id="([A-Za-z0-9_]+)">/g)];
   return panes.map((p, i) => {
     const seg = html.slice(p.index, panes[i + 1]?.index ?? html.length);
-    const stages = [...seg.matchAll(/<div class="stg[^"]*">([^<]*)<\/div>/g)].map(m => plain(m[1]));
+    const stages = [...seg.matchAll(/<div(?: [a-z-]+="[^"]*")* class="stg(?: [^"]*)?"[^>]*>([^<]*)<\/div>/g)].map(m => plain(m[1]));
     const cols = seg.split(/<div class="ds-stage[ "]/).slice(1);
     if (cols.length !== stages.length) throw new Error(`pane ${p[1]}: ${stages.length} stage headers, ${cols.length} stage columns`);
     const sets = cols.flatMap((c, j) => [...c.matchAll(/<strong class="ds-event-title">([\s\S]*?)<\/strong>\s*<span class="ds-time-range">([\s\S]*?)<\/span>/g)]

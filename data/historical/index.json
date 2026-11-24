@@ -772,7 +772,7 @@
    "name": "Beyond Wonderland SoCal 2016",
    "year": 2016,
    "timezone": "America/Los_Angeles",
-   "completeness": "lineup_only",
+   "completeness": "complete_schedule",
    "days": [
     {
      "day": 1,
@@ -786,9 +786,9 @@
     }
    ],
    "counts": {
-    "stages": 0,
-    "artists": 68,
-    "sets": 0
+    "stages": 5,
+    "artists": 65,
+    "sets": 72
    }
   },
   {
@@ -1378,6 +1378,27 @@
    }
   },
   {
+   "id": "countdown-nye-2024",
+   "festivalId": "countdown-nye",
+   "festivalName": "Countdown NYE",
+   "name": "Countdown NYE 2024",
+   "year": 2024,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2024-12-31",
+     "label": "Tuesday"
+    }
+   ],
+   "counts": {
+    "stages": 7,
+    "artists": 57,
+    "sets": 57
+   }
+  },
+  {
    "id": "countdown-nye-2023",
    "festivalId": "countdown-nye",
    "festivalName": "Countdown NYE",
@@ -1427,6 +1448,74 @@
     "stages": 0,
     "artists": 76,
     "sets": 0
+   }
+  },
+  {
+   "id": "countdown-nye-2019",
+   "festivalId": "countdown-nye",
+   "festivalName": "Countdown NYE",
+   "name": "Countdown NYE 2019",
+   "year": 2019,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2019-12-31",
+     "label": "Tuesday"
+    }
+   ],
+   "counts": {
+    "stages": 6,
+    "artists": 48,
+    "sets": 49
+   }
+  },
+  {
+   "id": "countdown-nye-2016",
+   "festivalId": "countdown-nye",
+   "festivalName": "Countdown NYE",
+   "name": "Countdown NYE 2016",
+   "year": 2016,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2016-12-30",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2016-12-31",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 3,
+    "artists": 52,
+    "sets": 52
+   }
+  },
+  {
+   "id": "countdown-nye-2015",
+   "festivalId": "countdown-nye",
+   "festivalName": "Countdown NYE",
+   "name": "Countdown NYE 2015",
+   "year": 2015,
+   "timezone": "America/Los_Angeles",
+   "completeness": "complete_schedule",
+   "days": [
+    {
+     "day": 1,
+     "date": "2015-12-31",
+     "label": "Thursday"
+    }
+   ],
+   "counts": {
+    "stages": 3,
+    "artists": 26,
+    "sets": 26
    }
   },
   {
@@ -1789,7 +1878,7 @@
    "name": "EDC Las Vegas 2017",
    "year": 2017,
    "timezone": "America/Los_Angeles",
-   "completeness": "lineup_only",
+   "completeness": "complete_schedule",
    "days": [
     {
      "day": 1,
@@ -1808,9 +1897,9 @@
     }
    ],
    "counts": {
-    "stages": 0,
-    "artists": 297,
-    "sets": 0
+    "stages": 12,
+    "artists": 292,
+    "sets": 299
    }
   },
   {
@@ -1820,7 +1909,7 @@
    "name": "EDC Las Vegas 2016",
    "year": 2016,
    "timezone": "America/Los_Angeles",
-   "completeness": "lineup_only",
+   "completeness": "complete_schedule",
    "days": [
     {
      "day": 1,
@@ -1839,9 +1928,9 @@
     }
    ],
    "counts": {
-    "stages": 0,
-    "artists": 281,
-    "sets": 0
+    "stages": 12,
+    "artists": 279,
+    "sets": 306
    }
   },
   {
@@ -2182,7 +2271,7 @@
    "name": "EDC Orlando 2016",
    "year": 2016,
    "timezone": "America/New_York",
-   "completeness": "lineup_only",
+   "completeness": "complete_schedule",
    "days": [
     {
      "day": 1,
@@ -2196,9 +2285,9 @@
     }
    ],
    "counts": {
-    "stages": 0,
-    "artists": 62,
-    "sets": 0
+    "stages": 3,
+    "artists": 59,
+    "sets": 59
    }
   },
   {
@@ -2430,7 +2519,7 @@
    "name": "Escape Halloween 2023",
    "year": 2023,
    "timezone": "America/Los_Angeles",
-   "completeness": "lineup_only",
+   "completeness": "complete_schedule",
    "days": [
     {
      "day": 1,
@@ -2445,8 +2534,8 @@
    ],
    "counts": {
     "stages": 5,
-    "artists": 89,
-    "sets": 0
+    "artists": 88,
+    "sets": 88
    }
   },
   {
@@ -2913,7 +3002,7 @@
    "name": "HARD Summer 2024",
    "year": 2024,
    "timezone": "America/Los_Angeles",
-   "completeness": "lineup_only",
+   "completeness": "complete_schedule",
    "days": [
     {
      "day": 1,
@@ -2929,7 +3018,7 @@
    "counts": {
     "stages": 7,
     "artists": 96,
-    "sets": 0
+    "sets": 100
    }
   },
   {
@@ -2996,7 +3085,7 @@
    "name": "HARD Summer 2019",
    "year": 2019,
    "timezone": "America/Los_Angeles",
-   "completeness": "lineup_only",
+   "completeness": "complete_schedule",
    "days": [
     {
      "day": 1,
@@ -3010,9 +3099,9 @@
     }
    ],
    "counts": {
-    "stages": 0,
+    "stages": 6,
     "artists": 104,
-    "sets": 0
+    "sets": 111
    }
   },
   {
