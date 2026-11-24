@@ -1,0 +1,172 @@
+{
+  "id": "coachella-2022",
+  "method": "official_image_transcription",
+  "official": "https://www.coachella.com/schedule",
+  "window": [
+    "20220401",
+    "20220531"
+  ],
+  "pageCaptures": [
+    {
+      "captureTimestamp": "20220416002138",
+      "archivedUrl": "https://web.archive.org/web/20220416002138/https://www.coachella.com/schedule",
+      "sha256": "763e92497b1f071a0f6302d6690b388d672c4a341c45bf763f9efb2d77b64d7d",
+      "images": [
+        "H1xpKD3d0wLyr30nLNDsrDY2HPeCMTvAJZ7pLuBE.jpg",
+        "U0mrDaS8ahoJsmIGVryH4e1sqRhkK8OzcH5xoLTv.jpg",
+        "gmprJMads0I3JaIIJ9z3DWaUqRlTpmbKPcMLmqk7.jpg"
+      ]
+    },
+    {
+      "captureTimestamp": "20220416082253",
+      "archivedUrl": "https://web.archive.org/web/20220416082253/https://www.coachella.com/schedule",
+      "sha256": "5fea38a36ec48b8dfed0a0c933f8ee062242f22c00371d88f23fff773bd9119f",
+      "images": [
+        "H1xpKD3d0wLyr30nLNDsrDY2HPeCMTvAJZ7pLuBE.jpg",
+        "U0mrDaS8ahoJsmIGVryH4e1sqRhkK8OzcH5xoLTv.jpg",
+        "gmprJMads0I3JaIIJ9z3DWaUqRlTpmbKPcMLmqk7.jpg"
+      ]
+    },
+    {
+      "captureTimestamp": "20220417004207",
+      "archivedUrl": "https://web.archive.org/web/20220417004207/https://www.coachella.com/schedule",
+      "sha256": "ce5319949799f5577b75e40cbd7611b0a1e0035c9ce7ec5469173b9f7078fed6",
+      "images": [
+        "H1xpKD3d0wLyr30nLNDsrDY2HPeCMTvAJZ7pLuBE.jpg",
+        "U0mrDaS8ahoJsmIGVryH4e1sqRhkK8OzcH5xoLTv.jpg",
+        "gd07bQrVtJYSVltImPakciI8lrJSG0ntYNxVmlkL.jpg"
+      ]
+    },
+    {
+      "captureTimestamp": "20220510113656",
+      "archivedUrl": "https://web.archive.org/web/20220510113656/https://www.coachella.com/schedule",
+      "sha256": "b367608b478371e6c19d2ac6352228a3cc78ff9eccfe7d71a239b50c5ecee090",
+      "images": [
+        "vDDIalfxKb56vZfm9ANEHjbKZdK5r82EUhl4fKLi.jpg",
+        "9hx4C2KFGiEL0rLncSBekkL2OTi0zYji5dlpdvGJ.jpg",
+        "zzf52cETIenGglnd2t9Wca1EaB0gwus98HRMo7sB.jpg"
+      ]
+    }
+  ],
+  "days": [
+    {
+      "day": 1,
+      "date": "2022-04-15",
+      "pageCapture": "20220417004207",
+      "pageArchivedUrl": "https://web.archive.org/web/20220417004207/https://www.coachella.com/schedule",
+      "originalUrl": "https://media-prd.coachella.com/content/content_images/232/H1xpKD3d0wLyr30nLNDsrDY2HPeCMTvAJZ7pLuBE.jpg",
+      "imageCapture": "20220416082407",
+      "imageArchivedUrl": "https://web.archive.org/web/20220416082407/https://media-prd.coachella.com/content/content_images/232/H1xpKD3d0wLyr30nLNDsrDY2HPeCMTvAJZ7pLuBE.jpg",
+      "sha256": "b285c25cb9fdaf4305c5206bedfd82825053018b01ecf9677b731d13e1b944a1",
+      "bytes": 1002062,
+      "contentType": "image/jpeg",
+      "cacheFile": "648ca4cde69ba8adf9c381ba.bin",
+      "revisions": [
+        {
+          "file": "H1xpKD3d0wLyr30nLNDsrDY2HPeCMTvAJZ7pLuBE.jpg",
+          "firstSeen": "20220416002138"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2022-04-16",
+      "pageCapture": "20220417004207",
+      "pageArchivedUrl": "https://web.archive.org/web/20220417004207/https://www.coachella.com/schedule",
+      "originalUrl": "https://media-prd.coachella.com/content/content_images/232/U0mrDaS8ahoJsmIGVryH4e1sqRhkK8OzcH5xoLTv.jpg",
+      "imageCapture": "20220416082317",
+      "imageArchivedUrl": "https://web.archive.org/web/20220416082317/https://media-prd.coachella.com/content/content_images/232/U0mrDaS8ahoJsmIGVryH4e1sqRhkK8OzcH5xoLTv.jpg",
+      "sha256": "04df549a7e3b95facd213e36c2b56bffbd57dded20d8cf50f1cae2f33e84b859",
+      "bytes": 887548,
+      "contentType": "image/jpeg",
+      "cacheFile": "5c168ef493af56322677f19d.bin",
+      "revisions": [
+        {
+          "file": "U0mrDaS8ahoJsmIGVryH4e1sqRhkK8OzcH5xoLTv.jpg",
+          "firstSeen": "20220416002138"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2022-04-17",
+      "pageCapture": "20220417004207",
+      "pageArchivedUrl": "https://web.archive.org/web/20220417004207/https://www.coachella.com/schedule",
+      "originalUrl": "https://media-prd.coachella.com/content/content_images/232/gd07bQrVtJYSVltImPakciI8lrJSG0ntYNxVmlkL.jpg",
+      "imageCapture": "20220417004734",
+      "imageArchivedUrl": "https://web.archive.org/web/20220417004734/https://media-prd.coachella.com/content/content_images/232/gd07bQrVtJYSVltImPakciI8lrJSG0ntYNxVmlkL.jpg",
+      "sha256": "76d0c6fd7efaecaec3f313d2d4135aadabe59642fa38b338a105ed212a6665c5",
+      "bytes": 1735337,
+      "contentType": "image/jpeg",
+      "cacheFile": "4969aa2a21de8f7f69e6b79f.bin",
+      "revisions": [
+        {
+          "file": "gmprJMads0I3JaIIJ9z3DWaUqRlTpmbKPcMLmqk7.jpg",
+          "firstSeen": "20220416002138"
+        },
+        {
+          "file": "gd07bQrVtJYSVltImPakciI8lrJSG0ntYNxVmlkL.jpg",
+          "firstSeen": "20220417004207"
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2022-04-22",
+      "pageCapture": "20220510113656",
+      "pageArchivedUrl": "https://web.archive.org/web/20220510113656/https://www.coachella.com/schedule",
+      "originalUrl": "https://media-prd.coachella.com/content/content_images/232/vDDIalfxKb56vZfm9ANEHjbKZdK5r82EUhl4fKLi.jpg",
+      "imageCapture": "20220511191140",
+      "imageArchivedUrl": "https://web.archive.org/web/20220511191140/https://media-prd.coachella.com/content/content_images/232/vDDIalfxKb56vZfm9ANEHjbKZdK5r82EUhl4fKLi.jpg",
+      "sha256": "07a16bec28d36966d5b8f610ebb9e2d8637d79435bde54f863b7b71a0965657b",
+      "bytes": 522481,
+      "contentType": "image/jpeg",
+      "cacheFile": "56cbd08b6849aab1cfc8523c.bin",
+      "revisions": [
+        {
+          "file": "vDDIalfxKb56vZfm9ANEHjbKZdK5r82EUhl4fKLi.jpg",
+          "firstSeen": "20220510113656"
+        }
+      ]
+    },
+    {
+      "day": 5,
+      "date": "2022-04-23",
+      "pageCapture": "20220510113656",
+      "pageArchivedUrl": "https://web.archive.org/web/20220510113656/https://www.coachella.com/schedule",
+      "originalUrl": "https://media-prd.coachella.com/content/content_images/232/9hx4C2KFGiEL0rLncSBekkL2OTi0zYji5dlpdvGJ.jpg",
+      "imageCapture": "20220511191142",
+      "imageArchivedUrl": "https://web.archive.org/web/20220511191142/https://media-prd.coachella.com/content/content_images/232/9hx4C2KFGiEL0rLncSBekkL2OTi0zYji5dlpdvGJ.jpg",
+      "sha256": "c114a0e4b5c38be325cd0381fe3a446753d7c8b225618515f5679183fbd1f45c",
+      "bytes": 434936,
+      "contentType": "image/jpeg",
+      "cacheFile": "303466b07e0ce5900cb6a33b.bin",
+      "revisions": [
+        {
+          "file": "9hx4C2KFGiEL0rLncSBekkL2OTi0zYji5dlpdvGJ.jpg",
+          "firstSeen": "20220510113656"
+        }
+      ]
+    },
+    {
+      "day": 6,
+      "date": "2022-04-24",
+      "pageCapture": "20220510113656",
+      "pageArchivedUrl": "https://web.archive.org/web/20220510113656/https://www.coachella.com/schedule",
+      "originalUrl": "https://media-prd.coachella.com/content/content_images/232/zzf52cETIenGglnd2t9Wca1EaB0gwus98HRMo7sB.jpg",
+      "imageCapture": "20220511191144",
+      "imageArchivedUrl": "https://web.archive.org/web/20220511191144/https://media-prd.coachella.com/content/content_images/232/zzf52cETIenGglnd2t9Wca1EaB0gwus98HRMo7sB.jpg",
+      "sha256": "46a9913a1efc4746e0949aac1aa0607447a45be0a832a61e4e355b2262eae540",
+      "bytes": 1695674,
+      "contentType": "image/jpeg",
+      "cacheFile": "7b50495939feb240122b01a6.bin",
+      "revisions": [
+        {
+          "file": "zzf52cETIenGglnd2t9Wca1EaB0gwus98HRMo7sB.jpg",
+          "firstSeen": "20220510113656"
+        }
+      ]
+    }
+  ],
+  "dropped": []
+}

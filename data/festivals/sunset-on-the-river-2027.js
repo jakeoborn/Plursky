@@ -80,7 +80,8 @@
     print: { accent: null, source: { url: "https://sunsetotr.com/", observedAt: "2026-11-11" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
     officialEvent: {
       website: "https://sunsetotr.com/",
-      observedAt: "2026-11-11",
+      tickets: "https://wl.eventim.us/event/Sunset-On-The-River-Music-and-Arts-Festival/691219?afflky=SunsetOTRFestival",
+      observedAt: "2026-11-22",
     },
     // Calendar-day bounds in EST, not published hours (see header).
     startMs: Date.UTC(2027, 1, 20, 5, 0, 0),  // Feb 20 00:00 EST

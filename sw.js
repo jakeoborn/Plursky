@@ -1,9 +1,9 @@
-﻿const CACHE      = 'plursky-v657';
+﻿const CACHE      = 'plursky-v675';
 // Tile cache is intentionally separate from the app cache so map tiles
 // survive APP_VER bumps. Tiles for a given (z, x, y) are immutable, so
 // cache-first forever is correct.
 const TILE_CACHE = 'plursky-tiles-v1';
-const APP_VER    = 'v657';
+const APP_VER    = 'v675';
 
 // Own-origin app files â€” versioned to match what index.html requests.
 // addAll is atomic so a missed own-origin file fails the install fast.
@@ -60,6 +60,13 @@ const LOCAL = [
   `./data/festivals/day-zero-tulum-2027.js?v=${APP_VER}`,
   `./data/festivals/coachella-2027.js?v=${APP_VER}`,
   `./data/festivals/time-warp-2027.js?v=${APP_VER}`,
+  `./data/festivals/tomorrowland-winter-2027.js?v=${APP_VER}`,
+  `./data/festivals/lollapalooza-brasil-2027.js?v=${APP_VER}`,
+  `./data/festivals/lollapalooza-chile-2027.js?v=${APP_VER}`,
+  `./data/festivals/forbidden-kingdom-2027.js?v=${APP_VER}`,
+  `./data/festivals/ubbi-dubbi-2027.js?v=${APP_VER}`,
+  `./data/festivals/lightning-in-a-bottle-2027.js?v=${APP_VER}`,
+  `./data/festivals/edc-mexico-2027.js?v=${APP_VER}`,
   // Licensed artist-photo ledger runtime (data/artist-photos/ledger.json → build-artist-photo-ledger.mjs).
   `./data/artist-photos.js?v=${APP_VER}`,
   // One artist key for the photo lookup and the registry (artist repository M3).
@@ -222,6 +229,13 @@ const LOCAL = [
   './festival-art/untold-2027.webp',
   './festival-art/groove-cruise-2027.webp',
   './festival-art/ozora-2027.webp',
+  './festival-art/lollapalooza-argentina-2027.webp',
+  './festival-art/lollapalooza-brasil-2027.webp',
+  './festival-art/lollapalooza-chile-2027.webp',
+  './festival-art/ultra-south-africa-2027.webp',
+  './festival-art/lightning-in-a-bottle-2027.webp',
+  './festival-art/world-club-dome-2027.webp',
+  './festival-art/bumbershoot-2027.webp',
   './festival-art/tiles/acl-2026.webp',
   './festival-art/tiles/arc-2026.webp',
   './festival-art/tiles/awakenings-2027.webp',
@@ -273,6 +287,13 @@ const LOCAL = [
   './festival-art/tiles/untold-2027.webp',
   './festival-art/tiles/groove-cruise-2027.webp',
   './festival-art/tiles/ozora-2027.webp',
+  './festival-art/tiles/lollapalooza-argentina-2027.webp',
+  './festival-art/tiles/lollapalooza-brasil-2027.webp',
+  './festival-art/tiles/lollapalooza-chile-2027.webp',
+  './festival-art/tiles/ultra-south-africa-2027.webp',
+  './festival-art/tiles/lightning-in-a-bottle-2027.webp',
+  './festival-art/tiles/world-club-dome-2027.webp',
+  './festival-art/tiles/bumbershoot-2027.webp',
   `./build/ios-frame.js?v=${APP_VER}`,
   `./build/data.js?v=${APP_VER}`,
   `./build/supabase.js?v=${APP_VER}`,

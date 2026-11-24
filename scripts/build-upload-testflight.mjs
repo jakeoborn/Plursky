@@ -6,6 +6,7 @@
 //   node scripts/build-upload-testflight.mjs              # ship origin/main
 //   node scripts/build-upload-testflight.mjs --dry-run    # build + archive only; no ASC call, no upload
 //   node scripts/build-upload-testflight.mjs --marketing 1.14
+//   node scripts/build-upload-testflight.mjs --app-store  # a build an App Store version can take for review
 //
 // Options:
 //   --ref <git-ref>      what to build (default origin/main, fetched first)
@@ -14,6 +15,9 @@
 //   --wait-valid         accepted for old callers; waiting for VALID is always on
 //   --keep               keep the temp worktree afterwards
 //   --dry-run            skip ASC and upload; version = project's, build = project's + 1
+//   --app-store          export WITHOUT testFlightInternalTestingOnly, so the build can be
+//                        attached to an App Store version. The beta-group guard still runs:
+//                        any external group or public link stops the upload in both modes.
 //
 // Credentials never live in this repo. The script reads, in order:
 //   ASC_KEY_ID / ASC_ISSUER_ID / ASC_KEY_PATH from the environment, then
@@ -34,7 +38,7 @@ import os from "node:os";
 import path from "node:path";
 import crypto from "node:crypto";
 import { execFileSync, spawnSync } from "node:child_process";
-import { awaitValidBuild, exportOptionsPlist, exportOptionsProblems, externalDistribution } from "./testflight-guard.mjs";
+import { awaitValidBuild, exportOptionsProblems, preUploadGuard } from "./testflight-guard.mjs";
 
 const APP_ID = "6768888507";
 const ASC_API = "https://api.appstoreconnect.apple.com";
@@ -46,7 +50,7 @@ const REPO = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..")
 // Strict: a typo like --dryrun, or an option missing its value, must stop the
 // run before any work. Silently ignoring it could upload what the caller meant
 // to dry-run, or build a ref they didn't name.
-const FLAGS = new Set(["--dry-run", "--wait-valid", "--keep"]);
+const FLAGS = new Set(["--dry-run", "--wait-valid", "--keep", "--app-store"]);
 const OPTS = new Set(["--ref", "--marketing", "--wait"]);
 const args = {};
 for (let i = 2; i < process.argv.length; i++) {
@@ -64,6 +68,7 @@ const REF = args["--ref"] || "origin/main";
 const FORCE_MKT = args["--marketing"] || null;
 const WAIT_MIN = Number(args["--wait"] || "60");
 const KEEP = !!args["--keep"];
+const APP_STORE = !!args["--app-store"];
 // Finite and bounded: `Infinity` or `1e309` would make the poll deadline infinite.
 if (!(Number.isFinite(WAIT_MIN) && WAIT_MIN > 0 && WAIT_MIN <= 1440)) {
   console.error(`✗ --wait ${args["--wait"]} must be a number of minutes between 0 and 1440`);
@@ -319,15 +324,21 @@ if (DRY) {
 // Read-only ASC check BEFORE anything uploads: an external beta group or a
 // public link means a build could reach people outside the team, so the run
 // stops (testflight-guard.mjs). No bypass flag.
-const groups = await ascAll(`/v1/apps/${APP_ID}/betaGroups?fields[betaGroups]=name,isInternalGroup,publicLinkEnabled&limit=200`);
-const external = externalDistribution(groups);
-if (external.length) die(`internal-only guard: ${external.join("; ")} — not uploading`);
-say(`internal-only guard: ${groups.length} beta group(s), all internal, no public link`);
+// The same guard runs in both modes: --app-store changes only the export
+// plist, never whether the beta groups are checked.
+const pre = await preUploadGuard({
+  teamId: TEAM_ID, appStore: APP_STORE,
+  readAppGroups: () => ascAll(`/v1/apps/${APP_ID}/betaGroups?fields[betaGroups]=name,isInternalGroup,publicLinkEnabled&limit=200`),
+});
+if (pre.problems.length) die(`internal-only guard: ${pre.problems.join("; ")} — not uploading`);
+say(`internal-only guard: ${pre.groups.length} beta group(s), all internal, no public link`);
 
 const exportOpts = path.join(LOG_DIR, "ExportOptions.plist");
-fs.writeFileSync(exportOpts, exportOptionsPlist(TEAM_ID));
-const optProblems = exportOptionsProblems(fs.readFileSync(exportOpts, "utf8"));
-if (optProblems.length) die(`internal-only guard: ${optProblems.join("; ")}`);
+fs.writeFileSync(exportOpts, pre.xml);
+// Re-check the plist as written to disk, the file xcodebuild reads.
+const optProblems = exportOptionsProblems(fs.readFileSync(exportOpts, "utf8"), { appStore: APP_STORE });
+if (optProblems.length) die(`export guard: ${optProblems.join("; ")}`);
+say(APP_STORE ? "export: App Store build (testFlightInternalTestingOnly false)" : "export: internal TestFlight only");
 const upLog = run("upload", "xcodebuild", [
   "-exportArchive", "-archivePath", ARCHIVE, "-exportOptionsPlist", exportOpts,
   "-exportPath", path.join(LOG_DIR, "export"), ...authFlags,
@@ -344,7 +355,10 @@ const { state, groups: buildGroups, problems } = await awaitValidBuild({
       `&filter[preReleaseVersion.version]=${marketing}&fields[builds]=version,processingState,uploadedDate`);
     return { state: j.data[0]?.attributes?.processingState || null, buildId: j.data[0]?.id || null };
   },
-  readGroups: (id) => ascAll(`/v1/builds/${id}/betaGroups?fields[betaGroups]=name,isInternalGroup,publicLinkEnabled&limit=200`),
+  // Apple refuses GET /v1/builds/{id}/betaGroups (403, "does not allow GET_RELATED":
+  // build 40 uploaded, then this read killed the run, 2026-11-20). Filter the
+  // betaGroups collection by the build instead.
+  readGroups: (id) => ascAll(`/v1/betaGroups?filter[builds]=${id}&fields[betaGroups]=name,isInternalGroup,publicLinkEnabled&limit=200`),
   sleep: () => new Promise((r) => setTimeout(r, 30_000)),
   now: () => Date.now(),
   deadline: Date.now() + WAIT_MIN * 60_000,
