@@ -761,7 +761,7 @@ export const EDITIONS = {
     timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
     dates: [["2021-10-22", "Friday"], ["2021-10-23", "Saturday"], ["2021-10-24", "Sunday"]] },
   "edc-las-vegas-2023": { festivalId: "edc-lv", name: "EDC Las Vegas 2023", year: 2023,
-    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
     dates: [["2023-05-19", "Friday"], ["2023-05-20", "Saturday"], ["2023-05-21", "Sunday"]] },
   "edc-orlando-2015": { festivalId: "edc-orlando", name: "EDC Orlando 2015", year: 2015,
     timezone: "America/New_York", rolloverHour: 6, method: "official_lineup_html",

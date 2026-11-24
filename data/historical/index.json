@@ -1754,7 +1754,7 @@
    "name": "EDC Las Vegas 2023",
    "year": 2023,
    "timezone": "America/Los_Angeles",
-   "completeness": "lineup_only",
+   "completeness": "complete_schedule",
    "days": [
     {
      "day": 1,
@@ -1773,9 +1773,9 @@
     }
    ],
    "counts": {
-    "stages": 13,
-    "artists": 316,
-    "sets": 0
+    "stages": 15,
+    "artists": 317,
+    "sets": 339
    }
   },
   {

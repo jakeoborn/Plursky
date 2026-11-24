@@ -2153,6 +2153,51 @@
        "editions": [
         "edc-las-vegas-2017"
        ]
+      },
+      {
+       "printed": "parliamentARTCAR",
+       "editions": [
+        "edc-las-vegas-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:parliament-2-0-30th-anniversary-art-car",
+     "names": [
+      {
+       "printed": "Parliament 2.0 30th Anniversary Art Car",
+       "editions": [
+        "edc-las-vegas-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:titanic-s-end-art-car",
+     "names": [
+      {
+       "printed": "Titanic's End Art Car",
+       "editions": [
+        "edc-las-vegas-2023"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:titanicsendartcar",
+     "names": [
+      {
+       "printed": "titanicsendARTCAR",
+       "editions": [
+        "edc-las-vegas-2023"
+       ]
       }
      ],
      "joins": [],
