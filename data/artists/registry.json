@@ -219,6 +219,7 @@
    "edc-las-vegas-2022:d3:parliament-art-car:2245:12th-planet",
    "edc-las-vegas-2023:d2:basspod:0430:12th-planet",
    "edc-las-vegas-2023:d3:boombox-art-car:0230:12th-planet-b2b-airglo",
+   "edc-mexico-2020:d2:wasteland:2300:12th-planet",
    "edc-orlando-2016:d1:circuitgrounds:1845:12th-planet",
    "edc-orlando-2022:d1:circuit-grounds:1815:12th-planet",
    "electric-forest-2012:d3:tripolee:2230:12th-planet",
@@ -388,6 +389,21 @@
   ],
   "firstSeen": "2022-07-30",
   "lastSeen": "2022-07-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "2-1-timmy-trumpet-b2b-w-and-w",
+  "name": "2=1 (Timmy Trumpet B2B W&W)",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:kinetic-field:2315:2-1-timmy-trumpet-b2b-w-and-w"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
   "photo": null,
   "links": []
  },
@@ -2170,6 +2186,21 @@
   "links": []
  },
  {
+  "key": "a-zar",
+  "name": "A-ZAR",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:boombox-art-car:2310:a-zar"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "a2-records-unstoppable",
   "name": "A2 Records “Unstoppable”",
   "aliases": [],
@@ -2717,6 +2748,21 @@
   ],
   "firstSeen": "2023-10-06",
   "lastSeen": "2023-10-13",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "abraham-ramirez",
+  "name": "Abraham Ramirez",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:boombox-art-car:1700:abraham-ramirez"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
   "photo": null,
   "links": []
  },
@@ -3749,6 +3795,21 @@
   "links": []
  },
  {
+  "key": "adgel",
+  "name": "Adgel",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:dos-equis-stage:1400:adgel-b2b-tblmkr"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "adham-shaikh",
   "name": "Adham Shaikh",
   "aliases": [],
@@ -3818,6 +3879,7 @@
   "projects": [],
   "billings": [
    "edc-las-vegas-2017:d2:wideawakeartcar:0330:adin",
+   "edc-mexico-2020:d3:neon-garden:1500:adin",
    "edc-orlando-2019:d1:neongarden:1300:adin",
    "edc-orlando-2021:d2:neon-garden:1300:adin",
    "edc-orlando-2022:d3:neon-garden:1300:adin",
@@ -5721,6 +5783,21 @@
   "links": []
  },
  {
+  "key": "alan-salomon",
+  "name": "Alan Salomon",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d1:dos-equis-stage:0000:alan-salomon"
+  ],
+  "firstSeen": "2020-02-28",
+  "lastSeen": "2020-02-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "alan-shi",
   "name": "Alan Shi",
   "aliases": [],
@@ -5965,6 +6042,21 @@
   "links": []
  },
  {
+  "key": "alby-loud",
+  "name": "Alby Loud",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:wasteland:1400:alby-loud"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "alcala-bros",
   "name": "Alcala Bros",
   "aliases": [],
@@ -6146,6 +6238,21 @@
   ],
   "firstSeen": "2014-07-27",
   "lastSeen": "2014-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "ale-q",
+  "name": "Ale Q",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:dos-equis-stage:2300:ale-q-b2b-pako-rodriguez"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
   "photo": null,
   "links": []
  },
@@ -6378,6 +6485,7 @@
   "projects": [],
   "billings": [
    "dreamstate-socal-2019:d1:the-vision:1700:alessandra-roncone",
+   "edc-mexico-2020:d2:stereo-bloom:1745:alessandra-roncone",
    "tomorrowland-2018:d5:tulip:1600:alessandra-roncone",
    "tomorrowland-2022:d7:kara-savi:2300:alessandra-roncone"
   ],
@@ -6797,6 +6905,21 @@
   ],
   "firstSeen": "2012-08-03",
   "lastSeen": "2014-06-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "alex-midi",
+  "name": "Alex Midi",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:boombox-art-car:1930:alex-midi"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
   "photo": null,
   "links": []
  },
@@ -7236,6 +7359,21 @@
   ],
   "firstSeen": "2011-04-15",
   "lastSeen": "2015-04-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "alfred-beck",
+  "name": "Alfred Beck",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:boombox-art-car:2120:alfred-beck"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
   "photo": null,
   "links": []
  },
@@ -9655,6 +9793,21 @@
   "links": []
  },
  {
+  "key": "amg",
+  "name": "AMG",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:stereo-bloom:0100:amg"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "amhain",
   "name": "amháin",
   "aliases": [
@@ -10671,6 +10824,21 @@
   ],
   "firstSeen": "2015-08-07",
   "lastSeen": "2015-08-07",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "andrea-acosta",
+  "name": "Andrea Acosta",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:neon-garden:1400:andrea-acosta"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
   "photo": null,
   "links": []
  },
@@ -11720,6 +11888,21 @@
   ],
   "firstSeen": "2027-03-14",
   "lastSeen": "2027-04-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "angry-beats",
+  "name": "Angry Beats",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:boombox-art-car:0005:angry-beats"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
   "photo": null,
   "links": []
  },
@@ -13198,6 +13381,21 @@
   "links": []
  },
  {
+  "key": "aranxa",
+  "name": "Aranxa",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:wasteland:1515:aranxa"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "arath-herce",
   "name": "ARATH HERCE",
   "aliases": [],
@@ -13497,6 +13695,21 @@
   ],
   "firstSeen": "2022-04-24",
   "lastSeen": "2024-04-14",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "arguello",
+  "name": "Argüello",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:dos-equis-stage:0000:gian-varela-b2b-arguello"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
   "photo": null,
   "links": []
  },
@@ -13917,6 +14130,21 @@
   "links": []
  },
  {
+  "key": "armi-diamonds",
+  "name": "Armi Diamonds",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d1:dos-equis-stage:2200:armi-diamonds"
+  ],
+  "firstSeen": "2020-02-28",
+  "lastSeen": "2020-02-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "armin-van-buuren",
   "name": "Armin van Buuren",
   "aliases": [
@@ -13945,6 +14173,7 @@
    "edc-las-vegas-2023:d3:kinetic-field:0145:armin-van-buuren",
    "edc-las-vegas-2024:d1:kinetic-field:0031:armin-van-buuren",
    "edc-las-vegas-2025:d3:kinetic-field:0147:armin-van-buuren",
+   "edc-mexico-2020:d3:kinetic-field:2312:armin-van-buuren",
    "edc-orlando-2017:d2:kineticfield:2227:armin-van-buuren",
    "edc-orlando-2021:d3:kinetic-field:2236:armin-van-buuren",
    "edc-orlando-2023:d2:kinetic-field:2114:armin-van-buuren",
@@ -14093,6 +14322,21 @@
   ],
   "firstSeen": "2015-06-28",
   "lastSeen": "2015-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "army-of-skanks",
+  "name": "Army of Skanks",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d1:dos-equis-stage:1800:army-of-skanks"
+  ],
+  "firstSeen": "2020-02-28",
+  "lastSeen": "2020-02-28",
   "photo": null,
   "links": []
  },
@@ -16091,6 +16335,8 @@
    "edc-las-vegas-2022:d2:wasteland:0330:audiofreq",
    "edc-las-vegas-2023:d2:wasteland:2230:audiofreq",
    "edc-las-vegas-2024:d1:wasteland:0230:audiofreq",
+   "edc-mexico-2020:d3:wasteland:1830:audiofreq-b2b-darksiderz",
+   "edc-mexico-2020:d3:wasteland:1930:audiofreq",
    "edc-orlando-2019:d1:stereobloom:2030:audiofreq",
    "escape-halloween-2017:d1:chopping-block:2000:audiofreq",
    "tomorrowland-2013:d1:q-dance:1630:audiofreq",
@@ -18681,10 +18927,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "forbidden-kingdom-2027:fk27-bagha"
+   "forbidden-kingdom-2027:fk27-bagha",
+   "edc-mexico-2020:d2:wasteland:1400:bagha"
   ],
-  "firstSeen": null,
-  "lastSeen": null,
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
   "photo": null,
   "links": []
  },
@@ -18843,6 +19090,21 @@
   ],
   "firstSeen": "2023-05-21",
   "lastSeen": "2023-05-21",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "balcazar",
+  "name": "Balcazar",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:wide-awake-art-car:0000:balcazar"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
   "photo": null,
   "links": []
  },
@@ -19260,6 +19522,21 @@
   ],
   "firstSeen": "2026-12-18",
   "lastSeen": "2026-12-18",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "barbie-chola",
+  "name": "Barbie Chola",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:dos-equis-stage:1800:barbie-chola-b2b-not-a-chinese"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
   "photo": null,
   "links": []
  },
@@ -22163,6 +22440,21 @@
   "links": []
  },
  {
+  "key": "belmar",
+  "name": "Belmar",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d1:boombox-art-car:2200:belmar"
+  ],
+  "firstSeen": "2020-02-28",
+  "lastSeen": "2020-02-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "beltran",
   "name": "Beltran",
   "aliases": [
@@ -23211,6 +23503,21 @@
   ],
   "firstSeen": "2019-05-12",
   "lastSeen": "2019-05-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "berelau",
+  "name": "Berelau",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d1:boombox-art-car:2300:berelau"
+  ],
+  "firstSeen": "2020-02-28",
+  "lastSeen": "2020-02-28",
   "photo": null,
   "links": []
  },
@@ -24366,6 +24673,7 @@
    "coachella-2016:d2:do-lab:1730:big-wild",
    "coachella-2023:d3:outdoor:1615:big-wild",
    "coachella-2023:d6:outdoor:1630:big-wild",
+   "edc-mexico-2020:d3:circuit-grounds:1830:big-wild",
    "lollapalooza-2018:d2:american-eagle:untimed:big-wild",
    "lollapalooza-2021:d4:grubhub:2100:big-wild",
    "lollapalooza-2023:d2:bud-light:1700:big-wild",
@@ -25425,9 +25733,10 @@
   "projects": [],
   "billings": [
    "coachella-2024:d1:sahara:1945:bizarrap",
-   "coachella-2024:d4:sahara:1945:bizarrap"
+   "coachella-2024:d4:sahara:1945:bizarrap",
+   "edc-mexico-2020:d2:dos-equis-stage:2200:bizarrap"
   ],
-  "firstSeen": "2024-04-12",
+  "firstSeen": "2020-02-29",
   "lastSeen": "2024-04-19",
   "photo": null,
   "links": []
@@ -26445,6 +26754,7 @@
    "dreamstate-socal-2019:d2:the-sequence:2300:blastoyz",
    "edc-las-vegas-2023:d1:quantum-valley:0100:blastoyz",
    "edc-las-vegas-2024:d1:quantum-valley:0100:blastoyz",
+   "edc-mexico-2020:d2:stereo-bloom:2330:blastoyz",
    "edc-orlando-2023:d3:stereo-bloom:2300:blastoyz",
    "tomorrowland-2017:d5:b2b:2300:blastoyz",
    "tomorrowland-2019:d3:kara-savi:2300:blastoyz",
@@ -28482,6 +28792,21 @@
   "links": []
  },
  {
+  "key": "bonhaus",
+  "name": "BonHaus",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d1:circuit-grounds:1600:bonhaus"
+  ],
+  "firstSeen": "2020-02-28",
+  "lastSeen": "2020-02-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "bonish",
   "name": "BONISH",
   "aliases": [],
@@ -28632,6 +28957,7 @@
   "billings": [
    "edc-mexico-2027:edcmx27-bontan-b2b-yamagucci",
    "edc-las-vegas-2025:d2:stereo-bloom:0300:bontan-b2b-calussa",
+   "edc-mexico-2020:d2:neon-garden:1615:bontan",
    "edc-orlando-2024:d1:neon-garden:1630:honeyluv-b2b-bontan",
    "hard-summer-2024:d2:pink-stage:1600:honeyluv-b2b-bontan",
    "tomorrowland-2014:d1:desperados:1930:bontan",
@@ -29064,6 +29390,7 @@
    "edc-las-vegas-2017:d1:basspod:0230:borgore",
    "edc-las-vegas-2022:d2:basspod:0230:borgore",
    "edc-las-vegas-2023:d3:basspod:2220:borgore-b2b-level-up",
+   "edc-mexico-2020:d1:circuit-grounds:2100:borgore",
    "electric-forest-2012:d1:ranch-arena:2030:borgore",
    "escape-halloween-2019:d1:psycho-circus:0000:borgore",
    "lollapalooza-2017:d4:perry-s:1745:borgore",
@@ -29167,6 +29494,7 @@
    "edc-las-vegas-2022:d2:stereo-bloom:2300:lp-giobbi-b2b-born-dirty",
    "edc-las-vegas-2022:d2:parliament-art-car:0200:born-dirty-techno-set",
    "edc-las-vegas-2023:d1:stereo-bloom:0330:born-dirty",
+   "edc-mexico-2020:d3:stereo-bloom:1715:born-dirty",
    "edc-orlando-2019:d2:stereobloom:1845:born-dirty",
    "edc-orlando-2021:d3:stereo-bloom:1615:born-dirty",
    "edc-orlando-2021:d3:corona-electric-beach:2030:lp-giobbi-b2b-born-dirty",
@@ -32364,6 +32692,21 @@
   "links": []
  },
  {
+  "key": "bsno",
+  "name": "BSNO",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d1:dos-equis-stage:2300:bsno"
+  ],
+  "firstSeen": "2020-02-28",
+  "lastSeen": "2020-02-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "bt",
   "name": "BT",
   "aliases": [],
@@ -32421,6 +32764,21 @@
   ],
   "firstSeen": "2014-08-09",
   "lastSeen": "2014-08-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "bubu",
+  "name": "Bubu",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:bionic-jungle:1600:bubu"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
   "photo": null,
   "links": []
  },
@@ -32574,6 +32932,21 @@
   ],
   "firstSeen": "2012-06-02",
   "lastSeen": "2012-06-02",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "bufi",
+  "name": "Bufi",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:wide-awake-art-car:2100:bufi"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
   "photo": null,
   "links": []
  },
@@ -33605,9 +33978,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-mexico-2027:edcmx27-cabizbajo"
+   "edc-mexico-2027:edcmx27-cabizbajo",
+   "edc-mexico-2020:d2:wide-awake-art-car:2100:cabizbajo"
   ],
-  "firstSeen": "2027-02-19",
+  "firstSeen": "2020-02-29",
   "lastSeen": "2027-02-19",
   "photo": null,
   "links": []
@@ -35401,6 +35775,7 @@
    "edc-las-vegas-2013:d3:kineticfield:2300:carl-cox",
    "edc-las-vegas-2024:d1:neon-garden:0400:carl-cox-b2b-nicole-moudaber",
    "edc-las-vegas-2024:d1:neon-garden:0230:carl-cox",
+   "edc-mexico-2020:d1:neon-garden:2300:carl-cox",
    "edc-orlando-2024:d1:neon-garden:2100:carl-cox-b2b-vintage-culture",
    "tomorrowland-2011:d1:carl-cox-and-friends:2300:carl-cox",
    "tomorrowland-2012:d1:carl-cox-and-friends:2300:carl-cox",
@@ -35641,12 +36016,13 @@
    "coachella-2024:d3:yuma:1930:carlita",
    "coachella-2024:d6:yuma:1930:carlita",
    "edc-las-vegas-2025:d2:neon-garden:2315:carlita",
+   "edc-mexico-2020:d3:bionic-jungle:1800:carlita",
    "edc-orlando-2023:d1:neon-garden:1545:carlita",
    "tomorrowland-2022:d7:core:1700:carlita",
    "tomorrowland-2023:d3:atmosphere:1900:carlita",
    "tomorrowland-2023:d6:core:1600:carlita"
   ],
-  "firstSeen": "2022-07-29",
+  "firstSeen": "2020-03-01",
   "lastSeen": "2027-04-03",
   "photo": null,
   "links": []
@@ -35736,6 +36112,21 @@
   ],
   "firstSeen": "2019-05-10",
   "lastSeen": "2019-05-10",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "carlos-belatti",
+  "name": "Carlos Belatti",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:wide-awake-art-car:1630:carlos-belatti"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
   "photo": null,
   "links": []
  },
@@ -36333,6 +36724,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "edc-mexico-2020:d2:kinetic-field:1753:cash-cash",
    "edc-orlando-2021:d2:kinetic-field:1626:cash-cash",
    "electric-forest-2014:d1:ranch-arena:1845:cash-cash",
    "lollapalooza-2014:d1:bmi:1740:cash-cash",
@@ -38203,6 +38595,21 @@
   "links": []
  },
  {
+  "key": "chanty-otm",
+  "name": "Chanty OTM",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:dos-equis-stage:1500:chanty-otm"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "chaos",
   "name": "CHAOS!",
   "aliases": [],
@@ -38471,6 +38878,21 @@
   "links": []
  },
  {
+  "key": "charlie-atom",
+  "name": "Charlie Atom",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:dos-equis-stage:0100:guztavo-mx-b2b-charlie-atom"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "charlie-belle",
   "name": "Charlie Belle",
   "aliases": [],
@@ -38679,6 +39101,21 @@
   "links": []
  },
  {
+  "key": "charlotte-fehler",
+  "name": "Charlotte Fehler",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d1:stereo-bloom:0030:charlotte-fehler"
+  ],
+  "firstSeen": "2020-02-28",
+  "lastSeen": "2020-02-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "charlotte-gainsbourg",
   "name": "Charlotte Gainsbourg",
   "aliases": [
@@ -38857,6 +39294,7 @@
    "edc-las-vegas-2023:d2:cosmic-meadow:0010:zeds-dead-b2b-chase-and-status",
    "edc-las-vegas-2025:d1:kinetic-field:0237:dom-dolla-b2b-chase-and-status",
    "edc-las-vegas-2025:d2:basspod:0030:chase-and-status",
+   "edc-mexico-2020:d1:circuit-grounds:2330:chase-and-status-dj-set",
    "edc-orlando-2025:d3:circuitgrounds:2045:chase-and-status",
    "hard-summer-2024:d2:green-stage:2000:chase-and-status",
    "lollapalooza-2014:d2:perry-s:1900:chase-and-status",
@@ -40713,9 +41151,11 @@
   "projects": [
    "pathfinders"
   ],
-  "billings": [],
-  "firstSeen": null,
-  "lastSeen": null,
+  "billings": [
+   "edc-mexico-2020:d2:stereo-bloom:1900:chris-schweizer"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
   "photo": null,
   "links": []
  },
@@ -43497,6 +43937,7 @@
    "edc-las-vegas-2017:d1:wasteland:0230:code-black",
    "edc-las-vegas-2023:d3:wasteland:2330:code-black",
    "edc-las-vegas-2025:d2:wasteland:2130:code-black",
+   "edc-mexico-2020:d1:wasteland:2330:code-black",
    "edc-orlando-2021:d1:stereo-bloom:2100:code-black",
    "escape-halloween-2023:d1:sanitarium:2000:code-black",
    "tomorrowland-2012:d2:q-dance:1500:code-black",
@@ -46049,9 +46490,10 @@
   ],
   "billings": [
    "edc-las-vegas-2022:d2:quantum-valley:0430:craig-connelly",
+   "edc-mexico-2020:d2:stereo-bloom:2015:craig-connelly",
    "tomorrowland-2022:d7:kara-savi:0000:paul-denton-b2b-craig-connelly"
   ],
-  "firstSeen": "2022-05-21",
+  "firstSeen": "2020-02-29",
   "lastSeen": "2022-07-29",
   "photo": null,
   "links": []
@@ -46594,6 +47036,21 @@
   "links": []
  },
  {
+  "key": "criminal-sounds",
+  "name": "Criminal Sounds",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:dos-equis-stage:1500:robots-don-t-have-sisters-b2b-criminal-sounds"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "crimson",
   "name": "Crimson",
   "aliases": [],
@@ -46721,6 +47178,7 @@
    "arc-2026:arc-eli-and-fur-b2b-cristoph-midway-d1",
    "edc-las-vegas-2017:d1:neongarden:2000:cristoph",
    "edc-las-vegas-2024:d1:circuit-grounds:2000:cristoph",
+   "edc-mexico-2020:d3:neon-garden:1845:cristoph",
    "nocturnal-wonderland-2018:d1:sunken-garden:2215:cristoph",
    "tomorrowland-2017:d6:pryda:1300:cristoph",
    "tomorrowland-2018:d4:atmosphere:1530:cristoph",
@@ -48356,6 +48814,7 @@
    "edc-las-vegas-2023:d3:wasteland:2130:d-sturb",
    "edc-las-vegas-2024:d1:wasteland:2130:d-sturb",
    "edc-las-vegas-2025:d2:wasteland:2230:d-sturb",
+   "edc-mexico-2020:d3:wasteland:2215:d-sturb",
    "escape-halloween-2022:d1:sanitarium:0000:d-sturb-b2b-warface",
    "tomorrowland-2018:d3:cage:2100:d-sturb",
    "tomorrowland-2022:d5:freedom:2100:d-sturb",
@@ -48517,6 +48976,7 @@
    "edc-las-vegas-2023:d1:wasteland:0130:da-tweekaz",
    "edc-las-vegas-2024:d3:wasteland:0130:da-tweekaz",
    "edc-las-vegas-2025:d3:wasteland:0130:da-tweekaz",
+   "edc-mexico-2020:d1:wasteland:2215:da-tweekaz",
    "edc-orlando-2019:d1:stereobloom:2200:da-tweekaz",
    "escape-halloween-2017:d1:chopping-block:2300:da-tweekaz",
    "escape-halloween-2022:d1:sanitarium:2300:da-tweekaz",
@@ -49096,6 +49556,21 @@
   ],
   "firstSeen": "2026-10-17",
   "lastSeen": "2026-10-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dam-dam",
+  "name": "Dam Dam",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:boombox-art-car:1750:dam-dam"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
   "photo": null,
   "links": []
  },
@@ -50005,6 +50480,21 @@
   "links": []
  },
  {
+  "key": "daniel-weil",
+  "name": "Daniel Weil",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:bionic-jungle:1600:daniel-weil"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "danielle-ponder",
   "name": "DANIELLE PONDER",
   "aliases": [],
@@ -50316,6 +50806,7 @@
   "billings": [
    "edc-las-vegas-2016:d3:kineticfield:2012:danny-howard",
    "edc-las-vegas-2017:d2:neongarden:2000:danny-howard",
+   "edc-mexico-2020:d2:circuit-grounds:1800:danny-howard",
    "tomorrowland-2015:d3:smash-the-house:1600:danny-howard",
    "tomorrowland-2016:d3:smash-the-house:1530:danny-howard",
    "tomorrowland-2017:d6:potion:1630:danny-howard",
@@ -50853,6 +51344,8 @@
    "edc-las-vegas-2017:d1:wasteland:1900:darksiderz",
    "edc-las-vegas-2022:d3:wasteland:2040:darksiderz",
    "edc-las-vegas-2024:d2:wasteland:2030:kreation-b2b-darksiderz",
+   "edc-mexico-2020:d3:wasteland:1800:darksiderz",
+   "edc-mexico-2020:d3:wasteland:1830:audiofreq-b2b-darksiderz",
    "edc-orlando-2019:d1:stereobloom:1600:darksiderz",
    "ultra-miami-2022:d3:umf-radio:1300:darksiderz",
    "ultra-miami-2025:d3:umf-radio:1200:darksiderz"
@@ -51440,10 +51933,11 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-las-vegas-2017:d1:wideawakeartcar:2130:dave-ralph"
+   "edc-las-vegas-2017:d1:wideawakeartcar:2130:dave-ralph",
+   "edc-mexico-2020:d1:neon-garden:1700:dave-ralph"
   ],
   "firstSeen": "2017-06-16",
-  "lastSeen": "2017-06-16",
+  "lastSeen": "2020-02-28",
   "photo": null,
   "links": []
  },
@@ -51717,6 +52211,7 @@
    "edc-las-vegas-2012:d3:kineticfield:0030:david-guetta",
    "edc-las-vegas-2023:d1:kinetic-field:0027:david-guetta",
    "edc-las-vegas-2024:d1:kinetic-field:0300:david-guetta",
+   "edc-mexico-2020:d3:kinetic-field:0028:david-guetta",
    "tomorrowland-2010:d2:mainstage:2030:david-guetta",
    "tomorrowland-2011:d3:mainstage:2030:david-guetta",
    "tomorrowland-2012:d3:mainstage:2030:david-guetta",
@@ -52434,6 +52929,21 @@
   "links": []
  },
  {
+  "key": "dayanna-ro",
+  "name": "Dayanna Ro",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:boombox-art-car:2215:dayanna-ro"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "daybreak-session-chocolate-puma",
   "name": "Daybreak session: Chocolate Puma",
   "aliases": [],
@@ -52634,6 +53144,21 @@
   ],
   "firstSeen": "2024-04-12",
   "lastSeen": "2024-04-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dayvi",
+  "name": "Dayvi",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d1:dos-equis-stage:2100:dayvi"
+  ],
+  "firstSeen": "2020-02-28",
+  "lastSeen": "2020-02-28",
   "photo": null,
   "links": []
  },
@@ -54104,6 +54629,7 @@
   "projects": [],
   "billings": [
    "edc-las-vegas-2022:d3:basspod:1900:definitive-b2b-replicant",
+   "edc-mexico-2020:d2:wasteland:1845:definitive",
    "escape-halloween-2019:d1:psycho-circus:1700:definitive"
   ],
   "firstSeen": "2019-10-25",
@@ -55171,6 +55697,7 @@
    "edc-las-vegas-2022:d2:kinetic-field:2206:deorro",
    "edc-las-vegas-2023:d3:circuit-grounds:2300:deorro",
    "edc-las-vegas-2024:d2:cosmic-meadow:0015:deorro",
+   "edc-mexico-2020:d1:kinetic-field:2144:deorro",
    "edc-orlando-2019:d2:kineticfield:1808:deorro",
    "edc-orlando-2023:d2:kinetic-field:1627:deorro",
    "edc-orlando-2024:d1:kinetic-field:2006:deorro-b2b-timmy-trumpet",
@@ -55300,6 +55827,21 @@
   ],
   "firstSeen": "2016-08-07",
   "lastSeen": "2016-08-07",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "derlow",
+  "name": "Derlow",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:boombox-art-car:0000:derlow"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
   "photo": null,
   "links": []
  },
@@ -57564,6 +58106,7 @@
    "countdown-nye-2024:d1:the-mothership:1740:diplo",
    "edc-las-vegas-2017:d3:kineticfield:0128:alison-wonderland-b2b-diplo-b2b-jauz",
    "edc-las-vegas-2024:d3:cosmic-meadow:0015:diplo",
+   "edc-mexico-2020:d2:circuit-grounds:0030:diplo",
    "edc-orlando-2017:d1:kineticfield:2112:diplo-b2b-a-trak",
    "edc-orlando-2019:d3:kineticfield:2246:diplo",
    "edc-orlando-2024:d1:kinetic-field:1732:diplo-sunset-set",
@@ -58986,6 +59529,7 @@
    "edc-las-vegas-2017:d2:wasteland:0415:mad-dog-b2b-dj-anime",
    "edc-las-vegas-2022:d3:wasteland:0430:dj-anime",
    "edc-las-vegas-2023:d1:wasteland:0330:dj-anime",
+   "edc-mexico-2020:d3:wasteland:2330:dj-anime",
    "edc-orlando-2021:d1:stereo-bloom:2300:dj-anime",
    "escape-halloween-2019:d1:sanitarium:0100:dj-anime",
    "escape-halloween-2022:d1:sanitarium:2000:dj-anime",
@@ -60487,6 +61031,21 @@
   "links": []
  },
  {
+  "key": "dj-hu",
+  "name": "DJ Hu",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:boombox-art-car:1645:joe-rose-b2b-dj-hu"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dj-hype",
   "name": "DJ Hype",
   "aliases": [],
@@ -61784,6 +62343,21 @@
   "links": []
  },
  {
+  "key": "dj-nelson",
+  "name": "DJ Nelson",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:dos-equis-stage:2100:dj-nelson"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dj-newonce",
   "name": "DJ Newoncé",
   "aliases": [],
@@ -61897,6 +62471,21 @@
   ],
   "firstSeen": "2012-07-27",
   "lastSeen": "2012-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dj-p0ll0",
+  "name": "DJ P0ll0",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:boombox-art-car:1550:dj-p0ll0"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
   "photo": null,
   "links": []
  },
@@ -64527,6 +65116,7 @@
    "edc-las-vegas-2023:d2:stereo-bloom:0000:dombresky",
    "edc-las-vegas-2023:d3:kinetic-field:2105:dombresky",
    "edc-las-vegas-2025:d3:cosmic-meadow:2200:dombresky",
+   "edc-mexico-2020:d3:stereo-bloom:2115:dombresky",
    "edc-orlando-2019:d2:stereobloom:2115:dombresky",
    "edc-orlando-2021:d3:stereo-bloom:2045:dombresky",
    "edc-orlando-2023:d1:stereo-bloom:2230:dombresky",
@@ -64847,6 +65437,7 @@
    "edc-mexico-2027:edcmx27-don-diablo",
    "edc-las-vegas-2016:d1:kineticfield:2012:don-diablo",
    "edc-las-vegas-2017:d1:circuitgrounds:2130:don-diablo",
+   "edc-mexico-2020:d1:kinetic-field:2315:don-diablo",
    "edc-orlando-2016:d2:kineticfield:1642:don-diablo",
    "escape-halloween-2017:d2:ghouls-graveyard:2030:don-diablo",
    "escape-halloween-2019:d2:the-grimm:2130:don-diablo",
@@ -67719,6 +68310,7 @@
    "edc-las-vegas-2016:d1:circuitgrounds:0300:duke-dumont",
    "edc-las-vegas-2017:d2:circuitgrounds:2245:duke-dumont",
    "edc-las-vegas-2023:d1:circuit-grounds:0230:duke-dumont",
+   "edc-mexico-2020:d2:circuit-grounds:2215:duke-dumont",
    "escape-halloween-2017:d2:slaughterhouse:2300:duke-dumont",
    "escape-halloween-2019:d1:the-grimm:2145:duke-dumont",
    "hard-summer-2019:d2:hard-stage:1800:duke-dumont",
@@ -67848,6 +68440,21 @@
   ],
   "firstSeen": "2016-06-03",
   "lastSeen": "2016-06-03",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dunnowho",
+  "name": "Dunnowho",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:boombox-art-car:1400:dunnowho"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
   "photo": null,
   "links": []
  },
@@ -70091,6 +70698,7 @@
   "projects": [],
   "billings": [
    "coachella-2016:d4:do-lab:1845:ekali",
+   "edc-mexico-2020:d3:kinetic-field:1750:ekali",
    "edc-orlando-2021:d3:circuit-grounds:2005:ekali",
    "escape-halloween-2021:d2:psycho-circus:2245:ekali",
    "lollapalooza-2018:d4:perry-s:untimed:ekali",
@@ -71108,6 +71716,7 @@
    "edc-las-vegas-2024:d2:circuit-grounds:0215:eli-brown-b2b-hi-lo",
    "edc-las-vegas-2024:d2:stereo-bloom:2315:eli-brown",
    "edc-las-vegas-2025:d1:circuit-grounds:0330:eli-brown",
+   "edc-mexico-2020:d3:neon-garden:1730:eli-brown",
    "edc-orlando-2021:d2:neon-garden:1700:eli-brown",
    "edc-orlando-2023:d3:neon-garden:1900:eli-brown",
    "edc-orlando-2025:d2:kineticfield:1844:eli-brown",
@@ -71758,6 +72367,7 @@
   "projects": [],
   "billings": [
    "coachella-2017:d3:do-lab:1730:elohim",
+   "edc-mexico-2020:d1:circuit-grounds:2000:elohim",
    "governors-ball-2019:d2:american-eagle-stage:1415:elohim",
    "lightning-in-a-bottle-2019:d3:lightning:2115:elohim",
    "lollapalooza-2017:d1:pepsi:1250:elohim",
@@ -72773,6 +73383,7 @@
   "billings": [
    "dreamstate-socal-2026:dssc-enrico-sangiuliano",
    "time-warp-2027:tw27-enrico-sangiuliano",
+   "edc-mexico-2020:d3:neon-garden:2030:enrico-sangiuliano",
    "edc-orlando-2019:d2:neongarden:2030:enrico-sangiuliano",
    "edc-orlando-2022:d3:neon-garden:1900:enrico-sangiuliano",
    "tomorrowland-2018:d1:atmosphere:1330:enrico-sangiuliano",
@@ -72829,6 +73440,21 @@
   ],
   "firstSeen": "2017-06-01",
   "lastSeen": "2017-06-01",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "enya-botello",
+  "name": "Enya Botello",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:boombox-art-car:0100:enya-botello"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
   "photo": null,
   "links": []
  },
@@ -73344,6 +73970,21 @@
   "links": []
  },
  {
+  "key": "erick-t",
+  "name": "Erick T",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:boombox-art-car:2200:erick-t"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "erik-sumo-band",
   "name": "Erik Sumo Band",
   "aliases": [],
@@ -73544,6 +74185,21 @@
   ],
   "firstSeen": "2013-06-07",
   "lastSeen": "2013-06-07",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "esamipau",
+  "name": "EsaMiPau",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d1:boombox-art-car:0000:esamipau"
+  ],
+  "firstSeen": "2020-02-28",
+  "lastSeen": "2020-02-28",
   "photo": null,
   "links": []
  },
@@ -74065,6 +74721,21 @@
   ],
   "firstSeen": "2019-07-21",
   "lastSeen": "2019-07-21",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "europa-jax-jones-and-martin-solveig",
+  "name": "Europa (Jax Jones & Martin Solveig)",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:kinetic-field:2144:europa-jax-jones-and-martin-solveig"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
   "photo": null,
   "links": []
  },
@@ -74883,6 +75554,21 @@
   "links": []
  },
  {
+  "key": "f4st",
+  "name": "F4ST",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d1:wide-awake-art-car:1800:f4st"
+  ],
+  "firstSeen": "2020-02-28",
+  "lastSeen": "2020-02-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "f5",
   "name": "F5",
   "aliases": [],
@@ -75631,6 +76317,21 @@
   "links": []
  },
  {
+  "key": "fancy-folks",
+  "name": "Fancy Folks",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:circuit-grounds:1500:lujavo-b2b-fancy-folks"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "fancy-hagood",
   "name": "Fancy Hagood",
   "aliases": [],
@@ -75688,6 +76389,21 @@
   ],
   "firstSeen": "2018-08-10",
   "lastSeen": "2018-08-10",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "fango",
+  "name": "Fango",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:bionic-jungle:2200:fango"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
   "photo": null,
   "links": []
  },
@@ -76762,6 +77478,21 @@
   "links": []
  },
  {
+  "key": "feii-vega",
+  "name": "Feii Vega",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:boombox-art-car:2300:feii-vega"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "feist",
   "name": "Feist",
   "aliases": [
@@ -77564,9 +78295,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "edc-mexico-2020:d1:stereo-bloom:2300:fight-clvb",
    "edc-orlando-2021:d1:corona-electric-beach:2000:fight-clvb"
   ],
-  "firstSeen": "2021-11-12",
+  "firstSeen": "2020-02-28",
   "lastSeen": "2021-11-12",
   "photo": null,
   "links": []
@@ -78181,6 +78913,21 @@
   ],
   "firstSeen": "2011-04-17",
   "lastSeen": "2011-04-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "fito-silva",
+  "name": "Fito Silva",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d1:boombox-art-car:1600:fito-silva"
+  ],
+  "firstSeen": "2020-02-28",
+  "lastSeen": "2020-02-28",
   "photo": null,
   "links": []
  },
@@ -79012,6 +79759,21 @@
   ],
   "firstSeen": "2026-08-02",
   "lastSeen": "2026-08-02",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "flor-capistran",
+  "name": "Flor Capistran",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:wide-awake-art-car:1800:flor-capistran"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
   "photo": null,
   "links": []
  },
@@ -80018,6 +80780,21 @@
   "links": []
  },
  {
+  "key": "fortu-and-mendoza",
+  "name": "Fortu & Mendoza",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:kinetic-field:1400:fortu-and-mendoza"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "foster-the-people",
   "name": "Foster the People",
   "aliases": [
@@ -80454,6 +81231,21 @@
   ],
   "firstSeen": "2011-04-16",
   "lastSeen": "2019-08-04",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "francis-davila",
+  "name": "Francis Davila",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d1:wide-awake-art-car:2300:francis-davila"
+  ],
+  "firstSeen": "2020-02-28",
+  "lastSeen": "2020-02-28",
   "photo": null,
   "links": []
  },
@@ -82169,6 +82961,21 @@
   ],
   "firstSeen": "2012-06-30",
   "lastSeen": "2012-06-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "fruti",
+  "name": "Fruti",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:kinetic-field:1445:fruti"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
   "photo": null,
   "links": []
  },
@@ -83895,6 +84702,21 @@
   "links": []
  },
  {
+  "key": "gamboa",
+  "name": "Gamboa",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:dos-equis-stage:1600:gamboa"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "game-and-watch",
   "name": "Game & Watch",
   "aliases": [],
@@ -85506,6 +86328,21 @@
   "links": []
  },
  {
+  "key": "ghetto-kids",
+  "name": "Ghetto Kids",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d1:circuit-grounds:1900:ghetto-kids"
+  ],
+  "firstSeen": "2020-02-28",
+  "lastSeen": "2020-02-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "ghillie-and-skbr",
   "name": "Ghillie & Skbr",
   "aliases": [],
@@ -85717,6 +86554,21 @@
   ],
   "firstSeen": "2026-06-25",
   "lastSeen": "2026-06-25",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "gian-varela",
+  "name": "Gian Varela",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:dos-equis-stage:0000:gian-varela-b2b-arguello"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
   "photo": null,
   "links": []
  },
@@ -86552,6 +87404,7 @@
    "dreamstate-socal-2025:d1:the-dream:2000:giuseppe-ottaviani",
    "edc-las-vegas-2023:d2:quantum-valley:2230:giuseppe-ottaviani",
    "edc-las-vegas-2024:d1:quantum-valley:2200:giuseppe-ottaviani",
+   "edc-mexico-2020:d2:stereo-bloom:2130:giuseppe-ottaviani",
    "edc-orlando-2022:d1:stereo-bloom:1900:giuseppe-ottaviani",
    "edc-orlando-2024:d3:stereo-bloom:1900:giuseppe-ottaviani",
    "tomorrowland-2011:d3:paul-van-dyk-presents-evolution:1545:giuseppe-ottaviani",
@@ -89952,6 +90805,21 @@
   "links": []
  },
  {
+  "key": "grimix",
+  "name": "Grimix",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:boombox-art-car:2000:grimix"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "grimm",
   "name": "Grimm",
   "aliases": [],
@@ -91053,6 +91921,21 @@
   "links": []
  },
  {
+  "key": "guztavo-mx",
+  "name": "Guztavo MX",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:dos-equis-stage:0100:guztavo-mx-b2b-charlie-atom"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "gvx",
   "name": "GVX",
   "aliases": [],
@@ -91211,6 +92094,21 @@
   ],
   "firstSeen": "2015-08-09",
   "lastSeen": "2017-04-22",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "haaradak",
+  "name": "Haaradak",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:wasteland:1630:haaradak"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
   "photo": null,
   "links": []
  },
@@ -91448,6 +92346,21 @@
   ],
   "firstSeen": "2023-08-04",
   "lastSeen": "2026-09-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "hajj",
+  "name": "Hajj",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:kinetic-field:1400:hajj"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
   "photo": null,
   "links": []
  },
@@ -92066,6 +92979,7 @@
   "billings": [
    "edc-las-vegas-2016:d3:cosmicmeadow:0330:hannah-wants",
    "edc-las-vegas-2023:d3:stereo-bloom:2115:hannah-wants",
+   "edc-mexico-2020:d2:circuit-grounds:1700:hannah-wants",
    "lollapalooza-2022:d4:solana-x-perry-s:1300:hannah-wants",
    "shambhala-2014:d4:pagoda:0130:hannah-wants",
    "tomorrowland-2017:d1:my-house:1730:hannah-wants"
@@ -93223,6 +94137,7 @@
    "edc-las-vegas-2013:d2:kineticfield:0445:headhunterz",
    "edc-las-vegas-2013:d3:basscon:0200:headhunterz",
    "edc-las-vegas-2022:d3:wasteland:0130:headhunterz",
+   "edc-mexico-2020:d1:kinetic-field:0030:headhunterz-b2b-yellow-claw",
    "electric-forest-2013:d1:tripolee:0045:headhunterz",
    "escape-halloween-2019:d1:sanitarium:2300:headhunterz",
    "tomorrowland-2011:d2:q-dance:1630:headhunterz",
@@ -95135,6 +96050,21 @@
   "links": []
  },
  {
+  "key": "holder",
+  "name": "Holder",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d1:bionic-jungle:1600:holder"
+  ],
+  "firstSeen": "2020-02-28",
+  "lastSeen": "2020-02-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "hollt",
   "name": "Hollt",
   "aliases": [],
@@ -95146,6 +96076,21 @@
   ],
   "firstSeen": "2023-07-30",
   "lastSeen": "2023-07-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "holly",
+  "name": "Holly",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d1:stereo-bloom:1700:holly"
+  ],
+  "firstSeen": "2020-02-28",
+  "lastSeen": "2020-02-28",
   "photo": null,
   "links": []
  },
@@ -99550,6 +100495,21 @@
   "links": []
  },
  {
+  "key": "inigo-vontier",
+  "name": "Iñigo Vontier",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d1:bionic-jungle:2030:inigo-vontier"
+  ],
+  "firstSeen": "2020-02-28",
+  "lastSeen": "2020-02-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "initiate",
   "name": "Initiate",
   "aliases": [],
@@ -99707,6 +100667,21 @@
   ],
   "firstSeen": "2017-06-01",
   "lastSeen": "2017-06-01",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "innobass",
+  "name": "Innobass",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:dos-equis-stage:1900:innobass-b2b-milomilo"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
   "photo": null,
   "links": []
  },
@@ -100857,6 +101832,21 @@
   ],
   "firstSeen": "2022-06-17",
   "lastSeen": "2022-06-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "ivy-kst",
+  "name": "IVY.KST!",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:dos-equis-stage:0000:ivy-kst"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
   "photo": null,
   "links": []
  },
@@ -104448,6 +105438,7 @@
    "edc-las-vegas-2017:d1:cosmicmeadow:0000:jauz",
    "edc-las-vegas-2017:d3:kineticfield:0128:alison-wonderland-b2b-diplo-b2b-jauz",
    "edc-las-vegas-2022:d2:cosmic-meadow:0430:jauz",
+   "edc-mexico-2020:d3:kinetic-field:2012:jauz",
    "edc-orlando-2016:d2:kineticfield:1747:jauz",
    "edc-orlando-2017:d1:kineticfield:1858:jauz",
    "edc-orlando-2019:d1:circuitgrounds:2140:jauz",
@@ -105698,6 +106689,21 @@
   "links": []
  },
  {
+  "key": "jenia-tarsol",
+  "name": "Jenia Tarsol",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:bionic-jungle:0000:jenia-tarsol"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "jenn-grant",
   "name": "Jenn Grant",
   "aliases": [],
@@ -105891,6 +106897,21 @@
   ],
   "firstSeen": "2012-08-10",
   "lastSeen": "2012-08-10",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "jenouise",
+  "name": "Jenouise",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d1:neon-garden:1600:jenouise"
+  ],
+  "firstSeen": "2020-02-28",
+  "lastSeen": "2020-02-28",
   "photo": null,
   "links": []
  },
@@ -106177,6 +107198,21 @@
   ],
   "firstSeen": "2026-12-11",
   "lastSeen": "2027-03-22",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "jerry-davila",
+  "name": "Jerry Davila",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:kinetic-field:1554:jerry-davila"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
   "photo": null,
   "links": []
  },
@@ -107942,6 +108978,21 @@
   "links": []
  },
  {
+  "key": "joe-rose",
+  "name": "Joe Rose",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:boombox-art-car:1645:joe-rose-b2b-dj-hu"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "joe-russo-s-almost-dead",
   "name": "Joe Russo's Almost Dead",
   "aliases": [],
@@ -109502,6 +110553,7 @@
   ],
   "billings": [
    "edc-las-vegas-2017:d2:kineticfield:2010:jonas-blue",
+   "edc-mexico-2020:d2:kinetic-field:1857:jonas-blue",
    "edc-orlando-2019:d3:circuitgrounds:1720:jonas-blue",
    "edc-orlando-2022:d3:kinetic-field:1525:endless-summer-sam-feldt-b2b-jonas-blue",
    "lollapalooza-2019:d3:perry-s:untimed:jonas-blue",
@@ -110037,6 +111089,7 @@
    "tomorrowland-thailand-2026:tmlth-joris-voorn-b2b-krystal-klear",
    "tomorrowland-winter-2027:tmlw27-joris-voorn-b2b-kolsch",
    "tomorrowland-winter-2027:tmlw27-joris-voorn",
+   "edc-mexico-2020:d3:neon-garden:2215:joris-voorn",
    "tomorrowland-2010:d1:cafe-d-anvers-invites-cocoon:2300:joris-voorn",
    "tomorrowland-2012:d1:cafe-d-anvers:2100:joris-voorn",
    "tomorrowland-2013:d2:cocoon:1730:joris-voorn",
@@ -111079,6 +112132,7 @@
    "edc-las-vegas-2016:d3:cosmicmeadow:2115:joyryde",
    "edc-las-vegas-2017:d3:circuitgrounds:0330:joyryde",
    "edc-las-vegas-2024:d2:cosmic-meadow:2130:joyryde-b2b-habstrakt",
+   "edc-mexico-2020:d3:circuit-grounds:2030:joyryde",
    "edc-orlando-2017:d2:circuitgrounds:1930:joyryde",
    "edc-orlando-2021:d3:kinetic-field:1901:joyryde",
    "edc-orlando-2021:d3:corona-electric-beach:2300:joyryde",
@@ -113204,6 +114258,21 @@
   "links": []
  },
  {
+  "key": "justine",
+  "name": "Justine",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:wide-awake-art-car:1930:justine"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "justine-skye",
   "name": "Justine Skye",
   "aliases": [],
@@ -113443,6 +114512,21 @@
   "links": []
  },
  {
+  "key": "k-i-d",
+  "name": "K.I.D.",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:boombox-art-car:1715:k-i-d"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "k-i-z",
   "name": "K.I.Z.",
   "aliases": [],
@@ -113502,6 +114586,23 @@
   ],
   "firstSeen": "2014-06-29",
   "lastSeen": "2014-06-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "k1",
+  "name": "K1",
+  "aliases": [],
+  "kind": "project",
+  "parents": [
+   "kikeone"
+  ],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d1:wasteland:0045:kikeone-presents-k1"
+  ],
+  "firstSeen": "2020-02-28",
+  "lastSeen": "2020-02-28",
   "photo": null,
   "links": []
  },
@@ -114637,9 +115738,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-mexico-2027:edcmx27-karina-rosee"
+   "edc-mexico-2027:edcmx27-karina-rosee",
+   "edc-mexico-2020:d1:wasteland:1630:karina-rosee"
   ],
-  "firstSeen": "2027-02-19",
+  "firstSeen": "2020-02-28",
   "lastSeen": "2027-02-19",
   "photo": null,
   "links": []
@@ -115494,6 +116596,21 @@
   "links": []
  },
  {
+  "key": "kawas",
+  "name": "Kawas",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d1:bionic-jungle:0030:kawas"
+  ],
+  "firstSeen": "2020-02-28",
+  "lastSeen": "2020-02-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "kaycyy",
   "name": "KAYCYY",
   "aliases": [],
@@ -115659,6 +116776,7 @@
   "billings": [
    "edc-mexico-2027:edcmx27-kayzo",
    "edc-las-vegas-2022:d2:circuit-grounds:0330:kayzo",
+   "edc-mexico-2020:d2:kinetic-field:2013:kayzo",
    "edc-orlando-2016:d1:circuitgrounds:1745:kayzo",
    "edc-orlando-2021:d1:kinetic-field:1956:kayzo",
    "edc-orlando-2023:d1:circuit-grounds:2130:kayzo",
@@ -116832,6 +117950,21 @@
   "links": []
  },
  {
+  "key": "kevin-brand",
+  "name": "Kevin Brand",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d1:boombox-art-car:2000:kevin-brand"
+  ],
+  "firstSeen": "2020-02-28",
+  "lastSeen": "2020-02-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "kevin-cornine",
   "name": "Kevin Cornine",
   "aliases": [],
@@ -117740,6 +118873,21 @@
   "links": []
  },
  {
+  "key": "kidnap",
+  "name": "Kidnap",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:circuit-grounds:1625:kidnap"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "kidnap-kid",
   "name": "Kidnap Kid",
   "aliases": [],
@@ -117882,6 +119030,21 @@
   ],
   "firstSeen": "2018-08-11",
   "lastSeen": "2018-08-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "kikeone",
+  "name": "KikeONE",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [
+   "k1"
+  ],
+  "billings": [],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -119238,6 +120401,21 @@
   "links": []
  },
  {
+  "key": "kleinfinger",
+  "name": "Kleinfinger",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:wide-awake-art-car:1400:kleinfinger"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "kline",
   "name": "Kline",
   "aliases": [],
@@ -119448,6 +120626,7 @@
    "edc-las-vegas-2013:d1:kineticfield:0230:knife-party",
    "edc-las-vegas-2013:d3:cosmicmeadow:0030:knife-party",
    "edc-las-vegas-2016:d1:cosmicmeadow:0215:knife-party",
+   "edc-mexico-2020:d2:circuit-grounds:2330:knife-party",
    "electric-forest-2013:d3:sherwood-court:0115:knife-party",
    "lollapalooza-2013:d3:perry-s:2025:knife-party",
    "tomorrowland-2013:d2:mainstage:1915:knife-party",
@@ -120068,6 +121247,7 @@
    "tomorrowland-thailand-2026:tmlth-kolsch",
    "tomorrowland-winter-2027:tmlw27-kolsch",
    "tomorrowland-winter-2027:tmlw27-joris-voorn-b2b-kolsch",
+   "edc-mexico-2020:d1:neon-garden:2115:kolsch",
    "edc-orlando-2022:d1:neon-garden:1930:kolsch",
    "escape-halloween-2019:d1:sewer-district:2000:kolsch",
    "sonar-2016:d2:sonarpub:0355:kolsch-live",
@@ -120891,6 +122071,21 @@
   "links": []
  },
  {
+  "key": "kris-berle",
+  "name": "Kris Berle",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:wide-awake-art-car:1515:kris-berle"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "kris-cayden",
   "name": "Kris Cayden",
   "aliases": [],
@@ -121075,6 +122270,7 @@
    "dreamstate-socal-2016:d2:the-vision:1700:kristina-sky",
    "dreamstate-socal-2025:d1:the-void:1600:kristina-sky",
    "edc-las-vegas-2012:d3:circuitgrounds:1900:kristina-sky",
+   "edc-mexico-2020:d2:stereo-bloom:1630:kristina-sky",
    "edc-orlando-2017:d1:neongarden:1400:kristina-sky"
   ],
   "firstSeen": "2012-06-10",
@@ -121376,6 +122572,7 @@
    "coachella-2016:d3:sahara:2140:kshmr",
    "coachella-2016:d6:sahara:2135:kshmr",
    "edc-las-vegas-2016:d1:circuitgrounds:0415:kshmr",
+   "edc-mexico-2020:d3:kinetic-field:2142:kshmr",
    "edc-orlando-2017:d2:kineticfield:1752:kshmr",
    "edc-orlando-2021:d2:kinetic-field:2003:kshmr",
    "escape-halloween-2021:d2:the-grimm:2245:kshmr",
@@ -121848,6 +123045,7 @@
   "billings": [
    "defqon1-2015:d2:brown:1900:kutski",
    "edc-las-vegas-2016:d1:wasteland:2000:kutski",
+   "edc-mexico-2020:d1:wasteland:2015:kutski",
    "escape-halloween-2017:d1:chopping-block:1900:kutski",
    "tomorrowland-2011:d3:q-dance:1100:kutski",
    "tomorrowland-2013:d2:q-dance:1200:kutski",
@@ -121857,7 +123055,7 @@
    "tomorrowland-2016:d3:pussylounge:1730:kutski"
   ],
   "firstSeen": "2011-07-24",
-  "lastSeen": "2017-10-27",
+  "lastSeen": "2020-02-28",
   "photo": null,
   "links": []
  },
@@ -122501,6 +123699,21 @@
   "links": []
  },
  {
+  "key": "la-clicka",
+  "name": "La Clicka",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [
+   "worldwide-records"
+  ],
+  "billings": [],
+  "firstSeen": null,
+  "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "la-diabla",
   "name": "La Diabla",
   "aliases": [],
@@ -123085,6 +124298,7 @@
    "edc-las-vegas-2023:d2:wasteland:2330:lady-faith",
    "edc-las-vegas-2024:d3:wasteland:2330:lady-faith",
    "edc-las-vegas-2025:d3:wasteland:2330:lady-faith",
+   "edc-mexico-2020:d1:wasteland:2115:lady-faith",
    "edc-orlando-2019:d1:stereobloom:1900:lady-faith",
    "escape-halloween-2021:d1:sanitarium:2100:lady-faith",
    "escape-halloween-2023:d1:sanitarium:2300:lady-faith",
@@ -124762,6 +125976,7 @@
   "billings": [
    "coachella-2015:d2:yuma:1410:lauren-lane",
    "coachella-2015:d5:yuma:1410:lauren-lane",
+   "edc-mexico-2020:d3:neon-garden:1615:lauren-lane",
    "escape-halloween-2017:d2:cannibals-tea-party:1700:lauren-lane",
    "escape-halloween-2023:d2:sanitarium:1800:lauren-lane",
    "hard-summer-2019:d2:pink-tent:1600:lauren-lane",
@@ -125383,6 +126598,7 @@
   "projects": [],
   "billings": [
    "edc-las-vegas-2023:d1:boombox-art-car:2200:le-twins",
+   "edc-mexico-2020:d1:dos-equis-stage:1900:le-twins",
    "tomorrowland-2019:d6:lotus:1330:le-twins"
   ],
   "firstSeen": "2019-07-28",
@@ -126140,6 +127356,21 @@
   "links": []
  },
  {
+  "key": "lemarroy",
+  "name": "Lemarroy",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:kinetic-field:1455:lemarroy"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "lemonick",
   "name": "Lemonick",
   "aliases": [],
@@ -126472,6 +127703,21 @@
   ],
   "firstSeen": "2026-10-09",
   "lastSeen": "2026-10-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "leon-leiden",
+  "name": "Leon Leiden",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d1:kinetic-field:1600:leon-leiden"
+  ],
+  "firstSeen": "2020-02-28",
+  "lastSeen": "2020-02-28",
   "photo": null,
   "links": []
  },
@@ -127998,6 +129244,7 @@
    "edc-las-vegas-2023:d1:wasteland:0230:lil-texas",
    "edc-las-vegas-2024:d2:wasteland:0130:lil-texas",
    "edc-las-vegas-2025:d2:wasteland:0230:lil-texas",
+   "edc-mexico-2020:d3:wasteland:0045:lil-texas",
    "edc-orlando-2019:d1:stereobloom:2300:lil-texas",
    "escape-halloween-2024:d1:feeding-grounds:0000:lil-texas",
    "escape-halloween-2024:d2:the-cauldron:0045:lil-texas",
@@ -129265,6 +130512,21 @@
   "links": []
  },
  {
+  "key": "lizz",
+  "name": "Lizz",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:dos-equis-stage:2300:lizz"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "lizzie-mcguire",
   "name": "Lizzie_mcguire",
   "aliases": [],
@@ -129872,6 +131134,21 @@
   ],
   "firstSeen": "2011-07-23",
   "lastSeen": "2011-07-23",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "lokier",
+  "name": "Lokier",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:neon-garden:1400:lokier"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
   "photo": null,
   "links": []
  },
@@ -131068,6 +132345,21 @@
   "links": []
  },
  {
+  "key": "losh",
+  "name": "LOSH",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:boombox-art-car:1900:losh"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "losman",
   "name": "LOSMAN",
   "aliases": [],
@@ -131620,6 +132912,7 @@
    "coachella-2022:d1:outdoor:2240:louis-the-child",
    "coachella-2022:d4:outdoor:2240:louis-the-child",
    "edc-las-vegas-2017:d2:cosmicmeadow:2130:louis-the-child",
+   "edc-mexico-2020:d3:circuit-grounds:2315:louis-the-child",
    "edc-orlando-2021:d3:circuit-grounds:2245:louis-the-child",
    "governors-ball-2019:d3:honda-stage:2045:louis-the-child",
    "lollapalooza-2016:d4:pepsi:1600:louis-the-child",
@@ -132284,6 +133577,7 @@
   ],
   "billings": [
    "edc-las-vegas-2024:d1:cosmic-meadow:0150:lsdream",
+   "edc-mexico-2020:d3:kinetic-field:1650:lsdream",
    "shambhala-2024:d4:the-pagoda:0100:lsdream",
    "ultra-miami-2019:d1:worldwide-stage:1615:lsdream"
   ],
@@ -132618,6 +133912,7 @@
    "edc-las-vegas-2022:d1:cosmic-meadow:1700:westend-b2b-lucati",
    "edc-las-vegas-2022:d2:parliament-art-car:0300:lucati",
    "edc-las-vegas-2022:d3:stereo-bloom:0330:lucati",
+   "edc-mexico-2020:d3:stereo-bloom:1515:sage-armstrong-b2b-lucati",
    "escape-halloween-2019:d2:psycho-circus:1600:lucati",
    "escape-halloween-2021:d2:sanitarium:1830:lucati",
    "hard-summer-2019:d1:corona-electric-beach:2145:lucati",
@@ -132766,9 +134061,10 @@
   "projects": [],
   "billings": [
    "ubbi-dubbi-2027:ud27-luciana",
-   "edc-mexico-2027:edcmx27-luciana"
+   "edc-mexico-2027:edcmx27-luciana",
+   "edc-mexico-2020:d1:wide-awake-art-car:0000:luciana"
   ],
-  "firstSeen": "2027-02-21",
+  "firstSeen": "2020-02-28",
   "lastSeen": "2027-02-21",
   "photo": null,
   "links": []
@@ -133358,6 +134654,21 @@
   "links": []
  },
  {
+  "key": "lujavo",
+  "name": "Lujavo",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:circuit-grounds:1500:lujavo-b2b-fancy-folks"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "luk-vs-p-jay-vs-vox-d",
   "name": "Luk vs P-Jay vs Vox-D",
   "aliases": [],
@@ -133662,6 +134973,21 @@
   ],
   "firstSeen": "2026-09-18",
   "lastSeen": "2026-09-18",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "lumber-jack",
+  "name": "Lumber Jack",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:wide-awake-art-car:1800:lumber-jack"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
   "photo": null,
   "links": []
  },
@@ -134780,16 +136106,34 @@
   "links": []
  },
  {
-  "key": "maahez",
-  "name": "MAAHEZ",
+  "key": "ma-less",
+  "name": "Ma-Less",
   "aliases": [],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "edc-mexico-2020:d2:dos-equis-stage:1800:ma-less"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "maahez",
+  "name": "Maahez",
+  "aliases": [
+   "MAAHEZ"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:dos-equis-stage:1700:maahez",
    "ultra-miami-2025:d3:oasis:1200:maahez"
   ],
-  "firstSeen": "2025-03-30",
+  "firstSeen": "2020-03-01",
   "lastSeen": "2025-03-30",
   "photo": null,
   "links": []
@@ -134886,6 +136230,21 @@
   ],
   "firstSeen": "2023-10-07",
   "lastSeen": "2023-10-07",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "macarena",
+  "name": "Macarena",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d1:wide-awake-art-car:1600:macarena"
+  ],
+  "firstSeen": "2020-02-28",
+  "lastSeen": "2020-02-28",
   "photo": null,
   "links": []
  },
@@ -135578,6 +136937,7 @@
    "edc-las-vegas-2013:d1:circuitgrounds:0100:madeon",
    "edc-las-vegas-2017:d3:kineticfield:0228:madeon",
    "edc-las-vegas-2022:d1:cosmic-meadow:2250:madeon-dj-set",
+   "edc-mexico-2020:d3:circuit-grounds:0045:madeon-live",
    "electric-forest-2013:d1:ranch-arena:2215:madeon",
    "escape-halloween-2017:d1:slaughterhouse:2200:madeon",
    "lollapalooza-2012:d1:perry-s:1630:madeon",
@@ -137407,10 +138767,26 @@
   "projects": [],
   "billings": [
    "edc-mexico-2027:edcmx27-mandragora",
-   "dreamstate-socal-2025:d2:the-sequence:0000:mandragora"
+   "dreamstate-socal-2025:d2:the-sequence:0000:mandragora",
+   "edc-mexico-2020:d2:stereo-bloom:0030:mandragora"
   ],
-  "firstSeen": "2025-11-22",
+  "firstSeen": "2020-02-29",
   "lastSeen": "2027-02-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "mandrake",
+  "name": "Mandrake",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:bionic-jungle:2000:mandrake"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
   "photo": null,
   "links": []
  },
@@ -138375,6 +139751,21 @@
   "links": []
  },
  {
+  "key": "marco-almanza",
+  "name": "Marco Almanza",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:stereo-bloom:1415:marco-almanza"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "marco-bailey",
   "name": "Marco Bailey",
   "aliases": [
@@ -138426,6 +139817,7 @@
    "iii-points-2026:iiip-marco-carola-b2b-franky-ri",
    "coachella-2016:d1:yuma:2300:marco-carola",
    "coachella-2016:d4:yuma:2300:marco-carola",
+   "edc-mexico-2020:d3:neon-garden:0000:marco-carola",
    "edc-orlando-2023:d1:neon-garden:2000:marco-carola",
    "escape-halloween-2022:d1:sewer-district:0030:marco-carola",
    "sonar-2017:d4:sonarclub:0535:marco-carola",
@@ -138971,6 +140363,7 @@
   "projects": [],
   "billings": [
    "ubbi-dubbi-2027:ud27-mariana-bo",
+   "edc-mexico-2020:d3:kinetic-field:1550:mariana-bo",
    "escape-halloween-2023:d1:the-grimm:1700:mariana-bo",
    "tomorrowland-2019:d4:garden-of-madness:1530:mariana-bo",
    "tomorrowland-2022:d1:the-library:1700:mariana-bo",
@@ -138994,6 +140387,21 @@
   ],
   "firstSeen": "2011-09-16",
   "lastSeen": "2011-09-18",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "mariana-revilla",
+  "name": "Mariana Revilla",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d1:wide-awake-art-car:2000:mariana-revilla"
+  ],
+  "firstSeen": "2020-02-28",
+  "lastSeen": "2020-02-28",
   "photo": null,
   "links": []
  },
@@ -139360,6 +140768,21 @@
   ],
   "firstSeen": "2014-07-19",
   "lastSeen": "2014-07-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "mark-cast",
+  "name": "Mark Cast",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:circuit-grounds:1400:mark-cast"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
   "photo": null,
   "links": []
  },
@@ -140984,6 +142407,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "edc-mexico-2020:d2:neon-garden:1730:mason-maynard",
    "nocturnal-wonderland-2019:d2:sunken-garden:2000:mason-maynard",
    "nocturnal-wonderland-2022:d1:sunken-garden:1800:mason-maynard",
    "tomorrowland-2022:d4:crystal-garden:1830:mason-maynard"
@@ -141541,10 +142965,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "edc-mexico-2020:d2:dos-equis-stage:0100:matias-aguayo-live",
    "sonar-2016:d2:sonarvillage-by-estrella-damm:2100:matias-aguayo"
   ],
   "firstSeen": "2016-06-17",
-  "lastSeen": "2016-06-17",
+  "lastSeen": "2020-02-29",
   "photo": null,
   "links": []
  },
@@ -141685,10 +143110,11 @@
   "billings": [
    "beyond-wonderland-socal-2013:d1:chess-village:1800:matrix-and-futurebound",
    "edc-las-vegas-2016:d1:basspod:0430:matrix-and-futurebound",
+   "edc-mexico-2020:d2:wasteland:2000:matrix-and-futurebound",
    "tomorrowland-2015:d2:star-warz:0000:matrix-and-futurebound-ft-mc-rhymestar"
   ],
   "firstSeen": "2013-03-16",
-  "lastSeen": "2016-06-17",
+  "lastSeen": "2020-02-29",
   "photo": null,
   "links": []
  },
@@ -143932,6 +145358,21 @@
   "links": []
  },
  {
+  "key": "mc-xyz",
+  "name": "MC XYZ",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:wasteland:1730:nightstalker-mc-xyz"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "mc-yallah",
   "name": "MC Yallah",
   "aliases": [],
@@ -144308,6 +145749,7 @@
    "edc-las-vegas-2022:d1:circuit-grounds:2215:meduza",
    "edc-las-vegas-2023:d1:circuit-grounds:2200:meduza",
    "edc-las-vegas-2025:d2:kinetic-field:0413:meduza",
+   "edc-mexico-2020:d2:circuit-grounds:2000:meduza",
    "edc-orlando-2023:d3:kinetic-field:1853:meduza",
    "escape-halloween-2019:d2:psycho-circus:1700:meduza",
    "escape-halloween-2022:d1:sewer-district:2130:meduza",
@@ -144464,6 +145906,21 @@
   ],
   "firstSeen": "2026-08-02",
   "lastSeen": "2026-08-02",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "megalight",
+  "name": "Megalight",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:stereo-bloom:1415:megalight"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
   "photo": null,
   "links": []
  },
@@ -144837,6 +146294,7 @@
    "edc-las-vegas-2024:d1:cosmic-meadow:1730:noizu-b2b-westend-b2b-mele",
    "edc-las-vegas-2024:d2:stereo-bloom:2000:mele",
    "edc-las-vegas-2024:d2:beatbox-boombox-art-car:2245:mele",
+   "edc-mexico-2020:d1:neon-garden:1815:mele",
    "hard-summer-2025:d2:pink-stage:1615:kilimanjaro-b2b-mele",
    "tomorrowland-2018:d5:amicorum-spectaculum-presents-theatre-formidable:1530:mele"
   ],
@@ -145154,6 +146612,21 @@
   ],
   "firstSeen": "2011-04-17",
   "lastSeen": "2011-04-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "mental",
+  "name": "Mental",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d1:bionic-jungle:2230:mental"
+  ],
+  "firstSeen": "2020-02-28",
+  "lastSeen": "2020-02-28",
   "photo": null,
   "links": []
  },
@@ -145987,6 +147460,21 @@
   "links": []
  },
  {
+  "key": "mi-il",
+  "name": "Mi$$il",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:dos-equis-stage:1600:mi-il"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "mia-koden",
   "name": "Mia Koden",
   "aliases": [],
@@ -146368,11 +147856,12 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "edc-mexico-2020:d3:bionic-jungle:0000:michael-mayer",
    "primavera-sound-2017:d3:desperados-club-feat-bowers-and-wilkins-sound-system:0100:michael-mayer",
    "tomorrowland-2010:d2:kompakt:2130:michael-mayer"
   ],
   "firstSeen": "2010-07-25",
-  "lastSeen": "2017-06-02",
+  "lastSeen": "2020-03-01",
   "photo": null,
   "links": []
  },
@@ -148152,6 +149641,21 @@
   "links": []
  },
  {
+  "key": "milomilo",
+  "name": "MiloMilo",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:dos-equis-stage:1900:innobass-b2b-milomilo"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "miluhska",
   "name": "Miluhska",
   "aliases": [],
@@ -148623,6 +150127,21 @@
   ],
   "firstSeen": "2018-05-26",
   "lastSeen": "2027-01-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "mira-mira",
+  "name": "Mirá Mirá",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:boombox-art-car:2025:mira-mira"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
   "photo": null,
   "links": []
  },
@@ -150308,6 +151827,21 @@
   "links": []
  },
  {
+  "key": "momis-alanis",
+  "name": "Momis Alanis",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d1:wide-awake-art-car:1900:momis-alanis-b2b-nina"
+  ],
+  "firstSeen": "2020-02-28",
+  "lastSeen": "2020-02-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "momma",
   "name": "Momma",
   "aliases": [],
@@ -151853,10 +153387,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "edc-mexico-2020:d1:circuit-grounds:1800:moska",
    "tomorrowland-2013:d2:super-you-and-me:1200:moska"
   ],
   "firstSeen": "2013-07-27",
-  "lastSeen": "2013-07-27",
+  "lastSeen": "2020-02-28",
   "photo": null,
   "links": []
  },
@@ -152874,6 +154409,21 @@
   ],
   "firstSeen": "2026-06-26",
   "lastSeen": "2026-06-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "mr-pauer",
+  "name": "Mr. Pauer",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:dos-equis-stage:1900:mr-pauer"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
   "photo": null,
   "links": []
  },
@@ -154125,6 +155675,21 @@
   "links": []
  },
  {
+  "key": "muzik-junkies",
+  "name": "Muzik Junkies",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:dos-equis-stage:2000:muzik-junkies"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "muzsikas-feat-ildiko-toth-fecske-and-zoltan-farkas-batyu",
   "name": "Muzsikas feat. Ildiko Toth \"Fecske\" and Zoltan Farkas \"Batyu\"",
   "aliases": [],
@@ -154498,6 +156063,21 @@
   "links": []
  },
  {
+  "key": "mykka",
+  "name": "Mykka",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:wasteland:1615:mykka"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "mykki-blanco",
   "name": "MYKKI BLANCO",
   "aliases": [],
@@ -154760,9 +156340,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-mexico-2027:edcmx27-mystery-affair"
+   "edc-mexico-2027:edcmx27-mystery-affair",
+   "edc-mexico-2020:d3:wide-awake-art-car:1630:mystery-affair"
   ],
-  "firstSeen": "2027-02-21",
+  "firstSeen": "2020-03-01",
   "lastSeen": "2027-02-21",
   "photo": null,
   "links": []
@@ -154924,6 +156505,21 @@
   ],
   "firstSeen": "2023-08-13",
   "lastSeen": "2023-08-13",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "mzrin",
+  "name": "Mzrin",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:boombox-art-car:0100:mzrin"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
   "photo": null,
   "links": []
  },
@@ -155853,6 +157449,21 @@
   ],
   "firstSeen": "2026-10-16",
   "lastSeen": "2026-10-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "natalia",
+  "name": "Natalia",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:dos-equis-stage:2200:natalia"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
   "photo": null,
   "links": []
  },
@@ -156868,6 +158479,21 @@
   "links": []
  },
  {
+  "key": "nemesiz",
+  "name": "NemesiZ",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d1:dos-equis-stage:1700:nemesiz"
+  ],
+  "firstSeen": "2020-02-28",
+  "lastSeen": "2020-02-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "nene-dasile",
   "name": "Nene Dasile",
   "aliases": [],
@@ -157839,6 +159465,7 @@
    "edc-las-vegas-2017:d1:cosmicmeadow:0215:nghtmre",
    "edc-las-vegas-2024:d1:basspod:2330:nghtmre",
    "edc-las-vegas-2025:d3:circuit-grounds:0115:slander-b2b-nghtmre",
+   "edc-mexico-2020:d3:kinetic-field:1856:nghtmre",
    "edc-orlando-2016:d1:circuitgrounds:1945:nghtmre",
    "edc-orlando-2017:d2:kineticfield:1858:nghtmre",
    "edc-orlando-2021:d1:circuit-grounds:2125:nghtmre-b2b-svdden-death",
@@ -159388,6 +161015,7 @@
    "edc-las-vegas-2023:d2:basspod:1900:fury-b2b-nightstalker",
    "edc-las-vegas-2023:d3:boombox-art-car:1900:nightstalker",
    "edc-las-vegas-2024:d1:basspod:1900:nightstalker",
+   "edc-mexico-2020:d2:wasteland:1730:nightstalker-mc-xyz",
    "escape-halloween-2019:d1:psycho-circus:1600:nightstalker",
    "nocturnal-wonderland-2022:d2:labyrinth:1500:nightstalker"
   ],
@@ -159795,9 +161423,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "edc-mexico-2020:d1:wide-awake-art-car:1900:momis-alanis-b2b-nina",
    "shambhala-2024:d2:grove:2030:nina"
   ],
-  "firstSeen": "2024-07-26",
+  "firstSeen": "2020-02-28",
   "lastSeen": "2024-07-26",
   "photo": null,
   "links": []
@@ -160184,6 +161813,7 @@
    "countdown-nye-2019:d1:nebula:2000:nitti-gritti",
    "edc-las-vegas-2017:d2:parliamentartcar:0445:nitti-gritti",
    "edc-las-vegas-2022:d1:cosmic-meadow:0330:nitti-gritti-b2b-wuki",
+   "edc-mexico-2020:d1:stereo-bloom:1915:nitti-gritti",
    "edc-orlando-2017:d2:boombox-art-car:1700:nitti-gritti",
    "edc-orlando-2019:d3:kineticfield:1420:nitti-gritti",
    "edc-orlando-2021:d2:corona-electric-beach:2200:nitti-gritti",
@@ -160254,6 +161884,21 @@
   ],
   "firstSeen": "2011-08-05",
   "lastSeen": "2012-08-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "niza",
+  "name": "Niza",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:dos-equis-stage:1400:niza"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
   "photo": null,
   "links": []
  },
@@ -160938,6 +162583,21 @@
   "links": []
  },
  {
+  "key": "noise-dimentionz",
+  "name": "Noise Dimentionz",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d1:wasteland:1745:noise-dimentionz-b2b-universe-controller"
+  ],
+  "firstSeen": "2020-02-28",
+  "lastSeen": "2020-02-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "noise-frenzy",
   "name": "Noise Frenzy",
   "aliases": [],
@@ -161078,6 +162738,21 @@
   "links": []
  },
  {
+  "key": "noizekid",
+  "name": "Noizekid",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d1:circuit-grounds:1700:noizekid"
+  ],
+  "firstSeen": "2020-02-28",
+  "lastSeen": "2020-02-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "noizu",
   "name": "Noizu",
   "aliases": [
@@ -161096,6 +162771,7 @@
    "edc-las-vegas-2024:d1:cosmic-meadow:1730:noizu-b2b-westend-b2b-mele",
    "edc-las-vegas-2024:d1:stereo-bloom:0215:noizu",
    "edc-las-vegas-2025:d1:kinetic-field:2000:noizu",
+   "edc-mexico-2020:d3:stereo-bloom:1845:noizu",
    "edc-orlando-2019:d2:stereobloom:2000:noizu",
    "edc-orlando-2021:d3:stereo-bloom:1930:noizu",
    "edc-orlando-2023:d1:kinetic-field:1627:noizu",
@@ -161300,6 +162976,21 @@
   ],
   "firstSeen": "2023-08-11",
   "lastSeen": "2023-08-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "nora-bautista",
+  "name": "Nora Bautista",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d1:boombox-art-car:1900:nora-bautista"
+  ],
+  "firstSeen": "2020-02-28",
+  "lastSeen": "2020-02-28",
   "photo": null,
   "links": []
  },
@@ -161620,6 +163311,21 @@
   ],
   "firstSeen": "2021-11-12",
   "lastSeen": "2026-05-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "not-a-chinese",
+  "name": "Not A Chinese",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:dos-equis-stage:1800:barbie-chola-b2b-not-a-chinese"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
   "photo": null,
   "links": []
  },
@@ -163827,6 +165533,21 @@
   "links": []
  },
  {
+  "key": "olazaran",
+  "name": "Olazaran",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d1:boombox-art-car:1800:olazaran"
+  ],
+  "firstSeen": "2020-02-28",
+  "lastSeen": "2020-02-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "old-97-s",
   "name": "Old 97's",
   "aliases": [],
@@ -164008,6 +165729,7 @@
    "countdown-nye-2019:d1:mothership:2100:oliver-heldens",
    "edc-las-vegas-2016:d2:kineticfield:2244:oliver-heldens",
    "edc-las-vegas-2017:d2:circuitgrounds:0300:oliver-heldens",
+   "edc-mexico-2020:d1:kinetic-field:2013:oliver-heldens",
    "edc-orlando-2024:d1:kinetic-field:1853:oliver-heldens-b2b-benny-benassi",
    "escape-halloween-2022:d1:the-grimm:1915:oliver-heldens",
    "lollapalooza-2016:d3:perry-s:1745:oliver-heldens",
@@ -165215,14 +166937,17 @@
  {
   "key": "oostil",
   "name": "Oostil",
-  "aliases": [],
+  "aliases": [
+   "Øostil"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "edc-mexico-2020:d2:neon-garden:1500:ostil",
    "tomorrowland-2023:d2:core:1900:oostil-b2b-the-element"
   ],
-  "firstSeen": "2023-07-22",
+  "firstSeen": "2020-02-29",
   "lastSeen": "2023-07-22",
   "photo": null,
   "links": []
@@ -166082,6 +167807,21 @@
   ],
   "firstSeen": "2026-09-26",
   "lastSeen": "2026-09-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "oskier",
+  "name": "Oskier",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d1:wide-awake-art-car:2100:oskier"
+  ],
+  "firstSeen": "2020-02-28",
+  "lastSeen": "2020-02-28",
   "photo": null,
   "links": []
  },
@@ -167374,6 +169114,21 @@
   "links": []
  },
  {
+  "key": "pako-rodriguez",
+  "name": "Pako Rodriguez",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:dos-equis-stage:2300:ale-q-b2b-pako-rodriguez"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "palace",
   "name": "Palace",
   "aliases": [],
@@ -168505,6 +170260,7 @@
   "projects": [],
   "billings": [
    "edc-las-vegas-2016:d1:circuitgrounds:2015:party-favor",
+   "edc-mexico-2020:d1:kinetic-field:1753:party-favor",
    "edc-orlando-2017:d1:kineticfield:1554:party-favor",
    "edc-orlando-2017:d1:corona-electric-beach:2030:party-favor",
    "edc-orlando-2019:d1:circuitgrounds:1940:party-favor",
@@ -169130,6 +170886,7 @@
    "coachella-2017:d3:yuma:1400:patrick-topping",
    "coachella-2017:d6:yuma:1400:patrick-topping",
    "edc-las-vegas-2023:d1:neon-garden:0100:patrick-topping",
+   "edc-mexico-2020:d2:neon-garden:2015:patrick-topping",
    "edc-orlando-2021:d1:neon-garden:1600:patrick-topping",
    "escape-halloween-2023:d2:sewer-district:2130:patrick-topping",
    "tomorrowland-2015:d1:jamie-jones-pr-paradise:1700:patrick-topping",
@@ -169637,9 +171394,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "edc-mexico-2020:d2:neon-garden:1845:paul-woolford",
    "tomorrowland-2022:d9:crystal-garden:2100:paul-woolford"
   ],
-  "firstSeen": "2022-07-31",
+  "firstSeen": "2020-02-29",
   "lastSeen": "2022-07-31",
   "photo": null,
   "links": []
@@ -169742,6 +171500,36 @@
   ],
   "firstSeen": "2022-05-21",
   "lastSeen": "2025-11-01",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "paulor",
+  "name": "Paulor",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:wide-awake-art-car:1930:paulor"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "pauza",
+  "name": "Pauza",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:circuit-grounds:1445:pauza"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
   "photo": null,
   "links": []
  },
@@ -171480,17 +173268,20 @@
  },
  {
   "key": "phantoms",
-  "name": "PHANTOMS",
-  "aliases": [],
+  "name": "Phantoms",
+  "aliases": [
+   "PHANTOMS"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "edc-mexico-2020:d3:circuit-grounds:1725:phantoms-live",
    "nocturnal-wonderland-2017:d2:labyrinth:1945:phantoms",
    "ultra-miami-2019:d2:live-arena:1700:phantoms"
   ],
   "firstSeen": "2017-09-16",
-  "lastSeen": "2019-03-30",
+  "lastSeen": "2020-03-01",
   "photo": null,
   "links": []
  },
@@ -172905,9 +174696,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "ultra-miami-2026:ul110"
+   "ultra-miami-2026:ul110",
+   "edc-mexico-2020:d2:wide-awake-art-car:2230:pinto"
   ],
-  "firstSeen": "2026-03-28",
+  "firstSeen": "2020-02-29",
   "lastSeen": "2026-03-28",
   "photo": null,
   "links": []
@@ -173967,6 +175759,21 @@
   ],
   "firstSeen": "2021-07-30",
   "lastSeen": "2021-10-10",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "polybiu",
+  "name": "Polybiu$",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d1:boombox-art-car:0100:polybiu"
+  ],
+  "firstSeen": "2020-02-28",
+  "lastSeen": "2020-02-28",
   "photo": null,
   "links": []
  },
@@ -176841,6 +178648,7 @@
   "billings": [
    "edc-las-vegas-2022:d1:parliament-art-car:2245:qrion",
    "edc-las-vegas-2022:d2:cosmic-meadow:1700:qrion",
+   "edc-mexico-2020:d1:kinetic-field:1653:qrion",
    "tomorrowland-2018:d4:rose-garden:1430:qrion"
   ],
   "firstSeen": "2018-07-27",
@@ -177878,6 +179686,7 @@
   "billings": [
    "ubbi-dubbi-2027:ud27-rad-cat",
    "edc-las-vegas-2022:d2:rynobus:0315:rad-cat",
+   "edc-mexico-2020:d2:boombox-art-car:2100:rad-cat",
    "nocturnal-wonderland-2019:d1:parliament-art-car:1600:rad-cat"
   ],
   "firstSeen": "2019-09-14",
@@ -179683,6 +181492,7 @@
   "projects": [],
   "billings": [
    "edc-las-vegas-2017:d1:wideawakeartcar:0000:rawtek",
+   "edc-mexico-2020:d1:stereo-bloom:1800:rawtek",
    "escape-halloween-2017:d2:chopping-block:1630:rawtek",
    "nocturnal-wonderland-2017:d1:temple-noctem:1945:rawtek",
    "nocturnal-wonderland-2019:d1:parliament-art-car:1800:rawtek",
@@ -179853,6 +181663,21 @@
   ],
   "firstSeen": "2014-06-27",
   "lastSeen": "2015-10-03",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "raymix",
+  "name": "Raymix",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d1:dos-equis-stage:2000:raymix"
+  ],
+  "firstSeen": "2020-02-28",
+  "lastSeen": "2020-02-28",
   "photo": null,
   "links": []
  },
@@ -180356,9 +182181,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "iii-points-2026:iiip-rebolledo"
+   "iii-points-2026:iiip-rebolledo",
+   "edc-mexico-2020:d3:bionic-jungle:2000:rebolledo"
   ],
-  "firstSeen": "2026-10-17",
+  "firstSeen": "2020-03-01",
   "lastSeen": "2026-10-17",
   "photo": null,
   "links": []
@@ -181100,6 +182926,21 @@
   "links": []
  },
  {
+  "key": "regina-puma",
+  "name": "Regina Puma",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d1:boombox-art-car:2100:regina-puma"
+  ],
+  "firstSeen": "2020-02-28",
+  "lastSeen": "2020-02-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "regina-spektor",
   "name": "Regina Spektor",
   "aliases": [],
@@ -181363,6 +183204,21 @@
   ],
   "firstSeen": "2021-10-02",
   "lastSeen": "2027-04-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "remille",
+  "name": "Remille",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:boombox-art-car:1800:remille"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
   "photo": null,
   "links": []
  },
@@ -184421,6 +186277,21 @@
   "links": []
  },
  {
+  "key": "robots-don-t-have-sisters",
+  "name": "Robots Don't Have Sisters",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:dos-equis-stage:1500:robots-don-t-have-sisters-b2b-criminal-sounds"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "robyn",
   "name": "Robyn",
   "aliases": [
@@ -184487,6 +186358,21 @@
   "links": []
  },
  {
+  "key": "rocco-desentis",
+  "name": "Rocco Desentis",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:bionic-jungle:1400:rocco-desentis"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "roce-de-mente",
   "name": "ROCE DE MENTE",
   "aliases": [],
@@ -184544,6 +186430,21 @@
   ],
   "firstSeen": "2015-05-29",
   "lastSeen": "2015-05-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "rocio-pergon",
+  "name": "Rocio Pergon",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:boombox-art-car:1455:rocio-pergon"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
   "photo": null,
   "links": []
  },
@@ -185795,6 +187696,21 @@
   ],
   "firstSeen": "2018-05-31",
   "lastSeen": "2019-07-18",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "rossell",
+  "name": "Rossell",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:circuit-grounds:1535:rossell"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
   "photo": null,
   "links": []
  },
@@ -188195,6 +190111,7 @@
   "billings": [
    "edc-las-vegas-2017:d3:upside-downhouse:2000:sage-armstrong",
    "edc-las-vegas-2023:d2:cosmic-meadow:2030:cid-b2b-sage-armstrong",
+   "edc-mexico-2020:d3:stereo-bloom:1515:sage-armstrong-b2b-lucati",
    "nocturnal-wonderland-2017:d2:temple-noctem:2330:sage-armstrong-b2b-bot",
    "nocturnal-wonderland-2019:d1:sunken-garden:2100:sage-armstrong"
   ],
@@ -188262,6 +190179,7 @@
    "nocturnal-wonderland-2026:nw-said-the-sky-sunset-set",
    "countdown-nye-2019:d1:mothership:2200:said-the-sky",
    "edc-las-vegas-2023:d1:cosmic-meadow:0135:said-the-sky",
+   "edc-mexico-2020:d1:kinetic-field:1857:said-the-sky",
    "edc-orlando-2021:d1:circuit-grounds:1910:said-the-sky",
    "edc-orlando-2022:d3:circuit-grounds:1725:said-the-sky-sunset-set",
    "escape-halloween-2019:d1:the-grimm:1905:said-the-sky",
@@ -188495,6 +190413,21 @@
   ],
   "firstSeen": "2025-04-11",
   "lastSeen": "2025-04-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "sak-noel-presenta-barnaton",
+  "name": "Sak Noel presenta: Barnaton",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:dos-equis-stage:1700:sak-noel-presenta-barnaton"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
   "photo": null,
   "links": []
  },
@@ -190481,6 +192414,7 @@
    "coachella-2017:d3:yuma:2030:sasha",
    "coachella-2017:d6:yuma:2030:sasha",
    "edc-las-vegas-2013:d3:neongarden:0200:sasha",
+   "edc-mexico-2020:d2:neon-garden:2145:sasha",
    "tomorrowland-2010:d2:la-rocca:2200:sasha",
    "tomorrowland-2011:d3:la-rocca-invites-we-love:2200:sasha",
    "tomorrowland-2016:d1:mau5trap:1900:sasha",
@@ -190489,7 +192423,7 @@
    "ultra-miami-2016:d2:resistance:1930:sasha"
   ],
   "firstSeen": "2010-07-25",
-  "lastSeen": "2018-07-27",
+  "lastSeen": "2020-02-29",
   "photo": null,
   "links": []
  },
@@ -190880,6 +192814,21 @@
   ],
   "firstSeen": "2024-08-03",
   "lastSeen": "2024-08-03",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "save-the-rabbits",
+  "name": "Save The Rabbits",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:wasteland:1530:save-the-rabbits"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
   "photo": null,
   "links": []
  },
@@ -194643,6 +196592,21 @@
   "links": []
  },
  {
+  "key": "sheco",
+  "name": "Sheco",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d1:boombox-art-car:1700:sheco"
+  ],
+  "firstSeen": "2020-02-28",
+  "lastSeen": "2020-02-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "sheer-mag",
   "name": "Sheer Mag",
   "aliases": [
@@ -195617,6 +197581,21 @@
   ],
   "firstSeen": "2011-08-11",
   "lastSeen": "2011-08-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "shubostar",
+  "name": "Shubostar",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d1:bionic-jungle:1830:shubostar"
+  ],
+  "firstSeen": "2020-02-28",
+  "lastSeen": "2020-02-28",
   "photo": null,
   "links": []
  },
@@ -197092,6 +199071,21 @@
   "links": []
  },
  {
+  "key": "sintonika",
+  "name": "Sintonika",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d1:wide-awake-art-car:1700:sintonika"
+  ],
+  "firstSeen": "2020-02-28",
+  "lastSeen": "2020-02-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "sintra",
   "name": "Sintra",
   "aliases": [],
@@ -198352,6 +200346,21 @@
   ],
   "firstSeen": "2015-08-09",
   "lastSeen": "2015-08-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "sky-rompiendo",
+  "name": "Sky Rompiendo",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:dos-equis-stage:2000:sky-rompiendo"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
   "photo": null,
   "links": []
  },
@@ -200554,6 +202563,7 @@
    "edc-las-vegas-2022:d1:corona-stage:2030:softest-hard",
    "edc-las-vegas-2023:d2:wasteland:0430:softest-hard",
    "edc-las-vegas-2023:d3:allegiant-rave-hangar:0000:softest-hard",
+   "edc-mexico-2020:d1:stereo-bloom:2145:softest-hard",
    "edc-orlando-2021:d3:circuit-grounds:1405:softest-hard",
    "edc-orlando-2022:d1:corona-electric-beach:2100:softest-hard",
    "ultra-miami-2023:d2:worldwide-stage:1200:softest-hard"
@@ -200680,6 +202690,21 @@
   ],
   "firstSeen": "2014-04-12",
   "lastSeen": "2019-06-01",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "solano",
+  "name": "Solano",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:boombox-art-car:1600:solano"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
   "photo": null,
   "links": []
  },
@@ -204359,10 +206384,11 @@
   "billings": [
    "countdown-nye-2019:d1:twilight-zone:1800:franklyn-watts-b2b-steady-rock",
    "countdown-nye-2019:d1:biosphere:2230:steady-rock",
+   "edc-mexico-2020:d3:stereo-bloom:0000:steady-rock",
    "hard-summer-2019:d1:corona-electric-beach:1645:franklyn-watts-b2b-steady-rock"
   ],
   "firstSeen": "2019-08-03",
-  "lastSeen": "2019-12-31",
+  "lastSeen": "2020-03-01",
   "photo": null,
   "links": []
  },
@@ -206249,6 +208275,21 @@
   "links": []
  },
  {
+  "key": "stylo",
+  "name": "Stylo",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:wide-awake-art-car:2230:stylo"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "stylus",
   "name": "Stylus",
   "aliases": [],
@@ -207065,6 +209106,21 @@
   ],
   "firstSeen": "2014-10-03",
   "lastSeen": "2014-10-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "sugar-glider",
+  "name": "Sugar Glider",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:boombox-art-car:1400:sugar-glider"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
   "photo": null,
   "links": []
  },
@@ -208460,6 +210516,21 @@
   "links": []
  },
  {
+  "key": "suss",
+  "name": "Süss",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:wide-awake-art-car:0000:suss"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "susto",
   "name": "SUSTO",
   "aliases": [],
@@ -208649,6 +210720,21 @@
   "links": []
  },
  {
+  "key": "svbvg",
+  "name": "SVBVG",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d1:stereo-bloom:1600:svbvg"
+  ],
+  "firstSeen": "2020-02-28",
+  "lastSeen": "2020-02-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "svdden-death",
   "name": "Svdden Death",
   "aliases": [
@@ -208667,6 +210753,7 @@
    "edc-las-vegas-2023:d3:circuit-grounds:0015:marshmello-b2b-svdden-death",
    "edc-las-vegas-2024:d3:basspod:0130:svdden-death",
    "edc-las-vegas-2025:d2:basspod:0130:svdden-death",
+   "edc-mexico-2020:d2:wasteland:2200:svdden-death",
    "edc-orlando-2019:d2:circuitgrounds:2100:svdden-death",
    "edc-orlando-2021:d1:circuit-grounds:2125:nghtmre-b2b-svdden-death",
    "edc-orlando-2022:d2:circuit-grounds:2200:svdden-death",
@@ -208782,6 +210869,7 @@
   "billings": [
    "time-warp-2027:tw27-sven-vath",
    "coachella-2011:d3:sahara:1730:sven-vath",
+   "edc-mexico-2020:d2:neon-garden:2330:sven-vath",
    "tomorrowland-2011:d2:cafe-d-anvers-invites-cocoon:2200:sven-vath",
    "tomorrowland-2012:d2:cocoon-heroes:2200:sven-vath",
    "tomorrowland-2013:d2:cocoon:2200:sven-vath",
@@ -210949,6 +213037,21 @@
   "links": []
  },
  {
+  "key": "tansen",
+  "name": "Tansen",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:bionic-jungle:1400:tansen"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "tantrum-desire",
   "name": "Tantrum Desire",
   "aliases": [],
@@ -211510,6 +213613,21 @@
   ],
   "firstSeen": "2026-06-27",
   "lastSeen": "2026-06-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "tblmkr",
+  "name": "TBLMKR",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:dos-equis-stage:1400:adgel-b2b-tblmkr"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
   "photo": null,
   "links": []
  },
@@ -223207,6 +225325,7 @@
    "edc-las-vegas-2023:d2:kinetic-field:0027:tiesto",
    "edc-las-vegas-2024:d2:kinetic-field:0031:tiesto",
    "edc-las-vegas-2025:d1:circuit-grounds:0030:tiesto",
+   "edc-mexico-2020:d2:kinetic-field:0030:tiesto",
    "edc-orlando-2021:d2:kinetic-field:2233:tiesto",
    "edc-orlando-2022:d2:kinetic-field:2228:tiesto",
    "edc-orlando-2024:d2:kinetic-field:2232:tiesto",
@@ -224878,6 +226997,7 @@
    "coachella-2022:d4:gobi:2010:tokimonsta",
    "edc-las-vegas-2025:d3:cosmic-meadow:2100:tokimonsta",
    "edc-las-vegas-2025:d3:metaphoenix:0030:tokimonsta",
+   "edc-mexico-2020:d3:circuit-grounds:1930:tokimonsta",
    "edc-orlando-2016:d2:circuitgrounds:1700:tokimonsta",
    "electric-forest-2015:d4:tripolee:1815:tokimonsta",
    "electric-forest-2015:d4:forest-stage:2115:tokimonsta",
@@ -224999,6 +227119,7 @@
    "countdown-nye-2019:d1:twilight-zone:1600:tom-and-collins",
    "edc-las-vegas-2016:d1:circuitgrounds:1900:tom-and-collins",
    "edc-las-vegas-2023:d2:stereo-bloom:0300:tom-and-collins",
+   "edc-mexico-2020:d2:circuit-grounds:1600:tom-and-collins",
    "edc-orlando-2022:d2:stereo-bloom:1715:tom-and-collins",
    "edc-orlando-2024:d2:stereo-bloom:1745:tom-and-collins-sunset-set",
    "edc-orlando-2024:d2:casa-bacardi:2200:tom-and-collins",
@@ -226820,6 +228941,7 @@
   "projects": [],
   "billings": [
    "edc-las-vegas-2017:d1:basspod:0430:skism-b2b-trampa",
+   "edc-mexico-2020:d2:wasteland:2100:trampa",
    "escape-halloween-2021:d1:psycho-circus:2100:trampa"
   ],
   "firstSeen": "2017-06-16",
@@ -228130,6 +230252,7 @@
    "countdown-nye-2024:d1:nebula:2330:troyboi",
    "edc-las-vegas-2016:d3:basspod:2230:troyboi",
    "edc-las-vegas-2024:d2:cosmic-meadow:0300:troyboi",
+   "edc-mexico-2020:d3:circuit-grounds:2135:troyboi",
    "edc-orlando-2017:d1:circuitgrounds:2000:troyboi",
    "edc-orlando-2022:d3:circuit-grounds:2040:troyboi",
    "edc-orlando-2024:d1:circuit-grounds:2020:troyboi",
@@ -228219,6 +230342,21 @@
   ],
   "firstSeen": "2018-05-31",
   "lastSeen": "2018-05-31",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "truself",
+  "name": "Truself",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d1:wide-awake-art-car:2200:truself"
+  ],
+  "firstSeen": "2020-02-28",
+  "lastSeen": "2020-02-28",
   "photo": null,
   "links": []
  },
@@ -228919,9 +231057,10 @@
   "projects": [],
   "billings": [
    "edc-las-vegas-2022:d1:wasteland:0230:tweekacore",
-   "edc-las-vegas-2023:d3:wasteland:0230:gammer-b2b-tweekacore"
+   "edc-las-vegas-2023:d3:wasteland:0230:gammer-b2b-tweekacore",
+   "edc-mexico-2020:d3:wasteland:2115:tweekacore"
   ],
-  "firstSeen": "2022-05-20",
+  "firstSeen": "2020-03-01",
   "lastSeen": "2023-05-21",
   "photo": null,
   "links": []
@@ -230444,6 +232583,21 @@
   "links": []
  },
  {
+  "key": "underbite",
+  "name": "UnderBite",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:boombox-art-car:1500:underbite"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "undercatt",
   "name": "Undercatt",
   "aliases": [],
@@ -230731,6 +232885,21 @@
   ],
   "firstSeen": "2022-06-16",
   "lastSeen": "2022-06-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "universe-controller",
+  "name": "Universe Controller",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d1:wasteland:1745:noise-dimentionz-b2b-universe-controller"
+  ],
+  "firstSeen": "2020-02-28",
+  "lastSeen": "2020-02-28",
   "photo": null,
   "links": []
  },
@@ -231121,6 +233290,21 @@
   "links": []
  },
  {
+  "key": "urboi",
+  "name": "Urboi",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:circuit-grounds:1400:urboi"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "uro-tra-h",
   "name": "€URO TRA$H",
   "aliases": [],
@@ -231505,6 +233689,7 @@
    "edc-las-vegas-2017:d2:basspod:0030:valentino-khan",
    "edc-las-vegas-2023:d2:kinetic-field:2105:valentino-khan",
    "edc-las-vegas-2024:d3:cosmic-meadow:0415:valentino-khan",
+   "edc-mexico-2020:d2:kinetic-field:1653:valentino-khan",
    "edc-orlando-2016:d2:circuitgrounds:1800:valentino-khan",
    "edc-orlando-2023:d1:kinetic-field:1956:dillon-francis-b2b-valentino-khan",
    "escape-halloween-2019:d2:sanitarium:2045:valentino-khan",
@@ -232857,6 +235042,21 @@
   "links": []
  },
  {
+  "key": "vicrey",
+  "name": "Vicrey",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d1:dos-equis-stage:1600:vicrey"
+  ],
+  "firstSeen": "2020-02-28",
+  "lastSeen": "2020-02-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "victor-calderone",
   "name": "Victor Calderone",
   "aliases": [
@@ -233358,6 +235558,7 @@
    "edc-las-vegas-2023:d1:circuit-grounds:0400:vini-vici",
    "edc-las-vegas-2023:d2:quantum-valley:0130:vini-vici",
    "edc-las-vegas-2025:d1:quantum-valley:0000:vini-vici",
+   "edc-mexico-2020:d1:circuit-grounds:2215:vini-vici",
    "edc-orlando-2016:d1:neongarden:1700:vini-vici",
    "edc-orlando-2024:d3:stereo-bloom:1745:vini-vici-sunset-set",
    "tomorrowland-2016:d2:b2b:2330:vini-vici",
@@ -233460,6 +235661,7 @@
    "edc-las-vegas-2024:d1:circuit-grounds:2230:vintage-culture",
    "edc-las-vegas-2025:d2:neon-garden:0415:vintage-culture",
    "edc-las-vegas-2025:d2:forest-house:2300:vintage-culture-b2b-doozie",
+   "edc-mexico-2020:d2:circuit-grounds:2100:vintage-culture",
    "edc-orlando-2021:d1:kinetic-field:1841:vintage-culture",
    "edc-orlando-2022:d2:kinetic-field:1845:vintage-culture",
    "edc-orlando-2024:d1:neon-garden:2100:carl-cox-b2b-vintage-culture",
@@ -234113,6 +236315,21 @@
   "links": []
  },
  {
+  "key": "vlind",
+  "name": "Vlind",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:stereo-bloom:1515:vlind"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "vluarr",
   "name": "Vluarr",
   "aliases": [],
@@ -234162,6 +236379,7 @@
    "coachella-2022:d5:sahara:1410:vnssa",
    "countdown-nye-2019:d1:twilight-zone:2000:vnssa",
    "edc-las-vegas-2025:d1:stereo-bloom:0315:vnssa",
+   "edc-mexico-2020:d3:stereo-bloom:1615:vnssa",
    "edc-orlando-2019:d2:stereobloom:1620:vnssa",
    "edc-orlando-2022:d2:stereo-bloom:2015:j-worra-b2b-vnssa",
    "escape-halloween-2021:d2:sanitarium:2000:vnssa",
@@ -234454,6 +236672,21 @@
   ],
   "firstSeen": "2014-10-11",
   "lastSeen": "2014-10-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "vongold",
+  "name": "Vongold",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:wide-awake-art-car:1400:vongold"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
   "photo": null,
   "links": []
  },
@@ -235135,6 +237368,7 @@
    "coachella-2016:d5:do-lab:1600:walker-and-royce",
    "edc-las-vegas-2016:d3:stage7:0400:walker-and-royce",
    "edc-las-vegas-2025:d3:stereo-bloom:0030:walker-and-royce",
+   "edc-mexico-2020:d2:circuit-grounds:1900:walker-and-royce",
    "edc-orlando-2025:d2:stereobloom:2115:walker-and-royce",
    "escape-halloween-2025:d2:feeding-grounds:2200:walker-and-royce",
    "hard-summer-2025:d1:harder-stage:1815:walker-and-royce-b2b-vnssa",
@@ -235617,6 +237851,7 @@
    "edc-las-vegas-2023:d1:wasteland:2230:warface",
    "edc-las-vegas-2023:d2:wasteland:0330:warface-b2b-d-sturb",
    "edc-las-vegas-2024:d1:wasteland:0030:warface",
+   "edc-mexico-2020:d1:wasteland:1900:warface",
    "escape-halloween-2022:d1:sanitarium:0000:d-sturb-b2b-warface",
    "tomorrowland-2018:d3:cage:2300:warface",
    "tomorrowland-2018:d6:cage:2000:warface",
@@ -236225,6 +238460,7 @@
    "edc-las-vegas-2022:d3:cosmic-meadow:0230:wax-motif",
    "edc-las-vegas-2023:d1:kinetic-field:0306:malaa-b2b-wax-motif",
    "edc-las-vegas-2023:d3:cosmic-meadow:0138:wax-motif",
+   "edc-mexico-2020:d3:stereo-bloom:2000:wax-motif",
    "edc-orlando-2019:d3:circuitgrounds:1615:wax-motif",
    "edc-orlando-2022:d3:stereo-bloom:2115:wax-motif",
    "edc-orlando-2023:d2:kinetic-field:1727:malaa-b2b-wax-motif-sunset-set",
@@ -236645,6 +238881,21 @@
   ],
   "firstSeen": "2022-07-22",
   "lastSeen": "2022-07-22",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "weiss",
+  "name": "Weiss",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:stereo-bloom:2230:weiss"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
   "photo": null,
   "links": []
  },
@@ -237680,6 +239931,7 @@
    "coachella-2023:d5:yuma:2000:whomadewho",
    "coachella-2026:d3:yuma:2030:whomadewho",
    "coachella-2026:d6:yuma:2030:whomadewho",
+   "edc-mexico-2020:d2:bionic-jungle:2200:whomadewho-dj-set",
    "tomorrowland-2019:d4:leaf-by-jbl:2130:whomadewho",
    "tomorrowland-2022:d6:core:2000:whomadewho"
   ],
@@ -238889,6 +241141,21 @@
   "links": []
  },
  {
+  "key": "wito",
+  "name": "Wito",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:boombox-art-car:1835:wito"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "witt-lowry",
   "name": "Witt Lowry",
   "aliases": [],
@@ -239625,6 +241892,23 @@
   "links": []
  },
  {
+  "key": "worldwide-records",
+  "name": "Worldwide Records",
+  "aliases": [],
+  "kind": "project",
+  "parents": [
+   "la-clicka"
+  ],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d2:dos-equis-stage:2100:la-clicka-presents-worldwide-records"
+  ],
+  "firstSeen": "2020-02-29",
+  "lastSeen": "2020-02-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "worry-club",
   "name": "WORRY CLUB",
   "aliases": [],
@@ -239927,6 +242211,7 @@
    "edc-las-vegas-2016:d1:stage7:0130:wuki",
    "edc-las-vegas-2022:d1:cosmic-meadow:0330:nitti-gritti-b2b-wuki",
    "edc-las-vegas-2024:d3:kinetic-field:2000:wuki",
+   "edc-mexico-2020:d1:stereo-bloom:2030:wuki",
    "edc-orlando-2025:d3:circuitgrounds:1525:wuki",
    "escape-halloween-2019:d2:sanitarium:1830:wuki",
    "hard-summer-2019:d1:green-tent:1530:wuki",
@@ -240612,11 +242897,12 @@
   "projects": [],
   "billings": [
    "edc-las-vegas-2022:d3:wasteland:2330:ben-nicky-presents-xtreme",
+   "edc-mexico-2020:d3:wasteland:2000:ben-nicky-presents-xtreme",
    "escape-halloween-2022:d1:sanitarium:2100:ben-nicky-presents-xtreme",
    "escape-halloween-2023:d1:sanitarium:2100:ben-nicky-presents-xtreme",
    "tomorrowland-2023:d1:youphoria:1930:ben-nicky-presents-xtreme"
   ],
-  "firstSeen": "2022-05-22",
+  "firstSeen": "2020-03-01",
   "lastSeen": "2023-10-27",
   "photo": null,
   "links": []
@@ -241281,6 +243567,7 @@
    "edc-las-vegas-2022:d2:cosmic-meadow:0130:yellow-claw",
    "edc-las-vegas-2023:d3:circuit-grounds:0245:yellow-claw",
    "edc-las-vegas-2025:d1:cosmic-meadow:0315:yellow-claw",
+   "edc-mexico-2020:d1:kinetic-field:0030:headhunterz-b2b-yellow-claw",
    "edc-orlando-2016:d1:kineticfield:2007:yellow-claw",
    "edc-orlando-2019:d1:kineticfield:2010:yellow-claw",
    "lollapalooza-2016:d4:perry-s:1745:yellow-claw",
@@ -242142,6 +244429,21 @@
   "links": []
  },
  {
+  "key": "young-drums",
+  "name": "Young Drums",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "edc-mexico-2020:d3:wide-awake-art-car:1515:young-drums"
+  ],
+  "firstSeen": "2020-03-01",
+  "lastSeen": "2020-03-01",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "young-fathers",
   "name": "Young Fathers",
   "aliases": [],
@@ -242404,6 +244706,7 @@
   "projects": [],
   "billings": [
    "edc-las-vegas-2013:d2:neongarden:0430:yousef",
+   "edc-mexico-2020:d1:neon-garden:1930:yousef",
    "tomorrowland-2011:d1:carl-cox-and-friends:1530:yousef",
    "tomorrowland-2012:d1:carl-cox-and-friends:1530:yousef",
    "tomorrowland-2013:d1:carl-cox-and-friends:1530:yousef",
@@ -242411,7 +244714,7 @@
    "ultra-miami-2019:d1:reflector:1400:yousef"
   ],
   "firstSeen": "2011-07-22",
-  "lastSeen": "2019-03-29",
+  "lastSeen": "2020-02-28",
   "photo": null,
   "links": []
  },
@@ -243065,12 +245368,15 @@
  },
  {
   "key": "zaa",
-  "name": "ZAA",
-  "aliases": [],
+  "name": "Zaa",
+  "aliases": [
+   "ZAA"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "edc-mexico-2020:d1:dos-equis-stage:0100:zaa",
    "ultra-miami-2017:d3:oasis:1600:ideal-b2b-zaa",
    "ultra-miami-2022:d1:oasis:1830:zaa"
   ],
@@ -243480,6 +245786,7 @@
    "edc-las-vegas-2022:d3:kinetic-field:0017:zedd",
    "edc-las-vegas-2023:d2:kinetic-field:0148:zedd",
    "edc-las-vegas-2024:d2:kinetic-field:0147:zedd",
+   "edc-mexico-2020:d1:circuit-grounds:0035:zedd",
    "edc-orlando-2017:d2:circuitgrounds:2245:zedd",
    "edc-orlando-2021:d1:circuit-grounds:2245:zedd",
    "edc-orlando-2023:d2:kinetic-field:2232:zedd",
@@ -243531,6 +245838,7 @@
    "edc-las-vegas-2022:d3:circuit-grounds:0230:zeds-dead",
    "edc-las-vegas-2022:d3:parliament-art-car:0415:zeds-dead-after-hours-set",
    "edc-las-vegas-2023:d2:cosmic-meadow:0010:zeds-dead-b2b-chase-and-status",
+   "edc-mexico-2020:d2:wasteland:0100:zeds-dead",
    "edc-orlando-2022:d1:circuit-grounds:2245:zeds-dead",
    "edc-orlando-2024:d1:circuit-grounds:2245:zeds-dead",
    "electric-forest-2012:d2:tripolee:2345:zeds-dead",
@@ -244166,9 +246474,10 @@
   "parents": [],
   "projects": [],
   "billings": [
-   "edc-mexico-2027:edcmx27-zombies-in-miami"
+   "edc-mexico-2027:edcmx27-zombies-in-miami",
+   "edc-mexico-2020:d2:bionic-jungle:1800:zombies-in-miami-live"
   ],
-  "firstSeen": "2027-02-20",
+  "firstSeen": "2020-02-29",
   "lastSeen": "2027-02-20",
   "photo": null,
   "links": []
@@ -244192,6 +246501,7 @@
    "edc-las-vegas-2017:d1:basspod:0130:zomboy",
    "edc-las-vegas-2022:d3:basspod:0230:zomboy",
    "edc-las-vegas-2024:d1:basspod:0030:zomboy",
+   "edc-mexico-2020:d2:wasteland:0000:zomboy",
    "edc-orlando-2017:d1:circuitgrounds:2200:zomboy",
    "edc-orlando-2022:d3:circuit-grounds:2140:zomboy",
    "edc-orlando-2024:d2:circuit-grounds:2055:zomboy",

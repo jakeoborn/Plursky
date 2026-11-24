@@ -7336,6 +7336,21 @@
    "setTag": "Live",
    "why": "The page prints the set tag in quotes instead of parentheses (\"Live\"). The act is Secret Echoes and \"Live\" is the set tag, not part of the name.",
    "source": "https://mexico.edc.com/en/lineup/"
+  },
+  {
+   "printed": "Nightstalker + MC XYZ",
+   "performers": [
+    {
+     "name": "Nightstalker",
+     "role": "performer"
+    },
+    {
+     "name": "MC XYZ",
+     "role": "mc"
+    }
+   ],
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set.",
+   "source": "https://mexico.electricdaisycarnival.com/en/lineup/set-times/"
   }
  ],
  "pending": [
@@ -8298,6 +8313,18 @@
   {
    "printed": "12th Planet (DNB)",
    "why": "Left as printed: the parenthetical is not sourced as a name the act uses elsewhere (the Bunny (Rabbit in the Moon) rule), so the billing is neither merged with the bare name nor credited to anything the parenthetical names."
+  },
+  {
+   "printed": "Europa (Jax Jones & Martin Solveig)",
+   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "2=1 (Timmy Trumpet B2B W&W)",
+   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "key": "zaa",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
   }
  ]
 }
