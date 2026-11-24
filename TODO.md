@@ -3,7 +3,7 @@
 > **Shipping?** See **[RELEASE.md](RELEASE.md)** — sync iOS, cache-bust, web
 > deploy, and App Store submit commands.
 
-## 🎆 SPEC-212 — NYE, attendance, win-back (status 2026-11-24 12:20 AM CT, main `7c09d21f`, web v671)
+## 🎆 SPEC-212 — NYE, attendance, win-back (status 2026-11-24 5:55 PM CT, main `22efc5b3`, web v677)
 
 > Ledger lines for the merges below: `ops/build-ledger.jsonl` (the ledger has no
 > lines between 2026-10-24 and 2026-11-17; those merges are not backfilled here).
@@ -28,19 +28,20 @@
 - [x] W5 #504 MusicKit token renewal command, squash `51c11a7c`
 - [x] W6 #503 replay harness (`21f2a1f8`) · W7 #498 census rule (`075ef003`)
 
+**Merged 2026-11-24 (SPEC-228, window C):**
+- [x] W3 #515 per-festival set-tracking opt-in, squash `b52e5850`
+- [x] W4 #502 Monthly win-back + recap hooks + save/cancel states, squash `e342fcf1`. The card stays
+      off (fails closed) until the App Store Connect offer and RevenueCat `winback_enabled` exist.
+      **Deferred by Jake 2026-11-24 until Plursky has many more iOS users**; not a blocker
+- [x] W5 #499 MusicKit token expiry watch (page-freshness job, warns 21 days ahead), squash `bc693fa5`
+
 **Still open (Claude Plur):**
-- [ ] W3 #515 per-festival set-tracking opt-in @ `77a85ab0`, draft; #501 has landed, so it must
-      move above the current web version before review
 - [ ] W3 accuracy gate: 17 of 20 sets within 10 min on a real album replay. The synthetic
       EDC reference (13 of 15, #503) does not count. Blocked on Jake's albums
-- [ ] W4 #502 @ `c443aae9` (v647), draft, Monthly win-back + recap hooks + save/cancel states.
-      Store offer not created yet (0 win-back offers read live in ASC); Jake's App Store
-      Connect + RevenueCat taps
-- [ ] W5 #499 MusicKit token expiry warning @ `5ec6dc94`, draft
 - [ ] #517 follow-up: its 14 capture `sha256`/`bytes` receipts do not reproduce; fresh raw captures
       match Wayback's own CDX digests 14/14 (see the #517 comment). The imported sets are unaffected
 
-**Held:** #244 festival essentials (DIRTY; re-port after SPEC-212).
+**Next:** #244 festival essentials re-port (SPEC-212 is done; the old branch is 532 commits behind, so it is re-ported fresh off main with a new first-party read).
 
 ## 📋 REPORT CLOSE-OUT — items pulled from agent reports (2026-06-07)
 
@@ -323,7 +324,7 @@ music synergies._
     - ⏳ **(1) Paid Applications agreement → ACTIVE** (ASC → Business → Bank Account + Tax; ~1–2 business days). ALL IAP incl. sandbox fails until green.
     - ⏳ **(2) Sandbox test** once agreement active (sandbox Apple ID → buy → watermark off + Restore works). Then Plus is LIVE on the current build — no resubmit.
     - Per-festival ($2.99) deferred (needs festival-scoped entitlement). `moment-media` bucket SQL = DONE.
-11. **Refresh Apple MusicKit token** before ~Nov 2026 (6-mo expiry) — `scripts/sign-musickit-token.mjs`.
+11. ✅ **Refresh Apple MusicKit token** — renewed by #522 to 2027-05-20; next renewal before ~2027-04-29 (#499's watch warns 21 days ahead).
 12. ✅ **og-card.png** (1200×630) — present + referenced in index.html, live on plursky.com.
 
 ### D. Optional / deferred build
@@ -672,7 +673,7 @@ is the video upgrade.
 - [x] Presence heartbeat every 60s
 
 **Still to build:**
-- [ ] **Activate Apple Music** — all code written, just needs MusicKit JWT
+- [x] **Activate Apple Music** — live since v152 (token renewed by #522, expires 2027-05-20)
 - [x] **Error vs empty state** — retry buttons on Setlists, YouTube, Ticketmaster
 - [x] **Playlist rebuild progress** — "BUILDING · 12/40 ARTISTS"
 - [ ] **YouTube server-side proxy** — protect 10k/day quota (needs Supabase deploy)
@@ -711,7 +712,8 @@ Ordered by impact-per-engineering-hour.
       MapLibre + heatmap + Apple-Maps-style chrome. ⚠️ Do NOT purge
       `TopDownMap` — it's the live map.
 - [ ] **Apple Music dev token renewal** — live since v152; the token expires
-      every ~6 months (`scripts/check-musickit-token.mjs` warns ahead).
+      every ~6 months. Current token expires 2027-05-20; renew before ~2027-04-29
+      (`scripts/check-musickit-token.mjs` in page-freshness.yml warns 21 days ahead).
       From the repo folder (`cd ~/Plursky`), on Jake's Mac:
       `node scripts/sign-musickit-token.mjs X54Q9P743S <KEY_ID> ~/Downloads/AuthKey_<KEY_ID>.p8 --write`
       renews `APPLE_DEV_TOKEN` in `spotify-api.jsx` (self-verified); then
