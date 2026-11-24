@@ -165,6 +165,13 @@ check(/if \(!P \|\| !visible\) return;/.test(watcher), "the plugin is armed only
 check(!/visibilitychange[^\n]*disarm|hidden[^\n]*disarm/.test(watcher), "a hide never disarms");
 check(/pref && fid && elig === "live"/.test(watcher) && /P\.disarm\(\)/.test(watcher), "armed only when on and live; disarmed otherwise");
 check(/!\(native && _setTrackNativeOn\)/.test(watcher), "no second GPS watch while the native session runs");
+// Re-consent: only a yes given under the screen-locked consent arms the session.
+check(/pref && fid && elig === "live" && locked\)/.test(watcher) && /const locked = !!fid && setTrackLockedConsent\(fid\)/.test(watcher), "the session arms only on a yes stamped under the screen-locked consent");
+const setFn = (CSRC.match(/function setSetTracking\([\s\S]*?\n}\n/) || [""])[0];
+check(/if \(on && typeof _setTrackNative === "function" && _setTrackNative\(\)\) locked\[festivalId\] = true;\s*else if \(!on\) delete locked\[festivalId\];/.test(setFn), "a yes in the iPhone app stamps the screen-locked consent; turning off removes it");
+const card = (CSRC.match(/function SetTrackingCard\(\)[\s\S]*?\n}\n/) || [""])[0];
+check(/const reconsent = native && on && !setTrackLockedConsent\(cfg && cfg\.id\)/.test(card) && /asking && \(!on \|\| reconsent\)/.test(card) && /data-set-tracking-reconsent onClick=\{\(\) => setAsking\(true\)\}/.test(card), "an older foreground-only yes is asked again before it counts with the screen locked");
+check(/onClick=\{\(\) => \{ if \(!on\) setSetTracking\(false, cfg && cfg\.id\); setAsking\(false\); \}\}/.test(card), "Not now on the re-ask keeps the foreground yes");
 check(/function clearSetTrack[\s\S]{0,600}_setTrackNativeClear\(\)/.test(CSRC) && /function clearAllSetTrack\(\)[\s\S]{0,300}_setTrackNativeClear\(\)/.test(CSRC), "Clear <festival> and Delete all reach the native queue");
 check(/setTrackIngest\(r && r\.festivalId/.test(CSRC) && /function setTrackIngest[\s\S]{0,700}attendQualifyFixes\(samples, attendEvidenceAnchors\(c\)/.test(CSRC), "drained fixes go through attendQualifyFixes on measured stages only");
 check(/data-set-tracking-delete-all onClick=\{\(\) => setConfirmDelete\(true\)\}/.test(CSRC) && /data-set-tracking-delete-yes onClick=\{\(\) => \{ clearAllSetTrack\(\)/.test(CSRC)
@@ -172,6 +179,7 @@ check(/data-set-tracking-delete-all onClick=\{\(\) => setConfirmDelete\(true\)\}
 const iosConsent = (CSRC.match(/\{native \? \([\s\S]*?<div style=\{body\}>([\s\S]*?)<\/div>/) || ["", ""])[1];
 check(/Your exact location:<\/b> kept on this phone only until Plursky turns it into stage times, then deleted/.test(iosConsent) && !/Not recorded/.test(iosConsent), "iOS consent says raw locations are held until turned into stage times (no \"not recorded\" claim)");
 check(/Never sent to Plursky or anyone else\. Your own iPhone backup can include the stage times/.test(iosConsent) && !/Nothing leaves this phone/.test(iosConsent), "iOS consent names the iPhone backup instead of \"nothing leaves this phone\"");
+check(/only during each festival day's sets, first set to last/.test(iosConsent) && /up to 6 hours before the first set it runs roughly and saves nothing, so iOS may show the location arrow early/.test(iosConsent) && /leadMs: Double = 6 \* 3600 \* 1000/.test(SWIFT) && /SET_TRACK_MERGE_MS = 90 \* 60000/.test(readFileSync(join(ROOT, "data.jsx"), "utf8")), "iOS consent states the save span and the 6 h coarse lead the code uses");
 check(/native && _setTrackInternal && <SetTrackBatteryTest/.test(CSRC) && /if \(!P \|\| !_setTrackInternal\) return null;/.test(CSRC), "the battery test row renders only when the plugin says internal");
 
 console.log((failed ? "✗" : "✓") + " set tracking B: " + (checks - failed) + "/" + checks + " checks");

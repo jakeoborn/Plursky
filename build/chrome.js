@@ -1738,6 +1738,18 @@ function _readSetTrackPrefs() {
   } catch {}
   return prefs;
 }
+var SET_TRACK_LOCKED_KEY = "plursky_set_tracking_locked_v1";
+function _readSetTrackLocked() {
+  try {
+    var p = JSON.parse(localStorage.getItem(SET_TRACK_LOCKED_KEY) || "{}");
+    return p && typeof p === "object" && !Array.isArray(p) ? p : {};
+  } catch {
+    return {};
+  }
+}
+function setTrackLockedConsent(festivalId = _setTrackActiveId()) {
+  return !!festivalId && _readSetTrackLocked()[festivalId] === true;
+}
 function getSetTracking(festivalId = _setTrackActiveId()) {
   if (!festivalId) return null;
   var v = _readSetTrackPrefs()[festivalId];
@@ -1749,6 +1761,11 @@ function setSetTracking(on, festivalId = _setTrackActiveId()) {
   prefs[festivalId] = on ? "on" : "off";
   try {
     localStorage.setItem(SET_TRACK_PREF_KEY, JSON.stringify(prefs));
+  } catch {}
+  try {
+    var locked = _readSetTrackLocked();
+    if (on && typeof _setTrackNative === "function" && _setTrackNative()) locked[festivalId] = true;else if (!on) delete locked[festivalId];
+    localStorage.setItem(SET_TRACK_LOCKED_KEY, JSON.stringify(locked));
   } catch {}
   try {
     window.dispatchEvent(new CustomEvent(SET_TRACK_EVENT));
@@ -2218,6 +2235,7 @@ function SetTrackingWatcher() {
   var cfg = window.FESTIVAL_CONFIG;
   var fid = cfg && cfg.id;
   var pref = !!fid && getSetTracking(fid) === "on";
+  var locked = !!fid && setTrackLockedConsent(fid);
   var visible = document.visibilityState !== "hidden";
   var elig = setTrackEligibility(cfg, Date.now());
   React.useEffect(() => {
@@ -2229,7 +2247,7 @@ function SetTrackingWatcher() {
     } catch {}
     setTrackDrainNative().then(() => {
       if (!alive) return;
-      if (pref && fid && elig === "live") {
+      if (pref && fid && elig === "live" && locked) {
         var ds = window._DATA_SETS && window._DATA_SETS[fid];
         P.arm({
           festivalId: fid,
@@ -2252,7 +2270,7 @@ function SetTrackingWatcher() {
       alive = false;
       clearInterval(t);
     };
-  }, [native, visible, pref, fid, elig, bsActive]);
+  }, [native, visible, pref, locked, fid, elig, bsActive]);
   var run = !!fid && getSetTracking(fid) === "on" && document.visibilityState !== "hidden" && setTrackEligibility(cfg, Date.now()) === "live" && !(native && _setTrackNativeOn);
   React.useEffect(() => {
     if (!run || !navigator.geolocation) return;
@@ -3710,8 +3728,9 @@ function SetTrackingCard() {
   var [calibrating, setCalibrating] = React.useState(false);
   var native = !!_setTrackNative();
   var anyData = native && _setTrackHasAny();
+  var reconsent = native && on && !setTrackLockedConsent(cfg && cfg.id);
   var [confirmDelete, setConfirmDelete] = React.useState(false);
-  var status = elig === "no-stages" ? canCalibrate ? `${name}'s stages aren't measured yet. Calibrate them on site (${calib.done} of ${calib.needed} done) and sets can be timed on this phone.` : `${name}'s stages aren't measured yet, so sets can't be timed here.` : !on ? `Off for ${name}. Plursky can note how long you stay at a stage during a set, to tell a full set from part of one.` : elig === "ended" ? `On for ${name}. ${name} is over, so nothing is counting.` : native ? elig === "live" ? _setTrackNativeOn ? `On for ${name}. Counts during sets, even with the screen locked. iOS shows the location arrow while it runs.` : `On for ${name}. Counting while Plursky is open. Once set hours start, it keeps counting with the screen locked.` : `On for ${name}. On ${name}'s festival days, open Plursky once and it counts during sets, even with the screen locked.` : elig === "live" ? `On for ${name}. Counting while Plursky is open. Lock the screen and the count pauses.` : `On for ${name}. It starts on ${name}'s festival days, and counts only while Plursky is open.`;
+  var status = elig === "no-stages" ? canCalibrate ? `${name}'s stages aren't measured yet. Calibrate them on site (${calib.done} of ${calib.needed} done) and sets can be timed on this phone.` : `${name}'s stages aren't measured yet, so sets can't be timed here.` : !on ? `Off for ${name}. Plursky can note how long you stay at a stage during a set, to tell a full set from part of one.` : elig === "ended" ? `On for ${name}. ${name} is over, so nothing is counting.` : reconsent ? `On for ${name} while Plursky is open. It can now keep counting with the screen locked too: review what changes before it does.` : native ? elig === "live" ? _setTrackNativeOn ? `On for ${name}. Counts during sets, even with the screen locked. iOS shows the location arrow while it runs.` : `On for ${name}. Counting while Plursky is open. Once set hours start, it keeps counting with the screen locked.` : `On for ${name}. On ${name}'s festival days, open Plursky once and it counts during sets, even with the screen locked.` : elig === "live" ? `On for ${name}. Counting while Plursky is open. Lock the screen and the count pauses.` : `On for ${name}. It starts on ${name}'s festival days, and counts only while Plursky is open.`;
   return React.createElement("div", {
     "data-set-tracking-card": true,
     "data-set-tracking-state": on ? "on" : "off",
@@ -3749,7 +3768,7 @@ function SetTrackingCard() {
   }, "Time the sets you catch"), React.createElement("div", {
     "data-set-tracking-status": true,
     style: body
-  }, status), asking && !on ? React.createElement("div", {
+  }, status), asking && (!on || reconsent) ? React.createElement("div", {
     "data-set-tracking-consent": true
   }, native ? React.createElement("div", {
     style: body
@@ -3761,7 +3780,7 @@ function SetTrackingCard() {
     style: {
       color: "var(--ink)"
     }
-  }, "Your exact location:"), " kept on this phone only until Plursky turns it into stage times, then deleted.", React.createElement("br", null), "Never sent to Plursky or anyone else. Your own iPhone backup can include the stage times.", React.createElement("br", null), "This is for ", name, " only; another festival asks again. It counts during set hours on festival days, screen locked too, once you've opened Plursky that day. iOS shows the location arrow while it runs. Turn it off here any time.") : React.createElement("div", {
+  }, "Your exact location:"), " kept on this phone only until Plursky turns it into stage times, then deleted.", React.createElement("br", null), "Never sent to Plursky or anyone else. Your own iPhone backup can include the stage times.", React.createElement("br", null), "This is for ", name, " only; another festival asks again. It saves where you are only during each festival day's sets, first set to last, screen locked too, once you've opened Plursky that day. For up to 6 hours before the first set it runs roughly and saves nothing, so iOS may show the location arrow early. Turn it off here any time.") : React.createElement("div", {
     style: body
   }, React.createElement("b", {
     style: {
@@ -3786,7 +3805,7 @@ function SetTrackingCard() {
     style: btn(true)
   }, "Turn on"), React.createElement("button", {
     onClick: () => {
-      setSetTracking(false, cfg && cfg.id);
+      if (!on) setSetTracking(false, cfg && cfg.id);
       setAsking(false);
     },
     style: btn(false)
@@ -3796,7 +3815,11 @@ function SetTrackingCard() {
       gap: 8,
       flexWrap: "wrap"
     }
-  }, on ? React.createElement("button", {
+  }, reconsent && React.createElement("button", {
+    "data-set-tracking-reconsent": true,
+    onClick: () => setAsking(true),
+    style: btn(true)
+  }, "Review"), on ? React.createElement("button", {
     "data-set-tracking-off": true,
     onClick: () => setSetTracking(false, cfg && cfg.id),
     style: btn(false)
