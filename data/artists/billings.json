@@ -356430,6 +356430,6068 @@
   "mainStage": null
  },
  {
+  "id": "edc-mexico-2020:d1:kinetic-field:1600:leon-leiden",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Kinetic Field",
+  "start": "16:00",
+  "end": "16:53",
+  "printed": "Leon Leiden",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "leon-leiden",
+    "role": "performer"
+   }
+  ],
+  "act": "leon-leiden",
+  "closing": false,
+  "stageLineage": "edc-mexico:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:kinetic-field:1653:qrion",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Kinetic Field",
+  "start": "16:53",
+  "end": "17:53",
+  "printed": "Qrion",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "qrion",
+    "role": "performer"
+   }
+  ],
+  "act": "qrion",
+  "closing": false,
+  "stageLineage": "edc-mexico:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:kinetic-field:1753:party-favor",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Kinetic Field",
+  "start": "17:53",
+  "end": "18:51",
+  "printed": "Party Favor",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "party-favor",
+    "role": "performer"
+   }
+  ],
+  "act": "party-favor",
+  "closing": false,
+  "stageLineage": "edc-mexico:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:kinetic-field:1857:said-the-sky",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Kinetic Field",
+  "start": "18:57",
+  "end": "20:10",
+  "printed": "Said The Sky",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "said-the-sky",
+    "role": "performer"
+   }
+  ],
+  "act": "said-the-sky",
+  "closing": false,
+  "stageLineage": "edc-mexico:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:kinetic-field:2013:oliver-heldens",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Kinetic Field",
+  "start": "20:13",
+  "end": "21:41",
+  "printed": "Oliver Heldens",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "oliver-heldens",
+    "role": "performer"
+   }
+  ],
+  "act": "oliver-heldens",
+  "closing": false,
+  "stageLineage": "edc-mexico:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:kinetic-field:2144:deorro",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Kinetic Field",
+  "start": "21:44",
+  "end": "23:12",
+  "printed": "Deorro",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "deorro",
+    "role": "performer"
+   }
+  ],
+  "act": "deorro",
+  "closing": false,
+  "stageLineage": "edc-mexico:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:kinetic-field:2315:don-diablo",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Kinetic Field",
+  "start": "23:15",
+  "end": "00:27",
+  "printed": "Don Diablo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "don-diablo",
+    "role": "performer"
+   }
+  ],
+  "act": "don-diablo",
+  "closing": false,
+  "stageLineage": "edc-mexico:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:kinetic-field:0030:headhunterz-b2b-yellow-claw",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Kinetic Field",
+  "start": "00:30",
+  "end": "02:00",
+  "printed": "Headhunterz B2B Yellow Claw",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "headhunterz",
+    "role": "b2b"
+   },
+   {
+    "key": "yellow-claw",
+    "role": "b2b"
+   }
+  ],
+  "act": "headhunterz-b2b-yellow-claw",
+  "closing": true,
+  "stageLineage": "edc-mexico:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:circuit-grounds:1600:bonhaus",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Circuit Grounds",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "BonHaus",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bonhaus",
+    "role": "performer"
+   }
+  ],
+  "act": "bonhaus",
+  "closing": false,
+  "stageLineage": "edc-mexico:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:circuit-grounds:1700:noizekid",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Circuit Grounds",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Noizekid",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "noizekid",
+    "role": "performer"
+   }
+  ],
+  "act": "noizekid",
+  "closing": false,
+  "stageLineage": "edc-mexico:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:circuit-grounds:1800:moska",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Circuit Grounds",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Moska",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "moska",
+    "role": "performer"
+   }
+  ],
+  "act": "moska",
+  "closing": false,
+  "stageLineage": "edc-mexico:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:circuit-grounds:1900:ghetto-kids",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Circuit Grounds",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Ghetto Kids",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ghetto-kids",
+    "role": "performer"
+   }
+  ],
+  "act": "ghetto-kids",
+  "closing": false,
+  "stageLineage": "edc-mexico:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:circuit-grounds:2000:elohim",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Circuit Grounds",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Elohim",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "elohim",
+    "role": "performer"
+   }
+  ],
+  "act": "elohim",
+  "closing": false,
+  "stageLineage": "edc-mexico:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:circuit-grounds:2100:borgore",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Circuit Grounds",
+  "start": "21:00",
+  "end": "22:15",
+  "printed": "Borgore",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "borgore",
+    "role": "performer"
+   }
+  ],
+  "act": "borgore",
+  "closing": false,
+  "stageLineage": "edc-mexico:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:circuit-grounds:2215:vini-vici",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Circuit Grounds",
+  "start": "22:15",
+  "end": "23:25",
+  "printed": "Vini Vici",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vini-vici",
+    "role": "performer"
+   }
+  ],
+  "act": "vini-vici",
+  "closing": false,
+  "stageLineage": "edc-mexico:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:circuit-grounds:2330:chase-and-status-dj-set",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Circuit Grounds",
+  "start": "23:30",
+  "end": "00:30",
+  "printed": "Chase & Status (DJ Set)",
+  "setTag": "DJ Set",
+  "performers": [
+   {
+    "key": "chase-and-status",
+    "role": "performer"
+   }
+  ],
+  "act": "chase-and-status",
+  "closing": false,
+  "stageLineage": "edc-mexico:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:circuit-grounds:0035:zedd",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Circuit Grounds",
+  "start": "00:35",
+  "end": "02:00",
+  "printed": "Zedd",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zedd",
+    "role": "performer"
+   }
+  ],
+  "act": "zedd",
+  "closing": true,
+  "stageLineage": "edc-mexico:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:neon-garden:1600:jenouise",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Neon Garden",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Jenouise",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jenouise",
+    "role": "performer"
+   }
+  ],
+  "act": "jenouise",
+  "closing": false,
+  "stageLineage": "edc-mexico:neon-garden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:neon-garden:1700:dave-ralph",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Neon Garden",
+  "start": "17:00",
+  "end": "18:15",
+  "printed": "Dave Ralph",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dave-ralph",
+    "role": "performer"
+   }
+  ],
+  "act": "dave-ralph",
+  "closing": false,
+  "stageLineage": "edc-mexico:neon-garden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:neon-garden:1815:mele",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Neon Garden",
+  "start": "18:15",
+  "end": "19:30",
+  "printed": "Melé",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mele",
+    "role": "performer"
+   }
+  ],
+  "act": "mele",
+  "closing": false,
+  "stageLineage": "edc-mexico:neon-garden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:neon-garden:1930:yousef",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Neon Garden",
+  "start": "19:30",
+  "end": "21:15",
+  "printed": "Yousef",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yousef",
+    "role": "performer"
+   }
+  ],
+  "act": "yousef",
+  "closing": false,
+  "stageLineage": "edc-mexico:neon-garden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:neon-garden:2115:kolsch",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Neon Garden",
+  "start": "21:15",
+  "end": "23:00",
+  "printed": "Kölsch",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kolsch",
+    "role": "performer"
+   }
+  ],
+  "act": "kolsch",
+  "closing": false,
+  "stageLineage": "edc-mexico:neon-garden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:neon-garden:2300:carl-cox",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Neon Garden",
+  "start": "23:00",
+  "end": "02:00",
+  "printed": "Carl Cox",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carl-cox",
+    "role": "performer"
+   }
+  ],
+  "act": "carl-cox",
+  "closing": true,
+  "stageLineage": "edc-mexico:neon-garden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:wasteland:1630:karina-rosee",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Wasteland",
+  "start": "16:30",
+  "end": "17:45",
+  "printed": "Karina Rosee",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "karina-rosee",
+    "role": "performer"
+   }
+  ],
+  "act": "karina-rosee",
+  "closing": false,
+  "stageLineage": "edc-mexico:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:wasteland:1745:noise-dimentionz-b2b-universe-controller",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Wasteland",
+  "start": "17:45",
+  "end": "19:00",
+  "printed": "Noise Dimentionz B2B Universe Controller",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "noise-dimentionz",
+    "role": "b2b"
+   },
+   {
+    "key": "universe-controller",
+    "role": "b2b"
+   }
+  ],
+  "act": "noise-dimentionz-b2b-universe-controller",
+  "closing": false,
+  "stageLineage": "edc-mexico:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:wasteland:1900:warface",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Wasteland",
+  "start": "19:00",
+  "end": "20:15",
+  "printed": "Warface",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "warface",
+    "role": "performer"
+   }
+  ],
+  "act": "warface",
+  "closing": false,
+  "stageLineage": "edc-mexico:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:wasteland:2015:kutski",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Wasteland",
+  "start": "20:15",
+  "end": "21:15",
+  "printed": "Kutski",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kutski",
+    "role": "performer"
+   }
+  ],
+  "act": "kutski",
+  "closing": false,
+  "stageLineage": "edc-mexico:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:wasteland:2115:lady-faith",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Wasteland",
+  "start": "21:15",
+  "end": "22:15",
+  "printed": "Lady Faith",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lady-faith",
+    "role": "performer"
+   }
+  ],
+  "act": "lady-faith",
+  "closing": false,
+  "stageLineage": "edc-mexico:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:wasteland:2215:da-tweekaz",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Wasteland",
+  "start": "22:15",
+  "end": "23:30",
+  "printed": "Da Tweekaz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "da-tweekaz",
+    "role": "performer"
+   }
+  ],
+  "act": "da-tweekaz",
+  "closing": false,
+  "stageLineage": "edc-mexico:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:wasteland:2330:code-black",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Wasteland",
+  "start": "23:30",
+  "end": "00:45",
+  "printed": "Code Black",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "code-black",
+    "role": "performer"
+   }
+  ],
+  "act": "code-black",
+  "closing": false,
+  "stageLineage": "edc-mexico:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:wasteland:0045:kikeone-presents-k1",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Wasteland",
+  "start": "00:45",
+  "end": "02:00",
+  "printed": "KikeONE presents K1",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "k1",
+    "role": "project"
+   }
+  ],
+  "act": "kikeone-presents-k1",
+  "closing": true,
+  "stageLineage": "edc-mexico:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:dos-equis-stage:1600:vicrey",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Dos Equis Stage",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Vicrey",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vicrey",
+    "role": "performer"
+   }
+  ],
+  "act": "vicrey",
+  "closing": false,
+  "stageLineage": "edc-mexico:dos-equis-stage",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:dos-equis-stage:1700:nemesiz",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Dos Equis Stage",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "NemesiZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nemesiz",
+    "role": "performer"
+   }
+  ],
+  "act": "nemesiz",
+  "closing": false,
+  "stageLineage": "edc-mexico:dos-equis-stage",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:dos-equis-stage:1800:army-of-skanks",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Dos Equis Stage",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Army of Skanks",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "army-of-skanks",
+    "role": "performer"
+   }
+  ],
+  "act": "army-of-skanks",
+  "closing": false,
+  "stageLineage": "edc-mexico:dos-equis-stage",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:dos-equis-stage:1900:le-twins",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Dos Equis Stage",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Le Twins",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "le-twins",
+    "role": "performer"
+   }
+  ],
+  "act": "le-twins",
+  "closing": false,
+  "stageLineage": "edc-mexico:dos-equis-stage",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:dos-equis-stage:2000:raymix",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Dos Equis Stage",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Raymix",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "raymix",
+    "role": "performer"
+   }
+  ],
+  "act": "raymix",
+  "closing": false,
+  "stageLineage": "edc-mexico:dos-equis-stage",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:dos-equis-stage:2100:dayvi",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Dos Equis Stage",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "Dayvi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dayvi",
+    "role": "performer"
+   }
+  ],
+  "act": "dayvi",
+  "closing": false,
+  "stageLineage": "edc-mexico:dos-equis-stage",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:dos-equis-stage:2200:armi-diamonds",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Dos Equis Stage",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "Armi Diamonds",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "armi-diamonds",
+    "role": "performer"
+   }
+  ],
+  "act": "armi-diamonds",
+  "closing": false,
+  "stageLineage": "edc-mexico:dos-equis-stage",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:dos-equis-stage:2300:bsno",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Dos Equis Stage",
+  "start": "23:00",
+  "end": "00:00",
+  "printed": "BSNO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bsno",
+    "role": "performer"
+   }
+  ],
+  "act": "bsno",
+  "closing": false,
+  "stageLineage": "edc-mexico:dos-equis-stage",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:dos-equis-stage:0000:alan-salomon",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Dos Equis Stage",
+  "start": "00:00",
+  "end": "01:00",
+  "printed": "Alan Salomon",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alan-salomon",
+    "role": "performer"
+   }
+  ],
+  "act": "alan-salomon",
+  "closing": false,
+  "stageLineage": "edc-mexico:dos-equis-stage",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:dos-equis-stage:0100:zaa",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Dos Equis Stage",
+  "start": "01:00",
+  "end": "02:00",
+  "printed": "Zaa",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zaa",
+    "role": "performer"
+   }
+  ],
+  "act": "zaa",
+  "closing": true,
+  "stageLineage": "edc-mexico:dos-equis-stage",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:stereo-bloom:1600:svbvg",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Stereo Bloom",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "SVBVG",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "svbvg",
+    "role": "performer"
+   }
+  ],
+  "act": "svbvg",
+  "closing": false,
+  "stageLineage": "edc-mexico:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:stereo-bloom:1700:holly",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Stereo Bloom",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Holly",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "holly",
+    "role": "performer"
+   }
+  ],
+  "act": "holly",
+  "closing": false,
+  "stageLineage": "edc-mexico:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:stereo-bloom:1800:rawtek",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Stereo Bloom",
+  "start": "18:00",
+  "end": "19:15",
+  "printed": "Rawtek",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rawtek",
+    "role": "performer"
+   }
+  ],
+  "act": "rawtek",
+  "closing": false,
+  "stageLineage": "edc-mexico:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:stereo-bloom:1915:nitti-gritti",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Stereo Bloom",
+  "start": "19:15",
+  "end": "20:30",
+  "printed": "Nitti Gritti",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nitti-gritti",
+    "role": "performer"
+   }
+  ],
+  "act": "nitti-gritti",
+  "closing": false,
+  "stageLineage": "edc-mexico:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:stereo-bloom:2030:wuki",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Stereo Bloom",
+  "start": "20:30",
+  "end": "21:45",
+  "printed": "Wuki",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wuki",
+    "role": "performer"
+   }
+  ],
+  "act": "wuki",
+  "closing": false,
+  "stageLineage": "edc-mexico:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:stereo-bloom:2145:softest-hard",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Stereo Bloom",
+  "start": "21:45",
+  "end": "23:00",
+  "printed": "Softest Hard",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "softest-hard",
+    "role": "performer"
+   }
+  ],
+  "act": "softest-hard",
+  "closing": false,
+  "stageLineage": "edc-mexico:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:stereo-bloom:2300:fight-clvb",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Stereo Bloom",
+  "start": "23:00",
+  "end": "00:30",
+  "printed": "Fight Clvb",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fight-clvb",
+    "role": "performer"
+   }
+  ],
+  "act": "fight-clvb",
+  "closing": false,
+  "stageLineage": "edc-mexico:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:stereo-bloom:0030:charlotte-fehler",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Stereo Bloom",
+  "start": "00:30",
+  "end": "02:00",
+  "printed": "Charlotte Fehler",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "charlotte-fehler",
+    "role": "performer"
+   }
+  ],
+  "act": "charlotte-fehler",
+  "closing": true,
+  "stageLineage": "edc-mexico:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:boombox-art-car:1600:fito-silva",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Boombox Art Car",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Fito Silva",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fito-silva",
+    "role": "performer"
+   }
+  ],
+  "act": "fito-silva",
+  "closing": false,
+  "stageLineage": "edc-mexico:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:boombox-art-car:1700:sheco",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Boombox Art Car",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Sheco",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sheco",
+    "role": "performer"
+   }
+  ],
+  "act": "sheco",
+  "closing": false,
+  "stageLineage": "edc-mexico:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:boombox-art-car:1800:olazaran",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Boombox Art Car",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Olazaran",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "olazaran",
+    "role": "performer"
+   }
+  ],
+  "act": "olazaran",
+  "closing": false,
+  "stageLineage": "edc-mexico:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:boombox-art-car:1900:nora-bautista",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Boombox Art Car",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Nora Bautista",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nora-bautista",
+    "role": "performer"
+   }
+  ],
+  "act": "nora-bautista",
+  "closing": false,
+  "stageLineage": "edc-mexico:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:boombox-art-car:2000:kevin-brand",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Boombox Art Car",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Kevin Brand",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kevin-brand",
+    "role": "performer"
+   }
+  ],
+  "act": "kevin-brand",
+  "closing": false,
+  "stageLineage": "edc-mexico:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:boombox-art-car:2100:regina-puma",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Boombox Art Car",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "Regina Puma",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "regina-puma",
+    "role": "performer"
+   }
+  ],
+  "act": "regina-puma",
+  "closing": false,
+  "stageLineage": "edc-mexico:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:boombox-art-car:2200:belmar",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Boombox Art Car",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "Belmar",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "belmar",
+    "role": "performer"
+   }
+  ],
+  "act": "belmar",
+  "closing": false,
+  "stageLineage": "edc-mexico:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:boombox-art-car:2300:berelau",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Boombox Art Car",
+  "start": "23:00",
+  "end": "00:00",
+  "printed": "Berelau",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "berelau",
+    "role": "performer"
+   }
+  ],
+  "act": "berelau",
+  "closing": false,
+  "stageLineage": "edc-mexico:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:boombox-art-car:0000:esamipau",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Boombox Art Car",
+  "start": "00:00",
+  "end": "01:00",
+  "printed": "EsaMiPau",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "esamipau",
+    "role": "performer"
+   }
+  ],
+  "act": "esamipau",
+  "closing": false,
+  "stageLineage": "edc-mexico:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:boombox-art-car:0100:polybiu",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Boombox Art Car",
+  "start": "01:00",
+  "end": "02:00",
+  "printed": "Polybiu$",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "polybiu",
+    "role": "performer"
+   }
+  ],
+  "act": "polybiu",
+  "closing": true,
+  "stageLineage": "edc-mexico:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:wide-awake-art-car:1600:macarena",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Wide Awake Art Car",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Macarena",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "macarena",
+    "role": "performer"
+   }
+  ],
+  "act": "macarena",
+  "closing": false,
+  "stageLineage": "edc-mexico:wide-awake-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:wide-awake-art-car:1700:sintonika",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Wide Awake Art Car",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Sintonika",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sintonika",
+    "role": "performer"
+   }
+  ],
+  "act": "sintonika",
+  "closing": false,
+  "stageLineage": "edc-mexico:wide-awake-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:wide-awake-art-car:1800:f4st",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Wide Awake Art Car",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "F4ST",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "f4st",
+    "role": "performer"
+   }
+  ],
+  "act": "f4st",
+  "closing": false,
+  "stageLineage": "edc-mexico:wide-awake-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:wide-awake-art-car:1900:momis-alanis-b2b-nina",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Wide Awake Art Car",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Momis Alanis B2B Nina",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "momis-alanis",
+    "role": "b2b"
+   },
+   {
+    "key": "nina",
+    "role": "b2b"
+   }
+  ],
+  "act": "momis-alanis-b2b-nina",
+  "closing": false,
+  "stageLineage": "edc-mexico:wide-awake-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:wide-awake-art-car:2000:mariana-revilla",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Wide Awake Art Car",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Mariana Revilla",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mariana-revilla",
+    "role": "performer"
+   }
+  ],
+  "act": "mariana-revilla",
+  "closing": false,
+  "stageLineage": "edc-mexico:wide-awake-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:wide-awake-art-car:2100:oskier",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Wide Awake Art Car",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "Oskier",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "oskier",
+    "role": "performer"
+   }
+  ],
+  "act": "oskier",
+  "closing": false,
+  "stageLineage": "edc-mexico:wide-awake-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:wide-awake-art-car:2200:truself",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Wide Awake Art Car",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "Truself",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "truself",
+    "role": "performer"
+   }
+  ],
+  "act": "truself",
+  "closing": false,
+  "stageLineage": "edc-mexico:wide-awake-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:wide-awake-art-car:2300:francis-davila",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Wide Awake Art Car",
+  "start": "23:00",
+  "end": "00:00",
+  "printed": "Francis Davila",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "francis-davila",
+    "role": "performer"
+   }
+  ],
+  "act": "francis-davila",
+  "closing": false,
+  "stageLineage": "edc-mexico:wide-awake-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:wide-awake-art-car:0000:luciana",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Wide Awake Art Car",
+  "start": "00:00",
+  "end": "01:00",
+  "printed": "Luciana",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "luciana",
+    "role": "performer"
+   }
+  ],
+  "act": "luciana",
+  "closing": true,
+  "stageLineage": "edc-mexico:wide-awake-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:bionic-jungle:1600:holder",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Bionic Jungle",
+  "start": "16:00",
+  "end": "18:30",
+  "printed": "Holder",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "holder",
+    "role": "performer"
+   }
+  ],
+  "act": "holder",
+  "closing": false,
+  "stageLineage": "edc-mexico:bionic-jungle",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:bionic-jungle:1830:shubostar",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Bionic Jungle",
+  "start": "18:30",
+  "end": "20:30",
+  "printed": "Shubostar",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "shubostar",
+    "role": "performer"
+   }
+  ],
+  "act": "shubostar",
+  "closing": false,
+  "stageLineage": "edc-mexico:bionic-jungle",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:bionic-jungle:2030:inigo-vontier",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Bionic Jungle",
+  "start": "20:30",
+  "end": "22:30",
+  "printed": "Iñigo Vontier",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "inigo-vontier",
+    "role": "performer"
+   }
+  ],
+  "act": "inigo-vontier",
+  "closing": false,
+  "stageLineage": "edc-mexico:bionic-jungle",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:bionic-jungle:2230:mental",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Bionic Jungle",
+  "start": "22:30",
+  "end": "00:30",
+  "printed": "Mental",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mental",
+    "role": "performer"
+   }
+  ],
+  "act": "mental",
+  "closing": false,
+  "stageLineage": "edc-mexico:bionic-jungle",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d1:bionic-jungle:0030:kawas",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-28",
+  "day": 1,
+  "stage": "Bionic Jungle",
+  "start": "00:30",
+  "end": "02:00",
+  "printed": "Kawas",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kawas",
+    "role": "performer"
+   }
+  ],
+  "act": "kawas",
+  "closing": true,
+  "stageLineage": "edc-mexico:bionic-jungle",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:kinetic-field:1400:fortu-and-mendoza",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Kinetic Field",
+  "start": "14:00",
+  "end": "14:55",
+  "printed": "Fortu & Mendoza",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fortu-and-mendoza",
+    "role": "performer"
+   }
+  ],
+  "act": "fortu-and-mendoza",
+  "closing": false,
+  "stageLineage": "edc-mexico:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:kinetic-field:1455:lemarroy",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Kinetic Field",
+  "start": "14:55",
+  "end": "15:54",
+  "printed": "Lemarroy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lemarroy",
+    "role": "performer"
+   }
+  ],
+  "act": "lemarroy",
+  "closing": false,
+  "stageLineage": "edc-mexico:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:kinetic-field:1554:jerry-davila",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Kinetic Field",
+  "start": "15:54",
+  "end": "16:53",
+  "printed": "Jerry Davila",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jerry-davila",
+    "role": "performer"
+   }
+  ],
+  "act": "jerry-davila",
+  "closing": false,
+  "stageLineage": "edc-mexico:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:kinetic-field:1653:valentino-khan",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Kinetic Field",
+  "start": "16:53",
+  "end": "17:53",
+  "printed": "Valentino Khan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "valentino-khan",
+    "role": "performer"
+   }
+  ],
+  "act": "valentino-khan",
+  "closing": false,
+  "stageLineage": "edc-mexico:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:kinetic-field:1753:cash-cash",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Kinetic Field",
+  "start": "17:53",
+  "end": "18:51",
+  "printed": "Cash Cash",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cash-cash",
+    "role": "performer"
+   }
+  ],
+  "act": "cash-cash",
+  "closing": false,
+  "stageLineage": "edc-mexico:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:kinetic-field:1857:jonas-blue",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Kinetic Field",
+  "start": "18:57",
+  "end": "20:10",
+  "printed": "Jonas Blue",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jonas-blue",
+    "role": "performer"
+   }
+  ],
+  "act": "jonas-blue",
+  "closing": false,
+  "stageLineage": "edc-mexico:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:kinetic-field:2013:kayzo",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Kinetic Field",
+  "start": "20:13",
+  "end": "21:41",
+  "printed": "Kayzo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kayzo",
+    "role": "performer"
+   }
+  ],
+  "act": "kayzo",
+  "closing": false,
+  "stageLineage": "edc-mexico:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:kinetic-field:2144:europa-jax-jones-and-martin-solveig",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Kinetic Field",
+  "start": "21:44",
+  "end": "23:12",
+  "printed": "Europa (Jax Jones & Martin Solveig)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "europa-jax-jones-and-martin-solveig",
+    "role": "act"
+   }
+  ],
+  "act": "europa-jax-jones-and-martin-solveig",
+  "closing": false,
+  "stageLineage": "edc-mexico:kinetic-field",
+  "mainStage": null,
+  "review": "parenthetical names people"
+ },
+ {
+  "id": "edc-mexico-2020:d2:kinetic-field:2315:2-1-timmy-trumpet-b2b-w-and-w",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Kinetic Field",
+  "start": "23:15",
+  "end": "00:27",
+  "printed": "2=1 (Timmy Trumpet B2B W&W)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "2-1-timmy-trumpet-b2b-w-and-w",
+    "role": "act"
+   }
+  ],
+  "act": "2-1-timmy-trumpet-b2b-w-and-w",
+  "closing": false,
+  "stageLineage": "edc-mexico:kinetic-field",
+  "mainStage": null,
+  "review": "parenthetical names people"
+ },
+ {
+  "id": "edc-mexico-2020:d2:kinetic-field:0030:tiesto",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Kinetic Field",
+  "start": "00:30",
+  "end": "02:00",
+  "printed": "Tiësto",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tiesto",
+    "role": "performer"
+   }
+  ],
+  "act": "tiesto",
+  "closing": true,
+  "stageLineage": "edc-mexico:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:circuit-grounds:1400:urboi",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Circuit Grounds",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "Urboi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "urboi",
+    "role": "performer"
+   }
+  ],
+  "act": "urboi",
+  "closing": false,
+  "stageLineage": "edc-mexico:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:circuit-grounds:1500:lujavo-b2b-fancy-folks",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Circuit Grounds",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "Lujavo B2B Fancy Folks",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lujavo",
+    "role": "b2b"
+   },
+   {
+    "key": "fancy-folks",
+    "role": "b2b"
+   }
+  ],
+  "act": "lujavo-b2b-fancy-folks",
+  "closing": false,
+  "stageLineage": "edc-mexico:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:circuit-grounds:1600:tom-and-collins",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Circuit Grounds",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Tom & Collins",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tom-and-collins",
+    "role": "performer"
+   }
+  ],
+  "act": "tom-and-collins",
+  "closing": false,
+  "stageLineage": "edc-mexico:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:circuit-grounds:1700:hannah-wants",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Circuit Grounds",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Hannah Wants",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hannah-wants",
+    "role": "performer"
+   }
+  ],
+  "act": "hannah-wants",
+  "closing": false,
+  "stageLineage": "edc-mexico:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:circuit-grounds:1800:danny-howard",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Circuit Grounds",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Danny Howard",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "danny-howard",
+    "role": "performer"
+   }
+  ],
+  "act": "danny-howard",
+  "closing": false,
+  "stageLineage": "edc-mexico:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:circuit-grounds:1900:walker-and-royce",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Circuit Grounds",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Walker & Royce",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "walker-and-royce",
+    "role": "performer"
+   }
+  ],
+  "act": "walker-and-royce",
+  "closing": false,
+  "stageLineage": "edc-mexico:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:circuit-grounds:2000:meduza",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Circuit Grounds",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Meduza",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "meduza",
+    "role": "performer"
+   }
+  ],
+  "act": "meduza",
+  "closing": false,
+  "stageLineage": "edc-mexico:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:circuit-grounds:2100:vintage-culture",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Circuit Grounds",
+  "start": "21:00",
+  "end": "22:15",
+  "printed": "Vintage Culture",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vintage-culture",
+    "role": "performer"
+   }
+  ],
+  "act": "vintage-culture",
+  "closing": false,
+  "stageLineage": "edc-mexico:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:circuit-grounds:2215:duke-dumont",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Circuit Grounds",
+  "start": "22:15",
+  "end": "23:30",
+  "printed": "Duke Dumont",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "duke-dumont",
+    "role": "performer"
+   }
+  ],
+  "act": "duke-dumont",
+  "closing": false,
+  "stageLineage": "edc-mexico:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:circuit-grounds:2330:knife-party",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Circuit Grounds",
+  "start": "23:30",
+  "end": "00:30",
+  "printed": "Knife Party",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "knife-party",
+    "role": "performer"
+   }
+  ],
+  "act": "knife-party",
+  "closing": false,
+  "stageLineage": "edc-mexico:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:circuit-grounds:0030:diplo",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Circuit Grounds",
+  "start": "00:30",
+  "end": "02:00",
+  "printed": "Diplo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "diplo",
+    "role": "performer"
+   }
+  ],
+  "act": "diplo",
+  "closing": true,
+  "stageLineage": "edc-mexico:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:neon-garden:1400:lokier",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Neon Garden",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "Lokier",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lokier",
+    "role": "performer"
+   }
+  ],
+  "act": "lokier",
+  "closing": false,
+  "stageLineage": "edc-mexico:neon-garden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:neon-garden:1500:ostil",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Neon Garden",
+  "start": "15:00",
+  "end": "16:15",
+  "printed": "Øostil",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "oostil",
+    "role": "performer"
+   }
+  ],
+  "act": "oostil",
+  "closing": false,
+  "stageLineage": "edc-mexico:neon-garden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:neon-garden:1615:bontan",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Neon Garden",
+  "start": "16:15",
+  "end": "17:30",
+  "printed": "Bontan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bontan",
+    "role": "performer"
+   }
+  ],
+  "act": "bontan",
+  "closing": false,
+  "stageLineage": "edc-mexico:neon-garden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:neon-garden:1730:mason-maynard",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Neon Garden",
+  "start": "17:30",
+  "end": "18:45",
+  "printed": "Mason Maynard",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mason-maynard",
+    "role": "performer"
+   }
+  ],
+  "act": "mason-maynard",
+  "closing": false,
+  "stageLineage": "edc-mexico:neon-garden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:neon-garden:1845:paul-woolford",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Neon Garden",
+  "start": "18:45",
+  "end": "20:15",
+  "printed": "Paul Woolford",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "paul-woolford",
+    "role": "performer"
+   }
+  ],
+  "act": "paul-woolford",
+  "closing": false,
+  "stageLineage": "edc-mexico:neon-garden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:neon-garden:2015:patrick-topping",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Neon Garden",
+  "start": "20:15",
+  "end": "21:45",
+  "printed": "Patrick Topping",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "patrick-topping",
+    "role": "performer"
+   }
+  ],
+  "act": "patrick-topping",
+  "closing": false,
+  "stageLineage": "edc-mexico:neon-garden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:neon-garden:2145:sasha",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Neon Garden",
+  "start": "21:45",
+  "end": "23:30",
+  "printed": "Sasha",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sasha",
+    "role": "performer"
+   }
+  ],
+  "act": "sasha",
+  "closing": false,
+  "stageLineage": "edc-mexico:neon-garden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:neon-garden:2330:sven-vath",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Neon Garden",
+  "start": "23:30",
+  "end": "02:00",
+  "printed": "Sven Väth",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sven-vath",
+    "role": "performer"
+   }
+  ],
+  "act": "sven-vath",
+  "closing": true,
+  "stageLineage": "edc-mexico:neon-garden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:wasteland:1400:bagha",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Wasteland",
+  "start": "14:00",
+  "end": "15:30",
+  "printed": "Bagha",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bagha",
+    "role": "performer"
+   }
+  ],
+  "act": "bagha",
+  "closing": false,
+  "stageLineage": "edc-mexico:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:wasteland:1530:save-the-rabbits",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Wasteland",
+  "start": "15:30",
+  "end": "16:15",
+  "printed": "Save The Rabbits",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "save-the-rabbits",
+    "role": "performer"
+   }
+  ],
+  "act": "save-the-rabbits",
+  "closing": false,
+  "stageLineage": "edc-mexico:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:wasteland:1615:mykka",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Wasteland",
+  "start": "16:15",
+  "end": "17:30",
+  "printed": "Mykka",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mykka",
+    "role": "performer"
+   }
+  ],
+  "act": "mykka",
+  "closing": false,
+  "stageLineage": "edc-mexico:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:wasteland:1730:nightstalker-mc-xyz",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Wasteland",
+  "start": "17:30",
+  "end": "18:45",
+  "printed": "Nightstalker + MC XYZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nightstalker",
+    "role": "performer"
+   },
+   {
+    "key": "mc-xyz",
+    "role": "mc"
+   }
+  ],
+  "act": "nightstalker-mc-xyz",
+  "closing": false,
+  "stageLineage": "edc-mexico:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:wasteland:1845:definitive",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Wasteland",
+  "start": "18:45",
+  "end": "20:00",
+  "printed": "Definitive",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "definitive",
+    "role": "performer"
+   }
+  ],
+  "act": "definitive",
+  "closing": false,
+  "stageLineage": "edc-mexico:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:wasteland:2000:matrix-and-futurebound",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Wasteland",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Matrix & Futurebound",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "matrix-and-futurebound",
+    "role": "performer"
+   }
+  ],
+  "act": "matrix-and-futurebound",
+  "closing": false,
+  "stageLineage": "edc-mexico:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:wasteland:2100:trampa",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Wasteland",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "Trampa",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "trampa",
+    "role": "performer"
+   }
+  ],
+  "act": "trampa",
+  "closing": false,
+  "stageLineage": "edc-mexico:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:wasteland:2200:svdden-death",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Wasteland",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "Svdden Death",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "svdden-death",
+    "role": "performer"
+   }
+  ],
+  "act": "svdden-death",
+  "closing": false,
+  "stageLineage": "edc-mexico:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:wasteland:2300:12th-planet",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Wasteland",
+  "start": "23:00",
+  "end": "00:00",
+  "printed": "12th Planet",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "12th-planet",
+    "role": "performer"
+   }
+  ],
+  "act": "12th-planet",
+  "closing": false,
+  "stageLineage": "edc-mexico:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:wasteland:0000:zomboy",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Wasteland",
+  "start": "00:00",
+  "end": "01:00",
+  "printed": "Zomboy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zomboy",
+    "role": "performer"
+   }
+  ],
+  "act": "zomboy",
+  "closing": false,
+  "stageLineage": "edc-mexico:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:wasteland:0100:zeds-dead",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Wasteland",
+  "start": "01:00",
+  "end": "02:00",
+  "printed": "Zeds Dead",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zeds-dead",
+    "role": "performer"
+   }
+  ],
+  "act": "zeds-dead",
+  "closing": true,
+  "stageLineage": "edc-mexico:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:dos-equis-stage:1400:adgel-b2b-tblmkr",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Dos Equis Stage",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "Adgel B2B TBLMKR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "adgel",
+    "role": "b2b"
+   },
+   {
+    "key": "tblmkr",
+    "role": "b2b"
+   }
+  ],
+  "act": "adgel-b2b-tblmkr",
+  "closing": false,
+  "stageLineage": "edc-mexico:dos-equis-stage",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:dos-equis-stage:1500:chanty-otm",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Dos Equis Stage",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "Chanty OTM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chanty-otm",
+    "role": "performer"
+   }
+  ],
+  "act": "chanty-otm",
+  "closing": false,
+  "stageLineage": "edc-mexico:dos-equis-stage",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:dos-equis-stage:1600:mi-il",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Dos Equis Stage",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Mi$$il",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mi-il",
+    "role": "performer"
+   }
+  ],
+  "act": "mi-il",
+  "closing": false,
+  "stageLineage": "edc-mexico:dos-equis-stage",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:dos-equis-stage:1700:sak-noel-presenta-barnaton",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Dos Equis Stage",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Sak Noel presenta: Barnaton",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sak-noel-presenta-barnaton",
+    "role": "performer"
+   }
+  ],
+  "act": "sak-noel-presenta-barnaton",
+  "closing": false,
+  "stageLineage": "edc-mexico:dos-equis-stage",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:dos-equis-stage:1800:ma-less",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Dos Equis Stage",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Ma-Less",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ma-less",
+    "role": "performer"
+   }
+  ],
+  "act": "ma-less",
+  "closing": false,
+  "stageLineage": "edc-mexico:dos-equis-stage",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:dos-equis-stage:1900:innobass-b2b-milomilo",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Dos Equis Stage",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Innobass B2B MiloMilo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "innobass",
+    "role": "b2b"
+   },
+   {
+    "key": "milomilo",
+    "role": "b2b"
+   }
+  ],
+  "act": "innobass-b2b-milomilo",
+  "closing": false,
+  "stageLineage": "edc-mexico:dos-equis-stage",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:dos-equis-stage:2000:muzik-junkies",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Dos Equis Stage",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Muzik Junkies",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "muzik-junkies",
+    "role": "performer"
+   }
+  ],
+  "act": "muzik-junkies",
+  "closing": false,
+  "stageLineage": "edc-mexico:dos-equis-stage",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:dos-equis-stage:2100:la-clicka-presents-worldwide-records",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Dos Equis Stage",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "La Clicka presents Worldwide Records",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "worldwide-records",
+    "role": "project"
+   }
+  ],
+  "act": "la-clicka-presents-worldwide-records",
+  "closing": false,
+  "stageLineage": "edc-mexico:dos-equis-stage",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:dos-equis-stage:2200:bizarrap",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Dos Equis Stage",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "Bizarrap",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bizarrap",
+    "role": "performer"
+   }
+  ],
+  "act": "bizarrap",
+  "closing": false,
+  "stageLineage": "edc-mexico:dos-equis-stage",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:dos-equis-stage:2300:lizz",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Dos Equis Stage",
+  "start": "23:00",
+  "end": "00:00",
+  "printed": "Lizz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lizz",
+    "role": "performer"
+   }
+  ],
+  "act": "lizz",
+  "closing": false,
+  "stageLineage": "edc-mexico:dos-equis-stage",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:dos-equis-stage:0000:gian-varela-b2b-arguello",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Dos Equis Stage",
+  "start": "00:00",
+  "end": "01:00",
+  "printed": "Gian Varela B2B Argüello",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gian-varela",
+    "role": "b2b"
+   },
+   {
+    "key": "arguello",
+    "role": "b2b"
+   }
+  ],
+  "act": "gian-varela-b2b-arguello",
+  "closing": false,
+  "stageLineage": "edc-mexico:dos-equis-stage",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:dos-equis-stage:0100:matias-aguayo-live",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Dos Equis Stage",
+  "start": "01:00",
+  "end": "02:00",
+  "printed": "Matias Aguayo (Live)",
+  "setTag": "Live",
+  "performers": [
+   {
+    "key": "matias-aguayo",
+    "role": "performer"
+   }
+  ],
+  "act": "matias-aguayo",
+  "closing": true,
+  "stageLineage": "edc-mexico:dos-equis-stage",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:stereo-bloom:1415:megalight",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Stereo Bloom",
+  "start": "14:15",
+  "end": "15:15",
+  "printed": "Megalight",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "megalight",
+    "role": "performer"
+   }
+  ],
+  "act": "megalight",
+  "closing": false,
+  "stageLineage": "edc-mexico:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:stereo-bloom:1515:vlind",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Stereo Bloom",
+  "start": "15:15",
+  "end": "16:30",
+  "printed": "Vlind",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vlind",
+    "role": "performer"
+   }
+  ],
+  "act": "vlind",
+  "closing": false,
+  "stageLineage": "edc-mexico:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:stereo-bloom:1630:kristina-sky",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Stereo Bloom",
+  "start": "16:30",
+  "end": "17:45",
+  "printed": "Kristina Sky",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kristina-sky",
+    "role": "performer"
+   }
+  ],
+  "act": "kristina-sky",
+  "closing": false,
+  "stageLineage": "edc-mexico:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:stereo-bloom:1745:alessandra-roncone",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Stereo Bloom",
+  "start": "17:45",
+  "end": "19:00",
+  "printed": "Alessandra Roncone",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alessandra-roncone",
+    "role": "performer"
+   }
+  ],
+  "act": "alessandra-roncone",
+  "closing": false,
+  "stageLineage": "edc-mexico:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:stereo-bloom:1900:chris-schweizer",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Stereo Bloom",
+  "start": "19:00",
+  "end": "20:15",
+  "printed": "Chris Schweizer",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chris-schweizer",
+    "role": "performer"
+   }
+  ],
+  "act": "chris-schweizer",
+  "closing": false,
+  "stageLineage": "edc-mexico:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:stereo-bloom:2015:craig-connelly",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Stereo Bloom",
+  "start": "20:15",
+  "end": "21:30",
+  "printed": "Craig Connelly",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "craig-connelly",
+    "role": "performer"
+   }
+  ],
+  "act": "craig-connelly",
+  "closing": false,
+  "stageLineage": "edc-mexico:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:stereo-bloom:2130:giuseppe-ottaviani",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Stereo Bloom",
+  "start": "21:30",
+  "end": "23:30",
+  "printed": "Giuseppe Ottaviani",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "giuseppe-ottaviani",
+    "role": "performer"
+   }
+  ],
+  "act": "giuseppe-ottaviani",
+  "closing": false,
+  "stageLineage": "edc-mexico:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:stereo-bloom:2330:blastoyz",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Stereo Bloom",
+  "start": "23:30",
+  "end": "00:30",
+  "printed": "Blastoyz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "blastoyz",
+    "role": "performer"
+   }
+  ],
+  "act": "blastoyz",
+  "closing": false,
+  "stageLineage": "edc-mexico:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:stereo-bloom:0030:mandragora",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Stereo Bloom",
+  "start": "00:30",
+  "end": "02:00",
+  "printed": "Mandragora",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mandragora",
+    "role": "performer"
+   }
+  ],
+  "act": "mandragora",
+  "closing": true,
+  "stageLineage": "edc-mexico:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:boombox-art-car:1400:dunnowho",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Boombox Art Car",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "Dunnowho",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dunnowho",
+    "role": "performer"
+   }
+  ],
+  "act": "dunnowho",
+  "closing": false,
+  "stageLineage": "edc-mexico:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:boombox-art-car:1500:underbite",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Boombox Art Car",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "UnderBite",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "underbite",
+    "role": "performer"
+   }
+  ],
+  "act": "underbite",
+  "closing": false,
+  "stageLineage": "edc-mexico:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:boombox-art-car:1600:solano",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Boombox Art Car",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Solano",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "solano",
+    "role": "performer"
+   }
+  ],
+  "act": "solano",
+  "closing": false,
+  "stageLineage": "edc-mexico:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:boombox-art-car:1700:abraham-ramirez",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Boombox Art Car",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Abraham Ramirez",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "abraham-ramirez",
+    "role": "performer"
+   }
+  ],
+  "act": "abraham-ramirez",
+  "closing": false,
+  "stageLineage": "edc-mexico:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:boombox-art-car:1800:remille",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Boombox Art Car",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Remille",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "remille",
+    "role": "performer"
+   }
+  ],
+  "act": "remille",
+  "closing": false,
+  "stageLineage": "edc-mexico:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:boombox-art-car:1900:losh",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Boombox Art Car",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "LOSH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "losh",
+    "role": "performer"
+   }
+  ],
+  "act": "losh",
+  "closing": false,
+  "stageLineage": "edc-mexico:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:boombox-art-car:2000:grimix",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Boombox Art Car",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Grimix",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "grimix",
+    "role": "performer"
+   }
+  ],
+  "act": "grimix",
+  "closing": false,
+  "stageLineage": "edc-mexico:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:boombox-art-car:2100:rad-cat",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Boombox Art Car",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "Rad Cat",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rad-cat",
+    "role": "performer"
+   }
+  ],
+  "act": "rad-cat",
+  "closing": false,
+  "stageLineage": "edc-mexico:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:boombox-art-car:2200:erick-t",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Boombox Art Car",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "Erick T",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "erick-t",
+    "role": "performer"
+   }
+  ],
+  "act": "erick-t",
+  "closing": false,
+  "stageLineage": "edc-mexico:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:boombox-art-car:2300:feii-vega",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Boombox Art Car",
+  "start": "23:00",
+  "end": "00:00",
+  "printed": "Feii Vega",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "feii-vega",
+    "role": "performer"
+   }
+  ],
+  "act": "feii-vega",
+  "closing": false,
+  "stageLineage": "edc-mexico:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:boombox-art-car:0000:derlow",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Boombox Art Car",
+  "start": "00:00",
+  "end": "01:00",
+  "printed": "Derlow",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "derlow",
+    "role": "performer"
+   }
+  ],
+  "act": "derlow",
+  "closing": false,
+  "stageLineage": "edc-mexico:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:boombox-art-car:0100:enya-botello",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Boombox Art Car",
+  "start": "01:00",
+  "end": "02:00",
+  "printed": "Enya Botello",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "enya-botello",
+    "role": "performer"
+   }
+  ],
+  "act": "enya-botello",
+  "closing": true,
+  "stageLineage": "edc-mexico:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:wide-awake-art-car:1400:kleinfinger",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Wide Awake Art Car",
+  "start": "14:00",
+  "end": "15:15",
+  "printed": "Kleinfinger",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kleinfinger",
+    "role": "performer"
+   }
+  ],
+  "act": "kleinfinger",
+  "closing": false,
+  "stageLineage": "edc-mexico:wide-awake-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:wide-awake-art-car:1515:kris-berle",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Wide Awake Art Car",
+  "start": "15:15",
+  "end": "16:30",
+  "printed": "Kris Berle",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kris-berle",
+    "role": "performer"
+   }
+  ],
+  "act": "kris-berle",
+  "closing": false,
+  "stageLineage": "edc-mexico:wide-awake-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:wide-awake-art-car:1630:carlos-belatti",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Wide Awake Art Car",
+  "start": "16:30",
+  "end": "18:00",
+  "printed": "Carlos Belatti",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carlos-belatti",
+    "role": "performer"
+   }
+  ],
+  "act": "carlos-belatti",
+  "closing": false,
+  "stageLineage": "edc-mexico:wide-awake-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:wide-awake-art-car:1800:flor-capistran",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Wide Awake Art Car",
+  "start": "18:00",
+  "end": "19:30",
+  "printed": "Flor Capistran",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "flor-capistran",
+    "role": "performer"
+   }
+  ],
+  "act": "flor-capistran",
+  "closing": false,
+  "stageLineage": "edc-mexico:wide-awake-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:wide-awake-art-car:1930:paulor",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Wide Awake Art Car",
+  "start": "19:30",
+  "end": "21:00",
+  "printed": "Paulor",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "paulor",
+    "role": "performer"
+   }
+  ],
+  "act": "paulor",
+  "closing": false,
+  "stageLineage": "edc-mexico:wide-awake-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:wide-awake-art-car:2100:cabizbajo",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Wide Awake Art Car",
+  "start": "21:00",
+  "end": "22:30",
+  "printed": "Cabizbajo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cabizbajo",
+    "role": "performer"
+   }
+  ],
+  "act": "cabizbajo",
+  "closing": false,
+  "stageLineage": "edc-mexico:wide-awake-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:wide-awake-art-car:2230:pinto",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Wide Awake Art Car",
+  "start": "22:30",
+  "end": "00:00",
+  "printed": "Pinto",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pinto",
+    "role": "performer"
+   }
+  ],
+  "act": "pinto",
+  "closing": false,
+  "stageLineage": "edc-mexico:wide-awake-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:wide-awake-art-car:0000:balcazar",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Wide Awake Art Car",
+  "start": "00:00",
+  "end": "02:00",
+  "printed": "Balcazar",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "balcazar",
+    "role": "performer"
+   }
+  ],
+  "act": "balcazar",
+  "closing": true,
+  "stageLineage": "edc-mexico:wide-awake-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:bionic-jungle:1400:rocco-desentis",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Bionic Jungle",
+  "start": "14:00",
+  "end": "16:00",
+  "printed": "Rocco Desentis",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rocco-desentis",
+    "role": "performer"
+   }
+  ],
+  "act": "rocco-desentis",
+  "closing": false,
+  "stageLineage": "edc-mexico:bionic-jungle",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:bionic-jungle:1600:bubu",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Bionic Jungle",
+  "start": "16:00",
+  "end": "18:00",
+  "printed": "Bubu",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bubu",
+    "role": "performer"
+   }
+  ],
+  "act": "bubu",
+  "closing": false,
+  "stageLineage": "edc-mexico:bionic-jungle",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:bionic-jungle:1800:zombies-in-miami-live",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Bionic Jungle",
+  "start": "18:00",
+  "end": "20:00",
+  "printed": "Zombies In Miami (Live)",
+  "setTag": "Live",
+  "performers": [
+   {
+    "key": "zombies-in-miami",
+    "role": "performer"
+   }
+  ],
+  "act": "zombies-in-miami",
+  "closing": false,
+  "stageLineage": "edc-mexico:bionic-jungle",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:bionic-jungle:2000:mandrake",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Bionic Jungle",
+  "start": "20:00",
+  "end": "22:00",
+  "printed": "Mandrake",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mandrake",
+    "role": "performer"
+   }
+  ],
+  "act": "mandrake",
+  "closing": false,
+  "stageLineage": "edc-mexico:bionic-jungle",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:bionic-jungle:2200:whomadewho-dj-set",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Bionic Jungle",
+  "start": "22:00",
+  "end": "00:00",
+  "printed": "WhoMadeWho (DJ Set)",
+  "setTag": "DJ Set",
+  "performers": [
+   {
+    "key": "whomadewho",
+    "role": "performer"
+   }
+  ],
+  "act": "whomadewho",
+  "closing": false,
+  "stageLineage": "edc-mexico:bionic-jungle",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d2:bionic-jungle:0000:jenia-tarsol",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-02-29",
+  "day": 2,
+  "stage": "Bionic Jungle",
+  "start": "00:00",
+  "end": "02:00",
+  "printed": "Jenia Tarsol",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jenia-tarsol",
+    "role": "performer"
+   }
+  ],
+  "act": "jenia-tarsol",
+  "closing": true,
+  "stageLineage": "edc-mexico:bionic-jungle",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:kinetic-field:1400:hajj",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Kinetic Field",
+  "start": "14:00",
+  "end": "14:45",
+  "printed": "Hajj",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hajj",
+    "role": "performer"
+   }
+  ],
+  "act": "hajj",
+  "closing": false,
+  "stageLineage": "edc-mexico:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:kinetic-field:1445:fruti",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Kinetic Field",
+  "start": "14:45",
+  "end": "15:50",
+  "printed": "Fruti",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fruti",
+    "role": "performer"
+   }
+  ],
+  "act": "fruti",
+  "closing": false,
+  "stageLineage": "edc-mexico:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:kinetic-field:1550:mariana-bo",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Kinetic Field",
+  "start": "15:50",
+  "end": "16:50",
+  "printed": "Mariana Bo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mariana-bo",
+    "role": "performer"
+   }
+  ],
+  "act": "mariana-bo",
+  "closing": false,
+  "stageLineage": "edc-mexico:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:kinetic-field:1650:lsdream",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Kinetic Field",
+  "start": "16:50",
+  "end": "17:50",
+  "printed": "LSDREAM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lsdream",
+    "role": "performer"
+   }
+  ],
+  "act": "lsdream",
+  "closing": false,
+  "stageLineage": "edc-mexico:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:kinetic-field:1750:ekali",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Kinetic Field",
+  "start": "17:50",
+  "end": "18:50",
+  "printed": "Ekali",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ekali",
+    "role": "performer"
+   }
+  ],
+  "act": "ekali",
+  "closing": false,
+  "stageLineage": "edc-mexico:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:kinetic-field:1856:nghtmre",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Kinetic Field",
+  "start": "18:56",
+  "end": "20:09",
+  "printed": "NGHTMRE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nghtmre",
+    "role": "performer"
+   }
+  ],
+  "act": "nghtmre",
+  "closing": false,
+  "stageLineage": "edc-mexico:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:kinetic-field:2012:jauz",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Kinetic Field",
+  "start": "20:12",
+  "end": "21:39",
+  "printed": "Jauz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jauz",
+    "role": "performer"
+   }
+  ],
+  "act": "jauz",
+  "closing": false,
+  "stageLineage": "edc-mexico:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:kinetic-field:2142:kshmr",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Kinetic Field",
+  "start": "21:42",
+  "end": "23:09",
+  "printed": "KSHMR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kshmr",
+    "role": "performer"
+   }
+  ],
+  "act": "kshmr",
+  "closing": false,
+  "stageLineage": "edc-mexico:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:kinetic-field:2312:armin-van-buuren",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Kinetic Field",
+  "start": "23:12",
+  "end": "00:25",
+  "printed": "Armin van Buuren",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "armin-van-buuren",
+    "role": "performer"
+   }
+  ],
+  "act": "armin-van-buuren",
+  "closing": false,
+  "stageLineage": "edc-mexico:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:kinetic-field:0028:david-guetta",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Kinetic Field",
+  "start": "00:28",
+  "end": "01:58",
+  "printed": "David Guetta",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "david-guetta",
+    "role": "performer"
+   }
+  ],
+  "act": "david-guetta",
+  "closing": true,
+  "stageLineage": "edc-mexico:kinetic-field",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:circuit-grounds:1400:mark-cast",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Circuit Grounds",
+  "start": "14:00",
+  "end": "14:45",
+  "printed": "Mark Cast",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mark-cast",
+    "role": "performer"
+   }
+  ],
+  "act": "mark-cast",
+  "closing": false,
+  "stageLineage": "edc-mexico:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:circuit-grounds:1445:pauza",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Circuit Grounds",
+  "start": "14:45",
+  "end": "15:35",
+  "printed": "Pauza",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pauza",
+    "role": "performer"
+   }
+  ],
+  "act": "pauza",
+  "closing": false,
+  "stageLineage": "edc-mexico:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:circuit-grounds:1535:rossell",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Circuit Grounds",
+  "start": "15:35",
+  "end": "16:25",
+  "printed": "Rossell",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rossell",
+    "role": "performer"
+   }
+  ],
+  "act": "rossell",
+  "closing": false,
+  "stageLineage": "edc-mexico:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:circuit-grounds:1625:kidnap",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Circuit Grounds",
+  "start": "16:25",
+  "end": "17:25",
+  "printed": "Kidnap",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kidnap",
+    "role": "performer"
+   }
+  ],
+  "act": "kidnap",
+  "closing": false,
+  "stageLineage": "edc-mexico:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:circuit-grounds:1725:phantoms-live",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Circuit Grounds",
+  "start": "17:25",
+  "end": "18:20",
+  "printed": "Phantoms (Live)",
+  "setTag": "Live",
+  "performers": [
+   {
+    "key": "phantoms",
+    "role": "performer"
+   }
+  ],
+  "act": "phantoms",
+  "closing": false,
+  "stageLineage": "edc-mexico:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:circuit-grounds:1830:big-wild",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Circuit Grounds",
+  "start": "18:30",
+  "end": "19:30",
+  "printed": "Big Wild",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "big-wild",
+    "role": "performer"
+   }
+  ],
+  "act": "big-wild",
+  "closing": false,
+  "stageLineage": "edc-mexico:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:circuit-grounds:1930:tokimonsta",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Circuit Grounds",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "TOKiMONSTA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tokimonsta",
+    "role": "performer"
+   }
+  ],
+  "act": "tokimonsta",
+  "closing": false,
+  "stageLineage": "edc-mexico:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:circuit-grounds:2030:joyryde",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Circuit Grounds",
+  "start": "20:30",
+  "end": "21:35",
+  "printed": "JOYRYDE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "joyryde",
+    "role": "performer"
+   }
+  ],
+  "act": "joyryde",
+  "closing": false,
+  "stageLineage": "edc-mexico:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:circuit-grounds:2135:troyboi",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Circuit Grounds",
+  "start": "21:35",
+  "end": "23:05",
+  "printed": "TroyBoi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "troyboi",
+    "role": "performer"
+   }
+  ],
+  "act": "troyboi",
+  "closing": false,
+  "stageLineage": "edc-mexico:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:circuit-grounds:2315:louis-the-child",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Circuit Grounds",
+  "start": "23:15",
+  "end": "00:30",
+  "printed": "Louis The Child",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "louis-the-child",
+    "role": "performer"
+   }
+  ],
+  "act": "louis-the-child",
+  "closing": false,
+  "stageLineage": "edc-mexico:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:circuit-grounds:0045:madeon-live",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Circuit Grounds",
+  "start": "00:45",
+  "end": "02:00",
+  "printed": "Madeon (Live)",
+  "setTag": "Live",
+  "performers": [
+   {
+    "key": "madeon",
+    "role": "performer"
+   }
+  ],
+  "act": "madeon",
+  "closing": true,
+  "stageLineage": "edc-mexico:circuit-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:neon-garden:1400:andrea-acosta",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Neon Garden",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "Andrea Acosta",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "andrea-acosta",
+    "role": "performer"
+   }
+  ],
+  "act": "andrea-acosta",
+  "closing": false,
+  "stageLineage": "edc-mexico:neon-garden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:neon-garden:1500:adin",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Neon Garden",
+  "start": "15:00",
+  "end": "16:15",
+  "printed": "ADIN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "adin",
+    "role": "performer"
+   }
+  ],
+  "act": "adin",
+  "closing": false,
+  "stageLineage": "edc-mexico:neon-garden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:neon-garden:1615:lauren-lane",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Neon Garden",
+  "start": "16:15",
+  "end": "17:30",
+  "printed": "Lauren Lane",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lauren-lane",
+    "role": "performer"
+   }
+  ],
+  "act": "lauren-lane",
+  "closing": false,
+  "stageLineage": "edc-mexico:neon-garden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:neon-garden:1730:eli-brown",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Neon Garden",
+  "start": "17:30",
+  "end": "18:45",
+  "printed": "Eli Brown",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eli-brown",
+    "role": "performer"
+   }
+  ],
+  "act": "eli-brown",
+  "closing": false,
+  "stageLineage": "edc-mexico:neon-garden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:neon-garden:1845:cristoph",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Neon Garden",
+  "start": "18:45",
+  "end": "20:30",
+  "printed": "Cristoph",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cristoph",
+    "role": "performer"
+   }
+  ],
+  "act": "cristoph",
+  "closing": false,
+  "stageLineage": "edc-mexico:neon-garden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:neon-garden:2030:enrico-sangiuliano",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Neon Garden",
+  "start": "20:30",
+  "end": "22:15",
+  "printed": "Enrico Sangiuliano",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "enrico-sangiuliano",
+    "role": "performer"
+   }
+  ],
+  "act": "enrico-sangiuliano",
+  "closing": false,
+  "stageLineage": "edc-mexico:neon-garden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:neon-garden:2215:joris-voorn",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Neon Garden",
+  "start": "22:15",
+  "end": "00:00",
+  "printed": "Joris Voorn",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "joris-voorn",
+    "role": "performer"
+   }
+  ],
+  "act": "joris-voorn",
+  "closing": false,
+  "stageLineage": "edc-mexico:neon-garden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:neon-garden:0000:marco-carola",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Neon Garden",
+  "start": "00:00",
+  "end": "02:00",
+  "printed": "Marco Carola",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marco-carola",
+    "role": "performer"
+   }
+  ],
+  "act": "marco-carola",
+  "closing": true,
+  "stageLineage": "edc-mexico:neon-garden",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:wasteland:1400:alby-loud",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Wasteland",
+  "start": "14:00",
+  "end": "15:15",
+  "printed": "Alby Loud",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alby-loud",
+    "role": "performer"
+   }
+  ],
+  "act": "alby-loud",
+  "closing": false,
+  "stageLineage": "edc-mexico:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:wasteland:1515:aranxa",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Wasteland",
+  "start": "15:15",
+  "end": "16:30",
+  "printed": "Aranxa",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "aranxa",
+    "role": "performer"
+   }
+  ],
+  "act": "aranxa",
+  "closing": false,
+  "stageLineage": "edc-mexico:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:wasteland:1630:haaradak",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Wasteland",
+  "start": "16:30",
+  "end": "18:00",
+  "printed": "Haaradak",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "haaradak",
+    "role": "performer"
+   }
+  ],
+  "act": "haaradak",
+  "closing": false,
+  "stageLineage": "edc-mexico:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:wasteland:1800:darksiderz",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Wasteland",
+  "start": "18:00",
+  "end": "18:30",
+  "printed": "Darksiderz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "darksiderz",
+    "role": "performer"
+   }
+  ],
+  "act": "darksiderz",
+  "closing": false,
+  "stageLineage": "edc-mexico:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:wasteland:1830:audiofreq-b2b-darksiderz",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Wasteland",
+  "start": "18:30",
+  "end": "19:30",
+  "printed": "Audiofreq B2B Darksiderz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "audiofreq",
+    "role": "b2b"
+   },
+   {
+    "key": "darksiderz",
+    "role": "b2b"
+   }
+  ],
+  "act": "audiofreq-b2b-darksiderz",
+  "closing": false,
+  "stageLineage": "edc-mexico:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:wasteland:1930:audiofreq",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Wasteland",
+  "start": "19:30",
+  "end": "20:00",
+  "printed": "Audiofreq",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "audiofreq",
+    "role": "performer"
+   }
+  ],
+  "act": "audiofreq",
+  "closing": false,
+  "stageLineage": "edc-mexico:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:wasteland:2000:ben-nicky-presents-xtreme",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Wasteland",
+  "start": "20:00",
+  "end": "21:15",
+  "printed": "Ben Nicky presents Xtreme",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "xtreme",
+    "role": "project"
+   }
+  ],
+  "act": "ben-nicky-presents-xtreme",
+  "closing": false,
+  "stageLineage": "edc-mexico:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:wasteland:2115:tweekacore",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Wasteland",
+  "start": "21:15",
+  "end": "22:15",
+  "printed": "Tweekacore",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tweekacore",
+    "role": "performer"
+   }
+  ],
+  "act": "tweekacore",
+  "closing": false,
+  "stageLineage": "edc-mexico:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:wasteland:2215:d-sturb",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Wasteland",
+  "start": "22:15",
+  "end": "23:30",
+  "printed": "D-Sturb",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "d-sturb",
+    "role": "performer"
+   }
+  ],
+  "act": "d-sturb",
+  "closing": false,
+  "stageLineage": "edc-mexico:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:wasteland:2330:dj-anime",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Wasteland",
+  "start": "23:30",
+  "end": "00:45",
+  "printed": "DJ AniMe",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-anime",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-anime",
+  "closing": false,
+  "stageLineage": "edc-mexico:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:wasteland:0045:lil-texas",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Wasteland",
+  "start": "00:45",
+  "end": "02:00",
+  "printed": "Lil Texas",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lil-texas",
+    "role": "performer"
+   }
+  ],
+  "act": "lil-texas",
+  "closing": true,
+  "stageLineage": "edc-mexico:wasteland",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:dos-equis-stage:1400:niza",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Dos Equis Stage",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "Niza",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "niza",
+    "role": "performer"
+   }
+  ],
+  "act": "niza",
+  "closing": false,
+  "stageLineage": "edc-mexico:dos-equis-stage",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:dos-equis-stage:1500:robots-don-t-have-sisters-b2b-criminal-sounds",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Dos Equis Stage",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "Robots Don't Have Sisters B2B Criminal Sounds",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "robots-don-t-have-sisters",
+    "role": "b2b"
+   },
+   {
+    "key": "criminal-sounds",
+    "role": "b2b"
+   }
+  ],
+  "act": "robots-don-t-have-sisters-b2b-criminal-sounds",
+  "closing": false,
+  "stageLineage": "edc-mexico:dos-equis-stage",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:dos-equis-stage:1600:gamboa",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Dos Equis Stage",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Gamboa",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gamboa",
+    "role": "performer"
+   }
+  ],
+  "act": "gamboa",
+  "closing": false,
+  "stageLineage": "edc-mexico:dos-equis-stage",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:dos-equis-stage:1700:maahez",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Dos Equis Stage",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Maahez",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "maahez",
+    "role": "performer"
+   }
+  ],
+  "act": "maahez",
+  "closing": false,
+  "stageLineage": "edc-mexico:dos-equis-stage",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:dos-equis-stage:1800:barbie-chola-b2b-not-a-chinese",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Dos Equis Stage",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Barbie Chola B2B Not A Chinese",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "barbie-chola",
+    "role": "b2b"
+   },
+   {
+    "key": "not-a-chinese",
+    "role": "b2b"
+   }
+  ],
+  "act": "barbie-chola-b2b-not-a-chinese",
+  "closing": false,
+  "stageLineage": "edc-mexico:dos-equis-stage",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:dos-equis-stage:1900:mr-pauer",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Dos Equis Stage",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Mr. Pauer",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mr-pauer",
+    "role": "performer"
+   }
+  ],
+  "act": "mr-pauer",
+  "closing": false,
+  "stageLineage": "edc-mexico:dos-equis-stage",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:dos-equis-stage:2000:sky-rompiendo",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Dos Equis Stage",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Sky Rompiendo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sky-rompiendo",
+    "role": "performer"
+   }
+  ],
+  "act": "sky-rompiendo",
+  "closing": false,
+  "stageLineage": "edc-mexico:dos-equis-stage",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:dos-equis-stage:2100:dj-nelson",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Dos Equis Stage",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "DJ Nelson",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-nelson",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-nelson",
+  "closing": false,
+  "stageLineage": "edc-mexico:dos-equis-stage",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:dos-equis-stage:2200:natalia",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Dos Equis Stage",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "Natalia",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "natalia",
+    "role": "performer"
+   }
+  ],
+  "act": "natalia",
+  "closing": false,
+  "stageLineage": "edc-mexico:dos-equis-stage",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:dos-equis-stage:2300:ale-q-b2b-pako-rodriguez",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Dos Equis Stage",
+  "start": "23:00",
+  "end": "00:00",
+  "printed": "Ale Q B2B Pako Rodriguez",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ale-q",
+    "role": "b2b"
+   },
+   {
+    "key": "pako-rodriguez",
+    "role": "b2b"
+   }
+  ],
+  "act": "ale-q-b2b-pako-rodriguez",
+  "closing": false,
+  "stageLineage": "edc-mexico:dos-equis-stage",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:dos-equis-stage:0000:ivy-kst",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Dos Equis Stage",
+  "start": "00:00",
+  "end": "01:00",
+  "printed": "IVY.KST!",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ivy-kst",
+    "role": "performer"
+   }
+  ],
+  "act": "ivy-kst",
+  "closing": false,
+  "stageLineage": "edc-mexico:dos-equis-stage",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:dos-equis-stage:0100:guztavo-mx-b2b-charlie-atom",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Dos Equis Stage",
+  "start": "01:00",
+  "end": "02:00",
+  "printed": "Guztavo MX B2B Charlie Atom",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "guztavo-mx",
+    "role": "b2b"
+   },
+   {
+    "key": "charlie-atom",
+    "role": "b2b"
+   }
+  ],
+  "act": "guztavo-mx-b2b-charlie-atom",
+  "closing": true,
+  "stageLineage": "edc-mexico:dos-equis-stage",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:stereo-bloom:1415:marco-almanza",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Stereo Bloom",
+  "start": "14:15",
+  "end": "15:15",
+  "printed": "Marco Almanza",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marco-almanza",
+    "role": "performer"
+   }
+  ],
+  "act": "marco-almanza",
+  "closing": false,
+  "stageLineage": "edc-mexico:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:stereo-bloom:1515:sage-armstrong-b2b-lucati",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Stereo Bloom",
+  "start": "15:15",
+  "end": "16:15",
+  "printed": "Sage Armstrong B2B Lucati",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sage-armstrong",
+    "role": "b2b"
+   },
+   {
+    "key": "lucati",
+    "role": "b2b"
+   }
+  ],
+  "act": "sage-armstrong-b2b-lucati",
+  "closing": false,
+  "stageLineage": "edc-mexico:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:stereo-bloom:1615:vnssa",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Stereo Bloom",
+  "start": "16:15",
+  "end": "17:15",
+  "printed": "VNSSA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vnssa",
+    "role": "performer"
+   }
+  ],
+  "act": "vnssa",
+  "closing": false,
+  "stageLineage": "edc-mexico:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:stereo-bloom:1715:born-dirty",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Stereo Bloom",
+  "start": "17:15",
+  "end": "18:45",
+  "printed": "Born Dirty",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "born-dirty",
+    "role": "performer"
+   }
+  ],
+  "act": "born-dirty",
+  "closing": false,
+  "stageLineage": "edc-mexico:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:stereo-bloom:1845:noizu",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Stereo Bloom",
+  "start": "18:45",
+  "end": "20:00",
+  "printed": "Noizu",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "noizu",
+    "role": "performer"
+   }
+  ],
+  "act": "noizu",
+  "closing": false,
+  "stageLineage": "edc-mexico:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:stereo-bloom:2000:wax-motif",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Stereo Bloom",
+  "start": "20:00",
+  "end": "21:15",
+  "printed": "Wax Motif",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wax-motif",
+    "role": "performer"
+   }
+  ],
+  "act": "wax-motif",
+  "closing": false,
+  "stageLineage": "edc-mexico:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:stereo-bloom:2115:dombresky",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Stereo Bloom",
+  "start": "21:15",
+  "end": "22:30",
+  "printed": "Dombresky",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dombresky",
+    "role": "performer"
+   }
+  ],
+  "act": "dombresky",
+  "closing": false,
+  "stageLineage": "edc-mexico:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:stereo-bloom:2230:weiss",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Stereo Bloom",
+  "start": "22:30",
+  "end": "00:00",
+  "printed": "Weiss",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "weiss",
+    "role": "performer"
+   }
+  ],
+  "act": "weiss",
+  "closing": false,
+  "stageLineage": "edc-mexico:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:stereo-bloom:0000:steady-rock",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Stereo Bloom",
+  "start": "00:00",
+  "end": "01:00",
+  "printed": "Steady Rock",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "steady-rock",
+    "role": "performer"
+   }
+  ],
+  "act": "steady-rock",
+  "closing": false,
+  "stageLineage": "edc-mexico:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:stereo-bloom:0100:amg",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Stereo Bloom",
+  "start": "01:00",
+  "end": "02:00",
+  "printed": "AMG",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "amg",
+    "role": "performer"
+   }
+  ],
+  "act": "amg",
+  "closing": true,
+  "stageLineage": "edc-mexico:stereo-bloom",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:boombox-art-car:1400:sugar-glider",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Boombox Art Car",
+  "start": "14:00",
+  "end": "14:55",
+  "printed": "Sugar Glider",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sugar-glider",
+    "role": "performer"
+   }
+  ],
+  "act": "sugar-glider",
+  "closing": false,
+  "stageLineage": "edc-mexico:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:boombox-art-car:1455:rocio-pergon",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Boombox Art Car",
+  "start": "14:55",
+  "end": "15:50",
+  "printed": "Rocio Pergon",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rocio-pergon",
+    "role": "performer"
+   }
+  ],
+  "act": "rocio-pergon",
+  "closing": false,
+  "stageLineage": "edc-mexico:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:boombox-art-car:1550:dj-p0ll0",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Boombox Art Car",
+  "start": "15:50",
+  "end": "16:45",
+  "printed": "DJ P0ll0",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-p0ll0",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-p0ll0",
+  "closing": false,
+  "stageLineage": "edc-mexico:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:boombox-art-car:1645:joe-rose-b2b-dj-hu",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Boombox Art Car",
+  "start": "16:45",
+  "end": "17:15",
+  "printed": "Joe Rose B2B DJ Hu",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "joe-rose",
+    "role": "b2b"
+   },
+   {
+    "key": "dj-hu",
+    "role": "b2b"
+   }
+  ],
+  "act": "joe-rose-b2b-dj-hu",
+  "closing": false,
+  "stageLineage": "edc-mexico:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:boombox-art-car:1715:k-i-d",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Boombox Art Car",
+  "start": "17:15",
+  "end": "17:50",
+  "printed": "K.I.D.",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "k-i-d",
+    "role": "performer"
+   }
+  ],
+  "act": "k-i-d",
+  "closing": false,
+  "stageLineage": "edc-mexico:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:boombox-art-car:1750:dam-dam",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Boombox Art Car",
+  "start": "17:50",
+  "end": "18:35",
+  "printed": "Dam Dam",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dam-dam",
+    "role": "performer"
+   }
+  ],
+  "act": "dam-dam",
+  "closing": false,
+  "stageLineage": "edc-mexico:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:boombox-art-car:1835:wito",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Boombox Art Car",
+  "start": "18:35",
+  "end": "19:30",
+  "printed": "Wito",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wito",
+    "role": "performer"
+   }
+  ],
+  "act": "wito",
+  "closing": false,
+  "stageLineage": "edc-mexico:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:boombox-art-car:1930:alex-midi",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Boombox Art Car",
+  "start": "19:30",
+  "end": "20:25",
+  "printed": "Alex Midi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alex-midi",
+    "role": "performer"
+   }
+  ],
+  "act": "alex-midi",
+  "closing": false,
+  "stageLineage": "edc-mexico:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:boombox-art-car:2025:mira-mira",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Boombox Art Car",
+  "start": "20:25",
+  "end": "21:20",
+  "printed": "Mirá Mirá",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mira-mira",
+    "role": "performer"
+   }
+  ],
+  "act": "mira-mira",
+  "closing": false,
+  "stageLineage": "edc-mexico:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:boombox-art-car:2120:alfred-beck",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Boombox Art Car",
+  "start": "21:20",
+  "end": "22:15",
+  "printed": "Alfred Beck",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alfred-beck",
+    "role": "performer"
+   }
+  ],
+  "act": "alfred-beck",
+  "closing": false,
+  "stageLineage": "edc-mexico:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:boombox-art-car:2215:dayanna-ro",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Boombox Art Car",
+  "start": "22:15",
+  "end": "23:10",
+  "printed": "Dayanna Ro",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dayanna-ro",
+    "role": "performer"
+   }
+  ],
+  "act": "dayanna-ro",
+  "closing": false,
+  "stageLineage": "edc-mexico:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:boombox-art-car:2310:a-zar",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Boombox Art Car",
+  "start": "23:10",
+  "end": "00:05",
+  "printed": "A-ZAR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "a-zar",
+    "role": "performer"
+   }
+  ],
+  "act": "a-zar",
+  "closing": false,
+  "stageLineage": "edc-mexico:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:boombox-art-car:0005:angry-beats",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Boombox Art Car",
+  "start": "00:05",
+  "end": "01:00",
+  "printed": "Angry Beats",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "angry-beats",
+    "role": "performer"
+   }
+  ],
+  "act": "angry-beats",
+  "closing": false,
+  "stageLineage": "edc-mexico:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:boombox-art-car:0100:mzrin",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Boombox Art Car",
+  "start": "01:00",
+  "end": "02:00",
+  "printed": "Mzrin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mzrin",
+    "role": "performer"
+   }
+  ],
+  "act": "mzrin",
+  "closing": true,
+  "stageLineage": "edc-mexico:boombox-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:wide-awake-art-car:1400:vongold",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Wide Awake Art Car",
+  "start": "14:00",
+  "end": "15:15",
+  "printed": "Vongold",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vongold",
+    "role": "performer"
+   }
+  ],
+  "act": "vongold",
+  "closing": false,
+  "stageLineage": "edc-mexico:wide-awake-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:wide-awake-art-car:1515:young-drums",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Wide Awake Art Car",
+  "start": "15:15",
+  "end": "16:30",
+  "printed": "Young Drums",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "young-drums",
+    "role": "performer"
+   }
+  ],
+  "act": "young-drums",
+  "closing": false,
+  "stageLineage": "edc-mexico:wide-awake-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:wide-awake-art-car:1630:mystery-affair",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Wide Awake Art Car",
+  "start": "16:30",
+  "end": "18:00",
+  "printed": "Mystery Affair",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mystery-affair",
+    "role": "performer"
+   }
+  ],
+  "act": "mystery-affair",
+  "closing": false,
+  "stageLineage": "edc-mexico:wide-awake-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:wide-awake-art-car:1800:lumber-jack",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Wide Awake Art Car",
+  "start": "18:00",
+  "end": "19:30",
+  "printed": "Lumber Jack",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lumber-jack",
+    "role": "performer"
+   }
+  ],
+  "act": "lumber-jack",
+  "closing": false,
+  "stageLineage": "edc-mexico:wide-awake-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:wide-awake-art-car:1930:justine",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Wide Awake Art Car",
+  "start": "19:30",
+  "end": "21:00",
+  "printed": "Justine",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "justine",
+    "role": "performer"
+   }
+  ],
+  "act": "justine",
+  "closing": false,
+  "stageLineage": "edc-mexico:wide-awake-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:wide-awake-art-car:2100:bufi",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Wide Awake Art Car",
+  "start": "21:00",
+  "end": "22:30",
+  "printed": "Bufi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bufi",
+    "role": "performer"
+   }
+  ],
+  "act": "bufi",
+  "closing": false,
+  "stageLineage": "edc-mexico:wide-awake-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:wide-awake-art-car:2230:stylo",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Wide Awake Art Car",
+  "start": "22:30",
+  "end": "00:00",
+  "printed": "Stylo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "stylo",
+    "role": "performer"
+   }
+  ],
+  "act": "stylo",
+  "closing": false,
+  "stageLineage": "edc-mexico:wide-awake-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:wide-awake-art-car:0000:suss",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Wide Awake Art Car",
+  "start": "00:00",
+  "end": "02:00",
+  "printed": "Süss",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "suss",
+    "role": "performer"
+   }
+  ],
+  "act": "suss",
+  "closing": true,
+  "stageLineage": "edc-mexico:wide-awake-art-car",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:bionic-jungle:1400:tansen",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Bionic Jungle",
+  "start": "14:00",
+  "end": "16:00",
+  "printed": "Tansen",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tansen",
+    "role": "performer"
+   }
+  ],
+  "act": "tansen",
+  "closing": false,
+  "stageLineage": "edc-mexico:bionic-jungle",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:bionic-jungle:1600:daniel-weil",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Bionic Jungle",
+  "start": "16:00",
+  "end": "18:00",
+  "printed": "Daniel Weil",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "daniel-weil",
+    "role": "performer"
+   }
+  ],
+  "act": "daniel-weil",
+  "closing": false,
+  "stageLineage": "edc-mexico:bionic-jungle",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:bionic-jungle:1800:carlita",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Bionic Jungle",
+  "start": "18:00",
+  "end": "20:00",
+  "printed": "Carlita",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carlita",
+    "role": "performer"
+   }
+  ],
+  "act": "carlita",
+  "closing": false,
+  "stageLineage": "edc-mexico:bionic-jungle",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:bionic-jungle:2000:rebolledo",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Bionic Jungle",
+  "start": "20:00",
+  "end": "22:00",
+  "printed": "Rebolledo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rebolledo",
+    "role": "performer"
+   }
+  ],
+  "act": "rebolledo",
+  "closing": false,
+  "stageLineage": "edc-mexico:bionic-jungle",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:bionic-jungle:2200:fango",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Bionic Jungle",
+  "start": "22:00",
+  "end": "00:00",
+  "printed": "Fango",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fango",
+    "role": "performer"
+   }
+  ],
+  "act": "fango",
+  "closing": false,
+  "stageLineage": "edc-mexico:bionic-jungle",
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2020:d3:bionic-jungle:0000:michael-mayer",
+  "source": "edition",
+  "festivalId": "edc-mexico-2020",
+  "festivalBrand": "edc-mexico",
+  "year": 2020,
+  "date": "2020-03-01",
+  "day": 3,
+  "stage": "Bionic Jungle",
+  "start": "00:00",
+  "end": "02:00",
+  "printed": "Michael Mayer",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "michael-mayer",
+    "role": "performer"
+   }
+  ],
+  "act": "michael-mayer",
+  "closing": true,
+  "stageLineage": "edc-mexico:bionic-jungle",
+  "mainStage": null
+ },
+ {
   "id": "edc-orlando-2016:d1:kineticfield:1300:sean-drake",
   "source": "edition",
   "festivalId": "edc-orlando-2016",

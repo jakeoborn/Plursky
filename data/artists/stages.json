@@ -2205,6 +2205,127 @@
     }
    ]
   },
+  "edc-mexico": {
+   "lineages": [
+    {
+     "id": "edc-mexico:kinetic-field",
+     "names": [
+      {
+       "printed": "Kinetic Field",
+       "editions": [
+        "edc-mexico-2020"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-mexico:circuit-grounds",
+     "names": [
+      {
+       "printed": "Circuit Grounds",
+       "editions": [
+        "edc-mexico-2020"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-mexico:neon-garden",
+     "names": [
+      {
+       "printed": "Neon Garden",
+       "editions": [
+        "edc-mexico-2020"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-mexico:wasteland",
+     "names": [
+      {
+       "printed": "Wasteland",
+       "editions": [
+        "edc-mexico-2020"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-mexico:dos-equis-stage",
+     "names": [
+      {
+       "printed": "Dos Equis Stage",
+       "editions": [
+        "edc-mexico-2020"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-mexico:stereo-bloom",
+     "names": [
+      {
+       "printed": "Stereo Bloom",
+       "editions": [
+        "edc-mexico-2020"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-mexico:boombox-art-car",
+     "names": [
+      {
+       "printed": "Boombox Art Car",
+       "editions": [
+        "edc-mexico-2020"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-mexico:wide-awake-art-car",
+     "names": [
+      {
+       "printed": "Wide Awake Art Car",
+       "editions": [
+        "edc-mexico-2020"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-mexico:bionic-jungle",
+     "names": [
+      {
+       "printed": "Bionic Jungle",
+       "editions": [
+        "edc-mexico-2020"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    }
+   ]
+  },
   "edc-orlando": {
    "lineages": [
     {

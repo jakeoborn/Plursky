@@ -2033,7 +2033,7 @@
    "name": "EDC Mexico 2020",
    "year": 2020,
    "timezone": "America/Mexico_City",
-   "completeness": "lineup_only",
+   "completeness": "complete_schedule",
    "days": [
     {
      "day": 1,
@@ -2052,9 +2052,9 @@
     }
    ],
    "counts": {
-    "stages": 0,
+    "stages": 9,
     "artists": 250,
-    "sets": 0
+    "sets": 250
    }
   },
   {
