@@ -2173,6 +2173,26 @@ function HomeMemoriesStrip({ state, setState }) {
       return h >= 4 && h <= 15 && !!recapReady && recapReady.night < tonight;
     } catch { return false; }
   })();
+  // SPEC-212 W4 retention hooks on the recap moment. Plus active and the
+  // festival over: the card says the weekend is ready. Plus not active: ask the
+  // store for the Monthly win-back offer; only a live offer (its words from
+  // winBackCopy, so the store's own prices) adds a flat row under the card.
+  const plusActive = _isPlusSub();
+  const weekendReady = plusActive && !!recapReady && recapHookFestivalOver(window.FESTIVAL_CONFIG, Date.now());
+  const [winBack, setWinBack] = React.useState(null);
+  const [plusOpen, setPlusOpen] = React.useState(false);
+  const recapNight = recapReady ? recapReady.night : null;
+  React.useEffect(() => {
+    if (recapNight == null || plusActive) { setWinBack(null); return; }
+    let alive = true;
+    _winBackOffer().then(o => {
+      const copy = o ? winBackCopy(o) : null;
+      if (!alive) return;
+      setWinBack(copy);
+      if (copy) _plusEvent("plus_winback_view", { product_id: o.productId, displayed_price: o.offerPrice, trigger: "recap" });
+    }).catch(() => {});
+    return () => { alive = false; };
+  }, [recapNight, plusActive]);
   const playHighlights = () => {
     if (!recapReady || !highlightReel) return;
     _markRecapSeen(recapReady.night, recapReady.moments.length);
@@ -2230,7 +2250,7 @@ function HomeMemoriesStrip({ state, setState }) {
               </span>
               <span style={{ flex: 1, minWidth: 0 }}>
                 <span style={{ display: "block", fontSize: 11, lineHeight: "14px", fontWeight: 600, letterSpacing: "0.04em", textTransform: "uppercase", color: "var(--text-2)" }}>
-                  {morningAfter ? "Last night in 15s" : "Recap ready"}
+                  {weekendReady ? "Your weekend is ready" : morningAfter ? "Last night in 15s" : "Recap ready"}
                 </span>
                 <span style={{ display: "block", fontSize: 17, lineHeight: "22px", fontWeight: 600, marginTop: 2 }}>
                   {morningAfter ? `Your ${recapReady.label}, recapped` : `Your ${recapReady.label}`}
@@ -2246,9 +2266,23 @@ function HomeMemoriesStrip({ state, setState }) {
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M6 6 L18 18 M18 6 L6 18"/></svg>
               </span>
             </button>
+            {winBack && (
+              <button data-recap-winback onClick={() => setPlusOpen(true)} style={{
+                width: "100%", display: "flex", alignItems: "center", gap: 8, minHeight: 44,
+                padding: "8px 0 0", border: "none", background: "none", cursor: "pointer",
+                textAlign: "left", color: "var(--ink)",
+              }}>
+                <span style={{ flex: 1, minWidth: 0 }}>
+                  <span style={{ display: "block", fontSize: 15, lineHeight: "20px", fontWeight: 600 }}>{winBack.headline}</span>
+                  <span style={{ display: "block", fontSize: 13, lineHeight: "18px", color: "var(--text-2)", marginTop: 2 }}>{winBack.line}</span>
+                </span>
+                <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" style={{ flexShrink: 0, color: "var(--text-2)" }}><path d="M9 6 L15 12 L9 18"/></svg>
+              </button>
+            )}
           </div>
         );
       })()}
+      {plusOpen && <PlusSheet feature="everything in Plursky+" onClose={() => setPlusOpen(false)} />}
       <FieldMediaRow>
         {recent.map(m => (
           <_HomeMemoryThumb key={m.id} moment={m} onClick={() => go(m.night || NOW.day)} />
@@ -8296,6 +8330,13 @@ function MeScreen({ state, setState }) {
   // them, so the IAPs read as missing. This row is the unconditional one.
   const [plusOpen, setPlusOpen] = React.useState(false);
   useDeclareModal(plusOpen);   // hides the search FAB, which paints over this — see chrome.jsx
+  // Re-read on every entitlement change: RevenueCat answers after the first
+  // paint, and a purchase, a restore or a lapse can land while Me is open.
+  const [, plusBump] = React.useReducer(x => x + 1, 0);
+  React.useEffect(() => {
+    window.addEventListener("plursky-plus-change", plusBump);
+    return () => window.removeEventListener("plursky-plus-change", plusBump);
+  }, []);
   const plusActive = _isPlusSub();
 
   // Stats — kept locally per the spec; intentionally cheap, not precious.
@@ -8404,24 +8445,7 @@ function MeScreen({ state, setState }) {
             not find the IAPs". Above the grid it lands at ~409px, fully
             visible at scrollTop=0. Moving it back down re-breaks that. */}
         {plusActive ? (
-          <div style={{
-            display: "flex", alignItems: "center", gap: 12,
-            width: "100%", padding: "14px 16px", marginBottom: 14,
-            background: "var(--s2)", boxShadow: "var(--e1)",
-            borderRadius: "var(--rad-md)", color: "var(--ink)", textAlign: "left",
-          }}>
-            <span style={{
-              width: 30, height: 30, borderRadius: "50%", flexShrink: 0,
-              background: "var(--signal)",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              color: "var(--on-signal)", fontSize: 16, fontWeight: 700, lineHeight: 1,
-            }}>+</span>
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div className="duo-headline">Plursky+</div>
-              <div className="duo-label duo-ink3" style={{ marginTop: 4 }}>Active · thank you</div>
-            </div>
-            <span className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--success)", fontWeight: 700 }}>✓</span>
-          </div>
+          <PlusActiveRow />
         ) : (
           <button onClick={() => setPlusOpen(true)}
             aria-label="Plursky Plus — see what's included and subscribe"
@@ -9952,7 +9976,65 @@ async function _initRevenueCat() {
 
 function _syncEntitlements(info) {
   const active = info?.entitlements?.active?.[RC_ENTITLEMENT];
+  _setPlusRenewal(plusRenewalState(info));
   _setPlusSub(!!active);
+}
+
+// ── Save and cancel states (SPEC-212 W4) ──────────────────────
+// What an ACTIVE subscriber's Plus row says about renewal, read from the
+// entitlement RevenueCat returns. Only a subscription can renew, so only the
+// auto-renewing products get renewal words; the Season Pass (no expiry, or
+// not a subscription) just stays active.
+//   renewing  willRenew true                  → "Monthly · renews Dec 18"
+//   ending    willRenew false (they cancelled) → the save message: ends on the
+//             date, and how to turn renewal back on, in Apple's own settings
+//   billing   Apple flagged a billing issue    → update the payment method
+// Nothing here can cancel, delay or hide cancelling: every button opens
+// Apple's own subscription page. Pure; the clock is a parameter.
+const PLUS_RENEWAL_KEY = "plursky_plus_renewal_v1";   // { state, untilMs, plan } only: no receipt, no ids
+const PLUS_MANAGE_URL = "https://apps.apple.com/account/subscriptions";
+const _PLUS_RENEWING_PLANS = { [RC_PRODUCT_IDS.monthly]: "Monthly", [RC_PRODUCT_IDS.annual]: "Annual" };
+function plusRenewalState(info) {
+  const ent = info?.entitlements?.active?.[RC_ENTITLEMENT];
+  if (!ent || typeof ent !== "object") return null;
+  const plan = _PLUS_RENEWING_PLANS[ent.productIdentifier] || null;
+  const until = typeof ent.expirationDate === "string" ? Date.parse(ent.expirationDate) : NaN;
+  if (!plan || !Number.isFinite(until)) return { state: "lasting", untilMs: null, plan: null };
+  if (ent.billingIssueDetectedAt) return { state: "billing", untilMs: until, plan };
+  if (ent.willRenew === false) return { state: "ending", untilMs: until, plan };
+  if (ent.willRenew === true) return { state: "renewing", untilMs: until, plan };
+  return { state: "lasting", untilMs: null, plan };
+}
+function _plusRenewal() {
+  try {
+    const r = JSON.parse(localStorage.getItem(PLUS_RENEWAL_KEY) || "null");
+    return r && ["lasting", "renewing", "ending", "billing"].includes(r.state) ? r : null;
+  } catch { return null; }
+}
+function _setPlusRenewal(r) {
+  const next = r ? JSON.stringify({ state: r.state, untilMs: Number.isFinite(r.untilMs) ? r.untilMs : null, plan: r.plan || null }) : null;
+  let prev = null;
+  try {
+    prev = localStorage.getItem(PLUS_RENEWAL_KEY);
+    if (next) localStorage.setItem(PLUS_RENEWAL_KEY, next); else localStorage.removeItem(PLUS_RENEWAL_KEY);
+  } catch {}
+  if (prev !== next) { try { window.dispatchEvent(new CustomEvent("plursky-plus-change", { detail: { renewal: true } })); } catch {} }
+}
+// Pure. The row's words for a renewal state; the date is the store's own.
+function plusRenewalCopy(r) {
+  const day = ms => { try { return new Date(ms).toLocaleDateString("en-US", { month: "short", day: "numeric" }); } catch { return ""; } };
+  if (!r || r.state === "lasting" || !Number.isFinite(r.untilMs)) return { line: "Active · thank you", note: null, cta: null };
+  if (r.state === "renewing") return { line: `${r.plan} · renews ${day(r.untilMs)}`, note: null, cta: "Manage" };
+  if (r.state === "ending") return {
+    line: `${r.plan} · ends ${day(r.untilMs)}`,
+    note: `Renewal is off, so Plursky+ stops on ${day(r.untilMs)}. To keep it, turn renewal back on in your Apple subscriptions.`,
+    cta: "Keep Plursky+",
+  };
+  return {
+    line: `${r.plan} · payment issue`,
+    note: "Apple couldn't take the renewal payment. Update your payment method in your Apple subscriptions to keep Plursky+.",
+    cta: "Update payment",
+  };
 }
 
 // There is no StoreKit in the browser, so the web build cannot charge anyone.
@@ -10261,6 +10343,120 @@ if (window.Capacitor?.isNativePlatform?.()) {
   } catch {}
 }
 
+// ── Monthly win-back (SPEC-212 W4; channel decision 2026-10-26) ──────────
+// A lapsed Monthly subscriber, within 90 days of the lapse, in a US
+// storefront, is offered Apple's win-back offer on Monthly. The discount, its
+// length and every price on screen come from the App Store through RevenueCat
+// (the offer's own priceString and cycles, the package's priceString), never
+// from a literal: the numbers Jake sets in App Store Connect are the numbers
+// shown. Apple also enforces eligibility and territory on its side; this gate
+// only decides whether to ASK, and fails closed at every layer:
+//   - not native, RevenueCat not up, any error or timeout       -> no card
+//   - the remote switch (current offering metadata
+//     `winback_enabled: true`) absent or anything else           -> no card
+//   - storefront unknown (a build older than the native method)  -> no card
+//   - Apple returns no eligible offer, or one with no price      -> no card
+// Annual is never asked about (its offer is held, SPEC-212 W4.1).
+const WINBACK_MAX_LAPSE_DAYS = 90;
+const WINBACK_STOREFRONTS = ["USA"];   // ISO 3166-1 alpha-3, as StoreKit's Storefront.countryCode reports it
+const WINBACK_PRODUCT_ID = RC_PRODUCT_IDS.monthly;
+
+// Pure. Who the app may ask Apple about. `customerInfo` is RevenueCat's
+// CustomerInfo; `storefront` the alpha-3 country code or null. The reason is
+// for tests and the local audit log only, never shown.
+function winBackEligibility(customerInfo, storefront, nowMs) {
+  const DAY = 86400000;
+  if (!customerInfo || typeof customerInfo !== "object") return { eligible: false, reason: "no-customer-info" };
+  if (customerInfo.entitlements?.active?.[RC_ENTITLEMENT]) return { eligible: false, reason: "active" };
+  const raw = customerInfo.allExpirationDates?.[WINBACK_PRODUCT_ID];
+  const exp = typeof raw === "string" ? Date.parse(raw) : NaN;
+  if (!Number.isFinite(exp)) return { eligible: false, reason: "never-monthly" };
+  if (exp > nowMs) return { eligible: false, reason: "not-lapsed" };
+  const lapsedDays = (nowMs - exp) / DAY;
+  if (lapsedDays > WINBACK_MAX_LAPSE_DAYS) return { eligible: false, reason: "lapsed-too-long", lapsedDays };
+  if (typeof storefront !== "string" || !storefront) return { eligible: false, reason: "unknown-storefront", lapsedDays };
+  if (!WINBACK_STOREFRONTS.includes(storefront.toUpperCase())) return { eligible: false, reason: "storefront", lapsedDays };
+  return { eligible: true, reason: "lapsed", lapsedDays };
+}
+
+// Pure. The card's words, from the store's own strings only. Null when the
+// store did not give everything the sentence needs.
+function winBackCopy(offer) {
+  if (!offer || typeof offer.offerPrice !== "string" || !offer.offerPrice
+    || typeof offer.regularPrice !== "string" || !offer.regularPrice
+    || !Number.isInteger(offer.cycles) || offer.cycles < 1) return null;
+  const n = offer.cycles, unit = offer.periodUnit === "MONTH" && offer.periodNumberOfUnits === 1 ? "month" : null;
+  if (!unit) return null;   // the decided offer is monthly; anything else is not this card's to word
+  return {
+    headline: "Welcome back to Plursky+",
+    line: `${offer.offerPrice}/${unit} for ${n} ${unit}${n === 1 ? "" : "s"}, then ${offer.regularPrice}/${unit}. Cancel anytime.`,
+    cta: `Resubscribe for ${offer.offerPrice}/${unit}`,
+  };
+}
+
+// Pure. True once the festival's close (endMs, the end of its last night) has
+// passed: the moment the recap card can say the whole weekend is ready.
+function recapHookFestivalOver(cfg, nowMs) {
+  const end = cfg && cfg.endMs;
+  return Number.isFinite(end) && Number.isFinite(nowMs) && nowMs >= end;
+}
+
+// The storefront's country code from the native build (StoreKit 2
+// Storefront.current), or null: web, a build older than the method, a
+// rejection or a timeout all read as unknown, which the gate treats as no.
+async function _winBackStorefront() {
+  try {
+    if (!window.Capacitor?.isNativePlatform?.() || typeof window.ShazamPlugin?.storefront !== "function") return null;
+    const r = await _withTimeout(window.ShazamPlugin.storefront(), 3000, "Storefront");
+    return (r && typeof r.countryCode === "string" && r.countryCode) || null;
+  } catch { return null; }
+}
+
+// The live offer, or null. Holds the package and Apple's offer object so the
+// purchase applies exactly what was shown.
+async function _winBackOffer(nowMs = Date.now()) {
+  if (!window.Capacitor?.isNativePlatform?.()) return null;
+  if (!_rcInitialized) await _initRevenueCat();
+  if (!_rcInitialized) return null;
+  try {
+    const Purchases = _rcPlugin();
+    const offerings = await _withTimeout(Purchases.getOfferings(), 10000, "Win-back offering lookup");
+    const current = offerings?.current;
+    if (current?.metadata?.winback_enabled !== true) return null;
+    const { customerInfo } = await _withTimeout(Purchases.getCustomerInfo(), 10000, "Win-back customer info");
+    const elig = winBackEligibility(customerInfo, await _winBackStorefront(), nowMs);
+    if (!elig.eligible) return null;
+    const pkg = (current.availablePackages || []).find(p => p.product?.identifier === WINBACK_PRODUCT_ID);
+    const regularPrice = pkg?.product?.priceString;
+    if (!pkg || typeof regularPrice !== "string" || !regularPrice) return null;
+    const res = await _withTimeout(Purchases.getEligibleWinBackOffersForPackage({ aPackage: pkg }), 10000, "Win-back eligibility");
+    const wb = (res?.eligibleWinBackOffers || [])[0];
+    if (!wb) return null;
+    const offer = { productId: WINBACK_PRODUCT_ID, offerId: wb.identifier || null, offerPrice: wb.priceString,
+      regularPrice, cycles: wb.cycles, periodUnit: wb.periodUnit, periodNumberOfUnits: wb.periodNumberOfUnits };
+    return winBackCopy(offer) ? { ...offer, pkg, winBackOffer: wb } : null;
+  } catch (e) {
+    console.warn("[plursky-iap] win-back offer unavailable:", _iapMsg(e));
+    return null;
+  }
+}
+
+// Buys Monthly with the shown offer. Same bounds and cancel shape as
+// _purchasePlus; Plus unlocks only through the `plus` entitlement.
+async function _purchaseWinBack(offer) {
+  if (!offer?.pkg || !offer?.winBackOffer) return { success: false, error: "Offer not available" };
+  try {
+    const { customerInfo } = await _withTimeout(
+      _rcPlugin().purchasePackageWithWinBackOffer({ aPackage: offer.pkg, winBackOffer: offer.winBackOffer }), 45000, "StoreKit purchase sheet");
+    _syncEntitlements(customerInfo);
+    return { success: !!customerInfo?.entitlements?.active?.[RC_ENTITLEMENT] };
+  } catch (e) {
+    if (e?.userCancelled === true || e?.code === "1" || e?.message?.includes("cancelled")) return { success: false, cancelled: true };
+    console.error("[plursky-iap] win-back purchase error:", _iapMsg(e));
+    return { success: false, error: _iapMsg(e) };
+  }
+}
+
 // Narrow event adapter. There is no production analytics SDK in Plursky, so
 // events go to a capped local audit log (and a DOM event a future sink can
 // subscribe to). Only allowlisted keys with primitive values survive: no
@@ -10296,6 +10492,62 @@ function _setPlusSub(v) {
   if (prev !== (v ? "1" : "0")) {
     try { window.dispatchEvent(new CustomEvent("plursky-plus-change", { detail: { active: !!v } })); } catch {}
   }
+}
+
+// The Me tab's row for an active subscriber, with the save and cancel states
+// (plusRenewalCopy). Reactive: RevenueCat answers after the first paint, and
+// a cancel or a billing issue can land at any time. The button is a plain
+// link to Apple's own subscription page; nothing here cancels or blocks it.
+function PlusActiveRow() {
+  const [, bump] = React.useReducer(x => x + 1, 0);
+  React.useEffect(() => {
+    window.addEventListener("plursky-plus-change", bump);
+    return () => window.removeEventListener("plursky-plus-change", bump);
+  }, []);
+  const r = _plusRenewal();
+  const copy = plusRenewalCopy(r);
+  const save = !!r && (r.state === "ending" || r.state === "billing");
+  const seen = React.useRef(null);
+  React.useEffect(() => {
+    if (!save || seen.current === r.state) return;
+    seen.current = r.state;
+    _plusEvent("plus_save_view", { trigger: r.state });
+  }, [save, r && r.state]);
+  return (
+    <div data-plus-active={r ? r.state : "lasting"} style={{
+      width: "100%", padding: "14px 16px", marginBottom: 14,
+      background: "var(--s2)", boxShadow: "var(--e1)",
+      borderRadius: "var(--rad-md)", color: "var(--ink)", textAlign: "left", boxSizing: "border-box",
+    }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+        <span aria-hidden="true" style={{
+          width: 30, height: 30, borderRadius: "50%", flexShrink: 0,
+          background: "var(--signal)",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          color: "var(--on-signal)", fontSize: 16, fontWeight: 700, lineHeight: 1,
+        }}>+</span>
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <div className="duo-headline">Plursky+</div>
+          <div data-plus-active-line className="duo-label duo-ink3" style={{ marginTop: 4, overflowWrap: "anywhere" }}>{copy.line}</div>
+        </div>
+        {!save && <span aria-hidden="true" className="mono" style={{ fontSize: 10, letterSpacing: 1.2, color: "var(--success)", fontWeight: 700 }}>✓</span>}
+      </div>
+      {copy.note && (
+        <div data-plus-save-note style={{ font: "400 14px/1.43 var(--f-ui)", color: "var(--ink-2)", marginTop: 10 }}>{copy.note}</div>
+      )}
+      {copy.cta && (
+        <a data-plus-manage href={PLUS_MANAGE_URL} target="_blank" rel="noopener noreferrer"
+          onClick={() => { if (save) _plusEvent("plus_save_tap", { trigger: r.state }); }}
+          style={{
+            display: "inline-flex", alignItems: "center", justifyContent: "center", minHeight: 44, marginTop: 10,
+            padding: "8px 16px", boxSizing: "border-box", maxWidth: "100%", textAlign: "center", borderRadius: 22,
+            textDecoration: "none", fontFamily: "var(--f-ui)", fontSize: 14, fontWeight: 650,
+            border: save ? "none" : "1px solid var(--line-2)",
+            background: save ? "var(--acc)" : "transparent", color: save ? "var(--on-acc)" : "var(--ink)",
+          }}>{copy.cta}</a>
+      )}
+    </div>
+  );
 }
 
 // Initialize RevenueCat on first load (non-blocking)
@@ -10500,8 +10752,26 @@ function PlusGate({ children, feature, layout = "inline", step = "plans", onStep
     _rescueOffer().then(o => { if (!dead) setRescueOffer(o); });
     return () => { dead = true; };
   }, [rescue?.rescueEligibleAt]);
+  // Monthly win-back (SPEC-212 W4): null until the store answers, and null
+  // for good on any failure. While it shows, the Season Pass rescue does not:
+  // one discount at a time.
+  const [winBack, setWinBack] = React.useState(null);
+  const winBackSeen = React.useRef(false);
+  React.useEffect(() => {
+    if (!nativeBuy) return;
+    let dead = false;
+    _winBackOffer().then(o => { if (!dead) setWinBack(o); });
+    return () => { dead = true; };
+  }, []);
+  const winBackCopyNow = winBack ? winBackCopy(winBack) : null;
+  const showWinBack = nativeBuy && !!winBackCopyNow && (!(layout === "sheet" && typeof onStep === "function") || step === "plans");
+  React.useEffect(() => {
+    if (!showWinBack || winBackSeen.current) return;
+    winBackSeen.current = true;
+    _plusEvent("plus_winback_view", { product_id: winBack.productId, displayed_price: winBack.offerPrice });
+  }, [showWinBack]);
   const rescueTrigger = rescue?.rescueTrigger || null;
-  const showRescue = nativeBuy && !!rescue?.rescueEligibleAt && !rescue.rescuePurchased && !!rescueOffer && (!(layout === "sheet" && typeof onStep === "function") || step === "plans");
+  const showRescue = !showWinBack && nativeBuy && !!rescue?.rescueEligibleAt && !rescue.rescuePurchased && !!rescueOffer && (!(layout === "sheet" && typeof onStep === "function") || step === "plans");
   React.useEffect(() => {
     if (!showRescue || rescueSeen.current) return;
     rescueSeen.current = true;
@@ -10547,6 +10817,25 @@ function PlusGate({ children, feature, layout = "inline", step = "plans", onStep
     } catch (e) {
       if (outcome === "error") _plusEvent("plus_purchase_result", {
         result: /timed out/i.test(e?.message || "") ? "timeout" : "error", product_id: target, rescue_trigger: trig });
+      setBuyError(e?.message || "Purchase could not be completed.");
+    } finally {
+      setBusy(false); setPending(null);
+    }
+  };
+
+  const handleWinBack = async () => {
+    setBusy(true); setPending("winback"); setBuyError(null);
+    _plusEvent("plus_purchase_start", { product_id: winBack.productId, displayed_price: winBack.offerPrice, trigger: "winback" });
+    try {
+      const result = await _withTimeout(_purchaseWinBack(winBack), 50000, "Purchase");
+      const outcome = result.success ? "success" : result.cancelled ? "cancel" : /timed out/i.test(result.error || "") ? "timeout" : "error";
+      _plusEvent("plus_purchase_result", { result: outcome, product_id: winBack.productId, trigger: "winback" });
+      if (result.success) {
+        _plusEvent("plus_entitlement_active", { product_id: winBack.productId, trigger: "winback" });
+        window.location.reload(); return;
+      }
+      if (!result.cancelled) setBuyError(result.error || "Purchase could not be completed.");
+    } catch (e) {
       setBuyError(e?.message || "Purchase could not be completed.");
     } finally {
       setBusy(false); setPending(null);
@@ -10648,6 +10937,28 @@ function PlusGate({ children, feature, layout = "inline", step = "plans", onStep
         </div>
       )}
       {!showPlans ? null : canBuy ? (<>
+        {showWinBack && (
+          <section data-winback aria-label="Win-back offer" style={{
+            marginTop: 16, padding: "14px 14px 12px", borderRadius: 14,
+            background: "var(--paper-2)", border: "1.5px solid var(--signal)",
+          }}>
+            <div style={{ fontSize: 11, lineHeight: "14px", fontWeight: 600, letterSpacing: "0.04em", textTransform: "uppercase", color: "var(--signal)" }}>
+              Monthly · returning member
+            </div>
+            <div data-winback-headline style={{ marginTop: 4, fontSize: 17, lineHeight: "22px", fontWeight: 700 }}>
+              {winBackCopyNow.headline}
+            </div>
+            <div data-winback-line style={{ marginTop: 2, fontSize: 13, lineHeight: "18px", color: "var(--text-2)", fontVariantNumeric: "tabular-nums" }}>
+              {winBackCopyNow.line}
+            </div>
+            <FieldButton data-winback-buy onClick={handleWinBack} disabled={busy} style={{ marginTop: 12 }}>
+              {pending === "winback" ? "Processing…" : winBackCopyNow.cta}
+            </FieldButton>
+            <p style={{ margin: "8px 0 0", fontSize: 12, lineHeight: "17px", color: "var(--text-2)" }}>
+              Auto-renews monthly at {winBack.regularPrice} after the offer until you cancel in Settings.
+            </p>
+          </section>
+        )}
         {showRescue && (
           <section aria-label="Festival launch price" style={{
             marginTop: 16, padding: "14px 14px 12px", borderRadius: 14,
@@ -10683,7 +10994,9 @@ function PlusGate({ children, feature, layout = "inline", step = "plans", onStep
                 setPlan(p.id);
                 _plusEvent("plus_plan_select", { product_id: p.id, displayed_price: price, rescue_eligible: !!rescue?.rescueEligibleAt });
               }} disabled={busy} style={{
-                display: "flex", alignItems: "center", gap: 12, minHeight: 64, padding: "12px 14px",
+                // Wraps so a long store price (or 200% text) drops to its own line instead of
+                // running over the plan name.
+                display: "flex", flexWrap: "wrap", alignItems: "center", gap: 12, minHeight: 64, padding: "12px 14px",
                 borderRadius: 14, background: "var(--paper-2)", color: "var(--ink)", textAlign: "left",
                 border: on ? "1.5px solid var(--signal)" : "1px solid var(--line-2)",
                 cursor: busy ? "wait" : "pointer", fontFamily: "inherit",
@@ -10693,11 +11006,11 @@ function PlusGate({ children, feature, layout = "inline", step = "plans", onStep
                   border: on ? "none" : "1.5px solid var(--line-2)", background: on ? "var(--signal)" : "transparent",
                   color: "var(--on-signal)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 800,
                 }}>{on ? "✓" : ""}</span>
-                <span style={{ flex: 1, minWidth: 0 }}>
+                <span data-plan-name style={{ flex: "1 1 120px", minWidth: 0 }}>
                   <span style={{ display: "block", fontSize: 17, lineHeight: "22px", fontWeight: 600 }}>{p.name}</span>
                   <span style={{ display: "block", fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>{p.sub}</span>
                 </span>
-                <span style={{ fontSize: 17, lineHeight: "22px", fontWeight: 600, fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>
+                <span data-plan-price style={{ marginLeft: "auto", fontSize: 17, lineHeight: "22px", fontWeight: 600, fontVariantNumeric: "tabular-nums", whiteSpace: "nowrap" }}>
                   {price ? `${price}${p.unit}` : <span style={{ fontSize: 13, fontWeight: 500, color: "var(--text-2)" }}>{isNative ? "Loading…" : "App Store price"}</span>}
                 </span>
               </button>
@@ -10705,7 +11018,7 @@ function PlusGate({ children, feature, layout = "inline", step = "plans", onStep
           })}
         </div>
         <FieldButton onClick={() => handlePurchase(selected.id)} disabled={busy || waitingForPrice} style={{ marginTop: 16 }}>
-          {pending && pending !== RESCUE_PRODUCT_ID ? "Processing…" : waitingForPrice ? "Loading App Store price…" : selected.cta}
+          {pending && pending !== RESCUE_PRODUCT_ID && pending !== "winback" ? "Processing…" : waitingForPrice ? "Loading App Store price…" : selected.cta}
         </FieldButton>
         {PLANS.map(p => (
           <p key={p.id} style={{ margin: "10px 0 0", fontSize: 12, lineHeight: "17px", color: "var(--text-2)" }}>{p.legal(priceOf(p.id))}</p>
