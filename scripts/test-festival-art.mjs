@@ -48,6 +48,10 @@ const FALLBACK = {
   "suenos-2027": "official art not fetched yet; tile owed before the flip",
   "bass-canyon-2027": "official art not fetched yet; tile owed before the flip",
   "medusa-2027": "official art not fetched yet; tile owed before the flip",
+  "project-glow-2027": "official art not fetched yet; tile owed before the flip",
+  "beyond-wonderland-midwest-2027": "official art not fetched yet; tile owed before the flip",
+  "lost-in-dreams-2027": "official art not fetched yet; tile owed before the flip",
+  "wasteland-2027": "official art not fetched yet; tile owed before the flip",
 };
 // Sat Oct 17, 4 pm ET: III Points is live, so all three chip kinds are on the page.
 const AT = "2026-10-17T20:00:00Z";
