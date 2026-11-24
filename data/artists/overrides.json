@@ -885,7 +885,10 @@
     }
    ],
    "why": "The parenthetical names the people behind the billed name: the billed name is a project with them as parents, and it never counts as either person billed alone.",
-   "source": "https://www.dreamstateusa.com/set-times/"
+   "source": [
+    "https://www.dreamstateusa.com/set-times/",
+    "http://lasvegas.electricdaisycarnival.com/experience/set-times/"
+   ]
   },
   {
    "printed": "Gentech (Mark Sherry & Scot Project)",
@@ -7292,6 +7295,22 @@
    "source": "https://www.lollapalooza.com/schedule"
   },
   {
+   "printed": "Pendulum (DJ Set) w/ MC Verse",
+   "performers": [
+    {
+     "name": "Pendulum",
+     "role": "performer"
+    },
+    {
+     "name": "MC Verse",
+     "role": "mc"
+    }
+   ],
+   "setTag": "DJ Set",
+   "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set. \"(DJ Set)\" is the set tag.",
+   "source": "http://lasvegas.electricdaisycarnival.com/experience/set-times/"
+  },
+  {
    "printed": "Lost Frequencie (Sunset Set)",
    "performers": [
     {
@@ -8224,6 +8243,34 @@
   {
    "printed": "BLACK SUN EMPIRE B2B THE UPBEATS (20 YEARS OF BLACKOUT)",
    "why": "Left as printed: the parenthetical is not sourced as a name the act uses elsewhere (the Bunny (Rabbit in the Moon) rule), so the billing is neither merged with the bare name nor credited to anything the parenthetical names."
+  },
+  {
+   "printed": "Myon & Shane 54 (Trance Showcase)",
+   "why": "Left as printed: the parenthetical is not sourced as a name the act uses elsewhere (the Bunny (Rabbit in the Moon) rule), so the billing is neither merged with the bare name nor credited to anything the parenthetical names."
+  },
+  {
+   "printed": "Pure NRG (Giuseppe Ottaviani & Solarstone)",
+   "why": "Left as printed, one act: the parenthetical names the people or crew behind the billing, but no first-party page says how it splits. Renders as its own billing until one rules it."
+  },
+  {
+   "printed": "New World Punx (Ferry Corsten B2B Markus Schulz)",
+   "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "key": "bot",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "printed": "Orri + Friends",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "key": "noa",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "key": "awe",
+   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
   },
   {
    "printed": "John Askew + Simon Patterson",
