@@ -1,9 +1,9 @@
-﻿const CACHE      = 'plursky-v672';
+﻿const CACHE      = 'plursky-v673';
 // Tile cache is intentionally separate from the app cache so map tiles
 // survive APP_VER bumps. Tiles for a given (z, x, y) are immutable, so
 // cache-first forever is correct.
 const TILE_CACHE = 'plursky-tiles-v1';
-const APP_VER    = 'v672';
+const APP_VER    = 'v673';
 
 // Own-origin app files â€” versioned to match what index.html requests.
 // addAll is atomic so a missed own-origin file fails the install fast.
@@ -66,6 +66,7 @@ const LOCAL = [
   `./data/festivals/forbidden-kingdom-2027.js?v=${APP_VER}`,
   `./data/festivals/ubbi-dubbi-2027.js?v=${APP_VER}`,
   `./data/festivals/lightning-in-a-bottle-2027.js?v=${APP_VER}`,
+  `./data/festivals/edc-mexico-2027.js?v=${APP_VER}`,
   // Licensed artist-photo ledger runtime (data/artist-photos/ledger.json → build-artist-photo-ledger.mjs).
   `./data/artist-photos.js?v=${APP_VER}`,
   // One artist key for the photo lookup and the registry (artist repository M3).

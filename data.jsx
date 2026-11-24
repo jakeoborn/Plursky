@@ -1765,33 +1765,10 @@ const FESTIVALS_REGISTRY = [
   // checked (EDC Mexico, BW SoCal, BW Gorge) carry a 2027 page TITLE over
   // the 2026 LINEUP — a scraper that trusts the title ships last year's acts.
   // Scaffold each one from its own lineup page only after that page says 2027.
-  {
-    // SOURCE mexico.edc.com (301 from mexico.electricdaisycarnival.com):
-    // title "EDC Mexico | 19-21 Febrero, 2027 | Mexico City", venue
-    // "AUTÓDROMO HERMANOS RODRÍGUEZ". #113 reported a first-wave 2027 lineup;
-    // /lineup/ is titled "EDC Mexico 2026" and lists Feb 20/21/22 — the 2026
-    // edition. No 2027 lineup is published.
-    config: {
-      id:        "edc-mexico-2027",
-      name:      "EDC Mexico 2027",
-      shortName: "EDC Mexico",
-      brand:     "EDC",
-      tagline:   "Three days at the Autódromo",
-      // ", Mexico" is load-bearing: gen-festival-pages' place() reads the tail
-      // as addressCountry, and would otherwise leave the JSON-LD countryless.
-      location:  "Autódromo Hermanos Rodríguez · Mexico City, Mexico",
-      locationShort: "Autódromo Hermanos Rodríguez",
-      dates:     "Feb 19–21, 2027",
-      year:      2027,
-      // Night Print accent: the festival's own first-party colour (ledger: scripts/test-night-print.mjs)
-      print: { accent: "#CC2831", source: { url: "https://mexico.edc.com/wp-content/assets/css/edcmexico.min.css?ver=2.2.41", observedAt: "2026-10-09", seenAs: "Site stylesheet: `a { color:#cc2831 }`, `button { background-color:#cc2831 }`, `.button--outline` border/text, hover #a10710 (7 uses); the homepage HTML also inlines `button{background-color: #cc2831;}`.", confidence: "high" }, note: "No <meta theme-color> (only WordPress's admin default custom property), so the first-party sheet's link + primary-button red is the accent, confirmed by the same hex inlined in the page." },
-      officialEvent: { id: 548875, url: "https://mexico.electricdaisycarnival.com/", website: "https://mexico.edc.com/", tickets: "https://mexico.edc.com/en/tickets/", observedAt: "2026-09-10" },
-    },
-    available: false,
-    accent:    "#f43f5e",
-    emoji:     "🌼",
-    region:    "Latin America",
-  },
+  // edc-mexico-2027 is a festival module now: data/festivals/edc-mexico-2027.js.
+  // Re-read 2026-11-24, its page flipped the other way: the day lists are dated
+  // Feb 19-21, 2027 while the <title> still says 2026. Trust the dated lists,
+  // never the title. BW SoCal's list still matches its 2026 bill (129 of 139).
   {
     // SOURCE socal.beyondwonderland.com: "March 26+27, 2027". /hours-and-info/:
     // "NOS Events Center, 689 S. E St, San Bernardino, CA 92408", hours TBA,
@@ -5321,6 +5298,7 @@ const _WAVE1_IDS = [
   "forbidden-kingdom-2027",
   "ubbi-dubbi-2027",
   "lightning-in-a-bottle-2027",
+  "edc-mexico-2027",
 ];
 const _WAVE1 = (typeof window !== "undefined" && window.PLURSKY_FESTIVALS) || {};
 for (const _id of _WAVE1_IDS) {

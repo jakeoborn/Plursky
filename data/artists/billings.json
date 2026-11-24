@@ -94068,6 +94068,4380 @@
   "mainStage": null
  },
  {
+  "id": "edc-mexico-2027:edcmx27-3ballmty",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "3BallMTY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "3ballmty",
+    "role": "performer"
+   }
+  ],
+  "act": "3ballmty",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-aaron-hibell",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Aaron Hibell",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "aaron-hibell",
+    "role": "performer"
+   }
+  ],
+  "act": "aaron-hibell",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-aerea",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Aerea",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "aerea",
+    "role": "performer"
+   }
+  ],
+  "act": "aerea",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-all-matter-b2b-moisees",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "All Matter B2B Moisees",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "all-matter",
+    "role": "b2b"
+   },
+   {
+    "key": "moisees",
+    "role": "b2b"
+   }
+  ],
+  "act": "all-matter-b2b-moisees",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-alyssa-jolee",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Alyssa Jolee",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alyssa-jolee",
+    "role": "performer"
+   }
+  ],
+  "act": "alyssa-jolee",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-blond-ish",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "BLOND:ISH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "blond-ish",
+    "role": "performer"
+   }
+  ],
+  "act": "blond-ish",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-bontan-b2b-yamagucci",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Bontan B2B Yamagucci",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bontan",
+    "role": "b2b"
+   },
+   {
+    "key": "yamagucci",
+    "role": "b2b"
+   }
+  ],
+  "act": "bontan-b2b-yamagucci",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-cabizbajo",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Cabizbajo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cabizbajo",
+    "role": "performer"
+   }
+  ],
+  "act": "cabizbajo",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-cassian",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Cassian",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cassian",
+    "role": "performer"
+   }
+  ],
+  "act": "cassian",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-chile",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Chile",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chile",
+    "role": "performer"
+   }
+  ],
+  "act": "chile",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-cinema-paradisco",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Cinema Paradisco",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cinema-paradisco",
+    "role": "performer"
+   }
+  ],
+  "act": "cinema-paradisco",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-cloonee",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Cloonee",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cloonee",
+    "role": "performer"
+   }
+  ],
+  "act": "cloonee",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-coone",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Coone",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "coone",
+    "role": "performer"
+   }
+  ],
+  "act": "coone",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-da-tweekaz",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Da Tweekaz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "da-tweekaz",
+    "role": "performer"
+   }
+  ],
+  "act": "da-tweekaz",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-dash-berlin",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Dash Berlin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dash-berlin",
+    "role": "performer"
+   }
+  ],
+  "act": "dash-berlin",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-deadroom",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "DEADROOM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "deadroom",
+    "role": "performer"
+   }
+  ],
+  "act": "deadroom",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-deborah-de-luca-b2b-eli-brown",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Deborah De Luca B2B Eli Brown",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "deborah-de-luca",
+    "role": "b2b"
+   },
+   {
+    "key": "eli-brown",
+    "role": "b2b"
+   }
+  ],
+  "act": "deborah-de-luca-b2b-eli-brown",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-dj-mir",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "DJ Mir",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-mir",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-mir",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-dj-sash",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "DJ Sash!",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-sash",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-sash",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-fisher",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Fisher",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fisher",
+    "role": "performer"
+   }
+  ],
+  "act": "fisher",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-fuentes-prod",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Fuentes Prod",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fuentes-prod",
+    "role": "performer"
+   }
+  ],
+  "act": "fuentes-prod",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-fux-beat",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Fux Beat",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fux-beat",
+    "role": "performer"
+   }
+  ],
+  "act": "fux-beat",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-gryffin-b2b-odd-mob",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Gryffin B2B Odd Mob",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gryffin",
+    "role": "b2b"
+   },
+   {
+    "key": "odd-mob",
+    "role": "b2b"
+   }
+  ],
+  "act": "gryffin-b2b-odd-mob",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-hannah-laing",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Hannah Laing",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hannah-laing",
+    "role": "performer"
+   }
+  ],
+  "act": "hannah-laing",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-hol",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "HOL!",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hol",
+    "role": "performer"
+   }
+  ],
+  "act": "hol",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-illenium",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Illenium",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "illenium",
+    "role": "performer"
+   }
+  ],
+  "act": "illenium",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-jay-ancor-b2b-the-shipping-dpartment",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Jay Ancor B2B The Shipping Dpartment",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jay-ancor",
+    "role": "b2b"
+   },
+   {
+    "key": "the-shipping-dpartment",
+    "role": "b2b"
+   }
+  ],
+  "act": "jay-ancor-b2b-the-shipping-dpartment",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-joa",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "JOA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "joa",
+    "role": "performer"
+   }
+  ],
+  "act": "joa",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-johannes-schuster",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Johannes Schuster",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "johannes-schuster",
+    "role": "performer"
+   }
+  ],
+  "act": "johannes-schuster",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-karina-rosee",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Karina Rosee",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "karina-rosee",
+    "role": "performer"
+   }
+  ],
+  "act": "karina-rosee",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-kayzo",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Kayzo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kayzo",
+    "role": "performer"
+   }
+  ],
+  "act": "kayzo",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-kettama",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "KETTAMA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kettama",
+    "role": "performer"
+   }
+  ],
+  "act": "kettama",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-korolova",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Korolova",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "korolova",
+    "role": "performer"
+   }
+  ],
+  "act": "korolova",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-laidback-luke",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Laidback Luke",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "laidback-luke",
+    "role": "performer"
+   }
+  ],
+  "act": "laidback-luke",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-linska",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Linska",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "linska",
+    "role": "performer"
+   }
+  ],
+  "act": "linska",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-luch-b2b-rafael",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Luch B2B Rafael",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "luch",
+    "role": "b2b"
+   },
+   {
+    "key": "rafael",
+    "role": "b2b"
+   }
+  ],
+  "act": "luch-b2b-rafael",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-mario-eighta",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Mario Eighta",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mario-eighta",
+    "role": "performer"
+   }
+  ],
+  "act": "mario-eighta",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-marsh",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Marsh",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marsh",
+    "role": "performer"
+   }
+  ],
+  "act": "marsh",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-martin-garrix",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Martin Garrix",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "martin-garrix",
+    "role": "performer"
+   }
+  ],
+  "act": "martin-garrix",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-murderith",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Murderith",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "murderith",
+    "role": "performer"
+   }
+  ],
+  "act": "murderith",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-nghtmre",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "NGHTMRE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nghtmre",
+    "role": "performer"
+   }
+  ],
+  "act": "nghtmre",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-paula-martin",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Paula Martín",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "paula-martin",
+    "role": "performer"
+   }
+  ],
+  "act": "paula-martin",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-philou",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Philou",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "philou",
+    "role": "performer"
+   }
+  ],
+  "act": "philou",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-rafael",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Rafael",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rafael",
+    "role": "performer"
+   }
+  ],
+  "act": "rafael",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-ray-volpe",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Ray Volpe",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ray-volpe",
+    "role": "performer"
+   }
+  ],
+  "act": "ray-volpe",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-rayburger",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "RayBurger",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rayburger",
+    "role": "performer"
+   }
+  ],
+  "act": "rayburger",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-sant-jord",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Sant Jord",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sant-jord",
+    "role": "performer"
+   }
+  ],
+  "act": "sant-jord",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-sasha-and-digweed",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Sasha & Digweed",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sasha-and-digweed",
+    "role": "performer"
+   }
+  ],
+  "act": "sasha-and-digweed",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-secret-echoes-live",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Secret Echoes \"Live\"",
+  "setTag": "Live",
+  "performers": [
+   {
+    "key": "secret-echoes",
+    "role": "performer"
+   }
+  ],
+  "act": "secret-echoes-live",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-silver-panda",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Silver Panda",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "silver-panda",
+    "role": "performer"
+   }
+  ],
+  "act": "silver-panda",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-surf-mesa",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Surf Mesa",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "surf-mesa",
+    "role": "performer"
+   }
+  ],
+  "act": "surf-mesa",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-svdden-death",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Svdden Death",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "svdden-death",
+    "role": "performer"
+   }
+  ],
+  "act": "svdden-death",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-tripolism",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Tripolism",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tripolism",
+    "role": "performer"
+   }
+  ],
+  "act": "tripolism",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-volkoder",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Volkoder",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "volkoder",
+    "role": "performer"
+   }
+  ],
+  "act": "volkoder",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-vtss",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-19",
+  "day": 1,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "VTSS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vtss",
+    "role": "performer"
+   }
+  ],
+  "act": "vtss",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-alpha-9",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ALPHA 9",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alpha-9",
+    "role": "performer"
+   }
+  ],
+  "act": "alpha-9",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-apashe",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Apashe",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "apashe",
+    "role": "performer"
+   }
+  ],
+  "act": "apashe",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-badwolf",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "BadWolf",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "badwolf",
+    "role": "performer"
+   }
+  ],
+  "act": "badwolf",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-ben-ufo-b2b-four-tet",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Ben UFO B2B Four Tet",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ben-ufo",
+    "role": "b2b"
+   },
+   {
+    "key": "four-tet",
+    "role": "b2b"
+   }
+  ],
+  "act": "ben-ufo-b2b-four-tet",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-bipolar-sunshine",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Bipolar Sunshine",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bipolar-sunshine",
+    "role": "performer"
+   }
+  ],
+  "act": "bipolar-sunshine",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-bolo",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "BOLO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bolo",
+    "role": "performer"
+   }
+  ],
+  "act": "bolo",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-brennan-heart",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Brennan Heart",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "brennan-heart",
+    "role": "performer"
+   }
+  ],
+  "act": "brennan-heart",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-carlita",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Carlita",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "carlita",
+    "role": "performer"
+   }
+  ],
+  "act": "carlita",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-celice",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Celice",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "celice",
+    "role": "performer"
+   }
+  ],
+  "act": "celice",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-chloe-caillet-b2b-job-jobse",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Chloé Caillet B2B Job Jobse",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chloe-caillet",
+    "role": "b2b"
+   },
+   {
+    "key": "job-jobse",
+    "role": "b2b"
+   }
+  ],
+  "act": "chloe-caillet-b2b-job-jobse",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-colossio",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Colossio",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "colossio",
+    "role": "performer"
+   }
+  ],
+  "act": "colossio",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-devault",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Devault",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "devault",
+    "role": "performer"
+   }
+  ],
+  "act": "devault",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-dj-harvey",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "DJ Harvey",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-harvey",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-harvey",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-dj-mami",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "DJ MÄMI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-mami",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-mami",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-dom-dolla",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Dom Dolla",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dom-dolla",
+    "role": "performer"
+   }
+  ],
+  "act": "dom-dolla",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-domina",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "DØMINA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "domina",
+    "role": "performer"
+   }
+  ],
+  "act": "domina",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-dual-damage",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Dual Damage",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dual-damage",
+    "role": "performer"
+   }
+  ],
+  "act": "dual-damage",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-elmefti",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "elMefti",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "elmefti",
+    "role": "performer"
+   }
+  ],
+  "act": "elmefti",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-fatboy-slim-d2",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Fatboy Slim",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fatboy-slim",
+    "role": "performer"
+   }
+  ],
+  "act": "fatboy-slim",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-fumi",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "FUMI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fumi",
+    "role": "performer"
+   }
+  ],
+  "act": "fumi",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-gregorio",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Gregorio",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gregorio",
+    "role": "performer"
+   }
+  ],
+  "act": "gregorio",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-holy-priest",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Holy Priest",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "holy-priest",
+    "role": "performer"
+   }
+  ],
+  "act": "holy-priest",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-i-hate-models",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "I Hate Models",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "i-hate-models",
+    "role": "performer"
+   }
+  ],
+  "act": "i-hate-models",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-jamback",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Jamback",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jamback",
+    "role": "performer"
+   }
+  ],
+  "act": "jamback",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-jenna-shaw",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Jenna Shaw",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jenna-shaw",
+    "role": "performer"
+   }
+  ],
+  "act": "jenna-shaw",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-john-askew-simon-patterson",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "John Askew + Simon Patterson",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "john-askew-simon-patterson",
+    "role": "act"
+   }
+  ],
+  "act": "john-askew-simon-patterson",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null,
+  "review": "\"+\" billing"
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-keel",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Keel",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "keel",
+    "role": "performer"
+   }
+  ],
+  "act": "keel",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-kill-the-clowns",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Kill The Clowns",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kill-the-clowns",
+    "role": "performer"
+   }
+  ],
+  "act": "kill-the-clowns",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-kloud",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Kloud",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kloud",
+    "role": "performer"
+   }
+  ],
+  "act": "kloud",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-knolldoll",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Knolldoll",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "knolldoll",
+    "role": "performer"
+   }
+  ],
+  "act": "knolldoll",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-l-a",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "L.A.",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "l-a",
+    "role": "performer"
+   }
+  ],
+  "act": "l-a",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-loojan",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Loojan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "loojan",
+    "role": "performer"
+   }
+  ],
+  "act": "loojan",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-los-dutis",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Los Dutis",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "los-dutis",
+    "role": "performer"
+   }
+  ],
+  "act": "los-dutis",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-luciano",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Luciano",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "luciano",
+    "role": "performer"
+   }
+  ],
+  "act": "luciano",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-lum1na",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Lum1na",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lum1na",
+    "role": "performer"
+   }
+  ],
+  "act": "lum1na",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-maho-alzada",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Maho + Alzada",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "maho-alzada",
+    "role": "act"
+   }
+  ],
+  "act": "maho-alzada",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null,
+  "review": "\"+\" billing"
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-mandragora",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Mandragora",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mandragora",
+    "role": "performer"
+   }
+  ],
+  "act": "mandragora",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-marie-vaunt",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Marie Vaunt",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marie-vaunt",
+    "role": "performer"
+   }
+  ],
+  "act": "marie-vaunt",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-mario-santander",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Mario Santander",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mario-santander",
+    "role": "performer"
+   }
+  ],
+  "act": "mario-santander",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-marsolo",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Marsolo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marsolo",
+    "role": "performer"
+   }
+  ],
+  "act": "marsolo",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-the-masquerade",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "The Masquerade",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-masquerade",
+    "role": "performer"
+   }
+  ],
+  "act": "the-masquerade",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-mella-dee",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Mella Dee",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mella-dee",
+    "role": "performer"
+   }
+  ],
+  "act": "mella-dee",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-miss-lupe",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Miss Lupe",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "miss-lupe",
+    "role": "performer"
+   }
+  ],
+  "act": "miss-lupe",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-nico-moreno",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Nico Moreno",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nico-moreno",
+    "role": "performer"
+   }
+  ],
+  "act": "nico-moreno",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-novah",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "NOVAH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "novah",
+    "role": "performer"
+   }
+  ],
+  "act": "novah",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-nrg2000",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "NRG2000",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nrg2000",
+    "role": "performer"
+   }
+  ],
+  "act": "nrg2000",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-olisso",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Olisso",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "olisso",
+    "role": "performer"
+   }
+  ],
+  "act": "olisso",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-omiki",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Omiki",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "omiki",
+    "role": "performer"
+   }
+  ],
+  "act": "omiki",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-otta-b2b-spfdj",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ØTTA B2B SPFDJ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "otta",
+    "role": "b2b"
+   },
+   {
+    "key": "spfdj",
+    "role": "b2b"
+   }
+  ],
+  "act": "otta-b2b-spfdj",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-paul-van-dyk-presents-the-essence-of-acid",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Paul van Dyk presents The Essence of Acid",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-essence-of-acid",
+    "role": "project"
+   }
+  ],
+  "act": "paul-van-dyk-presents-the-essence-of-acid",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-quest",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Quest",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "quest",
+    "role": "performer"
+   }
+  ],
+  "act": "quest",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-rebelion",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Rebelion",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rebelion",
+    "role": "performer"
+   }
+  ],
+  "act": "rebelion",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-the-rocketman",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "The Rocketman",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-rocketman",
+    "role": "performer"
+   }
+  ],
+  "act": "the-rocketman",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-rommii",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ROMMII",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rommii",
+    "role": "performer"
+   }
+  ],
+  "act": "rommii",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-sam-blacky",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Sam Blacky",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sam-blacky",
+    "role": "performer"
+   }
+  ],
+  "act": "sam-blacky",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-sequence-six",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Sequence Six",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sequence-six",
+    "role": "performer"
+   }
+  ],
+  "act": "sequence-six",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-slander",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "SLANDER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "slander",
+    "role": "performer"
+   }
+  ],
+  "act": "slander",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-spika",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Spika",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "spika",
+    "role": "performer"
+   }
+  ],
+  "act": "spika",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-sub-zero-project",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Sub Zero Project",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sub-zero-project",
+    "role": "performer"
+   }
+  ],
+  "act": "sub-zero-project",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-vintage-culture",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Vintage Culture",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vintage-culture",
+    "role": "performer"
+   }
+  ],
+  "act": "vintage-culture",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-zack-fox",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Zack Fox",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zack-fox",
+    "role": "performer"
+   }
+  ],
+  "act": "zack-fox",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-zombies-in-miami",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-20",
+  "day": 2,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Zombies In Miami",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zombies-in-miami",
+    "role": "performer"
+   }
+  ],
+  "act": "zombies-in-miami",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-adriatique",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Adriatique",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "adriatique",
+    "role": "performer"
+   }
+  ],
+  "act": "adriatique",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-alarico-b2b-yanamaste",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Alarico B2B Yanamaste",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alarico",
+    "role": "b2b"
+   },
+   {
+    "key": "yanamaste",
+    "role": "b2b"
+   }
+  ],
+  "act": "alarico-b2b-yanamaste",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-antaares",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Antaares",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "antaares",
+    "role": "performer"
+   }
+  ],
+  "act": "antaares",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-bad-boombox-b2b-mija",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Bad Boombox B2B Mija",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bad-boombox",
+    "role": "b2b"
+   },
+   {
+    "key": "mija",
+    "role": "b2b"
+   }
+  ],
+  "act": "bad-boombox-b2b-mija",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-ben-klock-b2b-shdw",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Ben Klock B2B SHDW",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ben-klock",
+    "role": "b2b"
+   },
+   {
+    "key": "shdw",
+    "role": "b2b"
+   }
+  ],
+  "act": "ben-klock-b2b-shdw",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-bunt",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "BUNT.",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bunt",
+    "role": "performer"
+   }
+  ],
+  "act": "bunt",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-capochino",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Capochino",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "capochino",
+    "role": "performer"
+   }
+  ],
+  "act": "capochino",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-cartel-de-los-hipopotamos",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Cártel De Los Hipopótamos",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cartel-de-los-hipopotamos",
+    "role": "performer"
+   }
+  ],
+  "act": "cartel-de-los-hipopotamos",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-chasewest",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ChaseWest",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chasewest",
+    "role": "performer"
+   }
+  ],
+  "act": "chasewest",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-close-friends-only",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Close Friends Only",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "close-friends-only",
+    "role": "performer"
+   }
+  ],
+  "act": "close-friends-only",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-d-sturb",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "D-Sturb",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "d-sturb",
+    "role": "performer"
+   }
+  ],
+  "act": "d-sturb",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-damian-lazarus",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Damian Lazarus",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "damian-lazarus",
+    "role": "performer"
+   }
+  ],
+  "act": "damian-lazarus",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-davyboi-b2b-mika-heggemann",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Davyboi B2B Mika Heggemann",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "davyboi",
+    "role": "b2b"
+   },
+   {
+    "key": "mika-heggemann",
+    "role": "b2b"
+   }
+  ],
+  "act": "davyboi-b2b-mika-heggemann",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-dax-j",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Dax J",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dax-j",
+    "role": "performer"
+   }
+  ],
+  "act": "dax-j",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-discip",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Discip",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "discip",
+    "role": "performer"
+   }
+  ],
+  "act": "discip",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-dishype",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Dishype",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dishype",
+    "role": "performer"
+   }
+  ],
+  "act": "dishype",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-dj-escuby",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "DJ Escuby",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-escuby",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-escuby",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-don-diablo",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Don Diablo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "don-diablo",
+    "role": "performer"
+   }
+  ],
+  "act": "don-diablo",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-dualite",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Dualité",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dualite",
+    "role": "performer"
+   }
+  ],
+  "act": "dualite",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-dusky",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Dusky",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dusky",
+    "role": "performer"
+   }
+  ],
+  "act": "dusky",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-easttown",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Easttown",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "easttown",
+    "role": "performer"
+   }
+  ],
+  "act": "easttown",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-enemix",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Enemix",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "enemix",
+    "role": "performer"
+   }
+  ],
+  "act": "enemix",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-fatboy-slim-d3",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Fatboy Slim",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fatboy-slim",
+    "role": "performer"
+   }
+  ],
+  "act": "fatboy-slim",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-fatima-hajji",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Fatima Hajji",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "fatima-hajji",
+    "role": "performer"
+   }
+  ],
+  "act": "fatima-hajji",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-freebot",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Freebot",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "freebot",
+    "role": "performer"
+   }
+  ],
+  "act": "freebot",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-galantis",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Galantis",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "galantis",
+    "role": "performer"
+   }
+  ],
+  "act": "galantis",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-gudfella",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "GUDFELLA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gudfella",
+    "role": "performer"
+   }
+  ],
+  "act": "gudfella",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-imanol-igoa",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Imanol Igoa",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "imanol-igoa",
+    "role": "performer"
+   }
+  ],
+  "act": "imanol-igoa",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-iza-tkm-dj-set",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Iza TKM (DJ Set)",
+  "setTag": "DJ Set",
+  "performers": [
+   {
+    "key": "iza-tkm",
+    "role": "performer"
+   }
+  ],
+  "act": "iza-tkm",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-jackie-hollander",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Jackie Hollander",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jackie-hollander",
+    "role": "performer"
+   }
+  ],
+  "act": "jackie-hollander",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-jessica-audiffred",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Jessica Audiffred",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jessica-audiffred",
+    "role": "performer"
+   }
+  ],
+  "act": "jessica-audiffred",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-jordy-medina",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Jordy Medina",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jordy-medina",
+    "role": "performer"
+   }
+  ],
+  "act": "jordy-medina",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-kuko-b2b-onlynumbers",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "KUKO B2B Onlynumbers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kuko",
+    "role": "b2b"
+   },
+   {
+    "key": "onlynumbers",
+    "role": "b2b"
+   }
+  ],
+  "act": "kuko-b2b-onlynumbers",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-kungs",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Kungs",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kungs",
+    "role": "performer"
+   }
+  ],
+  "act": "kungs",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-la-bad-curly",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "La Bad Curly",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "la-bad-curly",
+    "role": "performer"
+   }
+  ],
+  "act": "la-bad-curly",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-labibe",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "LABIBE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "labibe",
+    "role": "performer"
+   }
+  ],
+  "act": "labibe",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-laszewo",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Łaszewo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "laszewo",
+    "role": "performer"
+   }
+  ],
+  "act": "laszewo",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-lisa-korver-b2b-supergloss",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Lisa Korver B2B Supergloss",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lisa-korver",
+    "role": "b2b"
+   },
+   {
+    "key": "supergloss",
+    "role": "b2b"
+   }
+  ],
+  "act": "lisa-korver-b2b-supergloss",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-liu",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Liu",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "liu",
+    "role": "performer"
+   }
+  ],
+  "act": "liu",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-lost-frequencie-sunset-set",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Lost Frequencie (Sunset Set)",
+  "setTag": "Sunset Set",
+  "performers": [
+   {
+    "key": "lost-frequencies",
+    "role": "performer"
+   }
+  ],
+  "act": "lost-frequencie",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-lost-kings",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Lost Kings",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lost-kings",
+    "role": "performer"
+   }
+  ],
+  "act": "lost-kings",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-luch",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Luch",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "luch",
+    "role": "performer"
+   }
+  ],
+  "act": "luch",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-luciana",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Luciana",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "luciana",
+    "role": "performer"
+   }
+  ],
+  "act": "luciana",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-marron",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "MARRØN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "marron",
+    "role": "performer"
+   }
+  ],
+  "act": "marron",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-mary-droppinz",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Mary Droppinz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mary-droppinz",
+    "role": "performer"
+   }
+  ],
+  "act": "mary-droppinz",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-michael-bibi",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Michael Bibi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "michael-bibi",
+    "role": "performer"
+   }
+  ],
+  "act": "michael-bibi",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-miss-k8",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Miss K8",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "miss-k8",
+    "role": "performer"
+   }
+  ],
+  "act": "miss-k8",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-morvius-b2b-shanti-clasing",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "MorVius B2B Shanti Clasing",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "morvius",
+    "role": "b2b"
+   },
+   {
+    "key": "shanti-clasing",
+    "role": "b2b"
+   }
+  ],
+  "act": "morvius-b2b-shanti-clasing",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-mystery-affair",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Mystery Affair",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mystery-affair",
+    "role": "performer"
+   }
+  ],
+  "act": "mystery-affair",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-omnom-b2b-walker-and-royce",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "OMNOM B2B Walker & Royce",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "omnom",
+    "role": "b2b"
+   },
+   {
+    "key": "walker-and-royce",
+    "role": "b2b"
+   }
+  ],
+  "act": "omnom-b2b-walker-and-royce",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-omri",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "OMRI.",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "omri",
+    "role": "performer"
+   }
+  ],
+  "act": "omri",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-postcard-b2b-youth-in-circles",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Postcard B2B Youth In Circles",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "postcard",
+    "role": "b2b"
+   },
+   {
+    "key": "youth-in-circles",
+    "role": "b2b"
+   }
+  ],
+  "act": "postcard-b2b-youth-in-circles",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-ranger-trucco",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Ranger Trucco",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ranger-trucco",
+    "role": "performer"
+   }
+  ],
+  "act": "ranger-trucco",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-richie-hawtin",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Richie Hawtin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "richie-hawtin",
+    "role": "performer"
+   }
+  ],
+  "act": "richie-hawtin",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-somewhen-b2b-ueberrest",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Somewhen B2B Ueberrest",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "somewhen",
+    "role": "b2b"
+   },
+   {
+    "key": "ueberrest",
+    "role": "b2b"
+   }
+  ],
+  "act": "somewhen-b2b-ueberrest",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-tiesto",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Tiësto",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tiesto",
+    "role": "performer"
+   }
+  ],
+  "act": "tiesto",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-uberkikz",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "ÜBERKIKZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "uberkikz",
+    "role": "performer"
+   }
+  ],
+  "act": "uberkikz",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-whomadewho",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "WhoMadeWho",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "whomadewho",
+    "role": "performer"
+   }
+  ],
+  "act": "whomadewho",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-wooli",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Wooli",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wooli",
+    "role": "performer"
+   }
+  ],
+  "act": "wooli",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-ydg",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "YDG",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ydg",
+    "role": "performer"
+   }
+  ],
+  "act": "ydg",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-yosoymatt",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "YoSoyMatt",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yosoymatt",
+    "role": "performer"
+   }
+  ],
+  "act": "yosoymatt",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-yudith",
+  "source": "live",
+  "festivalId": "edc-mexico-2027",
+  "festivalBrand": "edc-mexico",
+  "year": 2027,
+  "date": "2027-02-21",
+  "day": 3,
+  "stage": null,
+  "start": null,
+  "end": null,
+  "printed": "Yudith",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yudith",
+    "role": "performer"
+   }
+  ],
+  "act": "yudith",
+  "closing": null,
+  "stageLineage": null,
+  "mainStage": null
+ },
+ {
   "id": "acl-2011:d1:amd:1225:asleep-at-the-wheel",
   "source": "edition",
   "festivalId": "acl-2011",
