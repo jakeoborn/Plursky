@@ -7290,6 +7290,30 @@
    ],
    "why": "The printing bills the first name and adds the rest with \"with\" / \"w/\" / \"feat.\": the first name is the performer, each added name is credited as a guest on the same set. The orchestra's own event page (https://chicagophilharmonic.org/events/lollapalooza-laufey/, read 2026-11-20) bills the same Friday 6:45-7:45 PM Bud Light set as Laufey's, with the Chicago Philharmonic playing it, not as a set of its own.",
    "source": "https://www.lollapalooza.com/schedule"
+  },
+  {
+   "printed": "Lost Frequencie (Sunset Set)",
+   "performers": [
+    {
+     "name": "Lost Frequencies",
+     "role": "performer"
+    }
+   ],
+   "setTag": "Sunset Set",
+   "why": "EDC Mexico 2027's official lineup page misspells the act as \"Lost Frequencie\" (same page, both its A–Z and Sunday lists). It is Lost Frequencies, billed at the 2026 and 2027 Tomorrowland Winter editions under the full name. \"(Sunset Set)\" is the set tag.",
+   "source": "https://mexico.edc.com/en/lineup/"
+  },
+  {
+   "printed": "Secret Echoes \"Live\"",
+   "performers": [
+    {
+     "name": "Secret Echoes",
+     "role": "performer"
+    }
+   ],
+   "setTag": "Live",
+   "why": "The page prints the set tag in quotes instead of parentheses (\"Live\"). The act is Secret Echoes and \"Live\" is the set tag, not part of the name.",
+   "source": "https://mexico.edc.com/en/lineup/"
   }
  ],
  "pending": [
@@ -8200,6 +8224,14 @@
   {
    "printed": "BLACK SUN EMPIRE B2B THE UPBEATS (20 YEARS OF BLACKOUT)",
    "why": "Left as printed: the parenthetical is not sourced as a name the act uses elsewhere (the Bunny (Rabbit in the Moon) rule), so the billing is neither merged with the bare name nor credited to anything the parenthetical names."
+  },
+  {
+   "printed": "John Askew + Simon Patterson",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Maho + Alzada",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
   }
  ]
 }
