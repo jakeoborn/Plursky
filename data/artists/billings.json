@@ -388337,6 +388337,2152 @@
   "mainStage": null
  },
  {
+  "id": "escape-halloween-2023:d1:the-grimm:1600:senza",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "THE GRIMM",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "SENZA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "senza",
+    "role": "performer"
+   }
+  ],
+  "act": "senza",
+  "closing": false,
+  "stageLineage": "escape-halloween:the-grimm",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:the-grimm:1700:mariana-bo",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "THE GRIMM",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "MARIANA BO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mariana-bo",
+    "role": "performer"
+   }
+  ],
+  "act": "mariana-bo",
+  "closing": false,
+  "stageLineage": "escape-halloween:the-grimm",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:the-grimm:1800:jvna",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "THE GRIMM",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "JVNA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jvna",
+    "role": "performer"
+   }
+  ],
+  "act": "jvna",
+  "closing": false,
+  "stageLineage": "escape-halloween:the-grimm",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:the-grimm:1900:kaivon",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "THE GRIMM",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "KAIVON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kaivon",
+    "role": "performer"
+   }
+  ],
+  "act": "kaivon",
+  "closing": false,
+  "stageLineage": "escape-halloween:the-grimm",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:the-grimm:2000:afrojack",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "THE GRIMM",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "AFROJACK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "afrojack",
+    "role": "performer"
+   }
+  ],
+  "act": "afrojack",
+  "closing": false,
+  "stageLineage": "escape-halloween:the-grimm",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:the-grimm:2100:armnhmr",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "THE GRIMM",
+  "start": "21:00",
+  "end": "22:10",
+  "printed": "ARMNHMR",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "armnhmr",
+    "role": "performer"
+   }
+  ],
+  "act": "armnhmr",
+  "closing": false,
+  "stageLineage": "escape-halloween:the-grimm",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:the-grimm:2215:above-and-beyond",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "THE GRIMM",
+  "start": "22:15",
+  "end": "23:30",
+  "printed": "ABOVE & BEYOND",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "above-and-beyond",
+    "role": "performer"
+   }
+  ],
+  "act": "above-and-beyond",
+  "closing": false,
+  "stageLineage": "escape-halloween:the-grimm",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:the-grimm:2330:slander",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "THE GRIMM",
+  "start": "23:30",
+  "end": "00:45",
+  "printed": "SLANDER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "slander",
+    "role": "performer"
+   }
+  ],
+  "act": "slander",
+  "closing": false,
+  "stageLineage": "escape-halloween:the-grimm",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:the-grimm:0045:kaskade",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "THE GRIMM",
+  "start": "00:45",
+  "end": "02:00",
+  "printed": "KASKADE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kaskade",
+    "role": "performer"
+   }
+  ],
+  "act": "kaskade",
+  "closing": true,
+  "stageLineage": "escape-halloween:the-grimm",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:feeding-grounds:1600:smoakland-presents-liquid-smoak",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "FEEDING GROUNDS",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "SMOAKLAND PRESENTS LIQUID SMOAK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "liquid-smoak",
+    "role": "project"
+   }
+  ],
+  "act": "smoakland-presents-liquid-smoak",
+  "closing": false,
+  "stageLineage": "escape-halloween:feeding-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:feeding-grounds:1700:muerte",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "FEEDING GROUNDS",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "MUERTE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "muerte",
+    "role": "performer"
+   }
+  ],
+  "act": "muerte",
+  "closing": false,
+  "stageLineage": "escape-halloween:feeding-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:feeding-grounds:1800:canabliss",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "FEEDING GROUNDS",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "CANABLISS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "canabliss",
+    "role": "performer"
+   }
+  ],
+  "act": "canabliss",
+  "closing": false,
+  "stageLineage": "escape-halloween:feeding-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:feeding-grounds:1900:hekler",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "FEEDING GROUNDS",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "HEKLER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hekler",
+    "role": "performer"
+   }
+  ],
+  "act": "hekler",
+  "closing": false,
+  "stageLineage": "escape-halloween:feeding-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:feeding-grounds:2000:he-h",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "FEEDING GROUNDS",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "HE$H",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "he-h",
+    "role": "performer"
+   }
+  ],
+  "act": "he-h",
+  "closing": false,
+  "stageLineage": "escape-halloween:feeding-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:feeding-grounds:2100:wilkinson",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "FEEDING GROUNDS",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "WILKINSON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wilkinson",
+    "role": "performer"
+   }
+  ],
+  "act": "wilkinson",
+  "closing": false,
+  "stageLineage": "escape-halloween:feeding-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:feeding-grounds:2200:k-d-b2b-1788-l",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "FEEDING GROUNDS",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "K?D B2B 1788-L",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "k-d",
+    "role": "b2b"
+   },
+   {
+    "key": "1788-l",
+    "role": "b2b"
+   }
+  ],
+  "act": "k-d-b2b-1788-l",
+  "closing": false,
+  "stageLineage": "escape-halloween:feeding-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:feeding-grounds:2300:atliens",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "FEEDING GROUNDS",
+  "start": "23:00",
+  "end": "00:00",
+  "printed": "ATLIENS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "atliens",
+    "role": "performer"
+   }
+  ],
+  "act": "atliens",
+  "closing": false,
+  "stageLineage": "escape-halloween:feeding-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:feeding-grounds:0000:zomboy",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "FEEDING GROUNDS",
+  "start": "00:00",
+  "end": "01:00",
+  "printed": "ZOMBOY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zomboy",
+    "role": "performer"
+   }
+  ],
+  "act": "zomboy",
+  "closing": false,
+  "stageLineage": "escape-halloween:feeding-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:feeding-grounds:0100:svdden-death",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "FEEDING GROUNDS",
+  "start": "01:00",
+  "end": "02:00",
+  "printed": "SVDDEN DEATH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "svdden-death",
+    "role": "performer"
+   }
+  ],
+  "act": "svdden-death",
+  "closing": true,
+  "stageLineage": "escape-halloween:feeding-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:sanitarium:1700:llllnnnn-b2b-water-spirit",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "SANITARIUM",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "LLLLNNNN B2B WATER SPIRIT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "llllnnnn",
+    "role": "b2b"
+   },
+   {
+    "key": "water-spirit",
+    "role": "b2b"
+   }
+  ],
+  "act": "llllnnnn-b2b-water-spirit",
+  "closing": false,
+  "stageLineage": "escape-halloween:sanitarium",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:sanitarium:1800:gravedgr-b2b-geo",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "SANITARIUM",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "GRAVEDGR B2B GEO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gravedgr",
+    "role": "b2b"
+   },
+   {
+    "key": "geo",
+    "role": "b2b"
+   }
+  ],
+  "act": "gravedgr-b2b-geo",
+  "closing": false,
+  "stageLineage": "escape-halloween:sanitarium",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:sanitarium:1900:keltek",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "SANITARIUM",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "KELTEK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "keltek",
+    "role": "performer"
+   }
+  ],
+  "act": "keltek",
+  "closing": false,
+  "stageLineage": "escape-halloween:sanitarium",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:sanitarium:2000:code-black",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "SANITARIUM",
+  "start": "20:00",
+  "end": "20:30",
+  "printed": "CODE BLACK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "code-black",
+    "role": "performer"
+   }
+  ],
+  "act": "code-black",
+  "closing": false,
+  "stageLineage": "escape-halloween:sanitarium",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:sanitarium:2030:code-black-blackout",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "SANITARIUM",
+  "start": "20:30",
+  "end": "21:00",
+  "printed": "CODE BLACK: BLACKOUT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "code-black-blackout",
+    "role": "performer"
+   }
+  ],
+  "act": "code-black-blackout",
+  "closing": false,
+  "stageLineage": "escape-halloween:sanitarium",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:sanitarium:2100:ben-nicky-presents-xtreme",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "SANITARIUM",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "BEN NICKY PRESENTS XTREME",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "xtreme",
+    "role": "project"
+   }
+  ],
+  "act": "ben-nicky-presents-xtreme",
+  "closing": false,
+  "stageLineage": "escape-halloween:sanitarium",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:sanitarium:2200:lny-tnz",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "SANITARIUM",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "LNY TNZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lny-tnz",
+    "role": "performer"
+   }
+  ],
+  "act": "lny-tnz",
+  "closing": false,
+  "stageLineage": "escape-halloween:sanitarium",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:sanitarium:2300:lady-faith",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "SANITARIUM",
+  "start": "23:00",
+  "end": "00:00",
+  "printed": "LADY FAITH",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lady-faith",
+    "role": "performer"
+   }
+  ],
+  "act": "lady-faith",
+  "closing": false,
+  "stageLineage": "escape-halloween:sanitarium",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:sanitarium:0000:darren-styles",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "SANITARIUM",
+  "start": "00:00",
+  "end": "01:00",
+  "printed": "DARREN STYLES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "darren-styles",
+    "role": "performer"
+   }
+  ],
+  "act": "darren-styles",
+  "closing": false,
+  "stageLineage": "escape-halloween:sanitarium",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:sanitarium:0100:dj-isaac-b2b-saymyname-hardstyle",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "SANITARIUM",
+  "start": "01:00",
+  "end": "02:00",
+  "printed": "DJ ISAAC B2B SAYMYNAME (HARDSTYLE)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-isaac-b2b-saymyname-hardstyle",
+    "role": "act"
+   }
+  ],
+  "act": "dj-isaac-b2b-saymyname-hardstyle",
+  "closing": true,
+  "stageLineage": "escape-halloween:sanitarium",
+  "mainStage": null,
+  "review": "parenthetical is not a known set tag"
+ },
+ {
+  "id": "escape-halloween-2023:d1:sewer-district:1600:robyn-balliet",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "SEWER DISTRICT",
+  "start": "16:00",
+  "end": "17:30",
+  "printed": "ROBYN BALLIET",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "robyn-balliet",
+    "role": "performer"
+   }
+  ],
+  "act": "robyn-balliet",
+  "closing": false,
+  "stageLineage": "escape-halloween:sewer-district",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:sewer-district:1730:chelina-manuhutu",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "SEWER DISTRICT",
+  "start": "17:30",
+  "end": "19:00",
+  "printed": "CHELINA MANUHUTU",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chelina-manuhutu",
+    "role": "performer"
+   }
+  ],
+  "act": "chelina-manuhutu",
+  "closing": false,
+  "stageLineage": "escape-halloween:sewer-district",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:sewer-district:1900:kas-st",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "SEWER DISTRICT",
+  "start": "19:00",
+  "end": "20:30",
+  "printed": "KAS:ST",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kas-st",
+    "role": "performer"
+   }
+  ],
+  "act": "kas-st",
+  "closing": false,
+  "stageLineage": "escape-halloween:sewer-district",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:sewer-district:2030:hot-since-82",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "SEWER DISTRICT",
+  "start": "20:30",
+  "end": "22:00",
+  "printed": "HOT SINCE 82",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hot-since-82",
+    "role": "performer"
+   }
+  ],
+  "act": "hot-since-82",
+  "closing": false,
+  "stageLineage": "escape-halloween:sewer-district",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:sewer-district:2200:loco-dice",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "SEWER DISTRICT",
+  "start": "22:00",
+  "end": "23:30",
+  "printed": "LOCO DICE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "loco-dice",
+    "role": "performer"
+   }
+  ],
+  "act": "loco-dice",
+  "closing": false,
+  "stageLineage": "escape-halloween:sewer-district",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:sewer-district:2330:jamie-jones",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "SEWER DISTRICT",
+  "start": "23:30",
+  "end": "01:00",
+  "printed": "JAMIE JONES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jamie-jones",
+    "role": "performer"
+   }
+  ],
+  "act": "jamie-jones",
+  "closing": false,
+  "stageLineage": "escape-halloween:sewer-district",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:sewer-district:0100:jamie-jones-b2b-loco-dice",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "SEWER DISTRICT",
+  "start": "01:00",
+  "end": "02:00",
+  "printed": "JAMIE JONES B2B LOCO DICE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jamie-jones",
+    "role": "b2b"
+   },
+   {
+    "key": "loco-dice",
+    "role": "b2b"
+   }
+  ],
+  "act": "jamie-jones-b2b-loco-dice",
+  "closing": true,
+  "stageLineage": "escape-halloween:sewer-district",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:wicked-woods:1600:taylor-kade",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "WICKED WOODS",
+  "start": "16:00",
+  "end": "16:55",
+  "printed": "TAYLOR KADE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "taylor-kade",
+    "role": "performer"
+   }
+  ],
+  "act": "taylor-kade",
+  "closing": false,
+  "stageLineage": "escape-halloween:wicked-woods",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:wicked-woods:1655:danny-olson",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "WICKED WOODS",
+  "start": "16:55",
+  "end": "17:50",
+  "printed": "DANNY OLSON",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "danny-olson",
+    "role": "performer"
+   }
+  ],
+  "act": "danny-olson",
+  "closing": false,
+  "stageLineage": "escape-halloween:wicked-woods",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:wicked-woods:1750:hoang-b2b-mvse",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "WICKED WOODS",
+  "start": "17:50",
+  "end": "18:45",
+  "printed": "HOANG B2B MVSE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hoang",
+    "role": "b2b"
+   },
+   {
+    "key": "mvse",
+    "role": "b2b"
+   }
+  ],
+  "act": "hoang-b2b-mvse",
+  "closing": false,
+  "stageLineage": "escape-halloween:wicked-woods",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:wicked-woods:1845:crystal-skies",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "WICKED WOODS",
+  "start": "18:45",
+  "end": "19:45",
+  "printed": "CRYSTAL SKIES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "crystal-skies",
+    "role": "performer"
+   }
+  ],
+  "act": "crystal-skies",
+  "closing": false,
+  "stageLineage": "escape-halloween:wicked-woods",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:wicked-woods:1945:codeko",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "WICKED WOODS",
+  "start": "19:45",
+  "end": "20:45",
+  "printed": "CODEKO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "codeko",
+    "role": "performer"
+   }
+  ],
+  "act": "codeko",
+  "closing": false,
+  "stageLineage": "escape-halloween:wicked-woods",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:wicked-woods:2045:rossy-s-room",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "WICKED WOODS",
+  "start": "20:45",
+  "end": "21:45",
+  "printed": "ROSSY'S ROOM",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rossy-s-room",
+    "role": "performer"
+   }
+  ],
+  "act": "rossy-s-room",
+  "closing": false,
+  "stageLineage": "escape-halloween:wicked-woods",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:wicked-woods:2145:kaivon-2010-s-throwback-set",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "WICKED WOODS",
+  "start": "21:45",
+  "end": "22:45",
+  "printed": "KAIVON (2010'S THROWBACK SET)",
+  "setTag": "2010'S THROWBACK SET",
+  "performers": [
+   {
+    "key": "kaivon",
+    "role": "performer"
+   }
+  ],
+  "act": "kaivon",
+  "closing": false,
+  "stageLineage": "escape-halloween:wicked-woods",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:wicked-woods:2245:jvna-aura-city-set",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "WICKED WOODS",
+  "start": "22:45",
+  "end": "23:45",
+  "printed": "JVNA (AURA CITY SET)",
+  "setTag": "AURA CITY SET",
+  "performers": [
+   {
+    "key": "jvna",
+    "role": "performer"
+   }
+  ],
+  "act": "jvna",
+  "closing": false,
+  "stageLineage": "escape-halloween:wicked-woods",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:wicked-woods:2345:k-d-throwback-set",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "WICKED WOODS",
+  "start": "23:45",
+  "end": "00:45",
+  "printed": "K?D (THROWBACK SET)",
+  "setTag": "THROWBACK SET",
+  "performers": [
+   {
+    "key": "k-d",
+    "role": "performer"
+   }
+  ],
+  "act": "k-d",
+  "closing": false,
+  "stageLineage": "escape-halloween:wicked-woods",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d1:wicked-woods:0045:armnhmr-house-set",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-27",
+  "day": 1,
+  "stage": "WICKED WOODS",
+  "start": "00:45",
+  "end": "01:45",
+  "printed": "ARMNHMR (HOUSE SET)",
+  "setTag": "HOUSE SET",
+  "performers": [
+   {
+    "key": "armnhmr",
+    "role": "performer"
+   }
+  ],
+  "act": "armnhmr",
+  "closing": true,
+  "stageLineage": "escape-halloween:wicked-woods",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d2:the-grimm:1600:musubi",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-28",
+  "day": 2,
+  "stage": "THE GRIMM",
+  "start": "16:00",
+  "end": "16:55",
+  "printed": "MUSUBI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "musubi",
+    "role": "performer"
+   }
+  ],
+  "act": "musubi",
+  "closing": false,
+  "stageLineage": "escape-halloween:the-grimm",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d2:the-grimm:1655:ian-asher",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-28",
+  "day": 2,
+  "stage": "THE GRIMM",
+  "start": "16:55",
+  "end": "17:55",
+  "printed": "IAN ASHER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ian-asher",
+    "role": "performer"
+   }
+  ],
+  "act": "ian-asher",
+  "closing": false,
+  "stageLineage": "escape-halloween:the-grimm",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d2:the-grimm:1755:ship-wrek",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-28",
+  "day": 2,
+  "stage": "THE GRIMM",
+  "start": "17:55",
+  "end": "18:55",
+  "printed": "SHIP WREK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ship-wrek",
+    "role": "performer"
+   }
+  ],
+  "act": "ship-wrek",
+  "closing": false,
+  "stageLineage": "escape-halloween:the-grimm",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d2:the-grimm:1855:yetep",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-28",
+  "day": 2,
+  "stage": "THE GRIMM",
+  "start": "18:55",
+  "end": "19:55",
+  "printed": "YETEP",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "yetep",
+    "role": "performer"
+   }
+  ],
+  "act": "yetep",
+  "closing": false,
+  "stageLineage": "escape-halloween:the-grimm",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d2:the-grimm:1955:matroda",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-28",
+  "day": 2,
+  "stage": "THE GRIMM",
+  "start": "19:55",
+  "end": "20:55",
+  "printed": "MATRODA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "matroda",
+    "role": "performer"
+   }
+  ],
+  "act": "matroda",
+  "closing": false,
+  "stageLineage": "escape-halloween:the-grimm",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d2:the-grimm:2055:tchami",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-28",
+  "day": 2,
+  "stage": "THE GRIMM",
+  "start": "20:55",
+  "end": "22:10",
+  "printed": "TCHAMI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tchami",
+    "role": "performer"
+   }
+  ],
+  "act": "tchami",
+  "closing": false,
+  "stageLineage": "escape-halloween:the-grimm",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d2:the-grimm:2210:dj-snake",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-28",
+  "day": 2,
+  "stage": "THE GRIMM",
+  "start": "22:10",
+  "end": "23:25",
+  "printed": "DJ SNAKE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-snake",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-snake",
+  "closing": false,
+  "stageLineage": "escape-halloween:the-grimm",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d2:the-grimm:2330:zedd",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-28",
+  "day": 2,
+  "stage": "THE GRIMM",
+  "start": "23:30",
+  "end": "00:45",
+  "printed": "ZEDD",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zedd",
+    "role": "performer"
+   }
+  ],
+  "act": "zedd",
+  "closing": false,
+  "stageLineage": "escape-halloween:the-grimm",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d2:the-grimm:0045:armin-van-buuren",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-28",
+  "day": 2,
+  "stage": "THE GRIMM",
+  "start": "00:45",
+  "end": "02:00",
+  "printed": "ARMIN VAN BUUREN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "armin-van-buuren",
+    "role": "performer"
+   }
+  ],
+  "act": "armin-van-buuren",
+  "closing": true,
+  "stageLineage": "escape-halloween:the-grimm",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d2:feeding-grounds:1600:suahn",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-28",
+  "day": 2,
+  "stage": "FEEDING GROUNDS",
+  "start": "16:00",
+  "end": "16:45",
+  "printed": "SUAHN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "suahn",
+    "role": "performer"
+   }
+  ],
+  "act": "suahn",
+  "closing": false,
+  "stageLineage": "escape-halloween:feeding-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d2:feeding-grounds:1645:rohaan",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-28",
+  "day": 2,
+  "stage": "FEEDING GROUNDS",
+  "start": "16:45",
+  "end": "17:45",
+  "printed": "ROHAAN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rohaan",
+    "role": "performer"
+   }
+  ],
+  "act": "rohaan",
+  "closing": false,
+  "stageLineage": "escape-halloween:feeding-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d2:feeding-grounds:1745:nia-archives",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-28",
+  "day": 2,
+  "stage": "FEEDING GROUNDS",
+  "start": "17:45",
+  "end": "18:45",
+  "printed": "NIA ARCHIVES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nia-archives",
+    "role": "performer"
+   }
+  ],
+  "act": "nia-archives",
+  "closing": false,
+  "stageLineage": "escape-halloween:feeding-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d2:feeding-grounds:1845:rossy",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-28",
+  "day": 2,
+  "stage": "FEEDING GROUNDS",
+  "start": "18:45",
+  "end": "19:45",
+  "printed": "ROSSY",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rossy",
+    "role": "performer"
+   }
+  ],
+  "act": "rossy",
+  "closing": false,
+  "stageLineage": "escape-halloween:feeding-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d2:feeding-grounds:1945:emo-nite",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-28",
+  "day": 2,
+  "stage": "FEEDING GROUNDS",
+  "start": "19:45",
+  "end": "20:45",
+  "printed": "EMO NITE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "emo-nite",
+    "role": "performer"
+   }
+  ],
+  "act": "emo-nite",
+  "closing": false,
+  "stageLineage": "escape-halloween:feeding-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d2:feeding-grounds:2045:william-black",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-28",
+  "day": 2,
+  "stage": "FEEDING GROUNDS",
+  "start": "20:45",
+  "end": "21:45",
+  "printed": "WILLIAM BLACK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "william-black",
+    "role": "performer"
+   }
+  ],
+  "act": "william-black",
+  "closing": false,
+  "stageLineage": "escape-halloween:feeding-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d2:feeding-grounds:2145:deathpact",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-28",
+  "day": 2,
+  "stage": "FEEDING GROUNDS",
+  "start": "21:45",
+  "end": "22:45",
+  "printed": "DEATHPACT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "deathpact",
+    "role": "performer"
+   }
+  ],
+  "act": "deathpact",
+  "closing": false,
+  "stageLineage": "escape-halloween:feeding-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d2:feeding-grounds:2245:three-6-mafia",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-28",
+  "day": 2,
+  "stage": "FEEDING GROUNDS",
+  "start": "22:45",
+  "end": "23:45",
+  "printed": "THREE 6 MAFIA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "three-6-mafia",
+    "role": "performer"
+   }
+  ],
+  "act": "three-6-mafia",
+  "closing": false,
+  "stageLineage": "escape-halloween:feeding-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d2:feeding-grounds:2345:malaa",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-28",
+  "day": 2,
+  "stage": "FEEDING GROUNDS",
+  "start": "23:45",
+  "end": "00:45",
+  "printed": "MALAA",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "malaa",
+    "role": "performer"
+   }
+  ],
+  "act": "malaa",
+  "closing": false,
+  "stageLineage": "escape-halloween:feeding-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d2:feeding-grounds:0045:rezz",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-28",
+  "day": 2,
+  "stage": "FEEDING GROUNDS",
+  "start": "00:45",
+  "end": "02:00",
+  "printed": "REZZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rezz",
+    "role": "performer"
+   }
+  ],
+  "act": "rezz",
+  "closing": true,
+  "stageLineage": "escape-halloween:feeding-grounds",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d2:sanitarium:1600:dj-topgun",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-28",
+  "day": 2,
+  "stage": "SANITARIUM",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "DJ TOPGUN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-topgun",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-topgun",
+  "closing": false,
+  "stageLineage": "escape-halloween:sanitarium",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d2:sanitarium:1700:tobehonest",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-28",
+  "day": 2,
+  "stage": "SANITARIUM",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "TOBEHONEST",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tobehonest",
+    "role": "performer"
+   }
+  ],
+  "act": "tobehonest",
+  "closing": false,
+  "stageLineage": "escape-halloween:sanitarium",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d2:sanitarium:1800:lauren-lane",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-28",
+  "day": 2,
+  "stage": "SANITARIUM",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "LAUREN LANE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lauren-lane",
+    "role": "performer"
+   }
+  ],
+  "act": "lauren-lane",
+  "closing": false,
+  "stageLineage": "escape-halloween:sanitarium",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d2:sanitarium:1900:max-styler",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-28",
+  "day": 2,
+  "stage": "SANITARIUM",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "MAX STYLER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "max-styler",
+    "role": "performer"
+   }
+  ],
+  "act": "max-styler",
+  "closing": false,
+  "stageLineage": "escape-halloween:sanitarium",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d2:sanitarium:2000:cid-b3b-hugel-b3b-westend",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-28",
+  "day": 2,
+  "stage": "SANITARIUM",
+  "start": "20:00",
+  "end": "22:00",
+  "printed": "CID B3B HUGEL B3B WESTEND",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cid",
+    "role": "b2b"
+   },
+   {
+    "key": "hugel",
+    "role": "b2b"
+   },
+   {
+    "key": "westend",
+    "role": "b2b"
+   }
+  ],
+  "act": "cid-b3b-hugel-b3b-westend",
+  "closing": false,
+  "stageLineage": "escape-halloween:sanitarium",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d2:sanitarium:2200:wade",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-28",
+  "day": 2,
+  "stage": "SANITARIUM",
+  "start": "22:00",
+  "end": "23:15",
+  "printed": "WADE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wade",
+    "role": "performer"
+   }
+  ],
+  "act": "wade",
+  "closing": false,
+  "stageLineage": "escape-halloween:sanitarium",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d2:sanitarium:2315:matroda-b2b-san-pacho",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-28",
+  "day": 2,
+  "stage": "SANITARIUM",
+  "start": "23:15",
+  "end": "00:30",
+  "printed": "MATRODA B2B SAN PACHO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "matroda",
+    "role": "b2b"
+   },
+   {
+    "key": "san-pacho",
+    "role": "b2b"
+   }
+  ],
+  "act": "matroda-b2b-san-pacho",
+  "closing": false,
+  "stageLineage": "escape-halloween:sanitarium",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d2:sanitarium:0030:mk",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-28",
+  "day": 2,
+  "stage": "SANITARIUM",
+  "start": "00:30",
+  "end": "02:00",
+  "printed": "MK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mk",
+    "role": "performer"
+   }
+  ],
+  "act": "mk",
+  "closing": true,
+  "stageLineage": "escape-halloween:sanitarium",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d2:sewer-district:1600:charles-d",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-28",
+  "day": 2,
+  "stage": "SEWER DISTRICT",
+  "start": "16:00",
+  "end": "18:00",
+  "printed": "CHARLES D",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "charles-d",
+    "role": "performer"
+   }
+  ],
+  "act": "charles-d",
+  "closing": false,
+  "stageLineage": "escape-halloween:sewer-district",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d2:sewer-district:1800:space-92-x-popof-present-turbulences",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-28",
+  "day": 2,
+  "stage": "SEWER DISTRICT",
+  "start": "18:00",
+  "end": "20:00",
+  "printed": "SPACE 92 X POPOF PRESENT: TURBULENCES",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "turbulences",
+    "role": "project"
+   }
+  ],
+  "act": "space-92-x-popof-present-turbulences",
+  "closing": false,
+  "stageLineage": "escape-halloween:sewer-district",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d2:sewer-district:2000:green-velvet",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-28",
+  "day": 2,
+  "stage": "SEWER DISTRICT",
+  "start": "20:00",
+  "end": "21:30",
+  "printed": "GREEN VELVET",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "green-velvet",
+    "role": "performer"
+   }
+  ],
+  "act": "green-velvet",
+  "closing": false,
+  "stageLineage": "escape-halloween:sewer-district",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d2:sewer-district:2130:patrick-topping",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-28",
+  "day": 2,
+  "stage": "SEWER DISTRICT",
+  "start": "21:30",
+  "end": "23:00",
+  "printed": "PATRICK TOPPING",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "patrick-topping",
+    "role": "performer"
+   }
+  ],
+  "act": "patrick-topping",
+  "closing": false,
+  "stageLineage": "escape-halloween:sewer-district",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d2:sewer-district:2300:lilly-palmer",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-28",
+  "day": 2,
+  "stage": "SEWER DISTRICT",
+  "start": "23:00",
+  "end": "00:30",
+  "printed": "LILLY PALMER",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lilly-palmer",
+    "role": "performer"
+   }
+  ],
+  "act": "lilly-palmer",
+  "closing": false,
+  "stageLineage": "escape-halloween:sewer-district",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d2:sewer-district:0030:reinier-zonneveld-live",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-28",
+  "day": 2,
+  "stage": "SEWER DISTRICT",
+  "start": "00:30",
+  "end": "02:00",
+  "printed": "REINIER ZONNEVELD (LIVE)",
+  "setTag": "LIVE",
+  "performers": [
+   {
+    "key": "reinier-zonneveld",
+    "role": "performer"
+   }
+  ],
+  "act": "reinier-zonneveld",
+  "closing": true,
+  "stageLineage": "escape-halloween:sewer-district",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d2:wicked-woods:1600:buns",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-28",
+  "day": 2,
+  "stage": "WICKED WOODS",
+  "start": "16:00",
+  "end": "17:15",
+  "printed": "BUNS",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "buns",
+    "role": "performer"
+   }
+  ],
+  "act": "buns",
+  "closing": false,
+  "stageLineage": "escape-halloween:wicked-woods",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d2:wicked-woods:1715:siren",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-28",
+  "day": 2,
+  "stage": "WICKED WOODS",
+  "start": "17:15",
+  "end": "18:45",
+  "printed": "SIREN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "siren",
+    "role": "performer"
+   }
+  ],
+  "act": "siren",
+  "closing": false,
+  "stageLineage": "escape-halloween:wicked-woods",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d2:wicked-woods:1845:skellytn",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-28",
+  "day": 2,
+  "stage": "WICKED WOODS",
+  "start": "18:45",
+  "end": "19:45",
+  "printed": "SKELLYTN",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "skellytn",
+    "role": "performer"
+   }
+  ],
+  "act": "skellytn",
+  "closing": false,
+  "stageLineage": "escape-halloween:wicked-woods",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d2:wicked-woods:1945:calyx",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-28",
+  "day": 2,
+  "stage": "WICKED WOODS",
+  "start": "19:45",
+  "end": "20:45",
+  "printed": "CALYX",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "calyx",
+    "role": "performer"
+   }
+  ],
+  "act": "calyx",
+  "closing": false,
+  "stageLineage": "escape-halloween:wicked-woods",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d2:wicked-woods:2045:nitepunk-dnb-set",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-28",
+  "day": 2,
+  "stage": "WICKED WOODS",
+  "start": "20:45",
+  "end": "21:45",
+  "printed": "NITEPUNK (DNB SET)",
+  "setTag": "DNB SET",
+  "performers": [
+   {
+    "key": "nitepunk",
+    "role": "performer"
+   }
+  ],
+  "act": "nitepunk",
+  "closing": false,
+  "stageLineage": "escape-halloween:wicked-woods",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d2:wicked-woods:2145:ed-rush-and-optical-virus-25th-anniversary-set",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-28",
+  "day": 2,
+  "stage": "WICKED WOODS",
+  "start": "21:45",
+  "end": "22:45",
+  "printed": "ED RUSH AND OPTICAL (VIRUS 25TH ANNIVERSARY SET)",
+  "setTag": "VIRUS 25TH ANNIVERSARY SET",
+  "performers": [
+   {
+    "key": "ed-rush-and-optical",
+    "role": "performer"
+   }
+  ],
+  "act": "ed-rush-and-optical",
+  "closing": false,
+  "stageLineage": "escape-halloween:wicked-woods",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d2:wicked-woods:2245:black-sun-empire-b2b-the-upbeats-20-years-of-blackout",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-28",
+  "day": 2,
+  "stage": "WICKED WOODS",
+  "start": "22:45",
+  "end": "23:45",
+  "printed": "BLACK SUN EMPIRE B2B THE UPBEATS (20 YEARS OF BLACKOUT)",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "black-sun-empire-b2b-the-upbeats-20-years-of-blackout",
+    "role": "act"
+   }
+  ],
+  "act": "black-sun-empire-b2b-the-upbeats-20-years-of-blackout",
+  "closing": false,
+  "stageLineage": "escape-halloween:wicked-woods",
+  "mainStage": null,
+  "review": "parenthetical is not a known set tag"
+ },
+ {
+  "id": "escape-halloween-2023:d2:wicked-woods:2345:culture-shock",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-28",
+  "day": 2,
+  "stage": "WICKED WOODS",
+  "start": "23:45",
+  "end": "00:45",
+  "printed": "CULTURE SHOCK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "culture-shock",
+    "role": "performer"
+   }
+  ],
+  "act": "culture-shock",
+  "closing": false,
+  "stageLineage": "escape-halloween:wicked-woods",
+  "mainStage": null
+ },
+ {
+  "id": "escape-halloween-2023:d2:wicked-woods:0045:macky-gee",
+  "source": "edition",
+  "festivalId": "escape-halloween-2023",
+  "festivalBrand": "escape-halloween",
+  "year": 2023,
+  "date": "2023-10-28",
+  "day": 2,
+  "stage": "WICKED WOODS",
+  "start": "00:45",
+  "end": "01:45",
+  "printed": "MACKY GEE",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "macky-gee",
+    "role": "performer"
+   }
+  ],
+  "act": "macky-gee",
+  "closing": true,
+  "stageLineage": "escape-halloween:wicked-woods",
+  "mainStage": null
+ },
+ {
   "id": "escape-halloween-2024:d1:the-grimm:1600:yellowtael",
   "source": "edition",
   "festivalId": "escape-halloween-2024",
