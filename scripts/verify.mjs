@@ -4021,6 +4021,38 @@ for (const [label, file] of [["contract", "scripts/test-public-plan-share.mjs"],
   }
 }
 
+// ── 1z-c8. Monthly win-back (SPEC-212 W4) ─────────────────────────────────
+// Lapsed Monthly subscribers (90 days or less, US storefront) see Apple's own
+// win-back offer, priced only from the store's strings. Eligibility fixtures
+// (active, lapsed in/out of window, non-US), nine fail-closed store states,
+// one discount at a time with the rescue, and the plan rows at 200% text.
+{
+  console.log("▸ Monthly win-back gate — eligibility fixtures, fail-closed, store prices only");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-monthly-winback.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Monthly win-back failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// Save and cancel states (SPEC-212 W4): an active subscriber's Me row says
+// whether Plus renews, ends (the save message) or has a billing issue, from
+// fixture receipts; every button is Apple's own subscription page.
+{
+  console.log("▸ Plus renewal gate — renewing, ending (save message), billing, Season Pass");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-plus-renewal.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`Plus renewal states failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // TestFlight uploads stay internal-only: the export plist sets
 // testFlightInternalTestingOnly, and an external beta group or public link
 // stops build-upload-testflight.mjs before anything uploads.
