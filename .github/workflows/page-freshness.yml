@@ -106,3 +106,20 @@ jobs:
           fi
           # Stay red until the regen PR merges.
           exit 1
+
+      # Also time-driven, also with no commit to trigger it: the Apple Music
+      # developer token (APPLE_DEV_TOKEN) expires on a date, and every Apple
+      # Music call fails together when it does. Red 21 days ahead, every day,
+      # until it is renewed. always(): a stale page must not hide this. It runs
+      # after the regen step so its failure can never open a page-regen PR.
+      - name: Apple Music developer token not near expiry
+        id: musickit
+        if: always()
+        run: node scripts/check-musickit-token.mjs --self-test && node scripts/check-musickit-token.mjs --min-days 21
+
+      - name: How to renew the Apple Music token
+        if: failure() && steps.musickit.outcome == 'failure'
+        run: |
+          echo "The Apple Music developer token is near expiry (or unreadable). Key holder only, from ~/Plursky:"
+          echo "  node scripts/sign-musickit-token.mjs <TEAM_ID> <KEY_ID> <path/to/AuthKey_KEY_ID.p8> --write"
+          echo "then bump the cache-bust, open a PR, and ship an iOS build too (the app bundles its own copy)."

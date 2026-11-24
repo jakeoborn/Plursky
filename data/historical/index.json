@@ -1556,6 +1556,37 @@
    }
   },
   {
+   "id": "defqon1-2013",
+   "festivalId": "defqon1",
+   "festivalName": "Defqon.1",
+   "name": "Defqon.1 2013",
+   "year": 2013,
+   "timezone": "Europe/Amsterdam",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2013-06-21",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2013-06-22",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2013-06-23",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 11,
+    "artists": 158,
+    "sets": 0
+   }
+  },
+  {
    "id": "dreamstate-socal-2025",
    "festivalId": "dreamstate-socal",
    "festivalName": "Dreamstate SoCal",
@@ -5275,6 +5306,32 @@
     "stages": 5,
     "artists": 146,
     "sets": 146
+   }
+  },
+  {
+   "id": "time-warp-2022",
+   "festivalId": "time-warp",
+   "festivalName": "Time Warp Germany",
+   "name": "Time Warp Germany 2022",
+   "year": 2022,
+   "timezone": "Europe/Berlin",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2022-10-28",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2022-10-29",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 23,
+    "sets": 0
    }
   },
   {

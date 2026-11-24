@@ -44,6 +44,8 @@ import { parseSonarSchedule } from "./historical/sonar-schedule.mjs";
 import { parseSzigetDays, tabDate as szigetDate } from "./historical/sziget-days-schedule.mjs";
 import { parseDefqonAreas, headerDate as defqonDate } from "./historical/defqon-schedule.mjs";
 import { parseTomorrowlandLineup } from "./historical/tomorrowland-lineup.mjs";
+import { parseTimeWarpLineup, headerDates as twHeaderDates } from "./historical/timewarp-lineup.mjs";
+import { parseDefqonGrid, dayHeading as dgDayHeading } from "./historical/defqon-grid-lineup.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const H = p => join(ROOT, "data/historical", p);
@@ -147,6 +149,14 @@ if (base && edc) {
     mustFail("an EDC page dated by neither its title nor its description", m => { imCap(m).yearFrom = "the capture's timestamp"; }, edc12);
     mustFail("an EDC page that never names Las Vegas", m => { imCap(m).place = "the URL"; }, edc12);
     mustFail("an EDC page on another city's subdomain", m => { const c = imCap(m); c.archivedUrl = c.archivedUrl.replace("//electricdaisycarnival.com/", "//orlando.electricdaisycarnival.com/"); }, edc12);
+  }
+  // Time Warp 2022: its lineup survives only in a Feb 2023 capture of the
+  // edition's own /22/ address; no other address or later year may pass.
+  const tw22 = editions["time-warp-2022"];
+  if (tw22) {
+    const twCap = m => m.provenance.captures[0];
+    mustFail("a Time Warp 2022 lineup read off the 2023 edition's address", m => { const c = twCap(m); c.archivedUrl = c.archivedUrl.replace("/22/lineup", "/23/lineup"); }, tw22, () => {}, /is not from 2022/);
+    mustFail("a Time Warp 2022 lineup captured two years on", m => { const c = twCap(m); c.archivedUrl = c.archivedUrl.replace("/web/2023", "/web/2024"); c.captureTimestamp = c.captureTimestamp.replace(/^2023/, "2024"); }, tw22, () => {}, /is not from 2022/);
   }
   // Tomorrowland 2010-2012: each day page prints its day as its own tab, with
   // no year, on the festival's own .be site.
@@ -976,6 +986,62 @@ if (base && edc) {
     tlMust("a Tomorrowland act with no name", tlPage({ days: [tlDay("Friday 19 July 2024", [tlStage("Mainstage", [tlA("x", " ")])])] }));
     tlMust("a Tomorrowland page with no Artists tab", tlPage().replace('lineup__page--artists', 'lineup__page--other'));
     tlMust("a Tomorrowland page with no Stages tab", tlPage().replace('<div class="eventdays">', '<div class="days">'));
+    // Time Warp's edition sub-site: a hidden header naming the edition and its
+    // nights, then one A-Z list per night, a live set marked by a span.
+    const twAct = (name, live = false) => `<li class="js-overlay-item"><a class="clearing" href="#"><span class="ix-header"><h3>${name}${live ? '<span class="artist-live">Live</span>' : ""}</h3></span></a></li>`;
+    const twList = (n, heading, acts) => `<h2 id="e${n}"> ${heading}<br></h2><section class="index"><ul data-id="e${n + 1}" class="ix-lineup js-overlay" data-slide-length="${acts.length}">${acts.join("")}</ul></section>`;
+    const twLists = [twList(1, "Friday A-Z", [twAct("Amelie Lens"), twAct("Reinier Zonneveld", true)]), twList(3, "Saturday A-Z", [twAct("K&ouml;lsch"), twAct("Sven Väth")])];
+    const twPage = ({ head = '<h1>Germany 22</h1><h2>28. + 29. October 2022 | Mannheim</h2>', lists = twLists } = {}) =>
+      `<title> Lineup 2022 </title><div class="hgroup" style="display: none;">${head}</div><div class="content">${lists.join("")}</div>`;
+    const twp = parseTimeWarpLineup(twPage(), { year: 2022 });
+    ok(JSON.stringify([twp.title, twp.edition, twp.city, twp.days.map(d => [d.date, d.label, d.acts])])
+      === JSON.stringify(["Lineup 2022", "Germany 22", "Mannheim", [["2022-10-28", "Friday 28 October 2022", ["Amelie Lens", "Reinier Zonneveld (Live)"]], ["2022-10-29", "Saturday 29 October 2022", ["Kölsch", "Sven Väth"]]]]),
+      `a Time Warp lineup page must come back as its header's nights, each with its acts, a live set billed "(Live)": ${JSON.stringify(twp)}`);
+    ok(JSON.stringify(twHeaderDates("1. April 2023", 2023)) === JSON.stringify(["2023-04-01"]) && twHeaderDates("31. + 32. October 2022", 2022) === null,
+      "Time Warp header dates must be real dates");
+    const twMust = (what, html, year = 2022) => { let bad = false; try { parseTimeWarpLineup(html, { year }); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    twMust("a Time Warp 2022 page read as another year's", twPage(), 2023);
+    twMust("a Time Warp page with no edition header", twPage({ head: "<h1>Lineup</h1>" }));
+    twMust("a Time Warp header naming another edition", twPage({ head: '<h1>Germany 23</h1><h2>28. + 29. October 2022 | Mannheim</h2>' }));
+    twMust("a Time Warp header date that is not a date", twPage({ head: '<h1>Germany 22</h1><h2>28. + 32. October 2022 | Mannheim</h2>' }));
+    twMust("a Time Warp page with fewer lists than nights", twPage({ lists: [twLists[0]] }));
+    twMust("a Time Warp list headed with the wrong weekday", twPage({ lists: [twLists[1], twLists[0]] }));
+    twMust("a Time Warp act with no name", twPage({ lists: [twList(1, "Friday A-Z", [twAct(" ")]), twLists[1]] }));
+    twMust("a Time Warp act listed twice on one night", twPage({ lists: [twList(1, "Friday A-Z", [twAct("Perel"), twAct("Perel")]), twLists[1]] }));
+    // Defqon.1 2013's timetable grid: one section per day, one row per area,
+    // blocks by width with no time; a named part with its acts and hosts.
+    const dgCell = (cls, inner) => `<li class="${cls}"><div class="inner">${inner}</div></li>`;
+    const dgRow = (cls, area, cells) => `<div class="day-lineup ${cls}">\n<ul class="lineup-bar">${area ? dgCell("area", area) : ""}${cells.join("")}</ul>\n</div>`;
+    const dgDay = (id, heading, rows) => `<section class="day ${id}" id="${id}"><h2 class="day-title"><span>${heading}</span></h2>${rows.join("")}</section>`;
+    const dgDays = [
+      dgDay("friday", "Festival Day 1 - Friday June 21", [dgRow("fri blue", null, [dgCell("ten", "<div><div><h3>The Gathering @ The Blue</h3>Frontliner<br>Zatox<br>Hosted By Villain &amp; Ruffian</div></div>")])]),
+      dgDay("saturday", "Festival Day 2 - Saturday June 22", [dgRow("sat red", "RED", [dgCell("one", "Ran-D"), dgCell("half double", '<div class="holder">Outbreak <br>/ Live</div>'), dgCell("one off", ""),
+        dgCell("one double", '<div class="holder">Endymion &amp;<br><span>Evil Activities</span></div>'), dgCell("half", "End<br>show")]),
+        dgRow("sat uv", "UV", [dgCell("one", "Alpha<span class=\"up\">2</span>"), dgCell("one", "N-Vitral / Live")])]),
+      dgDay("sunday", "Festival Day 3 - Sunday June 23", [dgRow("sun black", "BLACK", [dgCell("one", "Coone"), dgCell("four red ending", "<div><div><h3>The Closing</h3>Coone<br>Wildstylez<br>Hosted By Villain</div></div>")])]),
+    ];
+    const dgPage = ({ days = dgDays, title = "DEFQON.1 FESTIVAL - TIME-TABLE" } = {}) => `<title>${title}</title>${days.join("")}`;
+    const dgp = parseDefqonGrid(dgPage(), { year: 2013 });
+    ok(JSON.stringify([dgp.title, dgp.days.map(d => [d.date, d.label, d.acts.map(a => `${a.artist}@${a.stage}`)]), dgp.segments, dgp.parts.map(x => [x.heading, x.stage, x.acts, x.hosts])])
+      === JSON.stringify(["DEFQON.1 FESTIVAL - TIME-TABLE", [["2013-06-21", "Friday 21 June 2013", ["Frontliner@Blue", "Zatox@Blue"]],
+        ["2013-06-22", "Saturday 22 June 2013", ["Ran-D@Red", "Outbreak (Live)@Red", "Endymion & Evil Activities@Red", "Alpha²@UV", "N-Vitral (Live)@UV"]],
+        ["2013-06-23", "Sunday 23 June 2013", ["Coone@Black", "Coone@", "Wildstylez@"]]],
+        [{ day: 2, stage: "Red", segment: "End show" }],
+        [["The Gathering @ The Blue", "Blue", ["Frontliner", "Zatox"], ["Hosted By Villain & Ruffian"]], ["The Closing", "", ["Coone", "Wildstylez"], ["Hosted By Villain"]]]]),
+      `a Defqon.1 grid must come back as its dated days, each act with its area, live sets billed "(Live)", hosts and show segments apart: ${JSON.stringify(dgp)}`);
+    ok(dgDayHeading("Festival Day 2 - Saturday June 22", 2013)?.date === "2013-06-22" && dgDayHeading("Festival Day 2 - Sunday June 22", 2013) === null && dgDayHeading("Festival Day 2 - Saturday June 31", 2013) === null,
+      "Defqon.1 day headings must be a weekday and a real date in the year");
+    const dgMust = (what, html, year = 2013) => { let bad = false; try { parseDefqonGrid(html, { year }); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    dgMust("a Defqon.1 2013 grid read as another year's", dgPage(), 2014);
+    dgMust("a Defqon.1 grid with no day", dgPage({ days: [] }));
+    dgMust("a Defqon.1 day printed twice", dgPage({ days: [dgDays[0], dgDays[0]] }));
+    dgMust("a Defqon.1 day out of order", dgPage({ days: [dgDays[1], dgDays[0]] }));
+    dgMust("a Defqon.1 block the grid does not draw", dgPage({ days: [dgDays[0], dgDay("saturday", "Festival Day 2 - Saturday June 22", [dgRow("sat red", "RED", [dgCell("seven", "Ran-D")])])] }));
+    dgMust("a Defqon.1 gap that prints a name", dgPage({ days: [dgDays[0], dgDay("saturday", "Festival Day 2 - Saturday June 22", [dgRow("sat red", "RED", [dgCell("one off", "Ran-D")])])] }));
+    dgMust("a Defqon.1 act row with no area", dgPage({ days: [dgDays[0], dgDay("saturday", "Festival Day 2 - Saturday June 22", [dgRow("sat red", null, [dgCell("one", "Ran-D")])])] }));
+    dgMust("a Defqon.1 day naming no act", dgPage({ days: [dgDays[0], dgDay("saturday", "Festival Day 2 - Saturday June 22", [dgRow("sat red", "RED", [dgCell("one off", "")])])] }));
+    dgMust("a Defqon.1 named part with hosts only", dgPage({ days: [dgDay("friday", "Festival Day 1 - Friday June 21", [dgRow("fri blue", null, [dgCell("ten", "<div><div><h3>The Gathering @ The Blue</h3>Hosted By Villain</div></div>")])])] }));
+    dgMust("a Defqon.1 named part drawn in another area's row", dgPage({ days: [dgDay("friday", "Festival Day 1 - Friday June 21", [dgRow("fri red", "RED", [dgCell("ten", "<div><div><h3>The Gathering @ The Blue</h3>Zatox</div></div>")])])] }));
     // Outside Lands' 2022-2025 lineup widget: its script sets the options on
     // one line of JSON; each artist lists its performances, a shared set (a
     // b2b) under each artist with the same id, every time with its offset.
