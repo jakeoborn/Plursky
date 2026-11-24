@@ -5,7 +5,7 @@
  "year": 2020,
  "timezone": "America/Mexico_City",
  "rolloverHour": 6,
- "completeness": "lineup_only",
+ "completeness": "complete_schedule",
  "days": [
   {
    "day": 1,
@@ -23,791 +23,83 @@
    "label": "Sunday"
   }
  ],
- "stages": [],
+ "stages": [
+  {
+   "id": "edc-mexico-2020:kinetic-field",
+   "name": "Kinetic Field"
+  },
+  {
+   "id": "edc-mexico-2020:circuit-grounds",
+   "name": "Circuit Grounds"
+  },
+  {
+   "id": "edc-mexico-2020:neon-garden",
+   "name": "Neon Garden"
+  },
+  {
+   "id": "edc-mexico-2020:wasteland",
+   "name": "Wasteland"
+  },
+  {
+   "id": "edc-mexico-2020:dos-equis-stage",
+   "name": "Dos Equis Stage"
+  },
+  {
+   "id": "edc-mexico-2020:stereo-bloom",
+   "name": "Stereo Bloom"
+  },
+  {
+   "id": "edc-mexico-2020:boombox-art-car",
+   "name": "Boombox Art Car"
+  },
+  {
+   "id": "edc-mexico-2020:wide-awake-art-car",
+   "name": "Wide Awake Art Car"
+  },
+  {
+   "id": "edc-mexico-2020:bionic-jungle",
+   "name": "Bionic Jungle"
+  }
+ ],
  "artists": [
   {
-   "id": "edc-mexico-2020:12th-planet",
-   "name": "12th Planet",
-   "key": "12th-planet",
+   "id": "edc-mexico-2020:leon-leiden",
+   "name": "Leon Leiden",
+   "key": "leon-leiden",
    "performers": [
-    "12th-planet"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
+    "leon-leiden"
    ]
   },
   {
-   "id": "edc-mexico-2020:2-1-timmy-trumpet-b2b-w-and-w",
-   "name": "2=1 (Timmy Trumpet B2B W&W)",
-   "key": "2-1-timmy-trumpet-b2b-w-and-w",
+   "id": "edc-mexico-2020:qrion",
+   "name": "Qrion",
+   "key": "qrion",
    "performers": [
-    "2-1-timmy-trumpet",
-    "w-and-w"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
+    "qrion"
    ]
   },
   {
-   "id": "edc-mexico-2020:a-zar",
-   "name": "A-ZAR",
-   "key": "a-zar",
+   "id": "edc-mexico-2020:party-favor",
+   "name": "Party Favor",
+   "key": "party-favor",
    "performers": [
-    "a-zar"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
+    "party-favor"
    ]
   },
   {
-   "id": "edc-mexico-2020:abraham-ramirez",
-   "name": "Abraham Ramirez",
-   "key": "abraham-ramirez",
+   "id": "edc-mexico-2020:said-the-sky",
+   "name": "Said The Sky",
+   "key": "said-the-sky",
    "performers": [
-    "abraham-ramirez"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
+    "said-the-sky"
    ]
   },
   {
-   "id": "edc-mexico-2020:adgel-b2b-tblmkr",
-   "name": "Adgel B2B TBLMKR",
-   "key": "adgel-b2b-tblmkr",
+   "id": "edc-mexico-2020:oliver-heldens",
+   "name": "Oliver Heldens",
+   "key": "oliver-heldens",
    "performers": [
-    "adgel",
-    "tblmkr"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:adin",
-   "name": "ADIN",
-   "key": "adin",
-   "performers": [
-    "adin"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:alan-salomon",
-   "name": "Alan Salomon",
-   "key": "alan-salomon",
-   "performers": [
-    "alan-salomon"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:alby-loud",
-   "name": "Alby Loud",
-   "key": "alby-loud",
-   "performers": [
-    "alby-loud"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:ale-q-b2b-pako-rodriguez",
-   "name": "Ale Q B2B Pako Rodriguez",
-   "key": "ale-q-b2b-pako-rodriguez",
-   "performers": [
-    "ale-q",
-    "pako-rodriguez"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:alessandra-roncone",
-   "name": "Alessandra Roncone",
-   "key": "alessandra-roncone",
-   "performers": [
-    "alessandra-roncone"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:alex-midi",
-   "name": "Alex Midi",
-   "key": "alex-midi",
-   "performers": [
-    "alex-midi"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:alfred-beck",
-   "name": "Alfred Beck",
-   "key": "alfred-beck",
-   "performers": [
-    "alfred-beck"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:amg",
-   "name": "AMG",
-   "key": "amg",
-   "performers": [
-    "amg"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:andrea-acosta",
-   "name": "Andrea Acosta",
-   "key": "andrea-acosta",
-   "performers": [
-    "andrea-acosta"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:angry-beats",
-   "name": "Angry Beats",
-   "key": "angry-beats",
-   "performers": [
-    "angry-beats"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:aranxa",
-   "name": "Aranxa",
-   "key": "aranxa",
-   "performers": [
-    "aranxa"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:armi-diamonds",
-   "name": "Armi Diamonds",
-   "key": "armi-diamonds",
-   "performers": [
-    "armi-diamonds"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:armin-van-buuren",
-   "name": "Armin van Buuren",
-   "key": "armin-van-buuren",
-   "performers": [
-    "armin-van-buuren"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:army-of-skanks",
-   "name": "Army of Skanks",
-   "key": "army-of-skanks",
-   "performers": [
-    "army-of-skanks"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:audiofreq",
-   "name": "Audiofreq",
-   "key": "audiofreq",
-   "performers": [
-    "audiofreq"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:audiofreq-b2b-darksiderz",
-   "name": "Audiofreq B2B Darksiderz",
-   "key": "audiofreq-b2b-darksiderz",
-   "performers": [
-    "audiofreq",
-    "darksiderz"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:bagha",
-   "name": "Bagha",
-   "key": "bagha",
-   "performers": [
-    "bagha"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:balcazar",
-   "name": "Balcazar",
-   "key": "balcazar",
-   "performers": [
-    "balcazar"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:barbie-chola-b2b-not-a-chinese",
-   "name": "Barbie Chola B2B Not A Chinese",
-   "key": "barbie-chola-b2b-not-a-chinese",
-   "performers": [
-    "barbie-chola",
-    "not-a-chinese"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:belmar",
-   "name": "Belmar",
-   "key": "belmar",
-   "performers": [
-    "belmar"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:ben-nicky-presents-xtreme",
-   "name": "Ben Nicky presents Xtreme",
-   "key": "ben-nicky-presents-xtreme",
-   "performers": [
-    "ben-nicky-presents-xtreme"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:berelau",
-   "name": "Berelau",
-   "key": "berelau",
-   "performers": [
-    "berelau"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:big-wild",
-   "name": "Big Wild",
-   "key": "big-wild",
-   "performers": [
-    "big-wild"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:bizarrap",
-   "name": "Bizarrap",
-   "key": "bizarrap",
-   "performers": [
-    "bizarrap"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:blastoyz",
-   "name": "Blastoyz",
-   "key": "blastoyz",
-   "performers": [
-    "blastoyz"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:bonhaus",
-   "name": "BonHaus",
-   "key": "bonhaus",
-   "performers": [
-    "bonhaus"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:bontan",
-   "name": "Bontan",
-   "key": "bontan",
-   "performers": [
-    "bontan"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:borgore",
-   "name": "Borgore",
-   "key": "borgore",
-   "performers": [
-    "borgore"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:born-dirty",
-   "name": "Born Dirty",
-   "key": "born-dirty",
-   "performers": [
-    "born-dirty"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:bsno",
-   "name": "BSNO",
-   "key": "bsno",
-   "performers": [
-    "bsno"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:bubu",
-   "name": "Bubu",
-   "key": "bubu",
-   "performers": [
-    "bubu"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:bufi",
-   "name": "Bufi",
-   "key": "bufi",
-   "performers": [
-    "bufi"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:cabizbajo",
-   "name": "Cabizbajo",
-   "key": "cabizbajo",
-   "performers": [
-    "cabizbajo"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:carl-cox",
-   "name": "Carl Cox",
-   "key": "carl-cox",
-   "performers": [
-    "carl-cox"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:carlita",
-   "name": "Carlita",
-   "key": "carlita",
-   "performers": [
-    "carlita"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:carlos-belatti",
-   "name": "Carlos Belatti",
-   "key": "carlos-belatti",
-   "performers": [
-    "carlos-belatti"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:cash-cash",
-   "name": "Cash Cash",
-   "key": "cash-cash",
-   "performers": [
-    "cash-cash"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:chanty-otm",
-   "name": "Chanty OTM",
-   "key": "chanty-otm",
-   "performers": [
-    "chanty-otm"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:charlotte-fehler",
-   "name": "Charlotte Fehler",
-   "key": "charlotte-fehler",
-   "performers": [
-    "charlotte-fehler"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:chase-and-status-dj-set",
-   "name": "Chase & Status (DJ Set)",
-   "key": "chase-and-status-dj-set",
-   "performers": [
-    "chase-and-status-dj-set"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:chris-schweizer",
-   "name": "Chris Schweizer",
-   "key": "chris-schweizer",
-   "performers": [
-    "chris-schweizer"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:code-black",
-   "name": "Code Black",
-   "key": "code-black",
-   "performers": [
-    "code-black"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:craig-connelly",
-   "name": "Craig Connelly",
-   "key": "craig-connelly",
-   "performers": [
-    "craig-connelly"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:cristoph",
-   "name": "Cristoph",
-   "key": "cristoph",
-   "performers": [
-    "cristoph"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:d-sturb",
-   "name": "D-Sturb",
-   "key": "d-sturb",
-   "performers": [
-    "d-sturb"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:da-tweekaz",
-   "name": "Da Tweekaz",
-   "key": "da-tweekaz",
-   "performers": [
-    "da-tweekaz"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:dam-dam",
-   "name": "Dam Dam",
-   "key": "dam-dam",
-   "performers": [
-    "dam-dam"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:daniel-weil",
-   "name": "Daniel Weil",
-   "key": "daniel-weil",
-   "performers": [
-    "daniel-weil"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:danny-howard",
-   "name": "Danny Howard",
-   "key": "danny-howard",
-   "performers": [
-    "danny-howard"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:darksiderz",
-   "name": "Darksiderz",
-   "key": "darksiderz",
-   "performers": [
-    "darksiderz"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:dave-ralph",
-   "name": "Dave Ralph",
-   "key": "dave-ralph",
-   "performers": [
-    "dave-ralph"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:david-guetta",
-   "name": "David Guetta",
-   "key": "david-guetta",
-   "performers": [
-    "david-guetta"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:dayanna-ro",
-   "name": "Dayanna Ro",
-   "key": "dayanna-ro",
-   "performers": [
-    "dayanna-ro"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:dayvi",
-   "name": "Dayvi",
-   "key": "dayvi",
-   "performers": [
-    "dayvi"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:definitive",
-   "name": "Definitive",
-   "key": "definitive",
-   "performers": [
-    "definitive"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
+    "oliver-heldens"
    ]
   },
   {
@@ -816,89 +108,6 @@
    "key": "deorro",
    "performers": [
     "deorro"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:derlow",
-   "name": "Derlow",
-   "key": "derlow",
-   "performers": [
-    "derlow"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:diplo",
-   "name": "Diplo",
-   "key": "diplo",
-   "performers": [
-    "diplo"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:dj-anime",
-   "name": "DJ AniMe",
-   "key": "dj-anime",
-   "performers": [
-    "dj-anime"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:dj-nelson",
-   "name": "DJ Nelson",
-   "key": "dj-nelson",
-   "performers": [
-    "dj-nelson"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:dj-p0ll0",
-   "name": "DJ P0ll0",
-   "key": "dj-p0ll0",
-   "performers": [
-    "dj-p0ll0"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:dombresky",
-   "name": "Dombresky",
-   "key": "dombresky",
-   "performers": [
-    "dombresky"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
    ]
   },
   {
@@ -907,377 +116,6 @@
    "key": "don-diablo",
    "performers": [
     "don-diablo"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:duke-dumont",
-   "name": "Duke Dumont",
-   "key": "duke-dumont",
-   "performers": [
-    "duke-dumont"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:dunnowho",
-   "name": "Dunnowho",
-   "key": "dunnowho",
-   "performers": [
-    "dunnowho"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:ekali",
-   "name": "Ekali",
-   "key": "ekali",
-   "performers": [
-    "ekali"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:eli-brown",
-   "name": "Eli Brown",
-   "key": "eli-brown",
-   "performers": [
-    "eli-brown"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:elohim",
-   "name": "Elohim",
-   "key": "elohim",
-   "performers": [
-    "elohim"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:enrico-sangiuliano",
-   "name": "Enrico Sangiuliano",
-   "key": "enrico-sangiuliano",
-   "performers": [
-    "enrico-sangiuliano"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:enya-botello",
-   "name": "Enya Botello",
-   "key": "enya-botello",
-   "performers": [
-    "enya-botello"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:erick-t",
-   "name": "Erick T",
-   "key": "erick-t",
-   "performers": [
-    "erick-t"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:esamipau",
-   "name": "EsaMiPau",
-   "key": "esamipau",
-   "performers": [
-    "esamipau"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:europa-jax-jones-and-martin-solveig",
-   "name": "Europa (Jax Jones & Martin Solveig)",
-   "key": "europa-jax-jones-and-martin-solveig",
-   "performers": [
-    "europa-jax-jones-and-martin-solveig"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:f4st",
-   "name": "F4ST",
-   "key": "f4st",
-   "performers": [
-    "f4st"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:fango",
-   "name": "Fango",
-   "key": "fango",
-   "performers": [
-    "fango"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:feii-vega",
-   "name": "Feii Vega",
-   "key": "feii-vega",
-   "performers": [
-    "feii-vega"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:fight-clvb",
-   "name": "Fight Clvb",
-   "key": "fight-clvb",
-   "performers": [
-    "fight-clvb"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:fito-silva",
-   "name": "Fito Silva",
-   "key": "fito-silva",
-   "performers": [
-    "fito-silva"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:flor-capistran",
-   "name": "Flor Capistran",
-   "key": "flor-capistran",
-   "performers": [
-    "flor-capistran"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:fortu-and-mendoza",
-   "name": "Fortu & Mendoza",
-   "key": "fortu-and-mendoza",
-   "performers": [
-    "fortu-and-mendoza"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:francis-davila",
-   "name": "Francis Davila",
-   "key": "francis-davila",
-   "performers": [
-    "francis-davila"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:fruti",
-   "name": "Fruti",
-   "key": "fruti",
-   "performers": [
-    "fruti"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:gamboa",
-   "name": "Gamboa",
-   "key": "gamboa",
-   "performers": [
-    "gamboa"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:ghetto-kids",
-   "name": "Ghetto Kids",
-   "key": "ghetto-kids",
-   "performers": [
-    "ghetto-kids"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:gian-varela-b2b-arguello",
-   "name": "Gian Varela B2B Argüello",
-   "key": "gian-varela-b2b-arguello",
-   "performers": [
-    "gian-varela",
-    "arguello"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:giuseppe-ottaviani",
-   "name": "Giuseppe Ottaviani",
-   "key": "giuseppe-ottaviani",
-   "performers": [
-    "giuseppe-ottaviani"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:grimix",
-   "name": "Grimix",
-   "key": "grimix",
-   "performers": [
-    "grimix"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:guztavo-mx-b2b-charlie-atom",
-   "name": "Guztavo MX B2B Charlie Atom",
-   "key": "guztavo-mx-b2b-charlie-atom",
-   "performers": [
-    "guztavo-mx",
-    "charlie-atom"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:haaradak",
-   "name": "Haaradak",
-   "key": "haaradak",
-   "performers": [
-    "haaradak"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:hajj",
-   "name": "Hajj",
-   "key": "hajj",
-   "performers": [
-    "hajj"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:hannah-wants",
-   "name": "Hannah Wants",
-   "key": "hannah-wants",
-   "performers": [
-    "hannah-wants"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
    ]
   },
   {
@@ -1287,847 +125,22 @@
    "performers": [
     "headhunterz",
     "yellow-claw"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
    ]
   },
   {
-   "id": "edc-mexico-2020:holder",
-   "name": "Holder",
-   "key": "holder",
+   "id": "edc-mexico-2020:bonhaus",
+   "name": "BonHaus",
+   "key": "bonhaus",
    "performers": [
-    "holder"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
+    "bonhaus"
    ]
   },
   {
-   "id": "edc-mexico-2020:holly",
-   "name": "Holly",
-   "key": "holly",
+   "id": "edc-mexico-2020:noizekid",
+   "name": "Noizekid",
+   "key": "noizekid",
    "performers": [
-    "holly"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:innobass-b2b-milomilo",
-   "name": "Innobass B2B MiloMilo",
-   "key": "innobass-b2b-milomilo",
-   "performers": [
-    "innobass",
-    "milomilo"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:ivy-kst",
-   "name": "IVY.KST!",
-   "key": "ivy-kst",
-   "performers": [
-    "ivy-kst"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:inigo-vontier",
-   "name": "Iñigo Vontier",
-   "key": "inigo-vontier",
-   "performers": [
-    "inigo-vontier"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:jauz",
-   "name": "Jauz",
-   "key": "jauz",
-   "performers": [
-    "jauz"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:jenia-tarsol",
-   "name": "Jenia Tarsol",
-   "key": "jenia-tarsol",
-   "performers": [
-    "jenia-tarsol"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:jenouise",
-   "name": "Jenouise",
-   "key": "jenouise",
-   "performers": [
-    "jenouise"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:jerry-davila",
-   "name": "Jerry Davila",
-   "key": "jerry-davila",
-   "performers": [
-    "jerry-davila"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:joe-rose-b2b-dj-hu",
-   "name": "Joe Rose B2B DJ Hu",
-   "key": "joe-rose-b2b-dj-hu",
-   "performers": [
-    "joe-rose",
-    "dj-hu"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:jonas-blue",
-   "name": "Jonas Blue",
-   "key": "jonas-blue",
-   "performers": [
-    "jonas-blue"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:joris-voorn",
-   "name": "Joris Voorn",
-   "key": "joris-voorn",
-   "performers": [
-    "joris-voorn"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:joyryde",
-   "name": "JOYRYDE",
-   "key": "joyryde",
-   "performers": [
-    "joyryde"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:justine",
-   "name": "Justine",
-   "key": "justine",
-   "performers": [
-    "justine"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:k-i-d",
-   "name": "K.I.D.",
-   "key": "k-i-d",
-   "performers": [
-    "k-i-d"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:karina-rosee",
-   "name": "Karina Rosee",
-   "key": "karina-rosee",
-   "performers": [
-    "karina-rosee"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:kawas",
-   "name": "Kawas",
-   "key": "kawas",
-   "performers": [
-    "kawas"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:kayzo",
-   "name": "Kayzo",
-   "key": "kayzo",
-   "performers": [
-    "kayzo"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:kevin-brand",
-   "name": "Kevin Brand",
-   "key": "kevin-brand",
-   "performers": [
-    "kevin-brand"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:kidnap",
-   "name": "Kidnap",
-   "key": "kidnap",
-   "performers": [
-    "kidnap"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:kikeone-presents-k1",
-   "name": "KikeONE presents K1",
-   "key": "kikeone-presents-k1",
-   "performers": [
-    "kikeone-presents-k1"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:kleinfinger",
-   "name": "Kleinfinger",
-   "key": "kleinfinger",
-   "performers": [
-    "kleinfinger"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:knife-party",
-   "name": "Knife Party",
-   "key": "knife-party",
-   "performers": [
-    "knife-party"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:kris-berle",
-   "name": "Kris Berle",
-   "key": "kris-berle",
-   "performers": [
-    "kris-berle"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:kristina-sky",
-   "name": "Kristina Sky",
-   "key": "kristina-sky",
-   "performers": [
-    "kristina-sky"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:kshmr",
-   "name": "KSHMR",
-   "key": "kshmr",
-   "performers": [
-    "kshmr"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:kutski",
-   "name": "Kutski",
-   "key": "kutski",
-   "performers": [
-    "kutski"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:kolsch",
-   "name": "Kölsch",
-   "key": "kolsch",
-   "performers": [
-    "kolsch"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:lady-faith",
-   "name": "Lady Faith",
-   "key": "lady-faith",
-   "performers": [
-    "lady-faith"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:lauren-lane",
-   "name": "Lauren Lane",
-   "key": "lauren-lane",
-   "performers": [
-    "lauren-lane"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:le-twins",
-   "name": "Le Twins",
-   "key": "le-twins",
-   "performers": [
-    "le-twins"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:lemarroy",
-   "name": "Lemarroy",
-   "key": "lemarroy",
-   "performers": [
-    "lemarroy"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:leon-leiden",
-   "name": "Leon Leiden",
-   "key": "leon-leiden",
-   "performers": [
-    "leon-leiden"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:lil-texas",
-   "name": "Lil Texas",
-   "key": "lil-texas",
-   "performers": [
-    "lil-texas"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:lizz",
-   "name": "Lizz",
-   "key": "lizz",
-   "performers": [
-    "lizz"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:lokier",
-   "name": "Lokier",
-   "key": "lokier",
-   "performers": [
-    "lokier"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:losh",
-   "name": "LOSH",
-   "key": "losh",
-   "performers": [
-    "losh"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:louis-the-child",
-   "name": "Louis The Child",
-   "key": "louis-the-child",
-   "performers": [
-    "louis-the-child"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:lsdream",
-   "name": "LSDREAM",
-   "key": "lsdream",
-   "performers": [
-    "lsdream"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:luciana",
-   "name": "Luciana",
-   "key": "luciana",
-   "performers": [
-    "luciana"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:lujavo-b2b-fancy-folks",
-   "name": "Lujavo B2B Fancy Folks",
-   "key": "lujavo-b2b-fancy-folks",
-   "performers": [
-    "lujavo",
-    "fancy-folks"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:lumber-jack",
-   "name": "Lumber Jack",
-   "key": "lumber-jack",
-   "performers": [
-    "lumber-jack"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:ma-less",
-   "name": "Ma-Less",
-   "key": "ma-less",
-   "performers": [
-    "ma-less"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:maahez",
-   "name": "Maahez",
-   "key": "maahez",
-   "performers": [
-    "maahez"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:macarena",
-   "name": "Macarena",
-   "key": "macarena",
-   "performers": [
-    "macarena"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:madeon-live",
-   "name": "Madeon (Live)",
-   "key": "madeon-live",
-   "performers": [
-    "madeon-live"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:mandragora",
-   "name": "Mandragora",
-   "key": "mandragora",
-   "performers": [
-    "mandragora"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:mandrake",
-   "name": "Mandrake",
-   "key": "mandrake",
-   "performers": [
-    "mandrake"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:marco-almanza",
-   "name": "Marco Almanza",
-   "key": "marco-almanza",
-   "performers": [
-    "marco-almanza"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:marco-carola",
-   "name": "Marco Carola",
-   "key": "marco-carola",
-   "performers": [
-    "marco-carola"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:mariana-bo",
-   "name": "Mariana Bo",
-   "key": "mariana-bo",
-   "performers": [
-    "mariana-bo"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:mariana-revilla",
-   "name": "Mariana Revilla",
-   "key": "mariana-revilla",
-   "performers": [
-    "mariana-revilla"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:mark-cast",
-   "name": "Mark Cast",
-   "key": "mark-cast",
-   "performers": [
-    "mark-cast"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:mason-maynard",
-   "name": "Mason Maynard",
-   "key": "mason-maynard",
-   "performers": [
-    "mason-maynard"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:matias-aguayo-live",
-   "name": "Matias Aguayo (Live)",
-   "key": "matias-aguayo-live",
-   "performers": [
-    "matias-aguayo-live"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:matrix-and-futurebound",
-   "name": "Matrix & Futurebound",
-   "key": "matrix-and-futurebound",
-   "performers": [
-    "matrix-and-futurebound"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:meduza",
-   "name": "Meduza",
-   "key": "meduza",
-   "performers": [
-    "meduza"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:megalight",
-   "name": "Megalight",
-   "key": "megalight",
-   "performers": [
-    "megalight"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:mele",
-   "name": "Melé",
-   "key": "mele",
-   "performers": [
-    "mele"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:mental",
-   "name": "Mental",
-   "key": "mental",
-   "performers": [
-    "mental"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:mi-il",
-   "name": "Mi$$il",
-   "key": "mi-il",
-   "performers": [
-    "mi-il"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:michael-mayer",
-   "name": "Michael Mayer",
-   "key": "michael-mayer",
-   "performers": [
-    "michael-mayer"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:mira-mira",
-   "name": "Mirá Mirá",
-   "key": "mira-mira",
-   "performers": [
-    "mira-mira"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:momis-alanis-b2b-nina",
-   "name": "Momis Alanis B2B Nina",
-   "key": "momis-alanis-b2b-nina",
-   "performers": [
-    "momis-alanis",
-    "nina"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
+    "noizekid"
    ]
   },
   {
@@ -2136,154 +149,110 @@
    "key": "moska",
    "performers": [
     "moska"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
    ]
   },
   {
-   "id": "edc-mexico-2020:mr-pauer",
-   "name": "Mr. Pauer",
-   "key": "mr-pauer",
+   "id": "edc-mexico-2020:ghetto-kids",
+   "name": "Ghetto Kids",
+   "key": "ghetto-kids",
    "performers": [
-    "mr-pauer"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
+    "ghetto-kids"
    ]
   },
   {
-   "id": "edc-mexico-2020:muzik-junkies",
-   "name": "Muzik Junkies",
-   "key": "muzik-junkies",
+   "id": "edc-mexico-2020:elohim",
+   "name": "Elohim",
+   "key": "elohim",
    "performers": [
-    "muzik-junkies"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
+    "elohim"
    ]
   },
   {
-   "id": "edc-mexico-2020:mykka",
-   "name": "Mykka",
-   "key": "mykka",
+   "id": "edc-mexico-2020:borgore",
+   "name": "Borgore",
+   "key": "borgore",
    "performers": [
-    "mykka"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
+    "borgore"
    ]
   },
   {
-   "id": "edc-mexico-2020:mystery-affair",
-   "name": "Mystery Affair",
-   "key": "mystery-affair",
+   "id": "edc-mexico-2020:vini-vici",
+   "name": "Vini Vici",
+   "key": "vini-vici",
    "performers": [
-    "mystery-affair"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
+    "vini-vici"
    ]
   },
   {
-   "id": "edc-mexico-2020:mzrin",
-   "name": "Mzrin",
-   "key": "mzrin",
+   "id": "edc-mexico-2020:chase-and-status-dj-set",
+   "name": "Chase & Status (DJ Set)",
+   "key": "chase-and-status-dj-set",
    "performers": [
-    "mzrin"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
+    "chase-and-status-dj-set"
    ]
   },
   {
-   "id": "edc-mexico-2020:natalia",
-   "name": "Natalia",
-   "key": "natalia",
+   "id": "edc-mexico-2020:zedd",
+   "name": "Zedd",
+   "key": "zedd",
    "performers": [
-    "natalia"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
+    "zedd"
    ]
   },
   {
-   "id": "edc-mexico-2020:nemesiz",
-   "name": "NemesiZ",
-   "key": "nemesiz",
+   "id": "edc-mexico-2020:jenouise",
+   "name": "Jenouise",
+   "key": "jenouise",
    "performers": [
-    "nemesiz"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
+    "jenouise"
    ]
   },
   {
-   "id": "edc-mexico-2020:nghtmre",
-   "name": "NGHTMRE",
-   "key": "nghtmre",
+   "id": "edc-mexico-2020:dave-ralph",
+   "name": "Dave Ralph",
+   "key": "dave-ralph",
    "performers": [
-    "nghtmre"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
+    "dave-ralph"
    ]
   },
   {
-   "id": "edc-mexico-2020:nightstalker-mc-xyz",
-   "name": "Nightstalker + MC XYZ",
-   "key": "nightstalker-mc-xyz",
+   "id": "edc-mexico-2020:mele",
+   "name": "Melé",
+   "key": "mele",
    "performers": [
-    "nightstalker-mc-xyz"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
+    "mele"
    ]
   },
   {
-   "id": "edc-mexico-2020:nitti-gritti",
-   "name": "Nitti Gritti",
-   "key": "nitti-gritti",
+   "id": "edc-mexico-2020:yousef",
+   "name": "Yousef",
+   "key": "yousef",
    "performers": [
-    "nitti-gritti"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
+    "yousef"
    ]
   },
   {
-   "id": "edc-mexico-2020:niza",
-   "name": "Niza",
-   "key": "niza",
+   "id": "edc-mexico-2020:kolsch",
+   "name": "Kölsch",
+   "key": "kolsch",
    "performers": [
-    "niza"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
+    "kolsch"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:carl-cox",
+   "name": "Carl Cox",
+   "key": "carl-cox",
+   "performers": [
+    "carl-cox"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:karina-rosee",
+   "name": "Karina Rosee",
+   "key": "karina-rosee",
+   "performers": [
+    "karina-rosee"
    ]
   },
   {
@@ -2293,232 +262,86 @@
    "performers": [
     "noise-dimentionz",
     "universe-controller"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
    ]
   },
   {
-   "id": "edc-mexico-2020:noizekid",
-   "name": "Noizekid",
-   "key": "noizekid",
+   "id": "edc-mexico-2020:warface",
+   "name": "Warface",
+   "key": "warface",
    "performers": [
-    "noizekid"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
+    "warface"
    ]
   },
   {
-   "id": "edc-mexico-2020:noizu",
-   "name": "Noizu",
-   "key": "noizu",
+   "id": "edc-mexico-2020:kutski",
+   "name": "Kutski",
+   "key": "kutski",
    "performers": [
-    "noizu"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
+    "kutski"
    ]
   },
   {
-   "id": "edc-mexico-2020:nora-bautista",
-   "name": "Nora Bautista",
-   "key": "nora-bautista",
+   "id": "edc-mexico-2020:lady-faith",
+   "name": "Lady Faith",
+   "key": "lady-faith",
    "performers": [
-    "nora-bautista"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
+    "lady-faith"
    ]
   },
   {
-   "id": "edc-mexico-2020:olazaran",
-   "name": "Olazaran",
-   "key": "olazaran",
+   "id": "edc-mexico-2020:da-tweekaz",
+   "name": "Da Tweekaz",
+   "key": "da-tweekaz",
    "performers": [
-    "olazaran"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
+    "da-tweekaz"
    ]
   },
   {
-   "id": "edc-mexico-2020:oliver-heldens",
-   "name": "Oliver Heldens",
-   "key": "oliver-heldens",
+   "id": "edc-mexico-2020:code-black",
+   "name": "Code Black",
+   "key": "code-black",
    "performers": [
-    "oliver-heldens"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
+    "code-black"
    ]
   },
   {
-   "id": "edc-mexico-2020:oskier",
-   "name": "Oskier",
-   "key": "oskier",
+   "id": "edc-mexico-2020:kikeone-presents-k1",
+   "name": "KikeONE presents K1",
+   "key": "kikeone-presents-k1",
    "performers": [
-    "oskier"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
+    "kikeone-presents-k1"
    ]
   },
   {
-   "id": "edc-mexico-2020:party-favor",
-   "name": "Party Favor",
-   "key": "party-favor",
+   "id": "edc-mexico-2020:vicrey",
+   "name": "Vicrey",
+   "key": "vicrey",
    "performers": [
-    "party-favor"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
+    "vicrey"
    ]
   },
   {
-   "id": "edc-mexico-2020:patrick-topping",
-   "name": "Patrick Topping",
-   "key": "patrick-topping",
+   "id": "edc-mexico-2020:nemesiz",
+   "name": "NemesiZ",
+   "key": "nemesiz",
    "performers": [
-    "patrick-topping"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
+    "nemesiz"
    ]
   },
   {
-   "id": "edc-mexico-2020:paul-woolford",
-   "name": "Paul Woolford",
-   "key": "paul-woolford",
+   "id": "edc-mexico-2020:army-of-skanks",
+   "name": "Army of Skanks",
+   "key": "army-of-skanks",
    "performers": [
-    "paul-woolford"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
+    "army-of-skanks"
    ]
   },
   {
-   "id": "edc-mexico-2020:paulor",
-   "name": "Paulor",
-   "key": "paulor",
+   "id": "edc-mexico-2020:le-twins",
+   "name": "Le Twins",
+   "key": "le-twins",
    "performers": [
-    "paulor"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:pauza",
-   "name": "Pauza",
-   "key": "pauza",
-   "performers": [
-    "pauza"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:phantoms-live",
-   "name": "Phantoms (Live)",
-   "key": "phantoms-live",
-   "performers": [
-    "phantoms-live"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:pinto",
-   "name": "Pinto",
-   "key": "pinto",
-   "performers": [
-    "pinto"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:polybiu",
-   "name": "Polybiu$",
-   "key": "polybiu",
-   "performers": [
-    "polybiu"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:qrion",
-   "name": "Qrion",
-   "key": "qrion",
-   "performers": [
-    "qrion"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:rad-cat",
-   "name": "Rad Cat",
-   "key": "rad-cat",
-   "performers": [
-    "rad-cat"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:rawtek",
-   "name": "Rawtek",
-   "key": "rawtek",
-   "performers": [
-    "rawtek"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
+    "le-twins"
    ]
   },
   {
@@ -2527,24 +350,150 @@
    "key": "raymix",
    "performers": [
     "raymix"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
    ]
   },
   {
-   "id": "edc-mexico-2020:rebolledo",
-   "name": "Rebolledo",
-   "key": "rebolledo",
+   "id": "edc-mexico-2020:dayvi",
+   "name": "Dayvi",
+   "key": "dayvi",
    "performers": [
-    "rebolledo"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
+    "dayvi"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:armi-diamonds",
+   "name": "Armi Diamonds",
+   "key": "armi-diamonds",
+   "performers": [
+    "armi-diamonds"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:bsno",
+   "name": "BSNO",
+   "key": "bsno",
+   "performers": [
+    "bsno"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:alan-salomon",
+   "name": "Alan Salomon",
+   "key": "alan-salomon",
+   "performers": [
+    "alan-salomon"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:zaa",
+   "name": "Zaa",
+   "key": "zaa",
+   "performers": [
+    "zaa"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:svbvg",
+   "name": "SVBVG",
+   "key": "svbvg",
+   "performers": [
+    "svbvg"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:holly",
+   "name": "Holly",
+   "key": "holly",
+   "performers": [
+    "holly"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:rawtek",
+   "name": "Rawtek",
+   "key": "rawtek",
+   "performers": [
+    "rawtek"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:nitti-gritti",
+   "name": "Nitti Gritti",
+   "key": "nitti-gritti",
+   "performers": [
+    "nitti-gritti"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:wuki",
+   "name": "Wuki",
+   "key": "wuki",
+   "performers": [
+    "wuki"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:softest-hard",
+   "name": "Softest Hard",
+   "key": "softest-hard",
+   "performers": [
+    "softest-hard"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:fight-clvb",
+   "name": "Fight Clvb",
+   "key": "fight-clvb",
+   "performers": [
+    "fight-clvb"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:charlotte-fehler",
+   "name": "Charlotte Fehler",
+   "key": "charlotte-fehler",
+   "performers": [
+    "charlotte-fehler"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:fito-silva",
+   "name": "Fito Silva",
+   "key": "fito-silva",
+   "performers": [
+    "fito-silva"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:sheco",
+   "name": "Sheco",
+   "key": "sheco",
+   "performers": [
+    "sheco"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:olazaran",
+   "name": "Olazaran",
+   "key": "olazaran",
+   "performers": [
+    "olazaran"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:nora-bautista",
+   "name": "Nora Bautista",
+   "key": "nora-bautista",
+   "performers": [
+    "nora-bautista"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:kevin-brand",
+   "name": "Kevin Brand",
+   "key": "kevin-brand",
+   "performers": [
+    "kevin-brand"
    ]
   },
   {
@@ -2553,11 +502,676 @@
    "key": "regina-puma",
    "performers": [
     "regina-puma"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:belmar",
+   "name": "Belmar",
+   "key": "belmar",
+   "performers": [
+    "belmar"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:berelau",
+   "name": "Berelau",
+   "key": "berelau",
+   "performers": [
+    "berelau"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:esamipau",
+   "name": "EsaMiPau",
+   "key": "esamipau",
+   "performers": [
+    "esamipau"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:polybiu",
+   "name": "Polybiu$",
+   "key": "polybiu",
+   "performers": [
+    "polybiu"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:macarena",
+   "name": "Macarena",
+   "key": "macarena",
+   "performers": [
+    "macarena"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:sintonika",
+   "name": "Sintonika",
+   "key": "sintonika",
+   "performers": [
+    "sintonika"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:f4st",
+   "name": "F4ST",
+   "key": "f4st",
+   "performers": [
+    "f4st"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:momis-alanis-b2b-nina",
+   "name": "Momis Alanis B2B Nina",
+   "key": "momis-alanis-b2b-nina",
+   "performers": [
+    "momis-alanis",
+    "nina"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:mariana-revilla",
+   "name": "Mariana Revilla",
+   "key": "mariana-revilla",
+   "performers": [
+    "mariana-revilla"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:oskier",
+   "name": "Oskier",
+   "key": "oskier",
+   "performers": [
+    "oskier"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:truself",
+   "name": "Truself",
+   "key": "truself",
+   "performers": [
+    "truself"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:francis-davila",
+   "name": "Francis Davila",
+   "key": "francis-davila",
+   "performers": [
+    "francis-davila"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:luciana",
+   "name": "Luciana",
+   "key": "luciana",
+   "performers": [
+    "luciana"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:holder",
+   "name": "Holder",
+   "key": "holder",
+   "performers": [
+    "holder"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:shubostar",
+   "name": "Shubostar",
+   "key": "shubostar",
+   "performers": [
+    "shubostar"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:inigo-vontier",
+   "name": "Iñigo Vontier",
+   "key": "inigo-vontier",
+   "performers": [
+    "inigo-vontier"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:mental",
+   "name": "Mental",
+   "key": "mental",
+   "performers": [
+    "mental"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:kawas",
+   "name": "Kawas",
+   "key": "kawas",
+   "performers": [
+    "kawas"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:fortu-and-mendoza",
+   "name": "Fortu & Mendoza",
+   "key": "fortu-and-mendoza",
+   "performers": [
+    "fortu-and-mendoza"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:lemarroy",
+   "name": "Lemarroy",
+   "key": "lemarroy",
+   "performers": [
+    "lemarroy"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:jerry-davila",
+   "name": "Jerry Davila",
+   "key": "jerry-davila",
+   "performers": [
+    "jerry-davila"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:valentino-khan",
+   "name": "Valentino Khan",
+   "key": "valentino-khan",
+   "performers": [
+    "valentino-khan"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:cash-cash",
+   "name": "Cash Cash",
+   "key": "cash-cash",
+   "performers": [
+    "cash-cash"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:jonas-blue",
+   "name": "Jonas Blue",
+   "key": "jonas-blue",
+   "performers": [
+    "jonas-blue"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:kayzo",
+   "name": "Kayzo",
+   "key": "kayzo",
+   "performers": [
+    "kayzo"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:europa-jax-jones-and-martin-solveig",
+   "name": "Europa (Jax Jones & Martin Solveig)",
+   "key": "europa-jax-jones-and-martin-solveig",
+   "performers": [
+    "europa-jax-jones-and-martin-solveig"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:2-1-timmy-trumpet-b2b-w-and-w",
+   "name": "2=1 (Timmy Trumpet B2B W&W)",
+   "key": "2-1-timmy-trumpet-b2b-w-and-w",
+   "performers": [
+    "2-1-timmy-trumpet",
+    "w-and-w"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:tiesto",
+   "name": "Tiësto",
+   "key": "tiesto",
+   "performers": [
+    "tiesto"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:urboi",
+   "name": "Urboi",
+   "key": "urboi",
+   "performers": [
+    "urboi"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:lujavo-b2b-fancy-folks",
+   "name": "Lujavo B2B Fancy Folks",
+   "key": "lujavo-b2b-fancy-folks",
+   "performers": [
+    "lujavo",
+    "fancy-folks"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:tom-and-collins",
+   "name": "Tom & Collins",
+   "key": "tom-and-collins",
+   "performers": [
+    "tom-and-collins"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:hannah-wants",
+   "name": "Hannah Wants",
+   "key": "hannah-wants",
+   "performers": [
+    "hannah-wants"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:danny-howard",
+   "name": "Danny Howard",
+   "key": "danny-howard",
+   "performers": [
+    "danny-howard"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:walker-and-royce",
+   "name": "Walker & Royce",
+   "key": "walker-and-royce",
+   "performers": [
+    "walker-and-royce"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:meduza",
+   "name": "Meduza",
+   "key": "meduza",
+   "performers": [
+    "meduza"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:vintage-culture",
+   "name": "Vintage Culture",
+   "key": "vintage-culture",
+   "performers": [
+    "vintage-culture"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:duke-dumont",
+   "name": "Duke Dumont",
+   "key": "duke-dumont",
+   "performers": [
+    "duke-dumont"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:knife-party",
+   "name": "Knife Party",
+   "key": "knife-party",
+   "performers": [
+    "knife-party"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:diplo",
+   "name": "Diplo",
+   "key": "diplo",
+   "performers": [
+    "diplo"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:lokier",
+   "name": "Lokier",
+   "key": "lokier",
+   "performers": [
+    "lokier"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:ostil",
+   "name": "Øostil",
+   "key": "ostil",
+   "performers": [
+    "ostil"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:bontan",
+   "name": "Bontan",
+   "key": "bontan",
+   "performers": [
+    "bontan"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:mason-maynard",
+   "name": "Mason Maynard",
+   "key": "mason-maynard",
+   "performers": [
+    "mason-maynard"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:paul-woolford",
+   "name": "Paul Woolford",
+   "key": "paul-woolford",
+   "performers": [
+    "paul-woolford"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:patrick-topping",
+   "name": "Patrick Topping",
+   "key": "patrick-topping",
+   "performers": [
+    "patrick-topping"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:sasha",
+   "name": "Sasha",
+   "key": "sasha",
+   "performers": [
+    "sasha"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:sven-vath",
+   "name": "Sven Väth",
+   "key": "sven-vath",
+   "performers": [
+    "sven-vath"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:bagha",
+   "name": "Bagha",
+   "key": "bagha",
+   "performers": [
+    "bagha"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:save-the-rabbits",
+   "name": "Save The Rabbits",
+   "key": "save-the-rabbits",
+   "performers": [
+    "save-the-rabbits"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:mykka",
+   "name": "Mykka",
+   "key": "mykka",
+   "performers": [
+    "mykka"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:nightstalker-mc-xyz",
+   "name": "Nightstalker + MC XYZ",
+   "key": "nightstalker-mc-xyz",
+   "performers": [
+    "nightstalker-mc-xyz"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:definitive",
+   "name": "Definitive",
+   "key": "definitive",
+   "performers": [
+    "definitive"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:matrix-and-futurebound",
+   "name": "Matrix & Futurebound",
+   "key": "matrix-and-futurebound",
+   "performers": [
+    "matrix-and-futurebound"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:trampa",
+   "name": "Trampa",
+   "key": "trampa",
+   "performers": [
+    "trampa"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:svdden-death",
+   "name": "Svdden Death",
+   "key": "svdden-death",
+   "performers": [
+    "svdden-death"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:12th-planet",
+   "name": "12th Planet",
+   "key": "12th-planet",
+   "performers": [
+    "12th-planet"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:zomboy",
+   "name": "Zomboy",
+   "key": "zomboy",
+   "performers": [
+    "zomboy"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:zeds-dead",
+   "name": "Zeds Dead",
+   "key": "zeds-dead",
+   "performers": [
+    "zeds-dead"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:adgel-b2b-tblmkr",
+   "name": "Adgel B2B TBLMKR",
+   "key": "adgel-b2b-tblmkr",
+   "performers": [
+    "adgel",
+    "tblmkr"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:chanty-otm",
+   "name": "Chanty OTM",
+   "key": "chanty-otm",
+   "performers": [
+    "chanty-otm"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:mi-il",
+   "name": "Mi$$il",
+   "key": "mi-il",
+   "performers": [
+    "mi-il"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:sak-noel-presenta-barnaton",
+   "name": "Sak Noel presenta: Barnaton",
+   "key": "sak-noel-presenta-barnaton",
+   "performers": [
+    "sak-noel-presenta-barnaton"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:ma-less",
+   "name": "Ma-Less",
+   "key": "ma-less",
+   "performers": [
+    "ma-less"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:innobass-b2b-milomilo",
+   "name": "Innobass B2B MiloMilo",
+   "key": "innobass-b2b-milomilo",
+   "performers": [
+    "innobass",
+    "milomilo"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:muzik-junkies",
+   "name": "Muzik Junkies",
+   "key": "muzik-junkies",
+   "performers": [
+    "muzik-junkies"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:la-clicka-presents-worldwide-records",
+   "name": "La Clicka presents Worldwide Records",
+   "key": "la-clicka-presents-worldwide-records",
+   "performers": [
+    "la-clicka-presents-worldwide-records"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:bizarrap",
+   "name": "Bizarrap",
+   "key": "bizarrap",
+   "performers": [
+    "bizarrap"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:lizz",
+   "name": "Lizz",
+   "key": "lizz",
+   "performers": [
+    "lizz"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:gian-varela-b2b-arguello",
+   "name": "Gian Varela B2B Argüello",
+   "key": "gian-varela-b2b-arguello",
+   "performers": [
+    "gian-varela",
+    "arguello"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:matias-aguayo-live",
+   "name": "Matias Aguayo (Live)",
+   "key": "matias-aguayo-live",
+   "performers": [
+    "matias-aguayo-live"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:megalight",
+   "name": "Megalight",
+   "key": "megalight",
+   "performers": [
+    "megalight"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:vlind",
+   "name": "Vlind",
+   "key": "vlind",
+   "performers": [
+    "vlind"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:kristina-sky",
+   "name": "Kristina Sky",
+   "key": "kristina-sky",
+   "performers": [
+    "kristina-sky"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:alessandra-roncone",
+   "name": "Alessandra Roncone",
+   "key": "alessandra-roncone",
+   "performers": [
+    "alessandra-roncone"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:chris-schweizer",
+   "name": "Chris Schweizer",
+   "key": "chris-schweizer",
+   "performers": [
+    "chris-schweizer"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:craig-connelly",
+   "name": "Craig Connelly",
+   "key": "craig-connelly",
+   "performers": [
+    "craig-connelly"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:giuseppe-ottaviani",
+   "name": "Giuseppe Ottaviani",
+   "key": "giuseppe-ottaviani",
+   "performers": [
+    "giuseppe-ottaviani"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:blastoyz",
+   "name": "Blastoyz",
+   "key": "blastoyz",
+   "performers": [
+    "blastoyz"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:mandragora",
+   "name": "Mandragora",
+   "key": "mandragora",
+   "performers": [
+    "mandragora"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:dunnowho",
+   "name": "Dunnowho",
+   "key": "dunnowho",
+   "performers": [
+    "dunnowho"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:underbite",
+   "name": "UnderBite",
+   "key": "underbite",
+   "performers": [
+    "underbite"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:solano",
+   "name": "Solano",
+   "key": "solano",
+   "performers": [
+    "solano"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:abraham-ramirez",
+   "name": "Abraham Ramirez",
+   "key": "abraham-ramirez",
+   "performers": [
+    "abraham-ramirez"
    ]
   },
   {
@@ -2566,11 +1180,503 @@
    "key": "remille",
    "performers": [
     "remille"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:losh",
+   "name": "LOSH",
+   "key": "losh",
+   "performers": [
+    "losh"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:grimix",
+   "name": "Grimix",
+   "key": "grimix",
+   "performers": [
+    "grimix"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:rad-cat",
+   "name": "Rad Cat",
+   "key": "rad-cat",
+   "performers": [
+    "rad-cat"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:erick-t",
+   "name": "Erick T",
+   "key": "erick-t",
+   "performers": [
+    "erick-t"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:feii-vega",
+   "name": "Feii Vega",
+   "key": "feii-vega",
+   "performers": [
+    "feii-vega"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:derlow",
+   "name": "Derlow",
+   "key": "derlow",
+   "performers": [
+    "derlow"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:enya-botello",
+   "name": "Enya Botello",
+   "key": "enya-botello",
+   "performers": [
+    "enya-botello"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:kleinfinger",
+   "name": "Kleinfinger",
+   "key": "kleinfinger",
+   "performers": [
+    "kleinfinger"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:kris-berle",
+   "name": "Kris Berle",
+   "key": "kris-berle",
+   "performers": [
+    "kris-berle"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:carlos-belatti",
+   "name": "Carlos Belatti",
+   "key": "carlos-belatti",
+   "performers": [
+    "carlos-belatti"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:flor-capistran",
+   "name": "Flor Capistran",
+   "key": "flor-capistran",
+   "performers": [
+    "flor-capistran"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:paulor",
+   "name": "Paulor",
+   "key": "paulor",
+   "performers": [
+    "paulor"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:cabizbajo",
+   "name": "Cabizbajo",
+   "key": "cabizbajo",
+   "performers": [
+    "cabizbajo"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:pinto",
+   "name": "Pinto",
+   "key": "pinto",
+   "performers": [
+    "pinto"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:balcazar",
+   "name": "Balcazar",
+   "key": "balcazar",
+   "performers": [
+    "balcazar"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:rocco-desentis",
+   "name": "Rocco Desentis",
+   "key": "rocco-desentis",
+   "performers": [
+    "rocco-desentis"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:bubu",
+   "name": "Bubu",
+   "key": "bubu",
+   "performers": [
+    "bubu"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:zombies-in-miami-live",
+   "name": "Zombies In Miami (Live)",
+   "key": "zombies-in-miami-live",
+   "performers": [
+    "zombies-in-miami-live"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:mandrake",
+   "name": "Mandrake",
+   "key": "mandrake",
+   "performers": [
+    "mandrake"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:whomadewho-dj-set",
+   "name": "WhoMadeWho (DJ Set)",
+   "key": "whomadewho-dj-set",
+   "performers": [
+    "whomadewho-dj-set"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:jenia-tarsol",
+   "name": "Jenia Tarsol",
+   "key": "jenia-tarsol",
+   "performers": [
+    "jenia-tarsol"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:hajj",
+   "name": "Hajj",
+   "key": "hajj",
+   "performers": [
+    "hajj"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:fruti",
+   "name": "Fruti",
+   "key": "fruti",
+   "performers": [
+    "fruti"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:mariana-bo",
+   "name": "Mariana Bo",
+   "key": "mariana-bo",
+   "performers": [
+    "mariana-bo"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:lsdream",
+   "name": "LSDREAM",
+   "key": "lsdream",
+   "performers": [
+    "lsdream"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:ekali",
+   "name": "Ekali",
+   "key": "ekali",
+   "performers": [
+    "ekali"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:nghtmre",
+   "name": "NGHTMRE",
+   "key": "nghtmre",
+   "performers": [
+    "nghtmre"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:jauz",
+   "name": "Jauz",
+   "key": "jauz",
+   "performers": [
+    "jauz"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:kshmr",
+   "name": "KSHMR",
+   "key": "kshmr",
+   "performers": [
+    "kshmr"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:armin-van-buuren",
+   "name": "Armin van Buuren",
+   "key": "armin-van-buuren",
+   "performers": [
+    "armin-van-buuren"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:david-guetta",
+   "name": "David Guetta",
+   "key": "david-guetta",
+   "performers": [
+    "david-guetta"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:mark-cast",
+   "name": "Mark Cast",
+   "key": "mark-cast",
+   "performers": [
+    "mark-cast"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:pauza",
+   "name": "Pauza",
+   "key": "pauza",
+   "performers": [
+    "pauza"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:rossell",
+   "name": "Rossell",
+   "key": "rossell",
+   "performers": [
+    "rossell"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:kidnap",
+   "name": "Kidnap",
+   "key": "kidnap",
+   "performers": [
+    "kidnap"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:phantoms-live",
+   "name": "Phantoms (Live)",
+   "key": "phantoms-live",
+   "performers": [
+    "phantoms-live"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:big-wild",
+   "name": "Big Wild",
+   "key": "big-wild",
+   "performers": [
+    "big-wild"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:tokimonsta",
+   "name": "TOKiMONSTA",
+   "key": "tokimonsta",
+   "performers": [
+    "tokimonsta"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:joyryde",
+   "name": "JOYRYDE",
+   "key": "joyryde",
+   "performers": [
+    "joyryde"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:troyboi",
+   "name": "TroyBoi",
+   "key": "troyboi",
+   "performers": [
+    "troyboi"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:louis-the-child",
+   "name": "Louis The Child",
+   "key": "louis-the-child",
+   "performers": [
+    "louis-the-child"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:madeon-live",
+   "name": "Madeon (Live)",
+   "key": "madeon-live",
+   "performers": [
+    "madeon-live"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:andrea-acosta",
+   "name": "Andrea Acosta",
+   "key": "andrea-acosta",
+   "performers": [
+    "andrea-acosta"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:adin",
+   "name": "ADIN",
+   "key": "adin",
+   "performers": [
+    "adin"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:lauren-lane",
+   "name": "Lauren Lane",
+   "key": "lauren-lane",
+   "performers": [
+    "lauren-lane"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:eli-brown",
+   "name": "Eli Brown",
+   "key": "eli-brown",
+   "performers": [
+    "eli-brown"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:cristoph",
+   "name": "Cristoph",
+   "key": "cristoph",
+   "performers": [
+    "cristoph"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:enrico-sangiuliano",
+   "name": "Enrico Sangiuliano",
+   "key": "enrico-sangiuliano",
+   "performers": [
+    "enrico-sangiuliano"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:joris-voorn",
+   "name": "Joris Voorn",
+   "key": "joris-voorn",
+   "performers": [
+    "joris-voorn"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:marco-carola",
+   "name": "Marco Carola",
+   "key": "marco-carola",
+   "performers": [
+    "marco-carola"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:alby-loud",
+   "name": "Alby Loud",
+   "key": "alby-loud",
+   "performers": [
+    "alby-loud"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:aranxa",
+   "name": "Aranxa",
+   "key": "aranxa",
+   "performers": [
+    "aranxa"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:haaradak",
+   "name": "Haaradak",
+   "key": "haaradak",
+   "performers": [
+    "haaradak"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:darksiderz",
+   "name": "Darksiderz",
+   "key": "darksiderz",
+   "performers": [
+    "darksiderz"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:audiofreq-b2b-darksiderz",
+   "name": "Audiofreq B2B Darksiderz",
+   "key": "audiofreq-b2b-darksiderz",
+   "performers": [
+    "audiofreq",
+    "darksiderz"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:audiofreq",
+   "name": "Audiofreq",
+   "key": "audiofreq",
+   "performers": [
+    "audiofreq"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:ben-nicky-presents-xtreme",
+   "name": "Ben Nicky presents Xtreme",
+   "key": "ben-nicky-presents-xtreme",
+   "performers": [
+    "ben-nicky-presents-xtreme"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:tweekacore",
+   "name": "Tweekacore",
+   "key": "tweekacore",
+   "performers": [
+    "tweekacore"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:d-sturb",
+   "name": "D-Sturb",
+   "key": "d-sturb",
+   "performers": [
+    "d-sturb"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:dj-anime",
+   "name": "DJ AniMe",
+   "key": "dj-anime",
+   "performers": [
+    "dj-anime"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:lil-texas",
+   "name": "Lil Texas",
+   "key": "lil-texas",
+   "performers": [
+    "lil-texas"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:niza",
+   "name": "Niza",
+   "key": "niza",
+   "performers": [
+    "niza"
    ]
   },
   {
@@ -2580,50 +1686,97 @@
    "performers": [
     "robots-don-t-have-sisters",
     "criminal-sounds"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
    ]
   },
   {
-   "id": "edc-mexico-2020:rocco-desentis",
-   "name": "Rocco Desentis",
-   "key": "rocco-desentis",
+   "id": "edc-mexico-2020:gamboa",
+   "name": "Gamboa",
+   "key": "gamboa",
    "performers": [
-    "rocco-desentis"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
+    "gamboa"
    ]
   },
   {
-   "id": "edc-mexico-2020:rocio-pergon",
-   "name": "Rocio Pergon",
-   "key": "rocio-pergon",
+   "id": "edc-mexico-2020:maahez",
+   "name": "Maahez",
+   "key": "maahez",
    "performers": [
-    "rocio-pergon"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
+    "maahez"
    ]
   },
   {
-   "id": "edc-mexico-2020:rossell",
-   "name": "Rossell",
-   "key": "rossell",
+   "id": "edc-mexico-2020:barbie-chola-b2b-not-a-chinese",
+   "name": "Barbie Chola B2B Not A Chinese",
+   "key": "barbie-chola-b2b-not-a-chinese",
    "performers": [
-    "rossell"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
+    "barbie-chola",
+    "not-a-chinese"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:mr-pauer",
+   "name": "Mr. Pauer",
+   "key": "mr-pauer",
+   "performers": [
+    "mr-pauer"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:sky-rompiendo",
+   "name": "Sky Rompiendo",
+   "key": "sky-rompiendo",
+   "performers": [
+    "sky-rompiendo"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:dj-nelson",
+   "name": "DJ Nelson",
+   "key": "dj-nelson",
+   "performers": [
+    "dj-nelson"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:natalia",
+   "name": "Natalia",
+   "key": "natalia",
+   "performers": [
+    "natalia"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:ale-q-b2b-pako-rodriguez",
+   "name": "Ale Q B2B Pako Rodriguez",
+   "key": "ale-q-b2b-pako-rodriguez",
+   "performers": [
+    "ale-q",
+    "pako-rodriguez"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:ivy-kst",
+   "name": "IVY.KST!",
+   "key": "ivy-kst",
+   "performers": [
+    "ivy-kst"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:guztavo-mx-b2b-charlie-atom",
+   "name": "Guztavo MX B2B Charlie Atom",
+   "key": "guztavo-mx-b2b-charlie-atom",
+   "performers": [
+    "guztavo-mx",
+    "charlie-atom"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:marco-almanza",
+   "name": "Marco Almanza",
+   "key": "marco-almanza",
+   "performers": [
+    "marco-almanza"
    ]
   },
   {
@@ -2633,427 +1786,6 @@
    "performers": [
     "sage-armstrong",
     "lucati"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:said-the-sky",
-   "name": "Said The Sky",
-   "key": "said-the-sky",
-   "performers": [
-    "said-the-sky"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:sak-noel-presenta-barnaton",
-   "name": "Sak Noel presenta: Barnaton",
-   "key": "sak-noel-presenta-barnaton",
-   "performers": [
-    "sak-noel-presenta-barnaton"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:sasha",
-   "name": "Sasha",
-   "key": "sasha",
-   "performers": [
-    "sasha"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:save-the-rabbits",
-   "name": "Save The Rabbits",
-   "key": "save-the-rabbits",
-   "performers": [
-    "save-the-rabbits"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:sheco",
-   "name": "Sheco",
-   "key": "sheco",
-   "performers": [
-    "sheco"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:shubostar",
-   "name": "Shubostar",
-   "key": "shubostar",
-   "performers": [
-    "shubostar"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:sintonika",
-   "name": "Sintonika",
-   "key": "sintonika",
-   "performers": [
-    "sintonika"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:sky-rompiendo",
-   "name": "Sky Rompiendo",
-   "key": "sky-rompiendo",
-   "performers": [
-    "sky-rompiendo"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:softest-hard",
-   "name": "Softest Hard",
-   "key": "softest-hard",
-   "performers": [
-    "softest-hard"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:solano",
-   "name": "Solano",
-   "key": "solano",
-   "performers": [
-    "solano"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:steady-rock",
-   "name": "Steady Rock",
-   "key": "steady-rock",
-   "performers": [
-    "steady-rock"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:stylo",
-   "name": "Stylo",
-   "key": "stylo",
-   "performers": [
-    "stylo"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:sugar-glider",
-   "name": "Sugar Glider",
-   "key": "sugar-glider",
-   "performers": [
-    "sugar-glider"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:svbvg",
-   "name": "SVBVG",
-   "key": "svbvg",
-   "performers": [
-    "svbvg"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:svdden-death",
-   "name": "Svdden Death",
-   "key": "svdden-death",
-   "performers": [
-    "svdden-death"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:sven-vath",
-   "name": "Sven Väth",
-   "key": "sven-vath",
-   "performers": [
-    "sven-vath"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:suss",
-   "name": "Süss",
-   "key": "suss",
-   "performers": [
-    "suss"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:tansen",
-   "name": "Tansen",
-   "key": "tansen",
-   "performers": [
-    "tansen"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:tiesto",
-   "name": "Tiësto",
-   "key": "tiesto",
-   "performers": [
-    "tiesto"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:tokimonsta",
-   "name": "TOKiMONSTA",
-   "key": "tokimonsta",
-   "performers": [
-    "tokimonsta"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:tom-and-collins",
-   "name": "Tom & Collins",
-   "key": "tom-and-collins",
-   "performers": [
-    "tom-and-collins"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:trampa",
-   "name": "Trampa",
-   "key": "trampa",
-   "performers": [
-    "trampa"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:troyboi",
-   "name": "TroyBoi",
-   "key": "troyboi",
-   "performers": [
-    "troyboi"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:truself",
-   "name": "Truself",
-   "key": "truself",
-   "performers": [
-    "truself"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:tweekacore",
-   "name": "Tweekacore",
-   "key": "tweekacore",
-   "performers": [
-    "tweekacore"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:underbite",
-   "name": "UnderBite",
-   "key": "underbite",
-   "performers": [
-    "underbite"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:urboi",
-   "name": "Urboi",
-   "key": "urboi",
-   "performers": [
-    "urboi"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:valentino-khan",
-   "name": "Valentino Khan",
-   "key": "valentino-khan",
-   "performers": [
-    "valentino-khan"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:vicrey",
-   "name": "Vicrey",
-   "key": "vicrey",
-   "performers": [
-    "vicrey"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:vini-vici",
-   "name": "Vini Vici",
-   "key": "vini-vici",
-   "performers": [
-    "vini-vici"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:vintage-culture",
-   "name": "Vintage Culture",
-   "key": "vintage-culture",
-   "performers": [
-    "vintage-culture"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:vlind",
-   "name": "Vlind",
-   "key": "vlind",
-   "performers": [
-    "vlind"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
    ]
   },
   {
@@ -3062,50 +1794,22 @@
    "key": "vnssa",
    "performers": [
     "vnssa"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
    ]
   },
   {
-   "id": "edc-mexico-2020:vongold",
-   "name": "Vongold",
-   "key": "vongold",
+   "id": "edc-mexico-2020:born-dirty",
+   "name": "Born Dirty",
+   "key": "born-dirty",
    "performers": [
-    "vongold"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
+    "born-dirty"
    ]
   },
   {
-   "id": "edc-mexico-2020:walker-and-royce",
-   "name": "Walker & Royce",
-   "key": "walker-and-royce",
+   "id": "edc-mexico-2020:noizu",
+   "name": "Noizu",
+   "key": "noizu",
    "performers": [
-    "walker-and-royce"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
-   ]
-  },
-  {
-   "id": "edc-mexico-2020:warface",
-   "name": "Warface",
-   "key": "warface",
-   "performers": [
-    "warface"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
+    "noizu"
    ]
   },
   {
@@ -3114,11 +1818,14 @@
    "key": "wax-motif",
    "performers": [
     "wax-motif"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:dombresky",
+   "name": "Dombresky",
+   "key": "dombresky",
+   "performers": [
+    "dombresky"
    ]
   },
   {
@@ -3127,24 +1834,71 @@
    "key": "weiss",
    "performers": [
     "weiss"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
    ]
   },
   {
-   "id": "edc-mexico-2020:whomadewho-dj-set",
-   "name": "WhoMadeWho (DJ Set)",
-   "key": "whomadewho-dj-set",
+   "id": "edc-mexico-2020:steady-rock",
+   "name": "Steady Rock",
+   "key": "steady-rock",
    "performers": [
-    "whomadewho-dj-set"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
+    "steady-rock"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:amg",
+   "name": "AMG",
+   "key": "amg",
+   "performers": [
+    "amg"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:sugar-glider",
+   "name": "Sugar Glider",
+   "key": "sugar-glider",
+   "performers": [
+    "sugar-glider"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:rocio-pergon",
+   "name": "Rocio Pergon",
+   "key": "rocio-pergon",
+   "performers": [
+    "rocio-pergon"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:dj-p0ll0",
+   "name": "DJ P0ll0",
+   "key": "dj-p0ll0",
+   "performers": [
+    "dj-p0ll0"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:joe-rose-b2b-dj-hu",
+   "name": "Joe Rose B2B DJ Hu",
+   "key": "joe-rose-b2b-dj-hu",
+   "performers": [
+    "joe-rose",
+    "dj-hu"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:k-i-d",
+   "name": "K.I.D.",
+   "key": "k-i-d",
+   "performers": [
+    "k-i-d"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:dam-dam",
+   "name": "Dam Dam",
+   "key": "dam-dam",
+   "performers": [
+    "dam-dam"
    ]
   },
   {
@@ -3153,24 +1907,70 @@
    "key": "wito",
    "performers": [
     "wito"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
    ]
   },
   {
-   "id": "edc-mexico-2020:wuki",
-   "name": "Wuki",
-   "key": "wuki",
+   "id": "edc-mexico-2020:alex-midi",
+   "name": "Alex Midi",
+   "key": "alex-midi",
    "performers": [
-    "wuki"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
+    "alex-midi"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:mira-mira",
+   "name": "Mirá Mirá",
+   "key": "mira-mira",
+   "performers": [
+    "mira-mira"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:alfred-beck",
+   "name": "Alfred Beck",
+   "key": "alfred-beck",
+   "performers": [
+    "alfred-beck"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:dayanna-ro",
+   "name": "Dayanna Ro",
+   "key": "dayanna-ro",
+   "performers": [
+    "dayanna-ro"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:a-zar",
+   "name": "A-ZAR",
+   "key": "a-zar",
+   "performers": [
+    "a-zar"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:angry-beats",
+   "name": "Angry Beats",
+   "key": "angry-beats",
+   "performers": [
+    "angry-beats"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:mzrin",
+   "name": "Mzrin",
+   "key": "mzrin",
+   "performers": [
+    "mzrin"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:vongold",
+   "name": "Vongold",
+   "key": "vongold",
+   "performers": [
+    "vongold"
    ]
   },
   {
@@ -3179,128 +1979,2137 @@
    "key": "young-drums",
    "performers": [
     "young-drums"
-   ],
-   "appearances": [
-    {
-     "day": 3
-    }
    ]
   },
   {
-   "id": "edc-mexico-2020:yousef",
-   "name": "Yousef",
-   "key": "yousef",
+   "id": "edc-mexico-2020:mystery-affair",
+   "name": "Mystery Affair",
+   "key": "mystery-affair",
    "performers": [
-    "yousef"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
+    "mystery-affair"
    ]
   },
   {
-   "id": "edc-mexico-2020:zaa",
-   "name": "Zaa",
-   "key": "zaa",
+   "id": "edc-mexico-2020:lumber-jack",
+   "name": "Lumber Jack",
+   "key": "lumber-jack",
    "performers": [
-    "zaa"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
+    "lumber-jack"
    ]
   },
   {
-   "id": "edc-mexico-2020:zedd",
-   "name": "Zedd",
-   "key": "zedd",
+   "id": "edc-mexico-2020:justine",
+   "name": "Justine",
+   "key": "justine",
    "performers": [
-    "zedd"
-   ],
-   "appearances": [
-    {
-     "day": 1
-    }
+    "justine"
    ]
   },
   {
-   "id": "edc-mexico-2020:zeds-dead",
-   "name": "Zeds Dead",
-   "key": "zeds-dead",
+   "id": "edc-mexico-2020:bufi",
+   "name": "Bufi",
+   "key": "bufi",
    "performers": [
-    "zeds-dead"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
+    "bufi"
    ]
   },
   {
-   "id": "edc-mexico-2020:zombies-in-miami-live",
-   "name": "Zombies In Miami (Live)",
-   "key": "zombies-in-miami-live",
+   "id": "edc-mexico-2020:stylo",
+   "name": "Stylo",
+   "key": "stylo",
    "performers": [
-    "zombies-in-miami-live"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
+    "stylo"
    ]
   },
   {
-   "id": "edc-mexico-2020:zomboy",
-   "name": "Zomboy",
-   "key": "zomboy",
+   "id": "edc-mexico-2020:suss",
+   "name": "Süss",
+   "key": "suss",
    "performers": [
-    "zomboy"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
+    "suss"
    ]
   },
   {
-   "id": "edc-mexico-2020:ostil",
-   "name": "Øostil",
-   "key": "ostil",
+   "id": "edc-mexico-2020:tansen",
+   "name": "Tansen",
+   "key": "tansen",
    "performers": [
-    "ostil"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
+    "tansen"
    ]
   },
   {
-   "id": "edc-mexico-2020:la-clicka-presents-worldwide-records",
-   "name": "La Clicka presents Worldwide Records",
-   "key": "la-clicka-presents-worldwide-records",
+   "id": "edc-mexico-2020:daniel-weil",
+   "name": "Daniel Weil",
+   "key": "daniel-weil",
    "performers": [
-    "la-clicka-presents-worldwide-records"
-   ],
-   "appearances": [
-    {
-     "day": 2
-    }
+    "daniel-weil"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:carlita",
+   "name": "Carlita",
+   "key": "carlita",
+   "performers": [
+    "carlita"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:rebolledo",
+   "name": "Rebolledo",
+   "key": "rebolledo",
+   "performers": [
+    "rebolledo"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:fango",
+   "name": "Fango",
+   "key": "fango",
+   "performers": [
+    "fango"
+   ]
+  },
+  {
+   "id": "edc-mexico-2020:michael-mayer",
+   "name": "Michael Mayer",
+   "key": "michael-mayer",
+   "performers": [
+    "michael-mayer"
    ]
   }
  ],
- "sets": [],
+ "sets": [
+  {
+   "id": "edc-mexico-2020:d1:kinetic-field:1600:leon-leiden",
+   "artistId": "edc-mexico-2020:leon-leiden",
+   "day": 1,
+   "stageId": "edc-mexico-2020:kinetic-field",
+   "start": "16:00",
+   "end": "16:53"
+  },
+  {
+   "id": "edc-mexico-2020:d1:kinetic-field:1653:qrion",
+   "artistId": "edc-mexico-2020:qrion",
+   "day": 1,
+   "stageId": "edc-mexico-2020:kinetic-field",
+   "start": "16:53",
+   "end": "17:53"
+  },
+  {
+   "id": "edc-mexico-2020:d1:kinetic-field:1753:party-favor",
+   "artistId": "edc-mexico-2020:party-favor",
+   "day": 1,
+   "stageId": "edc-mexico-2020:kinetic-field",
+   "start": "17:53",
+   "end": "18:51"
+  },
+  {
+   "id": "edc-mexico-2020:d1:kinetic-field:1857:said-the-sky",
+   "artistId": "edc-mexico-2020:said-the-sky",
+   "day": 1,
+   "stageId": "edc-mexico-2020:kinetic-field",
+   "start": "18:57",
+   "end": "20:10"
+  },
+  {
+   "id": "edc-mexico-2020:d1:kinetic-field:2013:oliver-heldens",
+   "artistId": "edc-mexico-2020:oliver-heldens",
+   "day": 1,
+   "stageId": "edc-mexico-2020:kinetic-field",
+   "start": "20:13",
+   "end": "21:41"
+  },
+  {
+   "id": "edc-mexico-2020:d1:kinetic-field:2144:deorro",
+   "artistId": "edc-mexico-2020:deorro",
+   "day": 1,
+   "stageId": "edc-mexico-2020:kinetic-field",
+   "start": "21:44",
+   "end": "23:12"
+  },
+  {
+   "id": "edc-mexico-2020:d1:kinetic-field:2315:don-diablo",
+   "artistId": "edc-mexico-2020:don-diablo",
+   "day": 1,
+   "stageId": "edc-mexico-2020:kinetic-field",
+   "start": "23:15",
+   "end": "00:27"
+  },
+  {
+   "id": "edc-mexico-2020:d1:kinetic-field:0030:headhunterz-b2b-yellow-claw",
+   "artistId": "edc-mexico-2020:headhunterz-b2b-yellow-claw",
+   "day": 1,
+   "stageId": "edc-mexico-2020:kinetic-field",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:circuit-grounds:1600:bonhaus",
+   "artistId": "edc-mexico-2020:bonhaus",
+   "day": 1,
+   "stageId": "edc-mexico-2020:circuit-grounds",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:circuit-grounds:1700:noizekid",
+   "artistId": "edc-mexico-2020:noizekid",
+   "day": 1,
+   "stageId": "edc-mexico-2020:circuit-grounds",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:circuit-grounds:1800:moska",
+   "artistId": "edc-mexico-2020:moska",
+   "day": 1,
+   "stageId": "edc-mexico-2020:circuit-grounds",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:circuit-grounds:1900:ghetto-kids",
+   "artistId": "edc-mexico-2020:ghetto-kids",
+   "day": 1,
+   "stageId": "edc-mexico-2020:circuit-grounds",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:circuit-grounds:2000:elohim",
+   "artistId": "edc-mexico-2020:elohim",
+   "day": 1,
+   "stageId": "edc-mexico-2020:circuit-grounds",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:circuit-grounds:2100:borgore",
+   "artistId": "edc-mexico-2020:borgore",
+   "day": 1,
+   "stageId": "edc-mexico-2020:circuit-grounds",
+   "start": "21:00",
+   "end": "22:15"
+  },
+  {
+   "id": "edc-mexico-2020:d1:circuit-grounds:2215:vini-vici",
+   "artistId": "edc-mexico-2020:vini-vici",
+   "day": 1,
+   "stageId": "edc-mexico-2020:circuit-grounds",
+   "start": "22:15",
+   "end": "23:25"
+  },
+  {
+   "id": "edc-mexico-2020:d1:circuit-grounds:2330:chase-and-status-dj-set",
+   "artistId": "edc-mexico-2020:chase-and-status-dj-set",
+   "day": 1,
+   "stageId": "edc-mexico-2020:circuit-grounds",
+   "start": "23:30",
+   "end": "00:30"
+  },
+  {
+   "id": "edc-mexico-2020:d1:circuit-grounds:0035:zedd",
+   "artistId": "edc-mexico-2020:zedd",
+   "day": 1,
+   "stageId": "edc-mexico-2020:circuit-grounds",
+   "start": "00:35",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:neon-garden:1600:jenouise",
+   "artistId": "edc-mexico-2020:jenouise",
+   "day": 1,
+   "stageId": "edc-mexico-2020:neon-garden",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:neon-garden:1700:dave-ralph",
+   "artistId": "edc-mexico-2020:dave-ralph",
+   "day": 1,
+   "stageId": "edc-mexico-2020:neon-garden",
+   "start": "17:00",
+   "end": "18:15"
+  },
+  {
+   "id": "edc-mexico-2020:d1:neon-garden:1815:mele",
+   "artistId": "edc-mexico-2020:mele",
+   "day": 1,
+   "stageId": "edc-mexico-2020:neon-garden",
+   "start": "18:15",
+   "end": "19:30"
+  },
+  {
+   "id": "edc-mexico-2020:d1:neon-garden:1930:yousef",
+   "artistId": "edc-mexico-2020:yousef",
+   "day": 1,
+   "stageId": "edc-mexico-2020:neon-garden",
+   "start": "19:30",
+   "end": "21:15"
+  },
+  {
+   "id": "edc-mexico-2020:d1:neon-garden:2115:kolsch",
+   "artistId": "edc-mexico-2020:kolsch",
+   "day": 1,
+   "stageId": "edc-mexico-2020:neon-garden",
+   "start": "21:15",
+   "end": "23:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:neon-garden:2300:carl-cox",
+   "artistId": "edc-mexico-2020:carl-cox",
+   "day": 1,
+   "stageId": "edc-mexico-2020:neon-garden",
+   "start": "23:00",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:wasteland:1630:karina-rosee",
+   "artistId": "edc-mexico-2020:karina-rosee",
+   "day": 1,
+   "stageId": "edc-mexico-2020:wasteland",
+   "start": "16:30",
+   "end": "17:45"
+  },
+  {
+   "id": "edc-mexico-2020:d1:wasteland:1745:noise-dimentionz-b2b-universe-controller",
+   "artistId": "edc-mexico-2020:noise-dimentionz-b2b-universe-controller",
+   "day": 1,
+   "stageId": "edc-mexico-2020:wasteland",
+   "start": "17:45",
+   "end": "19:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:wasteland:1900:warface",
+   "artistId": "edc-mexico-2020:warface",
+   "day": 1,
+   "stageId": "edc-mexico-2020:wasteland",
+   "start": "19:00",
+   "end": "20:15"
+  },
+  {
+   "id": "edc-mexico-2020:d1:wasteland:2015:kutski",
+   "artistId": "edc-mexico-2020:kutski",
+   "day": 1,
+   "stageId": "edc-mexico-2020:wasteland",
+   "start": "20:15",
+   "end": "21:15"
+  },
+  {
+   "id": "edc-mexico-2020:d1:wasteland:2115:lady-faith",
+   "artistId": "edc-mexico-2020:lady-faith",
+   "day": 1,
+   "stageId": "edc-mexico-2020:wasteland",
+   "start": "21:15",
+   "end": "22:15"
+  },
+  {
+   "id": "edc-mexico-2020:d1:wasteland:2215:da-tweekaz",
+   "artistId": "edc-mexico-2020:da-tweekaz",
+   "day": 1,
+   "stageId": "edc-mexico-2020:wasteland",
+   "start": "22:15",
+   "end": "23:30"
+  },
+  {
+   "id": "edc-mexico-2020:d1:wasteland:2330:code-black",
+   "artistId": "edc-mexico-2020:code-black",
+   "day": 1,
+   "stageId": "edc-mexico-2020:wasteland",
+   "start": "23:30",
+   "end": "00:45"
+  },
+  {
+   "id": "edc-mexico-2020:d1:wasteland:0045:kikeone-presents-k1",
+   "artistId": "edc-mexico-2020:kikeone-presents-k1",
+   "day": 1,
+   "stageId": "edc-mexico-2020:wasteland",
+   "start": "00:45",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:dos-equis-stage:1600:vicrey",
+   "artistId": "edc-mexico-2020:vicrey",
+   "day": 1,
+   "stageId": "edc-mexico-2020:dos-equis-stage",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:dos-equis-stage:1700:nemesiz",
+   "artistId": "edc-mexico-2020:nemesiz",
+   "day": 1,
+   "stageId": "edc-mexico-2020:dos-equis-stage",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:dos-equis-stage:1800:army-of-skanks",
+   "artistId": "edc-mexico-2020:army-of-skanks",
+   "day": 1,
+   "stageId": "edc-mexico-2020:dos-equis-stage",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:dos-equis-stage:1900:le-twins",
+   "artistId": "edc-mexico-2020:le-twins",
+   "day": 1,
+   "stageId": "edc-mexico-2020:dos-equis-stage",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:dos-equis-stage:2000:raymix",
+   "artistId": "edc-mexico-2020:raymix",
+   "day": 1,
+   "stageId": "edc-mexico-2020:dos-equis-stage",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:dos-equis-stage:2100:dayvi",
+   "artistId": "edc-mexico-2020:dayvi",
+   "day": 1,
+   "stageId": "edc-mexico-2020:dos-equis-stage",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:dos-equis-stage:2200:armi-diamonds",
+   "artistId": "edc-mexico-2020:armi-diamonds",
+   "day": 1,
+   "stageId": "edc-mexico-2020:dos-equis-stage",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:dos-equis-stage:2300:bsno",
+   "artistId": "edc-mexico-2020:bsno",
+   "day": 1,
+   "stageId": "edc-mexico-2020:dos-equis-stage",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:dos-equis-stage:0000:alan-salomon",
+   "artistId": "edc-mexico-2020:alan-salomon",
+   "day": 1,
+   "stageId": "edc-mexico-2020:dos-equis-stage",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:dos-equis-stage:0100:zaa",
+   "artistId": "edc-mexico-2020:zaa",
+   "day": 1,
+   "stageId": "edc-mexico-2020:dos-equis-stage",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:stereo-bloom:1600:svbvg",
+   "artistId": "edc-mexico-2020:svbvg",
+   "day": 1,
+   "stageId": "edc-mexico-2020:stereo-bloom",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:stereo-bloom:1700:holly",
+   "artistId": "edc-mexico-2020:holly",
+   "day": 1,
+   "stageId": "edc-mexico-2020:stereo-bloom",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:stereo-bloom:1800:rawtek",
+   "artistId": "edc-mexico-2020:rawtek",
+   "day": 1,
+   "stageId": "edc-mexico-2020:stereo-bloom",
+   "start": "18:00",
+   "end": "19:15"
+  },
+  {
+   "id": "edc-mexico-2020:d1:stereo-bloom:1915:nitti-gritti",
+   "artistId": "edc-mexico-2020:nitti-gritti",
+   "day": 1,
+   "stageId": "edc-mexico-2020:stereo-bloom",
+   "start": "19:15",
+   "end": "20:30"
+  },
+  {
+   "id": "edc-mexico-2020:d1:stereo-bloom:2030:wuki",
+   "artistId": "edc-mexico-2020:wuki",
+   "day": 1,
+   "stageId": "edc-mexico-2020:stereo-bloom",
+   "start": "20:30",
+   "end": "21:45"
+  },
+  {
+   "id": "edc-mexico-2020:d1:stereo-bloom:2145:softest-hard",
+   "artistId": "edc-mexico-2020:softest-hard",
+   "day": 1,
+   "stageId": "edc-mexico-2020:stereo-bloom",
+   "start": "21:45",
+   "end": "23:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:stereo-bloom:2300:fight-clvb",
+   "artistId": "edc-mexico-2020:fight-clvb",
+   "day": 1,
+   "stageId": "edc-mexico-2020:stereo-bloom",
+   "start": "23:00",
+   "end": "00:30"
+  },
+  {
+   "id": "edc-mexico-2020:d1:stereo-bloom:0030:charlotte-fehler",
+   "artistId": "edc-mexico-2020:charlotte-fehler",
+   "day": 1,
+   "stageId": "edc-mexico-2020:stereo-bloom",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:boombox-art-car:1600:fito-silva",
+   "artistId": "edc-mexico-2020:fito-silva",
+   "day": 1,
+   "stageId": "edc-mexico-2020:boombox-art-car",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:boombox-art-car:1700:sheco",
+   "artistId": "edc-mexico-2020:sheco",
+   "day": 1,
+   "stageId": "edc-mexico-2020:boombox-art-car",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:boombox-art-car:1800:olazaran",
+   "artistId": "edc-mexico-2020:olazaran",
+   "day": 1,
+   "stageId": "edc-mexico-2020:boombox-art-car",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:boombox-art-car:1900:nora-bautista",
+   "artistId": "edc-mexico-2020:nora-bautista",
+   "day": 1,
+   "stageId": "edc-mexico-2020:boombox-art-car",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:boombox-art-car:2000:kevin-brand",
+   "artistId": "edc-mexico-2020:kevin-brand",
+   "day": 1,
+   "stageId": "edc-mexico-2020:boombox-art-car",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:boombox-art-car:2100:regina-puma",
+   "artistId": "edc-mexico-2020:regina-puma",
+   "day": 1,
+   "stageId": "edc-mexico-2020:boombox-art-car",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:boombox-art-car:2200:belmar",
+   "artistId": "edc-mexico-2020:belmar",
+   "day": 1,
+   "stageId": "edc-mexico-2020:boombox-art-car",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:boombox-art-car:2300:berelau",
+   "artistId": "edc-mexico-2020:berelau",
+   "day": 1,
+   "stageId": "edc-mexico-2020:boombox-art-car",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:boombox-art-car:0000:esamipau",
+   "artistId": "edc-mexico-2020:esamipau",
+   "day": 1,
+   "stageId": "edc-mexico-2020:boombox-art-car",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:boombox-art-car:0100:polybiu",
+   "artistId": "edc-mexico-2020:polybiu",
+   "day": 1,
+   "stageId": "edc-mexico-2020:boombox-art-car",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:wide-awake-art-car:1600:macarena",
+   "artistId": "edc-mexico-2020:macarena",
+   "day": 1,
+   "stageId": "edc-mexico-2020:wide-awake-art-car",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:wide-awake-art-car:1700:sintonika",
+   "artistId": "edc-mexico-2020:sintonika",
+   "day": 1,
+   "stageId": "edc-mexico-2020:wide-awake-art-car",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:wide-awake-art-car:1800:f4st",
+   "artistId": "edc-mexico-2020:f4st",
+   "day": 1,
+   "stageId": "edc-mexico-2020:wide-awake-art-car",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:wide-awake-art-car:1900:momis-alanis-b2b-nina",
+   "artistId": "edc-mexico-2020:momis-alanis-b2b-nina",
+   "day": 1,
+   "stageId": "edc-mexico-2020:wide-awake-art-car",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:wide-awake-art-car:2000:mariana-revilla",
+   "artistId": "edc-mexico-2020:mariana-revilla",
+   "day": 1,
+   "stageId": "edc-mexico-2020:wide-awake-art-car",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:wide-awake-art-car:2100:oskier",
+   "artistId": "edc-mexico-2020:oskier",
+   "day": 1,
+   "stageId": "edc-mexico-2020:wide-awake-art-car",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:wide-awake-art-car:2200:truself",
+   "artistId": "edc-mexico-2020:truself",
+   "day": 1,
+   "stageId": "edc-mexico-2020:wide-awake-art-car",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:wide-awake-art-car:2300:francis-davila",
+   "artistId": "edc-mexico-2020:francis-davila",
+   "day": 1,
+   "stageId": "edc-mexico-2020:wide-awake-art-car",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:wide-awake-art-car:0000:luciana",
+   "artistId": "edc-mexico-2020:luciana",
+   "day": 1,
+   "stageId": "edc-mexico-2020:wide-awake-art-car",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "edc-mexico-2020:d1:bionic-jungle:1600:holder",
+   "artistId": "edc-mexico-2020:holder",
+   "day": 1,
+   "stageId": "edc-mexico-2020:bionic-jungle",
+   "start": "16:00",
+   "end": "18:30"
+  },
+  {
+   "id": "edc-mexico-2020:d1:bionic-jungle:1830:shubostar",
+   "artistId": "edc-mexico-2020:shubostar",
+   "day": 1,
+   "stageId": "edc-mexico-2020:bionic-jungle",
+   "start": "18:30",
+   "end": "20:30"
+  },
+  {
+   "id": "edc-mexico-2020:d1:bionic-jungle:2030:inigo-vontier",
+   "artistId": "edc-mexico-2020:inigo-vontier",
+   "day": 1,
+   "stageId": "edc-mexico-2020:bionic-jungle",
+   "start": "20:30",
+   "end": "22:30"
+  },
+  {
+   "id": "edc-mexico-2020:d1:bionic-jungle:2230:mental",
+   "artistId": "edc-mexico-2020:mental",
+   "day": 1,
+   "stageId": "edc-mexico-2020:bionic-jungle",
+   "start": "22:30",
+   "end": "00:30"
+  },
+  {
+   "id": "edc-mexico-2020:d1:bionic-jungle:0030:kawas",
+   "artistId": "edc-mexico-2020:kawas",
+   "day": 1,
+   "stageId": "edc-mexico-2020:bionic-jungle",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:kinetic-field:1400:fortu-and-mendoza",
+   "artistId": "edc-mexico-2020:fortu-and-mendoza",
+   "day": 2,
+   "stageId": "edc-mexico-2020:kinetic-field",
+   "start": "14:00",
+   "end": "14:55"
+  },
+  {
+   "id": "edc-mexico-2020:d2:kinetic-field:1455:lemarroy",
+   "artistId": "edc-mexico-2020:lemarroy",
+   "day": 2,
+   "stageId": "edc-mexico-2020:kinetic-field",
+   "start": "14:55",
+   "end": "15:54"
+  },
+  {
+   "id": "edc-mexico-2020:d2:kinetic-field:1554:jerry-davila",
+   "artistId": "edc-mexico-2020:jerry-davila",
+   "day": 2,
+   "stageId": "edc-mexico-2020:kinetic-field",
+   "start": "15:54",
+   "end": "16:53"
+  },
+  {
+   "id": "edc-mexico-2020:d2:kinetic-field:1653:valentino-khan",
+   "artistId": "edc-mexico-2020:valentino-khan",
+   "day": 2,
+   "stageId": "edc-mexico-2020:kinetic-field",
+   "start": "16:53",
+   "end": "17:53"
+  },
+  {
+   "id": "edc-mexico-2020:d2:kinetic-field:1753:cash-cash",
+   "artistId": "edc-mexico-2020:cash-cash",
+   "day": 2,
+   "stageId": "edc-mexico-2020:kinetic-field",
+   "start": "17:53",
+   "end": "18:51"
+  },
+  {
+   "id": "edc-mexico-2020:d2:kinetic-field:1857:jonas-blue",
+   "artistId": "edc-mexico-2020:jonas-blue",
+   "day": 2,
+   "stageId": "edc-mexico-2020:kinetic-field",
+   "start": "18:57",
+   "end": "20:10"
+  },
+  {
+   "id": "edc-mexico-2020:d2:kinetic-field:2013:kayzo",
+   "artistId": "edc-mexico-2020:kayzo",
+   "day": 2,
+   "stageId": "edc-mexico-2020:kinetic-field",
+   "start": "20:13",
+   "end": "21:41"
+  },
+  {
+   "id": "edc-mexico-2020:d2:kinetic-field:2144:europa-jax-jones-and-martin-solveig",
+   "artistId": "edc-mexico-2020:europa-jax-jones-and-martin-solveig",
+   "day": 2,
+   "stageId": "edc-mexico-2020:kinetic-field",
+   "start": "21:44",
+   "end": "23:12"
+  },
+  {
+   "id": "edc-mexico-2020:d2:kinetic-field:2315:2-1-timmy-trumpet-b2b-w-and-w",
+   "artistId": "edc-mexico-2020:2-1-timmy-trumpet-b2b-w-and-w",
+   "day": 2,
+   "stageId": "edc-mexico-2020:kinetic-field",
+   "start": "23:15",
+   "end": "00:27"
+  },
+  {
+   "id": "edc-mexico-2020:d2:kinetic-field:0030:tiesto",
+   "artistId": "edc-mexico-2020:tiesto",
+   "day": 2,
+   "stageId": "edc-mexico-2020:kinetic-field",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:circuit-grounds:1400:urboi",
+   "artistId": "edc-mexico-2020:urboi",
+   "day": 2,
+   "stageId": "edc-mexico-2020:circuit-grounds",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:circuit-grounds:1500:lujavo-b2b-fancy-folks",
+   "artistId": "edc-mexico-2020:lujavo-b2b-fancy-folks",
+   "day": 2,
+   "stageId": "edc-mexico-2020:circuit-grounds",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:circuit-grounds:1600:tom-and-collins",
+   "artistId": "edc-mexico-2020:tom-and-collins",
+   "day": 2,
+   "stageId": "edc-mexico-2020:circuit-grounds",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:circuit-grounds:1700:hannah-wants",
+   "artistId": "edc-mexico-2020:hannah-wants",
+   "day": 2,
+   "stageId": "edc-mexico-2020:circuit-grounds",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:circuit-grounds:1800:danny-howard",
+   "artistId": "edc-mexico-2020:danny-howard",
+   "day": 2,
+   "stageId": "edc-mexico-2020:circuit-grounds",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:circuit-grounds:1900:walker-and-royce",
+   "artistId": "edc-mexico-2020:walker-and-royce",
+   "day": 2,
+   "stageId": "edc-mexico-2020:circuit-grounds",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:circuit-grounds:2000:meduza",
+   "artistId": "edc-mexico-2020:meduza",
+   "day": 2,
+   "stageId": "edc-mexico-2020:circuit-grounds",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:circuit-grounds:2100:vintage-culture",
+   "artistId": "edc-mexico-2020:vintage-culture",
+   "day": 2,
+   "stageId": "edc-mexico-2020:circuit-grounds",
+   "start": "21:00",
+   "end": "22:15"
+  },
+  {
+   "id": "edc-mexico-2020:d2:circuit-grounds:2215:duke-dumont",
+   "artistId": "edc-mexico-2020:duke-dumont",
+   "day": 2,
+   "stageId": "edc-mexico-2020:circuit-grounds",
+   "start": "22:15",
+   "end": "23:30"
+  },
+  {
+   "id": "edc-mexico-2020:d2:circuit-grounds:2330:knife-party",
+   "artistId": "edc-mexico-2020:knife-party",
+   "day": 2,
+   "stageId": "edc-mexico-2020:circuit-grounds",
+   "start": "23:30",
+   "end": "00:30"
+  },
+  {
+   "id": "edc-mexico-2020:d2:circuit-grounds:0030:diplo",
+   "artistId": "edc-mexico-2020:diplo",
+   "day": 2,
+   "stageId": "edc-mexico-2020:circuit-grounds",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:neon-garden:1400:lokier",
+   "artistId": "edc-mexico-2020:lokier",
+   "day": 2,
+   "stageId": "edc-mexico-2020:neon-garden",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:neon-garden:1500:ostil",
+   "artistId": "edc-mexico-2020:ostil",
+   "day": 2,
+   "stageId": "edc-mexico-2020:neon-garden",
+   "start": "15:00",
+   "end": "16:15"
+  },
+  {
+   "id": "edc-mexico-2020:d2:neon-garden:1615:bontan",
+   "artistId": "edc-mexico-2020:bontan",
+   "day": 2,
+   "stageId": "edc-mexico-2020:neon-garden",
+   "start": "16:15",
+   "end": "17:30"
+  },
+  {
+   "id": "edc-mexico-2020:d2:neon-garden:1730:mason-maynard",
+   "artistId": "edc-mexico-2020:mason-maynard",
+   "day": 2,
+   "stageId": "edc-mexico-2020:neon-garden",
+   "start": "17:30",
+   "end": "18:45"
+  },
+  {
+   "id": "edc-mexico-2020:d2:neon-garden:1845:paul-woolford",
+   "artistId": "edc-mexico-2020:paul-woolford",
+   "day": 2,
+   "stageId": "edc-mexico-2020:neon-garden",
+   "start": "18:45",
+   "end": "20:15"
+  },
+  {
+   "id": "edc-mexico-2020:d2:neon-garden:2015:patrick-topping",
+   "artistId": "edc-mexico-2020:patrick-topping",
+   "day": 2,
+   "stageId": "edc-mexico-2020:neon-garden",
+   "start": "20:15",
+   "end": "21:45"
+  },
+  {
+   "id": "edc-mexico-2020:d2:neon-garden:2145:sasha",
+   "artistId": "edc-mexico-2020:sasha",
+   "day": 2,
+   "stageId": "edc-mexico-2020:neon-garden",
+   "start": "21:45",
+   "end": "23:30"
+  },
+  {
+   "id": "edc-mexico-2020:d2:neon-garden:2330:sven-vath",
+   "artistId": "edc-mexico-2020:sven-vath",
+   "day": 2,
+   "stageId": "edc-mexico-2020:neon-garden",
+   "start": "23:30",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:wasteland:1400:bagha",
+   "artistId": "edc-mexico-2020:bagha",
+   "day": 2,
+   "stageId": "edc-mexico-2020:wasteland",
+   "start": "14:00",
+   "end": "15:30"
+  },
+  {
+   "id": "edc-mexico-2020:d2:wasteland:1530:save-the-rabbits",
+   "artistId": "edc-mexico-2020:save-the-rabbits",
+   "day": 2,
+   "stageId": "edc-mexico-2020:wasteland",
+   "start": "15:30",
+   "end": "16:15"
+  },
+  {
+   "id": "edc-mexico-2020:d2:wasteland:1615:mykka",
+   "artistId": "edc-mexico-2020:mykka",
+   "day": 2,
+   "stageId": "edc-mexico-2020:wasteland",
+   "start": "16:15",
+   "end": "17:30"
+  },
+  {
+   "id": "edc-mexico-2020:d2:wasteland:1730:nightstalker-mc-xyz",
+   "artistId": "edc-mexico-2020:nightstalker-mc-xyz",
+   "day": 2,
+   "stageId": "edc-mexico-2020:wasteland",
+   "start": "17:30",
+   "end": "18:45"
+  },
+  {
+   "id": "edc-mexico-2020:d2:wasteland:1845:definitive",
+   "artistId": "edc-mexico-2020:definitive",
+   "day": 2,
+   "stageId": "edc-mexico-2020:wasteland",
+   "start": "18:45",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:wasteland:2000:matrix-and-futurebound",
+   "artistId": "edc-mexico-2020:matrix-and-futurebound",
+   "day": 2,
+   "stageId": "edc-mexico-2020:wasteland",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:wasteland:2100:trampa",
+   "artistId": "edc-mexico-2020:trampa",
+   "day": 2,
+   "stageId": "edc-mexico-2020:wasteland",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:wasteland:2200:svdden-death",
+   "artistId": "edc-mexico-2020:svdden-death",
+   "day": 2,
+   "stageId": "edc-mexico-2020:wasteland",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:wasteland:2300:12th-planet",
+   "artistId": "edc-mexico-2020:12th-planet",
+   "day": 2,
+   "stageId": "edc-mexico-2020:wasteland",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:wasteland:0000:zomboy",
+   "artistId": "edc-mexico-2020:zomboy",
+   "day": 2,
+   "stageId": "edc-mexico-2020:wasteland",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:wasteland:0100:zeds-dead",
+   "artistId": "edc-mexico-2020:zeds-dead",
+   "day": 2,
+   "stageId": "edc-mexico-2020:wasteland",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:dos-equis-stage:1400:adgel-b2b-tblmkr",
+   "artistId": "edc-mexico-2020:adgel-b2b-tblmkr",
+   "day": 2,
+   "stageId": "edc-mexico-2020:dos-equis-stage",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:dos-equis-stage:1500:chanty-otm",
+   "artistId": "edc-mexico-2020:chanty-otm",
+   "day": 2,
+   "stageId": "edc-mexico-2020:dos-equis-stage",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:dos-equis-stage:1600:mi-il",
+   "artistId": "edc-mexico-2020:mi-il",
+   "day": 2,
+   "stageId": "edc-mexico-2020:dos-equis-stage",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:dos-equis-stage:1700:sak-noel-presenta-barnaton",
+   "artistId": "edc-mexico-2020:sak-noel-presenta-barnaton",
+   "day": 2,
+   "stageId": "edc-mexico-2020:dos-equis-stage",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:dos-equis-stage:1800:ma-less",
+   "artistId": "edc-mexico-2020:ma-less",
+   "day": 2,
+   "stageId": "edc-mexico-2020:dos-equis-stage",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:dos-equis-stage:1900:innobass-b2b-milomilo",
+   "artistId": "edc-mexico-2020:innobass-b2b-milomilo",
+   "day": 2,
+   "stageId": "edc-mexico-2020:dos-equis-stage",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:dos-equis-stage:2000:muzik-junkies",
+   "artistId": "edc-mexico-2020:muzik-junkies",
+   "day": 2,
+   "stageId": "edc-mexico-2020:dos-equis-stage",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:dos-equis-stage:2100:la-clicka-presents-worldwide-records",
+   "artistId": "edc-mexico-2020:la-clicka-presents-worldwide-records",
+   "day": 2,
+   "stageId": "edc-mexico-2020:dos-equis-stage",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:dos-equis-stage:2200:bizarrap",
+   "artistId": "edc-mexico-2020:bizarrap",
+   "day": 2,
+   "stageId": "edc-mexico-2020:dos-equis-stage",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:dos-equis-stage:2300:lizz",
+   "artistId": "edc-mexico-2020:lizz",
+   "day": 2,
+   "stageId": "edc-mexico-2020:dos-equis-stage",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:dos-equis-stage:0000:gian-varela-b2b-arguello",
+   "artistId": "edc-mexico-2020:gian-varela-b2b-arguello",
+   "day": 2,
+   "stageId": "edc-mexico-2020:dos-equis-stage",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:dos-equis-stage:0100:matias-aguayo-live",
+   "artistId": "edc-mexico-2020:matias-aguayo-live",
+   "day": 2,
+   "stageId": "edc-mexico-2020:dos-equis-stage",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:stereo-bloom:1415:megalight",
+   "artistId": "edc-mexico-2020:megalight",
+   "day": 2,
+   "stageId": "edc-mexico-2020:stereo-bloom",
+   "start": "14:15",
+   "end": "15:15"
+  },
+  {
+   "id": "edc-mexico-2020:d2:stereo-bloom:1515:vlind",
+   "artistId": "edc-mexico-2020:vlind",
+   "day": 2,
+   "stageId": "edc-mexico-2020:stereo-bloom",
+   "start": "15:15",
+   "end": "16:30"
+  },
+  {
+   "id": "edc-mexico-2020:d2:stereo-bloom:1630:kristina-sky",
+   "artistId": "edc-mexico-2020:kristina-sky",
+   "day": 2,
+   "stageId": "edc-mexico-2020:stereo-bloom",
+   "start": "16:30",
+   "end": "17:45"
+  },
+  {
+   "id": "edc-mexico-2020:d2:stereo-bloom:1745:alessandra-roncone",
+   "artistId": "edc-mexico-2020:alessandra-roncone",
+   "day": 2,
+   "stageId": "edc-mexico-2020:stereo-bloom",
+   "start": "17:45",
+   "end": "19:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:stereo-bloom:1900:chris-schweizer",
+   "artistId": "edc-mexico-2020:chris-schweizer",
+   "day": 2,
+   "stageId": "edc-mexico-2020:stereo-bloom",
+   "start": "19:00",
+   "end": "20:15"
+  },
+  {
+   "id": "edc-mexico-2020:d2:stereo-bloom:2015:craig-connelly",
+   "artistId": "edc-mexico-2020:craig-connelly",
+   "day": 2,
+   "stageId": "edc-mexico-2020:stereo-bloom",
+   "start": "20:15",
+   "end": "21:30"
+  },
+  {
+   "id": "edc-mexico-2020:d2:stereo-bloom:2130:giuseppe-ottaviani",
+   "artistId": "edc-mexico-2020:giuseppe-ottaviani",
+   "day": 2,
+   "stageId": "edc-mexico-2020:stereo-bloom",
+   "start": "21:30",
+   "end": "23:30"
+  },
+  {
+   "id": "edc-mexico-2020:d2:stereo-bloom:2330:blastoyz",
+   "artistId": "edc-mexico-2020:blastoyz",
+   "day": 2,
+   "stageId": "edc-mexico-2020:stereo-bloom",
+   "start": "23:30",
+   "end": "00:30"
+  },
+  {
+   "id": "edc-mexico-2020:d2:stereo-bloom:0030:mandragora",
+   "artistId": "edc-mexico-2020:mandragora",
+   "day": 2,
+   "stageId": "edc-mexico-2020:stereo-bloom",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:boombox-art-car:1400:dunnowho",
+   "artistId": "edc-mexico-2020:dunnowho",
+   "day": 2,
+   "stageId": "edc-mexico-2020:boombox-art-car",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:boombox-art-car:1500:underbite",
+   "artistId": "edc-mexico-2020:underbite",
+   "day": 2,
+   "stageId": "edc-mexico-2020:boombox-art-car",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:boombox-art-car:1600:solano",
+   "artistId": "edc-mexico-2020:solano",
+   "day": 2,
+   "stageId": "edc-mexico-2020:boombox-art-car",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:boombox-art-car:1700:abraham-ramirez",
+   "artistId": "edc-mexico-2020:abraham-ramirez",
+   "day": 2,
+   "stageId": "edc-mexico-2020:boombox-art-car",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:boombox-art-car:1800:remille",
+   "artistId": "edc-mexico-2020:remille",
+   "day": 2,
+   "stageId": "edc-mexico-2020:boombox-art-car",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:boombox-art-car:1900:losh",
+   "artistId": "edc-mexico-2020:losh",
+   "day": 2,
+   "stageId": "edc-mexico-2020:boombox-art-car",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:boombox-art-car:2000:grimix",
+   "artistId": "edc-mexico-2020:grimix",
+   "day": 2,
+   "stageId": "edc-mexico-2020:boombox-art-car",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:boombox-art-car:2100:rad-cat",
+   "artistId": "edc-mexico-2020:rad-cat",
+   "day": 2,
+   "stageId": "edc-mexico-2020:boombox-art-car",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:boombox-art-car:2200:erick-t",
+   "artistId": "edc-mexico-2020:erick-t",
+   "day": 2,
+   "stageId": "edc-mexico-2020:boombox-art-car",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:boombox-art-car:2300:feii-vega",
+   "artistId": "edc-mexico-2020:feii-vega",
+   "day": 2,
+   "stageId": "edc-mexico-2020:boombox-art-car",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:boombox-art-car:0000:derlow",
+   "artistId": "edc-mexico-2020:derlow",
+   "day": 2,
+   "stageId": "edc-mexico-2020:boombox-art-car",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:boombox-art-car:0100:enya-botello",
+   "artistId": "edc-mexico-2020:enya-botello",
+   "day": 2,
+   "stageId": "edc-mexico-2020:boombox-art-car",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:wide-awake-art-car:1400:kleinfinger",
+   "artistId": "edc-mexico-2020:kleinfinger",
+   "day": 2,
+   "stageId": "edc-mexico-2020:wide-awake-art-car",
+   "start": "14:00",
+   "end": "15:15"
+  },
+  {
+   "id": "edc-mexico-2020:d2:wide-awake-art-car:1515:kris-berle",
+   "artistId": "edc-mexico-2020:kris-berle",
+   "day": 2,
+   "stageId": "edc-mexico-2020:wide-awake-art-car",
+   "start": "15:15",
+   "end": "16:30"
+  },
+  {
+   "id": "edc-mexico-2020:d2:wide-awake-art-car:1630:carlos-belatti",
+   "artistId": "edc-mexico-2020:carlos-belatti",
+   "day": 2,
+   "stageId": "edc-mexico-2020:wide-awake-art-car",
+   "start": "16:30",
+   "end": "18:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:wide-awake-art-car:1800:flor-capistran",
+   "artistId": "edc-mexico-2020:flor-capistran",
+   "day": 2,
+   "stageId": "edc-mexico-2020:wide-awake-art-car",
+   "start": "18:00",
+   "end": "19:30"
+  },
+  {
+   "id": "edc-mexico-2020:d2:wide-awake-art-car:1930:paulor",
+   "artistId": "edc-mexico-2020:paulor",
+   "day": 2,
+   "stageId": "edc-mexico-2020:wide-awake-art-car",
+   "start": "19:30",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:wide-awake-art-car:2100:cabizbajo",
+   "artistId": "edc-mexico-2020:cabizbajo",
+   "day": 2,
+   "stageId": "edc-mexico-2020:wide-awake-art-car",
+   "start": "21:00",
+   "end": "22:30"
+  },
+  {
+   "id": "edc-mexico-2020:d2:wide-awake-art-car:2230:pinto",
+   "artistId": "edc-mexico-2020:pinto",
+   "day": 2,
+   "stageId": "edc-mexico-2020:wide-awake-art-car",
+   "start": "22:30",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:wide-awake-art-car:0000:balcazar",
+   "artistId": "edc-mexico-2020:balcazar",
+   "day": 2,
+   "stageId": "edc-mexico-2020:wide-awake-art-car",
+   "start": "00:00",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:bionic-jungle:1400:rocco-desentis",
+   "artistId": "edc-mexico-2020:rocco-desentis",
+   "day": 2,
+   "stageId": "edc-mexico-2020:bionic-jungle",
+   "start": "14:00",
+   "end": "16:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:bionic-jungle:1600:bubu",
+   "artistId": "edc-mexico-2020:bubu",
+   "day": 2,
+   "stageId": "edc-mexico-2020:bionic-jungle",
+   "start": "16:00",
+   "end": "18:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:bionic-jungle:1800:zombies-in-miami-live",
+   "artistId": "edc-mexico-2020:zombies-in-miami-live",
+   "day": 2,
+   "stageId": "edc-mexico-2020:bionic-jungle",
+   "start": "18:00",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:bionic-jungle:2000:mandrake",
+   "artistId": "edc-mexico-2020:mandrake",
+   "day": 2,
+   "stageId": "edc-mexico-2020:bionic-jungle",
+   "start": "20:00",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:bionic-jungle:2200:whomadewho-dj-set",
+   "artistId": "edc-mexico-2020:whomadewho-dj-set",
+   "day": 2,
+   "stageId": "edc-mexico-2020:bionic-jungle",
+   "start": "22:00",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-mexico-2020:d2:bionic-jungle:0000:jenia-tarsol",
+   "artistId": "edc-mexico-2020:jenia-tarsol",
+   "day": 2,
+   "stageId": "edc-mexico-2020:bionic-jungle",
+   "start": "00:00",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-mexico-2020:d3:kinetic-field:1400:hajj",
+   "artistId": "edc-mexico-2020:hajj",
+   "day": 3,
+   "stageId": "edc-mexico-2020:kinetic-field",
+   "start": "14:00",
+   "end": "14:45"
+  },
+  {
+   "id": "edc-mexico-2020:d3:kinetic-field:1445:fruti",
+   "artistId": "edc-mexico-2020:fruti",
+   "day": 3,
+   "stageId": "edc-mexico-2020:kinetic-field",
+   "start": "14:45",
+   "end": "15:50"
+  },
+  {
+   "id": "edc-mexico-2020:d3:kinetic-field:1550:mariana-bo",
+   "artistId": "edc-mexico-2020:mariana-bo",
+   "day": 3,
+   "stageId": "edc-mexico-2020:kinetic-field",
+   "start": "15:50",
+   "end": "16:50"
+  },
+  {
+   "id": "edc-mexico-2020:d3:kinetic-field:1650:lsdream",
+   "artistId": "edc-mexico-2020:lsdream",
+   "day": 3,
+   "stageId": "edc-mexico-2020:kinetic-field",
+   "start": "16:50",
+   "end": "17:50"
+  },
+  {
+   "id": "edc-mexico-2020:d3:kinetic-field:1750:ekali",
+   "artistId": "edc-mexico-2020:ekali",
+   "day": 3,
+   "stageId": "edc-mexico-2020:kinetic-field",
+   "start": "17:50",
+   "end": "18:50"
+  },
+  {
+   "id": "edc-mexico-2020:d3:kinetic-field:1856:nghtmre",
+   "artistId": "edc-mexico-2020:nghtmre",
+   "day": 3,
+   "stageId": "edc-mexico-2020:kinetic-field",
+   "start": "18:56",
+   "end": "20:09"
+  },
+  {
+   "id": "edc-mexico-2020:d3:kinetic-field:2012:jauz",
+   "artistId": "edc-mexico-2020:jauz",
+   "day": 3,
+   "stageId": "edc-mexico-2020:kinetic-field",
+   "start": "20:12",
+   "end": "21:39"
+  },
+  {
+   "id": "edc-mexico-2020:d3:kinetic-field:2142:kshmr",
+   "artistId": "edc-mexico-2020:kshmr",
+   "day": 3,
+   "stageId": "edc-mexico-2020:kinetic-field",
+   "start": "21:42",
+   "end": "23:09"
+  },
+  {
+   "id": "edc-mexico-2020:d3:kinetic-field:2312:armin-van-buuren",
+   "artistId": "edc-mexico-2020:armin-van-buuren",
+   "day": 3,
+   "stageId": "edc-mexico-2020:kinetic-field",
+   "start": "23:12",
+   "end": "00:25"
+  },
+  {
+   "id": "edc-mexico-2020:d3:kinetic-field:0028:david-guetta",
+   "artistId": "edc-mexico-2020:david-guetta",
+   "day": 3,
+   "stageId": "edc-mexico-2020:kinetic-field",
+   "start": "00:28",
+   "end": "01:58"
+  },
+  {
+   "id": "edc-mexico-2020:d3:circuit-grounds:1400:mark-cast",
+   "artistId": "edc-mexico-2020:mark-cast",
+   "day": 3,
+   "stageId": "edc-mexico-2020:circuit-grounds",
+   "start": "14:00",
+   "end": "14:45"
+  },
+  {
+   "id": "edc-mexico-2020:d3:circuit-grounds:1445:pauza",
+   "artistId": "edc-mexico-2020:pauza",
+   "day": 3,
+   "stageId": "edc-mexico-2020:circuit-grounds",
+   "start": "14:45",
+   "end": "15:35"
+  },
+  {
+   "id": "edc-mexico-2020:d3:circuit-grounds:1535:rossell",
+   "artistId": "edc-mexico-2020:rossell",
+   "day": 3,
+   "stageId": "edc-mexico-2020:circuit-grounds",
+   "start": "15:35",
+   "end": "16:25"
+  },
+  {
+   "id": "edc-mexico-2020:d3:circuit-grounds:1625:kidnap",
+   "artistId": "edc-mexico-2020:kidnap",
+   "day": 3,
+   "stageId": "edc-mexico-2020:circuit-grounds",
+   "start": "16:25",
+   "end": "17:25"
+  },
+  {
+   "id": "edc-mexico-2020:d3:circuit-grounds:1725:phantoms-live",
+   "artistId": "edc-mexico-2020:phantoms-live",
+   "day": 3,
+   "stageId": "edc-mexico-2020:circuit-grounds",
+   "start": "17:25",
+   "end": "18:20"
+  },
+  {
+   "id": "edc-mexico-2020:d3:circuit-grounds:1830:big-wild",
+   "artistId": "edc-mexico-2020:big-wild",
+   "day": 3,
+   "stageId": "edc-mexico-2020:circuit-grounds",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "edc-mexico-2020:d3:circuit-grounds:1930:tokimonsta",
+   "artistId": "edc-mexico-2020:tokimonsta",
+   "day": 3,
+   "stageId": "edc-mexico-2020:circuit-grounds",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "edc-mexico-2020:d3:circuit-grounds:2030:joyryde",
+   "artistId": "edc-mexico-2020:joyryde",
+   "day": 3,
+   "stageId": "edc-mexico-2020:circuit-grounds",
+   "start": "20:30",
+   "end": "21:35"
+  },
+  {
+   "id": "edc-mexico-2020:d3:circuit-grounds:2135:troyboi",
+   "artistId": "edc-mexico-2020:troyboi",
+   "day": 3,
+   "stageId": "edc-mexico-2020:circuit-grounds",
+   "start": "21:35",
+   "end": "23:05"
+  },
+  {
+   "id": "edc-mexico-2020:d3:circuit-grounds:2315:louis-the-child",
+   "artistId": "edc-mexico-2020:louis-the-child",
+   "day": 3,
+   "stageId": "edc-mexico-2020:circuit-grounds",
+   "start": "23:15",
+   "end": "00:30"
+  },
+  {
+   "id": "edc-mexico-2020:d3:circuit-grounds:0045:madeon-live",
+   "artistId": "edc-mexico-2020:madeon-live",
+   "day": 3,
+   "stageId": "edc-mexico-2020:circuit-grounds",
+   "start": "00:45",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-mexico-2020:d3:neon-garden:1400:andrea-acosta",
+   "artistId": "edc-mexico-2020:andrea-acosta",
+   "day": 3,
+   "stageId": "edc-mexico-2020:neon-garden",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "edc-mexico-2020:d3:neon-garden:1500:adin",
+   "artistId": "edc-mexico-2020:adin",
+   "day": 3,
+   "stageId": "edc-mexico-2020:neon-garden",
+   "start": "15:00",
+   "end": "16:15"
+  },
+  {
+   "id": "edc-mexico-2020:d3:neon-garden:1615:lauren-lane",
+   "artistId": "edc-mexico-2020:lauren-lane",
+   "day": 3,
+   "stageId": "edc-mexico-2020:neon-garden",
+   "start": "16:15",
+   "end": "17:30"
+  },
+  {
+   "id": "edc-mexico-2020:d3:neon-garden:1730:eli-brown",
+   "artistId": "edc-mexico-2020:eli-brown",
+   "day": 3,
+   "stageId": "edc-mexico-2020:neon-garden",
+   "start": "17:30",
+   "end": "18:45"
+  },
+  {
+   "id": "edc-mexico-2020:d3:neon-garden:1845:cristoph",
+   "artistId": "edc-mexico-2020:cristoph",
+   "day": 3,
+   "stageId": "edc-mexico-2020:neon-garden",
+   "start": "18:45",
+   "end": "20:30"
+  },
+  {
+   "id": "edc-mexico-2020:d3:neon-garden:2030:enrico-sangiuliano",
+   "artistId": "edc-mexico-2020:enrico-sangiuliano",
+   "day": 3,
+   "stageId": "edc-mexico-2020:neon-garden",
+   "start": "20:30",
+   "end": "22:15"
+  },
+  {
+   "id": "edc-mexico-2020:d3:neon-garden:2215:joris-voorn",
+   "artistId": "edc-mexico-2020:joris-voorn",
+   "day": 3,
+   "stageId": "edc-mexico-2020:neon-garden",
+   "start": "22:15",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-mexico-2020:d3:neon-garden:0000:marco-carola",
+   "artistId": "edc-mexico-2020:marco-carola",
+   "day": 3,
+   "stageId": "edc-mexico-2020:neon-garden",
+   "start": "00:00",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-mexico-2020:d3:wasteland:1400:alby-loud",
+   "artistId": "edc-mexico-2020:alby-loud",
+   "day": 3,
+   "stageId": "edc-mexico-2020:wasteland",
+   "start": "14:00",
+   "end": "15:15"
+  },
+  {
+   "id": "edc-mexico-2020:d3:wasteland:1515:aranxa",
+   "artistId": "edc-mexico-2020:aranxa",
+   "day": 3,
+   "stageId": "edc-mexico-2020:wasteland",
+   "start": "15:15",
+   "end": "16:30"
+  },
+  {
+   "id": "edc-mexico-2020:d3:wasteland:1630:haaradak",
+   "artistId": "edc-mexico-2020:haaradak",
+   "day": 3,
+   "stageId": "edc-mexico-2020:wasteland",
+   "start": "16:30",
+   "end": "18:00"
+  },
+  {
+   "id": "edc-mexico-2020:d3:wasteland:1800:darksiderz",
+   "artistId": "edc-mexico-2020:darksiderz",
+   "day": 3,
+   "stageId": "edc-mexico-2020:wasteland",
+   "start": "18:00",
+   "end": "18:30"
+  },
+  {
+   "id": "edc-mexico-2020:d3:wasteland:1830:audiofreq-b2b-darksiderz",
+   "artistId": "edc-mexico-2020:audiofreq-b2b-darksiderz",
+   "day": 3,
+   "stageId": "edc-mexico-2020:wasteland",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "edc-mexico-2020:d3:wasteland:1930:audiofreq",
+   "artistId": "edc-mexico-2020:audiofreq",
+   "day": 3,
+   "stageId": "edc-mexico-2020:wasteland",
+   "start": "19:30",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-mexico-2020:d3:wasteland:2000:ben-nicky-presents-xtreme",
+   "artistId": "edc-mexico-2020:ben-nicky-presents-xtreme",
+   "day": 3,
+   "stageId": "edc-mexico-2020:wasteland",
+   "start": "20:00",
+   "end": "21:15"
+  },
+  {
+   "id": "edc-mexico-2020:d3:wasteland:2115:tweekacore",
+   "artistId": "edc-mexico-2020:tweekacore",
+   "day": 3,
+   "stageId": "edc-mexico-2020:wasteland",
+   "start": "21:15",
+   "end": "22:15"
+  },
+  {
+   "id": "edc-mexico-2020:d3:wasteland:2215:d-sturb",
+   "artistId": "edc-mexico-2020:d-sturb",
+   "day": 3,
+   "stageId": "edc-mexico-2020:wasteland",
+   "start": "22:15",
+   "end": "23:30"
+  },
+  {
+   "id": "edc-mexico-2020:d3:wasteland:2330:dj-anime",
+   "artistId": "edc-mexico-2020:dj-anime",
+   "day": 3,
+   "stageId": "edc-mexico-2020:wasteland",
+   "start": "23:30",
+   "end": "00:45"
+  },
+  {
+   "id": "edc-mexico-2020:d3:wasteland:0045:lil-texas",
+   "artistId": "edc-mexico-2020:lil-texas",
+   "day": 3,
+   "stageId": "edc-mexico-2020:wasteland",
+   "start": "00:45",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-mexico-2020:d3:dos-equis-stage:1400:niza",
+   "artistId": "edc-mexico-2020:niza",
+   "day": 3,
+   "stageId": "edc-mexico-2020:dos-equis-stage",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "edc-mexico-2020:d3:dos-equis-stage:1500:robots-don-t-have-sisters-b2b-criminal-sounds",
+   "artistId": "edc-mexico-2020:robots-don-t-have-sisters-b2b-criminal-sounds",
+   "day": 3,
+   "stageId": "edc-mexico-2020:dos-equis-stage",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "edc-mexico-2020:d3:dos-equis-stage:1600:gamboa",
+   "artistId": "edc-mexico-2020:gamboa",
+   "day": 3,
+   "stageId": "edc-mexico-2020:dos-equis-stage",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "edc-mexico-2020:d3:dos-equis-stage:1700:maahez",
+   "artistId": "edc-mexico-2020:maahez",
+   "day": 3,
+   "stageId": "edc-mexico-2020:dos-equis-stage",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "edc-mexico-2020:d3:dos-equis-stage:1800:barbie-chola-b2b-not-a-chinese",
+   "artistId": "edc-mexico-2020:barbie-chola-b2b-not-a-chinese",
+   "day": 3,
+   "stageId": "edc-mexico-2020:dos-equis-stage",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "edc-mexico-2020:d3:dos-equis-stage:1900:mr-pauer",
+   "artistId": "edc-mexico-2020:mr-pauer",
+   "day": 3,
+   "stageId": "edc-mexico-2020:dos-equis-stage",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-mexico-2020:d3:dos-equis-stage:2000:sky-rompiendo",
+   "artistId": "edc-mexico-2020:sky-rompiendo",
+   "day": 3,
+   "stageId": "edc-mexico-2020:dos-equis-stage",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-mexico-2020:d3:dos-equis-stage:2100:dj-nelson",
+   "artistId": "edc-mexico-2020:dj-nelson",
+   "day": 3,
+   "stageId": "edc-mexico-2020:dos-equis-stage",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-mexico-2020:d3:dos-equis-stage:2200:natalia",
+   "artistId": "edc-mexico-2020:natalia",
+   "day": 3,
+   "stageId": "edc-mexico-2020:dos-equis-stage",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "edc-mexico-2020:d3:dos-equis-stage:2300:ale-q-b2b-pako-rodriguez",
+   "artistId": "edc-mexico-2020:ale-q-b2b-pako-rodriguez",
+   "day": 3,
+   "stageId": "edc-mexico-2020:dos-equis-stage",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-mexico-2020:d3:dos-equis-stage:0000:ivy-kst",
+   "artistId": "edc-mexico-2020:ivy-kst",
+   "day": 3,
+   "stageId": "edc-mexico-2020:dos-equis-stage",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "edc-mexico-2020:d3:dos-equis-stage:0100:guztavo-mx-b2b-charlie-atom",
+   "artistId": "edc-mexico-2020:guztavo-mx-b2b-charlie-atom",
+   "day": 3,
+   "stageId": "edc-mexico-2020:dos-equis-stage",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-mexico-2020:d3:stereo-bloom:1415:marco-almanza",
+   "artistId": "edc-mexico-2020:marco-almanza",
+   "day": 3,
+   "stageId": "edc-mexico-2020:stereo-bloom",
+   "start": "14:15",
+   "end": "15:15"
+  },
+  {
+   "id": "edc-mexico-2020:d3:stereo-bloom:1515:sage-armstrong-b2b-lucati",
+   "artistId": "edc-mexico-2020:sage-armstrong-b2b-lucati",
+   "day": 3,
+   "stageId": "edc-mexico-2020:stereo-bloom",
+   "start": "15:15",
+   "end": "16:15"
+  },
+  {
+   "id": "edc-mexico-2020:d3:stereo-bloom:1615:vnssa",
+   "artistId": "edc-mexico-2020:vnssa",
+   "day": 3,
+   "stageId": "edc-mexico-2020:stereo-bloom",
+   "start": "16:15",
+   "end": "17:15"
+  },
+  {
+   "id": "edc-mexico-2020:d3:stereo-bloom:1715:born-dirty",
+   "artistId": "edc-mexico-2020:born-dirty",
+   "day": 3,
+   "stageId": "edc-mexico-2020:stereo-bloom",
+   "start": "17:15",
+   "end": "18:45"
+  },
+  {
+   "id": "edc-mexico-2020:d3:stereo-bloom:1845:noizu",
+   "artistId": "edc-mexico-2020:noizu",
+   "day": 3,
+   "stageId": "edc-mexico-2020:stereo-bloom",
+   "start": "18:45",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-mexico-2020:d3:stereo-bloom:2000:wax-motif",
+   "artistId": "edc-mexico-2020:wax-motif",
+   "day": 3,
+   "stageId": "edc-mexico-2020:stereo-bloom",
+   "start": "20:00",
+   "end": "21:15"
+  },
+  {
+   "id": "edc-mexico-2020:d3:stereo-bloom:2115:dombresky",
+   "artistId": "edc-mexico-2020:dombresky",
+   "day": 3,
+   "stageId": "edc-mexico-2020:stereo-bloom",
+   "start": "21:15",
+   "end": "22:30"
+  },
+  {
+   "id": "edc-mexico-2020:d3:stereo-bloom:2230:weiss",
+   "artistId": "edc-mexico-2020:weiss",
+   "day": 3,
+   "stageId": "edc-mexico-2020:stereo-bloom",
+   "start": "22:30",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-mexico-2020:d3:stereo-bloom:0000:steady-rock",
+   "artistId": "edc-mexico-2020:steady-rock",
+   "day": 3,
+   "stageId": "edc-mexico-2020:stereo-bloom",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "edc-mexico-2020:d3:stereo-bloom:0100:amg",
+   "artistId": "edc-mexico-2020:amg",
+   "day": 3,
+   "stageId": "edc-mexico-2020:stereo-bloom",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-mexico-2020:d3:boombox-art-car:1400:sugar-glider",
+   "artistId": "edc-mexico-2020:sugar-glider",
+   "day": 3,
+   "stageId": "edc-mexico-2020:boombox-art-car",
+   "start": "14:00",
+   "end": "14:55"
+  },
+  {
+   "id": "edc-mexico-2020:d3:boombox-art-car:1455:rocio-pergon",
+   "artistId": "edc-mexico-2020:rocio-pergon",
+   "day": 3,
+   "stageId": "edc-mexico-2020:boombox-art-car",
+   "start": "14:55",
+   "end": "15:50"
+  },
+  {
+   "id": "edc-mexico-2020:d3:boombox-art-car:1550:dj-p0ll0",
+   "artistId": "edc-mexico-2020:dj-p0ll0",
+   "day": 3,
+   "stageId": "edc-mexico-2020:boombox-art-car",
+   "start": "15:50",
+   "end": "16:45"
+  },
+  {
+   "id": "edc-mexico-2020:d3:boombox-art-car:1645:joe-rose-b2b-dj-hu",
+   "artistId": "edc-mexico-2020:joe-rose-b2b-dj-hu",
+   "day": 3,
+   "stageId": "edc-mexico-2020:boombox-art-car",
+   "start": "16:45",
+   "end": "17:15"
+  },
+  {
+   "id": "edc-mexico-2020:d3:boombox-art-car:1715:k-i-d",
+   "artistId": "edc-mexico-2020:k-i-d",
+   "day": 3,
+   "stageId": "edc-mexico-2020:boombox-art-car",
+   "start": "17:15",
+   "end": "17:50"
+  },
+  {
+   "id": "edc-mexico-2020:d3:boombox-art-car:1750:dam-dam",
+   "artistId": "edc-mexico-2020:dam-dam",
+   "day": 3,
+   "stageId": "edc-mexico-2020:boombox-art-car",
+   "start": "17:50",
+   "end": "18:35"
+  },
+  {
+   "id": "edc-mexico-2020:d3:boombox-art-car:1835:wito",
+   "artistId": "edc-mexico-2020:wito",
+   "day": 3,
+   "stageId": "edc-mexico-2020:boombox-art-car",
+   "start": "18:35",
+   "end": "19:30"
+  },
+  {
+   "id": "edc-mexico-2020:d3:boombox-art-car:1930:alex-midi",
+   "artistId": "edc-mexico-2020:alex-midi",
+   "day": 3,
+   "stageId": "edc-mexico-2020:boombox-art-car",
+   "start": "19:30",
+   "end": "20:25"
+  },
+  {
+   "id": "edc-mexico-2020:d3:boombox-art-car:2025:mira-mira",
+   "artistId": "edc-mexico-2020:mira-mira",
+   "day": 3,
+   "stageId": "edc-mexico-2020:boombox-art-car",
+   "start": "20:25",
+   "end": "21:20"
+  },
+  {
+   "id": "edc-mexico-2020:d3:boombox-art-car:2120:alfred-beck",
+   "artistId": "edc-mexico-2020:alfred-beck",
+   "day": 3,
+   "stageId": "edc-mexico-2020:boombox-art-car",
+   "start": "21:20",
+   "end": "22:15"
+  },
+  {
+   "id": "edc-mexico-2020:d3:boombox-art-car:2215:dayanna-ro",
+   "artistId": "edc-mexico-2020:dayanna-ro",
+   "day": 3,
+   "stageId": "edc-mexico-2020:boombox-art-car",
+   "start": "22:15",
+   "end": "23:10"
+  },
+  {
+   "id": "edc-mexico-2020:d3:boombox-art-car:2310:a-zar",
+   "artistId": "edc-mexico-2020:a-zar",
+   "day": 3,
+   "stageId": "edc-mexico-2020:boombox-art-car",
+   "start": "23:10",
+   "end": "00:05"
+  },
+  {
+   "id": "edc-mexico-2020:d3:boombox-art-car:0005:angry-beats",
+   "artistId": "edc-mexico-2020:angry-beats",
+   "day": 3,
+   "stageId": "edc-mexico-2020:boombox-art-car",
+   "start": "00:05",
+   "end": "01:00"
+  },
+  {
+   "id": "edc-mexico-2020:d3:boombox-art-car:0100:mzrin",
+   "artistId": "edc-mexico-2020:mzrin",
+   "day": 3,
+   "stageId": "edc-mexico-2020:boombox-art-car",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-mexico-2020:d3:wide-awake-art-car:1400:vongold",
+   "artistId": "edc-mexico-2020:vongold",
+   "day": 3,
+   "stageId": "edc-mexico-2020:wide-awake-art-car",
+   "start": "14:00",
+   "end": "15:15"
+  },
+  {
+   "id": "edc-mexico-2020:d3:wide-awake-art-car:1515:young-drums",
+   "artistId": "edc-mexico-2020:young-drums",
+   "day": 3,
+   "stageId": "edc-mexico-2020:wide-awake-art-car",
+   "start": "15:15",
+   "end": "16:30"
+  },
+  {
+   "id": "edc-mexico-2020:d3:wide-awake-art-car:1630:mystery-affair",
+   "artistId": "edc-mexico-2020:mystery-affair",
+   "day": 3,
+   "stageId": "edc-mexico-2020:wide-awake-art-car",
+   "start": "16:30",
+   "end": "18:00"
+  },
+  {
+   "id": "edc-mexico-2020:d3:wide-awake-art-car:1800:lumber-jack",
+   "artistId": "edc-mexico-2020:lumber-jack",
+   "day": 3,
+   "stageId": "edc-mexico-2020:wide-awake-art-car",
+   "start": "18:00",
+   "end": "19:30"
+  },
+  {
+   "id": "edc-mexico-2020:d3:wide-awake-art-car:1930:justine",
+   "artistId": "edc-mexico-2020:justine",
+   "day": 3,
+   "stageId": "edc-mexico-2020:wide-awake-art-car",
+   "start": "19:30",
+   "end": "21:00"
+  },
+  {
+   "id": "edc-mexico-2020:d3:wide-awake-art-car:2100:bufi",
+   "artistId": "edc-mexico-2020:bufi",
+   "day": 3,
+   "stageId": "edc-mexico-2020:wide-awake-art-car",
+   "start": "21:00",
+   "end": "22:30"
+  },
+  {
+   "id": "edc-mexico-2020:d3:wide-awake-art-car:2230:stylo",
+   "artistId": "edc-mexico-2020:stylo",
+   "day": 3,
+   "stageId": "edc-mexico-2020:wide-awake-art-car",
+   "start": "22:30",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-mexico-2020:d3:wide-awake-art-car:0000:suss",
+   "artistId": "edc-mexico-2020:suss",
+   "day": 3,
+   "stageId": "edc-mexico-2020:wide-awake-art-car",
+   "start": "00:00",
+   "end": "02:00"
+  },
+  {
+   "id": "edc-mexico-2020:d3:bionic-jungle:1400:tansen",
+   "artistId": "edc-mexico-2020:tansen",
+   "day": 3,
+   "stageId": "edc-mexico-2020:bionic-jungle",
+   "start": "14:00",
+   "end": "16:00"
+  },
+  {
+   "id": "edc-mexico-2020:d3:bionic-jungle:1600:daniel-weil",
+   "artistId": "edc-mexico-2020:daniel-weil",
+   "day": 3,
+   "stageId": "edc-mexico-2020:bionic-jungle",
+   "start": "16:00",
+   "end": "18:00"
+  },
+  {
+   "id": "edc-mexico-2020:d3:bionic-jungle:1800:carlita",
+   "artistId": "edc-mexico-2020:carlita",
+   "day": 3,
+   "stageId": "edc-mexico-2020:bionic-jungle",
+   "start": "18:00",
+   "end": "20:00"
+  },
+  {
+   "id": "edc-mexico-2020:d3:bionic-jungle:2000:rebolledo",
+   "artistId": "edc-mexico-2020:rebolledo",
+   "day": 3,
+   "stageId": "edc-mexico-2020:bionic-jungle",
+   "start": "20:00",
+   "end": "22:00"
+  },
+  {
+   "id": "edc-mexico-2020:d3:bionic-jungle:2200:fango",
+   "artistId": "edc-mexico-2020:fango",
+   "day": 3,
+   "stageId": "edc-mexico-2020:bionic-jungle",
+   "start": "22:00",
+   "end": "00:00"
+  },
+  {
+   "id": "edc-mexico-2020:d3:bionic-jungle:0000:michael-mayer",
+   "artistId": "edc-mexico-2020:michael-mayer",
+   "day": 3,
+   "stageId": "edc-mexico-2020:bionic-jungle",
+   "start": "00:00",
+   "end": "02:00"
+  }
+ ],
  "provenance": {
-  "extractionMethod": "official_lineup_html",
-  "official": "https://mexico.electricdaisycarnival.com/lineup/",
+  "extractionMethod": "official_sources",
+  "official": "https://mexico.electricdaisycarnival.com/en/lineup/set-times/",
   "captures": [
    {
-    "page": "lineup",
-    "archivedUrl": "https://web.archive.org/web/20200408075816/https://mexico.electricdaisycarnival.com/lineup/",
-    "captureTimestamp": "20200408075816",
-    "sha256": "20a27ecea3bc530355acbbcdc41782fbb111cbea9d26b7e060671aa383a5d38d"
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20200806010019/https://mexico.electricdaisycarnival.com/en/lineup/set-times/day-1/",
+    "captureTimestamp": "20200806010019",
+    "printed": "Friday, February 28",
+    "sha256": "b69dc42a79bc8784b002d7baa84a6042f47bdfe64d6e03f5e2592f90bf4a1cd1",
+    "rows": 74
+   },
+   {
+    "day": 2,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20200806014336/https://mexico.electricdaisycarnival.com/en/lineup/set-times/day-2/",
+    "captureTimestamp": "20200806014336",
+    "printed": "Saturday, February 29",
+    "sha256": "5b1644de529348eb00aaf80ec21fa7b9d3d13a8c09b94791ff35c0e304aea99e",
+    "rows": 87
+   },
+   {
+    "day": 3,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20201022173349/https://mexico.electricdaisycarnival.com/en/lineup/set-times/day-3/",
+    "captureTimestamp": "20201022173349",
+    "printed": "Sunday, March 01",
+    "sha256": "87bc48f40c880bf7401347d053ed79480ee489223ecb154cf75b3bcb7fa0a090",
+    "rows": 90
    }
   ]
  }

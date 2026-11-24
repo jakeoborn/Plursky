@@ -799,7 +799,7 @@ export const EDITIONS = {
     timezone: "America/New_York", rolloverHour: 6, method: "official_lineup_html",
     dates: [["2018-11-09", "Friday"], ["2018-11-10", "Saturday"]] },
   "edc-mexico-2020": { festivalId: "edc-mexico", name: "EDC Mexico 2020", year: 2020,
-    timezone: "America/Mexico_City", rolloverHour: 6, method: "official_lineup_html",
+    timezone: "America/Mexico_City", rolloverHour: 6, method: "official_sources",
     dates: [["2020-02-28", "Friday"], ["2020-02-29", "Saturday"], ["2020-03-01", "Sunday"]] },
   "beyond-wonderland-socal-2019": { festivalId: "beyond-wonderland-socal", name: "Beyond Wonderland SoCal 2019", year: 2019,
     timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",

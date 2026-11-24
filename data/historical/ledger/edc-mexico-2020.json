@@ -1,62 +1,64 @@
 {
   "id": "edc-mexico-2020",
-  "method": "official_lineup_html",
-  "official": "https://mexico.electricdaisycarnival.com/lineup/",
-  "chosen": "20200408075816",
-  "archivedUrl": "https://web.archive.org/web/20200408075816/https://mexico.electricdaisycarnival.com/lineup/",
-  "sha256": "20a27ecea3bc530355acbbcdc41782fbb111cbea9d26b7e060671aa383a5d38d",
-  "title": "Lineup – EDC Mexico 2020 – ES",
-  "relayedVia": "firecrawl",
-  "tabs": [
-    "Alphabetical 250",
-    "By Day 251"
-  ],
-  "stageOrder": [],
-  "crossTab": [
-    "La Clicka presents Worldwide Records: not alphabetical; days 2"
-  ],
-  "considered": [
+  "method": "official_sources",
+  "official": "https://mexico.electricdaisycarnival.com/en/lineup/set-times/",
+  "days": [
     {
-      "captureTimestamp": "20200316160528",
-      "archivedUrl": "https://web.archive.org/web/20200316160528/https://mexico.electricdaisycarnival.com/lineup/",
-      "sha256": "a9167e85342aa7d632bfa3b8cc2e7f1101726bcfa994db44182b64d7a1a4cc22",
-      "bytes": 208162,
-      "via": "firecrawl",
-      "title": "Lineup – EDC Mexico 2020 – ES",
-      "valid": true,
-      "titled": true,
-      "dated": true,
-      "days": [
-        "Friday, February 28",
-        "Saturday, February 29",
-        "Sunday, March 01"
-      ],
-      "billings": 251,
-      "diffVsChosen": []
+      "day": 1,
+      "date": "2020-02-28",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://mexico.electricdaisycarnival.com/en/lineup/set-times/day-1/",
+          "archivedUrl": "https://web.archive.org/web/20200806010019/https://mexico.electricdaisycarnival.com/en/lineup/set-times/day-1/",
+          "captureTimestamp": "20200806010019",
+          "printed": "Friday, February 28",
+          "sha256": "b69dc42a79bc8784b002d7baa84a6042f47bdfe64d6e03f5e2592f90bf4a1cd1",
+          "bytes": 363026,
+          "rows": 74
+        }
+      ]
     },
     {
-      "captureTimestamp": "20200408075816",
-      "archivedUrl": "https://web.archive.org/web/20200408075816/https://mexico.electricdaisycarnival.com/lineup/",
-      "sha256": "20a27ecea3bc530355acbbcdc41782fbb111cbea9d26b7e060671aa383a5d38d",
-      "bytes": 208162,
-      "via": "firecrawl",
-      "title": "Lineup – EDC Mexico 2020 – ES",
-      "valid": true,
-      "titled": true,
-      "dated": true,
-      "days": [
-        "Friday, February 28",
-        "Saturday, February 29",
-        "Sunday, March 01"
-      ],
-      "billings": 251,
-      "diffVsChosen": []
+      "day": 2,
+      "date": "2020-02-29",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://mexico.electricdaisycarnival.com/en/lineup/set-times/day-2/",
+          "archivedUrl": "https://web.archive.org/web/20200806014336/https://mexico.electricdaisycarnival.com/en/lineup/set-times/day-2/",
+          "captureTimestamp": "20200806014336",
+          "printed": "Saturday, February 29",
+          "sha256": "5b1644de529348eb00aaf80ec21fa7b9d3d13a8c09b94791ff35c0e304aea99e",
+          "bytes": 453511,
+          "rows": 87
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2020-03-01",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://mexico.electricdaisycarnival.com/en/lineup/set-times/day-3/",
+          "archivedUrl": "https://web.archive.org/web/20201022173349/https://mexico.electricdaisycarnival.com/en/lineup/set-times/day-3/",
+          "captureTimestamp": "20201022173349",
+          "printed": "Sunday, March 01",
+          "sha256": "87bc48f40c880bf7401347d053ed79480ee489223ecb154cf75b3bcb7fa0a090",
+          "bytes": 418580,
+          "rows": 90
+        }
+      ]
     }
   ],
+  "excluded": [],
   "dropped": [
     {
       "day": 1,
-      "stage": null,
+      "stage": "Wide Awake Art Car",
+      "start": "01:00",
+      "end": "02:00",
       "billing": "Secret Set",
       "category": "unnamed-slot",
       "reason": "unnamed slot: no performer was billed"
