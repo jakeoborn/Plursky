@@ -760,12 +760,9 @@ export const EDITIONS = {
   "edc-orlando-2015": { festivalId: "edc-orlando", name: "EDC Orlando 2015", year: 2015,
     timezone: "America/New_York", rolloverHour: 6, method: "official_lineup_html",
     dates: [["2015-11-06", "Friday"], ["2015-11-07", "Saturday"]] },
-  // `undated`: the lineup page printed no days (extract-insomniac-lineup.mjs).
   "edc-orlando-2016": { festivalId: "edc-orlando", name: "EDC Orlando 2016", year: 2016,
-    timezone: "America/New_York", rolloverHour: 6, method: "official_lineup_html", undated: true,
-    dates: [["2016-11-04", "Friday"], ["2016-11-05", "Saturday"]],
-    notes: [{ asOf: "2026-11-11", text: "The official lineup page listed the artists alphabetically and printed no days, so no artist here has a day.",
-      source: "https://web.archive.org/web/20161204183828/https://orlando.electricdaisycarnival.com/experience/lineup/" }] },
+    timezone: "America/New_York", rolloverHour: 6, method: "official_sources",
+    dates: [["2016-11-04", "Friday"], ["2016-11-05", "Saturday"]] },
   // EDC Las Vegas 2012-2013: the festival's own music page (format
   // "insomniac-music", insomniac-music-schedule.mjs), one archived page per
   // year that prints every day by stage, captured after the festival. Each
@@ -779,15 +776,11 @@ export const EDITIONS = {
     timezone: "America/Los_Angeles", rolloverHour: 12, method: "official_sources",
     dates: [["2013-06-21", "Friday"], ["2013-06-22", "Saturday"], ["2013-06-23", "Sunday"]] },
   "edc-las-vegas-2016": { festivalId: "edc-lv", name: "EDC Las Vegas 2016", year: 2016,
-    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html", undated: true,
-    dates: [["2016-06-17", "Friday"], ["2016-06-18", "Saturday"], ["2016-06-19", "Sunday"]],
-    notes: [{ asOf: "2026-11-11", text: "The official lineup page listed the artists alphabetically and printed no days, so no artist here has a day.",
-      source: "https://web.archive.org/web/20161031113516/https://lasvegas.electricdaisycarnival.com/experience/lineup/" }] },
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
+    dates: [["2016-06-17", "Friday"], ["2016-06-18", "Saturday"], ["2016-06-19", "Sunday"]] },
   "edc-las-vegas-2017": { festivalId: "edc-lv", name: "EDC Las Vegas 2017", year: 2017,
-    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html", undated: true,
-    dates: [["2017-06-16", "Friday"], ["2017-06-17", "Saturday"], ["2017-06-18", "Sunday"]],
-    notes: [{ asOf: "2026-11-11", text: "The official lineup page listed the artists alphabetically and printed no days, so no artist here has a day.",
-      source: "https://web.archive.org/web/20170701091308/https://lasvegas.electricdaisycarnival.com/experience/lineup/" }] },
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
+    dates: [["2017-06-16", "Friday"], ["2017-06-17", "Saturday"], ["2017-06-18", "Sunday"]] },
   "edc-orlando-2018": { festivalId: "edc-orlando", name: "EDC Orlando 2018", year: 2018,
     timezone: "America/New_York", rolloverHour: 6, method: "official_lineup_html",
     dates: [["2018-11-09", "Friday"], ["2018-11-10", "Saturday"]] },
@@ -825,7 +818,7 @@ export const EDITIONS = {
     timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
     dates: [["2016-09-02", "Friday"], ["2016-09-03", "Saturday"], ["2016-09-04", "Sunday"]] },
   "beyond-wonderland-socal-2016": { festivalId: "beyond-wonderland-socal", name: "Beyond Wonderland SoCal 2016", year: 2016,
-    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
     dates: [["2016-03-18", "Friday"], ["2016-03-19", "Saturday"]] },
   "nocturnal-wonderland-2011": { festivalId: "nocturnal-wonderland", name: "Nocturnal Wonderland 2011", year: 2011,
     timezone: "America/Los_Angeles", rolloverHour: 6, method: "structured_html",
@@ -933,6 +926,9 @@ export const PRINTED_LONG_SETS = {
   // Skream & Friends closing the AMP, 12:30 AM to 9:00 AM (510 minutes), on
   // Shambhala's Saturday 2025 set-times page.
   "shambhala-2025": ["Skream & Friends (Ft. Sgt. Pokes, Coki, Distinct Motive & more.......)|00:30|09:00"],
+  // Two art cars hosted all night, 7:00 PM to 5:30 AM (630 minutes), on EDC
+  // Las Vegas 2017's Friday set-times tab (capture 20170620151156).
+  "edc-las-vegas-2017": ["Desert Hearts|19:00|05:30", "Brownies & Lemonade|19:00|05:30"],
 };
 // Billings whose non-Latin letters are the artist's own styling, as the
 // festival's structured page printed them (not OCR). Each one was read on

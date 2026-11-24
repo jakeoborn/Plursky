@@ -728,6 +728,45 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "beyond-wonderland-socal:outer-realm",
+     "names": [
+      {
+       "printed": "OUTER REALM",
+       "editions": [
+        "beyond-wonderland-socal-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "beyond-wonderland-socal:upside-down-room",
+     "names": [
+      {
+       "printed": "UPSIDE-DOWN ROOM",
+       "editions": [
+        "beyond-wonderland-socal-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "beyond-wonderland-socal:boombox-art-car",
+     "names": [
+      {
+       "printed": "BOOMBOX ART CAR",
+       "editions": [
+        "beyond-wonderland-socal-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },
@@ -1993,6 +2032,126 @@
        "printed": "Discovery Project",
        "editions": [
         "edc-las-vegas-2013"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:stage7",
+     "names": [
+      {
+       "printed": "STAGE7",
+       "editions": [
+        "edc-las-vegas-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:upsidedownhouse",
+     "names": [
+      {
+       "printed": "UPSIDEDOWNHOUSE",
+       "editions": [
+        "edc-las-vegas-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:wideawakeartcar",
+     "names": [
+      {
+       "printed": "WIDEAWAKEARTCAR",
+       "editions": [
+        "edc-las-vegas-2016",
+        "edc-las-vegas-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:kalliopeartcar",
+     "names": [
+      {
+       "printed": "KALLIOPEARTCAR",
+       "editions": [
+        "edc-las-vegas-2016",
+        "edc-las-vegas-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:boomboxartcar",
+     "names": [
+      {
+       "printed": "BOOMBOXARTCAR",
+       "editions": [
+        "edc-las-vegas-2016",
+        "edc-las-vegas-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:smirnoff-house",
+     "names": [
+      {
+       "printed": "SMIRNOFF HOUSE",
+       "editions": [
+        "edc-las-vegas-2016"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:quantumvalley",
+     "names": [
+      {
+       "printed": "QUANTUMVALLEY",
+       "editions": [
+        "edc-las-vegas-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:upside-downhouse",
+     "names": [
+      {
+       "printed": "UPSIDE-DOWNHOUSE",
+       "editions": [
+        "edc-las-vegas-2017"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "edc-lv:parliamentartcar",
+     "names": [
+      {
+       "printed": "PARLIAMENTARTCAR",
+       "editions": [
+        "edc-las-vegas-2017"
        ]
       }
      ],

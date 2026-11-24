@@ -141,7 +141,7 @@ export function parseDayTabs(html) {
   const panes = [...html.matchAll(/<div role="tabpanel" class="tab-pane[^"]*" id="([A-Za-z0-9_]+)">/g)];
   return panes.map((p, i) => {
     const seg = html.slice(p.index, panes[i + 1]?.index ?? html.length);
-    const stages = [...seg.matchAll(/<div class="stg[^"]*">([^<]*)<\/div>/g)].map(m => plain(m[1]));
+    const stages = [...seg.matchAll(/<div(?: [a-z-]+="[^"]*")* class="stg(?: [^"]*)?"[^>]*>([^<]*)<\/div>/g)].map(m => plain(m[1]));
     const cols = seg.split(/<div class="ds-stage[ "]/).slice(1);
     if (cols.length !== stages.length) throw new Error(`pane ${p[1]}: ${stages.length} stage headers, ${cols.length} stage columns`);
     const sets = cols.flatMap((c, j) => [...c.matchAll(/<strong class="ds-event-title">([\s\S]*?)<\/strong>\s*<span class="ds-time-range">([\s\S]*?)<\/span>/g)]
