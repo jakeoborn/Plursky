@@ -2795,6 +2795,7 @@ function SetTrackingCard() {
   const [calibrating, setCalibrating] = React.useState(false);
   const native = !!_setTrackNative();
   const anyData = native && _setTrackHasAny();
+  const [confirmDelete, setConfirmDelete] = React.useState(false);
   const status = elig === "no-stages" ? (canCalibrate
       ? `${name}'s stages aren't measured yet. Calibrate them on site (${calib.done} of ${calib.needed} done) and sets can be timed on this phone.`
       : `${name}'s stages aren't measured yet, so sets can't be timed here.`)
@@ -2820,13 +2821,27 @@ function SetTrackingCard() {
       <div data-set-tracking-status style={body}>{status}</div>
       {asking && !on ? (
         <div data-set-tracking-consent>
-          <div style={body}>
-            <b style={{ color: "var(--ink)" }}>Recorded:</b> which stage you were at and when, during sets.<br/>
-            <b style={{ color: "var(--ink)" }}>Not recorded:</b> your exact location. Nothing leaves this phone.<br/>
-            {native
-              ? "It counts during set hours on festival days, screen locked too, once you've opened Plursky that day. iOS shows the location arrow while it runs. Turn it off here any time."
-              : "It counts only while Plursky is open, and you can turn it off here any time."}
-          </div>
+          {native ? (
+            // iPhone (option B): the native session holds raw fixes in a file
+            // until the page turns them into stage times (SetTrackPlugin.swift,
+            // drain), so "not recorded" would be untrue here. Stage times live
+            // in app storage, which the user's own iPhone backup can include;
+            // the raw-fix file is excluded from backup. No analytics endpoint
+            // exists (app.jsx crash log is local) and sync carries no set
+            // tracking store (test-set-tracking "no other file reads").
+            <div style={body}>
+              <b style={{ color: "var(--ink)" }}>Recorded:</b> which stage you were at and when, during sets.<br/>
+              <b style={{ color: "var(--ink)" }}>Your exact location:</b> kept on this phone only until Plursky turns it into stage times, then deleted.<br/>
+              Never sent to Plursky or anyone else. Your own iPhone backup can include the stage times.<br/>
+              It counts during set hours on festival days, screen locked too, once you've opened Plursky that day. iOS shows the location arrow while it runs. Turn it off here any time.
+            </div>
+          ) : (
+            <div style={body}>
+              <b style={{ color: "var(--ink)" }}>Recorded:</b> which stage you were at and when, during sets.<br/>
+              <b style={{ color: "var(--ink)" }}>Not recorded:</b> your exact location. Nothing leaves this phone.<br/>
+              It counts only while Plursky is open, and you can turn it off here any time.
+            </div>
+          )}
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
             <button data-set-tracking-accept onClick={() => { setSetTracking(true); setAsking(false); }} style={btn(true)}>Turn on</button>
             <button onClick={() => { setSetTracking(false); setAsking(false); }} style={btn(false)}>Not now</button>
@@ -2854,9 +2869,20 @@ function SetTrackingCard() {
           {calib && calib.done > 0 && (
             <button data-stage-calibrate-clear onClick={() => clearStageCalibration(cfg.id)} style={btn(false)}>Clear stage calibration</button>
           )}
-          {anyData && (
-            <button data-set-tracking-delete-all onClick={clearAllSetTrack} style={btn(false)}>Delete all set times</button>
+          {anyData && !confirmDelete && (
+            <button data-set-tracking-delete-all onClick={() => setConfirmDelete(true)} style={btn(false)}>Delete all set times</button>
           )}
+        </div>
+      )}
+      {confirmDelete && (
+        // On-device only: set times never reach a server (no sync, no
+        // analytics), so there is no server copy to delete.
+        <div data-set-tracking-delete-confirm style={{ marginTop: 12 }}>
+          <div style={body}>Delete every festival's set times and taps on this phone, and any locations it hasn't turned into stage times yet? This can't be undone.</div>
+          <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+            <button data-set-tracking-delete-yes onClick={() => { clearAllSetTrack(); setConfirmDelete(false); }} style={btn(true)}>Delete</button>
+            <button data-set-tracking-delete-no onClick={() => setConfirmDelete(false)} style={btn(false)}>Cancel</button>
+          </div>
         </div>
       )}
       {native && _setTrackInternal && <SetTrackBatteryTest btn={btn} body={body} />}
@@ -2867,10 +2893,10 @@ function SetTrackingCard() {
   );
 }
 
-// Internal builds only (TestFlight, Xcode): a GPS battery test with the
-// screen locked, for the B copy figure (PROTOCOL-battery, screen-locked run).
-// The plugin answers internal:false in an App Store build and rejects
-// testStart there, so this row never renders and could not start anything.
+// Debug builds installed from Xcode only: a GPS battery test with the screen
+// locked, for the B copy figure (PROTOCOL-battery, screen-locked run). The
+// test is compiled out of every Release archive (TestFlight and App Store):
+// the plugin answers internal:false and registers no testStart there.
 // The test runs GPS exactly as in a set window but writes no fix: only a
 // count, shown here when it ends.
 function SetTrackBatteryTest({ btn, body }) {
@@ -2883,7 +2909,7 @@ function SetTrackBatteryTest({ btn, body }) {
   const left = running ? Math.max(0, Math.round((st.testUntil - Date.now()) / 60000)) : 0;
   return (
     <div data-set-track-battery-test style={{ marginTop: 14, paddingTop: 12, borderTop: "1px solid var(--s3)" }}>
-      <div className="duo-label" style={{ color: "var(--ink-3)", marginBottom: 6 }}>INTERNAL BUILD · BATTERY TEST</div>
+      <div className="duo-label" style={{ color: "var(--ink-3)", marginBottom: 6 }}>DEBUG BUILD · BATTERY TEST</div>
       <div style={body}>
         {running ? `Running: GPS as in a set window, nothing saved. ${left} min left, ${st.testFixes || 0} fixes so far. Lock the screen now.`
           : `Runs GPS for 60 min as in a set window, screen locked, saving nothing. Note the battery % before and after.${st && st.testFixes ? ` Last test: ${st.testFixes} fixes.` : ""}`}

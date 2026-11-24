@@ -38,8 +38,10 @@ final class SetTrackEngine: NSObject, CLLocationManagerDelegate {
     // Below this charge (and not charging) the session ends itself.
     private let batteryFloor: Float = 0.20
 
-    // Internal battery test (TestFlight/Xcode builds only): GPS runs as in a
-    // set window, but no fix is ever written; only a count is kept.
+    // Battery test, compiled into Debug (Xcode-installed) builds only: GPS
+    // runs as in a set window, but no fix is ever written; only a count is
+    // kept. In a Release archive (TestFlight internal or external, App Store)
+    // nothing can set testUntilMs, so testing is always false.
     private(set) var testUntilMs: Double = 0
     private(set) var testFixes = 0
 
@@ -91,12 +93,14 @@ final class SetTrackEngine: NSObject, CLLocationManagerDelegate {
         evaluate(canStart: false)
     }
 
+    #if DEBUG
     func startTest(minutes: Double) {
         testUntilMs = nowMs() + minutes * 60_000
         testFixes = 0
         evaluate(canStart: appInFront)
     }
     func stopTest() { testUntilMs = 0; evaluate(canStart: false) }
+    #endif
     private var testing: Bool { testUntilMs > nowMs() }
 
     // The one decision. Track iff authorized (When In Use is enough), the
@@ -214,25 +218,32 @@ final class SetTrackEngine: NSObject, CLLocationManagerDelegate {
 public class SetTrackPlugin: CAPPlugin, CAPBridgedPlugin {
     public let identifier = "SetTrackPlugin"
     public let jsName = "SetTrack"
-    public let pluginMethods: [CAPPluginMethod] = [
-        CAPPluginMethod(name: "status", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "arm", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "disarm", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "drain", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "clear", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "testStart", returnType: CAPPluginReturnPromise),
-        CAPPluginMethod(name: "testStop", returnType: CAPPluginReturnPromise),
-    ]
+    public let pluginMethods: [CAPPluginMethod] = {
+        var m: [CAPPluginMethod] = [
+            CAPPluginMethod(name: "status", returnType: CAPPluginReturnPromise),
+            CAPPluginMethod(name: "arm", returnType: CAPPluginReturnPromise),
+            CAPPluginMethod(name: "disarm", returnType: CAPPluginReturnPromise),
+            CAPPluginMethod(name: "drain", returnType: CAPPluginReturnPromise),
+            CAPPluginMethod(name: "clear", returnType: CAPPluginReturnPromise),
+        ]
+        #if DEBUG
+        m += [CAPPluginMethod](arrayLiteral:
+            CAPPluginMethod(name: "testStart", returnType: CAPPluginReturnPromise),
+            CAPPluginMethod(name: "testStop", returnType: CAPPluginReturnPromise)
+        )
+        #endif
+        return m
+    }()
 
-    // The battery test exists only in internal builds, by the same rule as
-    // ShazamPlugin.buildChannel (the Live check-in trial gate): Xcode (DEBUG)
-    // and TestFlight (sandbox receipt). An App Store build reports false and
-    // testStart rejects, whatever the page asks.
+    // The battery test exists only in Debug builds installed from Xcode.
+    // TestFlight (internal and external) and the App Store ship one Release
+    // archive, so the test is compiled out of all three: no testStart or
+    // testStop method is registered and the page sees internal: false.
     private var internalBuild: Bool {
         #if DEBUG
         return true
         #else
-        return Bundle.main.appStoreReceiptURL?.lastPathComponent == "sandboxReceipt"
+        return false
         #endif
     }
 
@@ -277,6 +288,7 @@ public class SetTrackPlugin: CAPPlugin, CAPBridgedPlugin {
         DispatchQueue.main.async { SetTrackEngine.shared.clear(); call.resolve() }
     }
 
+    #if DEBUG
     @objc func testStart(_ call: CAPPluginCall) {
         guard internalBuild else { call.reject("not available in this build"); return }
         let minutes = max(1, min(180, call.getDouble("minutes") ?? 60))
@@ -293,4 +305,5 @@ public class SetTrackPlugin: CAPPlugin, CAPBridgedPlugin {
             call.resolve(["testFixes": n])
         }
     }
+    #endif
 }

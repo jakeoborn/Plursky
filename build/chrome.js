@@ -3695,6 +3695,7 @@ function SetTrackingCard() {
   var [calibrating, setCalibrating] = React.useState(false);
   var native = !!_setTrackNative();
   var anyData = native && _setTrackHasAny();
+  var [confirmDelete, setConfirmDelete] = React.useState(false);
   var status = elig === "no-stages" ? canCalibrate ? `${name}'s stages aren't measured yet. Calibrate them on site (${calib.done} of ${calib.needed} done) and sets can be timed on this phone.` : `${name}'s stages aren't measured yet, so sets can't be timed here.` : !on ? "Off. Plursky can note how long you stay at a stage during a set, to tell a full set from part of one." : elig === "ended" ? `On. ${name} is over, so nothing is counting.` : native ? elig === "live" ? _setTrackNativeOn ? "On. Counts during sets, even with the screen locked. iOS shows the location arrow while it runs." : "On. Counting while Plursky is open. Once set hours start, it keeps counting with the screen locked." : `On. On ${name}'s festival days, open Plursky once and it counts during sets, even with the screen locked.` : elig === "live" ? "On. Counting while Plursky is open. Lock the screen and the count pauses." : `On. It starts on ${name}'s festival days, and counts only while Plursky is open.`;
   return React.createElement("div", {
     "data-set-tracking-card": true,
@@ -3735,7 +3736,7 @@ function SetTrackingCard() {
     style: body
   }, status), asking && !on ? React.createElement("div", {
     "data-set-tracking-consent": true
-  }, React.createElement("div", {
+  }, native ? React.createElement("div", {
     style: body
   }, React.createElement("b", {
     style: {
@@ -3745,7 +3746,17 @@ function SetTrackingCard() {
     style: {
       color: "var(--ink)"
     }
-  }, "Not recorded:"), " your exact location. Nothing leaves this phone.", React.createElement("br", null), native ? "It counts during set hours on festival days, screen locked too, once you've opened Plursky that day. iOS shows the location arrow while it runs. Turn it off here any time." : "It counts only while Plursky is open, and you can turn it off here any time."), React.createElement("div", {
+  }, "Your exact location:"), " kept on this phone only until Plursky turns it into stage times, then deleted.", React.createElement("br", null), "Never sent to Plursky or anyone else. Your own iPhone backup can include the stage times.", React.createElement("br", null), "It counts during set hours on festival days, screen locked too, once you've opened Plursky that day. iOS shows the location arrow while it runs. Turn it off here any time.") : React.createElement("div", {
+    style: body
+  }, React.createElement("b", {
+    style: {
+      color: "var(--ink)"
+    }
+  }, "Recorded:"), " which stage you were at and when, during sets.", React.createElement("br", null), React.createElement("b", {
+    style: {
+      color: "var(--ink)"
+    }
+  }, "Not recorded:"), " your exact location. Nothing leaves this phone.", React.createElement("br", null), "It counts only while Plursky is open, and you can turn it off here any time."), React.createElement("div", {
     style: {
       display: "flex",
       gap: 8,
@@ -3798,11 +3809,35 @@ function SetTrackingCard() {
     "data-stage-calibrate-clear": true,
     onClick: () => clearStageCalibration(cfg.id),
     style: btn(false)
-  }, "Clear stage calibration"), anyData && React.createElement("button", {
+  }, "Clear stage calibration"), anyData && !confirmDelete && React.createElement("button", {
     "data-set-tracking-delete-all": true,
-    onClick: clearAllSetTrack,
+    onClick: () => setConfirmDelete(true),
     style: btn(false)
-  }, "Delete all set times")), native && _setTrackInternal && React.createElement(SetTrackBatteryTest, {
+  }, "Delete all set times")), confirmDelete && React.createElement("div", {
+    "data-set-tracking-delete-confirm": true,
+    style: {
+      marginTop: 12
+    }
+  }, React.createElement("div", {
+    style: body
+  }, "Delete every festival's set times and taps on this phone, and any locations it hasn't turned into stage times yet? This can't be undone."), React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 8,
+      flexWrap: "wrap"
+    }
+  }, React.createElement("button", {
+    "data-set-tracking-delete-yes": true,
+    onClick: () => {
+      clearAllSetTrack();
+      setConfirmDelete(false);
+    },
+    style: btn(true)
+  }, "Delete"), React.createElement("button", {
+    "data-set-tracking-delete-no": true,
+    onClick: () => setConfirmDelete(false),
+    style: btn(false)
+  }, "Cancel"))), native && _setTrackInternal && React.createElement(SetTrackBatteryTest, {
     btn: btn,
     body: body
   }), reviewing && React.createElement(SetReviewSheet, {
@@ -3849,7 +3884,7 @@ function SetTrackBatteryTest({
       color: "var(--ink-3)",
       marginBottom: 6
     }
-  }, "INTERNAL BUILD · BATTERY TEST"), React.createElement("div", {
+  }, "DEBUG BUILD · BATTERY TEST"), React.createElement("div", {
     style: body
   }, running ? `Running: GPS as in a set window, nothing saved. ${left} min left, ${st.testFixes || 0} fixes so far. Lock the screen now.` : `Runs GPS for 60 min as in a set window, screen locked, saving nothing. Note the battery % before and after.${st && st.testFixes ? ` Last test: ${st.testFixes} fixes.` : ""}`), React.createElement("div", {
     style: {

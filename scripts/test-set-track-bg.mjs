@@ -126,7 +126,6 @@ function windowsOn(src) {
 // ── 3. Swift ──
 const code = s => s.split("\n").filter(l => !/^\s*\/\//.test(l)).join("\n");
 const SWIFT = code(readFileSync(join(ROOT, "ios/App/App/SetTrackPlugin.swift"), "utf8"));
-const SHAZAM = readFileSync(join(ROOT, "ios/App/App/ShazamPlugin.swift"), "utf8");
 check(!/requestAlwaysAuthorization/.test(SWIFT), "never asks for Always");
 check(!/startMonitoring\(for:/.test(SWIFT) && !/CLCircularRegion|CLRegion/.test(SWIFT), "no region monitoring");
 check(!/startMonitoringSignificantLocationChanges|startMonitoringVisits/.test(SWIFT), "no significant-change or visit wake");
@@ -141,9 +140,15 @@ check(/isExcludedFromBackup = true/.test(SWIFT), "held fixes are excluded from b
 check(/func drain\(\)[\s\S]{0,120}clear\(\)/.test(SWIFT), "drain deletes the file");
 check(/showsBackgroundLocationIndicator = true/.test(SWIFT), "iOS shows the location indicator while it runs");
 check(/CLBackgroundActivitySession\(\)/.test(SWIFT) && /allowsBackgroundLocationUpdates = true/.test(SWIFT), "iOS 17+ background activity session; iOS 15-16 background updates");
-check(/guard internalBuild else \{ call\.reject/.test(SWIFT), "testStart rejects outside internal builds");
-const rule = /lastPathComponent == "sandboxReceipt"/;
-check(rule.test(SWIFT) && rule.test(SHAZAM) && /#if DEBUG\s*\n\s*return true/.test(SWIFT), "internal = DEBUG or TestFlight, the same rule as ShazamPlugin.buildChannel");
+// The battery test is compiled out of every Release archive (TestFlight and
+// App Store ship the same binary): its plugin methods, its engine entry
+// points and the internal flag exist only under #if DEBUG.
+const releaseView = SWIFT.replace(/#if DEBUG[\s\S]*?(#else([\s\S]*?))?#endif/g, (m, e, rel) => rel || "");
+check(!/testStart|testStop|startTest|stopTest/.test(releaseView) && /CAPPluginMethod\(name: "testStart"/.test(SWIFT), "Release build: no battery-test method or entry point is compiled in");
+check(/private var internalBuild: Bool \{\s*#if DEBUG\s*return true\s*#else\s*return false\s*#endif/.test(SWIFT) && !/sandboxReceipt/.test(SWIFT), "internal = Debug builds only (no TestFlight receipt path)");
+const PBX = readFileSync(join(ROOT, "ios/App/App.xcodeproj/project.pbxproj"), "utf8");
+const conds = [...PBX.matchAll(/SWIFT_ACTIVE_COMPILATION_CONDITIONS = ([^;]*);[\s\S]*?name = (\w+);/g)].map(m => [m[2], m[1].trim()]);
+check(conds.length > 0 && conds.every(([n, v]) => n === "Debug" ? /DEBUG/.test(v) : !/DEBUG/.test(v)), "DEBUG is defined in Debug configurations only (" + conds.map(c => c.join("=")).join(", ") + ")");
 check(/if testing \{ testFixes \+= 1; return \}/.test(SWIFT), "the battery test writes no fix, only a count");
 
 // ── 4. Info.plist ──
@@ -162,6 +167,11 @@ check(/pref && fid && elig === "live"/.test(watcher) && /P\.disarm\(\)/.test(wat
 check(/!\(native && _setTrackNativeOn\)/.test(watcher), "no second GPS watch while the native session runs");
 check(/function clearSetTrack[\s\S]{0,600}_setTrackNativeClear\(\)/.test(CSRC) && /function clearAllSetTrack\(\)[\s\S]{0,300}_setTrackNativeClear\(\)/.test(CSRC), "Clear <festival> and Delete all reach the native queue");
 check(/setTrackIngest\(r && r\.festivalId/.test(CSRC) && /function setTrackIngest[\s\S]{0,700}attendQualifyFixes\(samples, attendEvidenceAnchors\(c\)/.test(CSRC), "drained fixes go through attendQualifyFixes on measured stages only");
+check(/data-set-tracking-delete-all onClick=\{\(\) => setConfirmDelete\(true\)\}/.test(CSRC) && /data-set-tracking-delete-yes onClick=\{\(\) => \{ clearAllSetTrack\(\)/.test(CSRC)
+  && !/data-set-tracking-delete-all onClick=\{clearAllSetTrack\}/.test(CSRC), "Delete all set times asks to confirm before deleting");
+const iosConsent = (CSRC.match(/\{native \? \([\s\S]*?<div style=\{body\}>([\s\S]*?)<\/div>/) || ["", ""])[1];
+check(/Your exact location:<\/b> kept on this phone only until Plursky turns it into stage times, then deleted/.test(iosConsent) && !/Not recorded/.test(iosConsent), "iOS consent says raw locations are held until turned into stage times (no \"not recorded\" claim)");
+check(/Never sent to Plursky or anyone else\. Your own iPhone backup can include the stage times/.test(iosConsent) && !/Nothing leaves this phone/.test(iosConsent), "iOS consent names the iPhone backup instead of \"nothing leaves this phone\"");
 check(/native && _setTrackInternal && <SetTrackBatteryTest/.test(CSRC) && /if \(!P \|\| !_setTrackInternal\) return null;/.test(CSRC), "the battery test row renders only when the plugin says internal");
 
 console.log((failed ? "✗" : "✓") + " set tracking B: " + (checks - failed) + "/" + checks + " checks");
