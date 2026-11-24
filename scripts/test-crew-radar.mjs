@@ -825,6 +825,37 @@ try {
   } else console.log("  ✗  rendered mutation target not found (pill)");
 } catch (e) { tCheck(false, `rendered pill run: ${e.message.split("\n")[0]}`); }
 
-const failed = base.failed + mutFail + statFail + appFail + tabFail + (tabMutTotal - tabMutCaught);
-console.log(`${failed ? "✗" : "✓"} crew radar: ${base.checks - base.failed}/${base.checks} unit checks, ${stat.length - statFail}/${stat.length} static, ${appChecks - appFail}/${appChecks} app checks, ${tabChecks - tabFail}/${tabChecks} tab checks, ${caught}/${MUT.length} mutations + ${tabMutCaught}/${tabMutTotal} rendered caught`);
+// #312: a live-share update that says GPS is off clears the last position, so
+// a fresh updated_at never vouches for an old fix. Sliced from the compiled
+// build/supabase.js and run against a recording client.
+async function liveShareRun(src) {
+  const a = src.indexOf("async function sbLiveShareUpdate("), b = src.indexOf("async function sbLiveShareStop(");
+  if (a < 0 || b < a) throw new Error("sbLiveShareUpdate not found");
+  const writes = [];
+  const _sb = { from: t => ({ update: u => ({ eq: () => { writes.push(u); return Promise.resolve({ error: null }); } }) }) };
+  const ctx = { _sb, Date, Object }; vm.createContext(ctx); vm.runInContext(src.slice(a, b), ctx);
+  const send = async p => { writes.length = 0; await ctx.sbLiveShareUpdate("tok", p); return writes[0] || null; };
+  const out = [];
+  const fix = await send({ gps: { lat: 1, lng: 2, accuracy: 5 }, stageId: "kinetic" });
+  out.push([!!fix && fix.lat === 1 && fix.lng === 2 && fix.accuracy === 5, `a live fix is written (${JSON.stringify(fix)})`]);
+  for (const [label, p] of [["gps: undefined", { gps: undefined, stageId: "kinetic" }], ["gps: null", { gps: null, stageId: "kinetic" }]]) {
+    const u = await send(p);
+    out.push([!!u && u.lat === null && u.lng === null && u.accuracy === null && "updated_at" in u, `${label} clears lat, lng and accuracy (${JSON.stringify(u)})`]);
+  }
+  const st = await send({ stageId: "kinetic" });
+  out.push([!!st && !("lat" in st) && !("lng" in st) && st.stage_id === "kinetic", `a stage-only update leaves the position alone (${JSON.stringify(st)})`]);
+  return out;
+}
+let lsChecks = 0, lsFail = 0, lsMutCaught = 0;
+const LS_MUT = ['} else if (partial && "gps" in partial) {', '} else if (false) {'];
+try {
+  for (const [ok, msg] of await liveShareRun(SUPA)) { lsChecks++; if (!ok) { lsFail++; console.log(`  ✗  live share: ${msg}`); } }
+  if (SUPA.split(LS_MUT[0]).length === 2) {
+    const r = await liveShareRun(SUPA.replace(LS_MUT[0], LS_MUT[1]));
+    if (r.some(([ok]) => !ok)) lsMutCaught = 1; else console.log("  ✗  live share mutation survived: GPS off keeps the old fix");
+  } else console.log("  ✗  live share mutation target not found");
+} catch (e) { lsChecks++; lsFail++; console.log(`  ✗  live share run: ${e.message}`); }
+
+const failed = base.failed + mutFail + statFail + appFail + tabFail + (tabMutTotal - tabMutCaught) + lsFail + (1 - lsMutCaught);
+console.log(`${failed ? "✗" : "✓"} crew radar: ${base.checks - base.failed}/${base.checks} unit checks, ${stat.length - statFail}/${stat.length} static, ${appChecks - appFail}/${appChecks} app checks, ${tabChecks - tabFail}/${tabChecks} tab checks, ${lsChecks - lsFail}/${lsChecks} live-share checks, ${caught}/${MUT.length} mutations + ${tabMutCaught}/${tabMutTotal} rendered + ${lsMutCaught}/1 live-share caught`);
 process.exit(failed ? 1 : 0);

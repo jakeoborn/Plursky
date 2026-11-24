@@ -1,0 +1,716 @@
+{
+  "id": "lollapalooza-2022",
+  "method": "official_image_transcription",
+  "official": "https://www.lollapalooza.com/schedule",
+  "window": [
+    "20220601",
+    "20221231"
+  ],
+  "pageCaptures": [
+    {
+      "captureTimestamp": "20220608002720",
+      "archivedUrl": "https://web.archive.org/web/20220608002720/https://www.lollapalooza.com/schedule",
+      "sha256": "83678766497d67ec161f55958d779bd7018c3db4422990a5047d12a55077279d",
+      "images": [
+        "629fc2f07555381a78e0cebd_LOL22-Grid-0603-Thurs.png",
+        "629fc2f0e19093950ce21079_LOL22-Grid-0603-Fri.png",
+        "629fc2f072f180a740cf6f1c_LOL22-Grid-0603-Sat.png",
+        "629fc2f069d2130e38ef2c69_LOL22-Grid-0603-Sun.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20220609154747",
+      "archivedUrl": "https://web.archive.org/web/20220609154747/https://www.lollapalooza.com/schedule",
+      "sha256": "b10c70ffd62c868dfa8dc31980e573798da490ee4067cd890012c776c16e73f3",
+      "images": [
+        "629fc2f07555381a78e0cebd_LOL22-Grid-0603-Thurs.png",
+        "629fc2f0e19093950ce21079_LOL22-Grid-0603-Fri.png",
+        "629fc2f072f180a740cf6f1c_LOL22-Grid-0603-Sat.png",
+        "62a120fdd34797ae1a4e2e95_LOL22-Grid-0608-Sun.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20220628003427",
+      "archivedUrl": "https://web.archive.org/web/20220628003427/https://www.lollapalooza.com/schedule",
+      "sha256": "a7e0af905833c6d849fe1a9f5f5decd03e6122ae1c630dd7f29e792ef9f9a308",
+      "images": [
+        "62b610123d21d0b38b68d3d7_LOL22-Grid-0624-Thurs.png",
+        "62b348f517b45149ca7d83f2_LOL22-Grid-0621-Fri.png",
+        "62b72d607d99053202347fc6_LOL22-Grid-0623-Sat.png",
+        "62b3442f3a6b3eb113d17a9e_LOL22-Grid-0621-Sun.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20220629015248",
+      "archivedUrl": "https://web.archive.org/web/20220629015248/https://www.lollapalooza.com/schedule",
+      "sha256": "00cfd4b5e4c3146c9c56814695584c9a1ee763bdbed584b56ac1ac57af7a8bb6",
+      "images": [
+        "62b610123d21d0b38b68d3d7_LOL22-Grid-0624-Thurs.png",
+        "62b348f517b45149ca7d83f2_LOL22-Grid-0621-Fri.png",
+        "62b72d607d99053202347fc6_LOL22-Grid-0623-Sat.png",
+        "62b3442f3a6b3eb113d17a9e_LOL22-Grid-0621-Sun.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20220630021518",
+      "archivedUrl": "https://web.archive.org/web/20220630021518/https://www.lollapalooza.com/schedule",
+      "sha256": "b3b910d41cf6c3fda2c0e0102d5cbd13bc54b79c3aa7833d6340a066c68216a7",
+      "images": [
+        "62b610123d21d0b38b68d3d7_LOL22-Grid-0624-Thurs.png",
+        "62b348f517b45149ca7d83f2_LOL22-Grid-0621-Fri.png",
+        "62b72d607d99053202347fc6_LOL22-Grid-0623-Sat.png",
+        "62b3442f3a6b3eb113d17a9e_LOL22-Grid-0621-Sun.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20220702084702",
+      "archivedUrl": "https://web.archive.org/web/20220702084702/https://www.lollapalooza.com/schedule",
+      "sha256": "f63075c614e6f2eaa692753a9f63d7c295b663aca71c67b82dfa4a530d4fd17a",
+      "images": [
+        "62b610123d21d0b38b68d3d7_LOL22-Grid-0624-Thurs.png",
+        "62b348f517b45149ca7d83f2_LOL22-Grid-0621-Fri.png",
+        "62b72d607d99053202347fc6_LOL22-Grid-0623-Sat.png",
+        "62b3442f3a6b3eb113d17a9e_LOL22-Grid-0621-Sun.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20220706121117",
+      "archivedUrl": "https://web.archive.org/web/20220706121117/https://www.lollapalooza.com/schedule",
+      "sha256": "f752156217dec35009ab3312aafa4c30c13d9c823b807b6a3f5f54fd234b51f1",
+      "images": [
+        "62b610123d21d0b38b68d3d7_LOL22-Grid-0624-Thurs.png",
+        "62b348f517b45149ca7d83f2_LOL22-Grid-0621-Fri.png",
+        "62b72d607d99053202347fc6_LOL22-Grid-0623-Sat.png",
+        "62b3442f3a6b3eb113d17a9e_LOL22-Grid-0621-Sun.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20220708122559",
+      "archivedUrl": "https://web.archive.org/web/20220708122559/https://www.lollapalooza.com/schedule",
+      "sha256": "f955c6be8c641c8577cac02c0cda761465de5cfaed2fe5c566baa3004e082d9a",
+      "images": [
+        "62b610123d21d0b38b68d3d7_LOL22-Grid-0624-Thurs.png",
+        "62b348f517b45149ca7d83f2_LOL22-Grid-0621-Fri.png",
+        "62b72d607d99053202347fc6_LOL22-Grid-0623-Sat.png",
+        "62b3442f3a6b3eb113d17a9e_LOL22-Grid-0621-Sun.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20220713142513",
+      "archivedUrl": "https://web.archive.org/web/20220713142513/https://www.lollapalooza.com/schedule",
+      "sha256": "fa70e545a68ef01f9841d2bd6c86146d0bd8c2852ff426f352f1afdc023da4b1",
+      "images": [
+        "62cda7f541ea8746991e8956_LOL22-Grid-0711-Thurs.png",
+        "62cda7f5de8f5fa3817b9e84_LOL22-Grid-0711-Fri.png",
+        "62cda7f5be2fb6836b84ddc0_LOL22-Grid-0711-Sat.png",
+        "62cda7f5004d53ea35b33170_LOL22-Grid-0711-Sun.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20220714142908",
+      "archivedUrl": "https://web.archive.org/web/20220714142908/https://www.lollapalooza.com/schedule",
+      "sha256": "2a2e04e9fff8f490b83a4d446baa8abf979701e079285c0ad9d0b96ec925e969",
+      "images": [
+        "62cda7f541ea8746991e8956_LOL22-Grid-0711-Thurs.png",
+        "62cda7f5de8f5fa3817b9e84_LOL22-Grid-0711-Fri.png",
+        "62cda7f5be2fb6836b84ddc0_LOL22-Grid-0711-Sat.png",
+        "62cda7f5004d53ea35b33170_LOL22-Grid-0711-Sun.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20220715213748",
+      "archivedUrl": "https://web.archive.org/web/20220715213748/https://www.lollapalooza.com/schedule",
+      "sha256": "748f138448323463b9b9250cf3e18d9e8486815bfd0b0c09ae86fe0140c94d06",
+      "images": [
+        "62cda7f541ea8746991e8956_LOL22-Grid-0711-Thurs.png",
+        "62cda7f5de8f5fa3817b9e84_LOL22-Grid-0711-Fri.png",
+        "62cda7f5be2fb6836b84ddc0_LOL22-Grid-0711-Sat.png",
+        "62cda7f5004d53ea35b33170_LOL22-Grid-0711-Sun.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20220718180623",
+      "archivedUrl": "https://web.archive.org/web/20220718180623/https://www.lollapalooza.com/schedule",
+      "sha256": "f066aa23819e9f3d3884455089206cd87a539c1f41b71512401c2afd8aea9990",
+      "images": [
+        "62cda7f541ea8746991e8956_LOL22-Grid-0711-Thurs.png",
+        "62cda7f5de8f5fa3817b9e84_LOL22-Grid-0711-Fri.png",
+        "62cda7f5be2fb6836b84ddc0_LOL22-Grid-0711-Sat.png",
+        "62cda7f5004d53ea35b33170_LOL22-Grid-0711-Sun.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20220719183510",
+      "archivedUrl": "https://web.archive.org/web/20220719183510/https://www.lollapalooza.com/schedule",
+      "sha256": "d0d865e0758b40b74df4585604a2e4a32532fffef85c84c7ef6e63d12a9c3876",
+      "images": [
+        "62cda7f541ea8746991e8956_LOL22-Grid-0711-Thurs.png",
+        "62d6d8d21011cb1f5ce412c4_LOL22-Grid-0718-JoeyValence.png",
+        "62cda7f5be2fb6836b84ddc0_LOL22-Grid-0711-Sat.png",
+        "62cda7f5004d53ea35b33170_LOL22-Grid-0711-Sun.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20220720193858",
+      "archivedUrl": "https://web.archive.org/web/20220720193858/https://www.lollapalooza.com/schedule",
+      "sha256": "df53ef75046b88ce855791a68dcff86d4ecc891c510f835f4bb9a20ba7be5e8f",
+      "images": [
+        "62cda7f541ea8746991e8956_LOL22-Grid-0711-Thurs.png",
+        "62d6d8d21011cb1f5ce412c4_LOL22-Grid-0718-JoeyValence.png",
+        "62cda7f5be2fb6836b84ddc0_LOL22-Grid-0711-Sat.png",
+        "62cda7f5004d53ea35b33170_LOL22-Grid-0711-Sun.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20220721195212",
+      "archivedUrl": "https://web.archive.org/web/20220721195212/https://www.lollapalooza.com/schedule",
+      "sha256": "74f103a8ea03b338c2722b2bd81b861c384d6929e8bd4480e30fe2cf3a7a2db4",
+      "images": [
+        "62cda7f541ea8746991e8956_LOL22-Grid-0711-Thurs.png",
+        "62d8712542e04f0e5c508e06_LOL22-Grid-0720-Fri%20(1).png",
+        "62d86d1c0ae5fb3a759f7620_LOL22-Grid-0720-Sat.png",
+        "62cda7f5004d53ea35b33170_LOL22-Grid-0711-Sun.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20220722215003",
+      "archivedUrl": "https://web.archive.org/web/20220722215003/https://www.lollapalooza.com/schedule",
+      "sha256": "d59b941f026d72f1bdae043649cf433172b41857c4bcd8eabd6df28a832f946c",
+      "images": [
+        "62dafda12453527fcea1ead6_LOL22-Grid-0722-Thurs.png",
+        "62dafda1ac1b33457b10c189_LOL22-Grid-0722-Fri.png",
+        "62dafda13fa75fd296e06915_LOL22-Grid-0722-Sat.png",
+        "62dafda124535281daa1ead7_LOL22-Grid-0722-Sun.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20220724223955",
+      "archivedUrl": "https://web.archive.org/web/20220724223955/https://www.lollapalooza.com/schedule",
+      "sha256": "bbbef795d37abad0de1d52e0758e1452dd9743bac34e717bf14ace107f746dd4",
+      "images": [
+        "62dafda12453527fcea1ead6_LOL22-Grid-0722-Thurs.png",
+        "62dafda1ac1b33457b10c189_LOL22-Grid-0722-Fri.png",
+        "62dafda13fa75fd296e06915_LOL22-Grid-0722-Sat.png",
+        "62dafda124535281daa1ead7_LOL22-Grid-0722-Sun.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20220725184714",
+      "archivedUrl": "https://web.archive.org/web/20220725184714/https://www.lollapalooza.com/schedule",
+      "sha256": "4e18dedc29849f0199eb8311010b31dfb5242f57a55a631447266d93f5d04366",
+      "images": [
+        "62dafda12453527fcea1ead6_LOL22-Grid-0722-Thurs.png",
+        "62dafda1ac1b33457b10c189_LOL22-Grid-0722-Fri.png",
+        "62dafda13fa75fd296e06915_LOL22-Grid-0722-Sat.png",
+        "62dafda124535281daa1ead7_LOL22-Grid-0722-Sun.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20220726004611",
+      "archivedUrl": "https://web.archive.org/web/20220726004611/https://www.lollapalooza.com/schedule",
+      "sha256": "651a31308b069b42b57deba0e6f6ab4af4b8c6778aaab79580a639ebc5604754",
+      "images": [
+        "62dafda12453527fcea1ead6_LOL22-Grid-0722-Thurs.png",
+        "62dafda1ac1b33457b10c189_LOL22-Grid-0722-Fri.png",
+        "62def21e8ac592bf3b3e8ccf_LOL22-Grid-0725-Sat.png",
+        "62dafda124535281daa1ead7_LOL22-Grid-0722-Sun.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20220726195226",
+      "archivedUrl": "https://web.archive.org/web/20220726195226/https://www.lollapalooza.com/schedule",
+      "sha256": "55e0b3d6c6e985a59c5e9b372c80ab5fb24f1e56aa35488278b8e5b7aba2f8f2",
+      "images": [
+        "62dafda12453527fcea1ead6_LOL22-Grid-0722-Thurs.png",
+        "62dafda1ac1b33457b10c189_LOL22-Grid-0722-Fri.png",
+        "62def21e8ac592bf3b3e8ccf_LOL22-Grid-0725-Sat.png",
+        "62dafda124535281daa1ead7_LOL22-Grid-0722-Sun.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20220727000229",
+      "archivedUrl": "https://web.archive.org/web/20220727000229/https://www.lollapalooza.com/schedule",
+      "sha256": "4abbf97aadda335f75bd8867088e148702227d0fedbc3cd9afac81fda2db428f",
+      "images": [
+        "62dafda12453527fcea1ead6_LOL22-Grid-0722-Thurs.png",
+        "62dafda1ac1b33457b10c189_LOL22-Grid-0722-Fri.png",
+        "62def21e8ac592bf3b3e8ccf_LOL22-Grid-0725-Sat.png",
+        "62dafda124535281daa1ead7_LOL22-Grid-0722-Sun.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20220728012431",
+      "archivedUrl": "https://web.archive.org/web/20220728012431/https://www.lollapalooza.com/schedule",
+      "sha256": "5120a222f774e2c8ed4a72b9c0cfe032dd5bb8af60a07b4ef4b29b8389c98721",
+      "images": [
+        "62e1510c3c9399b84dc99981_LOL22-Grid-0727-Thurs_1350X1080.png",
+        "62e1510c62acb44ee2f5fc8c_LOL22-Grid-0727-Fri_1350X1080.png",
+        "62e1510c1d6341471093954b_LOL22-Grid-0727-Sat_1350X1080.png",
+        "62e1510c32b5d67966552ed0_LOL22-Grid-0727-Sun_1350X1080.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20220728214436",
+      "archivedUrl": "https://web.archive.org/web/20220728214436/https://www.lollapalooza.com/schedule",
+      "sha256": "bedc28b9f46ea13891552036489e4ab8584df86218576510b798ed9bd1f0c67b",
+      "images": [
+        "62e2a47ad6dca96b7b20ba94_LOL22-Grid-0728-THURSDAY_Web-Opt-1080x1350.jpg",
+        "62e1510c62acb44ee2f5fc8c_LOL22-Grid-0727-Fri_1350X1080.png",
+        "62e1510c1d6341471093954b_LOL22-Grid-0727-Sat_1350X1080.png",
+        "62e1510c32b5d67966552ed0_LOL22-Grid-0727-Sun_1350X1080.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20220729010630",
+      "archivedUrl": "https://web.archive.org/web/20220729010630/https://www.lollapalooza.com/schedule",
+      "sha256": "499017c0c7d7e1a33ca0d11377d80c3f4769e80b7c10a071995dd02cab404491",
+      "images": [
+        "62e2a47ad6dca96b7b20ba94_LOL22-Grid-0728-THURSDAY_Web-Opt-1080x1350.jpg",
+        "62e1510c62acb44ee2f5fc8c_LOL22-Grid-0727-Fri_1350X1080.png",
+        "62e1510c1d6341471093954b_LOL22-Grid-0727-Sat_1350X1080.png",
+        "62e1510c32b5d67966552ed0_LOL22-Grid-0727-Sun_1350X1080.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20220730023246",
+      "archivedUrl": "https://web.archive.org/web/20220730023246/https://www.lollapalooza.com/schedule",
+      "sha256": "8c5bf733906c792c88646dab2ef1737b8cf2e853a2dd1a869ca9b7ed274f76a9",
+      "images": [
+        "62e2a47ad6dca96b7b20ba94_LOL22-Grid-0728-THURSDAY_Web-Opt-1080x1350.jpg",
+        "62e41b0c6c8bceee87e0789f_LOL22-Grid-0727-FRIDAY_Post.png",
+        "62e4421385270ae9ea26b826_LOL22-Grid-0729_Sat-1350X1080.png",
+        "62e1510c32b5d67966552ed0_LOL22-Grid-0727-Sun_1350X1080.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20220731030338",
+      "archivedUrl": "https://web.archive.org/web/20220731030338/https://www.lollapalooza.com/schedule",
+      "sha256": "99f1f89016d06aeb341a2c03666827f05a9bf75c0990d8c17ade2549ed1939ea",
+      "images": [
+        "62e2a47ad6dca96b7b20ba94_LOL22-Grid-0728-THURSDAY_Web-Opt-1080x1350.jpg",
+        "62e41b0c6c8bceee87e0789f_LOL22-Grid-0727-FRIDAY_Post.png",
+        "62e4421385270ae9ea26b826_LOL22-Grid-0729_Sat-1350X1080.png",
+        "62e1510c32b5d67966552ed0_LOL22-Grid-0727-Sun_1350X1080.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20220801033737",
+      "archivedUrl": "https://web.archive.org/web/20220801033737/https://www.lollapalooza.com/schedule",
+      "sha256": "25eeb074620f1bf1bf39a035648e11f5655e24fa1cdf76e06fe03ff3b5eb8acf",
+      "images": [
+        "62e2a47ad6dca96b7b20ba94_LOL22-Grid-0728-THURSDAY_Web-Opt-1080x1350.jpg",
+        "62e41b0c6c8bceee87e0789f_LOL22-Grid-0727-FRIDAY_Post.png",
+        "62e4421385270ae9ea26b826_LOL22-Grid-0729_Sat-1350X1080.png",
+        "62e6e4c4d40fd8519539c8e0_LOL22-Grid-0731SUN_1350X1080.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20220801203549",
+      "archivedUrl": "https://web.archive.org/web/20220801203549/https://www.lollapalooza.com/schedule",
+      "sha256": "d697d049e97ac36d94fc47a4373c34a41658e9ba8e20a13e844f79fe5a32c098",
+      "images": [
+        "62e2a47ad6dca96b7b20ba94_LOL22-Grid-0728-THURSDAY_Web-Opt-1080x1350.jpg",
+        "62e41b0c6c8bceee87e0789f_LOL22-Grid-0727-FRIDAY_Post.png",
+        "62e4421385270ae9ea26b826_LOL22-Grid-0729_Sat-1350X1080.png",
+        "62e6e4c4d40fd8519539c8e0_LOL22-Grid-0731SUN_1350X1080.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20220804065209",
+      "archivedUrl": "https://web.archive.org/web/20220804065209/https://www.lollapalooza.com/schedule",
+      "sha256": "e289700905822ea01480d4ee17f2f021cae18b24732a62d6c64987522a933aec",
+      "images": [
+        "62e2a47ad6dca96b7b20ba94_LOL22-Grid-0728-THURSDAY_Web-Opt-1080x1350.jpg",
+        "62e41b0c6c8bceee87e0789f_LOL22-Grid-0727-FRIDAY_Post.png",
+        "62e4421385270ae9ea26b826_LOL22-Grid-0729_Sat-1350X1080.png",
+        "62e6e4c4d40fd8519539c8e0_LOL22-Grid-0731SUN_1350X1080.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20220909104140",
+      "archivedUrl": "https://web.archive.org/web/20220909104140/https://www.lollapalooza.com/schedule",
+      "sha256": "28cbef6edf47426b195c0abadf996e4f2c9268145714838919a1e80dd019a188",
+      "images": [
+        "62e2a47ad6dca96b7b20ba94_LOL22-Grid-0728-THURSDAY_Web-Opt-1080x1350.jpg",
+        "62e41b0c6c8bceee87e0789f_LOL22-Grid-0727-FRIDAY_Post.png",
+        "62e4421385270ae9ea26b826_LOL22-Grid-0729_Sat-1350X1080.png",
+        "62e6e4c4d40fd8519539c8e0_LOL22-Grid-0731SUN_1350X1080.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20221013042149",
+      "archivedUrl": "https://web.archive.org/web/20221013042149/https://www.lollapalooza.com/schedule",
+      "sha256": "7daafe129b015795bb016b6b07af1be52a8a072edbcecae29843d85e469fc7c6",
+      "images": [
+        "62e2a47ad6dca96b7b20ba94_LOL22-Grid-0728-THURSDAY_Web-Opt-1080x1350.jpg",
+        "62e41b0c6c8bceee87e0789f_LOL22-Grid-0727-FRIDAY_Post.png",
+        "62e4421385270ae9ea26b826_LOL22-Grid-0729_Sat-1350X1080.png",
+        "62e6e4c4d40fd8519539c8e0_LOL22-Grid-0731SUN_1350X1080.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20221115225128",
+      "archivedUrl": "https://web.archive.org/web/20221115225128/https://www.lollapalooza.com/schedule",
+      "sha256": "e713036797ef50d6ca8f27318c3724f4ca82b70c3ea0ae05938b1b55e5bdddf4",
+      "images": [
+        "62e2a47ad6dca96b7b20ba94_LOL22-Grid-0728-THURSDAY_Web-Opt-1080x1350.jpg",
+        "62e41b0c6c8bceee87e0789f_LOL22-Grid-0727-FRIDAY_Post.png",
+        "62e4421385270ae9ea26b826_LOL22-Grid-0729_Sat-1350X1080.png",
+        "62e6e4c4d40fd8519539c8e0_LOL22-Grid-0731SUN_1350X1080.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20221116211350",
+      "archivedUrl": "https://web.archive.org/web/20221116211350/https://www.lollapalooza.com/schedule",
+      "sha256": "2f24a6d8bfea022fc999114427b7e0f3cb68b091ecbeed8af68c48ffbdcc49f2",
+      "images": [
+        "62e2a47ad6dca96b7b20ba94_LOL22-Grid-0728-THURSDAY_Web-Opt-1080x1350.jpg",
+        "62e41b0c6c8bceee87e0789f_LOL22-Grid-0727-FRIDAY_Post.png",
+        "62e4421385270ae9ea26b826_LOL22-Grid-0729_Sat-1350X1080.png",
+        "62e6e4c4d40fd8519539c8e0_LOL22-Grid-0731SUN_1350X1080.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20221215005451",
+      "archivedUrl": "https://web.archive.org/web/20221215005451/https://www.lollapalooza.com/schedule",
+      "sha256": "2f24a6d8bfea022fc999114427b7e0f3cb68b091ecbeed8af68c48ffbdcc49f2",
+      "images": [
+        "62e2a47ad6dca96b7b20ba94_LOL22-Grid-0728-THURSDAY_Web-Opt-1080x1350.jpg",
+        "62e41b0c6c8bceee87e0789f_LOL22-Grid-0727-FRIDAY_Post.png",
+        "62e4421385270ae9ea26b826_LOL22-Grid-0729_Sat-1350X1080.png",
+        "62e6e4c4d40fd8519539c8e0_LOL22-Grid-0731SUN_1350X1080.png"
+      ]
+    },
+    {
+      "captureTimestamp": "20221215142514",
+      "archivedUrl": "https://web.archive.org/web/20221215142514/https://www.lollapalooza.com/schedule",
+      "sha256": "2f24a6d8bfea022fc999114427b7e0f3cb68b091ecbeed8af68c48ffbdcc49f2",
+      "images": [
+        "62e2a47ad6dca96b7b20ba94_LOL22-Grid-0728-THURSDAY_Web-Opt-1080x1350.jpg",
+        "62e41b0c6c8bceee87e0789f_LOL22-Grid-0727-FRIDAY_Post.png",
+        "62e4421385270ae9ea26b826_LOL22-Grid-0729_Sat-1350X1080.png",
+        "62e6e4c4d40fd8519539c8e0_LOL22-Grid-0731SUN_1350X1080.png"
+      ]
+    }
+  ],
+  "days": [
+    {
+      "day": 1,
+      "date": "2022-07-28",
+      "pageCapture": "20221215142514",
+      "pageArchivedUrl": "https://web.archive.org/web/20221215142514/https://www.lollapalooza.com/schedule",
+      "originalUrl": "https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/62e2a47ad6dca96b7b20ba94_LOL22-Grid-0728-THURSDAY_Web-Opt-1080x1350.jpg",
+      "imageCapture": "20221215005501",
+      "imageArchivedUrl": "https://web.archive.org/web/20221215005501/https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/62e2a47ad6dca96b7b20ba94_LOL22-Grid-0728-THURSDAY_Web-Opt-1080x1350.jpg",
+      "sha256": "94b5942d4ceb8013bed80663c459eccde361f822f45c1b94da3d43d86643b592",
+      "bytes": 399391,
+      "contentType": "image/jpeg",
+      "cacheFile": "4533183f2f741a7bd0ccabac.bin",
+      "revisions": [
+        {
+          "file": "629fc2f07555381a78e0cebd_LOL22-Grid-0603-Thurs.png",
+          "firstSeen": "20220608002720"
+        },
+        {
+          "file": "62b610123d21d0b38b68d3d7_LOL22-Grid-0624-Thurs.png",
+          "firstSeen": "20220628003427"
+        },
+        {
+          "file": "62cda7f541ea8746991e8956_LOL22-Grid-0711-Thurs.png",
+          "firstSeen": "20220713142513"
+        },
+        {
+          "file": "62dafda12453527fcea1ead6_LOL22-Grid-0722-Thurs.png",
+          "firstSeen": "20220722215003"
+        },
+        {
+          "file": "62e1510c3c9399b84dc99981_LOL22-Grid-0727-Thurs_1350X1080.png",
+          "firstSeen": "20220728012431"
+        },
+        {
+          "file": "62e2a47ad6dca96b7b20ba94_LOL22-Grid-0728-THURSDAY_Web-Opt-1080x1350.jpg",
+          "firstSeen": "20220728214436"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2022-07-29",
+      "pageCapture": "20221215142514",
+      "pageArchivedUrl": "https://web.archive.org/web/20221215142514/https://www.lollapalooza.com/schedule",
+      "originalUrl": "https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/62e41b0c6c8bceee87e0789f_LOL22-Grid-0727-FRIDAY_Post.png",
+      "imageCapture": "20221215005547",
+      "imageArchivedUrl": "https://web.archive.org/web/20221215005547/https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/62e41b0c6c8bceee87e0789f_LOL22-Grid-0727-FRIDAY_Post.png",
+      "sha256": "34da63e87ffb740658915b14106b35d94acabbd2e06d85f23b5a6af17e5b2018",
+      "bytes": 379832,
+      "contentType": "image/png",
+      "cacheFile": "3d05355097160daebffe6446.bin",
+      "revisions": [
+        {
+          "file": "629fc2f0e19093950ce21079_LOL22-Grid-0603-Fri.png",
+          "firstSeen": "20220608002720"
+        },
+        {
+          "file": "62b348f517b45149ca7d83f2_LOL22-Grid-0621-Fri.png",
+          "firstSeen": "20220628003427"
+        },
+        {
+          "file": "62cda7f5de8f5fa3817b9e84_LOL22-Grid-0711-Fri.png",
+          "firstSeen": "20220713142513"
+        },
+        {
+          "file": "62d8712542e04f0e5c508e06_LOL22-Grid-0720-Fri%20(1).png",
+          "firstSeen": "20220721195212"
+        },
+        {
+          "file": "62dafda1ac1b33457b10c189_LOL22-Grid-0722-Fri.png",
+          "firstSeen": "20220722215003"
+        },
+        {
+          "file": "62e1510c62acb44ee2f5fc8c_LOL22-Grid-0727-Fri_1350X1080.png",
+          "firstSeen": "20220728012431"
+        },
+        {
+          "file": "62e41b0c6c8bceee87e0789f_LOL22-Grid-0727-FRIDAY_Post.png",
+          "firstSeen": "20220730023246"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2022-07-30",
+      "pageCapture": "20221215142514",
+      "pageArchivedUrl": "https://web.archive.org/web/20221215142514/https://www.lollapalooza.com/schedule",
+      "originalUrl": "https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/62e4421385270ae9ea26b826_LOL22-Grid-0729_Sat-1350X1080.png",
+      "imageCapture": "20221215005549",
+      "imageArchivedUrl": "https://web.archive.org/web/20221215005549/https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/62e4421385270ae9ea26b826_LOL22-Grid-0729_Sat-1350X1080.png",
+      "sha256": "8b1ad38494e4ec514e876f5f980d89291e516f8963936bd9d3480c81cc7370c0",
+      "bytes": 388005,
+      "contentType": "image/png",
+      "cacheFile": "64d94bc65cb3fe99212ddfe8.bin",
+      "revisions": [
+        {
+          "file": "629fc2f072f180a740cf6f1c_LOL22-Grid-0603-Sat.png",
+          "firstSeen": "20220608002720"
+        },
+        {
+          "file": "62b72d607d99053202347fc6_LOL22-Grid-0623-Sat.png",
+          "firstSeen": "20220628003427"
+        },
+        {
+          "file": "62cda7f5be2fb6836b84ddc0_LOL22-Grid-0711-Sat.png",
+          "firstSeen": "20220713142513"
+        },
+        {
+          "file": "62d86d1c0ae5fb3a759f7620_LOL22-Grid-0720-Sat.png",
+          "firstSeen": "20220721195212"
+        },
+        {
+          "file": "62dafda13fa75fd296e06915_LOL22-Grid-0722-Sat.png",
+          "firstSeen": "20220722215003"
+        },
+        {
+          "file": "62def21e8ac592bf3b3e8ccf_LOL22-Grid-0725-Sat.png",
+          "firstSeen": "20220726004611"
+        },
+        {
+          "file": "62e1510c1d6341471093954b_LOL22-Grid-0727-Sat_1350X1080.png",
+          "firstSeen": "20220728012431"
+        },
+        {
+          "file": "62e4421385270ae9ea26b826_LOL22-Grid-0729_Sat-1350X1080.png",
+          "firstSeen": "20220730023246"
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2022-07-31",
+      "pageCapture": "20221215142514",
+      "pageArchivedUrl": "https://web.archive.org/web/20221215142514/https://www.lollapalooza.com/schedule",
+      "originalUrl": "https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/62e6e4c4d40fd8519539c8e0_LOL22-Grid-0731SUN_1350X1080.png",
+      "imageCapture": "20221215005549",
+      "imageArchivedUrl": "https://web.archive.org/web/20221215005549/https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/62e6e4c4d40fd8519539c8e0_LOL22-Grid-0731SUN_1350X1080.png",
+      "sha256": "e54ea0a234b25ab118901d1d52af6470492ae53d4f41e9336c0f1c6b625cf318",
+      "bytes": 383809,
+      "contentType": "image/png",
+      "cacheFile": "32d9e2d058174f4bc201a5f8.bin",
+      "revisions": [
+        {
+          "file": "629fc2f069d2130e38ef2c69_LOL22-Grid-0603-Sun.png",
+          "firstSeen": "20220608002720"
+        },
+        {
+          "file": "62a120fdd34797ae1a4e2e95_LOL22-Grid-0608-Sun.png",
+          "firstSeen": "20220609154747"
+        },
+        {
+          "file": "62b3442f3a6b3eb113d17a9e_LOL22-Grid-0621-Sun.png",
+          "firstSeen": "20220628003427"
+        },
+        {
+          "file": "62cda7f5004d53ea35b33170_LOL22-Grid-0711-Sun.png",
+          "firstSeen": "20220713142513"
+        },
+        {
+          "file": "62dafda124535281daa1ead7_LOL22-Grid-0722-Sun.png",
+          "firstSeen": "20220722215003"
+        },
+        {
+          "file": "62e1510c32b5d67966552ed0_LOL22-Grid-0727-Sun_1350X1080.png",
+          "firstSeen": "20220728012431"
+        },
+        {
+          "file": "62e6e4c4d40fd8519539c8e0_LOL22-Grid-0731SUN_1350X1080.png",
+          "firstSeen": "20220801033737"
+        }
+      ]
+    }
+  ],
+  "dropped": [
+    {
+      "day": 1,
+      "stage": "KIDZAPALOOZA",
+      "start": "16:00",
+      "end": "16:30",
+      "billing": "SPECIAL GUEST",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    },
+    {
+      "day": 1,
+      "stage": "BONUS TRACKS",
+      "start": "16:30",
+      "end": "17:00",
+      "billing": "CHICAGO FOOTWORK",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 1,
+      "stage": "BONUS TRACKS",
+      "start": "18:30",
+      "end": "19:00",
+      "billing": "VOGUE BATTLE",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 2,
+      "stage": "KIDZAPALOOZA",
+      "start": "16:00",
+      "end": "16:30",
+      "billing": "SPECIAL GUEST",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    },
+    {
+      "day": 2,
+      "stage": "BONUS TRACKS",
+      "start": "15:15",
+      "end": "15:45",
+      "billing": "WE ARE TEAM EARTH PRESENTED BY SALESFORCE",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 2,
+      "stage": "BONUS TRACKS",
+      "start": "16:45",
+      "end": "17:15",
+      "billing": "FUSION OF LIGHT",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 2,
+      "stage": "BONUS TRACKS",
+      "start": "17:30",
+      "end": "18:00",
+      "billing": "BOB'S DANCE SHOP",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 2,
+      "stage": "BONUS TRACKS",
+      "start": "18:45",
+      "end": "19:15",
+      "billing": "THE FLY HONEYS",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 3,
+      "stage": "KIDZAPALOOZA",
+      "start": "16:00",
+      "end": "16:30",
+      "billing": "SPECIAL GUEST",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    },
+    {
+      "day": 3,
+      "stage": "BONUS TRACKS",
+      "start": "15:30",
+      "end": "16:00",
+      "billing": "WE ARE TEAM EARTH PRESENTED BY SALESFORCE",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 3,
+      "stage": "BONUS TRACKS",
+      "start": "17:45",
+      "end": "18:15",
+      "billing": "CHELSEA CUTLER & ROD THILL",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 3,
+      "stage": "BONUS TRACKS",
+      "start": "19:00",
+      "end": "19:30",
+      "billing": "BOB'S DANCE SHOP",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 4,
+      "stage": "KIDZAPALOOZA",
+      "start": "16:00",
+      "end": "16:30",
+      "billing": "SPECIAL GUEST",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    },
+    {
+      "day": 4,
+      "stage": "BONUS TRACKS",
+      "start": "14:30",
+      "end": "15:00",
+      "billing": "CHICAGO DRAG: MAYHEM HOSTED BY ABHIJEET",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 4,
+      "stage": "BONUS TRACKS",
+      "start": "16:30",
+      "end": "17:00",
+      "billing": "CHICAGO DRAG: TIME WARP HOSTED BY RAMONA SLICK",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    },
+    {
+      "day": 4,
+      "stage": "BONUS TRACKS",
+      "start": "18:30",
+      "end": "19:00",
+      "billing": "CHICAGO DRAG: BLACKGIRLMAGIC HOSTED BY THE VIXEN",
+      "category": "bonus-tracks-stage",
+      "reason": "Bonus Tracks stage: talks, activations and host sessions, not part of the historical lineup"
+    }
+  ]
+}

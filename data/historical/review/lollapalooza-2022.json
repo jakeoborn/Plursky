@@ -1,0 +1,117 @@
+{
+ "id": "lollapalooza-2022",
+ "days": [
+  {
+   "day": 1,
+   "date": "2022-07-28",
+   "sha256": "94b5942d4ceb8013bed80663c459eccde361f822f45c1b94da3d43d86643b592",
+   "originalUrl": "https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/62e2a47ad6dca96b7b20ba94_LOL22-Grid-0728-THURSDAY_Web-Opt-1080x1350.jpg",
+   "imageArchivedUrl": "https://web.archive.org/web/20221215005501/https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/62e2a47ad6dca96b7b20ba94_LOL22-Grid-0728-THURSDAY_Web-Opt-1080x1350.jpg",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-19T23:08:25.278Z",
+   "rowsConfirmed": 53,
+   "note": "Header read off the graphic: THURSDAY, JULY 28, 2022. Printed hour axis 12 PM to 10:00; every start reads its meridiem off that axis. BONUS TRACKS and BUD LIGHT SELTZER SESSIONS footer strips hand-transcribed (the Sessions print a start only, openEnd); BONUS TRACKS rows are kept as printed and dropped by the existing Bonus Tracks stage rule. KIDZAPALOOZA is printed with \"Presented by Lifeway\". KIDZAPALOOZA's 4:00-4:30 slot prints SPECIAL GUEST (unnamed slot). Closing T-MOBILE set (METALLICA) prints a start only (openEnd).",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 48,
+   "corrections": [
+    "100 GECS: artist \"GECS\" → \"100 GECS\"",
+    "PI'ERRE BOURNE: artist \"PL'ERRE BOURNE\" → \"PI'ERRE BOURNE\"",
+    "SUZI SHELTON: artist \"SUZI SHELION\" → \"SUZI SHELTON\""
+   ],
+   "ocrMissed": [
+    "BONUS TRACKS 16:30-17:00 CHICAGO FOOTWORK",
+    "BONUS TRACKS 18:30-19:00 VOGUE BATTLE",
+    "BUD LIGHT SELTZER SESSIONS 14:30 NIKO RUBIO",
+    "BUD LIGHT SELTZER SESSIONS 16:30 MAUDE LATOUR",
+    "BUD LIGHT SELTZER SESSIONS 18:30 JORDY"
+   ],
+   "ocrExtra": []
+  },
+  {
+   "day": 2,
+   "date": "2022-07-29",
+   "sha256": "34da63e87ffb740658915b14106b35d94acabbd2e06d85f23b5a6af17e5b2018",
+   "originalUrl": "https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/62e41b0c6c8bceee87e0789f_LOL22-Grid-0727-FRIDAY_Post.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20221215005547/https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/62e41b0c6c8bceee87e0789f_LOL22-Grid-0727-FRIDAY_Post.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-19T23:08:25.283Z",
+   "rowsConfirmed": 56,
+   "note": "Header read off the graphic: FRIDAY, JULY 29, 2022. Printed hour axis 12 PM to 10:00; every start reads its meridiem off that axis. BONUS TRACKS and BUD LIGHT SELTZER SESSIONS footer strips hand-transcribed (the Sessions print a start only, openEnd); BONUS TRACKS rows are kept as printed and dropped by the existing Bonus Tracks stage rule. KIDZAPALOOZA is printed with \"Presented by Lifeway\". KIDZAPALOOZA's 4:00-4:30 slot prints SPECIAL GUEST. Closing T-MOBILE set (DUA LIPA) prints a start only (openEnd). AIIDA and LA DOÑA as printed.",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 50,
+   "corrections": [
+    "ROYAL BLOOD: artist \"5:00ROYAL BLOOD\" → \"ROYAL BLOOD\"",
+    "DON TOLIVER: artist \"\" → \"DON TOLIVER\"",
+    "AIIDA: artist \"AlIDA\" → \"AIIDA\"",
+    "GIRL IN RED: artist \"GIRL INRED\" → \"GIRL IN RED\""
+   ],
+   "ocrMissed": [
+    "BONUS TRACKS 15:15-15:45 WE ARE TEAM EARTH PRESENTED BY SALESFORCE",
+    "BONUS TRACKS 16:45-17:15 FUSION OF LIGHT",
+    "BONUS TRACKS 17:30-18:00 BOB'S DANCE SHOP",
+    "BONUS TRACKS 18:45-19:15 THE FLY HONEYS",
+    "BUD LIGHT SELTZER SESSIONS 14:30 LA DOÑA",
+    "BUD LIGHT SELTZER SESSIONS 16:30 RAWAYANA",
+    "BUD LIGHT SELTZER SESSIONS 18:30 HINDS"
+   ],
+   "ocrExtra": [
+    "BUD LIGHT SELTZER 19:00 "
+   ]
+  },
+  {
+   "day": 3,
+   "date": "2022-07-30",
+   "sha256": "8b1ad38494e4ec514e876f5f980d89291e516f8963936bd9d3480c81cc7370c0",
+   "originalUrl": "https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/62e4421385270ae9ea26b826_LOL22-Grid-0729_Sat-1350X1080.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20221215005549/https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/62e4421385270ae9ea26b826_LOL22-Grid-0729_Sat-1350X1080.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-19T23:08:25.287Z",
+   "rowsConfirmed": 56,
+   "note": "Header read off the graphic: SATURDAY, JULY 30, 2022. Printed hour axis 12 PM to 10:00; every start reads its meridiem off that axis. BONUS TRACKS and BUD LIGHT SELTZER SESSIONS footer strips hand-transcribed (the Sessions print a start only, openEnd); BONUS TRACKS rows are kept as printed and dropped by the existing Bonus Tracks stage rule. KIDZAPALOOZA is printed with \"Presented by Lifeway\". KIDZAPALOOZA's 4:00-4:30 slot prints SPECIAL GUEST. Closing T-MOBILE set (J. COLE) prints a start only (openEnd).",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 50,
+   "corrections": [
+    "D. CARR: artist \"D.CARR\" → \"D. CARR\"",
+    "MEET ME @ THE ALTAR: artist \"MEET ME@ THE ALTAR\" → \"MEET ME @ THE ALTAR\"",
+    "SPECIAL GUEST: artist \"SPECIAL GUESI\" → \"SPECIAL GUEST\"",
+    "TOMORROW X TOGETHER: artist \"TOMORROW XTOGETHER\" → \"TOMORROW X TOGETHER\"",
+    "YG: artist \"\" → \"YG\""
+   ],
+   "ocrMissed": [
+    "BONUS TRACKS 15:30-16:00 WE ARE TEAM EARTH PRESENTED BY SALESFORCE",
+    "BONUS TRACKS 17:45-18:15 CHELSEA CUTLER & ROD THILL",
+    "BONUS TRACKS 19:00-19:30 BOB'S DANCE SHOP",
+    "BUD LIGHT SELTZER SESSIONS 14:30 DE'WAYNE",
+    "BUD LIGHT SELTZER SESSIONS 16:30 EVAN GIIA",
+    "BUD LIGHT SELTZER SESSIONS 18:30 ALEXANDER 23"
+   ],
+   "ocrExtra": []
+  },
+  {
+   "day": 4,
+   "date": "2022-07-31",
+   "sha256": "e54ea0a234b25ab118901d1d52af6470492ae53d4f41e9336c0f1c6b625cf318",
+   "originalUrl": "https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/62e6e4c4d40fd8519539c8e0_LOL22-Grid-0731SUN_1350X1080.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20221215005549/https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/62e6e4c4d40fd8519539c8e0_LOL22-Grid-0731SUN_1350X1080.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-19T23:08:25.288Z",
+   "rowsConfirmed": 54,
+   "note": "Header read off the graphic: SUNDAY, JULY 31, 2022. Printed hour axis 12 PM to 10:00; every start reads its meridiem off that axis. BONUS TRACKS and BUD LIGHT SELTZER SESSIONS footer strips hand-transcribed (the Sessions print a start only, openEnd); BONUS TRACKS rows are kept as printed and dropped by the existing Bonus Tracks stage rule. KIDZAPALOOZA is printed with \"Presented by Lifeway\". DISCORD opens at 11:45 AM with CHICAGO MADE SHOWCASE, kept as billed. KIDZAPALOOZA's 4:00-4:30 slot prints SPECIAL GUEST. LØLØ, ZOOKËPER, MÅNESKIN and THE MARÍAS as printed. Closing T-MOBILE set (GREEN DAY) prints a start only (openEnd).",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 48,
+   "corrections": [
+    "THE MARÍAS: artist \"THE MARIAS\" → \"THE MARÍAS\"",
+    "LOCAL NATIVES: artist \"LOCAL JATIVES\" → \"LOCAL NATIVES\""
+   ],
+   "ocrMissed": [
+    "BONUS TRACKS 14:30-15:00 CHICAGO DRAG: MAYHEM HOSTED BY ABHIJEET",
+    "BONUS TRACKS 16:30-17:00 CHICAGO DRAG: TIME WARP HOSTED BY RAMONA SLICK",
+    "BONUS TRACKS 18:30-19:00 CHICAGO DRAG: BLACKGIRLMAGIC HOSTED BY THE VIXEN",
+    "BUD LIGHT SELTZER SESSIONS 14:30 BABYJAKE",
+    "BUD LIGHT SELTZER SESSIONS 16:30 CHARM LA'DONNA",
+    "BUD LIGHT SELTZER SESSIONS 18:30 EMMY MELI"
+   ],
+   "ocrExtra": []
+  }
+ ]
+}

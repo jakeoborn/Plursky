@@ -333,7 +333,7 @@ function lineupSection(entry, blocks, dates, names, hasTimes) {
     return `
   <section aria-labelledby="lineup-h">
     <h2 id="lineup-h">${esc(cfg.name)} lineup</h2>
-    <p>Plursky does not have a lineup for ${esc(cfg.name)} yet.${site ? ` The festival's own site: <a href="${esc(site)}" rel="noopener">${esc(site.replace(/^https?:\/\//, '').replace(/\/$/, ''))}</a>.` : ''}</p>
+    <p>Plursky does not have a lineup for ${esc(cfg.name)} yet.${site ? ` The festival's own site: <a href="${esc(site)}" rel="noopener" style="overflow-wrap:anywhere">${esc(site.replace(/^https?:\/\//, '').replace(/\/$/, ''))}</a>.` : ''}</p>
   </section>`;
   }
   const dd = cfg.dayDates || {};

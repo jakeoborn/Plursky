@@ -20,7 +20,7 @@
 // 1. enroll.developer.apple.com → create a MusicKit key
 // 2. Sign a developer JWT (6-month expiry) — paste below.
 // Guide: https://developer.apple.com/documentation/musickit
-const APPLE_DEV_TOKEN = "eyJhbGciOiJFUzI1NiIsImtpZCI6Ik5CS0M4MjVOOVcifQ.eyJpc3MiOiJYNTRROVA3NDNTIiwiaWF0IjoxNzgwMDU1MDY0LCJleHAiOjE3OTU4MzIwNjR9.cWXrwsgXT6F3bN_EOVd6kdo8FGSIZDQDTvbbsGIvBuZNqVdXUFwr_4f8lwj_WWLIwiwKiBFQLP26HWbjgpDSnA";
+const APPLE_DEV_TOKEN = "eyJhbGciOiJFUzI1NiIsImtpZCI6Ik5CS0M4MjVOOVcifQ.eyJpc3MiOiJYNTRROVA3NDNTIiwiaWF0IjoxNzk1MDQ4MjM5LCJleHAiOjE4MTA4MjUyMzl9.QjTmKYpBrjJiO4J1RCDy172W2_5kLtrGvu3xa0XNiIMmPU3DKxozfSLthM9XWxORPlz8wehgrXtvSICmtEXZGw";
 
 let _mkReady = false;
 let _mkLoadP  = null;

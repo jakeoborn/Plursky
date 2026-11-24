@@ -35,6 +35,83 @@
   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
  },
  {
+  "id": "forbidden-kingdom-2027:fk27-alpha-omega-ac13-and-reaper",
+  "printed": "Alpha:Omega (AC13 & Reaper)",
+  "reason": "parenthetical names people",
+  "pending": true,
+  "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-hades-x-persephone",
+  "printed": "Hades x Persephone",
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-p-money-x-whiney",
+  "printed": "P Money x Whiney",
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "forbidden-kingdom-2027:fk27-xo-jackie-boi-b2b-xclvsiv",
+  "printed": "Xó (Jackie Boi B2B Xclvsiv)",
+  "reason": "parenthetical names people",
+  "pending": true,
+  "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-mk-marc-kinchen",
+  "printed": "MK (MARC KINCHEN)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "ubbi-dubbi-2027:ud27-wankdat-crankdat-b2b-wooli",
+  "printed": "Wankdat (Crankdat B2B Wooli)",
+  "reason": "parenthetical names people",
+  "pending": true,
+  "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-fcukers-djs",
+  "printed": "Fcukers (DJs)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed, one act: \"(DJs)\" is not one of the registry's set tags, so the billing is neither merged with the bare name nor split. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-digital-mystikz-mala-coki",
+  "printed": "Digital Mystikz (Mala + Coki)",
+  "reason": "parenthetical names people",
+  "pending": true,
+  "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "lightning-in-a-bottle-2027:lib27-tinzo-jojo",
+  "printed": "Tinzo + Jojo",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-john-askew-simon-patterson",
+  "printed": "John Askew + Simon Patterson",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-maho-alzada",
+  "printed": "Maho + Alzada",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
   "id": "acl-2012:d1:bud-light:1830:florence-the-machine",
   "printed": "Florence + The Machine",
   "reason": "\"+\" billing",
@@ -168,6 +245,20 @@
   "why": "Left as printed, one act: who is behind the \"feat.\" or \"with\" is not sourced, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
  },
  {
+  "id": "beyond-wonderland-socal-2016:d1:outer-realm:2100:myon-and-shane-54-trance-showcase",
+  "printed": "Myon & Shane 54 (Trance Showcase)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed: the parenthetical is not sourced as a name the act uses elsewhere (the Bunny (Rabbit in the Moon) rule), so the billing is neither merged with the bare name nor credited to anything the parenthetical names."
+ },
+ {
+  "id": "beyond-wonderland-socal-2016:d1:outer-realm:2200:pure-nrg-giuseppe-ottaviani-and-solarstone",
+  "printed": "Pure NRG (Giuseppe Ottaviani & Solarstone)",
+  "reason": "parenthetical names people",
+  "pending": true,
+  "why": "Left as printed, one act: the parenthetical names the people or crew behind the billing, but no first-party page says how it splits. Renders as its own billing until one rules it."
+ },
+ {
   "id": "beyond-wonderland-socal-2026:d2:caterpillar-s-garden:1900:tinzo-jojo",
   "printed": "Tinzo + Jojo",
   "reason": "\"+\" billing",
@@ -180,6 +271,20 @@
   "reason": "\"+\" billing",
   "pending": true,
   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it. Ilan Bluestone is billed alone at EDC Las Vegas 2026; his arc misses this set until it is ruled."
+ },
+ {
+  "id": "coachella-2011:d2:outdoor:1355:thao-with-the-get-down-stay-down",
+  "printed": "Thao with the Get Down Stay Down",
+  "reason": "feat / with billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"feat.\" or \"with\" is not sourced, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "coachella-2011:d2:oasis-dome:2230:andy-c-gq",
+  "printed": "Andy C. + GQ",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
  },
  {
   "id": "coachella-2015:d3:coachella:2050:florence-the-machine",
@@ -198,6 +303,153 @@
  {
   "id": "coachella-2017:d5:do-lab:1615:the-geek-x-vrv",
   "printed": "The Geek x Vrv",
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "coachella-2022:d3:mojave:2240:the-blessed-madonna-honey-dijon",
+  "printed": "The Blessed Madonna + Honey Dijon",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "coachella-2022:d6:mojave:2240:the-blessed-madonna-honey-dijon",
+  "printed": "The Blessed Madonna + Honey Dijon",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "coachella-2023:d1:yuma:1615:dennis-cruz-pawsa",
+  "printed": "Dennis Cruz + PAWSA",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "coachella-2023:d2:yuma:1730:dj-tennis-carlita",
+  "printed": "DJ Tennis + Carlita",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "coachella-2023:d3:outdoor:2040:fisher-chris-lake",
+  "printed": "Fisher + Chris Lake",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "coachella-2023:d3:gobi:2120:dpr-live-dpr-ian",
+  "printed": "DPR LIVE + DPR IAN",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "coachella-2023:d4:yuma:1615:dennis-cruz-pawsa",
+  "printed": "Dennis Cruz + PAWSA",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "coachella-2023:d5:yuma:1730:dj-tennis-carlita",
+  "printed": "DJ Tennis + Carlita",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "coachella-2023:d6:outdoor:2035:fisher-chris-lake",
+  "printed": "Fisher + Chris Lake",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "coachella-2023:d6:gobi:2120:dpr-live-dpr-ian",
+  "printed": "DPR LIVE + DPR IAN",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "coachella-2024:d3:quasar:1815:jamie-xx-x-floating-points-x-daphni",
+  "printed": "Jamie xx x Floating Points x Daphni",
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "coachella-2025:d2:quasar:1800:fcukers-dj-set-x-haai",
+  "printed": "Fcukers DJ set x HAAi",
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "coachella-2025:d2:quasar:2015:barry-can-t-swim-x-2manydjs-x-salute",
+  "printed": "Barry Can't Swim x 2manydjs x salute",
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "coachella-2025:d5:quasar:2000:kaskade-redux-x-idris",
+  "printed": "Kaskade Redux x IDRIS",
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "coachella-2025:d6:quasar:1900:alesso-body-hi-x-gorgon-city",
+  "printed": "Alesso Body Hi x Gorgon City",
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "coachella-2026:d2:quasar:1900:afrojack-x-shimza",
+  "printed": "Afrojack x Shimza",
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "coachella-2026:d3:sahara:1535:girl-math-vnssa-x-nala",
+  "printed": "Girl Math (VNSSA x NALA)",
+  "reason": "parenthetical names people",
+  "pending": true,
+  "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "coachella-2026:d3:quasar:1800:joy-anonymous",
+  "printed": "JOY (Anonymous)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed: the parenthetical is not sourced as a name the act uses elsewhere (the Bunny (Rabbit in the Moon) rule), so the billing is neither merged with the bare name nor credited to anything the parenthetical names."
+ },
+ {
+  "id": "coachella-2026:d5:quasar:2015:dj-snake-x-rl-grime-x-flosstradamus",
+  "printed": "DJ Snake x RL Grime x Flosstradamus",
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "coachella-2026:d6:sahara:1535:girl-math-vnssa-x-nala",
+  "printed": "Girl Math (VNSSA x NALA)",
+  "reason": "parenthetical names people",
+  "pending": true,
+  "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "countdown-nye-2016:d2:resolution:1700:bonnie-x-clyde",
+  "printed": "Bonnie X Clyde",
   "reason": "\"x\" billing whose sides are not both known acts",
   "pending": true,
   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
@@ -315,6 +567,34 @@
   "why": "Left as printed, one act: who is behind the \"feat.\" or \"with\" is not sourced, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
  },
  {
+  "id": "edc-las-vegas-2016:d3:smirnoff-house:0300:new-world-punx-ferry-corsten-b2b-markus-schulz",
+  "printed": "New World Punx (Ferry Corsten B2B Markus Schulz)",
+  "reason": "parenthetical names people",
+  "pending": true,
+  "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "edc-las-vegas-2017:d1:upside-downhouse:0100:bonnie-x-clyde",
+  "printed": "Bonnie X Clyde",
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "edc-las-vegas-2017:d2:kalliopeartcar:1900:orri-friends",
+  "printed": "Orri + Friends",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "edc-las-vegas-2017:d2:parliamentartcar:2215:bonnie-x-clyde",
+  "printed": "Bonnie X Clyde",
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
   "id": "edc-las-vegas-2022:d1:parliament-art-car:0100:sultan-shepard",
   "printed": "Sultan + Shepard",
   "reason": "\"+\" billing",
@@ -413,6 +693,13 @@
   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
  },
  {
+  "id": "edc-orlando-2016:d2:circuitgrounds:1500:bonnie-x-clyde",
+  "printed": "Bonnie X Clyde",
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
   "id": "edc-orlando-2017:d2:circuitgrounds:1615:bonnie-x-clyde",
   "printed": "BONNIE X CLYDE",
   "reason": "\"x\" billing whose sides are not both known acts",
@@ -476,6 +763,20 @@
   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
  },
  {
+  "id": "escape-halloween-2023:d1:sanitarium:0100:dj-isaac-b2b-saymyname-hardstyle",
+  "printed": "DJ ISAAC B2B SAYMYNAME (HARDSTYLE)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed: the parenthetical is not sourced as a name the act uses elsewhere (the Bunny (Rabbit in the Moon) rule), so the billing is neither merged with the bare name nor credited to anything the parenthetical names."
+ },
+ {
+  "id": "escape-halloween-2023:d2:wicked-woods:2245:black-sun-empire-b2b-the-upbeats-20-years-of-blackout",
+  "printed": "BLACK SUN EMPIRE B2B THE UPBEATS (20 YEARS OF BLACKOUT)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed: the parenthetical is not sourced as a name the act uses elsewhere (the Bunny (Rabbit in the Moon) rule), so the billing is neither merged with the bare name nor credited to anything the parenthetical names."
+ },
+ {
   "id": "governors-ball-2011:d1:gotham-stage:1855:big-boi-of-outkast",
   "printed": "Big Boi (of Outkast)",
   "reason": "parenthetical is not a known set tag",
@@ -495,6 +796,76 @@
   "reason": "\"+\" billing",
   "pending": true,
   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "hard-summer-2019:d1:purple-tent:1830:2-craze-and-four-color-zack",
+  "printed": "2¢ (Craze & Four Color Zack)",
+  "reason": "parenthetical names people",
+  "pending": true,
+  "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "hard-summer-2019:d1:green-tent:1825:diesel-shaquille-o-neal",
+  "printed": "Diesel (Shaquille O'Neal)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed: the page prints no \"aka\", so whether the parenthetical gives the same act's other name or a separate act is not sourced (the Bunny (Rabbit in the Moon) rule); the billing is neither merged nor credited to Shaquille O'Neal."
+ },
+ {
+  "id": "hard-summer-2019:d2:pink-tent:1735:amok-will-clarke-sian",
+  "printed": "AMOK (Will Clarke + Sian)",
+  "reason": "parenthetical names people",
+  "pending": true,
+  "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "hard-summer-2024:d1:hard-stage:1715:skepta-mas-tiempo",
+  "printed": "Skepta (Más Tiempo)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed: the parenthetical is not sourced as a name the act uses elsewhere (the Bunny (Rabbit in the Moon) rule), so the billing is neither merged with the bare name nor credited to anything the parenthetical names."
+ },
+ {
+  "id": "hard-summer-2024:d1:purple-stage:1600:ketboi69-kettama-b2b-partiboi69",
+  "printed": "Ketboi69 (KETTAMA B2B Partiboi69)",
+  "reason": "parenthetical names people",
+  "pending": true,
+  "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "hard-summer-2024:d2:hard-stage:1900:tchami-x-malaa-no-redemption",
+  "printed": "Tchami x Malaa: No Redemption",
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "hard-summer-2024:d2:hard-stage:2030:fisher-chris-lake-under-construction",
+  "printed": "Fisher + Chris Lake: Under Construction",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "hard-summer-2024:d2:jose-cuervo-locals-only-stage:2030:sisters-of-sound-maddy-maia-b2b-tottie",
+  "printed": "Sisters of Sound (Maddy Maia B2B Tottie)",
+  "reason": "parenthetical names people",
+  "pending": true,
+  "why": "Left as printed, one act: the parenthetical names who is in it, but no first-party page rules how the billing splits, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "iii-points-2014:d1:mindmelt:1900:laura-of-miami",
+  "printed": "LAURA (OF MIAMI)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed: the parenthetical is not sourced as a name the act uses elsewhere (the Bunny (Rabbit in the Moon) rule), so the billing is neither merged with the bare name nor credited to anything the parenthetical names."
+ },
+ {
+  "id": "iii-points-2014:d3:sector3:1900:vi-the-deep-end",
+  "printed": "VI (THE DEEP END)",
+  "reason": "parenthetical is not a known set tag",
+  "pending": true,
+  "why": "Left as printed: whether the parenthetical names the act this artist plays in or a separate act is not sourced (the Bunny (Rabbit in the Moon) rule), so the billing is neither merged with the bare name nor credited to the act it names."
  },
  {
   "id": "lightning-in-a-bottle-2018:d4:crossroads:2130:comunit-takeover-w-itzone-jonn-wuuan",
@@ -548,6 +919,41 @@
  {
   "id": "lollapalooza-2016:d2:kidzapalooza:1500:frankie-the-studs",
   "printed": "Frankie + The Studs",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "lollapalooza-2022:d3:solana-x-perry-s:1945:tomorrow-x-together",
+  "printed": "TOMORROW X TOGETHER",
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "lollapalooza-2023:d3:bud-light:2030:tomorrow-x-together",
+  "printed": "TOMORROW X TOGETHER",
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "lollapalooza-2023:d3:bacardi:1150:kosine-x-frayne-vibez",
+  "printed": "KOSINE X FRAYNE VIBEZ",
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "lollapalooza-2023:d3:perry-s:1330:bonnie-x-clyde",
+  "printed": "BONNIE X CLYDE",
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "lollapalooza-2023:d4:bacardi:1945:dpr-ian-dpr-live",
+  "printed": "DPR IAN + DPR LIVE",
   "reason": "\"+\" billing",
   "pending": true,
   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
@@ -924,6 +1330,27 @@
   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
  },
  {
+  "id": "ultra-miami-2019:d2:live-arena:1400:bonnie-x-clyde",
+  "printed": "BONNIE X CLYDE",
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "ultra-miami-2022:d1:umf-radio:1900:kvsh-x-pontifexx",
+  "printed": "KVSH X PONTIFEXX",
+  "reason": "\"x\" billing whose sides are not both known acts",
+  "pending": true,
+  "why": "Left as printed (Ultra Miami 2022 Friday grid): an \"x\" billing whose sides are not both known acts, which no standing rule settles, so it is neither split nor credited to either name."
+ },
+ {
+  "id": "ultra-miami-2023:d3:oasis:1200:ash-tres-moses-jazz",
+  "printed": "ASH TRÉS + MOSES JAZZ",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed (Ultra Miami 2023 Sunday grid): a \"+\" billing, which no standing rule settles (the Florence + the Machine case), so it is neither split nor credited to either name."
+ },
+ {
   "id": "key:bou",
   "printed": "Bou",
   "reason": "very short name billed at more than one festival brand",
@@ -982,6 +1409,13 @@
  {
   "id": "key:a-m-c",
   "printed": "A.M.C",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
+  "id": "key:roi",
+  "printed": "ROI*",
   "reason": "very short name billed at more than one festival brand",
   "pending": true,
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
@@ -1066,6 +1500,13 @@
  {
   "id": "key:jev",
   "printed": "Jev",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
+  "id": "key:s-y-n",
+  "printed": "S.Y.N",
   "reason": "very short name billed at more than one festival brand",
   "pending": true,
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
@@ -1183,11 +1624,32 @@
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
  },
  {
+  "id": "key:cam",
+  "printed": "CAM",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
+  "id": "key:bia",
+  "printed": "BIA",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
   "id": "key:fkj",
   "printed": "FKJ",
   "reason": "very short name billed at more than one festival brand",
   "pending": true,
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
+  "id": "key:flo",
+  "printed": "FLO",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand (ACL 2024, Governors Ball 2024, Lollapalooza 2024): no first-party link yet shows they are the same act. The billings render separately until one does."
  },
  {
   "id": "key:atb",
@@ -1204,11 +1666,25 @@
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
  },
  {
-  "id": "key:x",
-  "printed": "†††",
+  "id": "key:sia",
+  "printed": "Sia",
   "reason": "very short name billed at more than one festival brand",
   "pending": true,
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
+  "id": "key:x",
+  "printed": "!!!",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
+  "id": "key:off",
+  "printed": "OFF!",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at Primavera Sound 2012 and Coachella 2015 (each on its own official timetable). Not merged into one arc until a first-party link shows it is the same act; the billings render separately."
  },
  {
   "id": "key:nas",
@@ -1246,22 +1722,8 @@
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
  },
  {
-  "id": "key:off",
-  "printed": "OFF!",
-  "reason": "very short name billed at more than one festival brand",
-  "pending": true,
-  "why": "Short name billed at Primavera Sound 2012 and Coachella 2015 (each on its own official timetable). Not merged into one arc until a first-party link shows it is the same act; the billings render separately."
- },
- {
   "id": "key:rac",
   "printed": "RAC",
-  "reason": "very short name billed at more than one festival brand",
-  "pending": true,
-  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
- },
- {
-  "id": "key:sia",
-  "printed": "Sia",
   "reason": "very short name billed at more than one festival brand",
   "pending": true,
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
@@ -1281,6 +1743,55 @@
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
  },
  {
+  "id": "key:pup",
+  "printed": "PUP",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
+  "id": "key:j-i-d",
+  "printed": "J.I.D",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at Lollapalooza 2019 and Outside Lands 2023 (each on its own official lineup). Not merged into one arc until a first-party link shows it is the same act; the billings render separately."
+ },
+ {
+  "id": "key:umi",
+  "printed": "UMI",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
+  "id": "key:maz",
+  "printed": "Maz",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
+  "id": "key:tc",
+  "printed": "TC",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
+  "id": "key:awe",
+  "printed": "AWE",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
+  "id": "key:4b",
+  "printed": "4B",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
   "id": "key:tdj",
   "printed": "TDJ",
   "reason": "very short name billed at more than one festival brand",
@@ -1295,11 +1806,32 @@
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
  },
  {
+  "id": "key:bot",
+  "printed": "Bot",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
+  "id": "key:noa",
+  "printed": "NOA",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
   "id": "key:dot",
   "printed": "Dot",
   "reason": "very short name billed at more than one festival brand",
   "pending": true,
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+ },
+ {
+  "id": "key:kx5",
+  "printed": "Kx5",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand (EDC Las Vegas 2022, Ultra Miami 2023). EDC prints it as \"Kaskade & deadmau5 present Kx5\" and Ultra as Kx5 alone; both read as one act, so the key stays one, and no claim is made about the act behind the Ultra billing."
  },
  {
   "id": "key:geo",
@@ -1316,18 +1848,18 @@
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
  },
  {
-  "id": "key:4b",
-  "printed": "4B",
-  "reason": "very short name billed at more than one festival brand",
-  "pending": true,
-  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
- },
- {
   "id": "key:r-d",
   "printed": "R/D",
   "reason": "very short name billed at more than one festival brand",
   "pending": true,
   "why": "Short name billed at Nocturnal Wonderland 2022 and Lights All Night 2026 (from a press relay of the poster). Not merged into one arc until a first-party link shows it is the same act; the billings render separately."
+ },
+ {
+  "id": "key:yg",
+  "printed": "YG",
+  "reason": "very short name billed at more than one festival brand",
+  "pending": true,
+  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
  },
  {
   "id": "key:air",
@@ -1351,22 +1883,8 @@
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
  },
  {
-  "id": "key:j-i-d",
-  "printed": "J.I.D",
-  "reason": "very short name billed at more than one festival brand",
-  "pending": true,
-  "why": "Short name billed at Lollapalooza 2019 and Outside Lands 2023 (each on its own official lineup). Not merged into one arc until a first-party link shows it is the same act; the billings render separately."
- },
- {
   "id": "key:s-p-y",
   "printed": "S.P.Y",
-  "reason": "very short name billed at more than one festival brand",
-  "pending": true,
-  "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
- },
- {
-  "id": "key:tc",
-  "printed": "TC",
   "reason": "very short name billed at more than one festival brand",
   "pending": true,
   "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."

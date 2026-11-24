@@ -1,0 +1,122 @@
+{
+ "id": "lollapalooza-2023",
+ "days": [
+  {
+   "day": 1,
+   "date": "2023-08-03",
+   "sha256": "5c5f232c88a3f97791bd5da5f9c5943839402249a102488b3dd6788bb9f84991",
+   "originalUrl": "https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/64c7e7bcf81b3f4e9dfa2c8a_L23_Grid-07.28_Aug3.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20231003154901/https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/64c7e7bcf81b3f4e9dfa2c8a_L23_Grid-07.28_Aug3.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-19T23:08:25.460Z",
+   "rowsConfirmed": 56,
+   "note": "Header read off the graphic: THURS, AUG. 3, 2023. Printed hour axis 12 PM to 10:00; every start reads its meridiem off that axis. TOYOTA MUSIC DEN and BUD LIGHT BACKYARD footer strips hand-transcribed (the Backyard prints a start only, openEnd). KIDZAPALOOZA is printed with \"Presented by Lifeway Kefir\". CHRI$TIAN GATE$ is printed with dollar signs in both its BMI block and its TOYOTA MUSIC DEN slot. Closing T-MOBILE set (BILLIE EILISH) prints a start only (openEnd).",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 47,
+   "corrections": [
+    "CHRI$TIAN GATE$: artist \"CHRIŞTIAN GATES\" → \"CHRI$TIAN GATE$\""
+   ],
+   "ocrMissed": [
+    "TOYOTA MUSIC DEN 14:00-14:30 CHRI$TIAN GATE$",
+    "TOYOTA MUSIC DEN 15:00-15:30 JUNIOR MESA",
+    "TOYOTA MUSIC DEN 16:00-16:30 PONY BRADSHAW",
+    "TOYOTA MUSIC DEN 17:00-17:30 CHARLOTTE SANDS",
+    "TOYOTA MUSIC DEN 18:00-18:30 BEAUTY SCHOOL DROPOUT",
+    "BUD LIGHT BACKYARD 15:00 DJ METRO",
+    "BUD LIGHT BACKYARD 17:00 DJ HEAVY",
+    "BUD LIGHT BACKYARD 18:30 CYDEWAYS",
+    "BUD LIGHT BACKYARD 19:05 DJ HEAVY"
+   ],
+   "ocrExtra": []
+  },
+  {
+   "day": 2,
+   "date": "2023-08-04",
+   "sha256": "a2fa09e401aff58f3289ec4018005b39815a96e4c3788f5f8b72e07348b7102b",
+   "originalUrl": "https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/64c7e7c8bfd0c5d5d677a526_L23_Grid-07.28_Aug4.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20231003154913/https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/64c7e7c8bfd0c5d5d677a526_L23_Grid-07.28_Aug4.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-19T23:08:25.462Z",
+   "rowsConfirmed": 58,
+   "note": "Header read off the graphic: FRI, AUG. 4, 2023. Printed hour axis 12 PM to 10:00; every start reads its meridiem off that axis. TOYOTA MUSIC DEN and BUD LIGHT BACKYARD footer strips hand-transcribed (the Backyard prints a start only, openEnd). KIDZAPALOOZA is printed with \"Presented by Lifeway Kefir\". Closing T-MOBILE set (KENDRICK LAMAR) prints a start only (openEnd).",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 48,
+   "corrections": [
+    "DECLAN MCKENNA: artist \"DECLAN MOKENNA\" → \"DECLAN MCKENNA\"",
+    "NINAJIRACHI: artist \"NAJIRACHI\" → \"NINAJIRACHI\""
+   ],
+   "ocrMissed": [
+    "TOYOTA MUSIC DEN 14:00-14:30 TALK",
+    "TOYOTA MUSIC DEN 15:00-15:30 FRIDAY PILOTS CLUB",
+    "TOYOTA MUSIC DEN 16:00-16:30 ISABEL LAROSA",
+    "TOYOTA MUSIC DEN 17:00-17:30 EKKSTACY",
+    "TOYOTA MUSIC DEN 18:00-18:30 SOMADINA",
+    "BUD LIGHT BACKYARD 14:30 CHARLOTTE SANDS",
+    "BUD LIGHT BACKYARD 15:05 STEPH",
+    "BUD LIGHT BACKYARD 17:00 EQUAL",
+    "BUD LIGHT BACKYARD 18:30 LOVELESS",
+    "BUD LIGHT BACKYARD 19:05 EQUAL"
+   ],
+   "ocrExtra": []
+  },
+  {
+   "day": 3,
+   "date": "2023-08-05",
+   "sha256": "2dec463de162a14291b4b26ac4814294a4b97aaa7bc030015ac4a235ba2d524e",
+   "originalUrl": "https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/64c7e7da3d44c9e295350142_L23_Grid-07.28_Aug5.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20231003155734/https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/64c7e7da3d44c9e295350142_L23_Grid-07.28_Aug5.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-19T23:08:25.465Z",
+   "rowsConfirmed": 59,
+   "note": "Header read off the graphic: SAT, AUG. 5, 2023. Printed hour axis 12 PM to 10:00; every start reads its meridiem off that axis. TOYOTA MUSIC DEN and BUD LIGHT BACKYARD footer strips hand-transcribed (the Backyard prints a start only, openEnd). KIDZAPALOOZA is printed with \"Presented by Lifeway Kefir\". BACARDÍ opens at 11:50 AM (KOSINE X FRAYNE VIBEZ). KIDZAPALOOZA's 4:00-4:30 slot prints SPECIAL GUEST. Closing T-MOBILE set (ODESZA) prints a start only (openEnd).",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 49,
+   "corrections": [],
+   "ocrMissed": [
+    "TOYOTA MUSIC DEN 14:00-14:30 AIDAN BISSETT",
+    "TOYOTA MUSIC DEN 15:00-15:30 USTED SEÑALEMELO",
+    "TOYOTA MUSIC DEN 16:00-16:30 ARCY DRIVE",
+    "TOYOTA MUSIC DEN 17:00-17:30 LOS APTOS",
+    "TOYOTA MUSIC DEN 18:00-18:30 WINDSER",
+    "BUD LIGHT BACKYARD 14:15 LUDA",
+    "BUD LIGHT BACKYARD 16:30 HOOSH",
+    "BUD LIGHT BACKYARD 17:00 DANI DEAHL",
+    "BUD LIGHT BACKYARD 18:30 MOTHERFOLK",
+    "BUD LIGHT BACKYARD 19:05 DANI DEAHL"
+   ],
+   "ocrExtra": []
+  },
+  {
+   "day": 4,
+   "date": "2023-08-06",
+   "sha256": "f754497381a887dd6523ec5dd0c1f4577e218e740e8d3e951624939d719ef312",
+   "originalUrl": "https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/64cbc3a0dc2e7500c4aaea70_L23_Grid-08.01_Aug6-1080x1350.png",
+   "imageArchivedUrl": "https://web.archive.org/web/20231003161151/https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/64cbc3a0dc2e7500c4aaea70_L23_Grid-08.01_Aug6-1080x1350.png",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-19T23:08:25.465Z",
+   "rowsConfirmed": 57,
+   "note": "Header read off the graphic: SUN, AUG. 6, 2023. The chosen file is the Sunday re-issue \"L23_Grid-08.01_Aug6-1080x1350.png\". Printed hour axis 12 PM to 10:00; every start reads its meridiem off that axis. TOYOTA MUSIC DEN and BUD LIGHT BACKYARD footer strips hand-transcribed (the Backyard prints a start only, openEnd). KIDZAPALOOZA is printed with \"Presented by Lifeway Kefir\". BACARDÍ opens at 11:45 AM with CHICAGO MADE, kept as billed. JOEY BADA$$ is printed with dollar signs. Closing T-MOBILE set (RED HOT CHILI PEPPERS) prints a start only (openEnd).",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 47,
+   "corrections": [
+    "LIL YACHTY: artist \"LIL VACHTY\" → \"LIL YACHTY\"",
+    "HUSBANDS: end ∅ → 13:15",
+    "JOEY BADA$$: artist \"JOEY BADAS$\" → \"JOEY BADA$$\"",
+    "IMAGINATION MOVERS: artist \"TION MOVERS\" → \"IMAGINATION MOVERS\""
+   ],
+   "ocrMissed": [
+    "TOYOTA MUSIC DEN 14:00-14:30 JOSH FUDGE",
+    "TOYOTA MUSIC DEN 15:00-15:30 UMI",
+    "TOYOTA MUSIC DEN 16:00-16:30 ROSA LINN",
+    "TOYOTA MUSIC DEN 17:00-17:30 SARAH KINSLEY",
+    "TOYOTA MUSIC DEN 18:00-18:30 MICHELLE",
+    "BUD LIGHT BACKYARD 14:30 ROSA LINN",
+    "BUD LIGHT BACKYARD 16:30 LITTLE STRANGER",
+    "BUD LIGHT BACKYARD 17:05 MR.SHAW",
+    "BUD LIGHT BACKYARD 18:30 HUSBANDS",
+    "BUD LIGHT BACKYARD 19:05 MR.SHAW"
+   ],
+   "ocrExtra": []
+  }
+ ]
+}

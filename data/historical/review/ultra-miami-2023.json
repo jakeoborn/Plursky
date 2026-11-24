@@ -1,0 +1,78 @@
+{
+ "id": "ultra-miami-2023",
+ "days": [
+  {
+   "day": 1,
+   "date": "2023-03-24",
+   "sha256": "773f4c0524c28ebe714ef5f1010101ff2d4527f7489e85b2fe80d40f441038f0",
+   "originalUrl": "https://ultramusicfestival.com/wp-content/uploads/2023/03/ULTRA2023_SET-TIMES_FRIDAY-web-1-1600x1000.jpeg",
+   "imageArchivedUrl": "https://web.archive.org/web/20230327014643/https://ultramusicfestival.com/wp-content/uploads/2023/03/ULTRA2023_SET-TIMES_FRIDAY-web-1-1600x1000.jpeg",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-19T21:33:05.931Z",
+   "rowsConfirmed": 46,
+   "note": "Header read off the graphic: SET TIMES · MARCH 2023 · BAYFRONT PARK · FRIDAY 3.24 · FROM 4:00 PM TO 12:00 AM. Seven stage columns: ULTRA MAIN STAGE, LIVE STAGE, MEGASTRUCTURE and WORLDWIDE STAGE on the left panel, THE COVE, UMF RADIO and OASIS on the right; stage names are the column logos, uppercased (RESISTANCE prints over MEGASTRUCTURE and THE COVE). Every block prints a start only (\"10:45 PM\"), so every row is open-ended. A smaller coloured word beside or under a name (LIVE, HYBRID LIVE, THROWBACK SET, a presents line, the pair behind ENDLESS SUMMER) is kept in parentheses after it, as printed; a coloured B2B or B3B joins the names. This is the site's own 1600x1000 copy, which is legible. UMF RADIO prints the Revealed logo beside it this day; the stage is UMF RADIO.",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 46,
+   "corrections": [
+    "ENDLESS SUMMER (SAM FELDT B2B JONAS BLUE): artist \"ENDLESS SUMMER B2B\" → \"ENDLESS SUMMER (SAM FELDT B2B JONAS BLUE)\"",
+    "KASABLANCA (LIVE): artist \"KASABLANCA LIVE\" → \"KASABLANCA (LIVE)\"",
+    "ERIC PRYDZ (PRESENTS HOLO): artist \"ERIC PRYDZ PRESENTS HOLO\" → \"ERIC PRYDZ (PRESENTS HOLO)\""
+   ],
+   "ocrMissed": [],
+   "ocrExtra": []
+  },
+  {
+   "day": 2,
+   "date": "2023-03-25",
+   "sha256": "446845a3d251b0b67e84219cb438158898f01bbb02c55903a188fed349414c7f",
+   "originalUrl": "https://ultramusicfestival.com/wp-content/uploads/2023/03/ULTRA2023_SET-TIMES_SATURDAY-web-1-1600x1000.jpeg",
+   "imageArchivedUrl": "https://web.archive.org/web/20230327014643/https://ultramusicfestival.com/wp-content/uploads/2023/03/ULTRA2023_SET-TIMES_SATURDAY-web-1-1600x1000.jpeg",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-19T21:33:05.933Z",
+   "rowsConfirmed": 67,
+   "note": "Header read off the graphic: SET TIMES · MARCH 2023 · BAYFRONT PARK · SATURDAY 3.25 · FROM 12:00 PM TO 12:00 AM. Seven stage columns: ULTRA MAIN STAGE, LIVE STAGE, MEGASTRUCTURE and WORLDWIDE STAGE on the left panel, THE COVE, UMF RADIO and OASIS on the right; stage names are the column logos, uppercased (RESISTANCE prints over MEGASTRUCTURE and THE COVE). Every block prints a start only (\"10:45 PM\"), so every row is open-ended. A smaller coloured word beside or under a name (LIVE, HYBRID LIVE, THROWBACK SET, a presents line, the pair behind ENDLESS SUMMER) is kept in parentheses after it, as printed; a coloured B2B or B3B joins the names. This is the site's own 1600x1000 copy, which is legible. THE COVE prints the SPECTRUM logo and UMF RADIO the JACKED logo beside them this day. MEGASTRUCTURE's 8:00 PM block prints ADAM BEYER, then a small hollow square before CIREZ D; it is kept as printed (□), since the graphic does not say whether it means a b2b or the alias. NOTLÖ, DUBFIRE B2B KÖLSCH and ISOxo are as printed.",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 66,
+   "corrections": [
+    "TIËSTO: artist \"TIÊSTO\" → \"TIËSTO\"",
+    "BLACK TIGER SEX MACHINE (PRESENTS PORTALS): artist \"BLACK TIGER SEX MACHINE PRESENTS PORTALS\" → \"BLACK TIGER SEX MACHINE (PRESENTS PORTALS)\"",
+    "KAYZO (LIVE): artist \"KAYZO LIVE\" → \"KAYZO (LIVE)\"",
+    "CARL COX (HYBRID LIVE): artist \"CARL COX HYBRID LIVE\" → \"CARL COX (HYBRID LIVE)\"",
+    "ADAM BEYER □ CIREZ D: artist \"ADAM BEYER • CIREZ D\" → \"ADAM BEYER □ CIREZ D\"",
+    "POPOF B2B SPACE 92 (PRESENT TURBULENCES): artist \"POPOF B2B SPACE 92 PRESENT TURBULENCES\" → \"POPOF B2B SPACE 92 (PRESENT TURBULENCES)\"",
+    "DEATHPACT: artist \"LUCAS & STEVE\" → \"DEATHPACT\"; stage \"UMF RADIO\" → \"WORLDWIDE STAGE\"",
+    "ISOxo: artist \"DEATHPAС :00 R ISOxo\" → \"ISOxo\"",
+    "LUCAS & STEVE: artist \"TERRY GOLDEN\" → \"LUCAS & STEVE\"; stage \"OASIS\" → \"UMF RADIO\"",
+    "NICK VAN DE WALL (THROWBACK SET): artist \"NICK VAN DE WALL THROWBACKSET\" → \"NICK VAN DE WALL (THROWBACK SET)\""
+   ],
+   "ocrMissed": [
+    "OASIS 20:00 TERRY GOLDEN"
+   ],
+   "ocrExtra": []
+  },
+  {
+   "day": 3,
+   "date": "2023-03-26",
+   "sha256": "558f616585447168fcd77e8abdbdf838895885c6ee746022c4ab4eb1b342691a",
+   "originalUrl": "https://ultramusicfestival.com/wp-content/uploads/2023/03/ULTRA2023_SET-TIMES_SUNDAY-web-2-1600x1000.jpeg",
+   "imageArchivedUrl": "https://web.archive.org/web/20230327014643/https://ultramusicfestival.com/wp-content/uploads/2023/03/ULTRA2023_SET-TIMES_SUNDAY-web-2-1600x1000.jpeg",
+   "reviewer": "Claude (Opus 5.5), visual review against source pixels",
+   "reviewedAt": "2026-11-19T21:33:05.935Z",
+   "rowsConfirmed": 54,
+   "note": "Header read off the graphic: SET TIMES · MARCH 2023 · BAYFRONT PARK · SUNDAY 3.26 · FROM 12:00 PM TO 10:00 PM. Seven stage columns: ULTRA MAIN STAGE, LIVE STAGE, MEGASTRUCTURE and WORLDWIDE STAGE on the left panel, THE COVE, UMF RADIO and OASIS on the right; stage names are the column logos, uppercased (RESISTANCE prints over MEGASTRUCTURE and THE COVE). Every block prints a start only (\"10:45 PM\"), so every row is open-ended. A smaller coloured word beside or under a name (LIVE, HYBRID LIVE, THROWBACK SET, a presents line, the pair behind ENDLESS SUMMER) is kept in parentheses after it, as printed; a coloured B2B or B3B joins the names. This is the site's own 1600x1000 copy, which is legible. THE COVE prints a round crest and UMF RADIO the DIRTY WORKZ logo beside them this day. This is Sunday's re-issued graphic (…SUNDAY-web-2), the one the page carried on the day; Kx5, COM3T and LUM1NA are as printed, with the digits.",
+   "method": "every block in the graphic compared with its row: billing, stage column, start and end",
+   "ocrCandidates": 53,
+   "corrections": [
+    "WILLIAM BLACK (LIVE): artist \"WILLIAM BLACK LIVE\" → \"WILLIAM BLACK (LIVE)\"",
+    "STEPHAN BODZIN (LIVE): artist \"STEPHAN BODZIN LIVE\" → \"STEPHAN BODZIN (LIVE)\"",
+    "LUCILLE CROFT: artist \"YOOKIE 3:30 РM LUCILLE CROFT\" → \"LUCILLE CROFT\"",
+    "COM3T: artist \"СОМЗT\" → \"COM3T\"",
+    "LUM1NA: artist \"LUMINA\" → \"LUM1NA\""
+   ],
+   "ocrMissed": [
+    "WORLDWIDE STAGE 15:30 YOOKIE"
+   ],
+   "ocrExtra": []
+  }
+ ]
+}

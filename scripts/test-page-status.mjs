@@ -20,10 +20,16 @@ let checks = 0, failed = 0;
 const check = (ok, msg) => { checks++; if (!ok) { failed++; console.log(`  ✗  ${msg}`); } };
 
 const liveCfg = id => (REG.find(e => e.config.id === id) || {}).config;
-// Fixture, not live data: Countdown NYE 2026 as it shipped before its official
-// night split (one TBA bucket under the Dec 31-Jan 1 range). Countdown itself
-// is now a two-day festival, so the single-bucket shape is kept here.
+// Fixtures, not live data: Countdown NYE 2026 and Dreamstate SoCal 2026 as
+// they shipped before their official day splits (one TBA bucket under a
+// two-day printed range). Both are now two-day festivals, so the single-bucket
+// shape is kept here.
 const FIXTURES = {
+  'fixture:dreamstate-single-bucket': (() => {
+    const c = liveCfg('dreamstate-socal-2026');
+    return c && { ...c, id: 'fixture:dreamstate-single-bucket',
+      dayDates: { 1: { ...c.dayDates[1], name: 'Nov 20–21', short: 'TBA' } } };
+  })(),
   'fixture:countdown-single-bucket': (() => {
     const c = liveCfg('countdown-nye-2026');
     return c && { ...c, id: 'fixture:countdown-single-bucket',
@@ -44,6 +50,7 @@ const CASES = {
   'iii-points-2026':       { '2026-10-09': 'upcoming', '2026-10-15': 'soon', '2026-10-16': 'live', '2026-10-17': 'live', '2026-10-18': 'past' },
   'dreamstate-socal-2026': { '2026-11-19': 'soon', '2026-11-20': 'live', '2026-11-21': 'live', '2026-11-22': 'past' },
   'countdown-nye-2026':    { '2026-12-30': 'soon', '2026-12-31': 'live', '2027-01-01': 'live', '2027-01-02': 'past' },
+  'fixture:dreamstate-single-bucket': { '2026-11-19': 'soon', '2026-11-20': 'live', '2026-11-21': 'live', '2026-11-22': 'past' },
   'fixture:countdown-single-bucket': { '2026-12-30': 'soon', '2026-12-31': 'live', '2027-01-01': 'live', '2027-01-02': 'past' },
   'acl-2026':              { '2026-10-01': 'soon', '2026-10-02': 'live', '2026-10-04': 'live', '2026-10-05': 'soon', '2026-10-07': 'soon',
                              '2026-10-08': 'soon', '2026-10-09': 'live', '2026-10-11': 'live', '2026-10-12': 'past' },
@@ -65,7 +72,7 @@ const run = (status) => {
 // single-bucket: III Points gets its official day split in its own PR, after
 // which it is a two-day control here (its pinned dates read the same).
 const dates = id => eventDates(cfgOf(id));
-const single = ['iii-points-2026', 'dreamstate-socal-2026', 'countdown-nye-2026', 'fixture:countdown-single-bucket'].filter(id => {
+const single = ['iii-points-2026', 'dreamstate-socal-2026', 'countdown-nye-2026', 'fixture:dreamstate-single-bucket', 'fixture:countdown-single-bucket'].filter(id => {
   const cfg = cfgOf(id), d = cfg && dates(id);
   return cfg && Object.keys(cfg.dayDates || {}).length === 1 && d && d.end > d.start;
 });

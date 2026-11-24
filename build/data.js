@@ -422,62 +422,6 @@ var FESTIVALS_REGISTRY = [{
   region: "North America"
 }, {
   config: {
-    id: "forbidden-kingdom-2027",
-    officialEvent: {
-      website: "https://www.forbiddenkingdomfestival.com/",
-      observedAt: "2026-11-10"
-    },
-    name: "Forbidden Kingdom 2027",
-    shortName: "Forbidden Kingdom",
-    brand: "Forbidden Kingdom",
-    tagline: "Three days, five stages in Orlando",
-    location: "Central Florida Fairgrounds · Orlando, FL",
-    locationShort: "Central Florida Fairgrounds",
-    dates: "Apr 23–25, 2027",
-    year: 2027,
-    print: {
-      accent: null,
-      source: {
-        url: "https://www.forbiddenkingdomfestival.com/",
-        observedAt: "2026-11-10"
-      },
-      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
-    }
-  },
-  available: false,
-  accent: "#a3e635",
-  emoji: "🐉",
-  region: "North America"
-}, {
-  config: {
-    id: "ubbi-dubbi-2027",
-    officialEvent: {
-      website: "https://ubbidubbifestival.com/",
-      observedAt: "2026-11-11"
-    },
-    name: "Ubbi Dubbi 2027",
-    shortName: "Ubbi Dubbi",
-    brand: "Ubbi Dubbi",
-    tagline: "Two days of house and bass in Fort Worth",
-    location: "Panther Island Pavilion · Fort Worth, TX",
-    locationShort: "Panther Island Pavilion",
-    dates: "Apr 23–24, 2027",
-    year: 2027,
-    print: {
-      accent: null,
-      source: {
-        url: "https://ubbidubbifestival.com/",
-        observedAt: "2026-11-11"
-      },
-      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
-    }
-  },
-  available: false,
-  accent: "#f472b6",
-  emoji: "🍭",
-  region: "North America"
-}, {
-  config: {
     id: "movement-2027",
     officialEvent: {
       website: "https://movementfestival.com/",
@@ -786,34 +730,6 @@ var FESTIVALS_REGISTRY = [{
   region: "North America"
 }, {
   config: {
-    id: "tomorrowland-winter-2027",
-    officialEvent: {
-      website: "https://winter.tomorrowland.com/",
-      observedAt: "2026-11-11"
-    },
-    name: "Tomorrowland Winter 2027",
-    shortName: "Tomorrowland Winter",
-    brand: "Tomorrowland",
-    tagline: "A week of music in the French Alps",
-    location: "Alpe d'Huez, France",
-    locationShort: "Alpe d'Huez",
-    dates: "Mar 20–27, 2027",
-    year: 2027,
-    print: {
-      accent: null,
-      source: {
-        url: "https://winter.tomorrowland.com/",
-        observedAt: "2026-11-11"
-      },
-      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
-    }
-  },
-  available: false,
-  accent: "#93c5fd",
-  emoji: "🏔️",
-  region: "Europe"
-}, {
-  config: {
     id: "edc-lv-2027",
     officialEvent: {
       website: "https://lasvegas.edc.com/",
@@ -1014,7 +930,8 @@ var FESTIVALS_REGISTRY = [{
     id: "lollapalooza-india-2027",
     officialEvent: {
       website: "https://lollaindia.com/",
-      observedAt: "2026-11-15"
+      tickets: "https://in.bookmyshow.com/events/lollapalooza-india-2027/ET00513740",
+      observedAt: "2026-11-22"
     },
     name: "Lollapalooza India 2027",
     shortName: "Lolla India",
@@ -1042,7 +959,8 @@ var FESTIVALS_REGISTRY = [{
     id: "lollapalooza-argentina-2027",
     officialEvent: {
       website: "https://www.lollapaloozaar.com/",
-      observedAt: "2026-11-15"
+      tickets: "https://www.allaccess.com.ar/event/lollapalooza-2027",
+      observedAt: "2026-11-22"
     },
     name: "Lollapalooza Argentina 2027",
     shortName: "Lolla Argentina",
@@ -1063,62 +981,6 @@ var FESTIVALS_REGISTRY = [{
   },
   available: false,
   accent: "#38bdf8",
-  emoji: "🎪",
-  region: "Latin America"
-}, {
-  config: {
-    id: "lollapalooza-chile-2027",
-    officialEvent: {
-      website: "https://www.lollapaloozacl.com/",
-      observedAt: "2026-11-15"
-    },
-    name: "Lollapalooza Chile 2027",
-    shortName: "Lolla Chile",
-    brand: "Lollapalooza",
-    tagline: "Three days of Lollapalooza in Santiago",
-    location: "Parque O'Higgins · Santiago, Chile",
-    locationShort: "Parque O'Higgins",
-    dates: "Mar 12–14, 2027",
-    year: 2027,
-    print: {
-      accent: null,
-      source: {
-        url: "https://www.lollapaloozacl.com/",
-        observedAt: "2026-11-15"
-      },
-      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
-    }
-  },
-  available: false,
-  accent: "#ef4444",
-  emoji: "🎪",
-  region: "Latin America"
-}, {
-  config: {
-    id: "lollapalooza-brasil-2027",
-    officialEvent: {
-      website: "https://www.lollapaloozabr.com/",
-      observedAt: "2026-11-15"
-    },
-    name: "Lollapalooza Brasil 2027",
-    shortName: "Lolla Brasil",
-    brand: "Lollapalooza",
-    tagline: "Three days of Lollapalooza in São Paulo",
-    location: "Autódromo de Interlagos · São Paulo, Brazil",
-    locationShort: "Autódromo de Interlagos",
-    dates: "Mar 19–21, 2027",
-    year: 2027,
-    print: {
-      accent: null,
-      source: {
-        url: "https://www.lollapaloozabr.com/",
-        observedAt: "2026-11-15"
-      },
-      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
-    }
-  },
-  available: false,
-  accent: "#22c55e",
   emoji: "🎪",
   region: "Latin America"
 }, {
@@ -1232,34 +1094,6 @@ var FESTIVALS_REGISTRY = [{
   available: false,
   accent: "#eab308",
   emoji: "☂️",
-  region: "North America"
-}, {
-  config: {
-    id: "lightning-in-a-bottle-2027",
-    officialEvent: {
-      website: "https://www.libfestival.org/",
-      observedAt: "2026-11-17"
-    },
-    name: "Lightning in a Bottle 2027",
-    shortName: "LiB",
-    brand: "Lightning in a Bottle",
-    tagline: "Five days of music, art and camping by Do LaB",
-    location: "Buena Vista Lake, CA",
-    locationShort: "Buena Vista Lake",
-    dates: "May 26–30, 2027",
-    year: 2027,
-    print: {
-      accent: null,
-      source: {
-        url: "https://www.libfestival.org/",
-        observedAt: "2026-11-17"
-      },
-      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
-    }
-  },
-  available: false,
-  accent: "#f59e0b",
-  emoji: "⚡",
   region: "North America"
 }, {
   config: {
@@ -1789,38 +1623,6 @@ var FESTIVALS_REGISTRY = [{
   accent: "#e85d2e",
   emoji: "🤠",
   region: "North America"
-}, {
-  config: {
-    id: "edc-mexico-2027",
-    name: "EDC Mexico 2027",
-    shortName: "EDC Mexico",
-    brand: "EDC",
-    tagline: "Three days at the Autódromo",
-    location: "Autódromo Hermanos Rodríguez · Mexico City, Mexico",
-    locationShort: "Autódromo Hermanos Rodríguez",
-    dates: "Feb 19–21, 2027",
-    year: 2027,
-    print: {
-      accent: "#CC2831",
-      source: {
-        url: "https://mexico.edc.com/wp-content/assets/css/edcmexico.min.css?ver=2.2.41",
-        observedAt: "2026-10-09",
-        seenAs: "Site stylesheet: `a { color:#cc2831 }`, `button { background-color:#cc2831 }`, `.button--outline` border/text, hover #a10710 (7 uses); the homepage HTML also inlines `button{background-color: #cc2831;}`.",
-        confidence: "high"
-      },
-      note: "No <meta theme-color> (only WordPress's admin default custom property), so the first-party sheet's link + primary-button red is the accent, confirmed by the same hex inlined in the page."
-    },
-    officialEvent: {
-      id: 548875,
-      url: "https://mexico.electricdaisycarnival.com/",
-      website: "https://mexico.edc.com/",
-      observedAt: "2026-09-10"
-    }
-  },
-  available: false,
-  accent: "#f43f5e",
-  emoji: "🌼",
-  region: "Latin America"
 }, {
   config: {
     id: "beyond-wonderland-socal-2027",
@@ -4810,7 +4612,7 @@ var UNPLACED_STAGE = {
   color: "#8a8580",
   size: 1
 };
-var _WAVE1_IDS = ["ultra-miami-2026", "governors-ball-2026", "summerfest-2026", "lollapalooza-2026", "outside-lands-2026", "iii-points-2026", "nocturnal-wonderland-2026", "crssd-fall-2026", "portola-2026", "hard-summer-2026", "arc-2026", "escape-halloween-2026", "dreamstate-socal-2026", "decadence-colorado-2026", "countdown-nye-2026", "lights-all-night-2026", "decadence-arizona-2026", "sunset-on-the-river-2027", "dwp-2026", "edc-thailand-2026", "tomorrowland-thailand-2026", "groove-cruise-2027", "day-zero-tulum-2027", "coachella-2027", "time-warp-2027"];
+var _WAVE1_IDS = ["ultra-miami-2026", "governors-ball-2026", "summerfest-2026", "lollapalooza-2026", "outside-lands-2026", "iii-points-2026", "nocturnal-wonderland-2026", "crssd-fall-2026", "portola-2026", "hard-summer-2026", "arc-2026", "escape-halloween-2026", "dreamstate-socal-2026", "decadence-colorado-2026", "countdown-nye-2026", "lights-all-night-2026", "decadence-arizona-2026", "sunset-on-the-river-2027", "dwp-2026", "edc-thailand-2026", "tomorrowland-thailand-2026", "groove-cruise-2027", "day-zero-tulum-2027", "coachella-2027", "time-warp-2027", "tomorrowland-winter-2027", "lollapalooza-brasil-2027", "lollapalooza-chile-2027", "forbidden-kingdom-2027", "ubbi-dubbi-2027", "lightning-in-a-bottle-2027", "edc-mexico-2027"];
 var _WAVE1 = typeof window !== "undefined" && window.PLURSKY_FESTIVALS || {};
 for (var _id of _WAVE1_IDS) {
   var _f = _WAVE1[_id];

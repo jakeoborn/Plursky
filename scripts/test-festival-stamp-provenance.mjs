@@ -279,6 +279,65 @@ for (const [l, i] of writes) {
 check(/festivalStampSource:\s*matched\.festivalId\s*\?\s*"capture-time"\s*:\s*"active-fallback"/.test(src),
   "import must stamp active-fallback exactly when the matcher resolved no festival");
 
+// ── #228: Keep / Move from Needs Review ────────────────────────────────────
+// Starts from the boot pass's own output (`after`), so every review settled
+// here is one the pass really wrote.
+{
+  const settle = p.run("_settleFestivalReview"), targets = p.run("_festivalMoveTargets");
+  const flat = (all) => Object.entries(all).flatMap(([b, a]) => (a || []).map(m => ({ b, m })));
+  const find = (all, id) => flat(all).filter(x => x.m.id === id);
+  const reboot = (all) => JSON.parse(runPass(JSON.stringify(all)).store[MOMENTS_KEY]);
+
+  // Keep (on a stamp with no stored source, so the "user" write is observable): stamp, night and bucket stay; the stamp becomes the user's; the review clears.
+  const kept3 = settle(after, "f3-unknown", "keep");
+  const k = kept3 && find(kept3, "f3-unknown");
+  check(k && k.length === 1 && k[0].b === "1" && k[0].m.festivalId === ACTIVE && String(k[0].m.night) === "1"
+    && k[0].m.festivalStampSource === "user" && !k[0].m.festivalReview
+    && k[0].m.festivalSettled?.festivalId === ACTIVE && k[0].m.festivalSettled?.takenAt === T_WRONG,
+    `Keep must leave festivalId, night and bucket, stamp "user", record the settled conflict and clear the review — got ${JSON.stringify(k)}`);
+  // Keep is a fixed point: the next boot does not re-flag the same conflict.
+  const kb = reboot(kept3);
+  check(JSON.stringify(find(kb, "f3-unknown")) === JSON.stringify(k), `Keep must survive the next boot unchanged (no re-flag) — got ${JSON.stringify(find(kb, "f3-unknown"))}`);
+  // A different conflict (the capture time changed) is judged afresh.
+  const changed = JSON.parse(JSON.stringify(kept3));
+  changed["1"].find(m => m.id === "f3-unknown").takenAt = T_AMBIG;
+  check(!!find(reboot(changed), "f3-unknown")[0]?.m.festivalReview, "a kept stamp whose capture time later changes must be flagged again — it was not");
+
+  // Move: festivalId, night and bucket in one step, through the boot pass's restamp.
+  const moved = settle(after, "f1-user-exif", "move", REAL);
+  const mv = moved && find(moved, "f1-user-exif");
+  check(mv && mv.length === 1 && mv[0].b === String(NIGHT_REAL) && mv[0].m.festivalId === REAL && String(mv[0].m.night) === String(NIGHT_REAL)
+    && mv[0].m.festivalStampSource === "user" && !mv[0].m.festivalReview && !mv[0].m.festivalSettled,
+    `Move must set festivalId, night (${NIGHT_REAL}) and bucket together, stamp "user" and clear the review — got ${JSON.stringify(mv)}`);
+  check(mv && mv[0].m.text === beforeById["f1-user-exif"].text && mv[0].m.favorite === true && mv[0].m.artistId === beforeById["f1-user-exif"].artistId,
+    "Move must keep identity and unrelated fields");
+  check(count(moved) === count(after), `Move changed the moment count ${count(after)} → ${count(moved)}`);
+  check(JSON.stringify(find(reboot(moved), "f1-user-exif")) === JSON.stringify(mv), "Move must survive the next boot unchanged");
+
+  // No Move without a claimant; never to a festival the review does not name.
+  const none = find(after, "f-none")[0]?.m;
+  check(none?.festivalReview?.reason === "no-claimant" && targets(none.festivalReview).length === 0, `no-claimant must offer no Move — got [${targets(none?.festivalReview)}]`);
+  check(settle(after, "f-none", "move", REAL) === null, "a Move on a no-claimant review must be refused");
+  check(settle(after, "f1-user-exif", "move", AMBIG) === null, "a Move to a festival the review does not name must be refused");
+  check(settle(after, "f-right", "keep") === null, "Keep on a moment with no review must be refused");
+  // Several candidates: one Move per candidate, and each one works.
+  const amb = find(after, "f5-machine-amb")[0]?.m;
+  const tA = targets(amb?.festivalReview);
+  check(JSON.stringify(tA) === JSON.stringify(cA.filter(id => id !== ACTIVE)), `multiple-claimants must offer one Move per candidate [${cA}] — got [${tA}]`);
+  for (const id of tA) check(find(settle(after, "f5-machine-amb", "move", id) || {}, "f5-machine-amb")[0]?.m.festivalId === id, `Move to candidate ${id} did not apply`);
+
+  // Mutations, on the compiled functions: each must turn a check above red.
+  const mut = (name, from, to) => {
+    const src = p.run(`${name}.toString()`);
+    if (src.split(from).length !== 2) { check(false, `mutation target not found in ${name}: ${from}`); return null; }
+    return vm.runInContext(`(${src.replace(from, to)})`, p.ctx);
+  };
+  const noUser = mut("_settleFestivalReview", 'm.festivalStampSource = "user";', "");
+  check(!noUser || find(noUser(after, "f3-unknown", "keep"), "f3-unknown")[0]?.m.festivalStampSource !== "user", "mutation survived: Keep without the user stamp");
+  const noSettled = mut("_settleFestivalReview", "m.festivalSettled = {", "m.__x = {");
+  if (noSettled) check(!!find(reboot(noSettled(after, "f3-unknown", "keep")), "f3-unknown")[0]?.m.festivalReview, "mutation survived: Keep without the settled record is re-flagged on boot, and the gate must see that");
+}
+
 if (failed) {
   console.log(`\n  ${failed}/${checks} checks FAILED — an existing festival stamp is not handled by its provenance.`);
   process.exit(1);
