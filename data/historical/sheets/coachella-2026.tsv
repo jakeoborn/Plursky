@@ -1,0 +1,326 @@
+day	stage	start	end	artist	openEnd
+1	Coachella	16:15	17:20	Record Safari	
+1	Coachella	17:30	18:20	Teddy Swims	
+1	Coachella	19:00	19:55	The xx	
+1	Coachella	21:05	22:35	Sabrina Carpenter	
+1	Coachella	00:00		Anyma	1
+1	Outdoor	14:50	15:50	Tiffany Tyson	
+1	Outdoor	16:00	16:50	Dabeull	
+1	Outdoor	17:20	18:10	Lykke Li	
+1	Outdoor	18:40	19:30	Dijon	
+1	Outdoor	20:05	21:00	Turnstile	
+1	Outdoor	22:35	23:50	Disclosure	
+1	Sonora	13:00	13:40	Doom Dave	
+1	Sonora	13:40	14:10	Febuary	
+1	Sonora	14:35	15:15	Carolina Durante	
+1	Sonora	15:40	16:20	Wednesday	
+1	Sonora	16:50	17:30	Fleshwater	
+1	Sonora	18:00	18:40	The Two Lips	
+1	Sonora	19:10	20:00	Ninajirachi	
+1	Sonora	20:25	21:05	Cachirula & Loojan	
+1	Sonora	22:00	22:45	Hot Mulligan	
+1	Sonora	23:50	00:50	Not For Radio	
+1	Gobi	14:15	14:45	Cahuilla Bird Singers and Dancers	
+1	Gobi	14:55	15:35	Bob Baker Marionettes	
+1	Gobi	16:00	16:40	NewDad	
+1	Gobi	17:10	17:50	Joyce Manor	
+1	Gobi	18:15	18:55	CMAT	
+1	Gobi	19:20	20:00	fakemink	
+1	Gobi	20:25	21:10	Holly Humberstone	
+1	Gobi	21:50	22:35	Joost	
+1	Gobi	23:05	23:55	Creepy Nuts	
+1	Mojave	14:00	14:50	Novasoul	
+1	Mojave	15:00	15:45	Slayyyter	
+1	Mojave	16:15	17:00	BINI	
+1	Mojave	17:30	18:15	Central Cee	
+1	Mojave	18:45	19:40	Devo	
+1	Mojave	20:10	21:00	Moby	
+1	Mojave	22:35	23:25	Ethel Cain	
+1	Mojave	23:55	00:45	Blood Orange	
+1	Sahara	14:30	15:35	MASSIO	
+1	Sahara	15:45	16:35	Youna	
+1	Sahara	16:50	17:50	HUGEL	
+1	Sahara	18:15	19:15	Marlon Hoffstadt	
+1	Sahara	20:00	20:45	KATSEYE	
+1	Sahara	21:15	22:20	Levity	
+1	Sahara	22:50	23:40	Swae Lee	
+1	Sahara	00:05	00:55	Sexyy Red	
+1	Yuma	13:00	13:45	Sahar Z	
+1	Yuma	13:45	14:45	Jessica Brankka	
+1	Yuma	14:45	15:45	Arodes	
+1	Yuma	15:45	16:45	Groove Armada	
+1	Yuma	16:45	18:00	Rossi. x Chloé Caillet	
+1	Yuma	18:00	19:15	Kettama	
+1	Yuma	19:15	20:30	Prospa	
+1	Yuma	20:30	21:45	Max Dean x Luke Dean	
+1	Yuma	21:45	23:15	Max Styler	
+1	Yuma	23:15	00:55	Gordo	
+1	Quasar	17:00	19:00	Tiga	
+1	Quasar	19:00	21:00	Deep Dish	
+1	Quasar	21:00	23:00	PAWSA	
+2	Coachella	16:15	17:20	Jaqck Glam	
+2	Coachella	17:30	18:20	Addison Rae	
+2	Coachella	19:00	19:50	GIVĒON	
+2	Coachella	21:00	22:10	The Strokes	
+2	Coachella	23:25		Justin Bieber	1
+2	Outdoor	14:40	15:25	Blondshell	
+2	Outdoor	15:55	16:45	Los Hermanos Flores	
+2	Outdoor	17:10	18:00	Alex G	
+2	Outdoor	19:05	19:55	SOMBR	
+2	Outdoor	20:30	21:25	Labrinth	
+2	Outdoor	22:20	23:20	David Byrne	
+2	Sonora	13:00	14:00	Triste Juventud	
+2	Sonora	14:00	14:40	Die Spitz	
+2	Sonora	15:10	15:50	Freak Slug	
+2	Sonora	16:20	17:00	Ecca Vandal	
+2	Sonora	17:30	18:10	Ceremony	
+2	Sonora	18:40	19:20	rusowsky	
+2	Sonora	19:50	20:30	54 Ultra	
+2	Sonora	21:45	22:35	Mind Enterprises	
+2	Gobi	14:05	14:50	Noga Erez	
+2	Gobi	16:05	16:45	WHATMORE	
+2	Gobi	17:10	17:50	Luísa Sonza	
+2	Gobi	18:15	19:00	Geese	
+2	Gobi	19:50	20:35	Davido	
+2	Gobi	21:00	21:45	BIA	
+2	Gobi	22:10	23:00	Morat	
+2	Mojave	15:00	15:45	Jack White	
+2	Mojave	16:30	17:20	Fujii Kaze	
+2	Mojave	17:50	18:35	Royel Otis	
+2	Mojave	19:30	20:20	Taemin	
+2	Mojave	20:55	21:45	PinkPantheress	
+2	Mojave	22:15	23:15	Interpol	
+2	Sahara	14:00	14:45	Seek-One	
+2	Sahara	14:50	15:50	TEED	
+2	Sahara	16:00	16:50	ZULAN	
+2	Sahara	17:00	17:55	Hamdi	
+2	Sahara	18:15	19:10	¥ØU$UK€ ¥UK1MAT$U	
+2	Sahara	20:00	20:45	Nine Inch Noize	
+2	Sahara	21:10	22:05	REZZ	
+2	Sahara	22:30	23:25	Adriatique	
+2	Sahara	23:55	00:55	Worship	
+2	Yuma	13:00	14:00	Yamagucci	
+2	Yuma	14:00	15:00	GENESI	
+2	Yuma	15:00	16:15	Riordan	
+2	Yuma	16:15	17:30	Mahmut Orhan	
+2	Yuma	17:30	18:45	Ben Sterling	
+2	Yuma	18:45	20:15	SOSA	
+2	Yuma	20:15	21:45	Bedouin	
+2	Yuma	21:45	23:00	Boys Noize	
+2	Yuma	23:00	00:55	Armin van Buuren x Adam Beyer	
+2	Quasar	17:00	19:00	Joezi	
+2	Quasar	19:00	21:00	Afrojack x Shimza	
+2	Quasar	21:00	23:00	David Guetta	
+3	Coachella	14:45	15:30	Gabe Real	
+3	Coachella	15:40	16:15	Tijuana Panthers	
+3	Coachella	16:45	17:30	Wet Leg	
+3	Coachella	18:10	19:10	Major Lazer	
+3	Coachella	19:50	20:40	Young Thug	
+3	Coachella	21:55		KAROL G	1
+3	Outdoor	15:00	15:50	Juicewon	
+3	Outdoor	16:00	16:45	Gigi Perez	
+3	Outdoor	17:15	18:10	CLIPSE	
+3	Outdoor	18:45	19:40	Foster the People	
+3	Outdoor	20:40	21:40	Laufey	
+3	Outdoor	22:30	23:30	BIGBANG	
+3	Sonora	13:00	14:00	Panda & Chok	
+3	Sonora	14:00	14:40	Glitterer	
+3	Sonora	15:10	15:50	Model/Actriz	
+3	Sonora	16:20	17:00	Jane Remover	
+3	Sonora	17:30	18:10	Los Retros	
+3	Sonora	18:40	19:30	RØZ	
+3	Sonora	20:00	20:40	DRAIN	
+3	Sonora	21:10	22:00	French Police	
+3	Gobi	14:05	14:35	flowerovlove	
+3	Gobi	15:00	15:40	The Chats	
+3	Gobi	16:05	16:50	COBRAH	
+3	Gobi	17:15	18:00	Oklou	
+3	Gobi	18:30	19:05	Black Flag	
+3	Gobi	19:45	20:35	TOMORA	
+3	Gobi	21:05	21:55	The Rapture	
+3	Mojave	14:30	15:10	wyldeflower	
+3	Mojave	15:15	15:55	Samia	
+3	Mojave	16:25	17:10	Little Simz	
+3	Mojave	17:35	18:25	Suicidal Tendencies	
+3	Mojave	19:10	20:10	Iggy Pop	
+3	Mojave	20:45	22:00	FKA twigs	
+3	Sahara	14:30	15:30	LOBOMAN	
+3	Sahara	15:35	16:35	Girl Math (VNSSA x NALA)	
+3	Sahara	16:45	17:45	BUNT.	
+3	Sahara	18:10	19:10	Duke Dumont	
+3	Sahara	19:25	20:25	Mochakk	
+3	Sahara	21:05	22:05	Subtronics	
+3	Sahara	22:45	23:55	Kaskade	
+3	Yuma	13:00	14:00	LE YORA	
+3	Yuma	14:00	15:00	AZZECCA	
+3	Yuma	15:00	16:15	&friends	
+3	Yuma	16:15	17:30	MËSTIZA	
+3	Yuma	17:30	19:00	Carlita x Josh Baker	
+3	Yuma	19:00	20:30	Röyksopp	
+3	Yuma	20:30	22:00	WhoMadeWho	
+3	Yuma	22:00	23:55	Green Velvet x AYYBO	
+3	Quasar	16:00	18:00	Jazzy	
+3	Quasar	18:00	20:00	JOY (Anonymous)	
+3	Quasar	20:00	22:00	Fatboy Slim	
+4	Coachella	16:10	17:10	Jaqck Glam	
+4	Coachella	17:20	18:10	Teddy Swims	
+4	Coachella	19:00	19:55	The xx	
+4	Coachella	21:00	22:40	Sabrina Carpenter	
+4	Coachella	00:00		Anyma	1
+4	Outdoor	14:50	15:50	Jeremiah Red	
+4	Outdoor	16:00	16:50	Dabeull	
+4	Outdoor	17:20	18:10	Lykke Li	
+4	Outdoor	18:40	19:30	Dijon	
+4	Outdoor	20:05	21:00	Turnstile	
+4	Outdoor	22:40	23:55	Disclosure	
+4	Sonora	13:00	13:40	Jim Smith	
+4	Sonora	13:40	14:10	Febuary	
+4	Sonora	14:35	15:15	Carolina Durante	
+4	Sonora	15:40	16:20	Wednesday	
+4	Sonora	16:50	17:30	Fleshwater	
+4	Sonora	18:00	18:40	The Two Lips	
+4	Sonora	19:10	20:00	Ninajirachi	
+4	Sonora	20:25	21:05	Cachirula & Loojan	
+4	Sonora	22:10	22:55	Hot Mulligan	
+4	Gobi	14:15	14:45	Cahuilla Bird Singers and Dancers	
+4	Gobi	14:55	15:35	Bob Baker Marionettes	
+4	Gobi	16:00	16:40	NewDad	
+4	Gobi	17:10	17:50	Joyce Manor	
+4	Gobi	18:15	18:55	CMAT	
+4	Gobi	19:20	20:00	fakemink	
+4	Gobi	20:25	21:10	Holly Humberstone	
+4	Gobi	21:50	22:35	Joost	
+4	Gobi	23:05	23:55	Creepy Nuts	
+4	Mojave	14:00	14:50	El Ethos	
+4	Mojave	15:00	15:45	Slayyyter	
+4	Mojave	16:15	17:00	BINI	
+4	Mojave	17:30	18:15	Central Cee	
+4	Mojave	18:45	19:40	Devo	
+4	Mojave	20:10	21:00	Moby	
+4	Mojave	22:45	23:35	Ethel Cain	
+4	Mojave	00:00	00:55	Blood Orange	
+4	Sahara	14:30	15:35	Bad Gal Gali	
+4	Sahara	15:45	16:35	Youna	
+4	Sahara	16:50	17:50	HUGEL	
+4	Sahara	18:15	19:15	Marlon Hoffstadt	
+4	Sahara	20:00	20:45	KATSEYE	
+4	Sahara	21:15	22:20	Levity	
+4	Sahara	22:50	23:40	Swae Lee	
+4	Sahara	00:05	00:55	Sexyy Red	
+4	Yuma	13:00	13:45	Sahar Z	
+4	Yuma	13:45	14:45	Jessica Brankka	
+4	Yuma	14:45	15:45	Arodes	
+4	Yuma	15:45	17:00	Groove Armada	
+4	Yuma	17:00	18:15	Rossi. x Chloé Caillet	
+4	Yuma	18:15	19:30	Kettama	
+4	Yuma	19:30	20:45	Prospa	
+4	Yuma	20:45	22:00	Max Dean x Luke Dean	
+4	Yuma	22:00	23:15	Max Styler	
+4	Yuma	23:15	00:55	Gordo	
+4	Quasar	17:00	19:00	Darco	
+4	Quasar	19:00	21:00	Franky Rizardo	
+4	Quasar	21:00	23:00	Armin van Buuren x Adam Beyer	
+5	Coachella	16:10	17:15	Record Safari	
+5	Coachella	17:25	18:20	Addison Rae	
+5	Coachella	19:00	19:50	GIVĒON	
+5	Coachella	21:00	22:10	The Strokes	
+5	Coachella	23:25		Justin Bieber	1
+5	Outdoor	14:40	15:25	Blondshell	
+5	Outdoor	15:55	16:45	Los Hermanos Flores	
+5	Outdoor	17:10	18:00	Alex G	
+5	Outdoor	19:05	19:55	SOMBR	
+5	Outdoor	20:30	21:25	Labrinth	
+5	Outdoor	22:25	23:25	David Byrne	
+5	Sonora	13:00	14:00	Buster Jarvis	
+5	Sonora	14:00	14:40	Die Spitz	
+5	Sonora	15:10	15:50	Freak Slug	
+5	Sonora	16:20	17:00	Ecca Vandal	
+5	Sonora	17:30	18:10	Ceremony	
+5	Sonora	18:40	19:20	rusowsky	
+5	Sonora	19:50	20:30	54 Ultra	
+5	Sonora	21:45	22:35	Mind Enterprises	
+5	Gobi	14:05	14:50	Noga Erez	
+5	Gobi	16:00	16:40	WHATMORE	
+5	Gobi	17:10	17:50	Luísa Sonza	
+5	Gobi	18:15	19:00	Geese	
+5	Gobi	19:50	20:35	Davido	
+5	Gobi	21:00	21:45	BIA	
+5	Gobi	22:10	23:00	Morat	
+5	Mojave	15:00	15:50	Kacey Musgraves	
+5	Mojave	16:30	17:20	Fujii Kaze	
+5	Mojave	17:50	18:35	Royel Otis	
+5	Mojave	19:30	20:20	Taemin	
+5	Mojave	20:55	21:45	PinkPantheress	
+5	Mojave	22:15	23:15	Interpol	
+5	Sahara	14:00	14:45	Fundido	
+5	Sahara	14:50	15:50	TEED	
+5	Sahara	16:00	16:50	ZULAN	
+5	Sahara	17:00	17:55	Hamdi	
+5	Sahara	18:15	19:10	¥ØU$UK€ ¥UK1MAT$U	
+5	Sahara	20:00	20:45	Nine Inch Noize	
+5	Sahara	21:15	22:10	Adriatique	
+5	Sahara	22:35	23:35	Worship	
+5	Yuma	13:00	14:00	Yamagucci	
+5	Yuma	14:00	15:00	GENESI	
+5	Yuma	15:00	16:15	Riordan	
+5	Yuma	16:15	17:30	Mahmut Orhan	
+5	Yuma	17:30	18:45	Ben Sterling	
+5	Yuma	18:45	20:15	SOSA	
+5	Yuma	20:15	21:45	Bedouin	
+5	Yuma	21:45	23:00	Boys Noize	
+5	Yuma	23:00	00:55	Armin van Buuren x Adam Beyer	
+5	Quasar	17:00	19:00	Devault	
+5	Quasar	19:00	20:15	Madeon	
+5	Quasar	20:15	21:45	DJ Snake x RL Grime x Flosstradamus	
+5	Quasar	21:45	23:00	DJ Snake x Knock2	
+6	Coachella	14:45	15:30	Gabe Real	
+6	Coachella	15:40	16:15	Tijuana Panthers	
+6	Coachella	16:45	17:30	Wet Leg	
+6	Coachella	18:10	19:10	Major Lazer	
+6	Coachella	19:50	20:40	Young Thug	
+6	Coachella	22:10		KAROL G	1
+6	Outdoor	15:00	15:50	Juicewon	
+6	Outdoor	16:00	16:45	Gigi Perez	
+6	Outdoor	17:15	18:10	CLIPSE	
+6	Outdoor	18:45	19:40	Foster the People	
+6	Outdoor	20:45	21:45	Laufey	
+6	Outdoor	22:30	23:30	BIGBANG	
+6	Sonora	13:00	14:00	Bulletballet	
+6	Sonora	14:00	14:40	Glitterer	
+6	Sonora	15:10	15:50	Model/Actriz	
+6	Sonora	16:20	17:00	Jane Remover	
+6	Sonora	17:30	18:10	Los Retros	
+6	Sonora	18:40	19:30	RØZ	
+6	Sonora	20:00	20:40	DRAIN	
+6	Sonora	21:10	22:00	French Police	
+6	Gobi	14:05	14:35	flowerovlove	
+6	Gobi	15:00	15:40	The Chats	
+6	Gobi	16:05	16:50	COBRAH	
+6	Gobi	17:15	18:00	Oklou	
+6	Gobi	18:30	19:05	Black Flag	
+6	Gobi	19:45	20:35	TOMORA	
+6	Gobi	21:05	21:55	The Rapture	
+6	Mojave	14:30	15:10	Megatone	
+6	Mojave	15:15	15:55	Samia	
+6	Mojave	16:25	17:10	Little Simz	
+6	Mojave	17:35	18:25	Suicidal Tendencies	
+6	Mojave	19:10	20:10	Iggy Pop	
+6	Mojave	20:45	22:00	FKA twigs	
+6	Sahara	14:30	15:30	GINGEE	
+6	Sahara	15:35	16:35	Girl Math (VNSSA x NALA)	
+6	Sahara	16:45	17:45	BUNT.	
+6	Sahara	18:10	19:10	Duke Dumont	
+6	Sahara	19:25	20:25	Mochakk	
+6	Sahara	21:05	22:05	Subtronics	
+6	Sahara	22:50	23:55	Kaskade	
+6	Yuma	13:00	14:00	LE YORA	
+6	Yuma	14:00	15:00	AZZECCA	
+6	Yuma	15:00	16:15	&friends	
+6	Yuma	16:15	17:30	MËSTIZA	
+6	Yuma	17:30	19:00	Carlita x Josh Baker	
+6	Yuma	19:00	20:30	Röyksopp	
+6	Yuma	20:30	22:00	WhoMadeWho	
+6	Yuma	22:00	23:55	Green Velvet x AYYBO	
+6	Quasar	16:00	18:00	Linska	
+6	Quasar	18:00	20:00	LP Giobbi	
+6	Quasar	20:00	22:00	Sara Landry's Blood Oath	

@@ -25,6 +25,11 @@ try {
  const files=Array.from({length:20},(_,i)=>({name:`clip-${String(i+1).padStart(2,'0')}.mp4`,mimeType:'video/mp4',buffer:clipBytes(i)}));
  const start=Date.now();await input.setInputFiles(files);
  await page.waitForFunction(()=>{const t=document.body.innerText;return /20 need a set|20 tagged|20 failed|20 skipped/.test(t)},null,{timeout:180000});
+ // The import summary can render a moment before that moment's posterId lands
+ // (2026-11-22: 2 of 15 runs read 19/20, and both reached 20/20 within 0.5 s).
+ // Wait, bounded, for the write to settle. A poster that never lands still
+ // reads 19 and fails below, so this cannot pass by skipping the check.
+ await page.waitForFunction(()=>Object.values(JSON.parse(localStorage.getItem('plursky_moments_v1')||'{}')).flat().filter(x=>x.posterId).length>=20,null,{timeout:10000}).catch(()=>{});
  const results=await page.evaluate(async()=>{const raw=JSON.parse(localStorage.getItem('plursky_moments_v1')||'{}');const items=Object.values(raw).flat();const db=await new Promise((resolve,reject)=>{const req=indexedDB.open('plursky_memories');req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error)});const stores=[...db.objectStoreNames];let saved=0;for(const item of items){if(!item.photoId)continue;const match=await new Promise(r=>{const req=db.transaction(stores[0],'readonly').objectStore(stores[0]).get(item.photoId);req.onsuccess=()=>r(!!req.result);req.onerror=()=>r(false)});if(match)saved++;}return {moments:items.length,video:items.filter(x=>x.kind==='video').length,saved,stores,batchText:document.body.innerText.match(/✓[^\n]*?(?:tagged|need a set)[^\n]*/)?.[0]||'',needsRetag:items.filter(x=>x.needsRetag).length,poster:items.filter(x=>x.posterId).length};});
  await page.locator('[data-import-review]').waitFor({state:'visible',timeout:5000});
  await page.waitForTimeout(500);

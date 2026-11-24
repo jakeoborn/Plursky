@@ -3,6 +3,45 @@
 > **Shipping?** See **[RELEASE.md](RELEASE.md)** — sync iOS, cache-bust, web
 > deploy, and App Store submit commands.
 
+## 🎆 SPEC-212 — NYE, attendance, win-back (status 2026-11-24 12:20 AM CT, main `7c09d21f`, web v671)
+
+> Ledger lines for the merges below: `ops/build-ledger.jsonl` (the ledger has no
+> lines between 2026-10-24 and 2026-11-17; those merges are not backfilled here).
+
+**Merged since SPEC-212 was issued (merge lane):**
+- [x] #496 Tomorrowland 2010–2012 set times · #497 HARD Summer 2012 set times
+- [x] #486 Festivals batch 7 (2027 previews) · v644
+- [x] #493 Top-tier round 1: photo spotlight, a face per member · v645
+- [x] #506 Lollapalooza 2018 by day and stage · #507 Governors Ball 2013–2015
+- [x] #509 Primavera Sound 2015 · #511 Primavera 2016–2019 · #513 Primavera 2012 (data only, v645)
+- [x] #514 Outside Lands + Lightning in a Bottle past editions · #516 Sónar Barcelona past editions (data only, v645)
+- [x] #510 Top-tier round 2 · #517 Sziget 2010/2011 set times · #518 festival pages list every dated past year · #519 / #520 year census batches 1 and 2 · #521 past years for 8 festivals · #523 year census batch 4 (v646)
+
+**Merged 2026-11-19 (re-read with `gh pr view` 2026-11-24, main `7c09d21f`):**
+- [x] W2 #500 Decadence venue source, squash `5b57cfe9`. Live: plursky.com/f/decadence-colorado-2026/
+      names Colorado Convention Center
+- [x] W2 #508 daily set-times watch, squash `d1f81f95`. Armed: the scheduled "set-times watch" run
+      from main succeeded every day 2026-11-20 through 11-23
+- [x] W3 #501 Your weekend timeline (flag), squash `399f914b`
+- [x] W5 #522 MusicKit token renewed to 2027-05-20, squash `5da3444e`. The bundled fallback still
+      updates only with the next native build
+- [x] W5 #504 MusicKit token renewal command, squash `51c11a7c`
+- [x] W6 #503 replay harness (`21f2a1f8`) · W7 #498 census rule (`075ef003`)
+
+**Still open (Claude Plur):**
+- [ ] W3 #515 per-festival set-tracking opt-in @ `77a85ab0`, draft; #501 has landed, so it must
+      move above the current web version before review
+- [ ] W3 accuracy gate: 17 of 20 sets within 10 min on a real album replay. The synthetic
+      EDC reference (13 of 15, #503) does not count. Blocked on Jake's albums
+- [ ] W4 #502 @ `c443aae9` (v647), draft, Monthly win-back + recap hooks + save/cancel states.
+      Store offer not created yet (0 win-back offers read live in ASC); Jake's App Store
+      Connect + RevenueCat taps
+- [ ] W5 #499 MusicKit token expiry warning @ `5ec6dc94`, draft
+- [ ] #517 follow-up: its 14 capture `sha256`/`bytes` receipts do not reproduce; fresh raw captures
+      match Wayback's own CDX digests 14/14 (see the #517 comment). The imported sets are unaffected
+
+**Held:** #244 festival essentials (DIRTY; re-port after SPEC-212).
+
 ## 📋 REPORT CLOSE-OUT — items pulled from agent reports (2026-06-07)
 
 > **Status: iOS 1.11 (22) SUBMITTED to Apple 2026-06-07** (pbxproj 4d8679c, carries
@@ -109,6 +148,10 @@ Re-run any claim here with `node scripts/anchor-residuals.mjs`.
       needs a small schema change since `gpsAnchors` are `stageId`-keyed.
 - [x] **Re-verify Govball `snapchat`** — settled via the official 2026
       patron map in #320 (north/south conflict closed; blind waiver re-dated).
+
+## 🖼️ FESTIVAL ART + NEW FAMILIES — tracker rows (2026-11-22, main `c118352a`)
+- [ ] **Official art for 10 registry festivals with no art entry** (strict audit on main `c118352a`, 2026-11-22; #578 `7e169bd9` gave 7 of the 17 Commons photo tiles on 2026-11-24: Lolla Argentina/Brasil/Chile, Ultra South Africa, Lightning in a Bottle, World Club Dome, Bumbershoot. Each remaining one shows its letter tile, which `scripts/test-festival-art.mjs` accepts as the named fallback): bass-canyon-2027, bottlerock-2027, day-zero-tulum-2027, edc-lv-2027, lollapalooza-india-2027, medusa-2027, sonar-2027, suenos-2027, time-warp-2027, tomorrowland-winter-2027. Each tile needs first-party art with its provenance in `festival-art/PROVENANCE.md`; nothing traced, nothing generated to look official.
+- [ ] **Rolling Loud Orlando 2026 (May 8–10)**: not in the registry or the census. A new festival family, built from official sources only, one festival per session, after the lineup batch. Tracker row, not a build yet.
 
 ## 🎪 MULTI-FESTIVAL EXPANSION WAVE — full spec: `docs/SPEC-add-festivals.md` (2026-06-06)
 Why: the Radiate partnership pitch (drafted, **HOLDING — NOT sent**; copy in Jake's Mail drafts → radtherhino@radiatetheworld.com) needs festival coverage matching Radiate's biggest communities first. One festival per fresh session:
@@ -667,20 +710,14 @@ Ordered by impact-per-engineering-hour.
       Swap to `<RealMap …>` (or a runtime toggle) to bring back the
       MapLibre + heatmap + Apple-Maps-style chrome. ⚠️ Do NOT purge
       `TopDownMap` — it's the live map.
-- [ ] **Apple Music dev token** — code side is done (v152). All that's
-      left is YOUR steps on Apple Developer:
-      1. developer.apple.com → Certificates, Identifiers & Profiles →
-         **Keys** → "+" → name it "Plursky MusicKit" → enable **MusicKit**
-         → pick or create a MusicKit identifier (bundle-form like
-         `music.com.plursky.app`).
-      2. Download the `AuthKey_XXXXXXXXXX.p8` (Apple lets you download
-         ONCE — save it).
-      3. Edit `KEY_ID` in `scripts/gen-musickit-jwt.mjs` to the 10-char
-         ID from the filename.
-      4. Run `node scripts/gen-musickit-jwt.mjs | pbcopy`
-      5. Paste the JWT into `APPLE_DEV_TOKEN` (top of `spotify.jsx`).
-      6. The card auto-unhides; commit + push + sync iOS.
-      JWTs expire every ~6 months — recurring task.
+- [ ] **Apple Music dev token renewal** — live since v152; the token expires
+      every ~6 months (`scripts/check-musickit-token.mjs` warns ahead).
+      From the repo folder (`cd ~/Plursky`), on Jake's Mac:
+      `node scripts/sign-musickit-token.mjs X54Q9P743S <KEY_ID> ~/Downloads/AuthKey_<KEY_ID>.p8 --write`
+      renews `APPLE_DEV_TOKEN` in `spotify-api.jsx` (self-verified); then
+      cache-bust, commit + push (web) and the next iOS build. A NEW key:
+      Keys → ➕ → "Plursky MusicKit" → Media Services (MusicKit) → Register →
+      Download (ONCE). The .p8 never goes in the repo or chat.
 - [x] **Capacitor Share for recap card + data export** — DONE 2026-05-20
       (v152). Both `_shareRecapCard` (spotify.jsx) and `sbExportUserData`
       (supabase.jsx) now branch on `Capacitor.isNativePlatform()` and

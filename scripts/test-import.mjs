@@ -19,6 +19,7 @@
 
 import { chromium } from 'playwright';
 import { spawn } from 'node:child_process';
+import { serverReady } from './lib/server-ready.mjs';
 import { createServer } from 'node:net';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
@@ -37,17 +38,12 @@ function startServer() {
     cwd: root, stdio: ['ignore', 'pipe', 'pipe'],
   });
   proc.stderr.on('data', d => process.stderr.write('[server] ' + d));
-  return new Promise((resolve, reject) => {
-    // Poll the port until it answers, up to ~5s.
-    const start = Date.now();
-    (function tick() {
-      fetch(`http://127.0.0.1:${PORT}/index.html`).then(r => {
-        if (r.ok) resolve(proc); else setTimeout(tick, 100);
-      }).catch(() => {
-        if (Date.now() - start > 5000) reject(new Error('server failed to start'));
-        else setTimeout(tick, 100);
-      });
-    })();
+  // serverReady READS each probe's body: an unread body when python's
+  // http.server closes the socket crashes Node's fetch (undici
+  // assert(!this.paused)) outside any try/catch. That is how #546's CI died.
+  return serverReady(`http://127.0.0.1:${PORT}/index.html`).then(ok => {
+    if (!ok) { proc.kill(); throw new Error('server failed to start'); }
+    return proc;
   });
 }
 

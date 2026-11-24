@@ -180,8 +180,9 @@ for (const [id, ds] of Object.entries(ctx.__o.DS)) {
 
 // ── 5. ACL amenity labels need verified geometry (founder ruling 2026-09-23) ──
 // Stand on a hydration badge as the label code places it (non-active festival:
-// the radial fallback), then flip the predicate both ways. EDC stays as it is
-// until #223, so it is the control that the gate is not just silencing labels.
+// the radial fallback), then flip the predicate both ways. Since #223 the gate
+// is fleet-wide: every festival with amenities is checked both ways, so the
+// gate can neither leak a label on unverified art nor silence a verified one.
 const onPin = (ds, id) => {
   const a = ds.amenities.find(x => x.id === id), g = ds.config.gps, s = (g.onSiteRadiusMi || 0.4) * 1609.34 / 50;
   return [g.lat + ((a.y - 50) * s) / 111320, g.lng + ((a.x - 50) * s) / (111320 * Math.cos(g.lat * Math.PI / 180))];
@@ -191,7 +192,17 @@ const near = (ds, id, verified) => { ctx.geometryVerifiedFor = verified; return 
 ok(near(aclSet, "ah5", undefined) === null, "ACL labels a photo with no geometry predicate loaded; it must fail closed");
 ok(near(aclSet, "ah5", () => false) === null, "ACL labels a photo 'near' an amenity on unverified geometry");
 ok(near(aclSet, "ah5", () => true)?.type === "water", "ACL gives no amenity label even once geometry verifies; the gate is silencing, not gating");
-ok(near(edcSet, edcSet.amenities[0].id, () => false) !== null, "EDC lost its amenity label; that is #223's call, not this PR's");
+ok(near(edcSet, edcSet.amenities[0].id, () => false) === null, "EDC labels a photo 'near' an amenity on unverified geometry (#223)");
+ok(near(edcSet, edcSet.amenities[0].id, () => true) !== null, "EDC gives no amenity label even once geometry verifies; the gate is silencing, not gating");
+{
+  const fleet = Object.entries(ctx.__o.DS).filter(([, d]) => d && d.config && d.config.gps && (d.amenities || []).length).map(([id, d]) => ({ id, ...d }));
+  ok(fleet.length >= 2, `fleet amenity check found only ${fleet.length} festival(s) with amenities and a site GPS`);
+  const leak = fleet.filter(ds => near(ds, ds.amenities[0].id, () => false) !== null).map(ds => ds.id);
+  const lost = fleet.filter(ds => near(ds, ds.amenities[0].id, () => true) === null).map(ds => ds.id);
+  ok(!leak.length, `amenity label on unverified geometry (#223): ${leak.join(", ")}`);
+  ok(!lost.length, `amenity label missing once geometry verifies: ${lost.join(", ")}`);
+  console.log(`  · amenity label gate: ${fleet.length} festivals with amenities, checked both ways`);
+}
 delete ctx.geometryVerifiedFor;
 
 // ── 6. off_stage needs every programmed stage anchored (lane ruling 2026-09-23) ──

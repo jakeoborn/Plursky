@@ -300,6 +300,9 @@ export function build(root = ROOT, overrides = null) {
     const drop = dropReason(r.printed, r.stage || '') || (notAnAct.has(keyOf(r.printed)) ? { category: 'not-an-act', reason: 'override: not an act' } : null);
     if (drop) { excluded.push({ id: r.id, printed: r.printed, stage: r.stage, ...drop }); continue; }
     const p = billingOv.has(r.printed) ? ruled(billingOv.get(r.printed), r.printed) : parseBilling(r.printed, standalone);
+    // #308: a b2b whose every part is unnamed ("Special Guest b2b Special
+    // Guest") names nobody. It is an unnamed slot, not a billing with no one in it.
+    if (!billingOv.has(r.printed) && p.performers.length === 0) { excluded.push({ id: r.id, printed: r.printed, stage: r.stage, category: 'unnamed-slot', reason: 'unnamed slot: no performer was billed' }); continue; }
     if (p.review) review.push({ id: r.id, printed: r.printed, reason: p.review });
     const k = `${r.festivalId}|${r.date || r.day}|${r.stage}`;
     billings.push({ id: r.id, source: r.source, festivalId: r.festivalId, festivalBrand: r.festivalBrand, year: r.year, date: r.date, day: r.day,

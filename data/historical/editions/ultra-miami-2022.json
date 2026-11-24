@@ -1,0 +1,2818 @@
+{
+ "id": "ultra-miami-2022",
+ "festivalId": "ultra-miami",
+ "name": "Ultra Miami 2022",
+ "year": 2022,
+ "timezone": "America/New_York",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2022-03-25",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2022-03-26",
+   "label": "Saturday"
+  },
+  {
+   "day": 3,
+   "date": "2022-03-27",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "ultra-miami-2022:ultra-main-stage",
+   "name": "ULTRA MAIN STAGE"
+  },
+  {
+   "id": "ultra-miami-2022:live-stage",
+   "name": "LIVE STAGE"
+  },
+  {
+   "id": "ultra-miami-2022:megastructure",
+   "name": "MEGASTRUCTURE"
+  },
+  {
+   "id": "ultra-miami-2022:worldwide-stage",
+   "name": "WORLDWIDE STAGE"
+  },
+  {
+   "id": "ultra-miami-2022:the-cove",
+   "name": "THE COVE"
+  },
+  {
+   "id": "ultra-miami-2022:umf-radio",
+   "name": "UMF RADIO"
+  },
+  {
+   "id": "ultra-miami-2022:oasis",
+   "name": "OASIS"
+  }
+ ],
+ "artists": [
+  {
+   "id": "ultra-miami-2022:kygo",
+   "name": "KYGO",
+   "key": "kygo",
+   "performers": [
+    "kygo"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:martin-garrix",
+   "name": "MARTIN GARRIX",
+   "key": "martin-garrix",
+   "performers": [
+    "martin-garrix"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:alesso",
+   "name": "ALESSO",
+   "key": "alesso",
+   "performers": [
+    "alesso"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:fisher",
+   "name": "FISHER",
+   "key": "fisher",
+   "performers": [
+    "fisher"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:timmy-trumpet",
+   "name": "TIMMY TRUMPET",
+   "key": "timmy-trumpet",
+   "performers": [
+    "timmy-trumpet"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:nicky-romero",
+   "name": "NICKY ROMERO",
+   "key": "nicky-romero",
+   "performers": [
+    "nicky-romero"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:frank-walker",
+   "name": "FRANK WALKER",
+   "key": "frank-walker",
+   "performers": [
+    "frank-walker"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:pendulum",
+   "name": "PENDULUM",
+   "key": "pendulum",
+   "performers": [
+    "pendulum"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:alison-wonderland",
+   "name": "ALISON WONDERLAND",
+   "key": "alison-wonderland",
+   "performers": [
+    "alison-wonderland"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:svdden-death-presents-voyd",
+   "name": "SVDDEN DEATH (PRESENTS VOYD)",
+   "key": "svdden-death-presents-voyd",
+   "performers": [
+    "svdden-death-presents-voyd"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:sullivan-king",
+   "name": "SULLIVAN KING",
+   "key": "sullivan-king",
+   "performers": [
+    "sullivan-king"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:ookay",
+   "name": "OOKAY",
+   "key": "ookay",
+   "performers": [
+    "ookay"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:carl-cox",
+   "name": "CARL COX",
+   "key": "carl-cox",
+   "performers": [
+    "carl-cox"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:nina-kraviz",
+   "name": "NINA KRAVIZ",
+   "key": "nina-kraviz",
+   "performers": [
+    "nina-kraviz"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:joseph-capriati",
+   "name": "JOSEPH CAPRIATI",
+   "key": "joseph-capriati",
+   "performers": [
+    "joseph-capriati"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:michael-bibi",
+   "name": "MICHAEL BIBI",
+   "key": "michael-bibi",
+   "performers": [
+    "michael-bibi"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:anfisa-letyago",
+   "name": "ANFISA LETYAGO",
+   "key": "anfisa-letyago",
+   "performers": [
+    "anfisa-letyago"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:armin-van-buuren",
+   "name": "ARMIN VAN BUUREN",
+   "key": "armin-van-buuren",
+   "performers": [
+    "armin-van-buuren"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:armin-van-buuren-b2b-reinier-zonneveld-live",
+   "name": "ARMIN VAN BUUREN B2B REINIER ZONNEVELD (LIVE)",
+   "key": "armin-van-buuren-b2b-reinier-zonneveld-live",
+   "performers": [
+    "armin-van-buuren",
+    "reinier-zonneveld-live"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:vini-vici",
+   "name": "VINI VICI",
+   "key": "vini-vici",
+   "performers": [
+    "vini-vici"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:gareth-emery",
+   "name": "GARETH EMERY",
+   "key": "gareth-emery",
+   "performers": [
+    "gareth-emery"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:andrew-rayel",
+   "name": "ANDREW RAYEL",
+   "key": "andrew-rayel",
+   "performers": [
+    "andrew-rayel"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:aly-and-fila",
+   "name": "ALY & FILA",
+   "key": "aly-and-fila",
+   "performers": [
+    "aly-and-fila"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:sander-van-doorn",
+   "name": "SANDER VAN DOORN",
+   "key": "sander-van-doorn",
+   "performers": [
+    "sander-van-doorn"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:avira",
+   "name": "AVIRA",
+   "key": "avira",
+   "performers": [
+    "avira"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:boris-brejcha",
+   "name": "BORIS BREJCHA",
+   "key": "boris-brejcha",
+   "performers": [
+    "boris-brejcha"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:ann-clue",
+   "name": "ANN CLUE",
+   "key": "ann-clue",
+   "performers": [
+    "ann-clue"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:popof",
+   "name": "POPOF",
+   "key": "popof",
+   "performers": [
+    "popof"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:justin-mylo",
+   "name": "JUSTIN MYLO",
+   "key": "justin-mylo",
+   "performers": [
+    "justin-mylo"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:julian-jordan",
+   "name": "JULIAN JORDAN",
+   "key": "julian-jordan",
+   "performers": [
+    "julian-jordan"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:dubvision",
+   "name": "DUBVISION",
+   "key": "dubvision",
+   "performers": [
+    "dubvision"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:matisse-and-sadko",
+   "name": "MATISSE & SADKO",
+   "key": "matisse-and-sadko",
+   "performers": [
+    "matisse-and-sadko"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:kvsh-x-pontifexx",
+   "name": "KVSH X PONTIFEXX",
+   "key": "kvsh-x-pontifexx",
+   "performers": [
+    "kvsh-x-pontifexx"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:florian-picasso",
+   "name": "FLORIAN PICASSO",
+   "key": "florian-picasso",
+   "performers": [
+    "florian-picasso"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:matt-nash",
+   "name": "MATT NASH",
+   "key": "matt-nash",
+   "performers": [
+    "matt-nash"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:osrin",
+   "name": "OSRIN",
+   "key": "osrin",
+   "performers": [
+    "osrin"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:infuze",
+   "name": "INFUZE",
+   "key": "infuze",
+   "performers": [
+    "infuze"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:metaphysical-b2b-knowlton-walsh",
+   "name": "METAPHYSICAL B2B KNOWLTON WALSH",
+   "key": "metaphysical-b2b-knowlton-walsh",
+   "performers": [
+    "metaphysical",
+    "knowlton-walsh"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:wags",
+   "name": "WAGS",
+   "key": "wags",
+   "performers": [
+    "wags"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:dave-sol",
+   "name": "DAVE SOL",
+   "key": "dave-sol",
+   "performers": [
+    "dave-sol"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:jimmie-page",
+   "name": "JIMMIE PAGE",
+   "key": "jimmie-page",
+   "performers": [
+    "jimmie-page"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:dj-ideal-b2b-redux-saints",
+   "name": "DJ IDEAL B2B REDUX SAINTS",
+   "key": "dj-ideal-b2b-redux-saints",
+   "performers": [
+    "dj-ideal",
+    "redux-saints"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:zaa",
+   "name": "ZAA",
+   "key": "zaa",
+   "performers": [
+    "zaa"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:bebe-breaks",
+   "name": "BEBE BREAKS",
+   "key": "bebe-breaks",
+   "performers": [
+    "bebe-breaks"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:chico-bandido",
+   "name": "CHICO BANDIDO",
+   "key": "chico-bandido",
+   "performers": [
+    "chico-bandido"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:sirchaz-and-sofia",
+   "name": "SIRCHAZ AND SOFIA",
+   "key": "sirchaz-and-sofia",
+   "performers": [
+    "sirchaz-and-sofia"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:illenium",
+   "name": "ILLENIUM",
+   "key": "illenium",
+   "performers": [
+    "illenium"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:dj-snake",
+   "name": "DJ SNAKE",
+   "key": "dj-snake",
+   "performers": [
+    "dj-snake"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:afrojack",
+   "name": "AFROJACK",
+   "key": "afrojack",
+   "performers": [
+    "afrojack"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:tiesto",
+   "name": "TIËSTO",
+   "key": "tiesto",
+   "performers": [
+    "tiesto"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:oliver-heldens",
+   "name": "OLIVER HELDENS",
+   "key": "oliver-heldens",
+   "performers": [
+    "oliver-heldens"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:tchami",
+   "name": "TCHAMI",
+   "key": "tchami",
+   "performers": [
+    "tchami"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:sam-feldt",
+   "name": "SAM FELDT",
+   "key": "sam-feldt",
+   "performers": [
+    "sam-feldt"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:jeffrey-sutorius",
+   "name": "JEFFREY SUTORIUS",
+   "key": "jeffrey-sutorius",
+   "performers": [
+    "jeffrey-sutorius"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:mykris",
+   "name": "MYKRIS",
+   "key": "mykris",
+   "performers": [
+    "mykris"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:tommie-sunshine",
+   "name": "TOMMIE SUNSHINE",
+   "key": "tommie-sunshine",
+   "performers": [
+    "tommie-sunshine"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:kshmr-the-live-experience",
+   "name": "KSHMR (THE LIVE EXPERIENCE)",
+   "key": "kshmr-the-live-experience",
+   "performers": [
+    "kshmr-the-live-experience"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:madeon",
+   "name": "MADEON",
+   "key": "madeon",
+   "performers": [
+    "madeon"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:sofi-tukker",
+   "name": "SOFI TUKKER",
+   "key": "sofi-tukker",
+   "performers": [
+    "sofi-tukker"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:gareth-emery-analog",
+   "name": "GARETH EMERY (ANALOG)",
+   "key": "gareth-emery-analog",
+   "performers": [
+    "gareth-emery-analog"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:olan",
+   "name": "OLAN",
+   "key": "olan",
+   "performers": [
+    "olan"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:afrobeta",
+   "name": "AFROBETA",
+   "key": "afrobeta",
+   "performers": [
+    "afrobeta"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:carl-cox-hybrid-live",
+   "name": "CARL COX (HYBRID LIVE)",
+   "key": "carl-cox-hybrid-live",
+   "performers": [
+    "carl-cox-hybrid-live"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:tale-of-us",
+   "name": "TALE OF US",
+   "key": "tale-of-us",
+   "performers": [
+    "tale-of-us"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:anna",
+   "name": "ANNA",
+   "key": "anna",
+   "performers": [
+    "anna"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:sasha-john-digweed",
+   "name": "SASHA | JOHN DIGWEED",
+   "key": "sasha-john-digweed",
+   "performers": [
+    "sasha-john-digweed"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:dubfire",
+   "name": "DUBFIRE",
+   "key": "dubfire",
+   "performers": [
+    "dubfire"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:giorgia-angiuli-live",
+   "name": "GIORGIA ANGIULI (LIVE)",
+   "key": "giorgia-angiuli-live",
+   "performers": [
+    "giorgia-angiuli-live"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:brennen-grey",
+   "name": "BRENNEN GREY",
+   "key": "brennen-grey",
+   "performers": [
+    "brennen-grey"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:knife-party",
+   "name": "KNIFE PARTY",
+   "key": "knife-party",
+   "performers": [
+    "knife-party"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:jauz-b2b-nghtmre",
+   "name": "JAUZ B2B NGHTMRE",
+   "key": "jauz-b2b-nghtmre",
+   "performers": [
+    "jauz",
+    "nghtmre"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:black-tiger-sex-machine",
+   "name": "BLACK TIGER SEX MACHINE",
+   "key": "black-tiger-sex-machine",
+   "performers": [
+    "black-tiger-sex-machine"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:whethan",
+   "name": "WHETHAN",
+   "key": "whethan",
+   "performers": [
+    "whethan"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:4b-b2b-saymyname",
+   "name": "4B B2B SAYMYNAME",
+   "key": "4b-b2b-saymyname",
+   "performers": [
+    "4b",
+    "saymyname"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:slushii",
+   "name": "SLUSHII",
+   "key": "slushii",
+   "performers": [
+    "slushii"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:wax-motif",
+   "name": "WAX MOTIF",
+   "key": "wax-motif",
+   "performers": [
+    "wax-motif"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:mija-b2b-gg-magree",
+   "name": "MIJA B2B GG MAGREE",
+   "key": "mija-b2b-gg-magree",
+   "performers": [
+    "mija",
+    "gg-magree"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:a-hundred-drums",
+   "name": "A HUNDRED DRUMS",
+   "key": "a-hundred-drums",
+   "performers": [
+    "a-hundred-drums"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:ares-carter",
+   "name": "ARES CARTER",
+   "key": "ares-carter",
+   "performers": [
+    "ares-carter"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:solardo",
+   "name": "SOLARDO",
+   "key": "solardo",
+   "performers": [
+    "solardo"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:camelphat",
+   "name": "CAMELPHAT",
+   "key": "camelphat",
+   "performers": [
+    "camelphat"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:nic-fanciulli",
+   "name": "NIC FANCIULLI",
+   "key": "nic-fanciulli",
+   "performers": [
+    "nic-fanciulli"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:dom-dolla",
+   "name": "DOM DOLLA",
+   "key": "dom-dolla",
+   "performers": [
+    "dom-dolla"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:john-summit",
+   "name": "JOHN SUMMIT",
+   "key": "john-summit",
+   "performers": [
+    "john-summit"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:christian-smith-b2b-cristian-varela",
+   "name": "CHRISTIAN SMITH B2B CRISTIAN VARELA",
+   "key": "christian-smith-b2b-cristian-varela",
+   "performers": [
+    "christian-smith",
+    "cristian-varela"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:rafa-barrios",
+   "name": "RAFA BARRIOS",
+   "key": "rafa-barrios",
+   "performers": [
+    "rafa-barrios"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:nala",
+   "name": "NALA",
+   "key": "nala",
+   "performers": [
+    "nala"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:nitepunk",
+   "name": "NITEPUNK",
+   "key": "nitepunk",
+   "performers": [
+    "nitepunk"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:leotrix",
+   "name": "LEOTRIX",
+   "key": "leotrix",
+   "performers": [
+    "leotrix"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:frosttop",
+   "name": "FROSTTOP",
+   "key": "frosttop",
+   "performers": [
+    "frosttop"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:peekaboo",
+   "name": "PEEKABOO",
+   "key": "peekaboo",
+   "performers": [
+    "peekaboo"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:space-laces",
+   "name": "SPACE LACES",
+   "key": "space-laces",
+   "performers": [
+    "space-laces"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:wavedash",
+   "name": "WAVEDASH",
+   "key": "wavedash",
+   "performers": [
+    "wavedash"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:william-black",
+   "name": "WILLIAM BLACK",
+   "key": "william-black",
+   "performers": [
+    "william-black"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:riot",
+   "name": "RIOT",
+   "key": "riot",
+   "performers": [
+    "riot"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:kraysh",
+   "name": "KRAYSH",
+   "key": "kraysh",
+   "performers": [
+    "kraysh"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:saka",
+   "name": "SAKA",
+   "key": "saka",
+   "performers": [
+    "saka"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:tak-shak",
+   "name": "TAK SHAK",
+   "key": "tak-shak",
+   "performers": [
+    "tak-shak"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:los-de-la-vega",
+   "name": "LOS DE LA VEGA",
+   "key": "los-de-la-vega",
+   "performers": [
+    "los-de-la-vega"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:festival-nun-b2b-die-maschine",
+   "name": "FESTIVAL NUN B2B DIE MASCHINE",
+   "key": "festival-nun-b2b-die-maschine",
+   "performers": [
+    "festival-nun",
+    "die-maschine"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:mednas",
+   "name": "MEDNAS",
+   "key": "mednas",
+   "performers": [
+    "mednas"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:wyzzard",
+   "name": "WYZZARD",
+   "key": "wyzzard",
+   "performers": [
+    "wyzzard"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:dabura",
+   "name": "DABURA",
+   "key": "dabura",
+   "performers": [
+    "dabura"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:soul-goodman",
+   "name": "SOUL GOODMAN",
+   "key": "soul-goodman",
+   "performers": [
+    "soul-goodman"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:richard-fraioli",
+   "name": "RICHARD FRAIOLI",
+   "key": "richard-fraioli",
+   "performers": [
+    "richard-fraioli"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:lemony-snickettes",
+   "name": "LEMONY SNICKETTES",
+   "key": "lemony-snickettes",
+   "performers": [
+    "lemony-snickettes"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:sizemore",
+   "name": "SIZEMORE",
+   "key": "sizemore",
+   "performers": [
+    "sizemore"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:jose-esco",
+   "name": "JOSE ESCO",
+   "key": "jose-esco",
+   "performers": [
+    "jose-esco"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:dmiitri-saldi",
+   "name": "DMIITRI SALDI",
+   "key": "dmiitri-saldi",
+   "performers": [
+    "dmiitri-saldi"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:rodrigo-vieira",
+   "name": "RODRIGO VIEIRA",
+   "key": "rodrigo-vieira",
+   "performers": [
+    "rodrigo-vieira"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:david-guetta",
+   "name": "DAVID GUETTA",
+   "key": "david-guetta",
+   "performers": [
+    "david-guetta"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:vintage-culture-x-claptone",
+   "name": "VINTAGE CULTURE X CLAPTONE",
+   "key": "vintage-culture-x-claptone",
+   "performers": [
+    "vintage-culture-x-claptone"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:acraze",
+   "name": "ACRAZE",
+   "key": "acraze",
+   "performers": [
+    "acraze"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:cedric-gervais",
+   "name": "CEDRIC GERVAIS",
+   "key": "cedric-gervais",
+   "performers": [
+    "cedric-gervais"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:slander",
+   "name": "SLANDER",
+   "key": "slander",
+   "performers": [
+    "slander"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:oliver-tree",
+   "name": "OLIVER TREE",
+   "key": "oliver-tree",
+   "performers": [
+    "oliver-tree"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:elohim",
+   "name": "ELOHIM",
+   "key": "elohim",
+   "performers": [
+    "elohim"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:forester",
+   "name": "FORESTER",
+   "key": "forester",
+   "performers": [
+    "forester"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:adam-beyer",
+   "name": "ADAM BEYER",
+   "key": "adam-beyer",
+   "performers": [
+    "adam-beyer"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:reinier-zonneveld-live",
+   "name": "REINIER ZONNEVELD (LIVE)",
+   "key": "reinier-zonneveld-live",
+   "performers": [
+    "reinier-zonneveld-live"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:amelie-lens",
+   "name": "AMELIE LENS",
+   "key": "amelie-lens",
+   "performers": [
+    "amelie-lens"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:hannes-bieger-live",
+   "name": "HANNES BIEGER (LIVE)",
+   "key": "hannes-bieger-live",
+   "performers": [
+    "hannes-bieger-live"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:christopher-coe-live",
+   "name": "CHRISTOPHER COE (LIVE)",
+   "key": "christopher-coe-live",
+   "performers": [
+    "christopher-coe-live"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:elio-riso",
+   "name": "ELIO RISO",
+   "key": "elio-riso",
+   "performers": [
+    "elio-riso"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:zeds-dead",
+   "name": "ZEDS DEAD",
+   "key": "zeds-dead",
+   "performers": [
+    "zeds-dead"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:seven-lions",
+   "name": "SEVEN LIONS",
+   "key": "seven-lions",
+   "performers": [
+    "seven-lions"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:ghost-rydr",
+   "name": "GHOST RYDR",
+   "key": "ghost-rydr",
+   "performers": [
+    "ghost-rydr"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:kill-the-noise",
+   "name": "KILL THE NOISE",
+   "key": "kill-the-noise",
+   "performers": [
+    "kill-the-noise"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:krewella",
+   "name": "KREWELLA",
+   "key": "krewella",
+   "performers": [
+    "krewella"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:whipped-cream",
+   "name": "WHIPPED CREAM",
+   "key": "whipped-cream",
+   "performers": [
+    "whipped-cream"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:hybrid-minds",
+   "name": "HYBRID MINDS",
+   "key": "hybrid-minds",
+   "performers": [
+    "hybrid-minds"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:metaphysical",
+   "name": "METAPHYSICAL",
+   "key": "metaphysical",
+   "performers": [
+    "metaphysical"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:pan-pot",
+   "name": "PAN-POT",
+   "key": "pan-pot",
+   "performers": [
+    "pan-pot"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:sama-abdulhadi",
+   "name": "SAMA' ABDULHADI",
+   "key": "sama-abdulhadi",
+   "performers": [
+    "sama-abdulhadi"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:ilario-alicante",
+   "name": "ILARIO ALICANTE",
+   "key": "ilario-alicante",
+   "performers": [
+    "ilario-alicante"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:matador",
+   "name": "MATADOR",
+   "key": "matador",
+   "performers": [
+    "matador"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:technasia-b3b-hector-b3b-carlo-lio",
+   "name": "TECHNASIA B3B HECTOR B3B CARLO LIO",
+   "key": "technasia-b3b-hector-b3b-carlo-lio",
+   "performers": [
+    "technasia",
+    "hector",
+    "carlo-lio"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:andy-pate-b2b-rod-b",
+   "name": "ANDY PATE B2B ROD B",
+   "key": "andy-pate-b2b-rod-b",
+   "performers": [
+    "andy-pate",
+    "rod-b"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:gammer",
+   "name": "GAMMER",
+   "key": "gammer",
+   "performers": [
+    "gammer"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:da-tweekaz",
+   "name": "DA TWEEKAZ",
+   "key": "da-tweekaz",
+   "performers": [
+    "da-tweekaz"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:coone-presents-15-yrs-dwx",
+   "name": "COONE (PRESENTS 15 YRS DWX)",
+   "key": "coone-presents-15-yrs-dwx",
+   "performers": [
+    "coone-presents-15-yrs-dwx"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:sub-zero-project",
+   "name": "SUB ZERO PROJECT",
+   "key": "sub-zero-project",
+   "performers": [
+    "sub-zero-project"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:ben-nicky-presents-extreme",
+   "name": "BEN NICKY (PRESENTS EXTREME)",
+   "key": "ben-nicky-presents-extreme",
+   "performers": [
+    "ben-nicky-presents-extreme"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:darren-styles",
+   "name": "DARREN STYLES",
+   "key": "darren-styles",
+   "performers": [
+    "darren-styles"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:audiofreq",
+   "name": "AUDIOFREQ",
+   "key": "audiofreq",
+   "performers": [
+    "audiofreq"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:dr-phunk",
+   "name": "DR PHUNK",
+   "key": "dr-phunk",
+   "performers": [
+    "dr-phunk"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:darksiderz",
+   "name": "DARKSIDERZ",
+   "key": "darksiderz",
+   "performers": [
+    "darksiderz"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:pulsatorz",
+   "name": "PULSATORZ",
+   "key": "pulsatorz",
+   "performers": [
+    "pulsatorz"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:boiish",
+   "name": "BOIISH",
+   "key": "boiish",
+   "performers": [
+    "boiish"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:jean-marie",
+   "name": "JEAN MARIE",
+   "key": "jean-marie",
+   "performers": [
+    "jean-marie"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:purple",
+   "name": "PURPLE",
+   "key": "purple",
+   "performers": [
+    "purple"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:omar-deaz",
+   "name": "OMAR DEAZ",
+   "key": "omar-deaz",
+   "performers": [
+    "omar-deaz"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:juno",
+   "name": "JUNO",
+   "key": "juno",
+   "performers": [
+    "juno"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:x-con",
+   "name": "X-CON",
+   "key": "x-con",
+   "performers": [
+    "x-con"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:proxxy-b2b-bradley-drop",
+   "name": "PROXXY B2B BRADLEY DROP",
+   "key": "proxxy-b2b-bradley-drop",
+   "performers": [
+    "proxxy",
+    "bradley-drop"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:muzana",
+   "name": "MUZANA",
+   "key": "muzana",
+   "performers": [
+    "muzana"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:luca-testa",
+   "name": "LUCA TESTA",
+   "key": "luca-testa",
+   "performers": [
+    "luca-testa"
+   ]
+  },
+  {
+   "id": "ultra-miami-2022:ben-spence",
+   "name": "BEN SPENCE",
+   "key": "ben-spence",
+   "performers": [
+    "ben-spence"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "ultra-miami-2022:d1:ultra-main-stage:2245:kygo",
+   "artistId": "ultra-miami-2022:kygo",
+   "day": 1,
+   "stageId": "ultra-miami-2022:ultra-main-stage",
+   "start": "22:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:ultra-main-stage:2140:martin-garrix",
+   "artistId": "ultra-miami-2022:martin-garrix",
+   "day": 1,
+   "stageId": "ultra-miami-2022:ultra-main-stage",
+   "start": "21:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:ultra-main-stage:2035:alesso",
+   "artistId": "ultra-miami-2022:alesso",
+   "day": 1,
+   "stageId": "ultra-miami-2022:ultra-main-stage",
+   "start": "20:35",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:ultra-main-stage:1930:fisher",
+   "artistId": "ultra-miami-2022:fisher",
+   "day": 1,
+   "stageId": "ultra-miami-2022:ultra-main-stage",
+   "start": "19:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:ultra-main-stage:1825:timmy-trumpet",
+   "artistId": "ultra-miami-2022:timmy-trumpet",
+   "day": 1,
+   "stageId": "ultra-miami-2022:ultra-main-stage",
+   "start": "18:25",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:ultra-main-stage:1720:nicky-romero",
+   "artistId": "ultra-miami-2022:nicky-romero",
+   "day": 1,
+   "stageId": "ultra-miami-2022:ultra-main-stage",
+   "start": "17:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:ultra-main-stage:1615:frank-walker",
+   "artistId": "ultra-miami-2022:frank-walker",
+   "day": 1,
+   "stageId": "ultra-miami-2022:ultra-main-stage",
+   "start": "16:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:live-stage:2300:pendulum",
+   "artistId": "ultra-miami-2022:pendulum",
+   "day": 1,
+   "stageId": "ultra-miami-2022:live-stage",
+   "start": "23:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:live-stage:2130:alison-wonderland",
+   "artistId": "ultra-miami-2022:alison-wonderland",
+   "day": 1,
+   "stageId": "ultra-miami-2022:live-stage",
+   "start": "21:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:live-stage:2000:svdden-death-presents-voyd",
+   "artistId": "ultra-miami-2022:svdden-death-presents-voyd",
+   "day": 1,
+   "stageId": "ultra-miami-2022:live-stage",
+   "start": "20:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:live-stage:1830:sullivan-king",
+   "artistId": "ultra-miami-2022:sullivan-king",
+   "day": 1,
+   "stageId": "ultra-miami-2022:live-stage",
+   "start": "18:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:live-stage:1700:ookay",
+   "artistId": "ultra-miami-2022:ookay",
+   "day": 1,
+   "stageId": "ultra-miami-2022:live-stage",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:megastructure:2200:carl-cox",
+   "artistId": "ultra-miami-2022:carl-cox",
+   "day": 1,
+   "stageId": "ultra-miami-2022:megastructure",
+   "start": "22:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:megastructure:2030:nina-kraviz",
+   "artistId": "ultra-miami-2022:nina-kraviz",
+   "day": 1,
+   "stageId": "ultra-miami-2022:megastructure",
+   "start": "20:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:megastructure:1900:joseph-capriati",
+   "artistId": "ultra-miami-2022:joseph-capriati",
+   "day": 1,
+   "stageId": "ultra-miami-2022:megastructure",
+   "start": "19:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:megastructure:1730:michael-bibi",
+   "artistId": "ultra-miami-2022:michael-bibi",
+   "day": 1,
+   "stageId": "ultra-miami-2022:megastructure",
+   "start": "17:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:megastructure:1600:anfisa-letyago",
+   "artistId": "ultra-miami-2022:anfisa-letyago",
+   "day": 1,
+   "stageId": "ultra-miami-2022:megastructure",
+   "start": "16:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:worldwide-stage:2230:armin-van-buuren",
+   "artistId": "ultra-miami-2022:armin-van-buuren",
+   "day": 1,
+   "stageId": "ultra-miami-2022:worldwide-stage",
+   "start": "22:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:worldwide-stage:2130:armin-van-buuren-b2b-reinier-zonneveld-live",
+   "artistId": "ultra-miami-2022:armin-van-buuren-b2b-reinier-zonneveld-live",
+   "day": 1,
+   "stageId": "ultra-miami-2022:worldwide-stage",
+   "start": "21:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:worldwide-stage:2030:vini-vici",
+   "artistId": "ultra-miami-2022:vini-vici",
+   "day": 1,
+   "stageId": "ultra-miami-2022:worldwide-stage",
+   "start": "20:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:worldwide-stage:1930:gareth-emery",
+   "artistId": "ultra-miami-2022:gareth-emery",
+   "day": 1,
+   "stageId": "ultra-miami-2022:worldwide-stage",
+   "start": "19:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:worldwide-stage:1835:andrew-rayel",
+   "artistId": "ultra-miami-2022:andrew-rayel",
+   "day": 1,
+   "stageId": "ultra-miami-2022:worldwide-stage",
+   "start": "18:35",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:worldwide-stage:1740:aly-and-fila",
+   "artistId": "ultra-miami-2022:aly-and-fila",
+   "day": 1,
+   "stageId": "ultra-miami-2022:worldwide-stage",
+   "start": "17:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:worldwide-stage:1650:sander-van-doorn",
+   "artistId": "ultra-miami-2022:sander-van-doorn",
+   "day": 1,
+   "stageId": "ultra-miami-2022:worldwide-stage",
+   "start": "16:50",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:worldwide-stage:1600:avira",
+   "artistId": "ultra-miami-2022:avira",
+   "day": 1,
+   "stageId": "ultra-miami-2022:worldwide-stage",
+   "start": "16:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:the-cove:2100:boris-brejcha",
+   "artistId": "ultra-miami-2022:boris-brejcha",
+   "day": 1,
+   "stageId": "ultra-miami-2022:the-cove",
+   "start": "21:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:the-cove:1800:ann-clue",
+   "artistId": "ultra-miami-2022:ann-clue",
+   "day": 1,
+   "stageId": "ultra-miami-2022:the-cove",
+   "start": "18:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:the-cove:1600:popof",
+   "artistId": "ultra-miami-2022:popof",
+   "day": 1,
+   "stageId": "ultra-miami-2022:the-cove",
+   "start": "16:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:umf-radio:2215:justin-mylo",
+   "artistId": "ultra-miami-2022:justin-mylo",
+   "day": 1,
+   "stageId": "ultra-miami-2022:umf-radio",
+   "start": "22:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:umf-radio:2115:julian-jordan",
+   "artistId": "ultra-miami-2022:julian-jordan",
+   "day": 1,
+   "stageId": "ultra-miami-2022:umf-radio",
+   "start": "21:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:umf-radio:2030:dubvision",
+   "artistId": "ultra-miami-2022:dubvision",
+   "day": 1,
+   "stageId": "ultra-miami-2022:umf-radio",
+   "start": "20:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:umf-radio:1945:matisse-and-sadko",
+   "artistId": "ultra-miami-2022:matisse-and-sadko",
+   "day": 1,
+   "stageId": "ultra-miami-2022:umf-radio",
+   "start": "19:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:umf-radio:1900:kvsh-x-pontifexx",
+   "artistId": "ultra-miami-2022:kvsh-x-pontifexx",
+   "day": 1,
+   "stageId": "ultra-miami-2022:umf-radio",
+   "start": "19:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:umf-radio:1815:florian-picasso",
+   "artistId": "ultra-miami-2022:florian-picasso",
+   "day": 1,
+   "stageId": "ultra-miami-2022:umf-radio",
+   "start": "18:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:umf-radio:1730:matt-nash",
+   "artistId": "ultra-miami-2022:matt-nash",
+   "day": 1,
+   "stageId": "ultra-miami-2022:umf-radio",
+   "start": "17:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:umf-radio:1645:osrin",
+   "artistId": "ultra-miami-2022:osrin",
+   "day": 1,
+   "stageId": "ultra-miami-2022:umf-radio",
+   "start": "16:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:umf-radio:1600:infuze",
+   "artistId": "ultra-miami-2022:infuze",
+   "day": 1,
+   "stageId": "ultra-miami-2022:umf-radio",
+   "start": "16:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:oasis:2300:metaphysical-b2b-knowlton-walsh",
+   "artistId": "ultra-miami-2022:metaphysical-b2b-knowlton-walsh",
+   "day": 1,
+   "stageId": "ultra-miami-2022:oasis",
+   "start": "23:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:oasis:2215:wags",
+   "artistId": "ultra-miami-2022:wags",
+   "day": 1,
+   "stageId": "ultra-miami-2022:oasis",
+   "start": "22:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:oasis:2130:dave-sol",
+   "artistId": "ultra-miami-2022:dave-sol",
+   "day": 1,
+   "stageId": "ultra-miami-2022:oasis",
+   "start": "21:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:oasis:2030:jimmie-page",
+   "artistId": "ultra-miami-2022:jimmie-page",
+   "day": 1,
+   "stageId": "ultra-miami-2022:oasis",
+   "start": "20:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:oasis:1930:dj-ideal-b2b-redux-saints",
+   "artistId": "ultra-miami-2022:dj-ideal-b2b-redux-saints",
+   "day": 1,
+   "stageId": "ultra-miami-2022:oasis",
+   "start": "19:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:oasis:1830:zaa",
+   "artistId": "ultra-miami-2022:zaa",
+   "day": 1,
+   "stageId": "ultra-miami-2022:oasis",
+   "start": "18:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:oasis:1730:bebe-breaks",
+   "artistId": "ultra-miami-2022:bebe-breaks",
+   "day": 1,
+   "stageId": "ultra-miami-2022:oasis",
+   "start": "17:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:oasis:1645:chico-bandido",
+   "artistId": "ultra-miami-2022:chico-bandido",
+   "day": 1,
+   "stageId": "ultra-miami-2022:oasis",
+   "start": "16:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d1:oasis:1600:sirchaz-and-sofia",
+   "artistId": "ultra-miami-2022:sirchaz-and-sofia",
+   "day": 1,
+   "stageId": "ultra-miami-2022:oasis",
+   "start": "16:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:ultra-main-stage:2245:illenium",
+   "artistId": "ultra-miami-2022:illenium",
+   "day": 2,
+   "stageId": "ultra-miami-2022:ultra-main-stage",
+   "start": "22:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:ultra-main-stage:2140:dj-snake",
+   "artistId": "ultra-miami-2022:dj-snake",
+   "day": 2,
+   "stageId": "ultra-miami-2022:ultra-main-stage",
+   "start": "21:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:ultra-main-stage:2035:afrojack",
+   "artistId": "ultra-miami-2022:afrojack",
+   "day": 2,
+   "stageId": "ultra-miami-2022:ultra-main-stage",
+   "start": "20:35",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:ultra-main-stage:1930:tiesto",
+   "artistId": "ultra-miami-2022:tiesto",
+   "day": 2,
+   "stageId": "ultra-miami-2022:ultra-main-stage",
+   "start": "19:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:ultra-main-stage:1825:oliver-heldens",
+   "artistId": "ultra-miami-2022:oliver-heldens",
+   "day": 2,
+   "stageId": "ultra-miami-2022:ultra-main-stage",
+   "start": "18:25",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:ultra-main-stage:1720:tchami",
+   "artistId": "ultra-miami-2022:tchami",
+   "day": 2,
+   "stageId": "ultra-miami-2022:ultra-main-stage",
+   "start": "17:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:ultra-main-stage:1615:sam-feldt",
+   "artistId": "ultra-miami-2022:sam-feldt",
+   "day": 2,
+   "stageId": "ultra-miami-2022:ultra-main-stage",
+   "start": "16:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:ultra-main-stage:1510:jeffrey-sutorius",
+   "artistId": "ultra-miami-2022:jeffrey-sutorius",
+   "day": 2,
+   "stageId": "ultra-miami-2022:ultra-main-stage",
+   "start": "15:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:ultra-main-stage:1405:mykris",
+   "artistId": "ultra-miami-2022:mykris",
+   "day": 2,
+   "stageId": "ultra-miami-2022:ultra-main-stage",
+   "start": "14:05",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:ultra-main-stage:1300:tommie-sunshine",
+   "artistId": "ultra-miami-2022:tommie-sunshine",
+   "day": 2,
+   "stageId": "ultra-miami-2022:ultra-main-stage",
+   "start": "13:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:live-stage:2300:kshmr-the-live-experience",
+   "artistId": "ultra-miami-2022:kshmr-the-live-experience",
+   "day": 2,
+   "stageId": "ultra-miami-2022:live-stage",
+   "start": "23:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:live-stage:2130:madeon",
+   "artistId": "ultra-miami-2022:madeon",
+   "day": 2,
+   "stageId": "ultra-miami-2022:live-stage",
+   "start": "21:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:live-stage:2000:sofi-tukker",
+   "artistId": "ultra-miami-2022:sofi-tukker",
+   "day": 2,
+   "stageId": "ultra-miami-2022:live-stage",
+   "start": "20:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:live-stage:1830:gareth-emery-analog",
+   "artistId": "ultra-miami-2022:gareth-emery-analog",
+   "day": 2,
+   "stageId": "ultra-miami-2022:live-stage",
+   "start": "18:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:live-stage:1700:olan",
+   "artistId": "ultra-miami-2022:olan",
+   "day": 2,
+   "stageId": "ultra-miami-2022:live-stage",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:live-stage:1600:afrobeta",
+   "artistId": "ultra-miami-2022:afrobeta",
+   "day": 2,
+   "stageId": "ultra-miami-2022:live-stage",
+   "start": "16:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:megastructure:2100:carl-cox-hybrid-live",
+   "artistId": "ultra-miami-2022:carl-cox-hybrid-live",
+   "day": 2,
+   "stageId": "ultra-miami-2022:megastructure",
+   "start": "21:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:megastructure:1930:tale-of-us",
+   "artistId": "ultra-miami-2022:tale-of-us",
+   "day": 2,
+   "stageId": "ultra-miami-2022:megastructure",
+   "start": "19:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:megastructure:1800:anna",
+   "artistId": "ultra-miami-2022:anna",
+   "day": 2,
+   "stageId": "ultra-miami-2022:megastructure",
+   "start": "18:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:megastructure:1630:sasha-john-digweed",
+   "artistId": "ultra-miami-2022:sasha-john-digweed",
+   "day": 2,
+   "stageId": "ultra-miami-2022:megastructure",
+   "start": "16:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:megastructure:1500:dubfire",
+   "artistId": "ultra-miami-2022:dubfire",
+   "day": 2,
+   "stageId": "ultra-miami-2022:megastructure",
+   "start": "15:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:megastructure:1400:giorgia-angiuli-live",
+   "artistId": "ultra-miami-2022:giorgia-angiuli-live",
+   "day": 2,
+   "stageId": "ultra-miami-2022:megastructure",
+   "start": "14:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:megastructure:1200:brennen-grey",
+   "artistId": "ultra-miami-2022:brennen-grey",
+   "day": 2,
+   "stageId": "ultra-miami-2022:megastructure",
+   "start": "12:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:worldwide-stage:2300:knife-party",
+   "artistId": "ultra-miami-2022:knife-party",
+   "day": 2,
+   "stageId": "ultra-miami-2022:worldwide-stage",
+   "start": "23:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:worldwide-stage:2130:jauz-b2b-nghtmre",
+   "artistId": "ultra-miami-2022:jauz-b2b-nghtmre",
+   "day": 2,
+   "stageId": "ultra-miami-2022:worldwide-stage",
+   "start": "21:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:worldwide-stage:2010:black-tiger-sex-machine",
+   "artistId": "ultra-miami-2022:black-tiger-sex-machine",
+   "day": 2,
+   "stageId": "ultra-miami-2022:worldwide-stage",
+   "start": "20:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:worldwide-stage:1900:whethan",
+   "artistId": "ultra-miami-2022:whethan",
+   "day": 2,
+   "stageId": "ultra-miami-2022:worldwide-stage",
+   "start": "19:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:worldwide-stage:1730:4b-b2b-saymyname",
+   "artistId": "ultra-miami-2022:4b-b2b-saymyname",
+   "day": 2,
+   "stageId": "ultra-miami-2022:worldwide-stage",
+   "start": "17:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:worldwide-stage:1630:slushii",
+   "artistId": "ultra-miami-2022:slushii",
+   "day": 2,
+   "stageId": "ultra-miami-2022:worldwide-stage",
+   "start": "16:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:worldwide-stage:1530:wax-motif",
+   "artistId": "ultra-miami-2022:wax-motif",
+   "day": 2,
+   "stageId": "ultra-miami-2022:worldwide-stage",
+   "start": "15:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:worldwide-stage:1400:mija-b2b-gg-magree",
+   "artistId": "ultra-miami-2022:mija-b2b-gg-magree",
+   "day": 2,
+   "stageId": "ultra-miami-2022:worldwide-stage",
+   "start": "14:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:worldwide-stage:1300:a-hundred-drums",
+   "artistId": "ultra-miami-2022:a-hundred-drums",
+   "day": 2,
+   "stageId": "ultra-miami-2022:worldwide-stage",
+   "start": "13:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:worldwide-stage:1200:ares-carter",
+   "artistId": "ultra-miami-2022:ares-carter",
+   "day": 2,
+   "stageId": "ultra-miami-2022:worldwide-stage",
+   "start": "12:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:the-cove:2230:solardo",
+   "artistId": "ultra-miami-2022:solardo",
+   "day": 2,
+   "stageId": "ultra-miami-2022:the-cove",
+   "start": "22:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:the-cove:2100:camelphat",
+   "artistId": "ultra-miami-2022:camelphat",
+   "day": 2,
+   "stageId": "ultra-miami-2022:the-cove",
+   "start": "21:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:the-cove:1930:nic-fanciulli",
+   "artistId": "ultra-miami-2022:nic-fanciulli",
+   "day": 2,
+   "stageId": "ultra-miami-2022:the-cove",
+   "start": "19:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:the-cove:1800:dom-dolla",
+   "artistId": "ultra-miami-2022:dom-dolla",
+   "day": 2,
+   "stageId": "ultra-miami-2022:the-cove",
+   "start": "18:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:the-cove:1630:john-summit",
+   "artistId": "ultra-miami-2022:john-summit",
+   "day": 2,
+   "stageId": "ultra-miami-2022:the-cove",
+   "start": "16:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:the-cove:1500:christian-smith-b2b-cristian-varela",
+   "artistId": "ultra-miami-2022:christian-smith-b2b-cristian-varela",
+   "day": 2,
+   "stageId": "ultra-miami-2022:the-cove",
+   "start": "15:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:the-cove:1330:rafa-barrios",
+   "artistId": "ultra-miami-2022:rafa-barrios",
+   "day": 2,
+   "stageId": "ultra-miami-2022:the-cove",
+   "start": "13:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:the-cove:1200:nala",
+   "artistId": "ultra-miami-2022:nala",
+   "day": 2,
+   "stageId": "ultra-miami-2022:the-cove",
+   "start": "12:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:umf-radio:2300:nitepunk",
+   "artistId": "ultra-miami-2022:nitepunk",
+   "day": 2,
+   "stageId": "ultra-miami-2022:umf-radio",
+   "start": "23:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:umf-radio:2200:leotrix",
+   "artistId": "ultra-miami-2022:leotrix",
+   "day": 2,
+   "stageId": "ultra-miami-2022:umf-radio",
+   "start": "22:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:umf-radio:2100:frosttop",
+   "artistId": "ultra-miami-2022:frosttop",
+   "day": 2,
+   "stageId": "ultra-miami-2022:umf-radio",
+   "start": "21:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:umf-radio:1950:peekaboo",
+   "artistId": "ultra-miami-2022:peekaboo",
+   "day": 2,
+   "stageId": "ultra-miami-2022:umf-radio",
+   "start": "19:50",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:umf-radio:1730:space-laces",
+   "artistId": "ultra-miami-2022:space-laces",
+   "day": 2,
+   "stageId": "ultra-miami-2022:umf-radio",
+   "start": "17:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:umf-radio:1620:wavedash",
+   "artistId": "ultra-miami-2022:wavedash",
+   "day": 2,
+   "stageId": "ultra-miami-2022:umf-radio",
+   "start": "16:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:umf-radio:1510:william-black",
+   "artistId": "ultra-miami-2022:william-black",
+   "day": 2,
+   "stageId": "ultra-miami-2022:umf-radio",
+   "start": "15:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:umf-radio:1400:riot",
+   "artistId": "ultra-miami-2022:riot",
+   "day": 2,
+   "stageId": "ultra-miami-2022:umf-radio",
+   "start": "14:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:umf-radio:1300:kraysh",
+   "artistId": "ultra-miami-2022:kraysh",
+   "day": 2,
+   "stageId": "ultra-miami-2022:umf-radio",
+   "start": "13:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:umf-radio:1200:saka",
+   "artistId": "ultra-miami-2022:saka",
+   "day": 2,
+   "stageId": "ultra-miami-2022:umf-radio",
+   "start": "12:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:oasis:2300:tak-shak",
+   "artistId": "ultra-miami-2022:tak-shak",
+   "day": 2,
+   "stageId": "ultra-miami-2022:oasis",
+   "start": "23:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:oasis:2215:los-de-la-vega",
+   "artistId": "ultra-miami-2022:los-de-la-vega",
+   "day": 2,
+   "stageId": "ultra-miami-2022:oasis",
+   "start": "22:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:oasis:2130:festival-nun-b2b-die-maschine",
+   "artistId": "ultra-miami-2022:festival-nun-b2b-die-maschine",
+   "day": 2,
+   "stageId": "ultra-miami-2022:oasis",
+   "start": "21:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:oasis:2045:mednas",
+   "artistId": "ultra-miami-2022:mednas",
+   "day": 2,
+   "stageId": "ultra-miami-2022:oasis",
+   "start": "20:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:oasis:1945:wyzzard",
+   "artistId": "ultra-miami-2022:wyzzard",
+   "day": 2,
+   "stageId": "ultra-miami-2022:oasis",
+   "start": "19:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:oasis:1845:dabura",
+   "artistId": "ultra-miami-2022:dabura",
+   "day": 2,
+   "stageId": "ultra-miami-2022:oasis",
+   "start": "18:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:oasis:1745:soul-goodman",
+   "artistId": "ultra-miami-2022:soul-goodman",
+   "day": 2,
+   "stageId": "ultra-miami-2022:oasis",
+   "start": "17:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:oasis:1645:richard-fraioli",
+   "artistId": "ultra-miami-2022:richard-fraioli",
+   "day": 2,
+   "stageId": "ultra-miami-2022:oasis",
+   "start": "16:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:oasis:1600:lemony-snickettes",
+   "artistId": "ultra-miami-2022:lemony-snickettes",
+   "day": 2,
+   "stageId": "ultra-miami-2022:oasis",
+   "start": "16:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:oasis:1500:sizemore",
+   "artistId": "ultra-miami-2022:sizemore",
+   "day": 2,
+   "stageId": "ultra-miami-2022:oasis",
+   "start": "15:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:oasis:1400:jose-esco",
+   "artistId": "ultra-miami-2022:jose-esco",
+   "day": 2,
+   "stageId": "ultra-miami-2022:oasis",
+   "start": "14:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:oasis:1300:dmiitri-saldi",
+   "artistId": "ultra-miami-2022:dmiitri-saldi",
+   "day": 2,
+   "stageId": "ultra-miami-2022:oasis",
+   "start": "13:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d2:oasis:1200:rodrigo-vieira",
+   "artistId": "ultra-miami-2022:rodrigo-vieira",
+   "day": 2,
+   "stageId": "ultra-miami-2022:oasis",
+   "start": "12:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:ultra-main-stage:1940:david-guetta",
+   "artistId": "ultra-miami-2022:david-guetta",
+   "day": 3,
+   "stageId": "ultra-miami-2022:ultra-main-stage",
+   "start": "19:40",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:ultra-main-stage:1820:armin-van-buuren",
+   "artistId": "ultra-miami-2022:armin-van-buuren",
+   "day": 3,
+   "stageId": "ultra-miami-2022:ultra-main-stage",
+   "start": "18:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:ultra-main-stage:1715:vintage-culture-x-claptone",
+   "artistId": "ultra-miami-2022:vintage-culture-x-claptone",
+   "day": 3,
+   "stageId": "ultra-miami-2022:ultra-main-stage",
+   "start": "17:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:ultra-main-stage:1610:acraze",
+   "artistId": "ultra-miami-2022:acraze",
+   "day": 3,
+   "stageId": "ultra-miami-2022:ultra-main-stage",
+   "start": "16:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:ultra-main-stage:1505:vini-vici",
+   "artistId": "ultra-miami-2022:vini-vici",
+   "day": 3,
+   "stageId": "ultra-miami-2022:ultra-main-stage",
+   "start": "15:05",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:ultra-main-stage:1400:cedric-gervais",
+   "artistId": "ultra-miami-2022:cedric-gervais",
+   "day": 3,
+   "stageId": "ultra-miami-2022:ultra-main-stage",
+   "start": "14:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:live-stage:2100:slander",
+   "artistId": "ultra-miami-2022:slander",
+   "day": 3,
+   "stageId": "ultra-miami-2022:live-stage",
+   "start": "21:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:live-stage:1930:oliver-tree",
+   "artistId": "ultra-miami-2022:oliver-tree",
+   "day": 3,
+   "stageId": "ultra-miami-2022:live-stage",
+   "start": "19:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:live-stage:1800:elohim",
+   "artistId": "ultra-miami-2022:elohim",
+   "day": 3,
+   "stageId": "ultra-miami-2022:live-stage",
+   "start": "18:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:live-stage:1630:forester",
+   "artistId": "ultra-miami-2022:forester",
+   "day": 3,
+   "stageId": "ultra-miami-2022:live-stage",
+   "start": "16:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:megastructure:2000:carl-cox",
+   "artistId": "ultra-miami-2022:carl-cox",
+   "day": 3,
+   "stageId": "ultra-miami-2022:megastructure",
+   "start": "20:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:megastructure:1830:adam-beyer",
+   "artistId": "ultra-miami-2022:adam-beyer",
+   "day": 3,
+   "stageId": "ultra-miami-2022:megastructure",
+   "start": "18:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:megastructure:1700:reinier-zonneveld-live",
+   "artistId": "ultra-miami-2022:reinier-zonneveld-live",
+   "day": 3,
+   "stageId": "ultra-miami-2022:megastructure",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:megastructure:1530:amelie-lens",
+   "artistId": "ultra-miami-2022:amelie-lens",
+   "day": 3,
+   "stageId": "ultra-miami-2022:megastructure",
+   "start": "15:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:megastructure:1430:hannes-bieger-live",
+   "artistId": "ultra-miami-2022:hannes-bieger-live",
+   "day": 3,
+   "stageId": "ultra-miami-2022:megastructure",
+   "start": "14:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:megastructure:1330:christopher-coe-live",
+   "artistId": "ultra-miami-2022:christopher-coe-live",
+   "day": 3,
+   "stageId": "ultra-miami-2022:megastructure",
+   "start": "13:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:megastructure:1200:elio-riso",
+   "artistId": "ultra-miami-2022:elio-riso",
+   "day": 3,
+   "stageId": "ultra-miami-2022:megastructure",
+   "start": "12:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:worldwide-stage:2100:zeds-dead",
+   "artistId": "ultra-miami-2022:zeds-dead",
+   "day": 3,
+   "stageId": "ultra-miami-2022:worldwide-stage",
+   "start": "21:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:worldwide-stage:2000:seven-lions",
+   "artistId": "ultra-miami-2022:seven-lions",
+   "day": 3,
+   "stageId": "ultra-miami-2022:worldwide-stage",
+   "start": "20:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:worldwide-stage:1830:ghost-rydr",
+   "artistId": "ultra-miami-2022:ghost-rydr",
+   "day": 3,
+   "stageId": "ultra-miami-2022:worldwide-stage",
+   "start": "18:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:worldwide-stage:1730:kill-the-noise",
+   "artistId": "ultra-miami-2022:kill-the-noise",
+   "day": 3,
+   "stageId": "ultra-miami-2022:worldwide-stage",
+   "start": "17:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:worldwide-stage:1630:krewella",
+   "artistId": "ultra-miami-2022:krewella",
+   "day": 3,
+   "stageId": "ultra-miami-2022:worldwide-stage",
+   "start": "16:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:worldwide-stage:1530:whipped-cream",
+   "artistId": "ultra-miami-2022:whipped-cream",
+   "day": 3,
+   "stageId": "ultra-miami-2022:worldwide-stage",
+   "start": "15:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:worldwide-stage:1430:hybrid-minds",
+   "artistId": "ultra-miami-2022:hybrid-minds",
+   "day": 3,
+   "stageId": "ultra-miami-2022:worldwide-stage",
+   "start": "14:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:worldwide-stage:1200:metaphysical",
+   "artistId": "ultra-miami-2022:metaphysical",
+   "day": 3,
+   "stageId": "ultra-miami-2022:worldwide-stage",
+   "start": "12:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:the-cove:2030:pan-pot",
+   "artistId": "ultra-miami-2022:pan-pot",
+   "day": 3,
+   "stageId": "ultra-miami-2022:the-cove",
+   "start": "20:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:the-cove:1900:sama-abdulhadi",
+   "artistId": "ultra-miami-2022:sama-abdulhadi",
+   "day": 3,
+   "stageId": "ultra-miami-2022:the-cove",
+   "start": "19:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:the-cove:1730:ilario-alicante",
+   "artistId": "ultra-miami-2022:ilario-alicante",
+   "day": 3,
+   "stageId": "ultra-miami-2022:the-cove",
+   "start": "17:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:the-cove:1630:matador",
+   "artistId": "ultra-miami-2022:matador",
+   "day": 3,
+   "stageId": "ultra-miami-2022:the-cove",
+   "start": "16:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:the-cove:1330:technasia-b3b-hector-b3b-carlo-lio",
+   "artistId": "ultra-miami-2022:technasia-b3b-hector-b3b-carlo-lio",
+   "day": 3,
+   "stageId": "ultra-miami-2022:the-cove",
+   "start": "13:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:the-cove:1200:andy-pate-b2b-rod-b",
+   "artistId": "ultra-miami-2022:andy-pate-b2b-rod-b",
+   "day": 3,
+   "stageId": "ultra-miami-2022:the-cove",
+   "start": "12:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:umf-radio:2100:gammer",
+   "artistId": "ultra-miami-2022:gammer",
+   "day": 3,
+   "stageId": "ultra-miami-2022:umf-radio",
+   "start": "21:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:umf-radio:2000:da-tweekaz",
+   "artistId": "ultra-miami-2022:da-tweekaz",
+   "day": 3,
+   "stageId": "ultra-miami-2022:umf-radio",
+   "start": "20:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:umf-radio:1900:coone-presents-15-yrs-dwx",
+   "artistId": "ultra-miami-2022:coone-presents-15-yrs-dwx",
+   "day": 3,
+   "stageId": "ultra-miami-2022:umf-radio",
+   "start": "19:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:umf-radio:1800:sub-zero-project",
+   "artistId": "ultra-miami-2022:sub-zero-project",
+   "day": 3,
+   "stageId": "ultra-miami-2022:umf-radio",
+   "start": "18:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:umf-radio:1700:ben-nicky-presents-extreme",
+   "artistId": "ultra-miami-2022:ben-nicky-presents-extreme",
+   "day": 3,
+   "stageId": "ultra-miami-2022:umf-radio",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:umf-radio:1600:darren-styles",
+   "artistId": "ultra-miami-2022:darren-styles",
+   "day": 3,
+   "stageId": "ultra-miami-2022:umf-radio",
+   "start": "16:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:umf-radio:1500:audiofreq",
+   "artistId": "ultra-miami-2022:audiofreq",
+   "day": 3,
+   "stageId": "ultra-miami-2022:umf-radio",
+   "start": "15:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:umf-radio:1400:dr-phunk",
+   "artistId": "ultra-miami-2022:dr-phunk",
+   "day": 3,
+   "stageId": "ultra-miami-2022:umf-radio",
+   "start": "14:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:umf-radio:1300:darksiderz",
+   "artistId": "ultra-miami-2022:darksiderz",
+   "day": 3,
+   "stageId": "ultra-miami-2022:umf-radio",
+   "start": "13:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:umf-radio:1200:pulsatorz",
+   "artistId": "ultra-miami-2022:pulsatorz",
+   "day": 3,
+   "stageId": "ultra-miami-2022:umf-radio",
+   "start": "12:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:oasis:2100:boiish",
+   "artistId": "ultra-miami-2022:boiish",
+   "day": 3,
+   "stageId": "ultra-miami-2022:oasis",
+   "start": "21:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:oasis:2000:jean-marie",
+   "artistId": "ultra-miami-2022:jean-marie",
+   "day": 3,
+   "stageId": "ultra-miami-2022:oasis",
+   "start": "20:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:oasis:1900:purple",
+   "artistId": "ultra-miami-2022:purple",
+   "day": 3,
+   "stageId": "ultra-miami-2022:oasis",
+   "start": "19:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:oasis:1800:omar-deaz",
+   "artistId": "ultra-miami-2022:omar-deaz",
+   "day": 3,
+   "stageId": "ultra-miami-2022:oasis",
+   "start": "18:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:oasis:1700:juno",
+   "artistId": "ultra-miami-2022:juno",
+   "day": 3,
+   "stageId": "ultra-miami-2022:oasis",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:oasis:1600:x-con",
+   "artistId": "ultra-miami-2022:x-con",
+   "day": 3,
+   "stageId": "ultra-miami-2022:oasis",
+   "start": "16:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:oasis:1500:proxxy-b2b-bradley-drop",
+   "artistId": "ultra-miami-2022:proxxy-b2b-bradley-drop",
+   "day": 3,
+   "stageId": "ultra-miami-2022:oasis",
+   "start": "15:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:oasis:1400:muzana",
+   "artistId": "ultra-miami-2022:muzana",
+   "day": 3,
+   "stageId": "ultra-miami-2022:oasis",
+   "start": "14:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:oasis:1300:luca-testa",
+   "artistId": "ultra-miami-2022:luca-testa",
+   "day": 3,
+   "stageId": "ultra-miami-2022:oasis",
+   "start": "13:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2022:d3:oasis:1200:ben-spence",
+   "artistId": "ultra-miami-2022:ben-spence",
+   "day": 3,
+   "stageId": "ultra-miami-2022:oasis",
+   "start": "12:00",
+   "end": null,
+   "openEnd": true
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_image_transcription",
+  "official": "https://ultramusicfestival.com/set-times/",
+  "captures": [
+   {
+    "day": 1,
+    "pageArchivedUrl": "https://web.archive.org/web/20220326102446/https://ultramusicfestival.com/set-times/",
+    "pageCapture": "20220326102446",
+    "imageArchivedUrl": "https://web.archive.org/web/20230105164430/https://ultramusicfestival.com/wp-content/uploads/2022/03/UltraMiami_2022_Set_Times_FRI-1600x1000.png",
+    "imageCapture": "20230105164430",
+    "sha256": "27d5717f778514313f3e8a331c02d7ecb4f594f335e776f420eb26cfdb595b49",
+    "reviewManifest": "data/historical/review/ultra-miami-2022.json"
+   },
+   {
+    "day": 2,
+    "pageArchivedUrl": "https://web.archive.org/web/20220326102446/https://ultramusicfestival.com/set-times/",
+    "pageCapture": "20220326102446",
+    "imageArchivedUrl": "https://web.archive.org/web/20220320145000/https://ultramusicfestival.com/wp-content/uploads/2022/03/UltraMiami_2022_Set_Times_SAT-1-1600x1000.png",
+    "imageCapture": "20220320145000",
+    "sha256": "27b6466943ce6bdcd757ae701ac10373936671b168e670fc508c91569fb36e76",
+    "reviewManifest": "data/historical/review/ultra-miami-2022.json"
+   },
+   {
+    "day": 3,
+    "pageArchivedUrl": "https://web.archive.org/web/20220326102446/https://ultramusicfestival.com/set-times/",
+    "pageCapture": "20220326102446",
+    "imageArchivedUrl": "https://web.archive.org/web/20230105164508/https://ultramusicfestival.com/wp-content/uploads/2022/03/UltraMiami_2022_Set_Times_SUN-4-1600x1000.png",
+    "imageCapture": "20230105164508",
+    "sha256": "69ef8152cf197322c295b18ec22c541150ba5f5400a005408390c40f67a4dc85",
+    "reviewManifest": "data/historical/review/ultra-miami-2022.json"
+   }
+  ]
+ }
+}

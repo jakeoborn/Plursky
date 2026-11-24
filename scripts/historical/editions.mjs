@@ -14,6 +14,13 @@ const ACL_WEEKEND_LABELS = ["Weekend 1 · Friday", "Weekend 1 · Saturday", "Wee
   "Weekend 2 · Friday", "Weekend 2 · Saturday", "Weekend 2 · Sunday"];
 
 export const EDITIONS = {
+  // Governors Ball 2024: three official daily grids (official_image_transcription).
+  // The page also embeds one Bud Light Backyard sheet for all three days; it
+  // prints weekdays without dates and starts without ends, so it is not read.
+  "governors-ball-2024": { festivalId: "governors-ball", name: "Governors Ball 2024", year: 2024,
+    timezone: "America/New_York", rolloverHour: 6, method: "official_image_transcription",
+    dates: [["2024-06-07", "Friday"], ["2024-06-08", "Saturday"], ["2024-06-09", "Sunday"]],
+    coverage: { asOf: "2026-11-19", missing: [{ stage: "BUD LIGHT BACKYARD", days: [1, 2, 3], when: "a separate partner sheet that prints weekdays without dates and starts without ends" }] } },
   "governors-ball-2025": { festivalId: "governors-ball", name: "Governors Ball 2025", year: 2025,
     timezone: "America/New_York", rolloverHour: 6, method: "official_image_transcription",
     dates: [["2025-06-06", "Friday"], ["2025-06-07", "Saturday"], ["2025-06-08", "Sunday"]] },
@@ -252,6 +259,71 @@ export const EDITIONS = {
     dates: [["2019-05-31", "Friday"], ["2019-06-01", "Saturday"], ["2019-06-02", "Sunday"]],
     notes: [{ asOf: "2026-11-11", days: [3], text: "Sunday was evacuated for storms. The schedule shown is the revised one the official page printed after the festival, with gates reopening in the evening; acts that were canceled are not listed.",
       source: "https://web.archive.org/web/20190709043321/https://www.governorsballmusicfestival.com/schedule/" }] },
+  "iii-points-2014": { festivalId: "iii-points", name: "III Points 2014", year: 2014,
+    timezone: "America/New_York", rolloverHour: 6, method: "official_image_transcription",
+    dates: [["2014-10-10", "Friday"], ["2014-10-11", "Saturday"], ["2014-10-12", "Sunday"]] },
+  "ultra-miami-2016": { festivalId: "ultra-miami", name: "Ultra Miami 2016", year: 2016,
+    timezone: "America/New_York", rolloverHour: 6, method: "official_image_transcription",
+    dates: [["2016-03-18", "Friday"], ["2016-03-19", "Saturday"], ["2016-03-20", "Sunday"]] },
+  "ultra-miami-2017": { festivalId: "ultra-miami", name: "Ultra Miami 2017", year: 2017,
+    timezone: "America/New_York", rolloverHour: 6, method: "official_image_transcription",
+    dates: [["2017-03-24", "Friday"], ["2017-03-25", "Saturday"], ["2017-03-26", "Sunday"]] },
+  "ultra-miami-2019": { festivalId: "ultra-miami", name: "Ultra Miami 2019", year: 2019,
+    timezone: "America/New_York", rolloverHour: 6, method: "official_image_transcription",
+    dates: [["2019-03-29", "Friday"], ["2019-03-30", "Saturday"], ["2019-03-31", "Sunday"]] },
+  "ultra-miami-2022": { festivalId: "ultra-miami", name: "Ultra Miami 2022", year: 2022,
+    timezone: "America/New_York", rolloverHour: 6, method: "official_image_transcription",
+    dates: [["2022-03-25", "Friday"], ["2022-03-26", "Saturday"], ["2022-03-27", "Sunday"]] },
+  "ultra-miami-2023": { festivalId: "ultra-miami", name: "Ultra Miami 2023", year: 2023,
+    timezone: "America/New_York", rolloverHour: 6, method: "official_image_transcription",
+    dates: [["2023-03-24", "Friday"], ["2023-03-25", "Saturday"], ["2023-03-26", "Sunday"]] },
+  "ultra-miami-2024": { festivalId: "ultra-miami", name: "Ultra Miami 2024", year: 2024,
+    timezone: "America/New_York", rolloverHour: 6, method: "official_image_transcription",
+    dates: [["2024-03-22", "Friday"], ["2024-03-23", "Saturday"], ["2024-03-24", "Sunday"]],
+    notes: [{ asOf: "2026-11-19", days: [1], text: "Friday was stopped early by severe weather (reported by the press at about 9:00 PM; Ultra's own archived pages carry no notice), so the sets printed for 9:00 PM or later on the Friday grid are not listed. Ultra re-issued the Saturday grid as a complete schedule, and it lists several of those Friday acts on Saturday.",
+           source: "https://web.archive.org/web/20240327233123/https://ultramusicfestival.com/set-times/" }] },
+  "ultra-miami-2025": { festivalId: "ultra-miami", name: "Ultra Miami 2025", year: 2025,
+    timezone: "America/New_York", rolloverHour: 6, method: "official_image_transcription",
+    dates: [["2025-03-28", "Friday"], ["2025-03-29", "Saturday"], ["2025-03-30", "Sunday"]] },
+  "lollapalooza-2021": { festivalId: "lollapalooza", name: "Lollapalooza 2021", year: 2021,
+    timezone: "America/Chicago", rolloverHour: 6, method: "official_image_transcription",
+    dates: [["2021-07-29", "Thursday"], ["2021-07-30", "Friday"], ["2021-07-31", "Saturday"], ["2021-08-01", "Sunday"]],
+    notes: [
+      { asOf: "2026-11-19", days: [1], text: "Thursday's times are read off Lollapalooza's own Thursday grid, the image its schedule page embedded.",
+        source: "https://web.archive.org/web/20211205165625/https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/610312d5cdacfba4938a1a9a_LP21-GRID-V15_01-Thurs-01.png" },
+      { asOf: "2026-11-19", days: [2], text: "Friday's times are read off Lollapalooza's own Friday grid, the image its schedule page embedded.",
+        source: "https://web.archive.org/web/20211126225138/https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/61045e1ea63e4eae86ba4e4a_LP21-GRID-V15_02-Fri%20(1).png" },
+      { asOf: "2026-11-19", days: [3], text: "Saturday's times are read off Lollapalooza's own Saturday grid, the image its schedule page embedded.",
+        source: "https://web.archive.org/web/20211205182449/https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/6105b66e2f3ee98b2039445a_LP21-GRID-V15_03-Sat%20(2).png" },
+      { asOf: "2026-11-19", days: [4], text: "Sunday's times are read off Lollapalooza's own Sunday grid, the image its schedule page embedded.",
+        source: "https://web.archive.org/web/20210730010655/https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/61001c57066f2e518d546704_LP21-GRID-V12_04-Sun.png" }] },
+  "lollapalooza-2022": { festivalId: "lollapalooza", name: "Lollapalooza 2022", year: 2022,
+    timezone: "America/Chicago", rolloverHour: 6, method: "official_image_transcription",
+    dates: [["2022-07-28", "Thursday"], ["2022-07-29", "Friday"], ["2022-07-30", "Saturday"], ["2022-07-31", "Sunday"]],
+    notes: [
+      { asOf: "2026-11-19", days: [1], text: "Thursday's times are read off Lollapalooza's own Thursday grid, the image its schedule page embedded.",
+        source: "https://web.archive.org/web/20221215005501/https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/62e2a47ad6dca96b7b20ba94_LOL22-Grid-0728-THURSDAY_Web-Opt-1080x1350.jpg" },
+      { asOf: "2026-11-19", days: [2], text: "Friday's times are read off Lollapalooza's own Friday grid, the image its schedule page embedded.",
+        source: "https://web.archive.org/web/20221215005547/https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/62e41b0c6c8bceee87e0789f_LOL22-Grid-0727-FRIDAY_Post.png" },
+      { asOf: "2026-11-19", days: [3], text: "Saturday's times are read off Lollapalooza's own Saturday grid, the image its schedule page embedded.",
+        source: "https://web.archive.org/web/20221215005549/https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/62e4421385270ae9ea26b826_LOL22-Grid-0729_Sat-1350X1080.png" },
+      { asOf: "2026-11-19", days: [4], text: "Sunday's times are read off Lollapalooza's own Sunday grid, the image its schedule page embedded.",
+        source: "https://web.archive.org/web/20221215005549/https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/62e6e4c4d40fd8519539c8e0_LOL22-Grid-0731SUN_1350X1080.png" }] },
+  "lollapalooza-2023": { festivalId: "lollapalooza", name: "Lollapalooza 2023", year: 2023,
+    timezone: "America/Chicago", rolloverHour: 6, method: "official_image_transcription",
+    dates: [["2023-08-03", "Thursday"], ["2023-08-04", "Friday"], ["2023-08-05", "Saturday"], ["2023-08-06", "Sunday"]],
+    notes: [
+      { asOf: "2026-11-19", days: [1], text: "Thursday's times are read off Lollapalooza's own Thursday grid, the image its schedule page embedded.",
+        source: "https://web.archive.org/web/20231003154901/https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/64c7e7bcf81b3f4e9dfa2c8a_L23_Grid-07.28_Aug3.png" },
+      { asOf: "2026-11-19", days: [2], text: "Friday's times are read off Lollapalooza's own Friday grid, the image its schedule page embedded.",
+        source: "https://web.archive.org/web/20231003154913/https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/64c7e7c8bfd0c5d5d677a526_L23_Grid-07.28_Aug4.png" },
+      { asOf: "2026-11-19", days: [3], text: "Saturday's times are read off Lollapalooza's own Saturday grid, the image its schedule page embedded.",
+        source: "https://web.archive.org/web/20231003155734/https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/64c7e7da3d44c9e295350142_L23_Grid-07.28_Aug5.png" },
+      { asOf: "2026-11-19", days: [4], text: "Sunday's times are read off Lollapalooza's own Sunday grid, the image its schedule page embedded.",
+        source: "https://web.archive.org/web/20231003161151/https://assets-global.website-files.com/5e927ba01e4ad56ae5465eb8/64cbc3a0dc2e7500c4aaea70_L23_Grid-08.01_Aug6-1080x1350.png" }] },
+  "lollapalooza-2024": { festivalId: "lollapalooza", name: "Lollapalooza 2024", year: 2024,
+    timezone: "America/Chicago", rolloverHour: 6, method: "official_image_transcription",
+    dates: [["2024-08-01", "Thursday"], ["2024-08-02", "Friday"], ["2024-08-03", "Saturday"], ["2024-08-04", "Sunday"]] },
   "lollapalooza-2025": { festivalId: "lollapalooza", name: "Lollapalooza 2025", year: 2025,
     timezone: "America/Chicago", rolloverHour: 6, method: "official_image_transcription",
     dates: [["2025-07-31", "Thursday"], ["2025-08-01", "Friday"], ["2025-08-02", "Saturday"], ["2025-08-03", "Sunday"]] },
@@ -459,6 +531,53 @@ export const EDITIONS = {
     timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
     dates: [["2017-04-14", "Friday"], ["2017-04-15", "Saturday"], ["2017-04-16", "Sunday"], ["2017-04-21", "Friday"], ["2017-04-22", "Saturday"], ["2017-04-23", "Sunday"]],
     dayLabels: ACL_WEEKEND_LABELS },
+  // 2010: one official set-times graphic per day on coachella.com/event/set-times
+  // (coachella.com/images/2010fri.jpg …). Each graphic prints its day and date.
+  // Five stages; one weekend.
+  "coachella-2010": { festivalId: "coachella", name: "Coachella 2010", year: 2010,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_image_transcription",
+    dates: [["2010-04-16", "Friday"], ["2010-04-17", "Saturday"], ["2010-04-18", "Sunday"]] },
+  // 2011: one official set-times graphic per day on coachella.com/event/set-times
+  // (coachella.com/images/ie6/800fri.jpg …). Six stages with the Oasis Dome; one
+  // weekend. The graphics print no date; the official poster does. Do LaB and
+  // the Heineken Dome were page text, not a graphic, and are not read.
+  "coachella-2011": { festivalId: "coachella", name: "Coachella 2011", year: 2011,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_image_transcription",
+    dates: [["2011-04-15", "Friday"], ["2011-04-16", "Saturday"], ["2011-04-17", "Sunday"]] },
+  // 2022: one official set-times graphic per day on coachella.com/schedule
+  // (media-prd.coachella.com), Weekend 1 then Weekend 2. Seven stages; Do
+  // LaB is not on the grids.
+  "coachella-2022": { festivalId: "coachella", name: "Coachella 2022", year: 2022,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_image_transcription",
+    dates: [["2022-04-15", "Friday"], ["2022-04-16", "Saturday"], ["2022-04-17", "Sunday"], ["2022-04-22", "Friday"], ["2022-04-23", "Saturday"], ["2022-04-24", "Sunday"]],
+    dayLabels: ACL_WEEKEND_LABELS },
+  // 2023: one official set-times graphic per day on coachella.com/schedule
+  // (coachella.com/coachella-2023/images/), Weekend 1 then Weekend 2. Seven
+  // stages; Do LaB and Despacio ("all weekend long") carry no timed grid.
+  "coachella-2023": { festivalId: "coachella", name: "Coachella 2023", year: 2023,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_image_transcription",
+    dates: [["2023-04-14", "Friday"], ["2023-04-15", "Saturday"], ["2023-04-16", "Sunday"], ["2023-04-21", "Friday"], ["2023-04-22", "Saturday"], ["2023-04-23", "Sunday"]],
+    dayLabels: ACL_WEEKEND_LABELS },
+  // 2024: one official set-times graphic per day on coachella.com/schedule
+  // (media-prd.coachella.com), Weekend 1 then Weekend 2. Eight stages: Quasar
+  // joins the seven.
+  "coachella-2024": { festivalId: "coachella", name: "Coachella 2024", year: 2024,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_image_transcription",
+    dates: [["2024-04-12", "Friday"], ["2024-04-13", "Saturday"], ["2024-04-14", "Sunday"], ["2024-04-19", "Friday"], ["2024-04-20", "Saturday"], ["2024-04-21", "Sunday"]],
+    dayLabels: ACL_WEEKEND_LABELS },
+  // 2025: one official set-times graphic per day, embedded by
+  // coachella.com/schedule from AEG's blob store (aegwebprod, folder
+  // content/coachella2025/), Weekend 1 then Weekend 2. Eight stages, as in 2024.
+  "coachella-2025": { festivalId: "coachella", name: "Coachella 2025", year: 2025,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_image_transcription",
+    dates: [["2025-04-11", "Friday"], ["2025-04-12", "Saturday"], ["2025-04-13", "Sunday"], ["2025-04-18", "Friday"], ["2025-04-19", "Saturday"], ["2025-04-20", "Sunday"]],
+    dayLabels: ACL_WEEKEND_LABELS },
+  // 2026: as 2025, folder content/coachella-2026/. The lineup check reads
+  // the lineup app coachella.com/lineup embeds (check-insomniac-lineup.mjs).
+  "coachella-2026": { festivalId: "coachella", name: "Coachella 2026", year: 2026,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_image_transcription",
+    dates: [["2026-04-10", "Friday"], ["2026-04-11", "Saturday"], ["2026-04-12", "Sunday"], ["2026-04-17", "Friday"], ["2026-04-18", "Saturday"], ["2026-04-19", "Sunday"]],
+    dayLabels: ACL_WEEKEND_LABELS },
   // Tomorrowland 2013-2016: the official tomorrowland.com day timetables (a
   // Drupal page per day, format "tml-drupal", tml-drupal-schedule.mjs), each
   // captured after the festival. The page names each stage by its host that
@@ -629,7 +748,7 @@ export const EDITIONS = {
     timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
     dates: [["2018-08-04", "Saturday"], ["2018-08-05", "Sunday"]] },
   "hard-summer-2019": { festivalId: "hard-summer", name: "HARD Summer 2019", year: 2019,
-    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
     dates: [["2019-08-03", "Saturday"], ["2019-08-04", "Sunday"]] },
   "hard-summer-2022": { festivalId: "hard-summer", name: "HARD Summer 2022", year: 2022,
     timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
@@ -638,10 +757,10 @@ export const EDITIONS = {
     timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
     dates: [["2023-08-05", "Saturday"], ["2023-08-06", "Sunday"]] },
   "hard-summer-2024": { festivalId: "hard-summer", name: "HARD Summer 2024", year: 2024,
-    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
     dates: [["2024-08-03", "Saturday"], ["2024-08-04", "Sunday"]] },
   "escape-halloween-2023": { festivalId: "escape-halloween", name: "Escape Halloween 2023", year: 2023,
-    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
     dates: [["2023-10-27", "Friday"], ["2023-10-28", "Saturday"]] },
   "edc-las-vegas-2019": { festivalId: "edc-lv", name: "EDC Las Vegas 2019", year: 2019,
     timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
@@ -650,17 +769,14 @@ export const EDITIONS = {
     timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
     dates: [["2021-10-22", "Friday"], ["2021-10-23", "Saturday"], ["2021-10-24", "Sunday"]] },
   "edc-las-vegas-2023": { festivalId: "edc-lv", name: "EDC Las Vegas 2023", year: 2023,
-    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
     dates: [["2023-05-19", "Friday"], ["2023-05-20", "Saturday"], ["2023-05-21", "Sunday"]] },
   "edc-orlando-2015": { festivalId: "edc-orlando", name: "EDC Orlando 2015", year: 2015,
     timezone: "America/New_York", rolloverHour: 6, method: "official_lineup_html",
     dates: [["2015-11-06", "Friday"], ["2015-11-07", "Saturday"]] },
-  // `undated`: the lineup page printed no days (extract-insomniac-lineup.mjs).
   "edc-orlando-2016": { festivalId: "edc-orlando", name: "EDC Orlando 2016", year: 2016,
-    timezone: "America/New_York", rolloverHour: 6, method: "official_lineup_html", undated: true,
-    dates: [["2016-11-04", "Friday"], ["2016-11-05", "Saturday"]],
-    notes: [{ asOf: "2026-11-11", text: "The official lineup page listed the artists alphabetically and printed no days, so no artist here has a day.",
-      source: "https://web.archive.org/web/20161204183828/https://orlando.electricdaisycarnival.com/experience/lineup/" }] },
+    timezone: "America/New_York", rolloverHour: 6, method: "official_sources",
+    dates: [["2016-11-04", "Friday"], ["2016-11-05", "Saturday"]] },
   // EDC Las Vegas 2012-2013: the festival's own music page (format
   // "insomniac-music", insomniac-music-schedule.mjs), one archived page per
   // year that prints every day by stage, captured after the festival. Each
@@ -674,15 +790,11 @@ export const EDITIONS = {
     timezone: "America/Los_Angeles", rolloverHour: 12, method: "official_sources",
     dates: [["2013-06-21", "Friday"], ["2013-06-22", "Saturday"], ["2013-06-23", "Sunday"]] },
   "edc-las-vegas-2016": { festivalId: "edc-lv", name: "EDC Las Vegas 2016", year: 2016,
-    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html", undated: true,
-    dates: [["2016-06-17", "Friday"], ["2016-06-18", "Saturday"], ["2016-06-19", "Sunday"]],
-    notes: [{ asOf: "2026-11-11", text: "The official lineup page listed the artists alphabetically and printed no days, so no artist here has a day.",
-      source: "https://web.archive.org/web/20161031113516/https://lasvegas.electricdaisycarnival.com/experience/lineup/" }] },
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
+    dates: [["2016-06-17", "Friday"], ["2016-06-18", "Saturday"], ["2016-06-19", "Sunday"]] },
   "edc-las-vegas-2017": { festivalId: "edc-lv", name: "EDC Las Vegas 2017", year: 2017,
-    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html", undated: true,
-    dates: [["2017-06-16", "Friday"], ["2017-06-17", "Saturday"], ["2017-06-18", "Sunday"]],
-    notes: [{ asOf: "2026-11-11", text: "The official lineup page listed the artists alphabetically and printed no days, so no artist here has a day.",
-      source: "https://web.archive.org/web/20170701091308/https://lasvegas.electricdaisycarnival.com/experience/lineup/" }] },
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
+    dates: [["2017-06-16", "Friday"], ["2017-06-17", "Saturday"], ["2017-06-18", "Sunday"]] },
   "edc-orlando-2018": { festivalId: "edc-orlando", name: "EDC Orlando 2018", year: 2018,
     timezone: "America/New_York", rolloverHour: 6, method: "official_lineup_html",
     dates: [["2018-11-09", "Friday"], ["2018-11-10", "Saturday"]] },
@@ -692,6 +804,18 @@ export const EDITIONS = {
   "beyond-wonderland-socal-2019": { festivalId: "beyond-wonderland-socal", name: "Beyond Wonderland SoCal 2019", year: 2019,
     timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
     dates: [["2019-03-22", "Friday"], ["2019-03-23", "Saturday"]] },
+  "countdown-nye-2015": { festivalId: "countdown-nye", name: "Countdown NYE 2015", year: 2015,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
+    dates: [["2015-12-31", "Thursday"]] },
+  "countdown-nye-2016": { festivalId: "countdown-nye", name: "Countdown NYE 2016", year: 2016,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
+    dates: [["2016-12-30", "Friday"], ["2016-12-31", "Saturday"]] },
+  "countdown-nye-2019": { festivalId: "countdown-nye", name: "Countdown NYE 2019", year: 2019,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
+    dates: [["2019-12-31", "Tuesday"]] },
+  "countdown-nye-2024": { festivalId: "countdown-nye", name: "Countdown NYE 2024", year: 2024,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
+    dates: [["2024-12-31", "Tuesday"]] },
   "countdown-nye-2022": { festivalId: "countdown-nye", name: "Countdown NYE 2022", year: 2022,
     timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
     dates: [["2022-12-30", "Friday"], ["2022-12-31", "Saturday"]] },
@@ -708,7 +832,7 @@ export const EDITIONS = {
     timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
     dates: [["2016-09-02", "Friday"], ["2016-09-03", "Saturday"], ["2016-09-04", "Sunday"]] },
   "beyond-wonderland-socal-2016": { festivalId: "beyond-wonderland-socal", name: "Beyond Wonderland SoCal 2016", year: 2016,
-    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_sources",
     dates: [["2016-03-18", "Friday"], ["2016-03-19", "Saturday"]] },
   "nocturnal-wonderland-2011": { festivalId: "nocturnal-wonderland", name: "Nocturnal Wonderland 2011", year: 2011,
     timezone: "America/Los_Angeles", rolloverHour: 6, method: "structured_html",
@@ -755,6 +879,12 @@ export const DROP_RULES = [
   { category: "show-segment", stage: /^kinetic ?field$/i,
     test: /^(intermezzo\b.*|kinetic (experience|celebration|bloom)\b.*|(natural|kinetic|industrial|spiritual) energy|grow|blossom|pollinate|closing)$/i,
     reason: "Kinetic Field show segment (an interlude, ceremony or fireworks printed between sets), not a billed performance" },
+  // Ultra Miami 2016 and 2017 printed the Arcadia Spider stage show as a
+  // timed row each day ("ARCADIA LANDING SHOW", 8:25 PM or 8:30 PM) on the
+  // RESISTANCE (2016) and ARCADIA THE SPIDER (2017) stage. Scoped to that
+  // exact billing on those two stages.
+  { category: "show-segment", stage: /^(resistance|arcadia the spider)$/i, test: /^arcadia landing show$/i,
+    reason: "Arcadia stage show printed between sets, not a billed performance" },
   // Electric Forest 2013 printed contest slots before their winners were
   // named ("Discovery Project Winner") and a "Secret Set".
   { category: "unnamed-slot", test: /^(special guest|surprise guest|secret guest|secret set|tba|tbd|to be announced|coming soon!*|discovery project winners?|mystery headliner)$/i,
@@ -810,6 +940,9 @@ export const PRINTED_LONG_SETS = {
   // Skream & Friends closing the AMP, 12:30 AM to 9:00 AM (510 minutes), on
   // Shambhala's Saturday 2025 set-times page.
   "shambhala-2025": ["Skream & Friends (Ft. Sgt. Pokes, Coki, Distinct Motive & more.......)|00:30|09:00"],
+  // Two art cars hosted all night, 7:00 PM to 5:30 AM (630 minutes), on EDC
+  // Las Vegas 2017's Friday set-times tab (capture 20170620151156).
+  "edc-las-vegas-2017": ["Desert Hearts|19:00|05:30", "Brownies & Lemonade|19:00|05:30"],
 };
 // Billings whose non-Latin letters are the artist's own styling, as the
 // festival's structured page printed them (not OCR). Each one was read on
@@ -825,6 +958,9 @@ export const PRINTED_NON_LATIN = {
   // The same lambda on Tomorrowland's own day timetables.
   "tomorrowland-2015": ["Axwell Λ Ingrosso"],
   "tomorrowland-2016": ["Axwell Λ Ingrosso"],
+  // The same lambda on Ultra's own 2017 set-times graphic, read by eye
+  // (review/ultra-miami-2017.json).
+  "ultra-miami-2017": ["AXWELL Λ INGROSSO"],
   // The same lambda on Governors Ball's own 2014 lineup-site grid.
   "governors-ball-2014": ["Axwell Λ Ingrosso"],
   // The trio's own Greek lambda, as Coachella's 2012 lineup page prints it.

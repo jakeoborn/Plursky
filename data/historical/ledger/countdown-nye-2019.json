@@ -1,0 +1,44 @@
+{
+  "id": "countdown-nye-2019",
+  "method": "official_sources",
+  "official": "https://countdownnye.com/lineup/settimes/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2019-12-31",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://countdownnye.com/lineup/settimes/",
+          "archivedUrl": "https://web.archive.org/web/20200512034801/https://countdownnye.com/lineup/settimes/",
+          "captureTimestamp": "20200512034801",
+          "printed": "Tuesday, December 31",
+          "sha256": "09e93fbc1f0391f4f77a3697c43e9fc378290e2de48f3c9f0eb7286c13f27aeb",
+          "bytes": 306534,
+          "rows": 51
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": [
+    {
+      "day": 1,
+      "stage": "Area 151",
+      "start": "22:20",
+      "end": "23:30",
+      "billing": "Special Guest",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    },
+    {
+      "day": 1,
+      "stage": "Area 151",
+      "start": "23:30",
+      "end": "01:00",
+      "billing": "Special Guest",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    }
+  ]
+}
