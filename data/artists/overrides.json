@@ -7309,6 +7309,30 @@
    "setTag": "DJ Set",
    "why": "The printing names the MC as \"MC <name>\" (or \"<name> MC\"): the DJ is the performer and the MC is credited as MC on the same set. \"(DJ Set)\" is the set tag.",
    "source": "http://lasvegas.electricdaisycarnival.com/experience/set-times/"
+  },
+  {
+   "printed": "Lost Frequencie (Sunset Set)",
+   "performers": [
+    {
+     "name": "Lost Frequencies",
+     "role": "performer"
+    }
+   ],
+   "setTag": "Sunset Set",
+   "why": "EDC Mexico 2027's official lineup page misspells the act as \"Lost Frequencie\" (same page, both its A–Z and Sunday lists). It is Lost Frequencies, billed at the 2026 and 2027 Tomorrowland Winter editions under the full name. \"(Sunset Set)\" is the set tag.",
+   "source": "https://mexico.edc.com/en/lineup/"
+  },
+  {
+   "printed": "Secret Echoes \"Live\"",
+   "performers": [
+    {
+     "name": "Secret Echoes",
+     "role": "performer"
+    }
+   ],
+   "setTag": "Live",
+   "why": "The page prints the set tag in quotes instead of parentheses (\"Live\"). The act is Secret Echoes and \"Live\" is the set tag, not part of the name.",
+   "source": "https://mexico.edc.com/en/lineup/"
   }
  ],
  "pending": [
@@ -8247,6 +8271,14 @@
   {
    "key": "awe",
    "why": "Short name billed at more than one festival brand: no first-party link yet shows they are the same act. The billings render separately until one does."
+  },
+  {
+   "printed": "John Askew + Simon Patterson",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+  },
+  {
+   "printed": "Maho + Alzada",
+   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
   }
  ]
 }

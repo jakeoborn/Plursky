@@ -98,6 +98,20 @@
   "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
  },
  {
+  "id": "edc-mexico-2027:edcmx27-john-askew-simon-patterson",
+  "printed": "John Askew + Simon Patterson",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
+  "id": "edc-mexico-2027:edcmx27-maho-alzada",
+  "printed": "Maho + Alzada",
+  "reason": "\"+\" billing",
+  "pending": true,
+  "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."
+ },
+ {
   "id": "acl-2012:d1:bud-light:1830:florence-the-machine",
   "printed": "Florence + The Machine",
   "reason": "\"+\" billing",
