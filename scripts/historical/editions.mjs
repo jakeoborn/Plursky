@@ -616,6 +616,12 @@ export const EDITIONS = {
     dayLabels: ACL_WEEKEND_LABELS,
     notes: [{ asOf: "2026-11-19", text: "The lineup as the festival's own page printed it on 13 May 2024, two months before the festival. Late changes after that day are not shown.",
       source: "https://web.archive.org/web/20240513185007/https://www.tomorrowland.com/en/festival/line-up/stages/friday-19-july-2024" }] },
+  // Time Warp Germany 2022: the autumn "Two Days | Two Stages" edition (the
+  // April date was called off for COVID). Its own /22/lineup page lists each
+  // night A-Z with no stage per act (extract-timewarp-lineup.mjs).
+  "time-warp-2022": { festivalId: "time-warp", name: "Time Warp Germany 2022", year: 2022,
+    timezone: "Europe/Berlin", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2022-10-28", "Friday"], ["2022-10-29", "Saturday"]] },
   "tomorrowland-2023": { festivalId: "tomorrowland", name: "Tomorrowland 2023", year: 2023,
     timezone: "Europe/Brussels", rolloverHour: 6, method: "official_sources", dates: [["2023-07-21", "Friday"], ["2023-07-22", "Saturday"], ["2023-07-23", "Sunday"], ["2023-07-28", "Friday"], ["2023-07-29", "Saturday"], ["2023-07-30", "Sunday"]],
     dayLabels: ACL_WEEKEND_LABELS },

@@ -44,6 +44,7 @@ import { parseSonarSchedule } from "./historical/sonar-schedule.mjs";
 import { parseSzigetDays, tabDate as szigetDate } from "./historical/sziget-days-schedule.mjs";
 import { parseDefqonAreas, headerDate as defqonDate } from "./historical/defqon-schedule.mjs";
 import { parseTomorrowlandLineup } from "./historical/tomorrowland-lineup.mjs";
+import { parseTimeWarpLineup, headerDates as twHeaderDates } from "./historical/timewarp-lineup.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const H = p => join(ROOT, "data/historical", p);
@@ -147,6 +148,14 @@ if (base && edc) {
     mustFail("an EDC page dated by neither its title nor its description", m => { imCap(m).yearFrom = "the capture's timestamp"; }, edc12);
     mustFail("an EDC page that never names Las Vegas", m => { imCap(m).place = "the URL"; }, edc12);
     mustFail("an EDC page on another city's subdomain", m => { const c = imCap(m); c.archivedUrl = c.archivedUrl.replace("//electricdaisycarnival.com/", "//orlando.electricdaisycarnival.com/"); }, edc12);
+  }
+  // Time Warp 2022: its lineup survives only in a Feb 2023 capture of the
+  // edition's own /22/ address; no other address or later year may pass.
+  const tw22 = editions["time-warp-2022"];
+  if (tw22) {
+    const twCap = m => m.provenance.captures[0];
+    mustFail("a Time Warp 2022 lineup read off the 2023 edition's address", m => { const c = twCap(m); c.archivedUrl = c.archivedUrl.replace("/22/lineup", "/23/lineup"); }, tw22, () => {}, /is not from 2022/);
+    mustFail("a Time Warp 2022 lineup captured two years on", m => { const c = twCap(m); c.archivedUrl = c.archivedUrl.replace("/web/2023", "/web/2024"); c.captureTimestamp = c.captureTimestamp.replace(/^2023/, "2024"); }, tw22, () => {}, /is not from 2022/);
   }
   // Tomorrowland 2010-2012: each day page prints its day as its own tab, with
   // no year, on the festival's own .be site.
@@ -976,6 +985,28 @@ if (base && edc) {
     tlMust("a Tomorrowland act with no name", tlPage({ days: [tlDay("Friday 19 July 2024", [tlStage("Mainstage", [tlA("x", " ")])])] }));
     tlMust("a Tomorrowland page with no Artists tab", tlPage().replace('lineup__page--artists', 'lineup__page--other'));
     tlMust("a Tomorrowland page with no Stages tab", tlPage().replace('<div class="eventdays">', '<div class="days">'));
+    // Time Warp's edition sub-site: a hidden header naming the edition and its
+    // nights, then one A-Z list per night, a live set marked by a span.
+    const twAct = (name, live = false) => `<li class="js-overlay-item"><a class="clearing" href="#"><span class="ix-header"><h3>${name}${live ? '<span class="artist-live">Live</span>' : ""}</h3></span></a></li>`;
+    const twList = (n, heading, acts) => `<h2 id="e${n}"> ${heading}<br></h2><section class="index"><ul data-id="e${n + 1}" class="ix-lineup js-overlay" data-slide-length="${acts.length}">${acts.join("")}</ul></section>`;
+    const twLists = [twList(1, "Friday A-Z", [twAct("Amelie Lens"), twAct("Reinier Zonneveld", true)]), twList(3, "Saturday A-Z", [twAct("K&ouml;lsch"), twAct("Sven Väth")])];
+    const twPage = ({ head = '<h1>Germany 22</h1><h2>28. + 29. October 2022 | Mannheim</h2>', lists = twLists } = {}) =>
+      `<title> Lineup 2022 </title><div class="hgroup" style="display: none;">${head}</div><div class="content">${lists.join("")}</div>`;
+    const twp = parseTimeWarpLineup(twPage(), { year: 2022 });
+    ok(JSON.stringify([twp.title, twp.edition, twp.city, twp.days.map(d => [d.date, d.label, d.acts])])
+      === JSON.stringify(["Lineup 2022", "Germany 22", "Mannheim", [["2022-10-28", "Friday 28 October 2022", ["Amelie Lens", "Reinier Zonneveld (Live)"]], ["2022-10-29", "Saturday 29 October 2022", ["Kölsch", "Sven Väth"]]]]),
+      `a Time Warp lineup page must come back as its header's nights, each with its acts, a live set billed "(Live)": ${JSON.stringify(twp)}`);
+    ok(JSON.stringify(twHeaderDates("1. April 2023", 2023)) === JSON.stringify(["2023-04-01"]) && twHeaderDates("31. + 32. October 2022", 2022) === null,
+      "Time Warp header dates must be real dates");
+    const twMust = (what, html, year = 2022) => { let bad = false; try { parseTimeWarpLineup(html, { year }); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    twMust("a Time Warp 2022 page read as another year's", twPage(), 2023);
+    twMust("a Time Warp page with no edition header", twPage({ head: "<h1>Lineup</h1>" }));
+    twMust("a Time Warp header naming another edition", twPage({ head: '<h1>Germany 23</h1><h2>28. + 29. October 2022 | Mannheim</h2>' }));
+    twMust("a Time Warp header date that is not a date", twPage({ head: '<h1>Germany 22</h1><h2>28. + 32. October 2022 | Mannheim</h2>' }));
+    twMust("a Time Warp page with fewer lists than nights", twPage({ lists: [twLists[0]] }));
+    twMust("a Time Warp list headed with the wrong weekday", twPage({ lists: [twLists[1], twLists[0]] }));
+    twMust("a Time Warp act with no name", twPage({ lists: [twList(1, "Friday A-Z", [twAct(" ")]), twLists[1]] }));
+    twMust("a Time Warp act listed twice on one night", twPage({ lists: [twList(1, "Friday A-Z", [twAct("Perel"), twAct("Perel")]), twLists[1]] }));
     // Outside Lands' 2022-2025 lineup widget: its script sets the options on
     // one line of JSON; each artist lists its performances, a shared set (a
     // b2b) under each artist with the same id, every time with its offset.

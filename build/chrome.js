@@ -1720,20 +1720,35 @@ function recordAttendanceFromGps(lat, lng, opts) {
   var added = markAttended(hit.night, hit.artistId, "gps");
   return added ? hit : null;
 }
-var SET_TRACK_PREF_KEY = "plursky_set_tracking_v1";
+var SET_TRACK_PREF_KEY = "plursky_set_tracking_v2";
+var SET_TRACK_PREF_V1_KEY = "plursky_set_tracking_v1";
 var SET_TRACK_STORE_KEY = "plursky_set_intervals_v1";
 var SET_TRACK_EVENT = "plursky-set-tracking-change";
-function getSetTracking() {
-  try {
-    var v = localStorage.getItem(SET_TRACK_PREF_KEY);
-    return v === "on" || v === "off" ? v : null;
-  } catch {
-    return null;
-  }
+function _setTrackActiveId() {
+  return window.FESTIVAL_CONFIG && window.FESTIVAL_CONFIG.id || null;
 }
-function setSetTracking(on) {
+function _readSetTrackPrefs() {
+  var prefs = {};
   try {
-    localStorage.setItem(SET_TRACK_PREF_KEY, on ? "on" : "off");
+    var p = JSON.parse(localStorage.getItem(SET_TRACK_PREF_KEY) || "{}");
+    if (p && typeof p === "object" && !Array.isArray(p)) prefs = p;
+  } catch {}
+  try {
+    if (localStorage.getItem(SET_TRACK_PREF_V1_KEY) != null) localStorage.removeItem(SET_TRACK_PREF_V1_KEY);
+  } catch {}
+  return prefs;
+}
+function getSetTracking(festivalId = _setTrackActiveId()) {
+  if (!festivalId) return null;
+  var v = _readSetTrackPrefs()[festivalId];
+  return v === "on" || v === "off" ? v : null;
+}
+function setSetTracking(on, festivalId = _setTrackActiveId()) {
+  if (!festivalId) return;
+  var prefs = _readSetTrackPrefs();
+  prefs[festivalId] = on ? "on" : "off";
+  try {
+    localStorage.setItem(SET_TRACK_PREF_KEY, JSON.stringify(prefs));
   } catch {}
   try {
     window.dispatchEvent(new CustomEvent(SET_TRACK_EVENT));
@@ -2202,7 +2217,7 @@ function SetTrackingWatcher() {
   }, []);
   var cfg = window.FESTIVAL_CONFIG;
   var fid = cfg && cfg.id;
-  var pref = getSetTracking() === "on";
+  var pref = !!fid && getSetTracking(fid) === "on";
   var visible = document.visibilityState !== "hidden";
   var elig = setTrackEligibility(cfg, Date.now());
   React.useEffect(() => {
@@ -2238,7 +2253,7 @@ function SetTrackingWatcher() {
       clearInterval(t);
     };
   }, [native, visible, pref, fid, elig, bsActive]);
-  var run = getSetTracking() === "on" && document.visibilityState !== "hidden" && setTrackEligibility(cfg, Date.now()) === "live" && !(native && _setTrackNativeOn);
+  var run = !!fid && getSetTracking(fid) === "on" && document.visibilityState !== "hidden" && setTrackEligibility(cfg, Date.now()) === "live" && !(native && _setTrackNativeOn);
   React.useEffect(() => {
     if (!run || !navigator.geolocation) return;
     var anchors = attendEvidenceAnchors(cfg);
@@ -3663,7 +3678,7 @@ function SetTrackingCard() {
   }, []);
   var cfg = window.FESTIVAL_CONFIG;
   var name = cfg && (cfg.shortName || cfg.name) || "this festival";
-  var on = getSetTracking() === "on";
+  var on = !!cfg && getSetTracking(cfg.id) === "on";
   var elig = setTrackEligibility(cfg, Date.now());
   var hasData = !!(cfg && (Object.keys(getSetTrackIntervals(cfg.id)).length || Object.keys(getSetTapPoints(cfg.id)).length));
   var canReview = !!(cfg && setReviewRows(cfg).length);
@@ -3696,7 +3711,7 @@ function SetTrackingCard() {
   var native = !!_setTrackNative();
   var anyData = native && _setTrackHasAny();
   var [confirmDelete, setConfirmDelete] = React.useState(false);
-  var status = elig === "no-stages" ? canCalibrate ? `${name}'s stages aren't measured yet. Calibrate them on site (${calib.done} of ${calib.needed} done) and sets can be timed on this phone.` : `${name}'s stages aren't measured yet, so sets can't be timed here.` : !on ? "Off. Plursky can note how long you stay at a stage during a set, to tell a full set from part of one." : elig === "ended" ? `On. ${name} is over, so nothing is counting.` : native ? elig === "live" ? _setTrackNativeOn ? "On. Counts during sets, even with the screen locked. iOS shows the location arrow while it runs." : "On. Counting while Plursky is open. Once set hours start, it keeps counting with the screen locked." : `On. On ${name}'s festival days, open Plursky once and it counts during sets, even with the screen locked.` : elig === "live" ? "On. Counting while Plursky is open. Lock the screen and the count pauses." : `On. It starts on ${name}'s festival days, and counts only while Plursky is open.`;
+  var status = elig === "no-stages" ? canCalibrate ? `${name}'s stages aren't measured yet. Calibrate them on site (${calib.done} of ${calib.needed} done) and sets can be timed on this phone.` : `${name}'s stages aren't measured yet, so sets can't be timed here.` : !on ? `Off for ${name}. Plursky can note how long you stay at a stage during a set, to tell a full set from part of one.` : elig === "ended" ? `On for ${name}. ${name} is over, so nothing is counting.` : native ? elig === "live" ? _setTrackNativeOn ? `On for ${name}. Counts during sets, even with the screen locked. iOS shows the location arrow while it runs.` : `On for ${name}. Counting while Plursky is open. Once set hours start, it keeps counting with the screen locked.` : `On for ${name}. On ${name}'s festival days, open Plursky once and it counts during sets, even with the screen locked.` : elig === "live" ? `On for ${name}. Counting while Plursky is open. Lock the screen and the count pauses.` : `On for ${name}. It starts on ${name}'s festival days, and counts only while Plursky is open.`;
   return React.createElement("div", {
     "data-set-tracking-card": true,
     "data-set-tracking-state": on ? "on" : "off",
@@ -3746,7 +3761,7 @@ function SetTrackingCard() {
     style: {
       color: "var(--ink)"
     }
-  }, "Your exact location:"), " kept on this phone only until Plursky turns it into stage times, then deleted.", React.createElement("br", null), "Never sent to Plursky or anyone else. Your own iPhone backup can include the stage times.", React.createElement("br", null), "It counts during set hours on festival days, screen locked too, once you've opened Plursky that day. iOS shows the location arrow while it runs. Turn it off here any time.") : React.createElement("div", {
+  }, "Your exact location:"), " kept on this phone only until Plursky turns it into stage times, then deleted.", React.createElement("br", null), "Never sent to Plursky or anyone else. Your own iPhone backup can include the stage times.", React.createElement("br", null), "This is for ", name, " only; another festival asks again. It counts during set hours on festival days, screen locked too, once you've opened Plursky that day. iOS shows the location arrow while it runs. Turn it off here any time.") : React.createElement("div", {
     style: body
   }, React.createElement("b", {
     style: {
@@ -3756,7 +3771,7 @@ function SetTrackingCard() {
     style: {
       color: "var(--ink)"
     }
-  }, "Not recorded:"), " your exact location. Nothing leaves this phone.", React.createElement("br", null), "It counts only while Plursky is open, and you can turn it off here any time."), React.createElement("div", {
+  }, "Not recorded:"), " your exact location. Nothing leaves this phone.", React.createElement("br", null), "This is for ", name, " only; another festival asks again. It counts only while Plursky is open, and you can turn it off here any time."), React.createElement("div", {
     style: {
       display: "flex",
       gap: 8,
@@ -3765,13 +3780,13 @@ function SetTrackingCard() {
   }, React.createElement("button", {
     "data-set-tracking-accept": true,
     onClick: () => {
-      setSetTracking(true);
+      setSetTracking(true, cfg && cfg.id);
       setAsking(false);
     },
     style: btn(true)
   }, "Turn on"), React.createElement("button", {
     onClick: () => {
-      setSetTracking(false);
+      setSetTracking(false, cfg && cfg.id);
       setAsking(false);
     },
     style: btn(false)
@@ -3783,7 +3798,7 @@ function SetTrackingCard() {
     }
   }, on ? React.createElement("button", {
     "data-set-tracking-off": true,
-    onClick: () => setSetTracking(false),
+    onClick: () => setSetTracking(false, cfg && cfg.id),
     style: btn(false)
   }, "Turn off") : elig !== "no-stages" && React.createElement("button", {
     "data-set-tracking-setup": true,

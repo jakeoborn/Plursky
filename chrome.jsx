@@ -1404,14 +1404,34 @@ function recordAttendanceFromGps(lat, lng, opts) {
 // B) a session the user started in the app keeps counting with the screen
 // locked, during set hours only, on the same When In Use permission: no
 // Always, no region, no wake (see "The iPhone's screen-locked session").
-const SET_TRACK_PREF_KEY = "plursky_set_tracking_v1";    // "on" | "off" | absent = never asked
+// The opt-in is PER FESTIVAL (SPEC-212 W3): a yes for one festival is not a
+// yes for the next. v2 holds { [festivalId]: "on" | "off" }; absent = never
+// asked. v1 was one global answer. It is dropped on first read, never moved
+// (decided 2026-11-20): a yes given before the per-festival question cannot
+// say which festival it was for, so every festival asks again.
+const SET_TRACK_PREF_KEY = "plursky_set_tracking_v2";
+const SET_TRACK_PREF_V1_KEY = "plursky_set_tracking_v1";
 const SET_TRACK_STORE_KEY = "plursky_set_intervals_v1";  // { [festivalId]: { last, runs } }
 const SET_TRACK_EVENT = "plursky-set-tracking-change";
-function getSetTracking() {
-  try { const v = localStorage.getItem(SET_TRACK_PREF_KEY); return v === "on" || v === "off" ? v : null; } catch { return null; }
+function _setTrackActiveId() { return (window.FESTIVAL_CONFIG && window.FESTIVAL_CONFIG.id) || null; }
+function _readSetTrackPrefs() {
+  let prefs = {};
+  try { const p = JSON.parse(localStorage.getItem(SET_TRACK_PREF_KEY) || "{}"); if (p && typeof p === "object" && !Array.isArray(p)) prefs = p; } catch {}
+  try {
+    if (localStorage.getItem(SET_TRACK_PREF_V1_KEY) != null) localStorage.removeItem(SET_TRACK_PREF_V1_KEY);
+  } catch {}
+  return prefs;
 }
-function setSetTracking(on) {
-  try { localStorage.setItem(SET_TRACK_PREF_KEY, on ? "on" : "off"); } catch {}
+function getSetTracking(festivalId = _setTrackActiveId()) {
+  if (!festivalId) return null;
+  const v = _readSetTrackPrefs()[festivalId];
+  return v === "on" || v === "off" ? v : null;
+}
+function setSetTracking(on, festivalId = _setTrackActiveId()) {
+  if (!festivalId) return;
+  const prefs = _readSetTrackPrefs();
+  prefs[festivalId] = on ? "on" : "off";
+  try { localStorage.setItem(SET_TRACK_PREF_KEY, JSON.stringify(prefs)); } catch {}
   try { window.dispatchEvent(new CustomEvent(SET_TRACK_EVENT)); } catch {}
 }
 function _readSetTrackStore() {
@@ -1754,13 +1774,14 @@ function SetTrackingWatcher() {
   }, []);
   const cfg = window.FESTIVAL_CONFIG;
   const fid = cfg && cfg.id;
-  const pref = getSetTracking() === "on";
+  const pref = !!fid && getSetTracking(fid) === "on";
   const visible = document.visibilityState !== "hidden";
   const elig = setTrackEligibility(cfg, Date.now());
   // iPhone app: arm the plugin with this festival's set hours while the page
   // is visible (a When In Use session can only start in front), drain what it
   // holds whenever the page is visible, and disarm when off or not a live
-  // day. A hide does NOT disarm: that is the point of option B.
+  // day. A hide does NOT disarm: that is the point of option B. The yes is
+  // this festival's own (SPEC-212 W3), so another festival's yes never arms.
   React.useEffect(() => {
     const P = _setTrackNative();
     if (!P || !visible) return;
@@ -1785,7 +1806,7 @@ function SetTrackingWatcher() {
   // The foreground watch: the web, and the iPhone app while its session is
   // not running (then the plugin counts, open or locked, and this stays off
   // so the phone never runs two GPS watches).
-  const run = getSetTracking() === "on" && document.visibilityState !== "hidden"
+  const run = !!fid && getSetTracking(fid) === "on" && document.visibilityState !== "hidden"
     && setTrackEligibility(cfg, Date.now()) === "live" && !(native && _setTrackNativeOn);
   React.useEffect(() => {
     if (!run || !navigator.geolocation) return;
@@ -2777,7 +2798,7 @@ function SetTrackingCard() {
   }, []);
   const cfg = window.FESTIVAL_CONFIG;
   const name = (cfg && (cfg.shortName || cfg.name)) || "this festival";
-  const on = getSetTracking() === "on";
+  const on = !!cfg && getSetTracking(cfg.id) === "on";
   const elig = setTrackEligibility(cfg, Date.now());
   const hasData = !!(cfg && (Object.keys(getSetTrackIntervals(cfg.id)).length || Object.keys(getSetTapPoints(cfg.id)).length));
   const canReview = !!(cfg && setReviewRows(cfg).length);
@@ -2799,14 +2820,14 @@ function SetTrackingCard() {
   const status = elig === "no-stages" ? (canCalibrate
       ? `${name}'s stages aren't measured yet. Calibrate them on site (${calib.done} of ${calib.needed} done) and sets can be timed on this phone.`
       : `${name}'s stages aren't measured yet, so sets can't be timed here.`)
-    : !on ? "Off. Plursky can note how long you stay at a stage during a set, to tell a full set from part of one."
-    : elig === "ended" ? `On. ${name} is over, so nothing is counting.`
+    : !on ? `Off for ${name}. Plursky can note how long you stay at a stage during a set, to tell a full set from part of one.`
+    : elig === "ended" ? `On for ${name}. ${name} is over, so nothing is counting.`
     : native ? (elig === "live"
-      ? (_setTrackNativeOn ? "On. Counts during sets, even with the screen locked. iOS shows the location arrow while it runs."
-        : "On. Counting while Plursky is open. Once set hours start, it keeps counting with the screen locked.")
-      : `On. On ${name}'s festival days, open Plursky once and it counts during sets, even with the screen locked.`)
-    : elig === "live" ? "On. Counting while Plursky is open. Lock the screen and the count pauses."
-    : `On. It starts on ${name}'s festival days, and counts only while Plursky is open.`;
+      ? (_setTrackNativeOn ? `On for ${name}. Counts during sets, even with the screen locked. iOS shows the location arrow while it runs.`
+        : `On for ${name}. Counting while Plursky is open. Once set hours start, it keeps counting with the screen locked.`)
+      : `On for ${name}. On ${name}'s festival days, open Plursky once and it counts during sets, even with the screen locked.`)
+    : elig === "live" ? `On for ${name}. Counting while Plursky is open. Lock the screen and the count pauses.`
+    : `On for ${name}. It starts on ${name}'s festival days, and counts only while Plursky is open.`;
   return (
     <div data-set-tracking-card data-set-tracking-state={on ? "on" : "off"} data-set-tracking-elig={elig} style={{
       padding: 16, borderRadius: "var(--rad-md)",
@@ -2833,24 +2854,24 @@ function SetTrackingCard() {
               <b style={{ color: "var(--ink)" }}>Recorded:</b> which stage you were at and when, during sets.<br/>
               <b style={{ color: "var(--ink)" }}>Your exact location:</b> kept on this phone only until Plursky turns it into stage times, then deleted.<br/>
               Never sent to Plursky or anyone else. Your own iPhone backup can include the stage times.<br/>
-              It counts during set hours on festival days, screen locked too, once you've opened Plursky that day. iOS shows the location arrow while it runs. Turn it off here any time.
+              This is for {name} only; another festival asks again. It counts during set hours on festival days, screen locked too, once you've opened Plursky that day. iOS shows the location arrow while it runs. Turn it off here any time.
             </div>
           ) : (
             <div style={body}>
               <b style={{ color: "var(--ink)" }}>Recorded:</b> which stage you were at and when, during sets.<br/>
               <b style={{ color: "var(--ink)" }}>Not recorded:</b> your exact location. Nothing leaves this phone.<br/>
-              It counts only while Plursky is open, and you can turn it off here any time.
+              This is for {name} only; another festival asks again. It counts only while Plursky is open, and you can turn it off here any time.
             </div>
           )}
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-            <button data-set-tracking-accept onClick={() => { setSetTracking(true); setAsking(false); }} style={btn(true)}>Turn on</button>
-            <button onClick={() => { setSetTracking(false); setAsking(false); }} style={btn(false)}>Not now</button>
+            <button data-set-tracking-accept onClick={() => { setSetTracking(true, cfg && cfg.id); setAsking(false); }} style={btn(true)}>Turn on</button>
+            <button onClick={() => { setSetTracking(false, cfg && cfg.id); setAsking(false); }} style={btn(false)}>Not now</button>
           </div>
         </div>
       ) : (
         <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
           {on ? (
-            <button data-set-tracking-off onClick={() => setSetTracking(false)} style={btn(false)}>Turn off</button>
+            <button data-set-tracking-off onClick={() => setSetTracking(false, cfg && cfg.id)} style={btn(false)}>Turn off</button>
           ) : elig !== "no-stages" && (
             <button data-set-tracking-setup onClick={() => setAsking(true)} style={btn(false)}>Set up</button>
           )}
