@@ -166,7 +166,8 @@ sCheck(/state\.tab !== "landing" && <SetTrackingWatcher \/>/.test(app), "app.jsx
 sCheck(/<BatterySaverCard \/>\s*<SetTrackingCard \/>/.test(spot), "Me → Settings shows the set-tracking card (the off switch)");
 sCheck(/data-set-tracking-off onClick=\{\(\) => setSetTracking\(false\)\}/.test(chrome), "the card's Turn off button switches it off");
 sCheck(/data-set-tracking-accept onClick=\{\(\) => \{ setSetTracking\(true\)/.test(chrome) && /data-set-tracking-consent/.test(chrome), "turning it on goes through the consent panel");
-sCheck(/Lock the screen and the count pauses/.test(chrome) && /only while Plursky is open/.test(chrome), "the card states the foreground-only limit");
+sCheck(/Lock the screen and the count pauses/.test(chrome) && /only while Plursky is open/.test(chrome), "web: the card states the foreground-only limit");
+sCheck(/even with the screen locked\. iOS shows the location arrow while it runs/.test(chrome) && /screen locked too, once you've opened Plursky that day/.test(chrome), "iOS: the card and consent state the screen-locked limit and the location arrow");
 const vfn = (chrome.match(/function setTrackVerdict\([\s\S]*?\n}\n/) || [""])[0];
 sCheck(/attendanceVerdict\(a, iv, cfg[,)]/.test(vfn) && /attendanceVerdictLabel\(v\)/.test(vfn), "PR 4: setTrackVerdict asks attendanceVerdict and its label (no second rule)");
 sCheck(/const tracked = setTrackVerdict\(a\);/.test(spot) && /tracked && tracked\.label &&/.test(spot), "PR 4: the set badge shows setTrackVerdict's label");
