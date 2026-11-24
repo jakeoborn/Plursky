@@ -1,0 +1,981 @@
+{
+ "id": "countdown-nye-2024",
+ "festivalId": "countdown-nye",
+ "name": "Countdown NYE 2024",
+ "year": 2024,
+ "timezone": "America/Los_Angeles",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2024-12-31",
+   "label": "Tuesday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "countdown-nye-2024:the-mothership",
+   "name": "The Mothership"
+  },
+  {
+   "id": "countdown-nye-2024:nebula",
+   "name": "Nebula"
+  },
+  {
+   "id": "countdown-nye-2024:area-51",
+   "name": "Area 51"
+  },
+  {
+   "id": "countdown-nye-2024:twilight-zone",
+   "name": "Twilight Zone"
+  },
+  {
+   "id": "countdown-nye-2024:galactik-gate",
+   "name": "Galactik Gate"
+  },
+  {
+   "id": "countdown-nye-2024:beatbox-boombox-art-car",
+   "name": "BeatBox Boombox Art Car"
+  },
+  {
+   "id": "countdown-nye-2024:alien-red-light-district",
+   "name": "Alien Red Light District"
+  }
+ ],
+ "artists": [
+  {
+   "id": "countdown-nye-2024:low-mileage",
+   "name": "Low Mileage",
+   "key": "low-mileage",
+   "performers": [
+    "low-mileage"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:lavern",
+   "name": "Lavern",
+   "key": "lavern",
+   "performers": [
+    "lavern"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:diplo",
+   "name": "Diplo",
+   "key": "diplo",
+   "performers": [
+    "diplo"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:w-and-w",
+   "name": "W&W",
+   "key": "w-and-w",
+   "performers": [
+    "w-and-w"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:chris-lake",
+   "name": "Chris Lake",
+   "key": "chris-lake",
+   "performers": [
+    "chris-lake"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:galantis",
+   "name": "Galantis",
+   "key": "galantis",
+   "performers": [
+    "galantis"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:knock2",
+   "name": "Knock2",
+   "key": "knock2",
+   "performers": [
+    "knock2"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:zedd",
+   "name": "Zedd",
+   "key": "zedd",
+   "performers": [
+    "zedd"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:marshmello",
+   "name": "Marshmello",
+   "key": "marshmello",
+   "performers": [
+    "marshmello"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:musubi",
+   "name": "Musubi",
+   "key": "musubi",
+   "performers": [
+    "musubi"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:oddkidout",
+   "name": "OddKidOut",
+   "key": "oddkidout",
+   "performers": [
+    "oddkidout"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:rossy",
+   "name": "Rossy",
+   "key": "rossy",
+   "performers": [
+    "rossy"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:pickle",
+   "name": "Pickle",
+   "key": "pickle",
+   "performers": [
+    "pickle"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:deorro",
+   "name": "Deorro",
+   "key": "deorro",
+   "performers": [
+    "deorro"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:joyryde",
+   "name": "JOYRYDE",
+   "key": "joyryde",
+   "performers": [
+    "joyryde"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:jauz",
+   "name": "Jauz",
+   "key": "jauz",
+   "performers": [
+    "jauz"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:troyboi",
+   "name": "TroyBoi",
+   "key": "troyboi",
+   "performers": [
+    "troyboi"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:zeds-dead",
+   "name": "Zeds Dead",
+   "key": "zeds-dead",
+   "performers": [
+    "zeds-dead"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:siren",
+   "name": "Siren",
+   "key": "siren",
+   "performers": [
+    "siren"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:dennett",
+   "name": "Dennett",
+   "key": "dennett",
+   "performers": [
+    "dennett"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:ghost-in-real-life",
+   "name": "Ghost in Real Life",
+   "key": "ghost-in-real-life",
+   "performers": [
+    "ghost-in-real-life"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:layz",
+   "name": "LAYZ",
+   "key": "layz",
+   "performers": [
+    "layz"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:reaper",
+   "name": "Reaper",
+   "key": "reaper",
+   "performers": [
+    "reaper"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:inzo",
+   "name": "INZO",
+   "key": "inzo",
+   "performers": [
+    "inzo"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:deathpact",
+   "name": "Deathpact",
+   "key": "deathpact",
+   "performers": [
+    "deathpact"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:liquid-stranger",
+   "name": "Liquid Stranger",
+   "key": "liquid-stranger",
+   "performers": [
+    "liquid-stranger"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:black-tiger-sex-machine",
+   "name": "Black Tiger Sex Machine",
+   "key": "black-tiger-sex-machine",
+   "performers": [
+    "black-tiger-sex-machine"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:zomboy",
+   "name": "Zomboy",
+   "key": "zomboy",
+   "performers": [
+    "zomboy"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:clawz",
+   "name": "Clawz",
+   "key": "clawz",
+   "performers": [
+    "clawz"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:carv",
+   "name": "Carv",
+   "key": "carv",
+   "performers": [
+    "carv"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:biia",
+   "name": "BIIA",
+   "key": "biia",
+   "performers": [
+    "biia"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:gravedgr",
+   "name": "GRAVEDGR",
+   "key": "gravedgr",
+   "performers": [
+    "gravedgr"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:lilly-palmer",
+   "name": "Lilly Palmer",
+   "key": "lilly-palmer",
+   "performers": [
+    "lilly-palmer"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:shl-mo",
+   "name": "Shlømo",
+   "key": "shl-mo",
+   "performers": [
+    "shl-mo"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:basswell",
+   "name": "Basswell",
+   "key": "basswell",
+   "performers": [
+    "basswell"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:raecola",
+   "name": "RaeCola",
+   "key": "raecola",
+   "performers": [
+    "raecola"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:ky-william",
+   "name": "Ky William",
+   "key": "ky-william",
+   "performers": [
+    "ky-william"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:tobehonest",
+   "name": "TOBEHONEST",
+   "key": "tobehonest",
+   "performers": [
+    "tobehonest"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:omnom",
+   "name": "Omnom",
+   "key": "omnom",
+   "performers": [
+    "omnom"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:girl-math-vnssa-b2b-nala",
+   "name": "Girl Math (VNSSA B2B Nala)",
+   "key": "girl-math-vnssa-b2b-nala",
+   "performers": [
+    "girl-math-vnssa",
+    "nala"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:biscits",
+   "name": "Biscits",
+   "key": "biscits",
+   "performers": [
+    "biscits"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:westend",
+   "name": "Westend",
+   "key": "westend",
+   "performers": [
+    "westend"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:wax-motif",
+   "name": "Wax Motif",
+   "key": "wax-motif",
+   "performers": [
+    "wax-motif"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:cyboy",
+   "name": "Cyboy",
+   "key": "cyboy",
+   "performers": [
+    "cyboy"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:paije",
+   "name": "Paije",
+   "key": "paije",
+   "performers": [
+    "paije"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:ivarr",
+   "name": "Ivarr",
+   "key": "ivarr",
+   "performers": [
+    "ivarr"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:woof-logik",
+   "name": "Woof Logik",
+   "key": "woof-logik",
+   "performers": [
+    "woof-logik"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:luca-lush",
+   "name": "Luca Lush",
+   "key": "luca-lush",
+   "performers": [
+    "luca-lush"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:jstjr-b2b-secret-guests",
+   "name": "JSTJR B2B Secret Guests",
+   "key": "jstjr-b2b-secret-guests",
+   "performers": [
+    "jstjr",
+    "secret-guests"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:lessandro",
+   "name": "Lessandro",
+   "key": "lessandro",
+   "performers": [
+    "lessandro"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:the-brands",
+   "name": "The Brands",
+   "key": "the-brands",
+   "performers": [
+    "the-brands"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:skye",
+   "name": "SKYE",
+   "key": "skye",
+   "performers": [
+    "skye"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:johnjose",
+   "name": "JOHNJOSÉ",
+   "key": "johnjose",
+   "performers": [
+    "johnjose"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:ruff-hauser-b2b-roy-wilkins",
+   "name": "Ruff Hauser B2B Roy Wilkins",
+   "key": "ruff-hauser-b2b-roy-wilkins",
+   "performers": [
+    "ruff-hauser",
+    "roy-wilkins"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:el-monk",
+   "name": "El Monk",
+   "key": "el-monk",
+   "performers": [
+    "el-monk"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:skonka",
+   "name": "Skonka",
+   "key": "skonka",
+   "performers": [
+    "skonka"
+   ]
+  },
+  {
+   "id": "countdown-nye-2024:brandon-elliot-b2b-candl",
+   "name": "Brandon Elliot B2B Candl",
+   "key": "brandon-elliot-b2b-candl",
+   "performers": [
+    "brandon-elliot",
+    "candl"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "countdown-nye-2024:d1:the-mothership:1600:low-mileage",
+   "artistId": "countdown-nye-2024:low-mileage",
+   "day": 1,
+   "stageId": "countdown-nye-2024:the-mothership",
+   "start": "16:00",
+   "end": "16:40"
+  },
+  {
+   "id": "countdown-nye-2024:d1:the-mothership:1640:lavern",
+   "artistId": "countdown-nye-2024:lavern",
+   "day": 1,
+   "stageId": "countdown-nye-2024:the-mothership",
+   "start": "16:40",
+   "end": "17:40"
+  },
+  {
+   "id": "countdown-nye-2024:d1:the-mothership:1740:diplo",
+   "artistId": "countdown-nye-2024:diplo",
+   "day": 1,
+   "stageId": "countdown-nye-2024:the-mothership",
+   "start": "17:40",
+   "end": "18:40"
+  },
+  {
+   "id": "countdown-nye-2024:d1:the-mothership:1840:w-and-w",
+   "artistId": "countdown-nye-2024:w-and-w",
+   "day": 1,
+   "stageId": "countdown-nye-2024:the-mothership",
+   "start": "18:40",
+   "end": "19:40"
+  },
+  {
+   "id": "countdown-nye-2024:d1:the-mothership:1940:chris-lake",
+   "artistId": "countdown-nye-2024:chris-lake",
+   "day": 1,
+   "stageId": "countdown-nye-2024:the-mothership",
+   "start": "19:40",
+   "end": "20:55"
+  },
+  {
+   "id": "countdown-nye-2024:d1:the-mothership:2100:galantis",
+   "artistId": "countdown-nye-2024:galantis",
+   "day": 1,
+   "stageId": "countdown-nye-2024:the-mothership",
+   "start": "21:00",
+   "end": "22:10"
+  },
+  {
+   "id": "countdown-nye-2024:d1:the-mothership:2210:knock2",
+   "artistId": "countdown-nye-2024:knock2",
+   "day": 1,
+   "stageId": "countdown-nye-2024:the-mothership",
+   "start": "22:10",
+   "end": "23:25"
+  },
+  {
+   "id": "countdown-nye-2024:d1:the-mothership:2330:zedd",
+   "artistId": "countdown-nye-2024:zedd",
+   "day": 1,
+   "stageId": "countdown-nye-2024:the-mothership",
+   "start": "23:30",
+   "end": "00:45"
+  },
+  {
+   "id": "countdown-nye-2024:d1:the-mothership:0045:marshmello",
+   "artistId": "countdown-nye-2024:marshmello",
+   "day": 1,
+   "stageId": "countdown-nye-2024:the-mothership",
+   "start": "00:45",
+   "end": "02:00"
+  },
+  {
+   "id": "countdown-nye-2024:d1:nebula:1600:musubi",
+   "artistId": "countdown-nye-2024:musubi",
+   "day": 1,
+   "stageId": "countdown-nye-2024:nebula",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "countdown-nye-2024:d1:nebula:1700:oddkidout",
+   "artistId": "countdown-nye-2024:oddkidout",
+   "day": 1,
+   "stageId": "countdown-nye-2024:nebula",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "countdown-nye-2024:d1:nebula:1800:rossy",
+   "artistId": "countdown-nye-2024:rossy",
+   "day": 1,
+   "stageId": "countdown-nye-2024:nebula",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "countdown-nye-2024:d1:nebula:1900:pickle",
+   "artistId": "countdown-nye-2024:pickle",
+   "day": 1,
+   "stageId": "countdown-nye-2024:nebula",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "countdown-nye-2024:d1:nebula:2000:deorro",
+   "artistId": "countdown-nye-2024:deorro",
+   "day": 1,
+   "stageId": "countdown-nye-2024:nebula",
+   "start": "20:00",
+   "end": "21:15"
+  },
+  {
+   "id": "countdown-nye-2024:d1:nebula:2115:joyryde",
+   "artistId": "countdown-nye-2024:joyryde",
+   "day": 1,
+   "stageId": "countdown-nye-2024:nebula",
+   "start": "21:15",
+   "end": "22:15"
+  },
+  {
+   "id": "countdown-nye-2024:d1:nebula:2215:jauz",
+   "artistId": "countdown-nye-2024:jauz",
+   "day": 1,
+   "stageId": "countdown-nye-2024:nebula",
+   "start": "22:15",
+   "end": "23:30"
+  },
+  {
+   "id": "countdown-nye-2024:d1:nebula:2330:troyboi",
+   "artistId": "countdown-nye-2024:troyboi",
+   "day": 1,
+   "stageId": "countdown-nye-2024:nebula",
+   "start": "23:30",
+   "end": "00:45"
+  },
+  {
+   "id": "countdown-nye-2024:d1:nebula:0045:zeds-dead",
+   "artistId": "countdown-nye-2024:zeds-dead",
+   "day": 1,
+   "stageId": "countdown-nye-2024:nebula",
+   "start": "00:45",
+   "end": "02:00"
+  },
+  {
+   "id": "countdown-nye-2024:d1:area-51:1600:siren",
+   "artistId": "countdown-nye-2024:siren",
+   "day": 1,
+   "stageId": "countdown-nye-2024:area-51",
+   "start": "16:00",
+   "end": "16:50"
+  },
+  {
+   "id": "countdown-nye-2024:d1:area-51:1650:dennett",
+   "artistId": "countdown-nye-2024:dennett",
+   "day": 1,
+   "stageId": "countdown-nye-2024:area-51",
+   "start": "16:50",
+   "end": "17:50"
+  },
+  {
+   "id": "countdown-nye-2024:d1:area-51:1750:ghost-in-real-life",
+   "artistId": "countdown-nye-2024:ghost-in-real-life",
+   "day": 1,
+   "stageId": "countdown-nye-2024:area-51",
+   "start": "17:50",
+   "end": "18:50"
+  },
+  {
+   "id": "countdown-nye-2024:d1:area-51:1850:layz",
+   "artistId": "countdown-nye-2024:layz",
+   "day": 1,
+   "stageId": "countdown-nye-2024:area-51",
+   "start": "18:50",
+   "end": "19:50"
+  },
+  {
+   "id": "countdown-nye-2024:d1:area-51:1950:reaper",
+   "artistId": "countdown-nye-2024:reaper",
+   "day": 1,
+   "stageId": "countdown-nye-2024:area-51",
+   "start": "19:50",
+   "end": "20:50"
+  },
+  {
+   "id": "countdown-nye-2024:d1:area-51:2050:inzo",
+   "artistId": "countdown-nye-2024:inzo",
+   "day": 1,
+   "stageId": "countdown-nye-2024:area-51",
+   "start": "20:50",
+   "end": "21:50"
+  },
+  {
+   "id": "countdown-nye-2024:d1:area-51:2150:deathpact",
+   "artistId": "countdown-nye-2024:deathpact",
+   "day": 1,
+   "stageId": "countdown-nye-2024:area-51",
+   "start": "21:50",
+   "end": "22:50"
+  },
+  {
+   "id": "countdown-nye-2024:d1:area-51:2250:liquid-stranger",
+   "artistId": "countdown-nye-2024:liquid-stranger",
+   "day": 1,
+   "stageId": "countdown-nye-2024:area-51",
+   "start": "22:50",
+   "end": "23:50"
+  },
+  {
+   "id": "countdown-nye-2024:d1:area-51:2355:black-tiger-sex-machine",
+   "artistId": "countdown-nye-2024:black-tiger-sex-machine",
+   "day": 1,
+   "stageId": "countdown-nye-2024:area-51",
+   "start": "23:55",
+   "end": "00:55"
+  },
+  {
+   "id": "countdown-nye-2024:d1:area-51:0100:zomboy",
+   "artistId": "countdown-nye-2024:zomboy",
+   "day": 1,
+   "stageId": "countdown-nye-2024:area-51",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "countdown-nye-2024:d1:twilight-zone:1600:clawz",
+   "artistId": "countdown-nye-2024:clawz",
+   "day": 1,
+   "stageId": "countdown-nye-2024:twilight-zone",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "countdown-nye-2024:d1:twilight-zone:1700:carv",
+   "artistId": "countdown-nye-2024:carv",
+   "day": 1,
+   "stageId": "countdown-nye-2024:twilight-zone",
+   "start": "17:00",
+   "end": "18:30"
+  },
+  {
+   "id": "countdown-nye-2024:d1:twilight-zone:1830:biia",
+   "artistId": "countdown-nye-2024:biia",
+   "day": 1,
+   "stageId": "countdown-nye-2024:twilight-zone",
+   "start": "18:30",
+   "end": "20:00"
+  },
+  {
+   "id": "countdown-nye-2024:d1:twilight-zone:2000:gravedgr",
+   "artistId": "countdown-nye-2024:gravedgr",
+   "day": 1,
+   "stageId": "countdown-nye-2024:twilight-zone",
+   "start": "20:00",
+   "end": "21:30"
+  },
+  {
+   "id": "countdown-nye-2024:d1:twilight-zone:2130:lilly-palmer",
+   "artistId": "countdown-nye-2024:lilly-palmer",
+   "day": 1,
+   "stageId": "countdown-nye-2024:twilight-zone",
+   "start": "21:30",
+   "end": "23:00"
+  },
+  {
+   "id": "countdown-nye-2024:d1:twilight-zone:2330:shl-mo",
+   "artistId": "countdown-nye-2024:shl-mo",
+   "day": 1,
+   "stageId": "countdown-nye-2024:twilight-zone",
+   "start": "23:30",
+   "end": "00:30"
+  },
+  {
+   "id": "countdown-nye-2024:d1:twilight-zone:0030:basswell",
+   "artistId": "countdown-nye-2024:basswell",
+   "day": 1,
+   "stageId": "countdown-nye-2024:twilight-zone",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "countdown-nye-2024:d1:galactik-gate:1600:raecola",
+   "artistId": "countdown-nye-2024:raecola",
+   "day": 1,
+   "stageId": "countdown-nye-2024:galactik-gate",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "countdown-nye-2024:d1:galactik-gate:1700:ky-william",
+   "artistId": "countdown-nye-2024:ky-william",
+   "day": 1,
+   "stageId": "countdown-nye-2024:galactik-gate",
+   "start": "17:00",
+   "end": "18:15"
+  },
+  {
+   "id": "countdown-nye-2024:d1:galactik-gate:1815:tobehonest",
+   "artistId": "countdown-nye-2024:tobehonest",
+   "day": 1,
+   "stageId": "countdown-nye-2024:galactik-gate",
+   "start": "18:15",
+   "end": "19:30"
+  },
+  {
+   "id": "countdown-nye-2024:d1:galactik-gate:1930:omnom",
+   "artistId": "countdown-nye-2024:omnom",
+   "day": 1,
+   "stageId": "countdown-nye-2024:galactik-gate",
+   "start": "19:30",
+   "end": "20:45"
+  },
+  {
+   "id": "countdown-nye-2024:d1:galactik-gate:2045:girl-math-vnssa-b2b-nala",
+   "artistId": "countdown-nye-2024:girl-math-vnssa-b2b-nala",
+   "day": 1,
+   "stageId": "countdown-nye-2024:galactik-gate",
+   "start": "20:45",
+   "end": "22:00"
+  },
+  {
+   "id": "countdown-nye-2024:d1:galactik-gate:2200:biscits",
+   "artistId": "countdown-nye-2024:biscits",
+   "day": 1,
+   "stageId": "countdown-nye-2024:galactik-gate",
+   "start": "22:00",
+   "end": "23:15"
+  },
+  {
+   "id": "countdown-nye-2024:d1:galactik-gate:2315:westend",
+   "artistId": "countdown-nye-2024:westend",
+   "day": 1,
+   "stageId": "countdown-nye-2024:galactik-gate",
+   "start": "23:15",
+   "end": "00:30"
+  },
+  {
+   "id": "countdown-nye-2024:d1:galactik-gate:0030:wax-motif",
+   "artistId": "countdown-nye-2024:wax-motif",
+   "day": 1,
+   "stageId": "countdown-nye-2024:galactik-gate",
+   "start": "00:30",
+   "end": "02:00"
+  },
+  {
+   "id": "countdown-nye-2024:d1:beatbox-boombox-art-car:1800:cyboy",
+   "artistId": "countdown-nye-2024:cyboy",
+   "day": 1,
+   "stageId": "countdown-nye-2024:beatbox-boombox-art-car",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "countdown-nye-2024:d1:beatbox-boombox-art-car:1900:paije",
+   "artistId": "countdown-nye-2024:paije",
+   "day": 1,
+   "stageId": "countdown-nye-2024:beatbox-boombox-art-car",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "countdown-nye-2024:d1:beatbox-boombox-art-car:2000:ivarr",
+   "artistId": "countdown-nye-2024:ivarr",
+   "day": 1,
+   "stageId": "countdown-nye-2024:beatbox-boombox-art-car",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "countdown-nye-2024:d1:beatbox-boombox-art-car:2100:woof-logik",
+   "artistId": "countdown-nye-2024:woof-logik",
+   "day": 1,
+   "stageId": "countdown-nye-2024:beatbox-boombox-art-car",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "countdown-nye-2024:d1:beatbox-boombox-art-car:2200:luca-lush",
+   "artistId": "countdown-nye-2024:luca-lush",
+   "day": 1,
+   "stageId": "countdown-nye-2024:beatbox-boombox-art-car",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "countdown-nye-2024:d1:beatbox-boombox-art-car:2300:jstjr-b2b-secret-guests",
+   "artistId": "countdown-nye-2024:jstjr-b2b-secret-guests",
+   "day": 1,
+   "stageId": "countdown-nye-2024:beatbox-boombox-art-car",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "countdown-nye-2024:d1:alien-red-light-district:1600:lessandro",
+   "artistId": "countdown-nye-2024:lessandro",
+   "day": 1,
+   "stageId": "countdown-nye-2024:alien-red-light-district",
+   "start": "16:00",
+   "end": "17:20"
+  },
+  {
+   "id": "countdown-nye-2024:d1:alien-red-light-district:1720:the-brands",
+   "artistId": "countdown-nye-2024:the-brands",
+   "day": 1,
+   "stageId": "countdown-nye-2024:alien-red-light-district",
+   "start": "17:20",
+   "end": "18:40"
+  },
+  {
+   "id": "countdown-nye-2024:d1:alien-red-light-district:1840:skye",
+   "artistId": "countdown-nye-2024:skye",
+   "day": 1,
+   "stageId": "countdown-nye-2024:alien-red-light-district",
+   "start": "18:40",
+   "end": "19:50"
+  },
+  {
+   "id": "countdown-nye-2024:d1:alien-red-light-district:1950:johnjose",
+   "artistId": "countdown-nye-2024:johnjose",
+   "day": 1,
+   "stageId": "countdown-nye-2024:alien-red-light-district",
+   "start": "19:50",
+   "end": "21:00"
+  },
+  {
+   "id": "countdown-nye-2024:d1:alien-red-light-district:2100:ruff-hauser-b2b-roy-wilkins",
+   "artistId": "countdown-nye-2024:ruff-hauser-b2b-roy-wilkins",
+   "day": 1,
+   "stageId": "countdown-nye-2024:alien-red-light-district",
+   "start": "21:00",
+   "end": "22:15"
+  },
+  {
+   "id": "countdown-nye-2024:d1:alien-red-light-district:2215:el-monk",
+   "artistId": "countdown-nye-2024:el-monk",
+   "day": 1,
+   "stageId": "countdown-nye-2024:alien-red-light-district",
+   "start": "22:15",
+   "end": "23:30"
+  },
+  {
+   "id": "countdown-nye-2024:d1:alien-red-light-district:2330:skonka",
+   "artistId": "countdown-nye-2024:skonka",
+   "day": 1,
+   "stageId": "countdown-nye-2024:alien-red-light-district",
+   "start": "23:30",
+   "end": "00:45"
+  },
+  {
+   "id": "countdown-nye-2024:d1:alien-red-light-district:0045:brandon-elliot-b2b-candl",
+   "artistId": "countdown-nye-2024:brandon-elliot-b2b-candl",
+   "day": 1,
+   "stageId": "countdown-nye-2024:alien-red-light-district",
+   "start": "00:45",
+   "end": "02:00"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://countdownnye.com/set-times/day-1/",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20250126054026/https://countdownnye.com/set-times/day-1/",
+    "captureTimestamp": "20250126054026",
+    "printed": "Tuesday, December 31",
+    "sha256": "f021edaba0b040be673fa9d0935b94f08ffbea3f078edc49cbab3394349a0ddb",
+    "rows": 57
+   }
+  ]
+ }
+}

@@ -377,6 +377,91 @@ function useFittedPlaceholder(full, short) {
   return [text, ref];
 }
 
+// ── Spotlight: the next festivals, as photographs ──
+// Jake, Nov 17: "make everything top tier with a wow factor". The front door
+// was a text list; the first thing on it is now the next few festivals you
+// can actually walk into, each as its ledger photo (data/festival-art.js
+// `card`), swipeable, with how soon it starts. Only enterable festivals with a
+// card are shown: a locked or art-less festival stays in Browse below, which
+// still lists every festival exactly once. A licensed photo carries the shared
+// PhotoCredit under its card (a link cannot live inside the card's button).
+function _spotlightWhen(entry, now) {
+  const phase = typeof _festivalPhase === "function" ? _festivalPhase(entry, now) : "upcoming";
+  if (phase === "live") return { live: true, label: "Happening now" };
+  const start = entry?.config?.startMs;
+  if (!start) return { live: false, label: entry?.config?.dates || "Upcoming" };
+  // Counted the way the festival's own Today hero counts (whole days down),
+  // so the card and the screen it opens never disagree by a day.
+  const ms = start - now;
+  const days = Math.floor(ms / 86400000);
+  if (days <= 0) {
+    const hrs = Math.floor(ms / 3600000);
+    return { live: false, label: hrs > 0 ? `In ${hrs} hr` : "Starting soon" };
+  }
+  if (days === 1) return { live: false, label: "In 1 day" };
+  if (days < 14) return { live: false, label: `In ${days} days` };
+  if (days < 63) return { live: false, label: `In ${Math.round(days / 7)} weeks` };
+  return { live: false, label: `In ${Math.round(days / 30.4)} months` };
+}
+function _spotlightPicks(ordered, now, plus, max = 8) {
+  const phase = (f) => (typeof _festivalPhase === "function" ? _festivalPhase(f, now) : "upcoming");
+  return (ordered || []).filter(f => {
+    const ph = phase(f);
+    if (ph !== "live" && ph !== "upcoming") return false;
+    if (!landingCanEnter(f, now, plus)) return false;
+    const rec = typeof festivalArtFor === "function" ? festivalArtFor(f.config.id) : null;
+    return !!(rec && /^festival-art\/[a-z0-9-]+\.webp$/.test(rec.card || ""));
+  }).slice(0, max);
+}
+function LandingSpotlight({ ordered, now, plus, onEnter }) {
+  const picks = _spotlightPicks(ordered, now, plus);
+  if (picks.length === 0) return null;
+  return (
+    <section data-landing-spotlight aria-label="Coming up" style={{ margin: "18px -16px 0" }}>
+      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", padding: "0 16px" }}>
+        <h2 className="duo-sect" style={{ margin: "0 0 10px" }}>Coming up</h2>
+        {picks.length > 1 && <span aria-hidden="true" className="duo-sect" style={{ margin: "0 0 10px" }}>Swipe →</span>}
+      </div>
+      <div className="spot-rail">
+        {picks.map((f, i) => {
+          const c = f.config;
+          const rec = festivalArtFor(c.id);
+          const when = _spotlightWhen(f, now);
+          // Full name without the trailing year: "DWP" or "LAN" means nothing
+          // to someone who has not been yet. Long names step down a size.
+          const spotTitle = String(c.name || c.shortName || "").replace(/\s+(19|20)\d{2}$/, "");
+          const credit = rec.author && rec.licenseId && rec.licenseUrl
+            ? { author: rec.author, sourceUrl: rec.sourcePage, license: rec.licenseId, licenseUrl: rec.licenseUrl, changes: rec.changes }
+            : null;
+          return (
+            <div key={c.id} className="spot-item" style={{ animationDelay: `${Math.min(i, 5) * 70}ms` }}>
+              <button
+                data-landing-spot={c.id}
+                className="spot-card"
+                onClick={() => onEnter(c.id, f)}
+                aria-label={`${c.name}. ${when.label}. ${c.location || ""}`}>
+                {/* The photo and its scrim are clipped in their own box, so the card itself never hides text and grows with it at large type. */}
+                <span className="spot-media" aria-hidden="true">
+                  <img src={`./${rec.card}`} alt="" decoding="async" loading={i < 2 ? "eager" : "lazy"} />
+                  <span className="spot-scrim" />
+                </span>
+                <span className={`spot-when${when.live ? " live" : ""}`}>{when.live && <i aria-hidden="true" />}<span>{when.label}</span></span>
+                <span className="spot-text">
+                  <span className={`spot-name${spotTitle.length > 16 ? " long" : ""}`}>{spotTitle}</span>
+                  <span className="spot-meta">{c.location}{c.dates ? " · " + c.dates : ""}</span>
+                </span>
+              </button>
+              {credit && typeof PhotoCredit === "function" && (
+                <PhotoCredit className="spot-credit" credit={credit} style={{ padding: "0 2px", lineHeight: 1.35, overflowWrap: "anywhere" }} />
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
 function GeneralLandingScreen({ state, setState }) {
   const [savedIds, setSavedIds] = React.useState(readSavedFestivals);
   const [q, setQ] = React.useState("");
@@ -554,6 +639,8 @@ function GeneralLandingScreen({ state, setState }) {
             </span>
           </button>
         )}
+
+        {!term && <LandingSpotlight ordered={ordered} now={now} plus={plus} onEnter={enterFestival} />}
 
         {/* ── Saved festivals ──────────────────────────────────────────── */}
         <h2 className="duo-sect" style={eyebrow}>Saved festivals</h2>

@@ -15,8 +15,8 @@
 //   node scripts/check-musickit-token.mjs --min-days 30
 //   node scripts/check-musickit-token.mjs --self-test     # planted tokens
 //
-// Renewal: node scripts/sign-musickit-token.mjs <TEAM_ID> <KEY_ID> <AuthKey.p8>,
-// paste into APPLE_DEV_TOKEN, bump the cache-bust, and ship a native build too
+// Renewal: node scripts/sign-musickit-token.mjs <TEAM_ID> <KEY_ID> <AuthKey.p8> --write
+// (renews APPLE_DEV_TOKEN in place), bump the cache-bust, and ship a native build too
 // (the native app bundles its own copy of the JS: CLAUDE.md §3).
 import { readFileSync } from "node:fs";
 

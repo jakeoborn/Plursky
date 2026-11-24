@@ -1,0 +1,88 @@
+{
+  "id": "hard-summer-2012",
+  "method": "official_sources",
+  "official": "https://www.hardsummer.com/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2012-08-03",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.hardfest.com:80/hardsummer/",
+          "archivedUrl": "https://web.archive.org/web/20120820035607/http://www.hardfest.com:80/hardsummer/",
+          "captureTimestamp": "20120820035607",
+          "printed": "FRIDAY",
+          "sha256": "30d996c4a58cee9e09c5e3caa97366067b03e3d972e120b367ec0c901d863a67",
+          "bytes": 267690,
+          "rows": 31,
+          "format": "hard-wp",
+          "dateFrom": "Friday, August 3rd & Saturday, August 4th, 2012",
+          "stages": 4,
+          "axis": "17:00-02:00",
+          "pxPerMinute": 2,
+          "columnTops": {
+            "Hard Stage": "01:50",
+            "Harder Stage": "01:50",
+            "RBMA Discotheque": "01:50",
+            "Fool's Gold Clubhouse": "01:50"
+          },
+          "times": "ranges print no am or pm: each is the one reading inside the day's own hour grid, and each block's height and place on its column agree with it"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2012-08-04",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://www.hardfest.com:80/hardsummer/",
+          "archivedUrl": "https://web.archive.org/web/20120820035607/http://www.hardfest.com:80/hardsummer/",
+          "captureTimestamp": "20120820035607",
+          "printed": "SATURDAY",
+          "sha256": "30d996c4a58cee9e09c5e3caa97366067b03e3d972e120b367ec0c901d863a67",
+          "bytes": 267690,
+          "rows": 26,
+          "format": "hard-wp",
+          "dateFrom": "Friday, August 3rd & Saturday, August 4th, 2012",
+          "stages": 4,
+          "axis": "17:00-02:00",
+          "pxPerMinute": 2,
+          "columnTops": {
+            "Hard Stage": "01:50",
+            "Harder Stage": "01:50",
+            "RBMA Discotheque": "01:50",
+            "OWSLA Tent": "02:00"
+          },
+          "times": "ranges print no am or pm: each is the one reading inside the day's own hour grid, and each block's height and place on its column agree with it",
+          "misprints": [
+            "KILL FRENZY: 7:40 - 8:30 (drawn 50 minutes later than its column puts it)",
+            "ZOMBIE DISCO SQUAD: 8:30 - 9:20 (drawn 50 minutes earlier than its column puts it)"
+          ]
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "day": 2,
+      "stage": "RBMA Discotheque",
+      "start": "",
+      "end": "",
+      "billing": "KILL FRENZY",
+      "reason": "the page draws a block whose printed range runs backwards or over eight hours, whose height is not its length, that sits where its column does not put it, or that is printed while another set on its stage is still on, so its time cannot be confirmed",
+      "misprint": true
+    },
+    {
+      "day": 2,
+      "stage": "RBMA Discotheque",
+      "start": "",
+      "end": "",
+      "billing": "ZOMBIE DISCO SQUAD",
+      "reason": "the page draws a block whose printed range runs backwards or over eight hours, whose height is not its length, that sits where its column does not put it, or that is printed while another set on its stage is still on, so its time cannot be confirmed",
+      "misprint": true
+    }
+  ],
+  "dropped": []
+}

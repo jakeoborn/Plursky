@@ -9383,11 +9383,92 @@ function _libraryGroupChrome(group) {
     note: null
   };
 }
+function _reviewShotLabel(takenAt) {
+  var t = String(takenAt || "");
+  var p = t.match(/^(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2})/);
+  if (!p) return t;
+  var day = new Date(+p[1], +p[2] - 1, +p[3]).toLocaleDateString(undefined, {
+    month: "short",
+    day: "numeric",
+    year: "numeric"
+  });
+  var time = typeof fmt12 === "function" ? fmt12(`${p[4]}:${p[5]}`) : `${p[4]}:${p[5]}`;
+  return `${day} · ${time}`;
+}
+function _FestivalReviewRow({
+  moment,
+  onOpen,
+  onSettle
+}) {
+  var targets = _festivalMoveTargets(moment.festivalReview);
+  var nameOf = id => window._DATA_SETS?.[id]?.config?.name || id;
+  var btn = primary => ({
+    minHeight: 44,
+    padding: "0 12px",
+    borderRadius: "var(--rad-sm)",
+    border: "none",
+    cursor: "pointer",
+    background: primary ? "var(--s3)" : "transparent",
+    color: "var(--ink)",
+    boxShadow: primary ? "none" : "inset 0 0 0 1px var(--line-2)",
+    fontSize: 14,
+    lineHeight: 1.3,
+    fontWeight: 650,
+    fontFamily: "inherit",
+    textAlign: "left"
+  });
+  return React.createElement("div", {
+    "data-festival-review": moment.id,
+    style: {
+      display: "flex",
+      gap: 10,
+      alignItems: "flex-start",
+      marginTop: 10
+    }
+  }, React.createElement("div", {
+    style: {
+      width: 48,
+      height: 48,
+      flexShrink: 0
+    }
+  }, React.createElement(_GridTile, {
+    moment: moment,
+    onClick: onOpen
+  })), React.createElement("div", {
+    style: {
+      flex: 1,
+      minWidth: 0
+    }
+  }, React.createElement("div", {
+    className: "duo-body-s duo-ink2",
+    style: {
+      overflowWrap: "anywhere"
+    }
+  }, "Shot ", _reviewShotLabel(moment.takenAt)), React.createElement("div", {
+    style: {
+      display: "flex",
+      flexWrap: "wrap",
+      gap: 6,
+      marginTop: 6
+    }
+  }, targets.map(id => React.createElement("button", {
+    key: id,
+    "data-settle": "move",
+    "data-target": id,
+    style: btn(true),
+    onClick: () => onSettle(moment, "move", id)
+  }, "Move to ", nameOf(id))), React.createElement("button", {
+    "data-settle": "keep",
+    style: btn(targets.length === 0),
+    onClick: () => onSettle(moment, "keep")
+  }, "Keep here"))));
+}
 function LibraryGroupCard({
   group,
   onOpenLightbox,
   onArtistClick,
   onReview,
+  onSettle,
   bulkRetag,
   renderNote
 }) {
@@ -9508,7 +9589,15 @@ function LibraryGroupCard({
       lineHeight: 1.38,
       fontFamily: "inherit"
     }
-  }, group.duplicates.length, " duplicate ", group.duplicates.length === 1 ? "record" : "records", " of this media · View"), group.kind === "review" && chrome.retag.length > 0 && onReview && React.createElement("button", {
+  }, group.duplicates.length, " duplicate ", group.duplicates.length === 1 ? "record" : "records", " of this media · View"), group.kind === "review" && onSettle && (group.media || []).concat(notes).filter(m => m.festivalReview).map(m => React.createElement(_FestivalReviewRow, {
+    key: m.id,
+    moment: m,
+    onSettle: onSettle,
+    onOpen: () => {
+      var i = group.ordered.indexOf(m);
+      onOpenLightbox(i >= 0 ? group.ordered : [m], Math.max(0, i));
+    }
+  })), group.kind === "review" && chrome.retag.length > 0 && onReview && React.createElement("button", {
     onClick: () => onReview(chrome.retag),
     style: {
       marginTop: 8,
@@ -10408,6 +10497,15 @@ function MemoriesScreen({
     }
     _writeMoments(next);
     setAll(next);
+  };
+  var handleSettleFestival = (moment, action, targetId) => {
+    var next = _settleFestivalReview(_readMoments(), moment.id, action, targetId);
+    if (!next) return;
+    _writeMoments(next);
+    setAll(next);
+    try {
+      window.plurskyHaptic?.("LIGHT");
+    } catch {}
   };
   var handleRecoverNight = (moment, rec) => {
     if (!moment || !rec || rec.night == null) return;
@@ -11816,6 +11914,7 @@ function MemoriesScreen({
       onReview: ms => setReview(ms.map(m => ({
         momentId: m.id
       }))),
+      onSettle: handleSettleFestival,
       renderNote: m => React.createElement(MomentCard, {
         moment: m,
         idx: 0,
@@ -12122,11 +12221,22 @@ function MeScreen({
     window.addEventListener("plursky-attended-change", refresh);
     return () => window.removeEventListener("plursky-attended-change", refresh);
   }, []);
-  var daysHere = NOW.day || 0;
   var savedCount = savedInLineup(state.saved).length;
   var badgesEarnedCount = React.useMemo(() => _computeBadges(state.saved).filter(b => b.earned).length, [state.saved]);
   var _cfg = window.FESTIVAL_CONFIG || {};
-  var tagline = daysHere ? `DAY ${daysHere} OF ${(_cfg.shortName || _cfg.brand || "").toUpperCase()}` : `${(_cfg.shortName || _cfg.brand || "").toUpperCase()} · ${(_cfg.dates || "").toUpperCase()}`;
+  var passLive = !!NOW.night && !_mePostFest;
+  var _fname = (_cfg.shortName || _cfg.brand || "").toUpperCase();
+  var tagline = passLive ? `DAY ${NOW.night} OF ${_fname}` : `${_fname}${_cfg.dates ? ` · ${_cfg.dates.toUpperCase()}` : ""}`;
+  var _passRec = typeof festivalArtFor === "function" ? festivalArtFor(_cfg.id) : null;
+  var [passFailed, setPassFailed] = React.useState(false);
+  var passPhoto = _passRec && /^festival-art\/[a-z0-9-]+\.webp$/.test(_passRec.card || "") && !passFailed ? _passRec.card : null;
+  var passCredit = passPhoto && _passRec.author && _passRec.licenseId && _passRec.licenseUrl ? {
+    author: _passRec.author,
+    sourceUrl: _passRec.sourcePage,
+    license: _passRec.licenseId,
+    licenseUrl: _passRec.licenseUrl,
+    changes: _passRec.changes
+  } : null;
   return React.createElement(Screen, {
     bg: "var(--paper)"
   }, React.createElement("div", {
@@ -12141,89 +12251,72 @@ function MeScreen({
     style: {
       padding: "10px 20px 94px"
     }
-  }, React.createElement("div", {
+  }, React.createElement("section", {
     "data-animate": true,
+    "data-me-pass": true,
+    "aria-label": "Your festival pass",
     style: {
-      display: "flex",
-      alignItems: "center",
-      gap: 12,
-      padding: "4px 0 16px"
+      margin: "4px 0 16px"
     }
   }, React.createElement("div", {
+    className: `me-pass${passPhoto ? "" : " plain"}`
+  }, passPhoto && React.createElement("span", {
+    className: "me-pass-media",
+    "aria-hidden": "true"
+  }, React.createElement("img", {
+    src: `./${passPhoto}`,
+    alt: "",
+    decoding: "async",
+    onError: () => setPassFailed(true)
+  }), React.createElement("span", {
+    className: "me-pass-scrim"
+  })), React.createElement("span", {
+    className: "me-pass-stamp"
+  }, passLive && React.createElement("i", {
+    "aria-hidden": "true"
+  }), React.createElement("span", null, tagline)), React.createElement("div", {
+    className: "me-pass-who"
+  }, React.createElement("div", {
     onClick: profile ? undefined : promptName,
+    className: "me-pass-avatar",
     style: {
-      width: 52,
-      height: 52,
-      borderRadius: 999,
-      flexShrink: 0,
-      background: profile?.image ? "transparent" : "var(--s3)",
-      boxShadow: "0 0 0 1.5px var(--acc)",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      overflow: "hidden",
       cursor: profile ? "default" : "pointer"
     }
   }, profile?.image ? React.createElement("img", {
     src: profile.image,
-    alt: "",
-    style: {
-      width: "100%",
-      height: "100%",
-      objectFit: "cover"
-    }
-  }) : React.createElement("span", {
-    style: {
-      font: "700 19px/1 var(--f-ui)",
-      color: "var(--ink)"
-    }
-  }, initial)), React.createElement("div", {
+    alt: ""
+  }) : React.createElement("span", null, initial)), React.createElement("div", {
     style: {
       flex: 1,
       minWidth: 0
     }
   }, rawName ? React.createElement("div", {
-    className: "duo-headline duo-name",
-    style: {
-      fontSize: 21,
-      color: "var(--ink)"
-    }
+    className: "duo-name me-pass-name"
   }, displayName) : React.createElement("button", {
     "data-me-add-name": true,
-    onClick: promptName,
-    style: {
-      padding: 0,
-      minHeight: 32,
-      border: "none",
-      background: "none",
-      cursor: "pointer",
-      font: "600 17px/1.3 var(--f-ui)",
-      color: "var(--acc-ink)",
-      textAlign: "left"
-    }
-  }, "Add your name"), React.createElement("div", {
-    className: "duo-label duo-ink3",
-    style: {
-      marginTop: 4
-    }
-  }, tagline, setsCaught > 0 ? ` · ${setsCaught} SET${setsCaught === 1 ? "" : "S"} CAUGHT` : ""), React.createElement("span", {
-    className: "duo-code",
-    style: {
-      display: "inline-flex",
-      alignItems: "center",
-      gap: 6,
-      marginTop: 8
-    }
+    className: "me-pass-add",
+    onClick: promptName
+  }, "Add your name"), React.createElement("span", {
+    className: "me-pass-code"
   }, React.createElement("span", {
     "aria-hidden": "true",
     style: {
-      width: 6,
-      height: 6,
+      width: 7,
+      height: 7,
       borderRadius: 999,
       background: pingColor,
-      display: "inline-block"
+      display: "inline-block",
+      flexShrink: 0
     }
-  }), "PING · ", pingCode))), plusActive ? React.createElement("div", {
+  }), React.createElement("span", null, "PING · ", pingCode, setsCaught > 0 ? ` · ${setsCaught} SET${setsCaught === 1 ? "" : "S"} CAUGHT` : ""))))), passCredit && typeof PhotoCredit === "function" && React.createElement(PhotoCredit, {
+    className: "spot-credit",
+    credit: passCredit,
+    style: {
+      padding: "0 2px",
+      lineHeight: 1.35,
+      overflowWrap: "anywhere"
+    }
+  })), plusActive ? React.createElement("div", {
     style: {
       display: "flex",
       alignItems: "center",
@@ -13336,23 +13429,21 @@ function _reconcileFestivalStamps(moments) {
         }
         continue;
       }
+      if (_festivalConflictSettled(m)) {
+        if (m.festivalReview) {
+          delete m.festivalReview;
+          changed = true;
+        }
+        continue;
+      }
       var claimant = claims.length === 1 ? claims[0] : null;
       var cfg = claimant ? window._DATA_SETS?.[claimant]?.config : null;
       var date = claimant ? _momentTakenAtToDateParts(m.takenAt) : null;
       var night = cfg && date ? _photoFestivalNight(date, cfg, null) : null;
       var machineStamp = m.festivalStampSource === "active-fallback" || !m.festivalStampSource && m.festivalAttribution === "unresolved";
       if (claimant && night != null && !m.dateUnverified && machineStamp) {
-        m.festivalId = claimant;
-        m.festivalAttribution = "capture-time";
-        m.festivalStampSource = "capture-time";
-        m.night = night;
-        delete m.festivalCandidates;
-        delete m.festivalReview;
-        if (String(night) !== String(bucket)) moves.push({
-          from: bucket,
-          to: String(night),
-          moment: m
-        });
+        var move = _restampMoment(m, bucket, claimant, night, "capture-time");
+        if (move) moves.push(move);
         changed = true;
         continue;
       }
@@ -13372,15 +13463,92 @@ function _reconcileFestivalStamps(moments) {
       }
     }
   }
+  _applyMomentMoves(moments, moves);
+  return changed;
+}
+function _restampMoment(m, bucket, festivalId, night, source) {
+  m.festivalId = festivalId;
+  m.festivalAttribution = source;
+  m.festivalStampSource = source;
+  m.night = night;
+  delete m.festivalCandidates;
+  delete m.festivalReview;
+  delete m.festivalSettled;
+  return String(night) !== String(bucket) ? {
+    from: String(bucket),
+    to: String(night),
+    moment: m
+  } : null;
+}
+function _applyMomentMoves(moments, moves) {
   var _loop9 = function (move) {
-    moments[move.from] = moments[move.from].filter(x => x !== move.moment);
+    moments[move.from] = (moments[move.from] || []).filter(x => x !== move.moment);
     if (!moments[move.from].length) delete moments[move.from];
     moments[move.to] = [...(moments[move.to] || []), move.moment];
   };
   for (var move of moves) {
     _loop9(move);
   }
-  return changed;
+}
+function _festivalConflictSettled(m) {
+  var k = m && m.festivalSettled;
+  return !!k && k.festivalId === m.festivalId && k.takenAt === m.takenAt;
+}
+function _festivalMoveTargets(review) {
+  if (!review || review.reason === "no-claimant") return [];
+  var named = Array.isArray(review.candidates) && review.candidates.length ? review.candidates : review.claimant ? [review.claimant] : [];
+  return named.filter((id, i) => id && named.indexOf(id) === i && id !== review.existingFestivalId && !!window._DATA_SETS?.[id]?.config);
+}
+function _settleFestivalReview(all, momentId, action, targetId) {
+  var next = {
+    ...(all || {})
+  };
+  var _loop0 = function () {
+      var arr = next[bucket];
+      if (!Array.isArray(arr)) return 0;
+      var i = arr.findIndex(x => x && x.id === momentId);
+      if (i < 0) return 0;
+      var m = {
+        ...arr[i]
+      };
+      if (!m.festivalReview || !m.festivalId) return {
+        v: null
+      };
+      if (action === "keep") {
+        m.festivalStampSource = "user";
+        m.festivalSettled = {
+          festivalId: m.festivalId,
+          takenAt: m.takenAt
+        };
+        delete m.festivalReview;
+        next[bucket] = arr.map((x, j) => j === i ? m : x);
+        return {
+          v: next
+        };
+      }
+      if (action !== "move" || !_festivalMoveTargets(m.festivalReview).includes(targetId)) return {
+        v: null
+      };
+      var cfg = window._DATA_SETS[targetId].config;
+      var date = _momentTakenAtToDateParts(m.takenAt);
+      var night = date ? _photoFestivalNight(date, cfg, null) : null;
+      if (night == null) return {
+        v: null
+      };
+      var move = _restampMoment(m, bucket, targetId, night, "user");
+      next[bucket] = arr.map((x, j) => j === i ? m : x);
+      if (move) _applyMomentMoves(next, [move]);
+      return {
+        v: next
+      };
+    },
+    _ret2;
+  for (var bucket of Object.keys(next)) {
+    _ret2 = _loop0();
+    if (_ret2 === 0) continue;
+    if (_ret2) return _ret2.v;
+  }
+  return null;
 }
 function _maybeAutoArchive() {
   if (_archiveCheckDone) return;
@@ -13693,7 +13861,7 @@ function _fmtHrsMin(mins) {
 }
 function _aggregateSoundtrack(moments) {
   var songMap = {};
-  var _loop0 = function (m) {
+  var _loop1 = function (m) {
       if (!m.artistId || !m.takenAt) return 0;
       var {
         fid,
@@ -13714,10 +13882,10 @@ function _aggregateSoundtrack(moments) {
       songMap[key].count++;
       songMap[key].artists.add(artist.name);
     },
-    _ret2;
+    _ret3;
   for (var m of Object.values(moments)) {
-    _ret2 = _loop0(m);
-    if (_ret2 === 0) continue;
+    _ret3 = _loop1(m);
+    if (_ret3 === 0) continue;
   }
   return Object.values(songMap).sort((a, b) => b.count - a.count);
 }
@@ -15789,7 +15957,7 @@ function HeroCards({
     var live = true;
     var want = [page, page + 1, page - 1].filter(i => i >= 0 && i < artists.length).map(i => artists[i]).filter(a => !cards[a.id]);
     (async () => {
-      var _loop1 = async function (a) {
+      var _loop10 = async function (a) {
           var canvas = await _renderHeroCard(a).catch(() => null);
           if (!live || !canvas) return 0;
           var blob = await new Promise(r => canvas.toBlob(r, "image/png"));
@@ -15804,10 +15972,10 @@ function HeroCards({
             }
           }));
         },
-        _ret3;
+        _ret4;
       for (var a of want) {
-        _ret3 = await _loop1(a);
-        if (_ret3 === 0) continue;
+        _ret4 = await _loop10(a);
+        if (_ret4 === 0) continue;
       }
     })();
     return () => {
@@ -17802,7 +17970,7 @@ function _checkinChoices(cfg, artists, atMs, night, firstStage) {
     });
   }
   var groups = [];
-  var _loop10 = function (rows) {
+  var _loop11 = function (rows) {
     rows.sort((x, y) => x.s - y.s);
     var i = rows.findIndex(r => r.now);
     var pick = i >= 0 ? rows.slice(Math.max(0, i - 1), i + 2) : (() => {
@@ -17816,7 +17984,7 @@ function _checkinChoices(cfg, artists, atMs, night, firstStage) {
     });
   };
   for (var [stageId, rows] of byStage) {
-    _loop10(rows);
+    _loop11(rows);
   }
   return groups.sort((x, y) => (y.stageId === firstStage) - (x.stageId === firstStage) || y.live - x.live);
 }

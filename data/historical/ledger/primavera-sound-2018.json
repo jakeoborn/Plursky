@@ -1,0 +1,157 @@
+{
+  "id": "primavera-sound-2018",
+  "method": "official_sources",
+  "official": "https://www.primaverasound.es/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2018-05-30",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.primaverasound.es/horarios?d=3&l=forum&content=",
+          "archivedUrl": "https://web.archive.org/web/20181027203904/https://www.primaverasound.es/horarios?d=3&l=forum&content=",
+          "captureTimestamp": "20181027203904",
+          "printed": "2018-05-30",
+          "sha256": "0b2125eef46f572f9dcf7396a69f5c4d851965ce44c5adbc2dd1e6117dffe4f2",
+          "bytes": 89179,
+          "rows": 8,
+          "format": "primavera-completos",
+          "heading": "Horarios",
+          "active": "Horarios completos",
+          "tabs": [
+            "2018-05-28",
+            "2018-05-29",
+            "2018-05-30",
+            "2018-05-31",
+            "2018-06-01",
+            "2018-06-02",
+            "2018-06-03"
+          ],
+          "stages": 3,
+          "axis": "11:45-06:30",
+          "cityStages": [
+            "Sala Apolo",
+            "La [2] de Apolo",
+            "Day Pro",
+            "BARTS Club"
+          ],
+          "citySets": 16,
+          "times": "each block prints its range on the 24-hour clock, drawn on its own 15-minute row and two pixels a minute tall; the city venues' columns are not read as sets"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2018-05-31",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.primaverasound.es/horarios?d=4&l=forum&content=",
+          "archivedUrl": "https://web.archive.org/web/20181027211048/https://www.primaverasound.es/horarios?d=4&l=forum&content=",
+          "captureTimestamp": "20181027211048",
+          "printed": "2018-05-31",
+          "sha256": "c58b51bdada5c993fc5ecc515080118e045cfe6e18e59cdf45121e0407d19b9b",
+          "bytes": 116931,
+          "rows": 73,
+          "format": "primavera-completos",
+          "heading": "Horarios",
+          "active": "Horarios completos",
+          "tabs": [
+            "2018-05-28",
+            "2018-05-29",
+            "2018-05-30",
+            "2018-05-31",
+            "2018-06-01",
+            "2018-06-02",
+            "2018-06-03"
+          ],
+          "stages": 14,
+          "axis": "11:00-06:30",
+          "cityStages": [
+            "Day Pro"
+          ],
+          "citySets": 9,
+          "times": "each block prints its range on the 24-hour clock, drawn on its own 15-minute row and two pixels a minute tall; the city venues' columns are not read as sets"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2018-06-01",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.primaverasound.es/horarios?d=5&l=forum&content=",
+          "archivedUrl": "https://web.archive.org/web/20181027200824/https://www.primaverasound.es/horarios?d=5&l=forum&content=",
+          "captureTimestamp": "20181027200824",
+          "printed": "2018-06-01",
+          "sha256": "ad7383f56029ff53d0fabe72ab5b035e7e030e4b53ef177bf8150a1b1db8474c",
+          "bytes": 116493,
+          "rows": 71,
+          "format": "primavera-completos",
+          "heading": "Horarios",
+          "active": "Horarios completos",
+          "tabs": [
+            "2018-05-28",
+            "2018-05-29",
+            "2018-05-30",
+            "2018-05-31",
+            "2018-06-01",
+            "2018-06-02",
+            "2018-06-03"
+          ],
+          "stages": 13,
+          "axis": "11:00-06:30",
+          "cityStages": [
+            "Day Pro",
+            "Auditori de Barcelona"
+          ],
+          "citySets": 10,
+          "times": "each block prints its range on the 24-hour clock, drawn on its own 15-minute row and two pixels a minute tall; the city venues' columns are not read as sets"
+        }
+      ]
+    },
+    {
+      "day": 4,
+      "date": "2018-06-02",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://www.primaverasound.es/horarios?d=6&l=forum&content=",
+          "archivedUrl": "https://web.archive.org/web/20181027205118/https://www.primaverasound.es/horarios?d=6&l=forum&content=",
+          "captureTimestamp": "20181027205118",
+          "printed": "2018-06-02",
+          "sha256": "16573daa1855dbcc5ea10090e760fa6c62b1b3cafebd7eaeda37148ecd48e848",
+          "bytes": 114983,
+          "rows": 73,
+          "format": "primavera-completos",
+          "heading": "Horarios",
+          "active": "Horarios completos",
+          "tabs": [
+            "2018-05-28",
+            "2018-05-29",
+            "2018-05-30",
+            "2018-05-31",
+            "2018-06-01",
+            "2018-06-02",
+            "2018-06-03"
+          ],
+          "stages": 13,
+          "axis": "12:00-06:30",
+          "cityStages": [
+            "Day Pro",
+            "Auditori de Barcelona"
+          ],
+          "citySets": 6,
+          "times": "each block prints its range on the 24-hour clock, drawn on its own 15-minute row and two pixels a minute tall; the city venues' columns are not read as sets",
+          "openEnded": [
+            "SKEPTA: (02:45)"
+          ]
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": []
+}

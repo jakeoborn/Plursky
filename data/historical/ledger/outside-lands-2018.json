@@ -1,0 +1,530 @@
+{
+  "id": "outside-lands-2018",
+  "method": "official_sources",
+  "official": "https://sfoutsidelands.com/lineup/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2018-08-10",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://sfosl.dostff.co/embeds/lineup.js",
+          "archivedUrl": "https://web.archive.org/web/20190201061931/https://sfosl.dostff.co/embeds/lineup.js",
+          "captureTimestamp": "20190201061931",
+          "printed": "2018-08-10",
+          "sha256": "3600ff16cb31bc3ee9da2b21ea249a328b71f399fb1d24e43debb35cf7fedbae",
+          "bytes": 490851,
+          "rows": 31,
+          "format": "dostuff-embed",
+          "run": "2018-08-10 to 2018-08-12",
+          "timezone": "America/Los_Angeles",
+          "grouping": "Interactive Lineup",
+          "stages": 8,
+          "embeddedBy": {
+            "url": "https://www.sfoutsidelands.com/lineup/",
+            "archivedUrl": "https://web.archive.org/web/20190130014845/https://www.sfoutsidelands.com/lineup/",
+            "captureTimestamp": "20190130014845",
+            "loads": "https://sfosl.dostff.co/embeds/lineup.js"
+          },
+          "times": "each set's start and end with its UTC offset, which is the festival's time zone's; a set shared by two acts is drawn under each with one id and counted once",
+          "billing": "the widget's options print show_performance_titles false, so each set is drawn under its act's name, not its title, and billed as that act; a set drawn under several acts is billed as its title, the festival's one name for the shared set",
+          "sharedSets": [
+            "Mad Genius with Bill Nye & Chef Matty Matheson (under Bill Nye, Matty Matheson)",
+            "Choco Wars w/ Guittard Chocolate Company & Galactic Empire (under Galatic Empire, Guittard Chocolate Company)",
+            "Sweet Southern Drag w/ Chef Tiffani Faison and Shangela (under Shangela, Tiffany Faison)",
+            "ME & JULIO DOWN BY THE SHAKE SHACK WITH PAUL SCHEER AND BONE DIGGERS (under Bone Diggers, Paul Scheer, Shake Shack's Mark Rosati)",
+            "Bill Nye & Paul Scheer - The Comedy of Science (under Bill Nye, Paul Scheer)",
+            "MICHELLE WOLF, ELIZA SKINNER, TAYLOR TOMLINSON, EMILY CATALANO (under Eliza Skinner, Emily Catalano, Michelle Wolf, Taylor Tomlinson)",
+            "CHELSEA PERETTI, Al Madrigal, Taylor Tomlinson (under Chelsea Peretti, Taylor Tomlinson)",
+            "IMPROV SUPERJAM™   FEAT. PAUL SCHEER, JON GABRUS, PHIL LAMARR, ELIZA SKINNER, COLE STRATTON, JANET VARNEY & JODIE SWEETIN! (under Eliza Skinner, IMPROV SUPERJAM FEAT. SPECIAL GUESTS!, Jon Gabrus, Paul Scheer)",
+            "Chelsea Peretti, Al Madrigal, Shangela (under Chelsea Peretti, Shangela)"
+          ],
+          "foodShows": 9,
+          "foodStages": [
+            "GastroMagic",
+            "Cocktail Magic"
+          ],
+          "comedyShows": 5,
+          "comedyStage": "The Barbary"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2018-08-11",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://sfosl.dostff.co/embeds/lineup.js",
+          "archivedUrl": "https://web.archive.org/web/20190201061931/https://sfosl.dostff.co/embeds/lineup.js",
+          "captureTimestamp": "20190201061931",
+          "printed": "2018-08-11",
+          "sha256": "3600ff16cb31bc3ee9da2b21ea249a328b71f399fb1d24e43debb35cf7fedbae",
+          "bytes": 490851,
+          "rows": 31,
+          "format": "dostuff-embed",
+          "run": "2018-08-10 to 2018-08-12",
+          "timezone": "America/Los_Angeles",
+          "grouping": "Interactive Lineup",
+          "stages": 8,
+          "embeddedBy": {
+            "url": "https://www.sfoutsidelands.com/lineup/",
+            "archivedUrl": "https://web.archive.org/web/20190130014845/https://www.sfoutsidelands.com/lineup/",
+            "captureTimestamp": "20190130014845",
+            "loads": "https://sfosl.dostff.co/embeds/lineup.js"
+          },
+          "times": "each set's start and end with its UTC offset, which is the festival's time zone's; a set shared by two acts is drawn under each with one id and counted once",
+          "billing": "the widget's options print show_performance_titles false, so each set is drawn under its act's name, not its title, and billed as that act; a set drawn under several acts is billed as its title, the festival's one name for the shared set",
+          "sharedSets": [
+            "Kiwi Time w/ Anna Weinberg and Rhys Darby (under Anna Weinberg, Rhys Darby)",
+            "Phoebe Robinson & Friends feat. Jonathan Van Ness, Naomi Ekperigin & More! (under Eliza Skinner, Jonathan Van Ness, Naomi Ekperigin, Phoebe Robinson)",
+            "Hanging with Paul Scheer feat. Phoebe Robinson & Jonathan Van Ness & More! (under Eliza Skinner, Jonathan Van Ness, Jr De Guzman, Paul Scheer, Phoebe Robinson)",
+            "Michelle Wolf, Rhys Darby, Taylor Tomlinson, Pat Regan, Emily Catalano (under Emily Catalano, Michelle Wolf, Pat Regan, Rhys Darby, Taylor Tomlinson)"
+          ],
+          "foodShows": 8,
+          "foodStages": [
+            "GastroMagic",
+            "Cocktail Magic"
+          ],
+          "comedyShows": 6,
+          "comedyStage": "The Barbary"
+        }
+      ]
+    },
+    {
+      "day": 3,
+      "date": "2018-08-12",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "https://sfosl.dostff.co/embeds/lineup.js",
+          "archivedUrl": "https://web.archive.org/web/20190201061931/https://sfosl.dostff.co/embeds/lineup.js",
+          "captureTimestamp": "20190201061931",
+          "printed": "2018-08-12",
+          "sha256": "3600ff16cb31bc3ee9da2b21ea249a328b71f399fb1d24e43debb35cf7fedbae",
+          "bytes": 490851,
+          "rows": 31,
+          "format": "dostuff-embed",
+          "run": "2018-08-10 to 2018-08-12",
+          "timezone": "America/Los_Angeles",
+          "grouping": "Interactive Lineup",
+          "stages": 8,
+          "embeddedBy": {
+            "url": "https://www.sfoutsidelands.com/lineup/",
+            "archivedUrl": "https://web.archive.org/web/20190130014845/https://www.sfoutsidelands.com/lineup/",
+            "captureTimestamp": "20190130014845",
+            "loads": "https://sfosl.dostff.co/embeds/lineup.js"
+          },
+          "times": "each set's start and end with its UTC offset, which is the festival's time zone's; a set shared by two acts is drawn under each with one id and counted once",
+          "billing": "the widget's options print show_performance_titles false, so each set is drawn under its act's name, not its title, and billed as that act; a set drawn under several acts is billed as its title, the festival's one name for the shared set",
+          "sharedSets": [
+            "Beignets and Bounce Brunch w/ Katey Red & Brenda's French Soul Food (under Brenda's French Soul Food, Katey Red)",
+            "Music of Twin Peaks w/ Melissa Chou, Red Room Orchestra, James Marshall, & Michael Horse (under Melissa Chou, Red Room Orchestra)",
+            "Breakdown Breakdance w/ DJ Qbert, Belcampo Meat Company, and Beatz N' Pieces (under Beatz N Pieces, Belcampo Meat Company, DJ Qbert)",
+            "Hysteria by Crooked Media Special Guest Phoebe Robinson (under Hysteria by Crooked Media, Phoebe Robinson)",
+            "SPEECHLESS : IMPROVISED SLIDESHOW PRESENTATIONS, SPECIAL GUEST JUDGE: ADAM SAVAGE & Veronica Belmont, PRESENTERS : RHYS DARBY, NAOMI EKPERIGIN, JON GABRUS, JR DE GUZMAN (under Jon Gabrus, Jr De Guzman, Naomi Ekperigin, Rhys Darby, SPEECHLESS : IMPROVISED SLIDESHOW PRESENTATIONS!)",
+            "Phoebe Robinson, Naomi Ekperigin, Pat Regan, Jr De Guzman (under Jr De Guzman, Naomi Ekperigin, Pat Regan, Phoebe Robinson)"
+          ],
+          "foodShows": 9,
+          "foodStages": [
+            "GastroMagic",
+            "Cocktail Magic"
+          ],
+          "comedyShows": 6,
+          "comedyStage": "The Barbary"
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "day": 1,
+      "stage": "Cocktail Magic",
+      "start": "14:00",
+      "end": "14:20",
+      "billing": "Jon Armstrong",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 1,
+      "stage": "Cocktail Magic",
+      "start": "15:05",
+      "end": "15:40",
+      "billing": "Lucy Dacus",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 1,
+      "stage": "Cocktail Magic",
+      "start": "16:25",
+      "end": "16:55",
+      "billing": "Jon Armstrong",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 1,
+      "stage": "Cocktail Magic",
+      "start": "17:45",
+      "end": "18:25",
+      "billing": "Mattson 2",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 1,
+      "stage": "Cocktail Magic",
+      "start": "19:40",
+      "end": "20:05",
+      "billing": "Jon Armstrong",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 1,
+      "stage": "GastroMagic",
+      "start": "15:30",
+      "end": "16:00",
+      "billing": "Mad Genius with Bill Nye & Chef Matty Matheson",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 1,
+      "stage": "GastroMagic",
+      "start": "16:50",
+      "end": "17:20",
+      "billing": "Choco Wars w/ Guittard Chocolate Company & Galactic Empire",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 1,
+      "stage": "GastroMagic",
+      "start": "18:10",
+      "end": "18:40",
+      "billing": "Sweet Southern Drag w/ Chef Tiffani Faison and Shangela",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 1,
+      "stage": "GastroMagic",
+      "start": "19:30",
+      "end": "20:00",
+      "billing": "ME & JULIO DOWN BY THE SHAKE SHACK WITH PAUL SCHEER AND BONE DIGGERS",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 1,
+      "stage": "The Barbary",
+      "start": "13:20",
+      "end": "14:20",
+      "billing": "Bill Nye & Paul Scheer - The Comedy of Science",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 1,
+      "stage": "The Barbary",
+      "start": "14:45",
+      "end": "15:40",
+      "billing": "MICHELLE WOLF, ELIZA SKINNER, TAYLOR TOMLINSON, EMILY CATALANO",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 1,
+      "stage": "The Barbary",
+      "start": "16:10",
+      "end": "17:05",
+      "billing": "CHELSEA PERETTI, Al Madrigal, Taylor Tomlinson",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 1,
+      "stage": "The Barbary",
+      "start": "17:35",
+      "end": "18:35",
+      "billing": "IMPROV SUPERJAM™   FEAT. PAUL SCHEER, JON GABRUS, PHIL LAMARR, ELIZA SKINNER, COLE STRATTON, JANET VARNEY & JODIE SWEETIN!",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 1,
+      "stage": "The Barbary",
+      "start": "19:00",
+      "end": "19:55",
+      "billing": "Chelsea Peretti, Al Madrigal, Shangela",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 2,
+      "stage": "Cocktail Magic",
+      "start": "14:00",
+      "end": "14:20",
+      "billing": "Jon Armstrong",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 2,
+      "stage": "Cocktail Magic",
+      "start": "15:05",
+      "end": "15:55",
+      "billing": "Mattson 2",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 2,
+      "stage": "Cocktail Magic",
+      "start": "16:35",
+      "end": "16:55",
+      "billing": "Jon Armstrong",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 2,
+      "stage": "Cocktail Magic",
+      "start": "19:40",
+      "end": "20:05",
+      "billing": "Jon Armstrong",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 2,
+      "stage": "GastroMagic",
+      "start": "15:05",
+      "end": "15:35",
+      "billing": "Doughboys: Wheel of Cheese of Fortune",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 2,
+      "stage": "GastroMagic",
+      "start": "16:20",
+      "end": "16:45",
+      "billing": "Hugh Acheson",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 2,
+      "stage": "GastroMagic",
+      "start": "17:45",
+      "end": "18:15",
+      "billing": "Kiwi Time w/ Anna Weinberg and Rhys Darby",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 2,
+      "stage": "GastroMagic",
+      "start": "19:05",
+      "end": "19:35",
+      "billing": "EDDIE HUANG",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 2,
+      "stage": "The Barbary",
+      "start": "12:00",
+      "end": "12:55",
+      "billing": "Gavin Newsom",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 2,
+      "stage": "The Barbary",
+      "start": "13:25",
+      "end": "14:10",
+      "billing": "Mickey Hart",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 2,
+      "stage": "The Barbary",
+      "start": "14:40",
+      "end": "15:40",
+      "billing": "Jonathan Van Ness",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 2,
+      "stage": "The Barbary",
+      "start": "16:10",
+      "end": "17:10",
+      "billing": "Phoebe Robinson & Friends feat. Jonathan Van Ness, Naomi Ekperigin & More!",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 2,
+      "stage": "The Barbary",
+      "start": "17:40",
+      "end": "18:35",
+      "billing": "Hanging with Paul Scheer feat. Phoebe Robinson & Jonathan Van Ness & More!",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 2,
+      "stage": "The Barbary",
+      "start": "19:05",
+      "end": "20:10",
+      "billing": "Michelle Wolf, Rhys Darby, Taylor Tomlinson, Pat Regan, Emily Catalano",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 3,
+      "stage": "Cocktail Magic",
+      "start": "13:40",
+      "end": "14:00",
+      "billing": "Jon Armstrong",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 3,
+      "stage": "Cocktail Magic",
+      "start": "15:00",
+      "end": "15:20",
+      "billing": "Jon Armstrong",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 3,
+      "stage": "Cocktail Magic",
+      "start": "16:10",
+      "end": "16:55",
+      "billing": "Mattson 2",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 3,
+      "stage": "Cocktail Magic",
+      "start": "17:50",
+      "end": "18:10",
+      "billing": "Jon Armstrong",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 3,
+      "stage": "Cocktail Magic",
+      "start": "19:00",
+      "end": "20:00",
+      "billing": "ZEBUEL",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 3,
+      "stage": "GastroMagic",
+      "start": "15:10",
+      "end": "15:40",
+      "billing": "Naomi Pomeroy",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 3,
+      "stage": "GastroMagic",
+      "start": "16:25",
+      "end": "16:55",
+      "billing": "Beignets and Bounce Brunch w/ Katey Red & Brenda's French Soul Food",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 3,
+      "stage": "GastroMagic",
+      "start": "17:45",
+      "end": "18:15",
+      "billing": "Music of Twin Peaks w/ Melissa Chou, Red Room Orchestra, James Marshall, & Michael Horse",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 3,
+      "stage": "GastroMagic",
+      "start": "19:05",
+      "end": "19:35",
+      "billing": "Breakdown Breakdance w/ DJ Qbert, Belcampo Meat Company, and Beatz N' Pieces",
+      "reason": "a show on GastroMagic or Cocktail Magic, the festival's food-and-drink stages (chef demos, food contests, cocktails with magicians), not music sets",
+      "food": true
+    },
+    {
+      "day": 3,
+      "stage": "The Barbary",
+      "start": "12:00",
+      "end": "12:45",
+      "billing": "Josh Clark of Stuff You Should Know",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 3,
+      "stage": "The Barbary",
+      "start": "13:15",
+      "end": "14:00",
+      "billing": "Global Climate Action Summit",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 3,
+      "stage": "The Barbary",
+      "start": "14:40",
+      "end": "15:30",
+      "billing": "Red Room Orchestra Play Music From the Films of Wes Anderson",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 3,
+      "stage": "The Barbary",
+      "start": "16:05",
+      "end": "17:05",
+      "billing": "Hysteria by Crooked Media Special Guest Phoebe Robinson",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 3,
+      "stage": "The Barbary",
+      "start": "17:35",
+      "end": "18:30",
+      "billing": "SPEECHLESS : IMPROVISED SLIDESHOW PRESENTATIONS, SPECIAL GUEST JUDGE: ADAM SAVAGE & Veronica Belmont, PRESENTERS : RHYS DARBY, NAOMI EKPERIGIN, JON GABRUS, JR DE GUZMAN",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    },
+    {
+      "day": 3,
+      "stage": "The Barbary",
+      "start": "18:55",
+      "end": "19:50",
+      "billing": "Phoebe Robinson, Naomi Ekperigin, Pat Regan, Jr De Guzman",
+      "reason": "The Barbary is the festival's comedy tent: its shows are comedy, not music sets",
+      "comedy": true
+    }
+  ],
+  "dropped": []
+}

@@ -1,0 +1,43 @@
+{
+  "id": "countdown-nye-2016",
+  "method": "official_sources",
+  "official": "http://countdownnye.com/experience/set-times/",
+  "days": [
+    {
+      "day": 1,
+      "date": "2016-12-30",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://countdownnye.com/experience/set-times/",
+          "archivedUrl": "https://web.archive.org/web/20170101100522/http://countdownnye.com/experience/set-times/",
+          "captureTimestamp": "20170101100522",
+          "printed": "Friday, December 30",
+          "sha256": "248ff5179bedb8993fc10810a21e8a5efc71e147d190b11f0d8e5a7e61e721d2",
+          "bytes": 189827,
+          "rows": 24,
+          "format": "day-tabs"
+        }
+      ]
+    },
+    {
+      "day": 2,
+      "date": "2016-12-31",
+      "sources": [
+        {
+          "kind": "page",
+          "url": "http://countdownnye.com/experience/set-times/",
+          "archivedUrl": "https://web.archive.org/web/20170101100522/http://countdownnye.com/experience/set-times/",
+          "captureTimestamp": "20170101100522",
+          "printed": "Saturday, December 31",
+          "sha256": "248ff5179bedb8993fc10810a21e8a5efc71e147d190b11f0d8e5a7e61e721d2",
+          "bytes": 189827,
+          "rows": 28,
+          "format": "day-tabs"
+        }
+      ]
+    }
+  ],
+  "excluded": [],
+  "dropped": []
+}

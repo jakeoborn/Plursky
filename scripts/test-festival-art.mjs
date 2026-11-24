@@ -44,13 +44,10 @@ const FALLBACK = {
   // Added 2026-11-15 by festival batch 6, after photo pass 2;
   // each needs an official tile in data/festival-art.js.
   "lollapalooza-india-2027": "official art not fetched yet; tile owed before the flip",
-  "lollapalooza-argentina-2027": "official art not fetched yet; tile owed before the flip",
-  "lollapalooza-chile-2027": "official art not fetched yet; tile owed before the flip",
-  "lollapalooza-brasil-2027": "official art not fetched yet; tile owed before the flip",
-  "ultra-south-africa-2027": "official art not fetched yet; tile owed before the flip",
   "bottlerock-2027": "official art not fetched yet; tile owed before the flip",
   "suenos-2027": "official art not fetched yet; tile owed before the flip",
-  "bumbershoot-2027": "official art not fetched yet; tile owed before the flip",
+  "bass-canyon-2027": "official art not fetched yet; tile owed before the flip",
+  "medusa-2027": "official art not fetched yet; tile owed before the flip",
 };
 // Sat Oct 17, 4 pm ET: III Points is live, so all three chip kinds are on the page.
 const AT = "2026-10-17T20:00:00Z";

@@ -1424,13 +1424,10 @@ function _someFestivalClaimsCaptureTime(date, utcMs) {
   return false;
 }
 
-// Festivals whose amenity label ("near 💧 Hydration") must come from VERIFIED
-// geometry. The label places an art pin in the world, the same class of claim
-// geometryVerifiedFor() already withholds for distances, so ACL (founder
-// ruling 2026-09-23) gets no label until its map registers. The rest of the
-// fleet, EDC first, is #223, which either widens this to every festival or
-// deletes the label. Until then only the listed ids are gated.
-const _AMENITY_LABEL_NEEDS_GEOMETRY = new Set(["acl-2026"]);
+// The amenity label ("near 💧 Hydration") places an art pin in the world, the
+// same class of claim geometryVerifiedFor() already withholds for distances.
+// So no festival gets the label until its geometry verifies: ACL by founder
+// ruling 2026-09-23, the rest of the fleet (EDC first) by #223.
 
 function _matchNearestLocation(lat, lng, ds) {
   const set = ds || _activeDataSet();
@@ -1438,11 +1435,9 @@ function _matchNearestLocation(lat, lng, ds) {
   if (!amenities.length) return null;
   const cfg = set.config || {};
   const fid = set.id || cfg.id;
-  if (_AMENITY_LABEL_NEEDS_GEOMETRY.has(fid)) {
-    // Fail closed: no predicate loaded means no verified geometry.
-    const verified = typeof geometryVerifiedFor === "function" && geometryVerifiedFor(fid);
-    if (!verified) return null;
-  }
+  // Fail closed: no predicate loaded means no verified geometry.
+  const verified = typeof geometryVerifiedFor === "function" && geometryVerifiedFor(fid);
+  if (!verified) return null;
   // map.jsx's MAP_AFFINE is solved ONCE at eval time from the ACTIVE
   // festival's anchors + stages, so mapToGps is hard-bound to that festival.
   // Using it for a photo we resolved to a DIFFERENT festival would place

@@ -86,7 +86,7 @@ async function readAppData() {
         id, tba: typeof isScheduleTBA === "function" ? !!isScheduleTBA(id) : null,
         config: pick({ id: c.id, name: c.name, dates: c.dates, year: c.year, startMs: c.startMs, endMs: c.endMs, tz: c.tz,
           dayDates: c.dayDates, venue: c.venue && { name: c.venue.name, address: c.venue.address }, location: c.location, locationShort: c.locationShort,
-          officialEvent: c.officialEvent, lineupSource: c.lineupSource, scheduleSource: c.scheduleSource, setTimesProvisional: c.setTimesProvisional,
+          officialEvent: c.officialEvent, lineupSource: c.lineupSource, venueSource: c.venueSource, scheduleSource: c.scheduleSource, setTimesProvisional: c.setTimesProvisional,
           hours: c.hours, gates: c.gates, gpsAnchors: c.gpsAnchors && Object.keys(c.gpsAnchors), mapMode: c.mapMode, mapGeoref: !!c.mapGeoref,
           mapArtIsGeoregistered: c.mapArtIsGeoregistered, mapSource: c.mapSource }),
         stages: (ds.stages || []).map(s => ({ id: s.id, name: s.name })),
@@ -262,6 +262,11 @@ function internalChecks(f, add) {
   return { stages: f.stages.length, sets: f.artists.length, timed: timed.length, days: days.length };
 }
 
+function venueNamed(text, c) {
+  const vn = [c.venue?.name, c.locationShort].filter(Boolean);
+  return vn.some(v => norm(text).includes(norm(v)));
+}
+
 async function officialCheck(f, add) {
   const c = f.config, url = c.officialEvent?.website;
   const res = { dates: "UNVERIFIED", venue: "UNVERIFIED", url: url || null, fetchedAt: null, why: "" };
@@ -272,8 +277,16 @@ async function officialCheck(f, add) {
   const text = htmlText(r.text);
   if (text.length < 400) { res.why = "page has almost no server-rendered text (client-rendered)"; return res; }
   Object.assign(res, compareDates(text, eventDays(c)));
-  const vn = [c.venue?.name, c.locationShort].filter(Boolean);
-  if (vn.some(v => norm(text).includes(norm(v)))) res.venue = "MATCH";
+  if (venueNamed(text, c)) res.venue = "MATCH";
+  // Many official home pages name only the city. When the config records the
+  // official page that names the building (venueSource), read that one too.
+  const vurl = c.venueSource?.url;
+  if (res.venue !== "MATCH" && vurl && vurl !== url) {
+    const v = await politeFetch(vurl);
+    res.venueUrl = vurl;
+    if (v.ok && venueNamed(htmlText(v.text), c)) res.venue = "MATCH";
+    else res.why = [res.why, `venue not named on ${vurl}${v.ok ? "" : ` (fetch failed ${v.status || v.error})`}`].filter(Boolean).join("; ");
+  }
   if (res.dates === "MISMATCH?") add("S2", "official page may show different dates (needs a human look)", res.why, url);
   return res;
 }
@@ -507,10 +520,16 @@ if (process.argv.includes("--self-test")) {
   // And the live verify.mjs must yield both kinds.
   const live = Object.values(waivers()).flat();
   for (const [, kind] of WAIVER_TABLES) if (!live.some(w => w.kind === kind)) waiverMiss.push(`live verify.mjs has no ${kind} waiver`);
+  // Venue naming: the building name must be found on the page, and a page
+  // that names only the city must not pass (Decadence's home page shape).
+  const vc = { venue: { name: "Colorado Convention Center" }, locationShort: "Colorado Convention Center" };
+  const venueCases = [["Colorado Convention Center 700 14th St, Denver, CO 80202", true], ["December 30-31, Denver, CO", false], ["", false]];
+  const venueMiss = venueCases.filter(([t, want]) => venueNamed(t, vc) !== want).map(([t, want]) => `"${t}" → ${!want}, want ${want}`);
+  if (venueMiss.length) waiverMiss.push(`venue: ${venueMiss.join("; ")}`);
   const fail = miss.length || dmMiss.length || !edOk || !ed2Ok || flagMiss || yearMiss.length || waiverMiss.length;
   console.log(fail
     ? `SELF-TEST FAIL: missed ${JSON.stringify(miss)} dates ${JSON.stringify(dmMiss)} eventDays ${ed} / ${ed2} commonsFlag misses ${flagMiss} year/empty-day ${JSON.stringify(yearMiss)} waivers ${JSON.stringify(waiverMiss)}`
-    : `self-test: ${want.length} planted defects caught, date parsing OK, ${yearCases.length} year cases OK, empty day reported, Commons flags ${flagged.length} caught / ${clean.length} clean pass, waivers: both tables parsed with kind, ${WAIVER_TABLES.length} disabled-table controls refused, live file has ${live.length} waivers (${live.map(w => w.kind).join(", ")})`);
+    : `self-test: ${want.length} planted defects caught, date parsing OK, ${yearCases.length} year cases OK, empty day reported, Commons flags ${flagged.length} caught / ${clean.length} clean pass, venue naming ${venueCases.length} cases OK, waivers: both tables parsed with kind, ${WAIVER_TABLES.length} disabled-table controls refused, live file has ${live.length} waivers (${live.map(w => w.kind).join(", ")})`);
   process.exit(fail ? 1 : 0);
 }
 

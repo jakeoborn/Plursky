@@ -11,10 +11,24 @@
 # That path needs a clock, not a diff — so this job carries it, with the
 # strict check that does include the calendar.
 #
-# It reports rather than pushes. Regenerating writes real content to a public
-# site, and main is protected; the fix is a one-line local command and the
-# failing run says so. A scheduled job that silently rewrote plursky.com would
-# be a worse trade than a red tick nobody can miss.
+# When the strict check fails it regenerates, pushes the result to a dated
+# bot/page-freshness-YYYY-MM-DD branch and opens a pull request from it. It
+# never merges and never touches main: the PR still goes through sanity and a
+# person's merge, so nothing rewrites plursky.com on its own. The run stays red
+# until that PR lands, so the stale state remains impossible to miss.
+#
+# Before 2026-11-20 it only reported, and nobody regenerated: on Dreamstate
+# SoCal's first day main kept "This weekend" and the run went red (run
+# 44687789755). A festival's first and last days are predictable rot, so the
+# fix is now one merge instead of a local command.
+#
+# Two GitHub limits a person has to know about:
+#   - Opening the PR needs the repository setting "Allow GitHub Actions to
+#     create and approve pull requests". Without it the push still lands and
+#     the log prints the compare link to open the PR by hand.
+#   - A PR opened with GITHUB_TOKEN does not start other workflows, so sanity
+#     does not run on it by itself. Close and reopen the PR (or push to it)
+#     to start sanity before merging.
 name: page freshness
 
 on:
@@ -28,7 +42,13 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write        # push the dated bot/ branch (never main)
+  pull-requests: write   # open the PR from it
+
+# One run at a time, so two runs on the same day cannot race on the branch.
+concurrency:
+  group: page-freshness
+  cancel-in-progress: false
 
 jobs:
   freshness:
@@ -45,22 +65,61 @@ jobs:
       # --check-strict, NOT --check. The tolerant mode is the pull-request
       # contract; this job exists precisely to fail on what that one forgives.
       - name: Generated pages current, calendar included
+        id: strict
         run: node scripts/gen-festival-pages.mjs --check-strict
+
+      # Only on the scheduled or manual run on main, and only when the strict
+      # check failed. Never pushes to main; never merges.
+      - name: Regenerate and open a PR
+        if: failure() && steps.strict.outcome == 'failure' && github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          branch="bot/page-freshness-$(date -u +%F)"
+          open=$(gh pr list --state open --json headRefName --jq '[.[] | select(.headRefName | startswith("bot/page-freshness-"))] | length')
+          if [ "$open" != "0" ]; then
+            echo "A page-freshness PR is already open; not opening another."
+            gh pr list --state open --json number,headRefName,url --jq '.[] | select(.headRefName | startswith("bot/page-freshness-")) | "  #\(.number) \(.url)"'
+            exit 1
+          fi
+          node scripts/gen-festival-pages.mjs
+          node scripts/gen-festival-pages.mjs --check-strict
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "Strict check failed but regenerating changed nothing; look at the log above."
+            exit 1
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$branch"
+          git add -A
+          git commit -q -m "fix(pages): regenerate festival pages for the calendar ($(date -u +%F))" -m "Opened by the page-freshness workflow after --check-strict failed on main. Nothing else changed."
+          git push -q origin "$branch"
+          body="The scheduled strict check failed on main ($GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID): a generated page no longer matches the calendar. This branch is \`node scripts/gen-festival-pages.mjs\` run on main, and \`--check-strict\` passes on it.
+
+          Files: $(git show --stat --format= HEAD | tail -1)
+
+          Opened with GITHUB_TOKEN, so sanity does not start by itself: close and reopen this PR to run it. Merge only on green."
+          if ! gh pr create --base main --head "$branch" --title "fix(pages): regenerate festival pages for the calendar ($(date -u +%F))" --body "$body"; then
+            echo "Could not open the PR (is \"Allow GitHub Actions to create and approve pull requests\" off?)."
+            echo "Open it by hand: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/compare/main...$branch?expand=1"
+          fi
+          # Stay red until the regen PR merges.
+          exit 1
 
       # Also time-driven, also with no commit to trigger it: the Apple Music
       # developer token (APPLE_DEV_TOKEN) expires on a date, and every Apple
       # Music call fails together when it does. Red 21 days ahead, every day,
-      # until it is renewed. always(): a stale page must not hide this.
+      # until it is renewed. always(): a stale page must not hide this. It runs
+      # after the regen step so its failure can never open a page-regen PR.
       - name: Apple Music developer token not near expiry
+        id: musickit
         if: always()
         run: node scripts/check-musickit-token.mjs --self-test && node scripts/check-musickit-token.mjs --min-days 21
 
-      - name: How to fix
-        if: failure()
+      - name: How to renew the Apple Music token
+        if: failure() && steps.musickit.outcome == 'failure'
         run: |
-          echo "A generated page no longer matches the registry or the calendar."
-          echo "Fix locally, then open a PR:"
-          echo "  node scripts/gen-festival-pages.mjs"
-          echo "If the Apple Music token step failed, re-sign it (key holder only):"
-          echo "  node scripts/sign-musickit-token.mjs <TEAM_ID> <KEY_ID> <AuthKey.p8>"
-          echo "  then paste into APPLE_DEV_TOKEN, bump the cache-bust, and rebuild iOS too."
+          echo "The Apple Music developer token is near expiry (or unreadable). Key holder only, from ~/Plursky:"
+          echo "  node scripts/sign-musickit-token.mjs <TEAM_ID> <KEY_ID> <path/to/AuthKey_KEY_ID.p8> --write"
+          echo "then bump the cache-bust, open a PR, and ship an iOS build too (the app bundles its own copy)."
