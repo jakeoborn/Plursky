@@ -1,0 +1,3419 @@
+{
+ "id": "ultra-miami-2017",
+ "festivalId": "ultra-miami",
+ "name": "Ultra Miami 2017",
+ "year": 2017,
+ "timezone": "America/New_York",
+ "rolloverHour": 6,
+ "completeness": "complete_schedule",
+ "days": [
+  {
+   "day": 1,
+   "date": "2017-03-24",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2017-03-25",
+   "label": "Saturday"
+  },
+  {
+   "day": 3,
+   "date": "2017-03-26",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "ultra-miami-2017:ultra-main-stage",
+   "name": "ULTRA MAIN STAGE"
+  },
+  {
+   "id": "ultra-miami-2017:live-stage",
+   "name": "LIVE STAGE"
+  },
+  {
+   "id": "ultra-miami-2017:megastructure",
+   "name": "MEGASTRUCTURE"
+  },
+  {
+   "id": "ultra-miami-2017:arcadia-the-spider",
+   "name": "ARCADIA THE SPIDER"
+  },
+  {
+   "id": "ultra-miami-2017:worldwide-stage",
+   "name": "WORLDWIDE STAGE"
+  },
+  {
+   "id": "ultra-miami-2017:umf-radio",
+   "name": "UMF RADIO"
+  },
+  {
+   "id": "ultra-miami-2017:biscayne",
+   "name": "BISCAYNE"
+  },
+  {
+   "id": "ultra-miami-2017:oasis",
+   "name": "OASIS"
+  }
+ ],
+ "artists": [
+  {
+   "id": "ultra-miami-2017:major-lazer",
+   "name": "MAJOR LAZER",
+   "key": "major-lazer",
+   "performers": [
+    "major-lazer"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:martin-garrix",
+   "name": "MARTIN GARRIX",
+   "key": "martin-garrix",
+   "performers": [
+    "martin-garrix"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:alesso",
+   "name": "ALESSO",
+   "key": "alesso",
+   "performers": [
+    "alesso"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:armin-van-buuren",
+   "name": "ARMIN VAN BUUREN",
+   "key": "armin-van-buuren",
+   "performers": [
+    "armin-van-buuren"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:tchami",
+   "name": "TCHAMI",
+   "key": "tchami",
+   "performers": [
+    "tchami"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:robin-schulz",
+   "name": "ROBIN SCHULZ",
+   "key": "robin-schulz",
+   "performers": [
+    "robin-schulz"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:don-diablo",
+   "name": "DON DIABLO",
+   "key": "don-diablo",
+   "performers": [
+    "don-diablo"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:raiden",
+   "name": "RAIDEN",
+   "key": "raiden",
+   "performers": [
+    "raiden"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:rabbit-in-the-moon",
+   "name": "RABBIT IN THE MOON",
+   "key": "rabbit-in-the-moon",
+   "performers": [
+    "rabbit-in-the-moon"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:zhu",
+   "name": "ZHU",
+   "key": "zhu",
+   "performers": [
+    "zhu"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:kshmr",
+   "name": "KSHMR",
+   "key": "kshmr",
+   "performers": [
+    "kshmr"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:youngr",
+   "name": "YOUNGR",
+   "key": "youngr",
+   "performers": [
+    "youngr"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:carl-cox",
+   "name": "CARL COX",
+   "key": "carl-cox",
+   "performers": [
+    "carl-cox"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:marco-carola",
+   "name": "MARCO CAROLA",
+   "key": "marco-carola",
+   "performers": [
+    "marco-carola"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:joseph-capriati",
+   "name": "JOSEPH CAPRIATI",
+   "key": "joseph-capriati",
+   "performers": [
+    "joseph-capriati"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:jon-rundell",
+   "name": "JON RUNDELL",
+   "key": "jon-rundell",
+   "performers": [
+    "jon-rundell"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:saeed-younan",
+   "name": "SAEED YOUNAN",
+   "key": "saeed-younan",
+   "performers": [
+    "saeed-younan"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:maceo-plex",
+   "name": "MACEO PLEX",
+   "key": "maceo-plex",
+   "performers": [
+    "maceo-plex"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:nic-fanciulli",
+   "name": "NIC FANCIULLI",
+   "key": "nic-fanciulli",
+   "performers": [
+    "nic-fanciulli"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:hot-since-82",
+   "name": "HOT SINCE 82",
+   "key": "hot-since-82",
+   "performers": [
+    "hot-since-82"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:maya-jane-coles",
+   "name": "MAYA JANE COLES",
+   "key": "maya-jane-coles",
+   "performers": [
+    "maya-jane-coles"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:technasia",
+   "name": "TECHNASIA",
+   "key": "technasia",
+   "performers": [
+    "technasia"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:anna",
+   "name": "ANNA",
+   "key": "anna",
+   "performers": [
+    "anna"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:dosem",
+   "name": "DOSEM",
+   "key": "dosem",
+   "performers": [
+    "dosem"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:datsik",
+   "name": "DATSIK",
+   "key": "datsik",
+   "performers": [
+    "datsik"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:adventure-club",
+   "name": "ADVENTURE CLUB",
+   "key": "adventure-club",
+   "performers": [
+    "adventure-club"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:feed-me",
+   "name": "FEED ME",
+   "key": "feed-me",
+   "performers": [
+    "feed-me"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:netsky",
+   "name": "NETSKY",
+   "key": "netsky",
+   "performers": [
+    "netsky"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:slander",
+   "name": "SLANDER",
+   "key": "slander",
+   "performers": [
+    "slander"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:bro-safari",
+   "name": "BRO SAFARI",
+   "key": "bro-safari",
+   "performers": [
+    "bro-safari"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:dj-icey",
+   "name": "DJ ICEY",
+   "key": "dj-icey",
+   "performers": [
+    "dj-icey"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:justin-oh",
+   "name": "JUSTIN OH",
+   "key": "justin-oh",
+   "performers": [
+    "justin-oh"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:boombox-cartel",
+   "name": "BOOMBOX CARTEL",
+   "key": "boombox-cartel",
+   "performers": [
+    "boombox-cartel"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:jai-wolf",
+   "name": "JAI WOLF",
+   "key": "jai-wolf",
+   "performers": [
+    "jai-wolf"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:mad-decent-all-stars",
+   "name": "MAD DECENT ALL STARS",
+   "key": "mad-decent-all-stars",
+   "performers": [
+    "mad-decent-all-stars"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:party-favor",
+   "name": "PARTY FAVOR",
+   "key": "party-favor",
+   "performers": [
+    "party-favor"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:gryffin-dj-set",
+   "name": "GRYFFIN DJ SET",
+   "key": "gryffin-dj-set",
+   "performers": [
+    "gryffin-dj-set"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:grandtheft",
+   "name": "GRANDTHEFT",
+   "key": "grandtheft",
+   "performers": [
+    "grandtheft"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:ape-drums",
+   "name": "APE DRUMS",
+   "key": "ape-drums",
+   "performers": [
+    "ape-drums"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:ricky-remedy",
+   "name": "RICKY REMEDY",
+   "key": "ricky-remedy",
+   "performers": [
+    "ricky-remedy"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:juan-basshead",
+   "name": "JUAN BASSHEAD",
+   "key": "juan-basshead",
+   "performers": [
+    "juan-basshead"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:dj-trace",
+   "name": "DJ TRACE",
+   "key": "dj-trace",
+   "performers": [
+    "dj-trace"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:ak-1200",
+   "name": "AK 1200",
+   "key": "ak-1200",
+   "performers": [
+    "ak-1200"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:magic-mike",
+   "name": "MAGIC MIKE",
+   "key": "magic-mike",
+   "performers": [
+    "magic-mike"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:keith-mackenzie",
+   "name": "KEITH MACKENZIE",
+   "key": "keith-mackenzie",
+   "performers": [
+    "keith-mackenzie"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:kiko",
+   "name": "KIKO",
+   "key": "kiko",
+   "performers": [
+    "kiko"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:merlyn-b2b-supernaut",
+   "name": "MERLYN B2B SUPERNAUT",
+   "key": "merlyn-b2b-supernaut",
+   "performers": [
+    "merlyn",
+    "supernaut"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:bass-control",
+   "name": "BASS CONTROL",
+   "key": "bass-control",
+   "performers": [
+    "bass-control"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:richard-fraioli",
+   "name": "RICHARD FRAIOLI",
+   "key": "richard-fraioli",
+   "performers": [
+    "richard-fraioli"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:henri-pfr",
+   "name": "HENRI PFR",
+   "key": "henri-pfr",
+   "performers": [
+    "henri-pfr"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:linus",
+   "name": "LINUS",
+   "key": "linus",
+   "performers": [
+    "linus"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:moonspeak",
+   "name": "MOONSPEAK",
+   "key": "moonspeak",
+   "performers": [
+    "moonspeak"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:meta-forza",
+   "name": "META FORZA",
+   "key": "meta-forza",
+   "performers": [
+    "meta-forza"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:axwell-ingrosso",
+   "name": "AXWELL Λ INGROSSO",
+   "key": "axwell-ingrosso",
+   "performers": [
+    "axwell-ingrosso"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:afrojack",
+   "name": "AFROJACK",
+   "key": "afrojack",
+   "performers": [
+    "afrojack"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:above-and-beyond",
+   "name": "ABOVE & BEYOND",
+   "key": "above-and-beyond",
+   "performers": [
+    "above-and-beyond"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:tiesto",
+   "name": "TIËSTO",
+   "key": "tiesto",
+   "performers": [
+    "tiesto"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:steve-aoki",
+   "name": "STEVE AOKI",
+   "key": "steve-aoki",
+   "performers": [
+    "steve-aoki"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:dash-berlin",
+   "name": "DASH BERLIN",
+   "key": "dash-berlin",
+   "performers": [
+    "dash-berlin"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:martin-solveig",
+   "name": "MARTIN SOLVEIG",
+   "key": "martin-solveig",
+   "performers": [
+    "martin-solveig"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:sam-feldt",
+   "name": "SAM FELDT",
+   "key": "sam-feldt",
+   "performers": [
+    "sam-feldt"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:frank-walker",
+   "name": "FRANK WALKER",
+   "key": "frank-walker",
+   "performers": [
+    "frank-walker"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:tommie-sunshine",
+   "name": "TOMMIE SUNSHINE",
+   "key": "tommie-sunshine",
+   "performers": [
+    "tommie-sunshine"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:the-prodigy",
+   "name": "THE PRODIGY",
+   "key": "the-prodigy",
+   "performers": [
+    "the-prodigy"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:chase-and-status",
+   "name": "CHASE & STATUS",
+   "key": "chase-and-status",
+   "performers": [
+    "chase-and-status"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:ice-cube",
+   "name": "ICE CUBE",
+   "key": "ice-cube",
+   "performers": [
+    "ice-cube"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:cypress-hill",
+   "name": "CYPRESS HILL",
+   "key": "cypress-hill",
+   "performers": [
+    "cypress-hill"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:lexz-pryde-and-special-guest",
+   "name": "LEXZ PRYDE & SPECIAL GUEST",
+   "key": "lexz-pryde-and-special-guest",
+   "performers": [
+    "lexz-pryde-and-special-guest"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:afrobeta",
+   "name": "AFROBETA",
+   "key": "afrobeta",
+   "performers": [
+    "afrobeta"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:sasha-and-john-digweed",
+   "name": "SASHA & JOHN DIGWEED",
+   "key": "sasha-and-john-digweed",
+   "performers": [
+    "sasha-and-john-digweed"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:tale-of-us",
+   "name": "TALE OF US",
+   "key": "tale-of-us",
+   "performers": [
+    "tale-of-us"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:black-coffee",
+   "name": "BLACK COFFEE",
+   "key": "black-coffee",
+   "performers": [
+    "black-coffee"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:the-martinez-brothers",
+   "name": "THE MARTINEZ BROTHERS",
+   "key": "the-martinez-brothers",
+   "performers": [
+    "the-martinez-brothers"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:eli-and-fur",
+   "name": "ELI & FUR",
+   "key": "eli-and-fur",
+   "performers": [
+    "eli-and-fur"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:adam-beyer",
+   "name": "ADAM BEYER",
+   "key": "adam-beyer",
+   "performers": [
+    "adam-beyer"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:dubfire",
+   "name": "DUBFIRE",
+   "key": "dubfire",
+   "performers": [
+    "dubfire"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:chris-liebing",
+   "name": "CHRIS LIEBING",
+   "key": "chris-liebing",
+   "performers": [
+    "chris-liebing"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:marcel-dettmann",
+   "name": "MARCEL DETTMANN",
+   "key": "marcel-dettmann",
+   "performers": [
+    "marcel-dettmann"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:matador",
+   "name": "MATADOR",
+   "key": "matador",
+   "performers": [
+    "matador"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:matthias-tanzmann",
+   "name": "MATTHIAS TANZMANN",
+   "key": "matthias-tanzmann",
+   "performers": [
+    "matthias-tanzmann"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:kolsch",
+   "name": "KOLSCH",
+   "key": "kolsch",
+   "performers": [
+    "kolsch"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:reboot",
+   "name": "REBOOT",
+   "key": "reboot",
+   "performers": [
+    "reboot"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:hector",
+   "name": "HECTOR",
+   "key": "hector",
+   "performers": [
+    "hector"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:elio-riso",
+   "name": "ELIO RISO",
+   "key": "elio-riso",
+   "performers": [
+    "elio-riso"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:nicky-romero",
+   "name": "NICKY ROMERO",
+   "key": "nicky-romero",
+   "performers": [
+    "nicky-romero"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:alan-walker",
+   "name": "ALAN WALKER",
+   "key": "alan-walker",
+   "performers": [
+    "alan-walker"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:laidback-luke",
+   "name": "LAIDBACK LUKE",
+   "key": "laidback-luke",
+   "performers": [
+    "laidback-luke"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:cedric-gervais",
+   "name": "CEDRIC GERVAIS",
+   "key": "cedric-gervais",
+   "performers": [
+    "cedric-gervais"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:sunneryjames-and-ryan-marciano",
+   "name": "SUNNERYJAMES & RYAN MARCIANO",
+   "key": "sunneryjames-and-ryan-marciano",
+   "performers": [
+    "sunneryjames-and-ryan-marciano"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:swanky-tunes",
+   "name": "SWANKY TUNES",
+   "key": "swanky-tunes",
+   "performers": [
+    "swanky-tunes"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:kungs",
+   "name": "KUNGS",
+   "key": "kungs",
+   "performers": [
+    "kungs"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:sander-kleinenberg",
+   "name": "SANDER KLEINENBERG",
+   "key": "sander-kleinenberg",
+   "performers": [
+    "sander-kleinenberg"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:sophie-francis",
+   "name": "SOPHIE FRANCIS",
+   "key": "sophie-francis",
+   "performers": [
+    "sophie-francis"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:kryoman-dj-set",
+   "name": "KRYOMAN DJ SET",
+   "key": "kryoman-dj-set",
+   "performers": [
+    "kryoman-dj-set"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:ksuke",
+   "name": "KSUKE",
+   "key": "ksuke",
+   "performers": [
+    "ksuke"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:tjo",
+   "name": "TJO",
+   "key": "tjo",
+   "performers": [
+    "tjo"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:owsla-all-star-b2b",
+   "name": "OWSLA ALL STAR B2B",
+   "key": "owsla-all-star-b2b",
+   "performers": [
+    "owsla-all-star-b2b"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:valentino-khan",
+   "name": "VALENTINO KHAN",
+   "key": "valentino-khan",
+   "performers": [
+    "valentino-khan"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:wiwek",
+   "name": "WIWEK",
+   "key": "wiwek",
+   "performers": [
+    "wiwek"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:joyryde",
+   "name": "JOYRYDE",
+   "key": "joyryde",
+   "performers": [
+    "joyryde"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:sliink",
+   "name": "SLIINK",
+   "key": "sliink",
+   "performers": [
+    "sliink"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:vindata",
+   "name": "VINDATA",
+   "key": "vindata",
+   "performers": [
+    "vindata"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:chris-lake",
+   "name": "CHRIS LAKE",
+   "key": "chris-lake",
+   "performers": [
+    "chris-lake"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:team-ezy",
+   "name": "TEAM EZY",
+   "key": "team-ezy",
+   "performers": [
+    "team-ezy"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:blaise-james",
+   "name": "BLAISE JAMES",
+   "key": "blaise-james",
+   "performers": [
+    "blaise-james"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:mykris",
+   "name": "MYKRIS",
+   "key": "mykris",
+   "performers": [
+    "mykris"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:abel-ramos-albert-neve",
+   "name": "ABEL RAMOS >< ALBERT NEVE",
+   "key": "abel-ramos-albert-neve",
+   "performers": [
+    "abel-ramos-albert-neve"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:diego-miranda",
+   "name": "DIEGO MIRANDA",
+   "key": "diego-miranda",
+   "performers": [
+    "diego-miranda"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:dj-fresh-and-euphonik",
+   "name": "DJ FRESH & EUPHONIK",
+   "key": "dj-fresh-and-euphonik",
+   "performers": [
+    "dj-fresh-and-euphonik"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:los-de-la-vega",
+   "name": "LOS DE LA VEGA",
+   "key": "los-de-la-vega",
+   "performers": [
+    "los-de-la-vega"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:nate-campbell",
+   "name": "NATE CAMPBELL",
+   "key": "nate-campbell",
+   "performers": [
+    "nate-campbell"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:metaphysical",
+   "name": "METAPHYSICAL",
+   "key": "metaphysical",
+   "performers": [
+    "metaphysical"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:adam-trigger",
+   "name": "ADAM TRIGGER",
+   "key": "adam-trigger",
+   "performers": [
+    "adam-trigger"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:casey-kiss",
+   "name": "CASEY KISS",
+   "key": "casey-kiss",
+   "performers": [
+    "casey-kiss"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:tandim",
+   "name": "TANDIM",
+   "key": "tandim",
+   "performers": [
+    "tandim"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:most",
+   "name": "MOST",
+   "key": "most",
+   "performers": [
+    "most"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:jimmie-page",
+   "name": "JIMMIE PAGE",
+   "key": "jimmie-page",
+   "performers": [
+    "jimmie-page"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:soul-goodman",
+   "name": "SOUL GOODMAN",
+   "key": "soul-goodman",
+   "performers": [
+    "soul-goodman"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:dabura",
+   "name": "DABURA",
+   "key": "dabura",
+   "performers": [
+    "dabura"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:lemony-snickettes",
+   "name": "LEMONY SNICKETTES",
+   "key": "lemony-snickettes",
+   "performers": [
+    "lemony-snickettes"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:teezy",
+   "name": "TEEZY",
+   "key": "teezy",
+   "performers": [
+    "teezy"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:shalomar",
+   "name": "SHALOMAR",
+   "key": "shalomar",
+   "performers": [
+    "shalomar"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:ben-spence",
+   "name": "BEN SPENCE",
+   "key": "ben-spence",
+   "performers": [
+    "ben-spence"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:axion-fuentes",
+   "name": "AXION FUENTES",
+   "key": "axion-fuentes",
+   "performers": [
+    "axion-fuentes"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:dj-redline",
+   "name": "DJ REDLINE",
+   "key": "dj-redline",
+   "performers": [
+    "dj-redline"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:dj-cosmo",
+   "name": "DJ COSMO",
+   "key": "dj-cosmo",
+   "performers": [
+    "dj-cosmo"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:dj-snake",
+   "name": "DJ SNAKE",
+   "key": "dj-snake",
+   "performers": [
+    "dj-snake"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:david-guetta",
+   "name": "DAVID GUETTA",
+   "key": "david-guetta",
+   "performers": [
+    "david-guetta"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:zedd",
+   "name": "ZEDD",
+   "key": "zedd",
+   "performers": [
+    "zedd"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:hardwell",
+   "name": "HARDWELL",
+   "key": "hardwell",
+   "performers": [
+    "hardwell"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:galantis",
+   "name": "GALANTIS",
+   "key": "galantis",
+   "performers": [
+    "galantis"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:fedde-le-grand",
+   "name": "FEDDE LE GRAND",
+   "key": "fedde-le-grand",
+   "performers": [
+    "fedde-le-grand"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:showtek",
+   "name": "SHOWTEK",
+   "key": "showtek",
+   "performers": [
+    "showtek"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:bt",
+   "name": "BT",
+   "key": "bt",
+   "performers": [
+    "bt"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:dj-nano",
+   "name": "DJ NANO",
+   "key": "dj-nano",
+   "performers": [
+    "dj-nano"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:justice",
+   "name": "JUSTICE",
+   "key": "justice",
+   "performers": [
+    "justice"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:underworld",
+   "name": "UNDERWORLD",
+   "key": "underworld",
+   "performers": [
+    "underworld"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:barclay-crenshaw",
+   "name": "BARCLAY CRENSHAW",
+   "key": "barclay-crenshaw",
+   "performers": [
+    "barclay-crenshaw"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:goldfish",
+   "name": "GOLDFISH",
+   "key": "goldfish",
+   "performers": [
+    "goldfish"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:marta-sanchez-and-jean-marie",
+   "name": "MARTA SANCHEZ AND JEAN MARIE",
+   "key": "marta-sanchez-and-jean-marie",
+   "performers": [
+    "marta-sanchez-and-jean-marie"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:nwyr",
+   "name": "NWYR",
+   "key": "nwyr",
+   "performers": [
+    "nwyr"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:ferry-corsten-presents-gouryella",
+   "name": "FERRY CORSTEN PRESENTS GOURYELLA",
+   "key": "ferry-corsten-presents-gouryella",
+   "performers": [
+    "ferry-corsten-presents-gouryella"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:andrew-rayel",
+   "name": "ANDREW RAYEL",
+   "key": "andrew-rayel",
+   "performers": [
+    "andrew-rayel"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:aly-and-fila",
+   "name": "ALY & FILA",
+   "key": "aly-and-fila",
+   "performers": [
+    "aly-and-fila"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:vini-vici",
+   "name": "VINI VICI",
+   "key": "vini-vici",
+   "performers": [
+    "vini-vici"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:sander-van-doorn-presents-p-haze-3",
+   "name": "SANDER VAN DOORN PRESENTS P.HAZE 3",
+   "key": "sander-van-doorn-presents-p-haze-3",
+   "performers": [
+    "sander-van-doorn-presents-p-haze-3"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:arty-presents-alpha-9",
+   "name": "ARTY PRESENTS ALPHA 9",
+   "key": "arty-presents-alpha-9",
+   "performers": [
+    "arty-presents-alpha-9"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:david-gravell",
+   "name": "DAVID GRAVELL",
+   "key": "david-gravell",
+   "performers": [
+    "david-gravell"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:ruben-de-ronde",
+   "name": "RUBEN DE RONDE",
+   "key": "ruben-de-ronde",
+   "performers": [
+    "ruben-de-ronde"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:jamie-jones",
+   "name": "JAMIE JONES",
+   "key": "jamie-jones",
+   "performers": [
+    "jamie-jones"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:seth-troxler",
+   "name": "SETH TROXLER",
+   "key": "seth-troxler",
+   "performers": [
+    "seth-troxler"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:eats-everything",
+   "name": "EATS EVERYTHING",
+   "key": "eats-everything",
+   "performers": [
+    "eats-everything"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:stephan-bodzin",
+   "name": "STEPHAN BODZIN",
+   "key": "stephan-bodzin",
+   "performers": [
+    "stephan-bodzin"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:jackmaster",
+   "name": "JACKMASTER",
+   "key": "jackmaster",
+   "performers": [
+    "jackmaster"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:patrick-topping",
+   "name": "PATRICK TOPPING",
+   "key": "patrick-topping",
+   "performers": [
+    "patrick-topping"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:waff-b2b-nathan-barato",
+   "name": "WAFF B2B NATHAN BARATO",
+   "key": "waff-b2b-nathan-barato",
+   "performers": [
+    "waff",
+    "nathan-barato"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:cristoph",
+   "name": "CRISTOPH",
+   "key": "cristoph",
+   "performers": [
+    "cristoph"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:josefin-rosen",
+   "name": "JOSEFIN ROSEN",
+   "key": "josefin-rosen",
+   "performers": [
+    "josefin-rosen"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:riotgear",
+   "name": "RIOTGEAR",
+   "key": "riotgear",
+   "performers": [
+    "riotgear"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:gta",
+   "name": "GTA",
+   "key": "gta",
+   "performers": [
+    "gta"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:getter",
+   "name": "GETTER",
+   "key": "getter",
+   "performers": [
+    "getter"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:slushii",
+   "name": "SLUSHII",
+   "key": "slushii",
+   "performers": [
+    "slushii"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:nghtmre",
+   "name": "NGHTMRE",
+   "key": "nghtmre",
+   "performers": [
+    "nghtmre"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:malaa",
+   "name": "MALAA",
+   "key": "malaa",
+   "performers": [
+    "malaa"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:rezz",
+   "name": "REZZ",
+   "key": "rezz",
+   "performers": [
+    "rezz"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:mercer",
+   "name": "MERCER",
+   "key": "mercer",
+   "performers": [
+    "mercer"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:4b",
+   "name": "4B",
+   "key": "4b",
+   "performers": [
+    "4b"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:lookas",
+   "name": "LOOKAS",
+   "key": "lookas",
+   "performers": [
+    "lookas"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:green-lantern",
+   "name": "GREEN LANTERN",
+   "key": "green-lantern",
+   "performers": [
+    "green-lantern"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:gg-magree",
+   "name": "GG MAGREE",
+   "key": "gg-magree",
+   "performers": [
+    "gg-magree"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:bassjackers",
+   "name": "BASSJACKERS",
+   "key": "bassjackers",
+   "performers": [
+    "bassjackers"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:ty-dolla-ign",
+   "name": "TY DOLLA $IGN",
+   "key": "ty-dolla-ign",
+   "performers": [
+    "ty-dolla-ign"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:afrojack-w-special-guests",
+   "name": "AFROJACK W/SPECIAL GUESTS",
+   "key": "afrojack-w-special-guests",
+   "performers": [
+    "afrojack-w-special-guests"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:quintino",
+   "name": "QUINTINO",
+   "key": "quintino",
+   "performers": [
+    "quintino"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:d-o-d",
+   "name": "D.O.D",
+   "key": "d-o-d",
+   "performers": [
+    "d-o-d"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:apster-b2b-d-wayne",
+   "name": "APSTER B2B D-WAYNE",
+   "key": "apster-b2b-d-wayne",
+   "performers": [
+    "apster",
+    "d-wayne"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:oliver-rosa",
+   "name": "OLIVER ROSA",
+   "key": "oliver-rosa",
+   "performers": [
+    "oliver-rosa"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:bobby-burns",
+   "name": "BOBBY BURNS",
+   "key": "bobby-burns",
+   "performers": [
+    "bobby-burns"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:antz",
+   "name": "ANTZ",
+   "key": "antz",
+   "performers": [
+    "antz"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:nadya",
+   "name": "NADYA",
+   "key": "nadya",
+   "performers": [
+    "nadya"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:rodrigo-vieira",
+   "name": "RODRIGO VIEIRA",
+   "key": "rodrigo-vieira",
+   "performers": [
+    "rodrigo-vieira"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:rod-b-b2b-bob-b",
+   "name": "ROD B. B2B BOB B",
+   "key": "rod-b-b2b-bob-b",
+   "performers": [
+    "rod-b",
+    "bob-b"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:nala",
+   "name": "NALA",
+   "key": "nala",
+   "performers": [
+    "nala"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:takshak",
+   "name": "TAKSHAK",
+   "key": "takshak",
+   "performers": [
+    "takshak"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:wyzzard",
+   "name": "WYZZARD",
+   "key": "wyzzard",
+   "performers": [
+    "wyzzard"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:jason-daniel",
+   "name": "JASON DANIEL",
+   "key": "jason-daniel",
+   "performers": [
+    "jason-daniel"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:beardsace",
+   "name": "BEARDSACE",
+   "key": "beardsace",
+   "performers": [
+    "beardsace"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:logan-dakota",
+   "name": "LOGAN DAKOTA",
+   "key": "logan-dakota",
+   "performers": [
+    "logan-dakota"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:x-con",
+   "name": "X-CON",
+   "key": "x-con",
+   "performers": [
+    "x-con"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:ideal-b2b-zaa",
+   "name": "IDEAL B2B ZAA",
+   "key": "ideal-b2b-zaa",
+   "performers": [
+    "ideal",
+    "zaa"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:juno",
+   "name": "JUNO",
+   "key": "juno",
+   "performers": [
+    "juno"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:esrever",
+   "name": "ESREVER",
+   "key": "esrever",
+   "performers": [
+    "esrever"
+   ]
+  },
+  {
+   "id": "ultra-miami-2017:dj-k9",
+   "name": "DJ K9",
+   "key": "dj-k9",
+   "performers": [
+    "dj-k9"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "ultra-miami-2017:d1:ultra-main-stage:2300:major-lazer",
+   "artistId": "ultra-miami-2017:major-lazer",
+   "day": 1,
+   "stageId": "ultra-miami-2017:ultra-main-stage",
+   "start": "23:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:ultra-main-stage:2155:martin-garrix",
+   "artistId": "ultra-miami-2017:martin-garrix",
+   "day": 1,
+   "stageId": "ultra-miami-2017:ultra-main-stage",
+   "start": "21:55",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:ultra-main-stage:2035:alesso",
+   "artistId": "ultra-miami-2017:alesso",
+   "day": 1,
+   "stageId": "ultra-miami-2017:ultra-main-stage",
+   "start": "20:35",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:ultra-main-stage:1930:armin-van-buuren",
+   "artistId": "ultra-miami-2017:armin-van-buuren",
+   "day": 1,
+   "stageId": "ultra-miami-2017:ultra-main-stage",
+   "start": "19:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:ultra-main-stage:1825:tchami",
+   "artistId": "ultra-miami-2017:tchami",
+   "day": 1,
+   "stageId": "ultra-miami-2017:ultra-main-stage",
+   "start": "18:25",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:ultra-main-stage:1720:robin-schulz",
+   "artistId": "ultra-miami-2017:robin-schulz",
+   "day": 1,
+   "stageId": "ultra-miami-2017:ultra-main-stage",
+   "start": "17:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:ultra-main-stage:1615:don-diablo",
+   "artistId": "ultra-miami-2017:don-diablo",
+   "day": 1,
+   "stageId": "ultra-miami-2017:ultra-main-stage",
+   "start": "16:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:ultra-main-stage:1600:raiden",
+   "artistId": "ultra-miami-2017:raiden",
+   "day": 1,
+   "stageId": "ultra-miami-2017:ultra-main-stage",
+   "start": "16:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:live-stage:2300:rabbit-in-the-moon",
+   "artistId": "ultra-miami-2017:rabbit-in-the-moon",
+   "day": 1,
+   "stageId": "ultra-miami-2017:live-stage",
+   "start": "23:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:live-stage:2130:zhu",
+   "artistId": "ultra-miami-2017:zhu",
+   "day": 1,
+   "stageId": "ultra-miami-2017:live-stage",
+   "start": "21:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:live-stage:2000:kshmr",
+   "artistId": "ultra-miami-2017:kshmr",
+   "day": 1,
+   "stageId": "ultra-miami-2017:live-stage",
+   "start": "20:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:live-stage:1830:youngr",
+   "artistId": "ultra-miami-2017:youngr",
+   "day": 1,
+   "stageId": "ultra-miami-2017:live-stage",
+   "start": "18:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:megastructure:2200:carl-cox",
+   "artistId": "ultra-miami-2017:carl-cox",
+   "day": 1,
+   "stageId": "ultra-miami-2017:megastructure",
+   "start": "22:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:megastructure:2030:marco-carola",
+   "artistId": "ultra-miami-2017:marco-carola",
+   "day": 1,
+   "stageId": "ultra-miami-2017:megastructure",
+   "start": "20:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:megastructure:1900:joseph-capriati",
+   "artistId": "ultra-miami-2017:joseph-capriati",
+   "day": 1,
+   "stageId": "ultra-miami-2017:megastructure",
+   "start": "19:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:megastructure:1730:jon-rundell",
+   "artistId": "ultra-miami-2017:jon-rundell",
+   "day": 1,
+   "stageId": "ultra-miami-2017:megastructure",
+   "start": "17:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:megastructure:1600:saeed-younan",
+   "artistId": "ultra-miami-2017:saeed-younan",
+   "day": 1,
+   "stageId": "ultra-miami-2017:megastructure",
+   "start": "16:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:arcadia-the-spider:2255:maceo-plex",
+   "artistId": "ultra-miami-2017:maceo-plex",
+   "day": 1,
+   "stageId": "ultra-miami-2017:arcadia-the-spider",
+   "start": "22:55",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:arcadia-the-spider:2155:nic-fanciulli",
+   "artistId": "ultra-miami-2017:nic-fanciulli",
+   "day": 1,
+   "stageId": "ultra-miami-2017:arcadia-the-spider",
+   "start": "21:55",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:arcadia-the-spider:2055:hot-since-82",
+   "artistId": "ultra-miami-2017:hot-since-82",
+   "day": 1,
+   "stageId": "ultra-miami-2017:arcadia-the-spider",
+   "start": "20:55",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:arcadia-the-spider:1930:maya-jane-coles",
+   "artistId": "ultra-miami-2017:maya-jane-coles",
+   "day": 1,
+   "stageId": "ultra-miami-2017:arcadia-the-spider",
+   "start": "19:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:arcadia-the-spider:1830:technasia",
+   "artistId": "ultra-miami-2017:technasia",
+   "day": 1,
+   "stageId": "ultra-miami-2017:arcadia-the-spider",
+   "start": "18:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:arcadia-the-spider:1730:anna",
+   "artistId": "ultra-miami-2017:anna",
+   "day": 1,
+   "stageId": "ultra-miami-2017:arcadia-the-spider",
+   "start": "17:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:arcadia-the-spider:1630:dosem",
+   "artistId": "ultra-miami-2017:dosem",
+   "day": 1,
+   "stageId": "ultra-miami-2017:arcadia-the-spider",
+   "start": "16:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:worldwide-stage:2300:datsik",
+   "artistId": "ultra-miami-2017:datsik",
+   "day": 1,
+   "stageId": "ultra-miami-2017:worldwide-stage",
+   "start": "23:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:worldwide-stage:2200:adventure-club",
+   "artistId": "ultra-miami-2017:adventure-club",
+   "day": 1,
+   "stageId": "ultra-miami-2017:worldwide-stage",
+   "start": "22:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:worldwide-stage:2100:feed-me",
+   "artistId": "ultra-miami-2017:feed-me",
+   "day": 1,
+   "stageId": "ultra-miami-2017:worldwide-stage",
+   "start": "21:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:worldwide-stage:2000:netsky",
+   "artistId": "ultra-miami-2017:netsky",
+   "day": 1,
+   "stageId": "ultra-miami-2017:worldwide-stage",
+   "start": "20:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:worldwide-stage:1900:slander",
+   "artistId": "ultra-miami-2017:slander",
+   "day": 1,
+   "stageId": "ultra-miami-2017:worldwide-stage",
+   "start": "19:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:worldwide-stage:1800:bro-safari",
+   "artistId": "ultra-miami-2017:bro-safari",
+   "day": 1,
+   "stageId": "ultra-miami-2017:worldwide-stage",
+   "start": "18:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:worldwide-stage:1700:dj-icey",
+   "artistId": "ultra-miami-2017:dj-icey",
+   "day": 1,
+   "stageId": "ultra-miami-2017:worldwide-stage",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:worldwide-stage:1600:justin-oh",
+   "artistId": "ultra-miami-2017:justin-oh",
+   "day": 1,
+   "stageId": "ultra-miami-2017:worldwide-stage",
+   "start": "16:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:umf-radio:2300:boombox-cartel",
+   "artistId": "ultra-miami-2017:boombox-cartel",
+   "day": 1,
+   "stageId": "ultra-miami-2017:umf-radio",
+   "start": "23:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:umf-radio:2200:jai-wolf",
+   "artistId": "ultra-miami-2017:jai-wolf",
+   "day": 1,
+   "stageId": "ultra-miami-2017:umf-radio",
+   "start": "22:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:umf-radio:2100:mad-decent-all-stars",
+   "artistId": "ultra-miami-2017:mad-decent-all-stars",
+   "day": 1,
+   "stageId": "ultra-miami-2017:umf-radio",
+   "start": "21:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:umf-radio:2000:party-favor",
+   "artistId": "ultra-miami-2017:party-favor",
+   "day": 1,
+   "stageId": "ultra-miami-2017:umf-radio",
+   "start": "20:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:umf-radio:1900:gryffin-dj-set",
+   "artistId": "ultra-miami-2017:gryffin-dj-set",
+   "day": 1,
+   "stageId": "ultra-miami-2017:umf-radio",
+   "start": "19:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:umf-radio:1800:grandtheft",
+   "artistId": "ultra-miami-2017:grandtheft",
+   "day": 1,
+   "stageId": "ultra-miami-2017:umf-radio",
+   "start": "18:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:umf-radio:1700:ape-drums",
+   "artistId": "ultra-miami-2017:ape-drums",
+   "day": 1,
+   "stageId": "ultra-miami-2017:umf-radio",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:umf-radio:1600:ricky-remedy",
+   "artistId": "ultra-miami-2017:ricky-remedy",
+   "day": 1,
+   "stageId": "ultra-miami-2017:umf-radio",
+   "start": "16:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:biscayne:2300:juan-basshead",
+   "artistId": "ultra-miami-2017:juan-basshead",
+   "day": 1,
+   "stageId": "ultra-miami-2017:biscayne",
+   "start": "23:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:biscayne:2200:dj-trace",
+   "artistId": "ultra-miami-2017:dj-trace",
+   "day": 1,
+   "stageId": "ultra-miami-2017:biscayne",
+   "start": "22:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:biscayne:2100:ak-1200",
+   "artistId": "ultra-miami-2017:ak-1200",
+   "day": 1,
+   "stageId": "ultra-miami-2017:biscayne",
+   "start": "21:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:biscayne:2000:dj-icey",
+   "artistId": "ultra-miami-2017:dj-icey",
+   "day": 1,
+   "stageId": "ultra-miami-2017:biscayne",
+   "start": "20:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:biscayne:1900:magic-mike",
+   "artistId": "ultra-miami-2017:magic-mike",
+   "day": 1,
+   "stageId": "ultra-miami-2017:biscayne",
+   "start": "19:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:biscayne:1800:keith-mackenzie",
+   "artistId": "ultra-miami-2017:keith-mackenzie",
+   "day": 1,
+   "stageId": "ultra-miami-2017:biscayne",
+   "start": "18:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:biscayne:1700:kiko",
+   "artistId": "ultra-miami-2017:kiko",
+   "day": 1,
+   "stageId": "ultra-miami-2017:biscayne",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:biscayne:1600:merlyn-b2b-supernaut",
+   "artistId": "ultra-miami-2017:merlyn-b2b-supernaut",
+   "day": 1,
+   "stageId": "ultra-miami-2017:biscayne",
+   "start": "16:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:oasis:2100:bass-control",
+   "artistId": "ultra-miami-2017:bass-control",
+   "day": 1,
+   "stageId": "ultra-miami-2017:oasis",
+   "start": "21:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:oasis:2000:richard-fraioli",
+   "artistId": "ultra-miami-2017:richard-fraioli",
+   "day": 1,
+   "stageId": "ultra-miami-2017:oasis",
+   "start": "20:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:oasis:1900:henri-pfr",
+   "artistId": "ultra-miami-2017:henri-pfr",
+   "day": 1,
+   "stageId": "ultra-miami-2017:oasis",
+   "start": "19:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:oasis:1800:linus",
+   "artistId": "ultra-miami-2017:linus",
+   "day": 1,
+   "stageId": "ultra-miami-2017:oasis",
+   "start": "18:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:oasis:1700:moonspeak",
+   "artistId": "ultra-miami-2017:moonspeak",
+   "day": 1,
+   "stageId": "ultra-miami-2017:oasis",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d1:oasis:1600:meta-forza",
+   "artistId": "ultra-miami-2017:meta-forza",
+   "day": 1,
+   "stageId": "ultra-miami-2017:oasis",
+   "start": "16:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:ultra-main-stage:2300:axwell-ingrosso",
+   "artistId": "ultra-miami-2017:axwell-ingrosso",
+   "day": 2,
+   "stageId": "ultra-miami-2017:ultra-main-stage",
+   "start": "23:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:ultra-main-stage:2155:afrojack",
+   "artistId": "ultra-miami-2017:afrojack",
+   "day": 2,
+   "stageId": "ultra-miami-2017:ultra-main-stage",
+   "start": "21:55",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:ultra-main-stage:2050:above-and-beyond",
+   "artistId": "ultra-miami-2017:above-and-beyond",
+   "day": 2,
+   "stageId": "ultra-miami-2017:ultra-main-stage",
+   "start": "20:50",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:ultra-main-stage:1915:tiesto",
+   "artistId": "ultra-miami-2017:tiesto",
+   "day": 2,
+   "stageId": "ultra-miami-2017:ultra-main-stage",
+   "start": "19:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:ultra-main-stage:1810:steve-aoki",
+   "artistId": "ultra-miami-2017:steve-aoki",
+   "day": 2,
+   "stageId": "ultra-miami-2017:ultra-main-stage",
+   "start": "18:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:ultra-main-stage:1705:dash-berlin",
+   "artistId": "ultra-miami-2017:dash-berlin",
+   "day": 2,
+   "stageId": "ultra-miami-2017:ultra-main-stage",
+   "start": "17:05",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:ultra-main-stage:1600:martin-solveig",
+   "artistId": "ultra-miami-2017:martin-solveig",
+   "day": 2,
+   "stageId": "ultra-miami-2017:ultra-main-stage",
+   "start": "16:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:ultra-main-stage:1455:sam-feldt",
+   "artistId": "ultra-miami-2017:sam-feldt",
+   "day": 2,
+   "stageId": "ultra-miami-2017:ultra-main-stage",
+   "start": "14:55",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:ultra-main-stage:1350:frank-walker",
+   "artistId": "ultra-miami-2017:frank-walker",
+   "day": 2,
+   "stageId": "ultra-miami-2017:ultra-main-stage",
+   "start": "13:50",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:ultra-main-stage:1245:tommie-sunshine",
+   "artistId": "ultra-miami-2017:tommie-sunshine",
+   "day": 2,
+   "stageId": "ultra-miami-2017:ultra-main-stage",
+   "start": "12:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:live-stage:2245:the-prodigy",
+   "artistId": "ultra-miami-2017:the-prodigy",
+   "day": 2,
+   "stageId": "ultra-miami-2017:live-stage",
+   "start": "22:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:live-stage:2115:chase-and-status",
+   "artistId": "ultra-miami-2017:chase-and-status",
+   "day": 2,
+   "stageId": "ultra-miami-2017:live-stage",
+   "start": "21:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:live-stage:1945:ice-cube",
+   "artistId": "ultra-miami-2017:ice-cube",
+   "day": 2,
+   "stageId": "ultra-miami-2017:live-stage",
+   "start": "19:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:live-stage:1815:cypress-hill",
+   "artistId": "ultra-miami-2017:cypress-hill",
+   "day": 2,
+   "stageId": "ultra-miami-2017:live-stage",
+   "start": "18:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:live-stage:1515:lexz-pryde-and-special-guest",
+   "artistId": "ultra-miami-2017:lexz-pryde-and-special-guest",
+   "day": 2,
+   "stageId": "ultra-miami-2017:live-stage",
+   "start": "15:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:live-stage:1400:afrobeta",
+   "artistId": "ultra-miami-2017:afrobeta",
+   "day": 2,
+   "stageId": "ultra-miami-2017:live-stage",
+   "start": "14:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:megastructure:2200:carl-cox",
+   "artistId": "ultra-miami-2017:carl-cox",
+   "day": 2,
+   "stageId": "ultra-miami-2017:megastructure",
+   "start": "22:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:megastructure:2000:sasha-and-john-digweed",
+   "artistId": "ultra-miami-2017:sasha-and-john-digweed",
+   "day": 2,
+   "stageId": "ultra-miami-2017:megastructure",
+   "start": "20:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:megastructure:1830:tale-of-us",
+   "artistId": "ultra-miami-2017:tale-of-us",
+   "day": 2,
+   "stageId": "ultra-miami-2017:megastructure",
+   "start": "18:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:megastructure:1700:black-coffee",
+   "artistId": "ultra-miami-2017:black-coffee",
+   "day": 2,
+   "stageId": "ultra-miami-2017:megastructure",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:megastructure:1500:the-martinez-brothers",
+   "artistId": "ultra-miami-2017:the-martinez-brothers",
+   "day": 2,
+   "stageId": "ultra-miami-2017:megastructure",
+   "start": "15:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:megastructure:1200:eli-and-fur",
+   "artistId": "ultra-miami-2017:eli-and-fur",
+   "day": 2,
+   "stageId": "ultra-miami-2017:megastructure",
+   "start": "12:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:arcadia-the-spider:2255:adam-beyer",
+   "artistId": "ultra-miami-2017:adam-beyer",
+   "day": 2,
+   "stageId": "ultra-miami-2017:arcadia-the-spider",
+   "start": "22:55",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:arcadia-the-spider:2155:dubfire",
+   "artistId": "ultra-miami-2017:dubfire",
+   "day": 2,
+   "stageId": "ultra-miami-2017:arcadia-the-spider",
+   "start": "21:55",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:arcadia-the-spider:2055:chris-liebing",
+   "artistId": "ultra-miami-2017:chris-liebing",
+   "day": 2,
+   "stageId": "ultra-miami-2017:arcadia-the-spider",
+   "start": "20:55",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:arcadia-the-spider:1930:marcel-dettmann",
+   "artistId": "ultra-miami-2017:marcel-dettmann",
+   "day": 2,
+   "stageId": "ultra-miami-2017:arcadia-the-spider",
+   "start": "19:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:arcadia-the-spider:1730:matador",
+   "artistId": "ultra-miami-2017:matador",
+   "day": 2,
+   "stageId": "ultra-miami-2017:arcadia-the-spider",
+   "start": "17:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:arcadia-the-spider:1630:matthias-tanzmann",
+   "artistId": "ultra-miami-2017:matthias-tanzmann",
+   "day": 2,
+   "stageId": "ultra-miami-2017:arcadia-the-spider",
+   "start": "16:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:arcadia-the-spider:1530:kolsch",
+   "artistId": "ultra-miami-2017:kolsch",
+   "day": 2,
+   "stageId": "ultra-miami-2017:arcadia-the-spider",
+   "start": "15:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:arcadia-the-spider:1430:reboot",
+   "artistId": "ultra-miami-2017:reboot",
+   "day": 2,
+   "stageId": "ultra-miami-2017:arcadia-the-spider",
+   "start": "14:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:arcadia-the-spider:1330:hector",
+   "artistId": "ultra-miami-2017:hector",
+   "day": 2,
+   "stageId": "ultra-miami-2017:arcadia-the-spider",
+   "start": "13:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:arcadia-the-spider:1230:elio-riso",
+   "artistId": "ultra-miami-2017:elio-riso",
+   "day": 2,
+   "stageId": "ultra-miami-2017:arcadia-the-spider",
+   "start": "12:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:worldwide-stage:2300:nicky-romero",
+   "artistId": "ultra-miami-2017:nicky-romero",
+   "day": 2,
+   "stageId": "ultra-miami-2017:worldwide-stage",
+   "start": "23:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:worldwide-stage:2200:alan-walker",
+   "artistId": "ultra-miami-2017:alan-walker",
+   "day": 2,
+   "stageId": "ultra-miami-2017:worldwide-stage",
+   "start": "22:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:worldwide-stage:2100:laidback-luke",
+   "artistId": "ultra-miami-2017:laidback-luke",
+   "day": 2,
+   "stageId": "ultra-miami-2017:worldwide-stage",
+   "start": "21:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:worldwide-stage:2000:cedric-gervais",
+   "artistId": "ultra-miami-2017:cedric-gervais",
+   "day": 2,
+   "stageId": "ultra-miami-2017:worldwide-stage",
+   "start": "20:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:worldwide-stage:1900:sunneryjames-and-ryan-marciano",
+   "artistId": "ultra-miami-2017:sunneryjames-and-ryan-marciano",
+   "day": 2,
+   "stageId": "ultra-miami-2017:worldwide-stage",
+   "start": "19:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:worldwide-stage:1800:swanky-tunes",
+   "artistId": "ultra-miami-2017:swanky-tunes",
+   "day": 2,
+   "stageId": "ultra-miami-2017:worldwide-stage",
+   "start": "18:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:worldwide-stage:1700:kungs",
+   "artistId": "ultra-miami-2017:kungs",
+   "day": 2,
+   "stageId": "ultra-miami-2017:worldwide-stage",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:worldwide-stage:1600:sander-kleinenberg",
+   "artistId": "ultra-miami-2017:sander-kleinenberg",
+   "day": 2,
+   "stageId": "ultra-miami-2017:worldwide-stage",
+   "start": "16:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:worldwide-stage:1500:sophie-francis",
+   "artistId": "ultra-miami-2017:sophie-francis",
+   "day": 2,
+   "stageId": "ultra-miami-2017:worldwide-stage",
+   "start": "15:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:worldwide-stage:1400:kryoman-dj-set",
+   "artistId": "ultra-miami-2017:kryoman-dj-set",
+   "day": 2,
+   "stageId": "ultra-miami-2017:worldwide-stage",
+   "start": "14:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:worldwide-stage:1300:ksuke",
+   "artistId": "ultra-miami-2017:ksuke",
+   "day": 2,
+   "stageId": "ultra-miami-2017:worldwide-stage",
+   "start": "13:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:worldwide-stage:1200:tjo",
+   "artistId": "ultra-miami-2017:tjo",
+   "day": 2,
+   "stageId": "ultra-miami-2017:worldwide-stage",
+   "start": "12:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:umf-radio:2300:owsla-all-star-b2b",
+   "artistId": "ultra-miami-2017:owsla-all-star-b2b",
+   "day": 2,
+   "stageId": "ultra-miami-2017:umf-radio",
+   "start": "23:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:umf-radio:2030:valentino-khan",
+   "artistId": "ultra-miami-2017:valentino-khan",
+   "day": 2,
+   "stageId": "ultra-miami-2017:umf-radio",
+   "start": "20:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:umf-radio:1930:wiwek",
+   "artistId": "ultra-miami-2017:wiwek",
+   "day": 2,
+   "stageId": "ultra-miami-2017:umf-radio",
+   "start": "19:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:umf-radio:1815:joyryde",
+   "artistId": "ultra-miami-2017:joyryde",
+   "day": 2,
+   "stageId": "ultra-miami-2017:umf-radio",
+   "start": "18:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:umf-radio:1700:sliink",
+   "artistId": "ultra-miami-2017:sliink",
+   "day": 2,
+   "stageId": "ultra-miami-2017:umf-radio",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:umf-radio:1545:vindata",
+   "artistId": "ultra-miami-2017:vindata",
+   "day": 2,
+   "stageId": "ultra-miami-2017:umf-radio",
+   "start": "15:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:umf-radio:1430:chris-lake",
+   "artistId": "ultra-miami-2017:chris-lake",
+   "day": 2,
+   "stageId": "ultra-miami-2017:umf-radio",
+   "start": "14:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:umf-radio:1315:team-ezy",
+   "artistId": "ultra-miami-2017:team-ezy",
+   "day": 2,
+   "stageId": "ultra-miami-2017:umf-radio",
+   "start": "13:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:umf-radio:1200:blaise-james",
+   "artistId": "ultra-miami-2017:blaise-james",
+   "day": 2,
+   "stageId": "ultra-miami-2017:umf-radio",
+   "start": "12:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:biscayne:2300:mykris",
+   "artistId": "ultra-miami-2017:mykris",
+   "day": 2,
+   "stageId": "ultra-miami-2017:biscayne",
+   "start": "23:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:biscayne:2200:abel-ramos-albert-neve",
+   "artistId": "ultra-miami-2017:abel-ramos-albert-neve",
+   "day": 2,
+   "stageId": "ultra-miami-2017:biscayne",
+   "start": "22:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:biscayne:2100:diego-miranda",
+   "artistId": "ultra-miami-2017:diego-miranda",
+   "day": 2,
+   "stageId": "ultra-miami-2017:biscayne",
+   "start": "21:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:biscayne:2000:dj-fresh-and-euphonik",
+   "artistId": "ultra-miami-2017:dj-fresh-and-euphonik",
+   "day": 2,
+   "stageId": "ultra-miami-2017:biscayne",
+   "start": "20:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:biscayne:1900:los-de-la-vega",
+   "artistId": "ultra-miami-2017:los-de-la-vega",
+   "day": 2,
+   "stageId": "ultra-miami-2017:biscayne",
+   "start": "19:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:biscayne:1800:nate-campbell",
+   "artistId": "ultra-miami-2017:nate-campbell",
+   "day": 2,
+   "stageId": "ultra-miami-2017:biscayne",
+   "start": "18:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:biscayne:1700:metaphysical",
+   "artistId": "ultra-miami-2017:metaphysical",
+   "day": 2,
+   "stageId": "ultra-miami-2017:biscayne",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:biscayne:1600:adam-trigger",
+   "artistId": "ultra-miami-2017:adam-trigger",
+   "day": 2,
+   "stageId": "ultra-miami-2017:biscayne",
+   "start": "16:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:biscayne:1500:casey-kiss",
+   "artistId": "ultra-miami-2017:casey-kiss",
+   "day": 2,
+   "stageId": "ultra-miami-2017:biscayne",
+   "start": "15:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:biscayne:1400:tandim",
+   "artistId": "ultra-miami-2017:tandim",
+   "day": 2,
+   "stageId": "ultra-miami-2017:biscayne",
+   "start": "14:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:biscayne:1300:most",
+   "artistId": "ultra-miami-2017:most",
+   "day": 2,
+   "stageId": "ultra-miami-2017:biscayne",
+   "start": "13:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:oasis:2100:jimmie-page",
+   "artistId": "ultra-miami-2017:jimmie-page",
+   "day": 2,
+   "stageId": "ultra-miami-2017:oasis",
+   "start": "21:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:oasis:2000:soul-goodman",
+   "artistId": "ultra-miami-2017:soul-goodman",
+   "day": 2,
+   "stageId": "ultra-miami-2017:oasis",
+   "start": "20:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:oasis:1900:dabura",
+   "artistId": "ultra-miami-2017:dabura",
+   "day": 2,
+   "stageId": "ultra-miami-2017:oasis",
+   "start": "19:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:oasis:1800:lemony-snickettes",
+   "artistId": "ultra-miami-2017:lemony-snickettes",
+   "day": 2,
+   "stageId": "ultra-miami-2017:oasis",
+   "start": "18:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:oasis:1700:teezy",
+   "artistId": "ultra-miami-2017:teezy",
+   "day": 2,
+   "stageId": "ultra-miami-2017:oasis",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:oasis:1600:shalomar",
+   "artistId": "ultra-miami-2017:shalomar",
+   "day": 2,
+   "stageId": "ultra-miami-2017:oasis",
+   "start": "16:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:oasis:1500:ben-spence",
+   "artistId": "ultra-miami-2017:ben-spence",
+   "day": 2,
+   "stageId": "ultra-miami-2017:oasis",
+   "start": "15:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:oasis:1400:axion-fuentes",
+   "artistId": "ultra-miami-2017:axion-fuentes",
+   "day": 2,
+   "stageId": "ultra-miami-2017:oasis",
+   "start": "14:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:oasis:1300:dj-redline",
+   "artistId": "ultra-miami-2017:dj-redline",
+   "day": 2,
+   "stageId": "ultra-miami-2017:oasis",
+   "start": "13:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d2:oasis:1200:dj-cosmo",
+   "artistId": "ultra-miami-2017:dj-cosmo",
+   "day": 2,
+   "stageId": "ultra-miami-2017:oasis",
+   "start": "12:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:ultra-main-stage:2200:dj-snake",
+   "artistId": "ultra-miami-2017:dj-snake",
+   "day": 3,
+   "stageId": "ultra-miami-2017:ultra-main-stage",
+   "start": "22:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:ultra-main-stage:2055:david-guetta",
+   "artistId": "ultra-miami-2017:david-guetta",
+   "day": 3,
+   "stageId": "ultra-miami-2017:ultra-main-stage",
+   "start": "20:55",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:ultra-main-stage:1950:zedd",
+   "artistId": "ultra-miami-2017:zedd",
+   "day": 3,
+   "stageId": "ultra-miami-2017:ultra-main-stage",
+   "start": "19:50",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:ultra-main-stage:1845:hardwell",
+   "artistId": "ultra-miami-2017:hardwell",
+   "day": 3,
+   "stageId": "ultra-miami-2017:ultra-main-stage",
+   "start": "18:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:ultra-main-stage:1725:galantis",
+   "artistId": "ultra-miami-2017:galantis",
+   "day": 3,
+   "stageId": "ultra-miami-2017:ultra-main-stage",
+   "start": "17:25",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:ultra-main-stage:1620:fedde-le-grand",
+   "artistId": "ultra-miami-2017:fedde-le-grand",
+   "day": 3,
+   "stageId": "ultra-miami-2017:ultra-main-stage",
+   "start": "16:20",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:ultra-main-stage:1515:showtek",
+   "artistId": "ultra-miami-2017:showtek",
+   "day": 3,
+   "stageId": "ultra-miami-2017:ultra-main-stage",
+   "start": "15:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:ultra-main-stage:1410:bt",
+   "artistId": "ultra-miami-2017:bt",
+   "day": 3,
+   "stageId": "ultra-miami-2017:ultra-main-stage",
+   "start": "14:10",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:ultra-main-stage:1305:mykris",
+   "artistId": "ultra-miami-2017:mykris",
+   "day": 3,
+   "stageId": "ultra-miami-2017:ultra-main-stage",
+   "start": "13:05",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:ultra-main-stage:1200:dj-nano",
+   "artistId": "ultra-miami-2017:dj-nano",
+   "day": 3,
+   "stageId": "ultra-miami-2017:ultra-main-stage",
+   "start": "12:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:live-stage:2200:justice",
+   "artistId": "ultra-miami-2017:justice",
+   "day": 3,
+   "stageId": "ultra-miami-2017:live-stage",
+   "start": "22:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:live-stage:2025:underworld",
+   "artistId": "ultra-miami-2017:underworld",
+   "day": 3,
+   "stageId": "ultra-miami-2017:live-stage",
+   "start": "20:25",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:live-stage:1725:barclay-crenshaw",
+   "artistId": "ultra-miami-2017:barclay-crenshaw",
+   "day": 3,
+   "stageId": "ultra-miami-2017:live-stage",
+   "start": "17:25",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:live-stage:1455:goldfish",
+   "artistId": "ultra-miami-2017:goldfish",
+   "day": 3,
+   "stageId": "ultra-miami-2017:live-stage",
+   "start": "14:55",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:live-stage:1400:marta-sanchez-and-jean-marie",
+   "artistId": "ultra-miami-2017:marta-sanchez-and-jean-marie",
+   "day": 3,
+   "stageId": "ultra-miami-2017:live-stage",
+   "start": "14:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:megastructure:2100:armin-van-buuren",
+   "artistId": "ultra-miami-2017:armin-van-buuren",
+   "day": 3,
+   "stageId": "ultra-miami-2017:megastructure",
+   "start": "21:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:megastructure:2000:nwyr",
+   "artistId": "ultra-miami-2017:nwyr",
+   "day": 3,
+   "stageId": "ultra-miami-2017:megastructure",
+   "start": "20:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:megastructure:1900:ferry-corsten-presents-gouryella",
+   "artistId": "ultra-miami-2017:ferry-corsten-presents-gouryella",
+   "day": 3,
+   "stageId": "ultra-miami-2017:megastructure",
+   "start": "19:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:megastructure:1800:andrew-rayel",
+   "artistId": "ultra-miami-2017:andrew-rayel",
+   "day": 3,
+   "stageId": "ultra-miami-2017:megastructure",
+   "start": "18:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:megastructure:1700:aly-and-fila",
+   "artistId": "ultra-miami-2017:aly-and-fila",
+   "day": 3,
+   "stageId": "ultra-miami-2017:megastructure",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:megastructure:1600:vini-vici",
+   "artistId": "ultra-miami-2017:vini-vici",
+   "day": 3,
+   "stageId": "ultra-miami-2017:megastructure",
+   "start": "16:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:megastructure:1500:sander-van-doorn-presents-p-haze-3",
+   "artistId": "ultra-miami-2017:sander-van-doorn-presents-p-haze-3",
+   "day": 3,
+   "stageId": "ultra-miami-2017:megastructure",
+   "start": "15:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:megastructure:1400:arty-presents-alpha-9",
+   "artistId": "ultra-miami-2017:arty-presents-alpha-9",
+   "day": 3,
+   "stageId": "ultra-miami-2017:megastructure",
+   "start": "14:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:megastructure:1300:david-gravell",
+   "artistId": "ultra-miami-2017:david-gravell",
+   "day": 3,
+   "stageId": "ultra-miami-2017:megastructure",
+   "start": "13:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:megastructure:1200:ruben-de-ronde",
+   "artistId": "ultra-miami-2017:ruben-de-ronde",
+   "day": 3,
+   "stageId": "ultra-miami-2017:megastructure",
+   "start": "12:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:arcadia-the-spider:2155:jamie-jones",
+   "artistId": "ultra-miami-2017:jamie-jones",
+   "day": 3,
+   "stageId": "ultra-miami-2017:arcadia-the-spider",
+   "start": "21:55",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:arcadia-the-spider:2055:seth-troxler",
+   "artistId": "ultra-miami-2017:seth-troxler",
+   "day": 3,
+   "stageId": "ultra-miami-2017:arcadia-the-spider",
+   "start": "20:55",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:arcadia-the-spider:1930:eats-everything",
+   "artistId": "ultra-miami-2017:eats-everything",
+   "day": 3,
+   "stageId": "ultra-miami-2017:arcadia-the-spider",
+   "start": "19:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:arcadia-the-spider:1830:stephan-bodzin",
+   "artistId": "ultra-miami-2017:stephan-bodzin",
+   "day": 3,
+   "stageId": "ultra-miami-2017:arcadia-the-spider",
+   "start": "18:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:arcadia-the-spider:1730:jackmaster",
+   "artistId": "ultra-miami-2017:jackmaster",
+   "day": 3,
+   "stageId": "ultra-miami-2017:arcadia-the-spider",
+   "start": "17:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:arcadia-the-spider:1630:patrick-topping",
+   "artistId": "ultra-miami-2017:patrick-topping",
+   "day": 3,
+   "stageId": "ultra-miami-2017:arcadia-the-spider",
+   "start": "16:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:arcadia-the-spider:1530:waff-b2b-nathan-barato",
+   "artistId": "ultra-miami-2017:waff-b2b-nathan-barato",
+   "day": 3,
+   "stageId": "ultra-miami-2017:arcadia-the-spider",
+   "start": "15:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:arcadia-the-spider:1330:cristoph",
+   "artistId": "ultra-miami-2017:cristoph",
+   "day": 3,
+   "stageId": "ultra-miami-2017:arcadia-the-spider",
+   "start": "13:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:arcadia-the-spider:1245:josefin-rosen",
+   "artistId": "ultra-miami-2017:josefin-rosen",
+   "day": 3,
+   "stageId": "ultra-miami-2017:arcadia-the-spider",
+   "start": "12:45",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:arcadia-the-spider:1200:riotgear",
+   "artistId": "ultra-miami-2017:riotgear",
+   "day": 3,
+   "stageId": "ultra-miami-2017:arcadia-the-spider",
+   "start": "12:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:worldwide-stage:2200:gta",
+   "artistId": "ultra-miami-2017:gta",
+   "day": 3,
+   "stageId": "ultra-miami-2017:worldwide-stage",
+   "start": "22:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:worldwide-stage:2100:getter",
+   "artistId": "ultra-miami-2017:getter",
+   "day": 3,
+   "stageId": "ultra-miami-2017:worldwide-stage",
+   "start": "21:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:worldwide-stage:2000:slushii",
+   "artistId": "ultra-miami-2017:slushii",
+   "day": 3,
+   "stageId": "ultra-miami-2017:worldwide-stage",
+   "start": "20:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:worldwide-stage:1900:nghtmre",
+   "artistId": "ultra-miami-2017:nghtmre",
+   "day": 3,
+   "stageId": "ultra-miami-2017:worldwide-stage",
+   "start": "19:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:worldwide-stage:1800:malaa",
+   "artistId": "ultra-miami-2017:malaa",
+   "day": 3,
+   "stageId": "ultra-miami-2017:worldwide-stage",
+   "start": "18:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:worldwide-stage:1700:rezz",
+   "artistId": "ultra-miami-2017:rezz",
+   "day": 3,
+   "stageId": "ultra-miami-2017:worldwide-stage",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:worldwide-stage:1600:mercer",
+   "artistId": "ultra-miami-2017:mercer",
+   "day": 3,
+   "stageId": "ultra-miami-2017:worldwide-stage",
+   "start": "16:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:worldwide-stage:1500:4b",
+   "artistId": "ultra-miami-2017:4b",
+   "day": 3,
+   "stageId": "ultra-miami-2017:worldwide-stage",
+   "start": "15:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:worldwide-stage:1400:lookas",
+   "artistId": "ultra-miami-2017:lookas",
+   "day": 3,
+   "stageId": "ultra-miami-2017:worldwide-stage",
+   "start": "14:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:worldwide-stage:1300:green-lantern",
+   "artistId": "ultra-miami-2017:green-lantern",
+   "day": 3,
+   "stageId": "ultra-miami-2017:worldwide-stage",
+   "start": "13:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:worldwide-stage:1200:gg-magree",
+   "artistId": "ultra-miami-2017:gg-magree",
+   "day": 3,
+   "stageId": "ultra-miami-2017:worldwide-stage",
+   "start": "12:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:umf-radio:2200:bassjackers",
+   "artistId": "ultra-miami-2017:bassjackers",
+   "day": 3,
+   "stageId": "ultra-miami-2017:umf-radio",
+   "start": "22:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:umf-radio:2130:ty-dolla-ign",
+   "artistId": "ultra-miami-2017:ty-dolla-ign",
+   "day": 3,
+   "stageId": "ultra-miami-2017:umf-radio",
+   "start": "21:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:umf-radio:1800:afrojack-w-special-guests",
+   "artistId": "ultra-miami-2017:afrojack-w-special-guests",
+   "day": 3,
+   "stageId": "ultra-miami-2017:umf-radio",
+   "start": "18:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:umf-radio:1700:quintino",
+   "artistId": "ultra-miami-2017:quintino",
+   "day": 3,
+   "stageId": "ultra-miami-2017:umf-radio",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:umf-radio:1600:d-o-d",
+   "artistId": "ultra-miami-2017:d-o-d",
+   "day": 3,
+   "stageId": "ultra-miami-2017:umf-radio",
+   "start": "16:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:umf-radio:1500:apster-b2b-d-wayne",
+   "artistId": "ultra-miami-2017:apster-b2b-d-wayne",
+   "day": 3,
+   "stageId": "ultra-miami-2017:umf-radio",
+   "start": "15:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:umf-radio:1330:oliver-rosa",
+   "artistId": "ultra-miami-2017:oliver-rosa",
+   "day": 3,
+   "stageId": "ultra-miami-2017:umf-radio",
+   "start": "13:30",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:umf-radio:1200:bobby-burns",
+   "artistId": "ultra-miami-2017:bobby-burns",
+   "day": 3,
+   "stageId": "ultra-miami-2017:umf-radio",
+   "start": "12:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:biscayne:2200:antz",
+   "artistId": "ultra-miami-2017:antz",
+   "day": 3,
+   "stageId": "ultra-miami-2017:biscayne",
+   "start": "22:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:biscayne:2100:nadya",
+   "artistId": "ultra-miami-2017:nadya",
+   "day": 3,
+   "stageId": "ultra-miami-2017:biscayne",
+   "start": "21:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:biscayne:2000:rodrigo-vieira",
+   "artistId": "ultra-miami-2017:rodrigo-vieira",
+   "day": 3,
+   "stageId": "ultra-miami-2017:biscayne",
+   "start": "20:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:biscayne:1900:rod-b-b2b-bob-b",
+   "artistId": "ultra-miami-2017:rod-b-b2b-bob-b",
+   "day": 3,
+   "stageId": "ultra-miami-2017:biscayne",
+   "start": "19:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:biscayne:1700:nala",
+   "artistId": "ultra-miami-2017:nala",
+   "day": 3,
+   "stageId": "ultra-miami-2017:biscayne",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:oasis:2200:takshak",
+   "artistId": "ultra-miami-2017:takshak",
+   "day": 3,
+   "stageId": "ultra-miami-2017:oasis",
+   "start": "22:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:oasis:2100:wyzzard",
+   "artistId": "ultra-miami-2017:wyzzard",
+   "day": 3,
+   "stageId": "ultra-miami-2017:oasis",
+   "start": "21:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:oasis:2000:jason-daniel",
+   "artistId": "ultra-miami-2017:jason-daniel",
+   "day": 3,
+   "stageId": "ultra-miami-2017:oasis",
+   "start": "20:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:oasis:1900:beardsace",
+   "artistId": "ultra-miami-2017:beardsace",
+   "day": 3,
+   "stageId": "ultra-miami-2017:oasis",
+   "start": "19:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:oasis:1800:logan-dakota",
+   "artistId": "ultra-miami-2017:logan-dakota",
+   "day": 3,
+   "stageId": "ultra-miami-2017:oasis",
+   "start": "18:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:oasis:1700:x-con",
+   "artistId": "ultra-miami-2017:x-con",
+   "day": 3,
+   "stageId": "ultra-miami-2017:oasis",
+   "start": "17:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:oasis:1600:ideal-b2b-zaa",
+   "artistId": "ultra-miami-2017:ideal-b2b-zaa",
+   "day": 3,
+   "stageId": "ultra-miami-2017:oasis",
+   "start": "16:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:oasis:1500:juno",
+   "artistId": "ultra-miami-2017:juno",
+   "day": 3,
+   "stageId": "ultra-miami-2017:oasis",
+   "start": "15:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:oasis:1400:esrever",
+   "artistId": "ultra-miami-2017:esrever",
+   "day": 3,
+   "stageId": "ultra-miami-2017:oasis",
+   "start": "14:00",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "ultra-miami-2017:d3:oasis:1300:dj-k9",
+   "artistId": "ultra-miami-2017:dj-k9",
+   "day": 3,
+   "stageId": "ultra-miami-2017:oasis",
+   "start": "13:00",
+   "end": null,
+   "openEnd": true
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_image_transcription",
+  "official": "https://ultramusicfestival.com/lineup/",
+  "captures": [
+   {
+    "day": 1,
+    "pageArchivedUrl": "https://web.archive.org/web/20170320152917/https://ultramusicfestival.com/lineup/",
+    "pageCapture": "20170320152917",
+    "imageArchivedUrl": "https://web.archive.org/web/20170320152948/https://ultramusicfestival.com/wp-content/uploads/2016/11/miami-lineup-phase3-4.jpg",
+    "imageCapture": "20170320152948",
+    "sha256": "5d49415b215580180c223c541a193407bada4649e77aca5239d73ed0dc593fe1",
+    "reviewManifest": "data/historical/review/ultra-miami-2017.json"
+   },
+   {
+    "day": 2,
+    "pageArchivedUrl": "https://web.archive.org/web/20170320152917/https://ultramusicfestival.com/lineup/",
+    "pageCapture": "20170320152917",
+    "imageArchivedUrl": "https://web.archive.org/web/20170320152948/https://ultramusicfestival.com/wp-content/uploads/2016/11/miami-lineup-phase3-4.jpg",
+    "imageCapture": "20170320152948",
+    "sha256": "5d49415b215580180c223c541a193407bada4649e77aca5239d73ed0dc593fe1",
+    "reviewManifest": "data/historical/review/ultra-miami-2017.json"
+   },
+   {
+    "day": 3,
+    "pageArchivedUrl": "https://web.archive.org/web/20170320152917/https://ultramusicfestival.com/lineup/",
+    "pageCapture": "20170320152917",
+    "imageArchivedUrl": "https://web.archive.org/web/20170320152948/https://ultramusicfestival.com/wp-content/uploads/2016/11/miami-lineup-phase3-4.jpg",
+    "imageCapture": "20170320152948",
+    "sha256": "5d49415b215580180c223c541a193407bada4649e77aca5239d73ed0dc593fe1",
+    "reviewManifest": "data/historical/review/ultra-miami-2017.json"
+   }
+  ]
+ }
+}

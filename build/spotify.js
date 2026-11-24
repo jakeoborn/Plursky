@@ -9462,11 +9462,92 @@ function _libraryGroupChrome(group) {
     note: null
   };
 }
+function _reviewShotLabel(takenAt) {
+  var t = String(takenAt || "");
+  var p = t.match(/^(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2})/);
+  if (!p) return t;
+  var day = new Date(+p[1], +p[2] - 1, +p[3]).toLocaleDateString(undefined, {
+    month: "short",
+    day: "numeric",
+    year: "numeric"
+  });
+  var time = typeof fmt12 === "function" ? fmt12(`${p[4]}:${p[5]}`) : `${p[4]}:${p[5]}`;
+  return `${day} · ${time}`;
+}
+function _FestivalReviewRow({
+  moment,
+  onOpen,
+  onSettle
+}) {
+  var targets = _festivalMoveTargets(moment.festivalReview);
+  var nameOf = id => window._DATA_SETS?.[id]?.config?.name || id;
+  var btn = primary => ({
+    minHeight: 44,
+    padding: "0 12px",
+    borderRadius: "var(--rad-sm)",
+    border: "none",
+    cursor: "pointer",
+    background: primary ? "var(--s3)" : "transparent",
+    color: "var(--ink)",
+    boxShadow: primary ? "none" : "inset 0 0 0 1px var(--line-2)",
+    fontSize: 14,
+    lineHeight: 1.3,
+    fontWeight: 650,
+    fontFamily: "inherit",
+    textAlign: "left"
+  });
+  return React.createElement("div", {
+    "data-festival-review": moment.id,
+    style: {
+      display: "flex",
+      gap: 10,
+      alignItems: "flex-start",
+      marginTop: 10
+    }
+  }, React.createElement("div", {
+    style: {
+      width: 48,
+      height: 48,
+      flexShrink: 0
+    }
+  }, React.createElement(_GridTile, {
+    moment: moment,
+    onClick: onOpen
+  })), React.createElement("div", {
+    style: {
+      flex: 1,
+      minWidth: 0
+    }
+  }, React.createElement("div", {
+    className: "duo-body-s duo-ink2",
+    style: {
+      overflowWrap: "anywhere"
+    }
+  }, "Shot ", _reviewShotLabel(moment.takenAt)), React.createElement("div", {
+    style: {
+      display: "flex",
+      flexWrap: "wrap",
+      gap: 6,
+      marginTop: 6
+    }
+  }, targets.map(id => React.createElement("button", {
+    key: id,
+    "data-settle": "move",
+    "data-target": id,
+    style: btn(true),
+    onClick: () => onSettle(moment, "move", id)
+  }, "Move to ", nameOf(id))), React.createElement("button", {
+    "data-settle": "keep",
+    style: btn(targets.length === 0),
+    onClick: () => onSettle(moment, "keep")
+  }, "Keep here"))));
+}
 function LibraryGroupCard({
   group,
   onOpenLightbox,
   onArtistClick,
   onReview,
+  onSettle,
   bulkRetag,
   renderNote
 }) {
@@ -9587,7 +9668,15 @@ function LibraryGroupCard({
       lineHeight: 1.38,
       fontFamily: "inherit"
     }
-  }, group.duplicates.length, " duplicate ", group.duplicates.length === 1 ? "record" : "records", " of this media · View"), group.kind === "review" && chrome.retag.length > 0 && onReview && React.createElement("button", {
+  }, group.duplicates.length, " duplicate ", group.duplicates.length === 1 ? "record" : "records", " of this media · View"), group.kind === "review" && onSettle && (group.media || []).concat(notes).filter(m => m.festivalReview).map(m => React.createElement(_FestivalReviewRow, {
+    key: m.id,
+    moment: m,
+    onSettle: onSettle,
+    onOpen: () => {
+      var i = group.ordered.indexOf(m);
+      onOpenLightbox(i >= 0 ? group.ordered : [m], Math.max(0, i));
+    }
+  })), group.kind === "review" && chrome.retag.length > 0 && onReview && React.createElement("button", {
     onClick: () => onReview(chrome.retag),
     style: {
       marginTop: 8,
@@ -10487,6 +10576,15 @@ function MemoriesScreen({
     }
     _writeMoments(next);
     setAll(next);
+  };
+  var handleSettleFestival = (moment, action, targetId) => {
+    var next = _settleFestivalReview(_readMoments(), moment.id, action, targetId);
+    if (!next) return;
+    _writeMoments(next);
+    setAll(next);
+    try {
+      window.plurskyHaptic?.("LIGHT");
+    } catch {}
   };
   var handleRecoverNight = (moment, rec) => {
     if (!moment || !rec || rec.night == null) return;
@@ -11895,6 +11993,7 @@ function MemoriesScreen({
       onReview: ms => setReview(ms.map(m => ({
         momentId: m.id
       }))),
+      onSettle: handleSettleFestival,
       renderNote: m => React.createElement(MomentCard, {
         moment: m,
         idx: 0,
@@ -13365,23 +13464,21 @@ function _reconcileFestivalStamps(moments) {
         }
         continue;
       }
+      if (_festivalConflictSettled(m)) {
+        if (m.festivalReview) {
+          delete m.festivalReview;
+          changed = true;
+        }
+        continue;
+      }
       var claimant = claims.length === 1 ? claims[0] : null;
       var cfg = claimant ? window._DATA_SETS?.[claimant]?.config : null;
       var date = claimant ? _momentTakenAtToDateParts(m.takenAt) : null;
       var night = cfg && date ? _photoFestivalNight(date, cfg, null) : null;
       var machineStamp = m.festivalStampSource === "active-fallback" || !m.festivalStampSource && m.festivalAttribution === "unresolved";
       if (claimant && night != null && !m.dateUnverified && machineStamp) {
-        m.festivalId = claimant;
-        m.festivalAttribution = "capture-time";
-        m.festivalStampSource = "capture-time";
-        m.night = night;
-        delete m.festivalCandidates;
-        delete m.festivalReview;
-        if (String(night) !== String(bucket)) moves.push({
-          from: bucket,
-          to: String(night),
-          moment: m
-        });
+        var move = _restampMoment(m, bucket, claimant, night, "capture-time");
+        if (move) moves.push(move);
         changed = true;
         continue;
       }
@@ -13401,15 +13498,92 @@ function _reconcileFestivalStamps(moments) {
       }
     }
   }
+  _applyMomentMoves(moments, moves);
+  return changed;
+}
+function _restampMoment(m, bucket, festivalId, night, source) {
+  m.festivalId = festivalId;
+  m.festivalAttribution = source;
+  m.festivalStampSource = source;
+  m.night = night;
+  delete m.festivalCandidates;
+  delete m.festivalReview;
+  delete m.festivalSettled;
+  return String(night) !== String(bucket) ? {
+    from: String(bucket),
+    to: String(night),
+    moment: m
+  } : null;
+}
+function _applyMomentMoves(moments, moves) {
   var _loop9 = function (move) {
-    moments[move.from] = moments[move.from].filter(x => x !== move.moment);
+    moments[move.from] = (moments[move.from] || []).filter(x => x !== move.moment);
     if (!moments[move.from].length) delete moments[move.from];
     moments[move.to] = [...(moments[move.to] || []), move.moment];
   };
   for (var move of moves) {
     _loop9(move);
   }
-  return changed;
+}
+function _festivalConflictSettled(m) {
+  var k = m && m.festivalSettled;
+  return !!k && k.festivalId === m.festivalId && k.takenAt === m.takenAt;
+}
+function _festivalMoveTargets(review) {
+  if (!review || review.reason === "no-claimant") return [];
+  var named = Array.isArray(review.candidates) && review.candidates.length ? review.candidates : review.claimant ? [review.claimant] : [];
+  return named.filter((id, i) => id && named.indexOf(id) === i && id !== review.existingFestivalId && !!window._DATA_SETS?.[id]?.config);
+}
+function _settleFestivalReview(all, momentId, action, targetId) {
+  var next = {
+    ...(all || {})
+  };
+  var _loop0 = function () {
+      var arr = next[bucket];
+      if (!Array.isArray(arr)) return 0;
+      var i = arr.findIndex(x => x && x.id === momentId);
+      if (i < 0) return 0;
+      var m = {
+        ...arr[i]
+      };
+      if (!m.festivalReview || !m.festivalId) return {
+        v: null
+      };
+      if (action === "keep") {
+        m.festivalStampSource = "user";
+        m.festivalSettled = {
+          festivalId: m.festivalId,
+          takenAt: m.takenAt
+        };
+        delete m.festivalReview;
+        next[bucket] = arr.map((x, j) => j === i ? m : x);
+        return {
+          v: next
+        };
+      }
+      if (action !== "move" || !_festivalMoveTargets(m.festivalReview).includes(targetId)) return {
+        v: null
+      };
+      var cfg = window._DATA_SETS[targetId].config;
+      var date = _momentTakenAtToDateParts(m.takenAt);
+      var night = date ? _photoFestivalNight(date, cfg, null) : null;
+      if (night == null) return {
+        v: null
+      };
+      var move = _restampMoment(m, bucket, targetId, night, "user");
+      next[bucket] = arr.map((x, j) => j === i ? m : x);
+      if (move) _applyMomentMoves(next, [move]);
+      return {
+        v: next
+      };
+    },
+    _ret2;
+  for (var bucket of Object.keys(next)) {
+    _ret2 = _loop0();
+    if (_ret2 === 0) continue;
+    if (_ret2) return _ret2.v;
+  }
+  return null;
 }
 function _maybeAutoArchive() {
   if (_archiveCheckDone) return;
@@ -13722,7 +13896,7 @@ function _fmtHrsMin(mins) {
 }
 function _aggregateSoundtrack(moments) {
   var songMap = {};
-  var _loop0 = function (m) {
+  var _loop1 = function (m) {
       if (!m.artistId || !m.takenAt) return 0;
       var {
         fid,
@@ -13743,10 +13917,10 @@ function _aggregateSoundtrack(moments) {
       songMap[key].count++;
       songMap[key].artists.add(artist.name);
     },
-    _ret2;
+    _ret3;
   for (var m of Object.values(moments)) {
-    _ret2 = _loop0(m);
-    if (_ret2 === 0) continue;
+    _ret3 = _loop1(m);
+    if (_ret3 === 0) continue;
   }
   return Object.values(songMap).sort((a, b) => b.count - a.count);
 }
@@ -16277,7 +16451,7 @@ function HeroCards({
     var live = true;
     var want = [page, page + 1, page - 1].filter(i => i >= 0 && i < artists.length).map(i => artists[i]).filter(a => !cards[a.id]);
     (async () => {
-      var _loop1 = async function (a) {
+      var _loop10 = async function (a) {
           var canvas = await _renderHeroCard(a).catch(() => null);
           if (!live || !canvas) return 0;
           var blob = await new Promise(r => canvas.toBlob(r, "image/png"));
@@ -16292,10 +16466,10 @@ function HeroCards({
             }
           }));
         },
-        _ret3;
+        _ret4;
       for (var a of want) {
-        _ret3 = await _loop1(a);
-        if (_ret3 === 0) continue;
+        _ret4 = await _loop10(a);
+        if (_ret4 === 0) continue;
       }
     })();
     return () => {
@@ -18290,7 +18464,7 @@ function _checkinChoices(cfg, artists, atMs, night, firstStage) {
     });
   }
   var groups = [];
-  var _loop10 = function (rows) {
+  var _loop11 = function (rows) {
     rows.sort((x, y) => x.s - y.s);
     var i = rows.findIndex(r => r.now);
     var pick = i >= 0 ? rows.slice(Math.max(0, i - 1), i + 2) : (() => {
@@ -18304,7 +18478,7 @@ function _checkinChoices(cfg, artists, atMs, night, firstStage) {
     });
   };
   for (var [stageId, rows] of byStage) {
-    _loop10(rows);
+    _loop11(rows);
   }
   return groups.sort((x, y) => (y.stageId === firstStage) - (x.stageId === firstStage) || y.live - x.live);
 }

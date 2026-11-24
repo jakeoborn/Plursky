@@ -15,7 +15,7 @@ import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { execFileSync } from "node:child_process";
-import { validateEdition } from "./historical/validate.mjs";
+import { validateEdition, hostIn, urlIn, OFFICIAL_HOSTS } from "./historical/validate.mjs";
 import { buildEdition, droppedRows, performerKeys, artistKey, readSheet } from "./historical/build-editions.mjs";
 import { lineupDropReason, ACTIVITIES, EDITIONS, KEPT_STAGES, dropReason } from "./historical/editions.mjs";
 import { activeTab, parseDayTabs, stageFor } from "./historical/import-gather.mjs";
@@ -42,6 +42,8 @@ import { parseCoachella, parseCoachellaData, parseCoachella2012 } from "./histor
 import { parseDoStuffEmbed, embedPageOk, pageLoadsScript, scriptSetsSrc } from "./historical/dostuff-embed-schedule.mjs";
 import { parseSonarSchedule } from "./historical/sonar-schedule.mjs";
 import { parseSzigetDays, tabDate as szigetDate } from "./historical/sziget-days-schedule.mjs";
+import { parseDefqonAreas, headerDate as defqonDate } from "./historical/defqon-schedule.mjs";
+import { parseTomorrowlandLineup } from "./historical/tomorrowland-lineup.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const H = p => join(ROOT, "data/historical", p);
@@ -921,6 +923,59 @@ if (base && edc) {
     szMust("Sziget rows out of time order", szPage({ rows: [szRows[0], szRow("18:00", [szCell(1, 2, "Kode9 (UK)")], 1), ...szRows.slice(2)] }));
     szMust("a Sziget night wrapping past midnight twice", szPage({ rows: [...szRows, szRow("00:30", [szE, szE], 4)] }));
     szMust("a Sziget set naming no act", szPage({ rows: [szRow("19:30", [szCell(2, 1, " "), szE], 0), ...szRows.slice(1)] }));
+    // Defqon.1 2015's timetable: one page for the weekend, a section per day
+    // and an undated afterparty, an article per area naming its weekday.
+    const dqSet = (start, end, name) => `<li><time><span class="start">${start}</span> - <span class="end">${end}</span></time><h3 class="name">${name}</h3></li>`;
+    const dqArt = (cls, h2, lis) => `<article class="area ${cls}"><header><h2>${h2}</h2></header><ul>${lis.join("")}</ul></article>`;
+    const dqSec = (head, arts) => `<section class="d"><header class="x day"><div class="inn"><h2>${head}</h2></div></header>${arts.join("")}</section>`;
+    const dqFri = [dqArt("red friday", "Hardstyle", [dqSet("20:00", "21:00", "Max Enforcer"), dqSet("21:00", "22:00", "B &amp; C"), "<li><h3 class=\"name\">Hosted by Villain</h3></li>"])];
+    const dqSun = [dqArt("red sunday", "Hardcore", [dqSet("12:00", "13:00", "Day Act")]), dqArt("cafe sunday", "Café", ["<li><p>Coffee all day</p></li>"]),
+      dqArt("closing sunday", "Sunday from 20.00 till 23.00 at the Red", ["<li><h3 class=\"name\">Closer One</h3></li>", "<li><h3 class=\"name\">Closer Two</h3></li>"])];
+    const dqAfter = [dqArt("red friday", "Afterparty", [dqSet("23:00", "00:30", "Night Act"), dqSet("00:30", "02:00", "Late Act")])];
+    const dqPage = ({ title = "Timetable - Defqon.1 2015", fri = dqFri, sun = dqSun, after = dqAfter, friHead = "Friday • 19 June 2015 • 20:00 - 01:00" } = {}) =>
+      `<title>${title}</title>` + ["friday", "sunday", "red", "closing"].map(k => `<input type="checkbox" value=".${k}" id="${k}">`).join("")
+      + dqSec(friHead, fri) + dqSec("Afterparty • 23:00 – 04:00", after) + dqSec("Sunday • 21 June 2015 • 11:00 - 23:00", sun);
+    const dqp = parseDefqonAreas(dqPage(), { year: 2015 });
+    ok(JSON.stringify([dqp.stages, dqp.days.map(d => [d.date, d.sets.map(x => [x.stage, x.start, x.end, x.artist])]), dqp.hosts.map(h => h.host), dqp.noSets.map(n => n.heading), dqp.bills.map(b => [b.date, b.stage, b.start, b.end, b.acts])])
+      === JSON.stringify([["Red"], [["2015-06-19", [["Red", "20:00", "21:00", "Max Enforcer"], ["Red", "21:00", "22:00", "B & C"], ["Red", "23:00", "00:30", "Night Act"], ["Red", "00:30", "02:00", "Late Act"]]],
+        ["2015-06-21", [["Red", "12:00", "13:00", "Day Act"]]]], ["Hosted by Villain"], ["Café"], [["2015-06-21", "Closing", "20:00", "23:00", ["Closer One", "Closer Two"]]]]),
+      `a Defqon.1 page must come back as its dated days, the afterparty on the night its areas name, the host and the café as no sets and the closing as a block: ${JSON.stringify(dqp)}`);
+    ok(defqonDate("Friday • 19 June 2015 • 20:00 - 01:00", 2015) === "2015-06-19" && defqonDate("Saturday • 19 June 2015 • 20:00 - 01:00", 2015) === null, "a Defqon.1 heading must be dated by its weekday in the year");
+    const dqMust = (what, html, year = 2015) => { let bad = false; try { parseDefqonAreas(html, { year }); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    dqMust("a Defqon.1 2015 page read as another year's", dqPage(), 2016);
+    dqMust("a page that is not Defqon.1's timetable", dqPage({ title: "Line-up - Defqon.1 2015" }));
+    dqMust("a Defqon.1 heading whose weekday is not its date's", dqPage({ friHead: "Saturday • 19 June 2015 • 20:00 - 01:00" }));
+    dqMust("a Defqon.1 area under another day's section", dqPage({ fri: [dqArt("red sunday", "Hardstyle", [dqSet("20:00", "21:00", "Max Enforcer")])] }));
+    dqMust("a Defqon.1 area the filter bar does not offer", dqPage({ fri: [dqArt("blue friday", "Hardstyle", [dqSet("20:00", "21:00", "Max Enforcer")])] }));
+    dqMust("Defqon.1 sets overlapping on one area", dqPage({ fri: [dqArt("red friday", "Hardstyle", [dqSet("20:00", "21:30", "Max Enforcer"), dqSet("21:00", "22:00", "B")])] }));
+    dqMust("a Defqon.1 set printed with no time range", dqPage({ fri: [dqArt("red friday", "Hardstyle", ["<li><time><span class=\"start\">20</span> - <span class=\"end\">21:00</span></time><h3 class=\"name\">X</h3></li>"])] }));
+    dqMust("a Defqon.1 line that is neither a set nor a host", dqPage({ fri: [dqArt("red friday", "Hardstyle", [dqSet("20:00", "21:00", "Max Enforcer"), "<li><h3 class=\"name\">Surprise</h3></li>"])] }));
+    dqMust("a Defqon.1 area with no set that is neither a description nor a block", dqPage({ sun: [dqArt("closing sunday", "Closing", ["<li><h3 class=\"name\">Closer One</h3></li>"])] }));
+    // Tomorrowland's lineup page: a Stages tab (a day per eventday, a stage per
+    // block, an optional host) checked against its A-Z Artists tab.
+    const tlA = (slug, name) => `<li><a class="noTracking" data-artist="${slug}"> ${name} </a></li>`;
+    const tlStage = (name, acts, host = "") => `<div class="stage"><div class="stage__heading"><h4>${name}</h4></div><div class="stage__content">${host ? `<div class="stage__title"><p class="stage__location">${host}</p></div>` : ""}<ul>${acts.join("")}</ul></div></div>`;
+    const tlDay = (label, stages) => `<div class="eventday" data-eventday-id="1" style="display:none;" data-eventday="${label}"><div class="stage-sizer"></div>${stages.join("")}</div>`;
+    const tlDays = [tlDay("Friday 19 July 2024", [tlStage("Mainstage", [tlA("armin", "Armin van Buuren"), tlA("k-ouml-lsch", "K&ouml;lsch")]), tlStage("Elixir", [tlA("mc", "Mc Stretch")], "Mangrove")]),
+      tlDay("Saturday 20 July 2024", [tlStage("Mainstage", [tlA("armin", "Armin van Buuren")])])];
+    const tlPage = ({ days = tlDays, az = [tlA("armin", "Armin van Buuren"), tlA("k-ouml-lsch", "K&ouml;lsch"), tlA("mc", "Mc Stretch")] } = {}) =>
+      `<title>Line-up - Festival -  Tomorrowland</title><div class="eventdays">${days.join("")}</div><div class="lineup__page lineup__page--artists" style="display: none;"><ul>${az.join("")}</ul></div>`;
+    const tlp = parseTomorrowlandLineup(tlPage(), { year: 2024 });
+    ok(JSON.stringify([tlp.title, tlp.days.map(d => [d.date, d.stages.map(x => [x.stage, x.host || "", x.acts.map(a => a.name)])]), tlp.findings])
+      === JSON.stringify(["Line-up - Festival - Tomorrowland", [["2024-07-19", [["Mainstage", "", ["Armin van Buuren", "Kölsch"]], ["Elixir", "Mangrove", ["Mc Stretch"]]]], ["2024-07-20", [["Mainstage", "", ["Armin van Buuren"]]]]], []]),
+      `a Tomorrowland lineup page must come back as its dated days, each stage with its host apart from its acts: ${JSON.stringify(tlp)}`);
+    const tlf = parseTomorrowlandLineup(tlPage({ az: [tlA("armin", "Armin Van Buuren"), tlA("k-ouml-lsch", "K&ouml;lsch"), tlA("ghost", "Ghost")] }), { year: 2024 });
+    ok(tlf.findings.length === 3 && tlf.findings.some(f => /Mc Stretch: on the Stages tab, not on the Artists tab/.test(f)) && tlf.findings.some(f => /Ghost: on the Artists tab, on no stage/.test(f)) && tlf.findings.some(f => /the Artists tab prints "Armin Van Buuren"/.test(f)),
+      `the two Tomorrowland tabs must be checked against each other (got ${tlf.findings.join("; ")})`);
+    const tlMust = (what, html, year = 2024) => { let bad = false; try { parseTomorrowlandLineup(html, { year }); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    tlMust("a Tomorrowland 2024 page read as another year's", tlPage(), 2025);
+    tlMust("a Tomorrowland day whose weekday is not its date's", tlPage({ days: [tlDay("Saturday 19 July 2024", [tlStage("Mainstage", [tlA("armin", "Armin van Buuren")])])] }));
+    tlMust("a Tomorrowland day printed twice", tlPage({ days: [tlDays[0], tlDays[0]] }));
+    tlMust("a Tomorrowland stage with no name", tlPage({ days: [tlDay("Friday 19 July 2024", [tlStage(" ", [tlA("armin", "Armin van Buuren")])])] }));
+    tlMust("a Tomorrowland stage naming no act", tlPage({ days: [tlDay("Friday 19 July 2024", [tlStage("Mainstage", [])])] }));
+    tlMust("a Tomorrowland act with no name", tlPage({ days: [tlDay("Friday 19 July 2024", [tlStage("Mainstage", [tlA("x", " ")])])] }));
+    tlMust("a Tomorrowland page with no Artists tab", tlPage().replace('lineup__page--artists', 'lineup__page--other'));
+    tlMust("a Tomorrowland page with no Stages tab", tlPage().replace('<div class="eventdays">', '<div class="days">'));
     // Outside Lands' 2022-2025 lineup widget: its script sets the options on
     // one line of JSON; each artist lists its performances, a shared set (a
     // b2b) under each artist with the same id, every time with its offset.
@@ -1504,6 +1559,14 @@ for (const [id, e] of Object.entries(editions)) {
             `${id} day ${d.day}: page ${s.captureTimestamp} prints "${s.printed}" (tabs ${(s.tabs || []).join(", ")}) at ${s.archivedUrl}, not ${wd} ${MONTH[m - 1]} ${dd}`);
           continue;
         }
+        // Defqon.1's 2015 timetable heads each day with its weekday, date and
+        // year, on the festival's own site, titled as that year's timetable.
+        if (s.format === "defqon-areas") {
+          ok(defqonDate(s.printed, e.year) === d.date && s.named === `Timetable - Defqon.1 ${e.year}`
+            && /^https:\/\/web\.archive\.org\/web\/\d{14}\/https?:\/\/(www\.)?defqon1\.nl(:80)?\//.test(s.archivedUrl || ""),
+            `${id} day ${d.day}: page ${s.captureTimestamp} prints "${s.printed}" at ${s.archivedUrl}, not ${wd} ${MONTH[m - 1]} ${dd}`);
+          continue;
+        }
         // Governors Ball's 2011-2012 schedule prints each day's heading
         // ("SATURDAY 6/23"); 2011's one day is the one its description prints.
         if (s.format === "govball-wp") {
@@ -1531,19 +1594,30 @@ for (const [id, e] of Object.entries(editions)) {
 // was billed. Every billing must be a set (or a hand-checked alias), so a
 // look-back can never call a partial lineup complete.
 {
-  const { joinLineup, LINEUP_PAGES } = await import("./historical/check-insomniac-lineup.mjs");
+  const { joinLineup, LINEUP_PAGES, aegAppBillings } = await import("./historical/check-insomniac-lineup.mjs");
   for (const id of Object.keys(EDITIONS).filter(id => EDITIONS[id].year >= 2026 && existsSync(H(`editions/${id}.json`)))) {
     const lc = JSON.parse(readFileSync(H(`ledger/${id}.json`), "utf8")).lineupCheck;
-    ok(lc && lc.billings > 0 && !lc.unmatched.length && lc.matched + lc.aliased.length === lc.billings,
+    ok(lc && lc.billings > 0 && !lc.unmatched.length && !lc.staleOffGraphic?.length && lc.matched + lc.aliased.length + (lc.offGraphic?.length || 0) === lc.billings,
       `${id}: no clean lineup check in its ledger (${lc ? `${lc.unmatched.length} unmatched of ${lc.billings}` : "missing"}) — run check-insomniac-lineup.mjs`);
     ok(lc && /^https:\/\/web\.archive\.org\/web\/\d{14}\//.test(lc.archivedUrl) && /^[0-9a-f]{64}$/.test(lc.sha256) && (lc.title.includes(EDITIONS[id].name) || (lc.staleTitle && LINEUP_PAGES[id]?.staleTitle === lc.title && lc.identityText === LINEUP_PAGES[id]?.identityText)),
       `${id}: the lineup check must cite an archived capture, its hash, and a page titled ${EDITIONS[id].name}`);
     ok(!!LINEUP_PAGES[id], `${id}: no LINEUP_PAGES entry`);
+    // A lineup read from an app's data file cites that capture too, and every
+    // act listed off the graphics carries its reason.
+    if (LINEUP_PAGES[id]?.format === "aeg-app")
+      ok(lc?.data && /^https:\/\/web\.archive\.org\/web\/\d{14}\//.test(lc.data.archivedUrl) && /^[0-9a-f]{64}$/.test(lc.data.sha256) && lc.data.url === LINEUP_PAGES[id].data.url,
+        `${id}: the lineup check must cite the archived app data it read, with its hash`);
+    for (const [n, why] of Object.entries(LINEUP_PAGES[id]?.offGraphic || {})) ok(typeof why === "string" && why.length > 20, `${id}: off-graphic "${n}" has no reason`);
   }
   const j = joinLineup(["A", "B B2B C", "Diesel"], ["A", "B B2B C", "DJ Diesel"], { "Diesel": "DJ Diesel" });
   ok(!j.unmatched.length && j.matched === 2 && j.aliased.length === 1, "joinLineup matches billings and a listed alias");
   mutations++; ok(joinLineup(["A", "Missing Act"], ["A"]).unmatched.length === 1, "mutation not caught: a billed act with no set");
   mutations++; ok(joinLineup(["Diesel"], ["DJ Diesel"]).unmatched.length === 1, "mutation not caught: an alias nobody listed");
+  const og = joinLineup(["A", "Elsewhere"], ["A"], {}, { "Elsewhere": "x".repeat(30) });
+  ok(!og.unmatched.length && og.offGraphic.length === 1 && !og.staleOffGraphic.length, "joinLineup takes a listed off-graphic act");
+  mutations++; ok(joinLineup(["A"], ["A"], {}, { "A": "x".repeat(30) }).unmatched.length === 1, "mutation not caught: an act listed off-graphic that the sheet has");
+  mutations++; ok(joinLineup(["A"], ["A"], {}, { "Gone": "x".repeat(30) }).staleOffGraphic.length === 1, "mutation not caught: an off-graphic entry nobody billed");
+  mutations++; ok(aegAppBillings([{ title: "Panda &amp; Chok" }, { title: "Panda &amp; Chok" }, { title: "X" }]).join("|") === "Panda & Chok|X", "mutation not caught: app billings not decoded or not deduplicated");
   // A stale <title> passes only with the identity text recorded for it.
   for (const id of Object.keys(LINEUP_PAGES).filter(id => LINEUP_PAGES[id].staleTitle)) {
     const lc = JSON.parse(readFileSync(H(`ledger/${id}.json`), "utf8")).lineupCheck;
@@ -1610,9 +1684,12 @@ ok(instant("2025-05-16", "04:13", 12, -420) === "2025-05-17T11:13:00.000Z",
 
   // selected_stages: an edition whose official schedule had stages that are
   // not imported names them (review of merged #440, 2026-11-12). Exactly these
-  // carry the label, and it cannot drift from the rows: Coachella's three, and
-  // Sziget 2010 and 2011, whose day pages were archived for five stages only.
-  const SELECTED = ["coachella-2014", "coachella-2015", "coachella-2016", "sziget-2010", "sziget-2011"];
+  // carry the label, and it cannot drift from the rows: Coachella's three,
+  // Sziget 2010 and 2011, whose day pages were archived for five stages only,
+  // Defqon.1 2015, whose Sunday closing prints one block over untimed acts,
+  // and Governors Ball 2024, whose Bud Light Backyard sheet prints weekdays
+  // without dates and starts without ends.
+  const SELECTED = ["coachella-2014", "coachella-2015", "coachella-2016", "defqon1-2015", "governors-ball-2024", "sziget-2010", "sziget-2011"];
   const selected = Object.values(editions).filter(e => e.completeness === "selected_stages").map(e => e.id).sort();
   ok(JSON.stringify(selected) === JSON.stringify(SELECTED), `selected_stages editions are ${selected.join(", ") || "none"}, want ${SELECTED.join(", ")}`);
   const c14 = editions["coachella-2014"];
@@ -1626,6 +1703,21 @@ ok(instant("2025-05-16", "04:13", 12, -420) === "2025-05-17T11:13:00.000Z",
   }
   const c17 = editions["coachella-2017"];
   if (c17) mustFail("a complete schedule claims a missing stage", m => { m.coverage = { asOf: "2026-11-12", missing: [{ stage: "X", days: [1], when: "Friday" }] }; }, c17, undefined, /coverage differs from the edition registry/);
+  // Coachella 2025's graphics sit in AEG's shared blob store. Its
+  // OFFICIAL_HOSTS entry is a folder: the folder is official, the host and
+  // every other folder on it are not.
+  const c25 = editions["coachella-2025"];
+  ok(!!c25, "control: coachella-2025 is built (else the folder checks pass vacuously)");
+  if (c25) {
+    const BLOB = "aegwebprod.blob.core.windows.net";
+    ok(!hostIn(OFFICIAL_HOSTS.coachella, BLOB), "a folder entry must not admit its host alone");
+    ok(urlIn(OFFICIAL_HOSTS.coachella, `https://${BLOB}/content/coachella2025/c25-w1-friday.jpg`), "control: a graphic in the 2025 folder is official");
+    const img = m => m.provenance.captures.find(c => c.day === 1);
+    mustFail("a graphic in another folder of the same blob store", m => { const c = img(m); c.imageArchivedUrl = c.imageArchivedUrl.replace("/content/coachella2025/", "/content/edc2025/"); }, c25, undefined, /not an official coachella property/);
+    mustFail("a graphic in a folder that only shares the prefix's stem", m => { const c = img(m); c.imageArchivedUrl = c.imageArchivedUrl.replace("/content/coachella2025/", "/content/coachella2025x/"); }, c25, undefined, /not an official coachella property/);
+    mustFail("a graphic at the blob store's root", m => { const c = img(m); c.imageArchivedUrl = c.imageArchivedUrl.replace("/content/coachella2025/", "/"); }, c25, undefined, /not an official coachella property/);
+    mustFail("a dot-segment walking out of the folder", m => { const c = img(m); c.imageArchivedUrl = c.imageArchivedUrl.replace("/content/coachella2025/", "/content/coachella2025/../edc2025/"); }, c25, undefined, /not an official coachella property/);
+  }
 
   // Parser fixtures: the real markup shapes, and the traps.
   const li = (name, extra = "") => `<li><span><a href="#modal-lineup-artist" data-artist-id="1" data-artist-name="${name}"${extra}>${name}</a></span></li>`;
@@ -1654,24 +1746,45 @@ ok(instant("2025-05-16", "04:13", 12, -420) === "2025-05-17T11:13:00.000Z",
 
   // Undated pages (EDC 2016/2017): the lineup only as `var artist_data`, no
   // tabs and no days. Proven by title alone, and never over a By Day tab.
+  // Those editions now carry set times, so the tests run against a frozen
+  // fixture (scripts/fixtures/historical-undated-lineup.json): EDC Orlando
+  // 2016 and EDC Las Vegas 2017 as they were, undated and lineup-only,
+  // swapped in under their own ids for this block and restored after it.
+  const UF = JSON.parse(readFileSync(join(ROOT, "scripts/fixtures/historical-undated-lineup.json"), "utf8"));
+  const UO = "edc-orlando-2016", UL = "edc-las-vegas-2017";
+  const live = { o: EDITIONS[UO], ol: LINEUP_EDITIONS[UO], l: EDITIONS[UL] };
+  EDITIONS[UO] = UF.orlando2016.registry; LINEUP_EDITIONS[UO] = UF.orlando2016.lineupPage;
+  EDITIONS[UL] = UF.registry;
+  try {
   const adata = (title, names) => `<title>${title}</title><script>\n    var artist_data = ${JSON.stringify({ artists: names.map(name => ({ name, image: "x.jpg", link: "y" })) })};\n</script>`;
   const und = parseLineupPage(adata("LINEUP - EDC Orlando 2016", ["Zed", "Alpha &amp; Beta", "Secret Guest", "Zed"]));
   ok(JSON.stringify(und.tabs) === JSON.stringify([{ tab: "Alphabetical", groups: [{ head: null, acts: ["Zed", "Alpha & Beta", "Secret Guest", "Zed"] }] }]),
     `artist_data is read as one Alphabetical tab, every name in page order (got ${JSON.stringify(und.tabs)})`);
-  ok(provesEdition(und, "edc-orlando-2016").valid, "an undated page titled with the edition proves an undated edition");
-  ok(!provesEdition(parseLineupPage(adata("LINEUP - EDC Orlando 2017", ["Zed"])), "edc-orlando-2016").valid, "an undated page titled with another year does not");
+  ok(provesEdition(und, UO).valid, "an undated page titled with the edition proves an undated edition");
+  ok(!provesEdition(parseLineupPage(adata("LINEUP - EDC Orlando 2017", ["Zed"])), UO).valid, "an undated page titled with another year does not");
   ok(!provesEdition(und, "edc-orlando-2015").valid, "an undated page never proves a dated edition");
-  ok(!provesEdition(parseLineupPage(page("EDC Orlando 2016", ["Friday, November 11", "Saturday, November 12"])), "edc-orlando-2016").valid,
+  ok(!provesEdition(parseLineupPage(page("EDC Orlando 2016", ["Friday, November 11", "Saturday, November 12"])), UO).valid,
     "a page that prints days does not pass as an undated edition: its dates must be proven instead");
   ok(!parseLineupPage("<title>x</title><script>var artist_data = {broken};</script>").tabs.length, "unparseable artist_data is no lineup");
   for (const [t, want] of [["EDC Las Vegas | June 17–19, 2016 | Las Vegas Motor Speedway", "2016-06-17,2016-06-18,2016-06-19"],
     ["EDC Orlando | November 4 – 5, 2016 | Tinker Field", "2016-11-04,2016-11-05"], ["EDC Las Vegas | Las Vegas Motor Speedway", ""],
     ["EDC | June 19–17, 2016", ""], ["Lineup | Smarch 4–5, 2016", ""]])
     ok(printedRange(t).join(",") === want, `home page title "${t}" prints ${want || "no dates"} (got ${printedRange(t).join(",") || "none"})`);
-  const ur = lineupRows(und, "edc-orlando-2016");
+  const ur = lineupRows(und, UO);
   ok(ur.rows.filter(r => r.artist === "Zed").length === 1 && ur.rows.every(r => r.day === "" && r.stage === ""), "a name listed twice is one billing, with no day and no stage");
   ok(ur.findings.length === 1 && ur.findings[0].startsWith("Zed: alphabetical ×2"), `only the repeated name is a ledger finding on an undated page (got ${ur.findings.join("; ")})`);
-  // A title that names no year proves nothing alone: its captures are read
+  // The frozen undated edition still fails every way an undated lineup can.
+  const lv17 = UF.edition;
+  const mustFailU = (label, mutate, e, by) => {
+    const m = clone(e); mutate(m); mutations++;
+    const p = validateEdition(m, { expected: UF.expected, review: undefined, dropped: clone(UF.dropped) });
+    ok(p.some(x => by.test(x)), `mutation not caught by ${by}: ${label}`);
+  };
+  ok(!validateEdition(clone(lv17), { expected: UF.expected, review: undefined, dropped: clone(UF.dropped) }).length, "the frozen undated edition is valid as it stands");
+  mustFailU("an undated lineup gains a day", m => { m.artists[0].appearances.push({ day: 1 }); }, lv17, /undated lineup, but an artist carries a day/);
+  mustFailU("an undated lineup loses its note", m => { delete m.notes; }, lv17, /notes differ|printed no days/);
+  mustFailU("an undated lineup no longer marked undated", m => { delete m.undated; }, lv17, /day 1 has no billed artist/);
+  // (Run while the frozen editions are swapped in.) A title that names no year proves nothing alone: its captures are read
   // only up to `until`, at most two weeks after the festival's last day.
   for (const [id, w] of Object.entries(LINEUP_EDITIONS)) {
     const ed = EDITIONS[id];
@@ -1680,13 +1793,8 @@ ok(instant("2025-05-16", "04:13", 12, -420) === "2025-05-17T11:13:00.000Z",
     const last = Date.parse(ed.dates.at(-1)[0]), until = w.until && Date.parse(`${w.until.slice(0, 4)}-${w.until.slice(4, 6)}-${w.until.slice(6)}`);
     ok(until && until >= last && until - last <= 14 * 86400000, `${id}: an undated page whose title names no year needs until within two weeks after the festival`);
   }
-  const lv17 = editions["edc-las-vegas-2017"];
-  if (lv17) {
-    mustFail("an undated lineup gains a day", m => { m.artists[0].appearances.push({ day: 1 }); }, lv17, undefined, /undated lineup, but an artist carries a day/);
-    mustFail("an undated lineup loses its note", m => { delete m.notes; }, lv17, undefined, /notes differ|printed no days/);
-    mustFail("an undated lineup no longer marked undated", m => { delete m.undated; }, lv17, undefined, /day 1 has no billed artist/);
-    mustFail("a dated lineup marked undated", m => { m.undated = true; }, noc, undefined, /the edition registry says false/);
-  }
+  } finally { EDITIONS[UO] = live.o; LINEUP_EDITIONS[UO] = live.ol; EDITIONS[UL] = live.l; }
+  mustFail("a dated lineup marked undated", m => { m.undated = true; }, noc, undefined, /the edition registry says false/);
 }
 
 // ── 4. isolation from the live app ──

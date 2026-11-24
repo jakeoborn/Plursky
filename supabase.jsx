@@ -1986,6 +1986,12 @@ async function sbLiveShareUpdate(token, partial) {
     update.lat = partial.gps.lat;
     update.lng = partial.gps.lng;
     update.accuracy = partial.gps.accuracy;
+  } else if (partial && "gps" in partial) {
+    // GPS went off: clear the last fix, or the row's fresh updated_at would
+    // vouch for an old position (#312). share.html shows no pin for null.
+    update.lat = null;
+    update.lng = null;
+    update.accuracy = null;
   }
   if (partial && "stageId" in partial) update.stage_id = partial.stageId || null;
   if (Object.keys(update).length === 1) return { error: null }; // only updated_at

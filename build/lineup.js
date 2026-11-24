@@ -1255,6 +1255,8 @@ function LineupScreen({
   React.useLayoutEffect(() => {
     var tail = document.querySelector("[data-lineup-scroll] [data-open-tail]");
     if (tail) tail.style.height = "0px";
+    var sc = viewMode === "list" && document.querySelector("[data-lineup-scroll]");
+    if (sc && sc.scrollTop < 24 && collapsedRef.current) setCollapsed(false);
   }, [filter, stageFilter, genreFilter, tierFilter, sortBy, q]);
   React.useLayoutEffect(() => {
     if (viewMode === "list") {
@@ -3628,10 +3630,11 @@ function TimelineGrid({
       }
     }, HOURS.map(h => React.createElement("div", {
       key: h.label,
+      "data-grid-hour": true,
       className: "duo-data-s duo-ink3",
       style: {
         position: "absolute",
-        top: minToTop(h.mins) - 7,
+        top: Math.max(0, minToTop(h.mins) - 7),
         right: 6,
         fontSize: 11,
         whiteSpace: "nowrap"

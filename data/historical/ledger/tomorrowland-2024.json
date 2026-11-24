@@ -1,0 +1,395 @@
+{
+  "id": "tomorrowland-2024",
+  "method": "official_lineup_html",
+  "official": "https://www.tomorrowland.com/en/festival/line-up/stages/friday-19-july-2024",
+  "chosen": "20240513185007",
+  "archivedUrl": "https://web.archive.org/web/20240513185007/https://www.tomorrowland.com/en/festival/line-up/stages/friday-19-july-2024",
+  "sha256": "765ef903ffd5e7c658b6b189657d67c8179eecf2185dc6fee1de862fbbb6543a",
+  "title": "Line-up - Festival - Tomorrowland",
+  "relayedVia": "firecrawl",
+  "tabs": [
+    "Stages 775",
+    "Artists 680"
+  ],
+  "stageOrder": [
+    "Mainstage",
+    "Freedom by Bud",
+    "The Rose Garden",
+    "Elixir",
+    "Cage",
+    "The Rave Cave",
+    "Planaxis",
+    "Melodia by Casa Corona",
+    "Rise by Coke Studio",
+    "Atmosphere",
+    "Core",
+    "House of Fortune by JBL",
+    "Crystal Garden",
+    "The Library",
+    "Moosebar"
+  ],
+  "hosts": [
+    {
+      "day": 1,
+      "stage": "The Rose Garden",
+      "host": "Rampage"
+    },
+    {
+      "day": 1,
+      "stage": "Elixir",
+      "host": "Mangrove"
+    },
+    {
+      "day": 1,
+      "stage": "Cage",
+      "host": "Footworxx"
+    },
+    {
+      "day": 1,
+      "stage": "Planaxis",
+      "host": "Sunnery James & Ryan Marciano present Amazone project"
+    },
+    {
+      "day": 1,
+      "stage": "Melodia by Casa Corona",
+      "host": "Terra Solis"
+    },
+    {
+      "day": 1,
+      "stage": "Atmosphere",
+      "host": "Teletech"
+    },
+    {
+      "day": 1,
+      "stage": "Core",
+      "host": "Sulta Selects"
+    },
+    {
+      "day": 1,
+      "stage": "Crystal Garden",
+      "host": "Keinemusik presents"
+    },
+    {
+      "day": 2,
+      "stage": "The Rose Garden",
+      "host": "Bonzai"
+    },
+    {
+      "day": 2,
+      "stage": "Elixir",
+      "host": "RADS"
+    },
+    {
+      "day": 2,
+      "stage": "The Rave Cave",
+      "host": "Crystal"
+    },
+    {
+      "day": 2,
+      "stage": "Rise by Coke Studio",
+      "host": "Glitterbox"
+    },
+    {
+      "day": 2,
+      "stage": "Atmosphere",
+      "host": "Andromedik Invites"
+    },
+    {
+      "day": 2,
+      "stage": "Core",
+      "host": "Bonobo Outlier"
+    },
+    {
+      "day": 2,
+      "stage": "The Library",
+      "host": "Lost Frequencies & Friends"
+    },
+    {
+      "day": 3,
+      "stage": "Freedom by Bud",
+      "host": "Afterlife"
+    },
+    {
+      "day": 3,
+      "stage": "The Rose Garden",
+      "host": "Sub Zero Project"
+    },
+    {
+      "day": 3,
+      "stage": "Elixir",
+      "host": "Team DAMP"
+    },
+    {
+      "day": 3,
+      "stage": "Cage",
+      "host": "One87 presents"
+    },
+    {
+      "day": 3,
+      "stage": "The Rave Cave",
+      "host": "Weareoneworld"
+    },
+    {
+      "day": 3,
+      "stage": "Planaxis",
+      "host": "2010 - 2012"
+    },
+    {
+      "day": 3,
+      "stage": "Melodia by Casa Corona",
+      "host": "Shomi"
+    },
+    {
+      "day": 3,
+      "stage": "Rise by Coke Studio",
+      "host": "Psygathering"
+    },
+    {
+      "day": 3,
+      "stage": "Atmosphere",
+      "host": "Amber Broos"
+    },
+    {
+      "day": 3,
+      "stage": "Crystal Garden",
+      "host": "Label x Selected"
+    },
+    {
+      "day": 3,
+      "stage": "The Library",
+      "host": "Smash The House"
+    },
+    {
+      "day": 4,
+      "stage": "The Rose Garden",
+      "host": "Rampage x UKF"
+    },
+    {
+      "day": 4,
+      "stage": "Elixir",
+      "host": "Flavasoul"
+    },
+    {
+      "day": 4,
+      "stage": "Cage",
+      "host": "Footworxx"
+    },
+    {
+      "day": 4,
+      "stage": "The Rave Cave",
+      "host": "Winterclubbing"
+    },
+    {
+      "day": 4,
+      "stage": "Melodia by Casa Corona",
+      "host": "Terra Solis"
+    },
+    {
+      "day": 4,
+      "stage": "Rise by Coke Studio",
+      "host": "Cafeina"
+    },
+    {
+      "day": 4,
+      "stage": "Atmosphere",
+      "host": "Drumcode"
+    },
+    {
+      "day": 5,
+      "stage": "The Rose Garden",
+      "host": "Bonzai"
+    },
+    {
+      "day": 5,
+      "stage": "Elixir",
+      "host": "Vunzige Deuntjes"
+    },
+    {
+      "day": 5,
+      "stage": "Planaxis",
+      "host": "Monstercat"
+    },
+    {
+      "day": 5,
+      "stage": "Melodia by Casa Corona",
+      "host": "With Love From Ibiza"
+    },
+    {
+      "day": 5,
+      "stage": "Rise by Coke Studio",
+      "host": "Yves V presents V SESSIONS"
+    },
+    {
+      "day": 5,
+      "stage": "Core",
+      "host": "Planet Eliza"
+    },
+    {
+      "day": 5,
+      "stage": "Crystal Garden",
+      "host": "Zamna"
+    },
+    {
+      "day": 5,
+      "stage": "The Library",
+      "host": "Lost Frequencies & Friends"
+    },
+    {
+      "day": 6,
+      "stage": "Freedom by Bud",
+      "host": "Afterlife"
+    },
+    {
+      "day": 6,
+      "stage": "The Rose Garden",
+      "host": "Tweekamania"
+    },
+    {
+      "day": 6,
+      "stage": "Elixir",
+      "host": "Team DAMP"
+    },
+    {
+      "day": 6,
+      "stage": "Cage",
+      "host": "Brownies & Lemonade"
+    },
+    {
+      "day": 6,
+      "stage": "Planaxis",
+      "host": "2010 - 2012"
+    },
+    {
+      "day": 6,
+      "stage": "Melodia by Casa Corona",
+      "host": "DiscoZonderdag"
+    },
+    {
+      "day": 6,
+      "stage": "Rise by Coke Studio",
+      "host": "Psygathering"
+    },
+    {
+      "day": 6,
+      "stage": "Atmosphere",
+      "host": "Exhale"
+    },
+    {
+      "day": 6,
+      "stage": "Core",
+      "host": "hosted by DJ Boring"
+    },
+    {
+      "day": 6,
+      "stage": "The Library",
+      "host": "Smash The House"
+    }
+  ],
+  "crossTab": [],
+  "considered": [
+    {
+      "captureTimestamp": "20240507140059",
+      "archivedUrl": "https://web.archive.org/web/20240507140059/https://www.tomorrowland.com/en/festival/line-up/stages/friday-19-july-2024",
+      "sha256": "f1b5e0c2596c4a5c75a40a4a6250e04b7703f64ce9d8a88b8490b458c7fe71a9",
+      "bytes": 495903,
+      "via": "firecrawl",
+      "title": "Line-up - Festival - Tomorrowland",
+      "titled": true,
+      "dated": true,
+      "valid": true,
+      "days": [
+        "Friday 19 July 2024",
+        "Saturday 20 July 2024",
+        "Sunday 21 July 2024",
+        "Friday 26 July 2024",
+        "Saturday 27 July 2024",
+        "Sunday 28 July 2024"
+      ],
+      "billings": 675,
+      "diffVsChosen": [
+        "added by the final: Funktastix",
+        "added by the final: PARISI (live)",
+        "added by the final: Matisse & Sadko",
+        "added by the final: Tigerlily",
+        "added by the final: Sickzombies",
+        "added by the final: SUNZZ",
+        "removed by the final: Funtastix",
+        "removed by the final: Parisi (Live)",
+        "removed by the final: TigerLily",
+        "removed by the final: Sick Zombies",
+        "removed by the final: Sunzz"
+      ]
+    },
+    {
+      "captureTimestamp": "20240512060510",
+      "archivedUrl": "https://web.archive.org/web/20240512060510/https://www.tomorrowland.com/en/festival/line-up/stages/friday-19-july-2024",
+      "sha256": "427c5cf43c45fe820ac3a699824c5e4ed9fd20f830746cbd58856d4eff16d29d",
+      "bytes": 511780,
+      "via": "firecrawl",
+      "title": "Line-up - Festival - Tomorrowland",
+      "titled": true,
+      "dated": true,
+      "valid": true,
+      "days": [
+        "Friday 19 July 2024",
+        "Saturday 20 July 2024",
+        "Sunday 21 July 2024",
+        "Friday 26 July 2024",
+        "Saturday 27 July 2024",
+        "Sunday 28 July 2024"
+      ],
+      "billings": 676,
+      "diffVsChosen": []
+    },
+    {
+      "captureTimestamp": "20240513185007",
+      "archivedUrl": "https://web.archive.org/web/20240513185007/https://www.tomorrowland.com/en/festival/line-up/stages/friday-19-july-2024",
+      "sha256": "765ef903ffd5e7c658b6b189657d67c8179eecf2185dc6fee1de862fbbb6543a",
+      "bytes": 511781,
+      "via": "firecrawl",
+      "title": "Line-up - Festival - Tomorrowland",
+      "titled": true,
+      "dated": true,
+      "valid": true,
+      "days": [
+        "Friday 19 July 2024",
+        "Saturday 20 July 2024",
+        "Sunday 21 July 2024",
+        "Friday 26 July 2024",
+        "Saturday 27 July 2024",
+        "Sunday 28 July 2024"
+      ],
+      "billings": 676
+    }
+  ],
+  "dropped": [
+    {
+      "day": 2,
+      "stage": "House of Fortune by JBL",
+      "billing": "To be announced",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    },
+    {
+      "day": 3,
+      "stage": "Core",
+      "billing": "To be announced",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    },
+    {
+      "day": 3,
+      "stage": "House of Fortune by JBL",
+      "billing": "To be announced",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    },
+    {
+      "day": 4,
+      "stage": "Planaxis",
+      "billing": "To be announced",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    }
+  ]
+}

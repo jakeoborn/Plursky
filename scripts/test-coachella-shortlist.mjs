@@ -20,11 +20,11 @@
 //      and not in the shared text or its count.
 //   4. Deep link vs root: ?f=coachella-2027 enters Coachella; a plain root load
 //      keeps an existing explicit festival; a new visitor's root is not Coachella.
-//   5. Regressions: ACL (two tagged weekends, timed), Dreamstate (untimed, one
-//      weekend) and Lights All Night (untimed, no day split) render with no
-//      page error or overflow. ACL (timed) keeps the plan row and full share
-//      menu; Dreamstate and LAN (untimed) get the shortlist row and its share
-//      menu. No festival is asked which weekend except a both-weekends one.
+//   5. Regressions: ACL (two tagged weekends, timed), Dreamstate (timed since
+//      2026-11-20, one weekend) and Lights All Night (untimed, no day split)
+//      render with no page error or overflow. ACL and Dreamstate (timed) keep
+//      the plan row and full share menu; LAN (untimed) gets the shortlist row
+//      and its share menu. No festival is asked which weekend except a both-weekends one.
 //   6. Offline: a warm revisit (service worker on) reopens the lineup and the
 //      shortlist with the network off; a cold first visit offline shows no app
 //      at all, so nothing claims a data pack exists.
@@ -217,7 +217,7 @@ try {
 
   // ── 5. Regressions on festivals already open ───────────────────────────────
   console.log("▸ regressions");
-  for (const [fid, tagged, untimed] of [["acl-2026", true, false], ["dreamstate-socal-2026", false, true], ["lights-all-night-2026", false, true]]) {
+  for (const [fid, tagged, untimed] of [["acl-2026", true, false], ["dreamstate-socal-2026", false, false], ["lights-all-night-2026", false, true]]) {
     const ctx = await context(browser, { seed: { active_festival_id: fid, active_festival_explicit: "1" } });
     const p = await boot(ctx, `f=${fid}&tab=lineup`, fid);
     const t = await txt(p);
@@ -227,7 +227,13 @@ try {
     ok(tagged === !!(await p.$("[data-weekend]")), `${fid}: weekend tabs ${tagged ? "present" : "absent"}`);
     // The plan row (My night + Calendar, or the untimed note) shows once a save exists.
     await p.locator('button[aria-label^="Save "]').first().click(); await p.waitForTimeout(300);
-    await p.click('[data-lineup-show="saved"]').catch(() => {}); await p.waitForTimeout(300);
+    // While a festival is LIVE the lineup opens scrolled to the NOW line, so the
+    // header folds and only the folded bar's copy of the chip is on screen. Tap
+    // the copy a fan can tap (the header chip sits under the folded bar then);
+    // this check must not depend on the clock (it went red when Dreamstate
+    // SoCal 2026 went live).
+    const folded = !!(await p.$('[data-lineup-compact][data-collapsed="1"]'));
+    await p.click(folded ? '[data-mini-show="saved"]' : '[data-lineup-show="saved"]'); await p.waitForTimeout(300);
     const chip = (await p.locator('[data-lineup-show="saved"]').first().innerText()).trim();
     ok(untimed ? !!(await p.$("[data-untimed-note]")) && /^Shortlist/.test(chip)
       : !(await p.$("[data-untimed-note]")) && /^My plan/.test(chip), `${fid}: ${untimed ? "shortlist row (no set times)" : "plan row (timed)"} (chip "${chip}")`);

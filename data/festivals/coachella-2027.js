@@ -242,7 +242,7 @@
   const CONFIG = {
     id: "coachella-2027",
     lineupSource: { url: "https://www.coachella.com/lineup", observedAt: "2026-11-13", official: true },
-    officialEvent: { website: "https://www.coachella.com/", observedAt: "2026-11-13" },
+    officialEvent: { website: "https://www.coachella.com/", tickets: "https://www.coachella.com/passes", observedAt: "2026-11-22" },
     // The festival's OWN maps page (2026 venue map + directions, parking,
     // camping). Link the page; never hotlink or re-host the images. There is
     // no 2027 map.

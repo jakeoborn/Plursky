@@ -2,10 +2,33 @@
 // DREAMSTATE SOCAL 2026 — Queen Mary Waterfront · Long Beach, CA
 // Nov 20–21, 2026
 // ═══════════════════════════════════════════════════════════════════════
-// GATED SCAFFOLD. The LINEUP is real and complete. The official 2026
-// FESTIVAL MAP is published (2026-11-04) and supplies the stage names, the
-// map plate and the amenities below. The day split and the set times are
-// still not published, and none of them are invented below.
+// SET TIMES ARE OFFICIAL (flipped 2026-11-20). Every act carries its real
+// night, stage, start and end. The official 2026 FESTIVAL MAP (2026-11-04)
+// supplies the stage names, the map plate and the amenities below.
+//
+// SOURCE set times: socal.dreamstateusa.com/lineup/set-times/day-1/ (Friday
+//   Nov 20) and /day-2/ (Saturday Nov 21), read 2026-11-20 with
+//   scripts/fetch-insomniac-settimes.mjs. 70 sets on 4 stages (The Dream, The
+//   Void, The Sequence, The Vision): Friday 36, Saturday 34. Every stage runs
+//   16:00 to 01:00 both nights, the printed "4 PM – 1 AM". No zone is printed;
+//   the venue is Pacific and there is no DST change that weekend (PST, UTC-8).
+//   The Beatbox Art Car carries no sets on these pages.
+//   ✓ CROSS-CHECKED: the lineup page now prints By Day (Friday 36, Saturday 34)
+//   and By Stage (Dream 17, Void 17, Sequence 18, Vision 18) lists. Both are
+//   disjoint, both union to the 70-row alphabetical list, and that list
+//   matches the 70 set-times rows name for name.
+// LINEUP REFRESHED 2026-11-20 to the official page. Four billings changed
+//   since the 2026-09-09 read, and the official lists no longer print the old
+//   ones: "BT + Matt Fax" is now "BT"; "David Forbes + Mark Sherry pres Thick
+//   As Thieves" and "John Askew + Simon Patterson" are gone, and "David Forbes
+//   + John Askew" is new; "Discovery Project" is gone; "Hausman" and "Roman
+//   Messer" are new. New billings get new ids; the dropped ids go with them.
+//   Four rows are printed shorter on both official pages than the names this
+//   module ships: "KAUFMANN" (ships "KAUFMANN (DE)", the festival's own earlier
+//   disambiguator, which the artist registry keeps whole), "Key4050", "Mirage
+//   (Live)" and "Parallel Worlds" (ship the full press billings, see LINEUP
+//   below). Same acts, same ids; the schedule rows are keyed by id, so a
+//   re-import must map those four sheet names to these ids first.
 //
 // SOURCE festival map (2026-11-07): socal.dreamstateusa.com/festival-map/ →
 //   dssc_2026_de_festival_map_1080x1350_r03-1.png (uploads 2026/11/04,
@@ -90,13 +113,10 @@
 //   from the OSM map API 2026-09-09.
 // SOURCE sun times: api.sunrise-sunset.org at that centroid, 2026-09-09.
 //
-// ── WHAT IS NOT PUBLISHED (verified 2026-09-09, do not fabricate) ──
+// ── WHAT IS STILL NOT PUBLISHED (verified 2026-11-20, do not fabricate) ──
 //
-// DAY SPLIT. One flat list covering both nights, no Fri/Sat tabs.
-// SET TIMES. Absent; Insomniac posts them in the days before the festival.
-// STAGE ASSIGNMENTS. Every act is stage: null.
-// MAIN STAGE. The map does not say which stage is the main stage, so
-//   mainStageId stays null and the four stages share one size.
+// MAIN STAGE. Neither the map nor the set-times pages say which stage is the
+//   main stage, so mainStageId stays null and the four stages share one size.
 //
 // ── SPATIAL MODEL ──
 // The official map is ART, drawn oblique (an isometric 3-D view with the
@@ -121,14 +141,9 @@
 // with room to spare. No venue.footprint at all — the festival perimeter is
 // not a surveyable feature today, and saying so is the honest answer.
 //
-// ── FLIP CHECKLIST (set times, ~mid-Nov) ──
-//   1. DONE 2026-11-07: STAGES, map plate and amenities from the official map.
-//   2. day + start/end + stage per act from the official set times; drop the
-//      `provisional` flag. Re-check the stage list against the grid.
-//   3. Replace the single TBA bucket with the real Fri/Sat pair.
-//   4. mainStageId once the grid says which stage is the main stage.
-//   5. venue.footprint: still none. The map's perimeter is art, not a survey.
-//   6. Re-run node scripts/gen-festival-pages.mjs and commit the result.
+// ── STILL OPEN AFTER THE SET-TIMES FLIP ──
+//   1. mainStageId once an official source says which stage is the main stage.
+//   2. venue.footprint: still none. The map's perimeter is art, not a survey.
 (function () {
   "use strict";
 
@@ -192,6 +207,77 @@
   // id → [stageId, start, end, day]. Empty until then: every act unplaced.
   const SCHEDULE = {
     // SCHEDULE:BEGIN dreamstate-socal-2026
+    // source: https://socal.dreamstateusa.com/lineup/set-times/ · imported 2026-11-20 · 70 of 70 acts
+    "dssc-maximizer": ["sequence", "16:00", "17:00", 1],  // Maximizer
+    "dssc-terra": ["sequence", "17:00", "18:00", 1],  // Terra
+    "dssc-kaufmann-de": ["sequence", "18:00", "19:00", 1],  // KAUFMANN
+    "dssc-burn-in-noise": ["sequence", "19:00", "20:00", 1],  // Burn In Noise
+    "dssc-gms": ["sequence", "20:00", "21:00", 1],  // GMS
+    "dssc-phaxe": ["sequence", "21:00", "22:00", 1],  // Phaxe
+    "dssc-astrix": ["sequence", "22:00", "23:00", 1],  // Astrix
+    "dssc-neelix": ["sequence", "23:00", "00:00", 1],  // Neelix
+    "dssc-infected-mushroom": ["sequence", "00:00", "01:00", 1],  // Infected Mushroom
+    "dssc-shay-de-castro": ["void", "16:00", "17:00", 1],  // Shay De Castro
+    "dssc-bk": ["void", "17:00", "18:00", 1],  // BK
+    "dssc-lee-ann-roberts": ["void", "18:00", "19:00", 1],  // Lee Ann Roberts
+    "dssc-a-n-i": ["void", "19:00", "20:00", 1],  // A.N.I.
+    "dssc-schrotthagen": ["void", "20:00", "21:00", 1],  // Schrotthagen
+    "dssc-panteros666": ["void", "21:00", "22:00", 1],  // Panteros666
+    "dssc-pegassi": ["void", "22:00", "23:00", 1],  // Pegassi
+    "dssc-enrico-sangiuliano": ["void", "23:00", "00:00", 1],  // Enrico Sangiuliano
+    "dssc-reinier-zonneveld-live": ["void", "00:00", "01:00", 1],  // Reinier Zonneveld (Live)
+    "dssc-karm": ["vision", "16:00", "17:00", 1],  // KARMÅ
+    "dssc-steve-dekay": ["vision", "17:00", "18:00", 1],  // Steve Dekay
+    "dssc-frankyeffe": ["vision", "18:00", "19:00", 1],  // FRANKYEFFE
+    "dssc-ferry-tayle-and-tonks-pres-mirage-live": ["vision", "19:00", "20:00", 1],  // Mirage (Live)
+    "dssc-nrg2000": ["vision", "20:00", "21:00", 1],  // NRG2000
+    "dssc-warp-brothers": ["vision", "21:00", "22:00", 1],  // Warp Brothers
+    "dssc-mauro-picotto": ["vision", "22:00", "23:00", 1],  // Mauro Picotto
+    "dssc-bt": ["vision", "23:00", "00:00", 1],  // BT
+    "dssc-marco-v": ["vision", "00:00", "01:00", 1],  // Marco V
+    "dssc-visionv": ["dream", "16:00", "17:00", 1],  // VisionV
+    "dssc-matty-ralph": ["dream", "17:00", "18:00", 1],  // Matty Ralph
+    "dssc-david-rust-and-olly-james": ["dream", "18:00", "19:00", 1],  // David Rust + Olly James
+    "dssc-the-rocketman": ["dream", "19:00", "20:00", 1],  // The Rocketman
+    "dssc-marlo": ["dream", "20:00", "21:00", 1],  // MaRLo
+    "dssc-andrew-rayel-pres-extasia": ["dream", "21:00", "22:00", 1],  // Andrew Rayel pres Extasia
+    "dssc-dash-berlin": ["dream", "22:00", "23:00", 1],  // Dash Berlin
+    "dssc-hannah-laing-and-marie-vaunt": ["dream", "23:00", "00:00", 1],  // Hannah Laing + Marie Vaunt
+    "dssc-artbat": ["dream", "00:00", "01:00", 1],  // ARTBAT
+    "dssc-barakuda": ["sequence", "16:00", "17:00", 2],  // Barakuda
+    "dssc-perfect-stranger": ["sequence", "17:00", "18:00", 2],  // Perfect Stranger
+    "dssc-rising-dust": ["sequence", "18:00", "19:00", 2],  // Rising Dust
+    "dssc-sighter": ["sequence", "19:00", "20:00", 2],  // Sighter
+    "dssc-john-00-fleming": ["sequence", "20:00", "21:00", 2],  // John 00 Fleming
+    "dssc-giorgia-angiuli": ["sequence", "21:00", "22:00", 2],  // Giorgia Angiuli
+    "dssc-vini-vici": ["sequence", "22:00", "23:00", 2],  // Vini Vici
+    "dssc-ace-ventura": ["sequence", "23:00", "00:00", 2],  // Ace Ventura
+    "dssc-animato": ["sequence", "00:00", "01:00", 2],  // Animato
+    "dssc-hausman": ["void", "16:00", "17:00", 2],  // Hausman
+    "dssc-roman-messer": ["void", "17:00", "18:00", 2],  // Roman Messer
+    "dssc-paul-denton-and-will-rees-pres-parallel-worlds": ["void", "18:00", "19:00", 2],  // Parallel Worlds
+    "dssc-eddie-halliwell-and-judge-jules": ["void", "19:00", "20:00", 2],  // Eddie Halliwell + Judge Jules
+    "dssc-david-forbes-and-john-askew": ["void", "20:00", "21:15", 2],  // David Forbes + John Askew
+    "dssc-bryan-kearney-and-john-ocallaghan-pres-key4050": ["void", "21:15", "22:30", 2],  // Key4050
+    "dssc-aly-and-fila-and-billy-gillies": ["void", "22:30", "23:45", 2],  // Aly & Fila + Billy Gillies
+    "dssc-paul-van-dyk-pres-essence-of-acid": ["void", "23:45", "01:00", 2],  // Paul van Dyk pres Essence Of Acid
+    "dssc-sequence-six": ["vision", "16:00", "17:00", 2],  // Sequence Six
+    "dssc-maria-healy": ["vision", "17:00", "18:00", 2],  // Maria Healy
+    "dssc-chris-metcalfe": ["vision", "18:00", "19:00", 2],  // Chris Metcalfe
+    "dssc-andy-moor": ["vision", "19:00", "20:00", 2],  // Andy Moor
+    "dssc-allen-watts-and-talla-2xlc": ["vision", "20:00", "21:00", 2],  // Allen Watts + Talla 2XLC
+    "dssc-darren-porter-and-sean-tyas": ["vision", "21:00", "22:00", 2],  // Darren Porter + Sean Tyas
+    "dssc-cold-blue": ["vision", "22:00", "23:00", 2],  // Cold Blue
+    "dssc-4-strings-classics-set": ["vision", "23:00", "00:00", 2],  // 4 Strings (Classics Set)
+    "dssc-solarstone": ["vision", "00:00", "01:00", 2],  // Solarstone
+    "dssc-das-pharaoh": ["dream", "16:00", "17:00", 2],  // Das Pharaoh
+    "dssc-th-en": ["dream", "17:00", "18:00", 2],  // TH;EN
+    "dssc-nu-aspect": ["dream", "18:00", "19:00", 2],  // Nu Aspect
+    "dssc-joa": ["dream", "19:00", "20:00", 2],  // JOA
+    "dssc-aaron-hibell-live": ["dream", "20:00", "21:00", 2],  // Aaron Hibell (Live)
+    "dssc-alpha-9-and-ilan-bluestone": ["dream", "21:00", "22:00", 2],  // ALPHA 9 + Ilan Bluestone
+    "dssc-ferry-corsten-and-marsh": ["dream", "22:00", "23:00", 2],  // Ferry Corsten + Marsh
+    "dssc-above-and-beyond-anjunabeats-classics": ["dream", "23:00", "01:00", 2],  // Above & Beyond (Anjunabeats Classics)
     // SCHEDULE:END
   };
   const scheduled = act => {
@@ -228,16 +314,15 @@
     mk("dssc-barakuda",                                             "Barakuda"),
     mk("dssc-bk",                                                   "BK"),
     mk("dssc-bryan-kearney-and-john-ocallaghan-pres-key4050",       "Bryan Kearney + John O'Callaghan pres Key4050"),
-    mk("dssc-bt-and-matt-fax",                                      "BT + Matt Fax"),
+    mk("dssc-bt",                                                   "BT"),
     mk("dssc-burn-in-noise",                                        "Burn In Noise"),
     mk("dssc-chris-metcalfe",                                       "Chris Metcalfe"),
     mk("dssc-cold-blue",                                            "Cold Blue"),
     mk("dssc-darren-porter-and-sean-tyas",                          "Darren Porter + Sean Tyas"),
     mk("dssc-das-pharaoh",                                          "Das Pharaoh"),
     mk("dssc-dash-berlin",                                          "Dash Berlin"),
-    mk("dssc-david-forbes-and-mark-sherry-pres-thick-as-thieves",   "David Forbes + Mark Sherry pres Thick As Thieves"),
+    mk("dssc-david-forbes-and-john-askew",                          "David Forbes + John Askew"),
     mk("dssc-david-rust-and-olly-james",                            "David Rust + Olly James"),
-    mk("dssc-discovery-project",                                    "Discovery Project"),
     mk("dssc-eddie-halliwell-and-judge-jules",                      "Eddie Halliwell + Judge Jules"),
     mk("dssc-enrico-sangiuliano",                                   "Enrico Sangiuliano"),
     mk("dssc-ferry-corsten-and-marsh",                              "Ferry Corsten + Marsh"),
@@ -246,10 +331,10 @@
     mk("dssc-giorgia-angiuli",                                      "Giorgia Angiuli"),
     mk("dssc-gms",                                                  "GMS"),
     mk("dssc-hannah-laing-and-marie-vaunt",                         "Hannah Laing + Marie Vaunt"),
+    mk("dssc-hausman",                                              "Hausman"),
     mk("dssc-infected-mushroom",                                    "Infected Mushroom"),
     mk("dssc-joa",                                                  "JOA"),
     mk("dssc-john-00-fleming",                                      "John 00 Fleming"),
-    mk("dssc-john-askew-and-simon-patterson",                       "John Askew + Simon Patterson"),
     mk("dssc-karm",                                                 "KARMÅ"),
     mk("dssc-kaufmann-de",                                          "KAUFMANN (DE)"),
     mk("dssc-lee-ann-roberts",                                      "Lee Ann Roberts"),
@@ -270,6 +355,7 @@
     mk("dssc-phaxe",                                                "Phaxe"),
     mk("dssc-reinier-zonneveld-live",                               "Reinier Zonneveld (Live)"),
     mk("dssc-rising-dust",                                          "Rising Dust"),
+    mk("dssc-roman-messer",                                         "Roman Messer"),
     mk("dssc-schrotthagen",                                         "Schrotthagen"),
     mk("dssc-sequence-six",                                         "Sequence Six"),
     mk("dssc-shay-de-castro",                                       "Shay De Castro"),
@@ -294,7 +380,8 @@
     hours: { label: "Event", open: "16:00", close: "01:00", url: "https://socal.dreamstateusa.com/guide/hours-and-info/", dated: "Friday, November 20 + Saturday, November 21, 2026", observedAt: "2026-09-24" },
     // Where the lineup rows came from (the SOURCE note above), as data so the
     // public /f/ page can cite it. observedAt = the date it was read.
-    lineupSource: { url: "https://socal.dreamstateusa.com/lineup/", observedAt: "2026-09-09", official: true },
+    lineupSource: { url: "https://socal.dreamstateusa.com/lineup/", observedAt: "2026-11-20", official: true },
+    scheduleSource: { url: "https://socal.dreamstateusa.com/lineup/set-times/", observedAt: "2026-11-20", official: true },
     name:      "Dreamstate SoCal 2026",
     shortName: "Dreamstate SoCal",
     brand:     "Dreamstate",
@@ -320,31 +407,19 @@
     tz:      "America/Los_Angeles",
     tzAbbr:  "PST",
     utcOffsetHours: -8,
-    // ⚠️ ONE bucket for a TWO-night festival, on purpose — the III Points
-    // precedent (#79), reached the same way and for the same reason.
-    //
-    // The day split is not published (see header). The options are the same
-    // three, and only one is honest AND usable:
-    //   - day: null on every act → the lineup screen renders EMPTY, because
-    //     the app filters `a.day === activeDay` in dozens of places.
-    //   - each act on BOTH nights → claims every act plays twice. False.
-    //   - ONE bucket labelled TBA → every act browsable and saveable now,
-    //     and the label states exactly what is unknown.
-    //
-    // III Points' note says to revisit teaching the app that a null day means
-    // "any day" if a SECOND festival ever needed this. This is that second
-    // festival, so the trigger has fired and it is worth doing — but it is a
-    // cross-cutting change to day handling and it is not this PR. Flagged in
-    // the PR body. Until then this stays module-local and reverses cleanly at
-    // the flip, where it becomes the real Fri/Sat pair.
+    // Two real nights, from the official set-times pages (day-1 = Friday
+    // Nov 20, day-2 = Saturday Nov 21; see the header). Until 2026-11-20 this
+    // was ONE "Nov 20–21" bucket labelled TBA, the III Points precedent (#79),
+    // because no day split had been published.
     dayDates: {
-      1: { y: 2026, m: 10, d: 20, name: "Nov 20–21", short: "TBA", midnightUtc: Date.UTC(2026, 10, 20, 8, 0, 0) },
+      1: { y: 2026, m: 10, d: 20, name: "Friday",   short: "FRI", midnightUtc: Date.UTC(2026, 10, 20, 8, 0, 0) },
+      2: { y: 2026, m: 10, d: 21, name: "Saturday", short: "SAT", midnightUtc: Date.UTC(2026, 10, 21, 8, 0, 0) },
     },
-    // api.sunrise-sunset.org at 33.752789,-118.189632, converted to PST.
-    // Nov 20 and 21 differ by one minute at sunrise and not at all at sunset;
-    // the single bucket takes Nov 20's.
+    // api.sunrise-sunset.org at 33.752789,-118.189632, fetched 2026-11-20,
+    // converted to PST and cut to the minute.
     sunTimes: {
-      1: { rise: "06:28", set: "16:48" },
+      1: { rise: "06:29", set: "16:47" },
+      2: { rise: "06:30", set: "16:46" },
     },
     // Surveyed OSM centroid of The Queen Mary (way 438331516), NOT an address
     // geocode. See the header: this is the ship, the festival is on the ground
@@ -381,9 +456,9 @@
   window.PLURSKY_FESTIVALS = window.PLURSKY_FESTIVALS || {};
   window.PLURSKY_FESTIVALS["dreamstate-socal-2026"] = {
     config: CONFIG, stages: STAGES, artists: ARTISTS, amenities: AMENITIES,
-    // GATED: the day split, the set times and every act's stage assignment
-    // are unpublished. Stages, map and amenities come from the official map.
-    registry: { available: true, scheduleTBA: true, accent: "#6366f1", emoji: "🌀", region: "North America" },
+    // Official set times since 2026-11-20 (see the header). Stages, map and
+    // amenities come from the official map.
+    registry: { available: true, scheduleTBA: false, accent: "#6366f1", emoji: "🌀", region: "North America" },
   };
 })();
 
