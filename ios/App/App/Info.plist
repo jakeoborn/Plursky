@@ -46,7 +46,7 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Plursky uses your location to show your position on the festival map and find the nearest stages.</string>
+	<string>Plursky uses your location to show your position on the festival map, find the nearest stages and, if you turn on set tracking, count which stage you&apos;re at during sets, even with the screen locked.</string>
 	<!-- Set tracking (opt-in in Me, SPEC-192 option B): a location session the
 	     user started in the app keeps running with the screen locked, during
 	     set hours only. When In Use only: no Always, no region, no wake. -->
