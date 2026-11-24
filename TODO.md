@@ -3,7 +3,7 @@
 > **Shipping?** See **[RELEASE.md](RELEASE.md)** — sync iOS, cache-bust, web
 > deploy, and App Store submit commands.
 
-## 🎆 SPEC-212 — NYE, attendance, win-back (status 2026-11-19 12:30 AM CT, main `670b74a1`, web v646)
+## 🎆 SPEC-212 — NYE, attendance, win-back (status 2026-11-24 12:20 AM CT, main `7c09d21f`, web v671)
 
 > Ledger lines for the merges below: `ops/build-ledger.jsonl` (the ledger has no
 > lines between 2026-10-24 and 2026-11-17; those merges are not backfilled here).
@@ -17,23 +17,26 @@
 - [x] #514 Outside Lands + Lightning in a Bottle past editions · #516 Sónar Barcelona past editions (data only, v645)
 - [x] #510 Top-tier round 2 · #517 Sziget 2010/2011 set times · #518 festival pages list every dated past year · #519 / #520 year census batches 1 and 2 · #521 past years for 8 festivals · #523 year census batch 4 (v646)
 
-**Open (Claude Plur), none live yet:**
-- [ ] W2 #500 Decadence venue source @ `a928bc11` (v650): merge lane, then live-verify the pages
-- [ ] W2 #508 daily set-times watch for Countdown NYE @ `9e9eb3a0`: NOT armed until merged (scheduled
-      workflows run only from main); after merge, one workflow_dispatch run to confirm
-- [ ] W3 #501 Your weekend timeline (flag) @ `9c9bfa38` (v651): your own arrival and
-      departure times per set; Xcode simulator build + real screenshot posted
-- [ ] W3 #515 per-festival set-tracking opt-in @ `6e2cc0c0` (v649), draft, stacked on #501;
-      refreshes after #501 lands and must then move above v651
+**Merged 2026-11-19 (re-read with `gh pr view` 2026-11-24, main `7c09d21f`):**
+- [x] W2 #500 Decadence venue source, squash `5b57cfe9`. Live: plursky.com/f/decadence-colorado-2026/
+      names Colorado Convention Center
+- [x] W2 #508 daily set-times watch, squash `d1f81f95`. Armed: the scheduled "set-times watch" run
+      from main succeeded every day 2026-11-20 through 11-23
+- [x] W3 #501 Your weekend timeline (flag), squash `399f914b`
+- [x] W5 #522 MusicKit token renewed to 2027-05-20, squash `5da3444e`. The bundled fallback still
+      updates only with the next native build
+- [x] W5 #504 MusicKit token renewal command, squash `51c11a7c`
+- [x] W6 #503 replay harness (`21f2a1f8`) · W7 #498 census rule (`075ef003`)
+
+**Still open (Claude Plur):**
+- [ ] W3 #515 per-festival set-tracking opt-in @ `77a85ab0`, draft; #501 has landed, so it must
+      move above the current web version before review
 - [ ] W3 accuracy gate: 17 of 20 sets within 10 min on a real album replay. The synthetic
       EDC reference (13 of 15, #503) does not count. Blocked on Jake's albums
 - [ ] W4 #502 @ `c443aae9` (v647), draft, Monthly win-back + recap hooks + save/cancel states.
       Store offer not created yet (0 win-back offers read live in ASC); Jake's App Store
       Connect + RevenueCat taps
-- [ ] W5 #522 MusicKit token renewed to 2027-05-20 @ `fae85b23` (v653): merge lane. iOS uses a
-      MusicKit-generated token first; the bundled fallback updates with the next native build
-- [ ] W5 #504 / #499 MusicKit token renewal command + expiry warning
-- [ ] W6 #503 replay harness · W7 #498 census rule: merge lane
+- [ ] W5 #499 MusicKit token expiry warning @ `5ec6dc94`, draft
 - [ ] #517 follow-up: its 14 capture `sha256`/`bytes` receipts do not reproduce; fresh raw captures
       match Wayback's own CDX digests 14/14 (see the #517 comment). The imported sets are unaffected
 
@@ -147,7 +150,7 @@ Re-run any claim here with `node scripts/anchor-residuals.mjs`.
       patron map in #320 (north/south conflict closed; blind waiver re-dated).
 
 ## 🖼️ FESTIVAL ART + NEW FAMILIES — tracker rows (2026-11-22, main `c118352a`)
-- [ ] **Official art for 17 registry festivals with no art entry** (strict audit on main `c118352a`, 2026-11-22; each shows its letter tile, which `scripts/test-festival-art.mjs` accepts as the fallback): bass-canyon-2027, bottlerock-2027, bumbershoot-2027, day-zero-tulum-2027, edc-lv-2027, lightning-in-a-bottle-2027, lollapalooza-argentina-2027, lollapalooza-brasil-2027, lollapalooza-chile-2027, lollapalooza-india-2027, medusa-2027, sonar-2027, suenos-2027, time-warp-2027, tomorrowland-winter-2027, ultra-south-africa-2027, world-club-dome-2027. Each tile needs first-party art with its provenance in `festival-art/PROVENANCE.md`; nothing traced, nothing generated to look official.
+- [ ] **Official art for 10 registry festivals with no art entry** (strict audit on main `c118352a`, 2026-11-22; #578 `7e169bd9` gave 7 of the 17 Commons photo tiles on 2026-11-24: Lolla Argentina/Brasil/Chile, Ultra South Africa, Lightning in a Bottle, World Club Dome, Bumbershoot. Each remaining one shows its letter tile, which `scripts/test-festival-art.mjs` accepts as the named fallback): bass-canyon-2027, bottlerock-2027, day-zero-tulum-2027, edc-lv-2027, lollapalooza-india-2027, medusa-2027, sonar-2027, suenos-2027, time-warp-2027, tomorrowland-winter-2027. Each tile needs first-party art with its provenance in `festival-art/PROVENANCE.md`; nothing traced, nothing generated to look official.
 - [ ] **Rolling Loud Orlando 2026 (May 8–10)**: not in the registry or the census. A new festival family, built from official sources only, one festival per session, after the lineup batch. Tracker row, not a build yet.
 
 ## 🎪 MULTI-FESTIVAL EXPANSION WAVE — full spec: `docs/SPEC-add-festivals.md` (2026-06-06)
