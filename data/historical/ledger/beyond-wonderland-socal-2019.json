@@ -37,5 +37,13 @@
     }
   ],
   "excluded": [],
-  "dropped": []
+  "dropped": [],
+  "crossTab": [
+    "Set-times heading \"Caterpillar's Garden (Friday)\" read as stage \"Caterpillar's Garden\" on day 1 (its own day)",
+    "Set-times heading \"Caterpillar's Garden (Saturday)\" read as stage \"Caterpillar's Garden\" on day 2 (its own day)",
+    "Set-times heading \"Cheshire Woods (Friday)\" read as stage \"Cheshire Woods\" on day 1 (its own day)",
+    "Set-times heading \"Cheshire Woods (Saturday)\" read as stage \"Cheshire Woods\" on day 2 (its own day)",
+    "Set-times heading \"Mad Hatter's Castle (Friday)\" read as stage \"Mad Hatter's Castle\" on day 1 (its own day)",
+    "Set-times heading \"Mad Hatter's Castle (Saturday)\" read as stage \"Mad Hatter's Castle\" on day 2 (its own day)"
+  ]
 }

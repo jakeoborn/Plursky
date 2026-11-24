@@ -24,16 +24,16 @@
    "name": "Queen's Domain"
   },
   {
-   "id": "beyond-wonderland-socal-2019:mad-hatter-s-castle-friday",
-   "name": "Mad Hatter's Castle (Friday)"
+   "id": "beyond-wonderland-socal-2019:mad-hatter-s-castle",
+   "name": "Mad Hatter's Castle"
   },
   {
-   "id": "beyond-wonderland-socal-2019:caterpillar-s-garden-friday",
-   "name": "Caterpillar's Garden (Friday)"
+   "id": "beyond-wonderland-socal-2019:caterpillar-s-garden",
+   "name": "Caterpillar's Garden"
   },
   {
-   "id": "beyond-wonderland-socal-2019:cheshire-woods-friday",
-   "name": "Cheshire Woods (Friday)"
+   "id": "beyond-wonderland-socal-2019:cheshire-woods",
+   "name": "Cheshire Woods"
   },
   {
    "id": "beyond-wonderland-socal-2019:wide-awake-art-car",
@@ -42,18 +42,6 @@
   {
    "id": "beyond-wonderland-socal-2019:the-looking-glass",
    "name": "The Looking Glass"
-  },
-  {
-   "id": "beyond-wonderland-socal-2019:mad-hatter-s-castle-saturday",
-   "name": "Mad Hatter's Castle (Saturday)"
-  },
-  {
-   "id": "beyond-wonderland-socal-2019:caterpillar-s-garden-saturday",
-   "name": "Caterpillar's Garden (Saturday)"
-  },
-  {
-   "id": "beyond-wonderland-socal-2019:cheshire-woods-saturday",
-   "name": "Cheshire Woods (Saturday)"
   }
  ],
  "artists": [
@@ -864,202 +852,202 @@
    "end": "02:00"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d1:mad-hatter-s-castle-friday:1700:soothslayer",
+   "id": "beyond-wonderland-socal-2019:d1:mad-hatter-s-castle:1700:soothslayer",
    "artistId": "beyond-wonderland-socal-2019:soothslayer",
    "day": 1,
-   "stageId": "beyond-wonderland-socal-2019:mad-hatter-s-castle-friday",
+   "stageId": "beyond-wonderland-socal-2019:mad-hatter-s-castle",
    "start": "17:00",
    "end": "18:00"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d1:mad-hatter-s-castle-friday:1800:benda",
+   "id": "beyond-wonderland-socal-2019:d1:mad-hatter-s-castle:1800:benda",
    "artistId": "beyond-wonderland-socal-2019:benda",
    "day": 1,
-   "stageId": "beyond-wonderland-socal-2019:mad-hatter-s-castle-friday",
+   "stageId": "beyond-wonderland-socal-2019:mad-hatter-s-castle",
    "start": "18:00",
    "end": "19:00"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d1:mad-hatter-s-castle-friday:1900:raiser",
+   "id": "beyond-wonderland-socal-2019:d1:mad-hatter-s-castle:1900:raiser",
    "artistId": "beyond-wonderland-socal-2019:raiser",
    "day": 1,
-   "stageId": "beyond-wonderland-socal-2019:mad-hatter-s-castle-friday",
+   "stageId": "beyond-wonderland-socal-2019:mad-hatter-s-castle",
    "start": "19:00",
    "end": "20:00"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d1:mad-hatter-s-castle-friday:2000:badklaat",
+   "id": "beyond-wonderland-socal-2019:d1:mad-hatter-s-castle:2000:badklaat",
    "artistId": "beyond-wonderland-socal-2019:badklaat",
    "day": 1,
-   "stageId": "beyond-wonderland-socal-2019:mad-hatter-s-castle-friday",
+   "stageId": "beyond-wonderland-socal-2019:mad-hatter-s-castle",
    "start": "20:00",
    "end": "21:00"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d1:mad-hatter-s-castle-friday:2100:dubloadz",
+   "id": "beyond-wonderland-socal-2019:d1:mad-hatter-s-castle:2100:dubloadz",
    "artistId": "beyond-wonderland-socal-2019:dubloadz",
    "day": 1,
-   "stageId": "beyond-wonderland-socal-2019:mad-hatter-s-castle-friday",
+   "stageId": "beyond-wonderland-socal-2019:mad-hatter-s-castle",
    "start": "21:00",
    "end": "22:00"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d1:mad-hatter-s-castle-friday:2200:camo-and-krooked",
+   "id": "beyond-wonderland-socal-2019:d1:mad-hatter-s-castle:2200:camo-and-krooked",
    "artistId": "beyond-wonderland-socal-2019:camo-and-krooked",
    "day": 1,
-   "stageId": "beyond-wonderland-socal-2019:mad-hatter-s-castle-friday",
+   "stageId": "beyond-wonderland-socal-2019:mad-hatter-s-castle",
    "start": "22:00",
    "end": "23:00"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d1:mad-hatter-s-castle-friday:2300:rusko",
+   "id": "beyond-wonderland-socal-2019:d1:mad-hatter-s-castle:2300:rusko",
    "artistId": "beyond-wonderland-socal-2019:rusko",
    "day": 1,
-   "stageId": "beyond-wonderland-socal-2019:mad-hatter-s-castle-friday",
+   "stageId": "beyond-wonderland-socal-2019:mad-hatter-s-castle",
    "start": "23:00",
    "end": "00:00"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d1:mad-hatter-s-castle-friday:0000:ganja-white-night",
+   "id": "beyond-wonderland-socal-2019:d1:mad-hatter-s-castle:0000:ganja-white-night",
    "artistId": "beyond-wonderland-socal-2019:ganja-white-night",
    "day": 1,
-   "stageId": "beyond-wonderland-socal-2019:mad-hatter-s-castle-friday",
+   "stageId": "beyond-wonderland-socal-2019:mad-hatter-s-castle",
    "start": "00:00",
    "end": "01:00"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d1:mad-hatter-s-castle-friday:0100:flux-pavilion",
+   "id": "beyond-wonderland-socal-2019:d1:mad-hatter-s-castle:0100:flux-pavilion",
    "artistId": "beyond-wonderland-socal-2019:flux-pavilion",
    "day": 1,
-   "stageId": "beyond-wonderland-socal-2019:mad-hatter-s-castle-friday",
+   "stageId": "beyond-wonderland-socal-2019:mad-hatter-s-castle",
    "start": "01:00",
    "end": "02:00"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d1:caterpillar-s-garden-friday:1700:leiel",
+   "id": "beyond-wonderland-socal-2019:d1:caterpillar-s-garden:1700:leiel",
    "artistId": "beyond-wonderland-socal-2019:leiel",
    "day": 1,
-   "stageId": "beyond-wonderland-socal-2019:caterpillar-s-garden-friday",
+   "stageId": "beyond-wonderland-socal-2019:caterpillar-s-garden",
    "start": "17:00",
    "end": "18:30"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d1:caterpillar-s-garden-friday:1830:ganesh",
+   "id": "beyond-wonderland-socal-2019:d1:caterpillar-s-garden:1830:ganesh",
    "artistId": "beyond-wonderland-socal-2019:ganesh",
    "day": 1,
-   "stageId": "beyond-wonderland-socal-2019:caterpillar-s-garden-friday",
+   "stageId": "beyond-wonderland-socal-2019:caterpillar-s-garden",
    "start": "18:30",
    "end": "19:30"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d1:caterpillar-s-garden-friday:1930:kristina-sky",
+   "id": "beyond-wonderland-socal-2019:d1:caterpillar-s-garden:1930:kristina-sky",
    "artistId": "beyond-wonderland-socal-2019:kristina-sky",
    "day": 1,
-   "stageId": "beyond-wonderland-socal-2019:caterpillar-s-garden-friday",
+   "stageId": "beyond-wonderland-socal-2019:caterpillar-s-garden",
    "start": "19:30",
    "end": "20:30"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d1:caterpillar-s-garden-friday:2030:cold-blue",
+   "id": "beyond-wonderland-socal-2019:d1:caterpillar-s-garden:2030:cold-blue",
    "artistId": "beyond-wonderland-socal-2019:cold-blue",
    "day": 1,
-   "stageId": "beyond-wonderland-socal-2019:caterpillar-s-garden-friday",
+   "stageId": "beyond-wonderland-socal-2019:caterpillar-s-garden",
    "start": "20:30",
    "end": "21:30"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d1:caterpillar-s-garden-friday:2130:david-gravell",
+   "id": "beyond-wonderland-socal-2019:d1:caterpillar-s-garden:2130:david-gravell",
    "artistId": "beyond-wonderland-socal-2019:david-gravell",
    "day": 1,
-   "stageId": "beyond-wonderland-socal-2019:caterpillar-s-garden-friday",
+   "stageId": "beyond-wonderland-socal-2019:caterpillar-s-garden",
    "start": "21:30",
    "end": "22:30"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d1:caterpillar-s-garden-friday:2230:aly-and-fila",
+   "id": "beyond-wonderland-socal-2019:d1:caterpillar-s-garden:2230:aly-and-fila",
    "artistId": "beyond-wonderland-socal-2019:aly-and-fila",
    "day": 1,
-   "stageId": "beyond-wonderland-socal-2019:caterpillar-s-garden-friday",
+   "stageId": "beyond-wonderland-socal-2019:caterpillar-s-garden",
    "start": "22:30",
    "end": "23:45"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d1:caterpillar-s-garden-friday:2345:liquid-soul",
+   "id": "beyond-wonderland-socal-2019:d1:caterpillar-s-garden:2345:liquid-soul",
    "artistId": "beyond-wonderland-socal-2019:liquid-soul",
    "day": 1,
-   "stageId": "beyond-wonderland-socal-2019:caterpillar-s-garden-friday",
+   "stageId": "beyond-wonderland-socal-2019:caterpillar-s-garden",
    "start": "23:45",
    "end": "01:00"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d1:caterpillar-s-garden-friday:0100:andrew-rayel",
+   "id": "beyond-wonderland-socal-2019:d1:caterpillar-s-garden:0100:andrew-rayel",
    "artistId": "beyond-wonderland-socal-2019:andrew-rayel",
    "day": 1,
-   "stageId": "beyond-wonderland-socal-2019:caterpillar-s-garden-friday",
+   "stageId": "beyond-wonderland-socal-2019:caterpillar-s-garden",
    "start": "01:00",
    "end": "02:00"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d1:cheshire-woods-friday:1700:jay-robinson",
+   "id": "beyond-wonderland-socal-2019:d1:cheshire-woods:1700:jay-robinson",
    "artistId": "beyond-wonderland-socal-2019:jay-robinson",
    "day": 1,
-   "stageId": "beyond-wonderland-socal-2019:cheshire-woods-friday",
+   "stageId": "beyond-wonderland-socal-2019:cheshire-woods",
    "start": "17:00",
    "end": "18:00"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d1:cheshire-woods-friday:1800:monstergetdown",
+   "id": "beyond-wonderland-socal-2019:d1:cheshire-woods:1800:monstergetdown",
    "artistId": "beyond-wonderland-socal-2019:monstergetdown",
    "day": 1,
-   "stageId": "beyond-wonderland-socal-2019:cheshire-woods-friday",
+   "stageId": "beyond-wonderland-socal-2019:cheshire-woods",
    "start": "18:00",
    "end": "19:00"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d1:cheshire-woods-friday:1900:attlas",
+   "id": "beyond-wonderland-socal-2019:d1:cheshire-woods:1900:attlas",
    "artistId": "beyond-wonderland-socal-2019:attlas",
    "day": 1,
-   "stageId": "beyond-wonderland-socal-2019:cheshire-woods-friday",
+   "stageId": "beyond-wonderland-socal-2019:cheshire-woods",
    "start": "19:00",
    "end": "20:00"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d1:cheshire-woods-friday:2000:13",
+   "id": "beyond-wonderland-socal-2019:d1:cheshire-woods:2000:13",
    "artistId": "beyond-wonderland-socal-2019:13",
    "day": 1,
-   "stageId": "beyond-wonderland-socal-2019:cheshire-woods-friday",
+   "stageId": "beyond-wonderland-socal-2019:cheshire-woods",
    "start": "20:00",
    "end": "21:00"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d1:cheshire-woods-friday:2100:i-o",
+   "id": "beyond-wonderland-socal-2019:d1:cheshire-woods:2100:i-o",
    "artistId": "beyond-wonderland-socal-2019:i-o",
    "day": 1,
-   "stageId": "beyond-wonderland-socal-2019:cheshire-woods-friday",
+   "stageId": "beyond-wonderland-socal-2019:cheshire-woods",
    "start": "21:00",
    "end": "22:00"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d1:cheshire-woods-friday:2200:no-mana",
+   "id": "beyond-wonderland-socal-2019:d1:cheshire-woods:2200:no-mana",
    "artistId": "beyond-wonderland-socal-2019:no-mana",
    "day": 1,
-   "stageId": "beyond-wonderland-socal-2019:cheshire-woods-friday",
+   "stageId": "beyond-wonderland-socal-2019:cheshire-woods",
    "start": "22:00",
    "end": "23:00"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d1:cheshire-woods-friday:2300:feed-me",
+   "id": "beyond-wonderland-socal-2019:d1:cheshire-woods:2300:feed-me",
    "artistId": "beyond-wonderland-socal-2019:feed-me",
    "day": 1,
-   "stageId": "beyond-wonderland-socal-2019:cheshire-woods-friday",
+   "stageId": "beyond-wonderland-socal-2019:cheshire-woods",
    "start": "23:00",
    "end": "00:00"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d1:cheshire-woods-friday:0000:testpilot",
+   "id": "beyond-wonderland-socal-2019:d1:cheshire-woods:0000:testpilot",
    "artistId": "beyond-wonderland-socal-2019:testpilot",
    "day": 1,
-   "stageId": "beyond-wonderland-socal-2019:cheshire-woods-friday",
+   "stageId": "beyond-wonderland-socal-2019:cheshire-woods",
    "start": "00:00",
    "end": "02:00"
   },
@@ -1320,202 +1308,202 @@
    "end": "02:00"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d2:mad-hatter-s-castle-saturday:1700:someones-daughter",
+   "id": "beyond-wonderland-socal-2019:d2:mad-hatter-s-castle:1700:someones-daughter",
    "artistId": "beyond-wonderland-socal-2019:someones-daughter",
    "day": 2,
-   "stageId": "beyond-wonderland-socal-2019:mad-hatter-s-castle-saturday",
+   "stageId": "beyond-wonderland-socal-2019:mad-hatter-s-castle",
    "start": "17:00",
    "end": "17:40"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d2:mad-hatter-s-castle-saturday:1740:rawtek",
+   "id": "beyond-wonderland-socal-2019:d2:mad-hatter-s-castle:1740:rawtek",
    "artistId": "beyond-wonderland-socal-2019:rawtek",
    "day": 2,
-   "stageId": "beyond-wonderland-socal-2019:mad-hatter-s-castle-saturday",
+   "stageId": "beyond-wonderland-socal-2019:mad-hatter-s-castle",
    "start": "17:40",
    "end": "18:40"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d2:mad-hatter-s-castle-saturday:1840:cray",
+   "id": "beyond-wonderland-socal-2019:d2:mad-hatter-s-castle:1840:cray",
    "artistId": "beyond-wonderland-socal-2019:cray",
    "day": 2,
-   "stageId": "beyond-wonderland-socal-2019:mad-hatter-s-castle-saturday",
+   "stageId": "beyond-wonderland-socal-2019:mad-hatter-s-castle",
    "start": "18:40",
    "end": "19:40"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d2:mad-hatter-s-castle-saturday:1940:yehme2",
+   "id": "beyond-wonderland-socal-2019:d2:mad-hatter-s-castle:1940:yehme2",
    "artistId": "beyond-wonderland-socal-2019:yehme2",
    "day": 2,
-   "stageId": "beyond-wonderland-socal-2019:mad-hatter-s-castle-saturday",
+   "stageId": "beyond-wonderland-socal-2019:mad-hatter-s-castle",
    "start": "19:40",
    "end": "20:40"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d2:mad-hatter-s-castle-saturday:2040:eprom",
+   "id": "beyond-wonderland-socal-2019:d2:mad-hatter-s-castle:2040:eprom",
    "artistId": "beyond-wonderland-socal-2019:eprom",
    "day": 2,
-   "stageId": "beyond-wonderland-socal-2019:mad-hatter-s-castle-saturday",
+   "stageId": "beyond-wonderland-socal-2019:mad-hatter-s-castle",
    "start": "20:40",
    "end": "21:40"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d2:mad-hatter-s-castle-saturday:2140:ekali",
+   "id": "beyond-wonderland-socal-2019:d2:mad-hatter-s-castle:2140:ekali",
    "artistId": "beyond-wonderland-socal-2019:ekali",
    "day": 2,
-   "stageId": "beyond-wonderland-socal-2019:mad-hatter-s-castle-saturday",
+   "stageId": "beyond-wonderland-socal-2019:mad-hatter-s-castle",
    "start": "21:40",
    "end": "22:40"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d2:mad-hatter-s-castle-saturday:2255:zhu",
+   "id": "beyond-wonderland-socal-2019:d2:mad-hatter-s-castle:2255:zhu",
    "artistId": "beyond-wonderland-socal-2019:zhu",
    "day": 2,
-   "stageId": "beyond-wonderland-socal-2019:mad-hatter-s-castle-saturday",
+   "stageId": "beyond-wonderland-socal-2019:mad-hatter-s-castle",
    "start": "22:55",
    "end": "23:55"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d2:mad-hatter-s-castle-saturday:0005:said-the-sky",
+   "id": "beyond-wonderland-socal-2019:d2:mad-hatter-s-castle:0005:said-the-sky",
    "artistId": "beyond-wonderland-socal-2019:said-the-sky",
    "day": 2,
-   "stageId": "beyond-wonderland-socal-2019:mad-hatter-s-castle-saturday",
+   "stageId": "beyond-wonderland-socal-2019:mad-hatter-s-castle",
    "start": "00:05",
    "end": "01:00"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d2:mad-hatter-s-castle-saturday:0100:saymyname",
+   "id": "beyond-wonderland-socal-2019:d2:mad-hatter-s-castle:0100:saymyname",
    "artistId": "beyond-wonderland-socal-2019:saymyname",
    "day": 2,
-   "stageId": "beyond-wonderland-socal-2019:mad-hatter-s-castle-saturday",
+   "stageId": "beyond-wonderland-socal-2019:mad-hatter-s-castle",
    "start": "01:00",
    "end": "02:00"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d2:caterpillar-s-garden-saturday:1700:madgrrl",
+   "id": "beyond-wonderland-socal-2019:d2:caterpillar-s-garden:1700:madgrrl",
    "artistId": "beyond-wonderland-socal-2019:madgrrl",
    "day": 2,
-   "stageId": "beyond-wonderland-socal-2019:caterpillar-s-garden-saturday",
+   "stageId": "beyond-wonderland-socal-2019:caterpillar-s-garden",
    "start": "17:00",
    "end": "18:30"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d2:caterpillar-s-garden-saturday:1830:dr-phunk",
+   "id": "beyond-wonderland-socal-2019:d2:caterpillar-s-garden:1830:dr-phunk",
    "artistId": "beyond-wonderland-socal-2019:dr-phunk",
    "day": 2,
-   "stageId": "beyond-wonderland-socal-2019:caterpillar-s-garden-saturday",
+   "stageId": "beyond-wonderland-socal-2019:caterpillar-s-garden",
    "start": "18:30",
    "end": "20:00"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d2:caterpillar-s-garden-saturday:2000:dj-stephanie",
+   "id": "beyond-wonderland-socal-2019:d2:caterpillar-s-garden:2000:dj-stephanie",
    "artistId": "beyond-wonderland-socal-2019:dj-stephanie",
    "day": 2,
-   "stageId": "beyond-wonderland-socal-2019:caterpillar-s-garden-saturday",
+   "stageId": "beyond-wonderland-socal-2019:caterpillar-s-garden",
    "start": "20:00",
    "end": "21:00"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d2:caterpillar-s-garden-saturday:2100:lady-faith",
+   "id": "beyond-wonderland-socal-2019:d2:caterpillar-s-garden:2100:lady-faith",
    "artistId": "beyond-wonderland-socal-2019:lady-faith",
    "day": 2,
-   "stageId": "beyond-wonderland-socal-2019:caterpillar-s-garden-saturday",
+   "stageId": "beyond-wonderland-socal-2019:caterpillar-s-garden",
    "start": "21:00",
    "end": "22:00"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d2:caterpillar-s-garden-saturday:2200:audiofreq",
+   "id": "beyond-wonderland-socal-2019:d2:caterpillar-s-garden:2200:audiofreq",
    "artistId": "beyond-wonderland-socal-2019:audiofreq",
    "day": 2,
-   "stageId": "beyond-wonderland-socal-2019:caterpillar-s-garden-saturday",
+   "stageId": "beyond-wonderland-socal-2019:caterpillar-s-garden",
    "start": "22:00",
    "end": "23:00"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d2:caterpillar-s-garden-saturday:2300:dj-isaac",
+   "id": "beyond-wonderland-socal-2019:d2:caterpillar-s-garden:2300:dj-isaac",
    "artistId": "beyond-wonderland-socal-2019:dj-isaac",
    "day": 2,
-   "stageId": "beyond-wonderland-socal-2019:caterpillar-s-garden-saturday",
+   "stageId": "beyond-wonderland-socal-2019:caterpillar-s-garden",
    "start": "23:00",
    "end": "00:00"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d2:caterpillar-s-garden-saturday:0000:darren-styles",
+   "id": "beyond-wonderland-socal-2019:d2:caterpillar-s-garden:0000:darren-styles",
    "artistId": "beyond-wonderland-socal-2019:darren-styles",
    "day": 2,
-   "stageId": "beyond-wonderland-socal-2019:caterpillar-s-garden-saturday",
+   "stageId": "beyond-wonderland-socal-2019:caterpillar-s-garden",
    "start": "00:00",
    "end": "01:00"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d2:caterpillar-s-garden-saturday:0100:lil-texas",
+   "id": "beyond-wonderland-socal-2019:d2:caterpillar-s-garden:0100:lil-texas",
    "artistId": "beyond-wonderland-socal-2019:lil-texas",
    "day": 2,
-   "stageId": "beyond-wonderland-socal-2019:caterpillar-s-garden-saturday",
+   "stageId": "beyond-wonderland-socal-2019:caterpillar-s-garden",
    "start": "01:00",
    "end": "02:00"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d2:cheshire-woods-saturday:1700:morelia",
+   "id": "beyond-wonderland-socal-2019:d2:cheshire-woods:1700:morelia",
    "artistId": "beyond-wonderland-socal-2019:morelia",
    "day": 2,
-   "stageId": "beyond-wonderland-socal-2019:cheshire-woods-saturday",
+   "stageId": "beyond-wonderland-socal-2019:cheshire-woods",
    "start": "17:00",
    "end": "18:00"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d2:cheshire-woods-saturday:1800:kendoll",
+   "id": "beyond-wonderland-socal-2019:d2:cheshire-woods:1800:kendoll",
    "artistId": "beyond-wonderland-socal-2019:kendoll",
    "day": 2,
-   "stageId": "beyond-wonderland-socal-2019:cheshire-woods-saturday",
+   "stageId": "beyond-wonderland-socal-2019:cheshire-woods",
    "start": "18:00",
    "end": "19:00"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d2:cheshire-woods-saturday:1900:eyes-everywhere",
+   "id": "beyond-wonderland-socal-2019:d2:cheshire-woods:1900:eyes-everywhere",
    "artistId": "beyond-wonderland-socal-2019:eyes-everywhere",
    "day": 2,
-   "stageId": "beyond-wonderland-socal-2019:cheshire-woods-saturday",
+   "stageId": "beyond-wonderland-socal-2019:cheshire-woods",
    "start": "19:00",
    "end": "20:00"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d2:cheshire-woods-saturday:2000:codes",
+   "id": "beyond-wonderland-socal-2019:d2:cheshire-woods:2000:codes",
    "artistId": "beyond-wonderland-socal-2019:codes",
    "day": 2,
-   "stageId": "beyond-wonderland-socal-2019:cheshire-woods-saturday",
+   "stageId": "beyond-wonderland-socal-2019:cheshire-woods",
    "start": "20:00",
    "end": "21:00"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d2:cheshire-woods-saturday:2100:sage-armstrong-b2b-j-worra",
+   "id": "beyond-wonderland-socal-2019:d2:cheshire-woods:2100:sage-armstrong-b2b-j-worra",
    "artistId": "beyond-wonderland-socal-2019:sage-armstrong-b2b-j-worra",
    "day": 2,
-   "stageId": "beyond-wonderland-socal-2019:cheshire-woods-saturday",
+   "stageId": "beyond-wonderland-socal-2019:cheshire-woods",
    "start": "21:00",
    "end": "22:15"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d2:cheshire-woods-saturday:2215:wax-motif",
+   "id": "beyond-wonderland-socal-2019:d2:cheshire-woods:2215:wax-motif",
    "artistId": "beyond-wonderland-socal-2019:wax-motif",
    "day": 2,
-   "stageId": "beyond-wonderland-socal-2019:cheshire-woods-saturday",
+   "stageId": "beyond-wonderland-socal-2019:cheshire-woods",
    "start": "22:15",
    "end": "23:30"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d2:cheshire-woods-saturday:2330:bijou",
+   "id": "beyond-wonderland-socal-2019:d2:cheshire-woods:2330:bijou",
    "artistId": "beyond-wonderland-socal-2019:bijou",
    "day": 2,
-   "stageId": "beyond-wonderland-socal-2019:cheshire-woods-saturday",
+   "stageId": "beyond-wonderland-socal-2019:cheshire-woods",
    "start": "23:30",
    "end": "00:45"
   },
   {
-   "id": "beyond-wonderland-socal-2019:d2:cheshire-woods-saturday:0045:noizu",
+   "id": "beyond-wonderland-socal-2019:d2:cheshire-woods:0045:noizu",
    "artistId": "beyond-wonderland-socal-2019:noizu",
    "day": 2,
-   "stageId": "beyond-wonderland-socal-2019:cheshire-woods-saturday",
+   "stageId": "beyond-wonderland-socal-2019:cheshire-woods",
    "start": "00:45",
    "end": "02:00"
   }
