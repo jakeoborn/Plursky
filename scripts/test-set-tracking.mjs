@@ -177,7 +177,10 @@ const others = readdirSync(ROOT).filter(f => f.endsWith(".jsx") && f !== "chrome
 const leak = others.filter(f => /plursky_set_intervals_v1|plursky_set_taps_v1|plursky_set_manual_v1|plursky_stage_calib_v1|SET_TRACK_STORE_KEY|SET_TAP_STORE_KEY|SET_MANUAL_STORE_KEY|SET_CALIB_STORE_KEY|getSetTrackIntervals/.test(code(f)));
 sCheck(leak.length === 0, `no other file (backup, sync, crew) reads the interval, tap, correction or calibration store (${leak.join(", ") || "none"})`);
 const plist = readFileSync(join(ROOT, "ios", "App", "App", "Info.plist"), "utf8");
-sCheck(!/UIBackgroundModes/.test(plist) && !/NSLocationAlways/.test(plist), "Info.plist has no background mode and no Always permission");
+// Option B (Jake, 2026-11-23): one background mode, location, and still no
+// Always. test-set-track-bg.mjs pins what the native session may do with it.
+const bgModes = (plist.match(/<key>UIBackgroundModes<\/key>\s*<array>([\s\S]*?)<\/array>/) || ["", ""])[1].match(/<string>[^<]*<\/string>/g) || [];
+sCheck(bgModes.length === 1 && bgModes[0] === "<string>location</string>" && !/NSLocationAlways/.test(plist), "Info.plist: UIBackgroundModes is exactly [location], and no Always permission");
 // Positive control: the plist read is real.
 sCheck(/NSLocationWhenInUseUsageDescription/.test(plist), "Info.plist read (When-In-Use key present)");
 
