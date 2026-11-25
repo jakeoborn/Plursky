@@ -100,12 +100,21 @@ export function creamfieldsRows(page) {
   const printed = new Set(page.acts.flatMap(a => a.stages));
   const stageOf = s => spelling.get(unprivate(s).toLowerCase());
   for (const s of printed) if (stageOf(s) !== s) folded.push({ printed: s, billedAs: stageOf(s) });
-  const add = (artist, weekday, stage) => { const k = `${artist}\t${weekday}\t${stage}`; if (!seen.has(k)) { seen.add(k); rows.push({ artist, weekday, stage }); } };
+  // An act printed in two blocks whose names differ only in case (2018's
+  // "Ilan Bluestone" and "ILAN BLUESTONE", both Saturday on Generator) is one
+  // act, billed under its first spelling; `sameActs` lists each other one.
+  const actName = new Map(), sameActs = [];
+  for (const a of page.acts) {
+    const k = a.artist.toLowerCase();
+    if (!actName.has(k)) actName.set(k, a.artist);
+    else if (actName.get(k) !== a.artist && !sameActs.some(x => x.printed === a.artist)) sameActs.push({ printed: a.artist, billedAs: actName.get(k) });
+  }
+  const add = (name, weekday, stage) => { const artist = actName.get(name.toLowerCase()), k = `${artist}\t${weekday}\t${stage}`; if (!seen.has(k)) { seen.add(k); rows.push({ artist, weekday, stage }); } };
   for (const a of page.acts) {
     const stages = [...new Set(a.stages.map(stageOf))];
     if (a.days.length === 1) { for (const s of stages.length ? stages : [""]) add(a.artist, a.days[0], s); continue; }
     for (const d of a.days) add(a.artist, d, "");
-    if (stages.length) unpaired.push({ artist: a.artist, days: a.days, stages });
+    if (stages.length && !unpaired.some(x => x.artist === actName.get(a.artist.toLowerCase()))) unpaired.push({ artist: actName.get(a.artist.toLowerCase()), days: a.days, stages });
   }
-  return { rows, unpaired, folded };
+  return { rows, unpaired, folded, sameActs };
 }

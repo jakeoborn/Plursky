@@ -59,6 +59,12 @@
       "billedAs": "Sub_aural"
     }
   ],
+  "sameActs": [
+    {
+      "printed": "ILAN BLUESTONE",
+      "billedAs": "Ilan Bluestone"
+    }
+  ],
   "considered": [
     {
       "captureTimestamp": "20180411161708",
@@ -81,7 +87,7 @@
         "Saturday",
         "Sunday"
       ],
-      "billings": 266,
+      "billings": 265,
       "diffVsChosen": [
         "added by the final: Anton Powers",
         "added by the final: Bonka",
@@ -126,7 +132,7 @@
         "Saturday",
         "Sunday"
       ],
-      "billings": 268,
+      "billings": 267,
       "diffVsChosen": [
         "added by the final: Anton Powers",
         "added by the final: Bonka",
@@ -171,7 +177,7 @@
         "Saturday",
         "Sunday"
       ],
-      "billings": 281,
+      "billings": 280,
       "diffVsChosen": [
         "added by the final: Terry Edwards"
       ]
@@ -197,7 +203,7 @@
         "Saturday",
         "Sunday"
       ],
-      "billings": 282
+      "billings": 281
     }
   ],
   "dropped": []

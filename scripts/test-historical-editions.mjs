@@ -1050,16 +1050,16 @@ if (base && edc) {
     const cfFilter = (days = ["friday", "saturday", "sunday", "thursday"]) => days.map(d => `<input type="checkbox" data-filter="and" name="${d}" id="${d}" value="${d}">`).join("");
     const cfActs = [cfAct("featured friday saturday A", "Armin Van Buuren", ["Armada", "Horizon"]), cfAct("thursday B", "Ben Nicky", ["Pepsi Max"]),
       cfAct("sunday S", "Sasha &amp; Digweed", ["Sub_aural", "Cream"]), cfAct("saturday S", "Steel Yard Presents s\\/stem", ["Sub_Aural"]), cfAct("saturday S", "Sub Focus", ["Sub_aural"]),
-      cfAct("friday �", "Ørjan Nilsen", ["Private: Blow"]), cfAct("friday J", "Junior J"), cfAct("thursday B", "Ben Nicky", ["Pepsi Max"])];
+      cfAct("friday �", "Ørjan Nilsen", ["Private: Blow"]), cfAct("friday J", "Junior J"), cfAct("thursday B", "Ben Nicky", ["Pepsi Max"]), cfAct("thursday B", "BEN NICKY", ["Pepsi Max"])];
     const cfPage = ({ title = "Creamfields 2019 | Artists", filter = cfFilter(), acts = cfActs } = {}) => `<title>${title}</title>${filter}${acts.join("")}`;
     const cfp = parseCreamfieldsArtists(cfPage(), { year: 2019 }), cfr = creamfieldsRows(cfp);
-    ok(JSON.stringify([cfp.filter, cfr.rows.map(r => `${r.artist}|${r.weekday}|${r.stage}`), cfr.unpaired, cfr.folded])
+    ok(JSON.stringify([cfp.filter, cfr.rows.map(r => `${r.artist}|${r.weekday}|${r.stage}`), cfr.unpaired, cfr.folded, cfr.sameActs])
       === JSON.stringify([["Friday", "Saturday", "Sunday", "Thursday"],
         ["Armin Van Buuren|Friday|", "Armin Van Buuren|Saturday|", "Ben Nicky|Thursday|Pepsi Max", "Sasha & Digweed|Sunday|Sub_aural", "Sasha & Digweed|Sunday|Cream",
           "Steel Yard Presents s/stem|Saturday|Sub_aural", "Sub Focus|Saturday|Sub_aural", "Ørjan Nilsen|Friday|Blow", "Junior J|Friday|"],
         [{ artist: "Armin Van Buuren", days: ["Friday", "Saturday"], stages: ["Armada", "Horizon"] }],
-        [{ printed: "Sub_Aural", billedAs: "Sub_aural" }, { printed: "Private: Blow", billedAs: "Blow" }]]),
-      `a Creamfields Artists page must come back as one row per act, day and stage, multi-day stages unpaired, case and "Private: " folded: ${JSON.stringify([cfr.rows, cfr.folded])}`);
+        [{ printed: "Sub_Aural", billedAs: "Sub_aural" }, { printed: "Private: Blow", billedAs: "Blow" }], [{ printed: "BEN NICKY", billedAs: "Ben Nicky" }]]),
+      `a Creamfields Artists page must come back as one row per act, day and stage, multi-day stages unpaired, case and "Private: " folded, an act printed twice billed once: ${JSON.stringify([cfr.rows, cfr.folded])}`);
     ok(parseCreamfieldsArtists(cfPage({ title: "cinch presents Creamfields 2021 | Artists", acts: [cfAct("featured saturday ABOVE &amp; BEYOND", "Above &amp; Beyond"), cfAct("sunday KöLSCH", "Kölsch")] }), { year: 2021 }).acts.length === 2,
       "a 2021 Creamfields page keys each act by its name in ASCII capitals, under cinch's title");
     ok(JSON.stringify(runDates(["2019-08-22", "2019-08-25"])) === '["2019-08-22","2019-08-23","2019-08-24","2019-08-25"]', "a census run expands to each of its days");

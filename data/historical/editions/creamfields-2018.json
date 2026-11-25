@@ -1745,20 +1745,6 @@
    ]
   },
   {
-   "id": "creamfields-2018:ilan-bluestone",
-   "name": "ILAN BLUESTONE",
-   "key": "ilan-bluestone",
-   "performers": [
-    "ilan-bluestone"
-   ],
-   "appearances": [
-    {
-     "day": 3,
-     "stageId": "creamfields-2018:generator"
-    }
-   ]
-  },
-  {
    "id": "creamfields-2018:jack-eye-jones",
    "name": "Jack Eye Jones",
    "key": "jack-eye-jones",

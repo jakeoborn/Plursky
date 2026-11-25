@@ -976,6 +976,8 @@ export const PRINTED_NON_LATIN = {
   // The same lambda on Tomorrowland's own day timetables.
   "tomorrowland-2015": ["Axwell Λ Ingrosso"],
   "tomorrowland-2016": ["Axwell Λ Ingrosso"],
+  // The same lambda on Creamfields' own 2018 Artists page.
+  "creamfields-2018": ["Axwell Λ Ingrosso"],
   // The same lambda on Ultra's own 2017 set-times graphic, read by eye
   // (review/ultra-miami-2017.json).
   "ultra-miami-2017": ["AXWELL Λ INGROSSO"],

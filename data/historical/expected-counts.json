@@ -184,7 +184,7 @@
  "sziget-2011": { "stages": 5, "setsPerDay": [1, 6, 20, 20, 19, 20, 19], "droppedPerDay": [0, 0, 0, 0, 0, 0, 0] },
  "defqon1-2013": { "artists": 158, "stages": 11, "appearancesPerDay": [4, 109, 53], "dropped": 0 },
  "creamfields-2017": { "artists": 250, "stages": 27, "appearancesPerDay": [14, 65, 96, 78], "dropped": 0 },
- "creamfields-2018": { "artists": 282, "stages": 29, "appearancesPerDay": [19, 71, 107, 88], "dropped": 0 },
+ "creamfields-2018": { "artists": 281, "stages": 29, "appearancesPerDay": [19, 71, 106, 88], "dropped": 0 },
  "creamfields-2019": { "artists": 266, "stages": 29, "appearancesPerDay": [24, 65, 106, 77], "dropped": 1 },
  "creamfields-2021": { "artists": 234, "stages": 28, "appearancesPerDay": [24, 59, 85, 67], "dropped": 0 },
  "defqon1-2015": { "stages": 14, "setsPerDay": [11, 133, 77], "droppedPerDay": [0, 0, 0] }

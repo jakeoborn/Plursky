@@ -107,6 +107,8 @@ export async function extract(id) {
     unpaired: chosen.out.unpaired,
     // Stage spellings that differ only in case, billed as one stage.
     folded: chosen.out.folded,
+    // Acts printed twice in spellings that differ only in case, billed once.
+    sameActs: chosen.out.sameActs,
     considered: considered.map(c => ({ ...strip(c), diffVsChosen: c === chosen || !c.valid ? undefined : diff(c) })),
   });
   const cols = ["artist", "day", "stage"];
