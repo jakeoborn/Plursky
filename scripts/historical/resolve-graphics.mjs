@@ -168,6 +168,45 @@ export const GRAPHIC_EDITIONS = {
     image: /content\/coachella-2026\/set-times-(?:friday|sat|sun|fri-wk2|sat-wk2|sun-wk2)\.jpg/,
     days: [{ day: 1, date: "2026-04-10", token: /^set-times-friday\./ }, { day: 2, date: "2026-04-11", token: /^set-times-sat\./ }, { day: 3, date: "2026-04-12", token: /^set-times-sun\./ },
       { day: 4, date: "2026-04-17", token: /^set-times-fri-wk2\./ }, { day: 5, date: "2026-04-18", token: /^set-times-sat-wk2\./ }, { day: 6, date: "2026-04-19", token: /^set-times-sun-wk2\./ }] },
+  // The Mac queue (ocr-queue.mjs, data/historical/MAC-QUEUE.md). Each pattern
+  // was checked against the archived pages' own HTML; the graphics themselves
+  // have not been read yet.
+  //
+  // Governors Ball 2023: one grid per day on /set-times/, issued May 9
+  // ("gb23-set-times-fri-230509.jpg"). WordPress also embeds resized copies
+  // ("…-819x1024.jpg"); only the original is matched.
+  "governors-ball-2023": { year: 2023, page: "https://www.governorsballmusicfestival.com/set-times/", window: ["20230501", "20231231"],
+    image: /gb23-set-times-(?:fri|sat|sun)-\d+\.jpg/i,
+    days: [{ day: 1, date: "2023-06-09", token: /-fri-/i }, { day: 2, date: "2023-06-10", token: /-sat-/i }, { day: 3, date: "2023-06-11", token: /-sun-/i }] },
+  // Movement 2016-2018 print every day on one schedule graphic on
+  // movement.us/schedule, re-issued with a counter or a suffix (2016
+  // "…_FINAL-5.jpg", 2017 "…_new-orientation_FINAL.jpg", 2018 "…_WEB.png").
+  // Every day reads the same file. 2017 and 2018 also link a PDF, not read.
+  "movement-2016": { year: 2016, page: "http://movement.us/schedule", window: ["20160301", "20161231"],
+    image: /MVMT-2016-web-schedule[^"'\s/]*?\.jpg/i,
+    days: [{ day: 1, date: "2016-05-28", token: /schedule/i }, { day: 2, date: "2016-05-29", token: /schedule/i }, { day: 3, date: "2016-05-30", token: /schedule/i }] },
+  "movement-2017": { year: 2017, page: "http://movement.us/schedule", window: ["20170201", "20171231"],
+    image: /MVMT-2017-web-schedule[^"'\s/]*?\.jpg/i,
+    days: [{ day: 1, date: "2017-05-27", token: /schedule/i }, { day: 2, date: "2017-05-28", token: /schedule/i }, { day: 3, date: "2017-05-29", token: /schedule/i }] },
+  "movement-2018": { year: 2018, page: "http://movement.us/schedule", window: ["20180101", "20181231"],
+    image: /MVMT-2018-web-schedule[^"'\s/]*?\.png/i,
+    days: [{ day: 1, date: "2018-05-26", token: /schedule/i }, { day: 2, date: "2018-05-27", token: /schedule/i }, { day: 3, date: "2018-05-28", token: /schedule/i }] },
+  // Electric Forest 2024 and 2025: one grid per day, Thursday to Sunday, from
+  // AEG's blob store. 2024's only capture that embeds them is from June 16,
+  // before the festival; its "brainery.jpg" (workshops) is not matched.
+  "electric-forest-2024": { year: 2024, page: "http://electricforest.com/schedule/", window: ["20240501", "20241231"],
+    image: /content\/electric-forest-2024\/schedule\/(?:thurs|fri|sat|sun)\.jpg/i,
+    days: [{ day: 1, date: "2024-06-20", token: /^thurs\./ }, { day: 2, date: "2024-06-21", token: /^fri\./ }, { day: 3, date: "2024-06-22", token: /^sat\./ }, { day: 4, date: "2024-06-23", token: /^sun\./ }] },
+  "electric-forest-2025": { year: 2025, page: "http://electricforest.com/schedules/", window: ["20250501", "20251231"],
+    image: /content\/electric-forest\/2025\/set-times\/(?:thur|fri|sat|sun)\.jpg/i,
+    days: [{ day: 1, date: "2025-06-19", token: /^thur\./ }, { day: 2, date: "2025-06-20", token: /^fri\./ }, { day: 3, date: "2025-06-21", token: /^sat\./ }, { day: 4, date: "2025-06-22", token: /^sun\./ }] },
+  // Ultra Europe 2024: three numbered social posts on /lineup/set-times/
+  // ("ULTRA-EUROPE-SET-TIMES-IG-POST_01-960x1200.jpg"); only that resized copy
+  // was archived. The numbers are taken as Friday to Sunday, which review must
+  // confirm against each graphic's printed day.
+  "ultra-europe-2024": { year: 2024, page: "https://ultraeurope.com/lineup/set-times/", window: ["20240601", "20241231"],
+    image: /ULTRA-EUROPE-SET-TIMES-IG-POST_0[1-3]-960x1200\.jpg/i,
+    days: [{ day: 1, date: "2024-07-12", token: /_01-/ }, { day: 2, date: "2024-07-13", token: /_02-/ }, { day: 3, date: "2024-07-14", token: /_03-/ }] },
 };
 
 // Webflow resized copies end "-p-500.png" or "-p-800.jpg"; keep only the original.
