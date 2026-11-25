@@ -3962,6 +3962,28 @@ function scheduleWatchText(alert, cfg) {
   return { title: `${name} schedule update`, body: parts.join(" · ") + ". Review before anything changes." };
 }
 
+// Tapping the alert opens the review sheet for the festival it came from.
+// Web: the notification carries data.url and sw.js navigates there. Native:
+// the same data rides in extra, read on localNotificationActionPerformed.
+// A tap for another festival switches to it; the sheet then opens there.
+const SCHED_WATCH_TAP_PARAM = "schedule-review";
+const _SCHED_WATCH_PENDING_KEY = "plursky_schedule_review_pending";
+function scheduleWatchTapUrl(fid) {
+  return "/?" + SCHED_WATCH_TAP_PARAM + "=" + encodeURIComponent(fid);
+}
+function scheduleWatchTapTarget(from) {
+  let fid = null;
+  try {
+    if (typeof from === "string") fid = new URL(from, "https://plursky.com").searchParams.get(SCHED_WATCH_TAP_PARAM);
+    else fid = from && from.notification && from.notification.extra && from.notification.extra.scheduleReview;
+  } catch { fid = null; }
+  return typeof fid === "string" && _DATA_SETS[fid] ? fid : null;
+}
+function scheduleWatchTapRoute(target, activeFid) {
+  if (!target) return null;
+  return target === activeFid ? "open" : "switch";
+}
+
 function _daysFor(cfg) {
   const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
   const shift = _weekendShiftMs(cfg);

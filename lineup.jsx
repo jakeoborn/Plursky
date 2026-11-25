@@ -1879,7 +1879,7 @@ function ScheduleWatch({ saved }) {
       setAlert(d.alert);
       if (perm === "granted" && typeof document !== "undefined" && document.visibilityState === "hidden") {
         const t = scheduleWatchText(d.alert, cfg);
-        showLocal(t.title, { body: t.body });
+        showLocal(t.title, { body: t.body, tag: "schedule-review-" + fid, data: { url: scheduleWatchTapUrl(fid), scheduleReview: fid } });
       }
     };
     fetchScheduleFeed(fid).then(
@@ -1895,6 +1895,39 @@ function ScheduleWatch({ saved }) {
     window.addEventListener("online", online);
     return () => { clearInterval(iv); document.removeEventListener("visibilitychange", vis); window.removeEventListener("online", online); };
   }, [run]);
+  // A tapped alert lands here: a web tap reloads on /?schedule-review=<fid>,
+  // a native tap fires localNotificationActionPerformed (queued on cold start).
+  const tapTo = React.useCallback(target => {
+    const route = scheduleWatchTapRoute(target, fid);
+    if (route === "open") { setAlert(null); setOpen(true); }
+    else if (route === "switch") {
+      try { localStorage.setItem(_SCHED_WATCH_PENDING_KEY, target); } catch {}
+      setActiveFestivalAndReload(target);
+    }
+  }, [fid]);
+  React.useEffect(() => {
+    const fromUrl = scheduleWatchTapTarget(location.href);
+    if (fromUrl) {
+      try {
+        const u = new URL(location.href);
+        u.searchParams.delete(SCHED_WATCH_TAP_PARAM);
+        history.replaceState(history.state, "", u.pathname + u.search + u.hash);
+      } catch {}
+    }
+    let pending = null;
+    try { pending = localStorage.getItem(_SCHED_WATCH_PENDING_KEY); localStorage.removeItem(_SCHED_WATCH_PENDING_KEY); } catch {}
+    const first = fromUrl || (pending === fid ? pending : null);
+    if (first) tapTo(first);
+    const ln = typeof _capLocalNotifications === "function" ? _capLocalNotifications() : null;
+    let sub = null, gone = false;
+    if (ln && ln.addListener) {
+      Promise.resolve(ln.addListener("localNotificationActionPerformed", ev => {
+        const target = scheduleWatchTapTarget(ev);
+        if (target) tapTo(target);
+      })).then(s => { if (gone) { try { s && s.remove && s.remove(); } catch {} } else sub = s; }).catch(() => {});
+    }
+    return () => { gone = true; try { sub && sub.remove && sub.remove(); } catch {} };
+  }, [tapTo]);
 
   if (open) return <ScheduleReviewSheet saved={saved || []} onClose={() => { setOpen(false); setAlert(null); }} />;
   if (!alert) return null;

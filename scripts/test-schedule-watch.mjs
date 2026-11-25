@@ -12,6 +12,9 @@
 //      keeps the last alert key, so a recovery cannot re-alert the same feed.
 //   3. The runner is Plus-only and changes nothing by itself: it gates on
 //      _isPlusSub before fetching, and its only way to apply is the review sheet.
+//   4. A tap on the notification opens that festival's review sheet: the web
+//      tap runs sw.js's real notificationclick handler to the alert's URL, and
+//      the native tap's extra resolves to the same festival.
 import vm from "node:vm";
 import { readFileSync, readdirSync } from "node:fs";
 import { join, dirname } from "node:path";
@@ -23,10 +26,11 @@ const MODS = readdirSync(join(ROOT, "data", "festivals")).filter(f => f.endsWith
 const DATA = readFileSync(join(ROOT, "data.jsx"), "utf8");
 const store = {};
 const ls = { getItem: k => (k in store ? store[k] : null), setItem: (k, v) => { store[k] = String(v); }, removeItem: k => { delete store[k]; } };
-const ctx = { window: {}, console, Intl, fetch: () => {}, localStorage: ls };
+const ctx = { window: {}, console, Intl, URL, fetch: () => {}, localStorage: ls };
 vm.createContext(ctx);
 vm.runInContext(MODS + "\n" + DATA + "\n;__out = { REG: FESTIVALS_REGISTRY, DS: _DATA_SETS, scheduleReview, scheduleWatchDue, " +
-  "scheduleWatchDecide, scheduleWatchText, scheduleWatchState, scheduleWatchWrite, EVERY: SCHED_WATCH_EVERY_MS, LEAD: SCHED_WATCH_LEAD_MS };", ctx);
+  "scheduleWatchDecide, scheduleWatchText, scheduleWatchState, scheduleWatchWrite, EVERY: SCHED_WATCH_EVERY_MS, LEAD: SCHED_WATCH_LEAD_MS, " +
+  "scheduleWatchTapUrl, scheduleWatchTapTarget, scheduleWatchTapRoute };", ctx);
 const B = ctx.__out;
 
 let checks = 0, failed = 0;
@@ -116,5 +120,50 @@ const other = s => (s === "11:11" ? "11:12" : "11:11");
   check((A.match(/<ScheduleWatch /g) || []).length === 1, "App must mount ScheduleWatch exactly once");
 }
 
+// ── 5. Tap: the notification opens the review sheet for its festival ──────
+{
+  const url = B.scheduleWatchTapUrl(fid);
+  check(B.scheduleWatchTapTarget(url) === fid, `web tap URL does not resolve to ${fid}: ${url}`);
+  check(B.scheduleWatchTapTarget("https://plursky.com" + url + "&tab=home") === fid, "web tap URL with other params lost the festival");
+  check(B.scheduleWatchTapTarget({ actionId: "tap", notification: { extra: { scheduleReview: fid } } }) === fid, "native tap extra does not resolve");
+  check(B.scheduleWatchTapTarget({ actionId: "tap", notification: { extra: { artistId: "x" } } }) === null, "a set-reminder tap read as a schedule tap");
+  check(B.scheduleWatchTapTarget("/?schedule-review=not-a-festival") === null && B.scheduleWatchTapTarget("/") === null && B.scheduleWatchTapTarget(null) === null,
+    "an unknown festival or a plain URL resolved to a review");
+  const other = B.REG.map(e => e.config.id).find(x => x !== fid);
+  check(B.scheduleWatchTapRoute(fid, fid) === "open" && B.scheduleWatchTapRoute(other, fid) === "switch" && B.scheduleWatchTapRoute(null, fid) === null,
+    "tap route: same festival opens, another switches, nothing stays put");
+
+  // sw.js's real notificationclick handler, cold and warm.
+  const SW = readFileSync(join(ROOT, "sw.js"), "utf8");
+  const tap = async existing => {
+    const on = {}, seen = { opened: null, navigated: null, focused: false };
+    const client = { url: "https://plursky.com/", focus() { seen.focused = true; }, navigate(u) { seen.navigated = u; return Promise.resolve(); } };
+    const self = { location: { origin: "https://plursky.com" }, addEventListener: (n, f) => { on[n] = f; },
+      clients: { matchAll: () => Promise.resolve(existing ? [client] : []), openWindow: u => { seen.opened = u; return Promise.resolve(); }, claim: () => Promise.resolve() },
+      skipWaiting: () => Promise.resolve(), registration: {} };
+    const swCtx = { self, caches: {}, fetch: () => Promise.reject(new Error("offline")), console, URL, Response: function () {}, Request: function () {}, setTimeout, clearTimeout };
+    vm.createContext(swCtx);
+    vm.runInContext(SW, swCtx);
+    const waits = [];
+    on.notificationclick({ notification: { data: { url }, close() {} }, waitUntil: p => waits.push(p) });
+    await Promise.all(waits);
+    return seen;
+  };
+  const cold = await tap(false), warm = await tap(true);
+  check(cold.opened === url, `cold web tap opened ${cold.opened}, not ${url}`);
+  check(warm.focused && warm.navigated === url, `warm web tap navigated to ${warm.navigated}, not ${url}`);
+
+  // The runner sends that URL and festival, and both tap paths reach the sheet.
+  const L = readFileSync(join(ROOT, "lineup.jsx"), "utf8");
+  const C = readFileSync(join(ROOT, "chrome.jsx"), "utf8");
+  const s = L.indexOf("function ScheduleWatch("), body = L.slice(s, L.indexOf("\n// ── Schedule Sync:", s));
+  check(/showLocal\(t\.title, \{[^}]*data: \{ url: scheduleWatchTapUrl\(fid\), scheduleReview: fid \}/.test(body), "the notification carries no tap target");
+  check(/extra: opts\.data/.test(C), "native showLocal drops the tap target");
+  check(/addListener\("localNotificationActionPerformed"[\s\S]{0,120}scheduleWatchTapTarget\(ev\)/.test(body), "no native tap handler");
+  check(/scheduleWatchTapTarget\(location\.href\)/.test(body), "the web tap URL is never read");
+  const tapFn = body.slice(body.indexOf("const tapTo"), body.indexOf("}, [fid]);"));
+  check(/"open"\)[^\n]*setOpen\(true\)/.test(tapFn) && /setActiveFestivalAndReload\(target\)/.test(tapFn), "a tap does not open the sheet or switch festival");
+}
+
 if (failed) { console.log(`  ${failed} of ${checks} schedule-watch checks failed`); process.exit(1); }
-console.log(`  ✓ schedule watch: ${checks} checks — due window + 30-min throttle + back-online retry, one alert per published schedule that touches the plan, Plus-only runner that applies nothing itself (${fid})`);
+console.log(`  ✓ schedule watch: ${checks} checks — due window + 30-min throttle + back-online retry, one alert per published schedule that touches the plan, Plus-only runner that applies nothing itself, a tap opens that festival's review sheet (${fid})`);
