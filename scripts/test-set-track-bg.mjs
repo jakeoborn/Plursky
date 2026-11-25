@@ -120,6 +120,23 @@ function windowsOn(src) {
     check(far === 0, "a fix nowhere near a measured stage is dropped (the one gate)");
     const coarse = ingest("fixture-fest", [at(t0 + 5 * M, { accuracy: 400 })], cfg);
     check(coarse === 0, "a coarse fix is dropped (the one gate)");
+    // After iOS relaunches the app the plugin forgets the armed festival, so
+    // a drain can say festivalId null while its fixes each carry their own.
+    const sets = { "fixture-fest": { config: cfg } };
+    const drainIn = vm.runInContext("setTrackIngestDrain", ctx);
+    ctx._DATA_SETS = sets;
+    const relaunch = drainIn({ festivalId: null, fixes: [at(t0 + 30 * M), at(t0 + 31 * M)] });
+    check(relaunch === 2, "after a relaunch (drain festivalId null) held fixes ingest under their own saved festival (" + relaunch + ")");
+    const mixed = drainIn({ festivalId: "fixture-fest", fixes: [at(t0 + 32 * M), at(t0 + 33 * M, { festivalId: "other-fest" })] });
+    check(mixed === 1, "a drain holding two festivals' fixes counts each only under its own (" + mixed + ")");
+    const mutSrc = CHROME.replace(/\(?f && f\.festivalId\)? \|\| fallback/, "fallback");
+    let mutN = -1;
+    if (mutSrc !== CHROME) {
+      const m = ctxFor();
+      try { vm.runInContext(DATA, m); for (const s of BEFORE_CHROME) vm.runInContext(s, m); vm.runInContext(mutSrc, m); m._DATA_SETS = sets;
+        mutN = vm.runInContext("setTrackIngestDrain", m)({ festivalId: null, fixes: [at(t0 + 30 * M)] }); } catch { mutN = -2; }
+    }
+    check(mutN === 0, "mutation: trusting only the drain's festivalId loses the relaunch fixes and is caught (" + mutN + ")");
   }
 }
 
@@ -198,14 +215,15 @@ check(!/visibilitychange[^\n]*disarm|hidden[^\n]*disarm/.test(watcher), "a hide 
 check(/pref && fid && elig === "live"/.test(watcher) && /P\.disarm\(\)/.test(watcher), "armed only when on and live; disarmed otherwise");
 check(/!\(native && _setTrackNativeOn\)/.test(watcher), "no second GPS watch while the native session runs");
 // Re-consent: only a yes given under the screen-locked consent arms the session.
-check(/pref && fid && elig === "live" && locked\)/.test(watcher) && /const locked = !!fid && setTrackLockedConsent\(fid\)/.test(watcher), "the session arms only on a yes stamped under the screen-locked consent");
+check(/const want = pref && fid && elig === "live" && locked;/.test(watcher) && /const locked = !!fid && setTrackLockedConsent\(fid\)/.test(watcher), "the session arms only on a yes stamped under the screen-locked consent");
+check(/setInterval\(\(\) => \{\s*setTrackDrainNative\(\)\.then\(\(\) => \{ if \(alive && want && !_setTrackNativeOn\) arm\(\); \}\);/.test(watcher), "while visible and not yet running, the minute poll arms again (a first arm before the 6 h lead or before location was allowed)");
 const setFn = (CSRC.match(/function setSetTracking\([\s\S]*?\n}\n/) || [""])[0];
 check(/if \(on && typeof _setTrackNative === "function" && _setTrackNative\(\)\) locked\[festivalId\] = true;\s*else if \(!on\) delete locked\[festivalId\];/.test(setFn), "a yes in the iPhone app stamps the screen-locked consent; turning off removes it");
 const card = (CSRC.match(/function SetTrackingCard\(\)[\s\S]*?\n}\n/) || [""])[0];
 check(/const reconsent = native && on && !setTrackLockedConsent\(cfg && cfg\.id\)/.test(card) && /asking && \(!on \|\| reconsent\)/.test(card) && /data-set-tracking-reconsent onClick=\{\(\) => setAsking\(true\)\}/.test(card), "an older foreground-only yes is asked again before it counts with the screen locked");
 check(/onClick=\{\(\) => \{ if \(!on\) setSetTracking\(false, cfg && cfg\.id\); setAsking\(false\); \}\}/.test(card), "Not now on the re-ask keeps the foreground yes");
 check(/function clearSetTrack[\s\S]{0,600}_setTrackNativeClear\(\)/.test(CSRC) && /function clearAllSetTrack\(\)[\s\S]{0,300}_setTrackNativeClear\(\)/.test(CSRC), "Clear <festival> and Delete all reach the native queue");
-check(/setTrackIngest\(r && r\.festivalId/.test(CSRC) && /function setTrackIngest[\s\S]{0,700}attendQualifyFixes\(samples, attendEvidenceAnchors\(c\)/.test(CSRC), "drained fixes go through attendQualifyFixes on measured stages only");
+check(/\.then\(r => setTrackIngestDrain\(r\)\)/.test(CSRC) && /function setTrackIngestDrain[\s\S]{0,500}setTrackIngest\(id, by\[id\]\)/.test(CSRC) &&/function setTrackIngest[\s\S]{0,700}attendQualifyFixes\(samples, attendEvidenceAnchors\(c\)/.test(CSRC), "drained fixes go through attendQualifyFixes on measured stages only");
 check(/data-set-tracking-delete-all onClick=\{\(\) => setConfirmDelete\(true\)\}/.test(CSRC) && /data-set-tracking-delete-yes onClick=\{\(\) => \{ clearAllSetTrack\(\)/.test(CSRC)
   && !/data-set-tracking-delete-all onClick=\{clearAllSetTrack\}/.test(CSRC), "Delete all set times asks to confirm before deleting");
 const iosConsent = (CSRC.match(/\{native \? \([\s\S]*?<div style=\{body\}>([\s\S]*?)<\/div>/) || ["", ""])[1];

@@ -1538,13 +1538,28 @@ function setTrackIngest(festivalId, fixes, cfg) {
   try { window.dispatchEvent(new CustomEvent(SET_TRACK_EVENT)); } catch {}
   return q.length;
 }
+// A drain's fixes, grouped by the festival each fix was saved for. After iOS
+// relaunches the app the plugin no longer knows which festival is armed, so
+// the drain's own festivalId can be null while the file still holds fixes.
+function setTrackIngestDrain(r) {
+  const fixes = (r && Array.isArray(r.fixes)) ? r.fixes : [];
+  const fallback = (r && r.festivalId) || "";
+  const by = {};
+  for (const f of fixes) {
+    const id = (f && f.festivalId) || fallback;
+    if (id) (by[id] = by[id] || []).push(f);
+  }
+  let n = 0;
+  for (const id of Object.keys(by)) n += setTrackIngest(id, by[id]);
+  return n;
+}
 let _setTrackDraining = null;
 function setTrackDrainNative() {
   const P = _setTrackNative();
   if (!P) return Promise.resolve(0);
   if (_setTrackDraining) return _setTrackDraining;
   _setTrackDraining = P.drain()
-    .then(r => setTrackIngest(r && r.festivalId, (r && r.fixes) || []))
+    .then(r => setTrackIngestDrain(r))
     .catch(() => 0)
     .finally(() => { _setTrackDraining = null; });
   return _setTrackDraining;
@@ -1807,19 +1822,23 @@ function SetTrackingWatcher() {
     const P = _setTrackNative();
     if (!P || !visible) return;
     let alive = true;
+    const want = pref && fid && elig === "live" && locked;
+    const arm = () => {
+      const ds = window._DATA_SETS && window._DATA_SETS[fid];
+      P.arm({ festivalId: fid, windows: setTrackWindows(cfg, (ds && ds.artists) || window.ARTISTS || [], Date.now()), saver: !!bsActive })
+        .then(r => alive && _setTrackNativeSet(r)).catch(() => {});
+    };
     try { P.status().then(r => alive && _setTrackNativeSet(r)).catch(() => {}); } catch {}
     setTrackDrainNative().then(() => {
       if (!alive) return;
-      if (pref && fid && elig === "live" && locked) {
-        const ds = window._DATA_SETS && window._DATA_SETS[fid];
-        P.arm({ festivalId: fid, windows: setTrackWindows(cfg, (ds && ds.artists) || window.ARTISTS || [], Date.now()), saver: !!bsActive })
-          .then(r => alive && _setTrackNativeSet(r)).catch(() => {});
-      } else {
-        P.disarm().then(() => alive && _setTrackNativeSet({ tracking: false })).catch(() => {});
-      }
+      if (want) arm();
+      else P.disarm().then(() => alive && _setTrackNativeSet({ tracking: false })).catch(() => {});
     });
+    // While visible and not yet running, arm again each minute: the session
+    // can only start in front, so a first arm made before the 6 h lead, or
+    // before location was allowed, must be retried here.
     const t = setInterval(() => {
-      setTrackDrainNative();
+      setTrackDrainNative().then(() => { if (alive && want && !_setTrackNativeOn) arm(); });
       try { P.status().then(r => alive && _setTrackNativeSet(r)).catch(() => {}); } catch {}
     }, 60000);
     return () => { alive = false; clearInterval(t); };

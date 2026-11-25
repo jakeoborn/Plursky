@@ -1880,12 +1880,24 @@ function setTrackIngest(festivalId, fixes, cfg) {
   } catch {}
   return q.length;
 }
+function setTrackIngestDrain(r) {
+  var fixes = r && Array.isArray(r.fixes) ? r.fixes : [];
+  var fallback = r && r.festivalId || "";
+  var by = {};
+  for (var f of fixes) {
+    var id = f && f.festivalId || fallback;
+    if (id) (by[id] = by[id] || []).push(f);
+  }
+  var n = 0;
+  for (var _id of Object.keys(by)) n += setTrackIngest(_id, by[_id]);
+  return n;
+}
 var _setTrackDraining = null;
 function setTrackDrainNative() {
   var P = _setTrackNative();
   if (!P) return Promise.resolve(0);
   if (_setTrackDraining) return _setTrackDraining;
-  _setTrackDraining = P.drain().then(r => setTrackIngest(r && r.festivalId, r && r.fixes || [])).catch(() => 0).finally(() => {
+  _setTrackDraining = P.drain().then(r => setTrackIngestDrain(r)).catch(() => 0).finally(() => {
     _setTrackDraining = null;
   });
   return _setTrackDraining;
@@ -2242,26 +2254,28 @@ function SetTrackingWatcher() {
     var P = _setTrackNative();
     if (!P || !visible) return;
     var alive = true;
+    var want = pref && fid && elig === "live" && locked;
+    var arm = () => {
+      var ds = window._DATA_SETS && window._DATA_SETS[fid];
+      P.arm({
+        festivalId: fid,
+        windows: setTrackWindows(cfg, ds && ds.artists || window.ARTISTS || [], Date.now()),
+        saver: !!bsActive
+      }).then(r => alive && _setTrackNativeSet(r)).catch(() => {});
+    };
     try {
       P.status().then(r => alive && _setTrackNativeSet(r)).catch(() => {});
     } catch {}
     setTrackDrainNative().then(() => {
       if (!alive) return;
-      if (pref && fid && elig === "live" && locked) {
-        var ds = window._DATA_SETS && window._DATA_SETS[fid];
-        P.arm({
-          festivalId: fid,
-          windows: setTrackWindows(cfg, ds && ds.artists || window.ARTISTS || [], Date.now()),
-          saver: !!bsActive
-        }).then(r => alive && _setTrackNativeSet(r)).catch(() => {});
-      } else {
-        P.disarm().then(() => alive && _setTrackNativeSet({
-          tracking: false
-        })).catch(() => {});
-      }
+      if (want) arm();else P.disarm().then(() => alive && _setTrackNativeSet({
+        tracking: false
+      })).catch(() => {});
     });
     var t = setInterval(() => {
-      setTrackDrainNative();
+      setTrackDrainNative().then(() => {
+        if (alive && want && !_setTrackNativeOn) arm();
+      });
       try {
         P.status().then(r => alive && _setTrackNativeSet(r)).catch(() => {});
       } catch {}
