@@ -4245,6 +4245,16 @@ for (const [label, file] of [["contract", "scripts/test-public-plan-share.mjs"],
     fail(`set tracking per festival failed${detail ? ` — ${detail}` : ""}`);
   }
 
+  console.log("▸ Set-tracking B gate — screen-locked session: When In Use only, set windows, drain through the one gate, internal-only battery test");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-set-track-bg.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`set tracking B failed${detail ? ` — ${detail}` : ""}`);
+  }
+
   console.log("▸ Signal-aware gate — 2G/Data Saver/queued sends = weak signal, heartbeat 60s, strip + card, export key, mutations");
   try {
     const out = execFileSync(process.execPath, ["scripts/test-signal-aware.mjs"],
