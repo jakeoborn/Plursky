@@ -3,7 +3,7 @@
 > **Shipping?** See **[RELEASE.md](RELEASE.md)** — sync iOS, cache-bust, web
 > deploy, and App Store submit commands.
 
-## 🎆 SPEC-212 — NYE, attendance, win-back (status 2026-11-24 5:55 PM CT, main `22efc5b3`, web v677)
+## 🎆 SPEC-212 — NYE, attendance, win-back (status 2026-11-24 6:05 PM CT, main `19460332`, web v677)
 
 > Ledger lines for the merges below: `ops/build-ledger.jsonl` (the ledger has no
 > lines between 2026-10-24 and 2026-11-17; those merges are not backfilled here).
