@@ -10,6 +10,7 @@ final class PlurskyBridgeViewController: CAPBridgeViewController {
         bridge?.registerPluginInstance(AppearancePlugin())
         bridge?.registerPluginInstance(AppleMusicPlugin())
         bridge?.registerPluginInstance(PhotoScanPlugin())
+        bridge?.registerPluginInstance(SetTrackPlugin())
     }
 
     override func webViewConfiguration(for instanceConfiguration: InstanceConfiguration) -> WKWebViewConfiguration {

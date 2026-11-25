@@ -166,7 +166,8 @@ sCheck(/state\.tab !== "landing" && <SetTrackingWatcher \/>/.test(app), "app.jsx
 sCheck(/<BatterySaverCard \/>\s*<SetTrackingCard \/>/.test(spot), "Me → Settings shows the set-tracking card (the off switch)");
 sCheck(/data-set-tracking-off onClick=\{\(\) => setSetTracking\(false, cfg && cfg\.id\)\}/.test(chrome), "the card's Turn off button switches it off for this festival");
 sCheck(/data-set-tracking-accept onClick=\{\(\) => \{ setSetTracking\(true, cfg && cfg\.id\)/.test(chrome) && /data-set-tracking-consent/.test(chrome), "turning it on goes through the consent panel");
-sCheck(/Lock the screen and the count pauses/.test(chrome) && /only while Plursky is open/.test(chrome), "the card states the foreground-only limit");
+sCheck(/Lock the screen and the count pauses/.test(chrome) && /only while Plursky is open/.test(chrome), "web: the card states the foreground-only limit");
+sCheck(/even with the screen locked\. iOS shows the location arrow while it runs/.test(chrome) && /screen locked too, once you've opened Plursky that day/.test(chrome), "iOS: the card and consent state the screen-locked limit and the location arrow");
 const vfn = (chrome.match(/function setTrackVerdict\([\s\S]*?\n}\n/) || [""])[0];
 sCheck(/attendanceVerdict\(a, iv, cfg[,)]/.test(vfn) && /attendanceVerdictLabel\(v\)/.test(vfn), "PR 4: setTrackVerdict asks attendanceVerdict and its label (no second rule)");
 sCheck(/const tracked = setTrackVerdict\(a\);/.test(spot) && /tracked && tracked\.label &&/.test(spot), "PR 4: the set badge shows setTrackVerdict's label");
@@ -177,7 +178,10 @@ const others = readdirSync(ROOT).filter(f => f.endsWith(".jsx") && f !== "chrome
 const leak = others.filter(f => /plursky_set_intervals_v1|plursky_set_taps_v1|plursky_set_manual_v1|plursky_stage_calib_v1|SET_TRACK_STORE_KEY|SET_TAP_STORE_KEY|SET_MANUAL_STORE_KEY|SET_CALIB_STORE_KEY|getSetTrackIntervals/.test(code(f)));
 sCheck(leak.length === 0, `no other file (backup, sync, crew) reads the interval, tap, correction or calibration store (${leak.join(", ") || "none"})`);
 const plist = readFileSync(join(ROOT, "ios", "App", "App", "Info.plist"), "utf8");
-sCheck(!/UIBackgroundModes/.test(plist) && !/NSLocationAlways/.test(plist), "Info.plist has no background mode and no Always permission");
+// Option B (Jake, 2026-11-23): one background mode, location, and still no
+// Always. test-set-track-bg.mjs pins what the native session may do with it.
+const bgModes = (plist.match(/<key>UIBackgroundModes<\/key>\s*<array>([\s\S]*?)<\/array>/) || ["", ""])[1].match(/<string>[^<]*<\/string>/g) || [];
+sCheck(bgModes.length === 1 && bgModes[0] === "<string>location</string>" && !/NSLocationAlways/.test(plist), "Info.plist: UIBackgroundModes is exactly [location], and no Always permission");
 // Positive control: the plist read is real.
 sCheck(/NSLocationWhenInUseUsageDescription/.test(plist), "Info.plist read (When-In-Use key present)");
 
