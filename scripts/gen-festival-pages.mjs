@@ -435,6 +435,52 @@ function planSection(entry, amenities) {
 ${hours ? `    <p class="hours">${esc(hours)} <span class="note">Per the <a href="${esc(eh.url)}" rel="noopener">official hours page</a>, checked ${esc(eh.observedAt)}.</span></p>\n` : ''}${amenities.length ? `    <p>Amenities Plursky lists for ${esc(cfg.name)}: ${amenities.map(([k, v]) => `${esc(k)} (${v})`).join(' · ')}.</p>\n` : ''}  </section>`;
 }
 
+// ── Eat nearby (Dim Hour) ─────────────────────────────────────────────
+// Festivals held in or right next to a city that Dim Hour (dimhour.com, the
+// sister restaurant guide) covers get one plain link to that city's guide.
+// Keyed by the festival's series id (the id without its trailing year), so a
+// new edition keeps the link. Only cities Dim Hour lists in its own city
+// directory, read 2026-11-25; the San Bernardino shows (NOS, Glen Helen) and
+// Joliet are too far from a covered city and stay out. Words say only what
+// Dim Hour's own home page says about itself.
+const DIM_HOUR_CITY = {
+  'edc-lv': ['las-vegas', 'Las Vegas'],
+  'acl': ['austin', 'Austin'],
+  'ultra-miami': ['miami', 'Miami'],
+  'iii-points': ['miami', 'Miami'],
+  'groove-cruise': ['miami', 'Miami'],
+  'governors-ball': ['nyc', 'New York City'],
+  'lollapalooza': ['chicago', 'Chicago'],
+  'arc': ['chicago', 'Chicago'],
+  'suenos': ['chicago', 'Chicago'],
+  'outside-lands': ['san-francisco', 'San Francisco'],
+  'portola': ['san-francisco', 'San Francisco'],
+  'crssd-fall': ['san-diego', 'San Diego'],
+  'hard-summer': ['los-angeles', 'Los Angeles'],
+  'lost-in-dreams': ['los-angeles', 'Los Angeles'],
+  'dreamstate-socal': ['los-angeles', 'Los Angeles'],
+  'lights-all-night': ['dallas', 'Dallas'],
+  'ubbi-dubbi': ['dallas', 'Dallas–Fort Worth'],
+  'decadence-arizona': ['phoenix', 'Phoenix'],
+  'bumbershoot': ['seattle', 'Seattle'],
+  'project-glow': ['washington-dc', 'Washington DC'],
+  'edc-mexico': ['mexico-city', 'Mexico City'],
+  'das-energi': ['salt-lake-city', 'Salt Lake City'],
+};
+function dimHourCityFor(id) {
+  return DIM_HOUR_CITY[String(id || '').replace(/-\d{4}$/, '')] || null;
+}
+function eatSection(entry) {
+  const hit = dimHourCityFor(entry.config.id);
+  if (!hit) return '';
+  const [slug, city] = hit;
+  return `
+  <section aria-labelledby="eat-h">
+    <h2 id="eat-h">Where to eat in ${esc(city)}</h2>
+    <p>Before the gates open or after the last set, <a href="https://dimhour.com/${slug}/">Dim Hour's ${esc(city)} guide</a> lists the restaurants and bars worth your time, chosen rather than crowdsourced, each with a 0–100 score.</p>
+  </section>`;
+}
+
 // ── Past editions ─────────────────────────────────────────────────────
 // Past Festivals is the read-only archive; this page is only an index into it.
 // Each link opens that edition in Plursky (?tab=past&edition=<id>).
@@ -629,6 +675,7 @@ const JUMPS = [
   ['map-h', 'Map', 'See the map'],
   ['watch-h', 'Watch', 'Watch and listen'],
   ['plan-h', 'Plan', 'Plan your trip'],
+  ['eat-h', 'Eat', 'Where to eat'],
   ['past-h', 'Past years', 'See past years'],
 ];
 function sectionJumps(html) {
@@ -784,7 +831,7 @@ ${mapHtml}
 ${scheduleGrid(entry, dates, blocks)}${stageProgrammingSection(entry)}
 ${lineupSection(entry, blocks, dates, names, hasTimes)}
 ${stagesSection(entry, blocks, dates)}
-${planSection(entry, amenities)}
+${planSection(entry, amenities)}${eatSection(entry)}
 ${pastSection(entry, editions)}`;
 
   return `<!DOCTYPE html>
