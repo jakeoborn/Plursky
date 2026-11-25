@@ -8,7 +8,8 @@
 // For each edition: resolve-graphics.mjs picks and caches the official graphic
 // per day (writing its ledger), then ocr-vision.swift reads each cached graphic
 // into <review-root>/<id>/<id>-dN.jsonl. A graphic shared by several days is
-// read once and copied. Nothing here is data: the next step is still
+// read once and copied. An official PDF is read one page per day: the day's
+// `page` in GRAPHIC_EDITIONS, from its text layer where it has one. Nothing here is data: the next step is still
 // assemble-ocr.mjs and a check of every row against the pixels
 // (data/historical/README.md, "Adding an edition"), then finalize-review.mjs.
 //
@@ -32,10 +33,12 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 export const MAC_QUEUE = [
   "governors-ball-2023",
   "movement-2016", "movement-2017", "movement-2018", "movement-2019",
+  "movement-2023", "movement-2024", "movement-2025",
   "electric-forest-2025", "electric-forest-2024", "electric-forest-2022", "electric-forest-2019", "electric-forest-2017",
   "ultra-europe-2025", "ultra-europe-2024", "ultra-europe-2023", "ultra-europe-2019",
   "coachella-2019", "coachella-2018",
   "ultra-miami-2012", "ultra-miami-2011",
+  "shambhala-2019", "movement-2022",
 ];
 
 if (import.meta.url === `file://${process.argv[1]}`) {
@@ -55,7 +58,8 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     for (const d of ledger.days) {
       if (d.blocked) { summary.push(`${id} day ${d.day}: ${d.blocked}`); continue; }
       const out = join(dir, `${id}-d${d.day}.jsonl`);
-      const key = `${d.imageCapture} ${d.originalUrl}`;
+      const page = GRAPHIC_EDITIONS[id].days.find(x => x.day === d.day)?.page;
+      const key = `${d.imageCapture} ${d.originalUrl} ${page || ""}`;
       if (read.has(key)) copyFileSync(read.get(key), out);
       else {
         // wayback.mjs caches only an exact capture. A graphic is requested at
@@ -69,10 +73,10 @@ if (import.meta.url === `file://${process.argv[1]}`) {
           img = existsSync(got.file) ? got.file : join(dir, `.graphic-d${d.day}`);
           if (img !== got.file) writeFileSync(img, got.buf);
         }
-        writeFileSync(out, execFileSync(ocr, [img], { maxBuffer: 64 << 20 }));
+        writeFileSync(out, execFileSync(ocr, page ? [img, String(page)] : [img], { maxBuffer: 64 << 20 }));
         read.set(key, out);
       }
-      summary.push(`${id} day ${d.day} (${d.date}): ${d.originalUrl.split("/").pop()} → ${out}`);
+      summary.push(`${id} day ${d.day} (${d.date}): ${d.originalUrl.split("/").pop()}${page ? ` page ${page}` : ""} → ${out}`);
     }
   }
   console.log(summary.join("\n"));

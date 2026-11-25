@@ -22,7 +22,8 @@ import { listCaptures, fetchCapture } from "./wayback.mjs";
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 
 // `days`: the official days in order, each with the filename token that marks
-// its graphic. The match is on the image's own filename, which the festival
+// its graphic (and, for a PDF with a page per day, the 1-based `page` that
+// ocr-queue.mjs reads for it). The match is on the image's own filename, which the festival
 // wrote — never on page position.
 export const GRAPHIC_EDITIONS = {
   // Governors Ball 2024: "GBSchedule-Working-Fri-6.7.jpg" (final, from
@@ -251,6 +252,33 @@ export const GRAPHIC_EDITIONS = {
   "movement-2019": { year: 2019, page: "https://www.movement.us/pages/schedule-2019", window: ["20190501", "20191231"],
     image: /Movement-2019__Full_Schedule[^"'\s/?]*?\.png/i,
     days: [{ day: 1, date: "2019-05-25", token: /schedule/i }, { day: 2, date: "2019-05-26", token: /schedule/i }, { day: 3, date: "2019-05-27", token: /schedule/i }] },
+  // Movement 2023 and 2024: one graphic per day on the Shopify site's schedule
+  // page (2024's is /pages/schedule-1; /pages/schedule said "check back").
+  // 2023's Saturday was reissued as "…1_SAT_update.jpg". 2025 prints every
+  // stage and day on one graphic, so every day reads the same file.
+  "movement-2023": { year: 2023, page: "https://movementfestival.com/pages/schedule", window: ["20230501", "20231231"],
+    image: /Movement23_FullSchedule\d_(?:SAT|SUN|MON)[^"'\s/?]*?\.jpg/i,
+    days: [{ day: 1, date: "2023-05-27", token: /_SAT/ }, { day: 2, date: "2023-05-28", token: /_SUN/ }, { day: 3, date: "2023-05-29", token: /_MON/ }] },
+  "movement-2024": { year: 2024, page: "https://movementfestival.com/pages/schedule-1", window: ["20240501", "20241231"],
+    image: /Movement24_Fullschedules[^"'\s/?]*?\.jpg/i,
+    days: [{ day: 1, date: "2024-05-25", token: /_Saturday_/ }, { day: 2, date: "2024-05-26", token: /_Sunday_/ }, { day: 3, date: "2024-05-27", token: /_Monday_/ }] },
+  "movement-2025": { year: 2025, page: "https://movementfestival.com/pages/schedule", window: ["20250501", "20251231"],
+    image: /Movement25_Fullschedules[^"'\s/?]*?\.png/i,
+    days: [{ day: 1, date: "2025-05-24", token: /schedules/i }, { day: 2, date: "2025-05-25", token: /schedules/i }, { day: 3, date: "2025-05-26", token: /schedules/i }] },
+  // Movement 2022: the printable schedule PDF linked from /pages/schedule
+  // ("Movement22_Printable_schedule-change5-30-22.pdf", reissued on the
+  // Monday), one page per day, Saturday to Monday, with a text layer. The
+  // page's Blokks widget left JSON for Saturday and Monday to check against.
+  "movement-2022": { year: 2022, page: "https://movementfestival.com/pages/schedule", window: ["20220501", "20221231"],
+    image: /Movement22_Printable_schedule[^"'\s/?]*?\.pdf/i,
+    days: [{ day: 1, date: "2022-05-28", token: /schedule/i, page: 1 }, { day: 2, date: "2022-05-29", token: /schedule/i, page: 2 }, { day: 3, date: "2022-05-30", token: /schedule/i, page: 3 }] },
+  // Shambhala 2019: one full schedule (Thursday to Sunday) embedded on
+  // /stages-lineups/ as "SMF-2019-full-schedule-1-1.png". The page also links
+  // "…-full-schedule-1.png" and four per-day "…-instgram-<day>.png" posts,
+  // none of them archived, so they are not matched. Every day reads one file.
+  "shambhala-2019": { year: 2019, page: "https://shambhalamusicfestival.com/stages-lineups/", window: ["20190701", "20191231"],
+    image: /SMF-2019-full-schedule-1-1\.png/i,
+    days: [{ day: 1, date: "2019-08-08", token: /full-schedule/i }, { day: 2, date: "2019-08-09", token: /full-schedule/i }, { day: 3, date: "2019-08-10", token: /full-schedule/i }, { day: 4, date: "2019-08-11", token: /full-schedule/i }] },
   // Ultra Europe 2019 and 2025 print every stage and day on one graphic
   // (2019 on /lineup/, "europe-lineup-times-2019.jpg", later
   // "…-settimes-2019-1.jpg"; 2025 on /lineup/set-times/). Every day reads the
@@ -268,7 +296,44 @@ export const GRAPHIC_EDITIONS = {
 };
 
 // Webflow resized copies end "-p-500.png" or "-p-800.jpg"; keep only the original.
-const fullSize = u => !/-p-\d+\.(?:png|jpe?g)$/i.test(u);
+const fullSize = u => !/-p-\d+\.(?:png|jpe?g)$/i.test(fileName(u));
+
+// A graphic's file name, without its path or its cache-busting query.
+export const fileName = u => u.split("?")[0].split("/").pop();
+
+// Every full-size official graphic a page links, as absolute URLs. A Shopify
+// CDN link keeps its version query ("?v=1685277963", or "?468" in 2019),
+// because the archive stored the file only under that address: the bare URL
+// is not archived.
+export function graphicUrls(text, image) {
+  // Older WordPress pages (Ultra 2016, 2017) link protocol-relative
+  // ("//ultramusicfestival.com/wp-content/…"); those read as https.
+  const re = new RegExp(`(?:https?:)?//[^"'\\s)]+?${image.source}(?:\\?(?:v=)?\\d+)?`, "gi");
+  return [...new Set((text.match(re) || []).map(u => (u.startsWith("//") ? `https:${u}` : u).replace(/&amp;/g, "&")))].filter(fullSize);
+}
+
+// The addresses to try for one day, in order. The latest capture that links
+// a graphic for the day decides which graphic it is, and must link exactly
+// one file name for it. Its addresses come first (with their query, then
+// bare), then those of earlier captures that link exactly one file for the
+// day, newest first: a page often swaps in a reissued graphic the archive
+// never stored, while it did store the one before.
+export function dayCandidates(seen, token) {
+  const named = s => [...new Set(s.images.map(fileName).filter(n => token.test(n)))];
+  const last = [...seen].reverse().find(s => named(s).length);
+  if (!last) return { blocked: "no capture embeds an official graphic for this day" };
+  if (named(last).length !== 1) return { blocked: `ambiguous: ${named(last).length} graphics in ${last.captureTimestamp}` };
+  const tries = [];
+  for (const s of [...seen].reverse()) {
+    if (s !== last && (s.captureTimestamp > last.captureTimestamp || named(s).length !== 1)) continue;
+    const urls = s.images.filter(u => token.test(fileName(u)));
+    for (const u of [...urls, ...urls.map(u => u.split("?")[0])])
+      if (!tries.some(t => t.url === u)) tries.push({ url: u, page: s });
+  }
+  // The latest capture's own addresses first, whatever the order above.
+  tries.sort((a, b) => (b.page === last) - (a.page === last));
+  return { last, tries };
+}
 
 export async function resolve(id) {
   const ed = GRAPHIC_EDITIONS[id];
@@ -277,33 +342,31 @@ export async function resolve(id) {
   const seen = [];
   for (const c of caps) {
     const got = await fetchCapture(c.timestamp, ed.page);
-    // Older WordPress pages (Ultra 2016, 2017) link protocol-relative
-    // ("//ultramusicfestival.com/wp-content/…"); those read as https.
-    const re = new RegExp(`(?:https?:)?//[^"'\\s)]+?${ed.image.source}`, "gi");
-    const imgs = [...new Set((got.text.match(re) || []).map(u => u.startsWith("//") ? `https:${u}` : u))].filter(fullSize);
-    seen.push({ captureTimestamp: got.captureTimestamp, archivedUrl: got.archivedUrl, sha256: got.sha256, images: imgs });
+    seen.push({ captureTimestamp: got.captureTimestamp, archivedUrl: got.archivedUrl, sha256: got.sha256, images: graphicUrls(got.text, ed.image) });
   }
   const ledger = { id, method: "official_image_transcription", official: ed.page, window: ed.window,
     pageCaptures: seen.map(s => ({ ...s, images: s.images.map(u => u.split("/").pop()) })), days: [] };
   for (const d of ed.days) {
     const revisions = [];
-    for (const s of seen) for (const u of s.images) if (d.token.test(u.split("/").pop()) && !revisions.some(r => r.url === u))
-      revisions.push({ url: u, firstSeen: s.captureTimestamp });
-    const lastCap = [...seen].reverse().find(s => s.images.some(u => d.token.test(u.split("/").pop())));
-    if (!lastCap) { ledger.days.push({ day: d.day, date: d.date, blocked: "no capture embeds an official graphic for this day" }); continue; }
-    const pick = lastCap.images.filter(u => d.token.test(u.split("/").pop()));
-    if (pick.length !== 1) { ledger.days.push({ day: d.day, date: d.date, blocked: `ambiguous: ${pick.length} graphics in ${lastCap.captureTimestamp}` }); continue; }
-    let img;
-    try { img = await fetchCapture(lastCap.captureTimestamp, pick[0], { binary: true }); }
-    catch (e) {
-      ledger.days.push({ day: d.day, date: d.date, blocked: `graphic not archived: ${e.message}`, originalUrl: pick[0],
-        revisions: revisions.map(r => ({ file: r.url.split("/").pop(), firstSeen: r.firstSeen })) });
+    for (const s of seen) for (const u of s.images) if (d.token.test(fileName(u)) && !revisions.some(r => r.file === u.split("/").pop()))
+      revisions.push({ file: u.split("/").pop(), firstSeen: s.captureTimestamp });
+    const c = dayCandidates(seen, d.token);
+    if (c.blocked) { ledger.days.push({ day: d.day, date: d.date, blocked: c.blocked }); continue; }
+    let img, used;
+    const notArchived = [];
+    for (const t of c.tries) {
+      try { img = await fetchCapture(t.page.captureTimestamp, t.url, { binary: true }); used = t; break; }
+      catch (e) { notArchived.push({ file: t.url.split("/").pop(), pageCapture: t.page.captureTimestamp, error: e.message }); }
+    }
+    if (!img) {
+      ledger.days.push({ day: d.day, date: d.date, blocked: `graphic not archived: ${notArchived.at(-1)?.error}`, originalUrl: c.tries[0].url,
+        notArchived, revisions });
       continue;
     }
-    ledger.days.push({ day: d.day, date: d.date, pageCapture: lastCap.captureTimestamp, pageArchivedUrl: lastCap.archivedUrl,
-      originalUrl: pick[0], imageCapture: img.captureTimestamp, imageArchivedUrl: img.archivedUrl,
+    ledger.days.push({ day: d.day, date: d.date, pageCapture: used.page.captureTimestamp, pageArchivedUrl: used.page.archivedUrl,
+      originalUrl: used.url, imageCapture: img.captureTimestamp, imageArchivedUrl: img.archivedUrl,
       sha256: img.sha256, bytes: img.bytes, contentType: img.contentType, cacheFile: img.file.split("/").pop(),
-      revisions: revisions.map(r => ({ file: r.url.split("/").pop(), firstSeen: r.firstSeen })) });
+      ...(notArchived.length ? { notArchived } : {}), revisions });
   }
   mkdirSync(join(ROOT, "data/historical/ledger"), { recursive: true });
   writeFileSync(join(ROOT, `data/historical/ledger/${id}.json`), JSON.stringify(ledger, null, 2) + "\n");
