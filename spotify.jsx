@@ -3533,7 +3533,7 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
         )
       )}
       {moment.text && (
-        <div className="duo-headline" style={{ color: "var(--ink)" }}>
+        <div className="duo-headline" style={{ color: "var(--ink)", overflowWrap: "anywhere" }}>
           {moment.text}
         </div>
       )}
