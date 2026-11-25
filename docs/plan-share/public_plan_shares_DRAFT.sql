@@ -1,3 +1,5 @@
+-- SUPERSEDED (2026-11-25): never applied. What runs live is public_shares_LIVE.sql
+-- beside this file, read back from the database.
 -- DRAFT FOR REVIEW ONLY. Not applied to any database, and deliberately NOT in
 -- supabase/migrations so no `supabase db push` can pick it up. Row 4 stage 1
 -- ships no schema; this file moves only after Jake's payload/privacy review.
