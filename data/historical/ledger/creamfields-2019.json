@@ -1,0 +1,402 @@
+{
+  "id": "creamfields-2019",
+  "method": "official_lineup_html",
+  "official": "http://www.creamfields.com/artists",
+  "format": "creamfields-artists",
+  "window": {
+    "until": "2019-09-01",
+    "why": "captures more than 7 days after the last day show the next edition"
+  },
+  "chosen": "20190818135811",
+  "archivedUrl": "https://web.archive.org/web/20190818135811/http://www.creamfields.com/artists",
+  "sha256": "73ef1e48003e469ae6fc899cca58d2389f1a8f5455e7bd2278a381546d229ae5",
+  "title": "Creamfields 2019 | Artists",
+  "relayedVia": "firecrawl",
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "creamfields",
+    "year": 2019,
+    "lifecycle": "occurred",
+    "dates": "2019-08-22..2019-08-25",
+    "evidence": "https://www.getintothis.co.uk/2019/08/creamfields-review-what-we-learned-and-the-nine-best-acts-from-daresbury/",
+    "published": "2019-08-26"
+  },
+  "stageOrder": [
+    "Anjunabeats",
+    "Steel Yard",
+    "MK Area10",
+    "Silo",
+    "Warehouse",
+    "Goodgreef xtra hard",
+    "Pepsi Max",
+    "Silo Presents Exhale",
+    "Generator: SEVEN20 X MAU5TRAP",
+    "Andy C Presents",
+    "Silo Presents Cream Classics",
+    "Sub_Aural",
+    "BBC RADIO 1 STAGE",
+    "Generator presents Blow!",
+    "Utilita Power Tree",
+    "Rong",
+    "Warehouse Presents All Gone Pete Tong",
+    "Generator Presents STMPD",
+    "Freakshow",
+    "Keeping The Rave Alive",
+    "Arc",
+    "Steel Yard presents intec",
+    "Horizon",
+    "Sexy By Nature",
+    "Axtone",
+    "Cream",
+    "Warehouse Presents Paradise",
+    "Inferno",
+    "Blow"
+  ],
+  "unpaired": [
+    {
+      "artist": "Ed Mackie",
+      "days": [
+        "Friday",
+        "Saturday"
+      ],
+      "stages": [
+        "Pepsi Max"
+      ]
+    },
+    {
+      "artist": "LilRockit",
+      "days": [
+        "Sunday",
+        "Thursday"
+      ],
+      "stages": [
+        "Utilita Power Tree"
+      ]
+    },
+    {
+      "artist": "MK",
+      "days": [
+        "Saturday",
+        "Sunday"
+      ],
+      "stages": [
+        "MK Area10",
+        "Arc"
+      ]
+    },
+    {
+      "artist": "Paul Nunn & James Glover",
+      "days": [
+        "Friday",
+        "Saturday"
+      ],
+      "stages": [
+        "Pepsi Max"
+      ]
+    },
+    {
+      "artist": "Sunnery James & Ryan Marciano",
+      "days": [
+        "Sunday",
+        "Thursday"
+      ],
+      "stages": [
+        "Horizon",
+        "Sexy By Nature"
+      ]
+    }
+  ],
+  "folded": [
+    {
+      "printed": "Sub_aural",
+      "billedAs": "Sub_Aural"
+    },
+    {
+      "printed": "Private: Blow",
+      "billedAs": "Blow"
+    }
+  ],
+  "considered": [
+    {
+      "captureTimestamp": "20190117073420",
+      "notFiled": "relay: capture 20190117073420 of http://www.creamfields.com/artists was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20190301053816",
+      "archivedUrl": "https://web.archive.org/web/20190301053816/http://www.creamfields.com/artists",
+      "sha256": "960347b33ad94317d73793e7842f60152721cdb0a34637ecc549b9522ff53780",
+      "bytes": 295508,
+      "via": "firecrawl",
+      "title": "Creamfields 2019 | Artists",
+      "filter": [
+        "Friday",
+        "Saturday",
+        "Sunday",
+        "Thursday"
+      ],
+      "dated": true,
+      "valid": true,
+      "days": [
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "billings": 199,
+      "diffVsChosen": [
+        "added by the final: Adam Cartwright",
+        "added by the final: Adam Cartwright & Bernie Lee",
+        "added by the final: Afrojack",
+        "added by the final: Andy Mac",
+        "added by the final: Anthony Probyn",
+        "added by the final: Anton Powers",
+        "added by the final: Arielle Free",
+        "added by the final: ATHEA",
+        "added by the final: AU",
+        "added by the final: Babalou & Sosa",
+        "added by the final: Barely Legal",
+        "added by the final: Batisse",
+        "added by the final: Billie Clements",
+        "added by the final: Billie Clements & Chris Wright",
+        "added by the final: Blastoyz",
+        "added by the final: Blueprint",
+        "added by the final: Cal Griffin",
+        "added by the final: Daniel Frank & Jamie Grounds",
+        "added by the final: Darius Syrossian",
+        "added by the final: Darren Donnelly & Jae Holmes",
+        "added by the final: Deniz Koyu",
+        "added by the final: Dimitri Vangelis & Wyman",
+        "added by the final: DJ Emma",
+        "added by the final: Dr Phunk",
+        "added by the final: Ed Mackie",
+        "added by the final: Ejeca",
+        "added by the final: Eric Prydz",
+        "added by the final: FOOR",
+        "added by the final: Franky Wah",
+        "added by the final: Gareth Wyn",
+        "added by the final: Generik",
+        "added by the final: George Last",
+        "added by the final: Green Velvet",
+        "added by the final: Hannah Laing",
+        "added by the final: HARDMAN & DEVALL",
+        "added by the final: Heidi",
+        "added by the final: Hollie Profit",
+        "added by the final: Jack Eye Jones",
+        "added by the final: Jaguar Skills",
+        "added by the final: James Organ",
+        "added by the final: JEMMY",
+        "added by the final: Joris Voorn",
+        "added by the final: Lauren Lo Sung",
+        "added by the final: LilRockit",
+        "added by the final: Lovely Laura & Ben Santiago",
+        "added by the final: Low Steppa",
+        "added by the final: Maurice West",
+        "added by the final: Mauro Picotto",
+        "added by the final: MC Dynamite",
+        "added by the final: MCS: Dynamite, TONN PIPER, GQ, IC3, ID",
+        "added by the final: melé",
+        "added by the final: Mia More",
+        "added by the final: Mistajam",
+        "added by the final: Mitch Nunn",
+        "added by the final: Nathan Dawe",
+        "added by the final: Nick Coulson",
+        "added by the final: Nicky Romero",
+        "added by the final: Noisecontrollers",
+        "added by the final: North Base",
+        "added by the final: Paul Nunn & James Glover",
+        "added by the final: Peggy Gou",
+        "added by the final: PHONIX",
+        "added by the final: Prok & Fitch",
+        "added by the final: Richy Ahmed",
+        "added by the final: ROHAR",
+        "added by the final: Sean Hughes",
+        "added by the final: Simon Cousens",
+        "added by the final: Skram",
+        "added by the final: STET",
+        "added by the final: TNT aka Technoboy ‘N’ Tuneboy",
+        "added by the final: Tom Williams",
+        "added by the final: Tom Williams & Josh Samuel",
+        "added by the final: Vicki Scott",
+        "added by the final: YÅKO",
+        "removed by the final: Dubvision",
+        "removed by the final: Eats Everything",
+        "removed by the final: Krystal Klear",
+        "removed by the final: MCS: TONN PIPER, GQ, IC3, ID",
+        "removed by the final: mele",
+        "removed by the final: YakÖ"
+      ]
+    },
+    {
+      "captureTimestamp": "20190517073010",
+      "archivedUrl": "https://web.archive.org/web/20190517073010/http://www.creamfields.com/artists",
+      "sha256": "0f6b84346bb14737ed95d7c6bae5b64773715703da2c545743b3abf744623867",
+      "bytes": 324026,
+      "via": "firecrawl",
+      "title": "Creamfields 2019 | Artists",
+      "filter": [
+        "Friday",
+        "Saturday",
+        "Sunday",
+        "Thursday"
+      ],
+      "dated": true,
+      "valid": true,
+      "days": [
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "billings": 220,
+      "diffVsChosen": [
+        "added by the final: Adam Cartwright",
+        "added by the final: Adam Cartwright & Bernie Lee",
+        "added by the final: Andy Mac",
+        "added by the final: Anthony Probyn",
+        "added by the final: Anton Powers",
+        "added by the final: Arielle Free",
+        "added by the final: ATHEA",
+        "added by the final: AU",
+        "added by the final: Babalou & Sosa",
+        "added by the final: Barely Legal",
+        "added by the final: Batisse",
+        "added by the final: Billie Clements",
+        "added by the final: Billie Clements & Chris Wright",
+        "added by the final: Blueprint",
+        "added by the final: Cal Griffin",
+        "added by the final: Daniel Frank & Jamie Grounds",
+        "added by the final: Darius Syrossian",
+        "added by the final: Darren Donnelly & Jae Holmes",
+        "added by the final: Deniz Koyu",
+        "added by the final: DJ Emma",
+        "added by the final: Ed Mackie",
+        "added by the final: Ejeca",
+        "added by the final: FOOR",
+        "added by the final: Gareth Wyn",
+        "added by the final: George Last",
+        "added by the final: Green Velvet",
+        "added by the final: Hannah Laing",
+        "added by the final: HARDMAN & DEVALL",
+        "added by the final: Hollie Profit",
+        "added by the final: Jaguar Skills",
+        "added by the final: James Organ",
+        "added by the final: JEMMY",
+        "added by the final: Lauren Lo Sung",
+        "added by the final: Lovely Laura & Ben Santiago",
+        "added by the final: Low Steppa",
+        "added by the final: Mitch Nunn",
+        "added by the final: Nathan Dawe",
+        "added by the final: Nick Coulson",
+        "added by the final: Paul Nunn & James Glover",
+        "added by the final: PHONIX",
+        "added by the final: Prok & Fitch",
+        "added by the final: Richy Ahmed",
+        "added by the final: Sean Hughes",
+        "added by the final: Simon Cousens",
+        "added by the final: Skram",
+        "added by the final: STET",
+        "added by the final: Tom Williams",
+        "added by the final: Tom Williams & Josh Samuel",
+        "added by the final: Vicki Scott",
+        "removed by the final: Dubvision",
+        "removed by the final: Krystal Klear"
+      ]
+    },
+    {
+      "captureTimestamp": "20190630061118",
+      "archivedUrl": "https://web.archive.org/web/20190630061118/http://www.creamfields.com/artists",
+      "sha256": "d97f5276369f688a262435e5c15b3f30ebfe959ae131dc03aac7b1e91faa4b90",
+      "bytes": 331770,
+      "via": "firecrawl",
+      "title": null,
+      "filter": [],
+      "dated": false,
+      "valid": false,
+      "days": [],
+      "unread": "creamfields-artists: Green Velvet plays no day",
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20190818012312",
+      "archivedUrl": "https://web.archive.org/web/20190818012312/http://www.creamfields.com/artists",
+      "sha256": "1fc86ebac44e22ac35685143f354f9c782077515b03323f05574de23b1d99718",
+      "bytes": 382196,
+      "via": "firecrawl",
+      "title": "Creamfields 2019 | Artists",
+      "filter": [
+        "Friday",
+        "Saturday",
+        "Sunday",
+        "Thursday"
+      ],
+      "dated": true,
+      "valid": true,
+      "days": [
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "billings": 267,
+      "diffVsChosen": []
+    },
+    {
+      "captureTimestamp": "20190818012641",
+      "archivedUrl": "https://web.archive.org/web/20190818012641/http://www.creamfields.com/artists",
+      "sha256": "500fec30d2ee12440f75644363ff6a68cd2ae776329d61e8c48f4a144eb2a4da",
+      "bytes": 382200,
+      "via": "firecrawl",
+      "title": "Creamfields 2019 | Artists",
+      "filter": [
+        "Friday",
+        "Saturday",
+        "Sunday",
+        "Thursday"
+      ],
+      "dated": true,
+      "valid": true,
+      "days": [
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "billings": 267,
+      "diffVsChosen": []
+    },
+    {
+      "captureTimestamp": "20190818135811",
+      "archivedUrl": "https://web.archive.org/web/20190818135811/http://www.creamfields.com/artists",
+      "sha256": "73ef1e48003e469ae6fc899cca58d2389f1a8f5455e7bd2278a381546d229ae5",
+      "bytes": 382706,
+      "via": "firecrawl",
+      "title": "Creamfields 2019 | Artists",
+      "filter": [
+        "Friday",
+        "Saturday",
+        "Sunday",
+        "Thursday"
+      ],
+      "dated": true,
+      "valid": true,
+      "days": [
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "billings": 267
+    }
+  ],
+  "dropped": [
+    {
+      "day": 3,
+      "stage": "Silo",
+      "billing": "To Be Announced",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    }
+  ]
+}

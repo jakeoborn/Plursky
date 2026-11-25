@@ -1,0 +1,452 @@
+{
+  "id": "creamfields-2017",
+  "method": "official_lineup_html",
+  "official": "http://www.creamfields.com/artists",
+  "format": "creamfields-artists",
+  "window": {
+    "until": "2017-09-03",
+    "why": "captures more than 7 days after the last day show the next edition"
+  },
+  "chosen": "20170811231417",
+  "archivedUrl": "https://web.archive.org/web/20170811231417/http://www.creamfields.com/artists",
+  "sha256": "ba876e769b5504ce959fd02e20f0ae1cabc59e70e2056ebd2e9e419c4cbc4e14",
+  "title": "Creamfields 2017 | Artists",
+  "relayedVia": "firecrawl",
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "creamfields",
+    "year": 2017,
+    "lifecycle": "occurred",
+    "dates": "2017-08-24..2017-08-27",
+    "evidence": "https://www.warrington-worldwide.co.uk/2017/08/29/153-arrested-at-sell-out-creamfields-festival/",
+    "published": "2017-08-29"
+  },
+  "stageOrder": [
+    "Hospitality",
+    "Mega Arena",
+    "Steel Yard Presents Pryda",
+    "Steel Yard",
+    "Arc",
+    "Goodgreef xtra hard",
+    "Jampacked",
+    "Pepsi Max",
+    "Armada",
+    "Andy C Presents Ram",
+    "Cream Classics",
+    "BBC Radio 1 Stage",
+    "Carnavale",
+    "Keeping The Rave Alive",
+    "Steel Yard Presents s/stem",
+    "Rong",
+    "Melbourne Takeover",
+    "Mad Decent",
+    "MK Area10",
+    "Sub_aural",
+    "Cream",
+    "Paradise",
+    "Horizon",
+    "Sexy By Nature",
+    "Cream Terrace",
+    "All gone pete tong",
+    "Yousef presents Circus"
+  ],
+  "unpaired": [
+    {
+      "artist": "Armin Van Buuren",
+      "days": [
+        "Friday",
+        "Saturday"
+      ],
+      "stages": [
+        "Armada",
+        "Horizon"
+      ]
+    },
+    {
+      "artist": "deadmau5",
+      "days": [
+        "Friday",
+        "Saturday"
+      ],
+      "stages": [
+        "Horizon",
+        "Steel Yard"
+      ]
+    },
+    {
+      "artist": "Eric Prydz",
+      "days": [
+        "Friday",
+        "Sunday"
+      ],
+      "stages": [
+        "Steel Yard",
+        "Steel Yard Presents Pryda"
+      ]
+    }
+  ],
+  "folded": [],
+  "considered": [
+    {
+      "captureTimestamp": "20170307220631",
+      "archivedUrl": "https://web.archive.org/web/20170307220631/http://www.creamfields.com/artists",
+      "sha256": "305f8bb79af7e7721ec2bcadfb47d77e3438d33846aa93d5f2fa109b68655f18",
+      "bytes": 676145,
+      "via": "firecrawl",
+      "title": "Creamfields 2017 | Artists",
+      "filter": [
+        "Friday",
+        "Saturday",
+        "Sunday",
+        "Thursday"
+      ],
+      "dated": true,
+      "valid": true,
+      "days": [
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "billings": 211,
+      "diffVsChosen": [
+        "added by the final: Alan Walker",
+        "added by the final: Alex Ross",
+        "added by the final: Anthony Probyn",
+        "added by the final: Avelino",
+        "added by the final: B.Viss",
+        "added by the final: Barely Legal",
+        "added by the final: bontan",
+        "added by the final: Boombox Cartel",
+        "added by the final: Butch",
+        "added by the final: Ciaran Mcauley",
+        "added by the final: Craig Connelly",
+        "added by the final: CUARTERO",
+        "added by the final: Dan Dobson",
+        "added by the final: Dan Stone",
+        "added by the final: Gareth Wyn",
+        "added by the final: Grandtheft",
+        "added by the final: J HUS",
+        "added by the final: James Dymond",
+        "added by the final: James Organ",
+        "added by the final: Joseph Capriati",
+        "added by the final: KC Lights & Will Clarke",
+        "added by the final: Kurupt FM",
+        "added by the final: Lange",
+        "added by the final: latmun",
+        "added by the final: Lauren Lo Sung",
+        "added by the final: Liam Wilson",
+        "added by the final: Logan Sama",
+        "added by the final: Lost Kings",
+        "added by the final: Mar -T",
+        "added by the final: Maya Jane Coles",
+        "added by the final: Menno De Jong",
+        "added by the final: Mike Williams",
+        "added by the final: Party Favor",
+        "added by the final: Pete Bromage",
+        "added by the final: Riton",
+        "added by the final: Skream",
+        "added by the final: Sneijder",
+        "added by the final: Standerwick",
+        "added by the final: weska",
+        "added by the final: Will Rees",
+        "removed by the final: KC Lights"
+      ]
+    },
+    {
+      "captureTimestamp": "20170312134806",
+      "archivedUrl": "https://web.archive.org/web/20170312134806/http://www.creamfields.com/artists",
+      "sha256": "60f9638c8715e711488d148a22479afcc0bcba400f353cdaa8ff00ae6a789aa6",
+      "bytes": 675900,
+      "via": "firecrawl",
+      "title": "Creamfields 2017 | Artists",
+      "filter": [
+        "Friday",
+        "Saturday",
+        "Sunday",
+        "Thursday"
+      ],
+      "dated": true,
+      "valid": true,
+      "days": [
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "billings": 211,
+      "diffVsChosen": [
+        "added by the final: Alan Walker",
+        "added by the final: Alex Ross",
+        "added by the final: Anthony Probyn",
+        "added by the final: Avelino",
+        "added by the final: B.Viss",
+        "added by the final: Barely Legal",
+        "added by the final: bontan",
+        "added by the final: Boombox Cartel",
+        "added by the final: Butch",
+        "added by the final: Ciaran Mcauley",
+        "added by the final: Craig Connelly",
+        "added by the final: CUARTERO",
+        "added by the final: Dan Dobson",
+        "added by the final: Dan Stone",
+        "added by the final: Gareth Wyn",
+        "added by the final: Grandtheft",
+        "added by the final: J HUS",
+        "added by the final: James Dymond",
+        "added by the final: James Organ",
+        "added by the final: Joseph Capriati",
+        "added by the final: KC Lights & Will Clarke",
+        "added by the final: Kurupt FM",
+        "added by the final: Lange",
+        "added by the final: latmun",
+        "added by the final: Lauren Lo Sung",
+        "added by the final: Liam Wilson",
+        "added by the final: Logan Sama",
+        "added by the final: Lost Kings",
+        "added by the final: Mar -T",
+        "added by the final: Maya Jane Coles",
+        "added by the final: Menno De Jong",
+        "added by the final: Mike Williams",
+        "added by the final: Party Favor",
+        "added by the final: Pete Bromage",
+        "added by the final: Riton",
+        "added by the final: Skream",
+        "added by the final: Sneijder",
+        "added by the final: Standerwick",
+        "added by the final: weska",
+        "added by the final: Will Rees",
+        "removed by the final: KC Lights"
+      ]
+    },
+    {
+      "captureTimestamp": "20170506034225",
+      "archivedUrl": "https://web.archive.org/web/20170506034225/http://www.creamfields.com/artists",
+      "sha256": "287c302e39a48043fee2b501fb70383af67a24a16bad988a2ba1c9f9ed8c54cb",
+      "bytes": 725631,
+      "via": "firecrawl",
+      "title": "Creamfields 2017 | Artists",
+      "filter": [
+        "Friday",
+        "Saturday",
+        "Sunday",
+        "Thursday"
+      ],
+      "dated": true,
+      "valid": true,
+      "days": [
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "billings": 228,
+      "diffVsChosen": [
+        "added by the final: Anthony Probyn",
+        "added by the final: B.Viss",
+        "added by the final: bontan",
+        "added by the final: Butch",
+        "added by the final: Ciaran Mcauley",
+        "added by the final: Craig Connelly",
+        "added by the final: Dan Dobson",
+        "added by the final: Dan Stone",
+        "added by the final: James Dymond",
+        "added by the final: James Organ",
+        "added by the final: Kurupt FM",
+        "added by the final: Lange",
+        "added by the final: latmun",
+        "added by the final: Lauren Lo Sung",
+        "added by the final: Liam Wilson",
+        "added by the final: Mar -T",
+        "added by the final: Menno De Jong",
+        "added by the final: Pete Bromage",
+        "added by the final: Skream",
+        "added by the final: Sneijder",
+        "added by the final: Standerwick",
+        "added by the final: Will Rees"
+      ]
+    },
+    {
+      "captureTimestamp": "20170606095722",
+      "archivedUrl": "https://web.archive.org/web/20170606095722/http://www.creamfields.com/artists",
+      "sha256": "6b00f3f771bca5f6135ea615682ceeb355f432cc1592c64dbaa7bc67701ee8f3",
+      "bytes": 734242,
+      "via": "firecrawl",
+      "title": "Creamfields 2017 | Artists",
+      "filter": [
+        "Friday",
+        "Saturday",
+        "Sunday",
+        "Thursday"
+      ],
+      "dated": true,
+      "valid": true,
+      "days": [
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "billings": 230,
+      "diffVsChosen": [
+        "added by the final: Anthony Probyn",
+        "added by the final: B.Viss",
+        "added by the final: bontan",
+        "added by the final: Butch",
+        "added by the final: Ciaran Mcauley",
+        "added by the final: Craig Connelly",
+        "added by the final: Dan Dobson",
+        "added by the final: Dan Stone",
+        "added by the final: James Dymond",
+        "added by the final: Lange",
+        "added by the final: latmun",
+        "added by the final: Lauren Lo Sung",
+        "added by the final: Liam Wilson",
+        "added by the final: Mar -T",
+        "added by the final: Menno De Jong",
+        "added by the final: Pete Bromage",
+        "added by the final: Skream",
+        "added by the final: Sneijder",
+        "added by the final: Standerwick",
+        "added by the final: Will Rees"
+      ]
+    },
+    {
+      "captureTimestamp": "20170608174635",
+      "archivedUrl": "https://web.archive.org/web/20170608174635/http://www.creamfields.com/artists",
+      "sha256": "aaeb93003b494b236de0c5605c0b39f35be8ad1c106d84964038221ca8a4b15d",
+      "bytes": 734603,
+      "via": "firecrawl",
+      "title": "Creamfields 2017 | Artists",
+      "filter": [
+        "Friday",
+        "Saturday",
+        "Sunday",
+        "Thursday"
+      ],
+      "dated": true,
+      "valid": true,
+      "days": [
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "billings": 230,
+      "diffVsChosen": [
+        "added by the final: Anthony Probyn",
+        "added by the final: B.Viss",
+        "added by the final: bontan",
+        "added by the final: Butch",
+        "added by the final: Ciaran Mcauley",
+        "added by the final: Craig Connelly",
+        "added by the final: Dan Dobson",
+        "added by the final: Dan Stone",
+        "added by the final: James Dymond",
+        "added by the final: Lange",
+        "added by the final: latmun",
+        "added by the final: Lauren Lo Sung",
+        "added by the final: Liam Wilson",
+        "added by the final: Mar -T",
+        "added by the final: Menno De Jong",
+        "added by the final: Pete Bromage",
+        "added by the final: Skream",
+        "added by the final: Sneijder",
+        "added by the final: Standerwick",
+        "added by the final: Will Rees"
+      ]
+    },
+    {
+      "captureTimestamp": "20170709185112",
+      "archivedUrl": "https://web.archive.org/web/20170709185112/http://www.creamfields.com/artists",
+      "sha256": "f530f1fce74878e7b2b3a1e9b46296086e4d2a329513a333ffeee5ae7b9e7e03",
+      "bytes": 738983,
+      "via": "firecrawl",
+      "title": "Creamfields 2017 | Artists",
+      "filter": [
+        "Friday",
+        "Saturday",
+        "Sunday",
+        "Thursday"
+      ],
+      "dated": true,
+      "valid": true,
+      "days": [
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "billings": 231,
+      "diffVsChosen": [
+        "added by the final: Anthony Probyn",
+        "added by the final: B.Viss",
+        "added by the final: bontan",
+        "added by the final: Butch",
+        "added by the final: Ciaran Mcauley",
+        "added by the final: Craig Connelly",
+        "added by the final: Dan Dobson",
+        "added by the final: Dan Stone",
+        "added by the final: James Dymond",
+        "added by the final: Lange",
+        "added by the final: latmun",
+        "added by the final: Lauren Lo Sung",
+        "added by the final: Liam Wilson",
+        "added by the final: Menno De Jong",
+        "added by the final: Pete Bromage",
+        "added by the final: Skream",
+        "added by the final: Sneijder",
+        "added by the final: Standerwick",
+        "added by the final: Will Rees"
+      ]
+    },
+    {
+      "captureTimestamp": "20170810160037",
+      "archivedUrl": "https://web.archive.org/web/20170810160037/http://www.creamfields.com/artists",
+      "sha256": "e4ce1f072a5af6919fe1509c6604b16c14268f0909ce562415cd5b25e77194b6",
+      "bytes": 792257,
+      "via": "firecrawl",
+      "title": "Creamfields 2017 | Artists",
+      "filter": [
+        "Friday",
+        "Saturday",
+        "Sunday",
+        "Thursday"
+      ],
+      "dated": true,
+      "valid": true,
+      "days": [
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "billings": 250,
+      "diffVsChosen": []
+    },
+    {
+      "captureTimestamp": "20170811231417",
+      "archivedUrl": "https://web.archive.org/web/20170811231417/http://www.creamfields.com/artists",
+      "sha256": "ba876e769b5504ce959fd02e20f0ae1cabc59e70e2056ebd2e9e419c4cbc4e14",
+      "bytes": 792394,
+      "via": "firecrawl",
+      "title": "Creamfields 2017 | Artists",
+      "filter": [
+        "Friday",
+        "Saturday",
+        "Sunday",
+        "Thursday"
+      ],
+      "dated": true,
+      "valid": true,
+      "days": [
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "billings": 250
+    }
+  ],
+  "dropped": []
+}

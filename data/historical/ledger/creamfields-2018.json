@@ -1,0 +1,204 @@
+{
+  "id": "creamfields-2018",
+  "method": "official_lineup_html",
+  "official": "http://www.creamfields.com/artists",
+  "format": "creamfields-artists",
+  "window": {
+    "until": "2018-09-02",
+    "why": "captures more than 7 days after the last day show the next edition"
+  },
+  "chosen": "20180827200624",
+  "archivedUrl": "https://web.archive.org/web/20180827200624/http://www.creamfields.com/artists",
+  "sha256": "e6bb7ed384c023d87124e59f86835a7219ae90adaff2ae0bfaa36f5e4e6d9c71",
+  "title": "Creamfields 2018 | Artists",
+  "relayedVia": "firecrawl",
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "creamfields",
+    "year": 2018,
+    "lifecycle": "occurred",
+    "dates": "2018-08-23..2018-08-26",
+    "evidence": "https://www.theguardian.com/music/2018/aug/27/creamfields-festival-review-edm-dance-20th-anniversary",
+    "published": "2018-08-27"
+  },
+  "stageOrder": [
+    "Mad Decent",
+    "Hospitality",
+    "Generator",
+    "Steel Yard Presents Pryda",
+    "Steel Yard presents Intec",
+    "Goodgreef xtra hard",
+    "Rong",
+    "Jampacked",
+    "Pepsi Max Arena",
+    "Andy C Presents Ram",
+    "Cream Classics",
+    "SICK BOY STAGE",
+    "Blow",
+    "Area10",
+    "Armada",
+    "Keeping The Rave Alive",
+    "Arc Stage",
+    "Steel Yard",
+    "Melbourne Bounce",
+    "Sexy By Nature",
+    "Sub_aural",
+    "Cream",
+    "303",
+    "All gone pete tong",
+    "Circus",
+    "Horizon Stage",
+    "Cream Terrace",
+    "Paradise",
+    "Utilita Power Tree"
+  ],
+  "unpaired": [],
+  "folded": [
+    {
+      "printed": "Sub_Aural",
+      "billedAs": "Sub_aural"
+    }
+  ],
+  "considered": [
+    {
+      "captureTimestamp": "20180411161708",
+      "archivedUrl": "https://web.archive.org/web/20180411161708/http://www.creamfields.com/artists",
+      "sha256": "b600a0f12337ece43600c44b4ded291b59f21845a8148b588f7adb7bf30d67ce",
+      "bytes": 837833,
+      "via": "firecrawl",
+      "title": "Creamfields 2018 | Artists",
+      "filter": [
+        "Friday",
+        "Saturday",
+        "Sunday",
+        "Thursday"
+      ],
+      "dated": true,
+      "valid": true,
+      "days": [
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "billings": 266,
+      "diffVsChosen": [
+        "added by the final: Anton Powers",
+        "added by the final: Bonka",
+        "added by the final: Carta",
+        "added by the final: Cosmic Gate",
+        "added by the final: Denis Sulta",
+        "added by the final: DJL",
+        "added by the final: Fabio & Grooverider",
+        "added by the final: Geroge Last",
+        "added by the final: Jauz",
+        "added by the final: Jeremiah Asiamah",
+        "added by the final: JOEY DANIEL",
+        "added by the final: Kaleidoscope Orchestra",
+        "added by the final: LEON",
+        "added by the final: Lovely Laura & Ben Santiago",
+        "added by the final: Mella Dee",
+        "added by the final: Punctual",
+        "added by the final: Terry Edwards",
+        "added by the final: Yako",
+        "removed by the final: Paul Oakenfold",
+        "removed by the final: Tchami"
+      ]
+    },
+    {
+      "captureTimestamp": "20180611231308",
+      "archivedUrl": "https://web.archive.org/web/20180611231308/http://www.creamfields.com/artists",
+      "sha256": "e7c8e1976d934798cfc5248ed48dff2515935e2e564dc70db4358223c63005ec",
+      "bytes": 843032,
+      "via": "firecrawl",
+      "title": "Creamfields 2018 | Artists",
+      "filter": [
+        "Friday",
+        "Saturday",
+        "Sunday",
+        "Thursday"
+      ],
+      "dated": true,
+      "valid": true,
+      "days": [
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "billings": 268,
+      "diffVsChosen": [
+        "added by the final: Anton Powers",
+        "added by the final: Bonka",
+        "added by the final: Carta",
+        "added by the final: Cosmic Gate",
+        "added by the final: Denis Sulta",
+        "added by the final: DJL",
+        "added by the final: Fabio & Grooverider",
+        "added by the final: Geroge Last",
+        "added by the final: Jauz",
+        "added by the final: Jeremiah Asiamah",
+        "added by the final: JOEY DANIEL",
+        "added by the final: Kaleidoscope Orchestra",
+        "added by the final: Lovely Laura & Ben Santiago",
+        "added by the final: Mella Dee",
+        "added by the final: Punctual",
+        "added by the final: Terry Edwards",
+        "added by the final: Yako",
+        "removed by the final: JOEY DANIELS",
+        "removed by the final: Paul Oakenfold",
+        "removed by the final: Tchami"
+      ]
+    },
+    {
+      "captureTimestamp": "20180812034848",
+      "archivedUrl": "https://web.archive.org/web/20180812034848/http://www.creamfields.com/artists",
+      "sha256": "1bd3fbc4d544934c53412f5fec9cc936fc8364d6ae43befe76d4f829066a1a10",
+      "bytes": 278277,
+      "via": "firecrawl",
+      "title": "Creamfields 2018 | Artists",
+      "filter": [
+        "Friday",
+        "Saturday",
+        "Sunday",
+        "Thursday"
+      ],
+      "dated": true,
+      "valid": true,
+      "days": [
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "billings": 281,
+      "diffVsChosen": [
+        "added by the final: Terry Edwards"
+      ]
+    },
+    {
+      "captureTimestamp": "20180827200624",
+      "archivedUrl": "https://web.archive.org/web/20180827200624/http://www.creamfields.com/artists",
+      "sha256": "e6bb7ed384c023d87124e59f86835a7219ae90adaff2ae0bfaa36f5e4e6d9c71",
+      "bytes": 305578,
+      "via": "firecrawl",
+      "title": "Creamfields 2018 | Artists",
+      "filter": [
+        "Friday",
+        "Saturday",
+        "Sunday",
+        "Thursday"
+      ],
+      "dated": true,
+      "valid": true,
+      "days": [
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "billings": 282
+    }
+  ],
+  "dropped": []
+}
