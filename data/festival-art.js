@@ -445,4 +445,12 @@ window.PLURSKY_FESTIVAL_ART = Object.freeze({
     license: "CC BY-SA 2.0 (Flickr upload reviewed by FlickreviewR (reviewed-pass, 2014-12-24)). Replaces the letter-tile fallback; uploader, credit and EXIF checked 2026-11-25.",
     author: "Roxanna Salceda", licenseId: "CC-BY-SA-2.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/2.0/", changes: "Cropped",
   },
+  "sonar-2027": {
+    tile: "festival-art/tiles/sonar-2027.webp", card: "festival-art/sonar-2027.webp", width: 168, height: 168,
+    kind: "photo", sourcePage: "https://commons.wikimedia.org/wiki/File:Sónar_06_Barcelona_Catalonia.jpg",
+    assetUrl: "https://upload.wikimedia.org/wikipedia/commons/a/ad/S%C3%B3nar_06_Barcelona_Catalonia.jpg",
+    credit: "SonarPark crowd and stage at Sónar 2006, Barcelona. Photo by photochino, Wikimedia Commons", retrieved: "2026-11-25",
+    license: "CC BY 2.0 (Flickr upload reviewed by FlickreviewR (reviewed-pass, 2007-06-10); the photographer's corner watermark is cropped out). Replaces the letter-tile fallback; uploader, credit and EXIF checked 2026-11-25.",
+    author: "photochino", licenseId: "CC-BY-2.0", licenseUrl: "https://creativecommons.org/licenses/by/2.0/", changes: "Cropped",
+  },
 });
