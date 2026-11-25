@@ -481,6 +481,57 @@ function eatSection(entry) {
   </section>`;
 }
 
+// ── Where to stay (Stay22) ────────────────────────────────────────────
+// A hotel link near the venue for the festival's own dates, through Stay22's
+// Allez redirect (https://dev.stay22.com/docs/allez/parameters). Off until
+// STAY22_AID holds Plursky's Stay22 affiliate id: with it empty, no page
+// changes. Never shown once a festival is past, because dated hotel links for
+// a weekend that has gone are useless. Campaign labels use _ not -, which
+// Stay22's reporting would otherwise split into two labels.
+const STAY22_AID = 'dimhour';
+// STAY22_LMA_ID is the Stay22 script made in the Hub for plursky.com. It loads
+// only on upcoming festival pages, where the hotel link already is, and turns
+// travel mentions and booking links there into commission links. The privacy
+// page names Stay22 for this.
+const STAY22_LMA_ID = '6b06d33a9666f1652993623b';
+function stayScript(isPast) {
+  if (!STAY22_LMA_ID || isPast) return '';
+  return `<script>
+(function (s, t, a, y, twenty, two) {
+s.Stay22 = s.Stay22 || {};
+s.Stay22.params = { lmaID: '${STAY22_LMA_ID}' };
+twenty = t.createElement(a);
+two = t.getElementsByTagName(a)[0];
+twenty.async = 1;
+twenty.src = y;
+two.parentNode.insertBefore(twenty, two);
+})(window, document, 'script', 'https://lma.stay22.com/letmeallez.js');
+</script>
+`;
+}
+function nextYmd(ymd) {
+  return new Date(Date.parse(`${ymd}T00:00:00Z`) + 86400000).toISOString().slice(0, 10);
+}
+function staySection(entry, dates, isPast) {
+  if (!STAY22_AID || isPast) return '';
+  const cfg = entry.config;
+  const where = String(cfg.location || '').split('·').map(s => s.trim()).filter(Boolean).join(', ');
+  if (!where) return '';
+  const { venue } = place(cfg, entry.region);
+  const q = new URLSearchParams({ aid: STAY22_AID, address: where });
+  // A two-weekend festival (Coachella, EDC Las Vegas 2027) spans ten nights;
+  // nobody books that, so its link carries the place and no dates.
+  const dated = dates && (Date.parse(dates.end) - Date.parse(dates.start)) / 86400000 <= 4;
+  if (dated) { q.set('checkin', dates.start); q.set('checkout', nextYmd(dates.end)); }
+  q.set('campaign', `plursky_${cfg.id.replace(/-/g, '_')}`);
+  const href = `https://www.stay22.com/allez/roam?${q.toString()}`;
+  return `
+  <section aria-labelledby="stay-h">
+    <h2 id="stay-h">Where to stay</h2>
+    <p><a href="${esc(href)}" rel="sponsored noopener">See hotels and rentals near ${esc(venue)}</a>${dated ? ' for the festival dates' : ''}. Plursky earns a commission if you book through this link, at no extra cost to you.</p>
+  </section>`;
+}
+
 // ── Past editions ─────────────────────────────────────────────────────
 // Past Festivals is the read-only archive; this page is only an index into it.
 // Each link opens that edition in Plursky (?tab=past&edition=<id>).
@@ -675,6 +726,7 @@ const JUMPS = [
   ['map-h', 'Map', 'See the map'],
   ['watch-h', 'Watch', 'Watch and listen'],
   ['plan-h', 'Plan', 'Plan your trip'],
+  ['stay-h', 'Stay', 'Where to stay'],
   ['eat-h', 'Eat', 'Where to eat'],
   ['past-h', 'Past years', 'See past years'],
 ];
@@ -831,7 +883,7 @@ ${mapHtml}
 ${scheduleGrid(entry, dates, blocks)}${stageProgrammingSection(entry)}
 ${lineupSection(entry, blocks, dates, names, hasTimes)}
 ${stagesSection(entry, blocks, dates)}
-${planSection(entry, amenities)}${eatSection(entry)}
+${planSection(entry, amenities)}${staySection(entry, dates, isPast)}${eatSection(entry)}
 ${pastSection(entry, editions)}`;
 
   return `<!DOCTYPE html>
@@ -1007,7 +1059,7 @@ ${JSON.stringify(faqLd, null, 2)}
 ` : ''}<script type="application/ld+json">
 ${JSON.stringify(crumbLd, null, 2)}
 </script>
-</head>
+${stayScript(isPast)}</head>
 <body>
 <header class="top">
   <div class="wrap">
