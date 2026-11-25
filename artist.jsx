@@ -925,6 +925,75 @@ function PyroStarburst({ color }) {
 }
 
 
+// ── Listen on Spotify ────────────────────────────────────────────────────────
+// Spotify's own embed player for the act: its top songs, playable by anyone,
+// with no Spotify sign-in and none of Development Mode's five-user cap (the
+// embed is not the Web API). Tap-to-load, so a sheet that is only glanced at
+// sends nothing to Spotify. The artist id comes from the photo record or the
+// stats cache; without one, the tap asks Plursky's photo function, which
+// matches the exact name only, and an act Spotify does not have gets a
+// search link instead of somebody else's songs.
+function _spotifyEmbedId(id) {
+  return /^[A-Za-z0-9]{22}$/.test(String(id || "")) ? id : null;
+}
+function SpotifyArtistPlayer({ name, spotifyId, searchUrl }) {
+  const known = _spotifyEmbedId(spotifyId);
+  // idle | finding | playing | missing
+  const [phase, setPhase] = React.useState("idle");
+  const [foundId, setFoundId] = React.useState(null);
+  React.useEffect(() => { setPhase("idle"); setFoundId(null); }, [name, known]);
+  const id = known || foundId;
+  const open = () => {
+    if (id) { setPhase("playing"); return; }
+    if (typeof SPOTIFY_PHOTO_PROXY_URL !== "string") { setPhase("missing"); return; }
+    setPhase("finding");
+    fetch(SPOTIFY_PHOTO_PROXY_URL + "?name=" + encodeURIComponent(name))
+      .then(r => (r.ok ? r.json() : null))
+      .then(d => {
+        const got = _spotifyEmbedId(d && d.spotifyId);
+        if (got) { setFoundId(got); setPhase("playing"); } else setPhase("missing");
+      })
+      .catch(() => setPhase("missing"));
+  };
+  return (
+    <div data-spotify-player={phase} style={{ marginBottom: 18 }}>
+      <div className="duo-sect" style={{ marginBottom: 10 }}>Listen</div>
+      {phase === "playing" && id ? (
+        <iframe
+          title={"Spotify player: " + name}
+          src={"https://open.spotify.com/embed/artist/" + id + "?utm_source=plursky"}
+          width="100%" height="152" loading="lazy"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          style={{ display: "block", border: "none", borderRadius: 12 }}
+        />
+      ) : phase === "missing" ? (
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10,
+          padding: "12px 14px", borderRadius: 12, background: "var(--paper-2)", border: "1px solid var(--line-2)" }}>
+          <span style={{ fontSize: 13, color: "var(--ink-2)" }}>Couldn't find {name} on Spotify.</span>
+          <a href={searchUrl} target="_blank" rel="noopener noreferrer" style={{
+            fontSize: 13, fontWeight: 600, color: "var(--ink)", textDecoration: "none", whiteSpace: "nowrap" }}>Search ↗</a>
+        </div>
+      ) : (
+        <button type="button" onClick={open} disabled={phase === "finding"} aria-label={"Play " + name + " on Spotify"} style={{
+          width: "100%", minHeight: 52, display: "flex", alignItems: "center", gap: 12,
+          padding: "0 14px", borderRadius: 12, cursor: phase === "finding" ? "progress" : "pointer",
+          background: "var(--paper-2)", border: "1px solid var(--line-2)", color: "var(--ink)",
+          font: "inherit", textAlign: "left",
+        }}>
+          <span aria-hidden="true" style={{ width: 30, height: 30, borderRadius: "50%", flexShrink: 0,
+            background: "var(--spotify)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="#000"><path d="M8 5 L19 12 L8 19 Z"/></svg>
+          </span>
+          <span style={{ fontSize: 14, fontWeight: 600, flex: 1 }}>
+            {phase === "finding" ? "Finding " + name + " on Spotify…" : "Play " + name + "'s top songs"}
+          </span>
+          <span className="mono" style={{ fontSize: 9, letterSpacing: 1.1, color: "var(--ink-2)" }}>SPOTIFY</span>
+        </button>
+      )}
+    </div>
+  );
+}
+
 function ArtistScreen({ state, setState }) {
   const a = ARTISTS.find(ar => ar.id === state.artist);
   if (!a) return null;
@@ -1615,6 +1684,12 @@ function ArtistScreen({ state, setState }) {
             </a>
           ))}
         </div>
+
+        <SpotifyArtistPlayer
+          name={lookupName}
+          spotifyId={spotifyArtistId}
+          searchUrl={"https://open.spotify.com/search/" + encodeURIComponent(lookupName) + "/artists"}
+        />
 
         {/* ── EDC tracklist (1001tracklists) ─────────────── */}
         <div id="artist-section-tracklist" />

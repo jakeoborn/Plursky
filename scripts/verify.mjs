@@ -3076,6 +3076,22 @@ for (const [script, label] of [
   }
 }
 
+// ── Artist Spotify player ─────────────────────────────────────────────────
+// Each artist sheet plays the act's top songs through Spotify's embed: idle
+// until tapped, the act's own id when tapped, a search (never another act's
+// songs) when Spotify does not have it. The photo function is stubbed.
+{
+  console.log("▸ Artist Spotify player — tap-to-load embed for the act, search when missing");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-artist-spotify-player.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`artist spotify player failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── Artist photo reach ────────────────────────────────────────────────────
 // The batch 5 licensed portraits resolve by printed act name (the artist
 // screen's lookup), decode, are precached and show on their artist screen.
@@ -4272,6 +4288,16 @@ for (const [label, file] of [["contract", "scripts/test-public-plan-share.mjs"],
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`set tracking per festival failed${detail ? ` — ${detail}` : ""}`);
+  }
+
+  console.log("▸ Set-tracking B gate — screen-locked session: When In Use only, set windows, drain through the one gate, internal-only battery test");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-set-track-bg.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`set tracking B failed${detail ? ` — ${detail}` : ""}`);
   }
 
   console.log("▸ Signal-aware gate — 2G/Data Saver/queued sends = weak signal, heartbeat 60s, strip + card, export key, mutations");
