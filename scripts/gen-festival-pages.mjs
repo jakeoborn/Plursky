@@ -488,7 +488,7 @@ function eatSection(entry) {
 // changes. Never shown once a festival is past, because dated hotel links for
 // a weekend that has gone are useless. Campaign labels use _ not -, which
 // Stay22's reporting would otherwise split into two labels.
-const STAY22_AID = '';
+const STAY22_AID = 'dimhour';
 function nextYmd(ymd) {
   return new Date(Date.parse(`${ymd}T00:00:00Z`) + 86400000).toISOString().slice(0, 10);
 }

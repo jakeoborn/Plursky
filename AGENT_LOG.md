@@ -244,5 +244,5 @@ Either agent may propose; the other responds in a later dated entry. Actions wit
 
 ## 2026-11-25 · feat/festival-stay22 (stacked on feat/festival-eat-dimhour)
 - Festival pages gain a "Where to stay" section: a Stay22 Allez link near the venue for the festival dates (dates left off for two-weekend festivals), rel="sponsored", with a one-line commission disclosure. Hidden on past festivals.
-- Off by default: STAY22_AID is empty, so no page changes until Plursky's Stay22 affiliate id is filled in. Only sitemap-lastmod.json fingerprints move (render slice changed).
+- Switched on with Stay22 partner id `dimhour` (Nov 25): 55 upcoming festival pages now carry the link; past ones stay hidden.
 - Checked with a dummy id: 55 upcoming pages render the section; EDC LV 2027 and Coachella 2027 links carry no dates.
