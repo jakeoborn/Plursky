@@ -461,4 +461,12 @@ window.PLURSKY_FESTIVAL_ART = Object.freeze({
     license: "CC BY-SA 2.5 (Flickr upload reviewed by FlickrLickr (2006-08-09); Commons notes the Flickr licence changed later, the reviewed grant stands). Replaces the letter-tile fallback; uploader, credit and EXIF checked 2026-11-25.",
     author: "ftf", licenseId: "CC-BY-SA-2.5", licenseUrl: "https://creativecommons.org/licenses/by-sa/2.5/", changes: "Cropped",
   },
+  "edc-lv-2027": {
+    tile: "festival-art/tiles/edc-lv-2027.webp", card: "festival-art/edc-lv-2027.webp", width: 168, height: 168,
+    kind: "photo", sourcePage: "https://www.flickr.com/photos/41307579@N06/5929382909",
+    assetUrl: "https://live.staticflickr.com/6140/5929382909_d46bc1d3f9_b.jpg",
+    credit: "Ferris wheel and arches at Electric Daisy Carnival Las Vegas 2011. Photo by Tony Nungaray (b@nfy), Flickr", retrieved: "2026-11-25",
+    license: "CC BY-SA 2.0 (Flickr, licence read on the photo page 2026-11-25; the account owner is the photographer; the corner watermark is cropped out). Replaces the letter-tile fallback; uploader, credit and EXIF checked 2026-11-25.",
+    author: "Tony Nungaray (b@nfy)", licenseId: "CC-BY-SA-2.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/2.0/", changes: "Cropped",
+  },
 });
