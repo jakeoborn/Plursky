@@ -32,30 +32,43 @@ its `expected-counts.json` line before `build-editions.mjs`.
 | movement-2016 | Sat to Mon, one graphic for all days | The last issue is `…_FINAL-5.jpg`; earlier issues stay in the ledger. |
 | movement-2017 | Sat to Mon, one graphic | `…_new-orientation_FINAL.jpg`; a printable PDF is also linked. |
 | movement-2018 | Sat to Mon, one graphic | `…_WEB.png`; a PDF is also linked. |
+| movement-2019 | Sat to Mon, one graphic | On Shopify's CDN; the page links it with a `?1021` query, so if the plain address is not archived the day shows as blocked. |
 | electric-forest-2025 | Thu to Sun, one grid each | |
 | electric-forest-2024 | Thu to Sun, one grid each | The only capture is from June 16, before the festival. The census has 2024 as scheduled, not confirmed held. |
+| electric-forest-2022 | Thu to Sun, one grid each | Friday and Saturday were first issued as `…Friday2…` and `…Saturday2…`; the latest capture's files are read. |
+| electric-forest-2019 | Thu to Sun, one grid each | Only the 1000x1294 copies are embedded; check they are legible. |
+| electric-forest-2017 | Weekend 2 only, days 5 to 8 | No Weekend 1 grid was archived. |
+| ultra-europe-2025 | one graphic for all days | |
 | ultra-europe-2024 | three numbered posts | The numbers 01 to 03 are taken as Friday to Sunday: confirm each post's printed day. |
+| ultra-europe-2023 | three numbered posts | Same as 2024. |
+| ultra-europe-2019 | one graphic for all days | The lineup graphic carries the times, as Ultra Miami 2019's does. |
+| coachella-2019 | both weekends, one grid per day | The Do LaB and Heineken House grids are separate files, not queued. |
+| coachella-2018 | both weekends, one grid per day | Weekend 2's files are numbered 4201 to 4203, taken as Friday to Sunday: confirm each grid's printed day. Do LaB and Heineken House not queued. |
+| ultra-miami-2012 | Fri to Sun, one grid each | |
+| ultra-miami-2011 | one graphic for all days | |
 
 ## Still waiting for a source
 
 Each of these needs its official graphic found first, then an entry in
 `GRAPHIC_EDITIONS` (resolve-graphics.mjs) and in `MAC_QUEUE`.
 
-- **Coachella 2018 and 2019:** 2018's grids were five JPGs on the festival's
-  S3 bucket, linked from /lineup/set-times/. 2019's /set-times/ captures
-  (April and May 2019) embed no graphic the cloud scan recognised.
 - **Ultra Miami 2010:** /set-times-revealed (March and April 2010 captures)
   embeds four GIFs, a GA and a VIP grid for each day (`friga.gif`,
   `frivip.gif`, `satga.gif`, `satvip.gif`). Two graphics a day need a
-  per-area day entry. 2011, 2012 and 2015 have set-times pages that were not
-  read from the cloud. 2013 has start times in an API feed but no stage names.
-- **Ultra Europe 2017 to 2019, 2023 and 2025:** not found yet.
-- **Electric Forest 2016 to 2019, 2022 and 2023:** day graphics; 2016 also
-  has a PDF that loses the stage columns.
-- **Shambhala 2017 to 2019, 2022 and 2023:** graphics and the festival app.
+  per-area day entry. 2015's set-times page is a script shell with no
+  graphic. 2013 has start times in an API feed but no stage names. 2018 not
+  found.
+- **Ultra Europe 2017 and 2018:** `europe-lineup-set-times.jpg` (captured
+  November 2017) may be 2017's; the page that showed it was not found.
+- **Electric Forest 2016, 2018 and 2023:** 2016 and 2018 (Weekend 1) are
+  PDFs, which OCR does not read yet; 2016's loses the stage columns. 2023's
+  site has no archived schedule page.
+- **Shambhala 2017 to 2019, 2022 and 2023:** 2019's full schedule
+  (`SMF-2019-full-schedule-1.png`) is archived, but the page that showed it
+  was not found.
 - **Governors Ball 2016:** the lineup subdomain redirects to an unknown page.
-- **Movement 2010 to 2015, 2019 and 2022 on:** not looked for yet. 2013's
-  /lineup is an A to Z list with no days.
+- **Movement 2010 to 2015 and 2022 on:** not found yet. 2013's /lineup is an
+  A to Z list with no days.
 - **Lollapalooza 2010:** a PDF schedule (`2010_Lolla_Schedule.pdf`); the
   capture after the festival is 20101227020206.
 

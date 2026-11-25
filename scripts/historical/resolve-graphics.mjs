@@ -207,6 +207,64 @@ export const GRAPHIC_EDITIONS = {
   "ultra-europe-2024": { year: 2024, page: "https://ultraeurope.com/lineup/set-times/", window: ["20240601", "20241231"],
     image: /ULTRA-EUROPE-SET-TIMES-IG-POST_0[1-3]-960x1200\.jpg/i,
     days: [{ day: 1, date: "2024-07-12", token: /_01-/ }, { day: 2, date: "2024-07-13", token: /_02-/ }, { day: 3, date: "2024-07-14", token: /_03-/ }] },
+  // Coachella 2019: one grid per day and weekend on /set-times/, from the
+  // festival's CloudFront uploads ("c19_settimes_friday_wk1_v1.jpg"). The Do
+  // LaB and Heineken House grids are separate files and not matched.
+  "coachella-2019": { year: 2019, page: "https://coachella.com/set-times/", window: ["20190401", "20190630"],
+    image: /c19_settimes_(?:friday|saturday|sunday)_wk[12]_v\d+\.jpg/i,
+    days: [{ day: 1, date: "2019-04-12", token: /_friday_wk1_/i }, { day: 2, date: "2019-04-13", token: /_saturday_wk1_/i }, { day: 3, date: "2019-04-14", token: /_sunday_wk1_/i },
+      { day: 4, date: "2019-04-19", token: /_friday_wk2_/i }, { day: 5, date: "2019-04-20", token: /_saturday_wk2_/i }, { day: 6, date: "2019-04-21", token: /_sunday_wk2_/i }] },
+  // Coachella 2018: Weekend 1 grids on /lineup/set-times/ from the festival's
+  // S3 bucket ("c18_notthefileyouarelookingfor_wk1_fri_v1.png"); Weekend 2
+  // re-issued them as "C18dog_wk2-gridupdate-4201.jpg" to "…-4203.jpg", taken
+  // as Friday to Sunday, which review must confirm against the printed day.
+  "coachella-2018": { year: 2018, page: "https://www.coachella.com/lineup/set-times/", window: ["20180401", "20181231"],
+    image: /(?:c18_notthefileyouarelookingfor_wk1_(?:fri|sat|sun)_v\d+\.png|C18dog_wk2-gridupdate-420[123]\.jpg)/i,
+    days: [{ day: 1, date: "2018-04-13", token: /_wk1_fri_/i }, { day: 2, date: "2018-04-14", token: /_wk1_sat_/i }, { day: 3, date: "2018-04-15", token: /_wk1_sun_/i },
+      { day: 4, date: "2018-04-20", token: /-4201\./ }, { day: 5, date: "2018-04-21", token: /-4202\./ }, { day: 6, date: "2018-04-22", token: /-4203\./ }] },
+  // Ultra 2011: every stage and day on one timetable graphic
+  // ("umf2011-timetables1.jpg") on /set-times. Every day reads the same file.
+  "ultra-miami-2011": { year: 2011, page: "http://www.ultramusicfestival.com/set-times", window: ["20110301", "20111231"],
+    image: /umf2011-timetables\d*\.jpg/i,
+    days: [{ day: 1, date: "2011-03-25", token: /timetables/i }, { day: 2, date: "2011-03-26", token: /timetables/i }, { day: 3, date: "2011-03-27", token: /timetables/i }] },
+  // Ultra 2012: one grid per day on /set-times/ ("uploads/2012/03/friday.jpg").
+  "ultra-miami-2012": { year: 2012, page: "http://www.ultramusicfestival.com/set-times/", window: ["20120301", "20121231"],
+    image: /uploads\/2012\/03\/(?:friday|saturday|sunday)\.jpg/i,
+    days: [{ day: 1, date: "2012-03-23", token: /^friday\./i }, { day: 2, date: "2012-03-24", token: /^saturday\./i }, { day: 3, date: "2012-03-25", token: /^sunday\./i }] },
+  // Electric Forest 2017, 2019 and 2022: one grid per day on the year's
+  // /20YY-info/schedule/ page. Only WordPress's resized copies are embedded
+  // ("EF2019_Schedules_Friday-1000x1294.jpg"); the Brainery (workshops) grid
+  // is not matched. 2017's page shows Weekend 2 only, so its days are 5 to 8;
+  // no Weekend 1 grid was archived. 2022 first issued "…_Friday2-…" and
+  // "…_Saturday2-…"; the page's later captures carry the final names.
+  "electric-forest-2017": { year: 2017, page: "https://www.electricforestfestival.com/2017-info/schedule/", window: ["20170601", "20171231"],
+    image: /EF2017__W2_Schedule_(?:Thurs-1|Friday|Saturday|Sun)-1000x1294\.jpg/i,
+    days: [{ day: 5, date: "2017-06-29", token: /_Thurs-/ }, { day: 6, date: "2017-06-30", token: /_Friday-/ }, { day: 7, date: "2017-07-01", token: /_Saturday-/ }, { day: 8, date: "2017-07-02", token: /_Sun-/ }] },
+  "electric-forest-2019": { year: 2019, page: "https://electricforestfestival.com/2019-info/schedule/", window: ["20190601", "20191231"],
+    image: /EF2019_Schedules_(?:Thursday-1|Friday|Saturday|Sunday)-1000x1294\.jpg/i,
+    days: [{ day: 1, date: "2019-06-27", token: /_Thursday-/ }, { day: 2, date: "2019-06-28", token: /_Friday-/ }, { day: 3, date: "2019-06-29", token: /_Saturday-/ }, { day: 4, date: "2019-06-30", token: /_Sunday-/ }] },
+  "electric-forest-2022": { year: 2022, page: "https://electricforestfestival.com/2022-info/schedule/", window: ["20220601", "20221231"],
+    image: /uploads\/2022\/06\/EF2022_Schedules?_(?:Thursday|Friday2?|Saturday2?|Sunday)-1545x2000\.jpg/i,
+    days: [{ day: 1, date: "2022-06-23", token: /_Thursday-/ }, { day: 2, date: "2022-06-24", token: /_Friday2?-/ }, { day: 3, date: "2022-06-25", token: /_Saturday2?-/ }, { day: 4, date: "2022-06-26", token: /_Sunday-/ }] },
+  // Movement 2019: every day on one schedule graphic on the Shopify site's
+  // /pages/schedule-2019 ("Movement-2019__Full_Schedule_<uuid>.png").
+  "movement-2019": { year: 2019, page: "https://www.movement.us/pages/schedule-2019", window: ["20190501", "20191231"],
+    image: /Movement-2019__Full_Schedule[^"'\s/?]*?\.png/i,
+    days: [{ day: 1, date: "2019-05-25", token: /schedule/i }, { day: 2, date: "2019-05-26", token: /schedule/i }, { day: 3, date: "2019-05-27", token: /schedule/i }] },
+  // Ultra Europe 2019 and 2025 print every stage and day on one graphic
+  // (2019 on /lineup/, "europe-lineup-times-2019.jpg", later
+  // "…-settimes-2019-1.jpg"; 2025 on /lineup/set-times/). Every day reads the
+  // same file. 2023 is three numbered social posts on /set-times/, taken as
+  // Friday to Sunday, which review must confirm against the printed day.
+  "ultra-europe-2019": { year: 2019, page: "https://ultraeurope.com/lineup/", window: ["20190601", "20191231"],
+    image: /europe-lineup-(?:settimes|times)-2019[-\d]*\.jpg/i,
+    days: [{ day: 1, date: "2019-07-12", token: /lineup/i }, { day: 2, date: "2019-07-13", token: /lineup/i }, { day: 3, date: "2019-07-14", token: /lineup/i }] },
+  "ultra-europe-2023": { year: 2023, page: "https://ultraeurope.com/set-times/", window: ["20230601", "20231231"],
+    image: /ULTRA-EUROPE-2023-SET-TIMES-IG-Post_0[1-3][-\d]*?-960x1200\.jpe?g/i,
+    days: [{ day: 1, date: "2023-07-07", token: /_01-/ }, { day: 2, date: "2023-07-08", token: /_02-/ }, { day: 3, date: "2023-07-09", token: /_03-/ }] },
+  "ultra-europe-2025": { year: 2025, page: "https://ultraeurope.com/lineup/set-times/", window: ["20250601", "20251231"],
+    image: /2025-ULTRA-EUROPE-SET-TIMES-WEB-IMAGE[^"'\s/]*?\.png/i,
+    days: [{ day: 1, date: "2025-07-11", token: /SET-TIMES/i }, { day: 2, date: "2025-07-12", token: /SET-TIMES/i }, { day: 3, date: "2025-07-13", token: /SET-TIMES/i }] },
 };
 
 // Webflow resized copies end "-p-500.png" or "-p-800.jpg"; keep only the original.
