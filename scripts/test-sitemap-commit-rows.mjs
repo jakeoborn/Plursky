@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // The PR-facing `gen-festival-pages.mjs --check` must catch a stale homepage,
-// terms or privacy row: those fingerprints come from committed files only, so
+// welcome, terms or privacy row: those fingerprints come from committed files only, so
 // no calendar can move them and only the PR that moved them can fix them.
 //
 // The failure it guards: a cache-bust edits index.html's ?v= strings, which
@@ -47,6 +47,9 @@ const cases = [
       return n;
     }), 1, /sitemap-lastmod\.json \(\/: fingerprint/],
   ['terms.html edited without regenerating', dir => edit(dir, 'terms.html', t => t + '\n<!-- edited -->\n'), 1, /sitemap-lastmod\.json \(\/terms\.html:/],
+  // #563: gen-festival-pages ran before gen-welcome-page, so the welcome row
+  // fingerprinted the old page and plain --check still passed.
+  ['welcome/index.html edited without regenerating', dir => edit(dir, 'welcome/index.html', t => t + '\n<!-- edited -->\n'), 1, /sitemap-lastmod\.json \(\/welcome\/:/],
   ['privacy.html edited without regenerating', dir => edit(dir, 'privacy.html', t => t + '\n<!-- edited -->\n'), 1, /sitemap-lastmod\.json \(\/privacy\.html:/],
   ['homepage <lastmod> in sitemap.xml hand-edited', dir => edit(dir, 'sitemap.xml', t =>
       t.replace(new RegExp(`(<loc>${ORIGIN}/</loc>\\s*<lastmod>)[^<]*`), '$12000-01-01')), 1, /sitemap\.xml \(\/: <lastmod> 2000-01-01/],
@@ -95,4 +98,4 @@ if (fails.length) {
   console.error(`  ${fails.length} of ${checks} sitemap commit-row checks failed`);
   process.exit(1);
 }
-console.log(`  ✓ sitemap commit rows: plain --check catches a stale homepage/terms/privacy fingerprint or <lastmod>, festival rows stay strict-only, a regenerate moves only the homepage row, ${checks} checks`);
+console.log(`  ✓ sitemap commit rows: plain --check catches a stale homepage/welcome/terms/privacy fingerprint or <lastmod>, festival rows stay strict-only, a regenerate moves only the homepage row, ${checks} checks`);

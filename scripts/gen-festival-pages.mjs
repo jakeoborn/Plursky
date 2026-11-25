@@ -435,6 +435,103 @@ function planSection(entry, amenities) {
 ${hours ? `    <p class="hours">${esc(hours)} <span class="note">Per the <a href="${esc(eh.url)}" rel="noopener">official hours page</a>, checked ${esc(eh.observedAt)}.</span></p>\n` : ''}${amenities.length ? `    <p>Amenities Plursky lists for ${esc(cfg.name)}: ${amenities.map(([k, v]) => `${esc(k)} (${v})`).join(' · ')}.</p>\n` : ''}  </section>`;
 }
 
+// ── Eat nearby (Dim Hour) ─────────────────────────────────────────────
+// Festivals held in or right next to a city that Dim Hour (dimhour.com, the
+// sister restaurant guide) covers get one plain link to that city's guide.
+// Keyed by the festival's series id (the id without its trailing year), so a
+// new edition keeps the link. Only cities Dim Hour lists in its own city
+// directory, read 2026-11-25; the San Bernardino shows (NOS, Glen Helen) and
+// Joliet are too far from a covered city and stay out. Words say only what
+// Dim Hour's own home page says about itself.
+const DIM_HOUR_CITY = {
+  'edc-lv': ['las-vegas', 'Las Vegas'],
+  'acl': ['austin', 'Austin'],
+  'ultra-miami': ['miami', 'Miami'],
+  'iii-points': ['miami', 'Miami'],
+  'groove-cruise': ['miami', 'Miami'],
+  'governors-ball': ['nyc', 'New York City'],
+  'lollapalooza': ['chicago', 'Chicago'],
+  'arc': ['chicago', 'Chicago'],
+  'suenos': ['chicago', 'Chicago'],
+  'outside-lands': ['san-francisco', 'San Francisco'],
+  'portola': ['san-francisco', 'San Francisco'],
+  'crssd-fall': ['san-diego', 'San Diego'],
+  'hard-summer': ['los-angeles', 'Los Angeles'],
+  'lost-in-dreams': ['los-angeles', 'Los Angeles'],
+  'dreamstate-socal': ['los-angeles', 'Los Angeles'],
+  'lights-all-night': ['dallas', 'Dallas'],
+  'ubbi-dubbi': ['dallas', 'Dallas–Fort Worth'],
+  'decadence-arizona': ['phoenix', 'Phoenix'],
+  'bumbershoot': ['seattle', 'Seattle'],
+  'project-glow': ['washington-dc', 'Washington DC'],
+  'edc-mexico': ['mexico-city', 'Mexico City'],
+  'das-energi': ['salt-lake-city', 'Salt Lake City'],
+};
+function dimHourCityFor(id) {
+  return DIM_HOUR_CITY[String(id || '').replace(/-\d{4}$/, '')] || null;
+}
+function eatSection(entry) {
+  const hit = dimHourCityFor(entry.config.id);
+  if (!hit) return '';
+  const [slug, city] = hit;
+  return `
+  <section aria-labelledby="eat-h">
+    <h2 id="eat-h">Where to eat in ${esc(city)}</h2>
+    <p>Before the gates open or after the last set, <a href="https://dimhour.com/${slug}/">Dim Hour's ${esc(city)} guide</a> lists the restaurants and bars worth your time, chosen rather than crowdsourced, each with a 0–100 score.</p>
+  </section>`;
+}
+
+// ── Where to stay (Stay22) ────────────────────────────────────────────
+// A hotel link near the venue for the festival's own dates, through Stay22's
+// Allez redirect (https://dev.stay22.com/docs/allez/parameters). Off until
+// STAY22_AID holds Plursky's Stay22 affiliate id: with it empty, no page
+// changes. Never shown once a festival is past, because dated hotel links for
+// a weekend that has gone are useless. Campaign labels use _ not -, which
+// Stay22's reporting would otherwise split into two labels.
+const STAY22_AID = 'dimhour';
+// STAY22_LMA_ID is the Stay22 script made in the Hub for plursky.com. It loads
+// only on upcoming festival pages, where the hotel link already is, and turns
+// travel mentions and booking links there into commission links. The privacy
+// page names Stay22 for this.
+const STAY22_LMA_ID = '6b06d33a9666f1652993623b';
+function stayScript(isPast) {
+  if (!STAY22_LMA_ID || isPast) return '';
+  return `<script>
+(function (s, t, a, y, twenty, two) {
+s.Stay22 = s.Stay22 || {};
+s.Stay22.params = { lmaID: '${STAY22_LMA_ID}' };
+twenty = t.createElement(a);
+two = t.getElementsByTagName(a)[0];
+twenty.async = 1;
+twenty.src = y;
+two.parentNode.insertBefore(twenty, two);
+})(window, document, 'script', 'https://lma.stay22.com/letmeallez.js');
+</script>
+`;
+}
+function nextYmd(ymd) {
+  return new Date(Date.parse(`${ymd}T00:00:00Z`) + 86400000).toISOString().slice(0, 10);
+}
+function staySection(entry, dates, isPast) {
+  if (!STAY22_AID || isPast) return '';
+  const cfg = entry.config;
+  const where = String(cfg.location || '').split('·').map(s => s.trim()).filter(Boolean).join(', ');
+  if (!where) return '';
+  const { venue } = place(cfg, entry.region);
+  const q = new URLSearchParams({ aid: STAY22_AID, address: where });
+  // A two-weekend festival (Coachella, EDC Las Vegas 2027) spans ten nights;
+  // nobody books that, so its link carries the place and no dates.
+  const dated = dates && (Date.parse(dates.end) - Date.parse(dates.start)) / 86400000 <= 4;
+  if (dated) { q.set('checkin', dates.start); q.set('checkout', nextYmd(dates.end)); }
+  q.set('campaign', `plursky_${cfg.id.replace(/-/g, '_')}`);
+  const href = `https://www.stay22.com/allez/roam?${q.toString()}`;
+  return `
+  <section aria-labelledby="stay-h">
+    <h2 id="stay-h">Where to stay</h2>
+    <p><a href="${esc(href)}" rel="sponsored noopener">See hotels and rentals near ${esc(venue)}</a>${dated ? ' for the festival dates' : ''}. Plursky earns a commission if you book through this link, at no extra cost to you.</p>
+  </section>`;
+}
+
 // ── Past editions ─────────────────────────────────────────────────────
 // Past Festivals is the read-only archive; this page is only an index into it.
 // Each link opens that edition in Plursky (?tab=past&edition=<id>).
@@ -629,6 +726,8 @@ const JUMPS = [
   ['map-h', 'Map', 'See the map'],
   ['watch-h', 'Watch', 'Watch and listen'],
   ['plan-h', 'Plan', 'Plan your trip'],
+  ['stay-h', 'Stay', 'Where to stay'],
+  ['eat-h', 'Eat', 'Where to eat'],
   ['past-h', 'Past years', 'See past years'],
 ];
 function sectionJumps(html) {
@@ -784,7 +883,7 @@ ${mapHtml}
 ${scheduleGrid(entry, dates, blocks)}${stageProgrammingSection(entry)}
 ${lineupSection(entry, blocks, dates, names, hasTimes)}
 ${stagesSection(entry, blocks, dates)}
-${planSection(entry, amenities)}
+${planSection(entry, amenities)}${staySection(entry, dates, isPast)}${eatSection(entry)}
 ${pastSection(entry, editions)}`;
 
   return `<!DOCTYPE html>
@@ -960,7 +1059,7 @@ ${JSON.stringify(faqLd, null, 2)}
 ` : ''}<script type="application/ld+json">
 ${JSON.stringify(crumbLd, null, 2)}
 </script>
-</head>
+${stayScript(isPast)}</head>
 <body>
 <header class="top">
   <div class="wrap">
@@ -1307,8 +1406,11 @@ ${live.map(line).join('\n')}
 }
 // The rows no calendar can move. --check holds each one to what is committed:
 // its ledger fingerprint and date, and its <lastmod> in sitemap.xml. The
-// festival rows stay strict-only (see norm above).
-const COMMIT_ROWS = [`${ORIGIN}/`, `${ORIGIN}/terms.html`, `${ORIGIN}/privacy.html`];
+// festival rows stay strict-only (see norm above). /welcome/ is one of them:
+// gen-welcome-page.mjs puts no "today" in the file, so only a commit moves it.
+// Without it, running this script BEFORE gen-welcome-page left the welcome row
+// fingerprinting the old page, and plain --check passed anyway (#563).
+const COMMIT_ROWS = [`${ORIGIN}/`, `${ORIGIN}/welcome/`, `${ORIGIN}/terms.html`, `${ORIGIN}/privacy.html`];
 if (CHECK && !CHECK_STRICT) {
   const committed = existsSync(LEDGER) ? JSON.parse(readFileSync(LEDGER, 'utf8')) : {};
   const published = {};

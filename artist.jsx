@@ -386,6 +386,28 @@ async function fetchTicketmaster(artistName) {
   } catch (e) { if (e?._retry || e instanceof TypeError) throw e; return []; }
 }
 
+// ── Ticketmaster affiliate (Impact) ───────────────────────────
+// OFF until Jake pastes the tracking-link base from his Impact account
+// (Ticketmaster Global Affiliate Program, joined through app.impact.com):
+// the deep-link prefix ending in /c/<partner>/<ad>/<program>. Empty = every
+// TICKETS link stays the plain ticketmaster URL, exactly as before.
+const TM_AFFILIATE_BASE = "";
+const _TM_AFF_BASE_RE = /^https:\/\/[a-z0-9-]+(\.[a-z0-9-]+)+\/c\/\d+\/\d+\/\d+$/i;
+const _TM_HOST_RE = /(^|\.)ticketmaster\.(com|ca|co\.uk|ie|com\.au|com\.mx|de|nl|be|es|fr|it|at|ch|dk|no|se|fi|pl|co\.nz|ae)$/i;
+
+// Wraps a ticketmaster.* event URL in the Impact deep link, tagged with
+// where in the app the tap came from (subId1). Anything else - no base, a
+// malformed base, a non-https URL, a non-Ticketmaster host - comes back
+// unchanged, so a bad paste can never break a ticket link.
+function tmAffiliateUrl(url, subId, base = TM_AFFILIATE_BASE) {
+  if (!url || !base || !_TM_AFF_BASE_RE.test(base)) return url;
+  let u;
+  try { u = new URL(url); } catch { return url; }
+  if (u.protocol !== "https:" || !_TM_HOST_RE.test(u.hostname)) return url;
+  const sub = String(subId || "plursky").replace(/[^a-z0-9_-]/gi, "_").slice(0, 64);
+  return `${base}?u=${encodeURIComponent(u.href)}&subId1=${encodeURIComponent(sub)}`;
+}
+
 function _tmDate(d) {
   // "2026-08-14" → "Aug 14, 2026"
   const [y, m, day] = d.split("-");
@@ -2180,9 +2202,10 @@ function ArtistScreen({ state, setState }) {
                   </div>
                 </div>
 
-                {/* Ticket link */}
+                {/* Ticket link (affiliate-wrapped only when TM_AFFILIATE_BASE is set) */}
                 {ev.url && (
-                  <a href={ev.url} target="_blank" rel="noopener noreferrer" style={{
+                  <a href={tmAffiliateUrl(ev.url, "artist_shows")} target="_blank"
+                    rel={tmAffiliateUrl(ev.url, "artist_shows") !== ev.url ? "sponsored noopener noreferrer" : "noopener noreferrer"} style={{
                     flexShrink: 0,
                     fontFamily: "Geist Mono, monospace", fontSize: 8, letterSpacing: 1.1,
                     color: "var(--ember-ink)", textDecoration: "none",
@@ -2192,6 +2215,14 @@ function ArtistScreen({ state, setState }) {
                 )}
               </div>
             ))}
+
+            {Array.isArray(tmEvents) && tmEvents.some(ev => ev.url && tmAffiliateUrl(ev.url, "artist_shows") !== ev.url) && (
+              <div data-tm-affiliate-note className="mono" style={{
+                fontSize: 8, letterSpacing: 0.8, color: "var(--ink-2)", marginTop: 2,
+              }}>
+                Plursky may earn a commission on tickets, at no extra cost to you.
+              </div>
+            )}
           </div>
         )}
 
