@@ -1519,6 +1519,114 @@
    }
   },
   {
+   "id": "creamfields-2025",
+   "festivalId": "creamfields",
+   "festivalName": "Creamfields",
+   "name": "Creamfields 2025",
+   "year": 2025,
+   "timezone": "Europe/London",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2025-08-21",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2025-08-22",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2025-08-23",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2025-08-24",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 19,
+    "artists": 201,
+    "sets": 0
+   }
+  },
+  {
+   "id": "creamfields-2024",
+   "festivalId": "creamfields",
+   "festivalName": "Creamfields",
+   "name": "Creamfields 2024",
+   "year": 2024,
+   "timezone": "Europe/London",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2024-08-22",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2024-08-23",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2024-08-24",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2024-08-25",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 21,
+    "artists": 219,
+    "sets": 0
+   }
+  },
+  {
+   "id": "creamfields-2022",
+   "festivalId": "creamfields",
+   "festivalName": "Creamfields",
+   "name": "Creamfields 2022",
+   "year": 2022,
+   "timezone": "Europe/London",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2022-08-25",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2022-08-26",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2022-08-27",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2022-08-28",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 26,
+    "artists": 253,
+    "sets": 0
+   }
+  },
+  {
    "id": "creamfields-2021",
    "festivalId": "creamfields",
    "festivalName": "Creamfields",

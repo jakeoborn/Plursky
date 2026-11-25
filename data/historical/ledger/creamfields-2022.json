@@ -1,0 +1,342 @@
+{
+  "id": "creamfields-2022",
+  "method": "official_lineup_html",
+  "official": "https://creamfields.com/lineup/",
+  "format": "creamfields-lineup",
+  "window": {
+    "until": "2022-09-04",
+    "why": "captures more than 7 days after the last day show the next edition"
+  },
+  "chosen": "20220826220413",
+  "archivedUrl": "https://web.archive.org/web/20220826220413/https://creamfields.com/lineup/",
+  "sha256": "f6903209d307e8da3c652f0b963f55c5e8a38e8a6ad2f8f01b43d3ce8ed1ab12",
+  "title": "cinch presents Creamfields 2022 | Arenas",
+  "relayedVia": "firecrawl",
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "creamfields",
+    "year": 2022,
+    "lifecycle": "occurred",
+    "dates": "2022-08-25..2022-08-28",
+    "evidence": "https://www.liverpoolecho.co.uk/news/liverpool-news/39-people-arrested-creamfields-209-24891061",
+    "published": "2022-08-30"
+  },
+  "stageOrder": [
+    "Axtone",
+    "Cream",
+    "Cream Terrace",
+    "RONG",
+    "Arc",
+    "Steel Yard",
+    "Paradise",
+    "Nina Kraviz & Friends",
+    "Catch & Release",
+    "Freakshow",
+    "Andy C Presents One 7 Four",
+    "Pepsi Max",
+    "FULL ON",
+    "Hospitality Arena",
+    "Horizon",
+    "STMPD RCRDS",
+    "Trick",
+    "Sub_Aural",
+    "Anjunabeats",
+    "All Gone Pete Tong",
+    "Aura",
+    "Fatboy Slim Loves…",
+    "MK presents",
+    "Solid Grooves",
+    "Try This for Example",
+    "Goodgreef Xtra Hard"
+  ],
+  "folded": [],
+  "sameActs": [],
+  "lowered": [
+    {
+      "printed": "T>l B2B LEVELA",
+      "shownAs": "t>l b2b levela"
+    }
+  ],
+  "joined": [
+    {
+      "weekday": "Friday",
+      "stage": "Paradise",
+      "printed": [
+        "Alan Fitzpatrick",
+        "Richy Ahmed"
+      ],
+      "billedAs": "Alan Fitzpatrick B2B Richy Ahmed"
+    }
+  ],
+  "actLines": [
+    {
+      "artist": "Eric Prydz",
+      "weekday": "Friday",
+      "stage": "Steel Yard",
+      "printed": [
+        {
+          "where": "after",
+          "line": "Presents Holo"
+        }
+      ]
+    },
+    {
+      "artist": "Vini Vici",
+      "weekday": "Friday",
+      "stage": "Freakshow",
+      "printed": [
+        {
+          "where": "above",
+          "line": "SPECIAL GUEST"
+        }
+      ]
+    },
+    {
+      "artist": "Kings of the Rollers",
+      "weekday": "Friday",
+      "stage": "Andy C Presents One 7 Four",
+      "printed": [
+        {
+          "where": "above",
+          "line": "SPECIAL GUEST"
+        }
+      ]
+    },
+    {
+      "artist": "ATB",
+      "weekday": "Friday",
+      "stage": "Pepsi Max",
+      "printed": [
+        {
+          "where": "above",
+          "line": "VERY SPECIAL GUEST"
+        }
+      ]
+    },
+    {
+      "artist": "Chase & Status",
+      "weekday": "Saturday",
+      "stage": "Sub_Aural",
+      "printed": [
+        {
+          "where": "after",
+          "line": "dj set"
+        }
+      ]
+    },
+    {
+      "artist": "Darkzy B2B Skepsis",
+      "weekday": "Saturday",
+      "stage": "Sub_Aural",
+      "printed": [
+        {
+          "where": "below",
+          "line": "FT. WINDOW KID"
+        }
+      ]
+    },
+    {
+      "artist": "Joplyn",
+      "weekday": "Saturday",
+      "stage": "All Gone Pete Tong",
+      "printed": [
+        {
+          "where": "after",
+          "line": "LIVE"
+        }
+      ]
+    },
+    {
+      "artist": "Bicep",
+      "weekday": "Sunday",
+      "stage": "Aura",
+      "printed": [
+        {
+          "where": "after",
+          "line": "LIVE"
+        }
+      ]
+    },
+    {
+      "artist": "Nathan Dawe",
+      "weekday": "Sunday",
+      "stage": "Try This for Example",
+      "printed": [
+        {
+          "where": "above",
+          "line": "SPECIAL GUEST"
+        }
+      ]
+    }
+  ],
+  "stageNotes": [],
+  "unfinished": [],
+  "considered": [
+    {
+      "captureTimestamp": "20220223090252",
+      "notFiled": "relay: capture 20220223090252 of https://creamfields.com/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20220223115125",
+      "notFiled": "relay: capture 20220223115125 of https://creamfields.com/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20220306012317",
+      "notFiled": "relay: capture 20220306012317 of https://creamfields.com/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20220309131733",
+      "notFiled": "relay: capture 20220309131733 of https://creamfields.com/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20220606162627",
+      "notFiled": "relay: capture 20220606162627 of https://creamfields.com/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20220630001906",
+      "notFiled": "relay: capture 20220630001906 of https://creamfields.com/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20220812150314",
+      "archivedUrl": "https://web.archive.org/web/20220812150314/https://creamfields.com/lineup/",
+      "sha256": "012940eb6b3c2360a3eeb7817b375444476443d0ec299c0fedbb77824caf7a37",
+      "bytes": 279571,
+      "via": "firecrawl",
+      "title": "cinch presents Creamfields 2022 | Arenas",
+      "days": [
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "printedDates": null,
+      "dated": true,
+      "valid": true,
+      "billings": 229,
+      "diffVsChosen": [
+        "added by the final: No Artificial Colours",
+        "added by the final: Rob Crouch",
+        "added by the final: Nino Violin",
+        "added by the final: Page Twins",
+        "added by the final: CJ Sax Live",
+        "added by the final: Guy D’angelo",
+        "added by the final: Ad Levick",
+        "added by the final: Jack Bullock",
+        "added by the final: Ricco",
+        "added by the final: Leon Donnelly",
+        "added by the final: ROHAR",
+        "added by the final: PHONIX",
+        "added by the final: Scaramouche",
+        "added by the final: Rusti",
+        "added by the final: Carlo Pulvi Sax",
+        "added by the final: MATREFAKT",
+        "added by the final: Laasty",
+        "added by the final: Anton Powers",
+        "added by the final: Toriah",
+        "added by the final: Joe Fearon",
+        "added by the final: Paul Nunn & James Glover",
+        "added by the final: Jay Hayton",
+        "added by the final: Lewis Wright",
+        "added by the final: Pete James",
+        "added by the final: Kevin Reynolds",
+        "removed by the final: Rob Harnetty"
+      ]
+    },
+    {
+      "captureTimestamp": "20220812182109",
+      "archivedUrl": "https://web.archive.org/web/20220812182109/https://creamfields.com/lineup/",
+      "sha256": "cdbcf2c48c6b235038b1d1e9259991d197a9be9e3aed5d24529926b160c9d6d6",
+      "bytes": 279367,
+      "via": "firecrawl",
+      "title": "cinch presents Creamfields 2022 | Arenas",
+      "days": [
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "printedDates": null,
+      "dated": true,
+      "valid": true,
+      "billings": 229,
+      "diffVsChosen": [
+        "added by the final: No Artificial Colours",
+        "added by the final: Rob Crouch",
+        "added by the final: Nino Violin",
+        "added by the final: Page Twins",
+        "added by the final: CJ Sax Live",
+        "added by the final: Guy D’angelo",
+        "added by the final: Ad Levick",
+        "added by the final: Jack Bullock",
+        "added by the final: Ricco",
+        "added by the final: Leon Donnelly",
+        "added by the final: ROHAR",
+        "added by the final: PHONIX",
+        "added by the final: Scaramouche",
+        "added by the final: Rusti",
+        "added by the final: Carlo Pulvi Sax",
+        "added by the final: MATREFAKT",
+        "added by the final: Laasty",
+        "added by the final: Anton Powers",
+        "added by the final: Toriah",
+        "added by the final: Joe Fearon",
+        "added by the final: Paul Nunn & James Glover",
+        "added by the final: Jay Hayton",
+        "added by the final: Lewis Wright",
+        "added by the final: Pete James",
+        "added by the final: Kevin Reynolds",
+        "removed by the final: Rob Harnetty"
+      ]
+    },
+    {
+      "captureTimestamp": "20220824045655",
+      "archivedUrl": "https://web.archive.org/web/20220824045655/https://creamfields.com/lineup/",
+      "sha256": "026ea11bd1567bcea5ab1fd3f4a2cf5ea5169d78da0ddae8ad34e0e996bbbf6f",
+      "bytes": 301043,
+      "via": "firecrawl",
+      "title": "cinch presents Creamfields 2022 | Arenas",
+      "days": [
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "printedDates": null,
+      "dated": true,
+      "valid": true,
+      "billings": 253,
+      "diffVsChosen": []
+    },
+    {
+      "captureTimestamp": "20220826220413",
+      "archivedUrl": "https://web.archive.org/web/20220826220413/https://creamfields.com/lineup/",
+      "sha256": "f6903209d307e8da3c652f0b963f55c5e8a38e8a6ad2f8f01b43d3ce8ed1ab12",
+      "bytes": 301069,
+      "via": "firecrawl",
+      "title": "cinch presents Creamfields 2022 | Arenas",
+      "days": [
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "printedDates": null,
+      "dated": true,
+      "valid": true,
+      "billings": 253
+    }
+  ],
+  "dropped": []
+}
