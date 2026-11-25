@@ -21,7 +21,7 @@ import { copyFileSync, existsSync, mkdirSync, writeFileSync } from "node:fs";
 import { homedir, platform } from "node:os";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { CACHE_DIR } from "./wayback.mjs";
+import { CACHE_DIR, fetchCapture } from "./wayback.mjs";
 import { GRAPHIC_EDITIONS, resolve } from "./resolve-graphics.mjs";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
@@ -55,12 +55,22 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     for (const d of ledger.days) {
       if (d.blocked) { summary.push(`${id} day ${d.day}: ${d.blocked}`); continue; }
       const out = join(dir, `${id}-d${d.day}.jsonl`);
-      if (read.has(d.cacheFile)) copyFileSync(read.get(d.cacheFile), out);
+      const key = `${d.imageCapture} ${d.originalUrl}`;
+      if (read.has(key)) copyFileSync(read.get(key), out);
       else {
-        const img = join(CACHE_DIR, d.cacheFile);
-        if (!existsSync(img)) { summary.push(`${id} day ${d.day}: cached graphic ${d.cacheFile} is missing`); continue; }
+        // wayback.mjs caches only an exact capture. A graphic is requested at
+        // the page's timestamp and usually served from a neighbouring capture,
+        // so its bytes were not kept. Fetch it again at the capture actually
+        // served, check it is the same file the ledger hashed, and read that.
+        let img = join(CACHE_DIR, d.cacheFile);
+        if (!existsSync(img)) {
+          const got = await fetchCapture(d.imageCapture, d.originalUrl, { binary: true });
+          if (got.sha256 !== d.sha256) { summary.push(`${id} day ${d.day}: the graphic served for ${d.imageCapture} does not match the ledger's hash`); continue; }
+          img = existsSync(got.file) ? got.file : join(dir, `.graphic-d${d.day}`);
+          if (img !== got.file) writeFileSync(img, got.buf);
+        }
         writeFileSync(out, execFileSync(ocr, [img], { maxBuffer: 64 << 20 }));
-        read.set(d.cacheFile, out);
+        read.set(key, out);
       }
       summary.push(`${id} day ${d.day} (${d.date}): ${d.originalUrl.split("/").pop()} → ${out}`);
     }
