@@ -292,8 +292,9 @@ screenshots + a matcher unit test on the real 241-artist lineup all verified.
 - [x] **Map lens** — count-bubble (v208) + GPS photo-scatter PHOTOS lens (v212).
 - [x] **Night scrubber** (v208) — horizontal time axis at capture time.
 - [x] **⭐ Favorite (one-tap)** (v207) — `_heroScore` `favorite` hook wired.
-- [ ] **MomentCard right-edge bleed** — content appears to overflow the 390px
-      viewport (seen in screenshots); Clicky to confirm on device. (STILL OPEN)
+- [x] **MomentCard right-edge bleed** — FIXED 2026-11-25 (v684): a note holding an unbroken
+      run (a pasted link) printed past its card at 390 and 320; prose always wrapped. Gate:
+      scripts/test-momentcard-bleed.mjs in verify.
 
 ## ⭐ MASTER OPEN ITEMS — updated 2026-06-04 (web @ **v218** LIVE; **iOS 1.10 (21) being submitted** — pbxproj 593bda5, bundle v218, Clicky on-device verified; Xcode archive = Jake. Prior 1.9 (20) APPROVED 2026-06-02)
 
