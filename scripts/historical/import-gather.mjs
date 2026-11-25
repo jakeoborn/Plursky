@@ -58,6 +58,7 @@ import { parseShambhalaWebflow, readDatesPost } from "./shambhala-webflow-schedu
 import { parseSonarSchedule } from "./sonar-schedule.mjs";
 import { parseSzigetDays } from "./sziget-days-schedule.mjs";
 import { parseDefqonAreas } from "./defqon-schedule.mjs";
+import { parseDefqonLogos } from "./defqon-logos-schedule.mjs";
 
 const WEEKDAY_OF = date => ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"][new Date(date + "T12:00:00Z").getUTCDay()];
 
@@ -69,7 +70,7 @@ const sha256 = buf => createHash("sha256").update(buf).digest("hex");
 // Shambhala's schedule tables (a start under each block, no end), Governors
 // Ball 2011's "???", Primavera Sound's start-only blocks ("(03:00)") and
 // Sziget's day programme (a start on each set, no end).
-const OPEN_END_FORMATS = new Set(["ef-grid", "coachella-cards", "coachella-data", "coachella-overlays", "shambhala-table", "govball-wp", "primavera-horarios", "primavera-completos", "sziget-days"]);
+const OPEN_END_FORMATS = new Set(["ef-grid", "coachella-cards", "coachella-data", "coachella-overlays", "shambhala-table", "govball-wp", "primavera-horarios", "primavera-completos", "sziget-days", "defqon-logos"]);
 
 const rowKey = r => [r.day, r.stage, r.start, r.end, r.artist].join("|");
 
@@ -220,7 +221,10 @@ export async function importGather(id, dir) {
         const missing = want.filter(k => !have.includes(k)), extra = have.filter(k => !want.includes(k));
         if (missing.length || extra.length) throw new Error(`${s.url} @${s.captureTimestamp}: the archived page and the reviewed sheet disagree\n  sheet only: ${missing.join("\n  ")}\n  page only: ${extra.join("\n  ")}`);
         ledgerDays[day - 1].sources.push({ kind: "page", url: s.url, archivedUrl: cap.archivedUrl, captureTimestamp: cap.captureTimestamp,
-          printed: s.printed[day], sha256: cap.sha256, bytes: cap.bytes, rows: mine.length, ...(s.format && { format: s.format }) });
+          printed: s.printed[day], sha256: cap.sha256, bytes: cap.bytes, rows: mine.length, ...(s.format && { format: s.format }),
+          // A capture the research relay filed (wayback.mjs with
+          // PLURSKY_WAYBACK_RELAY=1) names the relay that fetched it.
+          ...(cap.via && { relayedVia: cap.via }) });
       };
       if (s.format === "acl-grid") {
         // One page per weekend: every day it prints is cited, each read off
@@ -857,6 +861,41 @@ export async function importGather(id, dir) {
             times: "each set prints its range on the 24-hour clock under its area; an area's host prints no time and is not a set",
             ...(page.hosts.some(h => h.weekday === WEEKDAY_OF(d.date)) && { hosts: page.hosts.filter(h => h.weekday === WEEKDAY_OF(d.date)).map(h => `${h.stage}: ${h.host}`) }),
             ...(page.bills.some(b => b.date === d.date) && { blocks: page.bills.filter(b => b.date === d.date).map(b => `${b.stage}: "${b.heading}": ${b.acts.join(", ")}`) }) });
+        }
+      } else if (s.format === "defqon-logos") {
+        // One page prints the whole weekend: Defqon.1's own 2014 timetable
+        // (defqon1.nl/nl/timetable/, defqon-logos-schedule.mjs), one box per
+        // area and day. Its title must name the edition's year, its dated
+        // subtitles must be exactly the edition's days, and it must be
+        // captured after the festival ended. A set the page prints with an end
+        // past the next set's start is open-ended in the sheet; a block's acts
+        // must be the sheet's excluded untimed rows of that day, one for one.
+        const page = parseDefqonLogos(cap.text, { year: ed.year, rolloverHour: ed.rolloverHour });
+        if (page.days.map(d => d.date).join() !== ed.dates.map(([d]) => d).join()) throw new Error(`${s.url} @${s.captureTimestamp}: its subtitles print ${page.days.map(d => d.date).join(", ")}, not the edition's days`);
+        if (s.captureTimestamp.slice(0, 8) <= ed.dates.at(-1)[0].replace(/-/g, "")) throw new Error(`${s.url} @${s.captureTimestamp}: captured before the festival ended`);
+        const k = x => [x.stage, x.artist ?? x.billing].join("|");
+        for (const [i, d] of page.days.entries()) {
+          const day = i + 1;
+          if (d.label !== s.printed[day]) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} is headed "${d.label}", the receipt says "${s.printed[day]}"`);
+          const pg = page.bills.filter(b => b.date === d.date).flatMap(b => b.acts.map(a => k({ stage: b.stage, artist: a }))).sort().join("\n");
+          const sh = excluded.filter(x => x.day === day && x.untimed).map(k).sort().join("\n");
+          if (pg !== sh) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day} prints ${pg ? pg.split("\n").length : 0} act(s) in a block, the sheet excludes others\n  page: ${pg}\n  sheet: ${sh}`);
+          if (!days.includes(day)) throw new Error(`${s.url} @${s.captureTimestamp}: prints day ${day}, which the sheet does not cite it for`);
+          const ok = x => [x.stage, x.start, x.artist].join("|");
+          const pgOpen = d.sets.filter(x => x.openEnd).map(ok).sort().join("\n"), shOpen = got.filter(r => r.day === day && r.openEnd === "1").map(ok).sort().join("\n");
+          if (pgOpen !== shOpen) throw new Error(`${s.url} @${s.captureTimestamp}: day ${day}'s open ends differ\n  page: ${pgOpen}\n  sheet: ${shOpen}`);
+          agree(day, d.sets.map(x => ({ stage: x.stage, start: x.start, end: x.end, artist: x.artist })));
+          const of = list => list.filter(x => x.date === d.date);
+          Object.assign(ledgerDays[day - 1].sources.at(-1), { named: page.title, stages: [...new Set(d.sets.map(x => x.stage))].length,
+            times: "each set prints its range on the 24-hour clock under its area's logo; an area's host prints no time and is not a set",
+            origins: "the countries each act's line prints in brackets are lifted off its name",
+            ...(of(page.hosts).length && { hosts: of(page.hosts).map(h => `${h.stage}: ${h.host}`) }),
+            ...(of(page.segments).length && { segments: of(page.segments).map(x => `${x.stage}: "${x.printed}" ${x.start} ${x.end}`) }),
+            ...(of(page.joined).length && { joined: of(page.joined).map(x => `${x.stage}: "${x.lines.join('" + "')}"`) }),
+            ...(of(page.misprints).length && { misprints: of(page.misprints).map(x => `${x.stage}: "${x.printed}" (${x.misprint})`) }),
+            ...(of(page.endsDropped).length && { endsDropped: of(page.endsDropped).map(x => `${x.stage}: ${x.artist} printed ${x.printed}, ${x.next} starts ${x.nextStart}`) }),
+            ...(of(page.untranslated).length && { untranslated: of(page.untranslated).map(x => `${x.stage}: "${x.printed}"`) }),
+            ...(of(page.bills).length && { blocks: of(page.bills).map(b => `${b.stage}: "${b.heading}" ${b.start} ${b.end}: ${b.acts.join(", ")}`) }) });
         }
       } else if (s.format === "day-tabs") {
         // Every day is on the page; each day's rows must equal its own pane.

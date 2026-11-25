@@ -1,0 +1,55 @@
+# Plursky
+
+> Plursky is a music festival companion for iPhone and the web: lineups and set times, personal schedules with clash checks, festival maps, crew meetups, and recaps of the sets you saw. Each festival guide below lists the lineup (and set times and stages where the festival has published them) with links to its official sources.
+
+The app is free on the App Store: https://apps.apple.com/us/app/plursky-live/id6768888507
+
+## Festival guides
+
+- [EDC Las Vegas 2026](https://plursky.com/f/edc-lv-2026/): May 15–17, 2026 · Las Vegas Motor Speedway · Nevada
+- [Lost Lands 2026](https://plursky.com/f/lost-lands-2026/): Sep 18–20, 2026 · Legend Valley · Thornville, OH
+- [EDC Orlando 2026](https://plursky.com/f/edc-orlando-2026/): Nov 6–8, 2026 · Tinker Field · Orlando
+- [Austin City Limits 2026](https://plursky.com/f/acl-2026/): Oct 2–4 & 9–11, 2026 · Zilker Park · Austin, TX
+- [Ultra Miami 2026](https://plursky.com/f/ultra-miami-2026/): Mar 27–29, 2026 · Bayfront Park · Miami, FL
+- [Governors Ball 2026](https://plursky.com/f/governors-ball-2026/): Jun 5–7, 2026 · Flushing Meadows Corona Park · Queens, NY
+- [Summerfest 2026](https://plursky.com/f/summerfest-2026/): Jun 18–20, Jun 25–27 & Jul 2–4, 2026 · Henry Maier Festival Park · Milwaukee, WI
+- [Lollapalooza 2026](https://plursky.com/f/lollapalooza-2026/): Jul 30 – Aug 2, 2026 · Grant Park · Chicago, IL
+- [Outside Lands 2026](https://plursky.com/f/outside-lands-2026/): Aug 7–9, 2026 · Golden Gate Park · San Francisco, CA
+- [III Points 2026](https://plursky.com/f/iii-points-2026/): Oct 16–17, 2026 · Mana Wynwood · Miami, FL
+- [Nocturnal Wonderland 2026](https://plursky.com/f/nocturnal-wonderland-2026/): Sep 19–20, 2026 · Glen Helen Regional Park · San Bernardino, CA
+- [CRSSD Fest Fall 2026](https://plursky.com/f/crssd-fall-2026/): Sep 26–27, 2026 · Waterfront Park · San Diego, CA
+- [Portola 2026](https://plursky.com/f/portola-2026/): Sep 26–27, 2026 · Pier 80 · San Francisco, CA
+- [HARD Summer 2026](https://plursky.com/f/hard-summer-2026/): Aug 1–2, 2026 · Hollywood Park · Inglewood, CA
+- [ARC Music Festival 2026](https://plursky.com/f/arc-2026/): Sep 4–7, 2026 · Union Park · Chicago, IL
+- [Escape Halloween 2026](https://plursky.com/f/escape-halloween-2026/): Oct 30–31, 2026 · NOS Events Center · San Bernardino, CA
+- [Dreamstate SoCal 2026](https://plursky.com/f/dreamstate-socal-2026/): Nov 20–21, 2026 · Queen Mary Waterfront · Long Beach, CA
+- [Decadence Colorado 2026](https://plursky.com/f/decadence-colorado-2026/): Dec 30–31, 2026 · Colorado Convention Center · Denver, CO
+- [Countdown NYE 2026](https://plursky.com/f/countdown-nye-2026/): Dec 31, 2026 – Jan 1, 2027 · NOS Events Center · San Bernardino, CA
+- [Lights All Night 2026](https://plursky.com/f/lights-all-night-2026/): Dec 30–31, 2026 · Fair Park · Dallas, TX
+- [Decadence Arizona 2026](https://plursky.com/f/decadence-arizona-2026/): Dec 30–31, 2026 · Phoenix Raceway · Avondale, AZ
+- [Sunset On The River 2027](https://plursky.com/f/sunset-on-the-river-2027/): Feb 20–21, 2027 · Julian B. Lane Riverfront Park · Tampa, FL
+- [Djakarta Warehouse Project 2026](https://plursky.com/f/dwp-2026/): Dec 11–13, 2026 · JIExpo Kemayoran · Jakarta, Indonesia
+- [EDC Thailand 2026](https://plursky.com/f/edc-thailand-2026/): Dec 18–20, 2026 · Rhythm Park · Phuket, Thailand
+- [Tomorrowland Thailand 2026](https://plursky.com/f/tomorrowland-thailand-2026/): Dec 11–13, 2026 · Wisdom Valley · Chon Buri, Thailand
+- [Groove Cruise Miami 2027](https://plursky.com/f/groove-cruise-2027/): Jan 21–25, 2027 · Allure of the Seas · Miami, FL
+- [Day Zero Tulum 2027](https://plursky.com/f/day-zero-tulum-2027/): Jan 9, 2027 · Tulum, Mexico
+- [Coachella 2027](https://plursky.com/f/coachella-2027/): Apr 9–11 & 16–18, 2027 · Empire Polo Club · Indio, CA
+- [Time Warp Germany 2027](https://plursky.com/f/time-warp-2027/): Apr 3, 2027 · Maimarkthalle · Mannheim, Germany
+- [Tomorrowland Winter 2027](https://plursky.com/f/tomorrowland-winter-2027/): Mar 20–27, 2027 · Alpe d'Huez, France
+- [Lollapalooza Brasil 2027](https://plursky.com/f/lollapalooza-brasil-2027/): Mar 19–21, 2027 · Autódromo de Interlagos · São Paulo, Brazil
+- [Lollapalooza Chile 2027](https://plursky.com/f/lollapalooza-chile-2027/): Mar 12–14, 2027 · Parque O'Higgins · Santiago, Chile
+- [Forbidden Kingdom 2027](https://plursky.com/f/forbidden-kingdom-2027/): Apr 23–25, 2027 · Central Florida Fairgrounds · Orlando, FL
+- [Ubbi Dubbi 2027](https://plursky.com/f/ubbi-dubbi-2027/): Apr 23–24, 2027 · Panther Island Pavilion · Fort Worth, TX
+- [Lightning in a Bottle 2027](https://plursky.com/f/lightning-in-a-bottle-2027/): May 26–30, 2027 · Buena Vista Lake, CA
+- [EDC Mexico 2027](https://plursky.com/f/edc-mexico-2027/): Feb 19–21, 2027 · Autódromo Hermanos Rodríguez · Mexico City, Mexico
+
+## Directories
+
+- [All festivals](https://plursky.com/welcome/): upcoming festivals and their past years
+- [Festival artists](https://plursky.com/artists/): one page per artist, with the festivals they play
+- [Festival genres](https://plursky.com/genres/): artists grouped by genre
+
+## Optional
+
+- [Terms](https://plursky.com/terms.html)
+- [Privacy](https://plursky.com/privacy.html)
