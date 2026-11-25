@@ -3141,6 +3141,35 @@ function setTrackEligibility(cfg, nowMs) {
   }, nowMs) : "upcoming";
   return phase === "live" ? "live" : phase === "ended" ? "ended" : "not-live";
 }
+var SET_TRACK_MERGE_MS = 90 * 60000;
+function setTrackWindows(cfg, artists, nowMs) {
+  var raw = [];
+  var shifts = festivalWeekendShifts(cfg).filter(w => w.shift > 0);
+  for (var a of artists || []) {
+    if (attendTimeClass(a) === "blank") continue;
+    var base = _cfgActDayDate(cfg, a);
+    if (!base) continue;
+    var days = [base];
+    if (a.weekend !== "W1" && a.weekend !== "W2") for (var wk of shifts) days.push(_shiftDayDate(base, wk.shift));
+    for (var d of days) {
+      var s = _wallMs(d, a.start, cfg && cfg.tz),
+        e = _wallMs(d, a.end, cfg && cfg.tz);
+      if (s != null && e != null && e > s) raw.push({
+        from: s - ATTEND_GRACE_MS,
+        to: e + ATTEND_GRACE_MS
+      });
+    }
+  }
+  raw.sort((x, y) => x.from - y.from || x.to - y.to);
+  var out = [];
+  for (var win of raw) {
+    var top = out[out.length - 1];
+    if (top && win.from - top.to <= SET_TRACK_MERGE_MS) top.to = Math.max(top.to, win.to);else out.push({
+      ...win
+    });
+  }
+  return typeof nowMs === "number" ? out.filter(x => x.to >= nowMs) : out;
+}
 function attendMomentMs(m, cfg) {
   var t = /^(\d{4})-(\d{2})-(\d{2})[ T](\d{2}):(\d{2})(?::(\d{2}))?/.exec(m && m.takenAt || "");
   if (!t) return null;

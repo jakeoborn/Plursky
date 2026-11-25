@@ -3563,6 +3563,36 @@ function setTrackEligibility(cfg, nowMs) {
   const phase = typeof _festivalPhase === "function" ? _festivalPhase({ config: cfg }, nowMs) : "upcoming";
   return phase === "live" ? "live" : phase === "ended" ? "ended" : "not-live";
 }
+// Set hours, as the iPhone's screen-locked session takes them (SPEC-192
+// option B): every timed set's window (± ATTEND_GRACE_MS) on each weekend it
+// plays, merged when the gap between sets is short, so a day is one window
+// from its first set to its last. A set with no confirmed time adds nothing;
+// with no timed sets there are no hours and the session never holds a fix.
+// Windows that ended before nowMs are dropped.
+const SET_TRACK_MERGE_MS = 90 * 60000;
+function setTrackWindows(cfg, artists, nowMs) {
+  const raw = [];
+  const shifts = festivalWeekendShifts(cfg).filter(w => w.shift > 0);
+  for (const a of artists || []) {
+    if (attendTimeClass(a) === "blank") continue;
+    const base = _cfgActDayDate(cfg, a);
+    if (!base) continue;
+    const days = [base];
+    if (a.weekend !== "W1" && a.weekend !== "W2") for (const wk of shifts) days.push(_shiftDayDate(base, wk.shift));
+    for (const d of days) {
+      const s = _wallMs(d, a.start, cfg && cfg.tz), e = _wallMs(d, a.end, cfg && cfg.tz);
+      if (s != null && e != null && e > s) raw.push({ from: s - ATTEND_GRACE_MS, to: e + ATTEND_GRACE_MS });
+    }
+  }
+  raw.sort((x, y) => x.from - y.from || x.to - y.to);
+  const out = [];
+  for (const win of raw) {
+    const top = out[out.length - 1];
+    if (top && win.from - top.to <= SET_TRACK_MERGE_MS) top.to = Math.max(top.to, win.to);
+    else out.push({ ...win });
+  }
+  return typeof nowMs === "number" ? out.filter(x => x.to >= nowMs) : out;
+}
 
 // ── Set attendance evidence (SPEC-200 Build 2) ─────────────────────────────
 // Points of evidence beside the GPS runs: a Live Set Check-in, a photo the
