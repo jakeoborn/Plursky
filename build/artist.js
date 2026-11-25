@@ -326,6 +326,21 @@ async function fetchTicketmaster(artistName) {
     return [];
   }
 }
+var TM_AFFILIATE_BASE = "";
+var _TM_AFF_BASE_RE = /^https:\/\/[a-z0-9-]+(\.[a-z0-9-]+)+\/c\/\d+\/\d+\/\d+$/i;
+var _TM_HOST_RE = /(^|\.)ticketmaster\.(com|ca|co\.uk|ie|com\.au|com\.mx|de|nl|be|es|fr|it|at|ch|dk|no|se|fi|pl|co\.nz|ae)$/i;
+function tmAffiliateUrl(url, subId, base = TM_AFFILIATE_BASE) {
+  if (!url || !base || !_TM_AFF_BASE_RE.test(base)) return url;
+  var u;
+  try {
+    u = new URL(url);
+  } catch {
+    return url;
+  }
+  if (u.protocol !== "https:" || !_TM_HOST_RE.test(u.hostname)) return url;
+  var sub = String(subId || "plursky").replace(/[^a-z0-9_-]/gi, "_").slice(0, 64);
+  return `${base}?u=${encodeURIComponent(u.href)}&subId1=${encodeURIComponent(sub)}`;
+}
 function _tmDate(d) {
   var [y, m, day] = d.split("-");
   return `${["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"][+m - 1]} ${+day}, ${y}`;
@@ -3132,9 +3147,9 @@ function ArtistScreen({
       marginTop: 3
     }
   }, ev.location, ev.time ? ` · ${ev.time.slice(0, 5)}` : "")), ev.url && React.createElement("a", {
-    href: ev.url,
+    href: tmAffiliateUrl(ev.url, "artist_shows"),
     target: "_blank",
-    rel: "noopener noreferrer",
+    rel: tmAffiliateUrl(ev.url, "artist_shows") !== ev.url ? "sponsored noopener noreferrer" : "noopener noreferrer",
     style: {
       flexShrink: 0,
       fontFamily: "Geist Mono, monospace",
@@ -3147,7 +3162,16 @@ function ArtistScreen({
       padding: "5px 9px",
       whiteSpace: "nowrap"
     }
-  }, "TICKETS ↗")))), React.createElement("div", {
+  }, "TICKETS ↗"))), Array.isArray(tmEvents) && tmEvents.some(ev => ev.url && tmAffiliateUrl(ev.url, "artist_shows") !== ev.url) && React.createElement("div", {
+    "data-tm-affiliate-note": true,
+    className: "mono",
+    style: {
+      fontSize: 8,
+      letterSpacing: 0.8,
+      color: "var(--ink-2)",
+      marginTop: 2
+    }
+  }, "Plursky may earn a commission on tickets, at no extra cost to you.")), React.createElement("div", {
     id: "artist-section-setlists"
   }), SETLISTS_PROXY_URL && React.createElement("div", {
     style: {
