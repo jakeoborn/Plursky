@@ -31,6 +31,7 @@ import { parseMyScheduler, restoreSets } from "./historical/myscheduler-schedule
 import { parseEfScheduler } from "./historical/ef-scheduler-schedule.mjs";
 import { parseGovBallWp, printedDate as govBallDate } from "./historical/govball-wp-schedule.mjs";
 import { parsePrimaveraHorarios, tabDate as primaveraDate } from "./historical/primavera-horarios-schedule.mjs";
+import { graphicUrls, dayCandidates, fileName } from "./historical/resolve-graphics.mjs";
 import { parsePrimaveraCompletos, tabRun as primaveraRun } from "./historical/primavera-completos-schedule.mjs";
 import { parseInsomniacMusic, printedDate as insomniacDate } from "./historical/insomniac-music-schedule.mjs";
 import { parseTmlCms, printedDate as tmlCmsDate } from "./historical/tml-cms-schedule.mjs";
@@ -2219,6 +2220,27 @@ for (const [printed, date, year, dates, want] of [
   const unguarded = src.replace(/\.filter\(e => e\.status !== "canceled"\)/, "");
   ok(unguarded !== src, "the app's canceled guard pattern must be present in build/historical.js for its mutant");
   mutations++; ok(shown(appList(unguarded)).includes("nocturnal-wonderland-2024"), "mutation not caught: the app with no canceled guard");
+}
+
+// ── 7. official graphics: which archived address is fetched for a day ──
+{
+  // Shopify links carry a version query, and the archive keeps the file only
+  // under it: the query must survive, and the bare URL comes second.
+  const html = `<img src="//cdn.shopify.com/s/files/1/0/files/Movement23_FullSchedule3_MON_x.jpg?v=1685277963">
+    <img src="https://cdn.shopify.com/s/files/1/0/files/Movement23_FullSchedule3_MON_x-p-500.jpg?v=1">`;
+  const urls = graphicUrls(html, /Movement23_FullSchedule\d_(?:SAT|SUN|MON)[^"'\s/?]*?\.jpg/i);
+  ok(urls.length === 1 && urls[0] === "https://cdn.shopify.com/s/files/1/0/files/Movement23_FullSchedule3_MON_x.jpg?v=1685277963",
+    `graphicUrls keeps the version query and drops resized copies: ${JSON.stringify(urls)}`);
+  ok(fileName(urls[0]) === "Movement23_FullSchedule3_MON_x.jpg", "fileName drops the query");
+  const seen = [{ captureTimestamp: "20190501", images: ["https://x.test/a/Full_Schedule.png?468"] },
+    { captureTimestamp: "20190520", images: ["https://x.test/a/Full_Schedule_334fd910.png?1021"] }];
+  const c = dayCandidates(seen, /Schedule/i);
+  ok(c.tries?.map(t => t.url.split("/").pop()).join(" ") === "Full_Schedule_334fd910.png?1021 Full_Schedule_334fd910.png Full_Schedule.png?468 Full_Schedule.png",
+    `a reissued graphic falls back to the one an earlier capture linked: ${JSON.stringify(c.tries?.map(t => t.url))}`);
+  ok(c.tries?.[0].page === seen[1], "the latest capture's own graphic is tried first");
+  const two = dayCandidates([{ captureTimestamp: "1", images: ["https://x.test/SAT.jpg?v=1", "https://x.test/SAT.jpg?v=2", "https://x.test/SAT2.jpg"] }], /SAT/);
+  ok(/ambiguous: 2 graphics/.test(two.blocked || ""), "two different files for one day stay ambiguous, two queries of one file do not");
+  ok(dayCandidates(seen, /nothing/).blocked === "no capture embeds an official graphic for this day", "a day with no graphic is blocked");
 }
 
 // Own process: it isolates the cache dir and stubs fetch.
