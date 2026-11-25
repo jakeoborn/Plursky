@@ -40,6 +40,17 @@ export function foldName(s: string): string {
     .toLowerCase().replace(/&/g, " and ").replace(/[^a-z0-9]+/g, "");
 }
 
+// The secret is SPOTIFY_CLIENT_SECRET. A secret added by hand in the
+// Supabase dashboard as "Client secret" (any case or spacing) works too, so
+// a near-miss name does not leave every lineup on initials.
+function spotifySecret(): string | undefined {
+  const exact = Deno.env.get("SPOTIFY_CLIENT_SECRET");
+  if (exact) return exact;
+  const env = Deno.env.toObject();
+  const k = Object.keys(env).find(n => ["spotifyclientsecret", "clientsecret"].includes(n.toLowerCase().replace(/[^a-z]/g, "")));
+  return k ? env[k] : undefined;
+}
+
 let token: { value: string; until: number } | null = null;
 async function appToken(secret: string): Promise<string> {
   if (token && Date.now() < token.until) return token.value;
@@ -66,7 +77,7 @@ Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { status: 204, headers: cors });
   if (req.method !== "GET") return json({ error: "method_not_allowed" }, 405);
 
-  const secret = Deno.env.get("SPOTIFY_CLIENT_SECRET");
+  const secret = spotifySecret();
   if (!secret) return json({ error: "not_configured" }, 503);
 
   const name = (new URL(req.url).searchParams.get("name") || "").trim().slice(0, 120);
