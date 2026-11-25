@@ -429,4 +429,12 @@ window.PLURSKY_FESTIVAL_ART = Object.freeze({
     license: "CC BY 3.0 (uploader is the photographer). Replaces the letter-tile fallback; Commons uploader, credit and EXIF checked 2026-11-23.",
     author: "Dave Cohoe", licenseId: "CC-BY-3.0", licenseUrl: "https://creativecommons.org/licenses/by/3.0/", changes: "Cropped",
   },
+  "bottlerock-2027": {
+    tile: "festival-art/tiles/bottlerock-2027.webp", card: "festival-art/bottlerock-2027.webp", width: 168, height: 168,
+    kind: "photo", sourcePage: "https://commons.wikimedia.org/wiki/File:Avett_Brothers_Bottlerock_2013.jpg",
+    assetUrl: "https://upload.wikimedia.org/wikipedia/commons/0/0e/Avett_Brothers_Bottlerock_2013.jpg",
+    credit: "The Avett Brothers on stage at BottleRock Napa Valley 2013. Photo by Trevor Bolliger, Wikimedia Commons", retrieved: "2026-11-25",
+    license: "CC BY-SA 3.0 (own work; the uploader (Trbo) is the named author, no EXIF author to conflict). Replaces the letter-tile fallback; uploader, credit and EXIF checked 2026-11-25.",
+    author: "Trevor Bolliger", licenseId: "CC-BY-SA-3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", changes: "Cropped",
+  },
 });

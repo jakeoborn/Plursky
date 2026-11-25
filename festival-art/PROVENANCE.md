@@ -52,6 +52,7 @@ The last five festivals that still showed initials now have a photo. Cards are 7
 | `lightning-in-a-bottle-2027.webp` | https://commons.wikimedia.org/wiki/File:Lightning_in_a_Bottle_2011.jpg | CC BY 2.0, Adam Wiggins. Woogie stage at Lightning in a Bottle 2011. |
 | `world-club-dome-2027.webp` | https://commons.wikimedia.org/wiki/File:World_Club_Dome_2013.jpg | CC BY 2.0, Tobias Franz. Lasers over the crowd at BigCityBeats World Club Dome Frankfurt 2013. |
 | `bumbershoot-2027.webp` | https://commons.wikimedia.org/wiki/File:Cyclecide-carousel-Bumbershoot07.jpg | CC BY 3.0, Dave Cohoe. Cyclecide pedal-powered carousel at Bumbershoot 2007. |
+| `bottlerock-2027.webp` | https://commons.wikimedia.org/wiki/File:Avett_Brothers_Bottlerock_2013.jpg | CC BY-SA 3.0, Trevor Bolliger. The Avett Brothers on stage at BottleRock Napa Valley 2013. |
 
 Day Zero Tulum 2027 has no art (2026-11-15): the site image's reuse was never granted, Commons has no Day Zero photo and the site publishes no press kit. It shows its tinted letter tile until a cleared image exists.
 
