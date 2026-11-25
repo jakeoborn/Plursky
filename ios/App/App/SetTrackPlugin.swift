@@ -29,8 +29,23 @@ final class SetTrackEngine: NSObject, CLLocationManagerDelegate {
     private var lastBufferedMs: Double = 0
     private var session: AnyObject?   // CLBackgroundActivitySession on iOS 17+
 
-    // One fix per 20 s is plenty: a run closes only after a 5 min gap.
+    // Never two written fixes closer than this (a guard; the duty cycle
+    // below already spaces them ~2 min apart).
     private let minSpacingMs: Double = 20_000
+    // Duty cycle, so it doesn't drain the battery: a sample every few
+    // minutes, not continuous GPS. Inside a window the GPS takes ONE precise fix
+    // every 2 min and idles at coarse (cell/Wi-Fi, no GPS chip) accuracy in
+    // between. A run closes after a 5 min gap (ATTEND_GAP_MS in data.jsx),
+    // so 2 min survives one missed sample: 2 x 2 min + 30 s timeout < 5 min.
+    private let sampleEveryMs: Double = 120_000
+    // A sample that hasn't reached sampleAccuracyM by then ends with the best
+    // fix it saw (the page drops anything coarser than 100 m).
+    private let sampleTimeoutMs: Double = 30_000
+    private var sampleAccuracyM: Double { saver ? 100 : 30 }
+    private(set) var sampling = false
+    private var sampleStartMs: Double = 0
+    private var nextSampleMs: Double = 0
+    private var sampleBest: CLLocation?
     // The session may start this long before a window, so a phone locked in
     // the afternoon still counts the evening's sets. Between windows it runs
     // at coarse accuracy and holds nothing.
@@ -97,6 +112,7 @@ final class SetTrackEngine: NSObject, CLLocationManagerDelegate {
     func startTest(minutes: Double) {
         testUntilMs = nowMs() + minutes * 60_000
         testFixes = 0
+        nextSampleMs = 0
         evaluate(canStart: appInFront)
     }
     func stopTest() { testUntilMs = 0; evaluate(canStart: false) }
@@ -114,20 +130,54 @@ final class SetTrackEngine: NSObject, CLLocationManagerDelegate {
         if tracking { applyAccuracy(now) }
         timer?.invalidate(); timer = nil
         if tracking {
-            timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: false) { [weak self] _ in
+            // Wake for the next sample (or a running sample's timeout), at
+            // most a minute out. The location session keeps the app running
+            // with the screen locked, so the timer fires.
+            var wait: Double = 60
+            if testing || inWindow(now) {
+                let due = sampling ? sampleStartMs + sampleTimeoutMs : nextSampleMs
+                wait = min(60, max(1, (due - now) / 1000))
+            }
+            timer = Timer.scheduledTimer(withTimeInterval: wait, repeats: false) { [weak self] _ in
                 self?.evaluate(canStart: false)
             }
         }
     }
 
-    // Best accuracy inside a window (100 m in battery saver); coarse between
-    // windows, only to keep the session alive.
+    // Inside a window: precise only while a sample runs (100 m in battery
+    // saver), coarse between samples. Between windows: coarse, only to keep
+    // the session alive.
     private func applyAccuracy(_ now: Double) {
         if testing || inWindow(now) {
+            if sampling && now - sampleStartMs >= sampleTimeoutMs { endSample() }
+            if !sampling && now >= nextSampleMs { sampling = true; sampleStartMs = now; sampleBest = nil }
+        } else {
+            sampling = false; sampleBest = nil
+        }
+        if sampling {
             manager.desiredAccuracy = saver ? kCLLocationAccuracyHundredMeters : kCLLocationAccuracyBest
+            manager.distanceFilter = kCLDistanceFilterNone
         } else {
             manager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
+            manager.distanceFilter = 1000
         }
+    }
+
+    // Ends the running sample: its best fix is counted (battery test) or
+    // written (inside a window), and the next sample keeps the 2 min cadence.
+    private func endSample() {
+        sampling = false
+        nextSampleMs = sampleStartMs + sampleEveryMs
+        guard let loc = sampleBest else { return }
+        sampleBest = nil
+        let ms = loc.timestamp.timeIntervalSince1970 * 1000
+        if testing { testFixes += 1; return }
+        // Outside every window nothing is written.
+        guard inWindow(ms), ms - lastBufferedMs >= minSpacingMs else { return }
+        lastBufferedMs = ms
+        append(["lat": loc.coordinate.latitude, "lng": loc.coordinate.longitude,
+                "accuracy": loc.horizontalAccuracy, "timestamp": ms, "atMs": nowMs(),
+                "festivalId": festivalId ?? ""])
     }
 
     private func startTracking() {
@@ -142,6 +192,7 @@ final class SetTrackEngine: NSObject, CLLocationManagerDelegate {
     private func stopTracking() {
         guard tracking else { return }
         tracking = false
+        sampling = false; sampleBest = nil; nextSampleMs = 0
         timer?.invalidate(); timer = nil
         manager.stopUpdatingLocation()
         manager.allowsBackgroundLocationUpdates = false
@@ -155,17 +206,20 @@ final class SetTrackEngine: NSObject, CLLocationManagerDelegate {
         evaluate(canStart: false)
     }
 
+    // Between samples updates are coarse and ignored. During a sample the
+    // most accurate fresh fix is kept; one good enough ends the sample early,
+    // so the GPS chip is on for seconds, not the whole 2 min.
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard tracking, let loc = locations.last, loc.horizontalAccuracy >= 0 else { return }
-        let now = nowMs()
-        let ms = loc.timestamp.timeIntervalSince1970 * 1000
-        if testing { testFixes += 1; return }
-        // Outside every window nothing is written.
-        guard inWindow(ms), ms - lastBufferedMs >= minSpacingMs else { return }
-        lastBufferedMs = ms
-        append(["lat": loc.coordinate.latitude, "lng": loc.coordinate.longitude,
-                "accuracy": loc.horizontalAccuracy, "timestamp": ms, "atMs": now,
-                "festivalId": festivalId ?? ""])
+        guard tracking, sampling else { return }
+        for loc in locations where loc.horizontalAccuracy >= 0 {
+            // A cached fix from before this sample began is not a new reading.
+            guard loc.timestamp.timeIntervalSince1970 * 1000 >= sampleStartMs else { continue }
+            if sampleBest == nil || loc.horizontalAccuracy < sampleBest!.horizontalAccuracy { sampleBest = loc }
+        }
+        if let b = sampleBest, b.horizontalAccuracy <= sampleAccuracyM {
+            endSample()
+            evaluate(canStart: false)
+        }
     }
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {}

@@ -150,6 +150,38 @@ const PBX = readFileSync(join(ROOT, "ios/App/App.xcodeproj/project.pbxproj"), "u
 const conds = [...PBX.matchAll(/SWIFT_ACTIVE_COMPILATION_CONDITIONS = ([^;]*);[\s\S]*?name = (\w+);/g)].map(m => [m[2], m[1].trim()]);
 check(conds.length > 0 && conds.every(([n, v]) => n === "Debug" ? /DEBUG/.test(v) : !/DEBUG/.test(v)), "DEBUG is defined in Debug configurations only (" + conds.map(c => c.join("=")).join(", ") + ")");
 check(/if testing \{ testFixes \+= 1; return \}/.test(SWIFT), "the battery test writes no fix, only a count");
+// Duty cycle (a sample every few minutes, so it doesn't drain the battery). One precise sample every sampleEveryMs, coarse in between,
+// and the cadence must survive one missed sample inside data.jsx's run gap.
+const DATA_SRC = readFileSync(join(ROOT, "data.jsx"), "utf8");
+const gapMin = Number((DATA_SRC.match(/const ATTEND_GAP_MS = (\d+) \* 60000;/) || [])[1]);
+const dutyChecks = src => {
+  const num = re => Number(((src.match(re) || [])[1] || "").replace(/_/g, ""));
+  const every = num(/private let sampleEveryMs: Double = ([\d_]+)/), tmo = num(/private let sampleTimeoutMs: Double = ([\d_]+)/);
+  return [
+    [every > 0 && tmo > 0 && gapMin > 0 && 2 * every + tmo < gapMin * 60000, "cadence survives one missed sample: 2 x " + every / 1000 + " s + " + tmo / 1000 + " s < " + gapMin + " min run gap"],
+    [every >= 60000, "samples are at least a minute apart (not continuous GPS)"],
+    [/if sampling \{\s*manager\.desiredAccuracy = saver \? kCLLocationAccuracyHundredMeters : kCLLocationAccuracyBest[\s\S]{0,120}\} else \{\s*manager\.desiredAccuracy = kCLLocationAccuracyThreeKilometers/.test(src), "precise only while a sample runs; coarse (no GPS chip) in between"],
+    [/guard tracking, sampling else \{ return \}/.test(src), "location updates between samples are ignored"],
+    [/>= sampleStartMs else \{ continue \}/.test(src), "a cached fix from before the sample is not a new reading"],
+    [/<= sampleAccuracyM \{\s*endSample\(\)/.test(src), "a good-enough fix ends the sample early (GPS on for seconds)"],
+  ];
+};
+for (const [ok, label] of dutyChecks(SWIFT)) check(ok, label);
+// Each duty-cycle check must be able to fail: one mutation per check.
+{
+  const muts = [
+    [/sampleEveryMs: Double = [\d_]+/, "sampleEveryMs: Double = 180_000"],
+    [/sampleEveryMs: Double = [\d_]+/, "sampleEveryMs: Double = 20_000"],
+    [/if sampling \{\s*manager\.desiredAccuracy/, "if true { manager.desiredAccuracy"],
+    [/guard tracking, sampling else/, "guard tracking else"],
+    [/>= sampleStartMs else \{ continue \}/, ">= 0 else { continue }"],
+    [/<= sampleAccuracyM \{\s*endSample\(\)/, "<= 0 { _ = 0"],
+  ];
+  let caught = 0;
+  muts.forEach(([re, to], i) => { const m = SWIFT.replace(re, to); if (m !== SWIFT && !dutyChecks(m)[i][0]) caught++; });
+  check(caught === muts.length, "duty-cycle mutations caught " + caught + "/" + muts.length);
+}
+
 
 // ── 4. Info.plist ──
 const PLIST = readFileSync(join(ROOT, "ios/App/App/Info.plist"), "utf8");
