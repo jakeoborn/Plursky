@@ -1354,8 +1354,11 @@ ${live.map(line).join('\n')}
 }
 // The rows no calendar can move. --check holds each one to what is committed:
 // its ledger fingerprint and date, and its <lastmod> in sitemap.xml. The
-// festival rows stay strict-only (see norm above).
-const COMMIT_ROWS = [`${ORIGIN}/`, `${ORIGIN}/terms.html`, `${ORIGIN}/privacy.html`];
+// festival rows stay strict-only (see norm above). /welcome/ is one of them:
+// gen-welcome-page.mjs puts no "today" in the file, so only a commit moves it.
+// Without it, running this script BEFORE gen-welcome-page left the welcome row
+// fingerprinting the old page, and plain --check passed anyway (#563).
+const COMMIT_ROWS = [`${ORIGIN}/`, `${ORIGIN}/welcome/`, `${ORIGIN}/terms.html`, `${ORIGIN}/privacy.html`];
 if (CHECK && !CHECK_STRICT) {
   const committed = existsSync(LEDGER) ? JSON.parse(readFileSync(LEDGER, 'utf8')) : {};
   const published = {};
