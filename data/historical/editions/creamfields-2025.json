@@ -1,0 +1,3000 @@
+{
+ "id": "creamfields-2025",
+ "festivalId": "creamfields",
+ "name": "Creamfields 2025",
+ "year": 2025,
+ "timezone": "Europe/London",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2025-08-21",
+   "label": "Thursday"
+  },
+  {
+   "day": 2,
+   "date": "2025-08-22",
+   "label": "Friday"
+  },
+  {
+   "day": 3,
+   "date": "2025-08-23",
+   "label": "Saturday"
+  },
+  {
+   "day": 4,
+   "date": "2025-08-24",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "creamfields-2025:cream",
+   "name": "Cream"
+  },
+  {
+   "id": "creamfields-2025:rong",
+   "name": "Rong"
+  },
+  {
+   "id": "creamfields-2025:cream-terrace",
+   "name": "Cream Terrace"
+  },
+  {
+   "id": "creamfields-2025:nation",
+   "name": "Nation"
+  },
+  {
+   "id": "creamfields-2025:arc",
+   "name": "Arc"
+  },
+  {
+   "id": "creamfields-2025:apex-with-capital-dance",
+   "name": "APEX with Capital Dance"
+  },
+  {
+   "id": "creamfields-2025:steel-yard",
+   "name": "Steel Yard"
+  },
+  {
+   "id": "creamfields-2025:halo-presented-by-shein",
+   "name": "HALO presented by SHEIN"
+  },
+  {
+   "id": "creamfields-2025:teletech",
+   "name": "Teletech"
+  },
+  {
+   "id": "creamfields-2025:misfit",
+   "name": "Misfit"
+  },
+  {
+   "id": "creamfields-2025:the-forest",
+   "name": "The Forest"
+  },
+  {
+   "id": "creamfields-2025:pepsi-presents-future-sounds-of-egypt",
+   "name": "Pepsi presents Future Sounds of Egypt"
+  },
+  {
+   "id": "creamfields-2025:drip-hospitality",
+   "name": "drip Hospitality"
+  },
+  {
+   "id": "creamfields-2025:sub-aural",
+   "name": "Sub_Aural"
+  },
+  {
+   "id": "creamfields-2025:pepsi-presents-rong",
+   "name": "Pepsi presents RONG"
+  },
+  {
+   "id": "creamfields-2025:pepsi-presents-goodgreef-xtra-hard",
+   "name": "Pepsi presents Goodgreef Xtra-Hard"
+  },
+  {
+   "id": "creamfields-2025:fatboy-slim-loves",
+   "name": "Fatboy Slim Loves"
+  },
+  {
+   "id": "creamfields-2025:pepsi-presents-full-on-trance",
+   "name": "Pepsi presents Full On Trance"
+  },
+  {
+   "id": "creamfields-2025:pepsi-presents-full-on",
+   "name": "Pepsi presents Full On"
+  }
+ ],
+ "artists": [
+  {
+   "id": "creamfields-2025:kc-lights",
+   "name": "KC Lights",
+   "key": "kc-lights",
+   "performers": [
+    "kc-lights"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "creamfields-2025:cream"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:chapter-and-verse",
+   "name": "Chapter & Verse",
+   "key": "chapter-and-verse",
+   "performers": [
+    "chapter-and-verse"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "creamfields-2025:cream"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:camrinwatsin",
+   "name": "CamrinWatsin",
+   "key": "camrinwatsin",
+   "performers": [
+    "camrinwatsin"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "creamfields-2025:cream"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:camden-cox",
+   "name": "Camden Cox",
+   "key": "camden-cox",
+   "performers": [
+    "camden-cox"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "creamfields-2025:cream"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:beyond-chicago",
+   "name": "Beyond Chicago",
+   "key": "beyond-chicago",
+   "performers": [
+    "beyond-chicago"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "creamfields-2025:cream"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:m-hummo",
+   "name": "M.hummo",
+   "key": "m-hummo",
+   "performers": [
+    "m-hummo"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "creamfields-2025:cream"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:thrillseekers",
+   "name": "Thrillseekers",
+   "key": "thrillseekers",
+   "performers": [
+    "thrillseekers"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "creamfields-2025:rong"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:christina-novelli",
+   "name": "Christina Novelli",
+   "key": "christina-novelli",
+   "performers": [
+    "christina-novelli"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "creamfields-2025:rong"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:luvstruck",
+   "name": "Luvstruck",
+   "key": "luvstruck",
+   "performers": [
+    "luvstruck"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "creamfields-2025:rong"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:ciaran-mcauley",
+   "name": "Ciaran Mcauley",
+   "key": "ciaran-mcauley",
+   "performers": [
+    "ciaran-mcauley"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "creamfields-2025:rong"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:modea",
+   "name": "Modea",
+   "key": "modea",
+   "performers": [
+    "modea"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "creamfields-2025:rong"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:gia",
+   "name": "GIA",
+   "key": "gia",
+   "performers": [
+    "gia"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "creamfields-2025:rong"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:laidback-luke",
+   "name": "Laidback Luke",
+   "key": "laidback-luke",
+   "performers": [
+    "laidback-luke"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "creamfields-2025:cream-terrace"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:sick-individuals",
+   "name": "Sick Individuals",
+   "key": "sick-individuals",
+   "performers": [
+    "sick-individuals"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "creamfields-2025:cream-terrace"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:smack",
+   "name": "Smack",
+   "key": "smack",
+   "performers": [
+    "smack"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "creamfields-2025:cream-terrace"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:rave-republic",
+   "name": "Rave Republic",
+   "key": "rave-republic",
+   "performers": [
+    "rave-republic"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "creamfields-2025:cream-terrace"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:calvin-logue",
+   "name": "Calvin Logue",
+   "key": "calvin-logue",
+   "performers": [
+    "calvin-logue"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "creamfields-2025:cream-terrace"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:kola",
+   "name": "Kola",
+   "key": "kola",
+   "performers": [
+    "kola"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "creamfields-2025:cream-terrace"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:schak",
+   "name": "Schak",
+   "key": "schak",
+   "performers": [
+    "schak"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "creamfields-2025:nation"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:jason-cluff",
+   "name": "Jason Cluff",
+   "key": "jason-cluff",
+   "performers": [
+    "jason-cluff"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "creamfields-2025:nation"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:bk",
+   "name": "BK",
+   "key": "bk",
+   "performers": [
+    "bk"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "creamfields-2025:nation"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:jezza-and-jod",
+   "name": "Jezza & Jod",
+   "key": "jezza-and-jod",
+   "performers": [
+    "jezza-and-jod"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "creamfields-2025:nation"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:yasmin-gardezi",
+   "name": "Yasmin Gardezi",
+   "key": "yasmin-gardezi",
+   "performers": [
+    "yasmin-gardezi"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "creamfields-2025:nation"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:toni",
+   "name": "Toni",
+   "key": "toni",
+   "performers": [
+    "toni"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "creamfields-2025:nation"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:chase-and-status",
+   "name": "Chase & Status",
+   "key": "chase-and-status",
+   "performers": [
+    "chase-and-status"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:arc"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:sub-focus",
+   "name": "Sub Focus",
+   "key": "sub-focus",
+   "performers": [
+    "sub-focus"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:arc"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:arielle-free",
+   "name": "Arielle Free",
+   "key": "arielle-free",
+   "performers": [
+    "arielle-free"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:arc"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:fisher",
+   "name": "Fisher",
+   "key": "fisher",
+   "performers": [
+    "fisher"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:apex-with-capital-dance"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:vintage-culture",
+   "name": "Vintage Culture",
+   "key": "vintage-culture",
+   "performers": [
+    "vintage-culture"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:apex-with-capital-dance"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:mau-p",
+   "name": "Mau P",
+   "key": "mau-p",
+   "performers": [
+    "mau-p"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:apex-with-capital-dance"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:franky-rizardo",
+   "name": "Franky Rizardo",
+   "key": "franky-rizardo",
+   "performers": [
+    "franky-rizardo"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:apex-with-capital-dance"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:eric-prydz",
+   "name": "Eric Prydz",
+   "key": "eric-prydz",
+   "performers": [
+    "eric-prydz"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:steel-yard"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:adam-beyer",
+   "name": "Adam Beyer",
+   "key": "adam-beyer",
+   "performers": [
+    "adam-beyer"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:steel-yard"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:john-summit",
+   "name": "John Summit",
+   "key": "john-summit",
+   "performers": [
+    "john-summit"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:steel-yard"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:cristoph",
+   "name": "Cristoph",
+   "key": "cristoph",
+   "performers": [
+    "cristoph"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:steel-yard"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:beccs-vernon",
+   "name": "Beccs Vernon",
+   "key": "beccs-vernon",
+   "performers": [
+    "beccs-vernon"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:steel-yard"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:jamie-jones",
+   "name": "Jamie Jones",
+   "key": "jamie-jones",
+   "performers": [
+    "jamie-jones"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:halo-presented-by-shein"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:hot-since-82",
+   "name": "Hot Since 82",
+   "key": "hot-since-82",
+   "performers": [
+    "hot-since-82"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:halo-presented-by-shein"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:rossi",
+   "name": "Rossi.",
+   "key": "rossi",
+   "performers": [
+    "rossi"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:halo-presented-by-shein"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:alisha",
+   "name": "Alisha",
+   "key": "alisha",
+   "performers": [
+    "alisha"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:halo-presented-by-shein"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:goosey",
+   "name": "Goosey",
+   "key": "goosey",
+   "performers": [
+    "goosey"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:halo-presented-by-shein"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:alex-farell-b2b-sikoti",
+   "name": "Alex Farell B2B Sikoti",
+   "key": "alex-farell-b2b-sikoti",
+   "performers": [
+    "alex-farell",
+    "sikoti"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:teletech"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:basswell-b2b-onlynumbers",
+   "name": "Basswell B2B Onlynumbers",
+   "key": "basswell-b2b-onlynumbers",
+   "performers": [
+    "basswell",
+    "onlynumbers"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:teletech"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:danielle-ciuro",
+   "name": "Danielle Ciuro",
+   "key": "danielle-ciuro",
+   "performers": [
+    "danielle-ciuro"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:teletech"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:fantasm",
+   "name": "Fantasm",
+   "key": "fantasm",
+   "performers": [
+    "fantasm"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:teletech"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:holy-priest",
+   "name": "Holy Priest",
+   "key": "holy-priest",
+   "performers": [
+    "holy-priest"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:teletech"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:jazzy-b2b-jowi",
+   "name": "Jazzy B2B Jowi",
+   "key": "jazzy-b2b-jowi",
+   "performers": [
+    "jazzy",
+    "jowi"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:teletech"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:ben-nicky",
+   "name": "Ben Nicky",
+   "key": "ben-nicky",
+   "performers": [
+    "ben-nicky"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:misfit"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:darren-styles",
+   "name": "Darren Styles",
+   "key": "darren-styles",
+   "performers": [
+    "darren-styles"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:misfit"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:rooler",
+   "name": "Rooler",
+   "key": "rooler",
+   "performers": [
+    "rooler"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:misfit"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:marlo",
+   "name": "Marlo",
+   "key": "marlo",
+   "performers": [
+    "marlo"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:misfit"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:andy-whitby",
+   "name": "Andy Whitby",
+   "key": "andy-whitby",
+   "performers": [
+    "andy-whitby"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:misfit"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:david-rust",
+   "name": "David Rust",
+   "key": "david-rust",
+   "performers": [
+    "david-rust"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:misfit"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:tyler-jack",
+   "name": "Tyler Jack",
+   "key": "tyler-jack",
+   "performers": [
+    "tyler-jack"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:misfit"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:brad-pickle",
+   "name": "Brad Pickle",
+   "key": "brad-pickle",
+   "performers": [
+    "brad-pickle"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:misfit"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:maddix",
+   "name": "Maddix",
+   "key": "maddix",
+   "performers": [
+    "maddix"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:misfit"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:eats-everything",
+   "name": "Eats Everything",
+   "key": "eats-everything",
+   "performers": [
+    "eats-everything"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:the-forest"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:sam-divine",
+   "name": "Sam Divine",
+   "key": "sam-divine",
+   "performers": [
+    "sam-divine"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:the-forest"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:kilimanjaro-b2b-mele",
+   "name": "Kilimanjaro B2B Melé",
+   "key": "kilimanjaro-b2b-mele",
+   "performers": [
+    "kilimanjaro",
+    "mele"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:the-forest"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:oppidan",
+   "name": "Oppidan",
+   "key": "oppidan",
+   "performers": [
+    "oppidan"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:the-forest"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:diffrent",
+   "name": "Diffrent",
+   "key": "diffrent",
+   "performers": [
+    "diffrent"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:the-forest"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:aly-and-fila",
+   "name": "Aly & Fila",
+   "key": "aly-and-fila",
+   "performers": [
+    "aly-and-fila"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:pepsi-presents-future-sounds-of-egypt"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:ferry-corsten",
+   "name": "Ferry Corsten",
+   "key": "ferry-corsten",
+   "performers": [
+    "ferry-corsten"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:pepsi-presents-future-sounds-of-egypt"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:alessandra-roncone",
+   "name": "Alessandra Roncone",
+   "key": "alessandra-roncone",
+   "performers": [
+    "alessandra-roncone"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:pepsi-presents-future-sounds-of-egypt"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:ben-gold",
+   "name": "Ben Gold",
+   "key": "ben-gold",
+   "performers": [
+    "ben-gold"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:pepsi-presents-future-sounds-of-egypt"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:chris-metcalfe",
+   "name": "Chris Metcalfe",
+   "key": "chris-metcalfe",
+   "performers": [
+    "chris-metcalfe"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:pepsi-presents-future-sounds-of-egypt"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:factor-b",
+   "name": "Factor B",
+   "key": "factor-b",
+   "performers": [
+    "factor-b"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:pepsi-presents-future-sounds-of-egypt"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:ruben-de-ronde",
+   "name": "Ruben de Ronde",
+   "key": "ruben-de-ronde",
+   "performers": [
+    "ruben-de-ronde"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:pepsi-presents-future-sounds-of-egypt"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:sneijder-b2b-paul-denton",
+   "name": "Sneijder B2B Paul Denton",
+   "key": "sneijder-b2b-paul-denton",
+   "performers": [
+    "sneijder",
+    "paul-denton"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:pepsi-presents-future-sounds-of-egypt"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:rob-crouch",
+   "name": "Rob Crouch",
+   "key": "rob-crouch",
+   "performers": [
+    "rob-crouch"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:drip-hospitality"
+    },
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:drip-hospitality"
+    },
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:drip-hospitality"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:murfi",
+   "name": "Murfi",
+   "key": "murfi",
+   "performers": [
+    "murfi"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:drip-hospitality"
+    },
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:drip-hospitality"
+    },
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:drip-hospitality"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:molly-mouse",
+   "name": "Molly Mouse",
+   "key": "molly-mouse",
+   "performers": [
+    "molly-mouse"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:drip-hospitality"
+    },
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:drip-hospitality"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:lee-ward",
+   "name": "Lee Ward",
+   "key": "lee-ward",
+   "performers": [
+    "lee-ward"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:drip-hospitality"
+    },
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:drip-hospitality"
+    },
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:drip-hospitality"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:mln",
+   "name": "MLN",
+   "key": "mln",
+   "performers": [
+    "mln"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:drip-hospitality"
+    },
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:drip-hospitality"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:pete-james",
+   "name": "Pete James",
+   "key": "pete-james",
+   "performers": [
+    "pete-james"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "creamfields-2025:drip-hospitality"
+    },
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:drip-hospitality"
+    },
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:drip-hospitality"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:swedish-house-mafia",
+   "name": "Swedish House Mafia",
+   "key": "swedish-house-mafia",
+   "performers": [
+    "swedish-house-mafia"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:arc"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:mk",
+   "name": "MK",
+   "key": "mk",
+   "performers": [
+    "mk"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:arc"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:clementine-douglas",
+   "name": "Clementine Douglas",
+   "key": "clementine-douglas",
+   "performers": [
+    "clementine-douglas"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:arc"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:third-party",
+   "name": "Third Party",
+   "key": "third-party",
+   "performers": [
+    "third-party"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:arc"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:hardwell",
+   "name": "Hardwell",
+   "key": "hardwell",
+   "performers": [
+    "hardwell"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:apex-with-capital-dance"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:ben-hemsley",
+   "name": "Ben Hemsley",
+   "key": "ben-hemsley",
+   "performers": [
+    "ben-hemsley"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:apex-with-capital-dance"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:dimitri-vegas-and-like-mike",
+   "name": "Dimitri Vegas & Like Mike",
+   "key": "dimitri-vegas-and-like-mike",
+   "performers": [
+    "dimitri-vegas-and-like-mike"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:apex-with-capital-dance"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:argy",
+   "name": "Argy",
+   "key": "argy",
+   "performers": [
+    "argy"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:apex-with-capital-dance"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:beauz",
+   "name": "Beauz",
+   "key": "beauz",
+   "performers": [
+    "beauz"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:apex-with-capital-dance"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:chris-stussy",
+   "name": "Chris Stussy",
+   "key": "chris-stussy",
+   "performers": [
+    "chris-stussy"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:apex-with-capital-dance"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:josh-baker",
+   "name": "Josh Baker",
+   "key": "josh-baker",
+   "performers": [
+    "josh-baker"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:apex-with-capital-dance"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:sosa",
+   "name": "SOSA",
+   "key": "sosa",
+   "performers": [
+    "sosa"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:apex-with-capital-dance"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:ellia-jaya",
+   "name": "Ellia Jaya",
+   "key": "ellia-jaya",
+   "performers": [
+    "ellia-jaya"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:apex-with-capital-dance"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:amelie-lens",
+   "name": "Amelie Lens",
+   "key": "amelie-lens",
+   "performers": [
+    "amelie-lens"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:steel-yard"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:camelphat",
+   "name": "Camelphat",
+   "key": "camelphat",
+   "performers": [
+    "camelphat"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:steel-yard"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:chris-stussy-b2b-josh-baker",
+   "name": "Chris Stussy B2B Josh Baker",
+   "key": "chris-stussy-b2b-josh-baker",
+   "performers": [
+    "chris-stussy",
+    "josh-baker"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:steel-yard"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:dom-dolla",
+   "name": "Dom Dolla",
+   "key": "dom-dolla",
+   "performers": [
+    "dom-dolla"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:steel-yard"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:eli-brown",
+   "name": "Eli Brown",
+   "key": "eli-brown",
+   "performers": [
+    "eli-brown"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:steel-yard"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:marco-carola",
+   "name": "Marco Carola",
+   "key": "marco-carola",
+   "performers": [
+    "marco-carola"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:steel-yard"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:pete-tong",
+   "name": "Pete Tong",
+   "key": "pete-tong",
+   "performers": [
+    "pete-tong"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:steel-yard"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:sara-landry",
+   "name": "Sara Landry",
+   "key": "sara-landry",
+   "performers": [
+    "sara-landry"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:steel-yard"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:lau",
+   "name": "Lau",
+   "key": "lau",
+   "performers": [
+    "lau"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:steel-yard"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:patrick-topping",
+   "name": "Patrick Topping",
+   "key": "patrick-topping",
+   "performers": [
+    "patrick-topping"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:halo-presented-by-shein"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:max-styler",
+   "name": "Max Styler",
+   "key": "max-styler",
+   "performers": [
+    "max-styler"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:halo-presented-by-shein"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:patrick-topping-b2b-gaskin",
+   "name": "Patrick Topping B2B Gaskin",
+   "key": "patrick-topping-b2b-gaskin",
+   "performers": [
+    "patrick-topping",
+    "gaskin"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:halo-presented-by-shein"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:prospa",
+   "name": "Prospa",
+   "key": "prospa",
+   "performers": [
+    "prospa"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:halo-presented-by-shein"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:raphi",
+   "name": "Raphi",
+   "key": "raphi",
+   "performers": [
+    "raphi"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:halo-presented-by-shein"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:solardo",
+   "name": "Solardo",
+   "key": "solardo",
+   "performers": [
+    "solardo"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:halo-presented-by-shein"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:blk",
+   "name": "blk.",
+   "key": "blk",
+   "performers": [
+    "blk"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:teletech"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:cloudy",
+   "name": "Cloudy",
+   "key": "cloudy",
+   "performers": [
+    "cloudy"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:teletech"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:faster-horses-b2b-morgan-seatree",
+   "name": "Faster Horses B2B Morgan Seatree",
+   "key": "faster-horses-b2b-morgan-seatree",
+   "performers": [
+    "faster-horses",
+    "morgan-seatree"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:teletech"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:funk-tribu-b2b-bad-boombox",
+   "name": "Funk Tribu B2B Bad Boombox",
+   "key": "funk-tribu-b2b-bad-boombox",
+   "performers": [
+    "funk-tribu",
+    "bad-boombox"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:teletech"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:interplanetary-criminal",
+   "name": "Interplanetary Criminal",
+   "key": "interplanetary-criminal",
+   "performers": [
+    "interplanetary-criminal"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:teletech"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:kander",
+   "name": "Kander",
+   "key": "kander",
+   "performers": [
+    "kander"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:teletech"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:kettama",
+   "name": "Kettama",
+   "key": "kettama",
+   "performers": [
+    "kettama"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:teletech"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:novah",
+   "name": "Novah",
+   "key": "novah",
+   "performers": [
+    "novah"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:teletech"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:patrick-mason",
+   "name": "Patrick Mason",
+   "key": "patrick-mason",
+   "performers": [
+    "patrick-mason"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:teletech"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:princess-elf-bar",
+   "name": "Princess Elf Bar",
+   "key": "princess-elf-bar",
+   "performers": [
+    "princess-elf-bar"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:teletech"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:andy-c",
+   "name": "Andy C",
+   "key": "andy-c",
+   "performers": [
+    "andy-c"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:sub-aural"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:bou-and-b-live-247",
+   "name": "Bou & B Live 247",
+   "key": "bou-and-b-live-247",
+   "performers": [
+    "bou-and-b-live-247"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:sub-aural"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:culture-shock-b2b-grafix",
+   "name": "Culture Shock B2B Grafix",
+   "key": "culture-shock-b2b-grafix",
+   "performers": [
+    "culture-shock",
+    "grafix"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:sub-aural"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:dimension",
+   "name": "Dimension",
+   "key": "dimension",
+   "performers": [
+    "dimension"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:sub-aural"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:friction",
+   "name": "Friction",
+   "key": "friction",
+   "performers": [
+    "friction"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:sub-aural"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:hybrid-minds",
+   "name": "Hybrid Minds",
+   "key": "hybrid-minds",
+   "performers": [
+    "hybrid-minds"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:sub-aural"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:koven",
+   "name": "Koven",
+   "key": "koven",
+   "performers": [
+    "koven"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:sub-aural"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:mozey",
+   "name": "Mozey",
+   "key": "mozey",
+   "performers": [
+    "mozey"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:sub-aural"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:north-base",
+   "name": "North Base",
+   "key": "north-base",
+   "performers": [
+    "north-base"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:sub-aural"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:rova",
+   "name": "Rova",
+   "key": "rova",
+   "performers": [
+    "rova"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:sub-aural"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:gaskin",
+   "name": "Gaskin",
+   "key": "gaskin",
+   "performers": [
+    "gaskin"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:the-forest"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:jwave",
+   "name": "JWAVE",
+   "key": "jwave",
+   "performers": [
+    "jwave"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:the-forest"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:locklead",
+   "name": "Locklead",
+   "key": "locklead",
+   "performers": [
+    "locklead"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:the-forest"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:luke-dean",
+   "name": "Luke Dean",
+   "key": "luke-dean",
+   "performers": [
+    "luke-dean"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:the-forest"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:nautica",
+   "name": "Nautica",
+   "key": "nautica",
+   "performers": [
+    "nautica"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:the-forest"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:obsk-r",
+   "name": "Obskϋr",
+   "key": "obsk-r",
+   "performers": [
+    "obsk-r"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:the-forest"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:paige-tomlinson",
+   "name": "Paige Tomlinson",
+   "key": "paige-tomlinson",
+   "performers": [
+    "paige-tomlinson"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:the-forest"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:sidney-charles",
+   "name": "Sidney Charles",
+   "key": "sidney-charles",
+   "performers": [
+    "sidney-charles"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:the-forest"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:bryan-kearney-b2b-mauro-picotto",
+   "name": "Bryan Kearney B2B Mauro Picotto",
+   "key": "bryan-kearney-b2b-mauro-picotto",
+   "performers": [
+    "bryan-kearney",
+    "mauro-picotto"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:pepsi-presents-rong"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:john-o-callaghan",
+   "name": "John O’Callaghan",
+   "key": "john-o-callaghan",
+   "performers": [
+    "john-o-callaghan"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:pepsi-presents-rong"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:will-atkinson",
+   "name": "Will Atkinson",
+   "key": "will-atkinson",
+   "performers": [
+    "will-atkinson"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:pepsi-presents-rong"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:symmetrik",
+   "name": "Symmetrik",
+   "key": "symmetrik",
+   "performers": [
+    "symmetrik"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:pepsi-presents-rong"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:daxson",
+   "name": "Daxson",
+   "key": "daxson",
+   "performers": [
+    "daxson"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:pepsi-presents-rong"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:matty-ralph",
+   "name": "Matty Ralph",
+   "key": "matty-ralph",
+   "performers": [
+    "matty-ralph"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:pepsi-presents-rong"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:liam-wilson",
+   "name": "Liam Wilson",
+   "key": "liam-wilson",
+   "performers": [
+    "liam-wilson"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:pepsi-presents-rong"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:tnt",
+   "name": "TNT",
+   "key": "tnt",
+   "performers": [
+    "tnt"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:pepsi-presents-goodgreef-xtra-hard"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:miss-k8",
+   "name": "Miss K8",
+   "key": "miss-k8",
+   "performers": [
+    "miss-k8"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:pepsi-presents-goodgreef-xtra-hard"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:adaro",
+   "name": "Adaro",
+   "key": "adaro",
+   "performers": [
+    "adaro"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:pepsi-presents-goodgreef-xtra-hard"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:ammara",
+   "name": "Ammara",
+   "key": "ammara",
+   "performers": [
+    "ammara"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:pepsi-presents-goodgreef-xtra-hard"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:klubfiller-and-storm",
+   "name": "Klubfiller & Storm",
+   "key": "klubfiller-and-storm",
+   "performers": [
+    "klubfiller-and-storm"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:pepsi-presents-goodgreef-xtra-hard"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:alex-kidd",
+   "name": "Alex Kidd",
+   "key": "alex-kidd",
+   "performers": [
+    "alex-kidd"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:pepsi-presents-goodgreef-xtra-hard"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:jesse-james",
+   "name": "Jesse James",
+   "key": "jesse-james",
+   "performers": [
+    "jesse-james"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "creamfields-2025:drip-hospitality"
+    },
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:drip-hospitality"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:david-guetta",
+   "name": "David Guetta",
+   "key": "david-guetta",
+   "performers": [
+    "david-guetta"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:arc"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:oliver-heldens",
+   "name": "Oliver Heldens",
+   "key": "oliver-heldens",
+   "performers": [
+    "oliver-heldens"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:arc"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:d-o-d",
+   "name": "D.O.D",
+   "key": "d-o-d",
+   "performers": [
+    "d-o-d"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:arc"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:jodie-harsh",
+   "name": "Jodie Harsh",
+   "key": "jodie-harsh",
+   "performers": [
+    "jodie-harsh"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:arc"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:amelia-preston",
+   "name": "Amelia Preston",
+   "key": "amelia-preston",
+   "performers": [
+    "amelia-preston"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:arc"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:anyma",
+   "name": "ANYMA",
+   "key": "anyma",
+   "performers": [
+    "anyma"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:apex-with-capital-dance"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:hannah-laing",
+   "name": "Hannah Laing",
+   "key": "hannah-laing",
+   "performers": [
+    "hannah-laing"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:apex-with-capital-dance"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:max-dean",
+   "name": "Max Dean",
+   "key": "max-dean",
+   "performers": [
+    "max-dean"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:apex-with-capital-dance"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:martin-garrix",
+   "name": "Martin Garrix",
+   "key": "martin-garrix",
+   "performers": [
+    "martin-garrix"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:apex-with-capital-dance"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:marsolo",
+   "name": "Marsolo",
+   "key": "marsolo",
+   "performers": [
+    "marsolo"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:apex-with-capital-dance"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:lucia-cors",
+   "name": "Lucia Cors",
+   "key": "lucia-cors",
+   "performers": [
+    "lucia-cors"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:apex-with-capital-dance"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:sonny-fodera",
+   "name": "Sonny Fodera",
+   "key": "sonny-fodera",
+   "performers": [
+    "sonny-fodera"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:steel-yard"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:gorgon-city",
+   "name": "Gorgon City",
+   "key": "gorgon-city",
+   "performers": [
+    "gorgon-city"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:steel-yard"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:duke-dumont",
+   "name": "Duke Dumont",
+   "key": "duke-dumont",
+   "performers": [
+    "duke-dumont"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:steel-yard"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:danny-howard",
+   "name": "Danny Howard",
+   "key": "danny-howard",
+   "performers": [
+    "danny-howard"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:steel-yard"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:jazzy",
+   "name": "Jazzy",
+   "key": "jazzy",
+   "performers": [
+    "jazzy"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:steel-yard"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:rob-mcpartland",
+   "name": "Rob McPartland",
+   "key": "rob-mcpartland",
+   "performers": [
+    "rob-mcpartland"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:steel-yard"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:ewan-mcvicar",
+   "name": "Ewan McVicar",
+   "key": "ewan-mcvicar",
+   "performers": [
+    "ewan-mcvicar"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:halo-presented-by-shein"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:four-tet",
+   "name": "Four Tet",
+   "key": "four-tet",
+   "performers": [
+    "four-tet"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:halo-presented-by-shein"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:salute",
+   "name": "Salute",
+   "key": "salute",
+   "performers": [
+    "salute"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:halo-presented-by-shein"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:chloe-robinson",
+   "name": "Chloé Robinson",
+   "key": "chloe-robinson",
+   "performers": [
+    "chloe-robinson"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:halo-presented-by-shein"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:villager",
+   "name": "Villager",
+   "key": "villager",
+   "performers": [
+    "villager"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:halo-presented-by-shein"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:fatboy-slim",
+   "name": "Fatboy Slim",
+   "key": "fatboy-slim",
+   "performers": [
+    "fatboy-slim"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:fatboy-slim-loves"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:miss-monique",
+   "name": "Miss Monique",
+   "key": "miss-monique",
+   "performers": [
+    "miss-monique"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:fatboy-slim-loves"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:luuk-van-dijk",
+   "name": "Luuk Van Dijk",
+   "key": "luuk-van-dijk",
+   "performers": [
+    "luuk-van-dijk"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:fatboy-slim-loves"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:l-p-rhythm",
+   "name": "L.P. Rhythm",
+   "key": "l-p-rhythm",
+   "performers": [
+    "l-p-rhythm"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:fatboy-slim-loves"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:joella-jackson",
+   "name": "Joella Jackson",
+   "key": "joella-jackson",
+   "performers": [
+    "joella-jackson"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:fatboy-slim-loves"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:azyr",
+   "name": "AZYR",
+   "key": "azyr",
+   "performers": [
+    "azyr"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:teletech"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:horsegiirl",
+   "name": "Horsegiirl",
+   "key": "horsegiirl",
+   "performers": [
+    "horsegiirl"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:teletech"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:i-hate-models",
+   "name": "I Hate Models",
+   "key": "i-hate-models",
+   "performers": [
+    "i-hate-models"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:teletech"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:ktk",
+   "name": "KTK",
+   "key": "ktk",
+   "performers": [
+    "ktk"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:teletech"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:nico-moreno",
+   "name": "Nico Moreno",
+   "key": "nico-moreno",
+   "performers": [
+    "nico-moreno"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:teletech"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:restricted",
+   "name": "Restricted",
+   "key": "restricted",
+   "performers": [
+    "restricted"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:teletech"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:boris-brejcha",
+   "name": "Boris Brejcha",
+   "key": "boris-brejcha",
+   "performers": [
+    "boris-brejcha"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:the-forest"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:franky-wah",
+   "name": "Franky Wah",
+   "key": "franky-wah",
+   "performers": [
+    "franky-wah"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:the-forest"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:layton-giordani",
+   "name": "Layton Giordani",
+   "key": "layton-giordani",
+   "performers": [
+    "layton-giordani"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:the-forest"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:james-organ",
+   "name": "James Organ",
+   "key": "james-organ",
+   "performers": [
+    "james-organ"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:the-forest"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:niva",
+   "name": "Niva",
+   "key": "niva",
+   "performers": [
+    "niva"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:the-forest"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:east-end-dubs",
+   "name": "East End Dubs",
+   "key": "east-end-dubs",
+   "performers": [
+    "east-end-dubs"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:the-forest"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:billy-gillies",
+   "name": "Billy Gillies",
+   "key": "billy-gillies",
+   "performers": [
+    "billy-gillies"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:pepsi-presents-full-on-trance"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:cosmic-gate",
+   "name": "Cosmic Gate",
+   "key": "cosmic-gate",
+   "performers": [
+    "cosmic-gate"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:pepsi-presents-full-on-trance"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:nifra",
+   "name": "Nifra",
+   "key": "nifra",
+   "performers": [
+    "nifra"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:pepsi-presents-full-on-trance"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:kimmic",
+   "name": "Kimmic",
+   "key": "kimmic",
+   "performers": [
+    "kimmic"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:pepsi-presents-full-on-trance"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:shugz",
+   "name": "Shugz",
+   "key": "shugz",
+   "performers": [
+    "shugz"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:pepsi-presents-full-on-trance"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:maria-healy",
+   "name": "Maria Healy",
+   "key": "maria-healy",
+   "performers": [
+    "maria-healy"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:pepsi-presents-full-on-trance"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:mark-roma",
+   "name": "Mark Roma",
+   "key": "mark-roma",
+   "performers": [
+    "mark-roma"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:pepsi-presents-full-on-trance"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:brennan-heart",
+   "name": "Brennan Heart",
+   "key": "brennan-heart",
+   "performers": [
+    "brennan-heart"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:pepsi-presents-full-on"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:uberjakd",
+   "name": "Uberjakd",
+   "key": "uberjakd",
+   "performers": [
+    "uberjakd"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:pepsi-presents-full-on"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:mddltn",
+   "name": "Mddltn",
+   "key": "mddltn",
+   "performers": [
+    "mddltn"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:pepsi-presents-full-on"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:dkh",
+   "name": "DKH",
+   "key": "dkh",
+   "performers": [
+    "dkh"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:pepsi-presents-full-on"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:luke-pompey",
+   "name": "Luke Pompey",
+   "key": "luke-pompey",
+   "performers": [
+    "luke-pompey"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:drip-hospitality"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:mr-jay",
+   "name": "Mr Jay",
+   "key": "mr-jay",
+   "performers": [
+    "mr-jay"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:drip-hospitality"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:jat",
+   "name": "JAT",
+   "key": "jat",
+   "performers": [
+    "jat"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:drip-hospitality"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:jamie-payne",
+   "name": "Jamie Payne",
+   "key": "jamie-payne",
+   "performers": [
+    "jamie-payne"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:drip-hospitality"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:drew-mooney",
+   "name": "Drew Mooney",
+   "key": "drew-mooney",
+   "performers": [
+    "drew-mooney"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:drip-hospitality"
+    }
+   ]
+  },
+  {
+   "id": "creamfields-2025:harry-mannion",
+   "name": "Harry Mannion",
+   "key": "harry-mannion",
+   "performers": [
+    "harry-mannion"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "creamfields-2025:drip-hospitality"
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "official_lineup_html",
+  "official": "https://creamfields.com/lineup/",
+  "captures": [
+   {
+    "page": "lineup",
+    "archivedUrl": "https://web.archive.org/web/20250825010416/https://creamfields.com/lineup/",
+    "captureTimestamp": "20250825010416",
+    "sha256": "3dfdf6c3a9d5488dc6fa9fd3e1f2fd9f954337dde7f2a77361c71d1ff5223b0f"
+   }
+  ]
+ },
+ "notes": [
+  {
+   "asOf": "2026-11-25",
+   "text": "The lineup as the festival's own page printed it the day after the festival. Five stage lists (Arc and APEX on Friday, APEX on Sunday, drip Hospitality on Friday and Saturday) ended \"+ more\" and were never completed, so some acts on those stages are not shown.",
+   "source": "https://web.archive.org/web/20250825010416/https://creamfields.com/lineup/"
+  }
+ ]
+}

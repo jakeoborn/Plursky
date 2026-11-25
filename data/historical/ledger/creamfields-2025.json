@@ -1,0 +1,485 @@
+{
+  "id": "creamfields-2025",
+  "method": "official_lineup_html",
+  "official": "https://creamfields.com/lineup/",
+  "format": "creamfields-lineup",
+  "window": {
+    "until": "2025-08-31",
+    "why": "captures more than 7 days after the last day show the next edition"
+  },
+  "chosen": "20250825010416",
+  "archivedUrl": "https://web.archive.org/web/20250825010416/https://creamfields.com/lineup/",
+  "sha256": "3dfdf6c3a9d5488dc6fa9fd3e1f2fd9f954337dde7f2a77361c71d1ff5223b0f",
+  "title": "Rockstar Energy presents Creamfields | lineup",
+  "relayedVia": "firecrawl",
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "creamfields",
+    "year": 2025,
+    "lifecycle": "occurred",
+    "dates": "2025-08-21..2025-08-24",
+    "evidence": "https://www.liverpoolworld.uk/read-this/creamfields-2025-review-5287242",
+    "published": "2025-08-25"
+  },
+  "stageOrder": [
+    "Cream",
+    "Rong",
+    "Cream Terrace",
+    "Nation",
+    "Arc",
+    "APEX with Capital Dance",
+    "Steel Yard",
+    "HALO presented by SHEIN",
+    "Teletech",
+    "Misfit",
+    "The Forest",
+    "Pepsi presents Future Sounds of Egypt",
+    "drip Hospitality",
+    "Sub_Aural",
+    "Pepsi presents RONG",
+    "Pepsi presents Goodgreef Xtra-Hard",
+    "Fatboy Slim Loves",
+    "Pepsi presents Full On Trance",
+    "Pepsi presents Full On"
+  ],
+  "folded": [],
+  "sameActs": [],
+  "lowered": [],
+  "joined": [
+    {
+      "weekday": "Friday",
+      "stage": "Teletech",
+      "printed": [
+        "Alex Farell",
+        "Sikoti"
+      ],
+      "billedAs": "Alex Farell B2B Sikoti"
+    },
+    {
+      "weekday": "Friday",
+      "stage": "Teletech",
+      "printed": [
+        "Basswell",
+        "Onlynumbers"
+      ],
+      "billedAs": "Basswell B2B Onlynumbers"
+    },
+    {
+      "weekday": "Friday",
+      "stage": "Teletech",
+      "printed": [
+        "Jazzy",
+        "Jowi"
+      ],
+      "billedAs": "Jazzy B2B Jowi"
+    },
+    {
+      "weekday": "Friday",
+      "stage": "The Forest",
+      "printed": [
+        "Kilimanjaro",
+        "Melé"
+      ],
+      "billedAs": "Kilimanjaro B2B Melé"
+    },
+    {
+      "weekday": "Friday",
+      "stage": "Pepsi presents Future Sounds of Egypt",
+      "printed": [
+        "Sneijder",
+        "Paul Denton"
+      ],
+      "billedAs": "Sneijder B2B Paul Denton"
+    },
+    {
+      "weekday": "Saturday",
+      "stage": "Teletech",
+      "printed": [
+        "Faster Horses",
+        "Morgan Seatree"
+      ],
+      "billedAs": "Faster Horses B2B Morgan Seatree"
+    },
+    {
+      "weekday": "Saturday",
+      "stage": "Teletech",
+      "printed": [
+        "Funk Tribu",
+        "Bad Boombox"
+      ],
+      "billedAs": "Funk Tribu B2B Bad Boombox"
+    },
+    {
+      "weekday": "Saturday",
+      "stage": "Sub_Aural",
+      "printed": [
+        "Culture Shock",
+        "Grafix"
+      ],
+      "billedAs": "Culture Shock B2B Grafix"
+    },
+    {
+      "weekday": "Saturday",
+      "stage": "Pepsi presents RONG",
+      "printed": [
+        "Bryan Kearney",
+        "Mauro Picotto"
+      ],
+      "billedAs": "Bryan Kearney B2B Mauro Picotto"
+    }
+  ],
+  "actLines": [
+    {
+      "artist": "Thrillseekers",
+      "weekday": "Thursday",
+      "stage": "Rong",
+      "printed": [
+        {
+          "where": "after",
+          "line": "(25 YEARS SET)"
+        }
+      ]
+    },
+    {
+      "artist": "Maddix",
+      "weekday": "Friday",
+      "stage": "Misfit",
+      "printed": [
+        {
+          "where": "above",
+          "line": "SPECIAL GUEST"
+        }
+      ]
+    },
+    {
+      "artist": "Chris Stussy",
+      "weekday": "Saturday",
+      "stage": "APEX with Capital Dance",
+      "printed": [
+        {
+          "where": "below",
+          "line": "PRESENTS LINGER AV DJ SET"
+        }
+      ]
+    },
+    {
+      "artist": "Chris Stussy B2B Josh Baker",
+      "weekday": "Saturday",
+      "stage": "Steel Yard",
+      "printed": [
+        {
+          "where": "above",
+          "line": "EXCLUSIVE ADDITIONAL SET"
+        }
+      ]
+    },
+    {
+      "artist": "East End Dubs",
+      "weekday": "Sunday",
+      "stage": "The Forest",
+      "printed": [
+        {
+          "where": "above",
+          "line": "SPECIAL GUEST"
+        },
+        {
+          "where": "below",
+          "line": "PRESENTS CITE TECHNO SET"
+        }
+      ]
+    }
+  ],
+  "stageNotes": [
+    {
+      "weekday": "Thursday",
+      "stage": "Cream",
+      "silentDisco": true
+    },
+    {
+      "weekday": "Thursday",
+      "stage": "Rong",
+      "silentDisco": true
+    },
+    {
+      "weekday": "Thursday",
+      "stage": "Cream Terrace",
+      "silentDisco": true
+    },
+    {
+      "weekday": "Thursday",
+      "stage": "Nation",
+      "silentDisco": true
+    },
+    {
+      "weekday": "Friday",
+      "stage": "APEX with Capital Dance",
+      "subtitle": "Indoor Main Stage"
+    },
+    {
+      "weekday": "Friday",
+      "stage": "HALO presented by SHEIN",
+      "subtitle": "Hosted by Paradise"
+    },
+    {
+      "weekday": "Friday",
+      "stage": "The Forest",
+      "subtitle": "Hosted by History of Rave"
+    },
+    {
+      "weekday": "Friday",
+      "stage": "drip Hospitality",
+      "subtitle": "Hosted by The Garden Party"
+    },
+    {
+      "weekday": "Saturday",
+      "stage": "APEX with Capital Dance",
+      "subtitle": "Indoor Main Stage"
+    },
+    {
+      "weekday": "Saturday",
+      "stage": "HALO presented by SHEIN",
+      "subtitle": "Hosted by Trick"
+    },
+    {
+      "weekday": "Saturday",
+      "stage": "drip Hospitality",
+      "subtitle": "Hosted by The Garden Party"
+    },
+    {
+      "weekday": "Sunday",
+      "stage": "APEX with Capital Dance",
+      "subtitle": "Indoor Main Stage"
+    },
+    {
+      "weekday": "Sunday",
+      "stage": "drip Hospitality",
+      "subtitle": "Hosted by The Garden Party"
+    }
+  ],
+  "unfinished": [
+    {
+      "weekday": "Friday",
+      "stage": "Arc"
+    },
+    {
+      "weekday": "Friday",
+      "stage": "APEX with Capital Dance"
+    },
+    {
+      "weekday": "Friday",
+      "stage": "drip Hospitality"
+    },
+    {
+      "weekday": "Saturday",
+      "stage": "drip Hospitality"
+    },
+    {
+      "weekday": "Sunday",
+      "stage": "APEX with Capital Dance"
+    }
+  ],
+  "considered": [
+    {
+      "captureTimestamp": "20250117075550",
+      "notFiled": "relay: capture 20250117075550 of https://creamfields.com/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20250312200345",
+      "notFiled": "relay: capture 20250312200345 of https://creamfields.com/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20250322061755",
+      "notFiled": "relay: capture 20250322061755 of https://creamfields.com/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20250324225831",
+      "notFiled": "relay: capture 20250324225831 of https://creamfields.com/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20250404005312",
+      "notFiled": "relay: capture 20250404005312 of https://creamfields.com/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20250420130311",
+      "notFiled": "relay: capture 20250420130311 of https://creamfields.com/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20250421211634",
+      "notFiled": "relay: capture 20250421211634 of https://creamfields.com/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20250516012739",
+      "notFiled": "relay: capture 20250516012739 of https://creamfields.com/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20250617041740",
+      "notFiled": "relay: capture 20250617041740 of https://creamfields.com/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20250623185231",
+      "notFiled": "relay: capture 20250623185231 of https://creamfields.com/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20250711053752",
+      "archivedUrl": "https://web.archive.org/web/20250711053752/https://creamfields.com/lineup/",
+      "sha256": "3e74d4e3bd845f09d0940398f4a3ec87b44860ccd45a321392afb5d22a8d3b91",
+      "bytes": 283479,
+      "via": "firecrawl",
+      "title": "Rockstar Energy presents Creamfields | lineup",
+      "days": [
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "printedDates": [
+        "2025-08-21",
+        "2025-08-22",
+        "2025-08-23",
+        "2025-08-24"
+      ],
+      "dated": true,
+      "valid": true,
+      "billings": 200,
+      "diffVsChosen": [
+        "added by the final: Patrick Topping B2B Gaskin"
+      ]
+    },
+    {
+      "captureTimestamp": "20250728201509",
+      "archivedUrl": "https://web.archive.org/web/20250728201509/https://creamfields.com/lineup/",
+      "sha256": "7fe8c6aa04b5634515178a30465801cf4b668241ed53e201186ae168032b8519",
+      "bytes": 283533,
+      "via": "firecrawl",
+      "title": "Rockstar Energy presents Creamfields | lineup",
+      "days": [
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "printedDates": [
+        "2025-08-21",
+        "2025-08-22",
+        "2025-08-23",
+        "2025-08-24"
+      ],
+      "dated": true,
+      "valid": true,
+      "billings": 200,
+      "diffVsChosen": [
+        "added by the final: Patrick Topping B2B Gaskin"
+      ]
+    },
+    {
+      "captureTimestamp": "20250813034828",
+      "archivedUrl": "https://web.archive.org/web/20250813034828/https://creamfields.com/lineup/",
+      "sha256": "49baa357b01b2d5c3730ab7fd33bd9459bab7743b836ea2aaead41ec59e60340",
+      "bytes": 283379,
+      "via": "firecrawl",
+      "title": "Rockstar Energy presents Creamfields | lineup",
+      "days": [
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "printedDates": [
+        "2025-08-21",
+        "2025-08-22",
+        "2025-08-23",
+        "2025-08-24"
+      ],
+      "dated": true,
+      "valid": true,
+      "billings": 200,
+      "diffVsChosen": [
+        "added by the final: Patrick Topping B2B Gaskin"
+      ]
+    },
+    {
+      "captureTimestamp": "20250813090553",
+      "archivedUrl": "https://web.archive.org/web/20250813090553/https://creamfields.com/lineup/",
+      "sha256": "0153831b26df4ec3fff985d44ae471ebf869c8c5cc1d8424cc261e9196c4a6ab",
+      "bytes": 283379,
+      "via": "firecrawl",
+      "title": "Rockstar Energy presents Creamfields | lineup",
+      "days": [
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "printedDates": [
+        "2025-08-21",
+        "2025-08-22",
+        "2025-08-23",
+        "2025-08-24"
+      ],
+      "dated": true,
+      "valid": true,
+      "billings": 200,
+      "diffVsChosen": [
+        "added by the final: Patrick Topping B2B Gaskin"
+      ]
+    },
+    {
+      "captureTimestamp": "20250825010416",
+      "archivedUrl": "https://web.archive.org/web/20250825010416/https://creamfields.com/lineup/",
+      "sha256": "3dfdf6c3a9d5488dc6fa9fd3e1f2fd9f954337dde7f2a77361c71d1ff5223b0f",
+      "bytes": 284052,
+      "via": "firecrawl",
+      "title": "Rockstar Energy presents Creamfields | lineup",
+      "days": [
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "printedDates": [
+        "2025-08-21",
+        "2025-08-22",
+        "2025-08-23",
+        "2025-08-24"
+      ],
+      "dated": true,
+      "valid": true,
+      "billings": 201
+    },
+    {
+      "captureTimestamp": "20250831081034",
+      "archivedUrl": "https://web.archive.org/web/20250831081034/https://creamfields.com/lineup/",
+      "sha256": "d2c1eaa5b7f9715a1c0cdfc312d15fda353c13f3d1c2ca9bdf07430302e37905",
+      "bytes": 47903,
+      "via": "firecrawl",
+      "title": null,
+      "days": [],
+      "printedDates": null,
+      "dated": false,
+      "valid": false,
+      "unread": "creamfields-lineup: no day",
+      "billings": 0
+    }
+  ],
+  "dropped": []
+}

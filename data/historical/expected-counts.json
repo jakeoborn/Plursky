@@ -187,5 +187,8 @@
  "creamfields-2018": { "artists": 281, "stages": 29, "appearancesPerDay": [19, 71, 106, 88], "dropped": 0 },
  "creamfields-2019": { "artists": 266, "stages": 29, "appearancesPerDay": [24, 65, 106, 77], "dropped": 1 },
  "creamfields-2021": { "artists": 234, "stages": 28, "appearancesPerDay": [24, 59, 85, 67], "dropped": 0 },
+ "creamfields-2022": { "artists": 253, "stages": 26, "appearancesPerDay": [24, 65, 89, 87], "dropped": 0 },
+ "creamfields-2024": { "artists": 219, "stages": 21, "appearancesPerDay": [24, 62, 83, 70], "dropped": 1 },
+ "creamfields-2025": { "artists": 201, "stages": 19, "appearancesPerDay": [24, 51, 76, 61], "dropped": 0 },
  "defqon1-2015": { "stages": 14, "setsPerDay": [11, 133, 77], "droppedPerDay": [0, 0, 0] }
 }

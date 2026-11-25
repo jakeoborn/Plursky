@@ -648,6 +648,22 @@ export const EDITIONS = {
   "creamfields-2021": { festivalId: "creamfields", name: "Creamfields 2021", year: 2021,
     timezone: "Europe/London", rolloverHour: 6, method: "official_lineup_html",
     dates: [["2021-08-26", "Thursday"], ["2021-08-27", "Friday"], ["2021-08-28", "Saturday"], ["2021-08-29", "Sunday"]] },
+  // From 2022 the site's own /lineup/ page (creamfields-lineup.mjs,
+  // extract-creamfields-lineup.mjs) lists each day's stages and who plays
+  // them. 2022 prints weekdays only, dated like 2017-2021 by the census; from
+  // 2024 each day also prints its date, which must be the census's too. No
+  // capture of 2023's page was taken near the festival.
+  "creamfields-2022": { festivalId: "creamfields", name: "Creamfields 2022", year: 2022,
+    timezone: "Europe/London", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2022-08-25", "Thursday"], ["2022-08-26", "Friday"], ["2022-08-27", "Saturday"], ["2022-08-28", "Sunday"]] },
+  "creamfields-2024": { festivalId: "creamfields", name: "Creamfields 2024", year: 2024,
+    timezone: "Europe/London", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2024-08-22", "Thursday"], ["2024-08-23", "Friday"], ["2024-08-24", "Saturday"], ["2024-08-25", "Sunday"]] },
+  "creamfields-2025": { festivalId: "creamfields", name: "Creamfields 2025", year: 2025,
+    timezone: "Europe/London", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2025-08-21", "Thursday"], ["2025-08-22", "Friday"], ["2025-08-23", "Saturday"], ["2025-08-24", "Sunday"]],
+    notes: [{ asOf: "2026-11-25", text: "The lineup as the festival's own page printed it the day after the festival. Five stage lists (Arc and APEX on Friday, APEX on Sunday, drip Hospitality on Friday and Saturday) ended \"+ more\" and were never completed, so some acts on those stages are not shown.",
+      source: "https://web.archive.org/web/20250825010416/https://creamfields.com/lineup/" }] },
   "tomorrowland-2023": { festivalId: "tomorrowland", name: "Tomorrowland 2023", year: 2023,
     timezone: "Europe/Brussels", rolloverHour: 6, method: "official_sources", dates: [["2023-07-21", "Friday"], ["2023-07-22", "Saturday"], ["2023-07-23", "Sunday"], ["2023-07-28", "Friday"], ["2023-07-29", "Saturday"], ["2023-07-30", "Sunday"]],
     dayLabels: ACL_WEEKEND_LABELS },
