@@ -3562,6 +3562,81 @@ function applyScheduleReview(review, saved) {
   var drop = new Set(review.dropSaved || []);
   return (saved || []).filter(id => !drop.has(id));
 }
+var _SCHED_WATCH_KEY = "plursky_schedule_watch_v1";
+var SCHED_WATCH_EVERY_MS = 30 * 60000;
+var SCHED_WATCH_LEAD_MS = 30 * 86400000;
+function scheduleWatchState() {
+  try {
+    var o = JSON.parse(localStorage.getItem(_SCHED_WATCH_KEY) || "{}");
+    return o && typeof o === "object" ? o : {};
+  } catch {
+    return {};
+  }
+}
+function scheduleWatchWrite(fid, rec) {
+  var all = scheduleWatchState();
+  all[fid] = rec;
+  try {
+    localStorage.setItem(_SCHED_WATCH_KEY, JSON.stringify(all));
+  } catch {}
+}
+function scheduleWatchDue(cfg, rec, now, force) {
+  if (!cfg || cfg.startMs == null || cfg.endMs == null) return false;
+  if (now < cfg.startMs - SCHED_WATCH_LEAD_MS || now > cfg.endMs) return false;
+  if (!rec || !rec.attemptAt) return true;
+  if (force && rec.failedAt && rec.failedAt >= rec.attemptAt) return true;
+  return now - rec.attemptAt >= SCHED_WATCH_EVERY_MS;
+}
+function scheduleWatchDecide(review, rec, now) {
+  var prev = rec || {};
+  if (!review || review.error) return {
+    alert: null,
+    rec: {
+      ...prev,
+      attemptAt: now,
+      failedAt: now
+    }
+  };
+  var next = {
+    ...prev,
+    attemptAt: now,
+    checkedAt: now,
+    failedAt: null
+  };
+  if (review.upToDate) return {
+    alert: null,
+    rec: next
+  };
+  var saved = review.savedChanges.length,
+    clashes = review.clashes.length;
+  var key = review.fid + ":" + review.feedHash;
+  if (!(saved + clashes) || prev.alertedKey === key) return {
+    alert: null,
+    rec: next
+  };
+  return {
+    alert: {
+      key,
+      saved,
+      clashes,
+      cancelled: (review.dropSaved || []).length
+    },
+    rec: {
+      ...next,
+      alertedKey: key
+    }
+  };
+}
+function scheduleWatchText(alert, cfg) {
+  var name = cfg && (cfg.shortName || cfg.brand) || "The festival";
+  var parts = [];
+  if (alert.saved) parts.push(`${alert.saved} of your saved set${alert.saved === 1 ? "" : "s"} changed`);
+  if (alert.clashes) parts.push(`${alert.clashes} new clash${alert.clashes === 1 ? "" : "es"}`);
+  return {
+    title: `${name} schedule update`,
+    body: parts.join(" · ") + ". Review before anything changes."
+  };
+}
 function _daysFor(cfg) {
   var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   var shift = _weekendShiftMs(cfg);

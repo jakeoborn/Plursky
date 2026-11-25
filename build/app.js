@@ -1776,7 +1776,9 @@ function App() {
         tab: t
       })
     });
-  })()), searchOpen && React.createElement(SearchModal, {
+  })()), typeof ScheduleWatch === "function" && React.createElement(ScheduleWatch, {
+    saved: state.saved
+  }), searchOpen && React.createElement(SearchModal, {
     onClose: () => setSearchOpen(false),
     onSelectArtist: id => setState({
       ...state,
@@ -1884,7 +1886,7 @@ class RootErrorBoundary extends React.Component {
         stack: err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v677"
+        version: "v678"
       }));
     } catch {}
   }
@@ -1936,7 +1938,7 @@ class RootErrorBoundary extends React.Component {
         style: {
           marginTop: 22
         }
-      }, "Plursky · v677"))
+      }, "Plursky · v678"))
     );
   }
 }

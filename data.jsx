@@ -3911,6 +3911,57 @@ function applyScheduleReview(review, saved) {
   return (saved || []).filter(id => !drop.has(id));
 }
 
+// ── Schedule Watch: Plursky+ watches the published schedule (#115) ─────────
+// Free keeps the manual "Updates" check in the lineup. Plus adds the watch:
+// from 30 days before a festival opens until it ends, the app re-reads the
+// feed at most every 30 minutes (on launch, on return to the app, and as soon
+// as the connection comes back after a failed check). It raises ONE alert per
+// published schedule, and only when that schedule touches the plan: a saved
+// set changes or a new clash appears. Nothing changes until the user applies
+// the update on the same review sheet as the manual check. The parts below are
+// pure (storage aside), so scripts/test-schedule-watch.mjs drives them.
+const _SCHED_WATCH_KEY = "plursky_schedule_watch_v1";
+const SCHED_WATCH_EVERY_MS = 30 * 60000;
+const SCHED_WATCH_LEAD_MS = 30 * 86400000;
+function scheduleWatchState() {
+  try { const o = JSON.parse(localStorage.getItem(_SCHED_WATCH_KEY) || "{}"); return o && typeof o === "object" ? o : {}; }
+  catch { return {}; }
+}
+function scheduleWatchWrite(fid, rec) {
+  const all = scheduleWatchState();
+  all[fid] = rec;
+  try { localStorage.setItem(_SCHED_WATCH_KEY, JSON.stringify(all)); } catch {}
+}
+// force: the connection just came back. It skips the 30-minute wait only when
+// the last attempt failed, so going on and offline cannot hammer the feed.
+function scheduleWatchDue(cfg, rec, now, force) {
+  if (!cfg || cfg.startMs == null || cfg.endMs == null) return false;
+  if (now < cfg.startMs - SCHED_WATCH_LEAD_MS || now > cfg.endMs) return false;
+  if (!rec || !rec.attemptAt) return true;
+  if (force && rec.failedAt && rec.failedAt >= rec.attemptAt) return true;
+  return now - rec.attemptAt >= SCHED_WATCH_EVERY_MS;
+}
+// review: scheduleReview's result, or null when the feed could not be read.
+// The alert key is the festival plus the feed's hash, so one published
+// schedule alerts once, however often it is re-read or dismissed.
+function scheduleWatchDecide(review, rec, now) {
+  const prev = rec || {};
+  if (!review || review.error) return { alert: null, rec: { ...prev, attemptAt: now, failedAt: now } };
+  const next = { ...prev, attemptAt: now, checkedAt: now, failedAt: null };
+  if (review.upToDate) return { alert: null, rec: next };
+  const saved = review.savedChanges.length, clashes = review.clashes.length;
+  const key = review.fid + ":" + review.feedHash;
+  if (!(saved + clashes) || prev.alertedKey === key) return { alert: null, rec: next };
+  return { alert: { key, saved, clashes, cancelled: (review.dropSaved || []).length }, rec: { ...next, alertedKey: key } };
+}
+function scheduleWatchText(alert, cfg) {
+  const name = (cfg && (cfg.shortName || cfg.brand)) || "The festival";
+  const parts = [];
+  if (alert.saved) parts.push(`${alert.saved} of your saved set${alert.saved === 1 ? "" : "s"} changed`);
+  if (alert.clashes) parts.push(`${alert.clashes} new clash${alert.clashes === 1 ? "" : "es"}`);
+  return { title: `${name} schedule update`, body: parts.join(" · ") + ". Review before anything changes." };
+}
+
 function _daysFor(cfg) {
   const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
   const shift = _weekendShiftMs(cfg);
