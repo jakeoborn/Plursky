@@ -278459,6 +278459,4711 @@
   "mainStage": null
  },
  {
+  "id": "defqon1-2014:d1:the-gathering:2000:coone",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 1,
+  "stage": "The Gathering",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Coone",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "coone",
+    "role": "performer"
+   }
+  ],
+  "act": "coone",
+  "closing": false,
+  "stageLineage": "defqon1:the-gathering",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d1:the-gathering:2100:isaac",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 1,
+  "stage": "The Gathering",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "Isaac",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "isaac",
+    "role": "performer"
+   }
+  ],
+  "act": "isaac",
+  "closing": false,
+  "stageLineage": "defqon1:the-gathering",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d1:the-gathering:2200:wildstylez",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 1,
+  "stage": "The Gathering",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "Wildstylez",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wildstylez",
+    "role": "performer"
+   }
+  ],
+  "act": "wildstylez",
+  "closing": false,
+  "stageLineage": "defqon1:the-gathering",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d1:the-gathering:2300:ran-d",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 1,
+  "stage": "The Gathering",
+  "start": "23:00",
+  "end": "00:00",
+  "printed": "Ran-D",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ran-d",
+    "role": "performer"
+   }
+  ],
+  "act": "ran-d",
+  "closing": false,
+  "stageLineage": "defqon1:the-gathering",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d1:the-gathering:0000:wild-motherfuckers",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 1,
+  "stage": "The Gathering",
+  "start": "00:00",
+  "end": "01:00",
+  "printed": "Wild Motherfuckers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wild-motherfuckers",
+    "role": "performer"
+   }
+  ],
+  "act": "wild-motherfuckers",
+  "closing": true,
+  "stageLineage": "defqon1:the-gathering",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d1:orange:2000:dr-phunk",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 1,
+  "stage": "Orange",
+  "start": "20:00",
+  "end": "20:45",
+  "printed": "Dr Phunk",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dr-phunk",
+    "role": "performer"
+   }
+  ],
+  "act": "dr-phunk",
+  "closing": false,
+  "stageLineage": "defqon1:orange",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d1:orange:2045:gizmo",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 1,
+  "stage": "Orange",
+  "start": "20:45",
+  "end": "21:30",
+  "printed": "Gizmo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gizmo",
+    "role": "performer"
+   }
+  ],
+  "act": "gizmo",
+  "closing": false,
+  "stageLineage": "defqon1:orange",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d1:orange:2130:kasparov",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 1,
+  "stage": "Orange",
+  "start": "21:30",
+  "end": "22:15",
+  "printed": "Kasparov",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kasparov",
+    "role": "performer"
+   }
+  ],
+  "act": "kasparov",
+  "closing": false,
+  "stageLineage": "defqon1:orange",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d1:orange:2215:outblast",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 1,
+  "stage": "Orange",
+  "start": "22:15",
+  "end": "23:00",
+  "printed": "Outblast",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "outblast",
+    "role": "performer"
+   }
+  ],
+  "act": "outblast",
+  "closing": false,
+  "stageLineage": "defqon1:orange",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d1:orange:2300:pandorum",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 1,
+  "stage": "Orange",
+  "start": "23:00",
+  "end": "23:45",
+  "printed": "Pandorum",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pandorum",
+    "role": "performer"
+   }
+  ],
+  "act": "pandorum",
+  "closing": false,
+  "stageLineage": "defqon1:orange",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d1:orange:2345:partyraiser",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 1,
+  "stage": "Orange",
+  "start": "23:45",
+  "end": "00:30",
+  "printed": "Partyraiser",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "partyraiser",
+    "role": "performer"
+   }
+  ],
+  "act": "partyraiser",
+  "closing": false,
+  "stageLineage": "defqon1:orange",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d1:orange:0030:dither",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-27",
+  "day": 1,
+  "stage": "Orange",
+  "start": "00:30",
+  "end": "01:00",
+  "printed": "Dither",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dither",
+    "role": "performer"
+   }
+  ],
+  "act": "dither",
+  "closing": true,
+  "stageLineage": "defqon1:orange",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:red:1100:audiofreq-and-geck-o",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Red",
+  "start": "11:00",
+  "end": "12:00",
+  "printed": "Audiofreq & Geck-o",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "audiofreq-and-geck-o",
+    "role": "performer"
+   }
+  ],
+  "act": "audiofreq-and-geck-o",
+  "closing": false,
+  "stageLineage": "defqon1:red",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:red:1200:bass-modulators",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Red",
+  "start": "12:00",
+  "end": "13:00",
+  "printed": "Bass Modulators",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bass-modulators",
+    "role": "performer"
+   }
+  ],
+  "act": "bass-modulators",
+  "closing": false,
+  "stageLineage": "defqon1:red",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:red:1300:max-enforcer",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Red",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "Max Enforcer",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "max-enforcer",
+    "role": "performer"
+   }
+  ],
+  "act": "max-enforcer",
+  "closing": false,
+  "stageLineage": "defqon1:red",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:red:1400:psyko-punkz",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Red",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "Psyko Punkz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "psyko-punkz",
+    "role": "performer"
+   }
+  ],
+  "act": "psyko-punkz",
+  "closing": false,
+  "stageLineage": "defqon1:red",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:red:1500:atmozfears",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Red",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "Atmozfears",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "atmozfears",
+    "role": "performer"
+   }
+  ],
+  "act": "atmozfears",
+  "closing": false,
+  "stageLineage": "defqon1:red",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:red:1700:d-block-and-s-te-fan",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Red",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "D-Block & S-te-Fan",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "d-block-and-s-te-fan",
+    "role": "performer"
+   }
+  ],
+  "act": "d-block-and-s-te-fan",
+  "closing": false,
+  "stageLineage": "defqon1:red",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:red:1800:coone",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Red",
+  "start": "18:00",
+  "end": "19:30",
+  "printed": "Coone",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "coone",
+    "role": "performer"
+   }
+  ],
+  "act": "coone",
+  "closing": false,
+  "stageLineage": "defqon1:red",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:red:1930:zatox",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Red",
+  "start": "19:30",
+  "end": "20:30",
+  "printed": "Zatox",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zatox",
+    "role": "performer"
+   }
+  ],
+  "act": "zatox",
+  "closing": false,
+  "stageLineage": "defqon1:red",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:red:2030:noisecontrollers-live",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Red",
+  "start": "20:30",
+  "end": "21:00",
+  "printed": "Noisecontrollers [LIVE]",
+  "setTag": "LIVE",
+  "performers": [
+   {
+    "key": "noisecontrollers",
+    "role": "performer"
+   }
+  ],
+  "act": "noisecontrollers",
+  "closing": false,
+  "stageLineage": "defqon1:red",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:red:2100:crypsis",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Red",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "Crypsis",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "crypsis",
+    "role": "performer"
+   }
+  ],
+  "act": "crypsis",
+  "closing": false,
+  "stageLineage": "defqon1:red",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:red:2200:b-front-and-frequencerz-presents-b-freqz-live",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Red",
+  "start": "22:00",
+  "end": "22:30",
+  "printed": "B-Front & Frequencerz presents B-freqz [LIVE]",
+  "setTag": "LIVE",
+  "performers": [
+   {
+    "key": "b-freqz",
+    "role": "project"
+   }
+  ],
+  "act": "b-front-and-frequencerz-presents-b-freqz",
+  "closing": true,
+  "stageLineage": "defqon1:red",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:black:1100:amada",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Black",
+  "start": "11:00",
+  "end": "12:00",
+  "printed": "Amada",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "amada",
+    "role": "performer"
+   }
+  ],
+  "act": "amada",
+  "closing": false,
+  "stageLineage": "defqon1:black",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:black:1200:amnesys",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Black",
+  "start": "12:00",
+  "end": "13:30",
+  "printed": "Amnesys",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "amnesys",
+    "role": "performer"
+   }
+  ],
+  "act": "amnesys",
+  "closing": false,
+  "stageLineage": "defqon1:black",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:black:1330:ophidian",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Black",
+  "start": "13:30",
+  "end": "15:00",
+  "printed": "Ophidian",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ophidian",
+    "role": "performer"
+   }
+  ],
+  "act": "ophidian",
+  "closing": false,
+  "stageLineage": "defqon1:black",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:black:1500:miss-k8",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Black",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "Miss K8",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "miss-k8",
+    "role": "performer"
+   }
+  ],
+  "act": "miss-k8",
+  "closing": false,
+  "stageLineage": "defqon1:black",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:black:2000:korsakoff-and-day-mar",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Black",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Korsakoff & Day-már",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "korsakoff-and-day-mar",
+    "role": "performer"
+   }
+  ],
+  "act": "korsakoff-and-day-mar",
+  "closing": false,
+  "stageLineage": "defqon1:black",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:black:2100:art-of-fighters",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Black",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "Art of Fighters",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "art-of-fighters",
+    "role": "performer"
+   }
+  ],
+  "act": "art-of-fighters",
+  "closing": false,
+  "stageLineage": "defqon1:black",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:black:2200:partyraiser-and-drokz",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Black",
+  "start": "22:00",
+  "end": "23:00",
+  "printed": "Partyraiser & Drokz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "partyraiser-and-drokz",
+    "role": "performer"
+   }
+  ],
+  "act": "partyraiser-and-drokz",
+  "closing": true,
+  "stageLineage": "defqon1:black",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:gold:1200:sequence-and-ominous",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Gold",
+  "start": "12:00",
+  "end": "13:00",
+  "printed": "Sequence & Ominous",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sequence-and-ominous",
+    "role": "performer"
+   }
+  ],
+  "act": "sequence-and-ominous",
+  "closing": false,
+  "stageLineage": "defqon1:gold",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:gold:1300:meagashira",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Gold",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "Meagashira",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "meagashira",
+    "role": "performer"
+   }
+  ],
+  "act": "meagashira",
+  "closing": false,
+  "stageLineage": "defqon1:gold",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:gold:1400:the-viper",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Gold",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "The Viper",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-viper",
+    "role": "performer"
+   }
+  ],
+  "act": "the-viper",
+  "closing": false,
+  "stageLineage": "defqon1:gold",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:gold:1500:bass-d",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Gold",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "Bass-D",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bass-d",
+    "role": "performer"
+   }
+  ],
+  "act": "bass-d",
+  "closing": false,
+  "stageLineage": "defqon1:gold",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:gold:1600:armageddon-project",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Gold",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Armageddon Project",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "armageddon-project",
+    "role": "performer"
+   }
+  ],
+  "act": "armageddon-project",
+  "closing": false,
+  "stageLineage": "defqon1:gold",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:gold:1700:hamunaptra",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Gold",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Hamunaptra",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hamunaptra",
+    "role": "performer"
+   }
+  ],
+  "act": "hamunaptra",
+  "closing": false,
+  "stageLineage": "defqon1:gold",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:gold:1800:d-passion",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Gold",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "D-Passion",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "d-passion",
+    "role": "performer"
+   }
+  ],
+  "act": "d-passion",
+  "closing": false,
+  "stageLineage": "defqon1:gold",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:gold:1900:vince",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Gold",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Vince",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "vince",
+    "role": "performer"
+   }
+  ],
+  "act": "vince",
+  "closing": false,
+  "stageLineage": "defqon1:gold",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:gold:2000:promo",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Gold",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Promo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "promo",
+    "role": "performer"
+   }
+  ],
+  "act": "promo",
+  "closing": false,
+  "stageLineage": "defqon1:gold",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:gold:2100:base-alert",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Gold",
+  "start": "21:00",
+  "end": "22:30",
+  "printed": "Base Alert",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "base-alert",
+    "role": "performer"
+   }
+  ],
+  "act": "base-alert",
+  "closing": true,
+  "stageLineage": "defqon1:gold",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:blue:1100:jack-of-sound",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Blue",
+  "start": "11:00",
+  "end": "12:30",
+  "printed": "Jack of Sound",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jack-of-sound",
+    "role": "performer"
+   }
+  ],
+  "act": "jack-of-sound",
+  "closing": false,
+  "stageLineage": "defqon1:blue",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:blue:1230:festuca",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Blue",
+  "start": "12:30",
+  "end": "13:30",
+  "printed": "Festuca",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "festuca",
+    "role": "performer"
+   }
+  ],
+  "act": "festuca",
+  "closing": false,
+  "stageLineage": "defqon1:blue",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:blue:1330:deepack",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Blue",
+  "start": "13:30",
+  "end": "14:30",
+  "printed": "Deepack",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "deepack",
+    "role": "performer"
+   }
+  ],
+  "act": "deepack",
+  "closing": false,
+  "stageLineage": "defqon1:blue",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:blue:1430:alpha2",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Blue",
+  "start": "14:30",
+  "end": "15:30",
+  "printed": "Alpha2",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alpha2",
+    "role": "performer"
+   }
+  ],
+  "act": "alpha2",
+  "closing": false,
+  "stageLineage": "defqon1:blue",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:blue:1530:exit-mind",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Blue",
+  "start": "15:30",
+  "end": "16:30",
+  "printed": "Exit Mind",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "exit-mind",
+    "role": "performer"
+   }
+  ],
+  "act": "exit-mind",
+  "closing": false,
+  "stageLineage": "defqon1:blue",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:blue:1630:frequencerz",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Blue",
+  "start": "16:30",
+  "end": "17:30",
+  "printed": "Frequencerz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "frequencerz",
+    "role": "performer"
+   }
+  ],
+  "act": "frequencerz",
+  "closing": false,
+  "stageLineage": "defqon1:blue",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:blue:1730:b-front",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Blue",
+  "start": "17:30",
+  "end": "18:30",
+  "printed": "B-Front",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "b-front",
+    "role": "performer"
+   }
+  ],
+  "act": "b-front",
+  "closing": false,
+  "stageLineage": "defqon1:blue",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:blue:1830:digital-punk",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Blue",
+  "start": "18:30",
+  "end": "19:30",
+  "printed": "Digital Punk",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "digital-punk",
+    "role": "performer"
+   }
+  ],
+  "act": "digital-punk",
+  "closing": false,
+  "stageLineage": "defqon1:blue",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:blue:1930:minus-militia",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Blue",
+  "start": "19:30",
+  "end": "20:00",
+  "printed": "Minus Militia",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "minus-militia",
+    "role": "performer"
+   }
+  ],
+  "act": "minus-militia",
+  "closing": false,
+  "stageLineage": "defqon1:blue",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:blue:2000:dj-thera-s-training-sessions",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Blue",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "DJ Thera’s Training Sessions",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dj-thera-s-training-sessions",
+    "role": "performer"
+   }
+  ],
+  "act": "dj-thera-s-training-sessions",
+  "closing": false,
+  "stageLineage": "defqon1:blue",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:blue:2100:titan-and-high-voltage",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Blue",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "Titan & High Voltage",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "titan-and-high-voltage",
+    "role": "performer"
+   }
+  ],
+  "act": "titan-and-high-voltage",
+  "closing": true,
+  "stageLineage": "defqon1:blue",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:uv:1200:waverider",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "UV",
+  "start": "12:00",
+  "end": "13:00",
+  "printed": "Waverider",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "waverider",
+    "role": "performer"
+   }
+  ],
+  "act": "waverider",
+  "closing": false,
+  "stageLineage": "defqon1:uv",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:uv:1300:rebourne",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "UV",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "Rebourne",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rebourne",
+    "role": "performer"
+   }
+  ],
+  "act": "rebourne",
+  "closing": false,
+  "stageLineage": "defqon1:uv",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:uv:1400:sylence",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "UV",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "Sylence",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sylence",
+    "role": "performer"
+   }
+  ],
+  "act": "sylence",
+  "closing": false,
+  "stageLineage": "defqon1:uv",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:uv:1500:adrenalize-and-in-phase",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "UV",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "Adrenalize & In-Phase",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "adrenalize-and-in-phase",
+    "role": "performer"
+   }
+  ],
+  "act": "adrenalize-and-in-phase",
+  "closing": false,
+  "stageLineage": "defqon1:uv",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:uv:1600:sound-rush",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "UV",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Sound Rush",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sound-rush",
+    "role": "performer"
+   }
+  ],
+  "act": "sound-rush",
+  "closing": false,
+  "stageLineage": "defqon1:uv",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:uv:1700:wasted-penquinz",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "UV",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Wasted Penquinz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wasted-penquinz",
+    "role": "performer"
+   }
+  ],
+  "act": "wasted-penquinz",
+  "closing": false,
+  "stageLineage": "defqon1:uv",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:uv:1800:code-black",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "UV",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Code Black",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "code-black",
+    "role": "performer"
+   }
+  ],
+  "act": "code-black",
+  "closing": false,
+  "stageLineage": "defqon1:uv",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:uv:1900:stephanie",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "UV",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Stephanie",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "stephanie",
+    "role": "performer"
+   }
+  ],
+  "act": "stephanie",
+  "closing": false,
+  "stageLineage": "defqon1:uv",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:uv:2000:the-pitcher-live",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "UV",
+  "start": "20:00",
+  "end": "20:30",
+  "printed": "The Pitcher [LIVE]",
+  "setTag": "LIVE",
+  "performers": [
+   {
+    "key": "the-pitcher",
+    "role": "performer"
+   }
+  ],
+  "act": "the-pitcher",
+  "closing": false,
+  "stageLineage": "defqon1:uv",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:uv:2030:the-prophet",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "UV",
+  "start": "20:30",
+  "end": "22:00",
+  "printed": "The Prophet",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-prophet",
+    "role": "performer"
+   }
+  ],
+  "act": "the-prophet",
+  "closing": true,
+  "stageLineage": "defqon1:uv",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:yellow:1230:bart-hard",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Yellow",
+  "start": "12:30",
+  "end": "14:00",
+  "printed": "Bart Hard",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bart-hard",
+    "role": "performer"
+   }
+  ],
+  "act": "bart-hard",
+  "closing": false,
+  "stageLineage": "defqon1:yellow",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:yellow:1400:chem-d",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Yellow",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "Chem D",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chem-d",
+    "role": "performer"
+   }
+  ],
+  "act": "chem-d",
+  "closing": false,
+  "stageLineage": "defqon1:yellow",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:yellow:1500:cardiak",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Yellow",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "Cardiak",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cardiak",
+    "role": "performer"
+   }
+  ],
+  "act": "cardiak",
+  "closing": false,
+  "stageLineage": "defqon1:yellow",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:yellow:1600:goetia",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Yellow",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Goetia",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "goetia",
+    "role": "performer"
+   }
+  ],
+  "act": "goetia",
+  "closing": false,
+  "stageLineage": "defqon1:yellow",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:yellow:1700:sandy-warez",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Yellow",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Sandy Warez",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "sandy-warez",
+    "role": "performer"
+   }
+  ],
+  "act": "sandy-warez",
+  "closing": false,
+  "stageLineage": "defqon1:yellow",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:yellow:1800:dr-peacock",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Yellow",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Dr. Peacock",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dr-peacock",
+    "role": "performer"
+   }
+  ],
+  "act": "dr-peacock",
+  "closing": false,
+  "stageLineage": "defqon1:yellow",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:yellow:1900:akira",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Yellow",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Akira",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "akira",
+    "role": "performer"
+   }
+  ],
+  "act": "akira",
+  "closing": false,
+  "stageLineage": "defqon1:yellow",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:yellow:2000:noisekick",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Yellow",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Noisekick",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "noisekick",
+    "role": "performer"
+   }
+  ],
+  "act": "noisekick",
+  "closing": true,
+  "stageLineage": "defqon1:yellow",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:green:1230:genetix",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Green",
+  "start": "12:30",
+  "end": "14:00",
+  "printed": "Genetix",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "genetix",
+    "role": "performer"
+   }
+  ],
+  "act": "genetix",
+  "closing": false,
+  "stageLineage": "defqon1:green",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:green:1400:broken-note",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Green",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "Broken Note",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "broken-note",
+    "role": "performer"
+   }
+  ],
+  "act": "broken-note",
+  "closing": false,
+  "stageLineage": "defqon1:green",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:green:1500:black-sun-empire",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Green",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "Black Sun Empire",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "black-sun-empire",
+    "role": "performer"
+   }
+  ],
+  "act": "black-sun-empire",
+  "closing": false,
+  "stageLineage": "defqon1:green",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:green:1600:cooh",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Green",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Cooh",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "cooh",
+    "role": "performer"
+   }
+  ],
+  "act": "cooh",
+  "closing": false,
+  "stageLineage": "defqon1:green",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:green:1700:lucy-furr",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Green",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Lucy Furr",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lucy-furr",
+    "role": "performer"
+   }
+  ],
+  "act": "lucy-furr",
+  "closing": false,
+  "stageLineage": "defqon1:green",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:green:1800:the-outside-agency-crossbreed-set",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Green",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "The Outside Agency *Crossbreed set*",
+  "setTag": "Crossbreed set",
+  "performers": [
+   {
+    "key": "the-outside-agency",
+    "role": "performer"
+   }
+  ],
+  "act": "the-outside-agency",
+  "closing": false,
+  "stageLineage": "defqon1:green",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:green:1900:war-is-inevitable",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Green",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "War is Inevitable",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "war-is-inevitable",
+    "role": "performer"
+   }
+  ],
+  "act": "war-is-inevitable",
+  "closing": false,
+  "stageLineage": "defqon1:green",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:green:2000:deluge-of-sound",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Green",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Deluge of Sound",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "deluge-of-sound",
+    "role": "performer"
+   }
+  ],
+  "act": "deluge-of-sound",
+  "closing": true,
+  "stageLineage": "defqon1:green",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:magenta:1200:balistic",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Magenta",
+  "start": "12:00",
+  "end": "13:30",
+  "printed": "Balistic",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "balistic",
+    "role": "performer"
+   }
+  ],
+  "act": "balistic",
+  "closing": false,
+  "stageLineage": "defqon1:magenta",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:magenta:1330:t-a-t-a-n-k-a-project",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Magenta",
+  "start": "13:30",
+  "end": "15:00",
+  "printed": "T.A.T.A.N.K.A Project",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "t-a-t-a-n-k-a-project",
+    "role": "performer"
+   }
+  ],
+  "act": "t-a-t-a-n-k-a-project",
+  "closing": false,
+  "stageLineage": "defqon1:magenta",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:magenta:1500:gary-d",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Magenta",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "Gary D",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "gary-d",
+    "role": "performer"
+   }
+  ],
+  "act": "gary-d",
+  "closing": false,
+  "stageLineage": "defqon1:magenta",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:magenta:1600:zenith",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Magenta",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Zenith",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "zenith",
+    "role": "performer"
+   }
+  ],
+  "act": "zenith",
+  "closing": false,
+  "stageLineage": "defqon1:magenta",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:magenta:1700:deepack",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Magenta",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Deepack",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "deepack",
+    "role": "performer"
+   }
+  ],
+  "act": "deepack",
+  "closing": false,
+  "stageLineage": "defqon1:magenta",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:magenta:1800:technoboy-and-tuneboy",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Magenta",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Technoboy & Tuneboy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "technoboy-and-tuneboy",
+    "role": "performer"
+   }
+  ],
+  "act": "technoboy-and-tuneboy",
+  "closing": false,
+  "stageLineage": "defqon1:magenta",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:magenta:1900:luna-presents-the-qlubtempo-parade",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Magenta",
+  "start": "19:00",
+  "end": "21:00",
+  "printed": "Luna presents the Qlubtempo Parade",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-qlubtempo-parade",
+    "role": "project"
+   }
+  ],
+  "act": "luna-presents-the-qlubtempo-parade",
+  "closing": true,
+  "stageLineage": "defqon1:magenta",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:purple:1100:proto-bytez",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Purple",
+  "start": "11:00",
+  "end": "12:00",
+  "printed": "Proto Bytez",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "proto-bytez",
+    "role": "performer"
+   }
+  ],
+  "act": "proto-bytez",
+  "closing": false,
+  "stageLineage": "defqon1:purple",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:purple:1200:recharge",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Purple",
+  "start": "12:00",
+  "end": "13:00",
+  "printed": "Recharge",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "recharge",
+    "role": "performer"
+   }
+  ],
+  "act": "recharge",
+  "closing": false,
+  "stageLineage": "defqon1:purple",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:purple:1300:concept-art",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Purple",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "Concept Art",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "concept-art",
+    "role": "performer"
+   }
+  ],
+  "act": "concept-art",
+  "closing": false,
+  "stageLineage": "defqon1:purple",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:purple:1400:pulserz",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Purple",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "Pulserz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "pulserz",
+    "role": "performer"
+   }
+  ],
+  "act": "pulserz",
+  "closing": false,
+  "stageLineage": "defqon1:purple",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:purple:1500:hpnotic",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Purple",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "Hpnotic",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hpnotic",
+    "role": "performer"
+   }
+  ],
+  "act": "hpnotic",
+  "closing": false,
+  "stageLineage": "defqon1:purple",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:purple:1600:noisecult",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Purple",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Noisecult",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "noisecult",
+    "role": "performer"
+   }
+  ],
+  "act": "noisecult",
+  "closing": false,
+  "stageLineage": "defqon1:purple",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:purple:1700:nutralizers",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Purple",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Nutralizers",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "nutralizers",
+    "role": "performer"
+   }
+  ],
+  "act": "nutralizers",
+  "closing": false,
+  "stageLineage": "defqon1:purple",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:purple:1800:electronic-vibes",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Purple",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Electronic Vibes",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "electronic-vibes",
+    "role": "performer"
+   }
+  ],
+  "act": "electronic-vibes",
+  "closing": false,
+  "stageLineage": "defqon1:purple",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:purple:1900:aztech",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Purple",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Aztech",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "aztech",
+    "role": "performer"
+   }
+  ],
+  "act": "aztech",
+  "closing": false,
+  "stageLineage": "defqon1:purple",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:purple:2000:your-on",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Purple",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Your-On",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "your-on",
+    "role": "performer"
+   }
+  ],
+  "act": "your-on",
+  "closing": false,
+  "stageLineage": "defqon1:purple",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:purple:2100:advanced-dealer",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Purple",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "Advanced Dealer",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "advanced-dealer",
+    "role": "performer"
+   }
+  ],
+  "act": "advanced-dealer",
+  "closing": true,
+  "stageLineage": "defqon1:purple",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:white:1200:luca-perra",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "White",
+  "start": "12:00",
+  "end": "13:00",
+  "printed": "Luca Perra",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "luca-perra",
+    "role": "performer"
+   }
+  ],
+  "act": "luca-perra",
+  "closing": false,
+  "stageLineage": "defqon1:white",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:white:1300:done-heavy",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "White",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "Done Heavy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "done-heavy",
+    "role": "performer"
+   }
+  ],
+  "act": "done-heavy",
+  "closing": false,
+  "stageLineage": "defqon1:white",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:white:1400:s1ngular",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "White",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "S1ngular",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "s1ngular",
+    "role": "performer"
+   }
+  ],
+  "act": "s1ngular",
+  "closing": false,
+  "stageLineage": "defqon1:white",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:white:1500:subkilla",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "White",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "Subkilla",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "subkilla",
+    "role": "performer"
+   }
+  ],
+  "act": "subkilla",
+  "closing": false,
+  "stageLineage": "defqon1:white",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:white:1600:donnie-darko",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "White",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Donnie Darko",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "donnie-darko",
+    "role": "performer"
+   }
+  ],
+  "act": "donnie-darko",
+  "closing": false,
+  "stageLineage": "defqon1:white",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:white:1700:atmo",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "White",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "ATMO",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "atmo",
+    "role": "performer"
+   }
+  ],
+  "act": "atmo",
+  "closing": false,
+  "stageLineage": "defqon1:white",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:white:1800:a-s-y-s",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "White",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "A*S*Y*S",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "a-s-y-s",
+    "role": "performer"
+   }
+  ],
+  "act": "a-s-y-s",
+  "closing": false,
+  "stageLineage": "defqon1:white",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:white:1900:acti",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "White",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "ACTI",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "acti",
+    "role": "performer"
+   }
+  ],
+  "act": "acti",
+  "closing": false,
+  "stageLineage": "defqon1:white",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:white:2000:argy",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "White",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Argy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "argy",
+    "role": "performer"
+   }
+  ],
+  "act": "argy",
+  "closing": false,
+  "stageLineage": "defqon1:white",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:white:2100:alex-kidd",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "White",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "Alex Kidd",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alex-kidd",
+    "role": "performer"
+   }
+  ],
+  "act": "alex-kidd",
+  "closing": true,
+  "stageLineage": "defqon1:white",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:indigo:1100:notoriouz",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Indigo",
+  "start": "11:00",
+  "end": "12:00",
+  "printed": "Notoriouz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "notoriouz",
+    "role": "performer"
+   }
+  ],
+  "act": "notoriouz",
+  "closing": false,
+  "stageLineage": "defqon1:indigo",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:indigo:1230:aeros",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Indigo",
+  "start": "12:30",
+  "end": "13:00",
+  "printed": "Aeros",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "aeros",
+    "role": "performer"
+   }
+  ],
+  "act": "aeros",
+  "closing": false,
+  "stageLineage": "defqon1:indigo",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:indigo:1300:artifact",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Indigo",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "Artifact",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "artifact",
+    "role": "performer"
+   }
+  ],
+  "act": "artifact",
+  "closing": false,
+  "stageLineage": "defqon1:indigo",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:indigo:1400:prefix-and-density",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Indigo",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "Prefix & Density",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "prefix-and-density",
+    "role": "performer"
+   }
+  ],
+  "act": "prefix-and-density",
+  "closing": false,
+  "stageLineage": "defqon1:indigo",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:indigo:1500:the-geminizers-and-the-machine",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Indigo",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "The Geminizers & The Machine",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "the-geminizers-and-the-machine",
+    "role": "performer"
+   }
+  ],
+  "act": "the-geminizers-and-the-machine",
+  "closing": false,
+  "stageLineage": "defqon1:indigo",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:indigo:1600:degos-and-re-done",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Indigo",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Degos & Re-Done",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "degos-and-re-done",
+    "role": "performer"
+   }
+  ],
+  "act": "degos-and-re-done",
+  "closing": false,
+  "stageLineage": "defqon1:indigo",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:indigo:1700:solutio",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Indigo",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Solutio",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "solutio",
+    "role": "performer"
+   }
+  ],
+  "act": "solutio",
+  "closing": false,
+  "stageLineage": "defqon1:indigo",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:indigo:1800:black-burn-and-k96",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Indigo",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Black Burn & K96",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "black-burn-and-k96",
+    "role": "performer"
+   }
+  ],
+  "act": "black-burn-and-k96",
+  "closing": false,
+  "stageLineage": "defqon1:indigo",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:indigo:1900:deetox-and-delete",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Indigo",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Deetox & Delete",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "deetox-and-delete",
+    "role": "performer"
+   }
+  ],
+  "act": "deetox-and-delete",
+  "closing": false,
+  "stageLineage": "defqon1:indigo",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:indigo:2000:dark-pact",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Indigo",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Dark Pact",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dark-pact",
+    "role": "performer"
+   }
+  ],
+  "act": "dark-pact",
+  "closing": false,
+  "stageLineage": "defqon1:indigo",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:indigo:2100:warface",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Indigo",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "Warface",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "warface",
+    "role": "performer"
+   }
+  ],
+  "act": "warface",
+  "closing": true,
+  "stageLineage": "defqon1:indigo",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:brown:1300:weslo",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Brown",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "Weslo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "weslo",
+    "role": "performer"
+   }
+  ],
+  "act": "weslo",
+  "closing": false,
+  "stageLineage": "defqon1:brown",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:brown:1400:davoodi",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Brown",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "Davoodi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "davoodi",
+    "role": "performer"
+   }
+  ],
+  "act": "davoodi",
+  "closing": false,
+  "stageLineage": "defqon1:brown",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:brown:1500:dirtcaps",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Brown",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "Dirtcaps",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dirtcaps",
+    "role": "performer"
+   }
+  ],
+  "act": "dirtcaps",
+  "closing": false,
+  "stageLineage": "defqon1:brown",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:brown:1600:giocatori",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Brown",
+  "start": "16:00",
+  "end": "16:30",
+  "printed": "Giocatori",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "giocatori",
+    "role": "performer"
+   }
+  ],
+  "act": "giocatori",
+  "closing": false,
+  "stageLineage": "defqon1:brown",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:brown:1630:lny-tnz",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Brown",
+  "start": "16:30",
+  "end": "17:30",
+  "printed": "LNY TNZ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "lny-tnz",
+    "role": "performer"
+   }
+  ],
+  "act": "lny-tnz",
+  "closing": false,
+  "stageLineage": "defqon1:brown",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:brown:1730:dr-rude-and-dr-phunk",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Brown",
+  "start": "17:30",
+  "end": "18:30",
+  "printed": "Dr. Rude & Dr Phunk",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dr-rude-and-dr-phunk",
+    "role": "performer"
+   }
+  ],
+  "act": "dr-rude-and-dr-phunk",
+  "closing": false,
+  "stageLineage": "defqon1:brown",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:brown:1830:mark-with-a-k",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Brown",
+  "start": "18:30",
+  "end": "20:00",
+  "printed": "Mark With a K",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mark-with-a-k",
+    "role": "performer"
+   }
+  ],
+  "act": "mark-with-a-k",
+  "closing": false,
+  "stageLineage": "defqon1:brown",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:brown:2000:ruthless",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Brown",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Ruthless",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ruthless",
+    "role": "performer"
+   }
+  ],
+  "act": "ruthless",
+  "closing": false,
+  "stageLineage": "defqon1:brown",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:brown:2100:kutski",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Brown",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "Kutski",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "kutski",
+    "role": "performer"
+   }
+  ],
+  "act": "kutski",
+  "closing": true,
+  "stageLineage": "defqon1:brown",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:silver:1200:krauser",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Silver",
+  "start": "12:00",
+  "end": "13:00",
+  "printed": "Krauser",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "krauser",
+    "role": "performer"
+   }
+  ],
+  "act": "krauser",
+  "closing": false,
+  "stageLineage": "defqon1:silver",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:silver:1300:mindustries-and-fracture-4",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Silver",
+  "start": "13:00",
+  "end": "14:30",
+  "printed": "Mindustries & Fracture 4",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mindustries-and-fracture-4",
+    "role": "performer"
+   }
+  ],
+  "act": "mindustries-and-fracture-4",
+  "closing": false,
+  "stageLineage": "defqon1:silver",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:silver:1430:n-vitral-live",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Silver",
+  "start": "14:30",
+  "end": "15:00",
+  "printed": "N-Vitral live",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "n-vitral-live",
+    "role": "performer"
+   }
+  ],
+  "act": "n-vitral-live",
+  "closing": false,
+  "stageLineage": "defqon1:silver",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:silver:1500:dither",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Silver",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "Dither",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dither",
+    "role": "performer"
+   }
+  ],
+  "act": "dither",
+  "closing": false,
+  "stageLineage": "defqon1:silver",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:silver:1600:meander",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Silver",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Meander",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "meander",
+    "role": "performer"
+   }
+  ],
+  "act": "meander",
+  "closing": false,
+  "stageLineage": "defqon1:silver",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:silver:1700:ak-industry",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Silver",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "AK-Industry",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ak-industry",
+    "role": "performer"
+   }
+  ],
+  "act": "ak-industry",
+  "closing": false,
+  "stageLineage": "defqon1:silver",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:silver:1800:dolphin",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Silver",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Dolphin",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dolphin",
+    "role": "performer"
+   }
+  ],
+  "act": "dolphin",
+  "closing": false,
+  "stageLineage": "defqon1:silver",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:silver:1900:hellfish-and-the-dj-producer",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Silver",
+  "start": "19:00",
+  "end": "20:30",
+  "printed": "Hellfish & The DJ Producer",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hellfish-and-the-dj-producer",
+    "role": "performer"
+   }
+  ],
+  "act": "hellfish-and-the-dj-producer",
+  "closing": false,
+  "stageLineage": "defqon1:silver",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:silver:2030:deathmachine",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Silver",
+  "start": "20:30",
+  "end": "21:30",
+  "printed": "Deathmachine",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "deathmachine",
+    "role": "performer"
+   }
+  ],
+  "act": "deathmachine",
+  "closing": false,
+  "stageLineage": "defqon1:silver",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:silver:2130:rotator",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "Silver",
+  "start": "21:30",
+  "end": "22:30",
+  "printed": "Rotator",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "rotator",
+    "role": "performer"
+   }
+  ],
+  "act": "rotator",
+  "closing": true,
+  "stageLineage": "defqon1:silver",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:after:2315:darkraver",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "After",
+  "start": "23:15",
+  "end": "01:00",
+  "printed": "Darkraver",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "darkraver",
+    "role": "performer"
+   }
+  ],
+  "act": "darkraver",
+  "closing": false,
+  "stageLineage": "defqon1:after",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:after:0100:tnt",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "After",
+  "start": "01:00",
+  "end": "02:00",
+  "printed": "TNT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tnt",
+    "role": "performer"
+   }
+  ],
+  "act": "tnt",
+  "closing": false,
+  "stageLineage": "defqon1:after",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:after:0200:a2-allstars",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "After",
+  "start": "02:00",
+  "end": "03:00",
+  "printed": "A2 Allstars",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "a2-allstars",
+    "role": "performer"
+   }
+  ],
+  "act": "a2-allstars",
+  "closing": false,
+  "stageLineage": "defqon1:after",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d2:after:0300:endymion-ft-murda",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-28",
+  "day": 2,
+  "stage": "After",
+  "start": "03:00",
+  "end": "04:00",
+  "printed": "Endymion ft Murda",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "endymion-ft-murda",
+    "role": "act"
+   }
+  ],
+  "act": "endymion-ft-murda",
+  "closing": true,
+  "stageLineage": "defqon1:after",
+  "mainStage": null,
+  "review": "feat / with billing"
+ },
+ {
+  "id": "defqon1-2014:d3:black:1200:system-shock",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Black",
+  "start": "12:00",
+  "end": "13:00",
+  "printed": "System Shock",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "system-shock",
+    "role": "performer"
+   }
+  ],
+  "act": "system-shock",
+  "closing": false,
+  "stageLineage": "defqon1:black",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:black:1300:wasted-mind",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Black",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "Wasted Mind",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "wasted-mind",
+    "role": "performer"
+   }
+  ],
+  "act": "wasted-mind",
+  "closing": false,
+  "stageLineage": "defqon1:black",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:black:1400:evil-activities",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Black",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "Evil Activities",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "evil-activities",
+    "role": "performer"
+   }
+  ],
+  "act": "evil-activities",
+  "closing": false,
+  "stageLineage": "defqon1:black",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:black:1500:meccano-twins",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Black",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "Meccano Twins",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "meccano-twins",
+    "role": "performer"
+   }
+  ],
+  "act": "meccano-twins",
+  "closing": false,
+  "stageLineage": "defqon1:black",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:black:1600:tha-playah",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Black",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Tha Playah",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tha-playah",
+    "role": "performer"
+   }
+  ],
+  "act": "tha-playah",
+  "closing": false,
+  "stageLineage": "defqon1:black",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:black:1700:mad-dog-and-anime",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Black",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "Mad Dog & AniMe",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "mad-dog-and-anime",
+    "role": "performer"
+   }
+  ],
+  "act": "mad-dog-and-anime",
+  "closing": false,
+  "stageLineage": "defqon1:black",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:black:1800:the-sickest-squad-and-unexist-live",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Black",
+  "start": "18:00",
+  "end": "18:30",
+  "printed": "The Sickest Squad & Unexist [LIVE]",
+  "setTag": "LIVE",
+  "performers": [
+   {
+    "key": "the-sickest-squad-and-unexist",
+    "role": "performer"
+   }
+  ],
+  "act": "the-sickest-squad-and-unexist",
+  "closing": false,
+  "stageLineage": "defqon1:black",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:black:1830:angerfist",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Black",
+  "start": "18:30",
+  "end": "20:00",
+  "printed": "Angerfist",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "angerfist",
+    "role": "performer"
+   }
+  ],
+  "act": "angerfist",
+  "closing": true,
+  "stageLineage": "defqon1:black",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:gold:1200:uzi",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Gold",
+  "start": "12:00",
+  "end": "13:00",
+  "printed": "Uzi",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "uzi",
+    "role": "performer"
+   }
+  ],
+  "act": "uzi",
+  "closing": false,
+  "stageLineage": "defqon1:gold",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:gold:1300:critical-mass-live",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Gold",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "Critical Mass [LIVE]",
+  "setTag": "LIVE",
+  "performers": [
+   {
+    "key": "critical-mass",
+    "role": "performer"
+   }
+  ],
+  "act": "critical-mass",
+  "closing": false,
+  "stageLineage": "defqon1:gold",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:gold:1400:panic",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Gold",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "Panic",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "panic",
+    "role": "performer"
+   }
+  ],
+  "act": "panic",
+  "closing": false,
+  "stageLineage": "defqon1:gold",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:gold:1500:dune-live",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Gold",
+  "start": "15:00",
+  "end": "15:30",
+  "printed": "Dune [LIVE]",
+  "setTag": "LIVE",
+  "performers": [
+   {
+    "key": "dune",
+    "role": "performer"
+   }
+  ],
+  "act": "dune",
+  "closing": false,
+  "stageLineage": "defqon1:gold",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:gold:1530:bountyhunter-and-franky-jones",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Gold",
+  "start": "15:30",
+  "end": "16:30",
+  "printed": "Bountyhunter & Franky Jones",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bountyhunter-and-franky-jones",
+    "role": "performer"
+   }
+  ],
+  "act": "bountyhunter-and-franky-jones",
+  "closing": false,
+  "stageLineage": "defqon1:gold",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:gold:1630:darkraver-and-mental-theo",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Gold",
+  "start": "16:30",
+  "end": "17:30",
+  "printed": "Darkraver & Mental Theo",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "darkraver-and-mental-theo",
+    "role": "performer"
+   }
+  ],
+  "act": "darkraver-and-mental-theo",
+  "closing": false,
+  "stageLineage": "defqon1:gold",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:gold:1730:human-resource-live",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Gold",
+  "start": "17:30",
+  "end": "18:15",
+  "printed": "Human Resource [LIVE]",
+  "setTag": "LIVE",
+  "performers": [
+   {
+    "key": "human-resource",
+    "role": "performer"
+   }
+  ],
+  "act": "human-resource",
+  "closing": false,
+  "stageLineage": "defqon1:gold",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:gold:1815:buzz-fuzz-and-dione",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Gold",
+  "start": "18:15",
+  "end": null,
+  "printed": "Buzz Fuzz & Dione",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "buzz-fuzz-and-dione",
+    "role": "performer"
+   }
+  ],
+  "act": "buzz-fuzz-and-dione",
+  "closing": false,
+  "stageLineage": "defqon1:gold",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:gold:1900:md-and-a-live",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Gold",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "MD&A [LIVE]",
+  "setTag": "LIVE",
+  "performers": [
+   {
+    "key": "md-and-a",
+    "role": "performer"
+   }
+  ],
+  "act": "md-and-a",
+  "closing": true,
+  "stageLineage": "defqon1:gold",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:blue:1100:hard-driver",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Blue",
+  "start": "11:00",
+  "end": "12:00",
+  "printed": "Hard Driver",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hard-driver",
+    "role": "performer"
+   }
+  ],
+  "act": "hard-driver",
+  "closing": false,
+  "stageLineage": "defqon1:blue",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:blue:1200:phuture-noize-and-goliath",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Blue",
+  "start": "12:00",
+  "end": "13:00",
+  "printed": "Phuture Noize & Goliath",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "phuture-noize-and-goliath",
+    "role": "performer"
+   }
+  ],
+  "act": "phuture-noize-and-goliath",
+  "closing": false,
+  "stageLineage": "defqon1:blue",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:blue:1300:phrantic-live",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Blue",
+  "start": "13:00",
+  "end": "13:30",
+  "printed": "Phrantic [LIVE]",
+  "setTag": "LIVE",
+  "performers": [
+   {
+    "key": "phrantic",
+    "role": "performer"
+   }
+  ],
+  "act": "phrantic",
+  "closing": false,
+  "stageLineage": "defqon1:blue",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:blue:1330:tatanka",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Blue",
+  "start": "13:30",
+  "end": "14:15",
+  "printed": "Tatanka",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tatanka",
+    "role": "performer"
+   }
+  ],
+  "act": "tatanka",
+  "closing": false,
+  "stageLineage": "defqon1:blue",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:blue:1415:outbreak",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Blue",
+  "start": "14:15",
+  "end": "15:00",
+  "printed": "Outbreak",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "outbreak",
+    "role": "performer"
+   }
+  ],
+  "act": "outbreak",
+  "closing": false,
+  "stageLineage": "defqon1:blue",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:blue:1500:chain-reaction",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Blue",
+  "start": "15:00",
+  "end": "15:45",
+  "printed": "Chain Reaction",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "chain-reaction",
+    "role": "performer"
+   }
+  ],
+  "act": "chain-reaction",
+  "closing": false,
+  "stageLineage": "defqon1:blue",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:blue:1545:luna",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Blue",
+  "start": "15:45",
+  "end": "16:45",
+  "printed": "Luna",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "luna",
+    "role": "performer"
+   }
+  ],
+  "act": "luna",
+  "closing": false,
+  "stageLineage": "defqon1:blue",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:blue:1645:activator",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Blue",
+  "start": "16:45",
+  "end": "17:45",
+  "printed": "Activator",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "activator",
+    "role": "performer"
+   }
+  ],
+  "act": "activator",
+  "closing": false,
+  "stageLineage": "defqon1:blue",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:blue:1745:e-force",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Blue",
+  "start": "17:45",
+  "end": "18:45",
+  "printed": "E-Force",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "e-force",
+    "role": "performer"
+   }
+  ],
+  "act": "e-force",
+  "closing": false,
+  "stageLineage": "defqon1:blue",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:blue:1845:radical-redemption",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Blue",
+  "start": "18:45",
+  "end": "20:00",
+  "printed": "Radical Redemption",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "radical-redemption",
+    "role": "performer"
+   }
+  ],
+  "act": "radical-redemption",
+  "closing": true,
+  "stageLineage": "defqon1:blue",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:uv:1200:neilio",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "UV",
+  "start": "12:00",
+  "end": "13:00",
+  "printed": "Neilio",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "neilio",
+    "role": "performer"
+   }
+  ],
+  "act": "neilio",
+  "closing": false,
+  "stageLineage": "defqon1:uv",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:uv:1300:energyzed-and-shockerz",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "UV",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "Energyzed & Shockerz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "energyzed-and-shockerz",
+    "role": "performer"
+   }
+  ],
+  "act": "energyzed-and-shockerz",
+  "closing": false,
+  "stageLineage": "defqon1:uv",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:uv:1400:da-tweekaz",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "UV",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "Da Tweekaz",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "da-tweekaz",
+    "role": "performer"
+   }
+  ],
+  "act": "da-tweekaz",
+  "closing": false,
+  "stageLineage": "defqon1:uv",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:uv:1500:toneshifterz-and-dillytek",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "UV",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "Toneshifterz & Dillytek",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "toneshifterz-and-dillytek",
+    "role": "performer"
+   }
+  ],
+  "act": "toneshifterz-and-dillytek",
+  "closing": false,
+  "stageLineage": "defqon1:uv",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:uv:1600:outlander",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "UV",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Outlander",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "outlander",
+    "role": "performer"
+   }
+  ],
+  "act": "outlander",
+  "closing": false,
+  "stageLineage": "defqon1:uv",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:uv:1700:a-lusion",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "UV",
+  "start": "17:00",
+  "end": "18:00",
+  "printed": "A-lusion",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "a-lusion",
+    "role": "performer"
+   }
+  ],
+  "act": "a-lusion",
+  "closing": false,
+  "stageLineage": "defqon1:uv",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:uv:1800:audiofreq",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "UV",
+  "start": "18:00",
+  "end": "19:00",
+  "printed": "Audiofreq",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "audiofreq",
+    "role": "performer"
+   }
+  ],
+  "act": "audiofreq",
+  "closing": false,
+  "stageLineage": "defqon1:uv",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:uv:1900:italian-hardstyle-mafia",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "UV",
+  "start": "19:00",
+  "end": "20:00",
+  "printed": "Italian Hardstyle Mafia",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "italian-hardstyle-mafia",
+    "role": "performer"
+   }
+  ],
+  "act": "italian-hardstyle-mafia",
+  "closing": true,
+  "stageLineage": "defqon1:uv",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:magenta:1300:jones",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Magenta",
+  "start": "13:00",
+  "end": "14:00",
+  "printed": "Jones",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "jones",
+    "role": "performer"
+   }
+  ],
+  "act": "jones",
+  "closing": false,
+  "stageLineage": "defqon1:magenta",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:magenta:1400:toyax",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Magenta",
+  "start": "14:00",
+  "end": "15:00",
+  "printed": "Toyax",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "toyax",
+    "role": "performer"
+   }
+  ],
+  "act": "toyax",
+  "closing": false,
+  "stageLineage": "defqon1:magenta",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:magenta:1500:davide-sonar",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Magenta",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "Davide Sonar",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "davide-sonar",
+    "role": "performer"
+   }
+  ],
+  "act": "davide-sonar",
+  "closing": false,
+  "stageLineage": "defqon1:magenta",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:magenta:1600:scope-dj",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Magenta",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Scope DJ",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "scope-dj",
+    "role": "performer"
+   }
+  ],
+  "act": "scope-dj",
+  "closing": false,
+  "stageLineage": "defqon1:magenta",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:magenta:1700:alpha2",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Magenta",
+  "start": "17:00",
+  "end": "18:30",
+  "printed": "Alpha2",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "alpha2",
+    "role": "performer"
+   }
+  ],
+  "act": "alpha2",
+  "closing": false,
+  "stageLineage": "defqon1:magenta",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:magenta:1830:oldschool-modulators",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Magenta",
+  "start": "18:30",
+  "end": "20:00",
+  "printed": "Oldschool Modulators",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "oldschool-modulators",
+    "role": "performer"
+   }
+  ],
+  "act": "oldschool-modulators",
+  "closing": true,
+  "stageLineage": "defqon1:magenta",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:white:1200:les-tronchiennes",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "White",
+  "start": "12:00",
+  "end": "13:30",
+  "printed": "Les Tronchiennes",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "les-tronchiennes",
+    "role": "performer"
+   }
+  ],
+  "act": "les-tronchiennes",
+  "closing": false,
+  "stageLineage": "defqon1:white",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:white:1330:hawman",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "White",
+  "start": "13:30",
+  "end": "15:00",
+  "printed": "Hawman",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "hawman",
+    "role": "performer"
+   }
+  ],
+  "act": "hawman",
+  "closing": false,
+  "stageLineage": "defqon1:white",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:white:1500:bold-action",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "White",
+  "start": "15:00",
+  "end": "16:00",
+  "printed": "Bold Action",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "bold-action",
+    "role": "performer"
+   }
+  ],
+  "act": "bold-action",
+  "closing": false,
+  "stageLineage": "defqon1:white",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:white:1600:dirtcaps",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "White",
+  "start": "16:00",
+  "end": "17:00",
+  "printed": "Dirtcaps",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "dirtcaps",
+    "role": "performer"
+   }
+  ],
+  "act": "dirtcaps",
+  "closing": false,
+  "stageLineage": "defqon1:white",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:white:1700:geck-e",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "White",
+  "start": "17:00",
+  "end": "18:30",
+  "printed": "Geck-e",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "geck-e",
+    "role": "performer"
+   }
+  ],
+  "act": "geck-e",
+  "closing": false,
+  "stageLineage": "defqon1:white",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:white:1830:eyoung",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "White",
+  "start": "18:30",
+  "end": "20:00",
+  "printed": "Eyoung",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "eyoung",
+    "role": "performer"
+   }
+  ],
+  "act": "eyoung",
+  "closing": true,
+  "stageLineage": "defqon1:white",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:silver:1230:li-z-and-stefan-zmk",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Silver",
+  "start": "12:30",
+  "end": "13:30",
+  "printed": "LI-z & Stefan ZMK",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "li-z-and-stefan-zmk",
+    "role": "performer"
+   }
+  ],
+  "act": "li-z-and-stefan-zmk",
+  "closing": false,
+  "stageLineage": "defqon1:silver",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:silver:1330:embrionyc",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Silver",
+  "start": "13:30",
+  "end": "14:30",
+  "printed": "Embrionyc",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "embrionyc",
+    "role": "performer"
+   }
+  ],
+  "act": "embrionyc",
+  "closing": false,
+  "stageLineage": "defqon1:silver",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:silver:1430:waldhaus",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Silver",
+  "start": "14:30",
+  "end": "15:30",
+  "printed": "Waldhaus",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "waldhaus",
+    "role": "performer"
+   }
+  ],
+  "act": "waldhaus",
+  "closing": false,
+  "stageLineage": "defqon1:silver",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:silver:1530:stormtrooper",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Silver",
+  "start": "15:30",
+  "end": "16:30",
+  "printed": "Stormtrooper",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "stormtrooper",
+    "role": "performer"
+   }
+  ],
+  "act": "stormtrooper",
+  "closing": false,
+  "stageLineage": "defqon1:silver",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:silver:1630:scheme-boy",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Silver",
+  "start": "16:30",
+  "end": "17:30",
+  "printed": "Scheme Boy",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "scheme-boy",
+    "role": "performer"
+   }
+  ],
+  "act": "scheme-boy",
+  "closing": false,
+  "stageLineage": "defqon1:silver",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:silver:1730:khaoz-engine",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Silver",
+  "start": "17:30",
+  "end": "18:30",
+  "printed": "Khaoz Engine",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "khaoz-engine",
+    "role": "performer"
+   }
+  ],
+  "act": "khaoz-engine",
+  "closing": false,
+  "stageLineage": "defqon1:silver",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:silver:1830:tripped",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Silver",
+  "start": "18:30",
+  "end": "20:00",
+  "printed": "Tripped",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "tripped",
+    "role": "performer"
+   }
+  ],
+  "act": "tripped",
+  "closing": true,
+  "stageLineage": "defqon1:silver",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:closing:2000:brennan-heart",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Closing",
+  "start": "20:00",
+  "end": "21:00",
+  "printed": "Brennan Heart",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "brennan-heart",
+    "role": "performer"
+   }
+  ],
+  "act": "brennan-heart",
+  "closing": false,
+  "stageLineage": "defqon1:closing",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:closing:2100:frontliner",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Closing",
+  "start": "21:00",
+  "end": "22:00",
+  "printed": "Frontliner",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "frontliner",
+    "role": "performer"
+   }
+  ],
+  "act": "frontliner",
+  "closing": false,
+  "stageLineage": "defqon1:closing",
+  "mainStage": null
+ },
+ {
+  "id": "defqon1-2014:d3:closing:2200:ran-d-and-b-front",
+  "source": "edition",
+  "festivalId": "defqon1-2014",
+  "festivalBrand": "defqon1",
+  "year": 2014,
+  "date": "2014-06-29",
+  "day": 3,
+  "stage": "Closing",
+  "start": "22:00",
+  "end": "22:45",
+  "printed": "RAN-D & B-FRONT",
+  "setTag": null,
+  "performers": [
+   {
+    "key": "ran-d-and-b-front",
+    "role": "performer"
+   }
+  ],
+  "act": "ran-d-and-b-front",
+  "closing": true,
+  "stageLineage": "defqon1:closing",
+  "mainStage": null
+ },
+ {
   "id": "defqon1-2015:d1:blue:2000:max-enforcer",
   "source": "edition",
   "festivalId": "defqon1-2015",
@@ -278542,14 +283247,14 @@
   "start": "23:00",
   "end": "23:30",
   "printed": "Mashup Jack *LIVE*",
-  "setTag": null,
+  "setTag": "LIVE",
   "performers": [
    {
-    "key": "mashup-jack-live",
+    "key": "mashup-jack",
     "role": "performer"
    }
   ],
-  "act": "mashup-jack-live",
+  "act": "mashup-jack",
   "closing": false,
   "stageLineage": "defqon1:blue",
   "mainStage": null
@@ -278638,14 +283343,14 @@
   "start": "21:00",
   "end": "22:00",
   "printed": "Nosferatu & Endymion *Millennium set*",
-  "setTag": null,
+  "setTag": "Millennium set",
   "performers": [
    {
-    "key": "nosferatu-and-endymion-millennium-set",
+    "key": "nosferatu-and-endymion",
     "role": "performer"
    }
   ],
-  "act": "nosferatu-and-endymion-millennium-set",
+  "act": "nosferatu-and-endymion",
   "closing": false,
   "stageLineage": "defqon1:black",
   "mainStage": null
@@ -278951,14 +283656,14 @@
   "start": "20:30",
   "end": "21:00",
   "printed": "Radical Redemption *LIVE*",
-  "setTag": null,
+  "setTag": "LIVE",
   "performers": [
    {
-    "key": "radical-redemption-live",
+    "key": "radical-redemption",
     "role": "performer"
    }
   ],
-  "act": "radical-redemption-live",
+  "act": "radical-redemption",
   "closing": false,
   "stageLineage": "defqon1:blue",
   "mainStage": null
@@ -279191,14 +283896,14 @@
   "start": "19:30",
   "end": "20:30",
   "printed": "Traxtorm Gangstaz Allied *LIVE*",
-  "setTag": null,
+  "setTag": "LIVE",
   "performers": [
    {
-    "key": "traxtorm-gangstaz-allied-live",
+    "key": "traxtorm-gangstaz-allied",
     "role": "performer"
    }
   ],
-  "act": "traxtorm-gangstaz-allied-live",
+  "act": "traxtorm-gangstaz-allied",
   "closing": false,
   "stageLineage": "defqon1:black",
   "mainStage": null
@@ -280176,14 +284881,14 @@
   "start": "17:30",
   "end": "18:15",
   "printed": "MD&A *LIVE*",
-  "setTag": null,
+  "setTag": "LIVE",
   "performers": [
    {
-    "key": "md-and-a-live",
+    "key": "md-and-a",
     "role": "performer"
    }
   ],
-  "act": "md-and-a-live",
+  "act": "md-and-a",
   "closing": false,
   "stageLineage": "defqon1:gold",
   "mainStage": null
@@ -280200,14 +284905,14 @@
   "start": "18:15",
   "end": "19:15",
   "printed": "G-Town Madness *LIVE*",
-  "setTag": null,
+  "setTag": "LIVE",
   "performers": [
    {
-    "key": "g-town-madness-live",
+    "key": "g-town-madness",
     "role": "performer"
    }
   ],
-  "act": "g-town-madness-live",
+  "act": "g-town-madness",
   "closing": false,
   "stageLineage": "defqon1:gold",
   "mainStage": null
@@ -280681,14 +285386,14 @@
   "start": "20:30",
   "end": "21:30",
   "printed": "DJIPE *LIVE*",
-  "setTag": null,
+  "setTag": "LIVE",
   "performers": [
    {
-    "key": "djipe-live",
+    "key": "djipe",
     "role": "performer"
    }
   ],
-  "act": "djipe-live",
+  "act": "djipe",
   "closing": false,
   "stageLineage": "defqon1:silver",
   "mainStage": null
@@ -281761,14 +286466,14 @@
   "start": "00:30",
   "end": "01:00",
   "printed": "Wasted Penguinz *LIVE*",
-  "setTag": null,
+  "setTag": "LIVE",
   "performers": [
    {
-    "key": "wasted-penguinz-live",
+    "key": "wasted-penguinz",
     "role": "performer"
    }
   ],
-  "act": "wasted-penguinz-live",
+  "act": "wasted-penguinz",
   "closing": false,
   "stageLineage": "defqon1:afterparty",
   "mainStage": null
@@ -282650,14 +287355,14 @@
   "start": "15:15",
   "end": "15:45",
   "printed": "The Pitcher *LIVE*",
-  "setTag": null,
+  "setTag": "LIVE",
   "performers": [
    {
-    "key": "the-pitcher-live",
+    "key": "the-pitcher",
     "role": "performer"
    }
   ],
-  "act": "the-pitcher-live",
+  "act": "the-pitcher",
   "closing": false,
   "stageLineage": "defqon1:uv",
   "mainStage": null
@@ -282842,14 +287547,14 @@
   "start": "15:00",
   "end": "16:00",
   "printed": "Ophidian *BLACKBOX SET*",
-  "setTag": null,
+  "setTag": "BLACKBOX SET",
   "performers": [
    {
-    "key": "ophidian-blackbox-set",
+    "key": "ophidian",
     "role": "performer"
    }
   ],
-  "act": "ophidian-blackbox-set",
+  "act": "ophidian",
   "closing": false,
   "stageLineage": "defqon1:gold",
   "mainStage": null
@@ -283082,14 +287787,14 @@
   "start": "19:15",
   "end": "19:45",
   "printed": "Donkey Rollers *LIVE*",
-  "setTag": null,
+  "setTag": "LIVE",
   "performers": [
    {
-    "key": "donkey-rollers-live",
+    "key": "donkey-rollers",
     "role": "performer"
    }
   ],
-  "act": "donkey-rollers-live",
+  "act": "donkey-rollers",
   "closing": true,
   "stageLineage": "defqon1:magenta",
   "mainStage": null

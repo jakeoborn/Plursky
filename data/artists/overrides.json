@@ -1307,7 +1307,10 @@
     }
    ],
    "why": "The billed name is the act's own name and contains \"with\" (Mark With a K): one performer, nobody is added.",
-   "source": "https://www.tomorrowland.com/"
+   "source": [
+    "https://www.tomorrowland.com/",
+    "https://www.defqon1.nl/nl/timetable/"
+   ]
   },
   {
    "printed": "Double-u ft Eugene",
@@ -7354,6 +7357,10 @@
   }
  ],
  "pending": [
+  {
+   "printed": "Endymion ft Murda",
+   "why": "Left as printed, one act: who is behind the \"feat.\" or \"with\" is not sourced, so it is neither split nor credited to them. Renders as its own billing until a first-party page rules it."
+  },
   {
    "printed": "Sultan + Shepard",
    "why": "Left as printed, one act: who is behind the \"+\" or \"x\" is not sourced (it can be one name: never split on \"+\"). Renders as its own billing until a first-party page rules it."

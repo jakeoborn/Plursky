@@ -43,6 +43,7 @@ import { parseDoStuffEmbed, embedPageOk, pageLoadsScript, scriptSetsSrc } from "
 import { parseSonarSchedule } from "./historical/sonar-schedule.mjs";
 import { parseSzigetDays, tabDate as szigetDate } from "./historical/sziget-days-schedule.mjs";
 import { parseDefqonAreas, headerDate as defqonDate } from "./historical/defqon-schedule.mjs";
+import { parseDefqonLogos, subtitleDate as defqonLogosDate } from "./historical/defqon-logos-schedule.mjs";
 import { parseTomorrowlandLineup } from "./historical/tomorrowland-lineup.mjs";
 import { parseTimeWarpLineup, headerDates as twHeaderDates } from "./historical/timewarp-lineup.mjs";
 import { parseCreamfieldsArtists, creamfieldsRows } from "./historical/creamfields-artists.mjs";
@@ -965,6 +966,43 @@ if (base && edc) {
     dqMust("a Defqon.1 set printed with no time range", dqPage({ fri: [dqArt("red friday", "Hardstyle", ["<li><time><span class=\"start\">20</span> - <span class=\"end\">21:00</span></time><h3 class=\"name\">X</h3></li>"])] }));
     dqMust("a Defqon.1 line that is neither a set nor a host", dqPage({ fri: [dqArt("red friday", "Hardstyle", [dqSet("20:00", "21:00", "Max Enforcer"), "<li><h3 class=\"name\">Surprise</h3></li>"])] }));
     dqMust("a Defqon.1 area with no set that is neither a description nor a block", dqPage({ sun: [dqArt("closing sunday", "Closing", ["<li><h3 class=\"name\">Closer One</h3></li>"])] }));
+    // Defqon.1 2014's timetable: one page for the weekend, a box per area and
+    // day, the area named by its logo, countries in brackets, hosts, a
+    // segment, a block, a name over two lines and an untranslated area.
+    const dlBox = (key, logo, sub, lis) => `<div class="area ${key} masonry"> <h3 class="area-logo"><img src="x.svg" title="${logo}" alt="${logo}"></h3> <div class="subtitle"> <h4>${sub}</h4> </div> <div class="artists"> `
+      + (lis === null ? `Onze verontschuldigingen, dit bericht is alleen beschikbaar in English. </div>` : `<ul>${lis.map(l => `<li>${l}</li>`).join("")}</ul> </div>`) + ` <div class="area-footer"></div> </div>`;
+    const dlFri = [dlBox("red", "Red", "FRIDAY • 27 JUNE", ["Coone (BEL) 20:00 21:00", "Audiofreq &amp; Geck-o (AUS &amp; NLD) 21:00 22:00", "B-Front &amp; Frequencerz", "presents B-freqz [LIVE] (NLD) 22:00 22:30", "Endshow 22:30 23:00", "Hosted by Villain (NLD)"])];
+    const dlSat = [dlBox("black", "Black", "SATURDAY • 28 JUNE", ["Miss K8 (UKR) 15:00 16:00", "Neophyte Records Hostile take over: 16:00 20:00 Neophyte, Panic, Tieum &amp; Kasparov", "Korsakoff (NLD) 20:00 21:00"]),
+      dlBox("orange-2", "Orange", "SATURDAY • 28 JUNE", null),
+      dlBox("gold", "Gold", "SATURDAY • 28 JUNE", ["Buzz Fuzz (NLD) 18:15 19:15", "MD&amp;A [LIVE] (NLD) 19:00 20:00", "Toyax NLD) 20:00 21:00"]),
+      dlBox("after", "After", "SATURDAY • 28 JUNE", ["Darkraver (NLD) 23:15 01:00", "TNT (ITA) 01:00 02:00"])];
+    const dlPage = ({ title = "Timetable | Defqon.1 Festival 2014", fri = dlFri, sat = dlSat } = {}) => `<title>${title}</title>` + [...fri, ...sat].join(" ");
+    const dl = parseDefqonLogos(dlPage(), { year: 2014 });
+    ok(JSON.stringify([dl.stages, dl.days.map(d => [d.date, d.label, d.sets.map(x => [x.stage, x.start, x.end, x.artist, !!x.openEnd])]), dl.hosts.map(h => h.host),
+      dl.segments.map(x => x.printed), dl.bills.map(b => [b.stage, b.start, b.end, b.acts]), dl.untranslated.map(x => x.stage), dl.joined.map(x => x.as), dl.misprints.map(x => x.artist), dl.endsDropped.map(x => x.artist), dl.origins.length])
+      === JSON.stringify([["Red", "Black", "Gold", "After"], [
+        ["2014-06-27", "FRIDAY • 27 JUNE", [["Red", "20:00", "21:00", "Coone", false], ["Red", "21:00", "22:00", "Audiofreq & Geck-o", false], ["Red", "22:00", "22:30", "B-Front & Frequencerz presents B-freqz [LIVE]", false]]],
+        ["2014-06-28", "SATURDAY • 28 JUNE", [["Black", "15:00", "16:00", "Miss K8", false], ["Black", "20:00", "21:00", "Korsakoff", false], ["Gold", "18:15", "", "Buzz Fuzz", true], ["Gold", "19:00", "20:00", "MD&A [LIVE]", false], ["Gold", "20:00", "21:00", "Toyax", false],
+          ["After", "23:15", "01:00", "Darkraver", false], ["After", "01:00", "02:00", "TNT", false]]]],
+        ["Villain"], ["Endshow"], [["Black", "16:00", "20:00", ["Neophyte", "Panic", "Tieum", "Kasparov"]]], ["Orange"], ["B-Front & Frequencerz presents B-freqz [LIVE] (NLD)"], ["Toyax"], ["Buzz Fuzz"], 10]),
+      `a Defqon.1 2014 page must come back as its dated days, countries lifted, the host, segment, block and untranslated area apart, the two-line name joined and the overrun end dropped: ${JSON.stringify(dl)}`);
+    ok(defqonLogosDate("FRIDAY • 27 JUNE", 2014) === "2014-06-27" && defqonLogosDate("SATURDAY • 27 JUNE", 2014) === null, "a Defqon.1 2014 subtitle must be dated by its weekday in the year");
+    const dlMust = (what, html, year = 2014) => { let bad = false; try { parseDefqonLogos(html, { year }); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    dlMust("a Defqon.1 2014 page read as another year's", dlPage(), 2015);
+    dlMust("a page that is not Defqon.1's 2014 timetable", dlPage({ title: "Line-up | Defqon.1 Festival 2014" }));
+    dlMust("a Defqon.1 subtitle whose weekday is not its date's", dlPage({ fri: [dlBox("red", "Red", "SATURDAY • 27 JUNE", ["Coone (BEL) 20:00 21:00"])] }));
+    dlMust("a Defqon.1 area with no logo title", dlPage({ fri: [dlBox("red", "Red", "FRIDAY • 27 JUNE", ["Coone (BEL) 20:00 21:00"]).replace(/ title="Red"/, "")] }));
+    dlMust("one Defqon.1 area printed twice on a day", dlPage({ fri: [...dlFri, dlBox("red-2", "Red", "FRIDAY • 27 JUNE", ["Late (NLD) 23:00 00:00"])] }));
+    dlMust("a Defqon.1 area with no list that is not untranslated", dlPage({ fri: [dlBox("red", "Red", "FRIDAY • 27 JUNE", null).replace("alleen beschikbaar in English", "coming soon")] }));
+    dlMust("a Defqon.1 range that is not HH:MM HH:MM", dlPage({ fri: [dlBox("red", "Red", "FRIDAY • 27 JUNE", ["Coone (BEL) 20:00 25:00"])] }));
+    dlMust("two Defqon.1 lines with no time in a row", dlPage({ fri: [dlBox("red", "Red", "FRIDAY • 27 JUNE", ["B-Front", "&amp; Frequencerz", "presents B-freqz (NLD) 22:00 22:30"])] }));
+    dlMust("a Defqon.1 line with no time at the end of a list", dlPage({ fri: [dlBox("red", "Red", "FRIDAY • 27 JUNE", ["Coone (BEL) 20:00 21:00", "Surprise"])] }));
+    dlMust("a Defqon.1 set starting before the set above it", dlPage({ fri: [dlBox("red", "Red", "FRIDAY • 27 JUNE", ["Coone (BEL) 20:00 21:00", "Isaac (NLD) 19:00 20:00"])] }));
+    dlMust("a Defqon.1 set ending before it starts", dlPage({ fri: [dlBox("red", "Red", "FRIDAY • 27 JUNE", ["Coone (BEL) 21:00 20:00"])] }));
+    dlMust("a Defqon.1 set starting inside a block", dlPage({ sat: [dlBox("black", "Black", "SATURDAY • 28 JUNE", ["Neophyte Records Hostile take over: 16:00 20:00 Neophyte, Panic", "Korsakoff (NLD) 19:00 21:00"])] }));
+    dlMust("a Defqon.1 block that lists one act", dlPage({ sat: [dlBox("black", "Black", "SATURDAY • 28 JUNE", ["Neophyte Records Hostile take over: 16:00 20:00 Neophyte"])] }));
+    dlMust("a Defqon.1 host line that prints a time", dlPage({ fri: [dlBox("red", "Red", "FRIDAY • 27 JUNE", ["Coone (BEL) 20:00 21:00", "Hosted by Villain 21:00 22:00"])] }));
+    dlMust("a Defqon.1 subtitle that prints no weekday", dlPage({ fri: [dlBox("red", "Red", "27 JUNE", ["Coone (BEL) 20:00 21:00"])] }));
     // Tomorrowland's lineup page: a Stages tab (a day per eventday, a stage per
     // block, an optional host) checked against its A-Z Artists tab.
     const tlA = (slug, name) => `<li><a class="noTracking" data-artist="${slug}"> ${name} </a></li>`;
@@ -1738,6 +1776,14 @@ for (const [id, e] of Object.entries(editions)) {
             `${id} day ${d.day}: page ${s.captureTimestamp} prints "${s.printed}" at ${s.archivedUrl}, not ${wd} ${MONTH[m - 1]} ${dd}`);
           continue;
         }
+        // Defqon.1's 2014 timetable heads each area's box with its weekday and
+        // date, no year, on the festival's own site, titled as that year's.
+        if (s.format === "defqon-logos") {
+          ok(defqonLogosDate(s.printed, e.year) === d.date && s.named === `Timetable | Defqon.1 Festival ${e.year}`
+            && /^https:\/\/web\.archive\.org\/web\/\d{14}\/https?:\/\/(www\.)?defqon1\.nl(:80)?\//.test(s.archivedUrl || ""),
+            `${id} day ${d.day}: page ${s.captureTimestamp} prints "${s.printed}" at ${s.archivedUrl}, not ${wd} ${MONTH[m - 1]} ${dd}`);
+          continue;
+        }
         // Governors Ball's 2011-2012 schedule prints each day's heading
         // ("SATURDAY 6/23"); 2011's one day is the one its description prints.
         if (s.format === "govball-wp") {
@@ -1860,7 +1906,7 @@ ok(instant("2025-05-16", "04:13", 12, -420) === "2025-05-17T11:13:00.000Z",
   // Defqon.1 2015, whose Sunday closing prints one block over untimed acts,
   // and Governors Ball 2024, whose Bud Light Backyard sheet prints weekdays
   // without dates and starts without ends.
-  const SELECTED = ["coachella-2014", "coachella-2015", "coachella-2016", "defqon1-2015", "governors-ball-2024", "sziget-2010", "sziget-2011"];
+  const SELECTED = ["coachella-2014", "coachella-2015", "coachella-2016", "defqon1-2014", "defqon1-2015", "governors-ball-2024", "sziget-2010", "sziget-2011"];
   const selected = Object.values(editions).filter(e => e.completeness === "selected_stages").map(e => e.id).sort();
   ok(JSON.stringify(selected) === JSON.stringify(SELECTED), `selected_stages editions are ${selected.join(", ") || "none"}, want ${SELECTED.join(", ")}`);
   const c14 = editions["coachella-2014"];
