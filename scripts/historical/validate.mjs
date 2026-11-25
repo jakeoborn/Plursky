@@ -87,6 +87,9 @@ export const OFFICIAL_HOSTS = {
   // time-warp.de: Time Warp's own site; each Mannheim edition has its own
   // sub-site (/22/ for 2022) with a lineup page.
   "time-warp": ["time-warp.de"],
+  // creamfields.com: Creamfields' own site, whose /artists page listed each
+  // year's lineup by day and stage.
+  "creamfields": ["creamfields.com"],
 };
 
 // Where an official graphic may be re-hosted for an `official_sources`

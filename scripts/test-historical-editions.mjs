@@ -45,6 +45,8 @@ import { parseSzigetDays, tabDate as szigetDate } from "./historical/sziget-days
 import { parseDefqonAreas, headerDate as defqonDate } from "./historical/defqon-schedule.mjs";
 import { parseTomorrowlandLineup } from "./historical/tomorrowland-lineup.mjs";
 import { parseTimeWarpLineup, headerDates as twHeaderDates } from "./historical/timewarp-lineup.mjs";
+import { parseCreamfieldsArtists, creamfieldsRows } from "./historical/creamfields-artists.mjs";
+import { censusRow, runDates, CENSUS as CREAMFIELDS_CENSUS } from "./historical/extract-creamfields.mjs";
 import { parseDefqonGrid, dayHeading as dgDayHeading } from "./historical/defqon-grid-lineup.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -1042,6 +1044,37 @@ if (base && edc) {
     dgMust("a Defqon.1 day naming no act", dgPage({ days: [dgDays[0], dgDay("saturday", "Festival Day 2 - Saturday June 22", [dgRow("sat red", "RED", [dgCell("one off", "")])])] }));
     dgMust("a Defqon.1 named part with hosts only", dgPage({ days: [dgDay("friday", "Festival Day 1 - Friday June 21", [dgRow("fri blue", null, [dgCell("ten", "<div><div><h3>The Gathering @ The Blue</h3>Hosted By Villain</div></div>")])])] }));
     dgMust("a Defqon.1 named part drawn in another area's row", dgPage({ days: [dgDay("friday", "Festival Day 1 - Friday June 21", [dgRow("fri red", "RED", [dgCell("ten", "<div><div><h3>The Gathering @ The Blue</h3>Zatox</div></div>")])])] }));
+    // Creamfields' Artists page: a weekday filter, then one block per act with
+    // its days and A-Z key as classes and its stages as "Playing" links.
+    const cfAct = (cls, name, stages = []) => `<div class="item ${cls}" style="position: absolute;"><article><span class="name">${name}</span><h4>Playing:</h4>${stages.map(x => `<a class="playing" href="https://www.creamfields.com/lineup/x">${x}</a>`).join("")}</article></div>`;
+    const cfFilter = (days = ["friday", "saturday", "sunday", "thursday"]) => days.map(d => `<input type="checkbox" data-filter="and" name="${d}" id="${d}" value="${d}">`).join("");
+    const cfActs = [cfAct("featured friday saturday A", "Armin Van Buuren", ["Armada", "Horizon"]), cfAct("thursday B", "Ben Nicky", ["Pepsi Max"]),
+      cfAct("sunday S", "Sasha &amp; Digweed", ["Sub_aural", "Cream"]), cfAct("saturday S", "Steel Yard Presents s\\/stem", ["Sub_Aural"]), cfAct("saturday S", "Sub Focus", ["Sub_aural"]),
+      cfAct("friday �", "Ørjan Nilsen", ["Private: Blow"]), cfAct("friday J", "Junior J"), cfAct("thursday B", "Ben Nicky", ["Pepsi Max"]), cfAct("thursday B", "BEN NICKY", ["Pepsi Max"])];
+    const cfPage = ({ title = "Creamfields 2019 | Artists", filter = cfFilter(), acts = cfActs } = {}) => `<title>${title}</title>${filter}${acts.join("")}`;
+    const cfp = parseCreamfieldsArtists(cfPage(), { year: 2019 }), cfr = creamfieldsRows(cfp);
+    ok(JSON.stringify([cfp.filter, cfr.rows.map(r => `${r.artist}|${r.weekday}|${r.stage}`), cfr.unpaired, cfr.folded, cfr.sameActs])
+      === JSON.stringify([["Friday", "Saturday", "Sunday", "Thursday"],
+        ["Armin Van Buuren|Friday|", "Armin Van Buuren|Saturday|", "Ben Nicky|Thursday|Pepsi Max", "Sasha & Digweed|Sunday|Sub_aural", "Sasha & Digweed|Sunday|Cream",
+          "Steel Yard Presents s/stem|Saturday|Sub_aural", "Sub Focus|Saturday|Sub_aural", "Ørjan Nilsen|Friday|Blow", "Junior J|Friday|"],
+        [{ artist: "Armin Van Buuren", days: ["Friday", "Saturday"], stages: ["Armada", "Horizon"] }],
+        [{ printed: "Sub_Aural", billedAs: "Sub_aural" }, { printed: "Private: Blow", billedAs: "Blow" }], [{ printed: "BEN NICKY", billedAs: "Ben Nicky" }]]),
+      `a Creamfields Artists page must come back as one row per act, day and stage, multi-day stages unpaired, case and "Private: " folded, an act printed twice billed once: ${JSON.stringify([cfr.rows, cfr.folded])}`);
+    ok(parseCreamfieldsArtists(cfPage({ title: "cinch presents Creamfields 2021 | Artists", acts: [cfAct("featured saturday ABOVE &amp; BEYOND", "Above &amp; Beyond"), cfAct("sunday KöLSCH", "Kölsch")] }), { year: 2021 }).acts.length === 2,
+      "a 2021 Creamfields page keys each act by its name in ASCII capitals, under cinch's title");
+    ok(JSON.stringify(runDates(["2019-08-22", "2019-08-25"])) === '["2019-08-22","2019-08-23","2019-08-24","2019-08-25"]', "a census run expands to each of its days");
+    const cfMust = (what, html, year = 2019) => { let bad = false; try { parseCreamfieldsArtists(html, { year }); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    cfMust("a Creamfields 2019 page read as another year's", cfPage(), 2018);
+    cfMust("a Creamfields page with another title", cfPage({ title: "Creamfields 2019 | Tickets" }));
+    cfMust("a Creamfields page with no day filter", cfPage({ filter: "" }));
+    cfMust("a Creamfields day filter printing a day twice", cfPage({ filter: cfFilter(["friday", "friday", "saturday"]) }));
+    cfMust("a Creamfields act on a day the filter does not offer", cfPage({ filter: cfFilter(["friday", "saturday"]), acts: [cfAct("sunday S", "Sasha")] }));
+    cfMust("a Creamfields act on no day", cfPage({ acts: [cfAct("featured G", "Green Velvet")] }));
+    cfMust("a Creamfields act with no name", cfPage({ acts: [cfAct("friday A", " ")] }));
+    cfMust("a Creamfields act whose key is not its letter or name", cfPage({ acts: [cfAct("friday Z", "Armin Van Buuren")] }));
+    cfMust("a Creamfields act with a class the page does not explain", cfPage({ acts: [cfAct("friday headliner A", "Armin Van Buuren")] }));
+    cfMust("a Creamfields act listing a stage with no name", cfPage({ acts: [cfAct("friday A", "Armin Van Buuren", [" "])] }));
+    cfMust("a Creamfields page with no act", cfPage({ acts: [] }));
     // Outside Lands' 2022-2025 lineup widget: its script sets the options on
     // one line of JSON; each artist lists its performances, a shared set (a
     // b2b) under each artist with the same id, every time with its offset.
@@ -1491,6 +1524,16 @@ for (const [id, e] of Object.entries(editions)) {
       ok(!!dp && dp.captureTimestamp.startsWith(String(e.year)) && new URL(dp.archivedUrl.replace(/^https:\/\/web\.archive\.org\/web\/\d+\//, "")).hostname.replace(/^www\./, "") === host
         && printedRange(dp.title)[d.day - 1] === d.date && printedRange(dp.title).length === e.days.length,
         `${id} day ${d.day}: ${d.date} is not what the festival's ${e.year} home page title printed ("${dp?.title}")`);
+    } else if (led.method === "official_lineup_html" && led.format === "creamfields-artists") {
+      // Creamfields' Artists page prints weekdays only: the chosen capture's
+      // day filter names this day's weekday, and the date is the census's
+      // dated run for the year, which the ledger's datesFrom must quote.
+      const c = led.considered.find(x => x.captureTimestamp === led.chosen), wd = new Date(d.date + "T12:00:00Z").toLocaleDateString("en-US", { weekday: "long", timeZone: "UTC" });
+      const cen = censusRow(led.datesFrom?.family, e.year), run = cen ? runDates(cen.range) : [];
+      ok(c?.days?.[d.day - 1] === wd && c.filter.length === e.days.length && c.filter.includes(wd)
+        && led.datesFrom?.census === CREAMFIELDS_CENSUS && led.datesFrom.family === e.festivalId && cen?.lifecycle === "occurred" && cen.dates === led.datesFrom.dates
+        && run.length === e.days.length && run[d.day - 1] === d.date,
+        `${id} day ${d.day}: ${d.date} is not the census's ${e.year} run (${cen?.dates}) or the page's weekday "${c?.days?.[d.day - 1]}"`);
     } else if (led.method === "official_lineup_html") {
       // The chosen capture's own By Day header for this day, as the ledger recorded it.
       const head = led.considered.find(c => c.captureTimestamp === led.chosen)?.days?.[d.day - 1] || "";

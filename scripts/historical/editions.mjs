@@ -630,6 +630,24 @@ export const EDITIONS = {
   "time-warp-2022": { festivalId: "time-warp", name: "Time Warp Germany 2022", year: 2022,
     timezone: "Europe/Berlin", rolloverHour: 6, method: "official_lineup_html",
     dates: [["2022-10-28", "Friday"], ["2022-10-29", "Saturday"]] },
+  // Creamfields 2017-2019 and 2021 (Daresbury, Thursday to Sunday): the
+  // festival's own /artists page (creamfields-artists.mjs,
+  // extract-creamfields.mjs), which lists every act with the weekdays it
+  // plays and, where it pairs them, its stage. The page prints weekdays
+  // only; the dates are the run the census's dated post-event report gives
+  // for that year, and the page's four weekdays must be that run's.
+  "creamfields-2017": { festivalId: "creamfields", name: "Creamfields 2017", year: 2017,
+    timezone: "Europe/London", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2017-08-24", "Thursday"], ["2017-08-25", "Friday"], ["2017-08-26", "Saturday"], ["2017-08-27", "Sunday"]] },
+  "creamfields-2018": { festivalId: "creamfields", name: "Creamfields 2018", year: 2018,
+    timezone: "Europe/London", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2018-08-23", "Thursday"], ["2018-08-24", "Friday"], ["2018-08-25", "Saturday"], ["2018-08-26", "Sunday"]] },
+  "creamfields-2019": { festivalId: "creamfields", name: "Creamfields 2019", year: 2019,
+    timezone: "Europe/London", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2019-08-22", "Thursday"], ["2019-08-23", "Friday"], ["2019-08-24", "Saturday"], ["2019-08-25", "Sunday"]] },
+  "creamfields-2021": { festivalId: "creamfields", name: "Creamfields 2021", year: 2021,
+    timezone: "Europe/London", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2021-08-26", "Thursday"], ["2021-08-27", "Friday"], ["2021-08-28", "Saturday"], ["2021-08-29", "Sunday"]] },
   "tomorrowland-2023": { festivalId: "tomorrowland", name: "Tomorrowland 2023", year: 2023,
     timezone: "Europe/Brussels", rolloverHour: 6, method: "official_sources", dates: [["2023-07-21", "Friday"], ["2023-07-22", "Saturday"], ["2023-07-23", "Sunday"], ["2023-07-28", "Friday"], ["2023-07-29", "Saturday"], ["2023-07-30", "Sunday"]],
     dayLabels: ACL_WEEKEND_LABELS },
@@ -958,6 +976,8 @@ export const PRINTED_NON_LATIN = {
   // The same lambda on Tomorrowland's own day timetables.
   "tomorrowland-2015": ["Axwell Λ Ingrosso"],
   "tomorrowland-2016": ["Axwell Λ Ingrosso"],
+  // The same lambda on Creamfields' own 2018 Artists page.
+  "creamfields-2018": ["Axwell Λ Ingrosso"],
   // The same lambda on Ultra's own 2017 set-times graphic, read by eye
   // (review/ultra-miami-2017.json).
   "ultra-miami-2017": ["AXWELL Λ INGROSSO"],
