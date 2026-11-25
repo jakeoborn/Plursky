@@ -14,4 +14,8 @@ const row={payload:plan,expiresAt:'2026-10-19T03:00:00Z'};eq(resolveShare(row,no
 // The payload's key set is the whole allowlist: a new field must be added here on purpose.
 eq(Object.keys(plan).sort(),['expiresAt','festivalId','kind','schemaVersion','sets']);
 eq(Object.keys(plan.sets[0]).sort(),['artist','endsAt','id','stage','startsAt']);
+// #74 stage 2: the festival's name and time zone label the public page's nights.
+const named=makePublicPlan({...args,festivalName:'ACL 2026',tz:'America/Chicago'},now);
+eq(Object.keys(named).sort(),['expiresAt','festivalId','festivalName','kind','schemaVersion','sets','tz']);
+for(const patch of [{tz:'Not a zone; drop'},{tz:'../etc'},{festivalName:'<b>x</b>'},{festivalName:''}]){assert.throws(()=>makePublicPlan({...args,...patch},now));checks++;}
 console.log(`Public plan-share contract: ${checks} checks passed`);

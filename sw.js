@@ -73,7 +73,7 @@ const LOCAL = [
   `./data/artist-key.js?v=${APP_VER}`,
   // Festival-art ledger (Item 6): official tile art, data/festival-art.js.
   `./data/festival-art.js?v=${APP_VER}`,
-  // Public plan-share payload contract (#74 stage 1; the link itself is flag-off).
+  // Public plan-share payload contract (#74): the in-app link builds through it.
   `./data/plan-share-contract.js?v=${APP_VER}`,
   // Ground plates (mapImage targets). Not every festival module has one: ARC,
   // III Points, CRSSD and Portola ship mapMode "real" and no plate.

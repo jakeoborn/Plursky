@@ -4626,7 +4626,7 @@ async function copyScheduleText(state) {
     };
   }
 }
-var PLAN_SHARE_LINK_ON = false;
+var PLAN_SHARE_LINK_ON = true;
 function planShareDraft(savedIds, displayName, cfg = FESTIVAL_CONFIG, now = Date.now()) {
   var contract = typeof window !== "undefined" ? window.PlurskyPlanShare : null;
   if (!contract) return {
@@ -4678,6 +4678,8 @@ function planShareDraft(savedIds, displayName, cfg = FESTIVAL_CONFIG, now = Date
       kind: "schedule",
       festivalId: cfg.id,
       editionEnd: new Date(cfg.endMs).toISOString(),
+      festivalName: cfg.shortName || cfg.name,
+      tz: cfg.tz || undefined,
       sets: rows.map(r => r.set),
       displayName: displayName || undefined
     }, now);
@@ -4695,6 +4697,94 @@ function planShareDraft(savedIds, displayName, cfg = FESTIVAL_CONFIG, now = Date
     };
   }
 }
+var PLAN_SHARE_ORIGIN = "https://plursky.com";
+var _PLAN_LINKS_KEY = "plursky_plan_links_v1";
+function planShareLinkUrl(token) {
+  return `${PLAN_SHARE_ORIGIN}/plan.html?t=${encodeURIComponent(token)}`;
+}
+function _planShareLinks() {
+  try {
+    return JSON.parse(localStorage.getItem(_PLAN_LINKS_KEY) || "{}") || {};
+  } catch {
+    return {};
+  }
+}
+function planShareLinkRecord(fid, now = Date.now()) {
+  var r = _planShareLinks()[fid];
+  return r && typeof r.token === "string" && Date.parse(r.expiresAt) > now ? r : null;
+}
+function _planShareLinkWrite(fid, rec) {
+  var all = _planShareLinks();
+  if (rec) all[fid] = rec;else delete all[fid];
+  try {
+    localStorage.setItem(_PLAN_LINKS_KEY, JSON.stringify(all));
+  } catch {}
+}
+async function planShareLinkCreate(payload) {
+  var r = typeof sbPlanShareCreate === "function" ? await sbPlanShareCreate(payload).catch(() => ({
+    error: "failed"
+  })) : {
+    error: "offline"
+  };
+  if (!r || r.error) return {
+    error: r && r.error || "failed"
+  };
+  var rec = {
+    token: r.token,
+    expiresAt: r.expiresAt,
+    sets: (payload.sets || []).length,
+    createdAt: Date.now()
+  };
+  _planShareLinkWrite(payload.festivalId, rec);
+  return {
+    rec
+  };
+}
+async function planShareLinkRevoke(fid, token) {
+  var r = typeof sbPlanShareRevoke === "function" ? await sbPlanShareRevoke(token).catch(() => ({
+    error: "failed"
+  })) : {
+    error: "offline"
+  };
+  if (!r || r.error) return {
+    error: r && r.error || "failed"
+  };
+  _planShareLinkWrite(fid, null);
+  return {
+    ok: true
+  };
+}
+async function planShareLinkSend(url, title, copyOnly) {
+  if (!copyOnly && navigator.share) {
+    try {
+      await navigator.share({
+        title,
+        url
+      });
+      return {
+        ok: true,
+        mode: "share"
+      };
+    } catch (e) {
+      if (e && e.name === "AbortError") return {
+        ok: false,
+        reason: "cancelled"
+      };
+    }
+  }
+  try {
+    await navigator.clipboard.writeText(url);
+    return {
+      ok: true,
+      mode: "copy"
+    };
+  } catch {
+    return {
+      ok: false,
+      reason: "copy_failed"
+    };
+  }
+}
 function PlanShareLinkSheet({
   saved,
   onClose
@@ -4704,6 +4794,49 @@ function PlanShareLinkSheet({
   var [nameOn, setNameOn] = React.useState(false);
   var [name, setName] = React.useState("");
   var d = planShareDraft(saved, nameOn ? name.trim() : "", cfg);
+  var [rec, setRec] = React.useState(() => planShareLinkRecord(cfg.id));
+  var [busy, setBusy] = React.useState(false);
+  var [msg, setMsg] = React.useState("");
+  var url = rec ? planShareLinkUrl(rec.token) : "";
+  var title = `${nameOn && name.trim() ? name.trim() + "'s " : "My "}${cfg.shortName || cfg.name} plan`;
+  var LINK_ERR = {
+    signin: "Sign in with Apple on the Me tab first, so only you can turn this link off.",
+    offline: "Links need a connection. Try again when you're back online.",
+    failed: "The link wasn't created. Check your connection and try again."
+  };
+  var create = async () => {
+    if (busy || d.error || !d.rows.length) return;
+    setBusy(true);
+    setMsg("");
+    var r = await planShareLinkCreate(d.payload);
+    setBusy(false);
+    if (r.error) setMsg(LINK_ERR[r.error] || LINK_ERR.failed);else setRec(r.rec);
+  };
+  var turnOff = async () => {
+    if (busy || !rec) return;
+    setBusy(true);
+    setMsg("");
+    var r = await planShareLinkRevoke(cfg.id, rec.token);
+    setBusy(false);
+    if (r.error) setMsg("The link is still on. Check your connection and try again.");else {
+      setRec(null);
+      setMsg("Link turned off. Anyone who opens it now sees that it ended.");
+    }
+  };
+  var send = async copyOnly => {
+    var r = await planShareLinkSend(url, title, copyOnly);
+    if (r.ok) setMsg(r.mode === "copy" ? "Link copied." : "");else if (r.reason !== "cancelled") setMsg("Couldn't copy. Press and hold the link to copy it.");
+  };
+  var pill = primary => ({
+    flex: 1,
+    minHeight: 48,
+    borderRadius: 999,
+    cursor: busy ? "default" : "pointer",
+    border: primary ? "none" : "1px solid var(--line-2)",
+    background: primary ? "var(--ink)" : "transparent",
+    color: primary ? "var(--paper)" : "var(--ink)",
+    font: "600 15px/20px var(--f-ui)"
+  });
   var fmtDay = ms => new Date(ms).toLocaleDateString("en-US", {
     weekday: "short",
     month: "short",
@@ -4742,29 +4875,76 @@ function PlanShareLinkSheet({
     unavailable: "The link preview didn't load. Close and try again.",
     invalid: "Something in this plan can't go on a link yet."
   };
-  var footer = React.createElement("div", null, React.createElement("button", {
-    disabled: true,
-    "aria-disabled": "true",
+  var canCreate = !d.error && d.rows.length > 0;
+  var footer = React.createElement("div", null, rec ? React.createElement("div", {
+    "data-plan-share-live": true
+  }, React.createElement("div", {
     style: {
-      width: "100%",
-      minHeight: 48,
-      borderRadius: 999,
-      border: "1px solid var(--line-2)",
-      background: "transparent",
-      color: "var(--text-2)",
-      font: "600 15px/20px var(--f-ui)",
-      cursor: "not-allowed"
+      ...label,
+      color: "var(--ink)"
     }
-  }, "Create link"), React.createElement("div", {
+  }, "Your link is on · ", rec.sets, " ", rec.sets === 1 ? "set" : "sets"), React.createElement("div", {
+    "data-plan-share-url": true,
+    className: "duo-data-s",
+    style: {
+      ...label,
+      margin: "4px 0 10px",
+      overflowWrap: "anywhere",
+      userSelect: "all",
+      WebkitUserSelect: "all"
+    }
+  }, url), React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 8
+    }
+  }, React.createElement("button", {
+    "data-plan-share-send": true,
+    onClick: () => send(false),
+    disabled: busy,
+    style: pill(true)
+  }, "Share link"), React.createElement("button", {
+    "data-plan-share-copy": true,
+    onClick: () => send(true),
+    disabled: busy,
+    style: pill(false)
+  }, "Copy")), React.createElement("button", {
+    "data-plan-share-off": true,
+    onClick: turnOff,
+    disabled: busy,
+    style: {
+      ...pill(false),
+      width: "100%",
+      marginTop: 8,
+      border: "none",
+      color: "var(--text-2)"
+    }
+  }, busy ? "Turning off…" : "Turn off link")) : React.createElement("button", {
+    "data-plan-share-create": true,
+    onClick: create,
+    disabled: busy || !canCreate,
+    "aria-disabled": busy || !canCreate,
+    style: {
+      ...pill(canCreate),
+      width: "100%",
+      ...(canCreate ? {} : {
+        color: "var(--text-2)",
+        cursor: "not-allowed"
+      })
+    }
+  }, busy ? "Creating link…" : "Create link"), msg && React.createElement("div", {
+    role: "status",
+    "data-plan-share-msg": true,
     style: {
       ...label,
       textAlign: "center",
-      marginTop: 8
+      marginTop: 8,
+      color: "var(--ink)"
     }
-  }, "Links aren't live yet."));
+  }, msg));
   return React.createElement(FieldSheet, {
     title: "Share your plan as a link",
-    eyebrow: "Preview",
+    eyebrow: rec ? "Link on" : "Preview",
     footer: footer,
     onClose: onClose
   }, React.createElement("div", {
@@ -4830,7 +5010,7 @@ function PlanShareLinkSheet({
     className: "duo-data-s",
     "aria-label": `${fmt12(r.act.start)} to ${fmt12(r.act.end)}`,
     style: {
-      width: 80,
+      width: 96,
       flexShrink: 0,
       fontSize: 13,
       lineHeight: "18px",
@@ -4868,7 +5048,10 @@ function PlanShareLinkSheet({
   }, d.left, " ", d.left === 1 ? "set doesn't" : "sets don't", " have confirmed times yet, so ", d.left === 1 ? "it stays" : "they stay", " off the link."), React.createElement("div", {
     style: label,
     "data-plan-share-ends": true
-  }, "The link stops working ", fmtDay(Date.parse(d.payload.expiresAt)), ", a week after the festival. You can turn it off sooner.")), React.createElement("label", {
+  }, "The link stops working ", fmtDay(Date.parse(d.payload.expiresAt)), ", a week after the festival. You can turn it off sooner.")), rec && React.createElement("div", {
+    style: label,
+    "data-plan-share-snapshot": true
+  }, "The link shows your plan as it was when you made it. To update it, turn it off and make a new one."), React.createElement("label", {
     style: {
       display: "flex",
       alignItems: "center",
@@ -5063,17 +5246,17 @@ function ShareLineupButton({
     })), PLAN_SHARE_LINK_ON && React.createElement(ShareMenuItem, {
       icon: "lnk",
       label: "Share as a link",
-      sub: "Preview what a link shows",
+      sub: "A page anyone with the link can open",
       onClick: () => {
         setOpen(false);
         setLinkOpen(true);
       }
     })));
     return untimed ? ReactDOM.createPortal(menu, document.body) : menu;
-  })(), PLAN_SHARE_LINK_ON && linkOpen && React.createElement(PlanShareLinkSheet, {
+  })(), PLAN_SHARE_LINK_ON && linkOpen && ReactDOM.createPortal(React.createElement(PlanShareLinkSheet, {
     saved: savedInLineup(state.saved),
     onClose: () => setLinkOpen(false)
-  }));
+  }), document.body));
 }
 function ShareMenuItem({
   icon,

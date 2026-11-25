@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1a120d">
+<title>A festival plan · Plursky</title>
+<!-- noindex is deliberate and load-bearing: each of these URLs is one
+     person's festival plan, shared with friends by link (#74). The OG/Twitter
+     tags are for the chat preview only. Also Disallow-ed in robots.txt and
+     kept out of sitemap.xml. -->
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="description" content="A friend shared their festival plan with you on Plursky.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Plursky">
+<meta property="og:title" content="A festival plan · Plursky">
+<meta property="og:description" content="See which sets your friend is catching, night by night.">
+<meta property="og:image" content="https://plursky.com/og-card.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="A festival plan · Plursky">
+<meta name="twitter:description" content="See which sets your friend is catching, night by night.">
+<meta name="twitter:image" content="https://plursky.com/og-card.png">
+<link rel="icon" type="image/png" href="./apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#1a120d;--paper:#f7ede0;--paper-2:#eee0cb;--ember:#e85d2e;--text-2:rgba(26,18,13,0.68);--line:rgba(26,18,13,0.12);--line-2:rgba(26,18,13,0.22)}
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{background:var(--paper);color:var(--ink);font-family:'Geist',system-ui,sans-serif}
+  #wrap{max-width:520px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;padding:0 16px calc(24px + env(safe-area-inset-bottom))}
+  header{display:flex;align-items:center;padding:14px 0;border-bottom:1px solid var(--line-2)}
+  header .logo{font-family:'Instrument Serif',serif;font-style:italic;font-size:24px;color:var(--ink);text-decoration:none}
+  .eyebrow{font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:1.3px;font-weight:700;text-transform:uppercase;color:var(--text-2)}
+  h1{font-family:'Instrument Serif',serif;font-weight:400;font-size:34px;line-height:38px;margin:20px 0 4px;overflow-wrap:anywhere}
+  .count{font-size:15px;color:var(--text-2)}
+  .day{margin-top:22px}
+  .day .eyebrow{margin-bottom:6px}
+  .set{display:flex;gap:12px;padding:10px 0;border-top:1px solid var(--line)}
+  .set .t{width:92px;flex-shrink:0;font-family:'Geist Mono',monospace;font-size:13px;line-height:18px;color:var(--text-2);white-space:pre-line}
+  .set .a{font-size:16px;font-weight:600;line-height:21px;overflow-wrap:anywhere}
+  .set .s{font-size:14px;line-height:19px;color:var(--text-2);overflow-wrap:anywhere}
+  .cta-box{margin-top:28px;padding:18px;border-radius:16px;background:var(--paper-2)}
+  .cta-box p{font-size:15px;line-height:21px;margin-bottom:12px}
+  .cta{display:flex;align-items:center;justify-content:center;min-height:48px;border-radius:999px;background:var(--ember);color:#fff;text-decoration:none;font-weight:600;font-size:16px}
+  .cta-2{display:block;text-align:center;margin-top:10px;font-size:14px;color:var(--ink)}
+  .empty{padding:48px 0 8px;text-align:center}
+  .empty h1{margin-top:12px}
+  .empty p{font-size:15px;line-height:21px;color:var(--text-2);max-width:320px;margin:8px auto 0}
+  .foot{margin-top:20px;font-size:12px;line-height:17px;color:var(--text-2);text-align:center}
+</style>
+</head>
+<body>
+<div id="wrap">
+  <header><a class="logo" href="https://plursky.com/">Plursky</a></header>
+  <main id="main" aria-live="polite"><div class="empty"><p>Loading the plan…</p></div></main>
+  <div class="cta-box">
+    <p id="cta-text">Plan your own festival in Plursky: save sets, catch clashes and get a reminder before each one.</p>
+    <a class="cta" id="cta" data-plan-cta href="https://apps.apple.com/us/app/plursky-live/id6768888507?ct=plan-share" rel="noopener">Get Plursky on iPhone</a>
+    <a class="cta-2" href="https://plursky.com/">Or open it in your browser</a>
+  </div>
+  <div class="foot">Shared links show only the sets the owner chose. They end a week after the festival, or sooner if the owner turns them off.</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js" integrity="sha384-GFr3yTh5lJznCbZfpTtXnwboFsxqtTQoeTZCRHhE0579KrRmlCzen5AA8ohaB5ug" crossorigin="anonymous"></script>
+<script src="./data/plan-share-contract.js"></script>
+<script>
+(function () {
+  "use strict";
+  // Same project and anon key the app uses: public by design. The table is
+  // never readable by anon; get_public_share returns one live row by token.
+  var SUPABASE_URL = "https://pzoijbqsbbwyuyjinjtj.supabase.co";
+  var SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB6b2lqYnFzYmJ3eXV5amluanRqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzczNTY4OTYsImV4cCI6MjA5MjkzMjg5Nn0.193dyHNHbc_zsm6l6UfQnpz4jXqRoPFBC4TWylyFPfA";
+  var main = document.getElementById("main");
+  var el = function (tag, cls, text) { var n = document.createElement(tag); if (cls) n.className = cls; if (text != null) n.textContent = text; return n; };
+
+  function ended(title, msg) {
+    document.title = "Plan link ended · Plursky";
+    var box = el("div", "empty");
+    box.setAttribute("data-plan-ended", "");
+    box.appendChild(el("div", "eyebrow", "Plursky · shared plan"));
+    box.appendChild(el("h1", null, title));
+    box.appendChild(el("p", null, msg));
+    main.replaceChildren(box);
+  }
+  var ENDED = ["This plan link has ended", "The person who shared it turned it off, or the festival is over."];
+  var FAILED = ["This plan didn’t load", "Check your connection and refresh the page."];
+
+  function render(p) {
+    var tz = p.tz || undefined;
+    var fest = p.festivalName || "Festival";
+    var who = p.displayName ? p.displayName + "’s " : "";
+    document.title = who + fest + " plan · Plursky";
+    var frag = document.createDocumentFragment();
+    var eb = el("div", "eyebrow", "Shared plan"); eb.style.marginTop = "20px"; frag.appendChild(eb);
+    var h = el("h1", null, who + fest + " plan"); h.style.marginTop = "6px"; h.setAttribute("data-plan-title", ""); frag.appendChild(h);
+    var n = p.sets.length;
+    frag.appendChild(el("div", "count", n + (n === 1 ? " set" : " sets")));
+    var time = function (ms) { return new Date(ms).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", timeZone: tz }); };
+    var dayKey = function (ms) { return new Date(ms).toLocaleDateString("en-CA", { timeZone: tz }); };
+    var dayName = function (ms) { return new Date(ms).toLocaleDateString("en-US", { weekday: "long", month: "short", day: "numeric", timeZone: tz }).replace(",", " ·"); };
+    // A set after midnight still belongs to the night it started on: group by
+    // the start shifted back 6 hours, the way festival nights read.
+    var NIGHT = 6 * 3600000;
+    var sets = p.sets.slice().sort(function (a, b) { return Date.parse(a.startsAt) - Date.parse(b.startsAt); });
+    var cur = null, box = null;
+    sets.forEach(function (s) {
+      var st = Date.parse(s.startsAt), en = Date.parse(s.endsAt), k = dayKey(st - NIGHT);
+      if (k !== cur) {
+        cur = k; box = el("section", "day"); box.setAttribute("data-plan-day", k);
+        box.appendChild(el("div", "eyebrow", dayName(st - NIGHT)));
+        frag.appendChild(box);
+      }
+      var row = el("div", "set"); row.setAttribute("data-plan-set", s.id);
+      row.appendChild(el("div", "t", time(st) + "\n– " + time(en)));
+      var body = el("div"); body.style.minWidth = "0";
+      body.appendChild(el("div", "a", s.artist)); body.appendChild(el("div", "s", s.stage));
+      row.appendChild(body); box.appendChild(row);
+    });
+    if (!n) frag.appendChild(el("p", "count", "No sets on this plan yet."));
+    main.replaceChildren(frag);
+    document.getElementById("cta-text").textContent = "Going to " + fest + "? Build your own plan in Plursky: save sets, catch clashes and get a reminder before each one.";
+  }
+
+  var token = new URLSearchParams(location.search).get("t") || "";
+  var contract = window.PlurskyPlanShare;
+  if (!/^[A-Za-z0-9_-]{43}$/.test(token) || !contract) { ended.apply(null, ENDED); return; }
+  if (!window.supabase) { ended.apply(null, FAILED); return; }
+  var sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON, { auth: { persistSession: false, autoRefreshToken: false } });
+  sb.rpc("get_public_share", { p_token: token }).then(function (res) {
+    if (res.error) { ended.apply(null, FAILED); return; }
+    var row = Array.isArray(res.data) ? res.data[0] : res.data;
+    var p = row && contract.resolveShare({ payload: row.payload, expiresAt: row.expires_at }, Date.now());
+    if (!p || p.kind !== "schedule" || p.festivalId !== row.festival_id) { ended.apply(null, ENDED); return; }
+    // Re-project the stored row through the same allowlist the app used:
+    // anything the contract would not have built never renders.
+    var safe;
+    try {
+      safe = contract.makePublicPlan({
+        kind: p.kind, festivalId: p.festivalId, sets: p.sets, displayName: p.displayName,
+        festivalName: p.festivalName, tz: p.tz,
+        editionEnd: new Date(Date.parse(row.expires_at) - 7 * 86400000).toISOString(),
+      }, Date.now());
+    } catch (e) { ended.apply(null, ENDED); return; }
+    render(safe);
+  }, function () { ended.apply(null, FAILED); });
+})();
+</script>
+</body>
+</html>

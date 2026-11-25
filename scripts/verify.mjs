@@ -3771,11 +3771,12 @@ for (const [label, file] of [
   }
 }
 
-// ── Public plan-share link, stage 1 (#74, PM spec v2 row 4) ──────────────
+// ── Public plan-share link (#74, PM spec v2 row 4) ───────────────────────
 // The payload allowlist + expiry contract (one file the app and Node share),
-// its in-memory server adapter, and the flag-off preview sheet: no network,
-// no token, no schema, the link item absent as shipped.
-for (const [label, file] of [["contract", "scripts/test-public-plan-share.mjs"], ["service (in-memory)", "scripts/test-public-plan-share-service.mjs"], ["stage 1 preview", "scripts/test-plan-share-stage1.mjs"]]) {
+// its in-memory server adapter, the in-app link (preview is network-free; the
+// link carries exactly the previewed payload and turns off), and plan.html,
+// the never-indexed public page that re-projects every row through the contract.
+for (const [label, file] of [["contract", "scripts/test-public-plan-share.mjs"], ["service (in-memory)", "scripts/test-public-plan-share-service.mjs"], ["in-app link", "scripts/test-plan-share-stage1.mjs"], ["public page", "scripts/test-plan-share-page.mjs"]]) {
   console.log(`▸ Plan-share ${label} gate`);
   try {
     const out = execFileSync(process.execPath, [file], { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });

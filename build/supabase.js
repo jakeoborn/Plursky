@@ -221,6 +221,55 @@ async function sbGetUser() {
   } = await _sb.auth.getUser();
   return data?.user || null;
 }
+function _planShareToken() {
+  var b = new Uint8Array(32);
+  crypto.getRandomValues(b);
+  var s = "";
+  for (var x of b) s += String.fromCharCode(x);
+  return btoa(s).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+}
+async function sbPlanShareCreate(payload) {
+  if (!_sb) return {
+    error: "offline"
+  };
+  var user = await sbGetUser().catch(() => null);
+  if (!user) return {
+    error: "signin"
+  };
+  var token = _planShareToken();
+  var {
+    error
+  } = await _sb.from("public_shares").insert({
+    token,
+    kind: payload.kind,
+    festival_id: payload.festivalId,
+    payload,
+    display_name: payload.displayName || null,
+    expires_at: payload.expiresAt
+  });
+  return error ? {
+    error: "failed"
+  } : {
+    token,
+    expiresAt: payload.expiresAt
+  };
+}
+async function sbPlanShareRevoke(token) {
+  if (!_sb) return {
+    error: "offline"
+  };
+  var {
+    data,
+    error
+  } = await _sb.from("public_shares").update({
+    revoked_at: new Date().toISOString()
+  }).eq("token", token).select("token");
+  return error || !data || !data.length ? {
+    error: "failed"
+  } : {
+    ok: true
+  };
+}
 function sbOnAuthChange(cb) {
   if (!_sb) return () => {};
   var {
