@@ -235,6 +235,22 @@ export const EDITIONS = {
   "defqon1-2013": { festivalId: "defqon1", name: "Defqon.1 2013", year: 2013,
     timezone: "Europe/Amsterdam", rolloverHour: 6, method: "official_lineup_html",
     dates: [["2013-06-21", "Friday"], ["2013-06-22", "Saturday"], ["2013-06-23", "Sunday"]] },
+  // Defqon.1 2014: the festival's own timetable (defqon1.nl/nl/timetable/,
+  // format "defqon-logos", defqon-logos-schedule.mjs), one page for the whole
+  // weekend, one box per area and day, captured six weeks after it. Friday
+  // is The Gathering and the Orange; Saturday night's After is Saturday's.
+  // The Dutch page never translated Saturday's Orange ("alleen beschikbaar in
+  // English"), and no English capture survives, so its sets are unknown.
+  // Saturday's Black prints the Neophyte Records takeover as one range
+  // (16:00 till 20:00) over eight acts with no time of their own, so they
+  // are not placed as sets.
+  "defqon1-2014": { festivalId: "defqon1", name: "Defqon.1 2014", year: 2014,
+    timezone: "Europe/Amsterdam", rolloverHour: 6, method: "official_sources",
+    dates: [["2014-06-27", "Friday"], ["2014-06-28", "Saturday"], ["2014-06-29", "Sunday"]],
+    coverage: { asOf: "2026-11-25", missing: [
+      { stage: "Orange", days: [2], when: "Saturday; the Dutch timetable page prints only that the area is available in English" }] },
+    notes: [{ asOf: "2026-11-25", days: [2], text: "Saturday's Black from 16:00 till 20:00 was the Neophyte Records takeover (Neophyte, Panic, The Viper, Evil Activities, Endymion, Furyan, Tieum and Kasparov). The timetable prints one range for all eight with no time of their own, so they are not shown as sets.",
+      source: "https://web.archive.org/web/20140812030225/http://www.defqon1.nl/nl/timetable/" }] },
   // Defqon.1 2015: the festival's own timetable (defqon1.nl/en/timetable/,
   // format "defqon-areas", defqon-schedule.mjs), one page for the whole
   // weekend, captured two days after it. Friday is The Gathering, Saturday

@@ -8,6 +8,7 @@ import { tabDate as primaveraDate } from "./primavera-horarios-schedule.mjs";
 import { tabRun as primaveraRun } from "./primavera-completos-schedule.mjs";
 import { tabDate as szigetDate } from "./sziget-days-schedule.mjs";
 import { headerDate as defqonDate } from "./defqon-schedule.mjs";
+import { subtitleDate as defqonLogosDate } from "./defqon-logos-schedule.mjs";
 import { cardDate as lollaCardDate } from "./lolla-lineup.mjs";
 import { printedDate as insomniacDate } from "./insomniac-music-schedule.mjs";
 import { titleDate as tmlTitleDate } from "./tml-drupal-schedule.mjs";
@@ -531,6 +532,12 @@ function officialSources(e, meta, p) {
         // 01:00"), and the page's own title names the edition's timetable.
         if (defqonDate(c.printed, e.year) !== date || c.named !== `Timetable - Defqon.1 ${e.year}`)
           p.push(`${tag}: the page's heading "${c.printed}" (titled "${c.named}") does not print ${date}`);
+      } else if (c.format === "defqon-logos") {
+        // Defqon.1's 2014 timetable heads each area's box with its weekday
+        // and date, no year ("SATURDAY • 28 JUNE"); the page's own title names
+        // the edition's festival.
+        if (defqonLogosDate(c.printed, e.year) !== date || c.named !== `Timetable | Defqon.1 Festival ${e.year}`)
+          p.push(`${tag}: the page's subtitle "${c.printed}" (titled "${c.named}") does not print ${date}`);
       } else if (c.format === "sonar-calendar") {
         // Sónar's timetable heads each of a day's sessions with the weekday
         // and the day of the month ("Friday 19 | Sónar by Day"), no year; the

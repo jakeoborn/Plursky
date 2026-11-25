@@ -1808,6 +1808,43 @@
    }
   },
   {
+   "id": "defqon1-2014",
+   "festivalId": "defqon1",
+   "festivalName": "Defqon.1",
+   "name": "Defqon.1 2014",
+   "year": 2014,
+   "timezone": "Europe/Amsterdam",
+   "completeness": "selected_stages",
+   "missingStages": [
+    {
+     "stage": "Orange",
+     "when": "Saturday; the Dutch timetable page prints only that the area is available in English"
+    }
+   ],
+   "days": [
+    {
+     "day": 1,
+     "date": "2014-06-27",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2014-06-28",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2014-06-29",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 17,
+    "artists": 191,
+    "sets": 196
+   }
+  },
+  {
    "id": "defqon1-2013",
    "festivalId": "defqon1",
    "festivalName": "Defqon.1",
