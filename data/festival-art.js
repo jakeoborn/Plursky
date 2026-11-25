@@ -453,4 +453,12 @@ window.PLURSKY_FESTIVAL_ART = Object.freeze({
     license: "CC BY 2.0 (Flickr upload reviewed by FlickreviewR (reviewed-pass, 2007-06-10); the photographer's corner watermark is cropped out). Replaces the letter-tile fallback; uploader, credit and EXIF checked 2026-11-25.",
     author: "photochino", licenseId: "CC-BY-2.0", licenseUrl: "https://creativecommons.org/licenses/by/2.0/", changes: "Cropped",
   },
+  "time-warp-2027": {
+    tile: "festival-art/tiles/time-warp-2027.webp", card: "festival-art/time-warp-2027.webp", width: 168, height: 168,
+    kind: "photo", sourcePage: "https://commons.wikimedia.org/wiki/File:TDK_Time_Warp_2006.jpg",
+    assetUrl: "https://upload.wikimedia.org/wikipedia/commons/2/25/TDK_Time_Warp_2006.jpg",
+    credit: "Crowd and stage at TDK Time Warp 2006, Maimarkt Mannheim. Photo by ftf, Wikimedia Commons", retrieved: "2026-11-25",
+    license: "CC BY-SA 2.5 (Flickr upload reviewed by FlickrLickr (2006-08-09); Commons notes the Flickr licence changed later, the reviewed grant stands). Replaces the letter-tile fallback; uploader, credit and EXIF checked 2026-11-25.",
+    author: "ftf", licenseId: "CC-BY-SA-2.5", licenseUrl: "https://creativecommons.org/licenses/by-sa/2.5/", changes: "Cropped",
+  },
 });

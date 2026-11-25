@@ -34,8 +34,6 @@ const FALLBACK = {
   "day-zero-tulum-2027": "no reuse-cleared photo (Commons none, site has no press kit); letter tile until one exists",
   // Commons author (Lucas Gavi) and embedded EXIF author (Rafael Deprost) disagree; no owner guessed.
   "tomorrowland-winter-2027": "Commons author and EXIF author conflict; letter tile until resolved",
-  // Jake 2026-11-15: uploader licensed as own work but the description names another photographer.
-  "time-warp-2027": "Commons licensor is not the named photographer; letter tile until an author is confirmed",
   // EDC Las Vegas 2027 (added 2026-11-16): no 2027 photo has been reviewed, and
   // the 2026 card is "reuse terms not granted" interim art, so it is not
   // carried forward. Letter tile until a reuse-cleared photo is found.
