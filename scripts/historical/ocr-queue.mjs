@@ -13,7 +13,8 @@
 // (data/historical/README.md, "Adding an edition"), then finalize-review.mjs.
 //
 // Needs macOS (Vision) and direct access to web.archive.org. The review root
-// is ~/Plursky-private/review unless PLURSKY_REVIEW_ROOT says otherwise.
+// is the private review folder in the home directory unless PLURSKY_REVIEW_ROOT
+// says otherwise.
 
 import { execFileSync } from "node:child_process";
 import { copyFileSync, existsSync, mkdirSync, writeFileSync } from "node:fs";

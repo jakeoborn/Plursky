@@ -14,7 +14,7 @@ From the repo root, on the Mac:
 That fetches the official graphic for each day of every edition below
 (`resolve-graphics.mjs`, which writes each ledger), reads each one with
 `ocr-vision.swift`, and prints where each day's OCR lines went
-(`~/Plursky-private/review/<id>/<id>-dN.jsonl`). One edition at a time:
+(`<id>/<id>-dN.jsonl` in the private review folder, set by `PLURSKY_REVIEW_ROOT`). One edition at a time:
 
     node scripts/historical/ocr-queue.mjs movement-2017
 
