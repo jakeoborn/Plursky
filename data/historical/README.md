@@ -38,6 +38,9 @@ Official schedule graphics (Gov Ball, Lolla, ACL …):
     # hand-transcribe footer strips, put the printed header in <id>-dN.note
     node scripts/historical/finalize-review.mjs <edition-id> <review-dir> --reviewer "<who>"
 
+Editions whose graphics are known but not yet read are listed in
+`MAC-QUEUE.md`; `ocr-queue.mjs` fetches and OCRs all of them on a Mac in one run.
+
 Archived Tomorrowland timetables (2017–2019, 2022, 2023, format `tml-stages`):
 
     node scripts/historical/gather-tml.mjs <edition-id> <gather-dir> <official-url> <ts> <url> <location|heading>
