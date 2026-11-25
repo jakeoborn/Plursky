@@ -1094,6 +1094,143 @@ function PyroStarburst({
     }
   }));
 }
+function _spotifyEmbedId(id) {
+  return /^[A-Za-z0-9]{22}$/.test(String(id || "")) ? id : null;
+}
+function SpotifyArtistPlayer({
+  name,
+  spotifyId,
+  searchUrl
+}) {
+  var known = _spotifyEmbedId(spotifyId);
+  var [phase, setPhase] = React.useState("idle");
+  var [foundId, setFoundId] = React.useState(null);
+  React.useEffect(() => {
+    setPhase("idle");
+    setFoundId(null);
+  }, [name, known]);
+  var id = known || foundId;
+  var open = () => {
+    if (id) {
+      setPhase("playing");
+      return;
+    }
+    if (typeof SPOTIFY_PHOTO_PROXY_URL !== "string") {
+      setPhase("missing");
+      return;
+    }
+    setPhase("finding");
+    fetch(SPOTIFY_PHOTO_PROXY_URL + "?name=" + encodeURIComponent(name)).then(r => r.ok ? r.json() : null).then(d => {
+      var got = _spotifyEmbedId(d && d.spotifyId);
+      if (got) {
+        setFoundId(got);
+        setPhase("playing");
+      } else setPhase("missing");
+    }).catch(() => setPhase("missing"));
+  };
+  return React.createElement("div", {
+    "data-spotify-player": phase,
+    style: {
+      marginBottom: 18
+    }
+  }, React.createElement("div", {
+    className: "duo-sect",
+    style: {
+      marginBottom: 10
+    }
+  }, "Listen"), phase === "playing" && id ? React.createElement("iframe", {
+    title: "Spotify player: " + name,
+    src: "https://open.spotify.com/embed/artist/" + id + "?utm_source=plursky",
+    width: "100%",
+    height: "152",
+    loading: "lazy",
+    allow: "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture",
+    style: {
+      display: "block",
+      border: "none",
+      borderRadius: 12
+    }
+  }) : phase === "missing" ? React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      gap: 10,
+      padding: "12px 14px",
+      borderRadius: 12,
+      background: "var(--paper-2)",
+      border: "1px solid var(--line-2)"
+    }
+  }, React.createElement("span", {
+    style: {
+      fontSize: 13,
+      color: "var(--ink-2)"
+    }
+  }, "Couldn't find ", name, " on Spotify."), React.createElement("a", {
+    href: searchUrl,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    style: {
+      fontSize: 13,
+      fontWeight: 600,
+      color: "var(--ink)",
+      textDecoration: "none",
+      whiteSpace: "nowrap"
+    }
+  }, "Search ↗")) : React.createElement("button", {
+    type: "button",
+    onClick: open,
+    disabled: phase === "finding",
+    "aria-label": "Play " + name + " on Spotify",
+    style: {
+      width: "100%",
+      minHeight: 52,
+      display: "flex",
+      alignItems: "center",
+      gap: 12,
+      padding: "0 14px",
+      borderRadius: 12,
+      cursor: phase === "finding" ? "progress" : "pointer",
+      background: "var(--paper-2)",
+      border: "1px solid var(--line-2)",
+      color: "var(--ink)",
+      font: "inherit",
+      textAlign: "left"
+    }
+  }, React.createElement("span", {
+    "aria-hidden": "true",
+    style: {
+      width: 30,
+      height: 30,
+      borderRadius: "50%",
+      flexShrink: 0,
+      background: "var(--spotify)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center"
+    }
+  }, React.createElement("svg", {
+    width: "12",
+    height: "12",
+    viewBox: "0 0 24 24",
+    fill: "#000"
+  }, React.createElement("path", {
+    d: "M8 5 L19 12 L8 19 Z"
+  }))), React.createElement("span", {
+    style: {
+      fontSize: 14,
+      fontWeight: 600,
+      flex: 1
+    }
+  }, phase === "finding" ? "Finding " + name + " on Spotify…" : "Play " + name + "'s top songs"), React.createElement("span", {
+    className: "mono",
+    style: {
+      fontSize: 9,
+      letterSpacing: 1.1,
+      color: "var(--ink-2)"
+    }
+  }, "SPOTIFY")));
+}
 function ArtistScreen({
   state,
   setState
@@ -2061,7 +2198,11 @@ function ArtistScreen({
       background: dot,
       flexShrink: 0
     }
-  }), label, " ↗"))), React.createElement("div", {
+  }), label, " ↗"))), React.createElement(SpotifyArtistPlayer, {
+    name: lookupName,
+    spotifyId: spotifyArtistId,
+    searchUrl: "https://open.spotify.com/search/" + encodeURIComponent(lookupName) + "/artists"
+  }), React.createElement("div", {
     id: "artist-section-tracklist"
   }), edcTracklist && edcTracklist.source === "1001tracklists" && edcTracklist.tracks?.length > 0 && (() => {
     var tracks = edcTracklist.tracks;
