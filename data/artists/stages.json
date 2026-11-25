@@ -1378,6 +1378,58 @@
      ],
      "joins": [],
      "mainStage": null
+    },
+    {
+     "id": "defqon1:the-gathering",
+     "names": [
+      {
+       "printed": "The Gathering",
+       "editions": [
+        "defqon1-2014"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "defqon1:green",
+     "names": [
+      {
+       "printed": "Green",
+       "editions": [
+        "defqon1-2014"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "defqon1:after",
+     "names": [
+      {
+       "printed": "After",
+       "editions": [
+        "defqon1-2014"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
+    },
+    {
+     "id": "defqon1:closing",
+     "names": [
+      {
+       "printed": "Closing",
+       "editions": [
+        "defqon1-2014"
+       ]
+      }
+     ],
+     "joins": [],
+     "mainStage": null
     }
    ]
   },

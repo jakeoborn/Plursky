@@ -1519,6 +1519,258 @@
    }
   },
   {
+   "id": "creamfields-2025",
+   "festivalId": "creamfields",
+   "festivalName": "Creamfields",
+   "name": "Creamfields 2025",
+   "year": 2025,
+   "timezone": "Europe/London",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2025-08-21",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2025-08-22",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2025-08-23",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2025-08-24",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 19,
+    "artists": 201,
+    "sets": 0
+   }
+  },
+  {
+   "id": "creamfields-2024",
+   "festivalId": "creamfields",
+   "festivalName": "Creamfields",
+   "name": "Creamfields 2024",
+   "year": 2024,
+   "timezone": "Europe/London",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2024-08-22",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2024-08-23",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2024-08-24",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2024-08-25",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 21,
+    "artists": 219,
+    "sets": 0
+   }
+  },
+  {
+   "id": "creamfields-2022",
+   "festivalId": "creamfields",
+   "festivalName": "Creamfields",
+   "name": "Creamfields 2022",
+   "year": 2022,
+   "timezone": "Europe/London",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2022-08-25",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2022-08-26",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2022-08-27",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2022-08-28",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 26,
+    "artists": 253,
+    "sets": 0
+   }
+  },
+  {
+   "id": "creamfields-2021",
+   "festivalId": "creamfields",
+   "festivalName": "Creamfields",
+   "name": "Creamfields 2021",
+   "year": 2021,
+   "timezone": "Europe/London",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2021-08-26",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2021-08-27",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2021-08-28",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2021-08-29",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 28,
+    "artists": 234,
+    "sets": 0
+   }
+  },
+  {
+   "id": "creamfields-2019",
+   "festivalId": "creamfields",
+   "festivalName": "Creamfields",
+   "name": "Creamfields 2019",
+   "year": 2019,
+   "timezone": "Europe/London",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2019-08-22",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2019-08-23",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2019-08-24",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2019-08-25",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 29,
+    "artists": 266,
+    "sets": 0
+   }
+  },
+  {
+   "id": "creamfields-2018",
+   "festivalId": "creamfields",
+   "festivalName": "Creamfields",
+   "name": "Creamfields 2018",
+   "year": 2018,
+   "timezone": "Europe/London",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2018-08-23",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2018-08-24",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2018-08-25",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2018-08-26",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 29,
+    "artists": 281,
+    "sets": 0
+   }
+  },
+  {
+   "id": "creamfields-2017",
+   "festivalId": "creamfields",
+   "festivalName": "Creamfields",
+   "name": "Creamfields 2017",
+   "year": 2017,
+   "timezone": "Europe/London",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2017-08-24",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2017-08-25",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2017-08-26",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2017-08-27",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 27,
+    "artists": 250,
+    "sets": 0
+   }
+  },
+  {
    "id": "defqon1-2015",
    "festivalId": "defqon1",
    "festivalName": "Defqon.1",
@@ -1553,6 +1805,43 @@
     "stages": 14,
     "artists": 219,
     "sets": 221
+   }
+  },
+  {
+   "id": "defqon1-2014",
+   "festivalId": "defqon1",
+   "festivalName": "Defqon.1",
+   "name": "Defqon.1 2014",
+   "year": 2014,
+   "timezone": "Europe/Amsterdam",
+   "completeness": "selected_stages",
+   "missingStages": [
+    {
+     "stage": "Orange",
+     "when": "Saturday; the Dutch timetable page prints only that the area is available in English"
+    }
+   ],
+   "days": [
+    {
+     "day": 1,
+     "date": "2014-06-27",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2014-06-28",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2014-06-29",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 17,
+    "artists": 191,
+    "sets": 196
    }
   },
   {

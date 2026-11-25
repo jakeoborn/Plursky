@@ -6,7 +6,8 @@
 //
 //   foldKey(s)       the historical library's slug, after folding letters NFKD
 //                    cannot decompose ("RØZ" → roz; "¥" is a stylised Y)
-//   splitSetTag(s)   lifts a trailing set tag ("(Sunrise Set)", "(live)"); a
+//   splitSetTag(s)   lifts a trailing set tag ("(Sunrise Set)", "(live)",
+//                    "[LIVE]", "*Millennium set*"); a
 //                    parenthetical that names people, or any other one, stays
 //   artistKey(s)     foldKey of the billing without its set tag
 //
@@ -24,6 +25,11 @@
   }
   function splitSetTag(printed) {
     var name = String(printed).trim();
+    // A set tag the page marks with square brackets or stars ("Noisecontrollers
+    // [LIVE]", "Ophidian *BLACKBOX SET*") is lifted like a bracketed one; any
+    // other such mark stays part of the name ("A*S*Y*S*", "MARLO [TECH ENERGY]").
+    var t = name.match(/^(.*?)\s*(?:\[([^\[\]]+)\]|\*([^*]+)\*)\s*$/);
+    if (t && t[1] && SET_TAG.test((t[2] || t[3]).trim())) return { name: t[1].trim(), setTag: (t[2] || t[3]).trim(), paren: null };
     var m = name.match(/^(.*?)\s*\(([^()]*)\)\s*$/);
     if (!m) return { name: name, setTag: null, paren: null };
     var inner = m[2].trim();

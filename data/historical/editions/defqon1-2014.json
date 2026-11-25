@@ -1,0 +1,3270 @@
+{
+ "id": "defqon1-2014",
+ "festivalId": "defqon1",
+ "name": "Defqon.1 2014",
+ "year": 2014,
+ "timezone": "Europe/Amsterdam",
+ "rolloverHour": 6,
+ "completeness": "selected_stages",
+ "coverage": {
+  "asOf": "2026-11-25",
+  "missing": [
+   {
+    "stage": "Orange",
+    "days": [
+     2
+    ],
+    "when": "Saturday; the Dutch timetable page prints only that the area is available in English"
+   }
+  ]
+ },
+ "days": [
+  {
+   "day": 1,
+   "date": "2014-06-27",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2014-06-28",
+   "label": "Saturday"
+  },
+  {
+   "day": 3,
+   "date": "2014-06-29",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "defqon1-2014:the-gathering",
+   "name": "The Gathering"
+  },
+  {
+   "id": "defqon1-2014:orange",
+   "name": "Orange"
+  },
+  {
+   "id": "defqon1-2014:red",
+   "name": "Red"
+  },
+  {
+   "id": "defqon1-2014:black",
+   "name": "Black"
+  },
+  {
+   "id": "defqon1-2014:gold",
+   "name": "Gold"
+  },
+  {
+   "id": "defqon1-2014:blue",
+   "name": "Blue"
+  },
+  {
+   "id": "defqon1-2014:uv",
+   "name": "UV"
+  },
+  {
+   "id": "defqon1-2014:yellow",
+   "name": "Yellow"
+  },
+  {
+   "id": "defqon1-2014:green",
+   "name": "Green"
+  },
+  {
+   "id": "defqon1-2014:magenta",
+   "name": "Magenta"
+  },
+  {
+   "id": "defqon1-2014:purple",
+   "name": "Purple"
+  },
+  {
+   "id": "defqon1-2014:white",
+   "name": "White"
+  },
+  {
+   "id": "defqon1-2014:indigo",
+   "name": "Indigo"
+  },
+  {
+   "id": "defqon1-2014:brown",
+   "name": "Brown"
+  },
+  {
+   "id": "defqon1-2014:silver",
+   "name": "Silver"
+  },
+  {
+   "id": "defqon1-2014:after",
+   "name": "After"
+  },
+  {
+   "id": "defqon1-2014:closing",
+   "name": "Closing"
+  }
+ ],
+ "artists": [
+  {
+   "id": "defqon1-2014:coone",
+   "name": "Coone",
+   "key": "coone",
+   "performers": [
+    "coone"
+   ]
+  },
+  {
+   "id": "defqon1-2014:isaac",
+   "name": "Isaac",
+   "key": "isaac",
+   "performers": [
+    "isaac"
+   ]
+  },
+  {
+   "id": "defqon1-2014:wildstylez",
+   "name": "Wildstylez",
+   "key": "wildstylez",
+   "performers": [
+    "wildstylez"
+   ]
+  },
+  {
+   "id": "defqon1-2014:ran-d",
+   "name": "Ran-D",
+   "key": "ran-d",
+   "performers": [
+    "ran-d"
+   ]
+  },
+  {
+   "id": "defqon1-2014:wild-motherfuckers",
+   "name": "Wild Motherfuckers",
+   "key": "wild-motherfuckers",
+   "performers": [
+    "wild-motherfuckers"
+   ]
+  },
+  {
+   "id": "defqon1-2014:dr-phunk",
+   "name": "Dr Phunk",
+   "key": "dr-phunk",
+   "performers": [
+    "dr-phunk"
+   ]
+  },
+  {
+   "id": "defqon1-2014:gizmo",
+   "name": "Gizmo",
+   "key": "gizmo",
+   "performers": [
+    "gizmo"
+   ]
+  },
+  {
+   "id": "defqon1-2014:kasparov",
+   "name": "Kasparov",
+   "key": "kasparov",
+   "performers": [
+    "kasparov"
+   ]
+  },
+  {
+   "id": "defqon1-2014:outblast",
+   "name": "Outblast",
+   "key": "outblast",
+   "performers": [
+    "outblast"
+   ]
+  },
+  {
+   "id": "defqon1-2014:pandorum",
+   "name": "Pandorum",
+   "key": "pandorum",
+   "performers": [
+    "pandorum"
+   ]
+  },
+  {
+   "id": "defqon1-2014:partyraiser",
+   "name": "Partyraiser",
+   "key": "partyraiser",
+   "performers": [
+    "partyraiser"
+   ]
+  },
+  {
+   "id": "defqon1-2014:dither",
+   "name": "Dither",
+   "key": "dither",
+   "performers": [
+    "dither"
+   ]
+  },
+  {
+   "id": "defqon1-2014:audiofreq-and-geck-o",
+   "name": "Audiofreq & Geck-o",
+   "key": "audiofreq-and-geck-o",
+   "performers": [
+    "audiofreq-and-geck-o"
+   ]
+  },
+  {
+   "id": "defqon1-2014:bass-modulators",
+   "name": "Bass Modulators",
+   "key": "bass-modulators",
+   "performers": [
+    "bass-modulators"
+   ]
+  },
+  {
+   "id": "defqon1-2014:max-enforcer",
+   "name": "Max Enforcer",
+   "key": "max-enforcer",
+   "performers": [
+    "max-enforcer"
+   ]
+  },
+  {
+   "id": "defqon1-2014:psyko-punkz",
+   "name": "Psyko Punkz",
+   "key": "psyko-punkz",
+   "performers": [
+    "psyko-punkz"
+   ]
+  },
+  {
+   "id": "defqon1-2014:atmozfears",
+   "name": "Atmozfears",
+   "key": "atmozfears",
+   "performers": [
+    "atmozfears"
+   ]
+  },
+  {
+   "id": "defqon1-2014:d-block-and-s-te-fan",
+   "name": "D-Block & S-te-Fan",
+   "key": "d-block-and-s-te-fan",
+   "performers": [
+    "d-block-and-s-te-fan"
+   ]
+  },
+  {
+   "id": "defqon1-2014:zatox",
+   "name": "Zatox",
+   "key": "zatox",
+   "performers": [
+    "zatox"
+   ]
+  },
+  {
+   "id": "defqon1-2014:noisecontrollers-live",
+   "name": "Noisecontrollers [LIVE]",
+   "key": "noisecontrollers-live",
+   "performers": [
+    "noisecontrollers-live"
+   ]
+  },
+  {
+   "id": "defqon1-2014:crypsis",
+   "name": "Crypsis",
+   "key": "crypsis",
+   "performers": [
+    "crypsis"
+   ]
+  },
+  {
+   "id": "defqon1-2014:b-front-and-frequencerz-presents-b-freqz-live",
+   "name": "B-Front & Frequencerz presents B-freqz [LIVE]",
+   "key": "b-front-and-frequencerz-presents-b-freqz-live",
+   "performers": [
+    "b-front-and-frequencerz-presents-b-freqz-live"
+   ]
+  },
+  {
+   "id": "defqon1-2014:amada",
+   "name": "Amada",
+   "key": "amada",
+   "performers": [
+    "amada"
+   ]
+  },
+  {
+   "id": "defqon1-2014:amnesys",
+   "name": "Amnesys",
+   "key": "amnesys",
+   "performers": [
+    "amnesys"
+   ]
+  },
+  {
+   "id": "defqon1-2014:ophidian",
+   "name": "Ophidian",
+   "key": "ophidian",
+   "performers": [
+    "ophidian"
+   ]
+  },
+  {
+   "id": "defqon1-2014:miss-k8",
+   "name": "Miss K8",
+   "key": "miss-k8",
+   "performers": [
+    "miss-k8"
+   ]
+  },
+  {
+   "id": "defqon1-2014:korsakoff-and-day-mar",
+   "name": "Korsakoff & Day-már",
+   "key": "korsakoff-and-day-mar",
+   "performers": [
+    "korsakoff-and-day-mar"
+   ]
+  },
+  {
+   "id": "defqon1-2014:art-of-fighters",
+   "name": "Art of Fighters",
+   "key": "art-of-fighters",
+   "performers": [
+    "art-of-fighters"
+   ]
+  },
+  {
+   "id": "defqon1-2014:partyraiser-and-drokz",
+   "name": "Partyraiser & Drokz",
+   "key": "partyraiser-and-drokz",
+   "performers": [
+    "partyraiser-and-drokz"
+   ]
+  },
+  {
+   "id": "defqon1-2014:sequence-and-ominous",
+   "name": "Sequence & Ominous",
+   "key": "sequence-and-ominous",
+   "performers": [
+    "sequence-and-ominous"
+   ]
+  },
+  {
+   "id": "defqon1-2014:meagashira",
+   "name": "Meagashira",
+   "key": "meagashira",
+   "performers": [
+    "meagashira"
+   ]
+  },
+  {
+   "id": "defqon1-2014:the-viper",
+   "name": "The Viper",
+   "key": "the-viper",
+   "performers": [
+    "the-viper"
+   ]
+  },
+  {
+   "id": "defqon1-2014:bass-d",
+   "name": "Bass-D",
+   "key": "bass-d",
+   "performers": [
+    "bass-d"
+   ]
+  },
+  {
+   "id": "defqon1-2014:armageddon-project",
+   "name": "Armageddon Project",
+   "key": "armageddon-project",
+   "performers": [
+    "armageddon-project"
+   ]
+  },
+  {
+   "id": "defqon1-2014:hamunaptra",
+   "name": "Hamunaptra",
+   "key": "hamunaptra",
+   "performers": [
+    "hamunaptra"
+   ]
+  },
+  {
+   "id": "defqon1-2014:d-passion",
+   "name": "D-Passion",
+   "key": "d-passion",
+   "performers": [
+    "d-passion"
+   ]
+  },
+  {
+   "id": "defqon1-2014:vince",
+   "name": "Vince",
+   "key": "vince",
+   "performers": [
+    "vince"
+   ]
+  },
+  {
+   "id": "defqon1-2014:promo",
+   "name": "Promo",
+   "key": "promo",
+   "performers": [
+    "promo"
+   ]
+  },
+  {
+   "id": "defqon1-2014:base-alert",
+   "name": "Base Alert",
+   "key": "base-alert",
+   "performers": [
+    "base-alert"
+   ]
+  },
+  {
+   "id": "defqon1-2014:jack-of-sound",
+   "name": "Jack of Sound",
+   "key": "jack-of-sound",
+   "performers": [
+    "jack-of-sound"
+   ]
+  },
+  {
+   "id": "defqon1-2014:festuca",
+   "name": "Festuca",
+   "key": "festuca",
+   "performers": [
+    "festuca"
+   ]
+  },
+  {
+   "id": "defqon1-2014:deepack",
+   "name": "Deepack",
+   "key": "deepack",
+   "performers": [
+    "deepack"
+   ]
+  },
+  {
+   "id": "defqon1-2014:alpha2",
+   "name": "Alpha2",
+   "key": "alpha2",
+   "performers": [
+    "alpha2"
+   ]
+  },
+  {
+   "id": "defqon1-2014:exit-mind",
+   "name": "Exit Mind",
+   "key": "exit-mind",
+   "performers": [
+    "exit-mind"
+   ]
+  },
+  {
+   "id": "defqon1-2014:frequencerz",
+   "name": "Frequencerz",
+   "key": "frequencerz",
+   "performers": [
+    "frequencerz"
+   ]
+  },
+  {
+   "id": "defqon1-2014:b-front",
+   "name": "B-Front",
+   "key": "b-front",
+   "performers": [
+    "b-front"
+   ]
+  },
+  {
+   "id": "defqon1-2014:digital-punk",
+   "name": "Digital Punk",
+   "key": "digital-punk",
+   "performers": [
+    "digital-punk"
+   ]
+  },
+  {
+   "id": "defqon1-2014:minus-militia",
+   "name": "Minus Militia",
+   "key": "minus-militia",
+   "performers": [
+    "minus-militia"
+   ]
+  },
+  {
+   "id": "defqon1-2014:dj-thera-s-training-sessions",
+   "name": "DJ Thera’s Training Sessions",
+   "key": "dj-thera-s-training-sessions",
+   "performers": [
+    "dj-thera-s-training-sessions"
+   ]
+  },
+  {
+   "id": "defqon1-2014:titan-and-high-voltage",
+   "name": "Titan & High Voltage",
+   "key": "titan-and-high-voltage",
+   "performers": [
+    "titan-and-high-voltage"
+   ]
+  },
+  {
+   "id": "defqon1-2014:waverider",
+   "name": "Waverider",
+   "key": "waverider",
+   "performers": [
+    "waverider"
+   ]
+  },
+  {
+   "id": "defqon1-2014:rebourne",
+   "name": "Rebourne",
+   "key": "rebourne",
+   "performers": [
+    "rebourne"
+   ]
+  },
+  {
+   "id": "defqon1-2014:sylence",
+   "name": "Sylence",
+   "key": "sylence",
+   "performers": [
+    "sylence"
+   ]
+  },
+  {
+   "id": "defqon1-2014:adrenalize-and-in-phase",
+   "name": "Adrenalize & In-Phase",
+   "key": "adrenalize-and-in-phase",
+   "performers": [
+    "adrenalize-and-in-phase"
+   ]
+  },
+  {
+   "id": "defqon1-2014:sound-rush",
+   "name": "Sound Rush",
+   "key": "sound-rush",
+   "performers": [
+    "sound-rush"
+   ]
+  },
+  {
+   "id": "defqon1-2014:wasted-penquinz",
+   "name": "Wasted Penquinz",
+   "key": "wasted-penquinz",
+   "performers": [
+    "wasted-penquinz"
+   ]
+  },
+  {
+   "id": "defqon1-2014:code-black",
+   "name": "Code Black",
+   "key": "code-black",
+   "performers": [
+    "code-black"
+   ]
+  },
+  {
+   "id": "defqon1-2014:stephanie",
+   "name": "Stephanie",
+   "key": "stephanie",
+   "performers": [
+    "stephanie"
+   ]
+  },
+  {
+   "id": "defqon1-2014:the-pitcher-live",
+   "name": "The Pitcher [LIVE]",
+   "key": "the-pitcher-live",
+   "performers": [
+    "the-pitcher-live"
+   ]
+  },
+  {
+   "id": "defqon1-2014:the-prophet",
+   "name": "The Prophet",
+   "key": "the-prophet",
+   "performers": [
+    "the-prophet"
+   ]
+  },
+  {
+   "id": "defqon1-2014:bart-hard",
+   "name": "Bart Hard",
+   "key": "bart-hard",
+   "performers": [
+    "bart-hard"
+   ]
+  },
+  {
+   "id": "defqon1-2014:chem-d",
+   "name": "Chem D",
+   "key": "chem-d",
+   "performers": [
+    "chem-d"
+   ]
+  },
+  {
+   "id": "defqon1-2014:cardiak",
+   "name": "Cardiak",
+   "key": "cardiak",
+   "performers": [
+    "cardiak"
+   ]
+  },
+  {
+   "id": "defqon1-2014:goetia",
+   "name": "Goetia",
+   "key": "goetia",
+   "performers": [
+    "goetia"
+   ]
+  },
+  {
+   "id": "defqon1-2014:sandy-warez",
+   "name": "Sandy Warez",
+   "key": "sandy-warez",
+   "performers": [
+    "sandy-warez"
+   ]
+  },
+  {
+   "id": "defqon1-2014:dr-peacock",
+   "name": "Dr. Peacock",
+   "key": "dr-peacock",
+   "performers": [
+    "dr-peacock"
+   ]
+  },
+  {
+   "id": "defqon1-2014:akira",
+   "name": "Akira",
+   "key": "akira",
+   "performers": [
+    "akira"
+   ]
+  },
+  {
+   "id": "defqon1-2014:noisekick",
+   "name": "Noisekick",
+   "key": "noisekick",
+   "performers": [
+    "noisekick"
+   ]
+  },
+  {
+   "id": "defqon1-2014:genetix",
+   "name": "Genetix",
+   "key": "genetix",
+   "performers": [
+    "genetix"
+   ]
+  },
+  {
+   "id": "defqon1-2014:broken-note",
+   "name": "Broken Note",
+   "key": "broken-note",
+   "performers": [
+    "broken-note"
+   ]
+  },
+  {
+   "id": "defqon1-2014:black-sun-empire",
+   "name": "Black Sun Empire",
+   "key": "black-sun-empire",
+   "performers": [
+    "black-sun-empire"
+   ]
+  },
+  {
+   "id": "defqon1-2014:cooh",
+   "name": "Cooh",
+   "key": "cooh",
+   "performers": [
+    "cooh"
+   ]
+  },
+  {
+   "id": "defqon1-2014:lucy-furr",
+   "name": "Lucy Furr",
+   "key": "lucy-furr",
+   "performers": [
+    "lucy-furr"
+   ]
+  },
+  {
+   "id": "defqon1-2014:the-outside-agency-crossbreed-set",
+   "name": "The Outside Agency *Crossbreed set*",
+   "key": "the-outside-agency-crossbreed-set",
+   "performers": [
+    "the-outside-agency-crossbreed-set"
+   ]
+  },
+  {
+   "id": "defqon1-2014:war-is-inevitable",
+   "name": "War is Inevitable",
+   "key": "war-is-inevitable",
+   "performers": [
+    "war-is-inevitable"
+   ]
+  },
+  {
+   "id": "defqon1-2014:deluge-of-sound",
+   "name": "Deluge of Sound",
+   "key": "deluge-of-sound",
+   "performers": [
+    "deluge-of-sound"
+   ]
+  },
+  {
+   "id": "defqon1-2014:balistic",
+   "name": "Balistic",
+   "key": "balistic",
+   "performers": [
+    "balistic"
+   ]
+  },
+  {
+   "id": "defqon1-2014:t-a-t-a-n-k-a-project",
+   "name": "T.A.T.A.N.K.A Project",
+   "key": "t-a-t-a-n-k-a-project",
+   "performers": [
+    "t-a-t-a-n-k-a-project"
+   ]
+  },
+  {
+   "id": "defqon1-2014:gary-d",
+   "name": "Gary D",
+   "key": "gary-d",
+   "performers": [
+    "gary-d"
+   ]
+  },
+  {
+   "id": "defqon1-2014:zenith",
+   "name": "Zenith",
+   "key": "zenith",
+   "performers": [
+    "zenith"
+   ]
+  },
+  {
+   "id": "defqon1-2014:technoboy-and-tuneboy",
+   "name": "Technoboy & Tuneboy",
+   "key": "technoboy-and-tuneboy",
+   "performers": [
+    "technoboy-and-tuneboy"
+   ]
+  },
+  {
+   "id": "defqon1-2014:luna-presents-the-qlubtempo-parade",
+   "name": "Luna presents the Qlubtempo Parade",
+   "key": "luna-presents-the-qlubtempo-parade",
+   "performers": [
+    "luna-presents-the-qlubtempo-parade"
+   ]
+  },
+  {
+   "id": "defqon1-2014:proto-bytez",
+   "name": "Proto Bytez",
+   "key": "proto-bytez",
+   "performers": [
+    "proto-bytez"
+   ]
+  },
+  {
+   "id": "defqon1-2014:recharge",
+   "name": "Recharge",
+   "key": "recharge",
+   "performers": [
+    "recharge"
+   ]
+  },
+  {
+   "id": "defqon1-2014:concept-art",
+   "name": "Concept Art",
+   "key": "concept-art",
+   "performers": [
+    "concept-art"
+   ]
+  },
+  {
+   "id": "defqon1-2014:pulserz",
+   "name": "Pulserz",
+   "key": "pulserz",
+   "performers": [
+    "pulserz"
+   ]
+  },
+  {
+   "id": "defqon1-2014:hpnotic",
+   "name": "Hpnotic",
+   "key": "hpnotic",
+   "performers": [
+    "hpnotic"
+   ]
+  },
+  {
+   "id": "defqon1-2014:noisecult",
+   "name": "Noisecult",
+   "key": "noisecult",
+   "performers": [
+    "noisecult"
+   ]
+  },
+  {
+   "id": "defqon1-2014:nutralizers",
+   "name": "Nutralizers",
+   "key": "nutralizers",
+   "performers": [
+    "nutralizers"
+   ]
+  },
+  {
+   "id": "defqon1-2014:electronic-vibes",
+   "name": "Electronic Vibes",
+   "key": "electronic-vibes",
+   "performers": [
+    "electronic-vibes"
+   ]
+  },
+  {
+   "id": "defqon1-2014:aztech",
+   "name": "Aztech",
+   "key": "aztech",
+   "performers": [
+    "aztech"
+   ]
+  },
+  {
+   "id": "defqon1-2014:your-on",
+   "name": "Your-On",
+   "key": "your-on",
+   "performers": [
+    "your-on"
+   ]
+  },
+  {
+   "id": "defqon1-2014:advanced-dealer",
+   "name": "Advanced Dealer",
+   "key": "advanced-dealer",
+   "performers": [
+    "advanced-dealer"
+   ]
+  },
+  {
+   "id": "defqon1-2014:luca-perra",
+   "name": "Luca Perra",
+   "key": "luca-perra",
+   "performers": [
+    "luca-perra"
+   ]
+  },
+  {
+   "id": "defqon1-2014:done-heavy",
+   "name": "Done Heavy",
+   "key": "done-heavy",
+   "performers": [
+    "done-heavy"
+   ]
+  },
+  {
+   "id": "defqon1-2014:s1ngular",
+   "name": "S1ngular",
+   "key": "s1ngular",
+   "performers": [
+    "s1ngular"
+   ]
+  },
+  {
+   "id": "defqon1-2014:subkilla",
+   "name": "Subkilla",
+   "key": "subkilla",
+   "performers": [
+    "subkilla"
+   ]
+  },
+  {
+   "id": "defqon1-2014:donnie-darko",
+   "name": "Donnie Darko",
+   "key": "donnie-darko",
+   "performers": [
+    "donnie-darko"
+   ]
+  },
+  {
+   "id": "defqon1-2014:atmo",
+   "name": "ATMO",
+   "key": "atmo",
+   "performers": [
+    "atmo"
+   ]
+  },
+  {
+   "id": "defqon1-2014:a-s-y-s",
+   "name": "A*S*Y*S",
+   "key": "a-s-y-s",
+   "performers": [
+    "a-s-y-s"
+   ]
+  },
+  {
+   "id": "defqon1-2014:acti",
+   "name": "ACTI",
+   "key": "acti",
+   "performers": [
+    "acti"
+   ]
+  },
+  {
+   "id": "defqon1-2014:argy",
+   "name": "Argy",
+   "key": "argy",
+   "performers": [
+    "argy"
+   ]
+  },
+  {
+   "id": "defqon1-2014:alex-kidd",
+   "name": "Alex Kidd",
+   "key": "alex-kidd",
+   "performers": [
+    "alex-kidd"
+   ]
+  },
+  {
+   "id": "defqon1-2014:notoriouz",
+   "name": "Notoriouz",
+   "key": "notoriouz",
+   "performers": [
+    "notoriouz"
+   ]
+  },
+  {
+   "id": "defqon1-2014:aeros",
+   "name": "Aeros",
+   "key": "aeros",
+   "performers": [
+    "aeros"
+   ]
+  },
+  {
+   "id": "defqon1-2014:artifact",
+   "name": "Artifact",
+   "key": "artifact",
+   "performers": [
+    "artifact"
+   ]
+  },
+  {
+   "id": "defqon1-2014:prefix-and-density",
+   "name": "Prefix & Density",
+   "key": "prefix-and-density",
+   "performers": [
+    "prefix-and-density"
+   ]
+  },
+  {
+   "id": "defqon1-2014:the-geminizers-and-the-machine",
+   "name": "The Geminizers & The Machine",
+   "key": "the-geminizers-and-the-machine",
+   "performers": [
+    "the-geminizers-and-the-machine"
+   ]
+  },
+  {
+   "id": "defqon1-2014:degos-and-re-done",
+   "name": "Degos & Re-Done",
+   "key": "degos-and-re-done",
+   "performers": [
+    "degos-and-re-done"
+   ]
+  },
+  {
+   "id": "defqon1-2014:solutio",
+   "name": "Solutio",
+   "key": "solutio",
+   "performers": [
+    "solutio"
+   ]
+  },
+  {
+   "id": "defqon1-2014:black-burn-and-k96",
+   "name": "Black Burn & K96",
+   "key": "black-burn-and-k96",
+   "performers": [
+    "black-burn-and-k96"
+   ]
+  },
+  {
+   "id": "defqon1-2014:deetox-and-delete",
+   "name": "Deetox & Delete",
+   "key": "deetox-and-delete",
+   "performers": [
+    "deetox-and-delete"
+   ]
+  },
+  {
+   "id": "defqon1-2014:dark-pact",
+   "name": "Dark Pact",
+   "key": "dark-pact",
+   "performers": [
+    "dark-pact"
+   ]
+  },
+  {
+   "id": "defqon1-2014:warface",
+   "name": "Warface",
+   "key": "warface",
+   "performers": [
+    "warface"
+   ]
+  },
+  {
+   "id": "defqon1-2014:weslo",
+   "name": "Weslo",
+   "key": "weslo",
+   "performers": [
+    "weslo"
+   ]
+  },
+  {
+   "id": "defqon1-2014:davoodi",
+   "name": "Davoodi",
+   "key": "davoodi",
+   "performers": [
+    "davoodi"
+   ]
+  },
+  {
+   "id": "defqon1-2014:dirtcaps",
+   "name": "Dirtcaps",
+   "key": "dirtcaps",
+   "performers": [
+    "dirtcaps"
+   ]
+  },
+  {
+   "id": "defqon1-2014:giocatori",
+   "name": "Giocatori",
+   "key": "giocatori",
+   "performers": [
+    "giocatori"
+   ]
+  },
+  {
+   "id": "defqon1-2014:lny-tnz",
+   "name": "LNY TNZ",
+   "key": "lny-tnz",
+   "performers": [
+    "lny-tnz"
+   ]
+  },
+  {
+   "id": "defqon1-2014:dr-rude-and-dr-phunk",
+   "name": "Dr. Rude & Dr Phunk",
+   "key": "dr-rude-and-dr-phunk",
+   "performers": [
+    "dr-rude-and-dr-phunk"
+   ]
+  },
+  {
+   "id": "defqon1-2014:mark-with-a-k",
+   "name": "Mark With a K",
+   "key": "mark-with-a-k",
+   "performers": [
+    "mark-with-a-k"
+   ]
+  },
+  {
+   "id": "defqon1-2014:ruthless",
+   "name": "Ruthless",
+   "key": "ruthless",
+   "performers": [
+    "ruthless"
+   ]
+  },
+  {
+   "id": "defqon1-2014:kutski",
+   "name": "Kutski",
+   "key": "kutski",
+   "performers": [
+    "kutski"
+   ]
+  },
+  {
+   "id": "defqon1-2014:krauser",
+   "name": "Krauser",
+   "key": "krauser",
+   "performers": [
+    "krauser"
+   ]
+  },
+  {
+   "id": "defqon1-2014:mindustries-and-fracture-4",
+   "name": "Mindustries & Fracture 4",
+   "key": "mindustries-and-fracture-4",
+   "performers": [
+    "mindustries-and-fracture-4"
+   ]
+  },
+  {
+   "id": "defqon1-2014:n-vitral-live",
+   "name": "N-Vitral live",
+   "key": "n-vitral-live",
+   "performers": [
+    "n-vitral-live"
+   ]
+  },
+  {
+   "id": "defqon1-2014:meander",
+   "name": "Meander",
+   "key": "meander",
+   "performers": [
+    "meander"
+   ]
+  },
+  {
+   "id": "defqon1-2014:ak-industry",
+   "name": "AK-Industry",
+   "key": "ak-industry",
+   "performers": [
+    "ak-industry"
+   ]
+  },
+  {
+   "id": "defqon1-2014:dolphin",
+   "name": "Dolphin",
+   "key": "dolphin",
+   "performers": [
+    "dolphin"
+   ]
+  },
+  {
+   "id": "defqon1-2014:hellfish-and-the-dj-producer",
+   "name": "Hellfish & The DJ Producer",
+   "key": "hellfish-and-the-dj-producer",
+   "performers": [
+    "hellfish-and-the-dj-producer"
+   ]
+  },
+  {
+   "id": "defqon1-2014:deathmachine",
+   "name": "Deathmachine",
+   "key": "deathmachine",
+   "performers": [
+    "deathmachine"
+   ]
+  },
+  {
+   "id": "defqon1-2014:rotator",
+   "name": "Rotator",
+   "key": "rotator",
+   "performers": [
+    "rotator"
+   ]
+  },
+  {
+   "id": "defqon1-2014:darkraver",
+   "name": "Darkraver",
+   "key": "darkraver",
+   "performers": [
+    "darkraver"
+   ]
+  },
+  {
+   "id": "defqon1-2014:tnt",
+   "name": "TNT",
+   "key": "tnt",
+   "performers": [
+    "tnt"
+   ]
+  },
+  {
+   "id": "defqon1-2014:a2-allstars",
+   "name": "A2 Allstars",
+   "key": "a2-allstars",
+   "performers": [
+    "a2-allstars"
+   ]
+  },
+  {
+   "id": "defqon1-2014:endymion-ft-murda",
+   "name": "Endymion ft Murda",
+   "key": "endymion-ft-murda",
+   "performers": [
+    "endymion-ft-murda"
+   ]
+  },
+  {
+   "id": "defqon1-2014:system-shock",
+   "name": "System Shock",
+   "key": "system-shock",
+   "performers": [
+    "system-shock"
+   ]
+  },
+  {
+   "id": "defqon1-2014:wasted-mind",
+   "name": "Wasted Mind",
+   "key": "wasted-mind",
+   "performers": [
+    "wasted-mind"
+   ]
+  },
+  {
+   "id": "defqon1-2014:evil-activities",
+   "name": "Evil Activities",
+   "key": "evil-activities",
+   "performers": [
+    "evil-activities"
+   ]
+  },
+  {
+   "id": "defqon1-2014:meccano-twins",
+   "name": "Meccano Twins",
+   "key": "meccano-twins",
+   "performers": [
+    "meccano-twins"
+   ]
+  },
+  {
+   "id": "defqon1-2014:tha-playah",
+   "name": "Tha Playah",
+   "key": "tha-playah",
+   "performers": [
+    "tha-playah"
+   ]
+  },
+  {
+   "id": "defqon1-2014:mad-dog-and-anime",
+   "name": "Mad Dog & AniMe",
+   "key": "mad-dog-and-anime",
+   "performers": [
+    "mad-dog-and-anime"
+   ]
+  },
+  {
+   "id": "defqon1-2014:the-sickest-squad-and-unexist-live",
+   "name": "The Sickest Squad & Unexist [LIVE]",
+   "key": "the-sickest-squad-and-unexist-live",
+   "performers": [
+    "the-sickest-squad-and-unexist-live"
+   ]
+  },
+  {
+   "id": "defqon1-2014:angerfist",
+   "name": "Angerfist",
+   "key": "angerfist",
+   "performers": [
+    "angerfist"
+   ]
+  },
+  {
+   "id": "defqon1-2014:uzi",
+   "name": "Uzi",
+   "key": "uzi",
+   "performers": [
+    "uzi"
+   ]
+  },
+  {
+   "id": "defqon1-2014:critical-mass-live",
+   "name": "Critical Mass [LIVE]",
+   "key": "critical-mass-live",
+   "performers": [
+    "critical-mass-live"
+   ]
+  },
+  {
+   "id": "defqon1-2014:panic",
+   "name": "Panic",
+   "key": "panic",
+   "performers": [
+    "panic"
+   ]
+  },
+  {
+   "id": "defqon1-2014:dune-live",
+   "name": "Dune [LIVE]",
+   "key": "dune-live",
+   "performers": [
+    "dune-live"
+   ]
+  },
+  {
+   "id": "defqon1-2014:bountyhunter-and-franky-jones",
+   "name": "Bountyhunter & Franky Jones",
+   "key": "bountyhunter-and-franky-jones",
+   "performers": [
+    "bountyhunter-and-franky-jones"
+   ]
+  },
+  {
+   "id": "defqon1-2014:darkraver-and-mental-theo",
+   "name": "Darkraver & Mental Theo",
+   "key": "darkraver-and-mental-theo",
+   "performers": [
+    "darkraver-and-mental-theo"
+   ]
+  },
+  {
+   "id": "defqon1-2014:human-resource-live",
+   "name": "Human Resource [LIVE]",
+   "key": "human-resource-live",
+   "performers": [
+    "human-resource-live"
+   ]
+  },
+  {
+   "id": "defqon1-2014:buzz-fuzz-and-dione",
+   "name": "Buzz Fuzz & Dione",
+   "key": "buzz-fuzz-and-dione",
+   "performers": [
+    "buzz-fuzz-and-dione"
+   ]
+  },
+  {
+   "id": "defqon1-2014:md-and-a-live",
+   "name": "MD&A [LIVE]",
+   "key": "md-and-a-live",
+   "performers": [
+    "md-and-a-live"
+   ]
+  },
+  {
+   "id": "defqon1-2014:hard-driver",
+   "name": "Hard Driver",
+   "key": "hard-driver",
+   "performers": [
+    "hard-driver"
+   ]
+  },
+  {
+   "id": "defqon1-2014:phuture-noize-and-goliath",
+   "name": "Phuture Noize & Goliath",
+   "key": "phuture-noize-and-goliath",
+   "performers": [
+    "phuture-noize-and-goliath"
+   ]
+  },
+  {
+   "id": "defqon1-2014:phrantic-live",
+   "name": "Phrantic [LIVE]",
+   "key": "phrantic-live",
+   "performers": [
+    "phrantic-live"
+   ]
+  },
+  {
+   "id": "defqon1-2014:tatanka",
+   "name": "Tatanka",
+   "key": "tatanka",
+   "performers": [
+    "tatanka"
+   ]
+  },
+  {
+   "id": "defqon1-2014:outbreak",
+   "name": "Outbreak",
+   "key": "outbreak",
+   "performers": [
+    "outbreak"
+   ]
+  },
+  {
+   "id": "defqon1-2014:chain-reaction",
+   "name": "Chain Reaction",
+   "key": "chain-reaction",
+   "performers": [
+    "chain-reaction"
+   ]
+  },
+  {
+   "id": "defqon1-2014:luna",
+   "name": "Luna",
+   "key": "luna",
+   "performers": [
+    "luna"
+   ]
+  },
+  {
+   "id": "defqon1-2014:activator",
+   "name": "Activator",
+   "key": "activator",
+   "performers": [
+    "activator"
+   ]
+  },
+  {
+   "id": "defqon1-2014:e-force",
+   "name": "E-Force",
+   "key": "e-force",
+   "performers": [
+    "e-force"
+   ]
+  },
+  {
+   "id": "defqon1-2014:radical-redemption",
+   "name": "Radical Redemption",
+   "key": "radical-redemption",
+   "performers": [
+    "radical-redemption"
+   ]
+  },
+  {
+   "id": "defqon1-2014:neilio",
+   "name": "Neilio",
+   "key": "neilio",
+   "performers": [
+    "neilio"
+   ]
+  },
+  {
+   "id": "defqon1-2014:energyzed-and-shockerz",
+   "name": "Energyzed & Shockerz",
+   "key": "energyzed-and-shockerz",
+   "performers": [
+    "energyzed-and-shockerz"
+   ]
+  },
+  {
+   "id": "defqon1-2014:da-tweekaz",
+   "name": "Da Tweekaz",
+   "key": "da-tweekaz",
+   "performers": [
+    "da-tweekaz"
+   ]
+  },
+  {
+   "id": "defqon1-2014:toneshifterz-and-dillytek",
+   "name": "Toneshifterz & Dillytek",
+   "key": "toneshifterz-and-dillytek",
+   "performers": [
+    "toneshifterz-and-dillytek"
+   ]
+  },
+  {
+   "id": "defqon1-2014:outlander",
+   "name": "Outlander",
+   "key": "outlander",
+   "performers": [
+    "outlander"
+   ]
+  },
+  {
+   "id": "defqon1-2014:a-lusion",
+   "name": "A-lusion",
+   "key": "a-lusion",
+   "performers": [
+    "a-lusion"
+   ]
+  },
+  {
+   "id": "defqon1-2014:audiofreq",
+   "name": "Audiofreq",
+   "key": "audiofreq",
+   "performers": [
+    "audiofreq"
+   ]
+  },
+  {
+   "id": "defqon1-2014:italian-hardstyle-mafia",
+   "name": "Italian Hardstyle Mafia",
+   "key": "italian-hardstyle-mafia",
+   "performers": [
+    "italian-hardstyle-mafia"
+   ]
+  },
+  {
+   "id": "defqon1-2014:jones",
+   "name": "Jones",
+   "key": "jones",
+   "performers": [
+    "jones"
+   ]
+  },
+  {
+   "id": "defqon1-2014:toyax",
+   "name": "Toyax",
+   "key": "toyax",
+   "performers": [
+    "toyax"
+   ]
+  },
+  {
+   "id": "defqon1-2014:davide-sonar",
+   "name": "Davide Sonar",
+   "key": "davide-sonar",
+   "performers": [
+    "davide-sonar"
+   ]
+  },
+  {
+   "id": "defqon1-2014:scope-dj",
+   "name": "Scope DJ",
+   "key": "scope-dj",
+   "performers": [
+    "scope-dj"
+   ]
+  },
+  {
+   "id": "defqon1-2014:oldschool-modulators",
+   "name": "Oldschool Modulators",
+   "key": "oldschool-modulators",
+   "performers": [
+    "oldschool-modulators"
+   ]
+  },
+  {
+   "id": "defqon1-2014:les-tronchiennes",
+   "name": "Les Tronchiennes",
+   "key": "les-tronchiennes",
+   "performers": [
+    "les-tronchiennes"
+   ]
+  },
+  {
+   "id": "defqon1-2014:hawman",
+   "name": "Hawman",
+   "key": "hawman",
+   "performers": [
+    "hawman"
+   ]
+  },
+  {
+   "id": "defqon1-2014:bold-action",
+   "name": "Bold Action",
+   "key": "bold-action",
+   "performers": [
+    "bold-action"
+   ]
+  },
+  {
+   "id": "defqon1-2014:geck-e",
+   "name": "Geck-e",
+   "key": "geck-e",
+   "performers": [
+    "geck-e"
+   ]
+  },
+  {
+   "id": "defqon1-2014:eyoung",
+   "name": "Eyoung",
+   "key": "eyoung",
+   "performers": [
+    "eyoung"
+   ]
+  },
+  {
+   "id": "defqon1-2014:li-z-and-stefan-zmk",
+   "name": "LI-z & Stefan ZMK",
+   "key": "li-z-and-stefan-zmk",
+   "performers": [
+    "li-z-and-stefan-zmk"
+   ]
+  },
+  {
+   "id": "defqon1-2014:embrionyc",
+   "name": "Embrionyc",
+   "key": "embrionyc",
+   "performers": [
+    "embrionyc"
+   ]
+  },
+  {
+   "id": "defqon1-2014:waldhaus",
+   "name": "Waldhaus",
+   "key": "waldhaus",
+   "performers": [
+    "waldhaus"
+   ]
+  },
+  {
+   "id": "defqon1-2014:stormtrooper",
+   "name": "Stormtrooper",
+   "key": "stormtrooper",
+   "performers": [
+    "stormtrooper"
+   ]
+  },
+  {
+   "id": "defqon1-2014:scheme-boy",
+   "name": "Scheme Boy",
+   "key": "scheme-boy",
+   "performers": [
+    "scheme-boy"
+   ]
+  },
+  {
+   "id": "defqon1-2014:khaoz-engine",
+   "name": "Khaoz Engine",
+   "key": "khaoz-engine",
+   "performers": [
+    "khaoz-engine"
+   ]
+  },
+  {
+   "id": "defqon1-2014:tripped",
+   "name": "Tripped",
+   "key": "tripped",
+   "performers": [
+    "tripped"
+   ]
+  },
+  {
+   "id": "defqon1-2014:brennan-heart",
+   "name": "Brennan Heart",
+   "key": "brennan-heart",
+   "performers": [
+    "brennan-heart"
+   ]
+  },
+  {
+   "id": "defqon1-2014:frontliner",
+   "name": "Frontliner",
+   "key": "frontliner",
+   "performers": [
+    "frontliner"
+   ]
+  },
+  {
+   "id": "defqon1-2014:ran-d-and-b-front",
+   "name": "RAN-D & B-FRONT",
+   "key": "ran-d-and-b-front",
+   "performers": [
+    "ran-d-and-b-front"
+   ]
+  }
+ ],
+ "sets": [
+  {
+   "id": "defqon1-2014:d1:the-gathering:2000:coone",
+   "artistId": "defqon1-2014:coone",
+   "day": 1,
+   "stageId": "defqon1-2014:the-gathering",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "defqon1-2014:d1:the-gathering:2100:isaac",
+   "artistId": "defqon1-2014:isaac",
+   "day": 1,
+   "stageId": "defqon1-2014:the-gathering",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "defqon1-2014:d1:the-gathering:2200:wildstylez",
+   "artistId": "defqon1-2014:wildstylez",
+   "day": 1,
+   "stageId": "defqon1-2014:the-gathering",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "defqon1-2014:d1:the-gathering:2300:ran-d",
+   "artistId": "defqon1-2014:ran-d",
+   "day": 1,
+   "stageId": "defqon1-2014:the-gathering",
+   "start": "23:00",
+   "end": "00:00"
+  },
+  {
+   "id": "defqon1-2014:d1:the-gathering:0000:wild-motherfuckers",
+   "artistId": "defqon1-2014:wild-motherfuckers",
+   "day": 1,
+   "stageId": "defqon1-2014:the-gathering",
+   "start": "00:00",
+   "end": "01:00"
+  },
+  {
+   "id": "defqon1-2014:d1:orange:2000:dr-phunk",
+   "artistId": "defqon1-2014:dr-phunk",
+   "day": 1,
+   "stageId": "defqon1-2014:orange",
+   "start": "20:00",
+   "end": "20:45"
+  },
+  {
+   "id": "defqon1-2014:d1:orange:2045:gizmo",
+   "artistId": "defqon1-2014:gizmo",
+   "day": 1,
+   "stageId": "defqon1-2014:orange",
+   "start": "20:45",
+   "end": "21:30"
+  },
+  {
+   "id": "defqon1-2014:d1:orange:2130:kasparov",
+   "artistId": "defqon1-2014:kasparov",
+   "day": 1,
+   "stageId": "defqon1-2014:orange",
+   "start": "21:30",
+   "end": "22:15"
+  },
+  {
+   "id": "defqon1-2014:d1:orange:2215:outblast",
+   "artistId": "defqon1-2014:outblast",
+   "day": 1,
+   "stageId": "defqon1-2014:orange",
+   "start": "22:15",
+   "end": "23:00"
+  },
+  {
+   "id": "defqon1-2014:d1:orange:2300:pandorum",
+   "artistId": "defqon1-2014:pandorum",
+   "day": 1,
+   "stageId": "defqon1-2014:orange",
+   "start": "23:00",
+   "end": "23:45"
+  },
+  {
+   "id": "defqon1-2014:d1:orange:2345:partyraiser",
+   "artistId": "defqon1-2014:partyraiser",
+   "day": 1,
+   "stageId": "defqon1-2014:orange",
+   "start": "23:45",
+   "end": "00:30"
+  },
+  {
+   "id": "defqon1-2014:d1:orange:0030:dither",
+   "artistId": "defqon1-2014:dither",
+   "day": 1,
+   "stageId": "defqon1-2014:orange",
+   "start": "00:30",
+   "end": "01:00"
+  },
+  {
+   "id": "defqon1-2014:d2:red:1100:audiofreq-and-geck-o",
+   "artistId": "defqon1-2014:audiofreq-and-geck-o",
+   "day": 2,
+   "stageId": "defqon1-2014:red",
+   "start": "11:00",
+   "end": "12:00"
+  },
+  {
+   "id": "defqon1-2014:d2:red:1200:bass-modulators",
+   "artistId": "defqon1-2014:bass-modulators",
+   "day": 2,
+   "stageId": "defqon1-2014:red",
+   "start": "12:00",
+   "end": "13:00"
+  },
+  {
+   "id": "defqon1-2014:d2:red:1300:max-enforcer",
+   "artistId": "defqon1-2014:max-enforcer",
+   "day": 2,
+   "stageId": "defqon1-2014:red",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "defqon1-2014:d2:red:1400:psyko-punkz",
+   "artistId": "defqon1-2014:psyko-punkz",
+   "day": 2,
+   "stageId": "defqon1-2014:red",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "defqon1-2014:d2:red:1500:atmozfears",
+   "artistId": "defqon1-2014:atmozfears",
+   "day": 2,
+   "stageId": "defqon1-2014:red",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "defqon1-2014:d2:red:1700:d-block-and-s-te-fan",
+   "artistId": "defqon1-2014:d-block-and-s-te-fan",
+   "day": 2,
+   "stageId": "defqon1-2014:red",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "defqon1-2014:d2:red:1800:coone",
+   "artistId": "defqon1-2014:coone",
+   "day": 2,
+   "stageId": "defqon1-2014:red",
+   "start": "18:00",
+   "end": "19:30"
+  },
+  {
+   "id": "defqon1-2014:d2:red:1930:zatox",
+   "artistId": "defqon1-2014:zatox",
+   "day": 2,
+   "stageId": "defqon1-2014:red",
+   "start": "19:30",
+   "end": "20:30"
+  },
+  {
+   "id": "defqon1-2014:d2:red:2030:noisecontrollers-live",
+   "artistId": "defqon1-2014:noisecontrollers-live",
+   "day": 2,
+   "stageId": "defqon1-2014:red",
+   "start": "20:30",
+   "end": "21:00"
+  },
+  {
+   "id": "defqon1-2014:d2:red:2100:crypsis",
+   "artistId": "defqon1-2014:crypsis",
+   "day": 2,
+   "stageId": "defqon1-2014:red",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "defqon1-2014:d2:red:2200:b-front-and-frequencerz-presents-b-freqz-live",
+   "artistId": "defqon1-2014:b-front-and-frequencerz-presents-b-freqz-live",
+   "day": 2,
+   "stageId": "defqon1-2014:red",
+   "start": "22:00",
+   "end": "22:30"
+  },
+  {
+   "id": "defqon1-2014:d2:black:1100:amada",
+   "artistId": "defqon1-2014:amada",
+   "day": 2,
+   "stageId": "defqon1-2014:black",
+   "start": "11:00",
+   "end": "12:00"
+  },
+  {
+   "id": "defqon1-2014:d2:black:1200:amnesys",
+   "artistId": "defqon1-2014:amnesys",
+   "day": 2,
+   "stageId": "defqon1-2014:black",
+   "start": "12:00",
+   "end": "13:30"
+  },
+  {
+   "id": "defqon1-2014:d2:black:1330:ophidian",
+   "artistId": "defqon1-2014:ophidian",
+   "day": 2,
+   "stageId": "defqon1-2014:black",
+   "start": "13:30",
+   "end": "15:00"
+  },
+  {
+   "id": "defqon1-2014:d2:black:1500:miss-k8",
+   "artistId": "defqon1-2014:miss-k8",
+   "day": 2,
+   "stageId": "defqon1-2014:black",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "defqon1-2014:d2:black:2000:korsakoff-and-day-mar",
+   "artistId": "defqon1-2014:korsakoff-and-day-mar",
+   "day": 2,
+   "stageId": "defqon1-2014:black",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "defqon1-2014:d2:black:2100:art-of-fighters",
+   "artistId": "defqon1-2014:art-of-fighters",
+   "day": 2,
+   "stageId": "defqon1-2014:black",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "defqon1-2014:d2:black:2200:partyraiser-and-drokz",
+   "artistId": "defqon1-2014:partyraiser-and-drokz",
+   "day": 2,
+   "stageId": "defqon1-2014:black",
+   "start": "22:00",
+   "end": "23:00"
+  },
+  {
+   "id": "defqon1-2014:d2:gold:1200:sequence-and-ominous",
+   "artistId": "defqon1-2014:sequence-and-ominous",
+   "day": 2,
+   "stageId": "defqon1-2014:gold",
+   "start": "12:00",
+   "end": "13:00"
+  },
+  {
+   "id": "defqon1-2014:d2:gold:1300:meagashira",
+   "artistId": "defqon1-2014:meagashira",
+   "day": 2,
+   "stageId": "defqon1-2014:gold",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "defqon1-2014:d2:gold:1400:the-viper",
+   "artistId": "defqon1-2014:the-viper",
+   "day": 2,
+   "stageId": "defqon1-2014:gold",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "defqon1-2014:d2:gold:1500:bass-d",
+   "artistId": "defqon1-2014:bass-d",
+   "day": 2,
+   "stageId": "defqon1-2014:gold",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "defqon1-2014:d2:gold:1600:armageddon-project",
+   "artistId": "defqon1-2014:armageddon-project",
+   "day": 2,
+   "stageId": "defqon1-2014:gold",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "defqon1-2014:d2:gold:1700:hamunaptra",
+   "artistId": "defqon1-2014:hamunaptra",
+   "day": 2,
+   "stageId": "defqon1-2014:gold",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "defqon1-2014:d2:gold:1800:d-passion",
+   "artistId": "defqon1-2014:d-passion",
+   "day": 2,
+   "stageId": "defqon1-2014:gold",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "defqon1-2014:d2:gold:1900:vince",
+   "artistId": "defqon1-2014:vince",
+   "day": 2,
+   "stageId": "defqon1-2014:gold",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "defqon1-2014:d2:gold:2000:promo",
+   "artistId": "defqon1-2014:promo",
+   "day": 2,
+   "stageId": "defqon1-2014:gold",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "defqon1-2014:d2:gold:2100:base-alert",
+   "artistId": "defqon1-2014:base-alert",
+   "day": 2,
+   "stageId": "defqon1-2014:gold",
+   "start": "21:00",
+   "end": "22:30"
+  },
+  {
+   "id": "defqon1-2014:d2:blue:1100:jack-of-sound",
+   "artistId": "defqon1-2014:jack-of-sound",
+   "day": 2,
+   "stageId": "defqon1-2014:blue",
+   "start": "11:00",
+   "end": "12:30"
+  },
+  {
+   "id": "defqon1-2014:d2:blue:1230:festuca",
+   "artistId": "defqon1-2014:festuca",
+   "day": 2,
+   "stageId": "defqon1-2014:blue",
+   "start": "12:30",
+   "end": "13:30"
+  },
+  {
+   "id": "defqon1-2014:d2:blue:1330:deepack",
+   "artistId": "defqon1-2014:deepack",
+   "day": 2,
+   "stageId": "defqon1-2014:blue",
+   "start": "13:30",
+   "end": "14:30"
+  },
+  {
+   "id": "defqon1-2014:d2:blue:1430:alpha2",
+   "artistId": "defqon1-2014:alpha2",
+   "day": 2,
+   "stageId": "defqon1-2014:blue",
+   "start": "14:30",
+   "end": "15:30"
+  },
+  {
+   "id": "defqon1-2014:d2:blue:1530:exit-mind",
+   "artistId": "defqon1-2014:exit-mind",
+   "day": 2,
+   "stageId": "defqon1-2014:blue",
+   "start": "15:30",
+   "end": "16:30"
+  },
+  {
+   "id": "defqon1-2014:d2:blue:1630:frequencerz",
+   "artistId": "defqon1-2014:frequencerz",
+   "day": 2,
+   "stageId": "defqon1-2014:blue",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "defqon1-2014:d2:blue:1730:b-front",
+   "artistId": "defqon1-2014:b-front",
+   "day": 2,
+   "stageId": "defqon1-2014:blue",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "defqon1-2014:d2:blue:1830:digital-punk",
+   "artistId": "defqon1-2014:digital-punk",
+   "day": 2,
+   "stageId": "defqon1-2014:blue",
+   "start": "18:30",
+   "end": "19:30"
+  },
+  {
+   "id": "defqon1-2014:d2:blue:1930:minus-militia",
+   "artistId": "defqon1-2014:minus-militia",
+   "day": 2,
+   "stageId": "defqon1-2014:blue",
+   "start": "19:30",
+   "end": "20:00"
+  },
+  {
+   "id": "defqon1-2014:d2:blue:2000:dj-thera-s-training-sessions",
+   "artistId": "defqon1-2014:dj-thera-s-training-sessions",
+   "day": 2,
+   "stageId": "defqon1-2014:blue",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "defqon1-2014:d2:blue:2100:titan-and-high-voltage",
+   "artistId": "defqon1-2014:titan-and-high-voltage",
+   "day": 2,
+   "stageId": "defqon1-2014:blue",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "defqon1-2014:d2:uv:1200:waverider",
+   "artistId": "defqon1-2014:waverider",
+   "day": 2,
+   "stageId": "defqon1-2014:uv",
+   "start": "12:00",
+   "end": "13:00"
+  },
+  {
+   "id": "defqon1-2014:d2:uv:1300:rebourne",
+   "artistId": "defqon1-2014:rebourne",
+   "day": 2,
+   "stageId": "defqon1-2014:uv",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "defqon1-2014:d2:uv:1400:sylence",
+   "artistId": "defqon1-2014:sylence",
+   "day": 2,
+   "stageId": "defqon1-2014:uv",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "defqon1-2014:d2:uv:1500:adrenalize-and-in-phase",
+   "artistId": "defqon1-2014:adrenalize-and-in-phase",
+   "day": 2,
+   "stageId": "defqon1-2014:uv",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "defqon1-2014:d2:uv:1600:sound-rush",
+   "artistId": "defqon1-2014:sound-rush",
+   "day": 2,
+   "stageId": "defqon1-2014:uv",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "defqon1-2014:d2:uv:1700:wasted-penquinz",
+   "artistId": "defqon1-2014:wasted-penquinz",
+   "day": 2,
+   "stageId": "defqon1-2014:uv",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "defqon1-2014:d2:uv:1800:code-black",
+   "artistId": "defqon1-2014:code-black",
+   "day": 2,
+   "stageId": "defqon1-2014:uv",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "defqon1-2014:d2:uv:1900:stephanie",
+   "artistId": "defqon1-2014:stephanie",
+   "day": 2,
+   "stageId": "defqon1-2014:uv",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "defqon1-2014:d2:uv:2000:the-pitcher-live",
+   "artistId": "defqon1-2014:the-pitcher-live",
+   "day": 2,
+   "stageId": "defqon1-2014:uv",
+   "start": "20:00",
+   "end": "20:30"
+  },
+  {
+   "id": "defqon1-2014:d2:uv:2030:the-prophet",
+   "artistId": "defqon1-2014:the-prophet",
+   "day": 2,
+   "stageId": "defqon1-2014:uv",
+   "start": "20:30",
+   "end": "22:00"
+  },
+  {
+   "id": "defqon1-2014:d2:yellow:1230:bart-hard",
+   "artistId": "defqon1-2014:bart-hard",
+   "day": 2,
+   "stageId": "defqon1-2014:yellow",
+   "start": "12:30",
+   "end": "14:00"
+  },
+  {
+   "id": "defqon1-2014:d2:yellow:1400:chem-d",
+   "artistId": "defqon1-2014:chem-d",
+   "day": 2,
+   "stageId": "defqon1-2014:yellow",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "defqon1-2014:d2:yellow:1500:cardiak",
+   "artistId": "defqon1-2014:cardiak",
+   "day": 2,
+   "stageId": "defqon1-2014:yellow",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "defqon1-2014:d2:yellow:1600:goetia",
+   "artistId": "defqon1-2014:goetia",
+   "day": 2,
+   "stageId": "defqon1-2014:yellow",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "defqon1-2014:d2:yellow:1700:sandy-warez",
+   "artistId": "defqon1-2014:sandy-warez",
+   "day": 2,
+   "stageId": "defqon1-2014:yellow",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "defqon1-2014:d2:yellow:1800:dr-peacock",
+   "artistId": "defqon1-2014:dr-peacock",
+   "day": 2,
+   "stageId": "defqon1-2014:yellow",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "defqon1-2014:d2:yellow:1900:akira",
+   "artistId": "defqon1-2014:akira",
+   "day": 2,
+   "stageId": "defqon1-2014:yellow",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "defqon1-2014:d2:yellow:2000:noisekick",
+   "artistId": "defqon1-2014:noisekick",
+   "day": 2,
+   "stageId": "defqon1-2014:yellow",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "defqon1-2014:d2:green:1230:genetix",
+   "artistId": "defqon1-2014:genetix",
+   "day": 2,
+   "stageId": "defqon1-2014:green",
+   "start": "12:30",
+   "end": "14:00"
+  },
+  {
+   "id": "defqon1-2014:d2:green:1400:broken-note",
+   "artistId": "defqon1-2014:broken-note",
+   "day": 2,
+   "stageId": "defqon1-2014:green",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "defqon1-2014:d2:green:1500:black-sun-empire",
+   "artistId": "defqon1-2014:black-sun-empire",
+   "day": 2,
+   "stageId": "defqon1-2014:green",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "defqon1-2014:d2:green:1600:cooh",
+   "artistId": "defqon1-2014:cooh",
+   "day": 2,
+   "stageId": "defqon1-2014:green",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "defqon1-2014:d2:green:1700:lucy-furr",
+   "artistId": "defqon1-2014:lucy-furr",
+   "day": 2,
+   "stageId": "defqon1-2014:green",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "defqon1-2014:d2:green:1800:the-outside-agency-crossbreed-set",
+   "artistId": "defqon1-2014:the-outside-agency-crossbreed-set",
+   "day": 2,
+   "stageId": "defqon1-2014:green",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "defqon1-2014:d2:green:1900:war-is-inevitable",
+   "artistId": "defqon1-2014:war-is-inevitable",
+   "day": 2,
+   "stageId": "defqon1-2014:green",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "defqon1-2014:d2:green:2000:deluge-of-sound",
+   "artistId": "defqon1-2014:deluge-of-sound",
+   "day": 2,
+   "stageId": "defqon1-2014:green",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "defqon1-2014:d2:magenta:1200:balistic",
+   "artistId": "defqon1-2014:balistic",
+   "day": 2,
+   "stageId": "defqon1-2014:magenta",
+   "start": "12:00",
+   "end": "13:30"
+  },
+  {
+   "id": "defqon1-2014:d2:magenta:1330:t-a-t-a-n-k-a-project",
+   "artistId": "defqon1-2014:t-a-t-a-n-k-a-project",
+   "day": 2,
+   "stageId": "defqon1-2014:magenta",
+   "start": "13:30",
+   "end": "15:00"
+  },
+  {
+   "id": "defqon1-2014:d2:magenta:1500:gary-d",
+   "artistId": "defqon1-2014:gary-d",
+   "day": 2,
+   "stageId": "defqon1-2014:magenta",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "defqon1-2014:d2:magenta:1600:zenith",
+   "artistId": "defqon1-2014:zenith",
+   "day": 2,
+   "stageId": "defqon1-2014:magenta",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "defqon1-2014:d2:magenta:1700:deepack",
+   "artistId": "defqon1-2014:deepack",
+   "day": 2,
+   "stageId": "defqon1-2014:magenta",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "defqon1-2014:d2:magenta:1800:technoboy-and-tuneboy",
+   "artistId": "defqon1-2014:technoboy-and-tuneboy",
+   "day": 2,
+   "stageId": "defqon1-2014:magenta",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "defqon1-2014:d2:magenta:1900:luna-presents-the-qlubtempo-parade",
+   "artistId": "defqon1-2014:luna-presents-the-qlubtempo-parade",
+   "day": 2,
+   "stageId": "defqon1-2014:magenta",
+   "start": "19:00",
+   "end": "21:00"
+  },
+  {
+   "id": "defqon1-2014:d2:purple:1100:proto-bytez",
+   "artistId": "defqon1-2014:proto-bytez",
+   "day": 2,
+   "stageId": "defqon1-2014:purple",
+   "start": "11:00",
+   "end": "12:00"
+  },
+  {
+   "id": "defqon1-2014:d2:purple:1200:recharge",
+   "artistId": "defqon1-2014:recharge",
+   "day": 2,
+   "stageId": "defqon1-2014:purple",
+   "start": "12:00",
+   "end": "13:00"
+  },
+  {
+   "id": "defqon1-2014:d2:purple:1300:concept-art",
+   "artistId": "defqon1-2014:concept-art",
+   "day": 2,
+   "stageId": "defqon1-2014:purple",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "defqon1-2014:d2:purple:1400:pulserz",
+   "artistId": "defqon1-2014:pulserz",
+   "day": 2,
+   "stageId": "defqon1-2014:purple",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "defqon1-2014:d2:purple:1500:hpnotic",
+   "artistId": "defqon1-2014:hpnotic",
+   "day": 2,
+   "stageId": "defqon1-2014:purple",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "defqon1-2014:d2:purple:1600:noisecult",
+   "artistId": "defqon1-2014:noisecult",
+   "day": 2,
+   "stageId": "defqon1-2014:purple",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "defqon1-2014:d2:purple:1700:nutralizers",
+   "artistId": "defqon1-2014:nutralizers",
+   "day": 2,
+   "stageId": "defqon1-2014:purple",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "defqon1-2014:d2:purple:1800:electronic-vibes",
+   "artistId": "defqon1-2014:electronic-vibes",
+   "day": 2,
+   "stageId": "defqon1-2014:purple",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "defqon1-2014:d2:purple:1900:aztech",
+   "artistId": "defqon1-2014:aztech",
+   "day": 2,
+   "stageId": "defqon1-2014:purple",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "defqon1-2014:d2:purple:2000:your-on",
+   "artistId": "defqon1-2014:your-on",
+   "day": 2,
+   "stageId": "defqon1-2014:purple",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "defqon1-2014:d2:purple:2100:advanced-dealer",
+   "artistId": "defqon1-2014:advanced-dealer",
+   "day": 2,
+   "stageId": "defqon1-2014:purple",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "defqon1-2014:d2:white:1200:luca-perra",
+   "artistId": "defqon1-2014:luca-perra",
+   "day": 2,
+   "stageId": "defqon1-2014:white",
+   "start": "12:00",
+   "end": "13:00"
+  },
+  {
+   "id": "defqon1-2014:d2:white:1300:done-heavy",
+   "artistId": "defqon1-2014:done-heavy",
+   "day": 2,
+   "stageId": "defqon1-2014:white",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "defqon1-2014:d2:white:1400:s1ngular",
+   "artistId": "defqon1-2014:s1ngular",
+   "day": 2,
+   "stageId": "defqon1-2014:white",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "defqon1-2014:d2:white:1500:subkilla",
+   "artistId": "defqon1-2014:subkilla",
+   "day": 2,
+   "stageId": "defqon1-2014:white",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "defqon1-2014:d2:white:1600:donnie-darko",
+   "artistId": "defqon1-2014:donnie-darko",
+   "day": 2,
+   "stageId": "defqon1-2014:white",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "defqon1-2014:d2:white:1700:atmo",
+   "artistId": "defqon1-2014:atmo",
+   "day": 2,
+   "stageId": "defqon1-2014:white",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "defqon1-2014:d2:white:1800:a-s-y-s",
+   "artistId": "defqon1-2014:a-s-y-s",
+   "day": 2,
+   "stageId": "defqon1-2014:white",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "defqon1-2014:d2:white:1900:acti",
+   "artistId": "defqon1-2014:acti",
+   "day": 2,
+   "stageId": "defqon1-2014:white",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "defqon1-2014:d2:white:2000:argy",
+   "artistId": "defqon1-2014:argy",
+   "day": 2,
+   "stageId": "defqon1-2014:white",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "defqon1-2014:d2:white:2100:alex-kidd",
+   "artistId": "defqon1-2014:alex-kidd",
+   "day": 2,
+   "stageId": "defqon1-2014:white",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "defqon1-2014:d2:indigo:1100:notoriouz",
+   "artistId": "defqon1-2014:notoriouz",
+   "day": 2,
+   "stageId": "defqon1-2014:indigo",
+   "start": "11:00",
+   "end": "12:00"
+  },
+  {
+   "id": "defqon1-2014:d2:indigo:1230:aeros",
+   "artistId": "defqon1-2014:aeros",
+   "day": 2,
+   "stageId": "defqon1-2014:indigo",
+   "start": "12:30",
+   "end": "13:00"
+  },
+  {
+   "id": "defqon1-2014:d2:indigo:1300:artifact",
+   "artistId": "defqon1-2014:artifact",
+   "day": 2,
+   "stageId": "defqon1-2014:indigo",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "defqon1-2014:d2:indigo:1400:prefix-and-density",
+   "artistId": "defqon1-2014:prefix-and-density",
+   "day": 2,
+   "stageId": "defqon1-2014:indigo",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "defqon1-2014:d2:indigo:1500:the-geminizers-and-the-machine",
+   "artistId": "defqon1-2014:the-geminizers-and-the-machine",
+   "day": 2,
+   "stageId": "defqon1-2014:indigo",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "defqon1-2014:d2:indigo:1600:degos-and-re-done",
+   "artistId": "defqon1-2014:degos-and-re-done",
+   "day": 2,
+   "stageId": "defqon1-2014:indigo",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "defqon1-2014:d2:indigo:1700:solutio",
+   "artistId": "defqon1-2014:solutio",
+   "day": 2,
+   "stageId": "defqon1-2014:indigo",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "defqon1-2014:d2:indigo:1800:black-burn-and-k96",
+   "artistId": "defqon1-2014:black-burn-and-k96",
+   "day": 2,
+   "stageId": "defqon1-2014:indigo",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "defqon1-2014:d2:indigo:1900:deetox-and-delete",
+   "artistId": "defqon1-2014:deetox-and-delete",
+   "day": 2,
+   "stageId": "defqon1-2014:indigo",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "defqon1-2014:d2:indigo:2000:dark-pact",
+   "artistId": "defqon1-2014:dark-pact",
+   "day": 2,
+   "stageId": "defqon1-2014:indigo",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "defqon1-2014:d2:indigo:2100:warface",
+   "artistId": "defqon1-2014:warface",
+   "day": 2,
+   "stageId": "defqon1-2014:indigo",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "defqon1-2014:d2:brown:1300:weslo",
+   "artistId": "defqon1-2014:weslo",
+   "day": 2,
+   "stageId": "defqon1-2014:brown",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "defqon1-2014:d2:brown:1400:davoodi",
+   "artistId": "defqon1-2014:davoodi",
+   "day": 2,
+   "stageId": "defqon1-2014:brown",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "defqon1-2014:d2:brown:1500:dirtcaps",
+   "artistId": "defqon1-2014:dirtcaps",
+   "day": 2,
+   "stageId": "defqon1-2014:brown",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "defqon1-2014:d2:brown:1600:giocatori",
+   "artistId": "defqon1-2014:giocatori",
+   "day": 2,
+   "stageId": "defqon1-2014:brown",
+   "start": "16:00",
+   "end": "16:30"
+  },
+  {
+   "id": "defqon1-2014:d2:brown:1630:lny-tnz",
+   "artistId": "defqon1-2014:lny-tnz",
+   "day": 2,
+   "stageId": "defqon1-2014:brown",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "defqon1-2014:d2:brown:1730:dr-rude-and-dr-phunk",
+   "artistId": "defqon1-2014:dr-rude-and-dr-phunk",
+   "day": 2,
+   "stageId": "defqon1-2014:brown",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "defqon1-2014:d2:brown:1830:mark-with-a-k",
+   "artistId": "defqon1-2014:mark-with-a-k",
+   "day": 2,
+   "stageId": "defqon1-2014:brown",
+   "start": "18:30",
+   "end": "20:00"
+  },
+  {
+   "id": "defqon1-2014:d2:brown:2000:ruthless",
+   "artistId": "defqon1-2014:ruthless",
+   "day": 2,
+   "stageId": "defqon1-2014:brown",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "defqon1-2014:d2:brown:2100:kutski",
+   "artistId": "defqon1-2014:kutski",
+   "day": 2,
+   "stageId": "defqon1-2014:brown",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "defqon1-2014:d2:silver:1200:krauser",
+   "artistId": "defqon1-2014:krauser",
+   "day": 2,
+   "stageId": "defqon1-2014:silver",
+   "start": "12:00",
+   "end": "13:00"
+  },
+  {
+   "id": "defqon1-2014:d2:silver:1300:mindustries-and-fracture-4",
+   "artistId": "defqon1-2014:mindustries-and-fracture-4",
+   "day": 2,
+   "stageId": "defqon1-2014:silver",
+   "start": "13:00",
+   "end": "14:30"
+  },
+  {
+   "id": "defqon1-2014:d2:silver:1430:n-vitral-live",
+   "artistId": "defqon1-2014:n-vitral-live",
+   "day": 2,
+   "stageId": "defqon1-2014:silver",
+   "start": "14:30",
+   "end": "15:00"
+  },
+  {
+   "id": "defqon1-2014:d2:silver:1500:dither",
+   "artistId": "defqon1-2014:dither",
+   "day": 2,
+   "stageId": "defqon1-2014:silver",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "defqon1-2014:d2:silver:1600:meander",
+   "artistId": "defqon1-2014:meander",
+   "day": 2,
+   "stageId": "defqon1-2014:silver",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "defqon1-2014:d2:silver:1700:ak-industry",
+   "artistId": "defqon1-2014:ak-industry",
+   "day": 2,
+   "stageId": "defqon1-2014:silver",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "defqon1-2014:d2:silver:1800:dolphin",
+   "artistId": "defqon1-2014:dolphin",
+   "day": 2,
+   "stageId": "defqon1-2014:silver",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "defqon1-2014:d2:silver:1900:hellfish-and-the-dj-producer",
+   "artistId": "defqon1-2014:hellfish-and-the-dj-producer",
+   "day": 2,
+   "stageId": "defqon1-2014:silver",
+   "start": "19:00",
+   "end": "20:30"
+  },
+  {
+   "id": "defqon1-2014:d2:silver:2030:deathmachine",
+   "artistId": "defqon1-2014:deathmachine",
+   "day": 2,
+   "stageId": "defqon1-2014:silver",
+   "start": "20:30",
+   "end": "21:30"
+  },
+  {
+   "id": "defqon1-2014:d2:silver:2130:rotator",
+   "artistId": "defqon1-2014:rotator",
+   "day": 2,
+   "stageId": "defqon1-2014:silver",
+   "start": "21:30",
+   "end": "22:30"
+  },
+  {
+   "id": "defqon1-2014:d2:after:2315:darkraver",
+   "artistId": "defqon1-2014:darkraver",
+   "day": 2,
+   "stageId": "defqon1-2014:after",
+   "start": "23:15",
+   "end": "01:00"
+  },
+  {
+   "id": "defqon1-2014:d2:after:0100:tnt",
+   "artistId": "defqon1-2014:tnt",
+   "day": 2,
+   "stageId": "defqon1-2014:after",
+   "start": "01:00",
+   "end": "02:00"
+  },
+  {
+   "id": "defqon1-2014:d2:after:0200:a2-allstars",
+   "artistId": "defqon1-2014:a2-allstars",
+   "day": 2,
+   "stageId": "defqon1-2014:after",
+   "start": "02:00",
+   "end": "03:00"
+  },
+  {
+   "id": "defqon1-2014:d2:after:0300:endymion-ft-murda",
+   "artistId": "defqon1-2014:endymion-ft-murda",
+   "day": 2,
+   "stageId": "defqon1-2014:after",
+   "start": "03:00",
+   "end": "04:00"
+  },
+  {
+   "id": "defqon1-2014:d3:black:1200:system-shock",
+   "artistId": "defqon1-2014:system-shock",
+   "day": 3,
+   "stageId": "defqon1-2014:black",
+   "start": "12:00",
+   "end": "13:00"
+  },
+  {
+   "id": "defqon1-2014:d3:black:1300:wasted-mind",
+   "artistId": "defqon1-2014:wasted-mind",
+   "day": 3,
+   "stageId": "defqon1-2014:black",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "defqon1-2014:d3:black:1400:evil-activities",
+   "artistId": "defqon1-2014:evil-activities",
+   "day": 3,
+   "stageId": "defqon1-2014:black",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "defqon1-2014:d3:black:1500:meccano-twins",
+   "artistId": "defqon1-2014:meccano-twins",
+   "day": 3,
+   "stageId": "defqon1-2014:black",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "defqon1-2014:d3:black:1600:tha-playah",
+   "artistId": "defqon1-2014:tha-playah",
+   "day": 3,
+   "stageId": "defqon1-2014:black",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "defqon1-2014:d3:black:1700:mad-dog-and-anime",
+   "artistId": "defqon1-2014:mad-dog-and-anime",
+   "day": 3,
+   "stageId": "defqon1-2014:black",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "defqon1-2014:d3:black:1800:the-sickest-squad-and-unexist-live",
+   "artistId": "defqon1-2014:the-sickest-squad-and-unexist-live",
+   "day": 3,
+   "stageId": "defqon1-2014:black",
+   "start": "18:00",
+   "end": "18:30"
+  },
+  {
+   "id": "defqon1-2014:d3:black:1830:angerfist",
+   "artistId": "defqon1-2014:angerfist",
+   "day": 3,
+   "stageId": "defqon1-2014:black",
+   "start": "18:30",
+   "end": "20:00"
+  },
+  {
+   "id": "defqon1-2014:d3:gold:1200:uzi",
+   "artistId": "defqon1-2014:uzi",
+   "day": 3,
+   "stageId": "defqon1-2014:gold",
+   "start": "12:00",
+   "end": "13:00"
+  },
+  {
+   "id": "defqon1-2014:d3:gold:1300:critical-mass-live",
+   "artistId": "defqon1-2014:critical-mass-live",
+   "day": 3,
+   "stageId": "defqon1-2014:gold",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "defqon1-2014:d3:gold:1400:panic",
+   "artistId": "defqon1-2014:panic",
+   "day": 3,
+   "stageId": "defqon1-2014:gold",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "defqon1-2014:d3:gold:1500:dune-live",
+   "artistId": "defqon1-2014:dune-live",
+   "day": 3,
+   "stageId": "defqon1-2014:gold",
+   "start": "15:00",
+   "end": "15:30"
+  },
+  {
+   "id": "defqon1-2014:d3:gold:1530:bountyhunter-and-franky-jones",
+   "artistId": "defqon1-2014:bountyhunter-and-franky-jones",
+   "day": 3,
+   "stageId": "defqon1-2014:gold",
+   "start": "15:30",
+   "end": "16:30"
+  },
+  {
+   "id": "defqon1-2014:d3:gold:1630:darkraver-and-mental-theo",
+   "artistId": "defqon1-2014:darkraver-and-mental-theo",
+   "day": 3,
+   "stageId": "defqon1-2014:gold",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "defqon1-2014:d3:gold:1730:human-resource-live",
+   "artistId": "defqon1-2014:human-resource-live",
+   "day": 3,
+   "stageId": "defqon1-2014:gold",
+   "start": "17:30",
+   "end": "18:15"
+  },
+  {
+   "id": "defqon1-2014:d3:gold:1815:buzz-fuzz-and-dione",
+   "artistId": "defqon1-2014:buzz-fuzz-and-dione",
+   "day": 3,
+   "stageId": "defqon1-2014:gold",
+   "start": "18:15",
+   "end": null,
+   "openEnd": true
+  },
+  {
+   "id": "defqon1-2014:d3:gold:1900:md-and-a-live",
+   "artistId": "defqon1-2014:md-and-a-live",
+   "day": 3,
+   "stageId": "defqon1-2014:gold",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "defqon1-2014:d3:blue:1100:hard-driver",
+   "artistId": "defqon1-2014:hard-driver",
+   "day": 3,
+   "stageId": "defqon1-2014:blue",
+   "start": "11:00",
+   "end": "12:00"
+  },
+  {
+   "id": "defqon1-2014:d3:blue:1200:phuture-noize-and-goliath",
+   "artistId": "defqon1-2014:phuture-noize-and-goliath",
+   "day": 3,
+   "stageId": "defqon1-2014:blue",
+   "start": "12:00",
+   "end": "13:00"
+  },
+  {
+   "id": "defqon1-2014:d3:blue:1300:phrantic-live",
+   "artistId": "defqon1-2014:phrantic-live",
+   "day": 3,
+   "stageId": "defqon1-2014:blue",
+   "start": "13:00",
+   "end": "13:30"
+  },
+  {
+   "id": "defqon1-2014:d3:blue:1330:tatanka",
+   "artistId": "defqon1-2014:tatanka",
+   "day": 3,
+   "stageId": "defqon1-2014:blue",
+   "start": "13:30",
+   "end": "14:15"
+  },
+  {
+   "id": "defqon1-2014:d3:blue:1415:outbreak",
+   "artistId": "defqon1-2014:outbreak",
+   "day": 3,
+   "stageId": "defqon1-2014:blue",
+   "start": "14:15",
+   "end": "15:00"
+  },
+  {
+   "id": "defqon1-2014:d3:blue:1500:chain-reaction",
+   "artistId": "defqon1-2014:chain-reaction",
+   "day": 3,
+   "stageId": "defqon1-2014:blue",
+   "start": "15:00",
+   "end": "15:45"
+  },
+  {
+   "id": "defqon1-2014:d3:blue:1545:luna",
+   "artistId": "defqon1-2014:luna",
+   "day": 3,
+   "stageId": "defqon1-2014:blue",
+   "start": "15:45",
+   "end": "16:45"
+  },
+  {
+   "id": "defqon1-2014:d3:blue:1645:activator",
+   "artistId": "defqon1-2014:activator",
+   "day": 3,
+   "stageId": "defqon1-2014:blue",
+   "start": "16:45",
+   "end": "17:45"
+  },
+  {
+   "id": "defqon1-2014:d3:blue:1745:e-force",
+   "artistId": "defqon1-2014:e-force",
+   "day": 3,
+   "stageId": "defqon1-2014:blue",
+   "start": "17:45",
+   "end": "18:45"
+  },
+  {
+   "id": "defqon1-2014:d3:blue:1845:radical-redemption",
+   "artistId": "defqon1-2014:radical-redemption",
+   "day": 3,
+   "stageId": "defqon1-2014:blue",
+   "start": "18:45",
+   "end": "20:00"
+  },
+  {
+   "id": "defqon1-2014:d3:uv:1200:neilio",
+   "artistId": "defqon1-2014:neilio",
+   "day": 3,
+   "stageId": "defqon1-2014:uv",
+   "start": "12:00",
+   "end": "13:00"
+  },
+  {
+   "id": "defqon1-2014:d3:uv:1300:energyzed-and-shockerz",
+   "artistId": "defqon1-2014:energyzed-and-shockerz",
+   "day": 3,
+   "stageId": "defqon1-2014:uv",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "defqon1-2014:d3:uv:1400:da-tweekaz",
+   "artistId": "defqon1-2014:da-tweekaz",
+   "day": 3,
+   "stageId": "defqon1-2014:uv",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "defqon1-2014:d3:uv:1500:toneshifterz-and-dillytek",
+   "artistId": "defqon1-2014:toneshifterz-and-dillytek",
+   "day": 3,
+   "stageId": "defqon1-2014:uv",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "defqon1-2014:d3:uv:1600:outlander",
+   "artistId": "defqon1-2014:outlander",
+   "day": 3,
+   "stageId": "defqon1-2014:uv",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "defqon1-2014:d3:uv:1700:a-lusion",
+   "artistId": "defqon1-2014:a-lusion",
+   "day": 3,
+   "stageId": "defqon1-2014:uv",
+   "start": "17:00",
+   "end": "18:00"
+  },
+  {
+   "id": "defqon1-2014:d3:uv:1800:audiofreq",
+   "artistId": "defqon1-2014:audiofreq",
+   "day": 3,
+   "stageId": "defqon1-2014:uv",
+   "start": "18:00",
+   "end": "19:00"
+  },
+  {
+   "id": "defqon1-2014:d3:uv:1900:italian-hardstyle-mafia",
+   "artistId": "defqon1-2014:italian-hardstyle-mafia",
+   "day": 3,
+   "stageId": "defqon1-2014:uv",
+   "start": "19:00",
+   "end": "20:00"
+  },
+  {
+   "id": "defqon1-2014:d3:magenta:1300:jones",
+   "artistId": "defqon1-2014:jones",
+   "day": 3,
+   "stageId": "defqon1-2014:magenta",
+   "start": "13:00",
+   "end": "14:00"
+  },
+  {
+   "id": "defqon1-2014:d3:magenta:1400:toyax",
+   "artistId": "defqon1-2014:toyax",
+   "day": 3,
+   "stageId": "defqon1-2014:magenta",
+   "start": "14:00",
+   "end": "15:00"
+  },
+  {
+   "id": "defqon1-2014:d3:magenta:1500:davide-sonar",
+   "artistId": "defqon1-2014:davide-sonar",
+   "day": 3,
+   "stageId": "defqon1-2014:magenta",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "defqon1-2014:d3:magenta:1600:scope-dj",
+   "artistId": "defqon1-2014:scope-dj",
+   "day": 3,
+   "stageId": "defqon1-2014:magenta",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "defqon1-2014:d3:magenta:1700:alpha2",
+   "artistId": "defqon1-2014:alpha2",
+   "day": 3,
+   "stageId": "defqon1-2014:magenta",
+   "start": "17:00",
+   "end": "18:30"
+  },
+  {
+   "id": "defqon1-2014:d3:magenta:1830:oldschool-modulators",
+   "artistId": "defqon1-2014:oldschool-modulators",
+   "day": 3,
+   "stageId": "defqon1-2014:magenta",
+   "start": "18:30",
+   "end": "20:00"
+  },
+  {
+   "id": "defqon1-2014:d3:white:1200:les-tronchiennes",
+   "artistId": "defqon1-2014:les-tronchiennes",
+   "day": 3,
+   "stageId": "defqon1-2014:white",
+   "start": "12:00",
+   "end": "13:30"
+  },
+  {
+   "id": "defqon1-2014:d3:white:1330:hawman",
+   "artistId": "defqon1-2014:hawman",
+   "day": 3,
+   "stageId": "defqon1-2014:white",
+   "start": "13:30",
+   "end": "15:00"
+  },
+  {
+   "id": "defqon1-2014:d3:white:1500:bold-action",
+   "artistId": "defqon1-2014:bold-action",
+   "day": 3,
+   "stageId": "defqon1-2014:white",
+   "start": "15:00",
+   "end": "16:00"
+  },
+  {
+   "id": "defqon1-2014:d3:white:1600:dirtcaps",
+   "artistId": "defqon1-2014:dirtcaps",
+   "day": 3,
+   "stageId": "defqon1-2014:white",
+   "start": "16:00",
+   "end": "17:00"
+  },
+  {
+   "id": "defqon1-2014:d3:white:1700:geck-e",
+   "artistId": "defqon1-2014:geck-e",
+   "day": 3,
+   "stageId": "defqon1-2014:white",
+   "start": "17:00",
+   "end": "18:30"
+  },
+  {
+   "id": "defqon1-2014:d3:white:1830:eyoung",
+   "artistId": "defqon1-2014:eyoung",
+   "day": 3,
+   "stageId": "defqon1-2014:white",
+   "start": "18:30",
+   "end": "20:00"
+  },
+  {
+   "id": "defqon1-2014:d3:silver:1230:li-z-and-stefan-zmk",
+   "artistId": "defqon1-2014:li-z-and-stefan-zmk",
+   "day": 3,
+   "stageId": "defqon1-2014:silver",
+   "start": "12:30",
+   "end": "13:30"
+  },
+  {
+   "id": "defqon1-2014:d3:silver:1330:embrionyc",
+   "artistId": "defqon1-2014:embrionyc",
+   "day": 3,
+   "stageId": "defqon1-2014:silver",
+   "start": "13:30",
+   "end": "14:30"
+  },
+  {
+   "id": "defqon1-2014:d3:silver:1430:waldhaus",
+   "artistId": "defqon1-2014:waldhaus",
+   "day": 3,
+   "stageId": "defqon1-2014:silver",
+   "start": "14:30",
+   "end": "15:30"
+  },
+  {
+   "id": "defqon1-2014:d3:silver:1530:stormtrooper",
+   "artistId": "defqon1-2014:stormtrooper",
+   "day": 3,
+   "stageId": "defqon1-2014:silver",
+   "start": "15:30",
+   "end": "16:30"
+  },
+  {
+   "id": "defqon1-2014:d3:silver:1630:scheme-boy",
+   "artistId": "defqon1-2014:scheme-boy",
+   "day": 3,
+   "stageId": "defqon1-2014:silver",
+   "start": "16:30",
+   "end": "17:30"
+  },
+  {
+   "id": "defqon1-2014:d3:silver:1730:khaoz-engine",
+   "artistId": "defqon1-2014:khaoz-engine",
+   "day": 3,
+   "stageId": "defqon1-2014:silver",
+   "start": "17:30",
+   "end": "18:30"
+  },
+  {
+   "id": "defqon1-2014:d3:silver:1830:tripped",
+   "artistId": "defqon1-2014:tripped",
+   "day": 3,
+   "stageId": "defqon1-2014:silver",
+   "start": "18:30",
+   "end": "20:00"
+  },
+  {
+   "id": "defqon1-2014:d3:closing:2000:brennan-heart",
+   "artistId": "defqon1-2014:brennan-heart",
+   "day": 3,
+   "stageId": "defqon1-2014:closing",
+   "start": "20:00",
+   "end": "21:00"
+  },
+  {
+   "id": "defqon1-2014:d3:closing:2100:frontliner",
+   "artistId": "defqon1-2014:frontliner",
+   "day": 3,
+   "stageId": "defqon1-2014:closing",
+   "start": "21:00",
+   "end": "22:00"
+  },
+  {
+   "id": "defqon1-2014:d3:closing:2200:ran-d-and-b-front",
+   "artistId": "defqon1-2014:ran-d-and-b-front",
+   "day": 3,
+   "stageId": "defqon1-2014:closing",
+   "start": "22:00",
+   "end": "22:45"
+  }
+ ],
+ "provenance": {
+  "extractionMethod": "official_sources",
+  "official": "https://www.defqon1.nl/nl/timetable/",
+  "captures": [
+   {
+    "day": 1,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20140812030225/http://www.defqon1.nl/nl/timetable/",
+    "captureTimestamp": "20140812030225",
+    "printed": "FRIDAY • 27 JUNE",
+    "sha256": "836842c6aea93019930ce23cd6c142b8dd9387a7e1ef70dbabfcd4700aea8df0",
+    "rows": 12,
+    "format": "defqon-logos",
+    "named": "Timetable | Defqon.1 Festival 2014"
+   },
+   {
+    "day": 2,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20140812030225/http://www.defqon1.nl/nl/timetable/",
+    "captureTimestamp": "20140812030225",
+    "printed": "SATURDAY • 28 JUNE",
+    "sha256": "836842c6aea93019930ce23cd6c142b8dd9387a7e1ef70dbabfcd4700aea8df0",
+    "rows": 127,
+    "format": "defqon-logos",
+    "named": "Timetable | Defqon.1 Festival 2014",
+    "blocks": [
+     "Black: \"Neophyte Records Bigger than ever Hostile take over\" 16:00 20:00: Neophyte, Panic, The Viper, Evil Activities, Endymion, Furyan, Tieum, Kasparov"
+    ],
+    "untranslated": [
+     "Orange: \"Onze verontschuldigingen, dit bericht is alleen beschikbaar in English .\""
+    ]
+   },
+   {
+    "day": 3,
+    "kind": "page",
+    "archivedUrl": "https://web.archive.org/web/20140812030225/http://www.defqon1.nl/nl/timetable/",
+    "captureTimestamp": "20140812030225",
+    "printed": "SUNDAY • 29 JUNE",
+    "sha256": "836842c6aea93019930ce23cd6c142b8dd9387a7e1ef70dbabfcd4700aea8df0",
+    "rows": 57,
+    "format": "defqon-logos",
+    "named": "Timetable | Defqon.1 Festival 2014",
+    "endsDropped": [
+     "Gold: Buzz Fuzz & Dione printed 18:15 19:15, MD&A [LIVE] starts 19:00"
+    ],
+    "misprints": [
+     "Magenta: \"Toyax NLD)\" (\"NLD)\" printed without its opening bracket)"
+    ]
+   }
+  ]
+ },
+ "notes": [
+  {
+   "asOf": "2026-11-25",
+   "days": [
+    2
+   ],
+   "text": "Saturday's Black from 16:00 till 20:00 was the Neophyte Records takeover (Neophyte, Panic, The Viper, Evil Activities, Endymion, Furyan, Tieum and Kasparov). The timetable prints one range for all eight with no time of their own, so they are not shown as sets.",
+   "source": "https://web.archive.org/web/20140812030225/http://www.defqon1.nl/nl/timetable/"
+  }
+ ]
+}

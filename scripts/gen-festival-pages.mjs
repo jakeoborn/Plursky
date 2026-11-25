@@ -1316,6 +1316,42 @@ ${urls.map(u => `  <url>
 </urlset>
 `);
 emit(LEDGER, JSON.stringify(ledger, null, 2) + '\n', null, true);
+
+// ── llms.txt ──────────────────────────────────────────────────────────
+// A plain-text map of the site for AI assistants and answer engines
+// (the llmstxt.org format): what Plursky is, then one line per festival page
+// that is in the sitemap (a page with no lineup is noindex and stays out),
+// then the artist and genre directories. No dates of generation, so it only
+// moves when the registry does.
+{
+  const live = REG.filter(f => (DS[f.config.id]?.artists || []).some(a => a.name));
+  const line = (f) => {
+    const c = f.config;
+    const bits = [c.dates, c.location].map(x => String(x || '').trim()).filter(Boolean).join(' · ');
+    return `- [${c.name}](${ORIGIN}/f/${c.id}/)${bits ? ': ' + bits : ''}`;
+  };
+  emit(path.join(root, 'llms.txt'), `# Plursky
+
+> Plursky is a music festival companion for iPhone and the web: lineups and set times, personal schedules with clash checks, festival maps, crew meetups, and recaps of the sets you saw. Each festival guide below lists the lineup (and set times and stages where the festival has published them) with links to its official sources.
+
+The app is free on the App Store: https://apps.apple.com/us/app/plursky-live/id6768888507
+
+## Festival guides
+
+${live.map(line).join('\n')}
+
+## Directories
+
+- [All festivals](${ORIGIN}/welcome/): upcoming festivals and their past years
+- [Festival artists](${ORIGIN}/artists/): one page per artist, with the festivals they play
+- [Festival genres](${ORIGIN}/genres/): artists grouped by genre
+
+## Optional
+
+- [Terms](${ORIGIN}/terms.html)
+- [Privacy](${ORIGIN}/privacy.html)
+`);
+}
 // The rows no calendar can move. --check holds each one to what is committed:
 // its ledger fingerprint and date, and its <lastmod> in sitemap.xml. The
 // festival rows stay strict-only (see norm above).
