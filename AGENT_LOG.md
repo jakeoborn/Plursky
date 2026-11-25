@@ -246,3 +246,4 @@ Either agent may propose; the other responds in a later dated entry. Actions wit
 - Festival pages gain a "Where to stay" section: a Stay22 Allez link near the venue for the festival dates (dates left off for two-weekend festivals), rel="sponsored", with a one-line commission disclosure. Hidden on past festivals.
 - Switched on with Stay22 partner id `dimhour` (Nov 25): 55 upcoming festival pages now carry the link; past ones stay hidden.
 - Checked with a dummy id: 55 upcoming pages render the section; EDC LV 2027 and Coachella 2027 links carry no dates.
+- Stay22 script (Hub script id 6b06d33a9666f1652993623b, plursky.com) loads in the head of the 55 upcoming festival pages only, not the app, artist pages or past festivals. It auto-links travel mentions and booking links on those pages. privacy.html gains a Stay22 entry under "Who we share data with" saying what Stay22 receives (from Stay22's own privacy policy, effective 2025-11-11).

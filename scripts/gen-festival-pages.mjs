@@ -489,6 +489,26 @@ function eatSection(entry) {
 // a weekend that has gone are useless. Campaign labels use _ not -, which
 // Stay22's reporting would otherwise split into two labels.
 const STAY22_AID = 'dimhour';
+// STAY22_LMA_ID is the Stay22 script made in the Hub for plursky.com. It loads
+// only on upcoming festival pages, where the hotel link already is, and turns
+// travel mentions and booking links there into commission links. The privacy
+// page names Stay22 for this.
+const STAY22_LMA_ID = '6b06d33a9666f1652993623b';
+function stayScript(isPast) {
+  if (!STAY22_LMA_ID || isPast) return '';
+  return `<script>
+(function (s, t, a, y, twenty, two) {
+s.Stay22 = s.Stay22 || {};
+s.Stay22.params = { lmaID: '${STAY22_LMA_ID}' };
+twenty = t.createElement(a);
+two = t.getElementsByTagName(a)[0];
+twenty.async = 1;
+twenty.src = y;
+two.parentNode.insertBefore(twenty, two);
+})(window, document, 'script', 'https://lma.stay22.com/letmeallez.js');
+</script>
+`;
+}
 function nextYmd(ymd) {
   return new Date(Date.parse(`${ymd}T00:00:00Z`) + 86400000).toISOString().slice(0, 10);
 }
@@ -1039,7 +1059,7 @@ ${JSON.stringify(faqLd, null, 2)}
 ` : ''}<script type="application/ld+json">
 ${JSON.stringify(crumbLd, null, 2)}
 </script>
-</head>
+${stayScript(isPast)}</head>
 <body>
 <header class="top">
   <div class="wrap">
