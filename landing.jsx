@@ -504,10 +504,13 @@ function GetTheAppCard() {
   };
   return (
     <aside data-get-app="" aria-label="Plursky for iPhone" style={{
-      marginTop: 14, padding: "12px 12px 12px 14px", borderRadius: 14,
-      background: "var(--paper-2)", display: "flex", alignItems: "center", gap: 12,
+      position: "relative", marginTop: 14, padding: "12px 44px 12px 14px", borderRadius: 14,
+      background: "var(--paper-2)", display: "flex", flexWrap: "wrap", alignItems: "center",
+      gap: "10px 12px",
     }}>
-      <div style={{ flex: 1, minWidth: 0 }}>
+      {/* Text takes the row until it would fall under ~11em, then the button
+          wraps below it, so at 200% text on a narrow phone nothing pans. */}
+      <div style={{ flex: "1 1 11em", minWidth: 0 }}>
         <p style={{ margin: 0, fontSize: 15, lineHeight: 1.33, fontWeight: 600, color: "var(--ink)" }}>
           Plursky is better on iPhone
         </p>
@@ -516,12 +519,12 @@ function GetTheAppCard() {
         </p>
       </div>
       <a href={href} target="_blank" rel="noopener" data-get-app-link="" style={{
-        flexShrink: 0, display: "flex", alignItems: "center", minHeight: 44, padding: "0 14px",
+        flex: "0 0 auto", display: "flex", alignItems: "center", minHeight: 44, padding: "0 14px",
         borderRadius: 12, background: "var(--signal)", color: "var(--on-signal)",
-        fontSize: 15, fontWeight: 600, textDecoration: "none", whiteSpace: "nowrap",
+        fontSize: 15, fontWeight: 600, textDecoration: "none",
       }}>Get the app</a>
       <button onClick={close} aria-label="Hide for now" data-get-app-close="" style={{
-        flexShrink: 0, width: 44, height: 44, margin: "-4px -6px -4px -8px", padding: 0,
+        position: "absolute", top: 0, right: 0, width: 44, height: 44, padding: 0,
         background: "transparent", border: "none", color: "var(--text-2)",
         fontSize: 22, lineHeight: 1, cursor: "pointer", fontFamily: "inherit",
       }}>×</button>

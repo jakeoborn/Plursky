@@ -507,17 +507,19 @@ function GetTheAppCard() {
     "data-get-app": "",
     "aria-label": "Plursky for iPhone",
     style: {
+      position: "relative",
       marginTop: 14,
-      padding: "12px 12px 12px 14px",
+      padding: "12px 44px 12px 14px",
       borderRadius: 14,
       background: "var(--paper-2)",
       display: "flex",
+      flexWrap: "wrap",
       alignItems: "center",
-      gap: 12
+      gap: "10px 12px"
     }
   }, React.createElement("div", {
     style: {
-      flex: 1,
+      flex: "1 1 11em",
       minWidth: 0
     }
   }, React.createElement("p", {
@@ -541,7 +543,7 @@ function GetTheAppCard() {
     rel: "noopener",
     "data-get-app-link": "",
     style: {
-      flexShrink: 0,
+      flex: "0 0 auto",
       display: "flex",
       alignItems: "center",
       minHeight: 44,
@@ -551,18 +553,18 @@ function GetTheAppCard() {
       color: "var(--on-signal)",
       fontSize: 15,
       fontWeight: 600,
-      textDecoration: "none",
-      whiteSpace: "nowrap"
+      textDecoration: "none"
     }
   }, "Get the app"), React.createElement("button", {
     onClick: close,
     "aria-label": "Hide for now",
     "data-get-app-close": "",
     style: {
-      flexShrink: 0,
+      position: "absolute",
+      top: 0,
+      right: 0,
       width: 44,
       height: 44,
-      margin: "-4px -6px -4px -8px",
       padding: 0,
       background: "transparent",
       border: "none",
