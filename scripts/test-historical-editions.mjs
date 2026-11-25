@@ -48,6 +48,7 @@ import { parseTimeWarpLineup, headerDates as twHeaderDates } from "./historical/
 import { parseCreamfieldsArtists, creamfieldsRows } from "./historical/creamfields-artists.mjs";
 import { censusRow, runDates, CENSUS as CREAMFIELDS_CENSUS } from "./historical/extract-creamfields.mjs";
 import { parseCreamfieldsLineup, creamfieldsLineupRows, printedDate } from "./historical/creamfields-lineup.mjs";
+import { RESPELLED as CREAMFIELDS_RESPELLED } from "./historical/extract-creamfields-lineup.mjs";
 import { parseDefqonGrid, dayHeading as dgDayHeading } from "./historical/defqon-grid-lineup.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -1119,6 +1120,13 @@ if (base && edc) {
     clMust("a Creamfields Lineup B2B with no act after it", clPage({ days: [clDay("friday", "Friday", "22nd August 2025", [clCol("Arc", [clAct("Alesso", { after: "B2B" })])])] }));
     clMust("a Creamfields Lineup heading hiding other text", clPage({ days: [clDay("friday", "Friday", "22nd August 2025", [clCol('Arc <span class="visually-hidden">Main</span>', [clAct("Alesso")])])] }));
     clMust("a 2022 Creamfields Lineup page whose day names another year", `<title>cinch presents Creamfields 2022 | Arenas</title><section id="tab-friday"><h2 class="day-title"><span class="date">AUGUST 2021</span><br><span class="below">FRIDAY LINE-UP</span></h2>${clCol("Arc", [clAct("Alesso")])}</section>`, 2022);
+    // Only the respellings the extractor names, each a look-alike to Latin.
+    for (const [cid, fixes] of Object.entries(CREAMFIELDS_RESPELLED)) {
+      const led = JSON.parse(readFileSync(H(`ledger/${cid}.json`), "utf8"));
+      ok(JSON.stringify((led.respelled || []).map(r => [r.printed, r.billedAs])) === JSON.stringify(Object.entries(fixes))
+        && Object.entries(fixes).every(([a, b]) => /[^\u0000-\u024f]/.test(a) && !/[^\u0000-\u024f]/.test(b) && a.length === b.length),
+        `${cid}: the ledger's respellings are not exactly the extractor's look-alike fixes`);
+    }
     // Outside Lands' 2022-2025 lineup widget: its script sets the options on
     // one line of JSON; each artist lists its performances, a shared set (a
     // b2b) under each artist with the same id, every time with its offset.

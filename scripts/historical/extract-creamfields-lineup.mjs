@@ -30,6 +30,13 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 export const CREAMFIELDS_LINEUP_URL = "https://creamfields.com/lineup/";
 export const CREAMFIELDS_LINEUP_EDITIONS = ["creamfields-2022", "creamfields-2024", "creamfields-2025"];
 
+// A letter from another script the page typed in place of the artist's own
+// Latin letter: 2025's "Obskϋr" has Greek ϋ (U+03CB) where the artist's name,
+// and Creamfields 2022's own page, has Latin ü. It renders alike but would
+// split the artist across editions, so it is billed in Latin and recorded in
+// the ledger as `respelled`.
+export const RESPELLED = { "creamfields-2025": { "Obsk\u03cbr": "Obsk\u00fcr" } };
+
 const stamp = d => d.replace(/-/g, "");
 const addDays = (date, n) => { const t = new Date(date + "T12:00:00Z"); t.setUTCDate(t.getUTCDate() + n); return t.toISOString().slice(0, 10); };
 
@@ -71,7 +78,12 @@ export async function extract(id) {
   if (laterUnfiled.length) return { ledger: { ...ledger, blocked: `relay did not file ${laterUnfiled.map(c => c.captureTimestamp).join(", ")}`, considered: considered.map(strip) }, rows: [] };
   const names = c => new Set(c.out.rows.map(r => r.artist));
   const diff = c => { const a = names(chosen), b = names(c); return [...[...a].filter(x => !b.has(x)).map(x => `added by the final: ${x}`), ...[...b].filter(x => !a.has(x)).map(x => `removed by the final: ${x}`)]; };
-  const rows = sheetRows(chosen.out.rows, id);
+  const fixes = RESPELLED[id] || {}, respelled = [];
+  for (const [printed, billedAs] of Object.entries(fixes)) {
+    if (!chosen.out.rows.some(r => r.artist === printed)) throw new Error(`${id}: "${printed}" is not on the chosen page`);
+    respelled.push({ printed, billedAs, why: "a letter from another script typed in place of the artist's own Latin letter" });
+  }
+  const rows = sheetRows(chosen.out.rows.map(r => ({ ...r, artist: fixes[r.artist] ?? r.artist })), id);
   const o = chosen.out;
   Object.assign(ledger, {
     chosen: chosen.captureTimestamp, archivedUrl: chosen.archivedUrl, sha256: chosen.sha256, title: chosen.title,
@@ -83,6 +95,8 @@ export async function extract(id) {
     folded: o.folded,
     // Acts printed twice in spellings that differ only in case, billed once.
     sameActs: o.sameActs,
+    // Look-alike letters from another script, billed in Latin.
+    respelled,
     // Names the page's style shows in lower case, billed as shown.
     lowered: o.lowered,
     // "X B2B" then "Y" in one stage's list, billed as one act "X B2B Y".
