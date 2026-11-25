@@ -441,7 +441,7 @@ try {
     const stageNames = ["KINETIC FIELD", "CIRCUIT GROUNDS", "COSMIC MEADOW", "BASSPOD", "NEON GARDEN"];
     const visibleStages = stageNames.filter(name => settled.body.toUpperCase().includes(name));
     if (visibleStages.length < 3) throw Object.assign(new Error(`only ${visibleStages.length} expected stage pills found`), { finalState: "FAIL_UI_REGRESSION" });
-    if (/MAP ERROR|REAL MAP UNAVAILABLE|FESTIVAL MAP SHOWN/i.test(settled.body)) throw Object.assign(new Error("visible map error"), { finalState: "FAIL_UI_REGRESSION" });
+    if (/MAP ERROR|MAP UNAVAILABLE|REAL MAP UNAVAILABLE|FESTIVAL MAP SHOWN/i.test(settled.body)) throw Object.assign(new Error("visible map error"), { finalState: "FAIL_UI_REGRESSION" });
     result.map3d = { festival: "edc-lv-2026", style: "stylized", expectedPitchDegrees: 55, visibleStages, visualReviewRequired: true };
     await new Promise(r => setTimeout(r, 1500));
     await screenshot("map-3d-edc-lv.png");

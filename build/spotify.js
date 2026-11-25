@@ -939,8 +939,15 @@ function SpotifyScreen({
     }, srcLabel));
   })))));
 }
+var _INSOMNIAC_FEST = /^(edc|beyond-wonderland|nocturnal-wonderland|escape-|countdown-|dreamstate-|wasteland-|project-glow|hard-summer|lost-in-dreams)/;
+function _isInsomniacFest() {
+  var c = window.FESTIVAL_CONFIG || (typeof FESTIVAL_CONFIG !== "undefined" ? FESTIVAL_CONFIG : {}) || {};
+  var ev = c.officialEvent || {};
+  return _INSOMNIAC_FEST.test(c.id || "") || /insomniac\.com/.test(ev.url || "");
+}
 var SAFETY_LINKS = [{
   id: "ground",
+  insomniac: true,
   title: "Ground Control",
   sub: "Free water · cool down · friendly faces. Look for the high-vis vests.",
   color: "var(--horizon)",
@@ -948,6 +955,7 @@ var SAFETY_LINKS = [{
   href: "https://insomniac.com/festival/edc-las-vegas/2026/info/health-safety/"
 }, {
   id: "amnesty",
+  insomniac: true,
   title: "Amnesty Boxes",
   sub: "Drop unwanted substances at any entrance. No questions, no consequences.",
   color: "var(--ember-ink)",
@@ -956,12 +964,13 @@ var SAFETY_LINKS = [{
 }, {
   id: "dancesafe",
   title: "DanceSafe",
-  sub: "Drug-checking, harm-reduction info, peer support. Independent nonprofit.",
+  sub: "Harm-reduction guides and peer support. Independent nonprofit.",
   color: "var(--signal-ink)",
   icon: "info",
   href: "https://dancesafe.org"
 }, {
   id: "consent",
+  insomniac: true,
   title: "Consent Reporting",
   sub: "Report anonymously. Insomniac Cares + 24/7 confidential line.",
   color: "var(--ink)",
@@ -969,14 +978,11 @@ var SAFETY_LINKS = [{
   href: "https://insomniac.com/cares"
 }, {
   id: "medical",
-  title: "Medical · 24/7",
-  sub: "3 medic tents on-site · roamers in the crowd. Tap → map.",
+  title: "Medical",
+  sub: "Find the medical tents on the festival map.",
   color: "var(--alert)",
   icon: "med",
-  onClick: (state, setState) => setState({
-    ...state,
-    tab: "map"
-  })
+  tab: "map"
 }];
 function SafetyIcon({
   kind,
@@ -1072,15 +1078,23 @@ function SafetyIcon({
   }));
   return null;
 }
-function SafetyCards() {
+function SafetyCards({
+  state,
+  setState
+}) {
+  var insomniac = _isInsomniacFest();
+  var links = SAFETY_LINKS.filter(it => (insomniac || !it.insomniac) && (it.id !== "medical" || state && setState));
   return React.createElement("div", {
     style: {
       display: "flex",
       flexDirection: "column",
       gap: 8
     }
-  }, SAFETY_LINKS.map(item => {
-    var onClick = item.href ? () => window.open(item.href, "_blank", "noopener") : () => item.onClick?.();
+  }, links.map(item => {
+    var onClick = item.href ? () => window.open(item.href, "_blank", "noopener") : () => setState({
+      ...state,
+      tab: item.tab
+    });
     return (React.createElement("button", {
         key: item.id,
         onClick: onClick,
@@ -12256,17 +12270,14 @@ function MeScreen({
     window.addEventListener("plursky:display-name", onName);
     return () => window.removeEventListener("plursky:display-name", onName);
   }, []);
-  React.useEffect(() => {
-    if (plurskyQuickNameDue()) window.plurskyAskQuickName?.();
-  }, []);
   var rawName = localName || profile?.name || "";
   var displayName = rawName || "—";
   var initial = rawName ? (rawName.match(/[A-Za-z0-9]/) || ["?"])[0].toUpperCase() : "?";
   var promptName = () => {
-    var next = (window.prompt("Your name (shown to crew & on this screen):", localName || "") || "").trim();
-    if (!next) return;
-    plurskySetLocalName(next);
-    setLocalName(next);
+    if (!window.plurskyEditName) return;
+    window.plurskyEditName().then(next => {
+      if (next) setLocalName(next);
+    });
   };
   var pingCode = typeof window.getMyPingCode === "function" ? window.getMyPingCode() : "PLUR";
   var pingColor = typeof _presColor === "function" && typeof _myPresId === "function" ? _presColor(_myPresId()) : "var(--signal-ink)";
@@ -12986,7 +12997,10 @@ function MeScreen({
       marginTop: 4,
       marginBottom: 12
     }
-  }, "On-site teams. No questions asked."), React.createElement(SafetyCards, null)), (() => {
+  }, _isInsomniacFest() ? "On-site teams. No questions asked." : "Medical help on site, and where to read up first."), React.createElement(SafetyCards, {
+    state: state,
+    setState: setState
+  })), (() => {
     var savedHeadliners = state.saved.map(id => ARTISTS.find(a => a.id === id)).filter(a => a && a.tier === 3).slice(0, 6);
     if (savedHeadliners.length === 0) return null;
     return React.createElement(React.Fragment, null, React.createElement("h2", {
