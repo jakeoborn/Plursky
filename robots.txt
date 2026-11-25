@@ -7,6 +7,10 @@ Allow: /
 # disallowed here and kept out of sitemap.xml.
 Disallow: /share.html
 
+# plan.html serves per-user festival plans shared by link (#74). Same rule:
+# unguessable, owner-revocable, never indexed, never in sitemap.xml.
+Disallow: /plan.html
+
 Sitemap: https://plursky.com/sitemap.xml
 Sitemap: https://plursky.com/sitemap-artists.xml
 Sitemap: https://plursky.com/sitemap-genres.xml

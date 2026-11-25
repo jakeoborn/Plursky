@@ -383,6 +383,34 @@ async function sbGetUser() {
   return data?.user || null;
 }
 
+// ── Public plan-share links (#74) ─────────────────────────────────────────
+// A link is one row in public_shares, keyed by a 43-character random token.
+// RLS lets only the signed-in owner insert, read, revoke or delete it; a
+// recipient reads ONE live row through get_public_share(token) and nothing
+// else. The payload is whatever the shared contract built — this adds nothing.
+function _planShareToken() {
+  const b = new Uint8Array(32); crypto.getRandomValues(b);
+  let s = ""; for (const x of b) s += String.fromCharCode(x);
+  return btoa(s).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+}
+async function sbPlanShareCreate(payload) {
+  if (!_sb) return { error: "offline" };
+  const user = await sbGetUser().catch(() => null);
+  if (!user) return { error: "signin" };
+  const token = _planShareToken();
+  const { error } = await _sb.from("public_shares").insert({
+    token, kind: payload.kind, festival_id: payload.festivalId, payload,
+    display_name: payload.displayName || null, expires_at: payload.expiresAt,
+  });
+  return error ? { error: "failed" } : { token, expiresAt: payload.expiresAt };
+}
+async function sbPlanShareRevoke(token) {
+  if (!_sb) return { error: "offline" };
+  const { data, error } = await _sb.from("public_shares")
+    .update({ revoked_at: new Date().toISOString() }).eq("token", token).select("token");
+  return error || !data || !data.length ? { error: "failed" } : { ok: true };
+}
+
 // Subscribe to auth changes — cb receives (event, user, session).
 // On Spotify OAuth sign-in: provider_token is automatically stored as the
 // Spotify access token so the Music tab works without a separate connect.

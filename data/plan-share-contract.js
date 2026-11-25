@@ -17,6 +17,7 @@
     var sets = input.sets === undefined ? [] : input.sets;
     var stages = input.stages === undefined ? [] : input.stages;
     var playlistUrl = input.playlistUrl, displayName = input.displayName;
+    var festivalName = input.festivalName, tz = input.tz;
     if (!KINDS.has(kind)) throw new Error("Invalid share kind");
     var end = Date.parse(editionEnd);
     if (!Number.isFinite(end)) throw new Error("Exact edition end required");
@@ -25,6 +26,10 @@
     var out = { schemaVersion: 1, kind: kind, festivalId: id(festivalId, "festival id"), expiresAt: new Date(expiresAt).toISOString() };
     // Name is never inherited from a profile. Caller supplies it only on opt-in.
     if (displayName !== undefined && displayName !== "") out.displayName = required(displayName, "display name", 60);
+    // The festival's own name and time zone, so the public page labels nights
+    // the way the app does. Festival facts, never the owner's.
+    if (festivalName !== undefined) out.festivalName = required(festivalName, "festival name", 120);
+    if (tz !== undefined) { if (typeof tz !== "string" || !/^(UTC|[A-Za-z]+(\/[A-Za-z0-9_+-]+){1,2})$/.test(tz)) throw new Error("Invalid time zone"); out.tz = tz; }
     if (kind === "schedule") {
       if (!Array.isArray(sets) || sets.length > 500) throw new Error("Invalid sets");
       var seen = new Set();

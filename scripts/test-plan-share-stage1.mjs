@@ -1,12 +1,17 @@
 #!/usr/bin/env node
-// Public plan-share link, stage 1 (#74, PM spec v2 row 4): local-only, flag OFF.
-//   A. static: the flag ships false; the sheet and the menu item exist only
-//      behind it; the preview code makes no network, storage or share call;
-//      the contract script is loaded, precached and copied; no migration file.
-//   B. running app, flag as shipped: the Share menu has no link item.
-//   C. running app, flag forced on (test-only rewrite of build/lineup.js):
-//      the sheet renders exactly the payload's sets, through the one contract;
-//      no request leaves while it is open; the name appears only on opt-in.
+// Public plan-share link (#74, PM spec v2 row 4). Stage 1 shipped a local
+// preview behind a flag; stage 2 (Jake: "go 74", 2026-11-25) turns it on.
+//   A. static: the flag ships true; the sheet and the menu item sit behind it;
+//      the preview code itself makes no network, storage or share call (the
+//      link's side effects live in planShareLink* helpers, which send the
+//      contract's payload and nothing else); the contract script is loaded,
+//      precached and copied; no migration file; plan.html is never indexed.
+//   B. running app, as shipped: the Share menu has the link item.
+//   C. running app: the sheet renders exactly the payload's sets, through the
+//      one contract; nothing leaves while it only previews; the name appears
+//      only on opt-in; signed out, CREATE LINK asks to sign in and writes
+//      nothing; with the backend stubbed, the link is created from exactly
+//      the previewed payload, shown, remembered, and turned off.
 // Pixels: PLAN_SHARE_SHOTS=<dir> saves the sheet at 320 and 393, Dark and Light.
 import { readFileSync, readdirSync, existsSync, mkdirSync } from "node:fs";
 import { join, dirname } from "node:path";
@@ -24,7 +29,7 @@ const read = p => readFileSync(join(ROOT, p), "utf8");
 
 // ── A. static ──────────────────────────────────────────────────────────────
 const lineup = read("lineup.jsx");
-check(/^const PLAN_SHARE_LINK_ON = false;$/m.test(lineup), "A. PLAN_SHARE_LINK_ON ships false");
+check(/^const PLAN_SHARE_LINK_ON = true;$/m.test(lineup), "A. PLAN_SHARE_LINK_ON ships true (stage 2)");
 check((lineup.match(/PLAN_SHARE_LINK_ON &&/g) || []).length === 2, "A. the menu item and the sheet are each behind the flag (2 guards)");
 check((lineup.match(/<PlanShareLinkSheet\b/g) || []).length === 1, "A. the sheet is mounted in exactly one place");
 const body = name => { const i = lineup.indexOf(`function ${name}(`); const j = lineup.indexOf("\nfunction ", i + 10); return i < 0 ? "" : lineup.slice(i, j); };
@@ -42,6 +47,21 @@ check(/'data\/plan-share-contract\.js'/.test(read("scripts/build.mjs")), "A. bui
 const supa = (function walk(d) { return readdirSync(d, { withFileTypes: true }).flatMap(e => e.isDirectory() ? walk(join(d, e.name)) : [join(d, e.name)]); })(join(ROOT, "supabase"));
 check(!supa.some(f => /plan_share|plan-share/i.test(f)), "A. no plan-share file anywhere under supabase/ (no schema ships)");
 check(/NOT in\s+-- supabase\/migrations|NOT in supabase\/migrations/.test(read("docs/plan-share/public_plan_shares_DRAFT.sql")), "A. the draft SQL says it is not a migration");
+// Stage 2: the sheet creates through ONE call carrying the previewed payload,
+// and the backend write carries that payload's fields and nothing else.
+const sheetBody = body("PlanShareLinkSheet");
+check((sheetBody.match(/planShareLinkCreate\(/g) || []).length === 1 && /planShareLinkCreate\(d\.payload\)/.test(sheetBody), "A. the sheet creates the link from exactly the previewed payload");
+const supaJsx = read("supabase.jsx");
+const ins = (supaJsx.match(/from\("public_shares"\)\.insert\(\{([^}]*)\}\)/) || [])[1] || "";
+check(JSON.stringify(ins.split(",").map(s => s.trim().split(":")[0].trim()).filter(Boolean).sort()) === JSON.stringify(["display_name", "expires_at", "festival_id", "kind", "payload", "token"]), `A. the public_shares insert writes only token/kind/festival_id/payload/display_name/expires_at (${ins.trim()})`);
+check(/display_name: payload\.displayName \|\| null/.test(supaJsx), "A. display_name comes only from the opt-in payload name");
+check(/crypto\.getRandomValues\(b\)/.test(supaJsx) && /new Uint8Array\(32\)/.test(supaJsx), "A. the token is 32 bytes from crypto.getRandomValues");
+const planHtml = read("plan.html");
+check(/<meta name="robots" content="noindex, nofollow">/.test(planHtml), "A. plan.html is noindex, nofollow");
+check(/^Disallow: \/plan\.html$/m.test(read("robots.txt")), "A. robots.txt disallows /plan.html");
+check(!/plan\.html/.test(read("sitemap.xml")), "A. sitemap.xml never lists plan.html");
+check(!/innerHTML|insertAdjacentHTML|document\.write/.test(planHtml.slice(planHtml.indexOf("<script>"))), "A. plan.html renders shared text with textContent only");
+check(/rpc\("get_public_share"/.test(planHtml) && !/\.from\(/.test(planHtml), "A. plan.html reads only through get_public_share, never the table");
 
 // ── B/C. the running app ──────────────────────────────────────────────────
 const FID = "edc-lv-2026", AT = "2026-05-10T18:00:00Z";
@@ -58,11 +78,6 @@ try {
     const bctx = await browser.newContext({ viewport: { width, height: 844 }, serviceWorkers: "block", colorScheme: mode });
     await wireVendor(bctx);
     await bctx.clock.install({ time: new Date(at) });
-    if (flagOn) await bctx.route(/\/build\/lineup\.js/, async route => {
-      const src = await (await route.fetch()).text();
-      const body = src.replace(/\b(var|let|const) PLAN_SHARE_LINK_ON = false;/, "$1 PLAN_SHARE_LINK_ON = true;");   // compile.mjs emits var
-      await route.fulfill({ status: 200, contentType: "application/javascript", body: body === src ? "throw new Error('flag line not found')" : body });
-    });
     await bctx.addInitScript(({ FID, saved, mode }) => {
       if (sessionStorage.getItem("seeded")) return;
       sessionStorage.setItem("seeded", "1");
@@ -96,12 +111,12 @@ try {
   })();
   check(pick.ids.length === 3, `C. harness: three timed acts to save (got ${JSON.stringify(pick.ids)})`);
   const saved = [...pick.ids, ...(pick.untimed ? [pick.untimed] : [])];
-  // B. as shipped: no link item in the Share menu.
+  // B. as shipped: the Share menu has the link item.
   {
     const { bctx, page } = await open({ flagOn: false, saved });
     await page.locator("[data-share-lineup]").first().click();
     check(await page.getByText("Copy as text").isVisible(), "B. harness: the Share menu opened");
-    check(await page.getByText("Share as a link").count() === 0, "B. flag as shipped: no 'Share as a link' item");
+    check(await page.getByText("Share as a link").count() === 1, "B. as shipped: the 'Share as a link' item is there");
     check(await page.evaluate(() => window.PlurskyPlanShare && typeof window.PlurskyPlanShare.makePublicPlan === "function"), "B. the contract loaded in the app");
     await bctx.close();
   }
@@ -125,7 +140,7 @@ try {
         return { id: a && a.id, shown: end ? end.textContent : null, want: a ? "– " + window.fmt12(a.end) : "?" };
       }));
       check(ends.length === shown.length && ends.every(x => x.shown === x.want), `C. every row shows its end time (${JSON.stringify(ends)})`);
-      check(JSON.stringify(Object.keys(draft.payload).sort()) === JSON.stringify(["expiresAt", "festivalId", "kind", "schemaVersion", "sets"]), "C. payload keys are the allowlist only (no name by default)");
+      check(JSON.stringify(Object.keys(draft.payload).sort()) === JSON.stringify(["expiresAt", "festivalId", "festivalName", "kind", "schemaVersion", "sets", "tz"]), "C. payload keys are the allowlist only (no name by default; festival name and zone only)");
       check(!JSON.stringify(draft.payload).includes("Profile Name"), "C. the profile name never reaches the payload");
       const endMs = await page.evaluate(() => window.FESTIVAL_CONFIG.endMs);
       check(draft.payload.expiresAt === new Date(endMs + 7 * 86400000).toISOString(), "C. the link ends exactly a week after the edition end");
@@ -144,7 +159,9 @@ try {
       check(!/\bA EDC\b/.test(head) && /EDC LV 2026 plan/.test(head), "C. the heading reads '<festival> plan' with no stray article");
       check(await page.$("[data-plan-share-ends]") !== null, "C. the sheet says when the link stops working");
       const btn = page.getByRole("button", { name: "Create link" });
-      check(await btn.isDisabled(), "C. Create link is disabled (stage 1 makes no link)");
+      check(await btn.isEnabled(), "C. Create link is enabled when the plan has timed sets");
+      const hit = await page.$eval("[data-plan-share-create]", el => { const r = el.getBoundingClientRect(); const top = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2); return !!top && el.contains(top); });
+      check(hit, "C. Create link is on top and tappable (not under the tab bar)");
       await page.getByText("Show a name on the link").click();
       await page.getByLabel("Name to show on the link").fill("Jake");
       const named = await page.evaluate(s => window.planShareDraft(s, "Jake"), saved);
@@ -159,8 +176,36 @@ try {
       const names = draft.payload.sets.map(x => encodeURIComponent(x.artist).toLowerCase());
       const leak = after.filter(r => r.method !== "GET" || /supabase/i.test(r.url)
         || pick.ids.some(id => r.url.includes(`=${id}`) || r.url.includes(`/${id}`)) || names.some(n => r.url.toLowerCase().includes(n)));
-      check(leak.length === 0, `C. nothing about the plan leaves while the sheet is open (${leak.map(r => r.method + " " + r.url).join(", ")})`);
+      check(leak.length === 0, `C. nothing about the plan leaves while the sheet only previews (${leak.map(r => r.method + " " + r.url).join(", ")})`);
       await page.getByText("Show a name on the link").click();
+      // Signed out: CREATE LINK asks to sign in and writes nothing.
+      const beforeCreate = requests.length;
+      await btn.click();
+      await page.waitForSelector("[data-plan-share-msg]");
+      check(/Sign in with Apple on the Me tab/.test(await page.$eval("[data-plan-share-msg]", e => e.textContent)), "C. signed out: CREATE LINK asks to sign in");
+      const wrote = requests.slice(beforeCreate).filter(r => r.method !== "GET" && /supabase/i.test(r.url));
+      check(wrote.length === 0, `C. signed out: nothing is written (${wrote.map(r => r.method + " " + r.url).join(", ")})`);
+      check(await page.$("[data-plan-share-live]") === null, "C. signed out: no link is shown");
+      // Backend stubbed (bare names resolve through window): the link is made
+      // from exactly the previewed payload, shown, remembered, and turned off.
+      const TOK = "A".repeat(21) + "_" + "b".repeat(21);
+      await page.evaluate(TOK => {
+        window.__sent = []; window.__revoked = [];
+        window.sbPlanShareCreate = async p => { window.__sent.push(p); return { token: TOK, expiresAt: p.expiresAt }; };
+        window.sbPlanShareRevoke = async t => { window.__revoked.push(t); return { ok: true }; };
+      }, TOK);
+      await btn.click();
+      await page.waitForSelector("[data-plan-share-live]");
+      const sent = await page.evaluate(() => window.__sent);
+      const wantPayload = await page.evaluate(s => window.planShareDraft(s, "").payload, saved);
+      check(sent.length === 1 && JSON.stringify(sent[0]) === JSON.stringify(wantPayload), "C. the created link carries exactly the previewed payload");
+      check((await page.$eval("[data-plan-share-url]", e => e.textContent)) === `https://plursky.com/plan.html?t=${TOK}`, "C. the sheet shows the plan.html link");
+      const stored = await page.evaluate(fid => JSON.parse(localStorage.getItem("plursky_plan_links_v1") || "{}")[fid], FID);
+      check(stored && stored.token === TOK && stored.sets === pick.ids.length, `C. the link is remembered per festival (${JSON.stringify(stored)})`);
+      await page.locator("[data-plan-share-off]").click();
+      await page.waitForSelector("[data-plan-share-create]");
+      check(JSON.stringify(await page.evaluate(() => window.__revoked)) === JSON.stringify([TOK]), "C. TURN OFF LINK revokes that token");
+      check(await page.evaluate(fid => !(JSON.parse(localStorage.getItem("plursky_plan_links_v1") || "{}")[fid]), FID), "C. a turned-off link is forgotten on the device");
     }
     if (SHOTS) {
       mkdirSync(SHOTS, { recursive: true });
@@ -223,5 +268,5 @@ try {
   await browser.close();
 } finally { server.kill(); }
 
-if (failed) { console.log(`✗ plan-share stage 1: ${failed}/${checks} checks failed`); process.exit(1); }
-console.log(`✓ plan-share stage 1: ${checks} checks (flag off, preview only, no network, one contract)`);
+if (failed) { console.log(`✗ plan-share link: ${failed}/${checks} checks failed`); process.exit(1); }
+console.log(`✓ plan-share link: ${checks} checks (flag on, preview is network-free, link = exactly the previewed payload, revocable, never indexed, one contract)`);

@@ -1,9 +1,9 @@
-﻿const CACHE      = 'plursky-v677';
+﻿const CACHE      = 'plursky-v678';
 // Tile cache is intentionally separate from the app cache so map tiles
 // survive APP_VER bumps. Tiles for a given (z, x, y) are immutable, so
 // cache-first forever is correct.
 const TILE_CACHE = 'plursky-tiles-v1';
-const APP_VER    = 'v677';
+const APP_VER    = 'v678';
 
 // Own-origin app files â€” versioned to match what index.html requests.
 // addAll is atomic so a missed own-origin file fails the install fast.
@@ -73,7 +73,7 @@ const LOCAL = [
   `./data/artist-key.js?v=${APP_VER}`,
   // Festival-art ledger (Item 6): official tile art, data/festival-art.js.
   `./data/festival-art.js?v=${APP_VER}`,
-  // Public plan-share payload contract (#74 stage 1; the link itself is flag-off).
+  // Public plan-share payload contract (#74): the in-app link builds through it.
   `./data/plan-share-contract.js?v=${APP_VER}`,
   // Ground plates (mapImage targets). Not every festival module has one: ARC,
   // III Points, CRSSD and Portola ship mapMode "real" and no plate.
