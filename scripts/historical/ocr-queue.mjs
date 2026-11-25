@@ -32,10 +32,12 @@ const HERE = dirname(fileURLToPath(import.meta.url));
 export const MAC_QUEUE = [
   "governors-ball-2023",
   "movement-2016", "movement-2017", "movement-2018", "movement-2019",
+  "movement-2023", "movement-2024", "movement-2025",
   "electric-forest-2025", "electric-forest-2024", "electric-forest-2022", "electric-forest-2019", "electric-forest-2017",
   "ultra-europe-2025", "ultra-europe-2024", "ultra-europe-2023", "ultra-europe-2019",
   "coachella-2019", "coachella-2018",
   "ultra-miami-2012", "ultra-miami-2011",
+  "shambhala-2019",
 ];
 
 if (import.meta.url === `file://${process.argv[1]}`) {

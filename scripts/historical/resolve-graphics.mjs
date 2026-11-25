@@ -251,6 +251,26 @@ export const GRAPHIC_EDITIONS = {
   "movement-2019": { year: 2019, page: "https://www.movement.us/pages/schedule-2019", window: ["20190501", "20191231"],
     image: /Movement-2019__Full_Schedule[^"'\s/?]*?\.png/i,
     days: [{ day: 1, date: "2019-05-25", token: /schedule/i }, { day: 2, date: "2019-05-26", token: /schedule/i }, { day: 3, date: "2019-05-27", token: /schedule/i }] },
+  // Movement 2023 and 2024: one graphic per day on the Shopify site's schedule
+  // page (2024's is /pages/schedule-1; /pages/schedule said "check back").
+  // 2023's Saturday was reissued as "…1_SAT_update.jpg". 2025 prints every
+  // stage and day on one graphic, so every day reads the same file.
+  "movement-2023": { year: 2023, page: "https://movementfestival.com/pages/schedule", window: ["20230501", "20231231"],
+    image: /Movement23_FullSchedule\d_(?:SAT|SUN|MON)[^"'\s/?]*?\.jpg/i,
+    days: [{ day: 1, date: "2023-05-27", token: /_SAT/ }, { day: 2, date: "2023-05-28", token: /_SUN/ }, { day: 3, date: "2023-05-29", token: /_MON/ }] },
+  "movement-2024": { year: 2024, page: "https://movementfestival.com/pages/schedule-1", window: ["20240501", "20241231"],
+    image: /Movement24_Fullschedules[^"'\s/?]*?\.jpg/i,
+    days: [{ day: 1, date: "2024-05-25", token: /_Saturday_/ }, { day: 2, date: "2024-05-26", token: /_Sunday_/ }, { day: 3, date: "2024-05-27", token: /_Monday_/ }] },
+  "movement-2025": { year: 2025, page: "https://movementfestival.com/pages/schedule", window: ["20250501", "20251231"],
+    image: /Movement25_Fullschedules[^"'\s/?]*?\.png/i,
+    days: [{ day: 1, date: "2025-05-24", token: /schedules/i }, { day: 2, date: "2025-05-25", token: /schedules/i }, { day: 3, date: "2025-05-26", token: /schedules/i }] },
+  // Shambhala 2019: one full schedule (Thursday to Sunday) embedded on
+  // /stages-lineups/ as "SMF-2019-full-schedule-1-1.png". The page also links
+  // "…-full-schedule-1.png" and four per-day "…-instgram-<day>.png" posts,
+  // none of them archived, so they are not matched. Every day reads one file.
+  "shambhala-2019": { year: 2019, page: "https://shambhalamusicfestival.com/stages-lineups/", window: ["20190701", "20191231"],
+    image: /SMF-2019-full-schedule-1-1\.png/i,
+    days: [{ day: 1, date: "2019-08-08", token: /full-schedule/i }, { day: 2, date: "2019-08-09", token: /full-schedule/i }, { day: 3, date: "2019-08-10", token: /full-schedule/i }, { day: 4, date: "2019-08-11", token: /full-schedule/i }] },
   // Ultra Europe 2019 and 2025 print every stage and day on one graphic
   // (2019 on /lineup/, "europe-lineup-times-2019.jpg", later
   // "…-settimes-2019-1.jpg"; 2025 on /lineup/set-times/). Every day reads the
