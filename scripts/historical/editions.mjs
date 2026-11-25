@@ -235,6 +235,22 @@ export const EDITIONS = {
   "defqon1-2013": { festivalId: "defqon1", name: "Defqon.1 2013", year: 2013,
     timezone: "Europe/Amsterdam", rolloverHour: 6, method: "official_lineup_html",
     dates: [["2013-06-21", "Friday"], ["2013-06-22", "Saturday"], ["2013-06-23", "Sunday"]] },
+  // Defqon.1 2014: the festival's own timetable (defqon1.nl/nl/timetable/,
+  // format "defqon-logos", defqon-logos-schedule.mjs), one page for the whole
+  // weekend, one box per area and day, captured six weeks after it. Friday
+  // is The Gathering and the Orange; Saturday night's After is Saturday's.
+  // The Dutch page never translated Saturday's Orange ("alleen beschikbaar in
+  // English"), and no English capture survives, so its sets are unknown.
+  // Saturday's Black prints the Neophyte Records takeover as one range
+  // (16:00 till 20:00) over eight acts with no time of their own, so they
+  // are not placed as sets.
+  "defqon1-2014": { festivalId: "defqon1", name: "Defqon.1 2014", year: 2014,
+    timezone: "Europe/Amsterdam", rolloverHour: 6, method: "official_sources",
+    dates: [["2014-06-27", "Friday"], ["2014-06-28", "Saturday"], ["2014-06-29", "Sunday"]],
+    coverage: { asOf: "2026-11-25", missing: [
+      { stage: "Orange", days: [2], when: "Saturday; the Dutch timetable page prints only that the area is available in English" }] },
+    notes: [{ asOf: "2026-11-25", days: [2], text: "Saturday's Black from 16:00 till 20:00 was the Neophyte Records takeover (Neophyte, Panic, The Viper, Evil Activities, Endymion, Furyan, Tieum and Kasparov). The timetable prints one range for all eight with no time of their own, so they are not shown as sets.",
+      source: "https://web.archive.org/web/20140812030225/http://www.defqon1.nl/nl/timetable/" }] },
   // Defqon.1 2015: the festival's own timetable (defqon1.nl/en/timetable/,
   // format "defqon-areas", defqon-schedule.mjs), one page for the whole
   // weekend, captured two days after it. Friday is The Gathering, Saturday
@@ -630,6 +646,40 @@ export const EDITIONS = {
   "time-warp-2022": { festivalId: "time-warp", name: "Time Warp Germany 2022", year: 2022,
     timezone: "Europe/Berlin", rolloverHour: 6, method: "official_lineup_html",
     dates: [["2022-10-28", "Friday"], ["2022-10-29", "Saturday"]] },
+  // Creamfields 2017-2019 and 2021 (Daresbury, Thursday to Sunday): the
+  // festival's own /artists page (creamfields-artists.mjs,
+  // extract-creamfields.mjs), which lists every act with the weekdays it
+  // plays and, where it pairs them, its stage. The page prints weekdays
+  // only; the dates are the run the census's dated post-event report gives
+  // for that year, and the page's four weekdays must be that run's.
+  "creamfields-2017": { festivalId: "creamfields", name: "Creamfields 2017", year: 2017,
+    timezone: "Europe/London", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2017-08-24", "Thursday"], ["2017-08-25", "Friday"], ["2017-08-26", "Saturday"], ["2017-08-27", "Sunday"]] },
+  "creamfields-2018": { festivalId: "creamfields", name: "Creamfields 2018", year: 2018,
+    timezone: "Europe/London", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2018-08-23", "Thursday"], ["2018-08-24", "Friday"], ["2018-08-25", "Saturday"], ["2018-08-26", "Sunday"]] },
+  "creamfields-2019": { festivalId: "creamfields", name: "Creamfields 2019", year: 2019,
+    timezone: "Europe/London", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2019-08-22", "Thursday"], ["2019-08-23", "Friday"], ["2019-08-24", "Saturday"], ["2019-08-25", "Sunday"]] },
+  "creamfields-2021": { festivalId: "creamfields", name: "Creamfields 2021", year: 2021,
+    timezone: "Europe/London", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2021-08-26", "Thursday"], ["2021-08-27", "Friday"], ["2021-08-28", "Saturday"], ["2021-08-29", "Sunday"]] },
+  // From 2022 the site's own /lineup/ page (creamfields-lineup.mjs,
+  // extract-creamfields-lineup.mjs) lists each day's stages and who plays
+  // them. 2022 prints weekdays only, dated like 2017-2021 by the census; from
+  // 2024 each day also prints its date, which must be the census's too. No
+  // capture of 2023's page was taken near the festival.
+  "creamfields-2022": { festivalId: "creamfields", name: "Creamfields 2022", year: 2022,
+    timezone: "Europe/London", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2022-08-25", "Thursday"], ["2022-08-26", "Friday"], ["2022-08-27", "Saturday"], ["2022-08-28", "Sunday"]] },
+  "creamfields-2024": { festivalId: "creamfields", name: "Creamfields 2024", year: 2024,
+    timezone: "Europe/London", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2024-08-22", "Thursday"], ["2024-08-23", "Friday"], ["2024-08-24", "Saturday"], ["2024-08-25", "Sunday"]] },
+  "creamfields-2025": { festivalId: "creamfields", name: "Creamfields 2025", year: 2025,
+    timezone: "Europe/London", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2025-08-21", "Thursday"], ["2025-08-22", "Friday"], ["2025-08-23", "Saturday"], ["2025-08-24", "Sunday"]],
+    notes: [{ asOf: "2026-11-25", text: "The lineup as the festival's own page printed it the day after the festival. Five stage lists (Arc and APEX on Friday, APEX on Sunday, drip Hospitality on Friday and Saturday) ended \"+ more\" and were never completed, so some acts on those stages are not shown.",
+      source: "https://web.archive.org/web/20250825010416/https://creamfields.com/lineup/" }] },
   "tomorrowland-2023": { festivalId: "tomorrowland", name: "Tomorrowland 2023", year: 2023,
     timezone: "Europe/Brussels", rolloverHour: 6, method: "official_sources", dates: [["2023-07-21", "Friday"], ["2023-07-22", "Saturday"], ["2023-07-23", "Sunday"], ["2023-07-28", "Friday"], ["2023-07-29", "Saturday"], ["2023-07-30", "Sunday"]],
     dayLabels: ACL_WEEKEND_LABELS },
@@ -958,6 +1008,8 @@ export const PRINTED_NON_LATIN = {
   // The same lambda on Tomorrowland's own day timetables.
   "tomorrowland-2015": ["Axwell Λ Ingrosso"],
   "tomorrowland-2016": ["Axwell Λ Ingrosso"],
+  // The same lambda on Creamfields' own 2018 Artists page.
+  "creamfields-2018": ["Axwell Λ Ingrosso"],
   // The same lambda on Ultra's own 2017 set-times graphic, read by eye
   // (review/ultra-miami-2017.json).
   "ultra-miami-2017": ["AXWELL Λ INGROSSO"],

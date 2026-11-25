@@ -1873,10 +1873,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d3:uv:1700:a-lusion",
    "edc-las-vegas-2013:d1:basscon:0200:a-lusion"
   ],
   "firstSeen": "2013-06-21",
-  "lastSeen": "2013-06-21",
+  "lastSeen": "2014-06-29",
   "photo": null,
   "links": []
  },
@@ -2002,6 +2003,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:white:1800:a-s-y-s",
    "defqon1-2015:d3:white:1430:a-s-y-s",
    "edc-las-vegas-2012:d3:q-dancestage:1900:a-s-y-s",
    "edc-las-vegas-2013:d2:basscon:2100:a-s-y-s",
@@ -2198,6 +2200,21 @@
   ],
   "firstSeen": "2020-03-01",
   "lastSeen": "2020-03-01",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "a2-allstars",
+  "name": "A2 Allstars",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:after:0200:a2-allstars"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
   "photo": null,
   "links": []
  },
@@ -3095,6 +3112,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:white:1900:acti",
    "defqon1-2015:d2:white:1700:acti",
    "tomorrowland-2012:d2:q-dance:1400:acti",
    "tomorrowland-2013:d3:q-dance:1200:acti",
@@ -3140,6 +3158,21 @@
   "billings": [],
   "firstSeen": null,
   "lastSeen": null,
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "activator",
+  "name": "Activator",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d3:blue:1645:activator"
+  ],
+  "firstSeen": "2014-06-29",
+  "lastSeen": "2014-06-29",
   "photo": null,
   "links": []
  },
@@ -3993,6 +4026,21 @@
   "links": []
  },
  {
+  "key": "adrenalize-and-in-phase",
+  "name": "Adrenalize & In-Phase",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:uv:1500:adrenalize-and-in-phase"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "adrian-hardy",
   "name": "ADRIAN HARDY",
   "aliases": [],
@@ -4122,6 +4170,21 @@
   ],
   "firstSeen": "2026-08-02",
   "lastSeen": "2026-08-02",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "advanced-dealer",
+  "name": "Advanced Dealer",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:purple:2100:advanced-dealer"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
   "photo": null,
   "links": []
  },
@@ -4269,6 +4332,21 @@
   ],
   "firstSeen": "2010-04-16",
   "lastSeen": "2014-04-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "aeros",
+  "name": "Aeros",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:indigo:1230:aeros"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
   "photo": null,
   "links": []
  },
@@ -5450,6 +5528,21 @@
   "links": []
  },
  {
+  "key": "ak-industry",
+  "name": "AK-Industry",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:silver:1700:ak-industry"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "ak-renny",
   "name": "AK Renny",
   "aliases": [],
@@ -5577,11 +5670,12 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:yellow:1900:akira",
    "tomorrowland-2017:d2:all-day-i-dream:1700:akira",
    "tomorrowland-2018:d3:leaf-by-jbl:1230:akira",
    "tomorrowland-2019:d4:leaf-by-jbl:1230:akira"
   ],
-  "firstSeen": "2017-07-22",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2019-07-26",
   "photo": null,
   "links": []
@@ -6842,6 +6936,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:white:2100:alex-kidd",
    "defqon1-2015:d2:white:2000:alex-kidd",
    "edc-las-vegas-2013:d1:basscon:2200:alex-kidd",
    "tomorrowland-2014:d1:qult:2100:alex-kidd",
@@ -8489,14 +8584,16 @@
  },
  {
   "key": "alpha2",
-  "name": "Alpha²",
+  "name": "Alpha2",
   "aliases": [
-   "Alpha2"
+   "Alpha²"
   ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:blue:1430:alpha2",
+   "defqon1-2014:d3:magenta:1700:alpha2",
    "defqon1-2015:d2:afterparty:0200:alpha2",
    "tomorrowland-2013:d3:q-dance:2145:alpha2",
    "tomorrowland-2017:d6:loudness:1400:alpha2"
@@ -9176,6 +9273,21 @@
   ],
   "firstSeen": "2023-10-07",
   "lastSeen": "2025-08-01",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "amada",
+  "name": "Amada",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:black:1100:amada"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
   "photo": null,
   "links": []
  },
@@ -9924,6 +10036,21 @@
   ],
   "firstSeen": "2017-06-17",
   "lastSeen": "2022-06-16",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "amnesys",
+  "name": "Amnesys",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:black:1200:amnesys"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
   "photo": null,
   "links": []
  },
@@ -11824,6 +11951,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d3:black:1830:angerfist",
    "defqon1-2015:d3:black:1845:angerfist",
    "edc-las-vegas-2016:d3:wasteland:0430:angerfist",
    "edc-las-vegas-2017:d1:wasteland:0330:angerfist",
@@ -13730,6 +13858,7 @@
    "edc-lv-2026:k3",
    "ultra-miami-2026:ul134",
    "tomorrowland-winter-2027:tmlw27-argy",
+   "defqon1-2014:d2:white:2000:argy",
    "defqon1-2015:d3:white:1330:argy",
    "dreamstate-socal-2025:d2:the-dream:2240:argy",
    "edc-las-vegas-2024:d3:quantum-valley:0430:argy",
@@ -14020,6 +14149,21 @@
   ],
   "firstSeen": "2022-04-16",
   "lastSeen": "2022-10-14",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "armageddon-project",
+  "name": "Armageddon Project",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:gold:1600:armageddon-project"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
   "photo": null,
   "links": []
  },
@@ -14533,6 +14677,21 @@
   "links": []
  },
  {
+  "key": "art-of-fighters",
+  "name": "Art of Fighters",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:black:2100:art-of-fighters"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "art-of-fighters-and-amnesys",
   "name": "Art of Fighters & Amnesys",
   "aliases": [],
@@ -14703,10 +14862,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:indigo:1300:artifact",
    "defqon1-2015:d2:indigo:1330:artifact",
    "lightning-in-a-bottle-2018:d1:pagoda-bar:1630:artifact"
   ],
-  "firstSeen": "2015-06-20",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2018-05-24",
   "photo": null,
   "links": []
@@ -15869,10 +16029,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:white:1700:atmo",
    "defqon1-2015:d2:uv:1100:atmo",
    "tomorrowland-2015:d1:qult:1200:atmo"
   ],
-  "firstSeen": "2015-06-20",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2015-07-24",
   "photo": null,
   "links": []
@@ -15949,6 +16110,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:red:1500:atmozfears",
    "defqon1-2015:d2:red:1800:atmozfears",
    "edc-las-vegas-2017:d1:wasteland:0030:atmozfears",
    "edc-las-vegas-2024:d2:wasteland:2230:atmozfears",
@@ -16352,6 +16514,7 @@
    "lost-lands-2026:lls5",
    "ultra-miami-2026:ul93",
    "beyond-wonderland-socal-2019:d2:caterpillar-s-garden:2200:audiofreq",
+   "defqon1-2014:d3:uv:1800:audiofreq",
    "defqon1-2015:d2:uv:1830:audiofreq",
    "edc-las-vegas-2016:d1:wasteland:2100:audiofreq",
    "edc-las-vegas-2017:d1:wasteland:2230:audiofreq",
@@ -16371,6 +16534,21 @@
   ],
   "firstSeen": "2013-07-26",
   "lastSeen": "2026-09-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "audiofreq-and-geck-o",
+  "name": "Audiofreq & Geck-o",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:red:1100:audiofreq-and-geck-o"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
   "photo": null,
   "links": []
  },
@@ -17551,6 +17729,21 @@
   "links": []
  },
  {
+  "key": "aztech",
+  "name": "Aztech",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:purple:1900:aztech"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "azteck",
   "name": "Azteck",
   "aliases": [],
@@ -17693,6 +17886,23 @@
   "links": []
  },
  {
+  "key": "b-freqz",
+  "name": "B-freqz [LIVE]",
+  "aliases": [],
+  "kind": "project",
+  "parents": [
+   "b-front-and-frequencerz"
+  ],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:red:2200:b-front-and-frequencerz-presents-b-freqz-live"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "b-front",
   "name": "B-Front",
   "aliases": [
@@ -17702,6 +17912,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:blue:1730:b-front",
    "defqon1-2015:d1:blue:2330:b-front",
    "tomorrowland-2011:d2:q-dance:2300:b-front",
    "tomorrowland-2012:d3:q-dance:2200:b-front",
@@ -17715,6 +17926,21 @@
   ],
   "firstSeen": "2011-07-23",
   "lastSeen": "2022-07-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "b-front-and-frequencerz",
+  "name": "B-Front & Frequencerz",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [
+   "b-freqz"
+  ],
+  "billings": [],
+  "firstSeen": null,
+  "lastSeen": null,
   "photo": null,
   "links": []
  },
@@ -19173,11 +19399,12 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:magenta:1200:balistic",
    "defqon1-2015:d3:brown:1900:balistic",
    "tomorrowland-2014:d3:pussylounge:1730:balistic",
    "tomorrowland-2014:d6:pussylounge:1730:balistic"
   ],
-  "firstSeen": "2014-07-20",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2015-06-21",
   "photo": null,
   "links": []
@@ -19977,6 +20204,21 @@
   "links": []
  },
  {
+  "key": "bart-hard",
+  "name": "Bart Hard",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:yellow:1230:bart-hard"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "bart-skils",
   "name": "Bart Skils",
   "aliases": [
@@ -20060,6 +20302,21 @@
   ],
   "firstSeen": "2016-07-28",
   "lastSeen": "2016-07-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "base-alert",
+  "name": "Base Alert",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:gold:2100:base-alert"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
   "photo": null,
   "links": []
  },
@@ -20278,10 +20535,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:gold:1500:bass-d",
    "defqon1-2015:d2:gold:1915:bass-d",
    "tomorrowland-2017:d4:pussy-lounge:2230:bass-d"
   ],
-  "firstSeen": "2015-06-20",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2017-07-28",
   "photo": null,
   "links": []
@@ -20324,6 +20582,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:red:1200:bass-modulators",
    "defqon1-2015:d2:afterparty:2300:bass-modulators",
    "tomorrowland-2013:d3:q-dance:1800:bass-modulators",
    "tomorrowland-2016:d2:q-dance:1700:bass-modulators",
@@ -25944,6 +26203,21 @@
   "links": []
  },
  {
+  "key": "black-burn-and-k96",
+  "name": "Black Burn & K96",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:indigo:1800:black-burn-and-k96"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "black-cards",
   "name": "Black Cards",
   "aliases": [],
@@ -26244,10 +26518,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:green:1500:black-sun-empire",
    "edc-las-vegas-2017:d1:basspod:0330:black-sun-empire-b2b-the-upbeats",
    "escape-halloween-2021:d1:psycho-circus:1900:black-sun-empire"
   ],
-  "firstSeen": "2017-06-16",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2021-10-29",
   "photo": null,
   "links": []
@@ -28557,9 +28832,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d3:white:1500:bold-action",
    "defqon1-2015:d3:white:1200:bold-action"
   ],
-  "firstSeen": "2015-06-21",
+  "firstSeen": "2014-06-29",
   "lastSeen": "2015-06-21",
   "photo": null,
   "links": []
@@ -29827,6 +30103,21 @@
   "links": []
  },
  {
+  "key": "bountyhunter-and-franky-jones",
+  "name": "Bountyhunter & Franky Jones",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d3:gold:1530:bountyhunter-and-franky-jones"
+  ],
+  "firstSeen": "2014-06-29",
+  "lastSeen": "2014-06-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "bowerbirds",
   "name": "Bowerbirds",
   "aliases": [],
@@ -31041,6 +31332,7 @@
    "tomorrowland-thailand-2026:tmlth-brennan-heart",
    "edc-mexico-2027:edcmx27-brennan-heart",
    "beyond-wonderland-socal-2026:d1:cheshire-woods:0000:brennan-heart",
+   "defqon1-2014:d3:closing:2000:brennan-heart",
    "defqon1-2015:d1:blue:2200:brennan-heart",
    "edc-las-vegas-2012:d3:q-dancestage:0115:brennan-heart",
    "edc-las-vegas-2016:d2:wasteland:0030:brennan-heart",
@@ -31980,6 +32272,21 @@
   ],
   "firstSeen": "2023-07-28",
   "lastSeen": "2023-07-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "broken-note",
+  "name": "Broken Note",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:green:1400:broken-note"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
   "photo": null,
   "links": []
  },
@@ -33652,6 +33959,21 @@
   ],
   "firstSeen": "2018-07-22",
   "lastSeen": "2018-07-22",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "buzz-fuzz-and-dione",
+  "name": "Buzz Fuzz & Dione",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d3:gold:1815:buzz-fuzz-and-dione"
+  ],
+  "firstSeen": "2014-06-29",
+  "lastSeen": "2014-06-29",
   "photo": null,
   "links": []
  },
@@ -35647,6 +35969,21 @@
   ],
   "firstSeen": "2019-10-06",
   "lastSeen": "2019-10-06",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "cardiak",
+  "name": "Cardiak",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:yellow:1500:cardiak"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
   "photo": null,
   "links": []
  },
@@ -38232,9 +38569,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d3:blue:1500:chain-reaction",
    "defqon1-2015:d2:blue:1600:chain-reaction"
   ],
-  "firstSeen": "2015-06-20",
+  "firstSeen": "2014-06-29",
   "lastSeen": "2015-06-20",
   "photo": null,
   "links": []
@@ -39749,6 +40087,21 @@
   ],
   "firstSeen": "2025-08-10",
   "lastSeen": "2025-08-10",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "chem-d",
+  "name": "Chem D",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:yellow:1400:chem-d"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
   "photo": null,
   "links": []
  },
@@ -43979,6 +44332,7 @@
   "projects": [],
   "billings": [
    "edc-lv-2026:w16",
+   "defqon1-2014:d2:uv:1800:code-black",
    "defqon1-2015:d2:uv:1730:code-black",
    "edc-las-vegas-2016:d1:wasteland:0100:code-black",
    "edc-las-vegas-2017:d1:wasteland:0230:code-black",
@@ -45086,6 +45440,21 @@
   "links": []
  },
  {
+  "key": "concept-art",
+  "name": "Concept Art",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:purple:1300:concept-art"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "conducta",
   "name": "Conducta",
   "aliases": [],
@@ -45532,6 +45901,21 @@
   "links": []
  },
  {
+  "key": "cooh",
+  "name": "Cooh",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:green:1600:cooh"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "cookie-monsta",
   "name": "Cookie Monsta",
   "aliases": [],
@@ -45595,6 +45979,8 @@
    "edc-thailand-2026:edcth-coone",
    "edc-mexico-2027:edcmx27-coone",
    "beyond-wonderland-socal-2026:d1:cheshire-woods:2200:coone",
+   "defqon1-2014:d1:the-gathering:2000:coone",
+   "defqon1-2014:d2:red:1800:coone",
    "defqon1-2015:d2:red:1400:coone",
    "edc-las-vegas-2012:d1:q-dancestage:0100:coone",
    "edc-las-vegas-2016:d3:wasteland:0030:coone",
@@ -47262,14 +47648,17 @@
  {
   "key": "critical-mass",
   "name": "Critical Mass",
-  "aliases": [],
+  "aliases": [
+   "Critical Mass [LIVE]"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d3:gold:1300:critical-mass-live",
    "defqon1-2015:d2:gold:2030:critical-mass"
   ],
-  "firstSeen": "2015-06-20",
+  "firstSeen": "2014-06-29",
   "lastSeen": "2015-06-20",
   "photo": null,
   "links": []
@@ -47560,10 +47949,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:red:2100:crypsis",
    "defqon1-2015:d3:blue:1630:crypsis",
    "tomorrowland-2016:d2:q-dance:2300:crypsis"
   ],
-  "firstSeen": "2015-06-21",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2016-07-23",
   "photo": null,
   "links": []
@@ -48649,6 +49039,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:red:1700:d-block-and-s-te-fan",
    "defqon1-2015:d1:blue:2100:d-block-and-s-te-fan",
    "edc-las-vegas-2012:d3:q-dancestage:2030:d-block-and-s-te-fan",
    "edc-las-vegas-2013:d3:basscon:0000:d-block-and-s-te-fan",
@@ -48792,9 +49183,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:gold:1800:d-passion",
    "defqon1-2015:d3:gold:1400:d-passion"
   ],
-  "firstSeen": "2015-06-21",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2015-06-21",
   "photo": null,
   "links": []
@@ -49020,6 +49412,7 @@
    "edc-thailand-2026:edcth-da-tweekaz",
    "tomorrowland-thailand-2026:tmlth-da-tweekaz",
    "edc-mexico-2027:edcmx27-da-tweekaz",
+   "defqon1-2014:d3:uv:1400:da-tweekaz",
    "defqon1-2015:d2:red:1200:da-tweekaz",
    "edc-las-vegas-2016:d2:wasteland:2330:da-tweekaz",
    "edc-las-vegas-2017:d3:wasteland:0130:da-tweekaz",
@@ -51309,6 +51702,21 @@
   "links": []
  },
  {
+  "key": "dark-pact",
+  "name": "Dark Pact",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:indigo:2000:dark-pact"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dark-pact-and-luna",
   "name": "Dark Pact & Luna",
   "aliases": [],
@@ -51361,13 +51769,29 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:after:2315:darkraver",
    "tomorrowland-2014:d3:pussylounge:1830:darkraver",
    "tomorrowland-2014:d6:pussylounge:1830:darkraver",
    "tomorrowland-2015:d3:pussylounge:1930:darkraver",
    "tomorrowland-2016:d3:pussylounge:1930:darkraver"
   ],
-  "firstSeen": "2014-07-20",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2016-07-24",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "darkraver-and-mental-theo",
+  "name": "Darkraver & Mental Theo",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d3:gold:1630:darkraver-and-mental-theo"
+  ],
+  "firstSeen": "2014-06-29",
+  "lastSeen": "2014-06-29",
   "photo": null,
   "links": []
  },
@@ -52634,10 +53058,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d3:magenta:1500:davide-sonar",
    "tomorrowland-2010:d2:q-dance:1515:davide-sonar"
   ],
   "firstSeen": "2010-07-25",
-  "lastSeen": "2010-07-25",
+  "lastSeen": "2014-06-29",
   "photo": null,
   "links": []
  },
@@ -52735,6 +53160,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:brown:1400:davoodi",
    "tomorrowland-2010:d1:ghoststyle:1530:davoodi",
    "tomorrowland-2014:d1:mad-decent:1530:davoodi",
    "tomorrowland-2014:d4:mad-decent:1630:davoodi",
@@ -53979,6 +54405,21 @@
   "links": []
  },
  {
+  "key": "deathmachine",
+  "name": "Deathmachine",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:silver:2030:deathmachine"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "deathmachine-and-thrasher",
   "name": "Deathmachine & Thrasher",
   "aliases": [],
@@ -54390,6 +54831,8 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:blue:1330:deepack",
+   "defqon1-2014:d2:magenta:1700:deepack",
    "tomorrowland-2010:d1:q-dance:2100:deepack",
    "tomorrowland-2018:d4:amicorum-spectaculum-presents-theatre-formidable:1845:deepack",
    "tomorrowland-2022:d1:youphoria:1900:deepack",
@@ -54604,6 +55047,21 @@
   "links": []
  },
  {
+  "key": "deetox-and-delete",
+  "name": "Deetox & Delete",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:indigo:1900:deetox-and-delete"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "deetron",
   "name": "Deetron",
   "aliases": [],
@@ -54781,9 +55239,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:indigo:1600:degos-and-re-done",
    "defqon1-2015:d3:blue:1200:degos-and-re-done"
   ],
-  "firstSeen": "2015-06-21",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2015-06-21",
   "photo": null,
   "links": []
@@ -55221,6 +55680,21 @@
   ],
   "firstSeen": "2012-07-28",
   "lastSeen": "2018-07-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "deluge-of-sound",
+  "name": "Deluge of Sound",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:green:2000:deluge-of-sound"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
   "photo": null,
   "links": []
  },
@@ -57439,6 +57913,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:blue:1830:digital-punk",
    "defqon1-2015:d2:red:2030:digital-punk",
    "edc-las-vegas-2016:d2:wasteland:0330:digital-punk",
    "tomorrowland-2011:d3:q-dance:1700:digital-punk"
@@ -58242,12 +58717,14 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:brown:1500:dirtcaps",
+   "defqon1-2014:d3:white:1600:dirtcaps",
    "defqon1-2015:d2:brown:1600:dirtcaps",
    "tomorrowland-2014:d1:qult:1530:dirtcaps",
    "tomorrowland-2014:d4:qult:1530:dirtcaps",
    "tomorrowland-2015:d1:qult:1500:dirtcaps"
   ],
-  "firstSeen": "2014-07-18",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2015-07-24",
   "photo": null,
   "links": []
@@ -59182,10 +59659,12 @@
    "lil-texas-x-dither"
   ],
   "billings": [
+   "defqon1-2014:d1:orange:0030:dither",
+   "defqon1-2014:d2:silver:1500:dither",
    "defqon1-2015:d3:silver:1630:dither",
    "tomorrowland-2022:d6:cage:1900:dither"
   ],
-  "firstSeen": "2015-06-21",
+  "firstSeen": "2014-06-27",
   "lastSeen": "2022-07-24",
   "photo": null,
   "links": []
@@ -63826,6 +64305,21 @@
   "links": []
  },
  {
+  "key": "dj-thera-s-training-sessions",
+  "name": "DJ Thera’s Training Sessions",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:blue:2000:dj-thera-s-training-sessions"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "dj-thong-and-dj-droppa-and-dj-2ez",
   "name": "DJ Thong & DJ Droppa & DJ 2EZ",
   "aliases": [],
@@ -64472,7 +64966,7 @@
   "links": []
  },
  {
-  "key": "djipe-live",
+  "key": "djipe",
   "name": "DJIPE *LIVE*",
   "aliases": [],
   "kind": "performer",
@@ -65114,6 +65608,21 @@
   ],
   "firstSeen": "2023-07-22",
   "lastSeen": "2023-07-22",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dolphin",
+  "name": "Dolphin",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:silver:1800:dolphin"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
   "photo": null,
   "links": []
  },
@@ -65785,9 +66294,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:white:1300:done-heavy",
    "defqon1-2015:d2:white:1200:done-heavy"
   ],
-  "firstSeen": "2015-06-20",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2015-06-20",
   "photo": null,
   "links": []
@@ -65838,7 +66348,7 @@
   "links": []
  },
  {
-  "key": "donkey-rollers-live",
+  "key": "donkey-rollers",
   "name": "Donkey Rollers *LIVE*",
   "aliases": [],
   "kind": "performer",
@@ -65893,11 +66403,12 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:white:1600:donnie-darko",
    "defqon1-2015:d2:white:1400:donnie-darko",
    "tomorrowland-2014:d1:qult:1330:donnie-darko",
    "tomorrowland-2014:d4:qult:1330:donnie-darko"
   ],
-  "firstSeen": "2014-07-18",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2015-06-20",
   "photo": null,
   "links": []
@@ -66792,12 +67303,13 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:yellow:1800:dr-peacock",
    "defqon1-2015:d2:yellow:1930:dr-peacock",
    "tomorrowland-2018:d6:cage:2300:dr-peacock",
    "tomorrowland-2019:d3:cage:2200:dr-peacock",
    "tomorrowland-2019:d4:q-dance:2300:dr-peacock"
   ],
-  "firstSeen": "2015-06-20",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2019-07-26",
   "photo": null,
   "links": []
@@ -66814,6 +67326,7 @@
   "projects": [],
   "billings": [
    "beyond-wonderland-socal-2019:d2:caterpillar-s-garden:1830:dr-phunk",
+   "defqon1-2014:d1:orange:2000:dr-phunk",
    "defqon1-2015:d3:brown:1200:dr-phunk",
    "edc-las-vegas-2022:d3:wasteland:2130:dr-phunk",
    "edc-las-vegas-2023:d1:wasteland:2130:dr-phunk",
@@ -66869,6 +67382,21 @@
   ],
   "firstSeen": "2010-07-24",
   "lastSeen": "2018-07-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "dr-rude-and-dr-phunk",
+  "name": "Dr. Rude & Dr Phunk",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:brown:1730:dr-rude-and-dr-phunk"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
   "photo": null,
   "links": []
  },
@@ -68501,18 +69029,20 @@
   "key": "dune",
   "name": "Dune",
   "aliases": [
-   "DUNE"
+   "DUNE",
+   "Dune [LIVE]"
   ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d3:gold:1500:dune-live",
    "defqon1-2015:d2:gold:1600:dune",
    "tomorrowland-2016:d1:i-love-the-90-s:0000:dune",
    "tomorrowland-2018:d6:amicorum-spectaculum-presents-theatre-formidable:2130:dune",
    "tomorrowland-2019:d6:q-dance:1700:dune"
   ],
-  "firstSeen": "2015-06-20",
+  "firstSeen": "2014-06-29",
   "lastSeen": "2019-07-28",
   "photo": null,
   "links": []
@@ -69238,18 +69768,19 @@
  },
  {
   "key": "e-force",
-  "name": "E-force",
+  "name": "E-Force",
   "aliases": [
-   "E-Force"
+   "E-force"
   ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d3:blue:1745:e-force",
    "defqon1-2015:d3:blue:1530:e-force",
    "tomorrowland-2018:d3:cage:2200:e-force"
   ],
-  "firstSeen": "2015-06-21",
+  "firstSeen": "2014-06-29",
   "lastSeen": "2018-07-22",
   "photo": null,
   "links": []
@@ -71559,9 +72090,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:purple:1800:electronic-vibes",
    "defqon1-2015:d2:purple:1800:electronic-vibes"
   ],
-  "firstSeen": "2015-06-20",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2015-06-20",
   "photo": null,
   "links": []
@@ -72692,6 +73224,21 @@
   "links": []
  },
  {
+  "key": "embrionyc",
+  "name": "Embrionyc",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d3:silver:1330:embrionyc"
+  ],
+  "firstSeen": "2014-06-29",
+  "lastSeen": "2014-06-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "emei",
   "name": "Emei",
   "aliases": [
@@ -73400,6 +73947,21 @@
   "links": []
  },
  {
+  "key": "endymion-ft-murda",
+  "name": "Endymion ft Murda",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:after:0300:endymion-ft-murda"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "endymion-vs-evil-activities",
   "name": "Endymion vs Evil Activities",
   "aliases": [],
@@ -73443,6 +74005,21 @@
   ],
   "firstSeen": "2027-02-21",
   "lastSeen": "2027-02-21",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "energyzed-and-shockerz",
+  "name": "Energyzed & Shockerz",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d3:uv:1300:energyzed-and-shockerz"
+  ],
+  "firstSeen": "2014-06-29",
+  "lastSeen": "2014-06-29",
   "photo": null,
   "links": []
  },
@@ -75191,6 +75768,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d3:black:1400:evil-activities",
    "defqon1-2015:d2:black:1630:evil-activities",
    "edc-las-vegas-2012:d1:q-dancestage:0430:evil-activities",
    "tomorrowland-2014:d3:pussylounge:2230:evil-activities",
@@ -75375,9 +75953,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:blue:1530:exit-mind",
    "defqon1-2015:d2:indigo:2030:exit-mind"
   ],
-  "firstSeen": "2015-06-20",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2015-06-20",
   "photo": null,
   "links": []
@@ -75544,9 +76123,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d3:white:1830:eyoung",
    "defqon1-2015:d3:white:1830:eyoung"
   ],
-  "firstSeen": "2015-06-21",
+  "firstSeen": "2014-06-29",
   "lastSeen": "2015-06-21",
   "photo": null,
   "links": []
@@ -78163,9 +78743,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:blue:1230:festuca",
    "defqon1-2015:d2:uv:1930:festuca"
   ],
-  "firstSeen": "2015-06-20",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2015-06-20",
   "photo": null,
   "links": []
@@ -82610,6 +83191,7 @@
    "wolves-are-back"
   ],
   "billings": [
+   "defqon1-2014:d2:blue:1630:frequencerz",
    "defqon1-2015:d2:blue:1700:frequencerz",
    "defqon1-2015:d2:afterparty:0300:frequencerz",
    "tomorrowland-2014:d2:q-dance:2230:endymion-b2b-frequencerz",
@@ -82618,7 +83200,7 @@
    "tomorrowland-2019:d1:q-dance:2000:frequencerz",
    "tomorrowland-2023:d3:freedom-by-bud:1400:frequencerz"
   ],
-  "firstSeen": "2014-07-19",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2023-07-23",
   "photo": null,
   "links": []
@@ -83002,6 +83584,7 @@
   "projects": [],
   "billings": [
    "escape-halloween-2026:esc-frontliner-journey-set-d1",
+   "defqon1-2014:d3:closing:2100:frontliner",
    "defqon1-2015:d2:red:1700:frontliner",
    "edc-las-vegas-2012:d3:q-dancestage:0230:frontliner",
    "edc-las-vegas-2017:d2:wasteland:0030:frontliner",
@@ -84382,7 +84965,7 @@
   "links": []
  },
  {
-  "key": "g-town-madness-live",
+  "key": "g-town-madness",
   "name": "G-Town Madness *LIVE*",
   "aliases": [],
   "kind": "performer",
@@ -85216,6 +85799,21 @@
   "links": []
  },
  {
+  "key": "gary-d",
+  "name": "Gary D",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:magenta:1500:gary-d"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "gary-numan",
   "name": "Gary Numan",
   "aliases": [],
@@ -85477,6 +86075,21 @@
   ],
   "firstSeen": "2024-10-26",
   "lastSeen": "2024-10-26",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "geck-e",
+  "name": "Geck-e",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d3:white:1700:geck-e"
+  ],
+  "firstSeen": "2014-06-29",
+  "lastSeen": "2014-06-29",
   "photo": null,
   "links": []
  },
@@ -85838,6 +86451,21 @@
   ],
   "firstSeen": "2022-07-29",
   "lastSeen": "2027-04-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "genetix",
+  "name": "Genetix",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:green:1230:genetix"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
   "photo": null,
   "links": []
  },
@@ -87116,12 +87744,13 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:brown:1600:giocatori",
    "defqon1-2015:d3:brown:1400:giocatori",
    "tomorrowland-2014:d3:pussylounge:1200:giocatori",
    "tomorrowland-2014:d6:pussylounge:1200:giocatori",
    "tomorrowland-2017:d4:the-sound-of-tomorrow:2000:giocatori"
   ],
-  "firstSeen": "2014-07-20",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2017-07-28",
   "photo": null,
   "links": []
@@ -87659,6 +88288,21 @@
   ],
   "firstSeen": "2012-04-13",
   "lastSeen": "2015-08-09",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "gizmo",
+  "name": "Gizmo",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d1:orange:2045:gizmo"
+  ],
+  "firstSeen": "2014-06-27",
+  "lastSeen": "2014-06-27",
   "photo": null,
   "links": []
  },
@@ -88352,10 +88996,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:yellow:1600:goetia",
    "tomorrowland-2016:d3:footworxx:2300:goetia",
    "tomorrowland-2019:d6:cage:1530:goetia"
   ],
-  "firstSeen": "2016-07-24",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2019-07-28",
   "photo": null,
   "links": []
@@ -92872,6 +93517,21 @@
   "links": []
  },
  {
+  "key": "hamunaptra",
+  "name": "Hamunaptra",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:gold:1700:hamunaptra"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "hamza",
   "name": "Hamza",
   "aliases": [],
@@ -93392,6 +94052,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d3:blue:1100:hard-driver",
    "defqon1-2015:d2:blue:1800:hard-driver",
    "tomorrowland-2012:d3:q-dance:1630:hard-driver",
    "tomorrowland-2013:d2:q-dance:1630:hard-driver",
@@ -93996,6 +94657,21 @@
   ],
   "firstSeen": "2016-06-19",
   "lastSeen": "2016-06-19",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "hawman",
+  "name": "Hawman",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d3:white:1330:hawman"
+  ],
+  "firstSeen": "2014-06-29",
+  "lastSeen": "2014-06-29",
   "photo": null,
   "links": []
  },
@@ -94795,6 +95471,21 @@
   ],
   "firstSeen": "2026-07-02",
   "lastSeen": "2026-07-02",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "hellfish-and-the-dj-producer",
+  "name": "Hellfish & The DJ Producer",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:silver:1900:hellfish-and-the-dj-producer"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
   "photo": null,
   "links": []
  },
@@ -97614,10 +98305,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:purple:1500:hpnotic",
    "edc-las-vegas-2022:d3:wasteland:1900:hpnotic-b2b-lucky-rabbit",
    "escape-halloween-2019:d1:sanitarium:1730:hpnotic-b2b-keiji"
   ],
-  "firstSeen": "2019-10-25",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2022-05-22",
   "photo": null,
   "links": []
@@ -97972,14 +98664,17 @@
  {
   "key": "human-resource",
   "name": "Human Resource",
-  "aliases": [],
+  "aliases": [
+   "Human Resource [LIVE]"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d3:gold:1730:human-resource-live",
    "tomorrowland-2015:d1:i-love-the-90-s:0000:human-resource"
   ],
-  "firstSeen": "2015-07-24",
+  "firstSeen": "2014-06-29",
   "lastSeen": "2015-07-24",
   "photo": null,
   "links": []
@@ -101469,6 +102164,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d1:the-gathering:2100:isaac",
    "defqon1-2015:d3:uv:1845:isaac",
    "edc-las-vegas-2012:d1:q-dancestage:2130:isaac",
    "edc-las-vegas-2013:d3:basscon:0100:isaac",
@@ -101837,6 +102533,21 @@
   ],
   "firstSeen": "2017-06-02",
   "lastSeen": "2017-06-02",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "italian-hardstyle-mafia",
+  "name": "Italian Hardstyle Mafia",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d3:uv:1900:italian-hardstyle-mafia"
+  ],
+  "firstSeen": "2014-06-29",
+  "lastSeen": "2014-06-29",
   "photo": null,
   "links": []
  },
@@ -102901,9 +103612,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:blue:1100:jack-of-sound",
    "defqon1-2015:d3:blue:1430:jack-of-sound"
   ],
-  "firstSeen": "2015-06-21",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2015-06-21",
   "photo": null,
   "links": []
@@ -110846,10 +111558,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d3:magenta:1300:jones",
    "defqon1-2015:d3:magenta:1315:jones",
    "tomorrowland-2022:d1:youphoria:1230:jones"
   ],
-  "firstSeen": "2015-06-21",
+  "firstSeen": "2014-06-29",
   "lastSeen": "2022-07-15",
   "photo": null,
   "links": []
@@ -116328,6 +117041,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d1:orange:2130:kasparov",
    "defqon1-2015:d3:black:1200:kasparov",
    "tomorrowland-2011:d1:q-dance:0000:kasparov"
   ],
@@ -118558,6 +119272,21 @@
   ],
   "firstSeen": "2026-10-17",
   "lastSeen": "2026-10-17",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "khaoz-engine",
+  "name": "Khaoz Engine",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d3:silver:1730:khaoz-engine"
+  ],
+  "firstSeen": "2014-06-29",
+  "lastSeen": "2014-06-29",
   "photo": null,
   "links": []
  },
@@ -121846,6 +122575,21 @@
   "links": []
  },
  {
+  "key": "korsakoff-and-day-mar",
+  "name": "Korsakoff & Day-már",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:black:2000:korsakoff-and-day-mar"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "korsky",
   "name": "Korsky",
   "aliases": [],
@@ -122136,6 +122880,21 @@
   ],
   "firstSeen": "2022-07-31",
   "lastSeen": "2022-07-31",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "krauser",
+  "name": "Krauser",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:silver:1200:krauser"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
   "photo": null,
   "links": []
  },
@@ -123219,6 +123978,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:brown:2100:kutski",
    "defqon1-2015:d2:brown:1900:kutski",
    "edc-las-vegas-2016:d1:wasteland:2000:kutski",
    "edc-mexico-2020:d1:wasteland:2015:kutski",
@@ -128144,6 +128904,21 @@
   "links": []
  },
  {
+  "key": "les-tronchiennes",
+  "name": "Les Tronchiennes",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d3:white:1200:les-tronchiennes"
+  ],
+  "firstSeen": "2014-06-29",
+  "lastSeen": "2014-06-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "lesly-reynaga",
   "name": "LESLY REYNAGA",
   "aliases": [],
@@ -128782,6 +129557,21 @@
   ],
   "firstSeen": "2012-06-02",
   "lastSeen": "2012-06-02",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "li-z-and-stefan-zmk",
+  "name": "LI-z & Stefan ZMK",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d3:silver:1230:li-z-and-stefan-zmk"
+  ],
+  "firstSeen": "2014-06-29",
+  "lastSeen": "2014-06-29",
   "photo": null,
   "links": []
  },
@@ -130878,6 +131668,7 @@
    "edc-lv-2026:w15",
    "escape-halloween-2026:esc-lady-faith-b2b-lny-tnz-d1",
    "tomorrowland-winter-2027:tmlw27-lny-tnz",
+   "defqon1-2014:d2:brown:1630:lny-tnz",
    "edc-las-vegas-2016:d1:wasteland:2300:lny-tnz",
    "edc-las-vegas-2017:d3:wasteland:2030:lny-tnz",
    "edc-las-vegas-2022:d1:wasteland:2230:lny-tnz",
@@ -130890,7 +131681,7 @@
    "tomorrowland-2019:d4:q-dance:1500:lny-tnz",
    "tomorrowland-2023:d5:elixir:0000:lny-tnz"
   ],
-  "firstSeen": "2015-07-24",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2027-03-25",
   "photo": null,
   "links": []
@@ -133988,6 +134779,21 @@
   "links": []
  },
  {
+  "key": "luca-perra",
+  "name": "Luca Perra",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:white:1200:luca-perra"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "luca-testa",
   "name": "Luca Testa",
   "aliases": [
@@ -134634,6 +135440,21 @@
   ],
   "firstSeen": "2013-07-28",
   "lastSeen": "2014-07-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "lucy-furr",
+  "name": "Lucy Furr",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:green:1700:lucy-furr"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
   "photo": null,
   "links": []
  },
@@ -135285,8 +136106,11 @@
   "aliases": [],
   "kind": "performer",
   "parents": [],
-  "projects": [],
+  "projects": [
+   "the-qlubtempo-parade"
+  ],
   "billings": [
+   "defqon1-2014:d3:blue:1545:luna",
    "defqon1-2015:d2:magenta:1800:luna",
    "tomorrowland-2011:d3:q-dance:1830:luna",
    "tomorrowland-2013:d3:q-dance:1400:luna",
@@ -136733,6 +137557,21 @@
   ],
   "firstSeen": "2017-06-17",
   "lastSeen": "2023-07-22",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "mad-dog-and-anime",
+  "name": "Mad Dog & AniMe",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d3:black:1700:mad-dog-and-anime"
+  ],
+  "firstSeen": "2014-06-29",
+  "lastSeen": "2014-06-29",
   "photo": null,
   "links": []
  },
@@ -141281,6 +142120,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:brown:1830:mark-with-a-k",
    "defqon1-2015:d2:brown:1800:mark-with-a-k",
    "tomorrowland-2011:d1:q-dance:1530:mark-with-a-k-live",
    "tomorrowland-2012:d1:q-dance:2015:mark-with-a-k",
@@ -142549,7 +143389,7 @@
   "links": []
  },
  {
-  "key": "mashup-jack-live",
+  "key": "mashup-jack",
   "name": "Mashup Jack *LIVE*",
   "aliases": [],
   "kind": "performer",
@@ -144221,6 +145061,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:red:1300:max-enforcer",
    "defqon1-2015:d1:blue:2000:max-enforcer",
    "edc-las-vegas-2012:d2:q-dancestage:2030:max-enforcer",
    "edc-las-vegas-2016:d2:wasteland:2030:max-enforcer",
@@ -145681,16 +146522,19 @@
   "links": []
  },
  {
-  "key": "md-and-a-live",
-  "name": "MD&A *LIVE*",
-  "aliases": [],
+  "key": "md-and-a",
+  "name": "MD&A [LIVE]",
+  "aliases": [
+   "MD&A *LIVE*"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d3:gold:1900:md-and-a-live",
    "defqon1-2015:d2:gold:1730:md-and-a-live"
   ],
-  "firstSeen": "2015-06-20",
+  "firstSeen": "2014-06-29",
   "lastSeen": "2015-06-20",
   "photo": null,
   "links": []
@@ -145809,6 +146653,21 @@
   "links": []
  },
  {
+  "key": "meagashira",
+  "name": "Meagashira",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:gold:1300:meagashira"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "meaghan",
   "name": "Meaghan",
   "aliases": [],
@@ -145823,6 +146682,36 @@
   ],
   "firstSeen": "2023-07-28",
   "lastSeen": "2027-03-24",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "meander",
+  "name": "Meander",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:silver:1600:meander"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "meccano-twins",
+  "name": "Meccano Twins",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d3:black:1500:meccano-twins"
+  ],
+  "firstSeen": "2014-06-29",
+  "lastSeen": "2014-06-29",
   "photo": null,
   "links": []
  },
@@ -150092,6 +150981,21 @@
   "links": []
  },
  {
+  "key": "mindustries-and-fracture-4",
+  "name": "Mindustries & Fracture 4",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:silver:1300:mindustries-and-fracture-4"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "mineral",
   "name": "Mineral",
   "aliases": [],
@@ -150255,9 +151159,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:blue:1930:minus-militia",
    "defqon1-2015:d2:red:1900:minus-militia"
   ],
-  "firstSeen": "2015-06-20",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2015-06-20",
   "photo": null,
   "links": []
@@ -150595,13 +151500,14 @@
   "projects": [],
   "billings": [
    "edc-mexico-2027:edcmx27-miss-k8",
+   "defqon1-2014:d2:black:1500:miss-k8",
    "defqon1-2015:d2:black:1830:miss-k8",
    "edc-las-vegas-2017:d3:wasteland:0430:miss-k8",
    "escape-halloween-2017:d1:chopping-block:0100:angerfist-b2b-miss-k8",
    "tomorrowland-2018:d6:cage:1745:miss-k8",
    "tomorrowland-2022:d5:freedom:2300:miss-k8"
   ],
-  "firstSeen": "2015-06-20",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2027-02-21",
   "photo": null,
   "links": []
@@ -156803,6 +157709,21 @@
   "links": []
  },
  {
+  "key": "n-vitral-live",
+  "name": "N-Vitral live",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:silver:1430:n-vitral-live"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "n-y-s",
   "name": "N.Y.S.",
   "aliases": [],
@@ -158552,6 +159473,21 @@
   ],
   "firstSeen": "2012-08-10",
   "lastSeen": "2012-10-13",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "neilio",
+  "name": "Neilio",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d3:uv:1200:neilio"
+  ],
+  "firstSeen": "2014-06-29",
+  "lastSeen": "2014-06-29",
   "photo": null,
   "links": []
  },
@@ -162840,11 +163776,14 @@
  {
   "key": "noisecontrollers",
   "name": "Noisecontrollers",
-  "aliases": [],
+  "aliases": [
+   "Noisecontrollers [LIVE]"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:red:2030:noisecontrollers-live",
    "defqon1-2015:d2:red:1500:noisecontrollers",
    "edc-las-vegas-2012:d1:q-dancestage:2300:noisecontrollers",
    "edc-las-vegas-2017:d3:wasteland:0030:noisecontrollers",
@@ -162864,6 +163803,21 @@
   "links": []
  },
  {
+  "key": "noisecult",
+  "name": "Noisecult",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:purple:1600:noisecult"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "noisekick",
   "name": "Noisekick",
   "aliases": [],
@@ -162871,9 +163825,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:yellow:2000:noisekick",
    "defqon1-2015:d2:yellow:1830:noisekick"
   ],
-  "firstSeen": "2015-06-20",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2015-06-20",
   "photo": null,
   "links": []
@@ -163466,7 +164421,7 @@
   "links": []
  },
  {
-  "key": "nosferatu-and-endymion-millennium-set",
+  "key": "nosferatu-and-endymion",
   "name": "Nosferatu & Endymion *Millennium set*",
   "aliases": [],
   "kind": "performer",
@@ -163696,9 +164651,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:indigo:1100:notoriouz",
    "defqon1-2015:d2:purple:1600:notoriouz"
   ],
-  "firstSeen": "2015-06-20",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2015-06-20",
   "photo": null,
   "links": []
@@ -164257,6 +165213,21 @@
   ],
   "firstSeen": "2025-03-30",
   "lastSeen": "2025-03-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "nutralizers",
+  "name": "Nutralizers",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:purple:1700:nutralizers"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
   "photo": null,
   "links": []
  },
@@ -165823,6 +166794,21 @@
   "links": []
  },
  {
+  "key": "oldschool-modulators",
+  "name": "Oldschool Modulators",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d3:magenta:1830:oldschool-modulators"
+  ],
+  "firstSeen": "2014-06-29",
+  "lastSeen": "2014-06-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "ole-60",
   "name": "OLE 60",
   "aliases": [],
@@ -167224,6 +168210,24 @@
   "links": []
  },
  {
+  "key": "ophidian",
+  "name": "Ophidian",
+  "aliases": [
+   "Ophidian *BLACKBOX SET*"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:black:1330:ophidian",
+   "defqon1-2015:d3:gold:1500:ophidian-blackbox-set"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2015-06-21",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "ophidian-and-n-vitral",
   "name": "Ophidian & N-Vitral",
   "aliases": [],
@@ -167235,21 +168239,6 @@
   ],
   "firstSeen": "2015-06-20",
   "lastSeen": "2015-06-20",
-  "photo": null,
-  "links": []
- },
- {
-  "key": "ophidian-blackbox-set",
-  "name": "Ophidian *BLACKBOX SET*",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "defqon1-2015:d3:gold:1500:ophidian-blackbox-set"
-  ],
-  "firstSeen": "2015-06-21",
-  "lastSeen": "2015-06-21",
   "photo": null,
   "links": []
  },
@@ -168388,6 +169377,21 @@
   "links": []
  },
  {
+  "key": "outblast",
+  "name": "Outblast",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d1:orange:2215:outblast"
+  ],
+  "firstSeen": "2014-06-27",
+  "lastSeen": "2014-06-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "outblast-and-re-style",
   "name": "Outblast & Re-Style",
   "aliases": [],
@@ -168410,6 +169414,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d3:blue:1415:outbreak",
    "defqon1-2015:d3:blue:1330:outbreak",
    "tomorrowland-2013:d2:q-dance:2000:outbreak"
   ],
@@ -168463,10 +169468,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d3:uv:1600:outlander",
    "tomorrowland-2013:d1:q-dance:1530:outlander"
   ],
   "firstSeen": "2013-07-26",
-  "lastSeen": "2013-07-26",
+  "lastSeen": "2014-06-29",
   "photo": null,
   "links": []
  },
@@ -169624,9 +170630,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d1:orange:2300:pandorum",
    "defqon1-2015:d2:black:1430:pandorum"
   ],
-  "firstSeen": "2015-06-20",
+  "firstSeen": "2014-06-27",
   "lastSeen": "2015-06-20",
   "photo": null,
   "links": []
@@ -169639,12 +170646,13 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d3:gold:1400:panic",
    "defqon1-2015:d2:gold:2130:panic",
    "tomorrowland-2017:d1:global-hardcore-nation:1400:panic",
    "tomorrowland-2018:d3:tulip:1600:panic",
    "tomorrowland-2022:d1:youphoria:2100:panic"
   ],
-  "firstSeen": "2015-06-20",
+  "firstSeen": "2014-06-29",
   "lastSeen": "2022-07-15",
   "photo": null,
   "links": []
@@ -170584,6 +171592,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d1:orange:2345:partyraiser",
    "defqon1-2015:d2:black:1730:partyraiser",
    "tomorrowland-2014:d2:q-dance:0000:partyraiser-ft-mc-syco",
    "tomorrowland-2014:d5:q-dance:0000:partyraiser-ft-mc-syco",
@@ -170592,8 +171601,23 @@
    "tomorrowland-2019:d5:q-dance:2300:partyraiser",
    "tomorrowland-2022:d5:freedom:0000:partyraiser"
   ],
-  "firstSeen": "2014-07-19",
+  "firstSeen": "2014-06-27",
   "lastSeen": "2022-07-23",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "partyraiser-and-drokz",
+  "name": "Partyraiser & Drokz",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:black:2200:partyraiser-and-drokz"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
   "photo": null,
   "links": []
  },
@@ -174202,15 +175226,18 @@
  {
   "key": "phrantic",
   "name": "Phrantic",
-  "aliases": [],
+  "aliases": [
+   "Phrantic [LIVE]"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d3:blue:1300:phrantic-live",
    "defqon1-2015:d2:white:2100:phrantic",
    "tomorrowland-2015:d1:qult:2300:phrantic"
   ],
-  "firstSeen": "2015-06-20",
+  "firstSeen": "2014-06-29",
   "lastSeen": "2015-07-24",
   "photo": null,
   "links": []
@@ -174267,6 +175294,21 @@
   ],
   "firstSeen": "2015-06-20",
   "lastSeen": "2022-07-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "phuture-noize-and-goliath",
+  "name": "Phuture Noize & Goliath",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d3:blue:1200:phuture-noize-and-goliath"
+  ],
+  "firstSeen": "2014-06-29",
+  "lastSeen": "2014-06-29",
   "photo": null,
   "links": []
  },
@@ -176693,9 +177735,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:indigo:1400:prefix-and-density",
    "tomorrowland-2017:d6:loudness:1630:prefix-and-density"
   ],
-  "firstSeen": "2017-07-30",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2017-07-30",
   "photo": null,
   "links": []
@@ -177444,6 +178487,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:gold:2000:promo",
    "tomorrowland-2011:d3:q-dance:2300:promo",
    "tomorrowland-2017:d1:global-hardcore-nation:1830:promo",
    "tomorrowland-2018:d3:tulip:1700:promo"
@@ -177584,6 +178628,21 @@
   ],
   "firstSeen": "2022-11-11",
   "lastSeen": "2022-11-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "proto-bytez",
+  "name": "Proto Bytez",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:purple:1100:proto-bytez"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
   "photo": null,
   "links": []
  },
@@ -177886,6 +178945,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:red:1400:psyko-punkz",
    "defqon1-2015:d3:uv:1745:psyko-punkz",
    "tomorrowland-2010:d2:q-dance:1645:psyko-punkz",
    "tomorrowland-2011:d1:q-dance:2230:psyko-punkz",
@@ -178094,6 +179154,21 @@
   ],
   "firstSeen": "2017-10-27",
   "lastSeen": "2022-03-27",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "pulserz",
+  "name": "Pulserz",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:purple:1400:pulserz"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
   "photo": null,
   "links": []
  },
@@ -179951,12 +181026,15 @@
   "key": "radical-redemption",
   "name": "Radical Redemption",
   "aliases": [
-   "RADICAL REDEMPTION"
+   "RADICAL REDEMPTION",
+   "Radical Redemption *LIVE*"
   ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d3:blue:1845:radical-redemption",
+   "defqon1-2015:d2:blue:2030:radical-redemption-live",
    "edc-las-vegas-2016:d3:wasteland:0330:radical-redemption",
    "edc-las-vegas-2017:d2:wasteland:0215:radical-redemption",
    "edc-las-vegas-2022:d2:wasteland:0130:radical-redemption",
@@ -179967,23 +181045,8 @@
    "tomorrowland-2022:d8:freedom:2300:radical-redemption",
    "ultra-miami-2024:d2:umf-radio:2220:radical-redemption"
   ],
-  "firstSeen": "2016-06-19",
+  "firstSeen": "2014-06-29",
   "lastSeen": "2024-03-23",
-  "photo": null,
-  "links": []
- },
- {
-  "key": "radical-redemption-live",
-  "name": "Radical Redemption *LIVE*",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "defqon1-2015:d2:blue:2030:radical-redemption-live"
-  ],
-  "firstSeen": "2015-06-20",
-  "lastSeen": "2015-06-20",
   "photo": null,
   "links": []
  },
@@ -180866,6 +181929,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d1:the-gathering:2300:ran-d",
    "defqon1-2015:d2:red:2130:ran-d",
    "edc-las-vegas-2012:d1:q-dancestage:0245:ran-d",
    "edc-las-vegas-2016:d1:wasteland:0430:ran-d",
@@ -180884,6 +181948,21 @@
   ],
   "firstSeen": "2011-07-23",
   "lastSeen": "2024-03-23",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "ran-d-and-b-front",
+  "name": "RAN-D & B-FRONT",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d3:closing:2200:ran-d-and-b-front"
+  ],
+  "firstSeen": "2014-06-29",
+  "lastSeen": "2014-06-29",
   "photo": null,
   "links": []
  },
@@ -182423,10 +183502,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:uv:1300:rebourne",
    "defqon1-2015:d3:uv:1245:rebourne",
    "tomorrowland-2017:d5:q-dance:1300:rebourne"
   ],
-  "firstSeen": "2015-06-21",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2017-07-29",
   "photo": null,
   "links": []
@@ -182498,6 +183578,21 @@
   ],
   "firstSeen": "2011-09-17",
   "lastSeen": "2016-07-31",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "recharge",
+  "name": "Recharge",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:purple:1200:recharge"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
   "photo": null,
   "links": []
  },
@@ -188053,6 +189148,21 @@
   "links": []
  },
  {
+  "key": "rotator",
+  "name": "Rotator",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:silver:2130:rotator"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "rotfront",
   "name": "Rotfront",
   "aliases": [],
@@ -189379,6 +190489,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:brown:2000:ruthless",
    "defqon1-2015:d2:brown:2000:ruthless",
    "edc-las-vegas-2017:d1:wasteland:2030:ruthless",
    "tomorrowland-2010:d2:q-dance:1300:ruthless",
@@ -189954,10 +191065,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:white:1400:s1ngular",
    "defqon1-2015:d2:white:1800:s1ngular",
    "tomorrowland-2015:d1:qult:1300:s1ngular"
   ],
-  "firstSeen": "2015-06-20",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2015-07-24",
   "photo": null,
   "links": []
@@ -191979,11 +193091,12 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:yellow:1700:sandy-warez",
    "tomorrowland-2019:d6:cage:1700:sandy-warez",
    "tomorrowland-2022:d3:cage:1700:sandy-warez",
    "tomorrowland-2022:d6:cage:1800:sandy-warez"
   ],
-  "firstSeen": "2019-07-28",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2022-07-24",
   "photo": null,
   "links": []
@@ -193438,6 +194551,21 @@
   "links": []
  },
  {
+  "key": "scheme-boy",
+  "name": "Scheme Boy",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d3:silver:1630:scheme-boy"
+  ],
+  "firstSeen": "2014-06-29",
+  "lastSeen": "2014-06-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "schmaltzy",
   "name": "Schmaltzy",
   "aliases": [],
@@ -193841,9 +194969,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d3:magenta:1600:scope-dj",
    "defqon1-2015:d3:magenta:1800:scope-dj"
   ],
-  "firstSeen": "2015-06-21",
+  "firstSeen": "2014-06-29",
   "lastSeen": "2015-06-21",
   "photo": null,
   "links": []
@@ -195197,6 +196326,21 @@
   ],
   "firstSeen": "2019-05-11",
   "lastSeen": "2019-05-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "sequence-and-ominous",
+  "name": "Sequence & Ominous",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:gold:1200:sequence-and-ominous"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
   "photo": null,
   "links": []
  },
@@ -203303,9 +204447,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:indigo:1700:solutio",
    "defqon1-2015:d3:indigo:1400:solutio"
   ],
-  "firstSeen": "2015-06-21",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2015-06-21",
   "photo": null,
   "links": []
@@ -204558,6 +205703,7 @@
   "projects": [],
   "billings": [
    "tomorrowland-winter-2027:tmlw27-sound-rush",
+   "defqon1-2014:d2:uv:1600:sound-rush",
    "defqon1-2015:d3:uv:1430:sound-rush",
    "edc-las-vegas-2022:d2:wasteland:2230:sound-rush",
    "edc-las-vegas-2023:d1:wasteland:2330:sound-rush",
@@ -204571,7 +205717,7 @@
    "tomorrowland-2023:d6:youphoria:1500:sound-rush",
    "ultra-miami-2024:d2:umf-radio:1650:adrenalize-b2b-sound-rush"
   ],
-  "firstSeen": "2015-06-21",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2027-03-25",
   "photo": null,
   "links": []
@@ -206991,10 +208137,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:uv:1900:stephanie",
    "defqon1-2015:d3:uv:1330:stephanie",
    "edc-las-vegas-2016:d2:wasteland:2130:stephanie"
   ],
-  "firstSeen": "2015-06-21",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2016-06-18",
   "photo": null,
   "links": []
@@ -208066,6 +209213,21 @@
   "links": []
  },
  {
+  "key": "stormtrooper",
+  "name": "Stormtrooper",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d3:silver:1530:stormtrooper"
+  ],
+  "firstSeen": "2014-06-29",
+  "lastSeen": "2014-06-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "stormzy",
   "name": "Stormzy",
   "aliases": [],
@@ -208939,6 +210101,21 @@
   ],
   "firstSeen": "2012-09-22",
   "lastSeen": "2012-09-22",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "subkilla",
+  "name": "Subkilla",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:white:1500:subkilla"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
   "photo": null,
   "links": []
  },
@@ -211764,9 +212941,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:uv:1400:sylence",
    "edc-las-vegas-2016:d3:wasteland:2030:sylence"
   ],
-  "firstSeen": "2016-06-19",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2016-06-19",
   "photo": null,
   "links": []
@@ -212051,6 +213229,21 @@
   "links": []
  },
  {
+  "key": "system-shock",
+  "name": "System Shock",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d3:black:1200:system-shock"
+  ],
+  "firstSeen": "2014-06-29",
+  "lastSeen": "2014-06-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "systematic-parts",
   "name": "Systematic Parts",
   "aliases": [],
@@ -212118,6 +213311,21 @@
   ],
   "firstSeen": "2010-08-11",
   "lastSeen": "2010-08-11",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "t-a-t-a-n-k-a-project",
+  "name": "T.A.T.A.N.K.A Project",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:magenta:1330:t-a-t-a-n-k-a-project"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
   "photo": null,
   "links": []
  },
@@ -213571,9 +214779,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d3:blue:1330:tatanka",
    "defqon1-2015:d2:uv:2030:tatanka"
   ],
-  "firstSeen": "2015-06-20",
+  "firstSeen": "2014-06-29",
   "lastSeen": "2015-06-20",
   "photo": null,
   "links": []
@@ -214243,6 +215452,21 @@
   ],
   "firstSeen": "2011-07-24",
   "lastSeen": "2018-07-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "technoboy-and-tuneboy",
+  "name": "Technoboy & Tuneboy",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:magenta:1800:technoboy-and-tuneboy"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
   "photo": null,
   "links": []
  },
@@ -215386,11 +216610,12 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d3:black:1600:tha-playah",
    "defqon1-2015:d2:black:2030:tha-playah",
    "tomorrowland-2017:d1:global-hardcore-nation:2100:tha-playah",
    "tomorrowland-2022:d3:cage:2000:tha-playah"
   ],
-  "firstSeen": "2015-06-20",
+  "firstSeen": "2014-06-29",
   "lastSeen": "2022-07-17",
   "photo": null,
   "links": []
@@ -218532,6 +219757,21 @@
   "links": []
  },
  {
+  "key": "the-geminizers-and-the-machine",
+  "name": "The Geminizers & The Machine",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:indigo:1500:the-geminizers-and-the-machine"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "the-gentlemen-callers",
   "name": "The Gentlemen Callers",
   "aliases": [],
@@ -221485,14 +222725,17 @@
  {
   "key": "the-outside-agency",
   "name": "The Outside Agency",
-  "aliases": [],
+  "aliases": [
+   "The Outside Agency *Crossbreed set*"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:green:1800:the-outside-agency-crossbreed-set",
    "defqon1-2015:d2:silver:2130:the-outside-agency"
   ],
-  "firstSeen": "2015-06-20",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2015-06-20",
   "photo": null,
   "links": []
@@ -221656,31 +222899,21 @@
  {
   "key": "the-pitcher",
   "name": "The Pitcher",
-  "aliases": [],
+  "aliases": [
+   "The Pitcher [LIVE]",
+   "The Pitcher *LIVE*"
+  ],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:uv:2000:the-pitcher-live",
+   "defqon1-2015:d3:uv:1515:the-pitcher-live",
    "edc-las-vegas-2013:d1:basscon:0100:the-pitcher",
    "tomorrowland-2010:d1:q-dance:1415:the-pitcher",
    "tomorrowland-2012:d1:q-dance:1900:the-pitcher"
   ],
   "firstSeen": "2010-07-24",
-  "lastSeen": "2013-06-21",
-  "photo": null,
-  "links": []
- },
- {
-  "key": "the-pitcher-live",
-  "name": "The Pitcher *LIVE*",
-  "aliases": [],
-  "kind": "performer",
-  "parents": [],
-  "projects": [],
-  "billings": [
-   "defqon1-2015:d3:uv:1515:the-pitcher-live"
-  ],
-  "firstSeen": "2015-06-21",
   "lastSeen": "2015-06-21",
   "photo": null,
   "links": []
@@ -221954,6 +223187,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:uv:2030:the-prophet",
    "edc-las-vegas-2012:d3:q-dancestage:0330:the-prophet",
    "edc-las-vegas-2017:d3:wasteland:2130:the-prophet",
    "tomorrowland-2010:d1:q-dance:2230:the-prophet",
@@ -222042,6 +223276,23 @@
   ],
   "firstSeen": "2011-09-18",
   "lastSeen": "2014-10-12",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "the-qlubtempo-parade",
+  "name": "the Qlubtempo Parade",
+  "aliases": [],
+  "kind": "project",
+  "parents": [
+   "luna"
+  ],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:magenta:1900:luna-presents-the-qlubtempo-parade"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
   "photo": null,
   "links": []
  },
@@ -222832,6 +224083,21 @@
   ],
   "firstSeen": "2015-06-20",
   "lastSeen": "2015-06-20",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "the-sickest-squad-and-unexist",
+  "name": "The Sickest Squad & Unexist [LIVE]",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d3:black:1800:the-sickest-squad-and-unexist-live"
+  ],
+  "firstSeen": "2014-06-29",
+  "lastSeen": "2014-06-29",
   "photo": null,
   "links": []
  },
@@ -223859,6 +225125,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:gold:1400:the-viper",
    "defqon1-2015:d2:brown:2100:the-viper",
    "tomorrowland-2010:d2:q-dance:2300:the-viper",
    "tomorrowland-2015:d3:pussylounge:2130:the-viper",
@@ -226622,6 +227889,21 @@
   "links": []
  },
  {
+  "key": "titan-and-high-voltage",
+  "name": "Titan & High Voltage",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:blue:2100:titan-and-high-voltage"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "titi-calor",
   "name": "Titi Calor",
   "aliases": [],
@@ -226874,12 +228156,13 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:after:0100:tnt",
    "edc-las-vegas-2016:d2:wasteland:0140:tnt",
    "edc-las-vegas-2017:d1:wasteland:2330:tnt",
    "edc-las-vegas-2022:d1:wasteland:0130:tnt",
    "tomorrowland-2023:d1:youphoria:1730:tnt"
   ],
-  "firstSeen": "2016-06-18",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2023-07-21",
   "photo": null,
   "links": []
@@ -228214,6 +229497,21 @@
   "links": []
  },
  {
+  "key": "toneshifterz-and-dillytek",
+  "name": "Toneshifterz & Dillytek",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d3:uv:1500:toneshifterz-and-dillytek"
+  ],
+  "firstSeen": "2014-06-29",
+  "lastSeen": "2014-06-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "tong",
   "name": "TONG",
   "aliases": [],
@@ -229096,6 +230394,21 @@
   "links": []
  },
  {
+  "key": "toyax",
+  "name": "Toyax",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d3:magenta:1400:toyax"
+  ],
+  "firstSeen": "2014-06-29",
+  "lastSeen": "2014-06-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "trace",
   "name": "Trace",
   "aliases": [],
@@ -229486,7 +230799,7 @@
   "links": []
  },
  {
-  "key": "traxtorm-gangstaz-allied-live",
+  "key": "traxtorm-gangstaz-allied",
   "name": "Traxtorm Gangstaz Allied *LIVE*",
   "aliases": [],
   "kind": "performer",
@@ -230022,9 +231335,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d3:silver:1830:tripped",
    "tomorrowland-2022:d9:the-rave-cave:2200:tripped"
   ],
-  "firstSeen": "2022-07-31",
+  "firstSeen": "2014-06-29",
   "lastSeen": "2022-07-31",
   "photo": null,
   "links": []
@@ -233716,9 +235030,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d3:gold:1200:uzi",
    "defqon1-2015:d2:gold:1200:uzi"
   ],
-  "firstSeen": "2015-06-20",
+  "firstSeen": "2014-06-29",
   "lastSeen": "2015-06-20",
   "photo": null,
   "links": []
@@ -235632,10 +236947,11 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:gold:1900:vince",
    "defqon1-2015:d2:gold:1500:vince",
    "tomorrowland-2015:d3:pussylounge:2230:vince"
   ],
-  "firstSeen": "2015-06-20",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2015-07-26",
   "photo": null,
   "links": []
@@ -237547,6 +238863,21 @@
   "links": []
  },
  {
+  "key": "waldhaus",
+  "name": "Waldhaus",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d3:silver:1430:waldhaus"
+  ],
+  "firstSeen": "2014-06-29",
+  "lastSeen": "2014-06-29",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "wale",
   "name": "Wale",
   "aliases": [],
@@ -237971,9 +239302,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:green:1900:war-is-inevitable",
    "defqon1-2015:d2:silver:1200:war-is-inevitable"
   ],
-  "firstSeen": "2015-06-20",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2015-06-20",
   "photo": null,
   "links": []
@@ -238102,6 +239434,7 @@
   "projects": [],
   "billings": [
    "edc-lv-2026:w28",
+   "defqon1-2014:d2:indigo:2100:warface",
    "defqon1-2015:d2:blue:2100:warface",
    "edc-las-vegas-2023:d1:wasteland:2230:warface",
    "edc-las-vegas-2023:d2:wasteland:0330:warface-b2b-d-sturb",
@@ -238117,7 +239450,7 @@
    "ultra-miami-2023:d3:umf-radio:2000:warface",
    "ultra-miami-2024:d2:umf-radio:2020:warface"
   ],
-  "firstSeen": "2015-06-20",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2026-05-17",
   "photo": null,
   "links": []
@@ -238297,13 +239630,31 @@
   "links": []
  },
  {
-  "key": "wasted-penguinz",
-  "name": "Wasted Penguinz",
+  "key": "wasted-mind",
+  "name": "Wasted Mind",
   "aliases": [],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d3:black:1300:wasted-mind"
+  ],
+  "firstSeen": "2014-06-29",
+  "lastSeen": "2014-06-29",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "wasted-penguinz",
+  "name": "Wasted Penguinz",
+  "aliases": [
+   "Wasted Penguinz *LIVE*"
+  ],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2015:d2:afterparty:0030:wasted-penguinz-live",
    "defqon1-2015:d3:uv:1645:wasted-penguinz",
    "edc-las-vegas-2016:d3:wasteland:2230:wasted-penguinz",
    "edc-las-vegas-2017:d2:wasteland:2130:wasted-penguinz",
@@ -238321,17 +239672,17 @@
   "links": []
  },
  {
-  "key": "wasted-penguinz-live",
-  "name": "Wasted Penguinz *LIVE*",
+  "key": "wasted-penquinz",
+  "name": "Wasted Penquinz",
   "aliases": [],
   "kind": "performer",
   "parents": [],
   "projects": [],
   "billings": [
-   "defqon1-2015:d2:afterparty:0030:wasted-penguinz-live"
+   "defqon1-2014:d2:uv:1700:wasted-penquinz"
   ],
-  "firstSeen": "2015-06-20",
-  "lastSeen": "2015-06-20",
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
   "photo": null,
   "links": []
  },
@@ -238622,9 +239973,10 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:uv:1200:waverider",
    "defqon1-2015:d3:uv:1545:waverider"
   ],
-  "firstSeen": "2015-06-21",
+  "firstSeen": "2014-06-28",
   "lastSeen": "2015-06-21",
   "photo": null,
   "links": []
@@ -239336,6 +240688,21 @@
   ],
   "firstSeen": "2014-10-04",
   "lastSeen": "2023-10-08",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "weslo",
+  "name": "Weslo",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:brown:1300:weslo"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
   "photo": null,
   "links": []
  },
@@ -240442,6 +241809,21 @@
   "links": []
  },
  {
+  "key": "wild-motherfuckers",
+  "name": "Wild Motherfuckers",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d1:the-gathering:0000:wild-motherfuckers"
+  ],
+  "firstSeen": "2014-06-27",
+  "lastSeen": "2014-06-27",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "wild-nothing",
   "name": "Wild Nothing",
   "aliases": [
@@ -240572,6 +241954,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d1:the-gathering:2200:wildstylez",
    "defqon1-2015:d2:red:1300:wildstylez",
    "edc-las-vegas-2012:d2:q-dancestage:0200:wildstylez",
    "edc-las-vegas-2012:d3:q-dancestage:2315:wildstylez",
@@ -244934,6 +246317,21 @@
   "links": []
  },
  {
+  "key": "your-on",
+  "name": "Your-On",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:purple:2000:your-on"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
+  "photo": null,
+  "links": []
+ },
+ {
   "key": "youri-parker",
   "name": "Youri Parker",
   "aliases": [],
@@ -245931,6 +247329,7 @@
   "parents": [],
   "projects": [],
   "billings": [
+   "defqon1-2014:d2:red:1930:zatox",
    "defqon1-2015:d2:red:1930:zatox",
    "edc-las-vegas-2012:d2:q-dancestage:0315:zatox",
    "edc-las-vegas-2012:d3:q-dancestage:0015:zatox",
@@ -246227,6 +247626,21 @@
   ],
   "firstSeen": "2024-07-27",
   "lastSeen": "2026-12-30",
+  "photo": null,
+  "links": []
+ },
+ {
+  "key": "zenith",
+  "name": "Zenith",
+  "aliases": [],
+  "kind": "performer",
+  "parents": [],
+  "projects": [],
+  "billings": [
+   "defqon1-2014:d2:magenta:1600:zenith"
+  ],
+  "firstSeen": "2014-06-28",
+  "lastSeen": "2014-06-28",
   "photo": null,
   "links": []
  },

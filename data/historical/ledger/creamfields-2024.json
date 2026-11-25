@@ -1,0 +1,502 @@
+{
+  "id": "creamfields-2024",
+  "method": "official_lineup_html",
+  "official": "https://creamfields.com/lineup/",
+  "format": "creamfields-lineup",
+  "window": {
+    "until": "2024-09-01",
+    "why": "captures more than 7 days after the last day show the next edition"
+  },
+  "chosen": "20240823154359",
+  "archivedUrl": "https://web.archive.org/web/20240823154359/https://creamfields.com/lineup/",
+  "sha256": "a296064adaf53b6c73244015bb28356418e04369478dbf83147c4d83f6f919ae",
+  "title": "Rockstar Energy presents Creamfields | lineup",
+  "relayedVia": "firecrawl",
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "creamfields",
+    "year": 2024,
+    "lifecycle": "occurred",
+    "dates": "2024-08-22..2024-08-25",
+    "evidence": "https://www.liverpoolecho.co.uk/in-your-area/walked-over-60000-steps-danced-29825645",
+    "published": "2024-08-29"
+  },
+  "stageOrder": [
+    "Cream",
+    "Pepsi presents RONG",
+    "Cream Terrace",
+    "Nation",
+    "Hospitality",
+    "Arc",
+    "ZENLESS ZONE ZERO STAGE",
+    "Steel Yard",
+    "Runway",
+    "Misfit",
+    "Andy C presents One 7 Four",
+    "Teletech",
+    "Girls Don’t Sync Takeover",
+    "Pepsi",
+    "Sub_Aural",
+    "XXL",
+    "Warehouse",
+    "Goodgreef Xtra-Hard",
+    "Fatboy Slim Loves",
+    "Our House",
+    "Full On"
+  ],
+  "folded": [
+    {
+      "printed": "Pepsi presents Rong",
+      "billedAs": "Pepsi presents RONG"
+    },
+    {
+      "printed": "ARC",
+      "billedAs": "Arc"
+    },
+    {
+      "printed": "STEEL YARD",
+      "billedAs": "Steel Yard"
+    }
+  ],
+  "sameActs": [],
+  "lowered": [],
+  "joined": [],
+  "actLines": [
+    {
+      "artist": "Jess Bays",
+      "weekday": "Thursday",
+      "stage": "Cream",
+      "printed": [
+        {
+          "where": "below",
+          "line": "ft Jem Cooke"
+        }
+      ]
+    },
+    {
+      "artist": "Steve Angello",
+      "weekday": "Friday",
+      "stage": "ZENLESS ZONE ZERO STAGE",
+      "printed": [
+        {
+          "where": "after",
+          "line": "+ SECRET SPECIAL GUEST"
+        }
+      ]
+    },
+    {
+      "artist": "Turno",
+      "weekday": "Friday",
+      "stage": "Andy C presents One 7 Four",
+      "printed": [
+        {
+          "where": "below",
+          "line": "Presents Game Time"
+        }
+      ]
+    },
+    {
+      "artist": "Brutalismus 3000",
+      "weekday": "Friday",
+      "stage": "Teletech",
+      "printed": [
+        {
+          "where": "after",
+          "line": "Live"
+        }
+      ]
+    },
+    {
+      "artist": "Murphy’s Law",
+      "weekday": "Friday",
+      "stage": "Girls Don’t Sync Takeover",
+      "printed": [
+        {
+          "where": "after",
+          "line": "UKG Set"
+        },
+        {
+          "where": "below",
+          "line": "Just Added"
+        }
+      ]
+    },
+    {
+      "artist": "Cassö B2B Daire",
+      "weekday": "Saturday",
+      "stage": "ZENLESS ZONE ZERO STAGE",
+      "printed": [
+        {
+          "where": "below",
+          "line": "Just Added"
+        }
+      ]
+    },
+    {
+      "artist": "Prospa",
+      "weekday": "Saturday",
+      "stage": "Runway",
+      "printed": [
+        {
+          "where": "below",
+          "line": "Just Added"
+        }
+      ]
+    },
+    {
+      "artist": "Sub Focus",
+      "weekday": "Saturday",
+      "stage": "Sub_Aural",
+      "printed": [
+        {
+          "where": "below",
+          "line": "featuring ID"
+        }
+      ]
+    },
+    {
+      "artist": "I Hate Models",
+      "weekday": "Saturday",
+      "stage": "XXL",
+      "printed": [
+        {
+          "where": "after",
+          "line": "[AV]"
+        }
+      ]
+    },
+    {
+      "artist": "Vladimir Dubyshkin",
+      "weekday": "Saturday",
+      "stage": "XXL",
+      "printed": [
+        {
+          "where": "after",
+          "line": "Live"
+        }
+      ]
+    },
+    {
+      "artist": "Mathame",
+      "weekday": "Saturday",
+      "stage": "Warehouse",
+      "printed": [
+        {
+          "where": "above",
+          "line": "SPECIAL GUEST"
+        }
+      ]
+    },
+    {
+      "artist": "Lufthaus",
+      "weekday": "Sunday",
+      "stage": "Arc",
+      "printed": [
+        {
+          "where": "above",
+          "line": "VERY SPECIAL PERFORMANCE"
+        }
+      ]
+    },
+    {
+      "artist": "Chase & Status",
+      "weekday": "Sunday",
+      "stage": "ZENLESS ZONE ZERO STAGE",
+      "printed": [
+        {
+          "where": "after",
+          "line": "Live"
+        }
+      ]
+    },
+    {
+      "artist": "Matrefakt",
+      "weekday": "Sunday",
+      "stage": "Steel Yard",
+      "printed": [
+        {
+          "where": "below",
+          "line": "Just Added"
+        }
+      ]
+    },
+    {
+      "artist": "Bicep",
+      "weekday": "Sunday",
+      "stage": "Runway",
+      "printed": [
+        {
+          "where": "after",
+          "line": "Present Chroma (AV DJ Set)"
+        }
+      ]
+    },
+    {
+      "artist": "Klubfiller",
+      "weekday": "Sunday",
+      "stage": "Full On",
+      "printed": [
+        {
+          "where": "below",
+          "line": "ft MC Storm"
+        }
+      ]
+    },
+    {
+      "artist": "Ferry Corsten",
+      "weekday": "Sunday",
+      "stage": "Pepsi",
+      "printed": [
+        {
+          "where": "after",
+          "line": "Presents Gouryella"
+        }
+      ]
+    },
+    {
+      "artist": "Sneijder",
+      "weekday": "Sunday",
+      "stage": "Pepsi",
+      "printed": [
+        {
+          "where": "after",
+          "line": "Presents Alt1"
+        }
+      ]
+    },
+    {
+      "artist": "Fish56Octagon",
+      "weekday": "Sunday",
+      "stage": "Pepsi",
+      "printed": [
+        {
+          "where": "above",
+          "line": "+ SPECIAL GUEST"
+        }
+      ]
+    }
+  ],
+  "stageNotes": [
+    {
+      "weekday": "Thursday",
+      "stage": "Cream",
+      "silentDisco": true
+    },
+    {
+      "weekday": "Thursday",
+      "stage": "Pepsi presents RONG",
+      "silentDisco": true
+    },
+    {
+      "weekday": "Thursday",
+      "stage": "Cream Terrace",
+      "silentDisco": true
+    },
+    {
+      "weekday": "Thursday",
+      "stage": "Nation",
+      "silentDisco": true
+    },
+    {
+      "weekday": "Thursday",
+      "stage": "Hospitality",
+      "silentDisco": true
+    },
+    {
+      "weekday": "Friday",
+      "stage": "Steel Yard",
+      "subtitle": "Presented by Gopuff"
+    },
+    {
+      "weekday": "Friday",
+      "stage": "Runway",
+      "subtitle": "Presented by SHEIN hosted by Paradise"
+    },
+    {
+      "weekday": "Friday",
+      "stage": "Andy C presents One 7 Four",
+      "subtitle": "Hosted by Tonn Piper & Dreps and MC Shocker"
+    },
+    {
+      "weekday": "Friday",
+      "stage": "Hospitality",
+      "subtitle": "Hosted by The Garden Party"
+    },
+    {
+      "weekday": "Saturday",
+      "stage": "ZENLESS ZONE ZERO STAGE",
+      "subtitle": "Open Till 4am"
+    },
+    {
+      "weekday": "Saturday",
+      "stage": "Steel Yard",
+      "subtitle": "Presented by Gopuff"
+    },
+    {
+      "weekday": "Saturday",
+      "stage": "Runway",
+      "subtitle": "Presented by SHEIN hosted by Trick"
+    },
+    {
+      "weekday": "Saturday",
+      "stage": "Hospitality",
+      "subtitle": "Hosted by The Garden Party"
+    },
+    {
+      "weekday": "Sunday",
+      "stage": "Steel Yard",
+      "subtitle": "Presented by Gopuff"
+    },
+    {
+      "weekday": "Sunday",
+      "stage": "Runway",
+      "subtitle": "Presented by SHEIN"
+    },
+    {
+      "weekday": "Sunday",
+      "stage": "Hospitality",
+      "subtitle": "Hosted by The Garden Party"
+    }
+  ],
+  "unfinished": [],
+  "considered": [
+    {
+      "captureTimestamp": "20240301033511",
+      "notFiled": "relay: capture 20240301033511 of https://creamfields.com/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20240303171101",
+      "notFiled": "relay: capture 20240303171101 of https://creamfields.com/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20240304220044",
+      "notFiled": "relay: capture 20240304220044 of https://creamfields.com/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20240309065852",
+      "notFiled": "relay: capture 20240309065852 of https://creamfields.com/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20240416233504",
+      "notFiled": "relay: capture 20240416233504 of https://creamfields.com/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20240515164457",
+      "notFiled": "relay: capture 20240515164457 of https://creamfields.com/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20240519112121",
+      "notFiled": "relay: capture 20240519112121 of https://creamfields.com/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20240623190539",
+      "notFiled": "relay: capture 20240623190539 of https://creamfields.com/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20240721085942",
+      "archivedUrl": "https://web.archive.org/web/20240721085942/https://creamfields.com/lineup/",
+      "sha256": "a30df08b9d291b45d090b0f273c2e413f4023fedecc5247fc1dfd45c92ef735e",
+      "bytes": 256171,
+      "via": "firecrawl",
+      "title": "Rockstar Energy presents Creamfields | lineup",
+      "days": [
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "printedDates": [
+        "2024-08-22",
+        "2024-08-23",
+        "2024-08-24",
+        "2024-08-25"
+      ],
+      "dated": true,
+      "valid": true,
+      "billings": 220,
+      "diffVsChosen": [
+        "added by the final: Benny L",
+        "added by the final: MDDLTN & Morgan Kasiera",
+        "added by the final: Kaos Brothers / D-Willz",
+        "removed by the final: Randall B2B Benny L",
+        "removed by the final: Mddltn & Morgan Kasiera",
+        "removed by the final: Kaos Bros / D-Willz"
+      ]
+    },
+    {
+      "captureTimestamp": "20240801175446",
+      "archivedUrl": "https://web.archive.org/web/20240801175446/https://creamfields.com/lineup/",
+      "sha256": "474b4d8037cb37751617c19bf18db4b1f45999ad7316ffc8bbb811a72b1f2403",
+      "bytes": 256539,
+      "via": "firecrawl",
+      "title": "Rockstar Energy presents Creamfields | lineup",
+      "days": [
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "printedDates": [
+        "2024-08-22",
+        "2024-08-23",
+        "2024-08-24",
+        "2024-08-25"
+      ],
+      "dated": true,
+      "valid": true,
+      "billings": 220,
+      "diffVsChosen": [
+        "added by the final: Benny L",
+        "removed by the final: Randall B2B Benny L"
+      ]
+    },
+    {
+      "captureTimestamp": "20240823154359",
+      "archivedUrl": "https://web.archive.org/web/20240823154359/https://creamfields.com/lineup/",
+      "sha256": "a296064adaf53b6c73244015bb28356418e04369478dbf83147c4d83f6f919ae",
+      "bytes": 257956,
+      "via": "firecrawl",
+      "title": "Rockstar Energy presents Creamfields | lineup",
+      "days": [
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "printedDates": [
+        "2024-08-22",
+        "2024-08-23",
+        "2024-08-24",
+        "2024-08-25"
+      ],
+      "dated": true,
+      "valid": true,
+      "billings": 220
+    }
+  ],
+  "dropped": [
+    {
+      "day": 1,
+      "stage": "Hospitality",
+      "billing": "Silent Disco",
+      "category": "operational",
+      "reason": "operational programming, not a billed performance"
+    }
+  ]
+}
