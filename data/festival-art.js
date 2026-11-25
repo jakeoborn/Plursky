@@ -437,4 +437,12 @@ window.PLURSKY_FESTIVAL_ART = Object.freeze({
     license: "CC BY-SA 3.0 (own work; the uploader (Trbo) is the named author, no EXIF author to conflict). Replaces the letter-tile fallback; uploader, credit and EXIF checked 2026-11-25.",
     author: "Trevor Bolliger", licenseId: "CC-BY-SA-3.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/3.0/", changes: "Cropped",
   },
+  "beyond-wonderland-midwest-2027": {
+    tile: "festival-art/tiles/beyond-wonderland-midwest-2027.webp", card: "festival-art/beyond-wonderland-midwest-2027.webp", width: 168, height: 168,
+    kind: "photo", sourcePage: "https://commons.wikimedia.org/wiki/File:Beyond_Wonderland_main_stage.jpg",
+    assetUrl: "https://upload.wikimedia.org/wikipedia/commons/f/f9/Beyond_Wonderland_main_stage.jpg",
+    credit: "Main stage tent at Beyond Wonderland SoCal 2010 (another edition of the same festival). Photo by Roxanna Salceda, Wikimedia Commons", retrieved: "2026-11-25",
+    license: "CC BY-SA 2.0 (Flickr upload reviewed by FlickreviewR (reviewed-pass, 2014-12-24)). Replaces the letter-tile fallback; uploader, credit and EXIF checked 2026-11-25.",
+    author: "Roxanna Salceda", licenseId: "CC-BY-SA-2.0", licenseUrl: "https://creativecommons.org/licenses/by-sa/2.0/", changes: "Cropped",
+  },
 });
