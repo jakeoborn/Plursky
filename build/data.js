@@ -3637,6 +3637,24 @@ function scheduleWatchText(alert, cfg) {
     body: parts.join(" · ") + ". Review before anything changes."
   };
 }
+var SCHED_WATCH_TAP_PARAM = "schedule-review";
+var _SCHED_WATCH_PENDING_KEY = "plursky_schedule_review_pending";
+function scheduleWatchTapUrl(fid) {
+  return "/?" + SCHED_WATCH_TAP_PARAM + "=" + encodeURIComponent(fid);
+}
+function scheduleWatchTapTarget(from) {
+  var fid = null;
+  try {
+    if (typeof from === "string") fid = new URL(from, "https://plursky.com").searchParams.get(SCHED_WATCH_TAP_PARAM);else fid = from && from.notification && from.notification.extra && from.notification.extra.scheduleReview;
+  } catch {
+    fid = null;
+  }
+  return typeof fid === "string" && _DATA_SETS[fid] ? fid : null;
+}
+function scheduleWatchTapRoute(target, activeFid) {
+  if (!target) return null;
+  return target === activeFid ? "open" : "switch";
+}
 function _daysFor(cfg) {
   var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   var shift = _weekendShiftMs(cfg);

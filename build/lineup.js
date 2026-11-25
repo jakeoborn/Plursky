@@ -2648,7 +2648,12 @@ function ScheduleWatch({
       if (perm === "granted" && typeof document !== "undefined" && document.visibilityState === "hidden") {
         var _t = scheduleWatchText(d.alert, cfg);
         showLocal(_t.title, {
-          body: _t.body
+          body: _t.body,
+          tag: "schedule-review-" + fid,
+          data: {
+            url: scheduleWatchTapUrl(fid),
+            scheduleReview: fid
+          }
         });
       }
     };
@@ -2673,6 +2678,56 @@ function ScheduleWatch({
       window.removeEventListener("online", online);
     };
   }, [run]);
+  var tapTo = React.useCallback(target => {
+    var route = scheduleWatchTapRoute(target, fid);
+    if (route === "open") {
+      setAlert(null);
+      setOpen(true);
+    } else if (route === "switch") {
+      try {
+        localStorage.setItem(_SCHED_WATCH_PENDING_KEY, target);
+      } catch {}
+      setActiveFestivalAndReload(target);
+    }
+  }, [fid]);
+  React.useEffect(() => {
+    var fromUrl = scheduleWatchTapTarget(location.href);
+    if (fromUrl) {
+      try {
+        var u = new URL(location.href);
+        u.searchParams.delete(SCHED_WATCH_TAP_PARAM);
+        history.replaceState(history.state, "", u.pathname + u.search + u.hash);
+      } catch {}
+    }
+    var pending = null;
+    try {
+      pending = localStorage.getItem(_SCHED_WATCH_PENDING_KEY);
+      localStorage.removeItem(_SCHED_WATCH_PENDING_KEY);
+    } catch {}
+    var first = fromUrl || (pending === fid ? pending : null);
+    if (first) tapTo(first);
+    var ln = typeof _capLocalNotifications === "function" ? _capLocalNotifications() : null;
+    var sub = null,
+      gone = false;
+    if (ln && ln.addListener) {
+      Promise.resolve(ln.addListener("localNotificationActionPerformed", ev => {
+        var target = scheduleWatchTapTarget(ev);
+        if (target) tapTo(target);
+      })).then(s => {
+        if (gone) {
+          try {
+            s && s.remove && s.remove();
+          } catch {}
+        } else sub = s;
+      }).catch(() => {});
+    }
+    return () => {
+      gone = true;
+      try {
+        sub && sub.remove && sub.remove();
+      } catch {}
+    };
+  }, [tapTo]);
   if (open) return React.createElement(ScheduleReviewSheet, {
     saved: saved || [],
     onClose: () => {
