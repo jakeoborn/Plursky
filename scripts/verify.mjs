@@ -2806,6 +2806,22 @@ for (const [script, label] of [
   }
 }
 
+// The daily live-site watchdog (site-watchdog.yml) walks every sitemap that
+// robots.txt names on plursky.com. Its offline test serves it a local site:
+// clean passes, and each planted defect (404, redirect, broken link or asset,
+// noindex in a sitemap, canonical, title, description, og:image, icon) is caught.
+{
+  console.log("▸ Site watchdog gate — clean site passes, every planted defect is named");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-site-watchdog.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 300000 });
+    process.stdout.write("  " + out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`site watchdog test failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b3. Offline festival packs ─────────────────────────────────────────
 // The saved area covers the radius, footprint and pan bounds; the style
 // rewrite leaves nothing remote; the downloader and the pack:// protocol agree

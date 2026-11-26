@@ -1,9 +1,9 @@
-﻿const CACHE      = 'plursky-v684';
+﻿const CACHE      = 'plursky-v685';
 // Tile cache is intentionally separate from the app cache so map tiles
 // survive APP_VER bumps. Tiles for a given (z, x, y) are immutable, so
 // cache-first forever is correct.
 const TILE_CACHE = 'plursky-tiles-v1';
-const APP_VER    = 'v684';
+const APP_VER    = 'v685';
 
 // Own-origin app files â€” versioned to match what index.html requests.
 // addAll is atomic so a missed own-origin file fails the install fast.
@@ -237,7 +237,6 @@ const LOCAL = [
   './festival-art/world-club-dome-2027.webp',
   './festival-art/bumbershoot-2027.webp',
   './festival-art/bottlerock-2027.webp',
-  './festival-art/beyond-wonderland-midwest-2027.webp',
   './festival-art/sonar-2027.webp',
   './festival-art/time-warp-2027.webp',
   './festival-art/edc-lv-2027.webp',
@@ -300,7 +299,6 @@ const LOCAL = [
   './festival-art/tiles/world-club-dome-2027.webp',
   './festival-art/tiles/bumbershoot-2027.webp',
   './festival-art/tiles/bottlerock-2027.webp',
-  './festival-art/tiles/beyond-wonderland-midwest-2027.webp',
   './festival-art/tiles/sonar-2027.webp',
   './festival-art/tiles/time-warp-2027.webp',
   './festival-art/tiles/edc-lv-2027.webp',
