@@ -22,6 +22,7 @@ import { loadRegistry } from './lib/load-registry.mjs';
 import { fp, festivalFingerprint } from './lib/sitemap-fingerprint.mjs';
 import { plateFor, pastYearsFor, amenitySummary, isPlaceholderStage, hoursLine, editionHours, checkedOn, pageStatus, stageProgrammingFor } from './lib/festival-page-data.mjs';
 import { loadEmbedData, selectEmbeds, embedsSection, embedWindowStart } from './lib/official-embeds.mjs';
+import { artistPageKeys, performersByAct } from './lib/artist-pages.mjs';
 import { loadDayAfter, assertDayAfter, selectDayAfter, dayAfterSection, DAY_AFTER_CSS } from './lib/day-after.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -325,6 +326,34 @@ ${placed.map(s => `        <li>${esc(s.name)}</li>`).join('\n')}
 //   - the time, as a link to its row in the set-times grid.
 // No billing tiers: `tier` in the data is display weight derived from start
 // hours, not the order a poster printed.
+// Lineup names link to their public artist pages (/artists/<key>/), so the
+// festival pages and the artist pages form one graph in both directions (the
+// artist pages already linked back here). The page set is the artist
+// generator's own rule (scripts/lib/artist-pages.mjs), read from the same
+// careers data, never from artists/ on disk. A name billed as one performer
+// becomes the link; a b2b or co-billed name stays as printed and links each
+// performer that has a page after it.
+const CAREERS = JSON.parse(readFileSync(path.join(root, 'data/artists/careers.json'), 'utf8'));
+const ARTIST_PAGES = new Set(artistPageKeys(CAREERS));
+const artistName = k => CAREERS.artists[k]?.n || k;
+function artistKeysByName(cfg) {
+  const byAct = performersByAct(CAREERS, cfg.id, ARTIST_PAGES);
+  const out = new Map();
+  for (const a of DS[cfg.id]?.artists || []) {
+    if (!a.name) continue;
+    if (!out.has(a.name)) out.set(a.name, new Set());
+    for (const k of byAct.get(String(a.id)) || []) out.get(a.name).add(k);
+  }
+  return out;
+}
+const artistHref = k => `/artists/${encodeURIComponent(k)}/`;
+function actHtml(n, keys) {
+  const ks = [...(keys || [])].sort();
+  if (ks.length === 1) return `<a class="act" href="${artistHref(ks[0])}">${esc(n)}</a>`;
+  if (!ks.length) return `<span class="act">${esc(n)}</span>`;
+  return `<span class="act">${esc(n)}</span> <span class="slots">${ks.map(k => `<a href="${artistHref(k)}">${esc(artistName(k))}</a>`).join(', ')}</span>`;
+}
+
 function lineupSection(entry, blocks, dates, names, hasTimes) {
   const cfg = entry.config;
   const artists = DS[cfg.id]?.artists || [];
@@ -346,9 +375,10 @@ function lineupSection(entry, blocks, dates, names, hasTimes) {
     real.has(a.stage) ? esc(real.get(a.stage).name) : '',
     a.start ? `<a href="#${setId(b, a)}">${esc(a.start)}</a>` : a.timeEvidence && a.timeEvidence.status === 'unresolved' ? 'set times unconfirmed' : '',
   ].filter(Boolean).join(' · ')).filter(Boolean);
+  const keysByName = artistKeysByName(cfg);
   const rows = names.map(n => {
     const s = artists.filter(a => a.name === n).flatMap(slots);
-    return `      <li><span class="act">${esc(n)}</span>${s.length ? ` <span class="slots">${s.join('; ')}</span>` : ''}</li>`;
+    return `      <li>${actHtml(n, keysByName.get(n))}${s.length ? ` <span class="slots">${s.join('; ')}</span>` : ''}</li>`;
   });
   return `
   <section aria-labelledby="lineup-h">
@@ -822,7 +852,11 @@ function stub(entry, statusOverride, lastmod) {
     // performer is emitted ONLY when the names are also visible on the page
     // below — structured data that isn't in the rendered content is a
     // Google structured-data violation.
-    ...(names.length ? { performer: names.map(n => ({ '@type': 'MusicGroup', name: n })) } : {}),
+    // A name billed as one performer with a page carries that page as its url.
+    ...(names.length ? { performer: (() => { const kb = artistKeysByName(cfg); return names.map(n => {
+      const ks = [...(kb.get(n) || [])];
+      return { '@type': 'MusicGroup', name: n, ...(ks.length === 1 ? { url: `${ORIGIN}${artistHref(ks[0])}` } : {}) };
+    }); })() } : {}),
     // organizer is the festival's own brand, so its url is the festival's
     // official site, never plursky.com (that would name us as the
     // organizer's website). No official site in the data: no url.
@@ -989,6 +1023,8 @@ ${indexable ? '' : '<meta name="robots" content="noindex">\n'}<link rel="canonic
   ul.lineup { list-style:none; padding:0; margin:12px 0 0; }
   ul.lineup li { padding:9px 0; border-bottom:1px solid var(--line); font-size:15px; display:flex; flex-wrap:wrap; gap:2px 12px; }
   ul.lineup .act { font-weight:600; }
+  ul.lineup a.act { color:var(--ink); text-decoration-color:var(--line-2); }
+  ul.lineup a.act:hover { color:var(--signal); text-decoration-color:currentColor; }
   ul.lineup .slots { color:var(--text-2); font-size:13px; overflow-wrap:anywhere; }
   ul.sets { list-style:none; padding:0; margin:4px 0 0; border-top:1px solid var(--line); }
   ul.sets li { padding:9px 4px; border-bottom:1px solid var(--line); font-size:15px; display:flex; gap:14px; scroll-margin-top:136px; }
