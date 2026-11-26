@@ -15,10 +15,12 @@
 // A finding is one of:
 //   status      a sitemap URL, or an internal link/asset on a page, is not 200
 //   noindex     a sitemap URL says noindex (the sitemap asks for it, the page refuses)
-//   canonical   an indexable page has no canonical, or one pointing elsewhere
+//   canonical   an indexable page has no canonical, or one that is not exactly
+//               the URL its sitemap lists, host included
 //   title       an indexable page has no <title>
 //   description an indexable page has no meta description
-//   og          an indexable page has no og:image
+//   og          an indexable page has no og:image (one on our own host must also
+//               load: it is fetched with the other refs)
 //   icon        a page declares no <link rel="icon"> while /favicon.ico is not
 //               200, so every browser visit logs a 404 (callback.html, 11-26)
 //   robots      robots.txt is missing or names no sitemap
@@ -41,6 +43,9 @@ async function get(url, { redirect = 'follow', tries = 3 } = {}) {
   for (let i = 1; ; i++) {
     try {
       const res = await fetch(url, { redirect, headers: { 'user-agent': UA }, signal: AbortSignal.timeout(30000) });
+      // 429/5xx is the edge shedding load, not a missing page: the first live run
+      // got four 503s that answered 200 a minute later. Retry; report if it holds.
+      if ((res.status === 429 || res.status >= 500) && i < tries) { await res.arrayBuffer(); await new Promise(r => setTimeout(r, 1500 * i)); continue; }
       const type = res.headers.get('content-type') || '';
       const body = /html|xml|text|json/.test(type) ? await res.text() : (await res.arrayBuffer(), '');
       return { status: res.status, type, body, location: res.headers.get('location') };
@@ -97,12 +102,17 @@ const sitemaps = [...robots.body.matchAll(/^\s*Sitemap:\s*(\S+)/gim)].map(m => m
 if (!sitemaps.length) add('robots', `${ORIGIN}/robots.txt`, 'names no Sitemap');
 
 const urls = new Set();
+// Each URL as the sitemap WROTE it. The fetch goes to ORIGIN (so a local
+// --origin run works), but a canonical is held to the written loc, host
+// included: rewriting the canonical's host too let a canonical pointing at a
+// foreign site pass (lane III probe, #618).
+const writtenLoc = new Map();
 for (const sm of sitemaps) {
   const r = await get(sm);
   if (r.status !== 200) { add('status', sm, `sitemap ${r.status}${r.error ? ' ' + r.error : ''}`); continue; }
-  const locs = [...r.body.matchAll(/<loc>\s*([^<\s]+)\s*<\/loc>/g)].map(m => decode(m[1]).replace(/^https?:\/\/[^/]+/, ORIGIN));
-  if (!locs.length) add('status', sm, 'sitemap lists no <loc>');
-  for (const l of locs) urls.add(l);
+  const written = [...r.body.matchAll(/<loc>\s*([^<\s]+)\s*<\/loc>/g)].map(m => decode(m[1]));
+  if (!written.length) add('status', sm, 'sitemap lists no <loc>');
+  for (const w of written) { const l = w.replace(/^https?:\/\/[^/]+/, ORIGIN); urls.add(l); writtenLoc.set(l, w); }
 }
 if (!urls.size) {
   console.log(`✗ site watchdog: could not read any sitemap URL from ${ORIGIN}`);
@@ -127,11 +137,20 @@ await pool(pages, async (url) => {
   else {
     const canon = (() => { for (const m of head.matchAll(/<link\b[^>]*>/gi)) if ((attr(m[0], 'rel') || '').toLowerCase() === 'canonical') return attr(m[0], 'href'); return null; })();
     if (!canon) add('canonical', url, 'missing');
-    else if (new URL(canon, url).href.replace(/^https?:\/\/[^/]+/, ORIGIN) !== url) add('canonical', url, `points to ${canon}`);
+    else { const loc = writtenLoc.get(url) || url; if (new URL(canon, loc).href !== loc) add('canonical', url, `points to ${canon}, not ${loc}`); }
     const title = (/<title>([\s\S]*?)<\/title>/i.exec(head) || [])[1];
     if (!title || !title.trim()) add('title', url, 'missing');
     if (!(metaContent(head, 'name', 'description') || '').trim()) add('description', url, 'missing');
-    if (!(metaContent(head, 'property', 'og:image') || '').trim()) add('og', url, 'og:image missing');
+    const og = (metaContent(head, 'property', 'og:image') || '').trim();
+    if (!og) add('og', url, 'og:image missing');
+    else {
+      // The share image must LOAD, not just be named. On our own host it joins
+      // the refs below and is fetched like any asset (a tag pointing at a
+      // missing file passed before, lane III probe, #618).
+      const loc = writtenLoc.get(url) || url;
+      let u; try { u = new URL(og, loc); } catch { add('og', url, `og:image is not a URL: ${og}`); }
+      if (u && u.host === new URL(loc).host) { const ref = u.href.replace(/^https?:\/\/[^/]+/, ORIGIN).replace(/#.*$/, ''); if (!urls.has(ref) && !refs.has(ref)) refs.set(ref, url); }
+    }
   }
   if (!faviconOk && ![...head.matchAll(/<link\b[^>]*>/gi)].some(m => /(^|\s)icon(\s|$)/i.test(attr(m[0], 'rel') || ''))) add('icon', url, 'no <link rel="icon"> and /favicon.ico is not served');
   for (const ref of refsOf(r.body, url)) if (!urls.has(ref) && !refs.has(ref)) refs.set(ref, url);

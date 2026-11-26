@@ -9,8 +9,11 @@ import { fileURLToPath } from 'node:url';
 
 const SCRIPT = join(dirname(fileURLToPath(import.meta.url)), 'site-watchdog.mjs');
 let site = {};
+let flaky = {}; // path -> number of 503s to serve before the real answer
 const server = createServer((req, res) => {
-  const p = site[req.url.split('?')[0]];
+  const k = req.url.split('?')[0];
+  if (flaky[k] > 0) { flaky[k]--; res.writeHead(503); res.end('busy'); return; }
+  const p = site[k];
   if (!p) { res.writeHead(404, { 'content-type': 'text/html' }); res.end('nope'); return; }
   res.writeHead(p.status || 200, { 'content-type': p.type || 'text/html', ...(p.location ? { location: p.location } : {}) });
   res.end(p.body || '');
@@ -66,6 +69,8 @@ const cases = [
   ['missing title', s => { s['/b/'].body = page('/b/', { noTitle: true }); }, /title: 1/],
   ['missing description', s => { s['/b/'].body = page('/b/', { noDesc: true }); }, /description: 1/],
   ['missing og:image', s => { s['/b/'].body = page('/b/', { noOg: true }); }, /og: 1/],
+  ['canonical on a foreign host, same path', s => { for (const k of ['/', '/a/', '/b/']) s[k].body = s[k].body.replace(`href="${O}${k}"`, `href="https://unrelated.invalid${k}"`); }, /canonical: 3[\s\S]*unrelated\.invalid/],
+  ['og:image names a missing file', s => { delete s['/og.png']; }, /\/og\.png 404/],
   ['no icon and no /favicon.ico', s => { s['/b/'].body = page('/b/', { noIcon: true }); }, /icon: 1[\s\S]*\/b\/ no <link rel="icon">/],
   ['robots names no sitemap', s => { s['/robots.txt'].body = 'User-agent: *\n'; }, /could not read any sitemap URL/],
 ];
@@ -74,6 +79,15 @@ for (const [name, mutate, re] of cases) {
   r = await run();
   check(r.code !== 0 && re.test(r.out), `${name} -> caught and named`, r.out);
 }
+// A transient 503 is retried, not reported; a 503 that holds is reported.
+site = clean(); flaky = { '/b/': 1 };
+r = await run();
+check(r.code === 0, 'one transient 503 on a sitemap URL is retried, not reported', r.out);
+site = clean(); flaky = { '/b/': 99 };
+r = await run();
+check(r.code !== 0 && /\/b\/ 503/.test(r.out), 'a 503 that holds is reported', r.out);
+flaky = {};
+
 // The icon rule only fires when /favicon.ico is missing: serve one and the
 // same icon-less page is fine (a browser's implicit request is answered).
 site = clean(); site['/b/'].body = page('/b/', { noIcon: true }); site['/favicon.ico'] = { type: 'image/x-icon', body: 'x' };
@@ -82,4 +96,4 @@ check(r.code === 0, 'icon-less page passes when /favicon.ico is served', r.out);
 
 server.close();
 if (failed) { console.log(`✗ site watchdog: ${failed} of ${checks} checks failed`); process.exit(1); }
-console.log(`✓ site watchdog: ${checks} checks (clean site passes; ${cases.length}/${cases.length} planted defects caught and named; favicon rule conditional)`);
+console.log(`✓ site watchdog: ${checks} checks (clean site passes; ${cases.length}/${cases.length} planted defects caught and named; favicon rule conditional; transient 503 retried, persistent 503 reported)`);
