@@ -23,6 +23,7 @@ import { fp, festivalFingerprint } from './lib/sitemap-fingerprint.mjs';
 import { plateFor, pastYearsFor, amenitySummary, isPlaceholderStage, hoursLine, editionHours, checkedOn, pageStatus, stageProgrammingFor } from './lib/festival-page-data.mjs';
 import { loadEmbedData, selectEmbeds, embedsSection, embedWindowStart } from './lib/official-embeds.mjs';
 import { artistPageKeys, performersByAct } from './lib/artist-pages.mjs';
+import { festivalIcs } from './lib/festival-ics.mjs';
 import { loadDayAfter, assertDayAfter, selectDayAfter, dayAfterSection, DAY_AFTER_CSS } from './lib/day-after.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -235,9 +236,21 @@ function scheduleGrid(entry, dates, blocks) {
   return `
   <section aria-labelledby="schedule-h">
     <h2 id="schedule-h">${esc(cfg.name)} schedule &amp; set times</h2>
-    <p class="note">${srcNote}${cfg.tzAbbr ? ` All times local (${esc(cfg.tzAbbr)}).` : ''}</p>
+    <p class="note">${srcNote}${cfg.tzAbbr ? ` All times local (${esc(cfg.tzAbbr)}).` : ''}</p>${calendarLinks(entry)}
 ${body}
   </section>`;
+}
+
+// Subscribe once, stay current: a webcal:// link opens the calendar app's
+// subscribe sheet (Apple Calendar, Outlook; Google takes the https URL). Shown
+// exactly when scheduleIcs emits the file, so the link never 404s.
+function calendarLinks(entry) {
+  const cfg = entry.config;
+  // The very predicate that decides whether the file is written (the stamp
+  // does not change whether it exists), so link and file cannot disagree.
+  if (!entry.available || !scheduleIcs(entry, '2000-01-01')) return '';
+  const https = `${ORIGIN}/f/${cfg.id}/schedule.ics`;
+  return `\n    <p class="cal-links"><a href="${esc(https.replace(/^https?:/, 'webcal:'))}">Subscribe to every set in your calendar</a> <a href="/f/${esc(cfg.id)}/schedule.ics" download>Download .ics</a></p>`;
 }
 
 // Only a page that renders the section carries its styles, so the other
@@ -1008,6 +1021,8 @@ ${indexable ? '' : '<meta name="robots" content="noindex">\n'}<link rel="canonic
   h4 { font-size:12px; font-weight:600; margin:22px 0 4px; color:var(--flare); text-transform:uppercase; letter-spacing:.12em; }
   h5 { font-size:11px; font-weight:500; margin:14px 0 4px; color:var(--text-3); text-transform:uppercase; letter-spacing:.12em; }
   .note { color:var(--text-2); font-size:14px; }
+  .cal-links { font-size:15px; font-weight:650; }
+  .cal-links a { display:inline-block; padding:10px 0; margin-right:20px; }
   .checked { color:var(--text-2); font-size:13px; margin:6px 0 16px; }
   figure { margin:16px 0; }
   figure img { display:block; width:100%; height:auto; max-width:100%; border-radius:8px; background:var(--panel); }
@@ -1212,6 +1227,9 @@ const drift = [];
 const norm = (t, f) => CHECK_STRICT ? t
   : f === 'sitemap.xml' ? t.replace(/<lastmod>[^<]*<\/lastmod>/g, '<lastmod>-</lastmod>')
   : /^f\/[^/]+\/index\.html$/.test(f) ? t.replace(/<time class="updated" datetime="[^"]*">[^<]*<\/time>/g, '<time class="updated">-</time>')
+  // DTSTAMP is the page's lastmod, so it moves with the calendar for the same
+  // reason the page's "Last updated" does.
+  : /^f\/[^/]+\/schedule\.ics$/.test(f) ? t.replace(/DTSTAMP:\d{8}T\d{6}Z/g, 'DTSTAMP:-')
   : t;
 // strictOnly: a file whose whole job is to carry dates across runs moves on the
 // calendar for the same reason the dates do, so the PR-facing --check skips it
@@ -1249,6 +1267,32 @@ function scheduleFeed(entry) {
   const hash = createHash('sha256').update(JSON.stringify(acts)).digest('hex').slice(0, 16);
   return `{\n  "festivalId": ${JSON.stringify(cfg.id)},\n  "source": ${JSON.stringify(cfg.scheduleSource || null)},\n` +
          `  "scheduleHash": "${hash}",\n  "acts": [\n${acts.map(o => '    ' + JSON.stringify(o)).join(',\n')}\n  ]\n}\n`;
+}
+
+// /f/<id>/schedule.ics: the same timed sets as the grid above, as a calendar a
+// person subscribes to once (webcal://). Rules live in scripts/lib/festival-ics.mjs.
+// Same block/day/date logic as scheduleGrid, so the calendar and the page
+// cannot put a set on different dates (ACL W2, Summerfest's three blocks).
+function scheduleIcs(entry, lastmod) {
+  const cfg = entry.config;
+  const dates = eventDates(cfg);
+  if (!dates || !cfg.tz) return null;
+  const stages = DS[cfg.id]?.stages || [];
+  const stageName = (sid) => stages.find(t => t.id === sid)?.name || null;
+  const acts = scheduleActs(DS[cfg.id]?.artists).filter(a => a.start && a.start !== '');
+  if (!acts.length) return null;
+  const blocks = weekendBlocks(cfg);
+  const pageUrl = `${ORIGIN}/f/${cfg.id}/`;
+  const sets = [];
+  for (const b of blocks) for (const a of acts.filter(inBlock(blocks, b))) {
+    const { ymd } = dayLabel(cfg.dayDates, a.day, dates, b.shift);
+    if (!ymd) continue;
+    const anchor = setId(b, a);
+    sets.push({ uid: `${cfg.id}-${anchor}@plursky.com`, ymd, start: a.start, end: a.end, name: a.name, stage: stageName(a.stage), url: `${pageUrl}#${anchor}` });
+  }
+  const venue = String(cfg.location || '').split('·').map(s => s.trim()).filter(Boolean).join(', ');
+  const { text, events } = festivalIcs({ id: cfg.id, name: cfg.name, tz: cfg.tz, location: venue, url: pageUrl, stamp: lastmod }, sets);
+  return events ? text : null;
 }
 
 const rows = [];
@@ -1317,6 +1361,8 @@ for (const entry of REG) {
   // would blind schedule-change detection for exactly the five festivals
   // whose schedules are about to drop.
   if (entry.available) emit(path.join(dir, 'schedule.json'), scheduleFeed(entry));
+  const ics = entry.available ? scheduleIcs(entry, lastmod) : null;
+  if (ics) emit(path.join(dir, 'schedule.ics'), ics);
   const n = new Set((DS[id]?.artists || []).map(a => a.name)).size;
   const d = eventDates(entry.config);
   rows.push({ id, artists: n, dates: d ? `${d.start}..${d.end}` : 'NO DATES' });

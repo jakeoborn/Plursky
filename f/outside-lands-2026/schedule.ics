@@ -1,0 +1,1681 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Plursky//Festival set times//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Outside Lands 2026 set times · Plursky
+X-WR-TIMEZONE:America/Los_Angeles
+X-WR-CALDESC:Every timed set at Outside Lands 2026. Updates itself when the
+  schedule changes. https://plursky.com/f/outside-lands-2026/
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os21@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260807T190000Z
+DTEND:20260807T193000Z
+SUMMARY:Dani Satin and Always Hallways · Panhandle
+LOCATION:Panhandle\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Panhandle\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os21
+URL:https://plursky.com/f/outside-lands-2026/#set-os21
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os27@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260807T190000Z
+DTEND:20260807T195500Z
+SUMMARY:Vertigo · SOMA Tent
+LOCATION:SOMA Tent\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · SOMA Tent\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os27
+URL:https://plursky.com/f/outside-lands-2026/#set-os27
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os1@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260807T190500Z
+DTEND:20260807T195000Z
+SUMMARY:Faouzia · Lands End
+LOCATION:Lands End\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Lands End\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os1
+URL:https://plursky.com/f/outside-lands-2026/#set-os1
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os14@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260807T192500Z
+DTEND:20260807T201000Z
+SUMMARY:Bad Nerves · Sutro
+LOCATION:Sutro\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Sutro\nhttps://plursky.com/f/outside-land
+ s-2026/#set-os14
+URL:https://plursky.com/f/outside-lands-2026/#set-os14
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os34@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260807T193000Z
+DTEND:20260807T201500Z
+SUMMARY:DJ Erinyes · Dolores'
+LOCATION:Dolores'\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Dolores'\nhttps://plursky.com/f/outside-l
+ ands-2026/#set-os34
+URL:https://plursky.com/f/outside-lands-2026/#set-os34
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os8@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260807T193000Z
+DTEND:20260807T202000Z
+SUMMARY:Nezza · Twin Peaks
+LOCATION:Twin Peaks\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Twin Peaks\nhttps://plursky.com/f/outside
+ -lands-2026/#set-os8
+URL:https://plursky.com/f/outside-lands-2026/#set-os8
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os28@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260807T195500Z
+DTEND:20260807T212500Z
+SUMMARY:Luke Alessi · SOMA Tent
+LOCATION:SOMA Tent\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · SOMA Tent\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os28
+URL:https://plursky.com/f/outside-lands-2026/#set-os28
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os35@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260807T201500Z
+DTEND:20260807T210000Z
+SUMMARY:DJ Dolomedes · Dolores'
+LOCATION:Dolores'\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Dolores'\nhttps://plursky.com/f/outside-l
+ ands-2026/#set-os35
+URL:https://plursky.com/f/outside-lands-2026/#set-os35
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os22@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260807T202000Z
+DTEND:20260807T210000Z
+SUMMARY:Chezile · Panhandle
+LOCATION:Panhandle\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Panhandle\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os22
+URL:https://plursky.com/f/outside-lands-2026/#set-os22
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os2@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260807T202000Z
+DTEND:20260807T210500Z
+SUMMARY:Grace Ives · Lands End
+LOCATION:Lands End\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Lands End\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os2
+URL:https://plursky.com/f/outside-lands-2026/#set-os2
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os15@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260807T204000Z
+DTEND:20260807T212500Z
+SUMMARY:Die Spitz · Sutro
+LOCATION:Sutro\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Sutro\nhttps://plursky.com/f/outside-land
+ s-2026/#set-os15
+URL:https://plursky.com/f/outside-lands-2026/#set-os15
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os36@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260807T210000Z
+DTEND:20260807T213000Z
+SUMMARY:Pink Stiletto · Dolores'
+LOCATION:Dolores'\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Dolores'\nhttps://plursky.com/f/outside-l
+ ands-2026/#set-os36
+URL:https://plursky.com/f/outside-lands-2026/#set-os36
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os45@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260807T210500Z
+DTEND:20260807T213500Z
+SUMMARY:Nezza · Duboce Triangle
+LOCATION:Duboce Triangle\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Duboce Triangle\nhttps://plursky.com/f/ou
+ tside-lands-2026/#set-os45
+URL:https://plursky.com/f/outside-lands-2026/#set-os45
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os9@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260807T210500Z
+DTEND:20260807T215000Z
+SUMMARY:Kerala Dust · Twin Peaks
+LOCATION:Twin Peaks\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Twin Peaks\nhttps://plursky.com/f/outside
+ -lands-2026/#set-os9
+URL:https://plursky.com/f/outside-lands-2026/#set-os9
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os29@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260807T212500Z
+DTEND:20260807T225500Z
+SUMMARY:Tobiahs · SOMA Tent
+LOCATION:SOMA Tent\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · SOMA Tent\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os29
+URL:https://plursky.com/f/outside-lands-2026/#set-os29
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os37@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260807T213000Z
+DTEND:20260807T222000Z
+SUMMARY:DJ Starr Noir · Dolores'
+LOCATION:Dolores'\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Dolores'\nhttps://plursky.com/f/outside-l
+ ands-2026/#set-os37
+URL:https://plursky.com/f/outside-lands-2026/#set-os37
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os3@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260807T213500Z
+DTEND:20260807T222500Z
+SUMMARY:Durand Bernar · Lands End
+LOCATION:Lands End\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Lands End\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os3
+URL:https://plursky.com/f/outside-lands-2026/#set-os3
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os23@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260807T215000Z
+DTEND:20260807T223000Z
+SUMMARY:Sawyer Hill · Panhandle
+LOCATION:Panhandle\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Panhandle\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os23
+URL:https://plursky.com/f/outside-lands-2026/#set-os23
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os16@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260807T215500Z
+DTEND:20260807T224000Z
+SUMMARY:The Story So Far · Sutro
+LOCATION:Sutro\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Sutro\nhttps://plursky.com/f/outside-land
+ s-2026/#set-os16
+URL:https://plursky.com/f/outside-lands-2026/#set-os16
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os38@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260807T222000Z
+DTEND:20260807T225000Z
+SUMMARY:Hot Goth Freak Show · Dolores'
+LOCATION:Dolores'\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Dolores'\nhttps://plursky.com/f/outside-l
+ ands-2026/#set-os38
+URL:https://plursky.com/f/outside-lands-2026/#set-os38
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os46@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260807T222500Z
+DTEND:20260807T225500Z
+SUMMARY:Chezile · Duboce Triangle
+LOCATION:Duboce Triangle\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Duboce Triangle\nhttps://plursky.com/f/ou
+ tside-lands-2026/#set-os46
+URL:https://plursky.com/f/outside-lands-2026/#set-os46
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os10@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260807T223500Z
+DTEND:20260807T232500Z
+SUMMARY:Alleycvt · Twin Peaks
+LOCATION:Twin Peaks\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Twin Peaks\nhttps://plursky.com/f/outside
+ -lands-2026/#set-os10
+URL:https://plursky.com/f/outside-lands-2026/#set-os10
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os39@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260807T225000Z
+DTEND:20260807T233500Z
+SUMMARY:Soltera · Dolores'
+LOCATION:Dolores'\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Dolores'\nhttps://plursky.com/f/outside-l
+ ands-2026/#set-os39
+URL:https://plursky.com/f/outside-lands-2026/#set-os39
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os30@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260807T225500Z
+DTEND:20260808T002500Z
+SUMMARY:MPH · SOMA Tent
+LOCATION:SOMA Tent\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · SOMA Tent\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os30
+URL:https://plursky.com/f/outside-lands-2026/#set-os30
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os4@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260807T225500Z
+DTEND:20260807T234500Z
+SUMMARY:Wet Leg · Lands End
+LOCATION:Lands End\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Lands End\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os4
+URL:https://plursky.com/f/outside-lands-2026/#set-os4
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os17@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260807T231000Z
+DTEND:20260808T001000Z
+SUMMARY:Sierra Ferrell · Sutro
+LOCATION:Sutro\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Sutro\nhttps://plursky.com/f/outside-land
+ s-2026/#set-os17
+URL:https://plursky.com/f/outside-lands-2026/#set-os17
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os24@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260807T232500Z
+DTEND:20260808T000500Z
+SUMMARY:Billie Marten · Panhandle
+LOCATION:Panhandle\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Panhandle\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os24
+URL:https://plursky.com/f/outside-lands-2026/#set-os24
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os40@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260807T233500Z
+DTEND:20260808T002000Z
+SUMMARY:DJ Hopeless & Hot Goth Pole Show · Dolores'
+LOCATION:Dolores'\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Dolores'\nhttps://plursky.com/f/outside-l
+ ands-2026/#set-os40
+URL:https://plursky.com/f/outside-lands-2026/#set-os40
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os47@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260807T234500Z
+DTEND:20260808T001500Z
+SUMMARY:Luke Alessi · Duboce Triangle
+LOCATION:Duboce Triangle\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Duboce Triangle\nhttps://plursky.com/f/ou
+ tside-lands-2026/#set-os47
+URL:https://plursky.com/f/outside-lands-2026/#set-os47
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os11@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T001000Z
+DTEND:20260808T010000Z
+SUMMARY:Tinashe · Twin Peaks
+LOCATION:Twin Peaks\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Twin Peaks\nhttps://plursky.com/f/outside
+ -lands-2026/#set-os11
+URL:https://plursky.com/f/outside-lands-2026/#set-os11
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os5@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T001500Z
+DTEND:20260808T010000Z
+SUMMARY:GloRilla · Lands End
+LOCATION:Lands End\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Lands End\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os5
+URL:https://plursky.com/f/outside-lands-2026/#set-os5
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os41@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T002000Z
+DTEND:20260808T010500Z
+SUMMARY:Ms. Boan · Dolores'
+LOCATION:Dolores'\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Dolores'\nhttps://plursky.com/f/outside-l
+ ands-2026/#set-os41
+URL:https://plursky.com/f/outside-lands-2026/#set-os41
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os31@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T002500Z
+DTEND:20260808T015500Z
+SUMMARY:Ki/Ki · SOMA Tent
+LOCATION:SOMA Tent\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · SOMA Tent\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os31
+URL:https://plursky.com/f/outside-lands-2026/#set-os31
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os18@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T005000Z
+DTEND:20260808T015000Z
+SUMMARY:Geese · Sutro
+LOCATION:Sutro\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Sutro\nhttps://plursky.com/f/outside-land
+ s-2026/#set-os18
+URL:https://plursky.com/f/outside-lands-2026/#set-os18
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os25@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T010000Z
+DTEND:20260808T014000Z
+SUMMARY:Goldie Boutilier · Panhandle
+LOCATION:Panhandle\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Panhandle\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os25
+URL:https://plursky.com/f/outside-lands-2026/#set-os25
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os42@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T010500Z
+DTEND:20260808T013500Z
+SUMMARY:Hot Goth Freak Show · Dolores'
+LOCATION:Dolores'\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Dolores'\nhttps://plursky.com/f/outside-l
+ ands-2026/#set-os42
+URL:https://plursky.com/f/outside-lands-2026/#set-os42
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os48@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T011500Z
+DTEND:20260808T014500Z
+SUMMARY:Alleycvt · Duboce Triangle
+LOCATION:Duboce Triangle\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Duboce Triangle\nhttps://plursky.com/f/ou
+ tside-lands-2026/#set-os48
+URL:https://plursky.com/f/outside-lands-2026/#set-os48
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os6@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T013000Z
+DTEND:20260808T024000Z
+SUMMARY:Labrinth · Lands End
+LOCATION:Lands End\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Lands End\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os6
+URL:https://plursky.com/f/outside-lands-2026/#set-os6
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os12@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T014500Z
+DTEND:20260808T023500Z
+SUMMARY:Clipse · Twin Peaks
+LOCATION:Twin Peaks\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Twin Peaks\nhttps://plursky.com/f/outside
+ -lands-2026/#set-os12
+URL:https://plursky.com/f/outside-lands-2026/#set-os12
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os43@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T014500Z
+DTEND:20260808T023000Z
+SUMMARY:Light Asylum · Dolores'
+LOCATION:Dolores'\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Dolores'\nhttps://plursky.com/f/outside-l
+ ands-2026/#set-os43
+URL:https://plursky.com/f/outside-lands-2026/#set-os43
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os32@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T015500Z
+DTEND:20260808T032500Z
+SUMMARY:¥ØU$UK€ ¥UK1MAT$U · SOMA Tent
+LOCATION:SOMA Tent\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · SOMA Tent\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os32
+URL:https://plursky.com/f/outside-lands-2026/#set-os32
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os19@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T022000Z
+DTEND:20260808T032000Z
+SUMMARY:Turnstile · Sutro
+LOCATION:Sutro\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Sutro\nhttps://plursky.com/f/outside-land
+ s-2026/#set-os19
+URL:https://plursky.com/f/outside-lands-2026/#set-os19
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os44@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T023000Z
+DTEND:20260808T033000Z
+SUMMARY:Romy (DJ set) · Dolores'
+LOCATION:Dolores'\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Dolores'\nhttps://plursky.com/f/outside-l
+ ands-2026/#set-os44
+URL:https://plursky.com/f/outside-lands-2026/#set-os44
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os26@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T023500Z
+DTEND:20260808T032000Z
+SUMMARY:Dylan Brady · Panhandle
+LOCATION:Panhandle\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Panhandle\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os26
+URL:https://plursky.com/f/outside-lands-2026/#set-os26
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os49@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T025500Z
+DTEND:20260808T034000Z
+SUMMARY:tobiahs · Duboce Triangle
+LOCATION:Duboce Triangle\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Duboce Triangle\nhttps://plursky.com/f/ou
+ tside-lands-2026/#set-os49
+URL:https://plursky.com/f/outside-lands-2026/#set-os49
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os13@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T032500Z
+DTEND:20260808T045500Z
+SUMMARY:Griztronics · Twin Peaks
+LOCATION:Twin Peaks\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Twin Peaks\nhttps://plursky.com/f/outside
+ -lands-2026/#set-os13
+URL:https://plursky.com/f/outside-lands-2026/#set-os13
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os33@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T032500Z
+DTEND:20260808T042500Z
+SUMMARY:55 ODD MOB & OMNOM present HYPERBEAM · SOMA Tent
+LOCATION:SOMA Tent\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · SOMA Tent\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os33
+URL:https://plursky.com/f/outside-lands-2026/#set-os33
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os7@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T034000Z
+DTEND:20260808T050000Z
+SUMMARY:Charli xcx · Lands End
+LOCATION:Lands End\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Lands End\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os7
+URL:https://plursky.com/f/outside-lands-2026/#set-os7
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os20@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T035000Z
+DTEND:20260808T045000Z
+SUMMARY:Modest Mouse · Sutro
+LOCATION:Sutro\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Sutro\nhttps://plursky.com/f/outside-land
+ s-2026/#set-os20
+URL:https://plursky.com/f/outside-lands-2026/#set-os20
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os70@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T190000Z
+DTEND:20260808T193000Z
+SUMMARY:Ryman · Panhandle
+LOCATION:Panhandle\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Panhandle\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os70
+URL:https://plursky.com/f/outside-lands-2026/#set-os70
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os50@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T191000Z
+DTEND:20260808T195500Z
+SUMMARY:Bandalos Chinos · Lands End
+LOCATION:Lands End\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Lands End\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os50
+URL:https://plursky.com/f/outside-lands-2026/#set-os50
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os89@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T191500Z
+DTEND:20260808T204500Z
+SUMMARY:Tycho DJ Set · Duboce Triangle
+LOCATION:Duboce Triangle\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Duboce Triangle\nhttps://plursky.com/f/ou
+ tside-lands-2026/#set-os89
+URL:https://plursky.com/f/outside-lands-2026/#set-os89
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os57@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T193000Z
+DTEND:20260808T201000Z
+SUMMARY:Red Leather · Twin Peaks
+LOCATION:Twin Peaks\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Twin Peaks\nhttps://plursky.com/f/outside
+ -lands-2026/#set-os57
+URL:https://plursky.com/f/outside-lands-2026/#set-os57
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os82@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T193000Z
+DTEND:20260808T203000Z
+SUMMARY:OUT TONIGHT: A Musical Singalong feat. D’Arcy Drollinger · Dolor
+ es'
+LOCATION:Dolores'\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Dolores'\nhttps://plursky.com/f/outside-l
+ ands-2026/#set-os82
+URL:https://plursky.com/f/outside-lands-2026/#set-os82
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os63@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T193500Z
+DTEND:20260808T202000Z
+SUMMARY:Rio Kosta · Sutro
+LOCATION:Sutro\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Sutro\nhttps://plursky.com/f/outside-land
+ s-2026/#set-os63
+URL:https://plursky.com/f/outside-lands-2026/#set-os63
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os76@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T193500Z
+DTEND:20260808T205500Z
+SUMMARY:Bad Juuju · SOMA Tent
+LOCATION:SOMA Tent\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · SOMA Tent\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os76
+URL:https://plursky.com/f/outside-lands-2026/#set-os76
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os71@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T201000Z
+DTEND:20260808T205000Z
+SUMMARY:Racing Mount Pleasant · Panhandle
+LOCATION:Panhandle\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Panhandle\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os71
+URL:https://plursky.com/f/outside-lands-2026/#set-os71
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os51@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T202500Z
+DTEND:20260808T211000Z
+SUMMARY:Haute & Freddy · Lands End
+LOCATION:Lands End\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Lands End\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os51
+URL:https://plursky.com/f/outside-lands-2026/#set-os51
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os83@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T203000Z
+DTEND:20260808T211500Z
+SUMMARY:OASIS DJ Set: Beverly Chills · Dolores'
+LOCATION:Dolores'\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Dolores'\nhttps://plursky.com/f/outside-l
+ ands-2026/#set-os83
+URL:https://plursky.com/f/outside-lands-2026/#set-os83
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os64@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T205000Z
+DTEND:20260808T213500Z
+SUMMARY:Wunderhorse · Sutro
+LOCATION:Sutro\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Sutro\nhttps://plursky.com/f/outside-land
+ s-2026/#set-os64
+URL:https://plursky.com/f/outside-lands-2026/#set-os64
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os58@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T205500Z
+DTEND:20260808T213500Z
+SUMMARY:After · Twin Peaks
+LOCATION:Twin Peaks\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Twin Peaks\nhttps://plursky.com/f/outside
+ -lands-2026/#set-os58
+URL:https://plursky.com/f/outside-lands-2026/#set-os58
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os77@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T205500Z
+DTEND:20260808T222500Z
+SUMMARY:1-800 Girls · SOMA Tent
+LOCATION:SOMA Tent\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · SOMA Tent\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os77
+URL:https://plursky.com/f/outside-lands-2026/#set-os77
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os84@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T210000Z
+DTEND:20260808T213000Z
+SUMMARY:Pink Stiletto · Dolores'
+LOCATION:Dolores'\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Dolores'\nhttps://plursky.com/f/outside-l
+ ands-2026/#set-os84
+URL:https://plursky.com/f/outside-lands-2026/#set-os84
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os90@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T211000Z
+DTEND:20260808T214000Z
+SUMMARY:Bandalos Chinos · Duboce Triangle
+LOCATION:Duboce Triangle\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Duboce Triangle\nhttps://plursky.com/f/ou
+ tside-lands-2026/#set-os90
+URL:https://plursky.com/f/outside-lands-2026/#set-os90
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os85@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T211500Z
+DTEND:20260808T221500Z
+SUMMARY:REPARATIONS w/ DJ Newoncé · Dolores'
+LOCATION:Dolores'\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Dolores'\nhttps://plursky.com/f/outside-l
+ ands-2026/#set-os85
+URL:https://plursky.com/f/outside-lands-2026/#set-os85
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os72@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T213500Z
+DTEND:20260808T220500Z
+SUMMARY:Ally Evenson · Panhandle
+LOCATION:Panhandle\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Panhandle\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os72
+URL:https://plursky.com/f/outside-lands-2026/#set-os72
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os52@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T214000Z
+DTEND:20260808T223000Z
+SUMMARY:Audrey Hobert · Lands End
+LOCATION:Lands End\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Lands End\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os52
+URL:https://plursky.com/f/outside-lands-2026/#set-os52
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os65@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T220500Z
+DTEND:20260808T225000Z
+SUMMARY:Sienna Spiro · Sutro
+LOCATION:Sutro\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Sutro\nhttps://plursky.com/f/outside-land
+ s-2026/#set-os65
+URL:https://plursky.com/f/outside-lands-2026/#set-os65
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os59@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T221000Z
+DTEND:20260808T230000Z
+SUMMARY:Laszewo · Twin Peaks
+LOCATION:Twin Peaks\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Twin Peaks\nhttps://plursky.com/f/outside
+ -lands-2026/#set-os59
+URL:https://plursky.com/f/outside-lands-2026/#set-os59
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os86@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T221500Z
+DTEND:20260808T234500Z
+SUMMARY:REPARATIONS w/ Nicki Jizz feat. Kori King · Dolores'
+LOCATION:Dolores'\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Dolores'\nhttps://plursky.com/f/outside-l
+ ands-2026/#set-os86
+URL:https://plursky.com/f/outside-lands-2026/#set-os86
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os78@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T222500Z
+DTEND:20260808T235500Z
+SUMMARY:Camoufly · SOMA Tent
+LOCATION:SOMA Tent\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · SOMA Tent\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os78
+URL:https://plursky.com/f/outside-lands-2026/#set-os78
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os91@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T223000Z
+DTEND:20260808T230000Z
+SUMMARY:Racing Mount Pleasant · Duboce Triangle
+LOCATION:Duboce Triangle\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Duboce Triangle\nhttps://plursky.com/f/ou
+ tside-lands-2026/#set-os91
+URL:https://plursky.com/f/outside-lands-2026/#set-os91
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os53@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T230000Z
+DTEND:20260808T235000Z
+SUMMARY:Lucy Dacus · Lands End
+LOCATION:Lands End\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Lands End\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os53
+URL:https://plursky.com/f/outside-lands-2026/#set-os53
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os73@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T230000Z
+DTEND:20260808T234000Z
+SUMMARY:Automatic · Panhandle
+LOCATION:Panhandle\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Panhandle\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os73
+URL:https://plursky.com/f/outside-lands-2026/#set-os73
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os66@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T232000Z
+DTEND:20260809T000500Z
+SUMMARY:Yard Act · Sutro
+LOCATION:Sutro\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Sutro\nhttps://plursky.com/f/outside-land
+ s-2026/#set-os66
+URL:https://plursky.com/f/outside-lands-2026/#set-os66
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os60@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T234500Z
+DTEND:20260809T004500Z
+SUMMARY:Malcom Todd · Twin Peaks
+LOCATION:Twin Peaks\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Twin Peaks\nhttps://plursky.com/f/outside
+ -lands-2026/#set-os60
+URL:https://plursky.com/f/outside-lands-2026/#set-os60
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os87@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T234500Z
+DTEND:20260809T004500Z
+SUMMARY:OASIS DJ Set: DJ Ion The Prize · Dolores'
+LOCATION:Dolores'\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Dolores'\nhttps://plursky.com/f/outside-l
+ ands-2026/#set-os87
+URL:https://plursky.com/f/outside-lands-2026/#set-os87
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os92@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T235000Z
+DTEND:20260809T002000Z
+SUMMARY:RIO KOSTA (DJ Set) · Duboce Triangle
+LOCATION:Duboce Triangle\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Duboce Triangle\nhttps://plursky.com/f/ou
+ tside-lands-2026/#set-os92
+URL:https://plursky.com/f/outside-lands-2026/#set-os92
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os79@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260808T235500Z
+DTEND:20260809T012500Z
+SUMMARY:Sultan + Shepard · SOMA Tent
+LOCATION:SOMA Tent\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · SOMA Tent\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os79
+URL:https://plursky.com/f/outside-lands-2026/#set-os79
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os54@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260809T002000Z
+DTEND:20260809T012000Z
+SUMMARY:Ethel Cain · Lands End
+LOCATION:Lands End\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Lands End\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os54
+URL:https://plursky.com/f/outside-lands-2026/#set-os54
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os67@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260809T003500Z
+DTEND:20260809T012000Z
+SUMMARY:Snow Strippers · Sutro
+LOCATION:Sutro\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Sutro\nhttps://plursky.com/f/outside-land
+ s-2026/#set-os67
+URL:https://plursky.com/f/outside-lands-2026/#set-os67
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os74@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260809T004500Z
+DTEND:20260809T012500Z
+SUMMARY:Silvana Estrada · Panhandle
+LOCATION:Panhandle\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Panhandle\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os74
+URL:https://plursky.com/f/outside-lands-2026/#set-os74
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os88@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260809T004500Z
+DTEND:20260809T021500Z
+SUMMARY:PRINCESS w/ Tito Soto feat. Lydia B Kollins · Dolores'
+LOCATION:Dolores'\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Dolores'\nhttps://plursky.com/f/outside-l
+ ands-2026/#set-os88
+URL:https://plursky.com/f/outside-lands-2026/#set-os88
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os93@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260809T012000Z
+DTEND:20260809T015000Z
+SUMMARY:Laszewo · Duboce Triangle
+LOCATION:Duboce Triangle\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Duboce Triangle\nhttps://plursky.com/f/ou
+ tside-lands-2026/#set-os93
+URL:https://plursky.com/f/outside-lands-2026/#set-os93
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os61@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260809T013000Z
+DTEND:20260809T022000Z
+SUMMARY:Dijon · Twin Peaks
+LOCATION:Twin Peaks\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Twin Peaks\nhttps://plursky.com/f/outside
+ -lands-2026/#set-os61
+URL:https://plursky.com/f/outside-lands-2026/#set-os61
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os80@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260809T014000Z
+DTEND:20260809T031000Z
+SUMMARY:Ben Böhmer · SOMA Tent
+LOCATION:SOMA Tent\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · SOMA Tent\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os80
+URL:https://plursky.com/f/outside-lands-2026/#set-os80
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os55@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260809T015000Z
+DTEND:20260809T025000Z
+SUMMARY:Djo · Lands End
+LOCATION:Lands End\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Lands End\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os55
+URL:https://plursky.com/f/outside-lands-2026/#set-os55
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os68@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260809T015000Z
+DTEND:20260809T030000Z
+SUMMARY:It’s murph · Sutro
+LOCATION:Sutro\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Sutro\nhttps://plursky.com/f/outside-land
+ s-2026/#set-os68
+URL:https://plursky.com/f/outside-lands-2026/#set-os68
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os75@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260809T022000Z
+DTEND:20260809T030500Z
+SUMMARY:DJ Trixie Mattel · Panhandle
+LOCATION:Panhandle\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Panhandle\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os75
+URL:https://plursky.com/f/outside-lands-2026/#set-os75
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os94@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260809T025000Z
+DTEND:20260809T033500Z
+SUMMARY:Bad Juuju · Duboce Triangle
+LOCATION:Duboce Triangle\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Duboce Triangle\nhttps://plursky.com/f/ou
+ tside-lands-2026/#set-os94
+URL:https://plursky.com/f/outside-lands-2026/#set-os94
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os62@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260809T031000Z
+DTEND:20260809T042500Z
+SUMMARY:The xx · Twin Peaks
+LOCATION:Twin Peaks\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Twin Peaks\nhttps://plursky.com/f/outside
+ -lands-2026/#set-os62
+URL:https://plursky.com/f/outside-lands-2026/#set-os62
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os81@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260809T032500Z
+DTEND:20260809T045500Z
+SUMMARY:Lane 8 · SOMA Tent
+LOCATION:SOMA Tent\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · SOMA Tent\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os81
+URL:https://plursky.com/f/outside-lands-2026/#set-os81
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os56@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260809T033500Z
+DTEND:20260809T045500Z
+SUMMARY:The Strokes · Lands End
+LOCATION:Lands End\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Lands End\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os56
+URL:https://plursky.com/f/outside-lands-2026/#set-os56
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os69@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260809T034500Z
+DTEND:20260809T044500Z
+SUMMARY:PinkPantheress · Sutro
+LOCATION:Sutro\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Sutro\nhttps://plursky.com/f/outside-land
+ s-2026/#set-os69
+URL:https://plursky.com/f/outside-lands-2026/#set-os69
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os115@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260809T190000Z
+DTEND:20260809T194000Z
+SUMMARY:Cruz Beckham · Panhandle
+LOCATION:Panhandle\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Panhandle\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os115
+URL:https://plursky.com/f/outside-lands-2026/#set-os115
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os95@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260809T190000Z
+DTEND:20260809T194000Z
+SUMMARY:SF Gay Men’s Chorus · Lands End
+LOCATION:Lands End\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Lands End\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os95
+URL:https://plursky.com/f/outside-lands-2026/#set-os95
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os121@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260809T190500Z
+DTEND:20260809T203500Z
+SUMMARY:Etari · SOMA Tent
+LOCATION:SOMA Tent\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · SOMA Tent\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os121
+URL:https://plursky.com/f/outside-lands-2026/#set-os121
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os108@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260809T194000Z
+DTEND:20260809T203000Z
+SUMMARY:Death Cab for Cutie · Sutro
+LOCATION:Sutro\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Sutro\nhttps://plursky.com/f/outside-land
+ s-2026/#set-os108
+URL:https://plursky.com/f/outside-lands-2026/#set-os108
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os102@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260809T194500Z
+DTEND:20260809T202500Z
+SUMMARY:Magnus Ferrell · Twin Peaks
+LOCATION:Twin Peaks\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Twin Peaks\nhttps://plursky.com/f/outside
+ -lands-2026/#set-os102
+URL:https://plursky.com/f/outside-lands-2026/#set-os102
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os127@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260809T194500Z
+DTEND:20260809T212500Z
+SUMMARY:Charles Hawthorne · Dolores'
+LOCATION:Dolores'\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Dolores'\nhttps://plursky.com/f/outside-l
+ ands-2026/#set-os127
+URL:https://plursky.com/f/outside-lands-2026/#set-os127
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os96@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260809T201000Z
+DTEND:20260809T205500Z
+SUMMARY:Sports · Lands End
+LOCATION:Lands End\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Lands End\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os96
+URL:https://plursky.com/f/outside-lands-2026/#set-os96
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os116@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260809T202500Z
+DTEND:20260809T210500Z
+SUMMARY:Day We Ran · Panhandle
+LOCATION:Panhandle\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Panhandle\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os116
+URL:https://plursky.com/f/outside-lands-2026/#set-os116
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os122@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260809T203500Z
+DTEND:20260809T221000Z
+SUMMARY:X Club. · SOMA Tent
+LOCATION:SOMA Tent\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · SOMA Tent\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os122
+URL:https://plursky.com/f/outside-lands-2026/#set-os122
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os109@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260809T205000Z
+DTEND:20260809T213000Z
+SUMMARY:Marlon Funaki · Sutro
+LOCATION:Sutro\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Sutro\nhttps://plursky.com/f/outside-land
+ s-2026/#set-os109
+URL:https://plursky.com/f/outside-lands-2026/#set-os109
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os135@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260809T210500Z
+DTEND:20260809T213500Z
+SUMMARY:Britton · Duboce Triangle
+LOCATION:Duboce Triangle\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Duboce Triangle\nhttps://plursky.com/f/ou
+ tside-lands-2026/#set-os135
+URL:https://plursky.com/f/outside-lands-2026/#set-os135
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os103@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260809T211000Z
+DTEND:20260809T215500Z
+SUMMARY:sosocamo · Twin Peaks
+LOCATION:Twin Peaks\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Twin Peaks\nhttps://plursky.com/f/outside
+ -lands-2026/#set-os103
+URL:https://plursky.com/f/outside-lands-2026/#set-os103
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os128@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260809T212500Z
+DTEND:20260809T224500Z
+SUMMARY:Mark O’Brien · Dolores'
+LOCATION:Dolores'\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Dolores'\nhttps://plursky.com/f/outside-l
+ ands-2026/#set-os128
+URL:https://plursky.com/f/outside-lands-2026/#set-os128
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os97@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260809T212500Z
+DTEND:20260809T221500Z
+SUMMARY:Balu Brigada · Lands End
+LOCATION:Lands End\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Lands End\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os97
+URL:https://plursky.com/f/outside-lands-2026/#set-os97
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os117@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260809T215500Z
+DTEND:20260809T223500Z
+SUMMARY:Amble · Panhandle
+LOCATION:Panhandle\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Panhandle\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os117
+URL:https://plursky.com/f/outside-lands-2026/#set-os117
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os110@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260809T220000Z
+DTEND:20260809T224500Z
+SUMMARY:Momma · Sutro
+LOCATION:Sutro\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Sutro\nhttps://plursky.com/f/outside-land
+ s-2026/#set-os110
+URL:https://plursky.com/f/outside-lands-2026/#set-os110
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os123@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260809T221000Z
+DTEND:20260809T234500Z
+SUMMARY:Carlita · SOMA Tent
+LOCATION:SOMA Tent\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · SOMA Tent\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os123
+URL:https://plursky.com/f/outside-lands-2026/#set-os123
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os136@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260809T222500Z
+DTEND:20260809T225500Z
+SUMMARY:Day We Ran · Duboce Triangle
+LOCATION:Duboce Triangle\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Duboce Triangle\nhttps://plursky.com/f/ou
+ tside-lands-2026/#set-os136
+URL:https://plursky.com/f/outside-lands-2026/#set-os136
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os104@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260809T224000Z
+DTEND:20260809T233000Z
+SUMMARY:Destin Conrad · Twin Peaks
+LOCATION:Twin Peaks\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Twin Peaks\nhttps://plursky.com/f/outside
+ -lands-2026/#set-os104
+URL:https://plursky.com/f/outside-lands-2026/#set-os104
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os129@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260809T224500Z
+DTEND:20260809T230500Z
+SUMMARY:Grace Towers & Friends · Dolores'
+LOCATION:Dolores'\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Dolores'\nhttps://plursky.com/f/outside-l
+ ands-2026/#set-os129
+URL:https://plursky.com/f/outside-lands-2026/#set-os129
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os98@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260809T224500Z
+DTEND:20260809T234500Z
+SUMMARY:JADE · Lands End
+LOCATION:Lands End\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Lands End\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os98
+URL:https://plursky.com/f/outside-lands-2026/#set-os98
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os130@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260809T230500Z
+DTEND:20260810T000500Z
+SUMMARY:Stanley Frank Sensation · Dolores'
+LOCATION:Dolores'\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Dolores'\nhttps://plursky.com/f/outside-l
+ ands-2026/#set-os130
+URL:https://plursky.com/f/outside-lands-2026/#set-os130
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os111@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260809T231500Z
+DTEND:20260810T000500Z
+SUMMARY:Kingfishr · Sutro
+LOCATION:Sutro\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Sutro\nhttps://plursky.com/f/outside-land
+ s-2026/#set-os111
+URL:https://plursky.com/f/outside-lands-2026/#set-os111
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os118@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260809T233000Z
+DTEND:20260810T001000Z
+SUMMARY:Night Tapes · Panhandle
+LOCATION:Panhandle\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Panhandle\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os118
+URL:https://plursky.com/f/outside-lands-2026/#set-os118
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os124@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260809T234500Z
+DTEND:20260810T012000Z
+SUMMARY:Boys Noize · SOMA Tent
+LOCATION:SOMA Tent\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · SOMA Tent\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os124
+URL:https://plursky.com/f/outside-lands-2026/#set-os124
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os137@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260809T234500Z
+DTEND:20260810T003000Z
+SUMMARY:Frost Children (DJ Set) · Duboce Triangle
+LOCATION:Duboce Triangle\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Duboce Triangle\nhttps://plursky.com/f/ou
+ tside-lands-2026/#set-os137
+URL:https://plursky.com/f/outside-lands-2026/#set-os137
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os131@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260810T000500Z
+DTEND:20260810T010500Z
+SUMMARY:Beya · Dolores'
+LOCATION:Dolores'\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Dolores'\nhttps://plursky.com/f/outside-l
+ ands-2026/#set-os131
+URL:https://plursky.com/f/outside-lands-2026/#set-os131
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os105@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260810T001500Z
+DTEND:20260810T010500Z
+SUMMARY:kwn · Twin Peaks
+LOCATION:Twin Peaks\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Twin Peaks\nhttps://plursky.com/f/outside
+ -lands-2026/#set-os105
+URL:https://plursky.com/f/outside-lands-2026/#set-os105
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os99@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260810T001500Z
+DTEND:20260810T011500Z
+SUMMARY:Disco Lines · Lands End
+LOCATION:Lands End\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Lands End\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os99
+URL:https://plursky.com/f/outside-lands-2026/#set-os99
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os112@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260810T003500Z
+DTEND:20260810T012500Z
+SUMMARY:The Temper Trap · Sutro
+LOCATION:Sutro\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Sutro\nhttps://plursky.com/f/outside-land
+ s-2026/#set-os112
+URL:https://plursky.com/f/outside-lands-2026/#set-os112
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os119@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260810T010500Z
+DTEND:20260810T014500Z
+SUMMARY:Infinity Song · Panhandle
+LOCATION:Panhandle\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Panhandle\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os119
+URL:https://plursky.com/f/outside-lands-2026/#set-os119
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os132@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260810T010500Z
+DTEND:20260810T012500Z
+SUMMARY:Grace Towers & Friends · Dolores'
+LOCATION:Dolores'\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Dolores'\nhttps://plursky.com/f/outside-l
+ ands-2026/#set-os132
+URL:https://plursky.com/f/outside-lands-2026/#set-os132
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os138@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260810T011500Z
+DTEND:20260810T014500Z
+SUMMARY:Marlon Funaki · Duboce Triangle
+LOCATION:Duboce Triangle\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Duboce Triangle\nhttps://plursky.com/f/ou
+ tside-lands-2026/#set-os138
+URL:https://plursky.com/f/outside-lands-2026/#set-os138
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os125@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260810T012000Z
+DTEND:20260810T025500Z
+SUMMARY:Miss Monique · SOMA Tent
+LOCATION:SOMA Tent\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · SOMA Tent\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os125
+URL:https://plursky.com/f/outside-lands-2026/#set-os125
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os133@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260810T012500Z
+DTEND:20260810T022500Z
+SUMMARY:Elaine & Robin · Dolores'
+LOCATION:Dolores'\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Dolores'\nhttps://plursky.com/f/outside-l
+ ands-2026/#set-os133
+URL:https://plursky.com/f/outside-lands-2026/#set-os133
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os100@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260810T014500Z
+DTEND:20260810T024500Z
+SUMMARY:Empire of the Sun · Lands End
+LOCATION:Lands End\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Lands End\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os100
+URL:https://plursky.com/f/outside-lands-2026/#set-os100
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os106@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260810T015000Z
+DTEND:20260810T025000Z
+SUMMARY:Mariah the Scientist · Twin Peaks
+LOCATION:Twin Peaks\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Twin Peaks\nhttps://plursky.com/f/outside
+ -lands-2026/#set-os106
+URL:https://plursky.com/f/outside-lands-2026/#set-os106
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os113@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260810T020500Z
+DTEND:20260810T025500Z
+SUMMARY:Not for Radio · Sutro
+LOCATION:Sutro\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Sutro\nhttps://plursky.com/f/outside-land
+ s-2026/#set-os113
+URL:https://plursky.com/f/outside-lands-2026/#set-os113
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os134@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260810T022500Z
+DTEND:20260810T032500Z
+SUMMARY:DJ Minx · Dolores'
+LOCATION:Dolores'\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Dolores'\nhttps://plursky.com/f/outside-l
+ ands-2026/#set-os134
+URL:https://plursky.com/f/outside-lands-2026/#set-os134
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os139@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260810T024500Z
+DTEND:20260810T034500Z
+SUMMARY:Surprise Guest · Duboce Triangle
+LOCATION:Duboce Triangle\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Duboce Triangle\nhttps://plursky.com/f/ou
+ tside-lands-2026/#set-os139
+URL:https://plursky.com/f/outside-lands-2026/#set-os139
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os120@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260810T025000Z
+DTEND:20260810T033500Z
+SUMMARY:Frost Children · Panhandle
+LOCATION:Panhandle\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Panhandle\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os120
+URL:https://plursky.com/f/outside-lands-2026/#set-os120
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os126@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260810T025500Z
+DTEND:20260810T045500Z
+SUMMARY:Boris Brejcha · SOMA Tent
+LOCATION:SOMA Tent\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · SOMA Tent\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os126
+URL:https://plursky.com/f/outside-lands-2026/#set-os126
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os101@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260810T032500Z
+DTEND:20260810T045500Z
+SUMMARY:RÜFÜS DU SOL · Lands End
+LOCATION:Lands End\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Lands End\nhttps://plursky.com/f/outside-
+ lands-2026/#set-os101
+URL:https://plursky.com/f/outside-lands-2026/#set-os101
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os114@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260810T032500Z
+DTEND:20260810T044000Z
+SUMMARY:Death Cab for Cutie · Sutro
+LOCATION:Sutro\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Sutro\nhttps://plursky.com/f/outside-land
+ s-2026/#set-os114
+URL:https://plursky.com/f/outside-lands-2026/#set-os114
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:outside-lands-2026-set-os107@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260810T034000Z
+DTEND:20260810T045500Z
+SUMMARY:Baby Keem · Twin Peaks
+LOCATION:Twin Peaks\, Golden Gate Park\, San Francisco\, CA
+DESCRIPTION:Outside Lands 2026 · Twin Peaks\nhttps://plursky.com/f/outside
+ -lands-2026/#set-os107
+URL:https://plursky.com/f/outside-lands-2026/#set-os107
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

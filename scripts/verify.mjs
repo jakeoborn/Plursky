@@ -2733,6 +2733,18 @@ for (const [script, label] of [
   }
 }
 
+{
+  console.log("▸ Festival calendar gate — every .ics event = its page row, link iff file, mutants caught");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-festival-ics.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`festival calendars failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b2a. Official set-times fetcher ────────────────────────────────────
 // fetch-insomniac-settimes.mjs turns the official /lineup/set-times/day-N/
 // pages into the importer's sheet. Its parser must drop the Full Schedule

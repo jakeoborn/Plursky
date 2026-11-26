@@ -1,0 +1,2817 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Plursky//Festival set times//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:III Points 2026 set times · Plursky
+X-WR-TIMEZONE:America/New_York
+X-WR-CALDESC:Every timed set at III Points 2026. Updates itself when the sc
+ hedule changes. https://plursky.com/f/iii-points-2026/
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-ackdaddy@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261016T200000Z
+DTEND:20261016T210000Z
+SUMMARY:Ackdaddy · MIND MELT
+LOCATION:MIND MELT\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · MIND MELT\nhttps://plursky.com/f/iii-points-
+ 2026/#set-iiip-ackdaddy
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-ackdaddy
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-aphex-twink-b2b-foreseer@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261016T200000Z
+DTEND:20261016T213000Z
+SUMMARY:Aphex Twink B2B FORESEER · HALO 88
+LOCATION:HALO 88\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · HALO 88\nhttps://plursky.com/f/iii-points-20
+ 26/#set-iiip-aphex-twink-b2b-foreseer
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-aphex-twink-b2b-foresee
+ r
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-duun-b2b-sleepy-c@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261016T200000Z
+DTEND:20261016T220000Z
+SUMMARY:duun B2B Sleepy C · S3QUENC3
+LOCATION:S3QUENC3\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · S3QUENC3\nhttps://plursky.com/f/iii-points-2
+ 026/#set-iiip-duun-b2b-sleepy-c
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-duun-b2b-sleepy-c
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-feph-b2b-mr-tron@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261016T200000Z
+DTEND:20261016T220000Z
+SUMMARY:Feph B2B Mr. Tron · DOOR IV
+LOCATION:DOOR IV\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · DOOR IV\nhttps://plursky.com/f/iii-points-20
+ 26/#set-iiip-feph-b2b-mr-tron
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-feph-b2b-mr-tron
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-fiin@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261016T200000Z
+DTEND:20261016T211500Z
+SUMMARY:Fiin · ISOTROPIC
+LOCATION:ISOTROPIC\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · ISOTROPIC\nhttps://plursky.com/f/iii-points-
+ 2026/#set-iiip-fiin
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-fiin
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-heidi-lawden@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261016T200000Z
+DTEND:20261017T000000Z
+SUMMARY:Heidi Lawden · 444
+LOCATION:444\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · 444\nhttps://plursky.com/f/iii-points-2026/#
+ set-iiip-heidi-lawden
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-heidi-lawden
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-katie-ox-b2b-nat-siriani@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261016T200000Z
+DTEND:20261016T220000Z
+SUMMARY:Katie Ox B2B Nat Siriani · UNFORESEEN
+LOCATION:UNFORESEEN\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · UNFORESEEN\nhttps://plursky.com/f/iii-points
+ -2026/#set-iiip-katie-ox-b2b-nat-siriani
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-katie-ox-b2b-nat-sirian
+ i
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-kumi@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261016T200000Z
+DTEND:20261016T210000Z
+SUMMARY:Kumi · SECTOR 3
+LOCATION:SECTOR 3\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · SECTOR 3\nhttps://plursky.com/f/iii-points-2
+ 026/#set-iiip-kumi
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-kumi
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-mason-norris-b2b-mia-vende@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261016T200000Z
+DTEND:20261016T211500Z
+SUMMARY:Mason Norris B2B Mia Vendetta · RC95
+LOCATION:RC95\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · RC95\nhttps://plursky.com/f/iii-points-2026/
+ #set-iiip-mason-norris-b2b-mia-vende
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-mason-norris-b2b-mia-ve
+ nde
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-megusta-b2b-migs@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261016T200000Z
+DTEND:20261016T213000Z
+SUMMARY:Megusta B2B MIGS · VERTEX
+LOCATION:VERTEX\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · VERTEX\nhttps://plursky.com/f/iii-points-202
+ 6/#set-iiip-megusta-b2b-migs
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-megusta-b2b-migs
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-scotty-sobek@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261016T200000Z
+DTEND:20261016T213000Z
+SUMMARY:Scotty Sobek · PLAYERS CLUB
+LOCATION:PLAYERS CLUB\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · PLAYERS CLUB\nhttps://plursky.com/f/iii-poin
+ ts-2026/#set-iiip-scotty-sobek
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-scotty-sobek
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-sportswax@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261016T200000Z
+DTEND:20261016T220000Z
+SUMMARY:Sportswax · III POINTS RADIO
+LOCATION:III POINTS RADIO\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · III POINTS RADIO\nhttps://plursky.com/f/iii-
+ points-2026/#set-iiip-sportswax
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-sportswax
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-lylac@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261016T203000Z
+DTEND:20261016T210000Z
+SUMMARY:Lylac · GRAND CENTRAL
+LOCATION:GRAND CENTRAL\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · GRAND CENTRAL\nhttps://plursky.com/f/iii-poi
+ nts-2026/#set-iiip-lylac
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-lylac
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-cumbiamba@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261016T210500Z
+DTEND:20261016T214500Z
+SUMMARY:Cumbiamba · SECTOR 3
+LOCATION:SECTOR 3\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · SECTOR 3\nhttps://plursky.com/f/iii-points-2
+ 026/#set-iiip-cumbiamba
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-cumbiamba
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-vania-junco@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261016T210500Z
+DTEND:20261016T213500Z
+SUMMARY:Vania Junco · MIND MELT
+LOCATION:MIND MELT\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · MIND MELT\nhttps://plursky.com/f/iii-points-
+ 2026/#set-iiip-vania-junco
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-vania-junco
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-daizy@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261016T211500Z
+DTEND:20261016T223000Z
+SUMMARY:Daizy · ISOTROPIC
+LOCATION:ISOTROPIC\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · ISOTROPIC\nhttps://plursky.com/f/iii-points-
+ 2026/#set-iiip-daizy
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-daizy
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-proletar-b2b-zamurai@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261016T211500Z
+DTEND:20261016T221500Z
+SUMMARY:Proletar B2B Zamurai · RC95
+LOCATION:RC95\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · RC95\nhttps://plursky.com/f/iii-points-2026/
+ #set-iiip-proletar-b2b-zamurai
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-proletar-b2b-zamurai
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-iiry@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261016T212500Z
+DTEND:20261016T215500Z
+SUMMARY:iiry? · GRAND CENTRAL
+LOCATION:GRAND CENTRAL\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · GRAND CENTRAL\nhttps://plursky.com/f/iii-poi
+ nts-2026/#set-iiip-iiry
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-iiry
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-dj-sabi-b2b-grue5ome@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261016T213000Z
+DTEND:20261016T230000Z
+SUMMARY:DJ Sabi B2B GRUE5OME · HALO 88
+LOCATION:HALO 88\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · HALO 88\nhttps://plursky.com/f/iii-points-20
+ 26/#set-iiip-dj-sabi-b2b-grue5ome
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-dj-sabi-b2b-grue5ome
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-grace-arribas-b2b-marte@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261016T213000Z
+DTEND:20261016T230000Z
+SUMMARY:Grace Arribas B2B MARTE · VERTEX
+LOCATION:VERTEX\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · VERTEX\nhttps://plursky.com/f/iii-points-202
+ 6/#set-iiip-grace-arribas-b2b-marte
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-grace-arribas-b2b-marte
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-lauren-palma@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261016T213000Z
+DTEND:20261016T224500Z
+SUMMARY:Lauren Palma · PLAYERS CLUB
+LOCATION:PLAYERS CLUB\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · PLAYERS CLUB\nhttps://plursky.com/f/iii-poin
+ ts-2026/#set-iiip-lauren-palma
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-lauren-palma
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-adam-at-the-door@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261016T220000Z
+DTEND:20261016T231500Z
+SUMMARY:Adam At The Door · DOOR IV
+LOCATION:DOOR IV\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · DOOR IV\nhttps://plursky.com/f/iii-points-20
+ 26/#set-iiip-adam-at-the-door
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-adam-at-the-door
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-connan-mockasin@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261016T220000Z
+DTEND:20261016T230000Z
+SUMMARY:Connan Mockasin · MIND MELT
+LOCATION:MIND MELT\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · MIND MELT\nhttps://plursky.com/f/iii-points-
+ 2026/#set-iiip-connan-mockasin
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-connan-mockasin
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-extra-andrew-b2b-mutant-pe@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261016T220000Z
+DTEND:20261016T233000Z
+SUMMARY:Extra Andrew B2B Mutant Pete · III POINTS RADIO
+LOCATION:III POINTS RADIO\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · III POINTS RADIO\nhttps://plursky.com/f/iii-
+ points-2026/#set-iiip-extra-andrew-b2b-mutant-pe
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-extra-andrew-b2b-mutant
+ -pe
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-r-v-calypso@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261016T220000Z
+DTEND:20261016T231500Z
+SUMMARY:R/V Calypso · S3QUENC3
+LOCATION:S3QUENC3\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · S3QUENC3\nhttps://plursky.com/f/iii-points-2
+ 026/#set-iiip-r-v-calypso
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-r-v-calypso
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-tiffy-vera-b2b-thunderpony@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261016T220000Z
+DTEND:20261016T233000Z
+SUMMARY:Thunderpony B2B Tiffy Vera · UNFORESEEN
+LOCATION:UNFORESEEN\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · UNFORESEEN\nhttps://plursky.com/f/iii-points
+ -2026/#set-iiip-tiffy-vera-b2b-thunderpony
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-tiffy-vera-b2b-thunderp
+ ony
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-amar@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261016T221000Z
+DTEND:20261016T224000Z
+SUMMARY:amar · SECTOR 3
+LOCATION:SECTOR 3\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · SECTOR 3\nhttps://plursky.com/f/iii-points-2
+ 026/#set-iiip-amar
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-amar
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-blind-fish@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261016T221500Z
+DTEND:20261016T230000Z
+SUMMARY:Blind Fish · GRAND CENTRAL
+LOCATION:GRAND CENTRAL\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · GRAND CENTRAL\nhttps://plursky.com/f/iii-poi
+ nts-2026/#set-iiip-blind-fish
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-blind-fish
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-v1fro@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261016T221500Z
+DTEND:20261016T231500Z
+SUMMARY:V1FRO · RC95
+LOCATION:RC95\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · RC95\nhttps://plursky.com/f/iii-points-2026/
+ #set-iiip-v1fro
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-v1fro
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-maher-daniel-b2b-mai-iache@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261016T223000Z
+DTEND:20261017T000000Z
+SUMMARY:Maher Daniel B2B Mai Iachetti · ISOTROPIC
+LOCATION:ISOTROPIC\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · ISOTROPIC\nhttps://plursky.com/f/iii-points-
+ 2026/#set-iiip-maher-daniel-b2b-mai-iache
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-maher-daniel-b2b-mai-ia
+ che
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-lagrimas-de-oro@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261016T224500Z
+DTEND:20261017T000000Z
+SUMMARY:Lagrimas de Oro · PLAYERS CLUB
+LOCATION:PLAYERS CLUB\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · PLAYERS CLUB\nhttps://plursky.com/f/iii-poin
+ ts-2026/#set-iiip-lagrimas-de-oro
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-lagrimas-de-oro
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-alejo@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261016T230000Z
+DTEND:20261017T000000Z
+SUMMARY:ALEJO · HALO 88
+LOCATION:HALO 88\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · HALO 88\nhttps://plursky.com/f/iii-points-20
+ 26/#set-iiip-alejo
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-alejo
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-ghostface-killah-presents@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261016T230000Z
+DTEND:20261016T235500Z
+SUMMARY:Ghostface Killah presents Supreme Clientele · SECTOR 3
+LOCATION:SECTOR 3\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · SECTOR 3\nhttps://plursky.com/f/iii-points-2
+ 026/#set-iiip-ghostface-killah-presents
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-ghostface-killah-presen
+ ts
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-rello@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261016T230000Z
+DTEND:20261017T001500Z
+SUMMARY:Rello · VERTEX
+LOCATION:VERTEX\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · VERTEX\nhttps://plursky.com/f/iii-points-202
+ 6/#set-iiip-rello
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-rello
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-1tbsp@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261016T231500Z
+DTEND:20261017T001500Z
+SUMMARY:1tbsp · RC95
+LOCATION:RC95\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · RC95\nhttps://plursky.com/f/iii-points-2026/
+ #set-iiip-1tbsp
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-1tbsp
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-jump-source@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261016T231500Z
+DTEND:20261017T004500Z
+SUMMARY:Jump Source (Live) · S3QUENC3
+LOCATION:S3QUENC3\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · S3QUENC3\nhttps://plursky.com/f/iii-points-2
+ 026/#set-iiip-jump-source
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-jump-source
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-nicholas-g-padilla@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261016T231500Z
+DTEND:20261017T000000Z
+SUMMARY:Nicholas G. Padilla · GRAND CENTRAL
+LOCATION:GRAND CENTRAL\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · GRAND CENTRAL\nhttps://plursky.com/f/iii-poi
+ nts-2026/#set-iiip-nicholas-g-padilla
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-nicholas-g-padilla
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-uchi@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261016T231500Z
+DTEND:20261017T003000Z
+SUMMARY:Uchi · DOOR IV
+LOCATION:DOOR IV\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · DOOR IV\nhttps://plursky.com/f/iii-points-20
+ 26/#set-iiip-uchi
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-uchi
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-men-i-trust@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261016T232500Z
+DTEND:20261017T001500Z
+SUMMARY:Men I Trust · MIND MELT
+LOCATION:MIND MELT\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · MIND MELT\nhttps://plursky.com/f/iii-points-
+ 2026/#set-iiip-men-i-trust
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-men-i-trust
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-aabel-b2b-siegel@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261016T233000Z
+DTEND:20261017T010000Z
+SUMMARY:Aabel B2B Siegel · UNFORESEEN
+LOCATION:UNFORESEEN\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · UNFORESEEN\nhttps://plursky.com/f/iii-points
+ -2026/#set-iiip-aabel-b2b-siegel
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-aabel-b2b-siegel
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-nicole-gallamini-b2b-nikit@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261016T233000Z
+DTEND:20261017T010000Z
+SUMMARY:Nicole Gallamini B2B Nikita Green · III POINTS RADIO
+LOCATION:III POINTS RADIO\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · III POINTS RADIO\nhttps://plursky.com/f/iii-
+ points-2026/#set-iiip-nicole-gallamini-b2b-nikit
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-nicole-gallamini-b2b-ni
+ kit
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-deep-cleansing@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T000000Z
+DTEND:20261017T011500Z
+SUMMARY:Deep Cleansing · PLAYERS CLUB
+LOCATION:PLAYERS CLUB\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · PLAYERS CLUB\nhttps://plursky.com/f/iii-poin
+ ts-2026/#set-iiip-deep-cleansing
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-deep-cleansing
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-dj-harvey@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T000000Z
+DTEND:20261017T040000Z
+SUMMARY:DJ Harvey · 444
+LOCATION:444\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · 444\nhttps://plursky.com/f/iii-points-2026/#
+ set-iiip-dj-harvey
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-dj-harvey
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-malone-b2b-miluhska@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T000000Z
+DTEND:20261017T013000Z
+SUMMARY:Malóne Morez B2B Miluhska · ISOTROPIC
+LOCATION:ISOTROPIC\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · ISOTROPIC\nhttps://plursky.com/f/iii-points-
+ 2026/#set-iiip-malone-b2b-miluhska
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-malone-b2b-miluhska
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-miguel-clark-b2b-naim-zarz@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T000000Z
+DTEND:20261017T011500Z
+SUMMARY:Miguel Clark B2B Naim Zarzour · HALO 88
+LOCATION:HALO 88\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · HALO 88\nhttps://plursky.com/f/iii-points-20
+ 26/#set-iiip-miguel-clark-b2b-naim-zarz
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-miguel-clark-b2b-naim-z
+ arz
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-bone-thugs-n-harmony@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T001500Z
+DTEND:20261017T010000Z
+SUMMARY:Bone Thugs-N-Harmony · SECTOR 3
+LOCATION:SECTOR 3\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · SECTOR 3\nhttps://plursky.com/f/iii-points-2
+ 026/#set-iiip-bone-thugs-n-harmony
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-bone-thugs-n-harmony
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-dan-molinari@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T001500Z
+DTEND:20261017T013000Z
+SUMMARY:Dan Molinari · VERTEX
+LOCATION:VERTEX\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · VERTEX\nhttps://plursky.com/f/iii-points-202
+ 6/#set-iiip-dan-molinari
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-dan-molinari
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-jigitz@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T001500Z
+DTEND:20261017T011500Z
+SUMMARY:Jigitz · RC95
+LOCATION:RC95\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · RC95\nhttps://plursky.com/f/iii-points-2026/
+ #set-iiip-jigitz
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-jigitz
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-rental-snakes@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T001500Z
+DTEND:20261017T010000Z
+SUMMARY:Rental Snakes (Live) · GRAND CENTRAL
+LOCATION:GRAND CENTRAL\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · GRAND CENTRAL\nhttps://plursky.com/f/iii-poi
+ nts-2026/#set-iiip-rental-snakes
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-rental-snakes
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-lotusoph-b2b-julia-saturno@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T003000Z
+DTEND:20261017T020000Z
+SUMMARY:Julia Saturno B2B Lotusoph · DOOR IV
+LOCATION:DOOR IV\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · DOOR IV\nhttps://plursky.com/f/iii-points-20
+ 26/#set-iiip-lotusoph-b2b-julia-saturno
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-lotusoph-b2b-julia-satu
+ rno
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-jacques-greene@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T004500Z
+DTEND:20261017T020000Z
+SUMMARY:Jacques Greene · S3QUENC3
+LOCATION:S3QUENC3\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · S3QUENC3\nhttps://plursky.com/f/iii-points-2
+ 026/#set-iiip-jacques-greene
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-jacques-greene
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-parcels@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T004500Z
+DTEND:20261017T020000Z
+SUMMARY:Parcels · MIND MELT
+LOCATION:MIND MELT\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · MIND MELT\nhttps://plursky.com/f/iii-points-
+ 2026/#set-iiip-parcels
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-parcels
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-maccabi-b2b-pezlo-md@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T010000Z
+DTEND:20261017T023000Z
+SUMMARY:MACCABIII B2B Pezlo MD · UNFORESEEN
+LOCATION:UNFORESEEN\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · UNFORESEEN\nhttps://plursky.com/f/iii-points
+ -2026/#set-iiip-maccabi-b2b-pezlo-md
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-maccabi-b2b-pezlo-md
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-rimaye-b2b-inbal@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T010000Z
+DTEND:20261017T023000Z
+SUMMARY:Inbal B2B Rimaye · III POINTS RADIO
+LOCATION:III POINTS RADIO\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · III POINTS RADIO\nhttps://plursky.com/f/iii-
+ points-2026/#set-iiip-rimaye-b2b-inbal
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-rimaye-b2b-inbal
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-baby-jesus-b2b-chaos@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T011500Z
+DTEND:20261017T024500Z
+SUMMARY:Baby Jesus B2B CHAOS! · PLAYERS CLUB
+LOCATION:PLAYERS CLUB\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · PLAYERS CLUB\nhttps://plursky.com/f/iii-poin
+ ts-2026/#set-iiip-baby-jesus-b2b-chaos
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-baby-jesus-b2b-chaos
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-corridos-ketamina@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T011500Z
+DTEND:20261017T015500Z
+SUMMARY:Corridos Ketamina · GRAND CENTRAL
+LOCATION:GRAND CENTRAL\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · GRAND CENTRAL\nhttps://plursky.com/f/iii-poi
+ nts-2026/#set-iiip-corridos-ketamina
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-corridos-ketamina
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-fiuza-b2b-madison-kay@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T011500Z
+DTEND:20261017T023000Z
+SUMMARY:FIUZA B2B Madison Kay · HALO 88
+LOCATION:HALO 88\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · HALO 88\nhttps://plursky.com/f/iii-points-20
+ 26/#set-iiip-fiuza-b2b-madison-kay
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-fiuza-b2b-madison-kay
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-lil-kim@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T011500Z
+DTEND:20261017T020000Z
+SUMMARY:Lil' Kim · SECTOR 3
+LOCATION:SECTOR 3\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · SECTOR 3\nhttps://plursky.com/f/iii-points-2
+ 026/#set-iiip-lil-kim
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-lil-kim
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-mary-droppinz@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T011500Z
+DTEND:20261017T021500Z
+SUMMARY:Mary Droppinz · RC95
+LOCATION:RC95\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · RC95\nhttps://plursky.com/f/iii-points-2026/
+ #set-iiip-mary-droppinz
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-mary-droppinz
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-miguelle-tons-b2b-saraga@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T013000Z
+DTEND:20261017T030000Z
+SUMMARY:Miguelle & Tons · ISOTROPIC
+LOCATION:ISOTROPIC\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · ISOTROPIC\nhttps://plursky.com/f/iii-points-
+ 2026/#set-iiip-miguelle-tons-b2b-saraga
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-miguelle-tons-b2b-sarag
+ a
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-raje-b2b-slugg@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T013000Z
+DTEND:20261017T030000Z
+SUMMARY:Slugg B2B RAJE · VERTEX
+LOCATION:VERTEX\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · VERTEX\nhttps://plursky.com/f/iii-points-202
+ 6/#set-iiip-raje-b2b-slugg
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-raje-b2b-slugg
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-eli-escobar-b2b-jubilee@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T020000Z
+DTEND:20261017T033000Z
+SUMMARY:Eli Escobar B2B Jubilee · S3QUENC3
+LOCATION:S3QUENC3\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · S3QUENC3\nhttps://plursky.com/f/iii-points-2
+ 026/#set-iiip-eli-escobar-b2b-jubilee
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-eli-escobar-b2b-jubilee
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-gio-elia-b2b-meghan-lee@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T020000Z
+DTEND:20261017T033000Z
+SUMMARY:Gio Elia B2B Meghan Lee · DOOR IV
+LOCATION:DOOR IV\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · DOOR IV\nhttps://plursky.com/f/iii-points-20
+ 26/#set-iiip-gio-elia-b2b-meghan-lee
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-gio-elia-b2b-meghan-lee
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-patch@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T021000Z
+DTEND:20261017T025500Z
+SUMMARY:Patch+ · GRAND CENTRAL
+LOCATION:GRAND CENTRAL\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · GRAND CENTRAL\nhttps://plursky.com/f/iii-poi
+ nts-2026/#set-iiip-patch
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-patch
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-ivy-lab@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T021500Z
+DTEND:20261017T031500Z
+SUMMARY:Ivy Lab · RC95
+LOCATION:RC95\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · RC95\nhttps://plursky.com/f/iii-points-2026/
+ #set-iiip-ivy-lab
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-ivy-lab
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-mind-enterprises@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T022000Z
+DTEND:20261017T031000Z
+SUMMARY:Mind Enterprises · SECTOR 3
+LOCATION:SECTOR 3\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · SECTOR 3\nhttps://plursky.com/f/iii-points-2
+ 026/#set-iiip-mind-enterprises
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-mind-enterprises
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-elias-garcia-b2b-mila-gama@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T023000Z
+DTEND:20261017T040000Z
+SUMMARY:Elias Garcia B2B Mila Gama · HALO 88
+LOCATION:HALO 88\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · HALO 88\nhttps://plursky.com/f/iii-points-20
+ 26/#set-iiip-elias-garcia-b2b-mila-gama
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-elias-garcia-b2b-mila-g
+ ama
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-moscoman@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T023000Z
+DTEND:20261017T034500Z
+SUMMARY:Moscoman · UNFORESEEN
+LOCATION:UNFORESEEN\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · UNFORESEEN\nhttps://plursky.com/f/iii-points
+ -2026/#set-iiip-moscoman
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-moscoman
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-tokischa@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T023000Z
+DTEND:20261017T031500Z
+SUMMARY:Tokischa · MIND MELT
+LOCATION:MIND MELT\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · MIND MELT\nhttps://plursky.com/f/iii-points-
+ 2026/#set-iiip-tokischa
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-tokischa
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-will-renuart@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T023000Z
+DTEND:20261017T034500Z
+SUMMARY:Will Renuart · III POINTS RADIO
+LOCATION:III POINTS RADIO\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · III POINTS RADIO\nhttps://plursky.com/f/iii-
+ points-2026/#set-iiip-will-renuart
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-will-renuart
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-puma@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T024500Z
+DTEND:20261017T040000Z
+SUMMARY:Puma · PLAYERS CLUB
+LOCATION:PLAYERS CLUB\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · PLAYERS CLUB\nhttps://plursky.com/f/iii-poin
+ ts-2026/#set-iiip-puma
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-puma
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-brunello-b2b-rafael@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T030000Z
+DTEND:20261017T043000Z
+SUMMARY:Brunello B2B Rafael · ISOTROPIC
+LOCATION:ISOTROPIC\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · ISOTROPIC\nhttps://plursky.com/f/iii-points-
+ 2026/#set-iiip-brunello-b2b-rafael
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-brunello-b2b-rafael
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-roddy-lima@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T030000Z
+DTEND:20261017T041500Z
+SUMMARY:Roddy Lima · VERTEX
+LOCATION:VERTEX\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · VERTEX\nhttps://plursky.com/f/iii-points-202
+ 6/#set-iiip-roddy-lima
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-roddy-lima
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-hamdi@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T031500Z
+DTEND:20261017T041500Z
+SUMMARY:Hamdi · RC95
+LOCATION:RC95\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · RC95\nhttps://plursky.com/f/iii-points-2026/
+ #set-iiip-hamdi
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-hamdi
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-nate-sib@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T031500Z
+DTEND:20261017T040000Z
+SUMMARY:nate sib · GRAND CENTRAL
+LOCATION:GRAND CENTRAL\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · GRAND CENTRAL\nhttps://plursky.com/f/iii-poi
+ nts-2026/#set-iiip-nate-sib
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-nate-sib
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-bill-patrick-b2b-bort@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T033000Z
+DTEND:20261017T050000Z
+SUMMARY:Bill Patrick B2B Bort · DOOR IV
+LOCATION:DOOR IV\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · DOOR IV\nhttps://plursky.com/f/iii-points-20
+ 26/#set-iiip-bill-patrick-b2b-bort
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-bill-patrick-b2b-bort
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-cloonee@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T033000Z
+DTEND:20261017T050000Z
+SUMMARY:Cloonee · MIND MELT
+LOCATION:MIND MELT\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · MIND MELT\nhttps://plursky.com/f/iii-points-
+ 2026/#set-iiip-cloonee
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-cloonee
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-danny-daze-b2b-dj-godfathe@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T033000Z
+DTEND:20261017T050000Z
+SUMMARY:Danny Daze B2B DJ Godfather · S3QUENC3
+LOCATION:S3QUENC3\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · S3QUENC3\nhttps://plursky.com/f/iii-points-2
+ 026/#set-iiip-danny-daze-b2b-dj-godfathe
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-danny-daze-b2b-dj-godfa
+ the
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-purity-ring@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T033500Z
+DTEND:20261017T042500Z
+SUMMARY:Purity Ring · SECTOR 3
+LOCATION:SECTOR 3\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · SECTOR 3\nhttps://plursky.com/f/iii-points-2
+ 026/#set-iiip-purity-ring
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-purity-ring
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-eveava-b2b-jovigibs@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T034500Z
+DTEND:20261017T051500Z
+SUMMARY:eveava B2B Jovigibs · UNFORESEEN
+LOCATION:UNFORESEEN\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · UNFORESEEN\nhttps://plursky.com/f/iii-points
+ -2026/#set-iiip-eveava-b2b-jovigibs
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-eveava-b2b-jovigibs
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-will-buck-b2b-taimur@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T034500Z
+DTEND:20261017T051500Z
+SUMMARY:Taimur B2B Will Buck · III POINTS RADIO
+LOCATION:III POINTS RADIO\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · III POINTS RADIO\nhttps://plursky.com/f/iii-
+ points-2026/#set-iiip-will-buck-b2b-taimur
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-will-buck-b2b-taimur
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-cami-di-marzo@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T040000Z
+DTEND:20261017T051500Z
+SUMMARY:Cami di Marzo · PLAYERS CLUB
+LOCATION:PLAYERS CLUB\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · PLAYERS CLUB\nhttps://plursky.com/f/iii-poin
+ ts-2026/#set-iiip-cami-di-marzo
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-cami-di-marzo
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-dr-rubinstein-b2b-ultrathe@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T040000Z
+DTEND:20261017T053000Z
+SUMMARY:Dr. Rubinstein B2B Ultrathem · HALO 88
+LOCATION:HALO 88\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · HALO 88\nhttps://plursky.com/f/iii-points-20
+ 26/#set-iiip-dr-rubinstein-b2b-ultrathe
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-dr-rubinstein-b2b-ultra
+ the
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-floating-points@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T040000Z
+DTEND:20261017T080000Z
+SUMMARY:Floating Points · 444
+LOCATION:444\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · 444\nhttps://plursky.com/f/iii-points-2026/#
+ set-iiip-floating-points
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-floating-points
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-discip@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T041500Z
+DTEND:20261017T053000Z
+SUMMARY:Discip · VERTEX
+LOCATION:VERTEX\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · VERTEX\nhttps://plursky.com/f/iii-points-202
+ 6/#set-iiip-discip
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-discip
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-levity-b2b-taiki-nulight@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T041500Z
+DTEND:20261017T053000Z
+SUMMARY:Levity B2B Taiki Nulight · RC95
+LOCATION:RC95\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · RC95\nhttps://plursky.com/f/iii-points-2026/
+ #set-iiip-levity-b2b-taiki-nulight
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-levity-b2b-taiki-nuligh
+ t
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-b0yg1rl@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T042000Z
+DTEND:20261017T045000Z
+SUMMARY:B0YG1RL · GRAND CENTRAL
+LOCATION:GRAND CENTRAL\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · GRAND CENTRAL\nhttps://plursky.com/f/iii-poi
+ nts-2026/#set-iiip-b0yg1rl
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-b0yg1rl
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-ahmed-spins-b2b-omri@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T043000Z
+DTEND:20261017T060000Z
+SUMMARY:Ahmed Spins B2B OMRI. · ISOTROPIC
+LOCATION:ISOTROPIC\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · ISOTROPIC\nhttps://plursky.com/f/iii-points-
+ 2026/#set-iiip-ahmed-spins-b2b-omri
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-ahmed-spins-b2b-omri
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-danny-brown@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T044500Z
+DTEND:20261017T053000Z
+SUMMARY:Danny Brown · SECTOR 3
+LOCATION:SECTOR 3\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · SECTOR 3\nhttps://plursky.com/f/iii-points-2
+ 026/#set-iiip-danny-brown
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-danny-brown
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-beltran-b2b-ben-sterling@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T050000Z
+DTEND:20261017T063000Z
+SUMMARY:Beltran B2B Ben Sterling · MIND MELT
+LOCATION:MIND MELT\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · MIND MELT\nhttps://plursky.com/f/iii-points-
+ 2026/#set-iiip-beltran-b2b-ben-sterling
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-beltran-b2b-ben-sterlin
+ g
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-oma-totem-b2b-true-vine@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T050000Z
+DTEND:20261017T064500Z
+SUMMARY:oma totem B2B True Vine · DOOR IV
+LOCATION:DOOR IV\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · DOOR IV\nhttps://plursky.com/f/iii-points-20
+ 26/#set-iiip-oma-totem-b2b-true-vine
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-oma-totem-b2b-true-vine
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-peach-b2b-shanti-celeste@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T050000Z
+DTEND:20261017T063000Z
+SUMMARY:Shanti Celeste B2B Peach · S3QUENC3
+LOCATION:S3QUENC3\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · S3QUENC3\nhttps://plursky.com/f/iii-points-2
+ 026/#set-iiip-peach-b2b-shanti-celeste
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-peach-b2b-shanti-celest
+ e
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-mgna-crrrta@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T051000Z
+DTEND:20261017T055500Z
+SUMMARY:MGNA Crrrta · GRAND CENTRAL
+LOCATION:GRAND CENTRAL\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · GRAND CENTRAL\nhttps://plursky.com/f/iii-poi
+ nts-2026/#set-iiip-mgna-crrrta
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-mgna-crrrta
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-bakke@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T051500Z
+DTEND:20261017T063000Z
+SUMMARY:Bakke · UNFORESEEN
+LOCATION:UNFORESEEN\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · UNFORESEEN\nhttps://plursky.com/f/iii-points
+ -2026/#set-iiip-bakke
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-bakke
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-dude-skywalker@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T051500Z
+DTEND:20261017T064500Z
+SUMMARY:Dude Skywalker · PLAYERS CLUB
+LOCATION:PLAYERS CLUB\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · PLAYERS CLUB\nhttps://plursky.com/f/iii-poin
+ ts-2026/#set-iiip-dude-skywalker
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-dude-skywalker
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-godisound@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T051500Z
+DTEND:20261017T063000Z
+SUMMARY:Godisound · III POINTS RADIO
+LOCATION:III POINTS RADIO\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · III POINTS RADIO\nhttps://plursky.com/f/iii-
+ points-2026/#set-iiip-godisound
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-godisound
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-joanna-kuchta-b2b-robyn-si@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T053000Z
+DTEND:20261017T070000Z
+SUMMARY:Joanna Kuchta B2B Robyn Sin Love · HALO 88
+LOCATION:HALO 88\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · HALO 88\nhttps://plursky.com/f/iii-points-20
+ 26/#set-iiip-joanna-kuchta-b2b-robyn-si
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-joanna-kuchta-b2b-robyn
+ -si
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-odd-mob@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T053000Z
+DTEND:20261017T064500Z
+SUMMARY:Odd Mob · RC95
+LOCATION:RC95\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · RC95\nhttps://plursky.com/f/iii-points-2026/
+ #set-iiip-odd-mob
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-odd-mob
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-ragie-ban@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T053000Z
+DTEND:20261017T064500Z
+SUMMARY:Ragie Ban · VERTEX
+LOCATION:VERTEX\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · VERTEX\nhttps://plursky.com/f/iii-points-202
+ 6/#set-iiip-ragie-ban
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-ragie-ban
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-jane-remover@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T055000Z
+DTEND:20261017T063500Z
+SUMMARY:Jane Remover · SECTOR 3
+LOCATION:SECTOR 3\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · SECTOR 3\nhttps://plursky.com/f/iii-points-2
+ 026/#set-iiip-jane-remover
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-jane-remover
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-max-styler-b2b-vintage-cul@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T060000Z
+DTEND:20261017T080000Z
+SUMMARY:Vintage Culture B2B Max Styler · ISOTROPIC
+LOCATION:ISOTROPIC\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · ISOTROPIC\nhttps://plursky.com/f/iii-points-
+ 2026/#set-iiip-max-styler-b2b-vintage-cul
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-max-styler-b2b-vintage-
+ cul
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-zep@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T061500Z
+DTEND:20261017T070000Z
+SUMMARY:ZEP · GRAND CENTRAL
+LOCATION:GRAND CENTRAL\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · GRAND CENTRAL\nhttps://plursky.com/f/iii-poi
+ nts-2026/#set-iiip-zep
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-zep
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-alexx-in-chainss-b2b-solte@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T063000Z
+DTEND:20261017T080000Z
+SUMMARY:Alexx in Chainss B2B Soltek · III POINTS RADIO
+LOCATION:III POINTS RADIO\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · III POINTS RADIO\nhttps://plursky.com/f/iii-
+ points-2026/#set-iiip-alexx-in-chainss-b2b-solte
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-alexx-in-chainss-b2b-so
+ lte
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-honey-dijon@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T063000Z
+DTEND:20261017T080000Z
+SUMMARY:Honey Dijon · S3QUENC3
+LOCATION:S3QUENC3\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · S3QUENC3\nhttps://plursky.com/f/iii-points-2
+ 026/#set-iiip-honey-dijon
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-honey-dijon
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-lousy-lover-b2b-lucaz@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T063000Z
+DTEND:20261017T080000Z
+SUMMARY:Lousy Lover B2B Lucaz · UNFORESEEN
+LOCATION:UNFORESEEN\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · UNFORESEEN\nhttps://plursky.com/f/iii-points
+ -2026/#set-iiip-lousy-lover-b2b-lucaz
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-lousy-lover-b2b-lucaz
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-pawsa@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T063000Z
+DTEND:20261017T080000Z
+SUMMARY:PAWSA · MIND MELT
+LOCATION:MIND MELT\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · MIND MELT\nhttps://plursky.com/f/iii-points-
+ 2026/#set-iiip-pawsa
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-pawsa
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-differ@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T064500Z
+DTEND:20261017T080000Z
+SUMMARY:Differ · PLAYERS CLUB
+LOCATION:PLAYERS CLUB\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · PLAYERS CLUB\nhttps://plursky.com/f/iii-poin
+ ts-2026/#set-iiip-differ
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-differ
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-disco-lines@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T064500Z
+DTEND:20261017T080000Z
+SUMMARY:Disco Lines · RC95
+LOCATION:RC95\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · RC95\nhttps://plursky.com/f/iii-points-2026/
+ #set-iiip-disco-lines
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-disco-lines
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-eco-sistema@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T064500Z
+DTEND:20261017T080000Z
+SUMMARY:eco-sistema · DOOR IV
+LOCATION:DOOR IV\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · DOOR IV\nhttps://plursky.com/f/iii-points-20
+ 26/#set-iiip-eco-sistema
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-eco-sistema
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-invt@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T064500Z
+DTEND:20261017T080000Z
+SUMMARY:INVT · VERTEX
+LOCATION:VERTEX\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · VERTEX\nhttps://plursky.com/f/iii-points-202
+ 6/#set-iiip-invt
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-invt
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-flying-lotus@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T070000Z
+DTEND:20261017T080000Z
+SUMMARY:Flying Lotus · SECTOR 3
+LOCATION:SECTOR 3\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · SECTOR 3\nhttps://plursky.com/f/iii-points-2
+ 026/#set-iiip-flying-lotus
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-flying-lotus
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-tech-g1rls@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T070000Z
+DTEND:20261017T080000Z
+SUMMARY:Tech G1rls · HALO 88
+LOCATION:HALO 88\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · HALO 88\nhttps://plursky.com/f/iii-points-20
+ 26/#set-iiip-tech-g1rls
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-tech-g1rls
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-allnightkev-b2b-lo-g@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T200000Z
+DTEND:20261017T213000Z
+SUMMARY:Allnightkev B2B Lo-G · VERTEX
+LOCATION:VERTEX\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · VERTEX\nhttps://plursky.com/f/iii-points-202
+ 6/#set-iiip-allnightkev-b2b-lo-g
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-allnightkev-b2b-lo-g
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-carter-jackson-brown@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T200000Z
+DTEND:20261017T210000Z
+SUMMARY:Carter Jackson-Brown · MIND MELT
+LOCATION:MIND MELT\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · MIND MELT\nhttps://plursky.com/f/iii-points-
+ 2026/#set-iiip-carter-jackson-brown
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-carter-jackson-brown
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-dj-ahamed@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T200000Z
+DTEND:20261017T213000Z
+SUMMARY:DJ Ahamed · PLAYERS CLUB
+LOCATION:PLAYERS CLUB\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · PLAYERS CLUB\nhttps://plursky.com/f/iii-poin
+ ts-2026/#set-iiip-dj-ahamed
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-dj-ahamed
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-domnrob@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T200000Z
+DTEND:20261017T210000Z
+SUMMARY:DomnRob · RC95
+LOCATION:RC95\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · RC95\nhttps://plursky.com/f/iii-points-2026/
+ #set-iiip-domnrob
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-domnrob
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-grant-sabadash-b2b-shir-mi@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T200000Z
+DTEND:20261017T214500Z
+SUMMARY:Grant Sabadash B2B Shir Miya · S3QUENC3
+LOCATION:S3QUENC3\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · S3QUENC3\nhttps://plursky.com/f/iii-points-2
+ 026/#set-iiip-grant-sabadash-b2b-shir-mi
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-grant-sabadash-b2b-shir
+ -mi
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-khami@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T200000Z
+DTEND:20261017T210000Z
+SUMMARY:Khami · HALO 88
+LOCATION:HALO 88\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · HALO 88\nhttps://plursky.com/f/iii-points-20
+ 26/#set-iiip-khami
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-khami
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-la-bb@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T200000Z
+DTEND:20261017T211500Z
+SUMMARY:La BB · ISOTROPIC
+LOCATION:ISOTROPIC\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · ISOTROPIC\nhttps://plursky.com/f/iii-points-
+ 2026/#set-iiip-la-bb
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-la-bb
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-nxtel@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T200000Z
+DTEND:20261017T210000Z
+SUMMARY:nxtel · III POINTS RADIO
+LOCATION:III POINTS RADIO\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · III POINTS RADIO\nhttps://plursky.com/f/iii-
+ points-2026/#set-iiip-nxtel
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-nxtel
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-p1no-b2b-trippie-hippie@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T200000Z
+DTEND:20261017T213000Z
+SUMMARY:P1no B2B Trippie Hippie · UNFORESEEN
+LOCATION:UNFORESEEN\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · UNFORESEEN\nhttps://plursky.com/f/iii-points
+ -2026/#set-iiip-p1no-b2b-trippie-hippie
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-p1no-b2b-trippie-hippie
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-vsyana@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T200000Z
+DTEND:20261017T211500Z
+SUMMARY:vsyana · DOOR IV
+LOCATION:DOOR IV\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · DOOR IV\nhttps://plursky.com/f/iii-points-20
+ 26/#set-iiip-vsyana
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-vsyana
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-willikens-ivkovic@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T200000Z
+DTEND:20261018T000000Z
+SUMMARY:Willikens & Ivkovic · 444
+LOCATION:444\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · 444\nhttps://plursky.com/f/iii-points-2026/#
+ set-iiip-willikens-ivkovic
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-willikens-ivkovic
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-huracan@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T201500Z
+DTEND:20261017T204500Z
+SUMMARY:Huracán · GRAND CENTRAL
+LOCATION:GRAND CENTRAL\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · GRAND CENTRAL\nhttps://plursky.com/f/iii-poi
+ nts-2026/#set-iiip-huracan
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-huracan
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-nikole@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T201500Z
+DTEND:20261017T204500Z
+SUMMARY:Nikole · SECTOR 3
+LOCATION:SECTOR 3\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · SECTOR 3\nhttps://plursky.com/f/iii-points-2
+ 026/#set-iiip-nikole
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-nikole
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-d-luxe-b2b-dennis-baker@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T210000Z
+DTEND:20261017T220000Z
+SUMMARY:Dennis Baker B2B D.Luxe · HALO 88
+LOCATION:HALO 88\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · HALO 88\nhttps://plursky.com/f/iii-points-20
+ 26/#set-iiip-d-luxe-b2b-dennis-baker
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-d-luxe-b2b-dennis-baker
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-doris-dana@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T210000Z
+DTEND:20261017T213000Z
+SUMMARY:doris dana (Live) · SECTOR 3
+LOCATION:SECTOR 3\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · SECTOR 3\nhttps://plursky.com/f/iii-points-2
+ 026/#set-iiip-doris-dana
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-doris-dana
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-generous-b-b2b-hakuna@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T210000Z
+DTEND:20261017T221500Z
+SUMMARY:Generous B B2B Hakuna · RC95
+LOCATION:RC95\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · RC95\nhttps://plursky.com/f/iii-points-2026/
+ #set-iiip-generous-b-b2b-hakuna
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-generous-b-b2b-hakuna
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-shinobi@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T210000Z
+DTEND:20261017T220000Z
+SUMMARY:Shinobi · III POINTS RADIO
+LOCATION:III POINTS RADIO\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · III POINTS RADIO\nhttps://plursky.com/f/iii-
+ points-2026/#set-iiip-shinobi
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-shinobi
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-vvilhelm@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T211000Z
+DTEND:20261017T214000Z
+SUMMARY:VVilhelm · GRAND CENTRAL
+LOCATION:GRAND CENTRAL\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · GRAND CENTRAL\nhttps://plursky.com/f/iii-poi
+ nts-2026/#set-iiip-vvilhelm
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-vvilhelm
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-godblessjai@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T211500Z
+DTEND:20261017T223000Z
+SUMMARY:GodBlessJai · ISOTROPIC
+LOCATION:ISOTROPIC\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · ISOTROPIC\nhttps://plursky.com/f/iii-points-
+ 2026/#set-iiip-godblessjai
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-godblessjai
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-loukeman@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T211500Z
+DTEND:20261017T220500Z
+SUMMARY:Loukeman · MIND MELT
+LOCATION:MIND MELT\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · MIND MELT\nhttps://plursky.com/f/iii-points-
+ 2026/#set-iiip-loukeman
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-loukeman
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-serafitz-b2b-sol-discos@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T211500Z
+DTEND:20261017T224500Z
+SUMMARY:serafitz B2B SOL Discos · DOOR IV
+LOCATION:DOOR IV\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · DOOR IV\nhttps://plursky.com/f/iii-points-20
+ 26/#set-iiip-serafitz-b2b-sol-discos
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-serafitz-b2b-sol-discos
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-alezsandro-b2b-dalva@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T213000Z
+DTEND:20261017T230000Z
+SUMMARY:Alezsandro B2B Dalva · VERTEX
+LOCATION:VERTEX\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · VERTEX\nhttps://plursky.com/f/iii-points-202
+ 6/#set-iiip-alezsandro-b2b-dalva
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-alezsandro-b2b-dalva
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-bozito-b2b-gabo-escalona@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T213000Z
+DTEND:20261017T224500Z
+SUMMARY:Bozito B2B Gabo Escalona · UNFORESEEN
+LOCATION:UNFORESEEN\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · UNFORESEEN\nhttps://plursky.com/f/iii-points
+ -2026/#set-iiip-bozito-b2b-gabo-escalona
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-bozito-b2b-gabo-escalon
+ a
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-jbz@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T213000Z
+DTEND:20261017T223000Z
+SUMMARY:JBZ · PLAYERS CLUB
+LOCATION:PLAYERS CLUB\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · PLAYERS CLUB\nhttps://plursky.com/f/iii-poin
+ ts-2026/#set-iiip-jbz
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-jbz
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-natalia-roth-b2b-max-stern@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T214500Z
+DTEND:20261017T231500Z
+SUMMARY:Natalia Roth B2B Max Stern · S3QUENC3
+LOCATION:S3QUENC3\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · S3QUENC3\nhttps://plursky.com/f/iii-points-2
+ 026/#set-iiip-natalia-roth-b2b-max-stern
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-natalia-roth-b2b-max-st
+ ern
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-res-live@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T214500Z
+DTEND:20261017T223000Z
+SUMMARY:res_ (Live) · SECTOR 3
+LOCATION:SECTOR 3\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · SECTOR 3\nhttps://plursky.com/f/iii-points-2
+ 026/#set-iiip-res-live
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-res-live
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-bricolage-b2b-day-dem@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T220000Z
+DTEND:20261017T231500Z
+SUMMARY:Bricolage B2B DAY/DEM · HALO 88
+LOCATION:HALO 88\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · HALO 88\nhttps://plursky.com/f/iii-points-20
+ 26/#set-iiip-bricolage-b2b-day-dem
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-bricolage-b2b-day-dem
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-jinks-b2b-romulo-del-casti@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T220000Z
+DTEND:20261017T233000Z
+SUMMARY:Jinks B2B Romulo Del Castillo · III POINTS RADIO
+LOCATION:III POINTS RADIO\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · III POINTS RADIO\nhttps://plursky.com/f/iii-
+ points-2026/#set-iiip-jinks-b2b-romulo-del-casti
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-jinks-b2b-romulo-del-ca
+ sti
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-camp-blu@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T220500Z
+DTEND:20261017T223500Z
+SUMMARY:Camp Blu · GRAND CENTRAL
+LOCATION:GRAND CENTRAL\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · GRAND CENTRAL\nhttps://plursky.com/f/iii-poi
+ nts-2026/#set-iiip-camp-blu
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-camp-blu
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-cole-knight-b2b-dreya-v@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T221500Z
+DTEND:20261017T233000Z
+SUMMARY:Cole Knight B2B DREYA V · RC95
+LOCATION:RC95\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · RC95\nhttps://plursky.com/f/iii-points-2026/
+ #set-iiip-cole-knight-b2b-dreya-v
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-cole-knight-b2b-dreya-v
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-ear@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T222000Z
+DTEND:20261017T230000Z
+SUMMARY:ear · MIND MELT
+LOCATION:MIND MELT\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · MIND MELT\nhttps://plursky.com/f/iii-points-
+ 2026/#set-iiip-ear
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-ear
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-santiago-villu@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T223000Z
+DTEND:20261017T234500Z
+SUMMARY:Villu · PLAYERS CLUB
+LOCATION:PLAYERS CLUB\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · PLAYERS CLUB\nhttps://plursky.com/f/iii-poin
+ ts-2026/#set-iiip-santiago-villu
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-santiago-villu
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-silvie-loto-b2b-ms-mada@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T223000Z
+DTEND:20261018T000000Z
+SUMMARY:Silvie Loto B2B Ms. Mada · ISOTROPIC
+LOCATION:ISOTROPIC\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · ISOTROPIC\nhttps://plursky.com/f/iii-points-
+ 2026/#set-iiip-silvie-loto-b2b-ms-mada
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-silvie-loto-b2b-ms-mada
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-dj-ray-b2b-ez-dee@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T224500Z
+DTEND:20261018T001500Z
+SUMMARY:DJ Ray B2B EZ Dee · DOOR IV
+LOCATION:DOOR IV\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · DOOR IV\nhttps://plursky.com/f/iii-points-20
+ 26/#set-iiip-dj-ray-b2b-ez-dee
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-dj-ray-b2b-ez-dee
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-ml-buch@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T224500Z
+DTEND:20261017T233000Z
+SUMMARY:ML Buch · SECTOR 3
+LOCATION:SECTOR 3\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · SECTOR 3\nhttps://plursky.com/f/iii-points-2
+ 026/#set-iiip-ml-buch
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-ml-buch
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-spice-crime-b2b-violeta@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T224500Z
+DTEND:20261018T000000Z
+SUMMARY:Spice Crime B2B Violeta · UNFORESEEN
+LOCATION:UNFORESEEN\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · UNFORESEEN\nhttps://plursky.com/f/iii-points
+ -2026/#set-iiip-spice-crime-b2b-violeta
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-spice-crime-b2b-violeta
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-homicide-jenny@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T230000Z
+DTEND:20261017T233000Z
+SUMMARY:Homicide Jenny · GRAND CENTRAL
+LOCATION:GRAND CENTRAL\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · GRAND CENTRAL\nhttps://plursky.com/f/iii-poi
+ nts-2026/#set-iiip-homicide-jenny
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-homicide-jenny
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-idriss-d-b2b-danyelino@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T230000Z
+DTEND:20261018T003000Z
+SUMMARY:Idriss D B2B Danyelino · VERTEX
+LOCATION:VERTEX\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · VERTEX\nhttps://plursky.com/f/iii-points-202
+ 6/#set-iiip-idriss-d-b2b-danyelino
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-idriss-d-b2b-danyelino
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-lupreme-b2b-santo@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T231500Z
+DTEND:20261018T003000Z
+SUMMARY:Lupreme B2B SANTO · HALO 88
+LOCATION:HALO 88\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · HALO 88\nhttps://plursky.com/f/iii-points-20
+ 26/#set-iiip-lupreme-b2b-santo
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-lupreme-b2b-santo
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-rebolledo@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T231500Z
+DTEND:20261018T003000Z
+SUMMARY:Rebolledo · S3QUENC3
+LOCATION:S3QUENC3\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · S3QUENC3\nhttps://plursky.com/f/iii-points-2
+ 026/#set-iiip-rebolledo
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-rebolledo
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-nettspend@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T232500Z
+DTEND:20261018T001000Z
+SUMMARY:Nettspend · MIND MELT
+LOCATION:MIND MELT\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · MIND MELT\nhttps://plursky.com/f/iii-points-
+ 2026/#set-iiip-nettspend
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-nettspend
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-coffintexts-b2b-dj-fuckoff@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T233000Z
+DTEND:20261018T004500Z
+SUMMARY:Coffintexts B2B DJ Fuckoff · RC95
+LOCATION:RC95\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · RC95\nhttps://plursky.com/f/iii-points-2026/
+ #set-iiip-coffintexts-b2b-dj-fuckoff
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-coffintexts-b2b-dj-fuck
+ off
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-milo-ziro-b2b-xilla@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T233000Z
+DTEND:20261018T010000Z
+SUMMARY:Milo Ziro B2B Xilla · III POINTS RADIO
+LOCATION:III POINTS RADIO\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · III POINTS RADIO\nhttps://plursky.com/f/iii-
+ points-2026/#set-iiip-milo-ziro-b2b-xilla
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-milo-ziro-b2b-xilla
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-canela@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T234500Z
+DTEND:20261018T004500Z
+SUMMARY:Canela · PLAYERS CLUB
+LOCATION:PLAYERS CLUB\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · PLAYERS CLUB\nhttps://plursky.com/f/iii-poin
+ ts-2026/#set-iiip-canela
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-canela
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-ladyboy@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T235500Z
+DTEND:20261018T002500Z
+SUMMARY:LADYBOY · GRAND CENTRAL
+LOCATION:GRAND CENTRAL\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · GRAND CENTRAL\nhttps://plursky.com/f/iii-poi
+ nts-2026/#set-iiip-ladyboy
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-ladyboy
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-tricky@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261017T235500Z
+DTEND:20261018T004500Z
+SUMMARY:Tricky · SECTOR 3
+LOCATION:SECTOR 3\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · SECTOR 3\nhttps://plursky.com/f/iii-points-2
+ 026/#set-iiip-tricky
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-tricky
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-ale-acosta-b2b-hazon@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T000000Z
+DTEND:20261018T011500Z
+SUMMARY:Ale Acosta B2B Hazón · UNFORESEEN
+LOCATION:UNFORESEEN\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · UNFORESEEN\nhttps://plursky.com/f/iii-points
+ -2026/#set-iiip-ale-acosta-b2b-hazon
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-ale-acosta-b2b-hazon
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-marsolo@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T000000Z
+DTEND:20261018T011500Z
+SUMMARY:Marsolo · ISOTROPIC
+LOCATION:ISOTROPIC\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · ISOTROPIC\nhttps://plursky.com/f/iii-points-
+ 2026/#set-iiip-marsolo
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-marsolo
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-red-axes@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T000000Z
+DTEND:20261018T040000Z
+SUMMARY:Red Axes · 444
+LOCATION:444\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · 444\nhttps://plursky.com/f/iii-points-2026/#
+ set-iiip-red-axes
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-red-axes
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-artime-b2b-mystic-bill@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T001500Z
+DTEND:20261018T014500Z
+SUMMARY:Mystic Bill B2B Artime · DOOR IV
+LOCATION:DOOR IV\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · DOOR IV\nhttps://plursky.com/f/iii-points-20
+ 26/#set-iiip-artime-b2b-mystic-bill
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-artime-b2b-mystic-bill
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-bonita-applebumz-b2b-toni-@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T003000Z
+DTEND:20261018T014500Z
+SUMMARY:Bonita Applebumz B2B Toni Shardai · HALO 88
+LOCATION:HALO 88\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · HALO 88\nhttps://plursky.com/f/iii-points-20
+ 26/#set-iiip-bonita-applebumz-b2b-toni-
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-bonita-applebumz-b2b-to
+ ni-
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-joss-dean@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T003000Z
+DTEND:20261018T014500Z
+SUMMARY:Joss Dean · VERTEX
+LOCATION:VERTEX\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · VERTEX\nhttps://plursky.com/f/iii-points-202
+ 6/#set-iiip-joss-dean
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-joss-dean
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-whitesquare@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T003000Z
+DTEND:20261018T014500Z
+SUMMARY:Whitesquare · S3QUENC3
+LOCATION:S3QUENC3\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · S3QUENC3\nhttps://plursky.com/f/iii-points-2
+ 026/#set-iiip-whitesquare
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-whitesquare
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-blood-orange@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T004000Z
+DTEND:20261018T015000Z
+SUMMARY:Blood Orange · MIND MELT
+LOCATION:MIND MELT\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · MIND MELT\nhttps://plursky.com/f/iii-points-
+ 2026/#set-iiip-blood-orange
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-blood-orange
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-ellynora@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T004500Z
+DTEND:20261018T020000Z
+SUMMARY:Ellynora · PLAYERS CLUB
+LOCATION:PLAYERS CLUB\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · PLAYERS CLUB\nhttps://plursky.com/f/iii-poin
+ ts-2026/#set-iiip-ellynora
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-ellynora
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-nick-leon@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T004500Z
+DTEND:20261018T020000Z
+SUMMARY:Nick León · RC95
+LOCATION:RC95\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · RC95\nhttps://plursky.com/f/iii-points-2026/
+ #set-iiip-nick-leon
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-nick-leon
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-emily-afre@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T005000Z
+DTEND:20261018T012000Z
+SUMMARY:Emily Afre · GRAND CENTRAL
+LOCATION:GRAND CENTRAL\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · GRAND CENTRAL\nhttps://plursky.com/f/iii-poi
+ nts-2026/#set-iiip-emily-afre
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-emily-afre
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-marie-qrie-b2b-viva-vidal@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T010000Z
+DTEND:20261018T023000Z
+SUMMARY:Marie Qrie B2B Viva Vidal · III POINTS RADIO
+LOCATION:III POINTS RADIO\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · III POINTS RADIO\nhttps://plursky.com/f/iii-
+ points-2026/#set-iiip-marie-qrie-b2b-viva-vidal
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-marie-qrie-b2b-viva-vid
+ al
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-rusowsky@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T011000Z
+DTEND:20261018T015500Z
+SUMMARY:rusowsky · SECTOR 3
+LOCATION:SECTOR 3\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · SECTOR 3\nhttps://plursky.com/f/iii-points-2
+ 026/#set-iiip-rusowsky
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-rusowsky
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-jinn-pr@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T011500Z
+DTEND:20261018T021500Z
+SUMMARY:JINN_PR · UNFORESEEN
+LOCATION:UNFORESEEN\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · UNFORESEEN\nhttps://plursky.com/f/iii-points
+ -2026/#set-iiip-jinn-pr
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-jinn-pr
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-omar@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T011500Z
+DTEND:20261018T023000Z
+SUMMARY:Omar+ · ISOTROPIC
+LOCATION:ISOTROPIC\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · ISOTROPIC\nhttps://plursky.com/f/iii-points-
+ 2026/#set-iiip-omar
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-omar
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-david-vunk@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T014500Z
+DTEND:20261018T034500Z
+SUMMARY:David Vunk · DOOR IV
+LOCATION:DOOR IV\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · DOOR IV\nhttps://plursky.com/f/iii-points-20
+ 26/#set-iiip-david-vunk
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-david-vunk
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-fine@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T014500Z
+DTEND:20261018T023000Z
+SUMMARY:Fine · GRAND CENTRAL
+LOCATION:GRAND CENTRAL\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · GRAND CENTRAL\nhttps://plursky.com/f/iii-poi
+ nts-2026/#set-iiip-fine
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-fine
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-kinahau@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T014500Z
+DTEND:20261018T030000Z
+SUMMARY:KinAhau · VERTEX
+LOCATION:VERTEX\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · VERTEX\nhttps://plursky.com/f/iii-points-202
+ 6/#set-iiip-kinahau
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-kinahau
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-roman-flugel@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T014500Z
+DTEND:20261018T030000Z
+SUMMARY:Roman Flügel · S3QUENC3
+LOCATION:S3QUENC3\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · S3QUENC3\nhttps://plursky.com/f/iii-points-2
+ 026/#set-iiip-roman-flugel
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-roman-flugel
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-sel-6-b2b-playshado@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T014500Z
+DTEND:20261018T030000Z
+SUMMARY:Playshado B2B SEL.6 · HALO 88
+LOCATION:HALO 88\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · HALO 88\nhttps://plursky.com/f/iii-points-20
+ 26/#set-iiip-sel-6-b2b-playshado
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-sel-6-b2b-playshado
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-ki-ki@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T020000Z
+DTEND:20261018T031500Z
+SUMMARY:KI/KI · RC95
+LOCATION:RC95\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · RC95\nhttps://plursky.com/f/iii-points-2026/
+ #set-iiip-ki-ki
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-ki-ki
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-saint-romero@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T020000Z
+DTEND:20261018T030000Z
+SUMMARY:Saint & Romero (Hybrid) · PLAYERS CLUB
+LOCATION:PLAYERS CLUB\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · PLAYERS CLUB\nhttps://plursky.com/f/iii-poin
+ ts-2026/#set-iiip-saint-romero
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-saint-romero
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-619@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T021500Z
+DTEND:20261018T033000Z
+SUMMARY:619! · UNFORESEEN
+LOCATION:UNFORESEEN\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · UNFORESEEN\nhttps://plursky.com/f/iii-points
+ -2026/#set-iiip-619
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-619
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-adam-port@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T021500Z
+DTEND:20261018T033000Z
+SUMMARY:Adam Port · MIND MELT
+LOCATION:MIND MELT\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · MIND MELT\nhttps://plursky.com/f/iii-points-
+ 2026/#set-iiip-adam-port
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-adam-port
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-kelela@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T022000Z
+DTEND:20261018T030500Z
+SUMMARY:Kelela · SECTOR 3
+LOCATION:SECTOR 3\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · SECTOR 3\nhttps://plursky.com/f/iii-points-2
+ 026/#set-iiip-kelela
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-kelela
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-chasewest@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T023000Z
+DTEND:20261018T034500Z
+SUMMARY:ChaseWest · ISOTROPIC
+LOCATION:ISOTROPIC\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · ISOTROPIC\nhttps://plursky.com/f/iii-points-
+ 2026/#set-iiip-chasewest
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-chasewest
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-rude-boy-b2b-sdrv@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T023000Z
+DTEND:20261018T040000Z
+SUMMARY:Rude Boy B2B SDRV · III POINTS RADIO
+LOCATION:III POINTS RADIO\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · III POINTS RADIO\nhttps://plursky.com/f/iii-
+ points-2026/#set-iiip-rude-boy-b2b-sdrv
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-rude-boy-b2b-sdrv
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-chanel-beads@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T025500Z
+DTEND:20261018T034000Z
+SUMMARY:Chanel Beads · GRAND CENTRAL
+LOCATION:GRAND CENTRAL\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · GRAND CENTRAL\nhttps://plursky.com/f/iii-poi
+ nts-2026/#set-iiip-chanel-beads
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-chanel-beads
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-daphni@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T030000Z
+DTEND:20261018T041500Z
+SUMMARY:Daphni · S3QUENC3
+LOCATION:S3QUENC3\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · S3QUENC3\nhttps://plursky.com/f/iii-points-2
+ 026/#set-iiip-daphni
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-daphni
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-dean-turnley@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T030000Z
+DTEND:20261018T041500Z
+SUMMARY:Dean Turnley · VERTEX
+LOCATION:VERTEX\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · VERTEX\nhttps://plursky.com/f/iii-points-202
+ 6/#set-iiip-dean-turnley
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-dean-turnley
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-jeremy-ismael@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T030000Z
+DTEND:20261018T041500Z
+SUMMARY:Jeremy Ismael · PLAYERS CLUB
+LOCATION:PLAYERS CLUB\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · PLAYERS CLUB\nhttps://plursky.com/f/iii-poin
+ ts-2026/#set-iiip-jeremy-ismael
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-jeremy-ismael
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-mr-bitch@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T030000Z
+DTEND:20261018T040000Z
+SUMMARY:Mr. Bitch · HALO 88
+LOCATION:HALO 88\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · HALO 88\nhttps://plursky.com/f/iii-points-20
+ 26/#set-iiip-mr-bitch
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-mr-bitch
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-u-uk-uk1mat-u@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T031500Z
+DTEND:20261018T043000Z
+SUMMARY:¥ØU$UK€ ¥UK1MAT$U · RC95
+LOCATION:RC95\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · RC95\nhttps://plursky.com/f/iii-points-2026/
+ #set-iiip-u-uk-uk1mat-u
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-u-uk-uk1mat-u
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-1-800-lolita-b2b-xana@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T033000Z
+DTEND:20261018T044500Z
+SUMMARY:1-800-305 · UNFORESEEN
+LOCATION:UNFORESEEN\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · UNFORESEEN\nhttps://plursky.com/f/iii-points
+ -2026/#set-iiip-1-800-lolita-b2b-xana
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-1-800-lolita-b2b-xana
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-horsegiirl@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T033000Z
+DTEND:20261018T042000Z
+SUMMARY:horsegiirL · SECTOR 3
+LOCATION:SECTOR 3\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · SECTOR 3\nhttps://plursky.com/f/iii-points-2
+ 026/#set-iiip-horsegiirl
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-horsegiirl
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-sosa@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T034500Z
+DTEND:20261018T050000Z
+SUMMARY:Sosa · ISOTROPIC
+LOCATION:ISOTROPIC\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · ISOTROPIC\nhttps://plursky.com/f/iii-points-
+ 2026/#set-iiip-sosa
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-sosa
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-terence-tabeau@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T034500Z
+DTEND:20261018T050000Z
+SUMMARY:Terence Tabeau · DOOR IV
+LOCATION:DOOR IV\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · DOOR IV\nhttps://plursky.com/f/iii-points-20
+ 26/#set-iiip-terence-tabeau
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-terence-tabeau
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-phiphi-b2b-winter-wrong@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T040000Z
+DTEND:20261018T053000Z
+SUMMARY:phiphi B2B Winter Wrong · III POINTS RADIO
+LOCATION:III POINTS RADIO\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · III POINTS RADIO\nhttps://plursky.com/f/iii-
+ points-2026/#set-iiip-phiphi-b2b-winter-wrong
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-phiphi-b2b-winter-wrong
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-pressure-point-b2b-berrakk@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T040000Z
+DTEND:20261018T051500Z
+SUMMARY:Berrakka B2B Pressure Point · HALO 88
+LOCATION:HALO 88\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · HALO 88\nhttps://plursky.com/f/iii-points-20
+ 26/#set-iiip-pressure-point-b2b-berrakk
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-pressure-point-b2b-berr
+ akk
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-seth-troxler@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T040000Z
+DTEND:20261018T080000Z
+SUMMARY:Seth Troxler · 444
+LOCATION:444\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · 444\nhttps://plursky.com/f/iii-points-2026/#
+ set-iiip-seth-troxler
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-seth-troxler
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-underworld@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T040000Z
+DTEND:20261018T050000Z
+SUMMARY:Underworld · MIND MELT
+LOCATION:MIND MELT\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · MIND MELT\nhttps://plursky.com/f/iii-points-
+ 2026/#set-iiip-underworld
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-underworld
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-velora@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T040500Z
+DTEND:20261018T043500Z
+SUMMARY:Velora · GRAND CENTRAL
+LOCATION:GRAND CENTRAL\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · GRAND CENTRAL\nhttps://plursky.com/f/iii-poi
+ nts-2026/#set-iiip-velora
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-velora
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-interplanetary-criminal@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T041500Z
+DTEND:20261018T053000Z
+SUMMARY:Interplanetary Criminal · S3QUENC3
+LOCATION:S3QUENC3\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · S3QUENC3\nhttps://plursky.com/f/iii-points-2
+ 026/#set-iiip-interplanetary-criminal
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-interplanetary-criminal
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-jason-rault@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T041500Z
+DTEND:20261018T053000Z
+SUMMARY:Jason Rault · PLAYERS CLUB
+LOCATION:PLAYERS CLUB\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · PLAYERS CLUB\nhttps://plursky.com/f/iii-poin
+ ts-2026/#set-iiip-jason-rault
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-jason-rault
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-sam-alfred@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T041500Z
+DTEND:20261018T053000Z
+SUMMARY:Sam Alfred · VERTEX
+LOCATION:VERTEX\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · VERTEX\nhttps://plursky.com/f/iii-points-202
+ 6/#set-iiip-sam-alfred
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-sam-alfred
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-vtss@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T043000Z
+DTEND:20261018T053000Z
+SUMMARY:VTSS · RC95
+LOCATION:RC95\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · RC95\nhttps://plursky.com/f/iii-points-2026/
+ #set-iiip-vtss
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-vtss
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-bassvictim@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T044000Z
+DTEND:20261018T052500Z
+SUMMARY:Bassvictim · SECTOR 3
+LOCATION:SECTOR 3\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · SECTOR 3\nhttps://plursky.com/f/iii-points-2
+ 026/#set-iiip-bassvictim
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-bassvictim
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-saturnsarii-b2b-suz@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T044500Z
+DTEND:20261018T061500Z
+SUMMARY:SATURNSARii B2B SUZ · UNFORESEEN
+LOCATION:UNFORESEEN\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · UNFORESEEN\nhttps://plursky.com/f/iii-points
+ -2026/#set-iiip-saturnsarii-b2b-suz
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-saturnsarii-b2b-suz
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-dj-three-b2b-sister-system@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T050000Z
+DTEND:20261018T063000Z
+SUMMARY:DJ Three B2B Sister System · DOOR IV
+LOCATION:DOOR IV\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · DOOR IV\nhttps://plursky.com/f/iii-points-20
+ 26/#set-iiip-dj-three-b2b-sister-system
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-dj-three-b2b-sister-sys
+ tem
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-max-dean-b2b-luke-dean@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T050000Z
+DTEND:20261018T063000Z
+SUMMARY:Max Dean B2B Luke Dean · ISOTROPIC
+LOCATION:ISOTROPIC\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · ISOTROPIC\nhttps://plursky.com/f/iii-points-
+ 2026/#set-iiip-max-dean-b2b-luke-dean
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-max-dean-b2b-luke-dean
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-yhwh-nailgun@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T050000Z
+DTEND:20261018T054500Z
+SUMMARY:YHWH Nailgun · GRAND CENTRAL
+LOCATION:GRAND CENTRAL\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · GRAND CENTRAL\nhttps://plursky.com/f/iii-poi
+ nts-2026/#set-iiip-yhwh-nailgun
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-yhwh-nailgun
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-faith-leazae@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T051500Z
+DTEND:20261018T054500Z
+SUMMARY:Faith Leazae · HALO 88
+LOCATION:HALO 88\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · HALO 88\nhttps://plursky.com/f/iii-points-20
+ 26/#set-iiip-faith-leazae
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-faith-leazae
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-charlotte-de-witte@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T053000Z
+DTEND:20261018T064500Z
+SUMMARY:Charlotte de Witte · RC95
+LOCATION:RC95\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · RC95\nhttps://plursky.com/f/iii-points-2026/
+ #set-iiip-charlotte-de-witte
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-charlotte-de-witte
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-four-tet@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T053000Z
+DTEND:20261018T064500Z
+SUMMARY:Four Tet · MIND MELT
+LOCATION:MIND MELT\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · MIND MELT\nhttps://plursky.com/f/iii-points-
+ 2026/#set-iiip-four-tet
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-four-tet
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-haai@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T053000Z
+DTEND:20261018T064500Z
+SUMMARY:HAAi · S3QUENC3
+LOCATION:S3QUENC3\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · S3QUENC3\nhttps://plursky.com/f/iii-points-2
+ 026/#set-iiip-haai
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-haai
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-lizzie-mcguire@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T053000Z
+DTEND:20261018T063000Z
+SUMMARY:Lizzie_mcguire · III POINTS RADIO
+LOCATION:III POINTS RADIO\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · III POINTS RADIO\nhttps://plursky.com/f/iii-
+ points-2026/#set-iiip-lizzie-mcguire
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-lizzie-mcguire
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-mph@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T053000Z
+DTEND:20261018T064500Z
+SUMMARY:MPH · VERTEX
+LOCATION:VERTEX\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · VERTEX\nhttps://plursky.com/f/iii-points-202
+ 6/#set-iiip-mph
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-mph
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-nii-tei@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T053000Z
+DTEND:20261018T064500Z
+SUMMARY:Nii Tei · PLAYERS CLUB
+LOCATION:PLAYERS CLUB\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · PLAYERS CLUB\nhttps://plursky.com/f/iii-poin
+ ts-2026/#set-iiip-nii-tei
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-nii-tei
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-lady-narcisse-b2b-racci@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T054500Z
+DTEND:20261018T070000Z
+SUMMARY:Lady Narcisse B2B Racci · HALO 88
+LOCATION:HALO 88\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · HALO 88\nhttps://plursky.com/f/iii-points-20
+ 26/#set-iiip-lady-narcisse-b2b-racci
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-lady-narcisse-b2b-racci
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-machine-girl@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T054500Z
+DTEND:20261018T063500Z
+SUMMARY:Machine Girl · SECTOR 3
+LOCATION:SECTOR 3\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · SECTOR 3\nhttps://plursky.com/f/iii-points-2
+ 026/#set-iiip-machine-girl
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-machine-girl
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-crespi-drum-syndicate-live@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T060000Z
+DTEND:20261018T070000Z
+SUMMARY:Crespi Drum Syndicate (Live) · GRAND CENTRAL
+LOCATION:GRAND CENTRAL\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · GRAND CENTRAL\nhttps://plursky.com/f/iii-poi
+ nts-2026/#set-iiip-crespi-drum-syndicate-live
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-crespi-drum-syndicate-l
+ ive
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-liquid-dinosaurs@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T061500Z
+DTEND:20261018T064500Z
+SUMMARY:Liquid Dinosaurs · UNFORESEEN
+LOCATION:UNFORESEEN\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · UNFORESEEN\nhttps://plursky.com/f/iii-points
+ -2026/#set-iiip-liquid-dinosaurs
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-liquid-dinosaurs
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-ashley-venom-b2b-souls-dep@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T063000Z
+DTEND:20261018T080000Z
+SUMMARY:Ashley Venom B2B Souls Departed · DOOR IV
+LOCATION:DOOR IV\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · DOOR IV\nhttps://plursky.com/f/iii-points-20
+ 26/#set-iiip-ashley-venom-b2b-souls-dep
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-ashley-venom-b2b-souls-
+ dep
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-mango-b2b-mister-lo@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T063000Z
+DTEND:20261018T080000Z
+SUMMARY:Mango B2B Mister Lo · III POINTS RADIO
+LOCATION:III POINTS RADIO\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · III POINTS RADIO\nhttps://plursky.com/f/iii-
+ points-2026/#set-iiip-mango-b2b-mister-lo
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-mango-b2b-mister-lo
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-marco-carola-b2b-franky-ri@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T063000Z
+DTEND:20261018T080000Z
+SUMMARY:Marco Carola B2B Franky Rizardo · ISOTROPIC
+LOCATION:ISOTROPIC\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · ISOTROPIC\nhttps://plursky.com/f/iii-points-
+ 2026/#set-iiip-marco-carola-b2b-franky-ri
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-marco-carola-b2b-franky
+ -ri
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-2up@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T064500Z
+DTEND:20261018T080000Z
+SUMMARY:2UP! · VERTEX
+LOCATION:VERTEX\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · VERTEX\nhttps://plursky.com/f/iii-points-202
+ 6/#set-iiip-2up
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-2up
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-999999999@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T064500Z
+DTEND:20261018T080000Z
+SUMMARY:999999999 · RC95
+LOCATION:RC95\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · RC95\nhttps://plursky.com/f/iii-points-2026/
+ #set-iiip-999999999
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-999999999
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-kettama@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T064500Z
+DTEND:20261018T080000Z
+SUMMARY:KETTAMA · MIND MELT
+LOCATION:MIND MELT\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · MIND MELT\nhttps://plursky.com/f/iii-points-
+ 2026/#set-iiip-kettama
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-kettama
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-kujo-b2b-rara@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T064500Z
+DTEND:20261018T080000Z
+SUMMARY:Kujo B2B RARA · UNFORESEEN
+LOCATION:UNFORESEEN\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · UNFORESEEN\nhttps://plursky.com/f/iii-points
+ -2026/#set-iiip-kujo-b2b-rara
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-kujo-b2b-rara
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-monoky@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T064500Z
+DTEND:20261018T080000Z
+SUMMARY:Monoky · PLAYERS CLUB
+LOCATION:PLAYERS CLUB\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · PLAYERS CLUB\nhttps://plursky.com/f/iii-poin
+ ts-2026/#set-iiip-monoky
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-monoky
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-tiga@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T064500Z
+DTEND:20261018T080000Z
+SUMMARY:Tiga · S3QUENC3
+LOCATION:S3QUENC3\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · S3QUENC3\nhttps://plursky.com/f/iii-points-2
+ 026/#set-iiip-tiga
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-tiga
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-duality-b2b-gumthewrapper@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T070000Z
+DTEND:20261018T080000Z
+SUMMARY:Duality B2B GumtheWrapper · HALO 88
+LOCATION:HALO 88\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · HALO 88\nhttps://plursky.com/f/iii-points-20
+ 26/#set-iiip-duality-b2b-gumthewrapper
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-duality-b2b-gumthewrapp
+ er
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:iii-points-2026-set-iiip-sunn-o@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20261018T070000Z
+DTEND:20261018T080000Z
+SUMMARY:Sunn O))) · SECTOR 3
+LOCATION:SECTOR 3\, Mana Wynwood\, Miami\, FL
+DESCRIPTION:III Points 2026 · SECTOR 3\nhttps://plursky.com/f/iii-points-2
+ 026/#set-iiip-sunn-o
+URL:https://plursky.com/f/iii-points-2026/#set-iiip-sunn-o
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

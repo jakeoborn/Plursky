@@ -1,0 +1,1111 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Plursky//Festival set times//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:HARD Summer 2026 set times · Plursky
+X-WR-TIMEZONE:America/Los_Angeles
+X-WR-CALDESC:Every timed set at HARD Summer 2026. Updates itself when the s
+ chedule changes. https://plursky.com/f/hard-summer-2026/
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-cquestt@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260801T210000Z
+DTEND:20260801T220000Z
+SUMMARY:Cquestt · Purple
+LOCATION:Purple\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Purple\nhttps://plursky.com/f/hard-summer-2
+ 026/#set-hs1-cquestt
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-cquestt
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-dj-warning@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260801T210000Z
+DTEND:20260801T220000Z
+SUMMARY:DJ Warning · Green
+LOCATION:Green\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Green\nhttps://plursky.com/f/hard-summer-20
+ 26/#set-hs1-dj-warning
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-dj-warning
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-dreya-v@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260801T210000Z
+DTEND:20260801T220000Z
+SUMMARY:DREYA V · Pink
+LOCATION:Pink\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Pink\nhttps://plursky.com/f/hard-summer-202
+ 6/#set-hs1-dreya-v
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-dreya-v
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-montique@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260801T210000Z
+DTEND:20260801T220000Z
+SUMMARY:Montique · Beatbox Art Car
+LOCATION:Beatbox Art Car\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Beatbox Art Car\nhttps://plursky.com/f/hard
+ -summer-2026/#set-hs1-montique
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-montique
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-naomi-green@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260801T210000Z
+DTEND:20260801T220000Z
+SUMMARY:Naomi Green · Ice Cream Truck
+LOCATION:Ice Cream Truck\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Ice Cream Truck\nhttps://plursky.com/f/hard
+ -summer-2026/#set-hs1-naomi-green
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-naomi-green
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-quinn-blake@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260801T210000Z
+DTEND:20260801T220000Z
+SUMMARY:Quinn Blake · HARD
+LOCATION:HARD\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · HARD\nhttps://plursky.com/f/hard-summer-202
+ 6/#set-hs1-quinn-blake
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-quinn-blake
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-shaking@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260801T210000Z
+DTEND:20260801T220000Z
+SUMMARY:SHAKING · HARDER
+LOCATION:HARDER\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · HARDER\nhttps://plursky.com/f/hard-summer-2
+ 026/#set-hs1-shaking
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-shaking
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-brunello@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260801T220000Z
+DTEND:20260801T230000Z
+SUMMARY:Brunello · Pink
+LOCATION:Pink\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Pink\nhttps://plursky.com/f/hard-summer-202
+ 6/#set-hs1-brunello
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-brunello
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-bushbaby@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260801T220000Z
+DTEND:20260801T231000Z
+SUMMARY:Bushbaby · HARD
+LOCATION:HARD\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · HARD\nhttps://plursky.com/f/hard-summer-202
+ 6/#set-hs1-bushbaby
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-bushbaby
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-gay-felony@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260801T220000Z
+DTEND:20260801T230000Z
+SUMMARY:Gay Felony · Ice Cream Truck
+LOCATION:Ice Cream Truck\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Ice Cream Truck\nhttps://plursky.com/f/hard
+ -summer-2026/#set-hs1-gay-felony
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-gay-felony
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-jon-casey@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260801T220000Z
+DTEND:20260801T230000Z
+SUMMARY:Jon Casey · HARDER
+LOCATION:HARDER\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · HARDER\nhttps://plursky.com/f/hard-summer-2
+ 026/#set-hs1-jon-casey
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-jon-casey
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-lovefoxy@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260801T220000Z
+DTEND:20260801T230000Z
+SUMMARY:Lovefoxy · Green
+LOCATION:Green\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Green\nhttps://plursky.com/f/hard-summer-20
+ 26/#set-hs1-lovefoxy
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-lovefoxy
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-nick-leon@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260801T220000Z
+DTEND:20260801T230000Z
+SUMMARY:Nick León · Purple
+LOCATION:Purple\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Purple\nhttps://plursky.com/f/hard-summer-2
+ 026/#set-hs1-nick-leon
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-nick-leon
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-sim-ivy@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260801T220000Z
+DTEND:20260801T230000Z
+SUMMARY:Sim Ivy · Beatbox Art Car
+LOCATION:Beatbox Art Car\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Beatbox Art Car\nhttps://plursky.com/f/hard
+ -summer-2026/#set-hs1-sim-ivy
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-sim-ivy
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-debbiesthuglife@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260801T230000Z
+DTEND:20260802T003000Z
+SUMMARY:debbiesthuglife · Ice Cream Truck
+LOCATION:Ice Cream Truck\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Ice Cream Truck\nhttps://plursky.com/f/hard
+ -summer-2026/#set-hs1-debbiesthuglife
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-debbiesthuglife
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-locklead@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260801T230000Z
+DTEND:20260802T000000Z
+SUMMARY:Locklead · Pink
+LOCATION:Pink\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Pink\nhttps://plursky.com/f/hard-summer-202
+ 6/#set-hs1-locklead
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-locklead
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-mary-droppinz@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260801T230000Z
+DTEND:20260802T001000Z
+SUMMARY:Mary Droppinz · HARDER
+LOCATION:HARDER\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · HARDER\nhttps://plursky.com/f/hard-summer-2
+ 026/#set-hs1-mary-droppinz
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-mary-droppinz
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-small-danny-g-luvs-u-b2b-bori@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260801T230000Z
+DTEND:20260802T003000Z
+SUMMARY:Small (danny g luvs u B2B Bori) · Beatbox Art Car
+LOCATION:Beatbox Art Car\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Beatbox Art Car\nhttps://plursky.com/f/hard
+ -summer-2026/#set-hs1-small-danny-g-luvs-u-b2b-bori
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-small-danny-g-luvs-u-b2
+ b-bori
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-x-club-b2b-atrip@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260801T230000Z
+DTEND:20260802T003000Z
+SUMMARY:X CLUB. B2B ATRIP · Green
+LOCATION:Green\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Green\nhttps://plursky.com/f/hard-summer-20
+ 26/#set-hs1-x-club-b2b-atrip
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-x-club-b2b-atrip
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-six-sex@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260801T231000Z
+DTEND:20260801T235000Z
+SUMMARY:Six Sex · Purple
+LOCATION:Purple\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Purple\nhttps://plursky.com/f/hard-summer-2
+ 026/#set-hs1-six-sex
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-six-sex
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-bolo@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260801T231500Z
+DTEND:20260802T002000Z
+SUMMARY:BOLO · HARD
+LOCATION:HARD\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · HARD\nhttps://plursky.com/f/hard-summer-202
+ 6/#set-hs1-bolo
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-bolo
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-luke-alessi@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T000000Z
+DTEND:20260802T010000Z
+SUMMARY:Luke Alessi · Pink
+LOCATION:Pink\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Pink\nhttps://plursky.com/f/hard-summer-202
+ 6/#set-hs1-luke-alessi
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-luke-alessi
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-confidence-man@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T001000Z
+DTEND:20260802T010000Z
+SUMMARY:Confidence Man · Purple
+LOCATION:Purple\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Purple\nhttps://plursky.com/f/hard-summer-2
+ 026/#set-hs1-confidence-man
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-confidence-man
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-rz@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T001000Z
+DTEND:20260802T012500Z
+SUMMARY:RØZ · HARDER
+LOCATION:HARDER\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · HARDER\nhttps://plursky.com/f/hard-summer-2
+ 026/#set-hs1-rz
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-rz
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-chris-lorenzo@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T002500Z
+DTEND:20260802T014500Z
+SUMMARY:Chris Lorenzo · HARD
+LOCATION:HARD\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · HARD\nhttps://plursky.com/f/hard-summer-202
+ 6/#set-hs1-chris-lorenzo
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-chris-lorenzo
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-dj-kita@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T003000Z
+DTEND:20260802T020000Z
+SUMMARY:DJ Kita · Beatbox Art Car
+LOCATION:Beatbox Art Car\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Beatbox Art Car\nhttps://plursky.com/f/hard
+ -summer-2026/#set-hs1-dj-kita
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-dj-kita
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-mesme@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T003000Z
+DTEND:20260802T020000Z
+SUMMARY:Mesmé · Ice Cream Truck
+LOCATION:Ice Cream Truck\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Ice Cream Truck\nhttps://plursky.com/f/hard
+ -summer-2026/#set-hs1-mesme
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-mesme
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-pegassi@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T003000Z
+DTEND:20260802T013000Z
+SUMMARY:Pegassi · Green
+LOCATION:Green\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Green\nhttps://plursky.com/f/hard-summer-20
+ 26/#set-hs1-pegassi
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-pegassi
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-omar@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T010000Z
+DTEND:20260802T020000Z
+SUMMARY:Omar+ · Pink
+LOCATION:Pink\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Pink\nhttps://plursky.com/f/hard-summer-202
+ 6/#set-hs1-omar
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-omar
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-salute@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T011000Z
+DTEND:20260802T023000Z
+SUMMARY:salute · Purple
+LOCATION:Purple\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Purple\nhttps://plursky.com/f/hard-summer-2
+ 026/#set-hs1-salute
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-salute
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-anetha@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T013000Z
+DTEND:20260802T023000Z
+SUMMARY:Anetha · Green
+LOCATION:Green\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Green\nhttps://plursky.com/f/hard-summer-20
+ 26/#set-hs1-anetha
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-anetha
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-tokischa@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T013500Z
+DTEND:20260802T022000Z
+SUMMARY:Tokischa · HARDER
+LOCATION:HARDER\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · HARDER\nhttps://plursky.com/f/hard-summer-2
+ 026/#set-hs1-tokischa
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-tokischa
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-mau-p@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T014500Z
+DTEND:20260802T031500Z
+SUMMARY:Mau P · HARD
+LOCATION:HARD\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · HARD\nhttps://plursky.com/f/hard-summer-202
+ 6/#set-hs1-mau-p
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-mau-p
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-dj-seinfeld-b2b-luuk-van-dijk@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T020000Z
+DTEND:20260802T033000Z
+SUMMARY:DJ Seinfeld B2B Luuk van Dijk · Pink
+LOCATION:Pink\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Pink\nhttps://plursky.com/f/hard-summer-202
+ 6/#set-hs1-dj-seinfeld-b2b-luuk-van-dijk
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-dj-seinfeld-b2b-luuk-va
+ n-dijk
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-lake-hills-b2b-nyx@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T020000Z
+DTEND:20260802T033000Z
+SUMMARY:Lake Hills B2B Ønyx · Ice Cream Truck
+LOCATION:Ice Cream Truck\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Ice Cream Truck\nhttps://plursky.com/f/hard
+ -summer-2026/#set-hs1-lake-hills-b2b-nyx
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-lake-hills-b2b-nyx
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-spinorita@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T020000Z
+DTEND:20260802T033000Z
+SUMMARY:Spiñorita · Beatbox Art Car
+LOCATION:Beatbox Art Car\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Beatbox Art Car\nhttps://plursky.com/f/hard
+ -summer-2026/#set-hs1-spinorita
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-spinorita
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-hannah-laing@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T023000Z
+DTEND:20260802T034500Z
+SUMMARY:Hannah Laing · Green
+LOCATION:Green\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Green\nhttps://plursky.com/f/hard-summer-20
+ 26/#set-hs1-hannah-laing
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-hannah-laing
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-zack-fox@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T023000Z
+DTEND:20260802T034500Z
+SUMMARY:Zack Fox · Purple
+LOCATION:Purple\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Purple\nhttps://plursky.com/f/hard-summer-2
+ 026/#set-hs1-zack-fox
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-zack-fox
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-brutalismus-3000@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T023500Z
+DTEND:20260802T033500Z
+SUMMARY:Brutalismus 3000 · HARDER
+LOCATION:HARDER\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · HARDER\nhttps://plursky.com/f/hard-summer-2
+ 026/#set-hs1-brutalismus-3000
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-brutalismus-3000
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-capes@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T033000Z
+DTEND:20260802T050000Z
+SUMMARY:Capes · Ice Cream Truck
+LOCATION:Ice Cream Truck\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Ice Cream Truck\nhttps://plursky.com/f/hard
+ -summer-2026/#set-hs1-capes
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-capes
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-dj-blackmarket@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T033000Z
+DTEND:20260802T050000Z
+SUMMARY:DJ Blackmarket · Beatbox Art Car
+LOCATION:Beatbox Art Car\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Beatbox Art Car\nhttps://plursky.com/f/hard
+ -summer-2026/#set-hs1-dj-blackmarket
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-dj-blackmarket
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-maceo-plex@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T033000Z
+DTEND:20260802T050000Z
+SUMMARY:Maceo Plex · Pink
+LOCATION:Pink\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Pink\nhttps://plursky.com/f/hard-summer-202
+ 6/#set-hs1-maceo-plex
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-maceo-plex
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-charlotte-de-witte@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T034500Z
+DTEND:20260802T050000Z
+SUMMARY:Charlotte de Witte · HARDER
+LOCATION:HARDER\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · HARDER\nhttps://plursky.com/f/hard-summer-2
+ 026/#set-hs1-charlotte-de-witte
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-charlotte-de-witte
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-interplanetary-criminal-b2b-main-p@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T034500Z
+DTEND:20260802T050000Z
+SUMMARY:Interplanetary Criminal B2B Main Phase · Green
+LOCATION:Green\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Green\nhttps://plursky.com/f/hard-summer-20
+ 26/#set-hs1-interplanetary-criminal-b2b-main-p
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-interplanetary-criminal
+ -b2b-main-p
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-u-uk-uk1mat-u@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T034500Z
+DTEND:20260802T050000Z
+SUMMARY:¥ØU$UK€ ¥UK1MAT$U · Purple
+LOCATION:Purple\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Purple\nhttps://plursky.com/f/hard-summer-2
+ 026/#set-hs1-u-uk-uk1mat-u
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-u-uk-uk1mat-u
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs1-kali-uchis@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T035600Z
+DTEND:20260802T050000Z
+SUMMARY:Kali Uchis · HARD
+LOCATION:HARD\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · HARD\nhttps://plursky.com/f/hard-summer-202
+ 6/#set-hs1-kali-uchis
+URL:https://plursky.com/f/hard-summer-2026/#set-hs1-kali-uchis
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-adult-hits@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T210000Z
+DTEND:20260802T220000Z
+SUMMARY:Adult Hits · Ice Cream Truck
+LOCATION:Ice Cream Truck\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Ice Cream Truck\nhttps://plursky.com/f/hard
+ -summer-2026/#set-hs2-adult-hits
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-adult-hits
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-chloe404-b2b-kyle-arthur@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T210000Z
+DTEND:20260802T220000Z
+SUMMARY:Chloe404 B2B Kyle Arthur · Beatbox Art Car
+LOCATION:Beatbox Art Car\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Beatbox Art Car\nhttps://plursky.com/f/hard
+ -summer-2026/#set-hs2-chloe404-b2b-kyle-arthur
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-chloe404-b2b-kyle-arthu
+ r
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-cole-terrazas@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T210000Z
+DTEND:20260802T220000Z
+SUMMARY:Cole Terrazas · Pink
+LOCATION:Pink\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Pink\nhttps://plursky.com/f/hard-summer-202
+ 6/#set-hs2-cole-terrazas
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-cole-terrazas
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-etari@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T210000Z
+DTEND:20260802T220000Z
+SUMMARY:Etari · Green
+LOCATION:Green\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Green\nhttps://plursky.com/f/hard-summer-20
+ 26/#set-hs2-etari
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-etari
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-fun2bjane@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T210000Z
+DTEND:20260802T214500Z
+SUMMARY:fun2bjane · Purple
+LOCATION:Purple\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Purple\nhttps://plursky.com/f/hard-summer-2
+ 026/#set-hs2-fun2bjane
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-fun2bjane
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-ksofresko@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T210000Z
+DTEND:20260802T220000Z
+SUMMARY:KsoFresKo · HARDER
+LOCATION:HARDER\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · HARDER\nhttps://plursky.com/f/hard-summer-2
+ 026/#set-hs2-ksofresko
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-ksofresko
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-strawbry@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T210000Z
+DTEND:20260802T220500Z
+SUMMARY:Strawbry · HARD
+LOCATION:HARD\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · HARD\nhttps://plursky.com/f/hard-summer-202
+ 6/#set-hs2-strawbry
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-strawbry
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-10cust@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T214500Z
+DTEND:20260802T224000Z
+SUMMARY:10cust · Purple
+LOCATION:Purple\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Purple\nhttps://plursky.com/f/hard-summer-2
+ 026/#set-hs2-10cust
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-10cust
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-bahar-khadem@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T220000Z
+DTEND:20260802T230000Z
+SUMMARY:Bahar Khadem · Ice Cream Truck
+LOCATION:Ice Cream Truck\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Ice Cream Truck\nhttps://plursky.com/f/hard
+ -summer-2026/#set-hs2-bahar-khadem
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-bahar-khadem
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-canary-yellow@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T220000Z
+DTEND:20260802T231000Z
+SUMMARY:Canary Yellow · HARDER
+LOCATION:HARDER\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · HARDER\nhttps://plursky.com/f/hard-summer-2
+ 026/#set-hs2-canary-yellow
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-canary-yellow
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-dj-fuckoff@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T220000Z
+DTEND:20260802T230000Z
+SUMMARY:DJ Fuckoff · Green
+LOCATION:Green\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Green\nhttps://plursky.com/f/hard-summer-20
+ 26/#set-hs2-dj-fuckoff
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-dj-fuckoff
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-edge-control@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T220000Z
+DTEND:20260802T230000Z
+SUMMARY:Edge Control · Beatbox Art Car
+LOCATION:Beatbox Art Car\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Beatbox Art Car\nhttps://plursky.com/f/hard
+ -summer-2026/#set-hs2-edge-control
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-edge-control
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-miluhska@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T220000Z
+DTEND:20260802T230000Z
+SUMMARY:Miluhska · Pink
+LOCATION:Pink\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Pink\nhttps://plursky.com/f/hard-summer-202
+ 6/#set-hs2-miluhska
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-miluhska
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-1tbsp@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T220500Z
+DTEND:20260802T232000Z
+SUMMARY:1tbsp · HARD
+LOCATION:HARD\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · HARD\nhttps://plursky.com/f/hard-summer-202
+ 6/#set-hs2-1tbsp
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-1tbsp
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-underscores@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T225000Z
+DTEND:20260802T233000Z
+SUMMARY:underscores · Purple
+LOCATION:Purple\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Purple\nhttps://plursky.com/f/hard-summer-2
+ 026/#set-hs2-underscores
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-underscores
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-alarico-b2b-yanamaste@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T230000Z
+DTEND:20260803T003000Z
+SUMMARY:Alarico B2B Yanamaste · Green
+LOCATION:Green\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Green\nhttps://plursky.com/f/hard-summer-20
+ 26/#set-hs2-alarico-b2b-yanamaste
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-alarico-b2b-yanamaste
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-cerulo@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T230000Z
+DTEND:20260803T003000Z
+SUMMARY:Cerulo · Beatbox Art Car
+LOCATION:Beatbox Art Car\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Beatbox Art Car\nhttps://plursky.com/f/hard
+ -summer-2026/#set-hs2-cerulo
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-cerulo
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-ranger-trucco@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T230000Z
+DTEND:20260803T003000Z
+SUMMARY:Ranger Trucco · Pink
+LOCATION:Pink\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Pink\nhttps://plursky.com/f/hard-summer-202
+ 6/#set-hs2-ranger-trucco
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-ranger-trucco
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-samwise@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T230000Z
+DTEND:20260803T003000Z
+SUMMARY:Samwise · Ice Cream Truck
+LOCATION:Ice Cream Truck\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Ice Cream Truck\nhttps://plursky.com/f/hard
+ -summer-2026/#set-hs2-samwise
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-samwise
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-fifi@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T231000Z
+DTEND:20260803T002000Z
+SUMMARY:FIFI · HARDER
+LOCATION:HARDER\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · HARDER\nhttps://plursky.com/f/hard-summer-2
+ 026/#set-hs2-fifi
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-fifi
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-hyperbeam@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T232000Z
+DTEND:20260803T005000Z
+SUMMARY:Hyperbeam · HARD
+LOCATION:HARD\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · HARD\nhttps://plursky.com/f/hard-summer-202
+ 6/#set-hs2-hyperbeam
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-hyperbeam
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-frost-children@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260802T234000Z
+DTEND:20260803T003500Z
+SUMMARY:Frost Children · Purple
+LOCATION:Purple\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Purple\nhttps://plursky.com/f/hard-summer-2
+ 026/#set-hs2-frost-children
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-frost-children
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-oppidan@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260803T002000Z
+DTEND:20260803T013000Z
+SUMMARY:Oppidan · HARDER
+LOCATION:HARDER\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · HARDER\nhttps://plursky.com/f/hard-summer-2
+ 026/#set-hs2-oppidan
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-oppidan
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-adiel-b2b-quest@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260803T003000Z
+DTEND:20260803T023000Z
+SUMMARY:Adiel B2B Quest · Green
+LOCATION:Green\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Green\nhttps://plursky.com/f/hard-summer-20
+ 26/#set-hs2-adiel-b2b-quest
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-adiel-b2b-quest
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-bianca-oblivion-b2b-star-eyes@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260803T003000Z
+DTEND:20260803T020000Z
+SUMMARY:Bianca Oblivion B2B Star Eyes · Ice Cream Truck
+LOCATION:Ice Cream Truck\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Ice Cream Truck\nhttps://plursky.com/f/hard
+ -summer-2026/#set-hs2-bianca-oblivion-b2b-star-eyes
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-bianca-oblivion-b2b-sta
+ r-eyes
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-lily-ardalan@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260803T003000Z
+DTEND:20260803T020000Z
+SUMMARY:Lily Ardalan · Beatbox Art Car
+LOCATION:Beatbox Art Car\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Beatbox Art Car\nhttps://plursky.com/f/hard
+ -summer-2026/#set-hs2-lily-ardalan
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-lily-ardalan
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-miguelle-tons@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260803T003000Z
+DTEND:20260803T020000Z
+SUMMARY:Miguelle & Tons · Pink
+LOCATION:Pink\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Pink\nhttps://plursky.com/f/hard-summer-202
+ 6/#set-hs2-miguelle-tons
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-miguelle-tons
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-mcr-t@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260803T004000Z
+DTEND:20260803T014000Z
+SUMMARY:MCR-T · Purple
+LOCATION:Purple\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Purple\nhttps://plursky.com/f/hard-summer-2
+ 026/#set-hs2-mcr-t
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-mcr-t
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-snow-strippers@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260803T010500Z
+DTEND:20260803T014000Z
+SUMMARY:Snow Strippers · HARD
+LOCATION:HARD\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · HARD\nhttps://plursky.com/f/hard-summer-202
+ 6/#set-hs2-snow-strippers
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-snow-strippers
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-after-midnight@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260803T013000Z
+DTEND:20260803T030000Z
+SUMMARY:After Midnight · HARDER
+LOCATION:HARDER\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · HARDER\nhttps://plursky.com/f/hard-summer-2
+ 026/#set-hs2-after-midnight
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-after-midnight
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-shygirl-presents-club-shy@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260803T014000Z
+DTEND:20260803T024000Z
+SUMMARY:Shygirl presents Club Shy · Purple
+LOCATION:Purple\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Purple\nhttps://plursky.com/f/hard-summer-2
+ 026/#set-hs2-shygirl-presents-club-shy
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-shygirl-presents-club-s
+ hy
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-mez-monty-b2b-shane-thomas@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260803T020000Z
+DTEND:20260803T033000Z
+SUMMARY:Mez Monty B2B Shane Thomas · Ice Cream Truck
+LOCATION:Ice Cream Truck\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Ice Cream Truck\nhttps://plursky.com/f/hard
+ -summer-2026/#set-hs2-mez-monty-b2b-shane-thomas
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-mez-monty-b2b-shane-tho
+ mas
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-pitchblack@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260803T020000Z
+DTEND:20260803T033000Z
+SUMMARY:PITCHBLACK · Beatbox Art Car
+LOCATION:Beatbox Art Car\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Beatbox Art Car\nhttps://plursky.com/f/hard
+ -summer-2026/#set-hs2-pitchblack
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-pitchblack
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-sammy-virji@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260803T020000Z
+DTEND:20260803T031500Z
+SUMMARY:Sammy Virji · HARD
+LOCATION:HARD\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · HARD\nhttps://plursky.com/f/hard-summer-202
+ 6/#set-hs2-sammy-virji
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-sammy-virji
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-tiga@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260803T020000Z
+DTEND:20260803T033000Z
+SUMMARY:Tiga · Pink
+LOCATION:Pink\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Pink\nhttps://plursky.com/f/hard-summer-202
+ 6/#set-hs2-tiga
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-tiga
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-vtss@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260803T023000Z
+DTEND:20260803T034500Z
+SUMMARY:VTSS · Green
+LOCATION:Green\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Green\nhttps://plursky.com/f/hard-summer-20
+ 26/#set-hs2-vtss
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-vtss
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-2hollis@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260803T025000Z
+DTEND:20260803T033500Z
+SUMMARY:2hollis · Purple
+LOCATION:Purple\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Purple\nhttps://plursky.com/f/hard-summer-2
+ 026/#set-hs2-2hollis
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-2hollis
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-rl-grime@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260803T030000Z
+DTEND:20260803T040000Z
+SUMMARY:RL Grime · HARDER
+LOCATION:HARDER\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · HARDER\nhttps://plursky.com/f/hard-summer-2
+ 026/#set-hs2-rl-grime
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-rl-grime
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-flabbergast@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260803T033000Z
+DTEND:20260803T050000Z
+SUMMARY:FLABBERGAST · Beatbox Art Car
+LOCATION:Beatbox Art Car\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Beatbox Art Car\nhttps://plursky.com/f/hard
+ -summer-2026/#set-hs2-flabbergast
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-flabbergast
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-oscar-osorio@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260803T033000Z
+DTEND:20260803T050000Z
+SUMMARY:Oscar Osorio · Ice Cream Truck
+LOCATION:Ice Cream Truck\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Ice Cream Truck\nhttps://plursky.com/f/hard
+ -summer-2026/#set-hs2-oscar-osorio
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-oscar-osorio
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-vintage-culture@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260803T033000Z
+DTEND:20260803T050000Z
+SUMMARY:Vintage Culture · Pink
+LOCATION:Pink\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Pink\nhttps://plursky.com/f/hard-summer-202
+ 6/#set-hs2-vintage-culture
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-vintage-culture
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-amelie-lens@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260803T034500Z
+DTEND:20260803T050000Z
+SUMMARY:Amelie Lens · Green
+LOCATION:Green\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Green\nhttps://plursky.com/f/hard-summer-20
+ 26/#set-hs2-amelie-lens
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-amelie-lens
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-knock2-b2b-zedd@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260803T034500Z
+DTEND:20260803T050000Z
+SUMMARY:Knock2 B2B Zedd · HARD
+LOCATION:HARD\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · HARD\nhttps://plursky.com/f/hard-summer-202
+ 6/#set-hs2-knock2-b2b-zedd
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-knock2-b2b-zedd
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-b3k-b2b-boys-noize@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260803T035000Z
+DTEND:20260803T050000Z
+SUMMARY:B3K B2B Boys Noize · Purple
+LOCATION:Purple\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · Purple\nhttps://plursky.com/f/hard-summer-2
+ 026/#set-hs2-b3k-b2b-boys-noize
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-b3k-b2b-boys-noize
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:hard-summer-2026-set-hs2-dj-snake-hip-hop-set@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260803T040000Z
+DTEND:20260803T050000Z
+SUMMARY:DJ Snake (Hip Hop Set) · HARDER
+LOCATION:HARDER\, Hollywood Park\, Inglewood\, CA
+DESCRIPTION:HARD Summer 2026 · HARDER\nhttps://plursky.com/f/hard-summer-2
+ 026/#set-hs2-dj-snake-hip-hop-set
+URL:https://plursky.com/f/hard-summer-2026/#set-hs2-dj-snake-hip-hop-set
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

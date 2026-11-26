@@ -1,0 +1,2004 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Plursky//Festival set times//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Ultra Miami 2026 set times · Plursky
+X-WR-TIMEZONE:America/New_York
+X-WR-CALDESC:Every timed set at Ultra Miami 2026. Updates itself when the s
+ chedule changes. https://plursky.com/f/ultra-miami-2026/
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul15@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260327T200000Z
+DTEND:20260327T213000Z
+SUMMARY:MAR-T · Megastructure
+LOCATION:Megastructure\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Megastructure\nhttps://plursky.com/f/ultra-
+ miami-2026/#set-ul15
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul15
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul1@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260327T200000Z
+DTEND:20260327T205000Z
+SUMMARY:Frank Walker · ULTRA Main Stage
+LOCATION:ULTRA Main Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · ULTRA Main Stage\nhttps://plursky.com/f/ult
+ ra-miami-2026/#set-ul1
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul1
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul20@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260327T200000Z
+DTEND:20260327T213000Z
+SUMMARY:Godtripper · The Cove
+LOCATION:The Cove\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · The Cove\nhttps://plursky.com/f/ultra-miami
+ -2026/#set-ul20
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul20
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul30@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260327T200000Z
+DTEND:20260327T203000Z
+SUMMARY:Linney · UMF Radio Stage
+LOCATION:UMF Radio Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · UMF Radio Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul30
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul30
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul39@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260327T200000Z
+DTEND:20260327T210000Z
+SUMMARY:Nundos · Oasis
+LOCATION:Oasis\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Oasis\nhttps://plursky.com/f/ultra-miami-20
+ 26/#set-ul39
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul39
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul8@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260327T200000Z
+DTEND:20260327T210000Z
+SUMMARY:Prada2000 · Worldwide Stage
+LOCATION:Worldwide Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Worldwide Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul8
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul8
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul31@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260327T203000Z
+DTEND:20260327T211500Z
+SUMMARY:Ookay · UMF Radio Stage
+LOCATION:UMF Radio Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · UMF Radio Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul31
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul31
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul2@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260327T205000Z
+DTEND:20260327T215500Z
+SUMMARY:VOYD · ULTRA Main Stage
+LOCATION:ULTRA Main Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · ULTRA Main Stage\nhttps://plursky.com/f/ult
+ ra-miami-2026/#set-ul2
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul2
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul25@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260327T210000Z
+DTEND:20260327T221500Z
+SUMMARY:Afrobeta · Live Stage
+LOCATION:Live Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Live Stage\nhttps://plursky.com/f/ultra-mia
+ mi-2026/#set-ul25
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul25
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul40@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260327T210000Z
+DTEND:20260327T223000Z
+SUMMARY:Richard Fraioli b2b Jimmy Page b3b DJ Ideal · Oasis
+LOCATION:Oasis\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Oasis\nhttps://plursky.com/f/ultra-miami-20
+ 26/#set-ul40
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul40
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul9@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260327T210000Z
+DTEND:20260327T220000Z
+SUMMARY:Matty Ralph · Worldwide Stage
+LOCATION:Worldwide Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Worldwide Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul9
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul9
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul32@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260327T211500Z
+DTEND:20260327T221500Z
+SUMMARY:Nostalgix · UMF Radio Stage
+LOCATION:UMF Radio Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · UMF Radio Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul32
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul32
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul16@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260327T213000Z
+DTEND:20260327T230000Z
+SUMMARY:Massano · Megastructure
+LOCATION:Megastructure\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Megastructure\nhttps://plursky.com/f/ultra-
+ miami-2026/#set-ul16
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul16
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul21@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260327T213000Z
+DTEND:20260327T230000Z
+SUMMARY:ALT8 · The Cove
+LOCATION:The Cove\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · The Cove\nhttps://plursky.com/f/ultra-miami
+ -2026/#set-ul21
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul21
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul3@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260327T215500Z
+DTEND:20260327T230000Z
+SUMMARY:Worship · ULTRA Main Stage
+LOCATION:ULTRA Main Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · ULTRA Main Stage\nhttps://plursky.com/f/ult
+ ra-miami-2026/#set-ul3
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul3
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul10@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260327T220000Z
+DTEND:20260327T230000Z
+SUMMARY:Superstrings · Worldwide Stage
+LOCATION:Worldwide Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Worldwide Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul10
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul10
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul26@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260327T221500Z
+DTEND:20260327T234500Z
+SUMMARY:SHIMA · Live Stage
+LOCATION:Live Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Live Stage\nhttps://plursky.com/f/ultra-mia
+ mi-2026/#set-ul26
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul26
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul33@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260327T221500Z
+DTEND:20260327T231500Z
+SUMMARY:Jessica Audiffred · UMF Radio Stage
+LOCATION:UMF Radio Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · UMF Radio Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul33
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul33
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul41@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260327T223000Z
+DTEND:20260327T233000Z
+SUMMARY:Los De La Vega · Oasis
+LOCATION:Oasis\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Oasis\nhttps://plursky.com/f/ultra-miami-20
+ 26/#set-ul41
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul41
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul11@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260327T230000Z
+DTEND:20260328T000000Z
+SUMMARY:Vini Vici · Worldwide Stage
+LOCATION:Worldwide Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Worldwide Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul11
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul11
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul17@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260327T230000Z
+DTEND:20260328T003000Z
+SUMMARY:Miss Monique · Megastructure
+LOCATION:Megastructure\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Megastructure\nhttps://plursky.com/f/ultra-
+ miami-2026/#set-ul17
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul17
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul22@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260327T230000Z
+DTEND:20260328T003000Z
+SUMMARY:999999999 · The Cove
+LOCATION:The Cove\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · The Cove\nhttps://plursky.com/f/ultra-miami
+ -2026/#set-ul22
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul22
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul4@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260327T230000Z
+DTEND:20260328T000500Z
+SUMMARY:Illenium · ULTRA Main Stage
+LOCATION:ULTRA Main Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · ULTRA Main Stage\nhttps://plursky.com/f/ult
+ ra-miami-2026/#set-ul4
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul4
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul34@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260327T231500Z
+DTEND:20260328T001500Z
+SUMMARY:Steve Aoki · UMF Radio Stage
+LOCATION:UMF Radio Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · UMF Radio Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul34
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul34
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul42@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260327T233000Z
+DTEND:20260328T000000Z
+SUMMARY:Hymm Marley · Oasis
+LOCATION:Oasis\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Oasis\nhttps://plursky.com/f/ultra-miami-20
+ 26/#set-ul42
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul42
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul27@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260327T234500Z
+DTEND:20260328T011500Z
+SUMMARY:Black Tiger Sex Machine presents Connected Fighters · Live Stage
+LOCATION:Live Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Live Stage\nhttps://plursky.com/f/ultra-mia
+ mi-2026/#set-ul27
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul27
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul12@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T000000Z
+DTEND:20260328T010000Z
+SUMMARY:Lilly Palmer · Worldwide Stage
+LOCATION:Worldwide Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Worldwide Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul12
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul12
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul43@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T000000Z
+DTEND:20260328T010000Z
+SUMMARY:Tak Shak · Oasis
+LOCATION:Oasis\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Oasis\nhttps://plursky.com/f/ultra-miami-20
+ 26/#set-ul43
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul43
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul5@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T000500Z
+DTEND:20260328T012000Z
+SUMMARY:Bzrp · ULTRA Main Stage
+LOCATION:ULTRA Main Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · ULTRA Main Stage\nhttps://plursky.com/f/ult
+ ra-miami-2026/#set-ul5
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul5
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul35@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T001500Z
+DTEND:20260328T011500Z
+SUMMARY:Special Guest b2b Special Guest · UMF Radio Stage
+LOCATION:UMF Radio Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · UMF Radio Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul35
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul35
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul18@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T003000Z
+DTEND:20260328T020000Z
+SUMMARY:Vintage Culture · Megastructure
+LOCATION:Megastructure\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Megastructure\nhttps://plursky.com/f/ultra-
+ miami-2026/#set-ul18
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul18
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul23@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T003000Z
+DTEND:20260328T020000Z
+SUMMARY:Clara Cuvé · The Cove
+LOCATION:The Cove\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · The Cove\nhttps://plursky.com/f/ultra-miami
+ -2026/#set-ul23
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul23
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul13@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T010000Z
+DTEND:20260328T023000Z
+SUMMARY:Armin van Buuren b2b Marlon Hoffstadt · Worldwide Stage
+LOCATION:Worldwide Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Worldwide Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul13
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul13
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul44@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T010000Z
+DTEND:20260328T020000Z
+SUMMARY:Rodrigo Vieira · Oasis
+LOCATION:Oasis\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Oasis\nhttps://plursky.com/f/ultra-miami-20
+ 26/#set-ul44
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul44
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul28@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T011500Z
+DTEND:20260328T024500Z
+SUMMARY:Of The Trees · Live Stage
+LOCATION:Live Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Live Stage\nhttps://plursky.com/f/ultra-mia
+ mi-2026/#set-ul28
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul28
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul36@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T011500Z
+DTEND:20260328T021500Z
+SUMMARY:Laidback Luke · UMF Radio Stage
+LOCATION:UMF Radio Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · UMF Radio Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul36
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul36
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul6@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T012000Z
+DTEND:20260328T024500Z
+SUMMARY:Alesso b2b Martin Garrix · ULTRA Main Stage
+LOCATION:ULTRA Main Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · ULTRA Main Stage\nhttps://plursky.com/f/ult
+ ra-miami-2026/#set-ul6
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul6
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul19@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T020000Z
+DTEND:20260328T040000Z
+SUMMARY:Eric Prydz · Megastructure
+LOCATION:Megastructure\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Megastructure\nhttps://plursky.com/f/ultra-
+ miami-2026/#set-ul19
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul19
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul24@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T020000Z
+DTEND:20260328T040000Z
+SUMMARY:Sara Landry · The Cove
+LOCATION:The Cove\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · The Cove\nhttps://plursky.com/f/ultra-miami
+ -2026/#set-ul24
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul24
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul45@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T020000Z
+DTEND:20260328T030000Z
+SUMMARY:DJ Hannah · Oasis
+LOCATION:Oasis\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Oasis\nhttps://plursky.com/f/ultra-miami-20
+ 26/#set-ul45
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul45
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul37@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T021500Z
+DTEND:20260328T031500Z
+SUMMARY:Riot Ten · UMF Radio Stage
+LOCATION:UMF Radio Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · UMF Radio Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul37
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul37
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul14@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T023000Z
+DTEND:20260328T040000Z
+SUMMARY:Armin van Buuren · Worldwide Stage
+LOCATION:Worldwide Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Worldwide Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul14
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul14
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul29@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T024500Z
+DTEND:20260328T040000Z
+SUMMARY:Levity presents Lasership · Live Stage
+LOCATION:Live Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Live Stage\nhttps://plursky.com/f/ultra-mia
+ mi-2026/#set-ul29
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul29
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul7@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T024500Z
+DTEND:20260328T040000Z
+SUMMARY:Major Lazer · ULTRA Main Stage
+LOCATION:ULTRA Main Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · ULTRA Main Stage\nhttps://plursky.com/f/ult
+ ra-miami-2026/#set-ul7
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul7
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul46@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T030000Z
+DTEND:20260328T040000Z
+SUMMARY:Luca Testa · Oasis
+LOCATION:Oasis\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Oasis\nhttps://plursky.com/f/ultra-miami-20
+ 26/#set-ul46
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul46
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul38@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T031500Z
+DTEND:20260328T040000Z
+SUMMARY:Bloody Beetroots (Throwback Electro Set) · UMF Radio Stage
+LOCATION:UMF Radio Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · UMF Radio Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul38
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul38
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul102@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T160000Z
+DTEND:20260328T170000Z
+SUMMARY:Cimeo · Oasis
+LOCATION:Oasis\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Oasis\nhttps://plursky.com/f/ultra-miami-20
+ 26/#set-ul102
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul102
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul47@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T160000Z
+DTEND:20260328T165500Z
+SUMMARY:Gil Glaze · ULTRA Main Stage
+LOCATION:ULTRA Main Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · ULTRA Main Stage\nhttps://plursky.com/f/ult
+ ra-miami-2026/#set-ul47
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul47
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul70@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T160000Z
+DTEND:20260328T171500Z
+SUMMARY:Andy Pate b2b Rod B. · Megastructure
+LOCATION:Megastructure\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Megastructure\nhttps://plursky.com/f/ultra-
+ miami-2026/#set-ul70
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul70
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul77@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T160000Z
+DTEND:20260328T171500Z
+SUMMARY:JOA · The Cove
+LOCATION:The Cove\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · The Cove\nhttps://plursky.com/f/ultra-miami
+ -2026/#set-ul77
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul77
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul91@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T160000Z
+DTEND:20260328T173000Z
+SUMMARY:CGK · UMF Radio Stage
+LOCATION:UMF Radio Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · UMF Radio Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul91
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul91
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul58@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T161000Z
+DTEND:20260328T170000Z
+SUMMARY:Julian Cross · Worldwide Stage
+LOCATION:Worldwide Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Worldwide Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul58
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul58
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul48@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T165500Z
+DTEND:20260328T180000Z
+SUMMARY:MYKRIS · ULTRA Main Stage
+LOCATION:ULTRA Main Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · ULTRA Main Stage\nhttps://plursky.com/f/ult
+ ra-miami-2026/#set-ul48
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul48
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul103@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T170000Z
+DTEND:20260328T180000Z
+SUMMARY:Juno b2b Wyzzard b3b Bebe Breaks · Oasis
+LOCATION:Oasis\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Oasis\nhttps://plursky.com/f/ultra-miami-20
+ 26/#set-ul103
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul103
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul59@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T170000Z
+DTEND:20260328T180000Z
+SUMMARY:Distinct Motive · Worldwide Stage
+LOCATION:Worldwide Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Worldwide Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul59
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul59
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul71@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T171500Z
+DTEND:20260328T183000Z
+SUMMARY:Juliet Fox · Megastructure
+LOCATION:Megastructure\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Megastructure\nhttps://plursky.com/f/ultra-
+ miami-2026/#set-ul71
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul71
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul78@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T171500Z
+DTEND:20260328T183000Z
+SUMMARY:Olympe · The Cove
+LOCATION:The Cove\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · The Cove\nhttps://plursky.com/f/ultra-miami
+ -2026/#set-ul78
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul78
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul92@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T173000Z
+DTEND:20260328T190000Z
+SUMMARY:Darksiderz · UMF Radio Stage
+LOCATION:UMF Radio Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · UMF Radio Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul92
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul92
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul104@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T180000Z
+DTEND:20260328T190000Z
+SUMMARY:Kauro · Oasis
+LOCATION:Oasis\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Oasis\nhttps://plursky.com/f/ultra-miami-20
+ 26/#set-ul104
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul104
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul49@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T180000Z
+DTEND:20260328T190500Z
+SUMMARY:HALÕ · ULTRA Main Stage
+LOCATION:ULTRA Main Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · ULTRA Main Stage\nhttps://plursky.com/f/ult
+ ra-miami-2026/#set-ul49
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul49
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul60@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T180000Z
+DTEND:20260328T190000Z
+SUMMARY:Sidequest · Worldwide Stage
+LOCATION:Worldwide Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Worldwide Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul60
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul60
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul72@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T183000Z
+DTEND:20260328T200000Z
+SUMMARY:Alan Fitzpatrick b2b Marco Faraone · Megastructure
+LOCATION:Megastructure\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Megastructure\nhttps://plursky.com/f/ultra-
+ miami-2026/#set-ul72
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul72
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul79@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T183000Z
+DTEND:20260328T200000Z
+SUMMARY:Rivo · The Cove
+LOCATION:The Cove\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · The Cove\nhttps://plursky.com/f/ultra-miami
+ -2026/#set-ul79
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul79
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul105@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T190000Z
+DTEND:20260328T200000Z
+SUMMARY:Soul Goodman b2b Dabura · Oasis
+LOCATION:Oasis\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Oasis\nhttps://plursky.com/f/ultra-miami-20
+ 26/#set-ul105
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul105
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul61@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T190000Z
+DTEND:20260328T200000Z
+SUMMARY:Daniel Allan · Worldwide Stage
+LOCATION:Worldwide Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Worldwide Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul61
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul61
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul93@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T190000Z
+DTEND:20260328T200000Z
+SUMMARY:Audiofreq · UMF Radio Stage
+LOCATION:UMF Radio Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · UMF Radio Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul93
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul93
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul50@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T190500Z
+DTEND:20260328T201000Z
+SUMMARY:Nicky Romero · ULTRA Main Stage
+LOCATION:ULTRA Main Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · ULTRA Main Stage\nhttps://plursky.com/f/ult
+ ra-miami-2026/#set-ul50
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul50
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul106@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T200000Z
+DTEND:20260328T210000Z
+SUMMARY:CVMRN · Oasis
+LOCATION:Oasis\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Oasis\nhttps://plursky.com/f/ultra-miami-20
+ 26/#set-ul106
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul106
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul62@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T200000Z
+DTEND:20260328T210000Z
+SUMMARY:ARMNHMR · Worldwide Stage
+LOCATION:Worldwide Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Worldwide Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul62
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul62
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul73@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T200000Z
+DTEND:20260328T213000Z
+SUMMARY:Sasha_John Digweed · Megastructure
+LOCATION:Megastructure\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Megastructure\nhttps://plursky.com/f/ultra-
+ miami-2026/#set-ul73
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul73
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul80@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T200000Z
+DTEND:20260328T213000Z
+SUMMARY:Kasia · The Cove
+LOCATION:The Cove\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · The Cove\nhttps://plursky.com/f/ultra-miami
+ -2026/#set-ul80
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul80
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul85@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T200000Z
+DTEND:20260328T211000Z
+SUMMARY:Miss Bashful · Live Stage
+LOCATION:Live Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Live Stage\nhttps://plursky.com/f/ultra-mia
+ mi-2026/#set-ul85
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul85
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul94@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T200000Z
+DTEND:20260328T210000Z
+SUMMARY:The Purge · UMF Radio Stage
+LOCATION:UMF Radio Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · UMF Radio Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul94
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul94
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul51@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T201000Z
+DTEND:20260328T211500Z
+SUMMARY:Loud Luxury · ULTRA Main Stage
+LOCATION:ULTRA Main Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · ULTRA Main Stage\nhttps://plursky.com/f/ult
+ ra-miami-2026/#set-ul51
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul51
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul107@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T210000Z
+DTEND:20260328T220000Z
+SUMMARY:Bill Kelly · Oasis
+LOCATION:Oasis\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Oasis\nhttps://plursky.com/f/ultra-miami-20
+ 26/#set-ul107
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul107
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul63@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T210000Z
+DTEND:20260328T220000Z
+SUMMARY:HOL! · Worldwide Stage
+LOCATION:Worldwide Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Worldwide Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul63
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul63
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul95@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T210000Z
+DTEND:20260328T220000Z
+SUMMARY:The Saints · UMF Radio Stage
+LOCATION:UMF Radio Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · UMF Radio Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul95
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul95
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul86@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T211000Z
+DTEND:20260328T223000Z
+SUMMARY:Confidence Man · Live Stage
+LOCATION:Live Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Live Stage\nhttps://plursky.com/f/ultra-mia
+ mi-2026/#set-ul86
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul86
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul52@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T211500Z
+DTEND:20260328T222000Z
+SUMMARY:Alan Walker · ULTRA Main Stage
+LOCATION:ULTRA Main Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · ULTRA Main Stage\nhttps://plursky.com/f/ult
+ ra-miami-2026/#set-ul52
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul52
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul74@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T213000Z
+DTEND:20260328T230000Z
+SUMMARY:Eli Brown · Megastructure
+LOCATION:Megastructure\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Megastructure\nhttps://plursky.com/f/ultra-
+ miami-2026/#set-ul74
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul74
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul81@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T213000Z
+DTEND:20260328T230000Z
+SUMMARY:Deep Dish · The Cove
+LOCATION:The Cove\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · The Cove\nhttps://plursky.com/f/ultra-miami
+ -2026/#set-ul81
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul81
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul108@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T220000Z
+DTEND:20260328T230000Z
+SUMMARY:Lucy Guo · Oasis
+LOCATION:Oasis\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Oasis\nhttps://plursky.com/f/ultra-miami-20
+ 26/#set-ul108
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul108
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul64@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T220000Z
+DTEND:20260328T230000Z
+SUMMARY:BOU · Worldwide Stage
+LOCATION:Worldwide Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Worldwide Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul64
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul64
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul96@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T220000Z
+DTEND:20260328T230000Z
+SUMMARY:Coone · UMF Radio Stage
+LOCATION:UMF Radio Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · UMF Radio Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul96
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul96
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul53@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T222000Z
+DTEND:20260328T232500Z
+SUMMARY:Steve Aoki · ULTRA Main Stage
+LOCATION:ULTRA Main Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · ULTRA Main Stage\nhttps://plursky.com/f/ult
+ ra-miami-2026/#set-ul53
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul53
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul87@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T223000Z
+DTEND:20260329T000000Z
+SUMMARY:Snow Strippers · Live Stage
+LOCATION:Live Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Live Stage\nhttps://plursky.com/f/ultra-mia
+ mi-2026/#set-ul87
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul87
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul109@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T230000Z
+DTEND:20260329T000000Z
+SUMMARY:Jack Vice · Oasis
+LOCATION:Oasis\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Oasis\nhttps://plursky.com/f/ultra-miami-20
+ 26/#set-ul109
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul109
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul65@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T230000Z
+DTEND:20260329T000000Z
+SUMMARY:Kai Wachi · Worldwide Stage
+LOCATION:Worldwide Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Worldwide Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul65
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul65
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul75@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T230000Z
+DTEND:20260329T010000Z
+SUMMARY:Adam Beyer b2b Joseph Capriati · Megastructure
+LOCATION:Megastructure\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Megastructure\nhttps://plursky.com/f/ultra-
+ miami-2026/#set-ul75
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul75
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul82@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T230000Z
+DTEND:20260329T003000Z
+SUMMARY:Colyn b2b Innellea · The Cove
+LOCATION:The Cove\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · The Cove\nhttps://plursky.com/f/ultra-miami
+ -2026/#set-ul82
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul82
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul97@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T230000Z
+DTEND:20260329T000000Z
+SUMMARY:Da Tweekaz · UMF Radio Stage
+LOCATION:UMF Radio Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · UMF Radio Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul97
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul97
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul54@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260328T232500Z
+DTEND:20260329T003000Z
+SUMMARY:Excision · ULTRA Main Stage
+LOCATION:ULTRA Main Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · ULTRA Main Stage\nhttps://plursky.com/f/ult
+ ra-miami-2026/#set-ul54
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul54
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul110@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T000000Z
+DTEND:20260329T010000Z
+SUMMARY:Pinto · Oasis
+LOCATION:Oasis\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Oasis\nhttps://plursky.com/f/ultra-miami-20
+ 26/#set-ul110
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul110
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul66@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T000000Z
+DTEND:20260329T010000Z
+SUMMARY:Outlaw b2b Trym · Worldwide Stage
+LOCATION:Worldwide Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Worldwide Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul66
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul66
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul88@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T000000Z
+DTEND:20260329T013000Z
+SUMMARY:Madeon · Live Stage
+LOCATION:Live Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Live Stage\nhttps://plursky.com/f/ultra-mia
+ mi-2026/#set-ul88
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul88
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul98@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T000000Z
+DTEND:20260329T010000Z
+SUMMARY:Mish · UMF Radio Stage
+LOCATION:UMF Radio Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · UMF Radio Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul98
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul98
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul55@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T003000Z
+DTEND:20260329T013500Z
+SUMMARY:Hardwell · ULTRA Main Stage
+LOCATION:ULTRA Main Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · ULTRA Main Stage\nhttps://plursky.com/f/ult
+ ra-miami-2026/#set-ul55
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul55
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul83@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T003000Z
+DTEND:20260329T020000Z
+SUMMARY:Cassian · The Cove
+LOCATION:The Cove\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · The Cove\nhttps://plursky.com/f/ultra-miami
+ -2026/#set-ul83
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul83
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul111@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T010000Z
+DTEND:20260329T020000Z
+SUMMARY:Marco Ninni · Oasis
+LOCATION:Oasis\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Oasis\nhttps://plursky.com/f/ultra-miami-20
+ 26/#set-ul111
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul111
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul67@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T010000Z
+DTEND:20260329T020000Z
+SUMMARY:Hamdi · Worldwide Stage
+LOCATION:Worldwide Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Worldwide Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul67
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul67
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul76@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T010000Z
+DTEND:20260329T040000Z
+SUMMARY:Carl Cox · Megastructure
+LOCATION:Megastructure\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Megastructure\nhttps://plursky.com/f/ultra-
+ miami-2026/#set-ul76
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul76
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul99@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T010000Z
+DTEND:20260329T020000Z
+SUMMARY:D-Sturb · UMF Radio Stage
+LOCATION:UMF Radio Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · UMF Radio Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul99
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul99
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul89@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T013000Z
+DTEND:20260329T024500Z
+SUMMARY:Boys Noize Live · Live Stage
+LOCATION:Live Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Live Stage\nhttps://plursky.com/f/ultra-mia
+ mi-2026/#set-ul89
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul89
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul56@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T013500Z
+DTEND:20260329T024500Z
+SUMMARY:Armin van Buuren · ULTRA Main Stage
+LOCATION:ULTRA Main Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · ULTRA Main Stage\nhttps://plursky.com/f/ult
+ ra-miami-2026/#set-ul56
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul56
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul100@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T020000Z
+DTEND:20260329T030000Z
+SUMMARY:Dual Damage · UMF Radio Stage
+LOCATION:UMF Radio Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · UMF Radio Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul100
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul100
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul112@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T020000Z
+DTEND:20260329T030000Z
+SUMMARY:Alexander Som · Oasis
+LOCATION:Oasis\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Oasis\nhttps://plursky.com/f/ultra-miami-20
+ 26/#set-ul112
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul112
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul68@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T020000Z
+DTEND:20260329T030000Z
+SUMMARY:¥ØU$UK€ ¥UK1MAT$U · Worldwide Stage
+LOCATION:Worldwide Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Worldwide Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul68
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul68
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul84@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T020000Z
+DTEND:20260329T040000Z
+SUMMARY:Joris Voorn b2b Korolova · The Cove
+LOCATION:The Cove\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · The Cove\nhttps://plursky.com/f/ultra-miami
+ -2026/#set-ul84
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul84
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul57@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T024500Z
+DTEND:20260329T040000Z
+SUMMARY:Sebastian Ingrosso b2b Steve Angello · ULTRA Main Stage
+LOCATION:ULTRA Main Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · ULTRA Main Stage\nhttps://plursky.com/f/ult
+ ra-miami-2026/#set-ul57
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul57
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul90@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T024500Z
+DTEND:20260329T040000Z
+SUMMARY:Brutalismus 3000 · Live Stage
+LOCATION:Live Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Live Stage\nhttps://plursky.com/f/ultra-mia
+ mi-2026/#set-ul90
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul90
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul101@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T030000Z
+DTEND:20260329T040000Z
+SUMMARY:Soren · UMF Radio Stage
+LOCATION:UMF Radio Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · UMF Radio Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul101
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul101
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul113@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T030000Z
+DTEND:20260329T040000Z
+SUMMARY:Wally Lopez · Oasis
+LOCATION:Oasis\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Oasis\nhttps://plursky.com/f/ultra-miami-20
+ 26/#set-ul113
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul113
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul69@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T030000Z
+DTEND:20260329T040000Z
+SUMMARY:ISOXO · Worldwide Stage
+LOCATION:Worldwide Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Worldwide Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul69
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul69
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul123@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T160000Z
+DTEND:20260329T170000Z
+SUMMARY:Big Florida · Worldwide Stage
+LOCATION:Worldwide Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Worldwide Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul123
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul123
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul132@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T160000Z
+DTEND:20260329T180000Z
+SUMMARY:Bassett b2b Christopher James · Megastructure
+LOCATION:Megastructure\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Megastructure\nhttps://plursky.com/f/ultra-
+ miami-2026/#set-ul132
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul132
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul138@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T160000Z
+DTEND:20260329T170000Z
+SUMMARY:M.O.N.R.O.E. · The Cove
+LOCATION:The Cove\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · The Cove\nhttps://plursky.com/f/ultra-miami
+ -2026/#set-ul138
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul138
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul150@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T160000Z
+DTEND:20260329T173000Z
+SUMMARY:EERA · UMF Radio Stage
+LOCATION:UMF Radio Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · UMF Radio Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul150
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul150
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul157@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T160000Z
+DTEND:20260329T170000Z
+SUMMARY:Dubplates & Dragons · Oasis
+LOCATION:Oasis\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Oasis\nhttps://plursky.com/f/ultra-miami-20
+ 26/#set-ul157
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul157
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul114@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T161500Z
+DTEND:20260329T170500Z
+SUMMARY:Kapuchon · ULTRA Main Stage
+LOCATION:ULTRA Main Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · ULTRA Main Stage\nhttps://plursky.com/f/ult
+ ra-miami-2026/#set-ul114
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul114
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul124@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T170000Z
+DTEND:20260329T180000Z
+SUMMARY:JSTJR · Worldwide Stage
+LOCATION:Worldwide Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Worldwide Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul124
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul124
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul139@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T170000Z
+DTEND:20260329T180000Z
+SUMMARY:Plastik Funk · The Cove
+LOCATION:The Cove\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · The Cove\nhttps://plursky.com/f/ultra-miami
+ -2026/#set-ul139
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul139
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul158@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T170000Z
+DTEND:20260329T180000Z
+SUMMARY:Andy Ares · Oasis
+LOCATION:Oasis\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Oasis\nhttps://plursky.com/f/ultra-miami-20
+ 26/#set-ul158
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul158
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul115@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T170500Z
+DTEND:20260329T181000Z
+SUMMARY:ME N U · ULTRA Main Stage
+LOCATION:ULTRA Main Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · ULTRA Main Stage\nhttps://plursky.com/f/ult
+ ra-miami-2026/#set-ul115
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul115
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul151@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T173000Z
+DTEND:20260329T190000Z
+SUMMARY:Frost Children · UMF Radio Stage
+LOCATION:UMF Radio Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · UMF Radio Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul151
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul151
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul125@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T180000Z
+DTEND:20260329T190000Z
+SUMMARY:BOLO · Worldwide Stage
+LOCATION:Worldwide Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Worldwide Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul125
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul125
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul133@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T180000Z
+DTEND:20260329T193000Z
+SUMMARY:Scenarios · Megastructure
+LOCATION:Megastructure\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Megastructure\nhttps://plursky.com/f/ultra-
+ miami-2026/#set-ul133
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul133
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul140@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T180000Z
+DTEND:20260329T191500Z
+SUMMARY:Black Fancy · The Cove
+LOCATION:The Cove\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · The Cove\nhttps://plursky.com/f/ultra-miami
+ -2026/#set-ul140
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul140
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul159@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T180000Z
+DTEND:20260329T190000Z
+SUMMARY:Jay P · Oasis
+LOCATION:Oasis\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Oasis\nhttps://plursky.com/f/ultra-miami-20
+ 26/#set-ul159
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul159
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul116@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T181000Z
+DTEND:20260329T191500Z
+SUMMARY:R3HAB · ULTRA Main Stage
+LOCATION:ULTRA Main Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · ULTRA Main Stage\nhttps://plursky.com/f/ult
+ ra-miami-2026/#set-ul116
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul116
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul126@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T190000Z
+DTEND:20260329T200000Z
+SUMMARY:LAYZ · Worldwide Stage
+LOCATION:Worldwide Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Worldwide Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul126
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul126
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul152@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T190000Z
+DTEND:20260329T203000Z
+SUMMARY:X CLUB. · UMF Radio Stage
+LOCATION:UMF Radio Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · UMF Radio Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul152
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul152
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul160@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T190000Z
+DTEND:20260329T200000Z
+SUMMARY:Sebastian Morxx · Oasis
+LOCATION:Oasis\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Oasis\nhttps://plursky.com/f/ultra-miami-20
+ 26/#set-ul160
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul160
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul117@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T191500Z
+DTEND:20260329T202000Z
+SUMMARY:Maddix · ULTRA Main Stage
+LOCATION:ULTRA Main Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · ULTRA Main Stage\nhttps://plursky.com/f/ult
+ ra-miami-2026/#set-ul117
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul117
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul141@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T191500Z
+DTEND:20260329T203000Z
+SUMMARY:Malóne · The Cove
+LOCATION:The Cove\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · The Cove\nhttps://plursky.com/f/ultra-miami
+ -2026/#set-ul141
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul141
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul134@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T193000Z
+DTEND:20260329T210000Z
+SUMMARY:Argy b2b Mind Against · Megastructure
+LOCATION:Megastructure\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Megastructure\nhttps://plursky.com/f/ultra-
+ miami-2026/#set-ul134
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul134
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul127@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T200000Z
+DTEND:20260329T210000Z
+SUMMARY:Andy C · Worldwide Stage
+LOCATION:Worldwide Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Worldwide Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul127
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul127
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul145@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T200000Z
+DTEND:20260329T210000Z
+SUMMARY:BOIISH · Live Stage
+LOCATION:Live Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Live Stage\nhttps://plursky.com/f/ultra-mia
+ mi-2026/#set-ul145
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul145
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul161@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T200000Z
+DTEND:20260329T210000Z
+SUMMARY:Wags b2b Lemony Snickettes · Oasis
+LOCATION:Oasis\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Oasis\nhttps://plursky.com/f/ultra-miami-20
+ 26/#set-ul161
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul161
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul118@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T202000Z
+DTEND:20260329T212500Z
+SUMMARY:ARTBAT · ULTRA Main Stage
+LOCATION:ULTRA Main Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · ULTRA Main Stage\nhttps://plursky.com/f/ult
+ ra-miami-2026/#set-ul118
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul118
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul142@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T203000Z
+DTEND:20260329T220000Z
+SUMMARY:Rossi. · The Cove
+LOCATION:The Cove\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · The Cove\nhttps://plursky.com/f/ultra-miami
+ -2026/#set-ul142
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul142
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul153@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T203000Z
+DTEND:20260329T220000Z
+SUMMARY:FCUKERS · UMF Radio Stage
+LOCATION:UMF Radio Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · UMF Radio Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul153
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul153
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul128@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T210000Z
+DTEND:20260329T220000Z
+SUMMARY:Holy Priest · Worldwide Stage
+LOCATION:Worldwide Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Worldwide Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul128
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul128
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul135@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T210000Z
+DTEND:20260329T223000Z
+SUMMARY:Adriatique · Megastructure
+LOCATION:Megastructure\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Megastructure\nhttps://plursky.com/f/ultra-
+ miami-2026/#set-ul135
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul135
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul146@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T210000Z
+DTEND:20260329T221500Z
+SUMMARY:Parisi · Live Stage
+LOCATION:Live Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Live Stage\nhttps://plursky.com/f/ultra-mia
+ mi-2026/#set-ul146
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul146
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul162@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T210000Z
+DTEND:20260329T220000Z
+SUMMARY:Luke Hunter · Oasis
+LOCATION:Oasis\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Oasis\nhttps://plursky.com/f/ultra-miami-20
+ 26/#set-ul162
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul162
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul119@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T212500Z
+DTEND:20260329T223000Z
+SUMMARY:Marlon Hoffstadt · ULTRA Main Stage
+LOCATION:ULTRA Main Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · ULTRA Main Stage\nhttps://plursky.com/f/ult
+ ra-miami-2026/#set-ul119
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul119
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul129@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T220000Z
+DTEND:20260329T230000Z
+SUMMARY:Peekaboo · Worldwide Stage
+LOCATION:Worldwide Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Worldwide Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul129
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul129
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul143@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T220000Z
+DTEND:20260330T000000Z
+SUMMARY:Dennis Cruz b2b Seth Troxler · The Cove
+LOCATION:The Cove\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · The Cove\nhttps://plursky.com/f/ultra-miami
+ -2026/#set-ul143
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul143
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul154@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T220000Z
+DTEND:20260329T233000Z
+SUMMARY:MCR-T · UMF Radio Stage
+LOCATION:UMF Radio Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · UMF Radio Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul154
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul154
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul163@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T220000Z
+DTEND:20260329T230000Z
+SUMMARY:Purple · Oasis
+LOCATION:Oasis\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Oasis\nhttps://plursky.com/f/ultra-miami-20
+ 26/#set-ul163
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul163
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul147@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T221500Z
+DTEND:20260329T233000Z
+SUMMARY:Louis The Child · Live Stage
+LOCATION:Live Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Live Stage\nhttps://plursky.com/f/ultra-mia
+ mi-2026/#set-ul147
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul147
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul120@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T223000Z
+DTEND:20260329T233500Z
+SUMMARY:Afrojack · ULTRA Main Stage
+LOCATION:ULTRA Main Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · ULTRA Main Stage\nhttps://plursky.com/f/ult
+ ra-miami-2026/#set-ul120
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul120
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul136@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T223000Z
+DTEND:20260330T000000Z
+SUMMARY:Boris Brejcha · Megastructure
+LOCATION:Megastructure\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Megastructure\nhttps://plursky.com/f/ultra-
+ miami-2026/#set-ul136
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul136
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul130@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T230000Z
+DTEND:20260330T003000Z
+SUMMARY:Ray Volpe b2b Sullivan King · Worldwide Stage
+LOCATION:Worldwide Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Worldwide Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul130
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul130
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul164@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T230000Z
+DTEND:20260330T000000Z
+SUMMARY:Audiosal · Oasis
+LOCATION:Oasis\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Oasis\nhttps://plursky.com/f/ultra-miami-20
+ 26/#set-ul164
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul164
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul148@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T233000Z
+DTEND:20260330T010000Z
+SUMMARY:TIM3LESS · Live Stage
+LOCATION:Live Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Live Stage\nhttps://plursky.com/f/ultra-mia
+ mi-2026/#set-ul148
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul148
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul155@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T233000Z
+DTEND:20260330T003000Z
+SUMMARY:DJ Gigola · UMF Radio Stage
+LOCATION:UMF Radio Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · UMF Radio Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul155
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul155
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul121@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260329T233500Z
+DTEND:20260330T004500Z
+SUMMARY:DJ Snake · ULTRA Main Stage
+LOCATION:ULTRA Main Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · ULTRA Main Stage\nhttps://plursky.com/f/ult
+ ra-miami-2026/#set-ul121
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul121
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul137@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260330T000000Z
+DTEND:20260330T020000Z
+SUMMARY:Amelie Lens b2b Sara Landry · Megastructure
+LOCATION:Megastructure\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Megastructure\nhttps://plursky.com/f/ultra-
+ miami-2026/#set-ul137
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul137
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul144@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260330T000000Z
+DTEND:20260330T020000Z
+SUMMARY:The Martinez Brothers · The Cove
+LOCATION:The Cove\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · The Cove\nhttps://plursky.com/f/ultra-miami
+ -2026/#set-ul144
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul144
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul165@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260330T000000Z
+DTEND:20260330T010000Z
+SUMMARY:X-Con b2b Marvin Delgado b3b CJ · Oasis
+LOCATION:Oasis\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Oasis\nhttps://plursky.com/f/ultra-miami-20
+ 26/#set-ul165
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul165
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul131@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260330T003000Z
+DTEND:20260330T020000Z
+SUMMARY:Wankdat · Worldwide Stage
+LOCATION:Worldwide Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Worldwide Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul131
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul131
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul156@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260330T003000Z
+DTEND:20260330T020000Z
+SUMMARY:Peterblue · UMF Radio Stage
+LOCATION:UMF Radio Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · UMF Radio Stage\nhttps://plursky.com/f/ultr
+ a-miami-2026/#set-ul156
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul156
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul122@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260330T004500Z
+DTEND:20260330T020000Z
+SUMMARY:John Summit · ULTRA Main Stage
+LOCATION:ULTRA Main Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · ULTRA Main Stage\nhttps://plursky.com/f/ult
+ ra-miami-2026/#set-ul122
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul122
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul149@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260330T010000Z
+DTEND:20260330T020000Z
+SUMMARY:ZHU · Live Stage
+LOCATION:Live Stage\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Live Stage\nhttps://plursky.com/f/ultra-mia
+ mi-2026/#set-ul149
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul149
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ultra-miami-2026-set-ul166@plursky.com
+DTSTAMP:20261126T000000Z
+DTSTART:20260330T010000Z
+DTEND:20260330T020000Z
+SUMMARY:Metaphysical · Oasis
+LOCATION:Oasis\, Bayfront Park\, Miami\, FL
+DESCRIPTION:Ultra Miami 2026 · Oasis\nhttps://plursky.com/f/ultra-miami-20
+ 26/#set-ul166
+URL:https://plursky.com/f/ultra-miami-2026/#set-ul166
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

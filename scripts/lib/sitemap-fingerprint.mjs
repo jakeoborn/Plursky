@@ -92,6 +92,7 @@ export const FINGERPRINTED_CONFIG_FIELDS = [
   'tagline',             // the lede paragraph
   'brand',               // JSON-LD organizer
   'tzAbbr',              // "All times local (CDT)." on the schedule grid
+  'tz',                  // gates the schedule.ics subscribe/download links
   'dayDates',            // schedule day headings AND every <time datetime="...">
   'setTimesProvisional', // the "not published yet" note under the lineup
   'scheduleSource',      // the official-vs-community source note
@@ -153,6 +154,7 @@ export function fingerprintInput(entry, { DS, scheduleActs, eventDates, TODAY, t
     tagline: cfg.tagline || '',
     brand: cfg.brand || '',
     tzAbbr: cfg.tzAbbr || '',
+    tz: cfg.tz || '',
     dayDates: cfg.dayDates || null,
     region: entry.region || '',
     accent: entry.accent || '',
