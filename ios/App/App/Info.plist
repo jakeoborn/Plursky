@@ -58,9 +58,17 @@
 	     roll to the sets they caught at the festival. We use Apple's native
 	     PHPicker via @capacitor/camera (added v1.4); it preserves EXIF capture
 	     time + GPS, which is what powers auto-tagging by artist and stage.
-	     Read access only — we never write to the user's library. -->
+	     Read access only — the app never writes to the user's library
+	     itself (the share sheet's Save is the next key). -->
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Plursky uses your photo library to find the photos and videos you took during festival nights and attach them to the sets you caught.</string>
+	<!-- Save Image / Save Video in the share sheet. Plursky shares schedule
+	     images, collages and recap videos through the iOS share sheet, and
+	     iOS asks the HOST app for add-only photo access when someone taps
+	     Save there. Without this key iOS ends the app at that tap. The app
+	     itself still never writes to the library. -->
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Plursky saves the schedules, collages and recap videos you choose to save to your photo library.</string>
 	<key>NSAppleMusicUsageDescription</key>
 	<string>Plursky uses Apple Music to build playlists from the sets you save and the songs you caught at the festival.</string>
 	<key>NSMicrophoneUsageDescription</key>
