@@ -1806,13 +1806,42 @@ const REGISTRATION_TOL_M = 25;
     if (!poly?.length && an.length && PARK_BOUNDARIES[cfg.id]) {
       const pb = PARK_BOUNDARIES[cfg.id];
       parkUsed.add(cfg.id);
-      const outPark = an.filter(a => !inside(a.lat, a.lng, pb.ring)).map(a => a.stageId);
+      // A park OSM splits into parcels (Grant Park: 20, cut by the interior
+      // streets the festival closes) is `rings` + `streetToleranceM`: an
+      // anchor passes inside any parcel, or within that many metres of one.
+      // The tolerance is capped and must say why, and every anchor that
+      // passes only by it is NAMED, so it can never hide a typo silently.
+      const rings = pb.rings || [pb.ring];
+      const tol = pb.rings ? pb.streetToleranceM : 0;
+      if (pb.rings && !(tol > 0 && tol <= 25 && typeof pb.toleranceWhy === "string" && pb.toleranceWhy.length > 40)) {
+        fpHard++;
+        console.log(`  ✗  ${cfg.id.padEnd(22)} multi-parcel park needs streetToleranceM in (0, 25] and a toleranceWhy`);
+        continue;
+      }
+      const edgeM = (lat, lng, ring) => {
+        const kx = 111320 * Math.cos(lat * Math.PI / 180), ky = 110540;
+        let best = Infinity;
+        for (let i = 0; i < ring.length - 1; i++) {
+          const ax = (ring[i][1] - lng) * kx, ay = (ring[i][0] - lat) * ky, bx = (ring[i + 1][1] - lng) * kx, by = (ring[i + 1][0] - lat) * ky;
+          const dx = bx - ax, dy = by - ay, L = dx * dx + dy * dy;
+          const t = L ? Math.max(0, Math.min(1, -(ax * dx + ay * dy) / L)) : 0;
+          best = Math.min(best, Math.hypot(ax + t * dx, ay + t * dy));
+        }
+        return best;
+      };
+      const viaTol = [], outPark = [];
+      for (const a of an) {
+        if (rings.some(r => inside(a.lat, a.lng, r))) continue;
+        const d = tol ? Math.min(...rings.map(r => edgeM(a.lat, a.lng, r))) : Infinity;
+        if (d <= tol) viaTol.push(`${a.stageId} ${Math.round(d)} m`); else outPark.push(a.stageId);
+      }
       fpChecked++;
       if (outPark.length) {
         fpHard++;
         console.log(`  ✗  ${cfg.id.padEnd(22)} ${outPark.length}/${an.length} anchor(s) OUTSIDE ${pb.name} (OSM ${pb.osm}): ${outPark.join(", ")}`);
       } else {
         console.log(`  ok ${cfg.id.padEnd(22)} all ${an.length} anchors inside ${pb.name} (OSM ${pb.osm}) — park boundary, not a festival footprint`);
+        if (viaTol.length) console.log(`     ${viaTol.length} on an interior street, within ${tol} m of a parcel: ${viaTol.join(", ")}`);
       }
       continue;
     }
@@ -2765,6 +2794,22 @@ for (const [script, label] of [
   }
 }
 
+// The daily live-site watchdog (site-watchdog.yml) walks every sitemap that
+// robots.txt names on plursky.com. Its offline test serves it a local site:
+// clean passes, and each planted defect (404, redirect, broken link or asset,
+// noindex in a sitemap, canonical, title, description, og:image, icon) is caught.
+{
+  console.log("▸ Site watchdog gate — clean site passes, every planted defect is named");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-site-watchdog.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 300000 });
+    process.stdout.write("  " + out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`site watchdog test failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b3. Offline festival packs ─────────────────────────────────────────
 // The saved area covers the radius, footprint and pan bounds; the style
 // rewrite leaves nothing remote; the downloader and the pack:// protocol agree
@@ -3652,6 +3697,22 @@ for (const [label, file] of [
   } catch (e) {
     const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
     fail(`memories a11y failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
+// ── MomentCard right-edge bleed ──────────────────────────────────────────
+// A text moment holding an unbroken run (a pasted link) printed past its
+// card's right edge at 390 and 320 px; ancestors clip overflow-x, so the pan
+// checks above cannot see it. The note must wrap inside its own box.
+{
+  console.log("▸ MomentCard bleed gate — a note with an unbroken link wraps inside its card");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-momentcard-bleed.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`momentcard bleed failed${detail ? ` — ${detail}` : ""}`);
   }
 }
 
