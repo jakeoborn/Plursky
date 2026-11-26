@@ -3655,6 +3655,22 @@ for (const [label, file] of [
   }
 }
 
+// ── MomentCard right-edge bleed ──────────────────────────────────────────
+// A text moment holding an unbroken run (a pasted link) printed past its
+// card's right edge at 390 and 320 px; ancestors clip overflow-x, so the pan
+// checks above cannot see it. The note must wrap inside its own box.
+{
+  console.log("▸ MomentCard bleed gate — a note with an unbroken link wraps inside its card");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-momentcard-bleed.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`momentcard bleed failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b6a. Legacy festival attribution ───────────────────────────────────
 // A legacy (pre-v204) moment gets its festivalId from its OWN capture time, not
 // from whichever festival happened to be on screen when the app next booted.
