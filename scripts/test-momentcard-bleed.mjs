@@ -10,6 +10,7 @@
 import { chromium } from "playwright";
 import { spawn } from "node:child_process";
 import { createServer } from "node:net";
+import { existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { serverReady } from "./lib/server-ready.mjs";
@@ -32,7 +33,9 @@ const MOMENTS = JSON.stringify({ 1: [
 
 const PORT = await reservePort();
 const server = spawn("python3", ["-m", "http.server", String(PORT), "--bind", "127.0.0.1"], { cwd: ROOT, stdio: "ignore" });
-const browser = await chromium.launch();
+// CI runners carry system Chrome, not Playwright's headless shell; use it when present (same as the sibling gates).
+const executablePath = ["/opt/google/chrome/chrome", "/usr/bin/google-chrome", "/usr/bin/chromium"].find(existsSync);
+const browser = await chromium.launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
 try {
   await serverReady(`http://127.0.0.1:${PORT}/index.html`);
   for (const width of [390, 320]) {
