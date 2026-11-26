@@ -97,6 +97,14 @@ function shell({ title, desc, url, ld, body }, lastmod) {
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
 <link rel="canonical" href="${esc(url)}">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Plursky">
+<meta property="og:title" content="${esc(title)}">
+<meta property="og:description" content="${esc(desc)}">
+<meta property="og:url" content="${esc(url)}">
+<meta property="og:image" content="${ORIGIN}/og-card.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#151C1D">
 ${CSS}
 <script type="application/ld+json">
