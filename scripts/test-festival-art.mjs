@@ -41,6 +41,8 @@ const FALLBACK = {
   "bass-canyon-2027": "official art not fetched yet; tile owed before the flip",
   "medusa-2027": "official art not fetched yet; tile owed before the flip",
   "project-glow-2027": "official art not fetched yet; tile owed before the flip",
+  // Jake 2026-11-26 "drop it": the only reuse-cleared photo (#613) was Beyond Wonderland SoCal 2010, the wrong edition.
+  "beyond-wonderland-midwest-2027": "official art not fetched yet; tile owed before the flip",
   "lost-in-dreams-2027": "official art not fetched yet; tile owed before the flip",
   "wasteland-2027": "official art not fetched yet; tile owed before the flip",
 };
