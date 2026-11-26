@@ -1,0 +1,54 @@
+# The live-site watchdog for plursky.com (born 2026-11-26).
+#
+# A real-Chrome crawl of the 79 pages in sitemap.xml found a /favicon.ico 404
+# and two pages with no description, canonical or share card. That crawl never
+# opened /artists/ or /genres/, because it seeded from sitemap.xml alone. Its
+# first full run from robots.txt then found 6,296 artist and genre pages with
+# no share image and no icon. Nothing in a pull request looks at the deployed
+# site, so this job is the clock that does.
+#
+#   green  every sitemap URL robots.txt names answers 200; every indexable page
+#          has a title, description, canonical (to itself) and og:image; every
+#          internal link and asset on those pages answers 200
+#   red    the log names each finding by kind and URL; fix it in the generator
+#          (or the page), not by hand in the output
+#
+# It reads, never writes: GETs only, no PR, no issue. Roughly 10,000 requests
+# at 12 at a time, about two minutes.
+name: site watchdog
+
+on:
+  schedule:
+    # 07:20 UTC daily, after the set-times watch (06:45) and off the hour.
+    - cron: '20 7 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # Prove the watchdog still catches every planted defect before trusting
+      # its answer about the real site.
+      - name: Watchdog self-test (local site, no network)
+        run: node scripts/test-site-watchdog.mjs
+
+      - name: plursky.com, every sitemap
+        run: node scripts/site-watchdog.mjs --json site-watchdog.json
+
+      - name: Keep the findings
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-watchdog
+          path: site-watchdog.json
+          if-no-files-found: ignore
+          retention-days: 14

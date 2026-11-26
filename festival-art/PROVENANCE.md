@@ -53,7 +53,6 @@ The last five festivals that still showed initials now have a photo. Cards are 7
 | `world-club-dome-2027.webp` | https://commons.wikimedia.org/wiki/File:World_Club_Dome_2013.jpg | CC BY 2.0, Tobias Franz. Lasers over the crowd at BigCityBeats World Club Dome Frankfurt 2013. |
 | `bumbershoot-2027.webp` | https://commons.wikimedia.org/wiki/File:Cyclecide-carousel-Bumbershoot07.jpg | CC BY 3.0, Dave Cohoe. Cyclecide pedal-powered carousel at Bumbershoot 2007. |
 | `bottlerock-2027.webp` | https://commons.wikimedia.org/wiki/File:Avett_Brothers_Bottlerock_2013.jpg | CC BY-SA 3.0, Trevor Bolliger. The Avett Brothers on stage at BottleRock Napa Valley 2013. |
-| `beyond-wonderland-midwest-2027.webp` | https://commons.wikimedia.org/wiki/File:Beyond_Wonderland_main_stage.jpg | CC BY-SA 2.0, Roxanna Salceda. Main stage tent at Beyond Wonderland SoCal 2010 (another edition of the same festival). |
 | `sonar-2027.webp` | https://commons.wikimedia.org/wiki/File:Sónar_06_Barcelona_Catalonia.jpg | CC BY 2.0, photochino. SonarPark crowd and stage at Sónar 2006, Barcelona. |
 | `time-warp-2027.webp` | https://commons.wikimedia.org/wiki/File:TDK_Time_Warp_2006.jpg | CC BY-SA 2.5, ftf. Crowd and stage at TDK Time Warp 2006, Maimarkt Mannheim. |
 | `edc-lv-2027.webp` | https://www.flickr.com/photos/41307579@N06/5929382909 | CC BY-SA 2.0, Tony Nungaray (b@nfy). Ferris wheel and arches at Electric Daisy Carnival Las Vegas 2011. |
