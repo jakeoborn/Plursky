@@ -462,6 +462,76 @@ function LandingSpotlight({ ordered, now, plus, onEnter }) {
   );
 }
 
+// ── Get the app (web only) ───────────────────────────────────────────
+// Plursky's best parts (the camera-roll scan, Shazam, set alerts with the
+// screen locked) live in the iPhone app, and the web never said so outside
+// the paywall. This quiet card under the landing's title points web visitors
+// at the App Store. It stays away where it would be noise:
+//   - inside the iPhone app itself,
+//   - on Android (the app is iPhone only),
+//   - in iPhone Safari, where index.html's Smart App Banner
+//     (apple-itunes-app) already offers the app; in-app browsers such as
+//     Instagram's or TikTok's show no Smart App Banner, so they get this card,
+//   - for GET_APP_HIDE_DAYS after someone closes it.
+// scripts/test-get-app-banner.mjs pins each case.
+const GET_APP_DISMISS_KEY = "plursky_get_app_dismissed_at";
+const GET_APP_HIDE_DAYS = 30;
+function _getAppBannerVisible(ua, isNative, dismissedAt, now) {
+  if (isNative) return false;
+  ua = String(ua || "");
+  if (/Android/i.test(ua)) return false;
+  const ios = /iPhone|iPad|iPod/.test(ua);
+  // Safari on iOS: "Safari" in the agent and none of the other browsers'
+  // or apps' markers (they all also say Safari).
+  const iosSafari = ios && /Safari\//.test(ua)
+    && !/CriOS|FxiOS|EdgiOS|OPiOS|GSA\/|DuckDuckGo|Instagram|FBAN|FBAV|FB_IAB|TikTok|musical_ly|BytedanceWebview|Snapchat|Twitter|LinkedInApp|Line\//.test(ua);
+  if (iosSafari) return false;
+  const t = Number(dismissedAt);
+  if (Number.isFinite(t) && t > 0 && now - t < GET_APP_HIDE_DAYS * 86400000) return false;
+  return true;
+}
+function GetTheAppCard() {
+  const [show, setShow] = React.useState(() => {
+    let dismissedAt = null;
+    try { dismissedAt = localStorage.getItem(GET_APP_DISMISS_KEY); } catch {}
+    return _getAppBannerVisible(navigator.userAgent, !!window.Capacitor?.isNativePlatform?.(), dismissedAt, Date.now());
+  });
+  if (!show) return null;
+  const href = typeof _appStoreUrl === "function" ? _appStoreUrl() : "https://apps.apple.com/app/plursky-live/id6768888507";
+  const close = () => {
+    try { localStorage.setItem(GET_APP_DISMISS_KEY, String(Date.now())); } catch {}
+    setShow(false);
+  };
+  return (
+    <aside data-get-app="" aria-label="Plursky for iPhone" style={{
+      position: "relative", marginTop: 14, padding: "12px 44px 12px 14px", borderRadius: 14,
+      background: "var(--paper-2)", display: "flex", flexWrap: "wrap", alignItems: "center",
+      gap: "10px 12px",
+    }}>
+      {/* Text takes the row until it would fall under ~11em, then the button
+          wraps below it, so at 200% text on a narrow phone nothing pans. */}
+      <div style={{ flex: "1 1 11em", minWidth: 0 }}>
+        <p style={{ margin: 0, fontSize: 15, lineHeight: 1.33, fontWeight: 600, color: "var(--ink)" }}>
+          Plursky is better on iPhone
+        </p>
+        <p style={{ margin: "2px 0 0", fontSize: 13, lineHeight: 1.38, color: "var(--text-2)" }}>
+          Find your photos from every festival since 2010, Shazam a set, and get set alerts.
+        </p>
+      </div>
+      <a href={href} target="_blank" rel="noopener" data-get-app-link="" style={{
+        flex: "0 0 auto", display: "flex", alignItems: "center", minHeight: 44, padding: "0 14px",
+        borderRadius: 12, background: "var(--signal)", color: "var(--on-signal)",
+        fontSize: 15, fontWeight: 600, textDecoration: "none",
+      }}>Get the app</a>
+      <button onClick={close} aria-label="Hide for now" data-get-app-close="" style={{
+        position: "absolute", top: 0, right: 0, width: 44, height: 44, padding: 0,
+        background: "transparent", border: "none", color: "var(--text-2)",
+        fontSize: 22, lineHeight: 1, cursor: "pointer", fontFamily: "inherit",
+      }}>×</button>
+    </aside>
+  );
+}
+
 function GeneralLandingScreen({ state, setState }) {
   const [savedIds, setSavedIds] = React.useState(readSavedFestivals);
   const [q, setQ] = React.useState("");
@@ -617,6 +687,8 @@ function GeneralLandingScreen({ state, setState }) {
             Pick a festival to plan it, live it, and keep it.
           </p>
         </header>
+
+        <GetTheAppCard />
 
         {/* One clear primary action, answering "what can I do now?". */}
         {primary && (
