@@ -33,9 +33,16 @@ function live() {
   const raw = process.env.PLUR_BOARD_LIVE
     ? readFileSync(process.env.PLUR_BOARD_LIVE, "utf8")
     : execFileSync("gh", ["pr", "list", "--repo", "jakeoborn/Plursky", "--state", "open", "--limit", "200",
-        "--json", "number,headRefOid,isDraft,title"], { encoding: "utf8", timeout: 15000, stdio: ["ignore", "pipe", "ignore"] });
+        "--author", "jakeoborn", "--json", "number,headRefOid,isDraft,isCrossRepository"], { encoding: "utf8", timeout: 15000, stdio: ["ignore", "pipe", "ignore"] });
   const prs = {};
-  for (const p of JSON.parse(raw)) prs[p.number] = { head: p.headRefOid.slice(0, 8), draft: !!p.isDraft, title: String(p.title || "").slice(0, 60) };
+  // Numbers, heads and draft flags only: no titles or other PR text reach the
+  // hook output (it becomes a Stop-hook reason the agent reads), and only the
+  // owner's same-repo PRs count, so a stranger's PR can neither inject text
+  // nor force a board rewrite.
+  for (const p of JSON.parse(raw)) {
+    if (p.isCrossRepository || !Number.isInteger(p.number) || !/^[0-9a-f]{40}$/.test(p.headRefOid)) continue;
+    prs[p.number] = { head: p.headRefOid.slice(0, 8), draft: !!p.isDraft };
+  }
   return prs;
 }
 
@@ -43,7 +50,7 @@ function diff(rec, now) {
   const out = [];
   for (const n of Object.keys(now)) {
     const a = rec[n], b = now[n];
-    if (!a) out.push(`#${n} opened (${b.head}${b.draft ? ", draft" : ""}): ${b.title}`);
+    if (!a) out.push(`#${n} opened (${b.head}${b.draft ? ", draft" : ""})`);
     else {
       if (a.head !== b.head) out.push(`#${n} head ${a.head} -> ${b.head}`);
       if (a.draft !== b.draft) out.push(`#${n} ${b.draft ? "back to draft" : "out of draft"}`);
