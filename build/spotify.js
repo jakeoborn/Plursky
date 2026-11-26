@@ -4988,6 +4988,7 @@ function MomentCard({
   };
   return React.createElement("div", {
     ref: cardRef,
+    "data-moment-card": "",
     style: {
       background: "var(--s2)",
       boxShadow: "var(--e1)",

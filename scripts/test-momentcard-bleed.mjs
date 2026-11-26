@@ -26,8 +26,8 @@ const LONG = "https://example.com/" + "averyverylongpastedlinkwithnobreaks".repe
 const PROSE = "Best drop of the night, the whole crowd jumped at once and I lost my friends for a bit";
 const at = (m) => `2026-05-16T04:${String(m).padStart(2, "0")}:00.000Z`;   // Fri May 15, 9 PM PT
 const MOMENTS = JSON.stringify({ 1: [
-  { kind: "photo", festivalId: "edc-lv-2026", createdAt: 1, id: "t1", night: 1, _fingerprint: "t1", artistId: "k1", takenAt: at(0), text: PROSE },
-  { kind: "photo", festivalId: "edc-lv-2026", createdAt: 2, id: "t2", night: 1, _fingerprint: "t2", artistId: "k1", takenAt: at(10), text: LONG },
+  { kind: null, photoId: null, festivalStampSource: "user", tagSource: "manual", festivalId: "edc-lv-2026", createdAt: 1, id: "t1", night: 1, _fingerprint: "t1", artistId: "k1", takenAt: at(0), text: PROSE },
+  { kind: null, photoId: null, festivalStampSource: "user", tagSource: "manual", festivalId: "edc-lv-2026", createdAt: 2, id: "t2", night: 1, _fingerprint: "t2", artistId: "k1", takenAt: at(10), text: LONG },
   { kind: "photo", festivalId: "edc-lv-2026", createdAt: 3, id: "p1", night: 1, _fingerprint: "p1", artistId: "k1", takenAt: at(20), photoId: "p1" },
 ] });
 
@@ -35,8 +35,9 @@ const PORT = await reservePort();
 const server = spawn("python3", ["-m", "http.server", String(PORT), "--bind", "127.0.0.1"], { cwd: ROOT, stdio: "ignore" });
 // CI runners carry system Chrome, not Playwright's headless shell; use it when present (same as the sibling gates).
 const executablePath = ["/opt/google/chrome/chrome", "/usr/bin/google-chrome", "/usr/bin/chromium"].find(existsSync);
-const browser = await chromium.launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
+let browser;
 try {
+  browser = await chromium.launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
   await serverReady(`http://127.0.0.1:${PORT}/index.html`);
   for (const width of [390, 320]) {
     const ctx = await browser.newContext({ viewport: { width, height: 844 }, deviceScaleFactor: 2, serviceWorkers: "block", timezoneId: "America/Los_Angeles" });
@@ -62,12 +63,15 @@ try {
       await sleep(300);
       const rows = await page.evaluate((texts) => texts.map((t) => {
         const el = [...document.querySelectorAll(".duo-headline")].find((e) => e.textContent === t);
-        // The card is the nearest ancestor with rounded corners.
-        let card = el.parentElement; while (card && card !== document.body && !(parseFloat(getComputedStyle(card).borderTopLeftRadius) >= 8)) card = card.parentElement;
+        // The note's own MomentCard (its root carries data-moment-card), not the wider group card.
+        const card = el.closest("[data-moment-card]");
+        if (!card) return { t: t.slice(0, 24), noCard: true };
         const r = el.getBoundingClientRect(), c = card.getBoundingClientRect();
         return { t: t.slice(0, 24), over: Math.round(el.scrollWidth - el.clientWidth), past: Math.round(r.right - c.right), inView: r.right <= innerWidth + 0.5 };
       }), [PROSE, LONG]);
       for (const row of rows) {
+        check(!row.noCard, `${width}: "${row.t}…" sits inside a MomentCard (data-moment-card)`);
+        if (row.noCard) continue;
         check(row.over <= 0, `${width}: "${row.t}…" wraps inside its own box (scrollWidth over clientWidth by ${row.over} px)`);
         check(row.past <= 0 && row.inView, `${width}: "${row.t}…" stays inside its card (${row.past} px past the card's right edge)`);
       }
@@ -76,7 +80,7 @@ try {
     await ctx.close();
   }
 } finally {
-  await browser.close();
+  await browser?.close();
   server.kill();
 }
 if (failed) { console.log(`✗ momentcard bleed: ${failed} of ${checks} checks failed`); process.exit(1); }
