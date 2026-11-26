@@ -349,20 +349,32 @@ ${placed.map(s => `        <li>${esc(s.name)}</li>`).join('\n')}
 const CAREERS = JSON.parse(readFileSync(path.join(root, 'data/artists/careers.json'), 'utf8'));
 const ARTIST_PAGES = new Set(artistPageKeys(CAREERS));
 const artistName = k => CAREERS.artists[k]?.n || k;
+// name -> { pages: Set of artist-page keys, solo }. `solo` is true only when
+// every billing under that name is ONE performer in the registry, counting
+// performers with no page. Without it, "A.M.C w/ Phantom" (A.M.C has no page)
+// read as one performer and the whole name linked to Phantom's page.
+const ALL_ARTIST_KEYS = Object.keys(CAREERS.artists);
 function artistKeysByName(cfg) {
-  const byAct = performersByAct(CAREERS, cfg.id, ARTIST_PAGES);
+  const withPage = performersByAct(CAREERS, cfg.id, ARTIST_PAGES);
+  const everyone = performersByAct(CAREERS, cfg.id, ALL_ARTIST_KEYS);
   const out = new Map();
   for (const a of DS[cfg.id]?.artists || []) {
     if (!a.name) continue;
-    if (!out.has(a.name)) out.set(a.name, new Set());
-    for (const k of byAct.get(String(a.id)) || []) out.get(a.name).add(k);
+    if (!out.has(a.name)) out.set(a.name, { pages: new Set(), solo: true });
+    const e = out.get(a.name);
+    for (const k of withPage.get(String(a.id)) || []) e.pages.add(k);
+    if ((everyone.get(String(a.id)) || new Set()).size !== 1) e.solo = false;
   }
   return out;
 }
 const artistHref = k => `/artists/${encodeURIComponent(k)}/`;
-function actHtml(n, keys) {
-  const ks = [...(keys || [])].sort();
-  if (ks.length === 1) return `<a class="act" href="${artistHref(ks[0])}">${esc(n)}</a>`;
+// The whole name links only for a solo performer with a page. A multi-performer
+// name stays text and lists each performer that HAS a page after it.
+function soloKey(e) { return e && e.solo && e.pages.size === 1 ? [...e.pages][0] : null; }
+function actHtml(n, e) {
+  const solo = soloKey(e);
+  if (solo) return `<a class="act" href="${artistHref(solo)}">${esc(n)}</a>`;
+  const ks = [...(e?.pages || [])].sort();
   if (!ks.length) return `<span class="act">${esc(n)}</span>`;
   return `<span class="act">${esc(n)}</span> <span class="slots">${ks.map(k => `<a href="${artistHref(k)}">${esc(artistName(k))}</a>`).join(', ')}</span>`;
 }
@@ -867,8 +879,8 @@ function stub(entry, statusOverride, lastmod) {
     // Google structured-data violation.
     // A name billed as one performer with a page carries that page as its url.
     ...(names.length ? { performer: (() => { const kb = artistKeysByName(cfg); return names.map(n => {
-      const ks = [...(kb.get(n) || [])];
-      return { '@type': 'MusicGroup', name: n, ...(ks.length === 1 ? { url: `${ORIGIN}${artistHref(ks[0])}` } : {}) };
+      const solo = soloKey(kb.get(n));
+      return { '@type': 'MusicGroup', name: n, ...(solo ? { url: `${ORIGIN}${artistHref(solo)}` } : {}) };
     }); })() } : {}),
     // organizer is the festival's own brand, so its url is the festival's
     // official site, never plursky.com (that would name us as the

@@ -203,9 +203,17 @@ function checkPage(entry, html, { verified }) {
 
   // Lineup: every name, once, in its own row.
   const lineup = section(html, 'lineup-h') || '';
-  const acts = [...lineup.matchAll(/<span class="act">(.*?)<\/span>/g)].map(x => decode(x[1]));
+  // A name is a <span class="act"> or, when it is one performer with an
+  // artist page, an <a class="act" href="/artists/…/">.
+  const acts = [...lineup.matchAll(/<(span|a) class="act"(?: href="\/artists\/[^"]+\/")?>(.*?)<\/\1>/g)].map(x => decode(x[2]));
   const missing = names.filter(n => !acts.includes(n));
   if (missing.length) out.push(`lineup is missing ${missing.length} act(s), e.g. ${missing[0]}`);
+  // A whole-name artist link is for ONE performer. A billed collaboration
+  // ("A.M.C w/ Phantom") linking as one artist sends a reader to the wrong page.
+  // A parenthetical is an alias's gloss, not a billing: "Leveltronics
+  // (Subtronics B2B Level Up)" is one act.
+  const collab = [...lineup.matchAll(/<a class="act"[^>]*>(.*?)<\/a>/g)].map(x => decode(x[1])).filter(n => /\s(b2b|b3b|w\/|with|vs\.?)\s/i.test(n.replace(/\([^)]*\)/g, '')));
+  if (collab.length) out.push(`collaboration linked as one artist: ${collab[0]}`);
   if (acts.length !== new Set(acts).size) out.push('lineup repeats a name');
   if (/Schedule TBA/.test(visibleText(lineup))) out.push('lineup shows the placeholder stage');
   // A one-day (or absent) dayDates is a bucket, not a published day split.
