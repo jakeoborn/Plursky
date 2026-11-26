@@ -38,8 +38,9 @@
 **Still open (Claude Plur):**
 - [ ] W3 accuracy gate: 17 of 20 sets within 10 min on a real album replay. The synthetic
       EDC reference (13 of 15, #503) does not count. Blocked on Jake's albums
-- [ ] #517 follow-up: its 14 capture `sha256`/`bytes` receipts do not reproduce; fresh raw captures
-      match Wayback's own CDX digests 14/14 (see the #517 comment). The imported sets are unaffected
+- [x] #517 follow-up: its 14 capture `sha256`/`bytes` receipts did not reproduce. DONE in #527
+      (`d4718767`, 2026-11-19): recomputed over the archived bytes, each with `cdxDigest` and the old
+      values kept under `superseded`. Still open there: Tomorrowland 2024's firecrawl-relayed hashes (#525)
 
 **Next:** #244 festival essentials re-port (SPEC-212 is done; the old branch is 532 commits behind, so it is re-ported fresh off main with a new first-party read).
 
