@@ -1935,7 +1935,7 @@ function App() {
   return React.createElement(IOSDevice, {
     dark: statusBarStyle === "light"
   }, React.createElement("div", {
-    className: state.tab === "home" && !state.artist ? "np" : undefined,
+    className: [state.tab === "home" && !state.artist ? "np" : "", "ps-frame", state.tab !== "landing" ? "ps-has-rail" : ""].filter(Boolean).join(" "),
     style: {
       position: "absolute",
       inset: 0,
@@ -1951,13 +1951,14 @@ function App() {
   }, React.createElement("div", {
     key: state.artist ? "artist" : state.tab,
     className: state.artist ? "ps-view ps-view-push" : "ps-view",
+    "data-wide": state.tab === "map" && !state.artist ? "full" : undefined,
     style: {
       position: "absolute",
       inset: 0,
       display: "flex",
       flexDirection: "column"
     }
-  }, body), React.createElement(ToastHost, null)), !state.artist && state.tab !== "landing" && (() => {
+  }, body), React.createElement(ToastHost, null)), state.tab !== "landing" && (() => {
     var postFest = (() => {
       try {
         return Date.now() > (FESTIVAL_CONFIG?.endMs || Infinity);
@@ -1968,9 +1969,12 @@ function App() {
     var meFold = postFest ? ["spotify", "recap", "past", "artists"] : ["spotify", "memories", "recap", "past", "artists"];
     return React.createElement(TabBar, {
       active: meFold.includes(state.tab) ? "me" : state.tab,
+      current: state.artist ? null : state.tab,
+      railOnly: !!state.artist,
       onChange: t => setState({
         ...state,
-        tab: t
+        tab: t,
+        artist: null
       })
     });
   })()), searchOpen && React.createElement(SearchModal, {
@@ -2082,7 +2086,7 @@ class RootErrorBoundary extends React.Component {
         stack: err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v687"
+        version: "v688"
       }));
     } catch {}
   }
@@ -2134,7 +2138,7 @@ class RootErrorBoundary extends React.Component {
         style: {
           marginTop: 22
         }
-      }, "Plursky · v687"))
+      }, "Plursky · v688"))
     );
   }
 }

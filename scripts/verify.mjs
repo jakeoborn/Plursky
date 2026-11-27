@@ -3698,6 +3698,22 @@ for (const [label, file] of [
   }
 }
 
+// ── 1z-b5e3. Wide layout ──────────────────────────────────────────────────
+// On a computer the tab bar is a side rail, reading screens sit in a centred
+// column, the map is full width and nothing scrolls sideways; a phone keeps
+// its bottom bar with four tabs and none of the rail's extras.
+{
+  console.log("▸ Wide-layout gate — side rail on a computer, phone unchanged");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-wide-layout.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`wide layout failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b5f. Memories v2 / Landing accessibility + large text ──────────────
 // Target size, accessible names, heading structure, horizontal pan, clipping,
 // text-over-text and reduced motion, at 393 and 320 CSS px and again with

@@ -56,7 +56,27 @@ function TopBar({ title, right, sub, tight }) {
 
 // Bottom tab nav — 4 tabs after v92 collapse (Music folded into Me).
 // SpotifyScreen still routes via state.tab="spotify" but Me lights up in the bar.
-function TabBar({ active, onChange }) {
+// True on a computer-width window (index.html's 1024px rail breakpoint).
+// The rail's extra blocks are only rendered then, so a phone's tab bar holds
+// exactly the four tabs it always had.
+const _PLK_WIDE_MQ = "(min-width: 1024px)";
+function usePlurskyWide() {
+  const get = () => { try { return !!(window.matchMedia && window.matchMedia(_PLK_WIDE_MQ).matches); } catch { return false; } };
+  const [wide, setWide] = React.useState(get);
+  React.useEffect(() => {
+    let mq; try { mq = window.matchMedia && window.matchMedia(_PLK_WIDE_MQ); } catch {}
+    if (!mq) return;
+    const on = () => setWide(mq.matches);
+    on();
+    if (mq.addEventListener) mq.addEventListener("change", on); else if (mq.addListener) mq.addListener(on);
+    return () => { if (mq.removeEventListener) mq.removeEventListener("change", on); else if (mq.removeListener) mq.removeListener(on); };
+  }, []);
+  return wide;
+}
+window.usePlurskyWide = usePlurskyWide;
+
+function TabBar({ active, onChange, current, railOnly }) {
+  const wide = usePlurskyWide();
   // Post-festival, the Map loses utility (you're not navigating stages
   // anymore) while Memories becomes the reason to keep the app. Swap the
   // Map tab for Memories once the festival ends — the lifecycle pivot from
@@ -79,10 +99,11 @@ function TabBar({ active, onChange }) {
   // soft accent pill that glides between tabs (one element, moved by
   // transform, so a switch reads as motion rather than a jump). Stage colour
   // never tints it. The bar clears the iPhone home indicator.
+  if (railOnly && !wide) return null;
   const idx = Math.max(0, tabs.findIndex(t => t.id === active));
   const lit = tabs.some(t => t.id === active);
   return (
-    <div className="ps-tabbar" style={{
+    <div className={railOnly ? "ps-tabbar ps-tabbar-railonly" : "ps-tabbar"} style={{
       position: "relative",
       background: "var(--chrome)",
       backdropFilter: "blur(20px) saturate(160%)",
@@ -104,6 +125,16 @@ function TabBar({ active, onChange }) {
           background: "var(--acc-14)", boxShadow: "inset 0 0 0 1px var(--acc-30)",
         }} />
       </span>}
+      {/* Wide screens (index.html, min-width 1024px) turn this bar into a
+          side rail: these head and foot blocks are display:none on a phone
+          and only appear in the rail. */}
+      {wide && <div className="ps-rail-only ps-rail-head">
+        <div className="ps-rail-brand">Plursky</div>
+        <div className="ps-rail-fest">{(window.FESTIVAL_CONFIG && (window.FESTIVAL_CONFIG.name || window.FESTIVAL_CONFIG.shortName)) || ""}</div>
+        <button type="button" className="ps-rail-all" onClick={() => { haptic.light(); onChange("landing"); }}>
+          <span aria-hidden="true">←</span> All festivals
+        </button>
+      </div>}
       {tabs.map(t => {
         const Icon = t.icon;
         const on = active === t.id;
@@ -147,8 +178,34 @@ function TabBar({ active, onChange }) {
           </button>
         );
       })}
+      {wide && <div className="ps-rail-only ps-rail-more">
+        <div className="ps-rail-sect">More</div>
+        {_railMore(isPostFestival).map(m => {
+          const Icon = m.icon;
+          const on = current === m.id;
+          return (
+            <button key={m.id} type="button" className="ps-tab ps-rail-link" aria-current={on ? "page" : undefined}
+              onClick={() => { haptic.light(); onChange(m.id); }}
+              style={{ color: on ? "var(--ink)" : "var(--ink-3)" }}>
+              <span className="ps-tab-icon" style={{ display: "flex" }}><Icon on={on} /></span>
+              <span className="ps-rail-label" style={{ fontWeight: on ? 600 : 500 }}>{m.label}</span>
+            </button>
+          );
+        })}
+      </div>}
     </div>
   );
+}
+
+// The rail's second group on wide screens: the screens a phone reaches from
+// Me (Music, Artists, Past festivals) and, before the festival, Memories.
+function _railMore(postFest) {
+  const more = [
+    { id: "spotify", label: "Music",          icon: MusicIcon },
+    { id: "artists", label: "Artists",        icon: ArtistsIcon },
+    { id: "past",    label: "Past festivals", icon: PastIcon },
+  ];
+  return postFest ? more : [{ id: "memories", label: "Memories", icon: MemoriesIcon }, ...more];
 }
 
 // Tab icons: the board's one geometry (design/system-exploration
@@ -167,6 +224,8 @@ const HomeIcon = _tabIcon("M12 20 3.5 9 M12 20 8.5 5 M12 20 15.5 5 M12 20 20.5 9
 const LineupIcon = _tabIcon("M4 6h16 M4 12h11 M4 18h14");
 const MapIcon = _tabIcon("M9 4 3 6.2v13.8l6-2.2 6 2.2 6-2.2V4l-6 2.2L9 4z M9 4v13.8 M15 6.2V20");
 const MeIcon = _tabIcon("M12 12.5a4.25 4.25 0 1 0 0-8.5 4.25 4.25 0 0 0 0 8.5z M4.5 20.5c1.4-3.7 4.3-5.6 7.5-5.6s6.1 1.9 7.5 5.6");
+const ArtistsIcon = _tabIcon("M9 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z M2.5 20c1-3.3 3.6-5 6.5-5s5.5 1.7 6.5 5 M16 4.3a3.5 3.5 0 0 1 0 6.4 M18 15.2c1.7.7 2.9 2.3 3.5 4.8");
+const PastIcon = _tabIcon("M12 21a9 9 0 1 0-8.5-6 M3.5 15l-.6 3.6 M3.5 15l3.5.9 M12 7v5l3.5 2");
 const MemoriesIcon = _tabIcon("M4 6.5h16v12H4z M4 15.5l4.5-4 3.5 3 2.5-2 5.5 4.5 M15.5 10.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z");
 function MusicIcon({ on }) {
   return (

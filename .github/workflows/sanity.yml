@@ -91,6 +91,7 @@ jobs:
         run: node scripts/verify.mjs
         env:
           APPEARANCE_EVIDENCE: ${{ runner.temp }}/appearance-evidence
+          WIDE_SHOTS: ${{ runner.temp }}/wide-layout-shots
 
       # A failed appearance leak check saves the fresh and toggled shots of
       # the screenful that differed (fixture data only), so a runner-only
@@ -101,5 +102,16 @@ jobs:
         with:
           name: appearance-evidence
           path: ${{ runner.temp }}/appearance-evidence
+          if-no-files-found: ignore
+          retention-days: 7
+
+      # Screenshots of the wide (computer) layout and a phone for comparison,
+      # kept on every run so a layout change can be looked at, not guessed at.
+      - name: Upload wide-layout screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: wide-layout-shots
+          path: ${{ runner.temp }}/wide-layout-shots
           if-no-files-found: ignore
           retention-days: 7
