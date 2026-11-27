@@ -1,0 +1,1413 @@
+{
+ "id": "awakenings-2015",
+ "festivalId": "awakenings",
+ "name": "Awakenings Festival 2015",
+ "year": 2015,
+ "timezone": "Europe/Amsterdam",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2015-06-27",
+   "label": "Saturday"
+  },
+  {
+   "day": 2,
+   "date": "2015-06-28",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "awakenings-2015:area-a",
+   "name": "Area A"
+  },
+  {
+   "id": "awakenings-2015:area-b",
+   "name": "Area B"
+  },
+  {
+   "id": "awakenings-2015:area-c",
+   "name": "Area C"
+  },
+  {
+   "id": "awakenings-2015:area-v",
+   "name": "Area V"
+  },
+  {
+   "id": "awakenings-2015:area-w",
+   "name": "Area W"
+  },
+  {
+   "id": "awakenings-2015:area-x",
+   "name": "Area X"
+  },
+  {
+   "id": "awakenings-2015:area-y",
+   "name": "Area Y"
+  },
+  {
+   "id": "awakenings-2015:area-z",
+   "name": "Area Z"
+  }
+ ],
+ "artists": [
+  {
+   "id": "awakenings-2015:2000andone",
+   "name": "2000andOne",
+   "key": "2000andone",
+   "performers": [
+    "2000andone"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:de-sluwe-vos",
+   "name": "De Sluwe Vos",
+   "key": "de-sluwe-vos",
+   "performers": [
+    "de-sluwe-vos"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:eats-everything",
+   "name": "Eats Everything",
+   "key": "eats-everything",
+   "performers": [
+    "eats-everything"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:julio-bashmore",
+   "name": "Julio Bashmore",
+   "key": "julio-bashmore",
+   "performers": [
+    "julio-bashmore"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:kerk",
+   "name": "KERK!",
+   "key": "kerk",
+   "performers": [
+    "kerk"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:maya-jane-coles",
+   "name": "Maya Jane Coles",
+   "key": "maya-jane-coles",
+   "performers": [
+    "maya-jane-coles"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:visionquest-lee-curtiss-ryan-crosson-shaun-reeves",
+   "name": "VisionQuest (Lee Curtiss, Ryan Crosson, Shaun Reeves)",
+   "key": "visionquest-lee-curtiss-ryan-crosson-shaun-reeves",
+   "performers": [
+    "visionquest-lee-curtiss-ryan-crosson-shaun-reeves"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:dense-and-pika-live",
+   "name": "Dense & Pika (live)",
+   "key": "dense-and-pika-live",
+   "performers": [
+    "dense-and-pika-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-b"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:henrik-schwarz-live",
+   "name": "Henrik Schwarz (live)",
+   "key": "henrik-schwarz-live",
+   "performers": [
+    "henrik-schwarz-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-b"
+    },
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-c"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:jean-pierre-enfant",
+   "name": "Jean Pierre Enfant",
+   "key": "jean-pierre-enfant",
+   "performers": [
+    "jean-pierre-enfant"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-b"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:maetrik",
+   "name": "Maetrik",
+   "key": "maetrik",
+   "performers": [
+    "maetrik"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-b"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:marcel-dettmann",
+   "name": "Marcel Dettmann",
+   "key": "marcel-dettmann",
+   "performers": [
+    "marcel-dettmann"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-b"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:nina-kraviz",
+   "name": "Nina Kraviz",
+   "key": "nina-kraviz",
+   "performers": [
+    "nina-kraviz"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-b"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:pan-pot",
+   "name": "Pan-Pot",
+   "key": "pan-pot",
+   "performers": [
+    "pan-pot"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-b"
+    },
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-v"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:agoria",
+   "name": "Agoria",
+   "key": "agoria",
+   "performers": [
+    "agoria"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-c"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:gabriel-ananda-and-dominik-eulberg",
+   "name": "Gabriel Ananda & Dominik Eulberg",
+   "key": "gabriel-ananda-and-dominik-eulberg",
+   "performers": [
+    "gabriel-ananda-and-dominik-eulberg"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-c"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:illesnoise",
+   "name": "Illesnoise",
+   "key": "illesnoise",
+   "performers": [
+    "illesnoise"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-c"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:k-nk-live",
+   "name": "K!NK (live)",
+   "key": "k-nk-live",
+   "performers": [
+    "k-nk-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-c"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:klangkarussell-dj-set",
+   "name": "Klangkarussell (dj-set)",
+   "key": "klangkarussell-dj-set",
+   "performers": [
+    "klangkarussell-dj-set"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-c"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:molly-and-awanto3",
+   "name": "Molly & Awanto3",
+   "key": "molly-and-awanto3",
+   "performers": [
+    "molly-and-awanto3"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-c"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:monkey-safari",
+   "name": "Monkey Safari",
+   "key": "monkey-safari",
+   "performers": [
+    "monkey-safari"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-c"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:job-jobse-and-tom-trago",
+   "name": "Job Jobse & Tom Trago",
+   "key": "job-jobse-and-tom-trago",
+   "performers": [
+    "job-jobse-and-tom-trago"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-v"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:joris-voorn",
+   "name": "Joris Voorn",
+   "key": "joris-voorn",
+   "performers": [
+    "joris-voorn"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-v"
+    },
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-c"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:joseph-capriati",
+   "name": "Joseph Capriati",
+   "key": "joseph-capriati",
+   "performers": [
+    "joseph-capriati"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-v"
+    },
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-w"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:len-faki",
+   "name": "Len Faki",
+   "key": "len-faki",
+   "performers": [
+    "len-faki"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-v"
+    },
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-x"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:sven-vath",
+   "name": "Sven Väth",
+   "key": "sven-vath",
+   "performers": [
+    "sven-vath"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-v"
+    },
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-w"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:adam-beyer",
+   "name": "Adam Beyer",
+   "key": "adam-beyer",
+   "performers": [
+    "adam-beyer"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-w"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:hector",
+   "name": "Hector",
+   "key": "hector",
+   "performers": [
+    "hector"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-w"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:elias-mazian",
+   "name": "Elias Mazian",
+   "key": "elias-mazian",
+   "performers": [
+    "elias-mazian"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-w"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:loco-dice",
+   "name": "Loco Dice",
+   "key": "loco-dice",
+   "performers": [
+    "loco-dice"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-w"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:luciano",
+   "name": "Luciano",
+   "key": "luciano",
+   "performers": [
+    "luciano"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-w"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:richie-hawtin",
+   "name": "Richie Hawtin",
+   "key": "richie-hawtin",
+   "performers": [
+    "richie-hawtin"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-w"
+    },
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-y"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:dave-clarke",
+   "name": "Dave Clarke",
+   "key": "dave-clarke",
+   "performers": [
+    "dave-clarke"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-x"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:doka",
+   "name": "Doka",
+   "key": "doka",
+   "performers": [
+    "doka"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-x"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:dvs1",
+   "name": "DVS1",
+   "key": "dvs1",
+   "performers": [
+    "dvs1"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-x"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:jeff-mills",
+   "name": "Jeff Mills",
+   "key": "jeff-mills",
+   "performers": [
+    "jeff-mills"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-x"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:jimmy-edgar",
+   "name": "Jimmy Edgar",
+   "key": "jimmy-edgar",
+   "performers": [
+    "jimmy-edgar"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-x"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:rebekah",
+   "name": "Rebekah",
+   "key": "rebekah",
+   "performers": [
+    "rebekah"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-x"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:sandrien",
+   "name": "Sandrien",
+   "key": "sandrien",
+   "performers": [
+    "sandrien"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-x"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:ben-klock",
+   "name": "Ben Klock",
+   "key": "ben-klock",
+   "performers": [
+    "ben-klock"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-y"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:chris-liebing",
+   "name": "Chris Liebing",
+   "key": "chris-liebing",
+   "performers": [
+    "chris-liebing"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-y"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:ryan-elliot",
+   "name": "Ryan Elliot",
+   "key": "ryan-elliot",
+   "performers": [
+    "ryan-elliot"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-y"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:scuba",
+   "name": "Scuba",
+   "key": "scuba",
+   "performers": [
+    "scuba"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-y"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:speedy-j",
+   "name": "Speedy J",
+   "key": "speedy-j",
+   "performers": [
+    "speedy-j"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-y"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:trade-surgeon-and-blawan",
+   "name": "TRADE (Surgeon & Blawan)",
+   "key": "trade-surgeon-and-blawan",
+   "performers": [
+    "trade-surgeon-and-blawan"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-y"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:billy-nasty-and-tim-wolff",
+   "name": "Billy Nasty & Tim Wolff",
+   "key": "billy-nasty-and-tim-wolff",
+   "performers": [
+    "billy-nasty-and-tim-wolff"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:cari-lekebusch-and-joel-mull",
+   "name": "Cari Lekebusch & Joel Mull",
+   "key": "cari-lekebusch-and-joel-mull",
+   "performers": [
+    "cari-lekebusch-and-joel-mull"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:carl-craig",
+   "name": "Carl Craig",
+   "key": "carl-craig",
+   "performers": [
+    "carl-craig"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:fatima-hajji",
+   "name": "Fatima Hajji",
+   "key": "fatima-hajji",
+   "performers": [
+    "fatima-hajji"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:miss-djax",
+   "name": "Miss Djax",
+   "key": "miss-djax",
+   "performers": [
+    "miss-djax"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:secret-cinema-and-egbert",
+   "name": "Secret Cinema & Egbert",
+   "key": "secret-cinema-and-egbert",
+   "performers": [
+    "secret-cinema-and-egbert"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:the-advent-live",
+   "name": "The Advent (live)",
+   "key": "the-advent-live",
+   "performers": [
+    "the-advent-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2015:area-z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:adam-beyer-and-ida-engberg",
+   "name": "Adam Beyer & Ida Engberg",
+   "key": "adam-beyer-and-ida-engberg",
+   "performers": [
+    "adam-beyer-and-ida-engberg"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-v"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:alan-fitzpatrick",
+   "name": "Alan Fitzpatrick",
+   "key": "alan-fitzpatrick",
+   "performers": [
+    "alan-fitzpatrick"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-v"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:joel-mull",
+   "name": "Joel Mull",
+   "key": "joel-mull",
+   "performers": [
+    "joel-mull"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-v"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:maceo-plex",
+   "name": "Maceo Plex",
+   "key": "maceo-plex",
+   "performers": [
+    "maceo-plex"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-v"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:paul-ritch-live",
+   "name": "Paul Ritch (live)",
+   "key": "paul-ritch-live",
+   "performers": [
+    "paul-ritch-live"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-v"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:sam-paganini",
+   "name": "Sam Paganini",
+   "key": "sam-paganini",
+   "performers": [
+    "sam-paganini"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-v"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:ici-sans-merci",
+   "name": "Ici Sans Merci",
+   "key": "ici-sans-merci",
+   "performers": [
+    "ici-sans-merci"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-w"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:ilario-allicante-live",
+   "name": "Ilario Allicante (live)",
+   "key": "ilario-allicante-live",
+   "performers": [
+    "ilario-allicante-live"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-w"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:recondite-live",
+   "name": "Recondite (live)",
+   "key": "recondite-live",
+   "performers": [
+    "recondite-live"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-w"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:ricardo-villalobos",
+   "name": "Ricardo Villalobos",
+   "key": "ricardo-villalobos",
+   "performers": [
+    "ricardo-villalobos"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-w"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:tale-of-us",
+   "name": "Tale of US",
+   "key": "tale-of-us",
+   "performers": [
+    "tale-of-us"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-w"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:unsubscribe-dave-clarke-and-mr-jones",
+   "name": "_UNSUBSCRIBE_ (Dave Clarke & Mr. Jones)",
+   "key": "unsubscribe-dave-clarke-and-mr-jones",
+   "performers": [
+    "unsubscribe-dave-clarke-and-mr-jones"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-x"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:ben-klock-and-marcel-dettmann",
+   "name": "Ben Klock & Marcel Dettmann",
+   "key": "ben-klock-and-marcel-dettmann",
+   "performers": [
+    "ben-klock-and-marcel-dettmann"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-x"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:boddika",
+   "name": "Boddika",
+   "key": "boddika",
+   "performers": [
+    "boddika"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-x"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:gary-beck",
+   "name": "Gary Beck",
+   "key": "gary-beck",
+   "performers": [
+    "gary-beck"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-x"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:jasper-wolff-and-maarten-middendorf",
+   "name": "Jasper Wolff & Maarten Middendorf",
+   "key": "jasper-wolff-and-maarten-middendorf",
+   "performers": [
+    "jasper-wolff-and-maarten-middendorf"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-x"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:nicole-moudaber",
+   "name": "Nicole Moudaber",
+   "key": "nicole-moudaber",
+   "performers": [
+    "nicole-moudaber"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-x"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:fabio-florido",
+   "name": "Fabio Florido",
+   "key": "fabio-florido",
+   "performers": [
+    "fabio-florido"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-y"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:gaiser-live",
+   "name": "Gaiser (live)",
+   "key": "gaiser-live",
+   "performers": [
+    "gaiser-live"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-y"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:joran-van-pol",
+   "name": "Joran van Pol",
+   "key": "joran-van-pol",
+   "performers": [
+    "joran-van-pol"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-y"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:julian-jeweil",
+   "name": "Julian Jeweil",
+   "key": "julian-jeweil",
+   "performers": [
+    "julian-jeweil"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-y"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:matador-live",
+   "name": "Matador (live)",
+   "key": "matador-live",
+   "performers": [
+    "matador-live"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-y"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:paco-osuna",
+   "name": "Paco Osuna",
+   "key": "paco-osuna",
+   "performers": [
+    "paco-osuna"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-y"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:and",
+   "name": "AnD",
+   "key": "and",
+   "performers": [
+    "and"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:collabs-3000-chris-liebing-and-speedy-j",
+   "name": "Collabs 3000 (Chris Liebing & Speedy J)",
+   "key": "collabs-3000-chris-liebing-and-speedy-j",
+   "performers": [
+    "collabs-3000-chris-liebing-and-speedy-j"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:karenn-blawan-and-pariah-live",
+   "name": "Karenn (Blawan & Pariah live)",
+   "key": "karenn-blawan-and-pariah-live",
+   "performers": [
+    "karenn-blawan-and-pariah-live"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:r-dhad",
+   "name": "Rødhäd",
+   "key": "r-dhad",
+   "performers": [
+    "r-dhad"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:shifted-live",
+   "name": "Shifted (live)",
+   "key": "shifted-live",
+   "performers": [
+    "shifted-live"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:subjected",
+   "name": "Subjected",
+   "key": "subjected",
+   "performers": [
+    "subjected"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:alex-salvador",
+   "name": "Alex Salvador",
+   "key": "alex-salvador",
+   "performers": [
+    "alex-salvador"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:alle-farben",
+   "name": "Alle Farben",
+   "key": "alle-farben",
+   "performers": [
+    "alle-farben"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:andhim",
+   "name": "Andhim",
+   "key": "andhim",
+   "performers": [
+    "andhim"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:delicatesse",
+   "name": "Delicatesse",
+   "key": "delicatesse",
+   "performers": [
+    "delicatesse"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:joris-delacroix",
+   "name": "Joris Delacroix",
+   "key": "joris-delacroix",
+   "performers": [
+    "joris-delacroix"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:karotte",
+   "name": "Karotte",
+   "key": "karotte",
+   "performers": [
+    "karotte"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:oliver-koletzki",
+   "name": "Oliver Koletzki",
+   "key": "oliver-koletzki",
+   "performers": [
+    "oliver-koletzki"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:anton-pieete",
+   "name": "Anton Pieete",
+   "key": "anton-pieete",
+   "performers": [
+    "anton-pieete"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-c"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:apollonia",
+   "name": "Apollonia",
+   "key": "apollonia",
+   "performers": [
+    "apollonia"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-c"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:guti-live",
+   "name": "Guti (live)",
+   "key": "guti-live",
+   "performers": [
+    "guti-live"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-c"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:kolsch",
+   "name": "Kölsch",
+   "key": "kolsch",
+   "performers": [
+    "kolsch"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-c"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2015:nic-fanciulli",
+   "name": "Nic Fanciulli",
+   "key": "nic-fanciulli",
+   "performers": [
+    "nic-fanciulli"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "awakenings-2015:area-c"
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "unofficial_lineup",
+  "unofficial": true,
+  "source": {
+   "kind": "press",
+   "site": "3voor12.vpro.nl",
+   "url": "https://3voor12.vpro.nl/artikelen/hooikoorts-awakenings-2015-maakt-hele-programma-bekend",
+   "title": "Hooikoorts: Awakenings 2015 maakt hele programma bekend",
+   "publisher": "VPRO 3voor12",
+   "published": "2015-01-23",
+   "fetchedAt": "2026-11-27",
+   "fetchedVia": "exa",
+   "scope": "full",
+   "sha256": "0ff59b4fd59035cc40b29ac8822dd7b0ffdb0d7de5912e287d99114ca35d63ed",
+   "bytes": 2499
+  },
+  "captures": [
+   {
+    "page": "lineup",
+    "url": "https://3voor12.vpro.nl/artikelen/hooikoorts-awakenings-2015-maakt-hele-programma-bekend",
+    "fetchedAt": "2026-11-27",
+    "sha256": "0ff59b4fd59035cc40b29ac8822dd7b0ffdb0d7de5912e287d99114ca35d63ed"
+   }
+  ]
+ }
+}

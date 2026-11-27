@@ -610,6 +610,331 @@
    }
   },
   {
+   "id": "awakenings-2025",
+   "festivalId": "awakenings",
+   "festivalName": "Awakenings Festival",
+   "name": "Awakenings Festival 2025",
+   "year": 2025,
+   "timezone": "Europe/Amsterdam",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "festileaks.com",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2025-07-11",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2025-07-12",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2025-07-13",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 92,
+    "sets": 0
+   }
+  },
+  {
+   "id": "awakenings-2024",
+   "festivalId": "awakenings",
+   "festivalName": "Awakenings Festival",
+   "name": "Awakenings Festival 2024",
+   "year": 2024,
+   "timezone": "Europe/Amsterdam",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "thedjrevolution.com",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2024-07-05",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2024-07-06",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2024-07-07",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 116,
+    "sets": 0
+   }
+  },
+  {
+   "id": "awakenings-2023",
+   "festivalId": "awakenings",
+   "festivalName": "Awakenings Festival",
+   "name": "Awakenings Festival 2023",
+   "year": 2023,
+   "timezone": "Europe/Amsterdam",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "thedjrevolution.com",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2023-07-07",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2023-07-08",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2023-07-09",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 112,
+    "sets": 0
+   }
+  },
+  {
+   "id": "awakenings-2022",
+   "festivalId": "awakenings",
+   "festivalName": "Awakenings Festival",
+   "name": "Awakenings Festival 2022",
+   "year": 2022,
+   "timezone": "Europe/Amsterdam",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "thedjrevolution.com",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2022-07-29",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2022-07-30",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2022-07-31",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 131,
+    "sets": 0
+   }
+  },
+  {
+   "id": "awakenings-2019",
+   "festivalId": "awakenings",
+   "festivalName": "Awakenings Festival",
+   "name": "Awakenings Festival 2019",
+   "year": 2019,
+   "timezone": "Europe/Amsterdam",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "EDM Identity",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2019-06-29",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2019-06-30",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 95,
+    "sets": 0
+   }
+  },
+  {
+   "id": "awakenings-2018",
+   "festivalId": "awakenings",
+   "festivalName": "Awakenings Festival",
+   "name": "Awakenings Festival 2018",
+   "year": 2018,
+   "timezone": "Europe/Amsterdam",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "Resident Advisor",
+    "scope": "partial"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2018-06-30",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2018-07-01",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 95,
+    "sets": 0
+   }
+  },
+  {
+   "id": "awakenings-2017",
+   "festivalId": "awakenings",
+   "festivalName": "Awakenings Festival",
+   "name": "Awakenings Festival 2017",
+   "year": 2017,
+   "timezone": "Europe/Amsterdam",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "Resident Advisor",
+    "scope": "partial"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2017-06-24",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2017-06-25",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 97,
+    "sets": 0
+   }
+  },
+  {
+   "id": "awakenings-2015",
+   "festivalId": "awakenings",
+   "festivalName": "Awakenings Festival",
+   "name": "Awakenings Festival 2015",
+   "year": 2015,
+   "timezone": "Europe/Amsterdam",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "3voor12.vpro.nl",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2015-06-27",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2015-06-28",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 93,
+    "sets": 0
+   }
+  },
+  {
+   "id": "awakenings-2014",
+   "festivalId": "awakenings",
+   "festivalName": "Awakenings Festival",
+   "name": "Awakenings Festival 2014",
+   "year": 2014,
+   "timezone": "Europe/Amsterdam",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "medellinstyle.com",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2014-06-28",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2014-06-29",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 88,
+    "sets": 0
+   }
+  },
+  {
+   "id": "awakenings-2013",
+   "festivalId": "awakenings",
+   "festivalName": "Awakenings Festival",
+   "name": "Awakenings Festival 2013",
+   "year": 2013,
+   "timezone": "Europe/Amsterdam",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "3voor12.vpro.nl",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2013-06-29",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 60,
+    "sets": 0
+   }
+  },
+  {
    "id": "awakenings-2012",
    "festivalId": "awakenings",
    "festivalName": "Awakenings Festival",

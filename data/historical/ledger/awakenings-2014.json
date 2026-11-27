@@ -1,0 +1,49 @@
+{
+  "id": "awakenings-2014",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "press",
+    "site": "medellinstyle.com",
+    "url": "https://www.medellinstyle.com/awakenings-anuncia",
+    "title": "Awakenings 2014 anuncia su cartel",
+    "publisher": "Medellinstyle",
+    "published": "2014-01-23",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "full",
+    "sha256": "821e4b351ecf51e8f233deb29dbda6c0fee6b8dee190d544c5cbd915ca9e02b5",
+    "bytes": 2429
+  },
+  "printed": {
+    "days": {
+      "1": "DÍA 1",
+      "2": "DÍA 2"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "awakenings",
+    "year": 2014,
+    "lifecycle": "occurred",
+    "dates": "2014-06-28..2014-06-29",
+    "evidence": "https://news.pollstar.com/2014/09/16/sfx-gets-dutch-awakening/",
+    "published": "2014-09-16"
+  },
+  "note": "A Colombian music site's Spanish-language article with the full lineup by day and area as announced on 23 January 2014; later changes are not shown.",
+  "verified": {
+    "billings": 88,
+    "inSourceText": true
+  },
+  "stageOrder": [
+    "Area V",
+    "Area W",
+    "Area X",
+    "Area Y",
+    "Area Z",
+    "Area C",
+    "Area B",
+    "Area A"
+  ],
+  "dropped": []
+}

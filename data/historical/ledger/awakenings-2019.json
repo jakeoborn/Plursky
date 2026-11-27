@@ -1,0 +1,40 @@
+{
+  "id": "awakenings-2019",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "press",
+    "site": "edmidentity.com",
+    "url": "https://edmidentity.com/2019/01/17/awakenings-festival-2019-lineup/",
+    "title": "Awakenings Festival Releases Stacked Lineup for 2019 Edition",
+    "publisher": "EDM Identity",
+    "published": "2019-01-17",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "full",
+    "sha256": "15463692f8a5591ea087540e05a8ba2c2c4ac7388fd0b4a65ac680b082863c25",
+    "bytes": 3149
+  },
+  "printed": {
+    "days": {
+      "1": "Saturday",
+      "2": "Sunday"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "awakenings",
+    "year": 2019,
+    "lifecycle": "occurred",
+    "dates": "2019-06-29..2019-06-30",
+    "evidence": "https://partyflock.nl/report/13220:Geniaal-Awakenings-doorstaat-heetste-dag-van-het-jaar",
+    "published": "2019-07-05"
+  },
+  "note": "A US dance-music site's lineup-by-day list as announced on 17 January 2019, taken from the text Exa returned for the article; one act is printed as Fernandes alone, and later changes are not shown.",
+  "verified": {
+    "billings": 95,
+    "inSourceText": true
+  },
+  "stageOrder": [],
+  "dropped": []
+}

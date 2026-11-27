@@ -1,0 +1,12 @@
+{
+  "awakenings-2025": {"festivalId": "awakenings", "name": "Awakenings Festival 2025", "year": 2025, "timezone": "Europe/Amsterdam", "rolloverHour": 6, "method": "unofficial_lineup", "dates": [["2025-07-11", "Friday"],["2025-07-12", "Saturday"],["2025-07-13", "Sunday"]]},
+  "awakenings-2024": {"festivalId": "awakenings", "name": "Awakenings Festival 2024", "year": 2024, "timezone": "Europe/Amsterdam", "rolloverHour": 6, "method": "unofficial_lineup", "dates": [["2024-07-05", "Friday"],["2024-07-06", "Saturday"],["2024-07-07", "Sunday"]]},
+  "awakenings-2023": {"festivalId": "awakenings", "name": "Awakenings Festival 2023", "year": 2023, "timezone": "Europe/Amsterdam", "rolloverHour": 6, "method": "unofficial_lineup", "dates": [["2023-07-07", "Friday"],["2023-07-08", "Saturday"],["2023-07-09", "Sunday"]]},
+  "awakenings-2022": {"festivalId": "awakenings", "name": "Awakenings Festival 2022", "year": 2022, "timezone": "Europe/Amsterdam", "rolloverHour": 6, "method": "unofficial_lineup", "dates": [["2022-07-29", "Friday"],["2022-07-30", "Saturday"],["2022-07-31", "Sunday"]]},
+  "awakenings-2019": {"festivalId": "awakenings", "name": "Awakenings Festival 2019", "year": 2019, "timezone": "Europe/Amsterdam", "rolloverHour": 6, "method": "unofficial_lineup", "dates": [["2019-06-29", "Saturday"],["2019-06-30", "Sunday"]]},
+  "awakenings-2018": {"festivalId": "awakenings", "name": "Awakenings Festival 2018", "year": 2018, "timezone": "Europe/Amsterdam", "rolloverHour": 6, "method": "unofficial_lineup", "dates": [["2018-06-30", "Saturday"],["2018-07-01", "Sunday"]]},
+  "awakenings-2017": {"festivalId": "awakenings", "name": "Awakenings Festival 2017", "year": 2017, "timezone": "Europe/Amsterdam", "rolloverHour": 6, "method": "unofficial_lineup", "dates": [["2017-06-24", "Saturday"],["2017-06-25", "Sunday"]]},
+  "awakenings-2015": {"festivalId": "awakenings", "name": "Awakenings Festival 2015", "year": 2015, "timezone": "Europe/Amsterdam", "rolloverHour": 6, "method": "unofficial_lineup", "dates": [["2015-06-27", "Saturday"],["2015-06-28", "Sunday"]]},
+  "awakenings-2014": {"festivalId": "awakenings", "name": "Awakenings Festival 2014", "year": 2014, "timezone": "Europe/Amsterdam", "rolloverHour": 6, "method": "unofficial_lineup", "dates": [["2014-06-28", "Saturday"],["2014-06-29", "Sunday"]]},
+  "awakenings-2013": {"festivalId": "awakenings", "name": "Awakenings Festival 2013", "year": 2013, "timezone": "Europe/Amsterdam", "rolloverHour": 6, "method": "unofficial_lineup", "dates": [["2013-06-29", "Saturday"]]}
+}

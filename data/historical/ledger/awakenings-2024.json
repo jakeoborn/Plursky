@@ -1,0 +1,41 @@
+{
+  "id": "awakenings-2024",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "press",
+    "site": "thedjrevolution.com",
+    "url": "https://www.thedjrevolution.com/awakenings-summer-festival-2024/",
+    "title": "Awakenings reveals biggest lineup of the year for Summer Festival 2024",
+    "publisher": "The DJ Revolution",
+    "published": "2024-01-17",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "full",
+    "sha256": "e80c6eff408028b0f88690eaf67ff26ad5dec333578cbd8b8c7b51e179a8833c",
+    "bytes": 3255
+  },
+  "printed": {
+    "days": {
+      "1": "Friday 5 th July",
+      "2": "Saturday 6 th July",
+      "3": "Sunday 7 th July"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "awakenings",
+    "year": 2024,
+    "lifecycle": "occurred",
+    "dates": "2024-07-05..2024-07-07",
+    "evidence": "https://edmhousenetwork.com/this-was-awakenings-festival-2024/",
+    "published": "2024-07-20"
+  },
+  "note": "The full lineup by day (A-Z within each day) as announced on 16-17 January 2024; later changes are not shown. The article splits Dimitri & Remy Unger with a stray separator; it is listed here as the one billing it is.",
+  "verified": {
+    "billings": 116,
+    "inSourceText": true
+  },
+  "stageOrder": [],
+  "dropped": []
+}

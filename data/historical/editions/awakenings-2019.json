@@ -1,0 +1,1330 @@
+{
+ "id": "awakenings-2019",
+ "festivalId": "awakenings",
+ "name": "Awakenings Festival 2019",
+ "year": 2019,
+ "timezone": "Europe/Amsterdam",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2019-06-29",
+   "label": "Saturday"
+  },
+  {
+   "day": 2,
+   "date": "2019-06-30",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [],
+ "artists": [
+  {
+   "id": "awakenings-2019:999999999",
+   "name": "999999999",
+   "key": "999999999",
+   "performers": [
+    "999999999"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:adam-beyer",
+   "name": "Adam Beyer",
+   "key": "adam-beyer",
+   "performers": [
+    "adam-beyer"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:adriatique",
+   "name": "Adriatique",
+   "key": "adriatique",
+   "performers": [
+    "adriatique"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:amelie-lens",
+   "name": "Amelie Lens",
+   "key": "amelie-lens",
+   "performers": [
+    "amelie-lens"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:anastasia-kristensen",
+   "name": "Anastasia Kristensen",
+   "key": "anastasia-kristensen",
+   "performers": [
+    "anastasia-kristensen"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:apollonia",
+   "name": "Apollonia",
+   "key": "apollonia",
+   "performers": [
+    "apollonia"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:attention-deficit-disorder-and-and-dasha-rush-live",
+   "name": "Attention Deficit Disorder (AnD & Dasha Rush live)",
+   "key": "attention-deficit-disorder-and-and-dasha-rush-live",
+   "performers": [
+    "attention-deficit-disorder-and-and-dasha-rush-live"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:bart-skils",
+   "name": "Bart Skils",
+   "key": "bart-skils",
+   "performers": [
+    "bart-skils"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:ben-klock",
+   "name": "Ben Klock",
+   "key": "ben-klock",
+   "performers": [
+    "ben-klock"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:browncoat",
+   "name": "Browncoat",
+   "key": "browncoat",
+   "performers": [
+    "browncoat"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:charlotte-de-witte",
+   "name": "Charlotte de Witte",
+   "key": "charlotte-de-witte",
+   "performers": [
+    "charlotte-de-witte"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:claire-morgan",
+   "name": "Claire Morgan",
+   "key": "claire-morgan",
+   "performers": [
+    "claire-morgan"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:dax-j",
+   "name": "Dax J",
+   "key": "dax-j",
+   "performers": [
+    "dax-j"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:dj-rush",
+   "name": "DJ Rush",
+   "key": "dj-rush",
+   "performers": [
+    "dj-rush"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:enrico-sangiuliano",
+   "name": "Enrico Sangiuliano",
+   "key": "enrico-sangiuliano",
+   "performers": [
+    "enrico-sangiuliano"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:enzo-siragusa",
+   "name": "Enzo Siragusa",
+   "key": "enzo-siragusa",
+   "performers": [
+    "enzo-siragusa"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:fjaak",
+   "name": "Fjaak",
+   "key": "fjaak",
+   "performers": [
+    "fjaak"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:guti",
+   "name": "Guti",
+   "key": "guti",
+   "performers": [
+    "guti"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:i-hate-models",
+   "name": "I Hate Models",
+   "key": "i-hate-models",
+   "performers": [
+    "i-hate-models"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:ingi-visions",
+   "name": "Ingi Visions",
+   "key": "ingi-visions",
+   "performers": [
+    "ingi-visions"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:ion-ludwig",
+   "name": "Ion Ludwig",
+   "key": "ion-ludwig",
+   "performers": [
+    "ion-ludwig"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:fernandes",
+   "name": "Fernandes",
+   "key": "fernandes",
+   "performers": [
+    "fernandes"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:joran-van-pol",
+   "name": "Joran van Pol",
+   "key": "joran-van-pol",
+   "performers": [
+    "joran-van-pol"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:joris-voorn",
+   "name": "Joris Voorn",
+   "key": "joris-voorn",
+   "performers": [
+    "joris-voorn"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:joseph-capriati",
+   "name": "Joseph Capriati",
+   "key": "joseph-capriati",
+   "performers": [
+    "joseph-capriati"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:joyhauser",
+   "name": "Joyhauser",
+   "key": "joyhauser",
+   "performers": [
+    "joyhauser"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:juan-sanchez",
+   "name": "Juan Sanchez",
+   "key": "juan-sanchez",
+   "performers": [
+    "juan-sanchez"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:kolsch",
+   "name": "Kölsch",
+   "key": "kolsch",
+   "performers": [
+    "kolsch"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:konstantin-sibold",
+   "name": "Konstantin Sibold",
+   "key": "konstantin-sibold",
+   "performers": [
+    "konstantin-sibold"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:lewis-fautzi",
+   "name": "Lewis Fautzi",
+   "key": "lewis-fautzi",
+   "performers": [
+    "lewis-fautzi"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:lewski",
+   "name": "Lewski",
+   "key": "lewski",
+   "performers": [
+    "lewski"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:loco-dice",
+   "name": "Loco Dice",
+   "key": "loco-dice",
+   "performers": [
+    "loco-dice"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:maceo-plex",
+   "name": "Maceo Plex",
+   "key": "maceo-plex",
+   "performers": [
+    "maceo-plex"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:matrixxman",
+   "name": "Matrixxman",
+   "key": "matrixxman",
+   "performers": [
+    "matrixxman"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:monika-kruse",
+   "name": "Monika Kruse",
+   "key": "monika-kruse",
+   "performers": [
+    "monika-kruse"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:nina-kraviz",
+   "name": "Nina Kraviz",
+   "key": "nina-kraviz",
+   "performers": [
+    "nina-kraviz"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:phase",
+   "name": "Ø [Phase]",
+   "key": "phase",
+   "performers": [
+    "phase"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:pan-pot",
+   "name": "Pan-Pot",
+   "key": "pan-pot",
+   "performers": [
+    "pan-pot"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:patrice-baumel",
+   "name": "Patrice Bäumel",
+   "key": "patrice-baumel",
+   "performers": [
+    "patrice-baumel"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:paula-temple",
+   "name": "Paula Temple",
+   "key": "paula-temple",
+   "performers": [
+    "paula-temple"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:raresh",
+   "name": "Raresh",
+   "key": "raresh",
+   "performers": [
+    "raresh"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:rebekah",
+   "name": "Rebekah",
+   "key": "rebekah",
+   "performers": [
+    "rebekah"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:reinier-zonneveld",
+   "name": "Reinier Zonneveld",
+   "key": "reinier-zonneveld",
+   "performers": [
+    "reinier-zonneveld"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:ricardo-villalobos",
+   "name": "Ricardo Villalobos",
+   "key": "ricardo-villalobos",
+   "performers": [
+    "ricardo-villalobos"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:richie-hawtin",
+   "name": "Richie Hawtin",
+   "key": "richie-hawtin",
+   "performers": [
+    "richie-hawtin"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:r-dhad",
+   "name": "Rødhåd",
+   "key": "r-dhad",
+   "performers": [
+    "r-dhad"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:sam-paganini",
+   "name": "Sam Paganini",
+   "key": "sam-paganini",
+   "performers": [
+    "sam-paganini"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:sandrien",
+   "name": "Sandrien",
+   "key": "sandrien",
+   "performers": [
+    "sandrien"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:shl-mo",
+   "name": "Shlømo",
+   "key": "shl-mo",
+   "performers": [
+    "shl-mo"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:sonja-moonear",
+   "name": "Sonja Moonear",
+   "key": "sonja-moonear",
+   "performers": [
+    "sonja-moonear"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:spokenn-ferro-and-reiss",
+   "name": "Spokenn (Ferro & Reiss)",
+   "key": "spokenn-ferro-and-reiss",
+   "performers": [
+    "spokenn-ferro-and-reiss"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:sven-vath",
+   "name": "Sven Väth",
+   "key": "sven-vath",
+   "performers": [
+    "sven-vath"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:victor-ruiz",
+   "name": "Victor Ruiz",
+   "key": "victor-ruiz",
+   "performers": [
+    "victor-ruiz"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:william-djoko",
+   "name": "William Djoko",
+   "key": "william-djoko",
+   "performers": [
+    "william-djoko"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:alan-fitzpatrick",
+   "name": "Alan Fitzpatrick",
+   "key": "alan-fitzpatrick",
+   "performers": [
+    "alan-fitzpatrick"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:and",
+   "name": "AnD",
+   "key": "and",
+   "performers": [
+    "and"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:andhim",
+   "name": "andhim",
+   "key": "andhim",
+   "performers": [
+    "andhim"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:anna",
+   "name": "ANNA",
+   "key": "anna",
+   "performers": [
+    "anna"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:ansome-hybrid",
+   "name": "Ansome Hybrid",
+   "key": "ansome-hybrid",
+   "performers": [
+    "ansome-hybrid"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:antigone",
+   "name": "Antigone",
+   "key": "antigone",
+   "performers": [
+    "antigone"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:artbat",
+   "name": "ARTBAT",
+   "key": "artbat",
+   "performers": [
+    "artbat"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:ben-sims",
+   "name": "Ben Sims",
+   "key": "ben-sims",
+   "performers": [
+    "ben-sims"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:blot",
+   "name": "BLOT",
+   "key": "blot",
+   "performers": [
+    "blot"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:boris-brejcha",
+   "name": "Boris Brejcha",
+   "key": "boris-brejcha",
+   "performers": [
+    "boris-brejcha"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:colin-benders",
+   "name": "Colin Benders",
+   "key": "colin-benders",
+   "performers": [
+    "colin-benders"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:darling",
+   "name": "Darling",
+   "key": "darling",
+   "performers": [
+    "darling"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:dave-clarke",
+   "name": "Dave Clarke",
+   "key": "dave-clarke",
+   "performers": [
+    "dave-clarke"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:deniro",
+   "name": "Deniro",
+   "key": "deniro",
+   "performers": [
+    "deniro"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:dimi-angelis",
+   "name": "Dimi Angélis",
+   "key": "dimi-angelis",
+   "performers": [
+    "dimi-angelis"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:dimitri",
+   "name": "Dimitri",
+   "key": "dimitri",
+   "performers": [
+    "dimitri"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:dixon",
+   "name": "Dixon",
+   "key": "dixon",
+   "performers": [
+    "dixon"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:gerd-janson",
+   "name": "Gerd Janson",
+   "key": "gerd-janson",
+   "performers": [
+    "gerd-janson"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:helena-hauff",
+   "name": "Helena Hauff",
+   "key": "helena-hauff",
+   "performers": [
+    "helena-hauff"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:i-f",
+   "name": "I-F",
+   "key": "i-f",
+   "performers": [
+    "i-f"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:ida-engberg",
+   "name": "Ida Engberg",
+   "key": "ida-engberg",
+   "performers": [
+    "ida-engberg"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:ilario-alicante",
+   "name": "Ilario Alicante",
+   "key": "ilario-alicante",
+   "performers": [
+    "ilario-alicante"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:interstellar-funk",
+   "name": "Interstellar Funk",
+   "key": "interstellar-funk",
+   "performers": [
+    "interstellar-funk"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:jeff-mills",
+   "name": "Jeff Mills",
+   "key": "jeff-mills",
+   "performers": [
+    "jeff-mills"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:kink",
+   "name": "KiNK",
+   "key": "kink",
+   "performers": [
+    "kink"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:kobosil",
+   "name": "Kobosil",
+   "key": "kobosil",
+   "performers": [
+    "kobosil"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:luigi-madonna",
+   "name": "Luigi Madonna",
+   "key": "luigi-madonna",
+   "performers": [
+    "luigi-madonna"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:luuk-van-dijk",
+   "name": "Luuk van Dijk",
+   "key": "luuk-van-dijk",
+   "performers": [
+    "luuk-van-dijk"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:mars-levi",
+   "name": "Mars Levi",
+   "key": "mars-levi",
+   "performers": [
+    "mars-levi"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:mind-against",
+   "name": "Mind Against",
+   "key": "mind-against",
+   "performers": [
+    "mind-against"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:mirella-kroes",
+   "name": "Mirella Kroes",
+   "key": "mirella-kroes",
+   "performers": [
+    "mirella-kroes"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:obscure-shape",
+   "name": "Obscure Shape",
+   "key": "obscure-shape",
+   "performers": [
+    "obscure-shape"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:oracy",
+   "name": "Oracy",
+   "key": "oracy",
+   "performers": [
+    "oracy"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:perc",
+   "name": "Perc",
+   "key": "perc",
+   "performers": [
+    "perc"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:recondite",
+   "name": "Recondite",
+   "key": "recondite",
+   "performers": [
+    "recondite"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:seleccion-natural",
+   "name": "Selección Natural",
+   "key": "seleccion-natural",
+   "performers": [
+    "seleccion-natural"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:shdw",
+   "name": "SHDW",
+   "key": "shdw",
+   "performers": [
+    "shdw"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:stranger",
+   "name": "Stranger",
+   "key": "stranger",
+   "performers": [
+    "stranger"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:tale-of-us",
+   "name": "Tale Of Us",
+   "key": "tale-of-us",
+   "performers": [
+    "tale-of-us"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:tracey",
+   "name": "Tracey",
+   "key": "tracey",
+   "performers": [
+    "tracey"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2019:vrilski",
+   "name": "Vrilski",
+   "key": "vrilski",
+   "performers": [
+    "vrilski"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "unofficial_lineup",
+  "unofficial": true,
+  "source": {
+   "kind": "press",
+   "site": "edmidentity.com",
+   "url": "https://edmidentity.com/2019/01/17/awakenings-festival-2019-lineup/",
+   "title": "Awakenings Festival Releases Stacked Lineup for 2019 Edition",
+   "publisher": "EDM Identity",
+   "published": "2019-01-17",
+   "fetchedAt": "2026-11-27",
+   "fetchedVia": "exa",
+   "scope": "full",
+   "sha256": "15463692f8a5591ea087540e05a8ba2c2c4ac7388fd0b4a65ac680b082863c25",
+   "bytes": 3149
+  },
+  "captures": [
+   {
+    "page": "lineup",
+    "url": "https://edmidentity.com/2019/01/17/awakenings-festival-2019-lineup/",
+    "fetchedAt": "2026-11-27",
+    "sha256": "15463692f8a5591ea087540e05a8ba2c2c4ac7388fd0b4a65ac680b082863c25"
+   }
+  ]
+ }
+}
