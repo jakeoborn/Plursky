@@ -1,0 +1,1390 @@
+{
+ "id": "movement-2011",
+ "festivalId": "movement",
+ "name": "Movement 2011",
+ "year": 2011,
+ "timezone": "America/Detroit",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "undated": true,
+ "days": [
+  {
+   "day": 1,
+   "date": "2011-05-28",
+   "label": "Saturday"
+  },
+  {
+   "day": 2,
+   "date": "2011-05-29",
+   "label": "Sunday"
+  },
+  {
+   "day": 3,
+   "date": "2011-05-30",
+   "label": "Monday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "movement-2011:vitamin-water-stage",
+   "name": "Vitamin Water Stage"
+  },
+  {
+   "id": "movement-2011:beatport-stage",
+   "name": "Beatport Stage"
+  },
+  {
+   "id": "movement-2011:made-in-detroit-stage",
+   "name": "Made in Detroit Stage"
+  },
+  {
+   "id": "movement-2011:red-bull-music-academy-stage",
+   "name": "Red Bull Music Academy Stage"
+  },
+  {
+   "id": "movement-2011:movement-torino-stage",
+   "name": "Movement Torino Stage"
+  }
+ ],
+ "artists": [
+  {
+   "id": "movement-2011:dj-harvey",
+   "name": "DJ Harvey",
+   "key": "dj-harvey",
+   "performers": [
+    "dj-harvey"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:vitamin-water-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:metro-area",
+   "name": "Metro Area",
+   "key": "metro-area",
+   "performers": [
+    "metro-area"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:vitamin-water-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:tortured-soul-live",
+   "name": "Tortured Soul – live",
+   "key": "tortured-soul-live",
+   "performers": [
+    "tortured-soul-live"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:vitamin-water-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:kerri-chandler",
+   "name": "Kerri Chandler",
+   "key": "kerri-chandler",
+   "performers": [
+    "kerri-chandler"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:vitamin-water-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:felix-da-housecat",
+   "name": "Felix da Housecat",
+   "key": "felix-da-housecat",
+   "performers": [
+    "felix-da-housecat"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:vitamin-water-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:matthew-hawtin",
+   "name": "Matthew Hawtin",
+   "key": "matthew-hawtin",
+   "performers": [
+    "matthew-hawtin"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:jpls-live",
+   "name": "JPLS – live",
+   "key": "jpls-live",
+   "performers": [
+    "jpls-live"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:ambivalent",
+   "name": "Ambivalent",
+   "key": "ambivalent",
+   "performers": [
+    "ambivalent"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:heartthrob-live",
+   "name": "Heartthrob – live",
+   "key": "heartthrob-live",
+   "performers": [
+    "heartthrob-live"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:gaiser-live",
+   "name": "Gaiser – live",
+   "key": "gaiser-live",
+   "performers": [
+    "gaiser-live"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:marc-houle-live",
+   "name": "Marc Houle – live",
+   "key": "marc-houle-live",
+   "performers": [
+    "marc-houle-live"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:richie-hawtin",
+   "name": "Richie Hawtin",
+   "key": "richie-hawtin",
+   "performers": [
+    "richie-hawtin"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:eric-johnson",
+   "name": "Eric Johnson",
+   "key": "eric-johnson",
+   "performers": [
+    "eric-johnson"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:chuck-daniels",
+   "name": "Chuck Daniels",
+   "key": "chuck-daniels",
+   "performers": [
+    "chuck-daniels"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:mike-servito",
+   "name": "Mike Servito",
+   "key": "mike-servito",
+   "performers": [
+    "mike-servito"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:michael-geiger",
+   "name": "Michael Geiger",
+   "key": "michael-geiger",
+   "performers": [
+    "michael-geiger"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:aril-brikha-live",
+   "name": "Aril Brikha – live",
+   "key": "aril-brikha-live",
+   "performers": [
+    "aril-brikha-live"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:visionquest-live-dj",
+   "name": "Visionquest – live/dj",
+   "key": "visionquest-live-dj",
+   "performers": [
+    "visionquest-live-dj"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:hudson-mohawke-live",
+   "name": "Hudson Mohawke – live",
+   "key": "hudson-mohawke-live",
+   "performers": [
+    "hudson-mohawke-live"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:daedelus-live",
+   "name": "Daedelus – live",
+   "key": "daedelus-live",
+   "performers": [
+    "daedelus-live"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:dam-funk-and-master-blazter-live",
+   "name": "Dam-Funk & Master Blazter – live",
+   "key": "dam-funk-and-master-blazter-live",
+   "performers": [
+    "dam-funk-and-master-blazter-live"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:matt-clarke",
+   "name": "Matt Clarke",
+   "key": "matt-clarke",
+   "performers": [
+    "matt-clarke"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:goldie-ft-mc-armanni-reign",
+   "name": "Goldie ft. MC Armanni Reign",
+   "key": "goldie-ft-mc-armanni-reign",
+   "performers": [
+    "goldie-ft-mc-armanni-reign"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:skrillex",
+   "name": "Skrillex",
+   "key": "skrillex",
+   "performers": [
+    "skrillex"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:the-siege-live-dj",
+   "name": "The Siege – live/dj",
+   "key": "the-siege-live-dj",
+   "performers": [
+    "the-siege-live-dj"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:movement-torino-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:space-time-continuum-live",
+   "name": "Space Time Continuum – live",
+   "key": "space-time-continuum-live",
+   "performers": [
+    "space-time-continuum-live"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:movement-torino-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:cio-d-or",
+   "name": "Cio D’or",
+   "key": "cio-d-or",
+   "performers": [
+    "cio-d-or"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:movement-torino-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:kero-live",
+   "name": "Kero – live",
+   "key": "kero-live",
+   "performers": [
+    "kero-live"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:movement-torino-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:richard-devine-live",
+   "name": "Richard Devine – live",
+   "key": "richard-devine-live",
+   "performers": [
+    "richard-devine-live"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:movement-torino-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:venetian-snares",
+   "name": "Venetian Snares",
+   "key": "venetian-snares",
+   "performers": [
+    "venetian-snares"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:movement-torino-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:monolake-surround-live",
+   "name": "Monolake Surround – live",
+   "key": "monolake-surround-live",
+   "performers": [
+    "monolake-surround-live"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:movement-torino-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:sammy-dee",
+   "name": "Sammy Dee",
+   "key": "sammy-dee",
+   "performers": [
+    "sammy-dee"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:vitamin-water-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:mark-flash",
+   "name": "Mark Flash",
+   "key": "mark-flash",
+   "performers": [
+    "mark-flash"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:vitamin-water-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:margaret-dygas",
+   "name": "Margaret Dygas",
+   "key": "margaret-dygas",
+   "performers": [
+    "margaret-dygas"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:vitamin-water-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:ricardo-villalobos",
+   "name": "Ricardo Villalobos",
+   "key": "ricardo-villalobos",
+   "performers": [
+    "ricardo-villalobos"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:vitamin-water-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:sven-vath",
+   "name": "Sven Vath",
+   "key": "sven-vath",
+   "performers": [
+    "sven-vath"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:vitamin-water-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:69-carl-craig-live",
+   "name": "69 (Carl Craig) – live",
+   "key": "69-carl-craig-live",
+   "performers": [
+    "69-carl-craig-live"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:vitamin-water-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:dr-atmo",
+   "name": "Dr. Atmo",
+   "key": "dr-atmo",
+   "performers": [
+    "dr-atmo"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:pulshar-live",
+   "name": "Pulshar – live",
+   "key": "pulshar-live",
+   "performers": [
+    "pulshar-live"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:livio-and-roby",
+   "name": "Livio & Roby",
+   "key": "livio-and-roby",
+   "performers": [
+    "livio-and-roby"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:tini",
+   "name": "Tini",
+   "key": "tini",
+   "performers": [
+    "tini"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:martin-buttrich-live",
+   "name": "Martin Buttrich – live",
+   "key": "martin-buttrich-live",
+   "performers": [
+    "martin-buttrich-live"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:guti-live",
+   "name": "Guti – live",
+   "key": "guti-live",
+   "performers": [
+    "guti-live"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:loco-dice",
+   "name": "Loco Dice",
+   "key": "loco-dice",
+   "performers": [
+    "loco-dice"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:dj-cent",
+   "name": "Dj Cent",
+   "key": "dj-cent",
+   "performers": [
+    "dj-cent"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:mike-brown",
+   "name": "Mike Brown",
+   "key": "mike-brown",
+   "performers": [
+    "mike-brown"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:minx",
+   "name": "Minx",
+   "key": "minx",
+   "performers": [
+    "minx"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:john-collins",
+   "name": "John Collins",
+   "key": "john-collins",
+   "performers": [
+    "john-collins"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:al-ester",
+   "name": "Al Ester",
+   "key": "al-ester",
+   "performers": [
+    "al-ester"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:bruce-bailey",
+   "name": "Bruce Bailey",
+   "key": "bruce-bailey",
+   "performers": [
+    "bruce-bailey"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:delano-smith",
+   "name": "Delano Smith",
+   "key": "delano-smith",
+   "performers": [
+    "delano-smith"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:com-truise-live",
+   "name": "Com Truise – live",
+   "key": "com-truise-live",
+   "performers": [
+    "com-truise-live"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:space-dimension-controller-live",
+   "name": "Space Dimension Controller – live",
+   "key": "space-dimension-controller-live",
+   "performers": [
+    "space-dimension-controller-live"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:ana-sia-live",
+   "name": "Ana Sia – live",
+   "key": "ana-sia-live",
+   "performers": [
+    "ana-sia-live"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:soul-clap",
+   "name": "Soul Clap",
+   "key": "soul-clap",
+   "performers": [
+    "soul-clap"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:eliot-lipp-live",
+   "name": "Eliot Lipp – live",
+   "key": "eliot-lipp-live",
+   "performers": [
+    "eliot-lipp-live"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:beardyman-live",
+   "name": "Beardyman – live",
+   "key": "beardyman-live",
+   "performers": [
+    "beardyman-live"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:gaslamp-killer",
+   "name": "Gaslamp Killer",
+   "key": "gaslamp-killer",
+   "performers": [
+    "gaslamp-killer"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:aux-88-live",
+   "name": "Aux 88 – live",
+   "key": "aux-88-live",
+   "performers": [
+    "aux-88-live"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:nospectacle-w-markus-guentner",
+   "name": "Nospectacle w/ Markus Guentner",
+   "key": "nospectacle-w-markus-guentner",
+   "performers": [
+    "nospectacle-w-markus-guentner"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:movement-torino-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:deepchord-presents-echospace-live",
+   "name": "Deepchord presents Echospace – live",
+   "key": "deepchord-presents-echospace-live",
+   "performers": [
+    "deepchord-presents-echospace-live"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:movement-torino-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:traversable-wormhole-live",
+   "name": "Traversable Wormhole – live",
+   "key": "traversable-wormhole-live",
+   "performers": [
+    "traversable-wormhole-live"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:movement-torino-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:ryan-elliott",
+   "name": "Ryan Elliott",
+   "key": "ryan-elliott",
+   "performers": [
+    "ryan-elliott"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:movement-torino-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:steve-rachmad",
+   "name": "Steve Rachmad",
+   "key": "steve-rachmad",
+   "performers": [
+    "steve-rachmad"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:movement-torino-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:ben-klock",
+   "name": "Ben Klock",
+   "key": "ben-klock",
+   "performers": [
+    "ben-klock"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:movement-torino-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:marcel-dettmann-dj-set",
+   "name": "Marcel Dettmann – dj set",
+   "key": "marcel-dettmann-dj-set",
+   "performers": [
+    "marcel-dettmann-dj-set"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:movement-torino-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:terrence-parker",
+   "name": "Terrence Parker",
+   "key": "terrence-parker",
+   "performers": [
+    "terrence-parker"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:vitamin-water-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:the-dirtbombs-live",
+   "name": "The Dirtbombs – live",
+   "key": "the-dirtbombs-live",
+   "performers": [
+    "the-dirtbombs-live"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:vitamin-water-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:reference-live",
+   "name": "Reference – live",
+   "key": "reference-live",
+   "performers": [
+    "reference-live"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:vitamin-water-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:dubfire",
+   "name": "Dubfire",
+   "key": "dubfire",
+   "performers": [
+    "dubfire"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:vitamin-water-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:green-velvet-live",
+   "name": "Green Velvet – live",
+   "key": "green-velvet-live",
+   "performers": [
+    "green-velvet-live"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:vitamin-water-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:fatboy-slim",
+   "name": "Fatboy Slim",
+   "key": "fatboy-slim",
+   "performers": [
+    "fatboy-slim"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:vitamin-water-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:clark-warner",
+   "name": "Clark Warner",
+   "key": "clark-warner",
+   "performers": [
+    "clark-warner"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:secrets-live",
+   "name": "Secrets – live",
+   "key": "secrets-live",
+   "performers": [
+    "secrets-live"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:deniz-kurtel",
+   "name": "Deniz Kurtel",
+   "key": "deniz-kurtel",
+   "performers": [
+    "deniz-kurtel"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:three",
+   "name": "Three",
+   "key": "three",
+   "performers": [
+    "three"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:art-department",
+   "name": "Art Department",
+   "key": "art-department",
+   "performers": [
+    "art-department"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:justin-martin",
+   "name": "Justin Martin",
+   "key": "justin-martin",
+   "performers": [
+    "justin-martin"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:victor-calderone",
+   "name": "Victor Calderone",
+   "key": "victor-calderone",
+   "performers": [
+    "victor-calderone"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:adam-beyer",
+   "name": "Adam Beyer",
+   "key": "adam-beyer",
+   "performers": [
+    "adam-beyer"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:erika",
+   "name": "Erika",
+   "key": "erika",
+   "performers": [
+    "erika"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:paranormal-tek",
+   "name": "Paranormal Tek",
+   "key": "paranormal-tek",
+   "performers": [
+    "paranormal-tek"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:franki-juncaj-aka-dj-3000",
+   "name": "Franki Juncaj aka DJ 3000",
+   "key": "franki-juncaj-aka-dj-3000",
+   "performers": [
+    "franki-juncaj-aka-dj-3000"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:district-909-live",
+   "name": "District 909 – live",
+   "key": "district-909-live",
+   "performers": [
+    "district-909-live"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:dtm-5-5",
+   "name": "DTM 5×5",
+   "key": "dtm-5-5",
+   "performers": [
+    "dtm-5-5"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:dj-t-1000",
+   "name": "DJ T-1000",
+   "key": "dj-t-1000",
+   "performers": [
+    "dj-t-1000"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:claude-young",
+   "name": "Claude Young",
+   "key": "claude-young",
+   "performers": [
+    "claude-young"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:b-bravo-live",
+   "name": "B.Bravo – live",
+   "key": "b-bravo-live",
+   "performers": [
+    "b-bravo-live"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:pearson-sound-ramadanman",
+   "name": "Pearson Sound / Ramadanman",
+   "key": "pearson-sound-ramadanman",
+   "performers": [
+    "pearson-sound-ramadanman"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:calvertron-and-figure",
+   "name": "Calvertron and Figure",
+   "key": "calvertron-and-figure",
+   "performers": [
+    "calvertron-and-figure"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:scuba",
+   "name": "Scuba",
+   "key": "scuba",
+   "performers": [
+    "scuba"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:little-dragon-live",
+   "name": "Little Dragon – live",
+   "key": "little-dragon-live",
+   "performers": [
+    "little-dragon-live"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:mimosa",
+   "name": "MiMOSA",
+   "key": "mimosa",
+   "performers": [
+    "mimosa"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:flying-lotus-live",
+   "name": "Flying Lotus – live",
+   "key": "flying-lotus-live",
+   "performers": [
+    "flying-lotus-live"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:ataxia-live",
+   "name": "Ataxia – live",
+   "key": "ataxia-live",
+   "performers": [
+    "ataxia-live"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:movement-torino-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:dabura",
+   "name": "Dabura",
+   "key": "dabura",
+   "performers": [
+    "dabura"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:movement-torino-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:anthony-attalla",
+   "name": "Anthony Attalla",
+   "key": "anthony-attalla",
+   "performers": [
+    "anthony-attalla"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:movement-torino-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:boo-williams-and-glenn-underground",
+   "name": "Boo Williams & Glenn Underground",
+   "key": "boo-williams-and-glenn-underground",
+   "performers": [
+    "boo-williams-and-glenn-underground"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:movement-torino-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:shlomi-aber",
+   "name": "Shlomi Aber",
+   "key": "shlomi-aber",
+   "performers": [
+    "shlomi-aber"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:movement-torino-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:james-zabiela",
+   "name": "James Zabiela",
+   "key": "james-zabiela",
+   "performers": [
+    "james-zabiela"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:movement-torino-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2011:paul-kalkbrenner-live",
+   "name": "Paul Kalkbrenner – live",
+   "key": "paul-kalkbrenner-live",
+   "performers": [
+    "paul-kalkbrenner-live"
+   ],
+   "appearances": [
+    {
+     "stageId": "movement-2011:movement-torino-stage"
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "unofficial_lineup",
+  "unofficial": true,
+  "source": {
+   "kind": "press",
+   "site": "metrotimes.com",
+   "url": "https://www.metrotimes.com/music-2/movement-2011-schedule-2147521/",
+   "title": "Movement 2011 Schedule",
+   "publisher": "Detroit Metro Times",
+   "published": "2011-05-25",
+   "fetchedAt": "2026-11-27",
+   "fetchedVia": "exa",
+   "scope": "full",
+   "sha256": "4101ccf4ebbeb92bd149f11b12f65c3ef6a9a7c2665be0b6ace61ac781b6ed04",
+   "bytes": 3424
+  },
+  "captures": [
+   {
+    "page": "lineup",
+    "url": "https://www.metrotimes.com/music-2/movement-2011-schedule-2147521/",
+    "fetchedAt": "2026-11-27",
+    "sha256": "4101ccf4ebbeb92bd149f11b12f65c3ef6a9a7c2665be0b6ace61ac781b6ed04"
+   }
+  ]
+ }
+}

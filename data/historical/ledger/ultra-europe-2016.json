@@ -31,9 +31,27 @@
     "evidence": "https://ultraeurope.com/worldwide/ultra-europe-wraps-4th-annual-edition/",
     "published": "2016-08-09"
   },
-  "note": "A music blog's copy of the final lineup by day and stage, published a week before the festival; set times are not used, its Campsite Winner slot is left out, and the Friday was cancelled for bad weather, so its acts did not play that day.",
+  "note": "A music blog's copy of the final lineup by day and stage, published a week before the festival; set times are not used and its Campsite Winner slot is left out.",
+  "cancelledDays": [
+    {
+      "date": "2016-07-15",
+      "weekday": "Friday",
+      "reason": "extremely adverse weather",
+      "quote": "With the Friday cancelled due to extremely adverse weather conditions",
+      "source": {
+        "url": "https://ultraeurope.com/worldwide/ultra-europe-wraps-4th-annual-edition/",
+        "site": "ultraeurope.com",
+        "title": "ULTRA Europe Wraps 4th Annual Edition",
+        "publisher": "Ultra Europe",
+        "published": "2016-08-09",
+        "fetchedAt": "2026-11-27",
+        "sha256": "a5c3ca0108dd62eb6e4e984e2318a55aa4b828fa41ef3e7cf247a5c056c0b604"
+      },
+      "dropped": 33
+    }
+  ],
   "verified": {
-    "billings": 96,
+    "billings": 64,
     "inSourceText": true
   },
   "stageOrder": [

@@ -286,7 +286,7 @@ function _HistProvenance({ edition, onClose }) {
       <FieldSheet title="About this lineup" onClose={onClose}>
         <div style={{ display: "grid", gap: 14, fontSize: 15, lineHeight: "21px" }}>
           <p data-unofficial-source style={{ margin: 0, color: "var(--text-2)" }}>
-            Unofficial: from {from}, not the festival's own pages. Plursky has no official {edition.year} lineup, so this one is used instead.{s.scope === "partial" ? " It names only part of the lineup." : ""} Artist names appear as the source printed them. Set times are not shown, and non-music activities are left out.
+            Unofficial: from {from}, not the festival's own pages. Plursky has no official {edition.year} lineup, so this one is used instead.{s.scope === "partial" ? " It names only part of the lineup." : ""}{edition.undated ? " It prints no days, so acts are not split by day." : ""} Artist names appear as the source printed them. Set times are not shown, and non-music activities are left out.
           </p>
           {(p.cancelledDays || []).map(c => (
             <p key={c.date} data-cancelled-day={c.date} style={{ margin: 0, color: "var(--text-2)" }}>

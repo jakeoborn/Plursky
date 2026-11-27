@@ -24,7 +24,7 @@
 // left out of the edition's dates and every billing on it is dropped, so no
 // act is credited with a day that never happened. The first or last day of
 // the run may carry no acts (an arrival or departure day); a day between
-// them may not.
+// them may not; such an empty day is left out of the registry's dates.
 // An act printed two ways that read as one name (Sven Väth / Sven Vath) is
 // kept under its first spelling; the ledger lists the other (`spellings`).
 //
@@ -69,11 +69,15 @@ function cancelledDays(id, ed, run) {
   });
 }
 
-// Every day between the run's first and last that ran must carry an act.
-function everyInnerDay(id, rows, run, cancelled) {
-  const ran = run.map((d, i) => i + 1).filter(i => !cancelled.some(c => c.date === run[i - 1]));
-  for (const i of ran.slice(1, -1)) if (!rows.some(r => r.day === i)) throw new Error(`${id}: no act is on day ${i} (${run[i - 1]}); only the first or last day may be empty`);
-  if (!rows.some(r => r.day !== "" && ran.includes(r.day))) throw new Error(`${id}: no act on any day that ran`);
+// Every edition day carries an act, and a run day left out of the edition
+// (an empty arrival or departure day) carries none.
+function everyDay(id, rows, run, cancelled, kept) {
+  run.forEach((d, i) => {
+    if (cancelled.some(c => c.date === d)) return;
+    const has = rows.some(r => r.day === i + 1);
+    if (kept.includes(d) && !has) throw new Error(`${id}: no act is on day ${i + 1} (${d}); an empty first or last day is left out of the registry's dates`);
+    if (!kept.includes(d) && has) throw new Error(`${id}: acts are billed on ${d}, which the registry leaves out`);
+  });
 }
 
 export function extract(id) {
@@ -87,8 +91,12 @@ export function extract(id) {
   // `dates` below is the whole run: source day numbers count over it.
   const dates = run;
   const cancelled = cancelledDays(id, ed, run);
-  const kept = run.filter(d => !cancelled.some(c => c.date === d));
-  if (!ed.undated && JSON.stringify(kept) !== JSON.stringify(ed.dates.map(([d]) => d))) throw new Error(`${id}: registry dates ${ed.dates.map(([d]) => d).join(",")} are not the census run ${cen.dates}${cancelled.length ? ` without its cancelled days` : ""}`);
+  const ran = run.filter(d => !cancelled.some(c => c.date === d));
+  // The registry's dates: the days that ran, less at most an empty first and
+  // an empty last day (checked against the rows below).
+  const kept = ed.dates.map(([d]) => d);
+  const trims = [ran, ran.slice(1), ran.slice(0, -1), ran.slice(1, -1)];
+  if (!ed.undated && !trims.some(t => t.length && JSON.stringify(t) === JSON.stringify(kept))) throw new Error(`${id}: registry dates ${kept.join(",")} are not the census run ${cen.dates}${cancelled.length ? ` without its cancelled days` : ""} (only an empty first or last day may be left out)`);
   const source = { kind: meta.kind, site: hostOf(meta.url), url: meta.url, title: meta.title, ...(meta.publisher && { publisher: meta.publisher }),
     ...(meta.published && { published: meta.published }), fetchedAt: meta.fetchedAt, fetchedVia: meta.fetchedVia, scope: meta.scope,
     sha256: sha256(Buffer.from(text, "utf8")), bytes: Buffer.byteLength(text, "utf8") };
@@ -110,7 +118,7 @@ export function extract(id) {
         for (const a of s.acts) rows.push({ artist: a.act, day, stage: s.name });
       }
     }
-    everyInnerDay(id, rows, dates, cancelled);
+    everyDay(id, rows, dates, cancelled, kept);
   } else if (meta.format === "rows") {
     const file = join(dir, "rows.tsv");
     if (!existsSync(file)) throw new Error(`${id}: format rows needs ${file}`);
@@ -123,7 +131,7 @@ export function extract(id) {
       if (r.stage && !stageOrder.includes(r.stage)) stageOrder.push(r.stage);
     }
     printed = { days: meta.days || null };
-    if (!ed.undated) everyInnerDay(id, rows, dates, cancelled);
+    if (!ed.undated) everyDay(id, rows, dates, cancelled, kept);
     if (ed.undated && rows.some(r => r.day !== "")) throw new Error(`${id}: undated, but a row carries a day`);
   } else throw new Error(`${id}: unknown source format "${meta.format}"`);
 
@@ -145,6 +153,7 @@ export function extract(id) {
   }
   rows = rows.filter(r => r.day === "" || !cancelled.some(c => c.date === run[r.day - 1]))
     .map(r => r.day === "" ? r : { ...r, day: kept.indexOf(run[r.day - 1]) + 1 });
+  const emptyDays = ed.undated ? [] : run.filter(d => !kept.includes(d) && !cancelled.some(c => c.date === d));
   // One row per billing, day and stage, in source order.
   const seen = new Set();
   rows = rows.filter(r => { const k = `${r.day}|${r.stage}|${r.artist}`; return !seen.has(k) && seen.add(k); });
@@ -153,6 +162,7 @@ export function extract(id) {
     datesFrom: { census: CENSUS, family: cen.family, year: ed.year, lifecycle: cen.lifecycle, dates: cen.dates, evidence: cen.evidence_url, published: cen.published },
     ...(meta.note && { note: meta.note }),
     ...(cancelled.length && { cancelledDays: cancelled }),
+    ...(emptyDays.length && { emptyDays }),
     ...(Object.keys(spellings).length && { spellings }),
     verified: { billings: new Set(rows.map(r => r.artist)).size, inSourceText: true },
     stageOrder };

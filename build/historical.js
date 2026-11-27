@@ -503,7 +503,19 @@ function _HistProvenance({
         margin: 0,
         color: "var(--text-2)"
       }
-    }, "Unofficial: from ", from, ", not the festival's own pages. Plursky has no official ", edition.year, " lineup, so this one is used instead.", s.scope === "partial" ? " It names only part of the lineup." : "", " Artist names appear as the source printed them. Set times are not shown, and non-music activities are left out."), React.createElement("div", null, React.createElement("div", {
+    }, "Unofficial: from ", from, ", not the festival's own pages. Plursky has no official ", edition.year, " lineup, so this one is used instead.", s.scope === "partial" ? " It names only part of the lineup." : "", edition.undated ? " It prints no days, so acts are not split by day." : "", " Artist names appear as the source printed them. Set times are not shown, and non-music activities are left out."), (p.cancelledDays || []).map(c => React.createElement("p", {
+      key: c.date,
+      "data-cancelled-day": c.date,
+      style: {
+        margin: 0,
+        color: "var(--text-2)"
+      }
+    }, c.weekday, ", ", day(c.date), " was cancelled (", c.reason, "), so the acts billed for it are left out. ", React.createElement("a", {
+      href: c.source?.url,
+      target: "_blank",
+      rel: "noopener noreferrer",
+      style: link
+    }, c.source?.publisher || c.source?.site), c.source?.published ? `, ${day(c.source.published)}` : "")), React.createElement("div", null, React.createElement("div", {
       style: {
         fontSize: 13,
         color: "var(--text-2)",

@@ -31,9 +31,27 @@
     "evidence": "https://edmhousenetwork.com/this-was-awakenings-2023/",
     "published": "2023-07-20"
   },
-  "note": "The full lineup by day as announced on 3 February 2023; later changes are not shown. The festival called off Sunday 9 July on the morning itself because of a storm warning, so the Sunday acts listed here did not play.",
+  "note": "The full lineup by day as announced on 3 February 2023; later changes are not shown.",
+  "cancelledDays": [
+    {
+      "date": "2023-07-09",
+      "weekday": "Sunday",
+      "reason": "severe weather",
+      "quote": "Sunday was canceled because of severe weather conditions",
+      "source": {
+        "url": "https://edmhousenetwork.com/this-was-awakenings-2023/",
+        "site": "edmhousenetwork.com",
+        "title": "This Was: Awakenings 2023",
+        "publisher": "EDM House Network",
+        "published": "2023-07-20",
+        "fetchedAt": "2026-11-27",
+        "sha256": "0512d37f0c7b56db4c015d2e135990aa52d57ef47c78eeeb13701ce164ebf3dd"
+      },
+      "dropped": 46
+    }
+  ],
   "verified": {
-    "billings": 112,
+    "billings": 66,
     "inSourceText": true
   },
   "stageOrder": [],

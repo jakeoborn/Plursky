@@ -1,0 +1,43 @@
+{
+  "id": "movement-2011",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "press",
+    "site": "metrotimes.com",
+    "url": "https://www.metrotimes.com/music-2/movement-2011-schedule-2147521/",
+    "title": "Movement 2011 Schedule",
+    "publisher": "Detroit Metro Times",
+    "published": "2011-05-25",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "full",
+    "sha256": "4101ccf4ebbeb92bd149f11b12f65c3ef6a9a7c2665be0b6ace61ac781b6ed04",
+    "bytes": 3424
+  },
+  "printed": {
+    "days": null
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "movement",
+    "year": 2011,
+    "lifecycle": "occurred",
+    "dates": "2011-05-28..2011-05-30",
+    "evidence": "https://en.wikipedia.org/wiki/Detroit_Electronic_Music_Festival",
+    "published": "2026-11-04T02:48:35Z rev 1383675456"
+  },
+  "note": "The schedule as printed on 25 May 2011, stage by stage for each of the three days; the page printed no days, so acts carry a stage and no day; later changes are not shown. Its set times are not used, and the bare \"Electrobounce Presents:\" slot, which names no act, is left out.",
+  "verified": {
+    "billings": 101,
+    "inSourceText": true
+  },
+  "stageOrder": [
+    "Vitamin Water Stage",
+    "Beatport Stage",
+    "Made in Detroit Stage",
+    "Red Bull Music Academy Stage",
+    "Movement Torino Stage"
+  ],
+  "dropped": []
+}

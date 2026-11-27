@@ -9,16 +9,11 @@
  "days": [
   {
    "day": 1,
-   "date": "2016-07-15",
-   "label": "Friday"
-  },
-  {
-   "day": 2,
    "date": "2016-07-16",
    "label": "Saturday"
   },
   {
-   "day": 3,
+   "day": 2,
    "date": "2016-07-17",
    "label": "Sunday"
   }
@@ -43,459 +38,6 @@
  ],
  "artists": [
   {
-   "id": "ultra-europe-2016:armin-van-buuren",
-   "name": "Armin Van Buuren",
-   "key": "armin-van-buuren",
-   "performers": [
-    "armin-van-buuren"
-   ],
-   "appearances": [
-    {
-     "day": 1,
-     "stageId": "ultra-europe-2016:ultra-main-stage"
-    }
-   ]
-  },
-  {
-   "id": "ultra-europe-2016:above-and-beyond",
-   "name": "Above & Beyond",
-   "key": "above-and-beyond",
-   "performers": [
-    "above-and-beyond"
-   ],
-   "appearances": [
-    {
-     "day": 1,
-     "stageId": "ultra-europe-2016:ultra-main-stage"
-    }
-   ]
-  },
-  {
-   "id": "ultra-europe-2016:alesso",
-   "name": "Alesso",
-   "key": "alesso",
-   "performers": [
-    "alesso"
-   ],
-   "appearances": [
-    {
-     "day": 1,
-     "stageId": "ultra-europe-2016:ultra-main-stage"
-    }
-   ]
-  },
-  {
-   "id": "ultra-europe-2016:dj-snake",
-   "name": "DJ Snake",
-   "key": "dj-snake",
-   "performers": [
-    "dj-snake"
-   ],
-   "appearances": [
-    {
-     "day": 1,
-     "stageId": "ultra-europe-2016:ultra-main-stage"
-    }
-   ]
-  },
-  {
-   "id": "ultra-europe-2016:fedde-le-grand",
-   "name": "Fedde Le Grand",
-   "key": "fedde-le-grand",
-   "performers": [
-    "fedde-le-grand"
-   ],
-   "appearances": [
-    {
-     "day": 1,
-     "stageId": "ultra-europe-2016:ultra-main-stage"
-    }
-   ]
-  },
-  {
-   "id": "ultra-europe-2016:vicetone",
-   "name": "Vicetone",
-   "key": "vicetone",
-   "performers": [
-    "vicetone"
-   ],
-   "appearances": [
-    {
-     "day": 1,
-     "stageId": "ultra-europe-2016:ultra-main-stage"
-    }
-   ]
-  },
-  {
-   "id": "ultra-europe-2016:yellow-claw",
-   "name": "Yellow Claw",
-   "key": "yellow-claw",
-   "performers": [
-    "yellow-claw"
-   ],
-   "appearances": [
-    {
-     "day": 1,
-     "stageId": "ultra-europe-2016:ultra-main-stage"
-    }
-   ]
-  },
-  {
-   "id": "ultra-europe-2016:cesqueaux",
-   "name": "Cesqueaux",
-   "key": "cesqueaux",
-   "performers": [
-    "cesqueaux"
-   ],
-   "appearances": [
-    {
-     "day": 1,
-     "stageId": "ultra-europe-2016:ultra-main-stage"
-    }
-   ]
-  },
-  {
-   "id": "ultra-europe-2016:tigerlily",
-   "name": "Tigerlily",
-   "key": "tigerlily",
-   "performers": [
-    "tigerlily"
-   ],
-   "appearances": [
-    {
-     "day": 1,
-     "stageId": "ultra-europe-2016:ultra-main-stage"
-    },
-    {
-     "day": 1,
-     "stageId": "ultra-europe-2016:ultra-worldwide"
-    }
-   ]
-  },
-  {
-   "id": "ultra-europe-2016:adam-beyer-and-ida-engberg",
-   "name": "Adam Beyer & Ida Engberg",
-   "key": "adam-beyer-and-ida-engberg",
-   "performers": [
-    "adam-beyer-and-ida-engberg"
-   ],
-   "appearances": [
-    {
-     "day": 1,
-     "stageId": "ultra-europe-2016:resistance"
-    }
-   ]
-  },
-  {
-   "id": "ultra-europe-2016:solomun",
-   "name": "Solomun",
-   "key": "solomun",
-   "performers": [
-    "solomun"
-   ],
-   "appearances": [
-    {
-     "day": 1,
-     "stageId": "ultra-europe-2016:resistance"
-    }
-   ]
-  },
-  {
-   "id": "ultra-europe-2016:rodhad",
-   "name": "Rödhåd",
-   "key": "rodhad",
-   "performers": [
-    "rodhad"
-   ],
-   "appearances": [
-    {
-     "day": 1,
-     "stageId": "ultra-europe-2016:resistance"
-    }
-   ]
-  },
-  {
-   "id": "ultra-europe-2016:technasia",
-   "name": "Technasia",
-   "key": "technasia",
-   "performers": [
-    "technasia"
-   ],
-   "appearances": [
-    {
-     "day": 1,
-     "stageId": "ultra-europe-2016:resistance"
-    }
-   ]
-  },
-  {
-   "id": "ultra-europe-2016:elio-riso",
-   "name": "Elio Riso",
-   "key": "elio-riso",
-   "performers": [
-    "elio-riso"
-   ],
-   "appearances": [
-    {
-     "day": 1,
-     "stageId": "ultra-europe-2016:resistance"
-    }
-   ]
-  },
-  {
-   "id": "ultra-europe-2016:camo-and-krooked",
-   "name": "Camo & Krooked",
-   "key": "camo-and-krooked",
-   "performers": [
-    "camo-and-krooked"
-   ],
-   "appearances": [
-    {
-     "day": 1,
-     "stageId": "ultra-europe-2016:arcadia-afterburner"
-    }
-   ]
-  },
-  {
-   "id": "ultra-europe-2016:calyx-and-teebee",
-   "name": "Calyx & Teebee",
-   "key": "calyx-and-teebee",
-   "performers": [
-    "calyx-and-teebee"
-   ],
-   "appearances": [
-    {
-     "day": 1,
-     "stageId": "ultra-europe-2016:arcadia-afterburner"
-    }
-   ]
-  },
-  {
-   "id": "ultra-europe-2016:tc",
-   "name": "TC",
-   "key": "tc",
-   "performers": [
-    "tc"
-   ],
-   "appearances": [
-    {
-     "day": 1,
-     "stageId": "ultra-europe-2016:arcadia-afterburner"
-    }
-   ]
-  },
-  {
-   "id": "ultra-europe-2016:the-trototypes",
-   "name": "The Trototypes",
-   "key": "the-trototypes",
-   "performers": [
-    "the-trototypes"
-   ],
-   "appearances": [
-    {
-     "day": 1,
-     "stageId": "ultra-europe-2016:arcadia-afterburner"
-    }
-   ]
-  },
-  {
-   "id": "ultra-europe-2016:north-base",
-   "name": "North Base",
-   "key": "north-base",
-   "performers": [
-    "north-base"
-   ],
-   "appearances": [
-    {
-     "day": 1,
-     "stageId": "ultra-europe-2016:arcadia-afterburner"
-    }
-   ]
-  },
-  {
-   "id": "ultra-europe-2016:yesh",
-   "name": "Yesh",
-   "key": "yesh",
-   "performers": [
-    "yesh"
-   ],
-   "appearances": [
-    {
-     "day": 1,
-     "stageId": "ultra-europe-2016:arcadia-afterburner"
-    }
-   ]
-  },
-  {
-   "id": "ultra-europe-2016:marhese",
-   "name": "Marhese",
-   "key": "marhese",
-   "performers": [
-    "marhese"
-   ],
-   "appearances": [
-    {
-     "day": 1,
-     "stageId": "ultra-europe-2016:ultra-worldwide"
-    }
-   ]
-  },
-  {
-   "id": "ultra-europe-2016:goldiggers",
-   "name": "Goldiggers",
-   "key": "goldiggers",
-   "performers": [
-    "goldiggers"
-   ],
-   "appearances": [
-    {
-     "day": 1,
-     "stageId": "ultra-europe-2016:ultra-worldwide"
-    }
-   ]
-  },
-  {
-   "id": "ultra-europe-2016:rory",
-   "name": "Rory",
-   "key": "rory",
-   "performers": [
-    "rory"
-   ],
-   "appearances": [
-    {
-     "day": 1,
-     "stageId": "ultra-europe-2016:ultra-worldwide"
-    }
-   ]
-  },
-  {
-   "id": "ultra-europe-2016:yellow-claw-and-cesqueaux-b2b-legends",
-   "name": "Yellow Claw & Cesqueaux B2B Legends",
-   "key": "yellow-claw-and-cesqueaux-b2b-legends",
-   "performers": [
-    "yellow-claw-and-cesqueaux",
-    "legends"
-   ],
-   "appearances": [
-    {
-     "day": 1,
-     "stageId": "ultra-europe-2016:ultra-worldwide"
-    }
-   ]
-  },
-  {
-   "id": "ultra-europe-2016:raiden",
-   "name": "Raiden",
-   "key": "raiden",
-   "performers": [
-    "raiden"
-   ],
-   "appearances": [
-    {
-     "day": 1,
-     "stageId": "ultra-europe-2016:ultra-worldwide"
-    }
-   ]
-  },
-  {
-   "id": "ultra-europe-2016:brynny",
-   "name": "Brynny",
-   "key": "brynny",
-   "performers": [
-    "brynny"
-   ],
-   "appearances": [
-    {
-     "day": 1,
-     "stageId": "ultra-europe-2016:ultra-worldwide"
-    }
-   ]
-  },
-  {
-   "id": "ultra-europe-2016:chris-davies",
-   "name": "Chris Davies",
-   "key": "chris-davies",
-   "performers": [
-    "chris-davies"
-   ],
-   "appearances": [
-    {
-     "day": 1,
-     "stageId": "ultra-europe-2016:ultra-worldwide"
-    }
-   ]
-  },
-  {
-   "id": "ultra-europe-2016:diskov3r-and-superactive",
-   "name": "Diskov3r & Superactive",
-   "key": "diskov3r-and-superactive",
-   "performers": [
-    "diskov3r-and-superactive"
-   ],
-   "appearances": [
-    {
-     "day": 1,
-     "stageId": "ultra-europe-2016:ultra-worldwide"
-    }
-   ]
-  },
-  {
-   "id": "ultra-europe-2016:d-rex",
-   "name": "D-Rex",
-   "key": "d-rex",
-   "performers": [
-    "d-rex"
-   ],
-   "appearances": [
-    {
-     "day": 1,
-     "stageId": "ultra-europe-2016:ultra-worldwide"
-    }
-   ]
-  },
-  {
-   "id": "ultra-europe-2016:richard-lowe",
-   "name": "Richard Lowe",
-   "key": "richard-lowe",
-   "performers": [
-    "richard-lowe"
-   ],
-   "appearances": [
-    {
-     "day": 1,
-     "stageId": "ultra-europe-2016:ultra-worldwide"
-    }
-   ]
-  },
-  {
-   "id": "ultra-europe-2016:dj-max",
-   "name": "DJ Max",
-   "key": "dj-max",
-   "performers": [
-    "dj-max"
-   ],
-   "appearances": [
-    {
-     "day": 1,
-     "stageId": "ultra-europe-2016:ultra-worldwide"
-    }
-   ]
-  },
-  {
-   "id": "ultra-europe-2016:dj-lookis",
-   "name": "DJ Lookis",
-   "key": "dj-lookis",
-   "performers": [
-    "dj-lookis"
-   ],
-   "appearances": [
-    {
-     "day": 1,
-     "stageId": "ultra-europe-2016:ultra-worldwide"
-    }
-   ]
-  },
-  {
    "id": "ultra-europe-2016:deadmau5",
    "name": "Deadmau5",
    "key": "deadmau5",
@@ -504,7 +46,7 @@
    ],
    "appearances": [
     {
-     "day": 2,
+     "day": 1,
      "stageId": "ultra-europe-2016:ultra-main-stage"
     }
    ]
@@ -518,7 +60,7 @@
    ],
    "appearances": [
     {
-     "day": 2,
+     "day": 1,
      "stageId": "ultra-europe-2016:ultra-main-stage"
     }
    ]
@@ -532,7 +74,7 @@
    ],
    "appearances": [
     {
-     "day": 2,
+     "day": 1,
      "stageId": "ultra-europe-2016:ultra-main-stage"
     }
    ]
@@ -546,7 +88,7 @@
    ],
    "appearances": [
     {
-     "day": 2,
+     "day": 1,
      "stageId": "ultra-europe-2016:ultra-main-stage"
     }
    ]
@@ -560,7 +102,7 @@
    ],
    "appearances": [
     {
-     "day": 2,
+     "day": 1,
      "stageId": "ultra-europe-2016:ultra-main-stage"
     }
    ]
@@ -574,7 +116,7 @@
    ],
    "appearances": [
     {
-     "day": 2,
+     "day": 1,
      "stageId": "ultra-europe-2016:ultra-main-stage"
     }
    ]
@@ -588,7 +130,7 @@
    ],
    "appearances": [
     {
-     "day": 2,
+     "day": 1,
      "stageId": "ultra-europe-2016:ultra-main-stage"
     }
    ]
@@ -602,11 +144,11 @@
    ],
    "appearances": [
     {
-     "day": 2,
+     "day": 1,
      "stageId": "ultra-europe-2016:ultra-main-stage"
     },
     {
-     "day": 2,
+     "day": 1,
      "stageId": "ultra-europe-2016:ultra-worldwide"
     }
    ]
@@ -620,11 +162,11 @@
    ],
    "appearances": [
     {
-     "day": 2,
+     "day": 1,
      "stageId": "ultra-europe-2016:ultra-main-stage"
     },
     {
-     "day": 2,
+     "day": 1,
      "stageId": "ultra-europe-2016:ultra-worldwide"
     }
    ]
@@ -638,7 +180,7 @@
    ],
    "appearances": [
     {
-     "day": 2,
+     "day": 1,
      "stageId": "ultra-europe-2016:resistance"
     }
    ]
@@ -652,7 +194,7 @@
    ],
    "appearances": [
     {
-     "day": 2,
+     "day": 1,
      "stageId": "ultra-europe-2016:resistance"
     }
    ]
@@ -666,7 +208,7 @@
    ],
    "appearances": [
     {
-     "day": 2,
+     "day": 1,
      "stageId": "ultra-europe-2016:resistance"
     }
    ]
@@ -680,7 +222,7 @@
    ],
    "appearances": [
     {
-     "day": 2,
+     "day": 1,
      "stageId": "ultra-europe-2016:resistance"
     }
    ]
@@ -694,7 +236,7 @@
    ],
    "appearances": [
     {
-     "day": 2,
+     "day": 1,
      "stageId": "ultra-europe-2016:resistance"
     }
    ]
@@ -708,7 +250,7 @@
    ],
    "appearances": [
     {
-     "day": 2,
+     "day": 1,
      "stageId": "ultra-europe-2016:resistance"
     }
    ]
@@ -722,7 +264,7 @@
    ],
    "appearances": [
     {
-     "day": 2,
+     "day": 1,
      "stageId": "ultra-europe-2016:arcadia-afterburner"
     }
    ]
@@ -736,7 +278,7 @@
    ],
    "appearances": [
     {
-     "day": 2,
+     "day": 1,
      "stageId": "ultra-europe-2016:arcadia-afterburner"
     }
    ]
@@ -750,7 +292,7 @@
    ],
    "appearances": [
     {
-     "day": 2,
+     "day": 1,
      "stageId": "ultra-europe-2016:arcadia-afterburner"
     }
    ]
@@ -764,7 +306,7 @@
    ],
    "appearances": [
     {
-     "day": 2,
+     "day": 1,
      "stageId": "ultra-europe-2016:arcadia-afterburner"
     }
    ]
@@ -778,7 +320,7 @@
    ],
    "appearances": [
     {
-     "day": 2,
+     "day": 1,
      "stageId": "ultra-europe-2016:arcadia-afterburner"
     }
    ]
@@ -792,7 +334,7 @@
    ],
    "appearances": [
     {
-     "day": 2,
+     "day": 1,
      "stageId": "ultra-europe-2016:arcadia-afterburner"
     }
    ]
@@ -806,7 +348,7 @@
    ],
    "appearances": [
     {
-     "day": 2,
+     "day": 1,
      "stageId": "ultra-europe-2016:ultra-worldwide"
     }
    ]
@@ -820,7 +362,7 @@
    ],
    "appearances": [
     {
-     "day": 2,
+     "day": 1,
      "stageId": "ultra-europe-2016:ultra-worldwide"
     }
    ]
@@ -834,7 +376,7 @@
    ],
    "appearances": [
     {
-     "day": 2,
+     "day": 1,
      "stageId": "ultra-europe-2016:ultra-worldwide"
     }
    ]
@@ -848,7 +390,7 @@
    ],
    "appearances": [
     {
-     "day": 2,
+     "day": 1,
      "stageId": "ultra-europe-2016:ultra-worldwide"
     }
    ]
@@ -862,7 +404,7 @@
    ],
    "appearances": [
     {
-     "day": 2,
+     "day": 1,
      "stageId": "ultra-europe-2016:ultra-worldwide"
     }
    ]
@@ -876,7 +418,7 @@
    ],
    "appearances": [
     {
-     "day": 2,
+     "day": 1,
      "stageId": "ultra-europe-2016:ultra-worldwide"
     }
    ]
@@ -890,7 +432,7 @@
    ],
    "appearances": [
     {
-     "day": 2,
+     "day": 1,
      "stageId": "ultra-europe-2016:ultra-worldwide"
     }
    ]
@@ -904,7 +446,7 @@
    ],
    "appearances": [
     {
-     "day": 2,
+     "day": 1,
      "stageId": "ultra-europe-2016:ultra-worldwide"
     }
    ]
@@ -918,7 +460,7 @@
    ],
    "appearances": [
     {
-     "day": 2,
+     "day": 1,
      "stageId": "ultra-europe-2016:ultra-worldwide"
     }
    ]
@@ -932,7 +474,7 @@
    ],
    "appearances": [
     {
-     "day": 2,
+     "day": 1,
      "stageId": "ultra-europe-2016:ultra-worldwide"
     }
    ]
@@ -946,7 +488,7 @@
    ],
    "appearances": [
     {
-     "day": 3,
+     "day": 2,
      "stageId": "ultra-europe-2016:ultra-main-stage"
     }
    ]
@@ -960,7 +502,7 @@
    ],
    "appearances": [
     {
-     "day": 3,
+     "day": 2,
      "stageId": "ultra-europe-2016:ultra-main-stage"
     }
    ]
@@ -974,7 +516,7 @@
    ],
    "appearances": [
     {
-     "day": 3,
+     "day": 2,
      "stageId": "ultra-europe-2016:ultra-main-stage"
     }
    ]
@@ -988,7 +530,7 @@
    ],
    "appearances": [
     {
-     "day": 3,
+     "day": 2,
      "stageId": "ultra-europe-2016:ultra-main-stage"
     }
    ]
@@ -1002,7 +544,7 @@
    ],
    "appearances": [
     {
-     "day": 3,
+     "day": 2,
      "stageId": "ultra-europe-2016:ultra-main-stage"
     }
    ]
@@ -1016,7 +558,7 @@
    ],
    "appearances": [
     {
-     "day": 3,
+     "day": 2,
      "stageId": "ultra-europe-2016:ultra-main-stage"
     }
    ]
@@ -1030,11 +572,11 @@
    ],
    "appearances": [
     {
-     "day": 3,
+     "day": 2,
      "stageId": "ultra-europe-2016:ultra-main-stage"
     },
     {
-     "day": 3,
+     "day": 2,
      "stageId": "ultra-europe-2016:ultra-worldwide"
     }
    ]
@@ -1048,7 +590,7 @@
    ],
    "appearances": [
     {
-     "day": 3,
+     "day": 2,
      "stageId": "ultra-europe-2016:ultra-main-stage"
     }
    ]
@@ -1062,7 +604,7 @@
    ],
    "appearances": [
     {
-     "day": 3,
+     "day": 2,
      "stageId": "ultra-europe-2016:ultra-main-stage"
     }
    ]
@@ -1076,7 +618,7 @@
    ],
    "appearances": [
     {
-     "day": 3,
+     "day": 2,
      "stageId": "ultra-europe-2016:resistance"
     }
    ]
@@ -1090,7 +632,7 @@
    ],
    "appearances": [
     {
-     "day": 3,
+     "day": 2,
      "stageId": "ultra-europe-2016:resistance"
     }
    ]
@@ -1104,7 +646,7 @@
    ],
    "appearances": [
     {
-     "day": 3,
+     "day": 2,
      "stageId": "ultra-europe-2016:resistance"
     }
    ]
@@ -1118,7 +660,7 @@
    ],
    "appearances": [
     {
-     "day": 3,
+     "day": 2,
      "stageId": "ultra-europe-2016:resistance"
     }
    ]
@@ -1132,7 +674,7 @@
    ],
    "appearances": [
     {
-     "day": 3,
+     "day": 2,
      "stageId": "ultra-europe-2016:resistance"
     }
    ]
@@ -1146,7 +688,7 @@
    ],
    "appearances": [
     {
-     "day": 3,
+     "day": 2,
      "stageId": "ultra-europe-2016:resistance"
     }
    ]
@@ -1160,7 +702,7 @@
    ],
    "appearances": [
     {
-     "day": 3,
+     "day": 2,
      "stageId": "ultra-europe-2016:arcadia-afterburner"
     }
    ]
@@ -1174,7 +716,7 @@
    ],
    "appearances": [
     {
-     "day": 3,
+     "day": 2,
      "stageId": "ultra-europe-2016:arcadia-afterburner"
     }
    ]
@@ -1188,7 +730,7 @@
    ],
    "appearances": [
     {
-     "day": 3,
+     "day": 2,
      "stageId": "ultra-europe-2016:arcadia-afterburner"
     }
    ]
@@ -1202,7 +744,7 @@
    ],
    "appearances": [
     {
-     "day": 3,
+     "day": 2,
      "stageId": "ultra-europe-2016:arcadia-afterburner"
     }
    ]
@@ -1216,7 +758,7 @@
    ],
    "appearances": [
     {
-     "day": 3,
+     "day": 2,
      "stageId": "ultra-europe-2016:arcadia-afterburner"
     }
    ]
@@ -1230,7 +772,7 @@
    ],
    "appearances": [
     {
-     "day": 3,
+     "day": 2,
      "stageId": "ultra-europe-2016:arcadia-afterburner"
     }
    ]
@@ -1244,7 +786,7 @@
    ],
    "appearances": [
     {
-     "day": 3,
+     "day": 2,
      "stageId": "ultra-europe-2016:arcadia-afterburner"
     }
    ]
@@ -1258,7 +800,7 @@
    ],
    "appearances": [
     {
-     "day": 3,
+     "day": 2,
      "stageId": "ultra-europe-2016:arcadia-afterburner"
     }
    ]
@@ -1272,7 +814,7 @@
    ],
    "appearances": [
     {
-     "day": 3,
+     "day": 2,
      "stageId": "ultra-europe-2016:arcadia-afterburner"
     }
    ]
@@ -1286,7 +828,7 @@
    ],
    "appearances": [
     {
-     "day": 3,
+     "day": 2,
      "stageId": "ultra-europe-2016:ultra-worldwide"
     }
    ]
@@ -1300,7 +842,7 @@
    ],
    "appearances": [
     {
-     "day": 3,
+     "day": 2,
      "stageId": "ultra-europe-2016:ultra-worldwide"
     }
    ]
@@ -1314,7 +856,7 @@
    ],
    "appearances": [
     {
-     "day": 3,
+     "day": 2,
      "stageId": "ultra-europe-2016:ultra-worldwide"
     }
    ]
@@ -1328,7 +870,7 @@
    ],
    "appearances": [
     {
-     "day": 3,
+     "day": 2,
      "stageId": "ultra-europe-2016:ultra-worldwide"
     }
    ]
@@ -1342,7 +884,7 @@
    ],
    "appearances": [
     {
-     "day": 3,
+     "day": 2,
      "stageId": "ultra-europe-2016:ultra-worldwide"
     }
    ]
@@ -1356,7 +898,7 @@
    ],
    "appearances": [
     {
-     "day": 3,
+     "day": 2,
      "stageId": "ultra-europe-2016:ultra-worldwide"
     }
    ]
@@ -1370,7 +912,7 @@
    ],
    "appearances": [
     {
-     "day": 3,
+     "day": 2,
      "stageId": "ultra-europe-2016:ultra-worldwide"
     }
    ]
@@ -1384,7 +926,7 @@
    ],
    "appearances": [
     {
-     "day": 3,
+     "day": 2,
      "stageId": "ultra-europe-2016:ultra-worldwide"
     }
    ]
@@ -1398,7 +940,7 @@
    ],
    "appearances": [
     {
-     "day": 3,
+     "day": 2,
      "stageId": "ultra-europe-2016:ultra-worldwide"
     }
    ]
@@ -1427,6 +969,24 @@
     "url": "https://bythewavs.com/ultra-europe-announces-full-lineup-stage-time/",
     "fetchedAt": "2026-11-27",
     "sha256": "c18a50624ce4a1c6ef9a5ff5d772293ab15924706dc0b231b2e50e9cddd3e983"
+   }
+  ],
+  "cancelledDays": [
+   {
+    "date": "2016-07-15",
+    "weekday": "Friday",
+    "reason": "extremely adverse weather",
+    "quote": "With the Friday cancelled due to extremely adverse weather conditions",
+    "source": {
+     "url": "https://ultraeurope.com/worldwide/ultra-europe-wraps-4th-annual-edition/",
+     "site": "ultraeurope.com",
+     "title": "ULTRA Europe Wraps 4th Annual Edition",
+     "publisher": "Ultra Europe",
+     "published": "2016-08-09",
+     "fetchedAt": "2026-11-27",
+     "sha256": "a5c3ca0108dd62eb6e4e984e2318a55aa4b828fa41ef3e7cf247a5c056c0b604"
+    },
+    "dropped": 33
    }
   ]
  }

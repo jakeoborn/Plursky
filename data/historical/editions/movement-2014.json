@@ -1,0 +1,1137 @@
+{
+ "id": "movement-2014",
+ "festivalId": "movement",
+ "name": "Movement 2014",
+ "year": 2014,
+ "timezone": "America/Detroit",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "undated": true,
+ "days": [
+  {
+   "day": 1,
+   "date": "2014-05-24",
+   "label": "Saturday"
+  },
+  {
+   "day": 2,
+   "date": "2014-05-25",
+   "label": "Sunday"
+  },
+  {
+   "day": 3,
+   "date": "2014-05-26",
+   "label": "Monday"
+  }
+ ],
+ "stages": [],
+ "artists": [
+  {
+   "id": "movement-2014:amp-fiddler-live",
+   "name": "Amp Fiddler – live",
+   "key": "amp-fiddler-live",
+   "performers": [
+    "amp-fiddler-live"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:appian",
+   "name": "Appian",
+   "key": "appian",
+   "performers": [
+    "appian"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:aran-daniels",
+   "name": "Aran Daniels",
+   "key": "aran-daniels",
+   "performers": [
+    "aran-daniels"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:asher-perkins",
+   "name": "Asher Perkins",
+   "key": "asher-perkins",
+   "performers": [
+    "asher-perkins"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:ben-negative",
+   "name": "Ben Negative",
+   "key": "ben-negative",
+   "performers": [
+    "ben-negative"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:benoit-and-sergio-live",
+   "name": "Benoit & Sergio – live",
+   "key": "benoit-and-sergio-live",
+   "performers": [
+    "benoit-and-sergio-live"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:christopher-jarvis",
+   "name": "Christopher Jarvis",
+   "key": "christopher-jarvis",
+   "performers": [
+    "christopher-jarvis"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:cold-english-live",
+   "name": "Cold English – live",
+   "key": "cold-english-live",
+   "performers": [
+    "cold-english-live"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:deadbeat",
+   "name": "Deadbeat",
+   "key": "deadbeat",
+   "performers": [
+    "deadbeat"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:dj-marky",
+   "name": "DJ Marky",
+   "key": "dj-marky",
+   "performers": [
+    "dj-marky"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:exhale",
+   "name": "Exhale",
+   "key": "exhale",
+   "performers": [
+    "exhale"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:gabi",
+   "name": "Gabi",
+   "key": "gabi",
+   "performers": [
+    "gabi"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:heathered-pearls",
+   "name": "Heathered Pearls",
+   "key": "heathered-pearls",
+   "performers": [
+    "heathered-pearls"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:heidi",
+   "name": "Heidi",
+   "key": "heidi",
+   "performers": [
+    "heidi"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:lee-foss",
+   "name": "Lee Foss",
+   "key": "lee-foss",
+   "performers": [
+    "lee-foss"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:max-cooper",
+   "name": "Max Cooper",
+   "key": "max-cooper",
+   "performers": [
+    "max-cooper"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:may-roosevelt",
+   "name": "May Roosevelt",
+   "key": "may-roosevelt",
+   "performers": [
+    "may-roosevelt"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:monty-luke",
+   "name": "Monty Luke",
+   "key": "monty-luke",
+   "performers": [
+    "monty-luke"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:moritz-von-oswald",
+   "name": "Moritz Von Oswald",
+   "key": "moritz-von-oswald",
+   "performers": [
+    "moritz-von-oswald"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:nightwave",
+   "name": "Nightwave",
+   "key": "nightwave",
+   "performers": [
+    "nightwave"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:rai-knight",
+   "name": "Rai Knight",
+   "key": "rai-knight",
+   "performers": [
+    "rai-knight"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:secrets-live",
+   "name": "Secrets – live",
+   "key": "secrets-live",
+   "performers": [
+    "secrets-live"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:seth-troxler",
+   "name": "Seth Troxler",
+   "key": "seth-troxler",
+   "performers": [
+    "seth-troxler"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:shackleton-live",
+   "name": "Shackleton – live",
+   "key": "shackleton-live",
+   "performers": [
+    "shackleton-live"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:shadowbox",
+   "name": "Shadowbox",
+   "key": "shadowbox",
+   "performers": [
+    "shadowbox"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:shaun-reeves",
+   "name": "Shaun Reeves",
+   "key": "shaun-reeves",
+   "performers": [
+    "shaun-reeves"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:skream",
+   "name": "Skream",
+   "key": "skream",
+   "performers": [
+    "skream"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:ur-presents-timeline-live",
+   "name": "UR Presents: Timeline – live",
+   "key": "ur-presents-timeline-live",
+   "performers": [
+    "ur-presents-timeline-live"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:action-bronson",
+   "name": "Action Bronson",
+   "key": "action-bronson",
+   "performers": [
+    "action-bronson"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:adam-x-live",
+   "name": "Adam X – live",
+   "key": "adam-x-live",
+   "performers": [
+    "adam-x-live"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:adriatique",
+   "name": "Adriatique",
+   "key": "adriatique",
+   "performers": [
+    "adriatique"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:altstadt-echo",
+   "name": "Altstadt Echo",
+   "key": "altstadt-echo",
+   "performers": [
+    "altstadt-echo"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:andres",
+   "name": "Andrés",
+   "key": "andres",
+   "performers": [
+    "andres"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:anthony-shake-shakir",
+   "name": "Anthony “Shake” Shakir",
+   "key": "anthony-shake-shakir",
+   "performers": [
+    "anthony-shake-shakir"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:baauer",
+   "name": "Baauer",
+   "key": "baauer",
+   "performers": [
+    "baauer"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:bicep",
+   "name": "Bicep",
+   "key": "bicep",
+   "performers": [
+    "bicep"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:black-asteroid-live",
+   "name": "Black Asteroid – live",
+   "key": "black-asteroid-live",
+   "performers": [
+    "black-asteroid-live"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:bmg",
+   "name": "BMG",
+   "key": "bmg",
+   "performers": [
+    "bmg"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:bonobo-dj-set",
+   "name": "Bonobo – DJ set",
+   "key": "bonobo-dj-set",
+   "performers": [
+    "bonobo-dj-set"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:boys-noize",
+   "name": "Boys Noize",
+   "key": "boys-noize",
+   "performers": [
+    "boys-noize"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:brian-sanhaji-live",
+   "name": "Brian Sanhaji – live",
+   "key": "brian-sanhaji-live",
+   "performers": [
+    "brian-sanhaji-live"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:carl-cox",
+   "name": "Carl Cox",
+   "key": "carl-cox",
+   "performers": [
+    "carl-cox"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:carl-craig",
+   "name": "Carl Craig",
+   "key": "carl-craig",
+   "performers": [
+    "carl-craig"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:chris-liebing",
+   "name": "Chris Liebing",
+   "key": "chris-liebing",
+   "performers": [
+    "chris-liebing"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:claude-vonstroke",
+   "name": "Claude VonStroke",
+   "key": "claude-vonstroke",
+   "performers": [
+    "claude-vonstroke"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:damian-lazarus",
+   "name": "Damian Lazarus",
+   "key": "damian-lazarus",
+   "performers": [
+    "damian-lazarus"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:daniel-avery",
+   "name": "Daniel Avery",
+   "key": "daniel-avery",
+   "performers": [
+    "daniel-avery"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:dantiez-saunderson",
+   "name": "Dantiez Saunderson",
+   "key": "dantiez-saunderson",
+   "performers": [
+    "dantiez-saunderson"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:dbx-live",
+   "name": "DBX – live",
+   "key": "dbx-live",
+   "performers": [
+    "dbx-live"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:delano-smith",
+   "name": "Delano Smith",
+   "key": "delano-smith",
+   "performers": [
+    "delano-smith"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:dixon",
+   "name": "Dixon",
+   "key": "dixon",
+   "performers": [
+    "dixon"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:dj-3000",
+   "name": "DJ 3000",
+   "key": "dj-3000",
+   "performers": [
+    "dj-3000"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:dj-godfather-b2b-dj-zebo-feat-mc-flipside",
+   "name": "DJ Godfather b2b DJ Zebo; feat. MC Flipside",
+   "key": "dj-godfather-b2b-dj-zebo-feat-mc-flipside",
+   "performers": [
+    "dj-godfather",
+    "dj-zebo-feat-mc-flipside"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:dj-hyperactive",
+   "name": "DJ Hyperactive",
+   "key": "dj-hyperactive",
+   "performers": [
+    "dj-hyperactive"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:dj-minx",
+   "name": "DJ Minx",
+   "key": "dj-minx",
+   "performers": [
+    "dj-minx"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:dj-psycho",
+   "name": "DJ Psycho",
+   "key": "dj-psycho",
+   "performers": [
+    "dj-psycho"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:dj-snake",
+   "name": "DJ Snake",
+   "key": "dj-snake",
+   "performers": [
+    "dj-snake"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:dj-sneak",
+   "name": "DJ Sneak",
+   "key": "dj-sneak",
+   "performers": [
+    "dj-sneak"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:donor",
+   "name": "Donor",
+   "key": "donor",
+   "performers": [
+    "donor"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:dtm-2-4-dj-seoul-and-t-linder",
+   "name": "DTM 2×4 DJ Seoul & T. Linder",
+   "key": "dtm-2-4-dj-seoul-and-t-linder",
+   "performers": [
+    "dtm-2-4-dj-seoul-and-t-linder"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:dustin-zahn",
+   "name": "Dustin Zahn",
+   "key": "dustin-zahn",
+   "performers": [
+    "dustin-zahn"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:ed-rush-and-optical",
+   "name": "Ed Rush & Optical",
+   "key": "ed-rush-and-optical",
+   "performers": [
+    "ed-rush-and-optical"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:eddie-fowlkes",
+   "name": "Eddie Fowlkes",
+   "key": "eddie-fowlkes",
+   "performers": [
+    "eddie-fowlkes"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:escort-live",
+   "name": "Escort – live",
+   "key": "escort-live",
+   "performers": [
+    "escort-live"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:flosstradamus",
+   "name": "Flosstradamus",
+   "key": "flosstradamus",
+   "performers": [
+    "flosstradamus"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:function-live",
+   "name": "Function – live",
+   "key": "function-live",
+   "performers": [
+    "function-live"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:golf-clap",
+   "name": "Golf Clap",
+   "key": "golf-clap",
+   "performers": [
+    "golf-clap"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:green-velvet",
+   "name": "Green Velvet",
+   "key": "green-velvet",
+   "performers": [
+    "green-velvet"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:jacques-greene-live",
+   "name": "Jacques Greene – live",
+   "key": "jacques-greene-live",
+   "performers": [
+    "jacques-greene-live"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:jamie-jones",
+   "name": "Jamie Jones",
+   "key": "jamie-jones",
+   "performers": [
+    "jamie-jones"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:jeff-mills",
+   "name": "Jeff Mills",
+   "key": "jeff-mills",
+   "performers": [
+    "jeff-mills"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:jimmy-edgar",
+   "name": "Jimmy Edgar",
+   "key": "jimmy-edgar",
+   "performers": [
+    "jimmy-edgar"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:john-digweed",
+   "name": "John Digweed",
+   "key": "john-digweed",
+   "performers": [
+    "john-digweed"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:julio-bashmore",
+   "name": "Julio Bashmore",
+   "key": "julio-bashmore",
+   "performers": [
+    "julio-bashmore"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:just-blaze",
+   "name": "Just Blaze",
+   "key": "just-blaze",
+   "performers": [
+    "just-blaze"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:justin-martin",
+   "name": "Justin Martin",
+   "key": "justin-martin",
+   "performers": [
+    "justin-martin"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:keith-kemp",
+   "name": "Keith Kemp",
+   "key": "keith-kemp",
+   "performers": [
+    "keith-kemp"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:kenny-larkin",
+   "name": "Kenny Larkin",
+   "key": "kenny-larkin",
+   "performers": [
+    "kenny-larkin"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:kevin-reynolds-live",
+   "name": "Kevin Reynolds – live",
+   "key": "kevin-reynolds-live",
+   "performers": [
+    "kevin-reynolds-live"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:kevin-saunderson-presents-origins",
+   "name": "Kevin Saunderson Presents: ORIGINS",
+   "key": "kevin-saunderson-presents-origins",
+   "performers": [
+    "kevin-saunderson-presents-origins"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:kode9",
+   "name": "Kode9",
+   "key": "kode9",
+   "performers": [
+    "kode9"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:konkrete-jungle-detroit",
+   "name": "Konkrete Jungle Detroit",
+   "key": "konkrete-jungle-detroit",
+   "performers": [
+    "konkrete-jungle-detroit"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:loco-dice",
+   "name": "Loco Dice",
+   "key": "loco-dice",
+   "performers": [
+    "loco-dice"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:los-hermanos-live",
+   "name": "Los Hermanos – live",
+   "key": "los-hermanos-live",
+   "performers": [
+    "los-hermanos-live"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:luis-flores",
+   "name": "Luis Flores",
+   "key": "luis-flores",
+   "performers": [
+    "luis-flores"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:maceo-plex",
+   "name": "Maceo Plex",
+   "key": "maceo-plex",
+   "performers": [
+    "maceo-plex"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:malik-alston-live",
+   "name": "Malik Alston – live",
+   "key": "malik-alston-live",
+   "performers": [
+    "malik-alston-live"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:marco-carola",
+   "name": "Marco Carola",
+   "key": "marco-carola",
+   "performers": [
+    "marco-carola"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:martin-buttrich-live",
+   "name": "Martin Buttrich – live",
+   "key": "martin-buttrich-live",
+   "performers": [
+    "martin-buttrich-live"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:marques-wyatt",
+   "name": "Marques Wyatt",
+   "key": "marques-wyatt",
+   "performers": [
+    "marques-wyatt"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:metro-area-live",
+   "name": "Metro Area – live",
+   "key": "metro-area-live",
+   "performers": [
+    "metro-area-live"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:michael-mayer",
+   "name": "Michael Mayer",
+   "key": "michael-mayer",
+   "performers": [
+    "michael-mayer"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:miguel-migs",
+   "name": "Miguel Migs",
+   "key": "miguel-migs",
+   "performers": [
+    "miguel-migs"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:mike-huckaby",
+   "name": "Mike Huckaby",
+   "key": "mike-huckaby",
+   "performers": [
+    "mike-huckaby"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:monoloc",
+   "name": "Monoloc",
+   "key": "monoloc",
+   "performers": [
+    "monoloc"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:moon-boots",
+   "name": "Moon Boots",
+   "key": "moon-boots",
+   "performers": [
+    "moon-boots"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:move-d",
+   "name": "Move D",
+   "key": "move-d",
+   "performers": [
+    "move-d"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:niko-marks-live",
+   "name": "Niko Marks – live",
+   "key": "niko-marks-live",
+   "performers": [
+    "niko-marks-live"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:octave-one-live",
+   "name": "Octave One – live",
+   "key": "octave-one-live",
+   "performers": [
+    "octave-one-live"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:orphx-live",
+   "name": "Orphx – live",
+   "key": "orphx-live",
+   "performers": [
+    "orphx-live"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:oscar-mulero",
+   "name": "Oscar Mulero",
+   "key": "oscar-mulero",
+   "performers": [
+    "oscar-mulero"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:perseus",
+   "name": "Perseus",
+   "key": "perseus",
+   "performers": [
+    "perseus"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:pete-tong",
+   "name": "Pete Tong",
+   "key": "pete-tong",
+   "performers": [
+    "pete-tong"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:project-313-live",
+   "name": "Project 313 – live",
+   "key": "project-313-live",
+   "performers": [
+    "project-313-live"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:raiz",
+   "name": "Raíz",
+   "key": "raiz",
+   "performers": [
+    "raiz"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:richie-hawtin",
+   "name": "Richie Hawtin",
+   "key": "richie-hawtin",
+   "performers": [
+    "richie-hawtin"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:riff-raff",
+   "name": "RiFF RAFF",
+   "key": "riff-raff",
+   "performers": [
+    "riff-raff"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:robert-hood-live",
+   "name": "Robert Hood – live",
+   "key": "robert-hood-live",
+   "performers": [
+    "robert-hood-live"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:sean-deason",
+   "name": "Sean Deason",
+   "key": "sean-deason",
+   "performers": [
+    "sean-deason"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:simian-mobile-disco",
+   "name": "Simian Mobile Disco",
+   "key": "simian-mobile-disco",
+   "performers": [
+    "simian-mobile-disco"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:stacey-hotwaxx-hale",
+   "name": "Stacey “Hotwaxx” Hale",
+   "key": "stacey-hotwaxx-hale",
+   "performers": [
+    "stacey-hotwaxx-hale"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:stacey-pullen",
+   "name": "Stacey Pullen",
+   "key": "stacey-pullen",
+   "performers": [
+    "stacey-pullen"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:tale-of-us",
+   "name": "Tale of Us",
+   "key": "tale-of-us",
+   "performers": [
+    "tale-of-us"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:terrence-dixon",
+   "name": "Terrence Dixon",
+   "key": "terrence-dixon",
+   "performers": [
+    "terrence-dixon"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:the-martinez-brothers",
+   "name": "The Martinez Brothers",
+   "key": "the-martinez-brothers",
+   "performers": [
+    "the-martinez-brothers"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:tiga",
+   "name": "Tiga",
+   "key": "tiga",
+   "performers": [
+    "tiga"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:tini",
+   "name": "tINI",
+   "key": "tini",
+   "performers": [
+    "tini"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:tourist-live",
+   "name": "Tourist – live",
+   "key": "tourist-live",
+   "performers": [
+    "tourist-live"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:voices-from-the-lake-live",
+   "name": "Voices from the Lake – live",
+   "key": "voices-from-the-lake-live",
+   "performers": [
+    "voices-from-the-lake-live"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "movement-2014:zeitgeber-speedy-j-and-lucy-live",
+   "name": "Zeitgeber (Speedy J & Lucy) – live",
+   "key": "zeitgeber-speedy-j-and-lucy-live",
+   "performers": [
+    "zeitgeber-speedy-j-and-lucy-live"
+   ],
+   "appearances": []
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "unofficial_lineup",
+  "unofficial": true,
+  "source": {
+   "kind": "press",
+   "site": "ihouseu.com",
+   "url": "https://ihouseu.com/movement-festival-detroit-announces-phase-three-artist-lineup/",
+   "title": "MOVEMENT FESTIVAL DETROIT ANNOUNCES PHASE THREE ARTIST LINEUP",
+   "publisher": "IhouseU",
+   "published": "2014-04-02",
+   "fetchedAt": "2026-11-27",
+   "fetchedVia": "exa",
+   "scope": "full",
+   "sha256": "d6fe7dcdacf67260653ac6f6646f733158f15076c2c2689d3e9a52a8dd17b173",
+   "bytes": 3753
+  },
+  "captures": [
+   {
+    "page": "lineup",
+    "url": "https://ihouseu.com/movement-festival-detroit-announces-phase-three-artist-lineup/",
+    "fetchedAt": "2026-11-27",
+    "sha256": "d6fe7dcdacf67260653ac6f6646f733158f15076c2c2689d3e9a52a8dd17b173"
+   }
+  ]
+ }
+}

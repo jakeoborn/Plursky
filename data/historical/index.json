@@ -704,16 +704,11 @@
      "day": 2,
      "date": "2023-07-08",
      "label": "Saturday"
-    },
-    {
-     "day": 3,
-     "date": "2023-07-09",
-     "label": "Sunday"
     }
    ],
    "counts": {
     "stages": 0,
-    "artists": 112,
+    "artists": 66,
     "sets": 0
    }
   },
@@ -843,6 +838,37 @@
    "counts": {
     "stages": 0,
     "artists": 97,
+    "sets": 0
+   }
+  },
+  {
+   "id": "awakenings-2016",
+   "festivalId": "awakenings",
+   "festivalName": "Awakenings Festival",
+   "name": "Awakenings Festival 2016",
+   "year": 2016,
+   "timezone": "Europe/Amsterdam",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "3voor12.vpro.nl",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2016-06-25",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2016-06-26",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 95,
     "sets": 0
    }
   },
@@ -5410,6 +5436,42 @@
    }
   },
   {
+   "id": "movement-2014",
+   "festivalId": "movement",
+   "festivalName": "Movement",
+   "name": "Movement 2014",
+   "year": 2014,
+   "timezone": "America/Detroit",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "ihouseu.com",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2014-05-24",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2014-05-25",
+     "label": "Sunday"
+    },
+    {
+     "day": 3,
+     "date": "2014-05-26",
+     "label": "Monday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 120,
+    "sets": 0
+   }
+  },
+  {
    "id": "movement-2013",
    "festivalId": "movement",
    "festivalName": "Movement",
@@ -5478,6 +5540,42 @@
    "counts": {
     "stages": 5,
     "artists": 107,
+    "sets": 0
+   }
+  },
+  {
+   "id": "movement-2011",
+   "festivalId": "movement",
+   "festivalName": "Movement",
+   "name": "Movement 2011",
+   "year": 2011,
+   "timezone": "America/Detroit",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "metrotimes.com",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2011-05-28",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2011-05-29",
+     "label": "Sunday"
+    },
+    {
+     "day": 3,
+     "date": "2011-05-30",
+     "label": "Monday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 101,
     "sets": 0
    }
   },
@@ -8446,23 +8544,18 @@
    "days": [
     {
      "day": 1,
-     "date": "2016-07-15",
-     "label": "Friday"
-    },
-    {
-     "day": 2,
      "date": "2016-07-16",
      "label": "Saturday"
     },
     {
-     "day": 3,
+     "day": 2,
      "date": "2016-07-17",
      "label": "Sunday"
     }
    ],
    "counts": {
     "stages": 4,
-    "artists": 96,
+    "artists": 64,
     "sets": 0
    }
   },

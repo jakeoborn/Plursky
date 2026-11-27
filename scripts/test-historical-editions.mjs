@@ -1858,10 +1858,15 @@ for (const [id, e] of Object.entries(editions)) {
       // An unofficial lineup's dates are the census's dated run for the year,
       // which the ledger's datesFrom must quote; a Clashfinder day heading
       // must also name this date (its weekday, day and month).
-      const cen = censusRow(led.datesFrom?.family, e.year), run = cen ? runDates(cen.range) : [];
+      // Days the festival cancelled (with their saved article) and an empty
+      // first or last day are left out; the ledger names both.
+      const cen = censusRow(led.datesFrom?.family, e.year), full = cen ? runDates(cen.range) : [];
+      const off = new Set([...(led.cancelledDays || []).map(c => c.date), ...(led.emptyDays || [])]);
+      const run = full.filter(x => !off.has(x));
+      ok((led.emptyDays || []).every(x => x === full[0] || x === full.at(-1)), `${id}: an empty day other than the run's first or last is left out`);
       ok(led.datesFrom?.census === CREAMFIELDS_CENSUS && led.datesFrom.family === e.festivalId && cen?.dates === led.datesFrom.dates
         && ["occurred", "scheduled_unverified", "partly_canceled"].includes(cen?.lifecycle) && run.length === e.days.length && run[d.day - 1] === d.date
-        && (led.format !== "clashfinder" || led.printed.days.some(h => clashfinderDay(h, run) === d.day)),
+        && (led.format !== "clashfinder" || led.printed.days.some(h => clashfinderDay(h, full) === full.indexOf(d.date) + 1)),
         `${id} day ${d.day}: ${d.date} is not the census's ${e.year} run (${cen?.dates}), or no timetable day heading names it`);
     } else if (led.method === "official_lineup_html" && led.format === "ef-lineup") {
       // Electric Forest's lineup page prints no days. The dates are the run
@@ -2346,6 +2351,19 @@ ok(instant("2025-05-16", "04:13", 12, -420) === "2025-05-17T11:13:00.000Z",
     mustFail("an unofficial capture is not its source", m => { m.provenance.captures[0].url = "https://example.com/other"; }, u, undefined, /capture is not its source/);
     mustFail("an official extraction carries an unofficial source", m => { m.provenance.extractionMethod = "official_lineup_html"; }, u, undefined, /registered as unofficial_lineup|carries an unofficial source/);
   }
+  // A day the festival cancelled is left out, with the saved article's proof.
+  const uc = unofficial.find(e => e.provenance.cancelledDays?.length);
+  ok(!!uc, "no unofficial edition carries a cancelled day (Awakenings 2023 should)");
+  if (uc) {
+    const c = uc.provenance.cancelledDays[0];
+    ok(!uc.days.some(d => d.date === c.date), `${uc.id}: cancelled day ${c.date} is still an edition day`);
+    ok(c.dropped > 0 && /^[0-9a-f]{64}$/.test(c.source?.sha256 || ""), `${uc.id}: cancelled day ${c.date} carries no dropped count or article hash`);
+    mustFail("an unofficial cancelled day loses its proof", m => { delete m.provenance.cancelledDays; }, uc, undefined, /no ledger proof from its saved article/);
+    mustFail("an unofficial cancelled day's quote changes", m => { m.provenance.cancelledDays[0].quote = "it went ahead"; }, uc, undefined, /no ledger proof from its saved article/);
+  }
+  // An undated unofficial lineup carries no day on any artist.
+  const uu = unofficial.find(e => e.undated);
+  if (uu) mustFail("an undated unofficial lineup gains a day", m => { m.artists[0].appearances = [{ day: 1 }]; }, uu, undefined, /undated lineup, but an artist carries a day/);
 }
 
 // ── 4. isolation from the live app ──

@@ -1,0 +1,37 @@
+{
+  "id": "movement-2014",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "press",
+    "site": "ihouseu.com",
+    "url": "https://ihouseu.com/movement-festival-detroit-announces-phase-three-artist-lineup/",
+    "title": "MOVEMENT FESTIVAL DETROIT ANNOUNCES PHASE THREE ARTIST LINEUP",
+    "publisher": "IhouseU",
+    "published": "2014-04-02",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "full",
+    "sha256": "d6fe7dcdacf67260653ac6f6646f733158f15076c2c2689d3e9a52a8dd17b173",
+    "bytes": 3753
+  },
+  "printed": {
+    "days": null
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "movement",
+    "year": 2014,
+    "lifecycle": "occurred",
+    "dates": "2014-05-24..2014-05-26",
+    "evidence": "https://en.wikipedia.org/wiki/Detroit_Electronic_Music_Festival",
+    "published": "2026-11-04T02:48:35Z rev 1383675456"
+  },
+  "note": "The festival's phase three press release as reposted on 2 April 2014 (it sums the bill at 118 performers), with the phase one and two acts it repeats; the page printed no days and no stages; acts added or dropped later (Shackleton could not travel) are not shown.",
+  "verified": {
+    "billings": 120,
+    "inSourceText": true
+  },
+  "stageOrder": [],
+  "dropped": []
+}

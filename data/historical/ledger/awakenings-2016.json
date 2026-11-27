@@ -1,0 +1,52 @@
+{
+  "id": "awakenings-2016",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "press",
+    "site": "3voor12.vpro.nl",
+    "url": "https://3voor12.vpro.nl/artikelen/overzicht/2016/hooikoorts-2016/Awakenings-2016.html",
+    "title": "Hooikoorts: Hele line-up Awakenings 2016 bekend",
+    "publisher": "VPRO 3voor12",
+    "published": "2016-01-22",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "full",
+    "sha256": "24dd199c5b34702a91c123ecd29df57a8abd90188a3c778345a3ff49a3cf9bae",
+    "bytes": 2257
+  },
+  "printed": {
+    "days": {
+      "1": "Zaterdag 25 juni",
+      "2": "Zondag 26 juni"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "awakenings",
+    "year": 2016,
+    "lifecycle": "occurred",
+    "dates": "2016-06-25..2016-06-26",
+    "evidence": "https://haarlemmermeer.nieuws.nl/nieuws/awakenings-techno-maakt-omwonenden-tureluurs-akelige-bass-dreunt-door-in-je-lijf",
+    "published": "2016-06-27"
+  },
+  "note": "The full lineup by day and area as announced on 22 January 2016, printed as a run of names without separators, so the split into acts is by hand; spellings are the article's own and later changes are not shown.",
+  "spellings": {
+    "Sven Vath": "Sven Väth"
+  },
+  "verified": {
+    "billings": 95,
+    "inSourceText": true
+  },
+  "stageOrder": [
+    "Area V",
+    "Area W",
+    "Area X",
+    "Area Y",
+    "Area Z",
+    "Area A",
+    "Area B",
+    "Area C"
+  ],
+  "dropped": []
+}

@@ -443,7 +443,8 @@ function validateLineup(e, { expected, dropped }, stageIds) {
   // edition must say so in a note. Any other lineup edition dates every day.
   if (e.undated) {
     if (e.artists.some(a => (a.appearances || []).some(x => "day" in x))) p.push(`${e.id}: undated lineup, but an artist carries a day`);
-    if (!(e.notes || []).some(n => /printed no days/.test(n.text))) p.push(`${e.id}: undated lineup without a note saying the page printed no days`);
+    // An unofficial source says so in its own "About this lineup" sheet.
+    if (e.provenance?.extractionMethod !== UNOFFICIAL_METHOD && !(e.notes || []).some(n => /printed no days/.test(n.text))) p.push(`${e.id}: undated lineup without a note saying the page printed no days`);
   } else for (const d of e.days) if (!e.artists.some(a => (a.appearances || []).some(x => x.day === d.day))) p.push(`${e.id}: day ${d.day} has no billed artist`);
   if (!expected) return p.concat(`${e.id}: no locked expected counts`);
   if (expected.artists !== e.artists.length) p.push(`${e.id}: ${e.artists.length} artists, locked ${expected.artists}`);
