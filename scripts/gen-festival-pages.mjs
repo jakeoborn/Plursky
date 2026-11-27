@@ -532,6 +532,30 @@ function staySection(entry, dates, isPast) {
   </section>`;
 }
 
+// ── Resale tickets (StubHub) ──────────────────────────────────────────
+// A StubHub search for the festival, sent through StubHub's affiliate program
+// on Partnerize. Off until STUBHUB_TRACKING_LINK holds the tracking link
+// Partnerize gives Plursky once StubHub approves it (it looks like
+// https://prf.hn/click/camref:XXXX). With it empty, no page changes. Only for
+// upcoming North American festivals, because the program covers stubhub.com
+// in North America only. The festival's own ticket link stays in Sources;
+// this line says plainly that StubHub is resale and that prices may be above
+// face value, as StubHub itself says.
+const STUBHUB_TRACKING_LINK = '';
+function ticketsSection(entry, isPast) {
+  if (!STUBHUB_TRACKING_LINK || isPast || entry.region !== 'North America') return '';
+  const cfg = entry.config;
+  const name = String(cfg.name || '').replace(/\s+\d{4}$/, '').trim();
+  if (!name) return '';
+  const dest = `https://www.stubhub.com/secure/search?q=${encodeURIComponent(name)}`;
+  const href = `${STUBHUB_TRACKING_LINK.replace(/\/+$/, '')}/pubref:plursky_${cfg.id.replace(/-/g, '_')}/destination:${encodeURIComponent(dest)}`;
+  return `
+  <section aria-labelledby="tickets-h">
+    <h2 id="tickets-h">Resale tickets</h2>
+    <p>Sold out, or missed the sale? <a href="${esc(href)}" rel="sponsored noopener">Find resale tickets for ${esc(name)} on StubHub</a>. Resale prices are set by sellers and may be above face value. Plursky earns a commission if you buy through this link, at no extra cost to you.</p>
+  </section>`;
+}
+
 // ── Past editions ─────────────────────────────────────────────────────
 // Past Festivals is the read-only archive; this page is only an index into it.
 // Each link opens that edition in Plursky (?tab=past&edition=<id>).
@@ -726,6 +750,7 @@ const JUMPS = [
   ['map-h', 'Map', 'See the map'],
   ['watch-h', 'Watch', 'Watch and listen'],
   ['plan-h', 'Plan', 'Plan your trip'],
+  ['tickets-h', 'Tickets', 'Resale tickets'],
   ['stay-h', 'Stay', 'Where to stay'],
   ['eat-h', 'Eat', 'Where to eat'],
   ['past-h', 'Past years', 'See past years'],
@@ -883,7 +908,7 @@ ${mapHtml}
 ${scheduleGrid(entry, dates, blocks)}${stageProgrammingSection(entry)}
 ${lineupSection(entry, blocks, dates, names, hasTimes)}
 ${stagesSection(entry, blocks, dates)}
-${planSection(entry, amenities)}${staySection(entry, dates, isPast)}${eatSection(entry)}
+${planSection(entry, amenities)}${ticketsSection(entry, isPast)}${staySection(entry, dates, isPast)}${eatSection(entry)}
 ${pastSection(entry, editions)}`;
 
   return `<!DOCTYPE html>
