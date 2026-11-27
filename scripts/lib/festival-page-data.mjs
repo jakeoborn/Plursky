@@ -49,12 +49,13 @@ export function plateFor(cfg, root = ROOT) {
 // and holds the page and the app to it.
 export function sourceDate(edition) {
   const pv = edition?.provenance || {};
-  const ts = (pv.captures || []).map(c => c.captureTimestamp || c.pageCapture || c.imageCapture || c.published?.replace(/-/g, ''))
+  const ts = (pv.captures || []).map(c => c.captureTimestamp || c.pageCapture || c.imageCapture || (c.published || c.fetchedAt)?.replace(/-/g, ''))
     .filter(t => /^\d{8}/.test(t || '')).sort().pop();
   if (!ts) return null;
   const latest = pv.extractionMethod === 'official_sources';
+  // An unofficial lineup (a fan-made timetable, an article) was read, not archived.
   return { date: `${ts.slice(0, 4)}-${ts.slice(4, 6)}-${ts.slice(6, 8)}`,
-    label: latest ? 'Latest official source' : 'Official source archived' };
+    label: pv.unofficial ? 'Unofficial source read' : latest ? 'Latest official source' : 'Official source archived' };
 }
 
 export function pastEditionsFor(id, root = ROOT) {
@@ -73,6 +74,8 @@ export function pastEditionsFor(id, root = ROOT) {
         // Stages the official schedule had that are not imported (selected_stages).
         // Only such an edition adds the key, so every other page keeps its fp.
         ...(e.missingStages && { missingStages: e.missingStages }),
+        // An unofficial lineup names its source; only such an edition adds the key.
+        ...(e.unofficialSource && { unofficial: e.unofficialSource.name }),
         first: e.days?.[0]?.date ?? null, last: e.days?.[e.days.length - 1]?.date ?? null,
         stages: lineupOnly ? null : e.counts?.stages ?? null,
         artists: e.counts?.artists ?? null,

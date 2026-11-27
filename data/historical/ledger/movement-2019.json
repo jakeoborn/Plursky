@@ -1,0 +1,41 @@
+{
+  "id": "movement-2019",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "press",
+    "site": "dancingastronaut.com",
+    "url": "https://dancingastronaut.com/2019/01/movements-2019-lineup-displays-true-talent-detroit/",
+    "title": "Movement's 2019 lineup displays true talent in Detroit",
+    "publisher": "Dancing Astronaut",
+    "published": "2019-01-24",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "full",
+    "sha256": "253d2c1c60cf763418c81a8cc47b2798b1320ca135d881db78052c3b71c18837",
+    "bytes": 2142
+  },
+  "printed": {
+    "days": {
+      "1": "SATURDAY, MAY 25",
+      "2": "SUNDAY, MAY 26",
+      "3": "MONDAY, MAY 27"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "movement",
+    "year": 2019,
+    "lifecycle": "occurred",
+    "dates": "2019-05-25..2019-05-27",
+    "evidence": "https://edmidentity.com/2019/06/03/movement-detroit-2019-review/",
+    "published": "2019-06-03"
+  },
+  "note": "The full daily lineup as announced on 24 January 2019; later changes are not shown. Text saved from the article's lineup section (intro trimmed).",
+  "verified": {
+    "billings": 89,
+    "inSourceText": true
+  },
+  "stageOrder": [],
+  "dropped": []
+}

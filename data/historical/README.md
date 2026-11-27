@@ -883,6 +883,32 @@ Then, for any path:
     # lock counts in expected-counts.json, then
     node scripts/test-historical-editions.mjs
 
+## Unofficial lineups (`unofficial/<family>.json`)
+
+For years where no official page or graphic survives, a lineup may come from
+somewhere else: a fan-made Clashfinder timetable, a news article, Wikipedia, a
+social post or a poster. Jake approved this on 2026-11-27, provided every such
+year says where its lineup came from. These editions are always `lineup_only`
+(method `unofficial_lineup`): no unofficial source is trusted for set times,
+and the gate refuses one that tries to make a schedule.
+
+Register the edition in `unofficial/<family>.json` (official entries in
+`editions.mjs` win on a clash), save the source once into the research cache as
+`<cache>/unofficial/<edition-id>/source.json` and `source.txt`, then:
+
+    node scripts/historical/extract-unofficial-lineup.mjs <edition-id>
+
+`source.json` names the source (`kind`: fan_timetable, press, wikipedia,
+social, poster; `url`, `title`, `publisher`, `published`, `fetchedAt`,
+`fetchedVia`, `scope` full or partial) and its `format`: `clashfinder` parses
+the line-up view (`clashfinder.com/m/<event>/`, never a `?user=` selection);
+`rows` reads `rows.tsv` beside it (artist, day, stage), listed by hand from the
+text, with `days` giving the words the source prints for each day. Every
+billing, printed day and stage must appear in the saved text; the dates come
+from the census's dated run for that year. The ledger keeps the text's hash,
+and the app shows "unofficial, from <source>" wherever the year appears, with
+a link to the source.
+
 ## Rules the gate enforces
 
 - An edition is identified by what its page prints (weekday + date), never by
@@ -897,7 +923,8 @@ Then, for any path:
   (`dropped`). Rules and the activity list live in
   `scripts/historical/editions.mjs`. Kids-stage acts are billed acts and stay (including the named
   "SPECIAL GUEST: THE HAPPINESS CLUB").
-- A `lineup_only` edition comes from an official lineup page and carries no
+- A `lineup_only` edition comes from an official lineup page, or from a named
+  unofficial source (above), and carries no
   sets and no times. An artist's day and stage appear only where that page
   printed them (By Day / By Stage tabs), joined only when unambiguous; every
   disagreement between the tabs is listed in the ledger's `crossTab`.

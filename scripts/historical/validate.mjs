@@ -16,6 +16,7 @@ import { printedDate as tmlCmsDate } from "./tml-cms-schedule.mjs";
 import { readRun as hardRun } from "./hard-wp-schedule.mjs";
 import { datesFromPost as shambhalaRun } from "./shambhala-webflow-schedule.mjs";
 import { embedPageOk, EMBED_PAGES } from "./dostuff-embed-schedule.mjs";
+import { METHOD as UNOFFICIAL_METHOD, sourceProblems } from "./unofficial.mjs";
 import { citeToken, datedLabel, dayMinutes, graphicPrints, receiptGaps, sameGraphic, undatedOwnPost, weekdayOf } from "./lib.mjs";
 
 // The festival's own web properties. A capture of anything else is not an
@@ -231,7 +232,18 @@ export function validateEdition(e, { expected, review, dropped = [] } = {}) {
 
   // Provenance: every capture official, archived, and of the right year.
   if (!e.provenance?.captures?.length) p.push(`${e.id}: no provenance captures`);
-  if (e.provenance?.extractionMethod === "official_sources") officialSources(e, meta, p);
+  if (meta.method !== e.provenance?.extractionMethod) p.push(`${e.id}: extracted as ${e.provenance?.extractionMethod}, registered as ${meta.method}`);
+  if (e.provenance?.extractionMethod === UNOFFICIAL_METHOD) {
+    // An unofficial lineup names its source and keeps the hash of the one
+    // text it was read from; it never claims an official page.
+    const src = e.provenance.source, c = e.provenance.captures || [];
+    p.push(...sourceProblems(src, `${e.id} source`));
+    if (e.provenance.unofficial !== true) p.push(`${e.id}: an unofficial source not marked unofficial`);
+    if ("official" in e.provenance) p.push(`${e.id}: an unofficial lineup names an official source`);
+    if (c.length !== 1 || c[0].url !== src?.url || c[0].sha256 !== src?.sha256 || c[0].fetchedAt !== src?.fetchedAt) p.push(`${e.id}: its capture is not its source`);
+    if (hostIn(OFFICIAL_HOSTS[e.festivalId], hostOf(src?.url || ""))) p.push(`${e.id}: ${hostOf(src?.url || "")} is the festival's own site; read it as an official page`);
+  } else if (e.provenance?.unofficial || e.provenance?.source) p.push(`${e.id}: an official extraction carries an unofficial source`);
+  else if (e.provenance?.extractionMethod === "official_sources") officialSources(e, meta, p);
   else for (const c of e.provenance?.captures || []) {
     const url = c.archivedUrl || c.pageArchivedUrl;
     const where = c.day ? `day ${c.day}` : `${c.page || "?"} page`;
@@ -266,8 +278,10 @@ export function validateEdition(e, { expected, review, dropped = [] } = {}) {
     }
   }
   const lineupOnly = e.completeness === "lineup_only";
-  if (lineupOnly && (e.sets?.length || e.provenance?.extractionMethod !== "official_lineup_html"))
-    p.push(`${e.id}: lineup_only must carry no sets (no placeholder times) and come from an official lineup page`);
+  if (lineupOnly && (e.sets?.length || ![ "official_lineup_html", UNOFFICIAL_METHOD].includes(e.provenance?.extractionMethod)))
+    p.push(`${e.id}: lineup_only must carry no sets (no placeholder times) and come from an official lineup page or a named unofficial source`);
+  if (!lineupOnly && e.provenance?.extractionMethod === UNOFFICIAL_METHOD)
+    return p.concat(`${e.id}: an unofficial source is never trusted for set times, so it cannot make a ${e.completeness}`);
   if (!lineupOnly && e.provenance?.extractionMethod === "official_lineup_html")
     return p.concat(`${e.id}: a lineup page has no times, so it cannot make a complete_schedule`);
   if (lineupOnly && !e.artists?.length) p.push(`${e.id}: lineup_only with no artists`);

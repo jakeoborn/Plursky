@@ -18,6 +18,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { EDITIONS, dropReason, lineupDropReason } from "./editions.mjs";
 import { slug } from "./lib.mjs";
+import { METHOD as UNOFFICIAL_METHOD, sourceShort } from "./unofficial.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 const H = p => join(ROOT, "data/historical", p);
@@ -136,8 +137,13 @@ export function buildLineupEdition(id, rows, ledger) {
     ...(ed.undated && { undated: true }),
     days: ed.dates.map(([date, weekday], i) => ({ day: i + 1, date, label: ed.dayLabels?.[i] || weekday })),
     stages, artists, sets: [],
-    provenance: { extractionMethod: ed.method, official: ledger.official,
-      captures: [{ page: "lineup", archivedUrl: ledger.archivedUrl, captureTimestamp: ledger.chosen, sha256: ledger.sha256 }] },
+    provenance: ed.method === UNOFFICIAL_METHOD
+      // An unofficial source (unofficial.mjs): no official page, the source
+      // itself named, and the one text the lineup was read from.
+      ? { extractionMethod: ed.method, unofficial: true, source: ledger.source,
+        captures: [{ page: "lineup", url: ledger.source.url, fetchedAt: ledger.source.fetchedAt, sha256: ledger.source.sha256 }] }
+      : { extractionMethod: ed.method, official: ledger.official,
+        captures: [{ page: "lineup", archivedUrl: ledger.archivedUrl, captureTimestamp: ledger.chosen, sha256: ledger.sha256 }] },
     ...(ed.notes && { notes: ed.notes }),
   };
 }
@@ -162,6 +168,8 @@ export function editionIndex(editions) {
       id: e.id, festivalId: e.festivalId, festivalName: e.name.replace(/\s+\d{4}$/, ""), name: e.name, year: e.year,
       timezone: e.timezone, completeness: e.completeness,
       ...(e.coverage && { missingStages: e.coverage.missing.map(m => ({ stage: m.stage, when: m.when })) }),
+      // An unofficial lineup names its source in the list, not only inside.
+      ...(e.provenance?.unofficial && { unofficialSource: { kind: e.provenance.source.kind, name: sourceShort(e.provenance.source), scope: e.provenance.source.scope } }),
       days: e.days.map(d => ({ day: d.day, date: d.date, label: d.label })),
       counts: { stages: e.stages.length, artists: e.artists.length, sets: e.sets.length },
     })).sort((a, b) => a.festivalName.localeCompare(b.festivalName) || b.year - a.year),
