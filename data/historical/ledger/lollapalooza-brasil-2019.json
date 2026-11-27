@@ -1,0 +1,60 @@
+{
+  "id": "lollapalooza-brasil-2019",
+  "method": "official_lineup_html",
+  "format": "lollabr-grid",
+  "official": "https://www.lollapaloozabr.com/lineup-2019/",
+  "window": [
+    "20190101",
+    "20190407"
+  ],
+  "chosen": "20190405144206",
+  "archivedUrl": "https://web.archive.org/web/20190405144206/https://www.lollapaloozabr.com/lineup-2019/",
+  "sha256": "50a42bc75f3f182ab88a7b909790bbec99ba2cce2b40b32a5a1044c40b0ab105",
+  "title": "LineUp-2019 – Lollapalooza Brasil",
+  "relayedVia": "firecrawl",
+  "stageOrder": [
+    "Palco Budweiser",
+    "Palco Onix",
+    "Palco Adidas",
+    "Perry’s by Doritos"
+  ],
+  "timesNotKept": "the grid prints each block's range; a lineup edition keeps no times",
+  "considered": [
+    {
+      "captureTimestamp": "20190111031217",
+      "notFiled": "relay: capture 20190111031217 of https://www.lollapaloozabr.com/lineup-2019/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20190322142821",
+      "notFiled": "relay: capture 20190322142821 of https://www.lollapaloozabr.com/lineup-2019/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20190405144206",
+      "archivedUrl": "https://web.archive.org/web/20190405144206/https://www.lollapaloozabr.com/lineup-2019/",
+      "sha256": "50a42bc75f3f182ab88a7b909790bbec99ba2cce2b40b32a5a1044c40b0ab105",
+      "bytes": 568275,
+      "via": "firecrawl",
+      "title": "LineUp-2019 – Lollapalooza Brasil",
+      "valid": true,
+      "days": [
+        "Friday 5 April 2019",
+        "Saturday 6 April 2019",
+        "Sunday 7 April 2019"
+      ],
+      "printed": {
+        "dates": "sexta-feira abr 5th | sábado abr 6th | domingo abr 7th",
+        "lists": [
+          "sexta-feira abr 5th",
+          "sábado abr 6th",
+          "domingo abr 7th"
+        ]
+      },
+      "billings": 70
+    }
+  ],
+  "dropped": []
+}

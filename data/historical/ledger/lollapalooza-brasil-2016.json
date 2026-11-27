@@ -1,0 +1,58 @@
+{
+  "id": "lollapalooza-brasil-2016",
+  "method": "official_lineup_html",
+  "format": "lollabr-por-dia",
+  "official": "http://www.lollapaloozabr.com/lineup-por-dia/",
+  "window": [
+    "20160101",
+    "20160313"
+  ],
+  "chosen": "20160309185854",
+  "archivedUrl": "https://web.archive.org/web/20160309185854/http://www.lollapaloozabr.com/lineup-por-dia/",
+  "sha256": "bf4904990c4ea22c757b8e53aba37f38d42488e7eac92dd2314b7008305df90b",
+  "title": "Lineup por dia | Lollapalooza Brasil",
+  "relayedVia": "firecrawl",
+  "stageOrder": [],
+  "considered": [
+    {
+      "captureTimestamp": "20160117015100",
+      "notFiled": "relay: capture 20160117015100 of http://www.lollapaloozabr.com/lineup-por-dia/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20160225092417",
+      "notFiled": "relay: capture 20160225092417 of http://www.lollapaloozabr.com/lineup-por-dia/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20160304085827",
+      "notFiled": "relay: capture 20160304085827 of http://www.lollapaloozabr.com/lineup-por-dia/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20160309185854",
+      "archivedUrl": "https://web.archive.org/web/20160309185854/http://www.lollapaloozabr.com/lineup-por-dia/",
+      "sha256": "bf4904990c4ea22c757b8e53aba37f38d42488e7eac92dd2314b7008305df90b",
+      "bytes": 118460,
+      "via": "firecrawl",
+      "title": "Lineup por dia | Lollapalooza Brasil",
+      "valid": true,
+      "days": [
+        "Saturday 12 March 2016",
+        "Sunday 13 March 2016"
+      ],
+      "printed": {
+        "dates": "12 e 13 de março de 2016 - Autódromo de Interlagos",
+        "lists": [
+          "Sábado, 12 de março",
+          "Domingo, 13 de março"
+        ]
+      },
+      "billings": 52
+    }
+  ],
+  "dropped": []
+}

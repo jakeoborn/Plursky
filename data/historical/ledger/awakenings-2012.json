@@ -1,0 +1,68 @@
+{
+  "id": "awakenings-2012",
+  "method": "official_lineup_html",
+  "official": "http://www.awakenings.nl/en/parties/154/awakenings-festival/",
+  "format": "awakenings-parties",
+  "window": {
+    "until": "2012-10-28",
+    "why": "the page is read from the festival's day to 120 days after it"
+  },
+  "census": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "awakenings",
+    "year": 2012,
+    "lifecycle": "occurred",
+    "dates": "2012-06-30..2012-06-30",
+    "evidence": "https://www.nu.nl/overig/2848743/awakenings-wordt-allemansvriend.html",
+    "published": "2012-07-01"
+  },
+  "chosen": "20120701213124",
+  "archivedUrl": "https://web.archive.org/web/20120701213124/http://www.awakenings.nl/en/parties/154/awakenings-festival/",
+  "sha256": "f97ffa662cc79816539473a9a151235c23508e6a40bc8935c58358a9c9263ea2",
+  "title": "Awakenings Festival - 30 June 2012 - Awakenings Parties",
+  "relayedVia": "firecrawl",
+  "stageOrder": [
+    "C",
+    "B",
+    "A",
+    "Z",
+    "Y",
+    "X",
+    "W",
+    "V"
+  ],
+  "printedRanges": 56,
+  "considered": [
+    {
+      "captureTimestamp": "20120701213124",
+      "archivedUrl": "https://web.archive.org/web/20120701213124/http://www.awakenings.nl/en/parties/154/awakenings-festival/",
+      "sha256": "f97ffa662cc79816539473a9a151235c23508e6a40bc8935c58358a9c9263ea2",
+      "bytes": 38248,
+      "via": "firecrawl",
+      "title": "Awakenings Festival - 30 June 2012 - Awakenings Parties",
+      "dated": true,
+      "valid": true,
+      "days": [
+        "Saturday 30 June 2012"
+      ],
+      "printed": {
+        "event": "Awakenings Festival",
+        "date": "30 June 2012",
+        "place": "Recreatiegebied, Halfweg",
+        "hours": "11:00 / 23:00",
+        "areas": [
+          "C",
+          "B",
+          "A",
+          "Z",
+          "Y",
+          "X",
+          "W",
+          "V"
+        ]
+      },
+      "billings": 56
+    }
+  ],
+  "dropped": []
+}

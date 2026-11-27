@@ -1,0 +1,75 @@
+{
+  "id": "electric-forest-2011",
+  "method": "official_lineup_html",
+  "official": "http://electricforestfestival.com/lineup/artists",
+  "format": "ef-lineup",
+  "window": {
+    "until": "2011-07-03",
+    "why": "captures after the first one taken after the last day are not considered"
+  },
+  "chosen": "20110704150422",
+  "archivedUrl": "https://web.archive.org/web/20110704150422/http://electricforestfestival.com/lineup/artists",
+  "sha256": "d1ef53662ffecbddb1bab863c057b2857dcbc90fd2186ca3d35bb31003de6a35",
+  "title": "2011 Artist Lineup | Electric Forest Festival :: June 30 - July 3, 2011 :: Rothbury, Michigan",
+  "relayedVia": "firecrawl",
+  "datesFrom": {
+    "page": "title",
+    "printed": "June 30 - July 3, 2011",
+    "dates": "2011-06-30..2011-07-03"
+  },
+  "stageOrder": [],
+  "considered": [
+    {
+      "captureTimestamp": "20110303085452",
+      "notFiled": "relay: capture 20110303085452 of http://electricforestfestival.com/lineup/artists was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20110618101324",
+      "archivedUrl": "https://web.archive.org/web/20110618101324/http://electricforestfestival.com/lineup/artists",
+      "sha256": "3cc8a240b8baba7c61f12ef1d34cc4d1245c3e1ccb4f2a81561b97d2ee8e7303",
+      "bytes": 105671,
+      "via": "firecrawl",
+      "title": "2011 Artist Lineup | Electric Forest Festival :: June 30 - July 3, 2011 :: Rothbury, Michigan",
+      "template": "drupal",
+      "printedRun": "June 30 - July 3, 2011",
+      "dated": true,
+      "valid": true,
+      "billings": 70,
+      "diffVsChosen": [
+        "added by the final: Cirque du Womp"
+      ]
+    },
+    {
+      "captureTimestamp": "20110626061718",
+      "archivedUrl": "https://web.archive.org/web/20110626061718/http://electricforestfestival.com/lineup/artists",
+      "sha256": "4216ea4fe6233e95ab72852daf18d37c20e30187be3eb70d0f8e6a281b42669e",
+      "bytes": 106518,
+      "via": "firecrawl",
+      "title": "2011 Artist Lineup | Electric Forest Festival :: June 30 - July 3, 2011 :: Rothbury, Michigan",
+      "template": "drupal",
+      "printedRun": "June 30 - July 3, 2011",
+      "dated": true,
+      "valid": true,
+      "billings": 70,
+      "diffVsChosen": [
+        "added by the final: Cirque du Womp"
+      ]
+    },
+    {
+      "captureTimestamp": "20110704150422",
+      "archivedUrl": "https://web.archive.org/web/20110704150422/http://electricforestfestival.com/lineup/artists",
+      "sha256": "d1ef53662ffecbddb1bab863c057b2857dcbc90fd2186ca3d35bb31003de6a35",
+      "bytes": 106868,
+      "via": "firecrawl",
+      "title": "2011 Artist Lineup | Electric Forest Festival :: June 30 - July 3, 2011 :: Rothbury, Michigan",
+      "template": "drupal",
+      "printedRun": "June 30 - July 3, 2011",
+      "dated": true,
+      "valid": true,
+      "billings": 71
+    }
+  ],
+  "dropped": []
+}

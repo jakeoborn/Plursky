@@ -1,0 +1,58 @@
+{
+  "id": "lollapalooza-brasil-2014",
+  "method": "official_lineup_html",
+  "format": "lollabr-por-dia",
+  "official": "http://www.lollapaloozabr.com/2014-line-up-por-dia",
+  "window": [
+    "20140101",
+    "20140406"
+  ],
+  "chosen": "20140227001309",
+  "archivedUrl": "https://web.archive.org/web/20140227001309/http://www.lollapaloozabr.com/2014-line-up-por-dia",
+  "sha256": "f1a69f4cac70426c54d21e1846d540bef02fe2387dac362f355e80a80c0c20e3",
+  "title": "2014 Line up por dia | Lollapalooza Brasil | São Paulo – 5 e 6 de abril de 2014",
+  "relayedVia": "firecrawl",
+  "stageOrder": [],
+  "considered": [
+    {
+      "captureTimestamp": "20140124012416",
+      "notFiled": "relay: capture 20140124012416 of http://www.lollapaloozabr.com/2014-line-up-por-dia was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20140127214719",
+      "notFiled": "relay: capture 20140127214719 of http://www.lollapaloozabr.com/2014-line-up-por-dia was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20140205175910",
+      "notFiled": "relay: capture 20140205175910 of http://www.lollapaloozabr.com/2014-line-up-por-dia was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20140227001309",
+      "archivedUrl": "https://web.archive.org/web/20140227001309/http://www.lollapaloozabr.com/2014-line-up-por-dia",
+      "sha256": "f1a69f4cac70426c54d21e1846d540bef02fe2387dac362f355e80a80c0c20e3",
+      "bytes": 86827,
+      "via": "firecrawl",
+      "title": "2014 Line up por dia | Lollapalooza Brasil | São Paulo – 5 e 6 de abril de 2014",
+      "valid": true,
+      "days": [
+        "Saturday 5 April 2014",
+        "Sunday 6 April 2014"
+      ],
+      "printed": {
+        "dates": "5-6 de abril de 2014 - Autódromo de Interlagos, São Paulo",
+        "lists": [
+          "Sábado, 5 de abril",
+          "Domingo, 6 de abril"
+        ]
+      },
+      "billings": 46
+    }
+  ],
+  "dropped": []
+}

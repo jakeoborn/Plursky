@@ -1,0 +1,45 @@
+{
+  "id": "time-warp-2024",
+  "method": "official_lineup_html",
+  "official": "https://www.time-warp.de/germany/lineup/index_eng.html",
+  "format": "timewarp-subsite",
+  "window": {
+    "from": "20240408",
+    "to": "20240630",
+    "why": "the page keeps its header after the festival: the weeks after it"
+  },
+  "chosen": "20240415131029",
+  "archivedUrl": "https://web.archive.org/web/20240415131029/https://www.time-warp.de/germany/lineup/index_eng.html",
+  "sha256": "787fadcbce541e5f49c2728e41a1f057d1123b71cca4cc71539757a5907ced1d",
+  "title": "Lineup",
+  "relayedVia": "firecrawl",
+  "stageOrder": [],
+  "considered": [
+    {
+      "captureTimestamp": "20240415131029",
+      "archivedUrl": "https://web.archive.org/web/20240415131029/https://www.time-warp.de/germany/lineup/index_eng.html",
+      "sha256": "787fadcbce541e5f49c2728e41a1f057d1123b71cca4cc71539757a5907ced1d",
+      "bytes": 51323,
+      "via": "firecrawl",
+      "title": "Lineup",
+      "titled": true,
+      "dated": true,
+      "valid": true,
+      "days": [
+        "Friday 5 April 2024",
+        "Saturday 6 April 2024"
+      ],
+      "printed": {
+        "edition": "Germany",
+        "dates": "5 & 6 April 2024",
+        "city": "Mannheim",
+        "lists": [
+          "Fr 05.04.24",
+          "Sa 06.04.24"
+        ]
+      },
+      "billings": 62
+    }
+  ],
+  "dropped": []
+}

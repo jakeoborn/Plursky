@@ -1,0 +1,985 @@
+{
+ "id": "lollapalooza-brasil-2018",
+ "festivalId": "lollapalooza-brasil",
+ "name": "Lollapalooza Brasil 2018",
+ "year": 2018,
+ "timezone": "America/Sao_Paulo",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2018-03-23",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2018-03-24",
+   "label": "Saturday"
+  },
+  {
+   "day": 3,
+   "date": "2018-03-25",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [],
+ "artists": [
+  {
+   "id": "lollapalooza-brasil-2018:red-hot-chili-peppers",
+   "name": "Red Hot Chili Peppers",
+   "key": "red-hot-chili-peppers",
+   "performers": [
+    "red-hot-chili-peppers"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:lcd-soundsystem",
+   "name": "LCD SoundSystem",
+   "key": "lcd-soundsystem",
+   "performers": [
+    "lcd-soundsystem"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:chance-the-rapper",
+   "name": "Chance The Rapper",
+   "key": "chance-the-rapper",
+   "performers": [
+    "chance-the-rapper"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:alok",
+   "name": "Alok",
+   "key": "alok",
+   "performers": [
+    "alok"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:galantis",
+   "name": "Galantis",
+   "key": "galantis",
+   "performers": [
+    "galantis"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:royal-blood",
+   "name": "ROYAL BLOOD",
+   "key": "royal-blood",
+   "performers": [
+    "royal-blood"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:dvbbs",
+   "name": "DVBBS",
+   "key": "dvbbs",
+   "performers": [
+    "dvbbs"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:mallu-magalhaes",
+   "name": "Mallu Magalhães",
+   "key": "mallu-magalhaes",
+   "performers": [
+    "mallu-magalhaes"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:vanguart",
+   "name": "Vanguart",
+   "key": "vanguart",
+   "performers": [
+    "vanguart"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:volbeat",
+   "name": "VOLBEAT",
+   "key": "volbeat",
+   "performers": [
+    "volbeat"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:mac-demarco",
+   "name": "Mac DeMarco",
+   "key": "mac-demarco",
+   "performers": [
+    "mac-demarco"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:zara-larsson",
+   "name": "Zara Larsson",
+   "key": "zara-larsson",
+   "performers": [
+    "zara-larsson"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:kyle-watson",
+   "name": "Kyle Watson",
+   "key": "kyle-watson",
+   "performers": [
+    "kyle-watson"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:ftampa",
+   "name": "FTAMPA",
+   "key": "ftampa",
+   "performers": [
+    "ftampa"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:alison-wonderland",
+   "name": "Alison Wonderland",
+   "key": "alison-wonderland",
+   "performers": [
+    "alison-wonderland"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:plutao-ja-foi-planeta",
+   "name": "Plutão já foi planeta",
+   "key": "plutao-ja-foi-planeta",
+   "performers": [
+    "plutao-ja-foi-planeta"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:what-so-not",
+   "name": "What So Not",
+   "key": "what-so-not",
+   "performers": [
+    "what-so-not"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:spoon",
+   "name": "Spoon",
+   "key": "spoon",
+   "performers": [
+    "spoon"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:oh-wonder",
+   "name": "Oh Wonder",
+   "key": "oh-wonder",
+   "performers": [
+    "oh-wonder"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:selvagens-a-procura-de-lei",
+   "name": "Selvagens à Procura de Lei",
+   "key": "selvagens-a-procura-de-lei",
+   "performers": [
+    "selvagens-a-procura-de-lei"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:shiba-san",
+   "name": "Shiba San",
+   "key": "shiba-san",
+   "performers": [
+    "shiba-san"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:rincon-sapiencia",
+   "name": "Rincon Sapiência",
+   "key": "rincon-sapiencia",
+   "performers": [
+    "rincon-sapiencia"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:nem-liminha-ouviu",
+   "name": "Nem Liminha Ouviu",
+   "key": "nem-liminha-ouviu",
+   "performers": [
+    "nem-liminha-ouviu"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:sevenn",
+   "name": "SEVENN",
+   "key": "sevenn",
+   "performers": [
+    "sevenn"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:luneta-magica",
+   "name": "Luneta Mágica",
+   "key": "luneta-magica",
+   "performers": [
+    "luneta-magica"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:pearl-jam",
+   "name": "Pearl Jam",
+   "key": "pearl-jam",
+   "performers": [
+    "pearl-jam"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:imagine-dragons",
+   "name": "Imagine Dragons",
+   "key": "imagine-dragons",
+   "performers": [
+    "imagine-dragons"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:dj-snake",
+   "name": "DJ Snake",
+   "key": "dj-snake",
+   "performers": [
+    "dj-snake"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:kygo",
+   "name": "Kygo",
+   "key": "kygo",
+   "performers": [
+    "kygo"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:the-national",
+   "name": "The National",
+   "key": "the-national",
+   "performers": [
+    "the-national"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:david-byrne",
+   "name": "David Byrne",
+   "key": "david-byrne",
+   "performers": [
+    "david-byrne"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:mano-brown",
+   "name": "Mano Brown",
+   "key": "mano-brown",
+   "performers": [
+    "mano-brown"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:yellow-claw",
+   "name": "Yellow Claw",
+   "key": "yellow-claw",
+   "performers": [
+    "yellow-claw"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:mac-miller",
+   "name": "Mac Miller",
+   "key": "mac-miller",
+   "performers": [
+    "mac-miller"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:anderson-paak",
+   "name": "Anderson .Paak",
+   "key": "anderson-paak",
+   "performers": [
+    "anderson-paak"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:o-terno",
+   "name": "O Terno",
+   "key": "o-terno",
+   "performers": [
+    "o-terno"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:deorro",
+   "name": "Deorro",
+   "key": "deorro",
+   "performers": [
+    "deorro"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:ego-kill-talent",
+   "name": "Ego Kill Talent",
+   "key": "ego-kill-talent",
+   "performers": [
+    "ego-kill-talent"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:liniker-e-os-caramelows",
+   "name": "Liniker e os Caramelows",
+   "key": "liniker-e-os-caramelows",
+   "performers": [
+    "liniker-e-os-caramelows"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:nghtmre",
+   "name": "Nghtmre",
+   "key": "nghtmre",
+   "performers": [
+    "nghtmre"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:kaleo",
+   "name": "Kaleo",
+   "key": "kaleo",
+   "performers": [
+    "kaleo"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:tagore",
+   "name": "Tagore",
+   "key": "tagore",
+   "performers": [
+    "tagore"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:gustavo-mota",
+   "name": "Gustavo Mota",
+   "key": "gustavo-mota",
+   "performers": [
+    "gustavo-mota"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:devochka",
+   "name": "Devochka",
+   "key": "devochka",
+   "performers": [
+    "devochka"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:tash-sultana",
+   "name": "Tash Sultana",
+   "key": "tash-sultana",
+   "performers": [
+    "tash-sultana"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:louis-the-child",
+   "name": "Louis the Child",
+   "key": "louis-the-child",
+   "performers": [
+    "louis-the-child"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:whethan",
+   "name": "Whethan",
+   "key": "whethan",
+   "performers": [
+    "whethan"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:jesuton",
+   "name": "Jesuton",
+   "key": "jesuton",
+   "performers": [
+    "jesuton"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:ventre",
+   "name": "Ventre",
+   "key": "ventre",
+   "performers": [
+    "ventre"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:the-killers",
+   "name": "The Killers",
+   "key": "the-killers",
+   "performers": [
+    "the-killers"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:lana-del-rey",
+   "name": "Lana Del Rey",
+   "key": "lana-del-rey",
+   "performers": [
+    "lana-del-rey"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:wiz-khalifa",
+   "name": "Wiz Khalifa",
+   "key": "wiz-khalifa",
+   "performers": [
+    "wiz-khalifa"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:liam-gallagher",
+   "name": "Liam Gallagher",
+   "key": "liam-gallagher",
+   "performers": [
+    "liam-gallagher"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:hardwell",
+   "name": "HARDWELL",
+   "key": "hardwell",
+   "performers": [
+    "hardwell"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:khalid",
+   "name": "Khalid",
+   "key": "khalid",
+   "performers": [
+    "khalid"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:dillon-francis",
+   "name": "DILLON FRANCIS",
+   "key": "dillon-francis",
+   "performers": [
+    "dillon-francis"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:milky-chance",
+   "name": "Milky Chance",
+   "key": "milky-chance",
+   "performers": [
+    "milky-chance"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:tropkillaz",
+   "name": "Tropkillaz",
+   "key": "tropkillaz",
+   "performers": [
+    "tropkillaz"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:tyler-the-creator",
+   "name": "Tyler, the Creator",
+   "key": "tyler-the-creator",
+   "performers": [
+    "tyler-the-creator"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:the-neighbourhood",
+   "name": "THE NEIGHBOURHOOD",
+   "key": "the-neighbourhood",
+   "performers": [
+    "the-neighbourhood"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:metronomy",
+   "name": "METRONOMY",
+   "key": "metronomy",
+   "performers": [
+    "metronomy"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:tie",
+   "name": "Tiê",
+   "key": "tie",
+   "performers": [
+    "tie"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:cat-dealers",
+   "name": "Cat Dealers",
+   "key": "cat-dealers",
+   "performers": [
+    "cat-dealers"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:alan-walker",
+   "name": "Alan Walker",
+   "key": "alan-walker",
+   "performers": [
+    "alan-walker"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:jetlag",
+   "name": "Jetlag",
+   "key": "jetlag",
+   "performers": [
+    "jetlag"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:sofi-tukker",
+   "name": "SOFI TUKKER",
+   "key": "sofi-tukker",
+   "performers": [
+    "sofi-tukker"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:cheat-codes",
+   "name": "Cheat Codes",
+   "key": "cheat-codes",
+   "performers": [
+    "cheat-codes"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:mahmundi",
+   "name": "MahMundi",
+   "key": "mahmundi",
+   "performers": [
+    "mahmundi"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:thomas-jack",
+   "name": "Thomas Jack",
+   "key": "thomas-jack",
+   "performers": [
+    "thomas-jack"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:j-rd",
+   "name": "Jørd",
+   "key": "j-rd",
+   "performers": [
+    "j-rd"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:braza",
+   "name": "Braza",
+   "key": "braza",
+   "performers": [
+    "braza"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2018:francisco-el-hombre",
+   "name": "francisco, el hombre",
+   "key": "francisco-el-hombre",
+   "performers": [
+    "francisco-el-hombre"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "official_lineup_html",
+  "official": "https://www.lollapaloozabr.com/lineup/2018-interativo/",
+  "captures": [
+   {
+    "page": "lineup",
+    "archivedUrl": "https://web.archive.org/web/20180201215248/https://www.lollapaloozabr.com/lineup/2018-interativo/",
+    "captureTimestamp": "20180201215248",
+    "sha256": "f276fadb1c12da855458975eac9dce58ed4b4ce2863e4b9fe4e439c6fdfcae2b"
+   }
+  ]
+ },
+ "notes": [
+  {
+   "asOf": "2026-11-27",
+   "text": "The lineup as the festival's own page printed it on 1 February 2018, seven weeks before the festival. Changes after that day are not shown.",
+   "source": "https://web.archive.org/web/20180201215248/https://www.lollapaloozabr.com/lineup/2018-interativo/"
+  }
+ ]
+}

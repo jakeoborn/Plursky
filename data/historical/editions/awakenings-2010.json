@@ -1,0 +1,701 @@
+{
+ "id": "awakenings-2010",
+ "festivalId": "awakenings",
+ "name": "Awakenings Festival 2010",
+ "year": 2010,
+ "timezone": "Europe/Amsterdam",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2010-06-26",
+   "label": "Saturday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "awakenings-2010:a",
+   "name": "A"
+  },
+  {
+   "id": "awakenings-2010:z",
+   "name": "Z"
+  },
+  {
+   "id": "awakenings-2010:y",
+   "name": "Y"
+  },
+  {
+   "id": "awakenings-2010:x",
+   "name": "X"
+  },
+  {
+   "id": "awakenings-2010:w-air",
+   "name": "W (air)"
+  },
+  {
+   "id": "awakenings-2010:v-air",
+   "name": "V (air)"
+  }
+ ],
+ "artists": [
+  {
+   "id": "awakenings-2010:william-kouam-djoko-live",
+   "name": "William Kouam Djoko (live)",
+   "key": "william-kouam-djoko-live",
+   "performers": [
+    "william-kouam-djoko-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:melon",
+   "name": "Melon",
+   "key": "melon",
+   "performers": [
+    "melon"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:cassy",
+   "name": "Cassy",
+   "key": "cassy",
+   "performers": [
+    "cassy"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:osunlade",
+   "name": "Osunlade",
+   "key": "osunlade",
+   "performers": [
+    "osunlade"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:mathias-kaden",
+   "name": "Mathias Kaden",
+   "key": "mathias-kaden",
+   "performers": [
+    "mathias-kaden"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:gui-boratto-live",
+   "name": "Gui Boratto (live)",
+   "key": "gui-boratto-live",
+   "performers": [
+    "gui-boratto-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:ricardo-tobar-live",
+   "name": "Ricardo Tobar (live)",
+   "key": "ricardo-tobar-live",
+   "performers": [
+    "ricardo-tobar-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:james-holden",
+   "name": "James Holden",
+   "key": "james-holden",
+   "performers": [
+    "james-holden"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:zix",
+   "name": "ZIX",
+   "key": "zix",
+   "performers": [
+    "zix"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:bas-mooy-and-radial",
+   "name": "Bas Mooy & Radial",
+   "key": "bas-mooy-and-radial",
+   "performers": [
+    "bas-mooy-and-radial"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:a-paul",
+   "name": "A.Paul",
+   "key": "a-paul",
+   "performers": [
+    "a-paul"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:d-a-v-e-the-drummer-live",
+   "name": "D.A.V.E the Drummer (live)",
+   "key": "d-a-v-e-the-drummer-live",
+   "performers": [
+    "d-a-v-e-the-drummer-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:dj-rush",
+   "name": "DJ Rush",
+   "key": "dj-rush",
+   "performers": [
+    "dj-rush"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:fernanda-martins-and-candy-cox",
+   "name": "Fernanda Martins & Candy Cox",
+   "key": "fernanda-martins-and-candy-cox",
+   "performers": [
+    "fernanda-martins-and-candy-cox"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:dj-lukas-and-o-b-i",
+   "name": "DJ Lukas & O.B I.",
+   "key": "dj-lukas-and-o-b-i",
+   "performers": [
+    "dj-lukas-and-o-b-i"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:pet-duo-live",
+   "name": "PET Duo (live)",
+   "key": "pet-duo-live",
+   "performers": [
+    "pet-duo-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:marco-remus-and-frank-kvitta",
+   "name": "Marco Remus & Frank Kvitta",
+   "key": "marco-remus-and-frank-kvitta",
+   "performers": [
+    "marco-remus-and-frank-kvitta"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:juan-sanchez",
+   "name": "Juan Sanchez",
+   "key": "juan-sanchez",
+   "performers": [
+    "juan-sanchez"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:y"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:secret-cinema",
+   "name": "Secret Cinema",
+   "key": "secret-cinema",
+   "performers": [
+    "secret-cinema"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:y"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:len-faki",
+   "name": "Len Faki",
+   "key": "len-faki",
+   "performers": [
+    "len-faki"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:y"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:marcel-dettmann-and-ben-klock",
+   "name": "Marcel Dettmann & Ben Klock",
+   "key": "marcel-dettmann-and-ben-klock",
+   "performers": [
+    "marcel-dettmann-and-ben-klock"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:y"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:laurent-garnier-live",
+   "name": "Laurent Garnier (live)",
+   "key": "laurent-garnier-live",
+   "performers": [
+    "laurent-garnier-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:y"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:jeff-mills",
+   "name": "Jeff Mills",
+   "key": "jeff-mills",
+   "performers": [
+    "jeff-mills"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:y"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:dave-clarke",
+   "name": "Dave Clarke",
+   "key": "dave-clarke",
+   "performers": [
+    "dave-clarke"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:y"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:the-advent-and-industrialyzer-live",
+   "name": "The Advent & Industrialyzer (live)",
+   "key": "the-advent-and-industrialyzer-live",
+   "performers": [
+    "the-advent-and-industrialyzer-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:y"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:angelo",
+   "name": "Angelo",
+   "key": "angelo",
+   "performers": [
+    "angelo"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:x"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:cari-lekebusch",
+   "name": "Cari Lekebusch",
+   "key": "cari-lekebusch",
+   "performers": [
+    "cari-lekebusch"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:x"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:remy",
+   "name": "Remy",
+   "key": "remy",
+   "performers": [
+    "remy"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:x"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:steve-rachmad",
+   "name": "Steve Rachmad",
+   "key": "steve-rachmad",
+   "performers": [
+    "steve-rachmad"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:x"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:surgeon-live-a-v",
+   "name": "Surgeon (live A/V)",
+   "key": "surgeon-live-a-v",
+   "performers": [
+    "surgeon-live-a-v"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:x"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:billy-nasty",
+   "name": "Billy Nasty",
+   "key": "billy-nasty",
+   "performers": [
+    "billy-nasty"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:x"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:oscar-mulero",
+   "name": "Oscar Mulero",
+   "key": "oscar-mulero",
+   "performers": [
+    "oscar-mulero"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:x"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:ben-sims",
+   "name": "Ben Sims",
+   "key": "ben-sims",
+   "performers": [
+    "ben-sims"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:x"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:koen-lebens",
+   "name": "Koen Lebens",
+   "key": "koen-lebens",
+   "performers": [
+    "koen-lebens"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:w-air"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:lutzenkirchen-live",
+   "name": "Lützenkirchen (live)",
+   "key": "lutzenkirchen-live",
+   "performers": [
+    "lutzenkirchen-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:w-air"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:raresh",
+   "name": "Raresh",
+   "key": "raresh",
+   "performers": [
+    "raresh"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:w-air"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:reboot-live",
+   "name": "Reboot (live)",
+   "key": "reboot-live",
+   "performers": [
+    "reboot-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:w-air"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:luciano",
+   "name": "Luciano",
+   "key": "luciano",
+   "performers": [
+    "luciano"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:w-air"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:loco-dice",
+   "name": "Loco Dice",
+   "key": "loco-dice",
+   "performers": [
+    "loco-dice"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:w-air"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:richie-hawtin",
+   "name": "Richie Hawtin",
+   "key": "richie-hawtin",
+   "performers": [
+    "richie-hawtin"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:w-air"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:johanna-mercker-and-efde",
+   "name": "Johanna Mercker & Efde",
+   "key": "johanna-mercker-and-efde",
+   "performers": [
+    "johanna-mercker-and-efde"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:v-air"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:bart-skils-and-anton-pieete",
+   "name": "Bart Skils & Anton Pieete",
+   "key": "bart-skils-and-anton-pieete",
+   "performers": [
+    "bart-skils-and-anton-pieete"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:v-air"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:paco-osuna-and-alex-under",
+   "name": "Paco Osuna & Alex Under",
+   "key": "paco-osuna-and-alex-under",
+   "performers": [
+    "paco-osuna-and-alex-under"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:v-air"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:belleville-3-juan-atkins-and-derrick-may-and-kevin-saunderson",
+   "name": "Belleville 3: Juan Atkins & Derrick May & Kevin Saunderson",
+   "key": "belleville-3-juan-atkins-and-derrick-may-and-kevin-saunderson",
+   "performers": [
+    "belleville-3-juan-atkins-and-derrick-may-and-kevin-saunderson"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:v-air"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:adam-beyer",
+   "name": "Adam Beyer",
+   "key": "adam-beyer",
+   "performers": [
+    "adam-beyer"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:v-air"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2010:collabs-session-ft-speedy-j-and-chris-liebing",
+   "name": "Collabs Session ft Speedy J & Chris Liebing",
+   "key": "collabs-session-ft-speedy-j-and-chris-liebing",
+   "performers": [
+    "collabs-session-ft-speedy-j-and-chris-liebing"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2010:v-air"
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "official_lineup_html",
+  "official": "http://www.awakenings.nl/en/parties/137/awakenings-festival-10-year-anniversary/",
+  "captures": [
+   {
+    "page": "lineup",
+    "archivedUrl": "https://web.archive.org/web/20100925085714/http://www.awakenings.nl/en/parties/137/awakenings-festival-10-year-anniversary/",
+    "captureTimestamp": "20100925085714",
+    "sha256": "91dee1b0760ba5f36eaac33ab3bfb85574e994156208ea701bf0dfde5b09ee08"
+   }
+  ]
+ }
+}

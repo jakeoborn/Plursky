@@ -1,0 +1,533 @@
+{
+ "id": "ultra-europe-2013",
+ "festivalId": "ultra-europe",
+ "name": "Ultra Europe 2013",
+ "year": 2013,
+ "timezone": "Europe/Zagreb",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2013-07-12",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2013-07-13",
+   "label": "Saturday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "ultra-europe-2013:main-stage",
+   "name": "Main Stage"
+  },
+  {
+   "id": "ultra-europe-2013:carl-cox-and-friends-arena",
+   "name": "Carl Cox & Friends Arena"
+  }
+ ],
+ "artists": [
+  {
+   "id": "ultra-europe-2013:adventure-club",
+   "name": "Adventure Club",
+   "key": "adventure-club",
+   "performers": [
+    "adventure-club"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2013:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2013:danny-avila",
+   "name": "Danny Avila",
+   "key": "danny-avila",
+   "performers": [
+    "danny-avila"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2013:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2013:hard-rock-sofa",
+   "name": "Hard Rock Sofa",
+   "key": "hard-rock-sofa",
+   "performers": [
+    "hard-rock-sofa"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2013:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2013:knife-party",
+   "name": "Knife Party",
+   "key": "knife-party",
+   "performers": [
+    "knife-party"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2013:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2013:pero-fullhouse",
+   "name": "Pero Fullhouse",
+   "key": "pero-fullhouse",
+   "performers": [
+    "pero-fullhouse"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2013:carl-cox-and-friends-arena"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2013:sunnery-james-and-ryan-marciano",
+   "name": "Sunnery James & Ryan Marciano",
+   "key": "sunnery-james-and-ryan-marciano",
+   "performers": [
+    "sunnery-james-and-ryan-marciano"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2013:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2013:w-and-w",
+   "name": "W&W",
+   "key": "w-and-w",
+   "performers": [
+    "w-and-w"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2013:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2013:yousef",
+   "name": "Yousef",
+   "key": "yousef",
+   "performers": [
+    "yousef"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2013:carl-cox-and-friends-arena"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2013:adam-beyer",
+   "name": "Adam Beyer",
+   "key": "adam-beyer",
+   "performers": [
+    "adam-beyer"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2013:carl-cox-and-friends-arena"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2013:afrojack",
+   "name": "Afrojack",
+   "key": "afrojack",
+   "performers": [
+    "afrojack"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2013:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2013:armin-van-buuren",
+   "name": "Armin van Buuren",
+   "key": "armin-van-buuren",
+   "performers": [
+    "armin-van-buuren"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2013:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2013:art-department",
+   "name": "Art Department",
+   "key": "art-department",
+   "performers": [
+    "art-department"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2013:carl-cox-and-friends-arena"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2013:arty",
+   "name": "Arty",
+   "key": "arty",
+   "performers": [
+    "arty"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2013:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2013:avicii",
+   "name": "Avicii",
+   "key": "avicii",
+   "performers": [
+    "avicii"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2013:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2013:bingo-players",
+   "name": "Bingo Players",
+   "key": "bingo-players",
+   "performers": [
+    "bingo-players"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2013:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2013:carl-cox",
+   "name": "Carl Cox",
+   "key": "carl-cox",
+   "performers": [
+    "carl-cox"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2013:carl-cox-and-friends-arena"
+    },
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2013:carl-cox-and-friends-arena"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2013:cazzette",
+   "name": "Cazzette",
+   "key": "cazzette",
+   "performers": [
+    "cazzette"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2013:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2013:chase-and-status",
+   "name": "Chase and Status",
+   "key": "chase-and-status",
+   "performers": [
+    "chase-and-status"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2013:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2013:deniz-koyu",
+   "name": "Deniz Koyu",
+   "key": "deniz-koyu",
+   "performers": [
+    "deniz-koyu"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2013:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2013:fedde-le-grand",
+   "name": "Fedde Le Grand",
+   "key": "fedde-le-grand",
+   "performers": [
+    "fedde-le-grand"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2013:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2013:guy-gerber",
+   "name": "Guy Gerber",
+   "key": "guy-gerber",
+   "performers": [
+    "guy-gerber"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2013:carl-cox-and-friends-arena"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2013:hardwell",
+   "name": "Hardwell",
+   "key": "hardwell",
+   "performers": [
+    "hardwell"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2013:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2013:jamie-jones",
+   "name": "Jamie Jones",
+   "key": "jamie-jones",
+   "performers": [
+    "jamie-jones"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2013:carl-cox-and-friends-arena"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2013:jon-rundell",
+   "name": "Jon Rundell",
+   "key": "jon-rundell",
+   "performers": [
+    "jon-rundell"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2013:carl-cox-and-friends-arena"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2013:krewella",
+   "name": "Krewella",
+   "key": "krewella",
+   "performers": [
+    "krewella"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2013:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2013:luciano",
+   "name": "Luciano",
+   "key": "luciano",
+   "performers": [
+    "luciano"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2013:carl-cox-and-friends-arena"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2013:marco-carola",
+   "name": "Marco Carola",
+   "key": "marco-carola",
+   "performers": [
+    "marco-carola"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2013:carl-cox-and-friends-arena"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2013:nicky-romero",
+   "name": "Nicky Romero",
+   "key": "nicky-romero",
+   "performers": [
+    "nicky-romero"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2013:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2013:porter-robinson",
+   "name": "Porter Robinson",
+   "key": "porter-robinson",
+   "performers": [
+    "porter-robinson"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2013:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2013:reboot",
+   "name": "Reboot",
+   "key": "reboot",
+   "performers": [
+    "reboot"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2013:carl-cox-and-friends-arena"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2013:riotgear",
+   "name": "Riotgear",
+   "key": "riotgear",
+   "performers": [
+    "riotgear"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2013:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2013:sander-van-doorn",
+   "name": "Sander van Doorn",
+   "key": "sander-van-doorn",
+   "performers": [
+    "sander-van-doorn"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2013:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2013:swanky-tunes",
+   "name": "Swanky Tunes",
+   "key": "swanky-tunes",
+   "performers": [
+    "swanky-tunes"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2013:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2013:umek",
+   "name": "Umek",
+   "key": "umek",
+   "performers": [
+    "umek"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2013:carl-cox-and-friends-arena"
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "official_lineup_html",
+  "official": "http://ultraeurope.com:80/artists/",
+  "captures": [
+   {
+    "page": "lineup",
+    "archivedUrl": "https://web.archive.org/web/20130720070946/http://ultraeurope.com:80/artists/",
+    "captureTimestamp": "20130720070946",
+    "sha256": "d8b17d88ca9ba63073af94ae31caa8fc4da55c0c73e89d5b6dc636d2f0ac8b53"
+   }
+  ]
+ },
+ "notes": [
+  {
+   "asOf": "2026-11-27",
+   "text": "The lineup as the festival's own Artists page printed it a week after the festival: the acts it featured, each with its day and stage, not every act that played. Its third day, Ultra Beach on Hvar, was a separate event and is not listed.",
+   "source": "https://web.archive.org/web/20130720070946/http://ultraeurope.com:80/artists/"
+  }
+ ]
+}

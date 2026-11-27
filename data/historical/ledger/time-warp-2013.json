@@ -1,0 +1,53 @@
+{
+  "id": "time-warp-2013",
+  "method": "official_lineup_html",
+  "official": "http://www.time-warp.de/mannheim/line-up/index_eng.html",
+  "format": "timewarp-mannheim",
+  "window": {
+    "from": "20130307",
+    "to": "20130406",
+    "why": "the month before the festival, at the address that held 2012's lineup"
+  },
+  "chosen": "20130403040651",
+  "archivedUrl": "https://web.archive.org/web/20130403040651/http://www.time-warp.de/mannheim/line-up/index_eng.html",
+  "sha256": "25086aa997d19bc8bf7caaebccbc2bca3be58127fe39df323d8240cb0fd1a38c",
+  "title": "Line-Up » Time Warp Mannheim » Time Warp",
+  "relayedVia": "firecrawl",
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "time-warp",
+    "year": 2013,
+    "lifecycle": "occurred",
+    "dates": "2013-04-06..2013-04-07",
+    "evidence": "https://www.mrn-news.de/2013/04/08/suedhessen-lorsch-polizei-stellt-rauschgift-sicher-und-stoppt-autofahrer-unter-drogeneinfluss-verkehrskontrollen-anlaesslich-der-time-wrap-2013-74518-74518/",
+    "published": "2013-04-08"
+  },
+  "stageOrder": [],
+  "considered": [
+    {
+      "captureTimestamp": "20130403040651",
+      "archivedUrl": "https://web.archive.org/web/20130403040651/http://www.time-warp.de/mannheim/line-up/index_eng.html",
+      "sha256": "25086aa997d19bc8bf7caaebccbc2bca3be58127fe39df323d8240cb0fd1a38c",
+      "bytes": 30369,
+      "via": "firecrawl",
+      "title": "Line-Up » Time Warp Mannheim » Time Warp",
+      "titled": true,
+      "dated": true,
+      "valid": true,
+      "days": [
+        "Saturday 6 April 2013"
+      ],
+      "printed": {
+        "edition": "Mannheim",
+        "year": 2013,
+        "date": null,
+        "sections": [
+          "DJs",
+          "LIVE"
+        ]
+      },
+      "billings": 46
+    }
+  ],
+  "dropped": []
+}

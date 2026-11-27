@@ -1,0 +1,694 @@
+{
+ "id": "electric-forest-2011",
+ "festivalId": "electric-forest",
+ "name": "Electric Forest 2011",
+ "year": 2011,
+ "timezone": "America/Detroit",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "undated": true,
+ "days": [
+  {
+   "day": 1,
+   "date": "2011-06-30",
+   "label": "Thursday"
+  },
+  {
+   "day": 2,
+   "date": "2011-07-01",
+   "label": "Friday"
+  },
+  {
+   "day": 3,
+   "date": "2011-07-02",
+   "label": "Saturday"
+  },
+  {
+   "day": 4,
+   "date": "2011-07-03",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [],
+ "artists": [
+  {
+   "id": "electric-forest-2011:the-string-cheese-incident",
+   "name": "The String Cheese Incident",
+   "key": "the-string-cheese-incident",
+   "performers": [
+    "the-string-cheese-incident"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:tiesto",
+   "name": "Tiësto",
+   "key": "tiesto",
+   "performers": [
+    "tiesto"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:bassnectar",
+   "name": "Bassnectar",
+   "key": "bassnectar",
+   "performers": [
+    "bassnectar"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:pretty-lights",
+   "name": "Pretty Lights",
+   "key": "pretty-lights",
+   "performers": [
+    "pretty-lights"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:reo-speedwagon",
+   "name": "REO Speedwagon",
+   "key": "reo-speedwagon",
+   "performers": [
+    "reo-speedwagon"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:edward-sharpe-and-the-magnetic-zeros",
+   "name": "Edward Sharpe & The Magnetic Zeros",
+   "key": "edward-sharpe-and-the-magnetic-zeros",
+   "performers": [
+    "edward-sharpe-and-the-magnetic-zeros"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:stephen-marley",
+   "name": "Stephen Marley",
+   "key": "stephen-marley",
+   "performers": [
+    "stephen-marley"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:kaskade",
+   "name": "Kaskade",
+   "key": "kaskade",
+   "performers": [
+    "kaskade"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:shpongle-presents-the-shpongletron-experience",
+   "name": "Shpongle presents The Shpongletron Experience",
+   "key": "shpongle-presents-the-shpongletron-experience",
+   "performers": [
+    "shpongle-presents-the-shpongletron-experience"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:keller-williams",
+   "name": "Keller Williams",
+   "key": "keller-williams",
+   "performers": [
+    "keller-williams"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:galactic",
+   "name": "Galactic",
+   "key": "galactic",
+   "performers": [
+    "galactic"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:lotus",
+   "name": "Lotus",
+   "key": "lotus",
+   "performers": [
+    "lotus"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:conspirator",
+   "name": "Conspirator",
+   "key": "conspirator",
+   "performers": [
+    "conspirator"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:railroad-earth",
+   "name": "Railroad Earth",
+   "key": "railroad-earth",
+   "performers": [
+    "railroad-earth"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:jj-grey-and-mofro",
+   "name": "JJ Grey & Mofro",
+   "key": "jj-grey-and-mofro",
+   "performers": [
+    "jj-grey-and-mofro"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:skrillex",
+   "name": "Skrillex",
+   "key": "skrillex",
+   "performers": [
+    "skrillex"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:excision",
+   "name": "Excision",
+   "key": "excision",
+   "performers": [
+    "excision"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:the-new-deal",
+   "name": "The New Deal",
+   "key": "the-new-deal",
+   "performers": [
+    "the-new-deal"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:eoto",
+   "name": "EOTO",
+   "key": "eoto",
+   "performers": [
+    "eoto"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:emmitt-nershi-band",
+   "name": "Emmitt-Nershi Band",
+   "key": "emmitt-nershi-band",
+   "performers": [
+    "emmitt-nershi-band"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:karl-denson-s-tiny-universe",
+   "name": "Karl Denson's Tiny Universe",
+   "key": "karl-denson-s-tiny-universe",
+   "performers": [
+    "karl-denson-s-tiny-universe"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:kyle-hollingsworth-band",
+   "name": "Kyle Hollingsworth Band",
+   "key": "kyle-hollingsworth-band",
+   "performers": [
+    "kyle-hollingsworth-band"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:toubab-krewe",
+   "name": "Toubab Krewe",
+   "key": "toubab-krewe",
+   "performers": [
+    "toubab-krewe"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:bonobo-dj-set",
+   "name": "Bonobo (DJ Set)",
+   "key": "bonobo-dj-set",
+   "performers": [
+    "bonobo-dj-set"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:beats-antique",
+   "name": "Beats Antique",
+   "key": "beats-antique",
+   "performers": [
+    "beats-antique"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:zach-deputy",
+   "name": "Zach Deputy",
+   "key": "zach-deputy",
+   "performers": [
+    "zach-deputy"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:12th-planet",
+   "name": "12th Planet",
+   "key": "12th-planet",
+   "performers": [
+    "12th-planet"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:big-gigantic",
+   "name": "Big Gigantic",
+   "key": "big-gigantic",
+   "performers": [
+    "big-gigantic"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:chiddy-bang",
+   "name": "Chiddy Bang",
+   "key": "chiddy-bang",
+   "performers": [
+    "chiddy-bang"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:future-rock",
+   "name": "Future Rock",
+   "key": "future-rock",
+   "performers": [
+    "future-rock"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:eskmo",
+   "name": "Eskmo",
+   "key": "eskmo",
+   "performers": [
+    "eskmo"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:lettuce",
+   "name": "Lettuce",
+   "key": "lettuce",
+   "performers": [
+    "lettuce"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:eliot-lipp",
+   "name": "Eliot Lipp",
+   "key": "eliot-lipp",
+   "performers": [
+    "eliot-lipp"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:paper-diamond",
+   "name": "Paper Diamond",
+   "key": "paper-diamond",
+   "performers": [
+    "paper-diamond"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:the-infamous-stringdusters",
+   "name": "The Infamous Stringdusters",
+   "key": "the-infamous-stringdusters",
+   "performers": [
+    "the-infamous-stringdusters"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:zion-i-and-the-grouch",
+   "name": "Zion I & The Grouch",
+   "key": "zion-i-and-the-grouch",
+   "performers": [
+    "zion-i-and-the-grouch"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:greensky-bluegrass",
+   "name": "Greensky Bluegrass",
+   "key": "greensky-bluegrass",
+   "performers": [
+    "greensky-bluegrass"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:feed-me",
+   "name": "Feed Me",
+   "key": "feed-me",
+   "performers": [
+    "feed-me"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:reverend-peyton-s-big-damn-band",
+   "name": "Reverend Peyton’s Big Damn Band",
+   "key": "reverend-peyton-s-big-damn-band",
+   "performers": [
+    "reverend-peyton-s-big-damn-band"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:mat-mchugh-the-beautiful-girls-solo-and-acoustic",
+   "name": "Mat.McHugh (The Beautiful Girls) Solo & Acoustic",
+   "key": "mat-mchugh-the-beautiful-girls-solo-and-acoustic",
+   "performers": [
+    "mat-mchugh-the-beautiful-girls-solo-and-acoustic"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:dieselboy",
+   "name": "Dieselboy",
+   "key": "dieselboy",
+   "performers": [
+    "dieselboy"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:the-pimps-of-joytime",
+   "name": "The Pimps of Joytime",
+   "key": "the-pimps-of-joytime",
+   "performers": [
+    "the-pimps-of-joytime"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:rubblebucket",
+   "name": "Rubblebucket",
+   "key": "rubblebucket",
+   "performers": [
+    "rubblebucket"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:papadosio",
+   "name": "Papadosio",
+   "key": "papadosio",
+   "performers": [
+    "papadosio"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:vibesquad",
+   "name": "VibeSquaD",
+   "key": "vibesquad",
+   "performers": [
+    "vibesquad"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:archnemesis",
+   "name": "Archnemesis",
+   "key": "archnemesis",
+   "performers": [
+    "archnemesis"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:emancipator",
+   "name": "Emancipator",
+   "key": "emancipator",
+   "performers": [
+    "emancipator"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:that-1-guy",
+   "name": "That 1 Guy",
+   "key": "that-1-guy",
+   "performers": [
+    "that-1-guy"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:break-science",
+   "name": "Break Science",
+   "key": "break-science",
+   "performers": [
+    "break-science"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:porter-robinson",
+   "name": "Porter Robinson",
+   "key": "porter-robinson",
+   "performers": [
+    "porter-robinson"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:two-fresh",
+   "name": "Two Fresh",
+   "key": "two-fresh",
+   "performers": [
+    "two-fresh"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:keys-n-krates",
+   "name": "Keys N Krates",
+   "key": "keys-n-krates",
+   "performers": [
+    "keys-n-krates"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:van-ghost",
+   "name": "Van Ghost",
+   "key": "van-ghost",
+   "performers": [
+    "van-ghost"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:the-ragbirds",
+   "name": "The Ragbirds",
+   "key": "the-ragbirds",
+   "performers": [
+    "the-ragbirds"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:the-macpodz",
+   "name": "The Macpodz",
+   "key": "the-macpodz",
+   "performers": [
+    "the-macpodz"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:euforquestra",
+   "name": "Euforquestra",
+   "key": "euforquestra",
+   "performers": [
+    "euforquestra"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:the-hood-internet",
+   "name": "The Hood Internet",
+   "key": "the-hood-internet",
+   "performers": [
+    "the-hood-internet"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:lance-herbstrong",
+   "name": "Lance Herbstrong",
+   "key": "lance-herbstrong",
+   "performers": [
+    "lance-herbstrong"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:cas-haley",
+   "name": "Cas Haley",
+   "key": "cas-haley",
+   "performers": [
+    "cas-haley"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:lynx",
+   "name": "Lynx",
+   "key": "lynx",
+   "performers": [
+    "lynx"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:zedd",
+   "name": "Zedd",
+   "key": "zedd",
+   "performers": [
+    "zedd"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:michal-menert",
+   "name": "Michal Menert",
+   "key": "michal-menert",
+   "performers": [
+    "michal-menert"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:kraz-dj-set",
+   "name": "KRAZ (DJ Set)",
+   "key": "kraz-dj-set",
+   "performers": [
+    "kraz-dj-set"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:janover",
+   "name": "Janover",
+   "key": "janover",
+   "performers": [
+    "janover"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:the-treasures",
+   "name": "The Treasures",
+   "key": "the-treasures",
+   "performers": [
+    "the-treasures"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:steez",
+   "name": "Steez",
+   "key": "steez",
+   "performers": [
+    "steez"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:the-werks",
+   "name": "The Werks",
+   "key": "the-werks",
+   "performers": [
+    "the-werks"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:superdre",
+   "name": "SuperDre",
+   "key": "superdre",
+   "performers": [
+    "superdre"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:panic-bomber",
+   "name": "Panic Bomber",
+   "key": "panic-bomber",
+   "performers": [
+    "panic-bomber"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:dragon-wagon",
+   "name": "Dragon Wagon",
+   "key": "dragon-wagon",
+   "performers": [
+    "dragon-wagon"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2011:cirque-du-womp",
+   "name": "Cirque du Womp",
+   "key": "cirque-du-womp",
+   "performers": [
+    "cirque-du-womp"
+   ],
+   "appearances": []
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "official_lineup_html",
+  "official": "http://electricforestfestival.com/lineup/artists",
+  "captures": [
+   {
+    "page": "lineup",
+    "archivedUrl": "https://web.archive.org/web/20110704150422/http://electricforestfestival.com/lineup/artists",
+    "captureTimestamp": "20110704150422",
+    "sha256": "d1ef53662ffecbddb1bab863c057b2857dcbc90fd2186ca3d35bb31003de6a35"
+   }
+  ]
+ },
+ "notes": [
+  {
+   "asOf": "2026-11-27",
+   "text": "The festival's own lineup page printed no days and no stages, so this is who was billed, as that page listed them the day after the festival, not when or where each act played.",
+   "source": "https://web.archive.org/web/20110704150422/http://electricforestfestival.com/lineup/artists"
+  }
+ ]
+}

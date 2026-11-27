@@ -1,0 +1,45 @@
+{
+  "id": "time-warp-2021",
+  "method": "official_lineup_html",
+  "official": "https://www.time-warp.de/21/lineup",
+  "format": "timewarp-subsite",
+  "window": {
+    "from": "20211001",
+    "to": "20211029",
+    "why": "the month before the festival: the page was not captured after it"
+  },
+  "chosen": "20211025163116",
+  "archivedUrl": "https://web.archive.org/web/20211025163116/https://www.time-warp.de/21/lineup",
+  "sha256": "1bc265a8a4987ed8b58f7d0bcb51f8abe73b11226d7c8f3bd1d4681976e1ccc3",
+  "title": "Lineup",
+  "relayedVia": "firecrawl",
+  "stageOrder": [],
+  "considered": [
+    {
+      "captureTimestamp": "20211025163116",
+      "archivedUrl": "https://web.archive.org/web/20211025163116/https://www.time-warp.de/21/lineup",
+      "sha256": "1bc265a8a4987ed8b58f7d0bcb51f8abe73b11226d7c8f3bd1d4681976e1ccc3",
+      "bytes": 27950,
+      "via": "firecrawl",
+      "title": "Lineup",
+      "titled": true,
+      "dated": true,
+      "valid": true,
+      "days": [
+        "Friday 29 October 2021",
+        "Saturday 30 October 2021"
+      ],
+      "printed": {
+        "edition": "Germany 21",
+        "dates": "29. + 30. October 2021",
+        "city": "Mannheim",
+        "lists": [
+          "Friday (A-Z)",
+          "Saturday (A-Z)"
+        ]
+      },
+      "billings": 10
+    }
+  ],
+  "dropped": []
+}

@@ -1,0 +1,849 @@
+{
+ "id": "awakenings-2012",
+ "festivalId": "awakenings",
+ "name": "Awakenings Festival 2012",
+ "year": 2012,
+ "timezone": "Europe/Amsterdam",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2012-06-30",
+   "label": "Saturday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "awakenings-2012:c",
+   "name": "C"
+  },
+  {
+   "id": "awakenings-2012:b",
+   "name": "B"
+  },
+  {
+   "id": "awakenings-2012:a",
+   "name": "A"
+  },
+  {
+   "id": "awakenings-2012:z",
+   "name": "Z"
+  },
+  {
+   "id": "awakenings-2012:y",
+   "name": "Y"
+  },
+  {
+   "id": "awakenings-2012:x",
+   "name": "X"
+  },
+  {
+   "id": "awakenings-2012:w",
+   "name": "W"
+  },
+  {
+   "id": "awakenings-2012:v",
+   "name": "V"
+  }
+ ],
+ "artists": [
+  {
+   "id": "awakenings-2012:nicole-rosie",
+   "name": "Nicole Rosie",
+   "key": "nicole-rosie",
+   "performers": [
+    "nicole-rosie"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:c"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:makam",
+   "name": "Makam",
+   "key": "makam",
+   "performers": [
+    "makam"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:c"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:carlo-lio",
+   "name": "Carlo Lio",
+   "key": "carlo-lio",
+   "performers": [
+    "carlo-lio"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:c"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:nicole-moudaber",
+   "name": "Nicole Moudaber",
+   "key": "nicole-moudaber",
+   "performers": [
+    "nicole-moudaber"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:c"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:voices-from-the-lake-feat-donato-dozzy-and-neel-live",
+   "name": "Voices from the Lake feat Donato Dozzy & Neel (live)",
+   "key": "voices-from-the-lake-feat-donato-dozzy-and-neel-live",
+   "performers": [
+    "voices-from-the-lake-feat-donato-dozzy-and-neel-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:c"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:marcel-fengler",
+   "name": "Marcel Fengler",
+   "key": "marcel-fengler",
+   "performers": [
+    "marcel-fengler"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:c"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:prunk",
+   "name": "Prunk",
+   "key": "prunk",
+   "performers": [
+    "prunk"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:b"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:ida-engberg",
+   "name": "Ida Engberg",
+   "key": "ida-engberg",
+   "performers": [
+    "ida-engberg"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:b"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:martin-buttrich-live",
+   "name": "Martin Buttrich (live)",
+   "key": "martin-buttrich-live",
+   "performers": [
+    "martin-buttrich-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:b"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:fritz-kalkbrenner-live",
+   "name": "Fritz Kalkbrenner (live)",
+   "key": "fritz-kalkbrenner-live",
+   "performers": [
+    "fritz-kalkbrenner-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:b"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:john-digweed",
+   "name": "John Digweed",
+   "key": "john-digweed",
+   "performers": [
+    "john-digweed"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:b"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:david-squillace-and-matthias-tanzmann",
+   "name": "David Squillace & Matthias Tanzmann",
+   "key": "david-squillace-and-matthias-tanzmann",
+   "performers": [
+    "david-squillace-and-matthias-tanzmann"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:b"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:pan-pot",
+   "name": "Pan-Pot",
+   "key": "pan-pot",
+   "performers": [
+    "pan-pot"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:b"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:joris-voorn",
+   "name": "Joris Voorn",
+   "key": "joris-voorn",
+   "performers": [
+    "joris-voorn"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:b"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:san-proper",
+   "name": "San Proper",
+   "key": "san-proper",
+   "performers": [
+    "san-proper"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:robag-wruhme",
+   "name": "Robag Wruhme",
+   "key": "robag-wruhme",
+   "performers": [
+    "robag-wruhme"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:stimming-live",
+   "name": "Stimming (live)",
+   "key": "stimming-live",
+   "performers": [
+    "stimming-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:david-august",
+   "name": "David August",
+   "key": "david-august",
+   "performers": [
+    "david-august"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:karotte",
+   "name": "Karotte",
+   "key": "karotte",
+   "performers": [
+    "karotte"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:laurent-garnier-presents-l-b-s",
+   "name": "Laurent Garnier presents L.B.S.",
+   "key": "laurent-garnier-presents-l-b-s",
+   "performers": [
+    "laurent-garnier-presents-l-b-s"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:mr-jones",
+   "name": "Mr. Jones",
+   "key": "mr-jones",
+   "performers": [
+    "mr-jones"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:paula-cazenave",
+   "name": "Paula Cazenave",
+   "key": "paula-cazenave",
+   "performers": [
+    "paula-cazenave"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:a-professor-and-dj-murphy",
+   "name": "A.Professor & DJ Murphy",
+   "key": "a-professor-and-dj-murphy",
+   "performers": [
+    "a-professor-and-dj-murphy"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:miss-djax-and-patrick-dsp-live",
+   "name": "Miss Djax & Patrick DSP LIVE",
+   "key": "miss-djax-and-patrick-dsp-live",
+   "performers": [
+    "miss-djax-and-patrick-dsp-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:fatima-hajji",
+   "name": "Fatima Hajji",
+   "key": "fatima-hajji",
+   "performers": [
+    "fatima-hajji"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:marco-remus-and-mahatma-live",
+   "name": "Marco Remus & Mahatma LIVE",
+   "key": "marco-remus-and-mahatma-live",
+   "performers": [
+    "marco-remus-and-mahatma-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:frank-kvitta-and-mario-ranieri-live",
+   "name": "Frank Kvitta & Mario Ranieri LIVE",
+   "key": "frank-kvitta-and-mario-ranieri-live",
+   "performers": [
+    "frank-kvitta-and-mario-ranieri-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:pet-duo",
+   "name": "PET Duo",
+   "key": "pet-duo",
+   "performers": [
+    "pet-duo"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:jeff-rushin",
+   "name": "Jeff Rushin",
+   "key": "jeff-rushin",
+   "performers": [
+    "jeff-rushin"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:y"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:tim-wolff",
+   "name": "Tim Wolff",
+   "key": "tim-wolff",
+   "performers": [
+    "tim-wolff"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:y"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:gary-beck",
+   "name": "Gary Beck",
+   "key": "gary-beck",
+   "performers": [
+    "gary-beck"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:y"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:jeff-mills",
+   "name": "Jeff Mills",
+   "key": "jeff-mills",
+   "performers": [
+    "jeff-mills"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:y"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:luke-slater-live-planetary-assault-systems",
+   "name": "Luke Slater (live) (Planetary Assault Systems)",
+   "key": "luke-slater-live-planetary-assault-systems",
+   "performers": [
+    "luke-slater-live-planetary-assault-systems"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:y"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:speedy-j",
+   "name": "Speedy J",
+   "key": "speedy-j",
+   "performers": [
+    "speedy-j"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:y"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:chris-liebing",
+   "name": "Chris Liebing",
+   "key": "chris-liebing",
+   "performers": [
+    "chris-liebing"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:y"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:junction-hands-markantonio-and-rino-cerrone",
+   "name": "JUNCTION HANDS (Markantonio & Rino Cerrone)",
+   "key": "junction-hands-markantonio-and-rino-cerrone",
+   "performers": [
+    "junction-hands-markantonio-and-rino-cerrone"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:x"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:technasia",
+   "name": "Technasia",
+   "key": "technasia",
+   "performers": [
+    "technasia"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:x"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:oscar-mulero",
+   "name": "Oscar Mulero",
+   "key": "oscar-mulero",
+   "performers": [
+    "oscar-mulero"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:x"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:dj-rush",
+   "name": "DJ Rush",
+   "key": "dj-rush",
+   "performers": [
+    "dj-rush"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:x"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:dave-clarke",
+   "name": "Dave Clarke",
+   "key": "dave-clarke",
+   "performers": [
+    "dave-clarke"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:x"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:the-advent-and-industrialyzer-live",
+   "name": "The Advent & Industrialyzer (live)",
+   "key": "the-advent-and-industrialyzer-live",
+   "performers": [
+    "the-advent-and-industrialyzer-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:x"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:ben-sims",
+   "name": "Ben Sims",
+   "key": "ben-sims",
+   "performers": [
+    "ben-sims"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:x"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:daniel-sanchez",
+   "name": "Daniel Sanchez",
+   "key": "daniel-sanchez",
+   "performers": [
+    "daniel-sanchez"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:w"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:2000-and-one",
+   "name": "2000 and One",
+   "key": "2000-and-one",
+   "performers": [
+    "2000-and-one"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:w"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:ricardo-villalobos",
+   "name": "Ricardo Villalobos",
+   "key": "ricardo-villalobos",
+   "performers": [
+    "ricardo-villalobos"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:w"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:gaiser-live",
+   "name": "Gaiser (live)",
+   "key": "gaiser-live",
+   "performers": [
+    "gaiser-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:w"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:dubfire",
+   "name": "Dubfire",
+   "key": "dubfire",
+   "performers": [
+    "dubfire"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:w"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:marco-carola",
+   "name": "Marco Carola",
+   "key": "marco-carola",
+   "performers": [
+    "marco-carola"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:w"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:adam-beyer",
+   "name": "Adam Beyer",
+   "key": "adam-beyer",
+   "performers": [
+    "adam-beyer"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:w"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:sandrien",
+   "name": "Sandrien",
+   "key": "sandrien",
+   "performers": [
+    "sandrien"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:v"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:cari-lekebusch-and-joel-mull",
+   "name": "Cari Lekebusch & Joel Mull",
+   "key": "cari-lekebusch-and-joel-mull",
+   "performers": [
+    "cari-lekebusch-and-joel-mull"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:v"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:len-faki",
+   "name": "Len Faki",
+   "key": "len-faki",
+   "performers": [
+    "len-faki"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:v"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:joseph-capriati",
+   "name": "Joseph Capriati",
+   "key": "joseph-capriati",
+   "performers": [
+    "joseph-capriati"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:v"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:secret-cinema-and-egbert-live",
+   "name": "Secret Cinema & Egbert (live)",
+   "key": "secret-cinema-and-egbert-live",
+   "performers": [
+    "secret-cinema-and-egbert-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:v"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:cristian-varela",
+   "name": "Cristian Varela",
+   "key": "cristian-varela",
+   "performers": [
+    "cristian-varela"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:v"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2012:carl-cox",
+   "name": "Carl Cox",
+   "key": "carl-cox",
+   "performers": [
+    "carl-cox"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2012:v"
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "official_lineup_html",
+  "official": "http://www.awakenings.nl/en/parties/154/awakenings-festival/",
+  "captures": [
+   {
+    "page": "lineup",
+    "archivedUrl": "https://web.archive.org/web/20120701213124/http://www.awakenings.nl/en/parties/154/awakenings-festival/",
+    "captureTimestamp": "20120701213124",
+    "sha256": "f97ffa662cc79816539473a9a151235c23508e6a40bc8935c58358a9c9263ea2"
+   }
+  ]
+ }
+}

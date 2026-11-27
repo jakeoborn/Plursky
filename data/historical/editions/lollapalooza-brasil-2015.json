@@ -1,0 +1,635 @@
+{
+ "id": "lollapalooza-brasil-2015",
+ "festivalId": "lollapalooza-brasil",
+ "name": "Lollapalooza Brasil 2015",
+ "year": 2015,
+ "timezone": "America/Sao_Paulo",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2015-03-28",
+   "label": "Saturday"
+  },
+  {
+   "day": 2,
+   "date": "2015-03-29",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [],
+ "artists": [
+  {
+   "id": "lollapalooza-brasil-2015:jack-white",
+   "name": "Jack White",
+   "key": "jack-white",
+   "performers": [
+    "jack-white"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:robert-plant",
+   "name": "Robert Plant",
+   "key": "robert-plant",
+   "performers": [
+    "robert-plant"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:skrillex",
+   "name": "Skrillex",
+   "key": "skrillex",
+   "performers": [
+    "skrillex"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:kasabian",
+   "name": "Kasabian",
+   "key": "kasabian",
+   "performers": [
+    "kasabian"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:bastille",
+   "name": "Bastille",
+   "key": "bastille",
+   "performers": [
+    "bastille"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:alt-j",
+   "name": "Alt-J",
+   "key": "alt-j",
+   "performers": [
+    "alt-j"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:major-lazer",
+   "name": "Major Lazer",
+   "key": "major-lazer",
+   "performers": [
+    "major-lazer"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:marina-and-the-diamonds",
+   "name": "Marina and The Diamonds",
+   "key": "marina-and-the-diamonds",
+   "performers": [
+    "marina-and-the-diamonds"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:kongos",
+   "name": "Kongos",
+   "key": "kongos",
+   "performers": [
+    "kongos"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:fitz-and-the-tantrums",
+   "name": "Fitz and The Tantrums",
+   "key": "fitz-and-the-tantrums",
+   "performers": [
+    "fitz-and-the-tantrums"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:st-vincent",
+   "name": "St. Vincent",
+   "key": "st-vincent",
+   "performers": [
+    "st-vincent"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:dillon-francis",
+   "name": "Dillon Francis",
+   "key": "dillon-francis",
+   "performers": [
+    "dillon-francis"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:marcelo-d2",
+   "name": "Marcelo D2",
+   "key": "marcelo-d2",
+   "performers": [
+    "marcelo-d2"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:banda-do-mar",
+   "name": "Banda do Mar",
+   "key": "banda-do-mar",
+   "performers": [
+    "banda-do-mar"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:ritmo-machine",
+   "name": "Ritmo Machine",
+   "key": "ritmo-machine",
+   "performers": [
+    "ritmo-machine"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:dj-snake",
+   "name": "DJ Snake",
+   "key": "dj-snake",
+   "performers": [
+    "dj-snake"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:boogarins",
+   "name": "Boogarins",
+   "key": "boogarins",
+   "performers": [
+    "boogarins"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:bula",
+   "name": "Bula",
+   "key": "bula",
+   "performers": [
+    "bula"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:vintage-culture",
+   "name": "Vintage Culture",
+   "key": "vintage-culture",
+   "performers": [
+    "vintage-culture"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:baleia",
+   "name": "Baleia",
+   "key": "baleia",
+   "performers": [
+    "baleia"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:nem-liminha-ouviu",
+   "name": "Nem Liminha Ouviu",
+   "key": "nem-liminha-ouviu",
+   "performers": [
+    "nem-liminha-ouviu"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:anna",
+   "name": "Anna",
+   "key": "anna",
+   "performers": [
+    "anna"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:e-cologyk-vs-jakko",
+   "name": "E-cologyk vs jakko",
+   "key": "e-cologyk-vs-jakko",
+   "performers": [
+    "e-cologyk-vs-jakko"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:pharrell-williams",
+   "name": "Pharrell Williams",
+   "key": "pharrell-williams",
+   "performers": [
+    "pharrell-williams"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:calvin-harris",
+   "name": "Calvin Harris",
+   "key": "calvin-harris",
+   "performers": [
+    "calvin-harris"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:the-smashing-pumpkins",
+   "name": "The Smashing Pumpkins",
+   "key": "the-smashing-pumpkins",
+   "performers": [
+    "the-smashing-pumpkins"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:foster-the-people",
+   "name": "Foster The People",
+   "key": "foster-the-people",
+   "performers": [
+    "foster-the-people"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:interpol",
+   "name": "Interpol",
+   "key": "interpol",
+   "performers": [
+    "interpol"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:steve-aoki",
+   "name": "Steve Aoki",
+   "key": "steve-aoki",
+   "performers": [
+    "steve-aoki"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:the-kooks",
+   "name": "The Kooks",
+   "key": "the-kooks",
+   "performers": [
+    "the-kooks"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:the-chainsmokers",
+   "name": "The Chainsmokers",
+   "key": "the-chainsmokers",
+   "performers": [
+    "the-chainsmokers"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:rudimental",
+   "name": "Rudimental",
+   "key": "rudimental",
+   "performers": [
+    "rudimental"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:three-days-grace",
+   "name": "Three Days Grace",
+   "key": "three-days-grace",
+   "performers": [
+    "three-days-grace"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:young-the-giant",
+   "name": "Young The Giant",
+   "key": "young-the-giant",
+   "performers": [
+    "young-the-giant"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:pitty",
+   "name": "Pitty",
+   "key": "pitty",
+   "performers": [
+    "pitty"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:molotov",
+   "name": "Molotov",
+   "key": "molotov",
+   "performers": [
+    "molotov"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:carnage",
+   "name": "Carnage",
+   "key": "carnage",
+   "performers": [
+    "carnage"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:childish-gambino",
+   "name": "Childish Gambino",
+   "key": "childish-gambino",
+   "performers": [
+    "childish-gambino"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:o-terno",
+   "name": "O Terno",
+   "key": "o-terno",
+   "performers": [
+    "o-terno"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:mombojo",
+   "name": "Mombojo",
+   "key": "mombojo",
+   "performers": [
+    "mombojo"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:far-from-alaska",
+   "name": "Far From Alaska",
+   "key": "far-from-alaska",
+   "performers": [
+    "far-from-alaska"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:victor-ruiz-av-any-mello",
+   "name": "Victor Ruiz AV Any Mello",
+   "key": "victor-ruiz-av-any-mello",
+   "performers": [
+    "victor-ruiz-av-any-mello"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:big-gigantic",
+   "name": "Big Gigantic",
+   "key": "big-gigantic",
+   "performers": [
+    "big-gigantic"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:fatnotronic",
+   "name": "Fatnotronic",
+   "key": "fatnotronic",
+   "performers": [
+    "fatnotronic"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:chemical-surf",
+   "name": "Chemical Surf",
+   "key": "chemical-surf",
+   "performers": [
+    "chemical-surf"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2015:scalene",
+   "name": "Scalene",
+   "key": "scalene",
+   "performers": [
+    "scalene"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "official_lineup_html",
+  "official": "http://www.lollapaloozabr.com/line-up-por-dia-2015",
+  "captures": [
+   {
+    "page": "lineup",
+    "archivedUrl": "https://web.archive.org/web/20150327161932/http://www.lollapaloozabr.com/line-up-por-dia-2015",
+    "captureTimestamp": "20150327161932",
+    "sha256": "5ecf7b994fbcce0fded91bd07ca09776fe5b164a58f8cdf96666e2c865937753"
+   }
+  ]
+ }
+}

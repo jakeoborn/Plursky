@@ -1,0 +1,1039 @@
+{
+ "id": "lollapalooza-brasil-2019",
+ "festivalId": "lollapalooza-brasil",
+ "name": "Lollapalooza Brasil 2019",
+ "year": 2019,
+ "timezone": "America/Sao_Paulo",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2019-04-05",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2019-04-06",
+   "label": "Saturday"
+  },
+  {
+   "day": 3,
+   "date": "2019-04-07",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "lollapalooza-brasil-2019:palco-budweiser",
+   "name": "Palco Budweiser"
+  },
+  {
+   "id": "lollapalooza-brasil-2019:palco-onix",
+   "name": "Palco Onix"
+  },
+  {
+   "id": "lollapalooza-brasil-2019:palco-adidas",
+   "name": "Palco Adidas"
+  },
+  {
+   "id": "lollapalooza-brasil-2019:perry-s-by-doritos",
+   "name": "Perry’s by Doritos"
+  }
+ ],
+ "artists": [
+  {
+   "id": "lollapalooza-brasil-2019:brvnks",
+   "name": "Brvnks",
+   "key": "brvnks",
+   "performers": [
+    "brvnks"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2019:palco-budweiser"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:foals",
+   "name": "Foals",
+   "key": "foals",
+   "performers": [
+    "foals"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2019:palco-budweiser"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:tribalistas",
+   "name": "TRIBALISTAS",
+   "key": "tribalistas",
+   "performers": [
+    "tribalistas"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2019:palco-budweiser"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:scalene",
+   "name": "Scalene",
+   "key": "scalene",
+   "performers": [
+    "scalene"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2019:palco-budweiser"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:arctic-monkeys",
+   "name": "Arctic Monkeys",
+   "key": "arctic-monkeys",
+   "performers": [
+    "arctic-monkeys"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2019:palco-budweiser"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:the-1975",
+   "name": "The 1975",
+   "key": "the-1975",
+   "performers": [
+    "the-1975"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2019:palco-onix"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:sam-smith",
+   "name": "Sam Smith",
+   "key": "sam-smith",
+   "performers": [
+    "sam-smith"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2019:palco-onix"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:portugal-the-man",
+   "name": "Portugal. The Man",
+   "key": "portugal-the-man",
+   "performers": [
+    "portugal-the-man"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2019:palco-onix"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:autoramas",
+   "name": "Autoramas",
+   "key": "autoramas",
+   "performers": [
+    "autoramas"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2019:palco-onix"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:molho-negro",
+   "name": "Molho Negro",
+   "key": "molho-negro",
+   "performers": [
+    "molho-negro"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2019:palco-adidas"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:st-vincent",
+   "name": "St. Vincent",
+   "key": "st-vincent",
+   "performers": [
+    "st-vincent"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2019:palco-adidas"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:troye-sivan",
+   "name": "Troye Sivan",
+   "key": "troye-sivan",
+   "performers": [
+    "troye-sivan"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2019:palco-adidas"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:the-fever-333",
+   "name": "The Fever 333",
+   "key": "the-fever-333",
+   "performers": [
+    "the-fever-333"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2019:palco-adidas"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:macklemore",
+   "name": "Macklemore",
+   "key": "macklemore",
+   "performers": [
+    "macklemore"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2019:palco-adidas"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:bruno-be",
+   "name": "Bruno Be",
+   "key": "bruno-be",
+   "performers": [
+    "bruno-be"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2019:perry-s-by-doritos"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:zhu",
+   "name": "ZHU",
+   "key": "zhu",
+   "performers": [
+    "zhu"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2019:perry-s-by-doritos"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:dashdot",
+   "name": "Dashdot",
+   "key": "dashdot",
+   "performers": [
+    "dashdot"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2019:perry-s-by-doritos"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:maz",
+   "name": "Maz",
+   "key": "maz",
+   "performers": [
+    "maz"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2019:perry-s-by-doritos"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:loud-luxury",
+   "name": "Loud Luxury",
+   "key": "loud-luxury",
+   "performers": [
+    "loud-luxury"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2019:perry-s-by-doritos"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:elekfantz",
+   "name": "Elekfantz",
+   "key": "elekfantz",
+   "performers": [
+    "elekfantz"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2019:perry-s-by-doritos"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:tiesto",
+   "name": "Tiësto",
+   "key": "tiesto",
+   "performers": [
+    "tiesto"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2019:perry-s-by-doritos"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:fisher",
+   "name": "FISHER",
+   "key": "fisher",
+   "performers": [
+    "fisher"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2019:perry-s-by-doritos"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:kshmr",
+   "name": "KSHMR",
+   "key": "kshmr",
+   "performers": [
+    "kshmr"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2019:perry-s-by-doritos"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:rashid",
+   "name": "Rashid",
+   "key": "rashid",
+   "performers": [
+    "rashid"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2019:palco-budweiser"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:lenny-kravitz",
+   "name": "Lenny Kravitz",
+   "key": "lenny-kravitz",
+   "performers": [
+    "lenny-kravitz"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2019:palco-budweiser"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:kings-of-leon",
+   "name": "Kings Of Leon",
+   "key": "kings-of-leon",
+   "performers": [
+    "kings-of-leon"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2019:palco-budweiser"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:snow-patrol",
+   "name": "Snow Patrol",
+   "key": "snow-patrol",
+   "performers": [
+    "snow-patrol"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2019:palco-budweiser"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:carne-doce",
+   "name": "Carne Doce",
+   "key": "carne-doce",
+   "performers": [
+    "carne-doce"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2019:palco-budweiser"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:catavento",
+   "name": "Catavento",
+   "key": "catavento",
+   "performers": [
+    "catavento"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2019:palco-onix"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:bring-me-the-horizon",
+   "name": "Bring Me The Horizon",
+   "key": "bring-me-the-horizon",
+   "performers": [
+    "bring-me-the-horizon"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2019:palco-onix"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:liniker-e-os-caramelows",
+   "name": "Liniker e os Caramelows",
+   "key": "liniker-e-os-caramelows",
+   "performers": [
+    "liniker-e-os-caramelows"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2019:palco-onix"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:post-malone",
+   "name": "Post Malone",
+   "key": "post-malone",
+   "performers": [
+    "post-malone"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2019:palco-onix"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:silva",
+   "name": "Silva",
+   "key": "silva",
+   "performers": [
+    "silva"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2019:palco-onix"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:odesza",
+   "name": "ODESZA",
+   "key": "odesza",
+   "performers": [
+    "odesza"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2019:palco-adidas"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:jain",
+   "name": "Jain",
+   "key": "jain",
+   "performers": [
+    "jain"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2019:palco-adidas"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:duda-beat",
+   "name": "DUDA BEAT",
+   "key": "duda-beat",
+   "performers": [
+    "duda-beat"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2019:palco-adidas"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:jorja-smith",
+   "name": "Jorja Smith",
+   "key": "jorja-smith",
+   "performers": [
+    "jorja-smith"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2019:palco-adidas"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:lany",
+   "name": "LANY",
+   "key": "lany",
+   "performers": [
+    "lany"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2019:palco-adidas"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:chemical-surf",
+   "name": "Chemical Surf",
+   "key": "chemical-surf",
+   "performers": [
+    "chemical-surf"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2019:perry-s-by-doritos"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:valentino-khan",
+   "name": "Valentino Khan",
+   "key": "valentino-khan",
+   "performers": [
+    "valentino-khan"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2019:perry-s-by-doritos"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:vintage-culture",
+   "name": "Vintage Culture",
+   "key": "vintage-culture",
+   "performers": [
+    "vintage-culture"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2019:perry-s-by-doritos"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:dubdogz-feat-vitor-kley",
+   "name": "Dubdogz feat. Vitor Kley",
+   "key": "dubdogz-feat-vitor-kley",
+   "performers": [
+    "dubdogz-feat-vitor-kley"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2019:perry-s-by-doritos"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:gryffin",
+   "name": "Gryffin",
+   "key": "gryffin",
+   "performers": [
+    "gryffin"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2019:perry-s-by-doritos"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:steve-aoki",
+   "name": "Steve Aoki",
+   "key": "steve-aoki",
+   "performers": [
+    "steve-aoki"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2019:perry-s-by-doritos"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:kungs",
+   "name": "Kungs",
+   "key": "kungs",
+   "performers": [
+    "kungs"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2019:perry-s-by-doritos"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:liu",
+   "name": "Liu",
+   "key": "liu",
+   "performers": [
+    "liu"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2019:perry-s-by-doritos"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:illusionize",
+   "name": "Illusionize",
+   "key": "illusionize",
+   "performers": [
+    "illusionize"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2019:perry-s-by-doritos"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:kendrick-lamar",
+   "name": "Kendrick Lamar",
+   "key": "kendrick-lamar",
+   "performers": [
+    "kendrick-lamar"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "lollapalooza-brasil-2019:palco-budweiser"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:greta-van-fleet",
+   "name": "Greta Van Fleet",
+   "key": "greta-van-fleet",
+   "performers": [
+    "greta-van-fleet"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "lollapalooza-brasil-2019:palco-budweiser"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:bk",
+   "name": "BK’",
+   "key": "bk",
+   "performers": [
+    "bk"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "lollapalooza-brasil-2019:palco-budweiser"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:alafia",
+   "name": "Aláfia",
+   "key": "alafia",
+   "performers": [
+    "alafia"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "lollapalooza-brasil-2019:palco-budweiser"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:the-struts",
+   "name": "The Struts",
+   "key": "the-struts",
+   "performers": [
+    "the-struts"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "lollapalooza-brasil-2019:palco-budweiser"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:gabriel-o-pensador",
+   "name": "Gabriel, O Pensador",
+   "key": "gabriel-o-pensador",
+   "performers": [
+    "gabriel-o-pensador"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "lollapalooza-brasil-2019:palco-onix"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:interpol",
+   "name": "Interpol",
+   "key": "interpol",
+   "performers": [
+    "interpol"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "lollapalooza-brasil-2019:palco-onix"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:e-a-terra-nunca-me-pareceu-tao-distante",
+   "name": "E a terra nunca me pareceu tão distante",
+   "key": "e-a-terra-nunca-me-pareceu-tao-distante",
+   "performers": [
+    "e-a-terra-nunca-me-pareceu-tao-distante"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "lollapalooza-brasil-2019:palco-onix"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:twenty-ne-pil-ts",
+   "name": "TWENTY ØNE PILØTS",
+   "key": "twenty-ne-pil-ts",
+   "performers": [
+    "twenty-ne-pil-ts"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "lollapalooza-brasil-2019:palco-onix"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:the-inspector-cluzo",
+   "name": "The Inspector Cluzo",
+   "key": "the-inspector-cluzo",
+   "performers": [
+    "the-inspector-cluzo"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "lollapalooza-brasil-2019:palco-onix"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:luiza-lian",
+   "name": "Luiza Lian",
+   "key": "luiza-lian",
+   "performers": [
+    "luiza-lian"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "lollapalooza-brasil-2019:palco-adidas"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:years-and-years",
+   "name": "Years & Years",
+   "key": "years-and-years",
+   "performers": [
+    "years-and-years"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "lollapalooza-brasil-2019:palco-adidas"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:rufus-du-sol",
+   "name": "RÜFÜS DU SOL",
+   "key": "rufus-du-sol",
+   "performers": [
+    "rufus-du-sol"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "lollapalooza-brasil-2019:palco-adidas"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:iza",
+   "name": "IZA",
+   "key": "iza",
+   "performers": [
+    "iza"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "lollapalooza-brasil-2019:palco-adidas"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:letrux",
+   "name": "LETRUX",
+   "key": "letrux",
+   "performers": [
+    "letrux"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "lollapalooza-brasil-2019:palco-adidas"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:bhaskar",
+   "name": "Bhaskar",
+   "key": "bhaskar",
+   "performers": [
+    "bhaskar"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "lollapalooza-brasil-2019:perry-s-by-doritos"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:don-diablo",
+   "name": "Don Diablo",
+   "key": "don-diablo",
+   "performers": [
+    "don-diablo"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "lollapalooza-brasil-2019:perry-s-by-doritos"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:dimitri-vegas-and-like-mike",
+   "name": "Dimitri Vegas & Like Mike",
+   "key": "dimitri-vegas-and-like-mike",
+   "performers": [
+    "dimitri-vegas-and-like-mike"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "lollapalooza-brasil-2019:perry-s-by-doritos"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:pontifexx",
+   "name": "Pontifexx",
+   "key": "pontifexx",
+   "performers": [
+    "pontifexx"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "lollapalooza-brasil-2019:perry-s-by-doritos"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:gta",
+   "name": "GTA",
+   "key": "gta",
+   "performers": [
+    "gta"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "lollapalooza-brasil-2019:perry-s-by-doritos"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:groove-delight",
+   "name": "Groove Delight",
+   "key": "groove-delight",
+   "performers": [
+    "groove-delight"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "lollapalooza-brasil-2019:perry-s-by-doritos"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:rl-grime",
+   "name": "RL Grime",
+   "key": "rl-grime",
+   "performers": [
+    "rl-grime"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "lollapalooza-brasil-2019:perry-s-by-doritos"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2019:kvsh",
+   "name": "KVSH",
+   "key": "kvsh",
+   "performers": [
+    "kvsh"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "lollapalooza-brasil-2019:perry-s-by-doritos"
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "official_lineup_html",
+  "official": "https://www.lollapaloozabr.com/lineup-2019/",
+  "captures": [
+   {
+    "page": "lineup",
+    "archivedUrl": "https://web.archive.org/web/20190405144206/https://www.lollapaloozabr.com/lineup-2019/",
+    "captureTimestamp": "20190405144206",
+    "sha256": "50a42bc75f3f182ab88a7b909790bbec99ba2cce2b40b32a5a1044c40b0ab105"
+   }
+  ]
+ }
+}
