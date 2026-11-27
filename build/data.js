@@ -1293,6 +1293,90 @@ var FESTIVALS_REGISTRY = [{
   region: "North America"
 }, {
   config: {
+    id: "veld-2027",
+    officialEvent: {
+      website: "https://veld.frontgatetickets.com/",
+      observedAt: "2026-11-25"
+    },
+    name: "VELD Music Festival 2027",
+    shortName: "VELD",
+    brand: "VELD",
+    tagline: "Three days of electronic music at Downsview Park",
+    location: "Downsview Park · Toronto, ON",
+    locationShort: "Downsview Park",
+    dates: "Jul 30 – Aug 1, 2027",
+    year: 2027,
+    print: {
+      accent: null,
+      source: {
+        url: "https://veld.frontgatetickets.com/",
+        observedAt: "2026-11-25"
+      },
+      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
+    }
+  },
+  available: false,
+  accent: "#22d3ee",
+  emoji: "🍁",
+  region: "North America"
+}, {
+  config: {
+    id: "ilesoniq-2027",
+    officialEvent: {
+      website: "https://ilesoniq.com/en",
+      observedAt: "2026-11-27"
+    },
+    name: "îLESONIQ 2027",
+    shortName: "îLESONIQ",
+    brand: "îLESONIQ",
+    tagline: "Montreal's electronic music festival on Île Sainte-Hélène",
+    location: "Parc Jean-Drapeau · Montreal, QC",
+    locationShort: "Parc Jean-Drapeau",
+    dates: "Aug 7–8, 2027",
+    year: 2027,
+    print: {
+      accent: null,
+      source: {
+        url: "https://ilesoniq.com/en",
+        observedAt: "2026-11-27"
+      },
+      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
+    }
+  },
+  available: false,
+  accent: "#34d399",
+  emoji: "🏝️",
+  region: "North America"
+}, {
+  config: {
+    id: "wobbleland-2027",
+    officialEvent: {
+      website: "https://wobbleland.com/",
+      observedAt: "2026-11-27"
+    },
+    name: "Wobbleland 2027",
+    shortName: "Wobbleland",
+    brand: "Wobbleland",
+    tagline: "Two nights of bass music in downtown San Jose",
+    location: "San Jose Convention Center · San Jose, CA",
+    locationShort: "San Jose Convention Center",
+    dates: "Aug 20–21, 2027",
+    year: 2027,
+    print: {
+      accent: null,
+      source: {
+        url: "https://wobbleland.com/",
+        observedAt: "2026-11-27"
+      },
+      note: "Not measured yet; read the site's own CSS before setting a first-party colour."
+    }
+  },
+  available: false,
+  accent: "#a3e635",
+  emoji: "🔊",
+  region: "North America"
+}, {
+  config: {
     id: "lost-lands-2026",
     officialEvent: {
       website: "https://www.lostlandsfestival.com/",
