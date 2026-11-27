@@ -1,0 +1,42 @@
+{
+  "id": "untold-2017",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "press",
+    "site": "gherlainfo.ro",
+    "url": "https://gherlainfo.ro/a-aparut-programul-untold-2017-pe-zile/",
+    "title": "A apărut programul Untold 2017 PE ZILE. La Familia şi Grasu XXL pe afiş",
+    "publisher": "Gherla INFO",
+    "published": "2017-06-21",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "partial",
+    "sha256": "84c2f9d8e599eb88a6bcf1cea8d77f472f159a4b4aa2333f79280b877a3c54f4",
+    "bytes": 2356
+  },
+  "printed": {
+    "days": {
+      "1": "JOI",
+      "2": "VINERI",
+      "3": "SÂMBĂTĂ",
+      "4": "DUMINICĂ"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "untold",
+    "year": 2017,
+    "lifecycle": "occurred",
+    "dates": "2017-08-03..2017-08-06",
+    "evidence": "https://adevarul.ro/stiri-locale/cluj-napoca/untold-2017-in-cifrele-oficiale-peste-330000-de-1802630.html",
+    "published": "2017-08-07"
+  },
+  "note": "The headline names per day from the organisers' day-by-day announcement of 21 June 2017, each day ending \"plus many others\"; stages, smaller acts and later changes are not shown. Text saved from the search result's excerpt of the article.",
+  "verified": {
+    "billings": 33,
+    "inSourceText": true
+  },
+  "stageOrder": [],
+  "dropped": []
+}

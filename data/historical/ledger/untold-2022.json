@@ -1,0 +1,49 @@
+{
+  "id": "untold-2022",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "press",
+    "site": "infomusic.ro",
+    "url": "https://www.infomusic.ro/2022/07/program-pe-zile-scene-untold-2022/",
+    "title": "Programul pe zile și scene la UNTOLD 2022",
+    "publisher": "InfoMusic",
+    "published": "2022-07-14",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "full",
+    "sha256": "26180ee468a88a89e6c8f1fcf5f29dd240b50b4de00c8e8acc300c5238fca741",
+    "bytes": 4147
+  },
+  "printed": {
+    "days": {
+      "1": "JOI, 4 august",
+      "2": "VINERI, 5 august",
+      "3": "SÂMBĂTĂ, 6 august",
+      "4": "DUMINICĂ, 7 august"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "untold",
+    "year": 2022,
+    "lifecycle": "occurred",
+    "dates": "2022-08-04..2022-08-07",
+    "evidence": "https://www.zcj.ro/cultura/untold-2022-la-final-360000-de-oameni-la-cea-de-a-saptea-editie-a-festivalului--236164.html",
+    "published": "2022-08-08"
+  },
+  "note": "The day-by-day, stage-by-stage lineup for the festival's six main stages as InfoMusic printed it on 14 July 2022, three weeks before the festival; smaller stages and later changes are not shown.",
+  "verified": {
+    "billings": 178,
+    "inSourceText": true
+  },
+  "stageOrder": [
+    "Mainstage",
+    "Galaxy",
+    "Alchemy",
+    "Daydreaming",
+    "Time",
+    "Fortune"
+  ],
+  "dropped": []
+}

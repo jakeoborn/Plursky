@@ -1,0 +1,45 @@
+{
+  "id": "untold-2015",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "press",
+    "site": "infomusic.ro",
+    "url": "https://www.infomusic.ro/agenda/untold-festival-2015/",
+    "title": "UNTOLD FESTIVAL 2015",
+    "publisher": "InfoMusic",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "partial",
+    "sha256": "87f357be19ec409946d66011110c8119f77fea2d809882d94816bd5b75fca74e",
+    "bytes": 4114
+  },
+  "printed": {
+    "days": {
+      "1": "DAY 1 - Joi, 30 iulie",
+      "2": "DAY 2 - Vineri, 31 iulie",
+      "3": "DAY 3 - Sâmbătă, 1 august",
+      "4": "DAY 4 - Duminică, 2 august"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "untold",
+    "year": 2015,
+    "lifecycle": "occurred",
+    "dates": "2015-07-30..2015-08-02",
+    "evidence": "https://www.monitorulcj.ro/actualitate/47642-untold-in-cifre-peste-240000-de-participanti-170-de-artisti-88-de-ore-de-atmosfera-din-ce-tari-au-venit-cei-mai-multi-vizitatori",
+    "published": "2015-08-05"
+  },
+  "note": "InfoMusic's event page (no publication date; last updated 15 January 2016) with the day-by-day running order of the three main stages only; other stages, the undated Retro Party (Boney M, Mr. President, Culture Beat) and later changes are not shown.",
+  "verified": {
+    "billings": 64,
+    "inSourceText": true
+  },
+  "stageOrder": [
+    "Ursus Untold Arena",
+    "The Labyrinth",
+    "River Side"
+  ],
+  "dropped": []
+}

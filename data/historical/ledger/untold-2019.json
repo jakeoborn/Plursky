@@ -1,0 +1,42 @@
+{
+  "id": "untold-2019",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "press",
+    "site": "infomusic.ro",
+    "url": "https://www.infomusic.ro/2019/06/untold-2019-programul-pe-zile-preturile-biletelor-de-o-zi/",
+    "title": "UNTOLD 2019 - Programul parțial pe zile și prețurile biletelor de o zi",
+    "publisher": "InfoMusic",
+    "published": "2019-06-11",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "partial",
+    "sha256": "7763e93503697a8f7d09f6966a4bfa7ee7986ec0d7f447a6b6ac98d67ad5e3cc",
+    "bytes": 5229
+  },
+  "printed": {
+    "days": {
+      "1": "Ziua 1",
+      "2": "Ziua 2",
+      "3": "Ziua 3",
+      "4": "Ziua 4"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "untold",
+    "year": 2019,
+    "lifecycle": "occurred",
+    "dates": "2019-08-01..2019-08-04",
+    "evidence": "https://www.radiocluj.ro/2019/08/05/untold-2019-4-zile-10-scene-si-peste-370-000-de-participanti/",
+    "published": "2019-08-05"
+  },
+  "note": "The partial day-by-day programme the organisers released on 11 June 2019, as InfoMusic printed it, without stages; acts added later (among them Robbie Williams, Bastille and James Arthur) and later changes are not shown.",
+  "verified": {
+    "billings": 44,
+    "inSourceText": true
+  },
+  "stageOrder": [],
+  "dropped": []
+}

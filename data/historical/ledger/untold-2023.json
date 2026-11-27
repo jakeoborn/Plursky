@@ -1,0 +1,51 @@
+{
+  "id": "untold-2023",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "press",
+    "site": "descoperabucurestiul.eu",
+    "url": "https://descoperabucurestiul.eu/programul-complet-al-festivalului-untold-2023/",
+    "title": "Programul complet al Festivalului UNTOLD 2023",
+    "publisher": "Descoperă Bucureștiul",
+    "published": "2023-08-01",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "full",
+    "sha256": "772abcb6546490576d34d7e552b56a1ae4c1b53f69328dc7c898ff20c6bc5184",
+    "bytes": 9092
+  },
+  "printed": {
+    "days": {
+      "1": "Joi, 3 august",
+      "2": "Vineri, 4 august",
+      "3": "Sâmbătă, 5 august",
+      "4": "Duminică, 6 august"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "untold",
+    "year": 2023,
+    "lifecycle": "occurred",
+    "dates": "2023-08-03..2023-08-06",
+    "evidence": "https://www.infomusic.ro/2023/08/420-000-oameni-au-celebrat-untold-2023/",
+    "published": "2023-08-07"
+  },
+  "note": "A Bucharest city-guide site's copy of the full stage-by-stage programme, published on 1 August 2023, two days before the festival; later changes are not shown. Sets after midnight stay on the night they began.",
+  "verified": {
+    "billings": 223,
+    "inSourceText": true
+  },
+  "stageOrder": [
+    "Main Stage",
+    "Galaxy Stage",
+    "Alchemy Stage",
+    "Daydreaming Stage",
+    "Fortune Stage",
+    "Time Stage",
+    "Tram Stage",
+    "Retro Stage"
+  ],
+  "dropped": []
+}

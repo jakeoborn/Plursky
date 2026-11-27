@@ -1,0 +1,515 @@
+{
+ "id": "untold-2018",
+ "festivalId": "untold",
+ "name": "Untold 2018",
+ "year": 2018,
+ "timezone": "Europe/Bucharest",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2018-08-02",
+   "label": "Thursday"
+  },
+  {
+   "day": 2,
+   "date": "2018-08-03",
+   "label": "Friday"
+  },
+  {
+   "day": 3,
+   "date": "2018-08-04",
+   "label": "Saturday"
+  },
+  {
+   "day": 4,
+   "date": "2018-08-05",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [],
+ "artists": [
+  {
+   "id": "untold-2018:the-chainsmokers",
+   "name": "THE CHAINSMOKERS",
+   "key": "the-chainsmokers",
+   "performers": [
+    "the-chainsmokers"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "untold-2018:diplo",
+   "name": "DIPLO",
+   "key": "diplo",
+   "performers": [
+    "diplo"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "untold-2018:afrojack",
+   "name": "AFROJACK",
+   "key": "afrojack",
+   "performers": [
+    "afrojack"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "untold-2018:oliver-heldens",
+   "name": "OLIVER HELDENS",
+   "key": "oliver-heldens",
+   "performers": [
+    "oliver-heldens"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "untold-2018:the-asteroids-galaxy-tour",
+   "name": "The Asteroids Galaxy Tour",
+   "key": "the-asteroids-galaxy-tour",
+   "performers": [
+    "the-asteroids-galaxy-tour"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "untold-2018:will-sparks",
+   "name": "Will Sparks",
+   "key": "will-sparks",
+   "performers": [
+    "will-sparks"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "untold-2018:nina-kraviz",
+   "name": "Nina Kraviz",
+   "key": "nina-kraviz",
+   "performers": [
+    "nina-kraviz"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "untold-2018:pan-pot",
+   "name": "Pan Pot",
+   "key": "pan-pot",
+   "performers": [
+    "pan-pot"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "untold-2018:borgore",
+   "name": "Borgore",
+   "key": "borgore",
+   "performers": [
+    "borgore"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "untold-2018:pendulum-dj-set",
+   "name": "Pendulum DJ Set",
+   "key": "pendulum-dj-set",
+   "performers": [
+    "pendulum-dj-set"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "untold-2018:jason-derulo",
+   "name": "JASON DERULO",
+   "key": "jason-derulo",
+   "performers": [
+    "jason-derulo"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "untold-2018:kygo",
+   "name": "KYGO",
+   "key": "kygo",
+   "performers": [
+    "kygo"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "untold-2018:tiesto",
+   "name": "TIESTO",
+   "key": "tiesto",
+   "performers": [
+    "tiesto"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "untold-2018:kshmr",
+   "name": "KSHMR",
+   "key": "kshmr",
+   "performers": [
+    "kshmr"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "untold-2018:tujamo",
+   "name": "TUJAMO",
+   "key": "tujamo",
+   "performers": [
+    "tujamo"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "untold-2018:don-diablo",
+   "name": "DON DIABLO",
+   "key": "don-diablo",
+   "performers": [
+    "don-diablo"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "untold-2018:solomun",
+   "name": "Solomun",
+   "key": "solomun",
+   "performers": [
+    "solomun"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "untold-2018:modestep",
+   "name": "Modestep",
+   "key": "modestep",
+   "performers": [
+    "modestep"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "untold-2018:noisia-dj-set",
+   "name": "Noisia DJ Set",
+   "key": "noisia-dj-set",
+   "performers": [
+    "noisia-dj-set"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "untold-2018:the-prodigy",
+   "name": "THE PRODIGY",
+   "key": "the-prodigy",
+   "performers": [
+    "the-prodigy"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "untold-2018:steve-aoki",
+   "name": "STEVE AOKI",
+   "key": "steve-aoki",
+   "performers": [
+    "steve-aoki"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "untold-2018:dimitri-vegas-and-like-mike",
+   "name": "DIMITRI VEGAS & LIKE MIKE",
+   "key": "dimitri-vegas-and-like-mike",
+   "performers": [
+    "dimitri-vegas-and-like-mike"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "untold-2018:danny-avila",
+   "name": "DANNY AVILA",
+   "key": "danny-avila",
+   "performers": [
+    "danny-avila"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "untold-2018:alesso",
+   "name": "ALESSO",
+   "key": "alesso",
+   "performers": [
+    "alesso"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "untold-2018:loco-dice",
+   "name": "Loco Dice",
+   "key": "loco-dice",
+   "performers": [
+    "loco-dice"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "untold-2018:seth-troxler",
+   "name": "Seth Troxler",
+   "key": "seth-troxler",
+   "performers": [
+    "seth-troxler"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "untold-2018:the-glitch-mob",
+   "name": "The Glitch Mob",
+   "key": "the-glitch-mob",
+   "performers": [
+    "the-glitch-mob"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "untold-2018:flux-pavilion",
+   "name": "Flux Pavilion",
+   "key": "flux-pavilion",
+   "performers": [
+    "flux-pavilion"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "untold-2018:andy-c",
+   "name": "Andy C",
+   "key": "andy-c",
+   "performers": [
+    "andy-c"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "untold-2018:armin-van-buuren",
+   "name": "ARMIN VAN BUUREN",
+   "key": "armin-van-buuren",
+   "performers": [
+    "armin-van-buuren"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "untold-2018:paul-kalkbrenner",
+   "name": "PAUL KALKBRENNER",
+   "key": "paul-kalkbrenner",
+   "performers": [
+    "paul-kalkbrenner"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "untold-2018:fedde-le-grand",
+   "name": "FEDDE LE GRAND",
+   "key": "fedde-le-grand",
+   "performers": [
+    "fedde-le-grand"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "untold-2018:jamie-jones",
+   "name": "Jamie Jones",
+   "key": "jamie-jones",
+   "performers": [
+    "jamie-jones"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "untold-2018:dub-fx",
+   "name": "Dub Fx",
+   "key": "dub-fx",
+   "performers": [
+    "dub-fx"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "untold-2018:wilkinson-dj-set",
+   "name": "Wilkinson DJ Set",
+   "key": "wilkinson-dj-set",
+   "performers": [
+    "wilkinson-dj-set"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "unofficial_lineup",
+  "unofficial": true,
+  "source": {
+   "kind": "press",
+   "site": "ziarulunirea.ro",
+   "url": "https://ziarulunirea.ro/programul-pe-zile-la-untold-cel-mai-asteptat-festival-de-muzica-din-romania-470898/",
+   "title": "Programul pe zile la Untold, cel mai așteptat festival de muzică din România",
+   "publisher": "Ziarul Unirea",
+   "published": "2018-04-20",
+   "fetchedAt": "2026-11-27",
+   "fetchedVia": "exa",
+   "scope": "partial",
+   "sha256": "7c5b8e93bcce7fd50534d735cad60931a7200bc841ca55cec83624e7718600ec",
+   "bytes": 2266
+  },
+  "captures": [
+   {
+    "page": "lineup",
+    "url": "https://ziarulunirea.ro/programul-pe-zile-la-untold-cel-mai-asteptat-festival-de-muzica-din-romania-470898/",
+    "fetchedAt": "2026-11-27",
+    "sha256": "7c5b8e93bcce7fd50534d735cad60931a7200bc841ca55cec83624e7718600ec"
+   }
+  ]
+ }
+}

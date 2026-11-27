@@ -1,0 +1,49 @@
+{
+  "id": "untold-2021",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "press",
+    "site": "monitorulcj.ro",
+    "url": "https://www.monitorulcj.ro/actualitate/92517-programul-pe-zile-la-untold-2021-afla-cand-vor-urca-pe-scena-artistii-tai-preferati",
+    "title": "Programul pe zile la UNTOLD 2021! Află când vor urca pe scenă artiștii tăi preferați",
+    "publisher": "Monitorul de Cluj",
+    "published": "2021-08-19",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "partial",
+    "sha256": "49087bb1a848290b548b39c446c03f30f105509f38f559ed8396983b91f3ef93",
+    "bytes": 3336
+  },
+  "printed": {
+    "days": {
+      "1": "JOI, 9 septembrie",
+      "2": "VINERI, 10 septembrie",
+      "3": "SÂMBĂTĂ, 11 septembrie",
+      "4": "DUMINICĂ, 12 septembrie"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "untold",
+    "year": 2021,
+    "lifecycle": "occurred",
+    "dates": "2021-09-09..2021-09-12",
+    "evidence": "https://www.digi24.ro/magazin/timp-liber/divertisment/untold-2021-cate-persoane-au-participat-in-cele-patru-zile-ale-festivalului-1666573",
+    "published": "2021-09-13"
+  },
+  "note": "The day-by-day programme for six stages as announced on 19 August 2021, three weeks before the festival; the article says the lineup was still to be completed (over 200 acts were promised), so smaller names and later changes are not shown.",
+  "verified": {
+    "billings": 102,
+    "inSourceText": true
+  },
+  "stageOrder": [
+    "Mainstage",
+    "Alchemy",
+    "Galaxy",
+    "Daydreaming",
+    "Fortune",
+    "Time"
+  ],
+  "dropped": []
+}

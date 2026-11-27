@@ -1,0 +1,42 @@
+{
+  "id": "untold-2018",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "press",
+    "site": "ziarulunirea.ro",
+    "url": "https://ziarulunirea.ro/programul-pe-zile-la-untold-cel-mai-asteptat-festival-de-muzica-din-romania-470898/",
+    "title": "Programul pe zile la Untold, cel mai așteptat festival de muzică din România",
+    "publisher": "Ziarul Unirea",
+    "published": "2018-04-20",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "partial",
+    "sha256": "7c5b8e93bcce7fd50534d735cad60931a7200bc841ca55cec83624e7718600ec",
+    "bytes": 2266
+  },
+  "printed": {
+    "days": {
+      "1": "JOI, 2 AUGUST",
+      "2": "VINERI, 3 AUGUST",
+      "3": "SAMBATĂ, 4 AUGUST",
+      "4": "DUMINICĂ, 5 AUGUST"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "untold",
+    "year": 2018,
+    "lifecycle": "occurred",
+    "dates": "2018-08-02..2018-08-05",
+    "evidence": "https://www.zcj.ro/cultura/peste-355000-de-persoane-s-au-distrat-la-untold-2018--176593.html",
+    "published": "2018-08-06"
+  },
+  "note": "The headliners and early names per day as announced in April 2018, each day ending \"and many others\"; acts added later (among them Black Eyed Peas) and stages are not shown.",
+  "verified": {
+    "billings": 35,
+    "inSourceText": true
+  },
+  "stageOrder": [],
+  "dropped": []
+}

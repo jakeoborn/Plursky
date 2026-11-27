@@ -1,0 +1,1519 @@
+{
+ "id": "untold-2021",
+ "festivalId": "untold",
+ "name": "Untold 2021",
+ "year": 2021,
+ "timezone": "Europe/Bucharest",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2021-09-09",
+   "label": "Thursday"
+  },
+  {
+   "day": 2,
+   "date": "2021-09-10",
+   "label": "Friday"
+  },
+  {
+   "day": 3,
+   "date": "2021-09-11",
+   "label": "Saturday"
+  },
+  {
+   "day": 4,
+   "date": "2021-09-12",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "untold-2021:mainstage",
+   "name": "Mainstage"
+  },
+  {
+   "id": "untold-2021:alchemy",
+   "name": "Alchemy"
+  },
+  {
+   "id": "untold-2021:galaxy",
+   "name": "Galaxy"
+  },
+  {
+   "id": "untold-2021:daydreaming",
+   "name": "Daydreaming"
+  },
+  {
+   "id": "untold-2021:fortune",
+   "name": "Fortune"
+  },
+  {
+   "id": "untold-2021:time",
+   "name": "Time"
+  }
+ ],
+ "artists": [
+  {
+   "id": "untold-2021:benny-benassi",
+   "name": "Benny Benassi",
+   "key": "benny-benassi",
+   "performers": [
+    "benny-benassi"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2021:mainstage"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:dj-snake",
+   "name": "DJ Snake",
+   "key": "dj-snake",
+   "performers": [
+    "dj-snake"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2021:mainstage"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:kungs",
+   "name": "Kungs",
+   "key": "kungs",
+   "performers": [
+    "kungs"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2021:mainstage"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:steve-aoki",
+   "name": "Steve Aoki",
+   "key": "steve-aoki",
+   "performers": [
+    "steve-aoki"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2021:mainstage"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:tujamo",
+   "name": "Tujamo",
+   "key": "tujamo",
+   "performers": [
+    "tujamo"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2021:mainstage"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:tyga",
+   "name": "Tyga",
+   "key": "tyga",
+   "performers": [
+    "tyga"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2021:mainstage"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:caspa",
+   "name": "Caspa",
+   "key": "caspa",
+   "performers": [
+    "caspa"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2021:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:doc-guests-facem-records",
+   "name": "DOC + Guests: Facem Records",
+   "key": "doc-guests-facem-records",
+   "performers": [
+    "doc-guests-facem-records"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2021:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:netsky",
+   "name": "Netsky",
+   "key": "netsky",
+   "performers": [
+    "netsky"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2021:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:satra-b-e-n-z",
+   "name": "Satra B.E.N.Z.",
+   "key": "satra-b-e-n-z",
+   "performers": [
+    "satra-b-e-n-z"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2021:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:cellini",
+   "name": "Cellini",
+   "key": "cellini",
+   "performers": [
+    "cellini"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2021:galaxy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:nina-kraviz",
+   "name": "Nina Kraviz",
+   "key": "nina-kraviz",
+   "performers": [
+    "nina-kraviz"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2021:galaxy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:pan-pot",
+   "name": "Pan-Pot",
+   "key": "pan-pot",
+   "performers": [
+    "pan-pot"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2021:galaxy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:yaya",
+   "name": "Yaya",
+   "key": "yaya",
+   "performers": [
+    "yaya"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2021:galaxy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:armen-miran",
+   "name": "Armen Miran",
+   "key": "armen-miran",
+   "performers": [
+    "armen-miran"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2021:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:satori-live",
+   "name": "Satori Live",
+   "key": "satori-live",
+   "performers": [
+    "satori-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2021:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:viken-arman",
+   "name": "Viken Arman",
+   "key": "viken-arman",
+   "performers": [
+    "viken-arman"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2021:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:yokoo",
+   "name": "Yokoo",
+   "key": "yokoo",
+   "performers": [
+    "yokoo"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2021:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:bryan-kearey",
+   "name": "Bryan Kearey",
+   "key": "bryan-kearey",
+   "performers": [
+    "bryan-kearey"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2021:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:cosmic-gate",
+   "name": "Cosmic Gate",
+   "key": "cosmic-gate",
+   "performers": [
+    "cosmic-gate"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2021:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:john-o-callaghan",
+   "name": "John O’Callaghan",
+   "key": "john-o-callaghan",
+   "performers": [
+    "john-o-callaghan"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2021:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:solarstone",
+   "name": "Solarstone",
+   "key": "solarstone",
+   "performers": [
+    "solarstone"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2021:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:dj-dark-and-mentol",
+   "name": "Dj Dark & Mentol",
+   "key": "dj-dark-and-mentol",
+   "performers": [
+    "dj-dark-and-mentol"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2021:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:maestros-del-ritmo",
+   "name": "Maestros Del Ritmo",
+   "key": "maestros-del-ritmo",
+   "performers": [
+    "maestros-del-ritmo"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2021:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:paul-damixie",
+   "name": "Paul Damixie",
+   "key": "paul-damixie",
+   "performers": [
+    "paul-damixie"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2021:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:steff-da-campo",
+   "name": "Steff Da Campo",
+   "key": "steff-da-campo",
+   "performers": [
+    "steff-da-campo"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2021:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:fedde-le-grand",
+   "name": "Fedde le Grand",
+   "key": "fedde-le-grand",
+   "performers": [
+    "fedde-le-grand"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2021:mainstage"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:martin-garrix",
+   "name": "Martin Garrix",
+   "key": "martin-garrix",
+   "performers": [
+    "martin-garrix"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2021:mainstage"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:parov-stelar",
+   "name": "Parov Stelar",
+   "key": "parov-stelar",
+   "performers": [
+    "parov-stelar"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2021:mainstage"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:paul-van-dyk",
+   "name": "Paul van Dyk",
+   "key": "paul-van-dyk",
+   "performers": [
+    "paul-van-dyk"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2021:mainstage"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:sam-feldt-live",
+   "name": "Sam Feldt Live",
+   "key": "sam-feldt-live",
+   "performers": [
+    "sam-feldt-live"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2021:mainstage"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:vama",
+   "name": "Vama",
+   "key": "vama",
+   "performers": [
+    "vama"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2021:mainstage"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:deliric-x-silent-strike",
+   "name": "Deliric X Silent Strike",
+   "key": "deliric-x-silent-strike",
+   "performers": [
+    "deliric-x-silent-strike"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2021:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:dirtyphonics",
+   "name": "Dirtyphonics",
+   "key": "dirtyphonics",
+   "performers": [
+    "dirtyphonics"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2021:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:spike",
+   "name": "Spike",
+   "key": "spike",
+   "performers": [
+    "spike"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2021:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:wilkinson-dj-set-and-mc-ad-apt",
+   "name": "Wilkinson (DJ Set & MC AD-APT)",
+   "key": "wilkinson-dj-set-and-mc-ad-apt",
+   "performers": [
+    "wilkinson-dj-set-and-mc-ad-apt"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2021:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:claptone-day-time-special-show",
+   "name": "Claptone (Day time special show)",
+   "key": "claptone-day-time-special-show",
+   "performers": [
+    "claptone-day-time-special-show"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2021:galaxy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:jamie-jones-b2b-loco-dice",
+   "name": "Jamie Jones B2B Loco Dice",
+   "key": "jamie-jones-b2b-loco-dice",
+   "performers": [
+    "jamie-jones",
+    "loco-dice"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2021:galaxy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:mahony",
+   "name": "Mahony",
+   "key": "mahony",
+   "performers": [
+    "mahony"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2021:galaxy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:seth-troxler",
+   "name": "Seth Troxler",
+   "key": "seth-troxler",
+   "performers": [
+    "seth-troxler"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2021:galaxy"
+    },
+    {
+     "day": 2,
+     "stageId": "untold-2021:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:anstascia-and-bloem",
+   "name": "Anstascia & Bloem",
+   "key": "anstascia-and-bloem",
+   "performers": [
+    "anstascia-and-bloem"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2021:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:lum",
+   "name": "Lum",
+   "key": "lum",
+   "performers": [
+    "lum"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2021:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:stavroz-live-and-dj-set",
+   "name": "Stavroz (Live & DJ Set)",
+   "key": "stavroz-live-and-dj-set",
+   "performers": [
+    "stavroz-live-and-dj-set"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2021:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:aly-and-fila",
+   "name": "Aly & Fila",
+   "key": "aly-and-fila",
+   "performers": [
+    "aly-and-fila"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2021:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:giuseppe-ottaviani",
+   "name": "Giuseppe Ottaviani",
+   "key": "giuseppe-ottaviani",
+   "performers": [
+    "giuseppe-ottaviani"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2021:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:paul-thomas",
+   "name": "Paul Thomas",
+   "key": "paul-thomas",
+   "performers": [
+    "paul-thomas"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2021:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:richard-durand",
+   "name": "Richard Durand",
+   "key": "richard-durand",
+   "performers": [
+    "richard-durand"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2021:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:andre-rizo",
+   "name": "Andre Rizo",
+   "key": "andre-rizo",
+   "performers": [
+    "andre-rizo"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2021:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:mihai-popoviciu",
+   "name": "Mihai Popoviciu",
+   "key": "mihai-popoviciu",
+   "performers": [
+    "mihai-popoviciu"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2021:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:rosario-internullo",
+   "name": "Rosario Internullo",
+   "key": "rosario-internullo",
+   "performers": [
+    "rosario-internullo"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2021:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:the-gang-ro",
+   "name": "The Gang (RO)",
+   "key": "the-gang-ro",
+   "performers": [
+    "the-gang-ro"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2021:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:danny-avila",
+   "name": "Danny Avila",
+   "key": "danny-avila",
+   "performers": [
+    "danny-avila"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2021:mainstage"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:dimitri-vegas-and-like-mike",
+   "name": "Dimitri Vegas & Like Mike",
+   "key": "dimitri-vegas-and-like-mike",
+   "performers": [
+    "dimitri-vegas-and-like-mike"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2021:mainstage"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:lost-frequencies",
+   "name": "Lost Frequencies",
+   "key": "lost-frequencies",
+   "performers": [
+    "lost-frequencies"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2021:mainstage"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:subcarpati",
+   "name": "Subcarpați",
+   "key": "subcarpati",
+   "performers": [
+    "subcarpati"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2021:mainstage"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:tchami",
+   "name": "Tchami",
+   "key": "tchami",
+   "performers": [
+    "tchami"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2021:mainstage"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:the-script",
+   "name": "The Script",
+   "key": "the-script",
+   "performers": [
+    "the-script"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2021:mainstage"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:camo-and-krooked",
+   "name": "Camo & Krooked",
+   "key": "camo-and-krooked",
+   "performers": [
+    "camo-and-krooked"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2021:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:chase-and-status-dj-set",
+   "name": "Chase & Status DJ Set",
+   "key": "chase-and-status-dj-set",
+   "performers": [
+    "chase-and-status-dj-set"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2021:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:macanache",
+   "name": "Macanache",
+   "key": "macanache",
+   "performers": [
+    "macanache"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2021:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:parazitii",
+   "name": "Paraziții",
+   "key": "parazitii",
+   "performers": [
+    "parazitii"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2021:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:paul-kalkbrenner",
+   "name": "Paul Kalkbrenner",
+   "key": "paul-kalkbrenner",
+   "performers": [
+    "paul-kalkbrenner"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2021:galaxy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:raresh",
+   "name": "Raresh",
+   "key": "raresh",
+   "performers": [
+    "raresh"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2021:galaxy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:rhadoo",
+   "name": "Rhadoo",
+   "key": "rhadoo",
+   "performers": [
+    "rhadoo"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2021:galaxy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:hraach",
+   "name": "Hraach",
+   "key": "hraach",
+   "performers": [
+    "hraach"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2021:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:maga",
+   "name": "Maga",
+   "key": "maga",
+   "performers": [
+    "maga"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2021:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:monolink",
+   "name": "Monolink",
+   "key": "monolink",
+   "performers": [
+    "monolink"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2021:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:parra-for-cuva-b2b-trashlagoon",
+   "name": "Parra for Cuva B2B Trashlagoon",
+   "key": "parra-for-cuva-b2b-trashlagoon",
+   "performers": [
+    "parra-for-cuva",
+    "trashlagoon"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2021:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:andrew-rayel",
+   "name": "Andrew Rayel",
+   "key": "andrew-rayel",
+   "performers": [
+    "andrew-rayel"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2021:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:bogdan-vix",
+   "name": "Bogdan Vix",
+   "key": "bogdan-vix",
+   "performers": [
+    "bogdan-vix"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2021:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:ram-and-susana-pres-tales-of-life",
+   "name": "Ram & Susana pres. Tales of Life",
+   "key": "ram-and-susana-pres-tales-of-life",
+   "performers": [
+    "ram-and-susana-pres-tales-of-life"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2021:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:ruben-de-ronde",
+   "name": "Ruben de Ronde",
+   "key": "ruben-de-ronde",
+   "performers": [
+    "ruben-de-ronde"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2021:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:dj-andi",
+   "name": "DJ Andi",
+   "key": "dj-andi",
+   "performers": [
+    "dj-andi"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2021:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:nusha",
+   "name": "Nusha",
+   "key": "nusha",
+   "performers": [
+    "nusha"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2021:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:pascal-junior",
+   "name": "Pascal Junior",
+   "key": "pascal-junior",
+   "performers": [
+    "pascal-junior"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2021:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:vali-barbulescu",
+   "name": "Vali Bărbulescu",
+   "key": "vali-barbulescu",
+   "performers": [
+    "vali-barbulescu"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2021:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:afrojack",
+   "name": "Afrojack",
+   "key": "afrojack",
+   "performers": [
+    "afrojack"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2021:mainstage"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:b-jones",
+   "name": "B Jones",
+   "key": "b-jones",
+   "performers": [
+    "b-jones"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2021:mainstage"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:david-guetta",
+   "name": "David Guetta",
+   "key": "david-guetta",
+   "performers": [
+    "david-guetta"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2021:mainstage"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:martin-solveig",
+   "name": "Martin Solveig",
+   "key": "martin-solveig",
+   "performers": [
+    "martin-solveig"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2021:mainstage"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:ofenbach",
+   "name": "Ofenbach",
+   "key": "ofenbach",
+   "performers": [
+    "ofenbach"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2021:mainstage"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:quintino",
+   "name": "Quintino",
+   "key": "quintino",
+   "performers": [
+    "quintino"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2021:mainstage"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:culese-din-cartier-showcase",
+   "name": "Culese din Cartier Showcase",
+   "key": "culese-din-cartier-showcase",
+   "performers": [
+    "culese-din-cartier-showcase"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2021:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:dj-wicked",
+   "name": "DJ Wicked",
+   "key": "dj-wicked",
+   "performers": [
+    "dj-wicked"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2021:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:dub-fx-and-woodnote",
+   "name": "DUB FX & Woodnote",
+   "key": "dub-fx-and-woodnote",
+   "performers": [
+    "dub-fx-and-woodnote"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2021:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:rudimental-dj",
+   "name": "Rudimental DJ",
+   "key": "rudimental-dj",
+   "performers": [
+    "rudimental-dj"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2021:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:amelie-lens",
+   "name": "Amelie Lens",
+   "key": "amelie-lens",
+   "performers": [
+    "amelie-lens"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2021:galaxy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:charlotte-de-witte",
+   "name": "Charlotte de Witte",
+   "key": "charlotte-de-witte",
+   "performers": [
+    "charlotte-de-witte"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2021:galaxy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:colyn",
+   "name": "Colyn",
+   "key": "colyn",
+   "performers": [
+    "colyn"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2021:galaxy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:tale-of-us",
+   "name": "Tale of Us",
+   "key": "tale-of-us",
+   "performers": [
+    "tale-of-us"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2021:galaxy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:audiofly",
+   "name": "Audiofly",
+   "key": "audiofly",
+   "performers": [
+    "audiofly"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2021:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:caleesi-and-sarah-kreis",
+   "name": "Caleesi & Sarah Kreis",
+   "key": "caleesi-and-sarah-kreis",
+   "performers": [
+    "caleesi-and-sarah-kreis"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2021:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:day-dreamers-marwan-dub-fx-woodnote",
+   "name": "Day Dreamers (Marwan, DUB FX, Woodnote)",
+   "key": "day-dreamers-marwan-dub-fx-woodnote",
+   "performers": [
+    "day-dreamers-marwan-dub-fx-woodnote"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2021:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:lee-burridge",
+   "name": "Lee Burridge",
+   "key": "lee-burridge",
+   "performers": [
+    "lee-burridge"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2021:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:craig-connelly",
+   "name": "Craig Connelly",
+   "key": "craig-connelly",
+   "performers": [
+    "craig-connelly"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2021:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:drym",
+   "name": "Drym",
+   "key": "drym",
+   "performers": [
+    "drym"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2021:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:emma-hewitt",
+   "name": "Emma Hewitt",
+   "key": "emma-hewitt",
+   "performers": [
+    "emma-hewitt"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2021:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:markus-schulz",
+   "name": "Markus Schulz",
+   "key": "markus-schulz",
+   "performers": [
+    "markus-schulz"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2021:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:afgo-and-lemon",
+   "name": "Afgo & Lemon",
+   "key": "afgo-and-lemon",
+   "performers": [
+    "afgo-and-lemon"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2021:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:markus-homm",
+   "name": "Markus Homm",
+   "key": "markus-homm",
+   "performers": [
+    "markus-homm"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2021:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:sasha-lopez",
+   "name": "Sasha Lopez",
+   "key": "sasha-lopez",
+   "performers": [
+    "sasha-lopez"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2021:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2021:sllash-and-doppe",
+   "name": "Sllash & Doppe",
+   "key": "sllash-and-doppe",
+   "performers": [
+    "sllash-and-doppe"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2021:time"
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "unofficial_lineup",
+  "unofficial": true,
+  "source": {
+   "kind": "press",
+   "site": "monitorulcj.ro",
+   "url": "https://www.monitorulcj.ro/actualitate/92517-programul-pe-zile-la-untold-2021-afla-cand-vor-urca-pe-scena-artistii-tai-preferati",
+   "title": "Programul pe zile la UNTOLD 2021! Află când vor urca pe scenă artiștii tăi preferați",
+   "publisher": "Monitorul de Cluj",
+   "published": "2021-08-19",
+   "fetchedAt": "2026-11-27",
+   "fetchedVia": "exa",
+   "scope": "partial",
+   "sha256": "49087bb1a848290b548b39c446c03f30f105509f38f559ed8396983b91f3ef93",
+   "bytes": 3336
+  },
+  "captures": [
+   {
+    "page": "lineup",
+    "url": "https://www.monitorulcj.ro/actualitate/92517-programul-pe-zile-la-untold-2021-afla-cand-vor-urca-pe-scena-artistii-tai-preferati",
+    "fetchedAt": "2026-11-27",
+    "sha256": "49087bb1a848290b548b39c446c03f30f105509f38f559ed8396983b91f3ef93"
+   }
+  ]
+ }
+}
