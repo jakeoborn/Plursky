@@ -1,0 +1,700 @@
+{
+ "id": "lollapalooza-argentina-2016",
+ "festivalId": "lollapalooza-argentina",
+ "name": "Lollapalooza Argentina 2016",
+ "year": 2016,
+ "timezone": "America/Argentina/Buenos_Aires",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2016-03-18",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2016-03-19",
+   "label": "Saturday"
+  }
+ ],
+ "stages": [],
+ "artists": [
+  {
+   "id": "lollapalooza-argentina-2016:eminem",
+   "name": "Eminem",
+   "key": "eminem",
+   "performers": [
+    "eminem"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:jack-u",
+   "name": "Jack Ü",
+   "key": "jack-u",
+   "performers": [
+    "jack-u"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:tame-impala",
+   "name": "Tame Impala",
+   "key": "tame-impala",
+   "performers": [
+    "tame-impala"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:zedd",
+   "name": "Zedd",
+   "key": "zedd",
+   "performers": [
+    "zedd"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:of-monsters-and-men",
+   "name": "Of Monsters and Men",
+   "key": "of-monsters-and-men",
+   "performers": [
+    "of-monsters-and-men"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:twenty-one-pilots",
+   "name": "Twenty One Pilots",
+   "key": "twenty-one-pilots",
+   "performers": [
+    "twenty-one-pilots"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:illya-kuryaki-and-the-valderramas",
+   "name": "Illya Kuryaki & The Valderramas",
+   "key": "illya-kuryaki-and-the-valderramas",
+   "performers": [
+    "illya-kuryaki-and-the-valderramas"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:halsey",
+   "name": "Halsey",
+   "key": "halsey",
+   "performers": [
+    "halsey"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:jungle",
+   "name": "Jungle",
+   "key": "jungle",
+   "performers": [
+    "jungle"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:albert-hammond-jr",
+   "name": "Albert Hammond Jr",
+   "key": "albert-hammond-jr",
+   "performers": [
+    "albert-hammond-jr"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:walk-the-moon",
+   "name": "WALK THE MOON",
+   "key": "walk-the-moon",
+   "performers": [
+    "walk-the-moon"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:flosstradamus",
+   "name": "Flosstradamus",
+   "key": "flosstradamus",
+   "performers": [
+    "flosstradamus"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:eagles-of-death-metal",
+   "name": "Eagles of Death Metal",
+   "key": "eagles-of-death-metal",
+   "performers": [
+    "eagles-of-death-metal"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:sig-ragga",
+   "name": "Sig Ragga",
+   "key": "sig-ragga",
+   "performers": [
+    "sig-ragga"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:duke-dumont",
+   "name": "Duke Dumont",
+   "key": "duke-dumont",
+   "performers": [
+    "duke-dumont"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:the-joy-formidable",
+   "name": "The Joy Formidable",
+   "key": "the-joy-formidable",
+   "performers": [
+    "the-joy-formidable"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:meteoros",
+   "name": "Meteoros",
+   "key": "meteoros",
+   "performers": [
+    "meteoros"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:seeed",
+   "name": "SEEED",
+   "key": "seeed",
+   "performers": [
+    "seeed"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:gramatik",
+   "name": "Gramatik",
+   "key": "gramatik",
+   "performers": [
+    "gramatik"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:jack-novak",
+   "name": "Jack Novak",
+   "key": "jack-novak",
+   "performers": [
+    "jack-novak"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:el-kuelgue",
+   "name": "El Kuelgue",
+   "key": "el-kuelgue",
+   "performers": [
+    "el-kuelgue"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:zuker",
+   "name": "Zuker",
+   "key": "zuker",
+   "performers": [
+    "zuker"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:solimano-live",
+   "name": "Solimano Live",
+   "key": "solimano-live",
+   "performers": [
+    "solimano-live"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:eric-mandarina",
+   "name": "Eric Mandarina",
+   "key": "eric-mandarina",
+   "performers": [
+    "eric-mandarina"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:frane-y-la-faktor-band",
+   "name": "Frane y la Faktor Band",
+   "key": "frane-y-la-faktor-band",
+   "performers": [
+    "frane-y-la-faktor-band"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:stone-giant",
+   "name": "Stone Giant",
+   "key": "stone-giant",
+   "performers": [
+    "stone-giant"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:florence-the-machine",
+   "name": "Florence + The Machine",
+   "key": "florence-the-machine",
+   "performers": [
+    "florence-the-machine"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:mumford-and-sons",
+   "name": "Mumford & Sons",
+   "key": "mumford-and-sons",
+   "performers": [
+    "mumford-and-sons"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:noel-gallagher-s-high-flying-birds",
+   "name": "Noel Gallagher’s High Flying Birds",
+   "key": "noel-gallagher-s-high-flying-birds",
+   "performers": [
+    "noel-gallagher-s-high-flying-birds"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:brandon-flowers",
+   "name": "Brandon Flowers",
+   "key": "brandon-flowers",
+   "performers": [
+    "brandon-flowers"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:kaskade",
+   "name": "Kaskade",
+   "key": "kaskade",
+   "performers": [
+    "kaskade"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:die-antwoord",
+   "name": "Die Antwoord",
+   "key": "die-antwoord",
+   "performers": [
+    "die-antwoord"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:babasonicos",
+   "name": "Babasónicos",
+   "key": "babasonicos",
+   "performers": [
+    "babasonicos"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:alabama-shakes",
+   "name": "Alabama Shakes",
+   "key": "alabama-shakes",
+   "performers": [
+    "alabama-shakes"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:marina-and-the-diamonds",
+   "name": "Marina & the Diamonds",
+   "key": "marina-and-the-diamonds",
+   "performers": [
+    "marina-and-the-diamonds"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:odesza",
+   "name": "ODESZA",
+   "key": "odesza",
+   "performers": [
+    "odesza"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:bad-religion",
+   "name": "Bad Religion",
+   "key": "bad-religion",
+   "performers": [
+    "bad-religion"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:ghost",
+   "name": "GHOST",
+   "key": "ghost",
+   "performers": [
+    "ghost"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:rl-grime",
+   "name": "RL Grime",
+   "key": "rl-grime",
+   "performers": [
+    "rl-grime"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:zeds-dead",
+   "name": "Zeds Dead",
+   "key": "zeds-dead",
+   "performers": [
+    "zeds-dead"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:a-trak",
+   "name": "A-Trak",
+   "key": "a-trak",
+   "performers": [
+    "a-trak"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:carajo",
+   "name": "Carajo",
+   "key": "carajo",
+   "performers": [
+    "carajo"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:eruca-sativa",
+   "name": "Eruca Sativa",
+   "key": "eruca-sativa",
+   "performers": [
+    "eruca-sativa"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:boom-boom-kid",
+   "name": "Boom Boom Kid",
+   "key": "boom-boom-kid",
+   "performers": [
+    "boom-boom-kid"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:vintage-trouble",
+   "name": "Vintage Trouble",
+   "key": "vintage-trouble",
+   "performers": [
+    "vintage-trouble"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:matthew-koma",
+   "name": "Matthew Koma",
+   "key": "matthew-koma",
+   "performers": [
+    "matthew-koma"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:leo-garcia",
+   "name": "Leo Garcia",
+   "key": "leo-garcia",
+   "performers": [
+    "leo-garcia"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:los-espiritus",
+   "name": "Los Espíritus",
+   "key": "los-espiritus",
+   "performers": [
+    "los-espiritus"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:festa-bros",
+   "name": "Festa Bros",
+   "key": "festa-bros",
+   "performers": [
+    "festa-bros"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:villa-diamante",
+   "name": "Villa Diamante",
+   "key": "villa-diamante",
+   "performers": [
+    "villa-diamante"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2016:juan-ingaramo",
+   "name": "Juan Ingaramo",
+   "key": "juan-ingaramo",
+   "performers": [
+    "juan-ingaramo"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "official_lineup_html",
+  "official": "http://www.lollapaloozaar.com/lineup-2016-diario/",
+  "captures": [
+   {
+    "page": "lineup",
+    "archivedUrl": "https://web.archive.org/web/20160318163434/http://www.lollapaloozaar.com/lineup-2016-diario/",
+    "captureTimestamp": "20160318163434",
+    "sha256": "bb6491b4c248b07d8a33c70dbcaf373c19866a000b3f3f3fa471838918945013"
+   }
+  ]
+ }
+}

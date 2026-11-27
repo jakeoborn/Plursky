@@ -849,6 +849,47 @@ poster image, and 2013's reveal page has no capture from 2013; from 2022 the
 site's /lineup page also shows the lineup only as a poster image, and no
 capture of it from 2023 on was found. Those years are not read here.
 
+Official Lollapalooza Chile (2014-2016) and Lollapalooza Argentina
+(2015-2016) day-by-day lineup pages (formats `lollacl-por-dia`,
+`lollaar-por-dia`):
+
+    node scripts/historical/extract-lollabr-lineup.mjs lollapalooza-chile-<year>
+    node scripts/historical/extract-lollabr-lineup.mjs lollapalooza-argentina-<year>
+    # writes sheets/<id>.lineup.tsv and the ledger; lineup_only, no times
+
+lollapaloozacl.com and lollapaloozaar.com ran on Brasil's templates, so the
+same reader reads them (`lollabr-lineup.mjs`, each reader given its `site`:
+the festival the title must name and the language its dates are printed in,
+Spanish here). Chile's /lineup-diario (2014), /lineupdiario2015 and
+/lineupdiario2016/, and Argentina's /por-dia (2015) and /lineup-2016-diario/
+print the run in the site header ("14 & 15 de marzo 2015 - Parque
+O'Higgins", "18 y 19 de marzo de 2016. Hipódromo de San Isidro."). Where the
+header prints no year, the title must: Chile 2014's title prints the same
+run with it ("… | Santiago – 29 y 30 de Marzo 2014"), Argentina 2015's names
+the edition ("Por día | Lollapalooza Argentina 2015"). Each list of acts is
+headed by the nearest heading before it, a weekday and the day of the month
+("Sábado 29", "Viernes 18", Argentina 2016's "Sabado 19"): that day of the
+run, which must be the heading's own weekday, the days in the run's order.
+Chile 2016 also prints a Kidzapalooza list under each day; its acts are kept
+on that day with the stage Kidzapalooza, the only stage these pages name.
+A subtitle that continues a billing is part of it (Argentina 2015's "Robert
+Plant" over "and the Sensational Space Shifters"); Chile 2016's "MAGIA REAL"
+prints its performers under it, named in the extractor as a credit and set
+apart in the ledger (`creditsNotKept`). Any other subtitle, a list under any
+other heading, or a heading that heads two lists stops the read.
+
+Each year's captures from 1 January to the festival's last day are listed
+and the latest that proves the edition is read: Chile 29 March 2014 (the
+first day), 14 February 2015 (four weeks before; the edition's note says
+later changes are not shown) and 12 March 2016; Argentina 18 March 2015 and
+18 March 2016 (the first day). Not read here: Chile 2011-2013 (the archive's index
+lists no day-by-day lineup page from those years, only news posts announcing
+one, which were not read), Argentina
+2014 (its /lineup-diario has no capture from 2014's run; the September 2014
+capture already prints 2015's), and both festivals from 2017 on, whose
+schedule grids (/horario/, /horarios/) were found in the archive's index but
+not yet read.
+
 Ultra Europe's own Artists page (2013, format `ultra-europe-artists`):
 
     node scripts/historical/extract-ultra-europe.mjs ultra-europe-2013

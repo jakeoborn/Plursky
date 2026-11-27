@@ -4199,6 +4199,58 @@
    }
   },
   {
+   "id": "lollapalooza-argentina-2016",
+   "festivalId": "lollapalooza-argentina",
+   "festivalName": "Lollapalooza Argentina",
+   "name": "Lollapalooza Argentina 2016",
+   "year": 2016,
+   "timezone": "America/Argentina/Buenos_Aires",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2016-03-18",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2016-03-19",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 51,
+    "sets": 0
+   }
+  },
+  {
+   "id": "lollapalooza-argentina-2015",
+   "festivalId": "lollapalooza-argentina",
+   "festivalName": "Lollapalooza Argentina",
+   "name": "Lollapalooza Argentina 2015",
+   "year": 2015,
+   "timezone": "America/Argentina/Buenos_Aires",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2015-03-21",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2015-03-22",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 50,
+    "sets": 0
+   }
+  },
+  {
    "id": "lollapalooza-brasil-2019",
    "festivalId": "lollapalooza-brasil",
    "festivalName": "Lollapalooza Brasil",
@@ -4361,6 +4413,84 @@
    "counts": {
     "stages": 0,
     "artists": 46,
+    "sets": 0
+   }
+  },
+  {
+   "id": "lollapalooza-chile-2016",
+   "festivalId": "lollapalooza-chile",
+   "festivalName": "Lollapalooza Chile",
+   "name": "Lollapalooza Chile 2016",
+   "year": 2016,
+   "timezone": "America/Santiago",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2016-03-19",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2016-03-20",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 1,
+    "artists": 66,
+    "sets": 0
+   }
+  },
+  {
+   "id": "lollapalooza-chile-2015",
+   "festivalId": "lollapalooza-chile",
+   "festivalName": "Lollapalooza Chile",
+   "name": "Lollapalooza Chile 2015",
+   "year": 2015,
+   "timezone": "America/Santiago",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2015-03-14",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2015-03-15",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 75,
+    "sets": 0
+   }
+  },
+  {
+   "id": "lollapalooza-chile-2014",
+   "festivalId": "lollapalooza-chile",
+   "festivalName": "Lollapalooza Chile",
+   "name": "Lollapalooza Chile 2014",
+   "year": 2014,
+   "timezone": "America/Santiago",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2014-03-29",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2014-03-30",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 66,
     "sets": 0
    }
   },

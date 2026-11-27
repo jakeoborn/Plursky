@@ -196,6 +196,16 @@ if (base && edc) {
     mustFail("a Lollapalooza Brasil day moved off its date", m => { m.days[0].date = "2019-04-04"; }, lb19);
     mustFail("a Lollapalooza Brasil act dropped", m => { m.artists.pop(); }, lb19, undefined, /artists, locked/);
   }
+  // Lollapalooza Chile and Argentina: the same, on their own sites.
+  for (const [id, other] of [["lollapalooza-chile-2016", "www.lollapaloozaar.com"], ["lollapalooza-argentina-2015", "www.lollapaloozacl.com"]]) {
+    const e = editions[id];
+    if (!e) continue;
+    const cap = m => m.provenance.captures[0], y = String(e.year);
+    mustFail(`a ${e.name} lineup captured the year before`, m => { const c = cap(m); c.archivedUrl = c.archivedUrl.replace(`/web/${y}`, `/web/${y - 1}`); c.captureTimestamp = c.captureTimestamp.replace(new RegExp(`^${y}`), String(y - 1)); }, e, () => {}, new RegExp(`is not from ${y}`));
+    mustFail(`a ${e.name} lineup read off the other country's site`, m => { const c = cap(m); c.archivedUrl = c.archivedUrl.replace(/www\.lollapalooza(cl|ar)\.com/, other); }, e, () => {}, new RegExp(`not an official ${e.festivalId} property`));
+    mustFail(`a ${e.name} day moved off its date`, m => { m.days[1].date = `${y}-04-30`; }, e);
+    mustFail(`a ${e.name} act dropped`, m => { m.artists.pop(); }, e, undefined, /artists, locked/);
+  }
   // Awakenings 2012: its lineup is the festival's own party page on
   // awakenings.nl, captured the day after; its one day is the date it printed.
   const aw12 = editions["awakenings-2012"];
@@ -1205,6 +1215,44 @@ if (base && edc) {
     lbMust("a Lollapalooza Brasil card dated off the run", lbCards, lbCardsPage({ cards: [lbCard("Pearl Jam", ["26/3/2018"]), lbCard("A", ["23/3/2018"]), lbCard("B", ["25/3/2018"])] }), 2018);
     lbMust("a Lollapalooza Brasil run with a day no card plays", lbCards, lbCardsPage({ cards: [lbCard("A", ["23/3/2018"])] }), 2018);
     lbMust("an empty Lollapalooza Brasil cards page", lbCards, `<title>LINEUP – Lollapalooza Brasil</title><meta name="description" content="O Lollapalooza Brasil 2018 será dias 23, 24 e 25 de março!">`, 2018);
+    // Lollapalooza Chile's and Argentina's day-by-day pages share Brasil's
+    // template, in Spanish: a header that may print no year (the title then
+    // does), "Sábado 29" headings that print only the day of the month, a
+    // Kidzapalooza list under a Chile day, and a subtitle that continues the
+    // billing.
+    const latDay = (h, acts, tag = "h2") => `<${tag} style="text-align: center;">${h}</${tag}><div class="lineup"><ol class="lineup-list">${acts.map(lbLi).join("")}</ol></div>`;
+    const chPage = ({ title = "LineUp Diario | Lollapalooza Chile | Santiago – 29 y 30 de Marzo 2014", dates = "29 y 30 de Marzo - Parque O'Higgins", days = [latDay("Sábado 29", ["Red Hot Chili Peppers", "Phoenix"]), latDay("Kidzapalooza", ["Cachureos"], "h3"), latDay("Domingo 30", ["Arcade Fire"])] } = {}) =>
+      `<title>${title}</title><p class="site-dates">${dates}</p><h1 class="title">LineUp Diario</h1><div class="content">${days.join("<hr>")}</div>`;
+    const chl = lbPorDia(chPage(), { year: 2014, site: "chile" });
+    ok(JSON.stringify(chl.days.map(d => [d.date, d.acts.map(a => a.stage ? `${a.artist}@${a.stage}` : a.artist)])) === JSON.stringify([["2014-03-29", ["Red Hot Chili Peppers", "Phoenix", "Cachureos@Kidzapalooza"]], ["2014-03-30", ["Arcade Fire"]]])
+      && JSON.stringify(chl.stageOrder) === JSON.stringify(["Kidzapalooza"]), `a Lollapalooza Chile day list must come back as its dated days, its Kidzapalooza list on that day: ${JSON.stringify(chl.days)}`);
+    const arPage = ({ title = "Por día | Lollapalooza Argentina 2015", dates = "21 y 22 de Marzo. Hipódromo de San Isidro. Buenos Aires.", sub = "and the Sensational Space Shifters", days } = {}) =>
+      `<title>${title}</title><p class="site-dates">${dates}</p><div class="content">${(days || [latDay("Sábado 21", ["Jack White", "Robert Plant"], "h3"), latDay("Domingo 22", ["Pharrell Williams"], "h3")]).join("")}</div>`
+        .replace(/Robert Plant <span class="artist__subtitle"><\/span>/, `Robert Plant <span class="artist__subtitle">${sub}</span>`);
+    const ar = lbPorDia(arPage(), { year: 2015, site: "argentina" });
+    ok(JSON.stringify(ar.days.map(d => [d.date, d.acts.map(a => a.artist)])) === JSON.stringify([["2015-03-21", ["Jack White", "Robert Plant and the Sensational Space Shifters"]], ["2015-03-22", ["Pharrell Williams"]]]),
+      `a Lollapalooza Argentina day list must come back dated, a continuing subtitle joined to its billing: ${JSON.stringify(ar.days)}`);
+    ok(JSON.stringify(lbRun("14 & 15 de marzo 2015 - Parque O'Higgins", 2015, "es")) === JSON.stringify(["2015-03-14", "2015-03-15"]) && JSON.stringify(lbRun("19 y 20 de Marzo, 2016 · Parque", 2016, "es")) === JSON.stringify(["2016-03-19", "2016-03-20"])
+      && lbRun("18 y 19 de marzo de 2016", 2015, "es") === null && lbHeading("Sabado 19", 2016, { lang: "es", run: ["2016-03-18", "2016-03-19"] }) === "2016-03-19"
+      && lbHeading("Domingo 19", 2016, { lang: "es", run: ["2016-03-18", "2016-03-19"] }) === null && lbHeading("Sábado 19", 2016, { lang: "es" }) === null,
+      "Lollapalooza Chile and Argentina printed dates must be real, in the year, with their own weekdays");
+    const latMust = (what, html, year, site, o = {}) => { let bad = false; try { lbPorDia(html, { year, site, ...o }); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    latMust("a Lollapalooza Chile 2014 page read as another year's", chPage(), 2015, "chile");
+    latMust("a Lollapalooza Chile page whose title prints another year's run", chPage({ title: "LineUp Diario | Lollapalooza Chile | Santiago – 29 y 30 de Marzo 2013" }), 2014, "chile");
+    latMust("a Lollapalooza Chile page printing no year at all", chPage({ title: "LineUp Diario | Lollapalooza Chile" }), 2014, "chile");
+    latMust("a Lollapalooza Chile day heading on another date", chPage({ days: [latDay("Sábado 29", ["A"]), latDay("Domingo 31", ["B"])] }), 2014, "chile");
+    latMust("a Lollapalooza Chile day heading with the wrong weekday", chPage({ days: [latDay("Domingo 29", ["A"]), latDay("Domingo 30", ["B"])] }), 2014, "chile");
+    latMust("a Lollapalooza Chile page missing a day", chPage({ days: [latDay("Sábado 29", ["A"])] }), 2014, "chile");
+    latMust("an empty Lollapalooza Chile page", chPage({ days: [] }), 2014, "chile");
+    latMust("a Lollapalooza Chile Kidzapalooza list before any day", chPage({ days: [latDay("Kidzapalooza", ["K"], "h3"), latDay("Sábado 29", ["A"]), latDay("Domingo 30", ["B"])] }), 2014, "chile");
+    latMust("a Lollapalooza Chile list under a heading that is neither a day nor a stage", chPage({ days: [latDay("Sábado 29", ["A"]), latDay("Invitados", ["X"], "h3"), latDay("Domingo 30", ["B"])] }), 2014, "chile");
+    latMust("a Kidzapalooza list on Argentina's page, which names no such stage", arPage({ days: [latDay("Sábado 21", ["A"], "h3"), latDay("Kidzapalooza", ["K"]), latDay("Domingo 22", ["B"], "h3")] }), 2015, "argentina");
+    latMust("a Lollapalooza Argentina 2015 page read as another year's", arPage(), 2016, "argentina");
+    latMust("Lollapalooza Argentina's page read as Chile's", arPage(), 2015, "chile");
+    latMust("a Lollapalooza Argentina subtitle that is not part of the billing", arPage({ sub: "Jean Paul Olhaberry & Boris Krivoss" }), 2015, "argentina");
+    latMust("a credit named for an act the page does not print", arPage(), 2015, "argentina", { credits: { "MAGIA REAL": "Jean Paul Olhaberry & Boris Krivoss" } });
+    const arCredit = lbPorDia(arPage({ sub: "Jean Paul Olhaberry &amp; Boris Krivoss" }), { year: 2015, site: "argentina", credits: { "Robert Plant": "Jean Paul Olhaberry & Boris Krivoss" } });
+    ok(arCredit.days[0].acts[1].artist === "Robert Plant" && arCredit.credits.length === 1, `a subtitle named as a credit must be set apart, not joined: ${JSON.stringify(arCredit.credits)}`);
     // Awakenings' old party page: a header with the one date, area tabs, one
     // panel per tab with each set's range and name.
     const awAct = (range, name) => `<li><a href="http://www.awakenings.nl/en/artists/1/x/"><img src="x.jpg" alt="${name}"></a><p>${range}<br><span class="name"><a href="http://www.awakenings.nl/en/artists/1/x/" class="flyercolor">${name}</a></span></p></li>`;

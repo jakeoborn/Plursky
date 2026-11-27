@@ -96,6 +96,11 @@ export const OFFICIAL_HOSTS = {
   // lollapaloozabr.com: Lollapalooza Brasil's own site, whose lineup pages
   // listed each year's acts by day (and, in 2017 and 2019, by stage).
   "lollapalooza-brasil": ["lollapaloozabr.com"],
+  // lollapaloozacl.com and lollapaloozaar.com: Lollapalooza Chile's and
+  // Lollapalooza Argentina's own sites, on Brasil's templates, whose day-by-day
+  // lineup pages listed each year's acts by day.
+  "lollapalooza-chile": ["lollapaloozacl.com"],
+  "lollapalooza-argentina": ["lollapaloozaar.com"],
   // awakenings.nl: Awakenings' own site until late 2015 (each festival's
   // party page printed its lineup by area); awakenings.com is its site today.
   "awakenings": ["awakenings.nl", "awakenings.com"],

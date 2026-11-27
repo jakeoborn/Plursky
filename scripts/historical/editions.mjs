@@ -800,6 +800,31 @@ export const EDITIONS = {
   "lollapalooza-brasil-2019": { festivalId: "lollapalooza-brasil", name: "Lollapalooza Brasil 2019", year: 2019,
     timezone: "America/Sao_Paulo", rolloverHour: 6, method: "official_lineup_html",
     dates: [["2019-04-05", "Friday"], ["2019-04-06", "Saturday"], ["2019-04-07", "Sunday"]] },
+  // Lollapalooza Chile 2014-2016 (Parque O'Higgins, Santiago) and
+  // Lollapalooza Argentina 2015-2016 (Hipódromo de San Isidro): the
+  // festivals' own day-by-day lineup pages on lollapaloozacl.com and
+  // lollapaloozaar.com, the same template as Brasil's (lollabr-lineup.mjs,
+  // extract-lollabr-lineup.mjs), each read from the last capture taken before
+  // or during the festival. The site header (or the title) prints the run with
+  // its year; each list is headed by its day. Only Chile 2016 names a stage:
+  // a Kidzapalooza list under each day.
+  "lollapalooza-chile-2014": { festivalId: "lollapalooza-chile", name: "Lollapalooza Chile 2014", year: 2014,
+    timezone: "America/Santiago", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2014-03-29", "Saturday"], ["2014-03-30", "Sunday"]] },
+  "lollapalooza-chile-2015": { festivalId: "lollapalooza-chile", name: "Lollapalooza Chile 2015", year: 2015,
+    timezone: "America/Santiago", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2015-03-14", "Saturday"], ["2015-03-15", "Sunday"]],
+    notes: [{ asOf: "2026-11-27", text: "The lineup as the festival's own page printed it on 14 February 2015, four weeks before the festival. Changes after that day are not shown.",
+      source: "https://web.archive.org/web/20150214040606/http://www.lollapaloozacl.com/lineupdiario2015" }] },
+  "lollapalooza-chile-2016": { festivalId: "lollapalooza-chile", name: "Lollapalooza Chile 2016", year: 2016,
+    timezone: "America/Santiago", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2016-03-19", "Saturday"], ["2016-03-20", "Sunday"]] },
+  "lollapalooza-argentina-2015": { festivalId: "lollapalooza-argentina", name: "Lollapalooza Argentina 2015", year: 2015,
+    timezone: "America/Argentina/Buenos_Aires", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2015-03-21", "Saturday"], ["2015-03-22", "Sunday"]] },
+  "lollapalooza-argentina-2016": { festivalId: "lollapalooza-argentina", name: "Lollapalooza Argentina 2016", year: 2016,
+    timezone: "America/Argentina/Buenos_Aires", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2016-03-18", "Friday"], ["2016-03-19", "Saturday"]] },
   // Ultra Europe 2013 (Poljud Stadium, Split): the festival's own /artists/
   // page (ultra-europe-artists.mjs, extract-ultra-europe.mjs) lists each act
   // with its numbered day and stage. The page's countdown opens on the first
