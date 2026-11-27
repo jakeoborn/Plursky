@@ -27,6 +27,13 @@ var QUICK_REPLIES = [{
   tag: "NEED YOU",
   text: "🆘 come find me"
 }];
+function _mapErrWords(err) {
+  var m = String(err || "");
+  if (m === "No network connection") return "Offline — no cached map for this festival yet";
+  if (/webgl/i.test(m)) return "This browser can't draw the live map right now. Low Power Mode or an older browser can cause this.";
+  if (/library|script/i.test(m)) return "The map didn't load. Check your connection and retry.";
+  return "The map didn't load. Retry in a moment.";
+}
 function _inkOnHex(hex) {
   var m = /^#?([0-9a-f]{6}|[0-9a-f]{3})$/i.exec(String(hex || "").trim());
   if (!m) return "var(--ink)";
@@ -7946,7 +7953,7 @@ function RealMap({
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
-      color: "var(--alert)",
+      color: "var(--ink-2)",
       fontFamily: "'Geist Mono',monospace",
       fontSize: 10,
       letterSpacing: 1.3,
@@ -7954,14 +7961,17 @@ function RealMap({
       padding: 20,
       textAlign: "center"
     }
-  }, React.createElement("div", null, "MAP ERROR"), React.createElement("div", {
+  }, React.createElement("div", {
+    "data-realmap-err-head": true
+  }, "MAP UNAVAILABLE"), React.createElement("div", {
     "data-realmap-err": true,
+    "data-realmap-err-raw": String(err).slice(0, 200),
     style: {
       color: "var(--text-3)",
       fontSize: 9,
       maxWidth: 240
     }
-  }, err === "No network connection" ? "Offline — no cached map for this festival yet" : err), FESTIVAL_CONFIG.mapMode === "real" ? React.createElement(React.Fragment, null, React.createElement("div", {
+  }, _mapErrWords(err)), FESTIVAL_CONFIG.mapMode === "real" ? React.createElement(React.Fragment, null, React.createElement("div", {
     style: {
       color: "var(--text-2)",
       fontSize: 10,
@@ -7981,7 +7991,21 @@ function RealMap({
       marginTop: 6,
       maxWidth: 250
     }
-  }, "The official festival map publishes before doors. Until then this screen needs a connection."), React.createElement("button", {
+  }, "The official festival map publishes before doors. Until then this screen needs a connection."), (FESTIVAL_CONFIG.venue?.address || FESTIVAL_CONFIG.location) && React.createElement("a", {
+    "data-realmap-err-directions": true,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    href: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent([FESTIVAL_CONFIG.venue?.name, FESTIVAL_CONFIG.venue?.address || FESTIVAL_CONFIG.location].filter(Boolean).join(", "))}`,
+    style: {
+      marginTop: 10,
+      color: "var(--ink)",
+      fontSize: 9,
+      letterSpacing: 1.2,
+      fontWeight: 700,
+      textDecoration: "underline",
+      textUnderlineOffset: 3
+    }
+  }, "OPEN IN MAPS ↗"), React.createElement("button", {
     onClick: () => {
       setErr(null);
       fatalRef.current = false;

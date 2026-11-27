@@ -409,12 +409,19 @@ function _CareerNode({ x, fests }) {
   );
 }
 
+// A long career squeezes 15+ year columns into a phone width, where full
+// years ran into each other. Past 6 columns the axis reads '10 '11, and past
+// 10 it labels every other year plus the last. The stage-by-year lines sit
+// behind one toggle: shown by default they buried the card in text.
+const _crAxisLabel = (y, i, n) => (n > 10 && i % 2 === 1 && i !== n - 1) ? "" : (n > 6 ? `’${y.slice(2)}` : y);
 function _CareerLadder({ m, fests }) {
   const n = m.years.length, cols = `repeat(${n}, minmax(0, 1fr))`;
+  const [showMoves, setShowMoves] = React.useState(false);
+  const moveCount = m.ladder.reduce((t, r) => t + r.moves.length, 0);
   return (
     <div data-career-ladder className="duo-card" style={{ padding: "12px 14px", marginBottom: 10 }}>
       <div aria-hidden="true" style={{ display: "grid", gridTemplateColumns: cols, marginBottom: 4 }}>
-        {m.years.map(y => <span key={y} className="duo-data-s duo-ink3" style={{ textAlign: "center" }}>{y}</span>)}
+        {m.years.map((y, i) => <span key={y} data-axis-year={y} className="duo-data-s duo-ink3" style={{ textAlign: "center", whiteSpace: "nowrap", overflow: "visible" }}>{_crAxisLabel(y, i, n)}</span>)}
       </div>
       {m.ladder.map(row => {
         const on = row.cells.map((c, i) => c.length ? i : -1).filter(i => i >= 0);
@@ -432,11 +439,17 @@ function _CareerLadder({ m, fests }) {
               ))}
             </div>
             {row.moves.map(mv => (
-              <div key={mv.ids.join(" ")} data-claim="move" data-billings={mv.ids.join(" ")} className="duo-body-s duo-ink2" style={{ fontWeight: 400, overflowWrap: "anywhere" }}>{mv.text}</div>
+              <div key={mv.ids.join(" ")} data-claim="move" data-billings={mv.ids.join(" ")} className="duo-body-s duo-ink2" style={{ fontWeight: 400, overflowWrap: "anywhere", display: showMoves ? "block" : "none" }}>{mv.text}</div>
             ))}
           </div>
         );
       })}
+      {moveCount > 0 && (
+        <button data-career-moves-toggle aria-expanded={showMoves} onClick={() => setShowMoves(v => !v)} className="duo-body-s"
+          style={{ minHeight: 44, padding: 0, marginTop: 2, background: "transparent", border: "none", color: "var(--ink)", fontFamily: "inherit", fontWeight: 600, cursor: "pointer", textDecoration: "underline", textUnderlineOffset: 3 }}>
+          {showMoves ? "Hide stage by year" : "Show stage by year"}
+        </button>
+      )}
       <div className="duo-body-s duo-ink3" style={{ fontWeight: 400, marginTop: 6, display: "flex", flexWrap: "wrap", columnGap: 12 }}>
         <span>● a set</span><span>• time TBA</span>
         {m.ladder.some(r => r.cells.some(c => c.some(x => x[9] === true))) && <span style={{ color: "var(--signal-ink)" }}>● main stage</span>}

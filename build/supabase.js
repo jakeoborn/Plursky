@@ -1641,13 +1641,13 @@ function FriendsCard({
     }
   }, React.createElement("div", {
     className: "duo-headline"
-  }, myName || "Set your name"), React.createElement("div", {
+  }, myName || "You"), React.createElement("div", {
     className: "duo-body-s duo-ink2",
     style: {
       marginTop: 2,
       fontWeight: 400
     }
-  }, sharing ? (STAGES?.find(s => s.id === stageId)?.name || stageId) + " · live" : "You · tap Go live to share")), React.createElement("button", {
+  }, sharing ? (STAGES?.find(s => s.id === stageId)?.name || stageId) + " · live" : myName ? "You · tap Go live to share" : "Add a name, then go live to share")), React.createElement("button", {
     onClick: handleToggle,
     className: "duo-btn",
     style: {

@@ -809,12 +809,15 @@ function _CareerNode({
     strokeWidth: "2"
   }));
 }
+var _crAxisLabel = (y, i, n) => n > 10 && i % 2 === 1 && i !== n - 1 ? "" : n > 6 ? `’${y.slice(2)}` : y;
 function _CareerLadder({
   m,
   fests
 }) {
   var n = m.years.length,
     cols = `repeat(${n}, minmax(0, 1fr))`;
+  var [showMoves, setShowMoves] = React.useState(false);
+  var moveCount = m.ladder.reduce((t, r) => t + r.moves.length, 0);
   return React.createElement("div", {
     "data-career-ladder": true,
     className: "duo-card",
@@ -829,13 +832,16 @@ function _CareerLadder({
       gridTemplateColumns: cols,
       marginBottom: 4
     }
-  }, m.years.map(y => React.createElement("span", {
+  }, m.years.map((y, i) => React.createElement("span", {
     key: y,
+    "data-axis-year": y,
     className: "duo-data-s duo-ink3",
     style: {
-      textAlign: "center"
+      textAlign: "center",
+      whiteSpace: "nowrap",
+      overflow: "visible"
     }
-  }, y))), m.ladder.map(row => {
+  }, _crAxisLabel(y, i, n)))), m.ladder.map(row => {
     var on = row.cells.map((c, i) => c.length ? i : -1).filter(i => i >= 0);
     var a = on[0],
       z = on[on.length - 1];
@@ -890,10 +896,29 @@ function _CareerLadder({
       className: "duo-body-s duo-ink2",
       style: {
         fontWeight: 400,
-        overflowWrap: "anywhere"
+        overflowWrap: "anywhere",
+        display: showMoves ? "block" : "none"
       }
     }, mv.text)));
-  }), React.createElement("div", {
+  }), moveCount > 0 && React.createElement("button", {
+    "data-career-moves-toggle": true,
+    "aria-expanded": showMoves,
+    onClick: () => setShowMoves(v => !v),
+    className: "duo-body-s",
+    style: {
+      minHeight: 44,
+      padding: 0,
+      marginTop: 2,
+      background: "transparent",
+      border: "none",
+      color: "var(--ink)",
+      fontFamily: "inherit",
+      fontWeight: 600,
+      cursor: "pointer",
+      textDecoration: "underline",
+      textUnderlineOffset: 3
+    }
+  }, showMoves ? "Hide stage by year" : "Show stage by year"), React.createElement("div", {
     className: "duo-body-s duo-ink3",
     style: {
       fontWeight: 400,

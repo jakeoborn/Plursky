@@ -134,7 +134,7 @@ try {
     });
     const tag = C.fid;
     check(await page.locator('button[aria-label="Reset zoom"]').count() === 0, `${tag}: Reset is hidden at the opening view (the camera is home)`);
-    const cardBefore = await page.evaluate(() => /MAP ERROR/.test(document.body.innerText));
+    const cardBefore = await page.evaluate(() => /MAP UNAVAILABLE/.test(document.body.innerText));
     check(!cardBefore, `${tag}: no error card on the opening view`);
     // 8. the opening view frames the grounds (real-world sources only)
     const gr = await page.evaluate(() => {
@@ -300,7 +300,7 @@ try {
       });
       check(latched.gone, `${tag}: a failed overlay is dropped`);
       check(!latched.after, `${tag}: a failed overlay does NOT re-add itself on styledata`);
-      const card = await page.evaluate(() => { const t = document.body.innerText; const i = t.indexOf("MAP ERROR"); return i < 0 ? null : t.slice(i, i + 160); });
+      const card = await page.evaluate(() => { const t = document.body.innerText; const i = t.indexOf("MAP UNAVAILABLE"); return i < 0 ? null : t.slice(i, i + 160); });
       check(!card, `${tag}: a failed overlay puts no error card over the map (${card})`);
     }
     // 7. targets from poster art: none on unchecked festivals; Summerfest is the control.

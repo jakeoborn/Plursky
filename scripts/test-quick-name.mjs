@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 // Quick name: a local name before any sign-in, and proof it is what the crew
 // sees.
-//   · a fresh install that opens Me is asked "What should Plursky call you?"
-//     (never in onboarding), and the answer lands in plursky_display_name
+//   · opening Me never pops the ask; Me's "Add your name" opens the same
+//     "What should Plursky call you?" sheet (never in onboarding), and the
+//     answer lands in plursky_display_name
 //   · crew presence (Go live), the picks a crew join shares, and the crew
 //     recaps (Share our weekend, Showdown) all carry that name, signed out
 //   · skipping is remembered: no ask on reload, none on a crew join
@@ -84,8 +85,11 @@ try {
   {
     console.log('fresh install → open Me');
     const { ctx, page, errors } = await open();
+    await page.waitForTimeout(800);
+    check(!(await sheetShown(page)), 'opening Me on a fresh install does not pop the quick-name ask');
+    await page.click('[data-me-add-name]');
     await page.waitForSelector(SHEET, { timeout: 5000 }).catch(() => {});
-    check(await sheetShown(page), 'opening Me on a fresh install shows the quick-name ask');
+    check(await sheetShown(page), 'Add your name opens the quick-name sheet');
     check(await page.getByText('What should Plursky call you?').isVisible().catch(() => false), 'the ask reads "What should Plursky call you?"');
     check(await ls(page, 'plursky_display_name') === null, 'nothing is stored before an answer');
     if (await sheetShown(page)) {
@@ -136,6 +140,16 @@ try {
   {
     console.log('skip');
     const { ctx, page, errors } = await open();
+    await page.waitForTimeout(800);
+    // Closing an edit opened from Add your name is not a skip.
+    await page.click('[data-me-add-name]');
+    await page.waitForSelector(SHEET, { timeout: 5000 }).catch(() => {});
+    if (await sheetShown(page)) await page.click('[data-quick-name-skip]');
+    await page.waitForTimeout(300);
+    check(await ls(page, 'plursky_display_name') === null, `closing the Add your name sheet is not a skip (got ${JSON.stringify(await ls(page, 'plursky_display_name'))})`);
+    // The unasked-for ask (a first crew join) is the one a skip remembers.
+    await page.evaluate(() => { window.__gFirst = null; window.sbGroupJoin = (c, p) => { window.__gFirst = p; return () => {}; }; });
+    await startCrew(page);
     await page.waitForSelector(SHEET, { timeout: 5000 }).catch(() => {});
     if (await sheetShown(page)) await page.click('[data-quick-name-skip]');
     await page.waitForTimeout(300);
@@ -151,9 +165,13 @@ try {
     await startCrew(page);
     await page.waitForTimeout(300);
     check(!(await sheetShown(page)) && (await page.evaluate(() => window.__g?.name)) === 'Me', 'a crew join after a skip does not ask, and joins as "Me"');
-    // The name edit that was already on Me is unchanged.
-    page.once('dialog', d => d.accept('Kai'));
+    // The name edit on Me opens the in-app sheet, not a browser prompt.
+    await page.goto(`http://127.0.0.1:${PORT}/index.html?f=${FID}&tab=me`, { waitUntil: 'domcontentloaded' });
+    await page.waitForSelector('[data-appearance-row]', { state: 'attached', timeout: 60000 });
+    await page.waitForTimeout(500);
     await page.click('[data-me-add-name]');
+    await page.waitForSelector(SHEET, { timeout: 5000 }).catch(() => {});
+    if (await sheetShown(page)) { await page.fill('[data-quick-name-input]', 'Kai'); await page.click('[data-quick-name-save]'); }
     await page.waitForTimeout(200);
     check(await ls(page, 'plursky_display_name') === 'Kai', 'the existing "Add your name" edit still writes the name');
     check(errors.length === 0, `no page errors (${errors.join(' / ')})`);
@@ -177,10 +195,8 @@ try {
   {
     console.log('first crew join');
     const { ctx, page } = await open({ query: 'tab=me' });
-    await page.waitForSelector(SHEET, { timeout: 5000 }).catch(() => {});
-    // Close the Me ask without the skip flag landing, as if Me never asked.
-    if (await sheetShown(page)) await page.click('[data-quick-name-skip]');
-    await page.evaluate(() => localStorage.removeItem('plursky_display_name'));
+    await page.waitForTimeout(800);
+    check(!(await sheetShown(page)), 'Me did not ask before the crew join');
     await startCrew(page);
     await page.waitForSelector(SHEET, { timeout: 5000 }).catch(() => {});
     check(await sheetShown(page), 'a first crew join with no name asks');

@@ -1300,8 +1300,10 @@ function ArtistScreen({ state, setState }) {
           {/* The time joins only when there is one: fmt12("") is an em dash, and
               "DAY TBA · —" reads as a time that exists. One text node, so the
               gate can assert the exact string. */}
+          {/* A provisional act (lineup out, schedule not) carries day: 1 as a
+              placeholder, so it reads DAY TBA, not DAY 1. */}
           <span data-artist-day-pill data-artist-hero-label="day">
-            {[a.day != null ? `DAY ${a.day}` : "DAY TBA", setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED : a.start ? fmt12(a.start) : null].filter(Boolean).join(" · ")}
+            {[a.day != null && !a.provisional ? `DAY ${a.day}` : "DAY TBA", setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED : a.start ? fmt12(a.start) : null].filter(Boolean).join(" · ")}
           </span>
         </Pill>
         <ShareArtistButton artist={a} backed={backed} />
@@ -1488,7 +1490,7 @@ function ArtistScreen({ state, setState }) {
             rather than look up a day that does not exist and crash. */}
         {(() => {
           const live = typeof isSetLive === "function" && isSetLive(a);
-          const dayLabel = a.day == null ? null : (DAYS.find(d => d.n === a.day) || { label: `DAY ${a.day}` }).label;
+          const dayLabel = a.day == null || a.provisional ? null : (DAYS.find(d => d.n === a.day) || { label: `DAY ${a.day}` }).label;
           let minsLeft = null, pct = 0;
           if (live && a.start && a.end && typeof festivalNightDate === "function") {
             try {
@@ -1602,7 +1604,7 @@ function ArtistScreen({ state, setState }) {
             { id: "artist-section-setlists",   label: "Setlists" },
             { id: "artist-section-similar",    label: "Similar" },
             { id: "artist-section-upcoming",   label: "Upcoming" },
-          ];
+          ].filter(s => s.id !== "artist-section-upcoming" || (TICKETMASTER_KEY && !(Array.isArray(tmEvents) && tmEvents.length === 0)));
           const [activeChip, setActiveChip] = React.useState(sections[0].id);
           React.useEffect(() => {
             if (!window.IntersectionObserver) return;
@@ -2012,18 +2014,12 @@ function ArtistScreen({ state, setState }) {
                   textAlign: "center",
                 }}>
                   <div aria-hidden="true" style={{ fontSize: 20, opacity: 0.3, marginBottom: 4 }}>▶</div>
+                  {/* A failed or empty lookup offers the YouTube search
+                      either way, never an error code. */}
                   <div className="mono" style={{ fontSize: 9, letterSpacing: 1.2, color: "var(--ink-2)" }}>
-                    {ytError ? "COULDN'T LOAD VIDEO" : "NO LIVE SET FOUND"}
+                    FIND A LIVE SET ON YOUTUBE
                   </div>
-                  {ytError && (
-                    <button onClick={() => { setYtError(false); setYtVideo(undefined); fetchYouTubeSet(lookupName).then(setYtVideo).catch(() => { setYtVideo(null); setYtError(true); }); }} className="mono" style={{
-                      marginTop: 8, padding: "6px 14px", borderRadius: 999,
-                      background: "var(--s3)", border: "none",
-                      color: "var(--ink)", fontSize: 9, letterSpacing: 1.2, fontWeight: 700,
-                      cursor: "pointer",
-                    }}>↻ RETRY</button>
-                  )}
-                  {!ytError && (
+                  {(
                     <a href={ytSearchUrl} target="_blank" rel="noopener noreferrer" className="mono" style={{
                       display: "inline-block", marginTop: 8, padding: "6px 14px", borderRadius: 999,
                       background: "var(--s3)", border: "none",
@@ -2203,7 +2199,10 @@ function ArtistScreen({ state, setState }) {
 
         {/* ── Upcoming shows (Ticketmaster) ────────────────── */}
         <div id="artist-section-upcoming" />
-        {TICKETMASTER_KEY && (
+        {/* An empty or failed lookup hides the section: the career block's
+            Coming up list already carries this act's festival dates, and an
+            empty card under it read as a contradiction. */}
+        {TICKETMASTER_KEY && !(Array.isArray(tmEvents) && tmEvents.length === 0) && (
           <div style={{ marginBottom: 18 }}>
             <div className="duo-sect" style={{ marginBottom: 10, display: "flex", alignItems: "center", gap: 8 }}>
               UPCOMING SHOWS
