@@ -1,0 +1,46 @@
+{
+  "id": "ultra-europe-2015",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "press",
+    "site": "europske.noviny.sk",
+    "url": "https://europske.noviny.sk/2015/07/10/ultra-europe-1-den/",
+    "title": "Ultra Europe 2015 – prvý deň program",
+    "publisher": "Európske noviny",
+    "published": "2015-07-10",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "full",
+    "sha256": "745a573b9fe0e887708be1724e8c13a929e89f1e90a9f545887b9c8aba54c46f",
+    "bytes": 4787
+  },
+  "printed": {
+    "days": {
+      "1": "Piatok 10.7.2015",
+      "2": "Sobota 11.7.2015",
+      "3": "Nedeľa 12.7.2015"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "ultra-europe",
+    "year": 2015,
+    "lifecycle": "occurred",
+    "dates": "2015-07-10..2015-07-12",
+    "evidence": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Ultra_Europe&rvprop=ids|timestamp|content&rvslots=main&format=json",
+    "published": "2026-11-04T05:14:42Z rev 1383691201"
+  },
+  "note": "A Slovak news site's day-by-day programme by stage, published each festival morning in three articles (this one for Friday; Saturday's and Sunday's, of 11 and 12 July, are saved with it); set times are not used and a contest-winner slot without a name is left out.",
+  "verified": {
+    "billings": 91,
+    "inSourceText": true
+  },
+  "stageOrder": [
+    "Main Stage",
+    "Megastructure Stage",
+    "Resistance Stage",
+    "UMF Radio Stage"
+  ],
+  "dropped": []
+}

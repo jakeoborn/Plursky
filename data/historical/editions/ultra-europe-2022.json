@@ -1,0 +1,874 @@
+{
+ "id": "ultra-europe-2022",
+ "festivalId": "ultra-europe",
+ "name": "Ultra Europe 2022",
+ "year": 2022,
+ "timezone": "Europe/Zagreb",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2022-07-08",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2022-07-09",
+   "label": "Saturday"
+  },
+  {
+   "day": 3,
+   "date": "2022-07-10",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "ultra-europe-2022:ultra-main-stage",
+   "name": "Ultra Main Stage"
+  },
+  {
+   "id": "ultra-europe-2022:resistance",
+   "name": "Resistance"
+  }
+ ],
+ "artists": [
+  {
+   "id": "ultra-europe-2022:above-and-beyond",
+   "name": "Above and Beyond",
+   "key": "above-and-beyond",
+   "performers": [
+    "above-and-beyond"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:adam-beyer",
+   "name": "Adam Beyer",
+   "key": "adam-beyer",
+   "performers": [
+    "adam-beyer"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2022:resistance"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2022:afrojack",
+   "name": "Afrojack",
+   "key": "afrojack",
+   "performers": [
+    "afrojack"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:alesso",
+   "name": "Alesso",
+   "key": "alesso",
+   "performers": [
+    "alesso"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:amelie-lens",
+   "name": "Amelie Lens",
+   "key": "amelie-lens",
+   "performers": [
+    "amelie-lens"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2022:resistance"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2022:armin-van-buuren",
+   "name": "Armin van Buuren",
+   "key": "armin-van-buuren",
+   "performers": [
+    "armin-van-buuren"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2022:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2022:dj-snake",
+   "name": "DJ Snake",
+   "key": "dj-snake",
+   "performers": [
+    "dj-snake"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:hardwell",
+   "name": "Hardwell",
+   "key": "hardwell",
+   "performers": [
+    "hardwell"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2022:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2022:joseph-capriati",
+   "name": "Joseph Capriati",
+   "key": "joseph-capriati",
+   "performers": [
+    "joseph-capriati"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2022:resistance"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2022:marco-carola",
+   "name": "Marco Carola",
+   "key": "marco-carola",
+   "performers": [
+    "marco-carola"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2022:resistance"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2022:marshmello",
+   "name": "Marshmello",
+   "key": "marshmello",
+   "performers": [
+    "marshmello"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:martin-garrix",
+   "name": "Martin Garrix",
+   "key": "martin-garrix",
+   "performers": [
+    "martin-garrix"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:nicky-romero",
+   "name": "Nicky Romero",
+   "key": "nicky-romero",
+   "performers": [
+    "nicky-romero"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:nina-kraviz",
+   "name": "Nina Kraviz",
+   "key": "nina-kraviz",
+   "performers": [
+    "nina-kraviz"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2022:resistance"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2022:oliver-heldens",
+   "name": "Oliver Heldens",
+   "key": "oliver-heldens",
+   "performers": [
+    "oliver-heldens"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:richie-hawtin",
+   "name": "Richie Hawtin",
+   "key": "richie-hawtin",
+   "performers": [
+    "richie-hawtin"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2022:resistance"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2022:steve-aoki",
+   "name": "Steve Aoki",
+   "key": "steve-aoki",
+   "performers": [
+    "steve-aoki"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:tiesto",
+   "name": "Tiësto",
+   "key": "tiesto",
+   "performers": [
+    "tiesto"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:timmy-trumpet",
+   "name": "Timmy Trumpet",
+   "key": "timmy-trumpet",
+   "performers": [
+    "timmy-trumpet"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2022:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2022:vini-vici",
+   "name": "Vini Vici",
+   "key": "vini-vici",
+   "performers": [
+    "vini-vici"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:acraze",
+   "name": "ACRAZE",
+   "key": "acraze",
+   "performers": [
+    "acraze"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:airod",
+   "name": "Airod",
+   "key": "airod",
+   "performers": [
+    "airod"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:anna",
+   "name": "ANNA",
+   "key": "anna",
+   "performers": [
+    "anna"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:frank-walker",
+   "name": "Frank Walker",
+   "key": "frank-walker",
+   "performers": [
+    "frank-walker"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:ilario-alicante",
+   "name": "Ilario Alicante",
+   "key": "ilario-alicante",
+   "performers": [
+    "ilario-alicante"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:krewella",
+   "name": "Krewella",
+   "key": "krewella",
+   "performers": [
+    "krewella"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:sam-feldt",
+   "name": "Sam Feldt",
+   "key": "sam-feldt",
+   "performers": [
+    "sam-feldt"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:sofi-tukker-dj-set",
+   "name": "SOFI TUKKER (DJ set)",
+   "key": "sofi-tukker-dj-set",
+   "performers": [
+    "sofi-tukker-dj-set"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:adam-de-great",
+   "name": "Adam De Great",
+   "key": "adam-de-great",
+   "performers": [
+    "adam-de-great"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:albert-novo",
+   "name": "Albert Novo",
+   "key": "albert-novo",
+   "performers": [
+    "albert-novo"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:ang",
+   "name": "Ang",
+   "key": "ang",
+   "performers": [
+    "ang"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:ares-carter",
+   "name": "Ares Carter",
+   "key": "ares-carter",
+   "performers": [
+    "ares-carter"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:avadox-and-mc-goos",
+   "name": "Avadox & MC Goos",
+   "key": "avadox-and-mc-goos",
+   "performers": [
+    "avadox-and-mc-goos"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:bank",
+   "name": "Bank",
+   "key": "bank",
+   "performers": [
+    "bank"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:chris-willsman",
+   "name": "Chris Willsman",
+   "key": "chris-willsman",
+   "performers": [
+    "chris-willsman"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:chvos",
+   "name": "Chvos",
+   "key": "chvos",
+   "performers": [
+    "chvos"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:dj-dadoo",
+   "name": "DJ Dadoo",
+   "key": "dj-dadoo",
+   "performers": [
+    "dj-dadoo"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:dallerium",
+   "name": "Dallerium",
+   "key": "dallerium",
+   "performers": [
+    "dallerium"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:danny-black",
+   "name": "Danny Black",
+   "key": "danny-black",
+   "performers": [
+    "danny-black"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:dimitri-saidi",
+   "name": "Dimitri Saidi",
+   "key": "dimitri-saidi",
+   "performers": [
+    "dimitri-saidi"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:dj-tora",
+   "name": "DJ Tora",
+   "key": "dj-tora",
+   "performers": [
+    "dj-tora"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:fat-tony",
+   "name": "Fat Tony",
+   "key": "fat-tony",
+   "performers": [
+    "fat-tony"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:fidelak",
+   "name": "Fidelak",
+   "key": "fidelak",
+   "performers": [
+    "fidelak"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:full-ferry",
+   "name": "Full Ferry",
+   "key": "full-ferry",
+   "performers": [
+    "full-ferry"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:igor",
+   "name": "Igor",
+   "key": "igor",
+   "performers": [
+    "igor"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:ivan-mastermix",
+   "name": "Ivan Mastermix",
+   "key": "ivan-mastermix",
+   "performers": [
+    "ivan-mastermix"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:jean-philippe",
+   "name": "Jean Philippe",
+   "key": "jean-philippe",
+   "performers": [
+    "jean-philippe"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:jerry-davila-and-dj-pelos",
+   "name": "Jerry Davila & DJ Pelos",
+   "key": "jerry-davila-and-dj-pelos",
+   "performers": [
+    "jerry-davila-and-dj-pelos"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:jimmy-clash",
+   "name": "Jimmy Clash",
+   "key": "jimmy-clash",
+   "performers": [
+    "jimmy-clash"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:k-icm",
+   "name": "K-ICM",
+   "key": "k-icm",
+   "performers": [
+    "k-icm"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:kaane",
+   "name": "Kaane",
+   "key": "kaane",
+   "performers": [
+    "kaane"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:kentaro",
+   "name": "Kentaro",
+   "key": "kentaro",
+   "performers": [
+    "kentaro"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:kreso",
+   "name": "Kreso",
+   "key": "kreso",
+   "performers": [
+    "kreso"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:lollypop",
+   "name": "Lollypop",
+   "key": "lollypop",
+   "performers": [
+    "lollypop"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:lorenzo",
+   "name": "Lorenzo",
+   "key": "lorenzo",
+   "performers": [
+    "lorenzo"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:lukeas-inneman",
+   "name": "Lukeas Inneman",
+   "key": "lukeas-inneman",
+   "performers": [
+    "lukeas-inneman"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:medun",
+   "name": "Medun",
+   "key": "medun",
+   "performers": [
+    "medun"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:mike-and-me",
+   "name": "Mike & Me",
+   "key": "mike-and-me",
+   "performers": [
+    "mike-and-me"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:mike-valle",
+   "name": "Mike Valle",
+   "key": "mike-valle",
+   "performers": [
+    "mike-valle"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:moon-shot",
+   "name": "Moon Shot",
+   "key": "moon-shot",
+   "performers": [
+    "moon-shot"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:mykris",
+   "name": "Mykris",
+   "key": "mykris",
+   "performers": [
+    "mykris"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:nome",
+   "name": "Nome",
+   "key": "nome",
+   "performers": [
+    "nome"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:norberto-loco",
+   "name": "Norberto Loco",
+   "key": "norberto-loco",
+   "performers": [
+    "norberto-loco"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:paul-woods",
+   "name": "Paul Woods",
+   "key": "paul-woods",
+   "performers": [
+    "paul-woods"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:pero-fullhouse",
+   "name": "Pero Fullhouse",
+   "key": "pero-fullhouse",
+   "performers": [
+    "pero-fullhouse"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:pete-spruce",
+   "name": "Pete Spruce",
+   "key": "pete-spruce",
+   "performers": [
+    "pete-spruce"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:peznt",
+   "name": "Peznt",
+   "key": "peznt",
+   "performers": [
+    "peznt"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:pink-panda",
+   "name": "Pink Panda",
+   "key": "pink-panda",
+   "performers": [
+    "pink-panda"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:plastik-funk",
+   "name": "Plastik Funk",
+   "key": "plastik-funk",
+   "performers": [
+    "plastik-funk"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:pretty-pink",
+   "name": "Pretty Pink",
+   "key": "pretty-pink",
+   "performers": [
+    "pretty-pink"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:reggio",
+   "name": "Reggio",
+   "key": "reggio",
+   "performers": [
+    "reggio"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:renato-s",
+   "name": "Renato S",
+   "key": "renato-s",
+   "performers": [
+    "renato-s"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:rewire",
+   "name": "Rewire",
+   "key": "rewire",
+   "performers": [
+    "rewire"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:rory-lynam-and-dave-caffrey",
+   "name": "Rory Lynam & Dave Caffrey",
+   "key": "rory-lynam-and-dave-caffrey",
+   "performers": [
+    "rory-lynam-and-dave-caffrey"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:ryu-and-dante",
+   "name": "Ryu & Dante",
+   "key": "ryu-and-dante",
+   "performers": [
+    "ryu-and-dante"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:sound-of-yaz",
+   "name": "Sound of Yaz",
+   "key": "sound-of-yaz",
+   "performers": [
+    "sound-of-yaz"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:st-vibe",
+   "name": "St. Vibe",
+   "key": "st-vibe",
+   "performers": [
+    "st-vibe"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:terry-goden",
+   "name": "Terry Goden",
+   "key": "terry-goden",
+   "performers": [
+    "terry-goden"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:tigitomo-in-der-muhlen",
+   "name": "TigiTomo In Der Muhlen",
+   "key": "tigitomo-in-der-muhlen",
+   "performers": [
+    "tigitomo-in-der-muhlen"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:vedran-car",
+   "name": "Vedran Car",
+   "key": "vedran-car",
+   "performers": [
+    "vedran-car"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:wags",
+   "name": "Wags",
+   "key": "wags",
+   "performers": [
+    "wags"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:wedamnz",
+   "name": "Wedamnz",
+   "key": "wedamnz",
+   "performers": [
+    "wedamnz"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:wekingz",
+   "name": "Wekingz",
+   "key": "wekingz",
+   "performers": [
+    "wekingz"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:wincent-wolf",
+   "name": "Wincent Wolf",
+   "key": "wincent-wolf",
+   "performers": [
+    "wincent-wolf"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2022:zunino",
+   "name": "Zunino",
+   "key": "zunino",
+   "performers": [
+    "zunino"
+   ],
+   "appearances": []
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "unofficial_lineup",
+  "unofficial": true,
+  "source": {
+   "kind": "press",
+   "site": "edmidentity.com",
+   "url": "https://edmidentity.com/2022/06/15/ultra-europe-daily-stage-lineups-2022/",
+   "title": "Ultra Europe Announces Daily Stage Lineups for 2022 Edition",
+   "publisher": "EDM Identity",
+   "published": "2022-06-15",
+   "fetchedAt": "2026-11-27",
+   "fetchedVia": "exa",
+   "scope": "full",
+   "sha256": "55a8fc7ffec1b32d7b3a030d7b0c9843ea60b2fe25f5eb916ef286e5a1a9c517",
+   "bytes": 3294
+  },
+  "captures": [
+   {
+    "page": "lineup",
+    "url": "https://edmidentity.com/2022/06/15/ultra-europe-daily-stage-lineups-2022/",
+    "fetchedAt": "2026-11-27",
+    "sha256": "55a8fc7ffec1b32d7b3a030d7b0c9843ea60b2fe25f5eb916ef286e5a1a9c517"
+   }
+  ]
+ }
+}

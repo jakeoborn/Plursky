@@ -1,0 +1,46 @@
+{
+  "id": "ultra-europe-2024",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "press",
+    "site": "shiningbeats.pl",
+    "url": "https://shiningbeats.pl/ultra-europe-2024-lineup-i-timetable/",
+    "title": "Ultra Europe 2024 – pełny lineup i timetable",
+    "publisher": "Shining Beats",
+    "published": "2024-07-12",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "full",
+    "sha256": "c4a5c630369c6a2838b622685a2cbe0ff79078f0261894dd8ffdbafbabc14034",
+    "bytes": 4186
+  },
+  "printed": {
+    "days": {
+      "1": "piątek, 12 lipca",
+      "2": "sobota, 13 lipca",
+      "3": "niedziela, 14 lipca"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "ultra-europe",
+    "year": 2024,
+    "lifecycle": "occurred",
+    "dates": "2024-07-12..2024-07-14",
+    "evidence": "https://magazin.hrt.hr/zabava/vatrometom-zavrsio-ultra-europe-festival-11661220",
+    "published": "2024-07-15"
+  },
+  "note": "A Polish dance-music magazine's full running order by day and stage, published on the festival's first day; set times are not used, and Sebastian Ingrosso, listed for Friday, was reported to have dropped off the bill that day.",
+  "verified": {
+    "billings": 88,
+    "inSourceText": true
+  },
+  "stageOrder": [
+    "Ultra Mainstage",
+    "Resistance",
+    "UMF Radio",
+    "Oasis"
+  ],
+  "dropped": []
+}

@@ -1,0 +1,46 @@
+{
+  "id": "ultra-europe-2016",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "press",
+    "site": "bythewavs.com",
+    "url": "https://bythewavs.com/ultra-europe-announces-full-lineup-stage-time/",
+    "title": "Ultra Europe Announces Full Lineup by Stage and Time",
+    "publisher": "By The Wavs",
+    "published": "2016-07-08",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "full",
+    "sha256": "c18a50624ce4a1c6ef9a5ff5d772293ab15924706dc0b231b2e50e9cddd3e983",
+    "bytes": 3654
+  },
+  "printed": {
+    "days": {
+      "1": "Friday, July 15th",
+      "2": "Saturday, July 16th",
+      "3": "Sunday, July 17th"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "ultra-europe",
+    "year": 2016,
+    "lifecycle": "partly_canceled",
+    "dates": "2016-07-15..2016-07-17",
+    "evidence": "https://ultraeurope.com/worldwide/ultra-europe-wraps-4th-annual-edition/",
+    "published": "2016-08-09"
+  },
+  "note": "A music blog's copy of the final lineup by day and stage, published a week before the festival; set times are not used, its Campsite Winner slot is left out, and the Friday was cancelled for bad weather, so its acts did not play that day.",
+  "verified": {
+    "billings": 96,
+    "inSourceText": true
+  },
+  "stageOrder": [
+    "Ultra Main Stage",
+    "Resistance",
+    "Arcadia: Afterburner",
+    "Ultra Worldwide"
+  ],
+  "dropped": []
+}

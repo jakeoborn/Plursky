@@ -1,0 +1,837 @@
+{
+ "id": "ultra-europe-2017",
+ "festivalId": "ultra-europe",
+ "name": "Ultra Europe 2017",
+ "year": 2017,
+ "timezone": "Europe/Zagreb",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2017-07-14",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2017-07-15",
+   "label": "Saturday"
+  },
+  {
+   "day": 3,
+   "date": "2017-07-16",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "ultra-europe-2017:main-stage",
+   "name": "Main Stage"
+  },
+  {
+   "id": "ultra-europe-2017:resistance-stage",
+   "name": "Resistance Stage"
+  },
+  {
+   "id": "ultra-europe-2017:arcadia-stage",
+   "name": "Arcadia Stage"
+  }
+ ],
+ "artists": [
+  {
+   "id": "ultra-europe-2017:tiesto",
+   "name": "Tiësto",
+   "key": "tiesto",
+   "performers": [
+    "tiesto"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2017:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:fedde-le-grand",
+   "name": "Fedde Le Grand",
+   "key": "fedde-le-grand",
+   "performers": [
+    "fedde-le-grand"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2017:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:w-and-w",
+   "name": "W & W",
+   "key": "w-and-w",
+   "performers": [
+    "w-and-w"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2017:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:axwell-ingrosso",
+   "name": "Axwell / \\ Ingrosso",
+   "key": "axwell-ingrosso",
+   "performers": [
+    "axwell-ingrosso"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2017:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:dj-snake",
+   "name": "DJ Snake",
+   "key": "dj-snake",
+   "performers": [
+    "dj-snake"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2017:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:armin-van-buuren",
+   "name": "Armin van Buuren",
+   "key": "armin-van-buuren",
+   "performers": [
+    "armin-van-buuren"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2017:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:david-guetta",
+   "name": "David Guetta",
+   "key": "david-guetta",
+   "performers": [
+    "david-guetta"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2017:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:steve-aoki",
+   "name": "Steve Aoki",
+   "key": "steve-aoki",
+   "performers": [
+    "steve-aoki"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2017:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:steve-angello",
+   "name": "Steve Angello",
+   "key": "steve-angello",
+   "performers": [
+    "steve-angello"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2017:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:afrojack",
+   "name": "Afrojack",
+   "key": "afrojack",
+   "performers": [
+    "afrojack"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2017:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:hardwell",
+   "name": "Hardwell",
+   "key": "hardwell",
+   "performers": [
+    "hardwell"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2017:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:martin-garrix",
+   "name": "Martin Garrix",
+   "key": "martin-garrix",
+   "performers": [
+    "martin-garrix"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2017:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:nicky-romero",
+   "name": "Nicky Romero",
+   "key": "nicky-romero",
+   "performers": [
+    "nicky-romero"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2017:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:dubfire",
+   "name": "Dubfire",
+   "key": "dubfire",
+   "performers": [
+    "dubfire"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2017:resistance-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:nicole-moudaber",
+   "name": "Nicole Moudaber",
+   "key": "nicole-moudaber",
+   "performers": [
+    "nicole-moudaber"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2017:resistance-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:adam-beyer",
+   "name": "Adam Beyer",
+   "key": "adam-beyer",
+   "performers": [
+    "adam-beyer"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2017:resistance-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:tijana-t",
+   "name": "Tijana T",
+   "key": "tijana-t",
+   "performers": [
+    "tijana-t"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2017:resistance-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:elio-riso",
+   "name": "Elio Riso",
+   "key": "elio-riso",
+   "performers": [
+    "elio-riso"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2017:resistance-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:dj-jock",
+   "name": "DJ Jock",
+   "key": "dj-jock",
+   "performers": [
+    "dj-jock"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2017:resistance-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:carl-cox",
+   "name": "Carl Cox",
+   "key": "carl-cox",
+   "performers": [
+    "carl-cox"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2017:resistance-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:marco-carola",
+   "name": "Marco Carola",
+   "key": "marco-carola",
+   "performers": [
+    "marco-carola"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2017:resistance-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:joseph-capriati",
+   "name": "Joseph Capriati",
+   "key": "joseph-capriati",
+   "performers": [
+    "joseph-capriati"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2017:resistance-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:jon-rundell",
+   "name": "Jon Rundell",
+   "key": "jon-rundell",
+   "performers": [
+    "jon-rundell"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2017:resistance-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:dj-pero-fullhouse",
+   "name": "DJ Pero FullHouse",
+   "key": "dj-pero-fullhouse",
+   "performers": [
+    "dj-pero-fullhouse"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2017:resistance-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:sasha",
+   "name": "Sasha",
+   "key": "sasha",
+   "performers": [
+    "sasha"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2017:resistance-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:john-digweed",
+   "name": "John Digweed",
+   "key": "john-digweed",
+   "performers": [
+    "john-digweed"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2017:resistance-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:the-martinez-brothers",
+   "name": "The Martinez Brothers",
+   "key": "the-martinez-brothers",
+   "performers": [
+    "the-martinez-brothers"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2017:resistance-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:nic-fanciulli",
+   "name": "Nic Fanciulli",
+   "key": "nic-fanciulli",
+   "performers": [
+    "nic-fanciulli"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2017:resistance-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:eats-everything",
+   "name": "Eats Everything",
+   "key": "eats-everything",
+   "performers": [
+    "eats-everything"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2017:resistance-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:anna",
+   "name": "Anna",
+   "key": "anna",
+   "performers": [
+    "anna"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2017:resistance-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:wehbba",
+   "name": "Wehbba",
+   "key": "wehbba",
+   "performers": [
+    "wehbba"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2017:resistance-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:heat-beat",
+   "name": "Heat Beat",
+   "key": "heat-beat",
+   "performers": [
+    "heat-beat"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2017:arcadia-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:ben-gold",
+   "name": "Ben Gold",
+   "key": "ben-gold",
+   "performers": [
+    "ben-gold"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2017:arcadia-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:marl",
+   "name": "Marl",
+   "key": "marl",
+   "performers": [
+    "marl"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2017:arcadia-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:orjan-nilsen",
+   "name": "Orjan Nilsen",
+   "key": "orjan-nilsen",
+   "performers": [
+    "orjan-nilsen"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2017:arcadia-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:ander-rayel",
+   "name": "Ander Rayel",
+   "key": "ander-rayel",
+   "performers": [
+    "ander-rayel"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2017:arcadia-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:julian-jordan",
+   "name": "Julian Jordan",
+   "key": "julian-jordan",
+   "performers": [
+    "julian-jordan"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2017:arcadia-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:jewelz-and-sparks",
+   "name": "Jewelz & Sparks",
+   "key": "jewelz-and-sparks",
+   "performers": [
+    "jewelz-and-sparks"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2017:arcadia-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:jay-hardway",
+   "name": "Jay Hardway",
+   "key": "jay-hardway",
+   "performers": [
+    "jay-hardway"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2017:arcadia-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:sick-individuals",
+   "name": "Sick Individuals",
+   "key": "sick-individuals",
+   "performers": [
+    "sick-individuals"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2017:arcadia-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:d-wayne",
+   "name": "D-Wayne",
+   "key": "d-wayne",
+   "performers": [
+    "d-wayne"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2017:arcadia-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:dod",
+   "name": "DOD",
+   "key": "dod",
+   "performers": [
+    "dod"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2017:arcadia-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:retrohandzi",
+   "name": "Retrohandzi",
+   "key": "retrohandzi",
+   "performers": [
+    "retrohandzi"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2017:arcadia-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:kiid",
+   "name": "KIId",
+   "key": "kiid",
+   "performers": [
+    "kiid"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2017:arcadia-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2017:raiden",
+   "name": "Raiden",
+   "key": "raiden",
+   "performers": [
+    "raiden"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2017:justin-oh",
+   "name": "Justin OH",
+   "key": "justin-oh",
+   "performers": [
+    "justin-oh"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2017:mykris",
+   "name": "Mykris",
+   "key": "mykris",
+   "performers": [
+    "mykris"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2017:dj-nano",
+   "name": "DJ Nano",
+   "key": "dj-nano",
+   "performers": [
+    "dj-nano"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2017:junior",
+   "name": "Junior",
+   "key": "junior",
+   "performers": [
+    "junior"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2017:rory-lynam",
+   "name": "Rory Lynam",
+   "key": "rory-lynam",
+   "performers": [
+    "rory-lynam"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2017:roman-nicolai",
+   "name": "Roman Nicolai",
+   "key": "roman-nicolai",
+   "performers": [
+    "roman-nicolai"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2017:dave-caffrey",
+   "name": "Dave Caffrey",
+   "key": "dave-caffrey",
+   "performers": [
+    "dave-caffrey"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2017:joe2shine",
+   "name": "Joe2Shine",
+   "key": "joe2shine",
+   "performers": [
+    "joe2shine"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2017:markehese",
+   "name": "Markehese",
+   "key": "markehese",
+   "performers": [
+    "markehese"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2017:avadox",
+   "name": "Avadox",
+   "key": "avadox",
+   "performers": [
+    "avadox"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2017:gromo",
+   "name": "Gromo",
+   "key": "gromo",
+   "performers": [
+    "gromo"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2017:rory",
+   "name": "Rory",
+   "key": "rory",
+   "performers": [
+    "rory"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2017:plastic-funk",
+   "name": "Plastic Funk",
+   "key": "plastic-funk",
+   "performers": [
+    "plastic-funk"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2017:vanillaz",
+   "name": "Vanillaz",
+   "key": "vanillaz",
+   "performers": [
+    "vanillaz"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2017:dj-max",
+   "name": "DJ Max",
+   "key": "dj-max",
+   "performers": [
+    "dj-max"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2017:lorenzo",
+   "name": "Lorenzo",
+   "key": "lorenzo",
+   "performers": [
+    "lorenzo"
+   ],
+   "appearances": []
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "unofficial_lineup",
+  "unofficial": true,
+  "source": {
+   "kind": "press",
+   "site": "total-croatia-news.com",
+   "url": "https://total-croatia-news.com/destinations/destination-split/split-blog/tell-me-something-about-split/daily-lineup-released-for-ultra-europe/",
+   "title": "Daily Lineups Released for Ultra Europe!",
+   "publisher": "Total Croatia News",
+   "published": "2017-07-01",
+   "fetchedAt": "2026-11-27",
+   "fetchedVia": "exa",
+   "scope": "partial",
+   "sha256": "38a436af22fe24ecb6db3aebad0da602c323299b5ed717b856b29315103721e7",
+   "bytes": 2760
+  },
+  "captures": [
+   {
+    "page": "lineup",
+    "url": "https://total-croatia-news.com/destinations/destination-split/split-blog/tell-me-something-about-split/daily-lineup-released-for-ultra-europe/",
+    "fetchedAt": "2026-11-27",
+    "sha256": "38a436af22fe24ecb6db3aebad0da602c323299b5ed717b856b29315103721e7"
+   }
+  ]
+ }
+}

@@ -7062,6 +7062,366 @@
    }
   },
   {
+   "id": "ultra-europe-2025",
+   "festivalId": "ultra-europe",
+   "festivalName": "Ultra Europe",
+   "name": "Ultra Europe 2025",
+   "year": 2025,
+   "timezone": "Europe/Zagreb",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "fan_timetable",
+    "name": "festtimetable.com (fan-made)",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2025-07-11",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2025-07-12",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2025-07-13",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 4,
+    "artists": 81,
+    "sets": 0
+   }
+  },
+  {
+   "id": "ultra-europe-2024",
+   "festivalId": "ultra-europe",
+   "festivalName": "Ultra Europe",
+   "name": "Ultra Europe 2024",
+   "year": 2024,
+   "timezone": "Europe/Zagreb",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "shiningbeats.pl",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2024-07-12",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2024-07-13",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2024-07-14",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 4,
+    "artists": 88,
+    "sets": 0
+   }
+  },
+  {
+   "id": "ultra-europe-2023",
+   "festivalId": "ultra-europe",
+   "festivalName": "Ultra Europe",
+   "name": "Ultra Europe 2023",
+   "year": 2023,
+   "timezone": "Europe/Zagreb",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "fan_timetable",
+    "name": "festtimetable.com (fan-made)",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2023-07-07",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2023-07-08",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2023-07-09",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 1,
+    "artists": 78,
+    "sets": 0
+   }
+  },
+  {
+   "id": "ultra-europe-2022",
+   "festivalId": "ultra-europe",
+   "festivalName": "Ultra Europe",
+   "name": "Ultra Europe 2022",
+   "year": 2022,
+   "timezone": "Europe/Zagreb",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "EDM Identity",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2022-07-08",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2022-07-09",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2022-07-10",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 2,
+    "artists": 85,
+    "sets": 0
+   }
+  },
+  {
+   "id": "ultra-europe-2019",
+   "festivalId": "ultra-europe",
+   "festivalName": "Ultra Europe",
+   "name": "Ultra Europe 2019",
+   "year": 2019,
+   "timezone": "Europe/Zagreb",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "journal.hr",
+    "scope": "partial"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2019-07-12",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2019-07-13",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2019-07-14",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 2,
+    "artists": 38,
+    "sets": 0
+   }
+  },
+  {
+   "id": "ultra-europe-2018",
+   "festivalId": "ultra-europe",
+   "festivalName": "Ultra Europe",
+   "name": "Ultra Europe 2018",
+   "year": 2018,
+   "timezone": "Europe/Zagreb",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "total-croatia-news.com",
+    "scope": "partial"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2018-07-06",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2018-07-07",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2018-07-08",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 3,
+    "artists": 39,
+    "sets": 0
+   }
+  },
+  {
+   "id": "ultra-europe-2017",
+   "festivalId": "ultra-europe",
+   "festivalName": "Ultra Europe",
+   "name": "Ultra Europe 2017",
+   "year": 2017,
+   "timezone": "Europe/Zagreb",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "total-croatia-news.com",
+    "scope": "partial"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2017-07-14",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2017-07-15",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2017-07-16",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 3,
+    "artists": 61,
+    "sets": 0
+   }
+  },
+  {
+   "id": "ultra-europe-2016",
+   "festivalId": "ultra-europe",
+   "festivalName": "Ultra Europe",
+   "name": "Ultra Europe 2016",
+   "year": 2016,
+   "timezone": "Europe/Zagreb",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "bythewavs.com",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2016-07-15",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2016-07-16",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2016-07-17",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 4,
+    "artists": 96,
+    "sets": 0
+   }
+  },
+  {
+   "id": "ultra-europe-2015",
+   "festivalId": "ultra-europe",
+   "festivalName": "Ultra Europe",
+   "name": "Ultra Europe 2015",
+   "year": 2015,
+   "timezone": "Europe/Zagreb",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "europske.noviny.sk",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2015-07-10",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2015-07-11",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2015-07-12",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 4,
+    "artists": 91,
+    "sets": 0
+   }
+  },
+  {
+   "id": "ultra-europe-2014",
+   "festivalId": "ultra-europe",
+   "festivalName": "Ultra Europe",
+   "name": "Ultra Europe 2014",
+   "year": 2014,
+   "timezone": "Europe/Zagreb",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "eFestivals",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2014-07-11",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2014-07-12",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2014-07-13",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 3,
+    "artists": 62,
+    "sets": 0
+   }
+  },
+  {
    "id": "ultra-europe-2013",
    "festivalId": "ultra-europe",
    "festivalName": "Ultra Europe",

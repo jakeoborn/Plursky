@@ -1,0 +1,932 @@
+{
+ "id": "ultra-europe-2023",
+ "festivalId": "ultra-europe",
+ "name": "Ultra Europe 2023",
+ "year": 2023,
+ "timezone": "Europe/Zagreb",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2023-07-07",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2023-07-08",
+   "label": "Saturday"
+  },
+  {
+   "day": 3,
+   "date": "2023-07-09",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "ultra-europe-2023:ultra-main-stage",
+   "name": "Ultra Main Stage"
+  }
+ ],
+ "artists": [
+  {
+   "id": "ultra-europe-2023:plastik-funk",
+   "name": "Plastik Funk",
+   "key": "plastik-funk",
+   "performers": [
+    "plastik-funk"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2023:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2023:gryffin",
+   "name": "Gryffin",
+   "key": "gryffin",
+   "performers": [
+    "gryffin"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2023:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2023:oliver-heldens",
+   "name": "Oliver Heldens",
+   "key": "oliver-heldens",
+   "performers": [
+    "oliver-heldens"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2023:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2023:axwell",
+   "name": "Axwell",
+   "key": "axwell",
+   "performers": [
+    "axwell"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2023:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2023:zedd",
+   "name": "Zedd",
+   "key": "zedd",
+   "performers": [
+    "zedd"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2023:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2023:hardwell",
+   "name": "Hardwell",
+   "key": "hardwell",
+   "performers": [
+    "hardwell"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2023:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2023:millean",
+   "name": "MILLEAN",
+   "key": "millean",
+   "performers": [
+    "millean"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2023:tomo-in-der-muhlen",
+   "name": "Tomo in der Mühlen",
+   "key": "tomo-in-der-muhlen",
+   "performers": [
+    "tomo-in-der-muhlen"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2023:enrico-sangiuliano",
+   "name": "Enrico Sangiuliano",
+   "key": "enrico-sangiuliano",
+   "performers": [
+    "enrico-sangiuliano"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2023:adam-beyer",
+   "name": "Adam Beyer",
+   "key": "adam-beyer",
+   "performers": [
+    "adam-beyer"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2023:charlotte-de-witte",
+   "name": "Charlotte de Witte",
+   "key": "charlotte-de-witte",
+   "performers": [
+    "charlotte-de-witte"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2023:adam-de-great",
+   "name": "Adam De Great",
+   "key": "adam-de-great",
+   "performers": [
+    "adam-de-great"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2023:kdh",
+   "name": "KDH",
+   "key": "kdh",
+   "performers": [
+    "kdh"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2023:tim-hox",
+   "name": "Tim Hox",
+   "key": "tim-hox",
+   "performers": [
+    "tim-hox"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2023:vinne",
+   "name": "Vinne",
+   "key": "vinne",
+   "performers": [
+    "vinne"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2023:avao",
+   "name": "Avao",
+   "key": "avao",
+   "performers": [
+    "avao"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2023:jeffrey-sutorius",
+   "name": "Jeffrey Sutorius",
+   "key": "jeffrey-sutorius",
+   "performers": [
+    "jeffrey-sutorius"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2023:olly-james",
+   "name": "OLLY JAMES",
+   "key": "olly-james",
+   "performers": [
+    "olly-james"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2023:dr-phunk",
+   "name": "Dr Phunk",
+   "key": "dr-phunk",
+   "performers": [
+    "dr-phunk"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2023:teamworx",
+   "name": "TEAMWORX",
+   "key": "teamworx",
+   "performers": [
+    "teamworx"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2023:mr-black",
+   "name": "MR. BLACK",
+   "key": "mr-black",
+   "performers": [
+    "mr-black"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2023:norberto-loco",
+   "name": "NORBERTO LOCO",
+   "key": "norberto-loco",
+   "performers": [
+    "norberto-loco"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2023:chepone",
+   "name": "CHEPONE",
+   "key": "chepone",
+   "performers": [
+    "chepone"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2023:katsy-lee",
+   "name": "KATSY LEE",
+   "key": "katsy-lee",
+   "performers": [
+    "katsy-lee"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2023:ketafere",
+   "name": "KETAFERE",
+   "key": "ketafere",
+   "performers": [
+    "ketafere"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2023:moon-shot",
+   "name": "MOON SHOT",
+   "key": "moon-shot",
+   "performers": [
+    "moon-shot"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2023:wekingz",
+   "name": "Wekingz",
+   "key": "wekingz",
+   "performers": [
+    "wekingz"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2023:mykris",
+   "name": "MYKRIS",
+   "key": "mykris",
+   "performers": [
+    "mykris"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2023:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2023:nora-en-pure",
+   "name": "Nora En Pure",
+   "key": "nora-en-pure",
+   "performers": [
+    "nora-en-pure"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2023:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2023:tchami",
+   "name": "Tchami",
+   "key": "tchami",
+   "performers": [
+    "tchami"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2023:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2023:dj-snake",
+   "name": "DJ Snake",
+   "key": "dj-snake",
+   "performers": [
+    "dj-snake"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2023:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2023:timmy-trumpet",
+   "name": "Timmy Trumpet",
+   "key": "timmy-trumpet",
+   "performers": [
+    "timmy-trumpet"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2023:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2023:steve-aoki",
+   "name": "Steve Aoki",
+   "key": "steve-aoki",
+   "performers": [
+    "steve-aoki"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2023:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2023:rory-lynam",
+   "name": "RORY LYNAM",
+   "key": "rory-lynam",
+   "performers": [
+    "rory-lynam"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2023:maz",
+   "name": "Maz",
+   "key": "maz",
+   "performers": [
+    "maz"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2023:massano",
+   "name": "Massano",
+   "key": "massano",
+   "performers": [
+    "massano"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2023:mathame",
+   "name": "Mathame",
+   "key": "mathame",
+   "performers": [
+    "mathame"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2023:boris-brejcha",
+   "name": "Boris Brejcha",
+   "key": "boris-brejcha",
+   "performers": [
+    "boris-brejcha"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2023:ana-antonova",
+   "name": "ANA ANTONOVA",
+   "key": "ana-antonova",
+   "performers": [
+    "ana-antonova"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2023:jan-kincl",
+   "name": "JAN KINCL",
+   "key": "jan-kincl",
+   "performers": [
+    "jan-kincl"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2023:tom-bug",
+   "name": "TOM BUG",
+   "key": "tom-bug",
+   "performers": [
+    "tom-bug"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2023:peznt",
+   "name": "PEZNT",
+   "key": "peznt",
+   "performers": [
+    "peznt"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2023:arseniyeah",
+   "name": "ARSENIYEAH",
+   "key": "arseniyeah",
+   "performers": [
+    "arseniyeah"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2023:ivan-ji",
+   "name": "IVAN JI",
+   "key": "ivan-ji",
+   "performers": [
+    "ivan-ji"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2023:vanillaz",
+   "name": "Vanillaz",
+   "key": "vanillaz",
+   "performers": [
+    "vanillaz"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2023:dave-caffrey",
+   "name": "DAVE CAFFREY",
+   "key": "dave-caffrey",
+   "performers": [
+    "dave-caffrey"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2023:tjo",
+   "name": "TJO",
+   "key": "tjo",
+   "performers": [
+    "tjo"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2023:ryu-and-dante",
+   "name": "RYU & DANTE",
+   "key": "ryu-and-dante",
+   "performers": [
+    "ryu-and-dante"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2023:robi-roka",
+   "name": "ROBI ROKA",
+   "key": "robi-roka",
+   "performers": [
+    "robi-roka"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2023:dj-viktoria",
+   "name": "DJ VIKTORIA",
+   "key": "dj-viktoria",
+   "performers": [
+    "dj-viktoria"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2023:sound-of-yaz",
+   "name": "SOUND OF YAZ",
+   "key": "sound-of-yaz",
+   "performers": [
+    "sound-of-yaz"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2023:markhese",
+   "name": "MARKHESE",
+   "key": "markhese",
+   "performers": [
+    "markhese"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "ultra-europe-2023:fedde-le-grand",
+   "name": "Fedde Le Grand",
+   "key": "fedde-le-grand",
+   "performers": [
+    "fedde-le-grand"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2023:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2023:morten",
+   "name": "MORTEN",
+   "key": "morten",
+   "performers": [
+    "morten"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2023:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2023:w-and-w",
+   "name": "W&W",
+   "key": "w-and-w",
+   "performers": [
+    "w-and-w"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2023:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2023:afrojack",
+   "name": "Afrojack",
+   "key": "afrojack",
+   "performers": [
+    "afrojack"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2023:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2023:martin-garrix",
+   "name": "Martin Garrix",
+   "key": "martin-garrix",
+   "performers": [
+    "martin-garrix"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2023:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2023:alesso",
+   "name": "ALESSO",
+   "key": "alesso",
+   "performers": [
+    "alesso"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2023:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2023:ginchy",
+   "name": "Ginchy",
+   "key": "ginchy",
+   "performers": [
+    "ginchy"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2023:pero-fullhouse",
+   "name": "PERO FULLHOUSE",
+   "key": "pero-fullhouse",
+   "performers": [
+    "pero-fullhouse"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2023:juliet-fox",
+   "name": "Juliet Fox",
+   "key": "juliet-fox",
+   "performers": [
+    "juliet-fox"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2023:nicole-moudaber",
+   "name": "NICOLE MOUDABER",
+   "key": "nicole-moudaber",
+   "performers": [
+    "nicole-moudaber"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2023:carl-cox",
+   "name": "Carl Cox",
+   "key": "carl-cox",
+   "performers": [
+    "carl-cox"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2023:huy-dx",
+   "name": "HUY DX",
+   "key": "huy-dx",
+   "performers": [
+    "huy-dx"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2023:lorenzo",
+   "name": "LORENZO",
+   "key": "lorenzo",
+   "performers": [
+    "lorenzo"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2023:chris-willsman",
+   "name": "CHRIS WILLSMAN",
+   "key": "chris-willsman",
+   "performers": [
+    "chris-willsman"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2023:gil-glaze",
+   "name": "Gil Glaze",
+   "key": "gil-glaze",
+   "performers": [
+    "gil-glaze"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2023:yamatomaya",
+   "name": "YAMATOMAYA",
+   "key": "yamatomaya",
+   "performers": [
+    "yamatomaya"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2023:mike-and-me",
+   "name": "Mike & Me",
+   "key": "mike-and-me",
+   "performers": [
+    "mike-and-me"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2023:jimmy-clash",
+   "name": "Jimmy Clash",
+   "key": "jimmy-clash",
+   "performers": [
+    "jimmy-clash"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2023:pink-panda",
+   "name": "PINK PANDA",
+   "key": "pink-panda",
+   "performers": [
+    "pink-panda"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2023:avadox",
+   "name": "AVADOX",
+   "key": "avadox",
+   "performers": [
+    "avadox"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2023:akira",
+   "name": "AKIRA",
+   "key": "akira",
+   "performers": [
+    "akira"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2023:dj-yaksa",
+   "name": "DJ Yaksa",
+   "key": "dj-yaksa",
+   "performers": [
+    "dj-yaksa"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2023:tom-william",
+   "name": "TOM WILLIAM",
+   "key": "tom-william",
+   "performers": [
+    "tom-william"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2023:luca-santiago",
+   "name": "LUCA SANTIAGO",
+   "key": "luca-santiago",
+   "performers": [
+    "luca-santiago"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2023:d3fai",
+   "name": "D3FAI",
+   "key": "d3fai",
+   "performers": [
+    "d3fai"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2023:alex-pizzuti",
+   "name": "Alex Pizzuti",
+   "key": "alex-pizzuti",
+   "performers": [
+    "alex-pizzuti"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "unofficial_lineup",
+  "unofficial": true,
+  "source": {
+   "kind": "fan_timetable",
+   "site": "festtimetable.com",
+   "url": "https://festtimetable.com/en-GB/articles/ultra-europe-2023",
+   "title": "[Update] Ultra Europe 2023 returns in July－Lineup, Timetable & Map released",
+   "publisher": "FestTimetable",
+   "published": "2023-06-28",
+   "fetchedAt": "2026-11-27",
+   "fetchedVia": "exa",
+   "scope": "full",
+   "sha256": "3072c08da7c297e0d9753335cbdf5e6b23d5ddbe40324d431148a4d42f682dfe",
+   "bytes": 3774
+  },
+  "captures": [
+   {
+    "page": "lineup",
+    "url": "https://festtimetable.com/en-GB/articles/ultra-europe-2023",
+    "fetchedAt": "2026-11-27",
+    "sha256": "3072c08da7c297e0d9753335cbdf5e6b23d5ddbe40324d431148a4d42f682dfe"
+   }
+  ]
+ }
+}

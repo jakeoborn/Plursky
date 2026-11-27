@@ -1,0 +1,45 @@
+{
+  "id": "ultra-europe-2018",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "press",
+    "site": "total-croatia-news.com",
+    "url": "https://total-croatia-news.com/lifestyle/ultra-europe-releases-daily-lineups-tickets-for-6th-edition-in-split/",
+    "title": "Ultra Europe Releases Daily Lineups, Tickets for 6th Edition in Split!",
+    "publisher": "Total Croatia News",
+    "published": "2018-06-18",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "partial",
+    "sha256": "fb6789df528adb8d48e4d8d8b37cc1122d00495447b9176b51892938aeaa38cf",
+    "bytes": 3592
+  },
+  "printed": {
+    "days": {
+      "1": "Friday",
+      "2": "Saturday",
+      "3": "Sunday, July 8, 2018"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "ultra-europe",
+    "year": 2018,
+    "lifecycle": "occurred",
+    "dates": "2018-07-06..2018-07-08",
+    "evidence": "https://ultramusicfestival.com/news/ultra-europe-celebrates-sixth-annual-edition",
+    "published": "2018-07-16"
+  },
+  "note": "A Croatian news site's write-up of the daily lineups as released on 18 June 2018: the Main Stage, RESISTANCE and ARCADIA Afterburner acts it names for each day, not every act (its UMF Stage list is garbled and is left out); two names are printed as the source has them (Blastoyzi, Dr. Phunka).",
+  "verified": {
+    "billings": 39,
+    "inSourceText": true
+  },
+  "stageOrder": [
+    "Main Stage",
+    "RESISTANCE",
+    "ARCADIA Afterburner"
+  ],
+  "dropped": []
+}
