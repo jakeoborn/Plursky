@@ -1,0 +1,43 @@
+{
+  "id": "ultra-europe-2023",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "fan_timetable",
+    "site": "festtimetable.com",
+    "url": "https://festtimetable.com/en-GB/articles/ultra-europe-2023",
+    "title": "[Update] Ultra Europe 2023 returns in July－Lineup, Timetable & Map released",
+    "publisher": "FestTimetable",
+    "published": "2023-06-28",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "full",
+    "sha256": "3072c08da7c297e0d9753335cbdf5e6b23d5ddbe40324d431148a4d42f682dfe",
+    "bytes": 3774
+  },
+  "printed": {
+    "days": {
+      "1": "Fri, 7 Jul",
+      "2": "Sat, 8 Jul",
+      "3": "Sun, 9 Jul"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "ultra-europe",
+    "year": 2023,
+    "lifecycle": "occurred",
+    "dates": "2023-07-07..2023-07-09",
+    "evidence": "https://ultraeurope.com/worldwide/ultra-europe-concludes-ninth-edition-in-split-croatia-with-attendees-from-140-countries/",
+    "published": "2023-07-19"
+  },
+  "note": "An independent timetable site's lineup overview, last updated 28 June 2023: its full list prints no days, so acts carry a day only where the page prints one (the Main Stage on each day and Sunday's whole list); the Hi-Lo set on the Resistance stage is not in its list.",
+  "verified": {
+    "billings": 78,
+    "inSourceText": true
+  },
+  "stageOrder": [
+    "Ultra Main Stage"
+  ],
+  "dropped": []
+}

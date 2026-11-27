@@ -1,0 +1,573 @@
+{
+ "id": "ultra-europe-2019",
+ "festivalId": "ultra-europe",
+ "name": "Ultra Europe 2019",
+ "year": 2019,
+ "timezone": "Europe/Zagreb",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2019-07-12",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2019-07-13",
+   "label": "Saturday"
+  },
+  {
+   "day": 3,
+   "date": "2019-07-14",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "ultra-europe-2019:resistance",
+   "name": "RESISTANCE"
+  },
+  {
+   "id": "ultra-europe-2019:umf-radio-stage",
+   "name": "UMF Radio Stage"
+  }
+ ],
+ "artists": [
+  {
+   "id": "ultra-europe-2019:lucky-z",
+   "name": "Lucky Z",
+   "key": "lucky-z",
+   "performers": [
+    "lucky-z"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2019:plastik-funk",
+   "name": "Plastik Funk",
+   "key": "plastik-funk",
+   "performers": [
+    "plastik-funk"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2019:david-guetta",
+   "name": "David Guetta",
+   "key": "david-guetta",
+   "performers": [
+    "david-guetta"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2019:gud-vibrations",
+   "name": "Gud Vibrations",
+   "key": "gud-vibrations",
+   "performers": [
+    "gud-vibrations"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2019:nicky-romero",
+   "name": "Nicky Romero",
+   "key": "nicky-romero",
+   "performers": [
+    "nicky-romero"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2019:the-chainsmokers",
+   "name": "The Chainsmokers",
+   "key": "the-chainsmokers",
+   "performers": [
+    "the-chainsmokers"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2019:armin-van-buuren",
+   "name": "Armin van Buuren",
+   "key": "armin-van-buuren",
+   "performers": [
+    "armin-van-buuren"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2019:lost-kingd",
+   "name": "Lost Kingd",
+   "key": "lost-kingd",
+   "performers": [
+    "lost-kingd"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2019:no-redemtion",
+   "name": "No Redemtion",
+   "key": "no-redemtion",
+   "performers": [
+    "no-redemtion"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2019:moe",
+   "name": "Moe",
+   "key": "moe",
+   "performers": [
+    "moe"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2019:vanillaz",
+   "name": "Vanillaz",
+   "key": "vanillaz",
+   "performers": [
+    "vanillaz"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2019:cheat-codes",
+   "name": "Cheat Codes",
+   "key": "cheat-codes",
+   "performers": [
+    "cheat-codes"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2019:rezz",
+   "name": "Rezz",
+   "key": "rezz",
+   "performers": [
+    "rezz"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2019:above-and-beyond",
+   "name": "Above & Beyond",
+   "key": "above-and-beyond",
+   "performers": [
+    "above-and-beyond"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2019:jeffrey-sotorius",
+   "name": "Jeffrey Sotorius",
+   "key": "jeffrey-sotorius",
+   "performers": [
+    "jeffrey-sotorius"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2019:swedish-house-mafia",
+   "name": "Swedish House Mafia",
+   "key": "swedish-house-mafia",
+   "performers": [
+    "swedish-house-mafia"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2019:rory-lynam",
+   "name": "Rory Lynam",
+   "key": "rory-lynam",
+   "performers": [
+    "rory-lynam"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2019:resistance"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2019:steve-fidelak",
+   "name": "Steve Fidelak",
+   "key": "steve-fidelak",
+   "performers": [
+    "steve-fidelak"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2019:resistance"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2019:patrice-baumel",
+   "name": "Patrice Baumel",
+   "key": "patrice-baumel",
+   "performers": [
+    "patrice-baumel"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2019:resistance"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2019:sasha-b2b-nic-fanciulli",
+   "name": "Sasha b2b Nic Fanciulli",
+   "key": "sasha-b2b-nic-fanciulli",
+   "performers": [
+    "sasha",
+    "nic-fanciulli"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2019:resistance"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2019:maceo-plex",
+   "name": "Maceo Plex",
+   "key": "maceo-plex",
+   "performers": [
+    "maceo-plex"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2019:resistance"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2019:adam-beyer",
+   "name": "Adam Beyer",
+   "key": "adam-beyer",
+   "performers": [
+    "adam-beyer"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2019:resistance"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2019:danceelecricphilipe",
+   "name": "DanceElecricPhilipe",
+   "key": "danceelecricphilipe",
+   "performers": [
+    "danceelecricphilipe"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2019:resistance"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2019:elio-riso",
+   "name": "Elio Riso",
+   "key": "elio-riso",
+   "performers": [
+    "elio-riso"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2019:resistance"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2019:art-department",
+   "name": "Art Department",
+   "key": "art-department",
+   "performers": [
+    "art-department"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2019:resistance"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2019:jamie-jones",
+   "name": "Jamie Jones",
+   "key": "jamie-jones",
+   "performers": [
+    "jamie-jones"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2019:resistance"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2019:richie-hawtin",
+   "name": "Richie Hawtin",
+   "key": "richie-hawtin",
+   "performers": [
+    "richie-hawtin"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2019:resistance"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2019:marco-carola",
+   "name": "Marco Carola",
+   "key": "marco-carola",
+   "performers": [
+    "marco-carola"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2019:resistance"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2019:sk-y",
+   "name": "Sk!y",
+   "key": "sk-y",
+   "performers": [
+    "sk-y"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2019:resistance"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2019:dubfire",
+   "name": "Dubfire",
+   "key": "dubfire",
+   "performers": [
+    "dubfire"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2019:resistance"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2019:richard-lowe",
+   "name": "Richard Lowe",
+   "key": "richard-lowe",
+   "performers": [
+    "richard-lowe"
+   ],
+   "appearances": [
+    {
+     "stageId": "ultra-europe-2019:umf-radio-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2019:miss-faith",
+   "name": "Miss Faith",
+   "key": "miss-faith",
+   "performers": [
+    "miss-faith"
+   ],
+   "appearances": [
+    {
+     "stageId": "ultra-europe-2019:umf-radio-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2019:kosta-radman",
+   "name": "Kosta Radman",
+   "key": "kosta-radman",
+   "performers": [
+    "kosta-radman"
+   ],
+   "appearances": [
+    {
+     "stageId": "ultra-europe-2019:umf-radio-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2019:mike-and-me",
+   "name": "Mike & Me",
+   "key": "mike-and-me",
+   "performers": [
+    "mike-and-me"
+   ],
+   "appearances": [
+    {
+     "stageId": "ultra-europe-2019:umf-radio-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2019:iris-santo",
+   "name": "Iris Santo",
+   "key": "iris-santo",
+   "performers": [
+    "iris-santo"
+   ],
+   "appearances": [
+    {
+     "stageId": "ultra-europe-2019:umf-radio-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2019:lorenzo",
+   "name": "Lorenzo",
+   "key": "lorenzo",
+   "performers": [
+    "lorenzo"
+   ],
+   "appearances": [
+    {
+     "stageId": "ultra-europe-2019:umf-radio-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2019:drumelody",
+   "name": "Drumelody",
+   "key": "drumelody",
+   "performers": [
+    "drumelody"
+   ],
+   "appearances": [
+    {
+     "stageId": "ultra-europe-2019:umf-radio-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2019:vatra",
+   "name": "Vatra",
+   "key": "vatra",
+   "performers": [
+    "vatra"
+   ],
+   "appearances": [
+    {
+     "stageId": "ultra-europe-2019:umf-radio-stage"
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "unofficial_lineup",
+  "unofficial": true,
+  "source": {
+   "kind": "press",
+   "site": "journal.hr",
+   "url": "https://www.journal.hr/lifestyle/park-mladezi-ultra-europe-2019/",
+   "title": "Park Mladeži spremno otvara vrata u petak",
+   "publisher": "Journal.hr",
+   "published": "2019-07-11",
+   "fetchedAt": "2026-11-27",
+   "fetchedVia": "exa",
+   "scope": "partial",
+   "sha256": "f007e58116085308bc6be7a146440e0040848f9ae071c3f61fd5468a3ccb31e2",
+   "bytes": 3828
+  },
+  "captures": [
+   {
+    "page": "lineup",
+    "url": "https://www.journal.hr/lifestyle/park-mladezi-ultra-europe-2019/",
+    "fetchedAt": "2026-11-27",
+    "sha256": "f007e58116085308bc6be7a146440e0040848f9ae071c3f61fd5468a3ccb31e2"
+   }
+  ]
+ }
+}

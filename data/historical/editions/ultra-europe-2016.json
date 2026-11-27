@@ -1,0 +1,1433 @@
+{
+ "id": "ultra-europe-2016",
+ "festivalId": "ultra-europe",
+ "name": "Ultra Europe 2016",
+ "year": 2016,
+ "timezone": "Europe/Zagreb",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2016-07-15",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2016-07-16",
+   "label": "Saturday"
+  },
+  {
+   "day": 3,
+   "date": "2016-07-17",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "ultra-europe-2016:ultra-main-stage",
+   "name": "Ultra Main Stage"
+  },
+  {
+   "id": "ultra-europe-2016:resistance",
+   "name": "Resistance"
+  },
+  {
+   "id": "ultra-europe-2016:arcadia-afterburner",
+   "name": "Arcadia: Afterburner"
+  },
+  {
+   "id": "ultra-europe-2016:ultra-worldwide",
+   "name": "Ultra Worldwide"
+  }
+ ],
+ "artists": [
+  {
+   "id": "ultra-europe-2016:armin-van-buuren",
+   "name": "Armin Van Buuren",
+   "key": "armin-van-buuren",
+   "performers": [
+    "armin-van-buuren"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2016:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:above-and-beyond",
+   "name": "Above & Beyond",
+   "key": "above-and-beyond",
+   "performers": [
+    "above-and-beyond"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2016:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:alesso",
+   "name": "Alesso",
+   "key": "alesso",
+   "performers": [
+    "alesso"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2016:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:dj-snake",
+   "name": "DJ Snake",
+   "key": "dj-snake",
+   "performers": [
+    "dj-snake"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2016:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:fedde-le-grand",
+   "name": "Fedde Le Grand",
+   "key": "fedde-le-grand",
+   "performers": [
+    "fedde-le-grand"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2016:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:vicetone",
+   "name": "Vicetone",
+   "key": "vicetone",
+   "performers": [
+    "vicetone"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2016:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:yellow-claw",
+   "name": "Yellow Claw",
+   "key": "yellow-claw",
+   "performers": [
+    "yellow-claw"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2016:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:cesqueaux",
+   "name": "Cesqueaux",
+   "key": "cesqueaux",
+   "performers": [
+    "cesqueaux"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2016:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:tigerlily",
+   "name": "Tigerlily",
+   "key": "tigerlily",
+   "performers": [
+    "tigerlily"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2016:ultra-main-stage"
+    },
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2016:ultra-worldwide"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:adam-beyer-and-ida-engberg",
+   "name": "Adam Beyer & Ida Engberg",
+   "key": "adam-beyer-and-ida-engberg",
+   "performers": [
+    "adam-beyer-and-ida-engberg"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2016:resistance"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:solomun",
+   "name": "Solomun",
+   "key": "solomun",
+   "performers": [
+    "solomun"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2016:resistance"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:rodhad",
+   "name": "Rödhåd",
+   "key": "rodhad",
+   "performers": [
+    "rodhad"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2016:resistance"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:technasia",
+   "name": "Technasia",
+   "key": "technasia",
+   "performers": [
+    "technasia"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2016:resistance"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:elio-riso",
+   "name": "Elio Riso",
+   "key": "elio-riso",
+   "performers": [
+    "elio-riso"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2016:resistance"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:camo-and-krooked",
+   "name": "Camo & Krooked",
+   "key": "camo-and-krooked",
+   "performers": [
+    "camo-and-krooked"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2016:arcadia-afterburner"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:calyx-and-teebee",
+   "name": "Calyx & Teebee",
+   "key": "calyx-and-teebee",
+   "performers": [
+    "calyx-and-teebee"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2016:arcadia-afterburner"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:tc",
+   "name": "TC",
+   "key": "tc",
+   "performers": [
+    "tc"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2016:arcadia-afterburner"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:the-trototypes",
+   "name": "The Trototypes",
+   "key": "the-trototypes",
+   "performers": [
+    "the-trototypes"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2016:arcadia-afterburner"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:north-base",
+   "name": "North Base",
+   "key": "north-base",
+   "performers": [
+    "north-base"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2016:arcadia-afterburner"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:yesh",
+   "name": "Yesh",
+   "key": "yesh",
+   "performers": [
+    "yesh"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2016:arcadia-afterburner"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:marhese",
+   "name": "Marhese",
+   "key": "marhese",
+   "performers": [
+    "marhese"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2016:ultra-worldwide"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:goldiggers",
+   "name": "Goldiggers",
+   "key": "goldiggers",
+   "performers": [
+    "goldiggers"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2016:ultra-worldwide"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:rory",
+   "name": "Rory",
+   "key": "rory",
+   "performers": [
+    "rory"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2016:ultra-worldwide"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:yellow-claw-and-cesqueaux-b2b-legends",
+   "name": "Yellow Claw & Cesqueaux B2B Legends",
+   "key": "yellow-claw-and-cesqueaux-b2b-legends",
+   "performers": [
+    "yellow-claw-and-cesqueaux",
+    "legends"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2016:ultra-worldwide"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:raiden",
+   "name": "Raiden",
+   "key": "raiden",
+   "performers": [
+    "raiden"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2016:ultra-worldwide"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:brynny",
+   "name": "Brynny",
+   "key": "brynny",
+   "performers": [
+    "brynny"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2016:ultra-worldwide"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:chris-davies",
+   "name": "Chris Davies",
+   "key": "chris-davies",
+   "performers": [
+    "chris-davies"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2016:ultra-worldwide"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:diskov3r-and-superactive",
+   "name": "Diskov3r & Superactive",
+   "key": "diskov3r-and-superactive",
+   "performers": [
+    "diskov3r-and-superactive"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2016:ultra-worldwide"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:d-rex",
+   "name": "D-Rex",
+   "key": "d-rex",
+   "performers": [
+    "d-rex"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2016:ultra-worldwide"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:richard-lowe",
+   "name": "Richard Lowe",
+   "key": "richard-lowe",
+   "performers": [
+    "richard-lowe"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2016:ultra-worldwide"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:dj-max",
+   "name": "DJ Max",
+   "key": "dj-max",
+   "performers": [
+    "dj-max"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2016:ultra-worldwide"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:dj-lookis",
+   "name": "DJ Lookis",
+   "key": "dj-lookis",
+   "performers": [
+    "dj-lookis"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "ultra-europe-2016:ultra-worldwide"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:deadmau5",
+   "name": "Deadmau5",
+   "key": "deadmau5",
+   "performers": [
+    "deadmau5"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2016:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:nero",
+   "name": "Nero",
+   "key": "nero",
+   "performers": [
+    "nero"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2016:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:dash-berlin",
+   "name": "Dash Berlin",
+   "key": "dash-berlin",
+   "performers": [
+    "dash-berlin"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2016:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:w-and-w",
+   "name": "W&W",
+   "key": "w-and-w",
+   "performers": [
+    "w-and-w"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2016:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:adventure-club",
+   "name": "Adventure Club",
+   "key": "adventure-club",
+   "performers": [
+    "adventure-club"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2016:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:thomas-jack",
+   "name": "Thomas Jack",
+   "key": "thomas-jack",
+   "performers": [
+    "thomas-jack"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2016:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:dyro",
+   "name": "Dyro",
+   "key": "dyro",
+   "performers": [
+    "dyro"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2016:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:matisse-and-sadko",
+   "name": "Matisse & Sadko",
+   "key": "matisse-and-sadko",
+   "performers": [
+    "matisse-and-sadko"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2016:ultra-main-stage"
+    },
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2016:ultra-worldwide"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:kura",
+   "name": "Kura",
+   "key": "kura",
+   "performers": [
+    "kura"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2016:ultra-main-stage"
+    },
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2016:ultra-worldwide"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:carl-cox",
+   "name": "Carl Cox",
+   "key": "carl-cox",
+   "performers": [
+    "carl-cox"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2016:resistance"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:marco-arola",
+   "name": "Marco arola",
+   "key": "marco-arola",
+   "performers": [
+    "marco-arola"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2016:resistance"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:joseph-capriati",
+   "name": "Joseph Capriati",
+   "key": "joseph-capriati",
+   "performers": [
+    "joseph-capriati"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2016:resistance"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:monika-kruse",
+   "name": "Monika Kruse",
+   "key": "monika-kruse",
+   "performers": [
+    "monika-kruse"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2016:resistance"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:jon-rundell",
+   "name": "Jon Rundell",
+   "key": "jon-rundell",
+   "performers": [
+    "jon-rundell"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2016:resistance"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:pero-fullhouse",
+   "name": "Pero Fullhouse",
+   "key": "pero-fullhouse",
+   "performers": [
+    "pero-fullhouse"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2016:resistance"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:marlo",
+   "name": "Marlo",
+   "key": "marlo",
+   "performers": [
+    "marlo"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2016:arcadia-afterburner"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:andrew-rayel",
+   "name": "Andrew Rayel",
+   "key": "andrew-rayel",
+   "performers": [
+    "andrew-rayel"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2016:arcadia-afterburner"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:jochen-miller",
+   "name": "Jochen Miller",
+   "key": "jochen-miller",
+   "performers": [
+    "jochen-miller"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2016:arcadia-afterburner"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:khomha",
+   "name": "Khomha",
+   "key": "khomha",
+   "performers": [
+    "khomha"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2016:arcadia-afterburner"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:david-gravell",
+   "name": "David Gravell",
+   "key": "david-gravell",
+   "performers": [
+    "david-gravell"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2016:arcadia-afterburner"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:ruben-de-ronde",
+   "name": "Ruben De Ronde",
+   "key": "ruben-de-ronde",
+   "performers": [
+    "ruben-de-ronde"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2016:arcadia-afterburner"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:premesion",
+   "name": "Premesion",
+   "key": "premesion",
+   "performers": [
+    "premesion"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2016:ultra-worldwide"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:tjo",
+   "name": "TJO",
+   "key": "tjo",
+   "performers": [
+    "tjo"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2016:ultra-worldwide"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:justin-oh",
+   "name": "Justin Oh",
+   "key": "justin-oh",
+   "performers": [
+    "justin-oh"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2016:ultra-worldwide"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:juicy-m",
+   "name": "Juicy M",
+   "key": "juicy-m",
+   "performers": [
+    "juicy-m"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2016:ultra-worldwide"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:d-o-d",
+   "name": "D.O.D",
+   "key": "d-o-d",
+   "performers": [
+    "d-o-d"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2016:ultra-worldwide"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:jaz-von-d",
+   "name": "Jaz Von D",
+   "key": "jaz-von-d",
+   "performers": [
+    "jaz-von-d"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2016:ultra-worldwide"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:tom-and-hills",
+   "name": "Tom & Hills",
+   "key": "tom-and-hills",
+   "performers": [
+    "tom-and-hills"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2016:ultra-worldwide"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:dj-gromo",
+   "name": "DJ Gromo",
+   "key": "dj-gromo",
+   "performers": [
+    "dj-gromo"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2016:ultra-worldwide"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:alihan-ipek",
+   "name": "Alihan Ipek",
+   "key": "alihan-ipek",
+   "performers": [
+    "alihan-ipek"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2016:ultra-worldwide"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:the-trixx",
+   "name": "The Trixx",
+   "key": "the-trixx",
+   "performers": [
+    "the-trixx"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "ultra-europe-2016:ultra-worldwide"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:hardwell",
+   "name": "Hardwell",
+   "key": "hardwell",
+   "performers": [
+    "hardwell"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2016:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:martin-garrix",
+   "name": "Martin Garrix",
+   "key": "martin-garrix",
+   "performers": [
+    "martin-garrix"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2016:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:david-guetta",
+   "name": "David Guetta",
+   "key": "david-guetta",
+   "performers": [
+    "david-guetta"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2016:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:afrojack",
+   "name": "Afrojack",
+   "key": "afrojack",
+   "performers": [
+    "afrojack"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2016:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:gouryella",
+   "name": "Gouryella",
+   "key": "gouryella",
+   "performers": [
+    "gouryella"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2016:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:markus-schulz",
+   "name": "Markus Schulz",
+   "key": "markus-schulz",
+   "performers": [
+    "markus-schulz"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2016:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:bassjackers",
+   "name": "Bassjackers",
+   "key": "bassjackers",
+   "performers": [
+    "bassjackers"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2016:ultra-main-stage"
+    },
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2016:ultra-worldwide"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:mykris",
+   "name": "Mykris",
+   "key": "mykris",
+   "performers": [
+    "mykris"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2016:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:dj-nano",
+   "name": "DJ Nano",
+   "key": "dj-nano",
+   "performers": [
+    "dj-nano"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2016:ultra-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:jamie-jones",
+   "name": "Jamie Jones",
+   "key": "jamie-jones",
+   "performers": [
+    "jamie-jones"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2016:resistance"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:nic-fanciulli",
+   "name": "Nic Fanciulli",
+   "key": "nic-fanciulli",
+   "performers": [
+    "nic-fanciulli"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2016:resistance"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:hot-since-82",
+   "name": "Hot Since 82",
+   "key": "hot-since-82",
+   "performers": [
+    "hot-since-82"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2016:resistance"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:apollonia",
+   "name": "Apollonia",
+   "key": "apollonia",
+   "performers": [
+    "apollonia"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2016:resistance"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:matador",
+   "name": "Matador",
+   "key": "matador",
+   "performers": [
+    "matador"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2016:resistance"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:hector",
+   "name": "Hector",
+   "key": "hector",
+   "performers": [
+    "hector"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2016:resistance"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:casey-kiss",
+   "name": "Casey Kiss",
+   "key": "casey-kiss",
+   "performers": [
+    "casey-kiss"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2016:arcadia-afterburner"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:riotgear",
+   "name": "Riotgear",
+   "key": "riotgear",
+   "performers": [
+    "riotgear"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2016:arcadia-afterburner"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:mike-vale",
+   "name": "Mike Vale",
+   "key": "mike-vale",
+   "performers": [
+    "mike-vale"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2016:arcadia-afterburner"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:anna",
+   "name": "Anna",
+   "key": "anna",
+   "performers": [
+    "anna"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2016:arcadia-afterburner"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:rub-a-dub",
+   "name": "Rub a Dub",
+   "key": "rub-a-dub",
+   "performers": [
+    "rub-a-dub"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2016:arcadia-afterburner"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:kryoman",
+   "name": "Kryoman",
+   "key": "kryoman",
+   "performers": [
+    "kryoman"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2016:arcadia-afterburner"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:ej",
+   "name": "EJ",
+   "key": "ej",
+   "performers": [
+    "ej"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2016:arcadia-afterburner"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:rodrigo-vieira",
+   "name": "Rodrigo Vieira",
+   "key": "rodrigo-vieira",
+   "performers": [
+    "rodrigo-vieira"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2016:arcadia-afterburner"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:kyco",
+   "name": "Kyco",
+   "key": "kyco",
+   "performers": [
+    "kyco"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2016:arcadia-afterburner"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:adam-de-great",
+   "name": "Adam de Great",
+   "key": "adam-de-great",
+   "performers": [
+    "adam-de-great"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2016:ultra-worldwide"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:plastik-funk",
+   "name": "Plastik Funk",
+   "key": "plastik-funk",
+   "performers": [
+    "plastik-funk"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2016:ultra-worldwide"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:ksuke",
+   "name": "Ksuke",
+   "key": "ksuke",
+   "performers": [
+    "ksuke"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2016:ultra-worldwide"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:headhunterz",
+   "name": "Headhunterz",
+   "key": "headhunterz",
+   "performers": [
+    "headhunterz"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2016:ultra-worldwide"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:moti",
+   "name": "MOTi",
+   "key": "moti",
+   "performers": [
+    "moti"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2016:ultra-worldwide"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:julian-jordan",
+   "name": "Julian Jordan",
+   "key": "julian-jordan",
+   "performers": [
+    "julian-jordan"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2016:ultra-worldwide"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:jp-candela",
+   "name": "JP Candela",
+   "key": "jp-candela",
+   "performers": [
+    "jp-candela"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2016:ultra-worldwide"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:ale-mora",
+   "name": "Ale Mora",
+   "key": "ale-mora",
+   "performers": [
+    "ale-mora"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2016:ultra-worldwide"
+    }
+   ]
+  },
+  {
+   "id": "ultra-europe-2016:teddy-cream",
+   "name": "Teddy Cream",
+   "key": "teddy-cream",
+   "performers": [
+    "teddy-cream"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "ultra-europe-2016:ultra-worldwide"
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "unofficial_lineup",
+  "unofficial": true,
+  "source": {
+   "kind": "press",
+   "site": "bythewavs.com",
+   "url": "https://bythewavs.com/ultra-europe-announces-full-lineup-stage-time/",
+   "title": "Ultra Europe Announces Full Lineup by Stage and Time",
+   "publisher": "By The Wavs",
+   "published": "2016-07-08",
+   "fetchedAt": "2026-11-27",
+   "fetchedVia": "exa",
+   "scope": "full",
+   "sha256": "c18a50624ce4a1c6ef9a5ff5d772293ab15924706dc0b231b2e50e9cddd3e983",
+   "bytes": 3654
+  },
+  "captures": [
+   {
+    "page": "lineup",
+    "url": "https://bythewavs.com/ultra-europe-announces-full-lineup-stage-time/",
+    "fetchedAt": "2026-11-27",
+    "sha256": "c18a50624ce4a1c6ef9a5ff5d772293ab15924706dc0b231b2e50e9cddd3e983"
+   }
+  ]
+ }
+}

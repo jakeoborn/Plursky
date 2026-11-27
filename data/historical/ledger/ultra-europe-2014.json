@@ -1,0 +1,44 @@
+{
+  "id": "ultra-europe-2014",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "press",
+    "site": "efestivals.co.uk",
+    "url": "https://www.efestivals.co.uk/festivals/ultraeurope/2014/lineup.shtml",
+    "title": "Ultra Europe 2014 Line-up And Rumours",
+    "publisher": "eFestivals",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "full",
+    "sha256": "f78eef51d315020ffe09b5a0d573808f9843bf1dded6e476443ce73625b5ab86",
+    "bytes": 1838
+  },
+  "printed": {
+    "days": {
+      "1": "Fri 11th",
+      "2": "Sat 12th",
+      "3": "Sun 13th"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "ultra-europe",
+    "year": 2014,
+    "lifecycle": "occurred",
+    "dates": "2014-07-11..2014-07-13",
+    "evidence": "https://www.klubskascena.hr/aktualno/festivali/splitski-dio-festivala-ultra-europe-zavrsio-u-velikom-stilu-15072014",
+    "published": "2014-07-15"
+  },
+  "note": "eFestivals' lineup page for the 2014 edition, by day and stage, listing the artists it marks as confirmed by the festival; the page carries no date, and late changes may not be shown.",
+  "verified": {
+    "billings": 62,
+    "inSourceText": true
+  },
+  "stageOrder": [
+    "Main Stage",
+    "Ultra Worldwide Arena",
+    "UMF Radio Stage"
+  ],
+  "dropped": []
+}

@@ -1,0 +1,44 @@
+{
+  "id": "ultra-europe-2019",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "press",
+    "site": "journal.hr",
+    "url": "https://www.journal.hr/lifestyle/park-mladezi-ultra-europe-2019/",
+    "title": "Park Mladeži spremno otvara vrata u petak",
+    "publisher": "Journal.hr",
+    "published": "2019-07-11",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "partial",
+    "sha256": "f007e58116085308bc6be7a146440e0040848f9ae071c3f61fd5468a3ccb31e2",
+    "bytes": 3828
+  },
+  "printed": {
+    "days": {
+      "1": "petak",
+      "2": "Subota",
+      "3": "nedjelju 14. srpnja 2019"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "ultra-europe",
+    "year": 2019,
+    "lifecycle": "occurred",
+    "dates": "2019-07-12..2019-07-14",
+    "evidence": "https://weraveyou.com/2019/07/ultra-europe-2019-breaks-attendance-records-in-park-mladezi/",
+    "published": "2019-07-18"
+  },
+  "note": "A Croatian magazine's preview the day before the festival, naming the main stage and RESISTANCE acts for each day and some UMF Radio Stage acts without days; names the Croatian text gives only in a declined form (such as DJ Snakea or Carl Coxa) are left out, and other names are kept as printed.",
+  "verified": {
+    "billings": 38,
+    "inSourceText": true
+  },
+  "stageOrder": [
+    "RESISTANCE",
+    "UMF Radio Stage"
+  ],
+  "dropped": []
+}

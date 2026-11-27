@@ -1,0 +1,45 @@
+{
+  "id": "ultra-europe-2025",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "fan_timetable",
+    "site": "festtimetable.com",
+    "url": "https://festtimetable.com/zh-CN/events/ultra-europe-2025/day-1/",
+    "title": "Ultra Europe 2025｜第1天时间表－7月11日(五)",
+    "publisher": "FestTimetable",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "full",
+    "sha256": "82831c73d98cda4d347890c2f93245cda584c26596670a3640bb66d19396686b",
+    "bytes": 3495
+  },
+  "printed": {
+    "days": {
+      "1": "7月11日(五)",
+      "2": "7月12日(六)",
+      "3": "7月13日(日)"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "ultra-europe",
+    "year": 2025,
+    "lifecycle": "occurred",
+    "dates": "2025-07-11..2025-07-13",
+    "evidence": "https://www.glasistre.hr/hrvatska/2025/07/14/bez-incidenata-zavrsila-ultra-u-splitu-part-se-nastavlja-na-otocima-1011876",
+    "published": "2025-07-14"
+  },
+  "note": "An independent timetable site's day-by-day running order by stage (Chinese-language pages; days 2 and 3 are the /day-2/ and /day-3/ pages beside this one, saved with it); the pages carry no date, set times are not used, and late changes may not be shown.",
+  "verified": {
+    "billings": 81,
+    "inSourceText": true
+  },
+  "stageOrder": [
+    "ULTRA MAIN STAGE",
+    "RESISTANCE",
+    "UMF RADIO",
+    "OASIS"
+  ],
+  "dropped": []
+}

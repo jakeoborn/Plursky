@@ -1,0 +1,45 @@
+{
+  "id": "ultra-europe-2017",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "press",
+    "site": "total-croatia-news.com",
+    "url": "https://total-croatia-news.com/destinations/destination-split/split-blog/tell-me-something-about-split/daily-lineup-released-for-ultra-europe/",
+    "title": "Daily Lineups Released for Ultra Europe!",
+    "publisher": "Total Croatia News",
+    "published": "2017-07-01",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "partial",
+    "sha256": "38a436af22fe24ecb6db3aebad0da602c323299b5ed717b856b29315103721e7",
+    "bytes": 2760
+  },
+  "printed": {
+    "days": {
+      "1": "Friday",
+      "2": "Saturday",
+      "3": "Sunday"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "ultra-europe",
+    "year": 2017,
+    "lifecycle": "occurred",
+    "dates": "2017-07-14..2017-07-16",
+    "evidence": "https://www.ravejungle.com/2017/07/21/ultra-europe-2017-fifth-anniversary/",
+    "published": "2017-07-21"
+  },
+  "note": "A Croatian news site's summary of the daily lineups released on 30 June 2017: the main stage, Resistance and Arcadia acts it names for each day (the main stage and Arcadia closers on the last day), plus local and UMF stage acts without days; not every act is named, and some names are kept as the article misprints them (such as Ander Rayel, Marl, KIId).",
+  "verified": {
+    "billings": 61,
+    "inSourceText": true
+  },
+  "stageOrder": [
+    "Main Stage",
+    "Resistance Stage",
+    "Arcadia Stage"
+  ],
+  "dropped": []
+}
