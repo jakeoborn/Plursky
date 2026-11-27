@@ -2139,7 +2139,27 @@ function getActiveFestivalId() {
   } catch {}
   return _resolveDefaultFestivalId(now);
 }
-function setActiveFestivalAndReload(id) {
+// opts.tab: the screen to land on inside the festival. opts.push === false
+// leaves the address alone (the boot's own ?f= switch has already edited it).
+function setActiveFestivalAndReload(id, opts) {
+  opts = opts || {};
+  // Screen links: the switch becomes a history entry of its own, so Back
+  // returns to the screen it was made from. Written before the reload, and
+  // before __plkReloading stops any further address writes for this page.
+  if (opts.push !== false) {
+    try {
+      const q = new URLSearchParams();
+      q.set("f", id);
+      if (opts.tab && opts.tab !== "home") q.set("tab", opts.tab);
+      const url = window.location.pathname + "?" + q.toString();
+      if (typeof window.plurskyNavPush === "function") window.plurskyNavPush(url);
+      else window.history.pushState(null, "", url);
+    } catch {}
+  }
+  // The outgoing page must not write its OWN festival back into the address
+  // while the reload is in flight: the next boot would read that ?f= and
+  // switch straight back.
+  window.__plkReloading = true;
   try {
     localStorage.setItem("active_festival_id", id);
     // Marks this as a deliberate choice so getActiveFestivalId honours it even

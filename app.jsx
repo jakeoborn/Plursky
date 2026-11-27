@@ -325,7 +325,7 @@ function OnboardingModal({ onDone, setState, state }) {
     try { localStorage.setItem("onboarded", ONBOARD_VERSION); } catch {}
     if (festId && festId !== FESTIVAL_CONFIG.id) {
       try { sessionStorage.setItem("plursky_landing_entered", festId); } catch {}
-      setActiveFestivalAndReload(festId);
+      setActiveFestivalAndReload(festId, { tab });
       return;
     }
     setState(s => ({ ...s, tab, artist: null }));
@@ -806,6 +806,105 @@ function ToastHost() {
   );
 }
 
+// ── Screen links (v687) ──────────────────────────────────────────────────
+// Every screen has its own address, so Back, refresh and a copied link all
+// land where you were. The URL is written FROM state (App's effect below),
+// never the other way round, so the 58 places that call setState({ tab })
+// need no change.
+//
+// Address shape: General Home is the bare path; anything inside a festival is
+// ?f=<festival>&tab=<tab>[&artist=<id>][&edition=<id>]. ?f= is always there
+// inside a festival because an address without it is ambiguous once you have
+// switched festivals: the boot would open it in whichever festival is active.
+//
+// Our own entries carry { plk: n } in history.state, and the addresses we
+// wrote are kept per browser tab in sessionStorage, so an in-app "back" (the
+// lineup/map back pills, closing an artist) can step BACK through history
+// rather than stacking a new entry on top of the one it came from.
+const _PLK_NAV_KEY = "plursky_nav_v1";
+// Params the router owns. Anything else in the address (a survey code, utm
+// tags) is carried through untouched.
+const _PLK_ROUTE_PARAMS = ["f", "festival", "tab", "artist", "edition", "stage", "day", "lineup", "from", "crew"];
+// Tabs that may be named in an address: the boot parser's list.
+const _PLK_LINK_TABS = ["home","map","lineup","spotify","me","memories","past","artists"];
+function _plkNavRead() {
+  try { const a = JSON.parse(sessionStorage.getItem(_PLK_NAV_KEY) || "[]"); return Array.isArray(a) ? a : []; } catch { return []; }
+}
+function _plkNavWrite(a) {
+  try { sessionStorage.setItem(_PLK_NAV_KEY, JSON.stringify(a.slice(-60))); } catch {}
+}
+function _plkNavIdx() {
+  const n = window.history.state && window.history.state.plk;
+  return Number.isInteger(n) && n >= 0 ? n : null;
+}
+function _plkHere() {
+  return window.location.pathname + window.location.search;
+}
+// The address for a state. `keep` is the current query, so params the router
+// does not own survive.
+function plurskyScreenUrl(s, keep) {
+  const q = new URLSearchParams(keep != null ? keep : window.location.search);
+  for (const k of _PLK_ROUTE_PARAMS) q.delete(k);
+  if (s && s.tab && s.tab !== "landing") {
+    const fid = (typeof FESTIVAL_CONFIG !== "undefined" && FESTIVAL_CONFIG && FESTIVAL_CONFIG.id) || "";
+    if (fid) q.set("f", fid);
+    // A tab the boot cannot reopen (recap, survey screens) is written as the
+    // festival's Today, so a refresh lands somewhere real instead of General
+    // Home.
+    const tab = _PLK_LINK_TABS.includes(s.tab) ? s.tab : "home";
+    if (tab !== "home") q.set("tab", tab);
+    if (tab === "past" && s.pastEdition) q.set("edition", s.pastEdition);
+    if (s.artist) q.set("artist", s.artist);
+  }
+  const qs = q.toString();
+  return window.location.pathname + (qs ? "?" + qs : "");
+}
+function _plkNavReplace(url) {
+  if (window.__plkReloading) return;
+  let idx = _plkNavIdx();
+  let a = _plkNavRead();
+  // An entry we did not write (a typed address, a link from another site)
+  // starts a fresh list: what sessionStorage remembers from earlier in this
+  // tab is not what sits behind this entry, and stepping "back" on its word
+  // could leave Plursky.
+  if (idx == null) { a = []; idx = 0; }
+  a.length = Math.min(a.length, idx + 1);
+  a[idx] = url;
+  _plkNavWrite(a);
+  try { window.history.replaceState({ ...(window.history.state || {}), plk: idx }, "", url); } catch {}
+}
+function _plkNavPush(url) {
+  if (window.__plkReloading) return;
+  let idx = _plkNavIdx();
+  let a = _plkNavRead();
+  if (idx == null) {
+    // Same as a replace: this entry starts the list, and is marked as ours.
+    a = [_plkHere()]; idx = 0;
+    try { window.history.replaceState({ ...(window.history.state || {}), plk: 0 }, "", _plkHere()); } catch {}
+  }
+  const next = idx + 1;
+  a.length = next;
+  a[next] = url;
+  _plkNavWrite(a);
+  try { window.history.pushState({ plk: next }, "", url); } catch {}
+}
+// Used by setActiveFestivalAndReload (data.jsx) so a festival switch leaves
+// the screen you came from one Back away.
+window.plurskyNavPush = _plkNavPush;
+window.plurskyScreenUrl = plurskyScreenUrl;
+// Moves the address to `url`: a step back when `url` is the entry right
+// behind this one (so in-app back and browser Back agree), a replace when
+// `replace` is set, otherwise a new entry.
+function plurskyNavTo(url, replace) {
+  if (window.__plkReloading || url === _plkHere()) return;
+  const idx = _plkNavIdx();
+  const a = _plkNavRead();
+  if (idx != null && idx > 0 && a[idx - 1] === url && a[idx] === _plkHere()) {
+    try { window.history.back(); return; } catch {}
+  }
+  if (replace) _plkNavReplace(url); else _plkNavPush(url);
+}
+
 function App() {
   // First-time visitors get the welcome wizard auto-fired (hybrid C):
   // the wizard collects name + offers Spotify/notifications, but every
@@ -923,7 +1022,7 @@ function App() {
             h.delete("f"); h.delete("festival");
             u.hash = h.toString() ? "#?" + h.toString() : "";
           }
-          window.history.replaceState({}, "", u.toString());
+          window.history.replaceState(window.history.state, "", u.toString());
         } catch {}
         // The reload that follows has no ?f= left in the URL, so without this
         // the next boot would see "no deep link" and show General Home — the
@@ -931,7 +1030,7 @@ function App() {
         // Same sentinel the General Landing uses when you tap a festival.
         try { sessionStorage.setItem("plursky_landing_entered", dlFest); } catch {}
         switchingFestival = true;
-        setActiveFestivalAndReload(dlFest);
+        setActiveFestivalAndReload(dlFest, { push: false });
       }
     }
 
@@ -974,7 +1073,7 @@ function App() {
 
     // Clean the URL without reloading (so back button / sharing still works)
     if (dlArtist || dlTab || dlStage || dlDay || dlLineup || dlFrom || dlCrew) {
-      try { history.replaceState(null, "", window.location.pathname); } catch {}
+      try { history.replaceState(history.state, "", window.location.pathname); } catch {}
     }
 
     // ── Root routing (v341) ────────────────────────────────────────────────
@@ -1102,6 +1201,93 @@ function App() {
     window._pushNav = _pushNav;
     window._popNav = _popNav;
   }, [_pushNav, _popNav]);
+
+  // Screen links: the address follows the screen, and browser Back follows
+  // the address. See plurskyScreenUrl above for the shape.
+  const _navStateRef = React.useRef(state);
+  _navStateRef.current = state;
+  const _navPrevRef = React.useRef(null);
+  // Set when a Back moved the screen: that change is already in the address,
+  // so it is written as a replace (normalising it), never a new entry.
+  const _navFollowRef = React.useRef(false);
+  React.useEffect(() => {
+    const url = plurskyScreenUrl(state);
+    const prev = _navPrevRef.current;
+    _navPrevRef.current = { tab: state.tab, artist: state.artist, pastEdition: state.pastEdition };
+    if (!prev || _navFollowRef.current) {
+      _navFollowRef.current = false;
+      _plkNavReplace(url);
+      return;
+    }
+    // Closing the artist sheet over the same screen is not a new place to go
+    // back to: it steps back when the screen under it is the entry behind,
+    // and otherwise (the sheet was opened by a link) replaces.
+    const closingSheet = !!prev.artist && !state.artist
+      && prev.tab === state.tab && prev.pastEdition === state.pastEdition;
+    plurskyNavTo(url, closingSheet);
+  }, [state.tab, state.artist, state.pastEdition]);
+
+  React.useEffect(() => {
+    const onPop = () => {
+      const q = new URLSearchParams(window.location.search);
+      const f = q.get("f") || q.get("festival");
+      // Another festival's address: its scoped data needs a fresh boot, and
+      // the boot's ?f= handling already switches safely (no reload loop).
+      if (f && typeof FESTIVAL_CONFIG !== "undefined" && FESTIVAL_CONFIG && f !== FESTIVAL_CONFIG.id) {
+        window.__plkReloading = true;
+        window.location.reload();
+        return;
+      }
+      const tab = q.get("tab");
+      const artist = q.get("artist");
+      const inFestival = !!(f || tab || artist);
+      const nextTab = !inFestival ? "landing" : (_PLK_LINK_TABS.includes(tab) ? tab : "home");
+      const nextArtist = artist && ARTISTS.find(a => a.id === artist) ? artist : null;
+      const edition = q.get("edition");
+      const nextEdition = nextTab === "past" && /^[a-z0-9-]+-\d{4}$/.test(edition || "") ? edition : null;
+      const cur = _navStateRef.current;
+      const same = cur.tab === nextTab && (cur.artist || null) === nextArtist
+        && (nextTab !== "past" || (cur.pastEdition || null) === nextEdition);
+      if (same) return;
+      _navFollowRef.current = true;
+      setState(p => ({
+        ...p, tab: nextTab, artist: nextArtist,
+        ...(nextTab === "past" ? { pastEdition: nextEdition } : {}),
+      }));
+    };
+    // A page restored from the back/forward cache after a festival switch is
+    // still the OLD festival's page, frozen with __plkReloading set. When the
+    // stored festival has moved on, reload so the boot reads this entry's ?f=
+    // and switches properly; otherwise just let it write addresses again.
+    const onShow = (e) => {
+      if (!e.persisted) return;
+      let stored = null;
+      try { stored = localStorage.getItem("active_festival_id"); } catch {}
+      if (stored && typeof FESTIVAL_CONFIG !== "undefined" && FESTIVAL_CONFIG && stored !== FESTIVAL_CONFIG.id) {
+        window.location.reload();
+        return;
+      }
+      window.__plkReloading = false;
+    };
+    window.addEventListener("popstate", onPop);
+    window.addEventListener("pageshow", onShow);
+    return () => {
+      window.removeEventListener("popstate", onPop);
+      window.removeEventListener("pageshow", onShow);
+    };
+  }, []);
+
+  // The browser tab and a shared link's preview name the screen.
+  const _baseTitleRef = React.useRef(null);
+  React.useEffect(() => {
+    if (_baseTitleRef.current == null) _baseTitleRef.current = document.title || "Plursky";
+    if (state.tab === "landing") { document.title = _baseTitleRef.current; return; }
+    const fest = (typeof FESTIVAL_CONFIG !== "undefined" && FESTIVAL_CONFIG && (FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name)) || "";
+    const labels = { home: "Today", lineup: "Lineup", map: "Map", spotify: "Music", me: "Me", memories: "Memories", past: "Past festivals", artists: "Artists", recap: "Recap" };
+    const a = state.artist ? ARTISTS.find(x => x.id === state.artist) : null;
+    const lead = a ? a.name : (labels[state.tab] || "");
+    document.title = [lead, fest, "Plursky"].filter(Boolean).join(" · ");
+  }, [state.tab, state.artist]);
 
   // Auto-schedule push reminders whenever saves change (if permission already
   // granted), and when a split moves an arrival time (L3).
@@ -1314,7 +1500,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v686",
+        version: "v687",
       }));
     } catch {}
   }
@@ -1345,7 +1531,7 @@ class RootErrorBoundary extends React.Component {
         </div>
         <button onClick={this.reload} className="duo-btn pri" style={{ minWidth: 160 }}>Reload</button>
         <div className="duo-label duo-ink3" style={{ marginTop: 22 }}>
-          Plursky · v686
+          Plursky · v687
         </div>
       </div>
     );
