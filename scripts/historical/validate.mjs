@@ -91,6 +91,9 @@ export const OFFICIAL_HOSTS = {
   // creamfields.com: Creamfields' own site, whose /artists page listed each
   // year's lineup by day and stage.
   "creamfields": ["creamfields.com"],
+  // awakenings.nl: Awakenings' own site until late 2015 (each festival's
+  // party page printed its lineup by area); awakenings.com is its site today.
+  "awakenings": ["awakenings.nl", "awakenings.com"],
 };
 
 // Where an official graphic may be re-hosted for an `official_sources`

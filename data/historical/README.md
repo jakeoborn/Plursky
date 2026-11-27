@@ -640,6 +640,30 @@ enter it) holds the reviewed `sheet.tsv` and a `receipts.json`;
 page sources are re-read through `wayback.mjs` and must equal the sheet row
 for row.
 
+Archived Awakenings Festival party pages (2010 to 2012, format `awakenings-parties`, lineup only):
+
+    node scripts/historical/extract-awakenings-lineup.mjs awakenings-2010 awakenings-2011 awakenings-2012
+
+Until 2012 Awakenings' own site (awakenings.nl, `/en/parties/<n>/<slug>/`)
+gave each event a party page. The summer festival's page heads itself
+"Awakenings Festival" (2010: "Awakenings" over "Festival 10 Year
+Anniversary") with its one date, place and hours ("30 June 2012 /
+Recreatiegebied, Halfweg / 11:00 / 23:00"), and its title prints the same
+date; the after-party and the club nights have pages of their own and are
+refused. The lineup is one tab per area, labelled as the page labels it
+("C", "B", "A", "Z" … "V"; 2010's open-air areas "W (air)" and "V (air)"),
+the word "Area" never printed, and each tab's panel lists that area's sets,
+each with a printed range and a name. The edition keeps who played on which
+area; the ranges are counted in the ledger (`printedRanges`) and not kept.
+An act on two areas (2011's Dekmantel Soundsystem) is billed on each. The
+date is the page's own, which must be the edition's one day and the
+census's. Captures are read from the festival's day to 120 days after; the
+pages chosen were captured on 25 September 2010, 4 July 2011 and 1 July
+2012. From 2013 the festival's event page loads its lineup by script
+(`events/line-up/<id>/`), which the archive never captured, and from late
+2015 the site is awakenings.com, whose captures the archive does not serve,
+so no later year is loaded.
+
 Official lineup pages, for editions whose set-times pages were never archived
 (Nocturnal Wonderland 2025, Beyond Wonderland SoCal 2025):
 

@@ -610,6 +610,69 @@
    }
   },
   {
+   "id": "awakenings-2012",
+   "festivalId": "awakenings",
+   "festivalName": "Awakenings Festival",
+   "name": "Awakenings Festival 2012",
+   "year": 2012,
+   "timezone": "Europe/Amsterdam",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2012-06-30",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 56,
+    "sets": 0
+   }
+  },
+  {
+   "id": "awakenings-2011",
+   "festivalId": "awakenings",
+   "festivalName": "Awakenings Festival",
+   "name": "Awakenings Festival 2011",
+   "year": 2011,
+   "timezone": "Europe/Amsterdam",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2011-06-25",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 58,
+    "sets": 0
+   }
+  },
+  {
+   "id": "awakenings-2010",
+   "festivalId": "awakenings",
+   "festivalName": "Awakenings Festival",
+   "name": "Awakenings Festival 2010",
+   "year": 2010,
+   "timezone": "Europe/Amsterdam",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2010-06-26",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 6,
+    "artists": 46,
+    "sets": 0
+   }
+  },
+  {
    "id": "beyond-wonderland-gorge-2026",
    "festivalId": "beyond-wonderland-gorge",
    "festivalName": "Beyond Wonderland at The Gorge",

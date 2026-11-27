@@ -1,0 +1,64 @@
+{
+  "id": "awakenings-2010",
+  "method": "official_lineup_html",
+  "official": "http://www.awakenings.nl/en/parties/137/awakenings-festival-10-year-anniversary/",
+  "format": "awakenings-parties",
+  "window": {
+    "until": "2010-10-24",
+    "why": "the page is read from the festival's day to 120 days after it"
+  },
+  "census": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "awakenings",
+    "year": 2010,
+    "lifecycle": "occurred",
+    "dates": "2010-06-26..2010-06-26",
+    "evidence": "https://3voor12.vpro.nl/artikelen/awakenings-verslagen-interviews-en-extra-lange-whitenoise-online",
+    "published": "2010-06-27"
+  },
+  "chosen": "20100925085714",
+  "archivedUrl": "https://web.archive.org/web/20100925085714/http://www.awakenings.nl/en/parties/137/awakenings-festival-10-year-anniversary/",
+  "sha256": "91dee1b0760ba5f36eaac33ab3bfb85574e994156208ea701bf0dfde5b09ee08",
+  "title": "Awakenings - Parties - Awakenings Festival 10 Year Anniversary - 26 June 2010",
+  "relayedVia": "firecrawl",
+  "stageOrder": [
+    "A",
+    "Z",
+    "Y",
+    "X",
+    "W (air)",
+    "V (air)"
+  ],
+  "printedRanges": 46,
+  "considered": [
+    {
+      "captureTimestamp": "20100925085714",
+      "archivedUrl": "https://web.archive.org/web/20100925085714/http://www.awakenings.nl/en/parties/137/awakenings-festival-10-year-anniversary/",
+      "sha256": "91dee1b0760ba5f36eaac33ab3bfb85574e994156208ea701bf0dfde5b09ee08",
+      "bytes": 37981,
+      "via": "firecrawl",
+      "title": "Awakenings - Parties - Awakenings Festival 10 Year Anniversary - 26 June 2010",
+      "dated": true,
+      "valid": true,
+      "days": [
+        "Saturday 26 June 2010"
+      ],
+      "printed": {
+        "event": "Awakenings Festival 10 Year Anniversary",
+        "date": "26 June 2010",
+        "place": "Recreatiegebied, Halfweg",
+        "hours": "11:00 / 23:00",
+        "areas": [
+          "A",
+          "Z",
+          "Y",
+          "X",
+          "W (air)",
+          "V (air)"
+        ]
+      },
+      "billings": 46
+    }
+  ],
+  "dropped": []
+}
