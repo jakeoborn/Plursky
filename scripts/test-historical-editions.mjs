@@ -54,6 +54,8 @@ import { parseEfLineup, printedRun as efPrintedRun } from "./historical/ef-lineu
 import { censusRow, runDates, CENSUS as CREAMFIELDS_CENSUS } from "./historical/extract-creamfields.mjs";
 import { parseCreamfieldsLineup, creamfieldsLineupRows, printedDate } from "./historical/creamfields-lineup.mjs";
 import { RESPELLED as CREAMFIELDS_RESPELLED } from "./historical/extract-creamfields-lineup.mjs";
+import { parseUltraEuropeArtists, countdownDate as ueCountdownDate } from "./historical/ultra-europe-artists.mjs";
+import { ultraEuropeRows, ULTRA_EUROPE_EDITIONS } from "./historical/extract-ultra-europe.mjs";
 import { parseDefqonGrid, dayHeading as dgDayHeading } from "./historical/defqon-grid-lineup.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -203,6 +205,14 @@ if (base && edc) {
     mustFail("an Awakenings lineup read off another site", m => { const c = awCap(m); c.archivedUrl = c.archivedUrl.replace("www.awakenings.nl", "www.awakenings-fans.nl"); }, aw12, () => {}, /not an official awakenings property/);
     mustFail("an Awakenings 2012 day moved to another date", m => { m.days[0].date = "2012-07-01"; }, aw12);
     mustFail("an Awakenings 2012 day with no billed artist", m => { for (const a of m.artists) a.appearances = a.appearances.map(({ stageId }) => ({ stageId })); }, aw12);
+  }
+  // Ultra Europe 2013: its own /artists/ page, captured in 2013 on the
+  // festival's own domain; no other site or year may pass.
+  const ue13 = editions["ultra-europe-2013"];
+  if (ue13) {
+    const ueCap = m => m.provenance.captures[0];
+    mustFail("an Ultra Europe 2013 lineup read off Ultra Miami's site", m => { const c = ueCap(m); c.archivedUrl = c.archivedUrl.replace("//ultraeurope.com", "//ultramusicfestival.com"); }, ue13, () => {}, /not an official ultra-europe property/);
+    mustFail("an Ultra Europe 2013 lineup captured the next summer", m => { const c = ueCap(m); c.archivedUrl = c.archivedUrl.replace("/web/2013", "/web/2014"); c.captureTimestamp = c.captureTimestamp.replace(/^2013/, "2014"); }, ue13, () => {}, /is not from 2013/);
   }
   // Tomorrowland 2010-2012: each day page prints its day as its own tab, with
   // no year, on the festival's own .be site.
@@ -1370,6 +1380,37 @@ if (base && edc) {
         && Object.entries(fixes).every(([a, b]) => /[^\u0000-\u024f]/.test(a) && !/[^\u0000-\u024f]/.test(b) && a.length === b.length),
         `${cid}: the ledger's respellings are not exactly the extractor's look-alike fixes`);
     }
+    // Ultra Europe's 2013 Artists page: a grid of acts, then one block per act
+    // with each "Day N - time - stage"; its countdown opens on Day 1.
+    const ueGrid = acts => acts.map(([slug, name]) => `<a href="https://web.archive.org/web/20130720070946id_/http://ultraeurope.com:80/artists/#${slug}"><div class="artist"><div class="thumb-wrapper"><img class="thumb" src="x.jpg"></div><div class="name uppercase white sathu bg-black">${name}</div></div></a>`).join("");
+    const ueBlock = ([slug, name, perform]) => `<div id="${slug}" class="selected-artist"><div class="name uppercase white dock11">${name}</div><div class="perform">${perform}</div><img class="profile" src="x.jpg"></div>`;
+    const ueActs = [["carl-cox", "Carl Cox", "Day 1 - 03:00AM - Carl Cox &amp; Friends Arena, Day 2 - 02:00AM - Carl Cox &amp; Friends Arena"],
+      ["cazzette", "Cazzette", "Day 1 - 06:00PM - Main Stage, Day 3 - 04:30PM - Ultra Beach Main Stage"], ["sander-van-doorn", "Sander van Doorn", "Day 1 -  09:15PM - Main Stage"],
+      ["ww", "W&amp;W", "Day 2 - 08:00PM - Main Stage"], ["nervo", "Nervo", "Day 3 - 06:00PM - Ultra Beach Main Stage"]];
+    const uePage = ({ title = "ArtistsUmjetnici « Ultra Europe Ultra Europe", timer = '<script>var config = { timer: "2013:7:12:16:0:0" };</script>', grid = ueActs, acts = ueActs } = {}) =>
+      `<title>${title}</title>${timer}${ueGrid(grid)}${acts.map(ueBlock).join("")}`;
+    const uep = parseUltraEuropeArtists(uePage(), { year: 2013 }), uer = ultraEuropeRows(uep, "ultra-europe-2013");
+    ok(JSON.stringify([uep.opens, uer.rows.map(r => `${r.artist}|${r.day}|${r.stage}`), uer.offDay.map(r => `${r.artist}|${r.day}|${r.stage}`)])
+      === JSON.stringify(["2013-07-12", ["Carl Cox|1|Carl Cox & Friends Arena", "Carl Cox|2|Carl Cox & Friends Arena", "Cazzette|1|Main Stage", "Sander van Doorn|1|Main Stage", "W&W|2|Main Stage"],
+        ["Cazzette|3|Ultra Beach Main Stage", "Nervo|3|Ultra Beach Main Stage"]]),
+      `an Ultra Europe Artists page must come back as one row per act, day and stage, Ultra Beach's Day 3 set apart: ${JSON.stringify(uer)}`);
+    ok(ueCountdownDate("2013:7:12:16:0:0") === "2013-07-12" && ueCountdownDate("2013:2:30:16:0:0") === null && ueCountdownDate("2013:7:12") === null, "Ultra Europe's countdown reads as its opening date, impossible ones refused");
+    ok(ultraEuropeRows(parseUltraEuropeArtists(uePage({ acts: [["x", "X", "Day 3 - 06:00PM - Main Stage"]], grid: [["x", "X"]] }), { year: 2013 }), "ultra-europe-2013") === null,
+      "an Ultra Europe appearance on Day 3 anywhere but Ultra Beach proves nothing");
+    ok(ULTRA_EUROPE_EDITIONS["ultra-europe-2013"].offDays[3].stage === "Ultra Beach Main Stage", "Ultra Europe 2013's only off day is Ultra Beach's");
+    const ueMust = (what, html, year = 2013) => { let bad = false; try { parseUltraEuropeArtists(html, { year }); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    ueMust("an Ultra Europe 2013 page read as another year's", uePage(), 2014);
+    ueMust("an Ultra Europe page whose countdown names another year", uePage({ timer: '<script>timer: "2012:7:12:16:0:0"</script>' }));
+    ueMust("an Ultra Europe page with no countdown", uePage({ timer: "" }));
+    ueMust("an Ultra Europe page with another title", uePage({ title: "LineupLineup « Ultra Europe Ultra Europe" }));
+    ueMust("an empty Ultra Europe Artists page", uePage({ grid: [], acts: [] }));
+    ueMust("an Ultra Europe grid naming an act with no block", uePage({ grid: [...ueActs, ["umek", "Umek"]] }));
+    ueMust("an Ultra Europe act with no name", uePage({ grid: [["x", " "]], acts: [["x", " ", "Day 1 - 05:00PM - Main Stage"]] }));
+    ueMust("an Ultra Europe act with no appearance", uePage({ grid: [["x", "X"]], acts: [["x", "X", ""]] }));
+    ueMust("an Ultra Europe appearance it cannot read", uePage({ grid: [["x", "X"]], acts: [["x", "X", "Friday - 05:00PM - Main Stage"]] }));
+    ueMust("an Ultra Europe appearance on Day 0", uePage({ grid: [["x", "X"]], acts: [["x", "X", "Day 0 - 05:00PM - Main Stage"]] }));
+    ueMust("an Ultra Europe act printed twice on one day and stage", uePage({ grid: [["x", "X"]], acts: [["x", "X", "Day 1 - 05:00PM - Main Stage, Day 1 - 09:00PM - Main Stage"]] }));
+    ueMust("an Ultra Europe act listed twice", uePage({ grid: [["x", "X"], ["y", "X"]], acts: [["x", "X", "Day 1 - 05:00PM - Main Stage"], ["y", "X", "Day 2 - 05:00PM - Main Stage"]] }));
     // Outside Lands' 2022-2025 lineup widget: its script sets the options on
     // one line of JSON; each artist lists its performances, a shared set (a
     // b2b) under each artist with the same id, every time with its offset.
@@ -1842,6 +1883,16 @@ for (const [id, e] of Object.entries(editions)) {
         && led.datesFrom?.census === CREAMFIELDS_CENSUS && led.datesFrom.family === e.festivalId && cen?.lifecycle === "occurred" && cen.dates === led.datesFrom.dates
         && run.length === e.days.length && run[d.day - 1] === d.date,
         `${id} day ${d.day}: ${d.date} is not the census's ${e.year} run (${cen?.dates}) or the page's weekday "${c?.days?.[d.day - 1]}"`);
+    } else if (led.method === "official_lineup_html" && led.format === "ultra-europe-artists") {
+      // Ultra Europe's Artists page numbers its days: the chosen capture's
+      // countdown opens on day 1, the page prints this day, and the date is
+      // the census's dated run for the year, which the ledger's datesFrom quotes.
+      const c = led.considered.find(x => x.captureTimestamp === led.chosen);
+      const cen = censusRow(led.datesFrom?.family, e.year), run = cen ? runDates(cen.range) : [];
+      ok(c?.opens === e.days[0].date && ueCountdownDate(c.countdown) === c.opens && c.days.includes(d.day)
+        && led.datesFrom?.census === CREAMFIELDS_CENSUS && led.datesFrom.family === e.festivalId && cen?.lifecycle === "occurred" && cen.dates === led.datesFrom.dates
+        && run.length === e.days.length && run[d.day - 1] === d.date,
+        `${id} day ${d.day}: ${d.date} is not the census's ${e.year} run (${cen?.dates}) opened by the page's countdown ("${c?.countdown}")`);
     } else if (led.method === "official_lineup_html" && led.format === "creamfields-lineup") {
       // Creamfields' Lineup page names each day's weekday, and from 2024 its
       // date: the chosen capture's day must be this one, and the date the

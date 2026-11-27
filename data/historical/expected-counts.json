@@ -213,6 +213,7 @@
  "lollapalooza-brasil-2017": { "artists": 47, "stages": 4, "appearancesPerDay": [24, 23], "dropped": 0 },
  "lollapalooza-brasil-2018": { "artists": 72, "stages": 0, "appearancesPerDay": [25, 24, 23], "dropped": 0 },
  "lollapalooza-brasil-2019": { "artists": 70, "stages": 4, "appearancesPerDay": [23, 24, 23], "dropped": 0 },
+ "ultra-europe-2013": { "artists": 34, "stages": 2, "appearancesPerDay": [18, 17], "dropped": 0 },
  "defqon1-2014": { "stages": 17, "setsPerDay": [12, 127, 57], "droppedPerDay": [0, 0, 0] },
  "defqon1-2015": { "stages": 14, "setsPerDay": [11, 133, 77], "droppedPerDay": [0, 0, 0] }
 }

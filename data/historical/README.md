@@ -849,6 +849,34 @@ poster image, and 2013's reveal page has no capture from 2013; from 2022 the
 site's /lineup page also shows the lineup only as a poster image, and no
 capture of it from 2023 on was found. Those years are not read here.
 
+Ultra Europe's own Artists page (2013, format `ultra-europe-artists`):
+
+    node scripts/historical/extract-ultra-europe.mjs ultra-europe-2013
+    # writes sheets/<id>.lineup.tsv and the ledger; lineup_only
+
+ultraeurope.com/artists/ on the 2013 WordPress site printed a grid of acts,
+then one block per act in the same order, each with a line per appearance:
+"Day 1 - 05:00PM - Main Stage", several joined with ", " (Carl Cox on both
+days). The grid and the blocks must name the same acts in the same order.
+The days are numbered, never dated: the site's countdown (`timer:
+"2013:7:12:16:0:0"`) is set to the opening, which must be the edition's
+first day, so Day N is the (N-1)th day after it; the dates are the census's
+dated run (`datesFrom`), as for Creamfields. The printed times are read
+only to check each line; a lineup keeps none. The page's Day 3 is Ultra
+Beach on Hvar, a separate event after the two Poljud days:
+an appearance on it is set apart in the ledger (`offDay`), and only on the
+stage the extractor names for that day (Ultra Beach Main Stage); any other
+appearance past the edition's days stops the read. The capture used is the
+latest within a week after the festival (20 July 2013). The page lists the
+acts the festival featured, not every act that played, and an edition note
+says so. Later years left no lineup as text: 2014 and 2015 were a script
+app whose archived pages carry no lineup (2014's final lineup survives only
+as a pre-festival press release, alphabetical, with no days and "And many
+more"), and from 2016 the lineup, stage and set-times pages are poster
+images (2019 and 2023-2025 are queued for the image path in
+`ocr-queue.mjs`); the later `/artists/<year>/` pages load their lists by
+script (2024's archived empty).
+
 Then, for any path:
 
     node scripts/historical/build-editions.mjs

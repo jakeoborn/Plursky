@@ -99,6 +99,9 @@ export const OFFICIAL_HOSTS = {
   // awakenings.nl: Awakenings' own site until late 2015 (each festival's
   // party page printed its lineup by area); awakenings.com is its site today.
   "awakenings": ["awakenings.nl", "awakenings.com"],
+  // ultraeurope.com: Ultra Europe's own site, whose 2013 /artists/ page
+  // listed each act with its day and stage.
+  "ultra-europe": ["ultraeurope.com"],
 };
 
 // Where an official graphic may be re-hosted for an `official_sources`

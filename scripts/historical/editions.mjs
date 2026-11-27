@@ -800,6 +800,16 @@ export const EDITIONS = {
   "lollapalooza-brasil-2019": { festivalId: "lollapalooza-brasil", name: "Lollapalooza Brasil 2019", year: 2019,
     timezone: "America/Sao_Paulo", rolloverHour: 6, method: "official_lineup_html",
     dates: [["2019-04-05", "Friday"], ["2019-04-06", "Saturday"], ["2019-04-07", "Sunday"]] },
+  // Ultra Europe 2013 (Poljud Stadium, Split): the festival's own /artists/
+  // page (ultra-europe-artists.mjs, extract-ultra-europe.mjs) lists each act
+  // with its numbered day and stage. The page's countdown opens on the first
+  // day; the dates are the census's dated run. The page's Day 3 is Ultra
+  // Beach on Hvar, a separate event, and is not a day of this edition.
+  "ultra-europe-2013": { festivalId: "ultra-europe", name: "Ultra Europe 2013", year: 2013,
+    timezone: "Europe/Zagreb", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2013-07-12", "Friday"], ["2013-07-13", "Saturday"]],
+    notes: [{ asOf: "2026-11-27", text: "The lineup as the festival's own Artists page printed it a week after the festival: the acts it featured, each with its day and stage, not every act that played. Its third day, Ultra Beach on Hvar, was a separate event and is not listed.",
+      source: "https://web.archive.org/web/20130720070946/http://ultraeurope.com:80/artists/" }] },
   "tomorrowland-2023": { festivalId: "tomorrowland", name: "Tomorrowland 2023", year: 2023,
     timezone: "Europe/Brussels", rolloverHour: 6, method: "official_sources", dates: [["2023-07-21", "Friday"], ["2023-07-22", "Saturday"], ["2023-07-23", "Sunday"], ["2023-07-28", "Friday"], ["2023-07-29", "Saturday"], ["2023-07-30", "Sunday"]],
     dayLabels: ACL_WEEKEND_LABELS },
