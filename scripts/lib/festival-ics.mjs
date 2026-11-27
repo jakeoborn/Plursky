@@ -10,7 +10,10 @@
 //     so no VTIMEZONE block is needed and DST nights resolve once, here.
 //   - A set starting before 08:00 belongs to the NIGHT of its festival day,
 //     i.e. the next calendar date. Same rule as data.jsx's _wallMs.
-//   - An end at or before its start rolls over a day (22:00 – 08:30 sunrise).
+//   - An end at or before its start rolls over ONE CIVIL DAY in the festival's
+//     zone (22:00 – 08:30 sunrise), never a fixed 24 h: across a DST night a
+//     fixed 24 h lands an hour off (lane III, #619: Oct 31 22:00 – 08:30 New
+//     York gave 12:30Z, not 13:30Z).
 //   - A set with no time (TBA, or "unconfirmed": the sources disagree) is left
 //     out, never given a guessed slot. A set with no end has no DTEND: a
 //     zero-length event is honest, an invented hour is not.
@@ -46,12 +49,13 @@ export const icsUtc = (ms) => {
 };
 
 // Festival-day date (YYYY-MM-DD) + "HH:MM" in tz → UTC ms, or null.
-export function setMs(ymd, hhmm, tz) {
+// addDays moves the wall-clock date, so the result stays HH:MM local.
+export function setMs(ymd, hhmm, tz, addDays = 0) {
   const t = /^(\d{1,2}):(\d{2})$/.exec(hhmm || '');
   const d = /^(\d{4})-(\d{2})-(\d{2})$/.exec(ymd || '');
   if (!t || !d || !tz) return null;
   const h = +t[1], m = +t[2];
-  return zonedToUtc(tz, +d[1], +d[2] - 1, +d[3] + (h < LATE_NIGHT_HOUR ? 1 : 0), h, m);
+  return zonedToUtc(tz, +d[1], +d[2] - 1, +d[3] + addDays + (h < LATE_NIGHT_HOUR ? 1 : 0), h, m);
 }
 
 // sets: [{ uid, ymd, start, end, name, stage, url }] — already filtered to the
@@ -71,7 +75,7 @@ export function festivalIcs(cal, sets) {
     const startMs = setMs(s.ymd, s.start, cal.tz);
     if (startMs == null) continue;
     let endMs = s.end ? setMs(s.ymd, s.end, cal.tz) : null;
-    if (endMs != null && endMs <= startMs) endMs += 24 * 3600 * 1000;
+    if (endMs != null && endMs <= startMs) endMs = setMs(s.ymd, s.end, cal.tz, 1);
     events.push({ s, startMs, endMs });
   }
   // Chronological, then by uid: array order never decides.

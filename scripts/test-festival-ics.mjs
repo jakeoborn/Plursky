@@ -13,7 +13,8 @@
 //      X-WR-TIMEZONE must name that same zone (lane III, #619: a DTEND moved
 //      by 1 minute passed when only starts were compared, and reading the zone
 //      back from the file could not catch a wrong zone).
-//   C. Mutants of the lib (late-night rule, end rollover, escaping, folding)
+//   C. Mutants of the lib (late-night rule, end rollover, a fixed-24 h
+//      rollover that is an hour off on DST nights, escaping, folding)
 //      must each fail A. A gate that cannot fail proves nothing.
 import { readFileSync, readdirSync, existsSync, mkdtempSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -58,6 +59,15 @@ function fixtureChecks(lib, tag = '') {
   check(ev.map(e => e.uid).join() === 'fx-a@plursky.com,fx-f@plursky.com,fx-c@plursky.com,fx-d@plursky.com', `${tag}A. events chronological`);
   check(lib.festivalIcs(CAL, [...SETS].reverse()).text === text, `${tag}A. input order never changes the bytes`);
   check(!/DTSTAMP:(?!20261126T000000Z)/.test(text), `${tag}A. DTSTAMP is the given stamp, never now`);
+  // DST nights: the rollover adds one civil day in the zone, not 24 h.
+  const NY = { ...CAL, tz: 'America/New_York' };
+  const dst = events(lib.festivalIcs(NY, [
+    { uid: 'fx-fall@plursky.com', ymd: '2026-10-31', start: '22:00', end: '08:30', name: 'Fall Back', stage: 'Neon', url: 'https://plursky.com/f/fx/#g' },
+    { uid: 'fx-spring@plursky.com', ymd: '2026-03-07', start: '22:00', end: '08:30', name: 'Spring Forward', stage: 'Neon', url: 'https://plursky.com/f/fx/#h' },
+  ]).text);
+  const dby = Object.fromEntries(dst.map(e => [e.uid, e]));
+  check(dby['fx-fall@plursky.com']?.start === '20261101T020000Z' && dby['fx-fall@plursky.com']?.end === '20261101T133000Z', `${tag}A. fall-back night: Oct 31 22:00 EDT to Nov 1 08:30 EST is 02:00Z to 13:30Z (${dby['fx-fall@plursky.com']?.start} to ${dby['fx-fall@plursky.com']?.end})`);
+  check(dby['fx-spring@plursky.com']?.start === '20260308T030000Z' && dby['fx-spring@plursky.com']?.end === '20260308T123000Z', `${tag}A. spring-forward night: Mar 7 22:00 EST to Mar 8 08:30 EDT is 03:00Z to 12:30Z (${dby['fx-spring@plursky.com']?.start} to ${dby['fx-spring@plursky.com']?.end})`);
   return failed - before;
 }
 
@@ -128,7 +138,8 @@ const dir = mkdtempSync(join(tmpdir(), 'ics-mut-'));
 const src = readFileSync(LIB, 'utf8');
 const MUTANTS = [
   ['no late-night rule', 'h < LATE_NIGHT_HOUR ? 1 : 0', '0'],
-  ['no end rollover', 'if (endMs != null && endMs <= startMs) endMs += 24 * 3600 * 1000;', ''],
+  ['no end rollover', 'if (endMs != null && endMs <= startMs) endMs = setMs(s.ymd, s.end, cal.tz, 1);', ''],
+  ['fixed 24 h rollover', 'endMs = setMs(s.ymd, s.end, cal.tz, 1);', 'endMs += 24 * 3600 * 1000;'],
   ['no comma escaping', ".replace(/,/g, '\\\\,')", ''],
   ['no folding', 'if (enc.encode(line).length <= 75) return line;', 'return line;'],
 ];
