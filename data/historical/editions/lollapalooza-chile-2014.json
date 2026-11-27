@@ -1,0 +1,898 @@
+{
+ "id": "lollapalooza-chile-2014",
+ "festivalId": "lollapalooza-chile",
+ "name": "Lollapalooza Chile 2014",
+ "year": 2014,
+ "timezone": "America/Santiago",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2014-03-29",
+   "label": "Saturday"
+  },
+  {
+   "day": 2,
+   "date": "2014-03-30",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [],
+ "artists": [
+  {
+   "id": "lollapalooza-chile-2014:red-hot-chili-peppers",
+   "name": "Red Hot Chili Peppers",
+   "key": "red-hot-chili-peppers",
+   "performers": [
+    "red-hot-chili-peppers"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:nine-inch-nails",
+   "name": "Nine Inch Nails",
+   "key": "nine-inch-nails",
+   "performers": [
+    "nine-inch-nails"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:phoenix",
+   "name": "Phoenix",
+   "key": "phoenix",
+   "performers": [
+    "phoenix"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:imagine-dragons",
+   "name": "Imagine Dragons",
+   "key": "imagine-dragons",
+   "performers": [
+    "imagine-dragons"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:ellie-goulding",
+   "name": "Ellie Goulding",
+   "key": "ellie-goulding",
+   "performers": [
+    "ellie-goulding"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:zedd",
+   "name": "Zedd",
+   "key": "zedd",
+   "performers": [
+    "zedd"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:the-bloody-beetroots",
+   "name": "The Bloody Beetroots",
+   "key": "the-bloody-beetroots",
+   "performers": [
+    "the-bloody-beetroots"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:cafe-tacvba",
+   "name": "Cafe Tacvba",
+   "key": "cafe-tacvba",
+   "performers": [
+    "cafe-tacvba"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:the-wailers",
+   "name": "The Wailers",
+   "key": "the-wailers",
+   "performers": [
+    "the-wailers"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:francisca-valenzuela",
+   "name": "Francisca Valenzuela",
+   "key": "francisca-valenzuela",
+   "performers": [
+    "francisca-valenzuela"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:wolfgang-gartner",
+   "name": "Wolfgang Gartner",
+   "key": "wolfgang-gartner",
+   "performers": [
+    "wolfgang-gartner"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:jake-bugg",
+   "name": "Jake Bugg",
+   "key": "jake-bugg",
+   "performers": [
+    "jake-bugg"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:cage-the-elephant",
+   "name": "Cage the Elephant",
+   "key": "cage-the-elephant",
+   "performers": [
+    "cage-the-elephant"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:afi",
+   "name": "AFI",
+   "key": "afi",
+   "performers": [
+    "afi"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:flume",
+   "name": "Flume",
+   "key": "flume",
+   "performers": [
+    "flume"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:capital-cities",
+   "name": "Capital Cities",
+   "key": "capital-cities",
+   "performers": [
+    "capital-cities"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:baauer",
+   "name": "Baauer",
+   "key": "baauer",
+   "performers": [
+    "baauer"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:31-minutos",
+   "name": "31 Minutos",
+   "key": "31-minutos",
+   "performers": [
+    "31-minutos"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:movimiento-original",
+   "name": "Movimiento Original",
+   "key": "movimiento-original",
+   "performers": [
+    "movimiento-original"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:lucybell",
+   "name": "Lucybell",
+   "key": "lucybell",
+   "performers": [
+    "lucybell"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:nano-stern",
+   "name": "Nano Stern",
+   "key": "nano-stern",
+   "performers": [
+    "nano-stern"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:onda-vaga",
+   "name": "Onda Vaga",
+   "key": "onda-vaga",
+   "performers": [
+    "onda-vaga"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:joe-vasconcellos",
+   "name": "Joe Vasconcellos",
+   "key": "joe-vasconcellos",
+   "performers": [
+    "joe-vasconcellos"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:upa",
+   "name": "Upa!",
+   "key": "upa",
+   "performers": [
+    "upa"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:lance-herbstrong",
+   "name": "Lance Herbstrong",
+   "key": "lance-herbstrong",
+   "performers": [
+    "lance-herbstrong"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:nacao-zumbi",
+   "name": "Nacao Zumbi",
+   "key": "nacao-zumbi",
+   "performers": [
+    "nacao-zumbi"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:santobando",
+   "name": "Santobando",
+   "key": "santobando",
+   "performers": [
+    "santobando"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:prefiero-fernandez",
+   "name": "Prefiero Fernández",
+   "key": "prefiero-fernandez",
+   "performers": [
+    "prefiero-fernandez"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:hordatoj",
+   "name": "Hordatoj",
+   "key": "hordatoj",
+   "performers": [
+    "hordatoj"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:dr-vena",
+   "name": "Dr Vena",
+   "key": "dr-vena",
+   "performers": [
+    "dr-vena"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:fat-pablo",
+   "name": "Fat Pablo",
+   "key": "fat-pablo",
+   "performers": [
+    "fat-pablo"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:orixango-y-fanta-konate",
+   "name": "Orixangó y Fanta Konate",
+   "key": "orixango-y-fanta-konate",
+   "performers": [
+    "orixango-y-fanta-konate"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:cantando-aprendo-a-hablar",
+   "name": "Cantando Aprendo a Hablar",
+   "key": "cantando-aprendo-a-hablar",
+   "performers": [
+    "cantando-aprendo-a-hablar"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:mangore",
+   "name": "Mangoré",
+   "key": "mangore",
+   "performers": [
+    "mangore"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:soundgarden",
+   "name": "Soundgarden",
+   "key": "soundgarden",
+   "performers": [
+    "soundgarden"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:arcade-fire",
+   "name": "Arcade Fire",
+   "key": "arcade-fire",
+   "performers": [
+    "arcade-fire"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:pixies",
+   "name": "Pixies",
+   "key": "pixies",
+   "performers": [
+    "pixies"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:vampire-weekend",
+   "name": "Vampire Weekend",
+   "key": "vampire-weekend",
+   "performers": [
+    "vampire-weekend"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:new-order",
+   "name": "New Order",
+   "key": "new-order",
+   "performers": [
+    "new-order"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:julian-casablancas-the-voidz",
+   "name": "Julian Casablancas+The Voidz",
+   "key": "julian-casablancas-the-voidz",
+   "performers": [
+    "julian-casablancas-the-voidz"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:axwell",
+   "name": "Axwell",
+   "key": "axwell",
+   "performers": [
+    "axwell"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:johnny-marr",
+   "name": "Johnny Marr",
+   "key": "johnny-marr",
+   "performers": [
+    "johnny-marr"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:lorde",
+   "name": "Lorde",
+   "key": "lorde",
+   "performers": [
+    "lorde"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:kid-cudi",
+   "name": "Kid Cudi",
+   "key": "kid-cudi",
+   "performers": [
+    "kid-cudi"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:portugal-the-man",
+   "name": "Portugal. The Man",
+   "key": "portugal-the-man",
+   "performers": [
+    "portugal-the-man"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:savages",
+   "name": "Savages",
+   "key": "savages",
+   "performers": [
+    "savages"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:flux-pavilion",
+   "name": "Flux Pavilion",
+   "key": "flux-pavilion",
+   "performers": [
+    "flux-pavilion"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:nicole",
+   "name": "Nicole",
+   "key": "nicole",
+   "performers": [
+    "nicole"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:jovanotti",
+   "name": "Jovanotti",
+   "key": "jovanotti",
+   "performers": [
+    "jovanotti"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:krewella",
+   "name": "Krewella",
+   "key": "krewella",
+   "performers": [
+    "krewella"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:ana-tijoux",
+   "name": "Ana Tijoux",
+   "key": "ana-tijoux",
+   "performers": [
+    "ana-tijoux"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:perryetty-v-s-joachim-garraud",
+   "name": "PerryEtty v/s Joachim Garraud",
+   "key": "perryetty-v-s-joachim-garraud",
+   "performers": [
+    "perryetty-v-s-joachim-garraud"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:hoppo",
+   "name": "Hoppo!",
+   "key": "hoppo",
+   "performers": [
+    "hoppo"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:natalia-lafourcade",
+   "name": "Natalia LaFourcade",
+   "key": "natalia-lafourcade",
+   "performers": [
+    "natalia-lafourcade"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:we-are-the-grand",
+   "name": "We are the grand",
+   "key": "we-are-the-grand",
+   "performers": [
+    "we-are-the-grand"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:sanfuentes",
+   "name": "Sanfuentes",
+   "key": "sanfuentes",
+   "performers": [
+    "sanfuentes"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:monsieur-perine",
+   "name": "Monsieur Periné",
+   "key": "monsieur-perine",
+   "performers": [
+    "monsieur-perine"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:rama",
+   "name": "Rama",
+   "key": "rama",
+   "performers": [
+    "rama"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:mistah-dijah",
+   "name": "Mistah Dijah",
+   "key": "mistah-dijah",
+   "performers": [
+    "mistah-dijah"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:red-oblivion",
+   "name": "Red Oblivion",
+   "key": "red-oblivion",
+   "performers": [
+    "red-oblivion"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:somos-manhattan",
+   "name": "Somos Manhattan",
+   "key": "somos-manhattan",
+   "performers": [
+    "somos-manhattan"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:nino-cohete",
+   "name": "Niño Cohete",
+   "key": "nino-cohete",
+   "performers": [
+    "nino-cohete"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:alejandro-vivanco",
+   "name": "Alejandro Vivanco",
+   "key": "alejandro-vivanco",
+   "performers": [
+    "alejandro-vivanco"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:natalia-contesse",
+   "name": "Natalia Contesse",
+   "key": "natalia-contesse",
+   "performers": [
+    "natalia-contesse"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:power-peralta-dance-studio",
+   "name": "Power Peralta Dance Studio",
+   "key": "power-peralta-dance-studio",
+   "performers": [
+    "power-peralta-dance-studio"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2014:tikitiklip",
+   "name": "Tikitiklip",
+   "key": "tikitiklip",
+   "performers": [
+    "tikitiklip"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "official_lineup_html",
+  "official": "http://www.lollapaloozacl.com/lineup-diario",
+  "captures": [
+   {
+    "page": "lineup",
+    "archivedUrl": "https://web.archive.org/web/20140329110002/http://www.lollapaloozacl.com/lineup-diario",
+    "captureTimestamp": "20140329110002",
+    "sha256": "65ac3cac6990c41edb46e191daa7892edf1092b59328c67a9e1b73511600a0ce"
+   }
+  ]
+ }
+}

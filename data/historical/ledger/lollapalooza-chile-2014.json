@@ -1,0 +1,76 @@
+{
+  "id": "lollapalooza-chile-2014",
+  "method": "official_lineup_html",
+  "format": "lollacl-por-dia",
+  "official": "http://www.lollapaloozacl.com/lineup-diario",
+  "window": [
+    "20140101",
+    "20140330"
+  ],
+  "chosen": "20140329110002",
+  "archivedUrl": "https://web.archive.org/web/20140329110002/http://www.lollapaloozacl.com/lineup-diario",
+  "sha256": "65ac3cac6990c41edb46e191daa7892edf1092b59328c67a9e1b73511600a0ce",
+  "title": "LineUp Diario | Lollapalooza Chile | Santiago – 29 y 30 de Marzo 2014",
+  "relayedVia": "firecrawl",
+  "stageOrder": [],
+  "considered": [
+    {
+      "captureTimestamp": "20140108183326",
+      "notFiled": "relay: capture 20140108183326 of http://www.lollapaloozacl.com/lineup-diario was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20140118000824",
+      "notFiled": "relay: capture 20140118000824 of http://www.lollapaloozacl.com/lineup-diario was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20140201092536",
+      "notFiled": "relay: capture 20140201092536 of http://www.lollapaloozacl.com/lineup-diario was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20140212232730",
+      "notFiled": "relay: capture 20140212232730 of http://www.lollapaloozacl.com/lineup-diario was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20140314131723",
+      "notFiled": "relay: capture 20140314131723 of http://www.lollapaloozacl.com/lineup-diario was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20140316032204",
+      "notFiled": "relay: capture 20140316032204 of http://www.lollapaloozacl.com/lineup-diario was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20140329110002",
+      "archivedUrl": "https://web.archive.org/web/20140329110002/http://www.lollapaloozacl.com/lineup-diario",
+      "sha256": "65ac3cac6990c41edb46e191daa7892edf1092b59328c67a9e1b73511600a0ce",
+      "bytes": 165511,
+      "via": "firecrawl",
+      "title": "LineUp Diario | Lollapalooza Chile | Santiago – 29 y 30 de Marzo 2014",
+      "valid": true,
+      "days": [
+        "Saturday 29 March 2014",
+        "Sunday 30 March 2014"
+      ],
+      "printed": {
+        "dates": "29 y 30 de Marzo - Parque O'Higgins",
+        "lists": [
+          "Sábado 29",
+          "Domingo 30"
+        ]
+      },
+      "billings": 66
+    }
+  ],
+  "dropped": []
+}

@@ -800,6 +800,31 @@ export const EDITIONS = {
   "lollapalooza-brasil-2019": { festivalId: "lollapalooza-brasil", name: "Lollapalooza Brasil 2019", year: 2019,
     timezone: "America/Sao_Paulo", rolloverHour: 6, method: "official_lineup_html",
     dates: [["2019-04-05", "Friday"], ["2019-04-06", "Saturday"], ["2019-04-07", "Sunday"]] },
+  // Lollapalooza Chile 2014-2016 (Parque O'Higgins, Santiago) and
+  // Lollapalooza Argentina 2015-2016 (Hipódromo de San Isidro): the
+  // festivals' own day-by-day lineup pages on lollapaloozacl.com and
+  // lollapaloozaar.com, the same template as Brasil's (lollabr-lineup.mjs,
+  // extract-lollabr-lineup.mjs), each read from the last capture taken before
+  // or during the festival. The site header (or the title) prints the run with
+  // its year; each list is headed by its day. Only Chile 2016 names a stage:
+  // a Kidzapalooza list under each day.
+  "lollapalooza-chile-2014": { festivalId: "lollapalooza-chile", name: "Lollapalooza Chile 2014", year: 2014,
+    timezone: "America/Santiago", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2014-03-29", "Saturday"], ["2014-03-30", "Sunday"]] },
+  "lollapalooza-chile-2015": { festivalId: "lollapalooza-chile", name: "Lollapalooza Chile 2015", year: 2015,
+    timezone: "America/Santiago", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2015-03-14", "Saturday"], ["2015-03-15", "Sunday"]],
+    notes: [{ asOf: "2026-11-27", text: "The lineup as the festival's own page printed it on 14 February 2015, four weeks before the festival. Changes after that day are not shown.",
+      source: "https://web.archive.org/web/20150214040606/http://www.lollapaloozacl.com/lineupdiario2015" }] },
+  "lollapalooza-chile-2016": { festivalId: "lollapalooza-chile", name: "Lollapalooza Chile 2016", year: 2016,
+    timezone: "America/Santiago", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2016-03-19", "Saturday"], ["2016-03-20", "Sunday"]] },
+  "lollapalooza-argentina-2015": { festivalId: "lollapalooza-argentina", name: "Lollapalooza Argentina 2015", year: 2015,
+    timezone: "America/Argentina/Buenos_Aires", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2015-03-21", "Saturday"], ["2015-03-22", "Sunday"]] },
+  "lollapalooza-argentina-2016": { festivalId: "lollapalooza-argentina", name: "Lollapalooza Argentina 2016", year: 2016,
+    timezone: "America/Argentina/Buenos_Aires", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2016-03-18", "Friday"], ["2016-03-19", "Saturday"]] },
   // Ultra Europe 2013 (Poljud Stadium, Split): the festival's own /artists/
   // page (ultra-europe-artists.mjs, extract-ultra-europe.mjs) lists each act
   // with its numbered day and stage. The page's countdown opens on the first
@@ -810,6 +835,37 @@ export const EDITIONS = {
     dates: [["2013-07-12", "Friday"], ["2013-07-13", "Saturday"]],
     notes: [{ asOf: "2026-11-27", text: "The lineup as the festival's own Artists page printed it a week after the festival: the acts it featured, each with its day and stage, not every act that played. Its third day, Ultra Beach on Hvar, was a separate event and is not listed.",
       source: "https://web.archive.org/web/20130720070946/http://ultraeurope.com:80/artists/" }] },
+  // UNTOLD 2024 and 2025 (Cluj-Napoca, Thursday to Sunday): the festival's
+  // own /artists page (untold-artists.mjs, extract-untold.mjs), whose
+  // embedded data lists every performance with its festival day's date, a
+  // numbered day label and its stage. The page's dates must be the census's
+  // dated run. Earlier years' pages load their lineup by script.
+  "untold-2024": { festivalId: "untold", name: "Untold 2024", year: 2024,
+    timezone: "Europe/Bucharest", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2024-08-08", "Thursday"], ["2024-08-09", "Friday"], ["2024-08-10", "Saturday"], ["2024-08-11", "Sunday"]],
+    notes: [{ asOf: "2026-11-27", text: "The lineup as the festival's own Artists page printed it on 4 August 2024, four days before the festival. Changes after that day are not shown.",
+      source: "https://web.archive.org/web/20240804135444/https://untold.com/artists" }] },
+  "untold-2025": { festivalId: "untold", name: "Untold 2025", year: 2025,
+    timezone: "Europe/Bucharest", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2025-08-07", "Thursday"], ["2025-08-08", "Friday"], ["2025-08-09", "Saturday"], ["2025-08-10", "Sunday"]],
+    notes: [{ asOf: "2026-11-27", text: "The lineup as the festival's own Artists page printed it on 25 July 2025, thirteen days before the festival. Changes after that day are not shown.",
+      source: "https://web.archive.org/web/20250725172515/https://untold.com/artists" }] },
+  // BottleRock Napa Valley 2015, 2017 and 2022 (Napa Valley Expo, Friday to
+  // Sunday): the festival's own Artists page (bottlerock-artists.mjs,
+  // extract-bottlerock.mjs), which lists every act under the weekday filter
+  // of the day it plays, and no stage. The page prints weekdays (in 2015
+  // with the day of the month); the dates are the run the census's dated
+  // post-event report gives for that year, and any run the page prints for
+  // the year (2015's footer, 2017's description) must be the same.
+  "bottlerock-2015": { festivalId: "bottlerock", name: "BottleRock Napa Valley 2015", year: 2015,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2015-05-29", "Friday"], ["2015-05-30", "Saturday"], ["2015-05-31", "Sunday"]] },
+  "bottlerock-2017": { festivalId: "bottlerock", name: "BottleRock Napa Valley 2017", year: 2017,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2017-05-26", "Friday"], ["2017-05-27", "Saturday"], ["2017-05-28", "Sunday"]] },
+  "bottlerock-2022": { festivalId: "bottlerock", name: "BottleRock Napa Valley 2022", year: 2022,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2022-05-27", "Friday"], ["2022-05-28", "Saturday"], ["2022-05-29", "Sunday"]] },
   "tomorrowland-2023": { festivalId: "tomorrowland", name: "Tomorrowland 2023", year: 2023,
     timezone: "Europe/Brussels", rolloverHour: 6, method: "official_sources", dates: [["2023-07-21", "Friday"], ["2023-07-22", "Saturday"], ["2023-07-23", "Sunday"], ["2023-07-28", "Friday"], ["2023-07-29", "Saturday"], ["2023-07-30", "Sunday"]],
     dayLabels: ACL_WEEKEND_LABELS },
@@ -1067,8 +1123,13 @@ export const DROP_RULES = [
     reason: "Arcadia stage show printed between sets, not a billed performance" },
   // Electric Forest 2013 printed contest slots before their winners were
   // named ("Discovery Project Winner") and a "Secret Set".
-  { category: "unnamed-slot", test: /^(special guest|surprise guest|secret guest|secret set|tba|tbd|to be announced|coming soon!*|discovery project winners?|mystery headliner)$/i,
+  // UNTOLD 2024's Artists page lists a "LOCAL ARTIST" on the Main stage.
+  { category: "unnamed-slot", test: /^(special guest|surprise guest|secret guest|secret set|tba|tbd|to be announced|coming soon!*|discovery project winners?|mystery headliner|local artist)$/i,
     reason: "unnamed slot: no performer was billed" },
+  // UNTOLD 2025's Artists page lists three Main stage moments that name no
+  // performer: two broadcasters' anniversaries and a folk interlude.
+  { category: "show-segment", stage: /^main$/i, test: /^(traditional romanian moment|pro tv 30 years anniversary|digi fm 10 years)$/i,
+    reason: "a Main stage show moment that names no performer (a broadcaster's anniversary, a traditional interlude), not a billed performance" },
   // A bare "Discovery Project" in a printed stage slot is the contest set
   // before its winner was named (EDC Orlando 2022, 2024). A lineup list's
   // stageless "Discovery Project" entry is left to the live lineup.

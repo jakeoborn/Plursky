@@ -1,0 +1,164 @@
+{
+  "id": "bottlerock-2015",
+  "method": "official_lineup_html",
+  "official": "https://www.bottlerocknapavalley.com/lineup-schedule/artists/",
+  "format": "bottlerock-artists",
+  "window": {
+    "from": "20150101",
+    "to": "20151231",
+    "read": "the first valid capture taken after the last day; else the latest before it"
+  },
+  "chosen": "20150610013448",
+  "archivedUrl": "https://web.archive.org/web/20150610013448/http://www.bottlerocknapavalley.com:80/lineup-schedule/artists/",
+  "sha256": "a0deeafea3faaf3d184c9afd4ae403bf4e936bf51b5134deb9c27e2446883ce2",
+  "title": "2015 Artists",
+  "heading": "2015 Artists",
+  "relayedVia": "firecrawl",
+  "afterFestival": true,
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "bottlerock",
+    "year": 2015,
+    "lifecycle": "occurred",
+    "dates": "2015-05-29..2015-05-31",
+    "evidence": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=BottleRock_Napa_Valley&rvprop=ids|timestamp|content&rvslots=main&format=json",
+    "published": "2026-11-04T05:11:56Z rev 1383690942"
+  },
+  "printedRun": "May 29-31, 2015",
+  "printedTwice": [],
+  "considered": [
+    {
+      "captureTimestamp": "20150325063107",
+      "original": "http://www.bottlerocknapavalley.com:80/lineup-schedule/artists/",
+      "notFiled": "relay: capture 20150325063107 of http://www.bottlerocknapavalley.com:80/lineup-schedule/artists/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20150326174547",
+      "original": "http://www.bottlerocknapavalley.com:80/lineup-schedule/artists/",
+      "notFiled": "relay: capture 20150326174547 of http://www.bottlerocknapavalley.com:80/lineup-schedule/artists/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20150407123736",
+      "original": "http://www.bottlerocknapavalley.com:80/lineup-schedule/artists/",
+      "notFiled": "relay: capture 20150407123736 of http://www.bottlerocknapavalley.com:80/lineup-schedule/artists/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20150410111547",
+      "original": "http://www.bottlerocknapavalley.com:80/lineup-schedule/artists/",
+      "notFiled": "relay: capture 20150410111547 of http://www.bottlerocknapavalley.com:80/lineup-schedule/artists/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20150414082031",
+      "original": "http://www.bottlerocknapavalley.com/lineup-schedule/artists/",
+      "notFiled": "relay: capture 20150414082031 of http://www.bottlerocknapavalley.com/lineup-schedule/artists/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20150507142906",
+      "original": "http://www.bottlerocknapavalley.com:80/lineup-schedule/artists/",
+      "notFiled": "relay: capture 20150507142906 of http://www.bottlerocknapavalley.com:80/lineup-schedule/artists/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20150610013448",
+      "original": "http://www.bottlerocknapavalley.com:80/lineup-schedule/artists/",
+      "archivedUrl": "https://web.archive.org/web/20150610013448/http://www.bottlerocknapavalley.com:80/lineup-schedule/artists/",
+      "sha256": "a0deeafea3faaf3d184c9afd4ae403bf4e936bf51b5134deb9c27e2446883ce2",
+      "bytes": 47282,
+      "via": "firecrawl",
+      "title": "2015 Artists",
+      "heading": "2015 Artists",
+      "filter": [
+        "Friday 29",
+        "Saturday 30",
+        "Sunday 31"
+      ],
+      "runs": [
+        "May 29-31, 2015"
+      ],
+      "valid": true,
+      "billings": 72
+    },
+    {
+      "captureTimestamp": "20150621222339",
+      "original": "http://www.bottlerocknapavalley.com:80/lineup-schedule/artists",
+      "notFiled": "relay: capture 20150621222339 of http://www.bottlerocknapavalley.com:80/lineup-schedule/artists was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20150627175716",
+      "original": "http://www.bottlerocknapavalley.com:80/lineup-schedule/artists",
+      "notFiled": "relay: capture 20150627175716 of http://www.bottlerocknapavalley.com:80/lineup-schedule/artists was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20150705011959",
+      "original": "http://www.bottlerocknapavalley.com:80/lineup-schedule/artists",
+      "notFiled": "relay: capture 20150705011959 of http://www.bottlerocknapavalley.com:80/lineup-schedule/artists was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20150728070806",
+      "original": "http://www.bottlerocknapavalley.com:80/lineup-schedule/artists",
+      "notFiled": "relay: capture 20150728070806 of http://www.bottlerocknapavalley.com:80/lineup-schedule/artists was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20150729092439",
+      "original": "http://www.bottlerocknapavalley.com:80/lineup-schedule/artists/",
+      "notFiled": "relay: capture 20150729092439 of http://www.bottlerocknapavalley.com:80/lineup-schedule/artists/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20150821160056",
+      "original": "http://www.bottlerocknapavalley.com:80/lineup-schedule/artists",
+      "notFiled": "relay: capture 20150821160056 of http://www.bottlerocknapavalley.com:80/lineup-schedule/artists was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20150906160151",
+      "original": "http://www.bottlerocknapavalley.com/lineup-schedule/artists/",
+      "notFiled": "relay: capture 20150906160151 of http://www.bottlerocknapavalley.com/lineup-schedule/artists/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20150921184225",
+      "original": "http://www.bottlerocknapavalley.com:80/lineup-schedule/artists",
+      "notFiled": "relay: capture 20150921184225 of http://www.bottlerocknapavalley.com:80/lineup-schedule/artists was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20151023131314",
+      "original": "http://www.bottlerocknapavalley.com:80/lineup-schedule/artists",
+      "notFiled": "relay: capture 20151023131314 of http://www.bottlerocknapavalley.com:80/lineup-schedule/artists was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20151128165746",
+      "original": "http://www.bottlerocknapavalley.com:80/lineup-schedule/artists",
+      "notFiled": "relay: capture 20151128165746 of http://www.bottlerocknapavalley.com:80/lineup-schedule/artists was not filed",
+      "valid": false,
+      "billings": 0
+    }
+  ],
+  "dropped": []
+}

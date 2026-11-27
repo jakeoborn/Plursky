@@ -1,0 +1,88 @@
+{
+  "id": "lollapalooza-argentina-2016",
+  "method": "official_lineup_html",
+  "format": "lollaar-por-dia",
+  "official": "http://www.lollapaloozaar.com/lineup-2016-diario/",
+  "window": [
+    "20160101",
+    "20160319"
+  ],
+  "chosen": "20160318163434",
+  "archivedUrl": "https://web.archive.org/web/20160318163434/http://www.lollapaloozaar.com/lineup-2016-diario/",
+  "sha256": "bb6491b4c248b07d8a33c70dbcaf373c19866a000b3f3f3fa471838918945013",
+  "title": "Lineup 2016 por día | Lollapalooza Argentina 2016",
+  "relayedVia": "firecrawl",
+  "stageOrder": [],
+  "considered": [
+    {
+      "captureTimestamp": "20160111065430",
+      "notFiled": "relay: capture 20160111065430 of http://www.lollapaloozaar.com/lineup-2016-diario/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20160128175604",
+      "notFiled": "relay: capture 20160128175604 of http://www.lollapaloozaar.com/lineup-2016-diario/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20160129150223",
+      "notFiled": "relay: capture 20160129150223 of http://www.lollapaloozaar.com/lineup-2016-diario/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20160208064557",
+      "notFiled": "relay: capture 20160208064557 of http://www.lollapaloozaar.com/lineup-2016-diario/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20160214224328",
+      "notFiled": "relay: capture 20160214224328 of http://www.lollapaloozaar.com/lineup-2016-diario/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20160227180528",
+      "notFiled": "relay: capture 20160227180528 of http://www.lollapaloozaar.com/lineup-2016-diario/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20160310044132",
+      "notFiled": "relay: capture 20160310044132 of http://www.lollapaloozaar.com/lineup-2016-diario/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20160311020554",
+      "notFiled": "relay: capture 20160311020554 of http://www.lollapaloozaar.com/lineup-2016-diario/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20160318163434",
+      "archivedUrl": "https://web.archive.org/web/20160318163434/http://www.lollapaloozaar.com/lineup-2016-diario/",
+      "sha256": "bb6491b4c248b07d8a33c70dbcaf373c19866a000b3f3f3fa471838918945013",
+      "bytes": 110795,
+      "via": "firecrawl",
+      "title": "Lineup 2016 por día | Lollapalooza Argentina 2016",
+      "valid": true,
+      "days": [
+        "Friday 18 March 2016",
+        "Saturday 19 March 2016"
+      ],
+      "printed": {
+        "dates": "18 y 19 de marzo de 2016. Hipódromo de San Isidro.",
+        "lists": [
+          "Viernes 18",
+          "Sabado 19"
+        ]
+      },
+      "billings": 51
+    }
+  ],
+  "dropped": []
+}

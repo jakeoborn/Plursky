@@ -1,0 +1,687 @@
+{
+ "id": "lollapalooza-argentina-2015",
+ "festivalId": "lollapalooza-argentina",
+ "name": "Lollapalooza Argentina 2015",
+ "year": 2015,
+ "timezone": "America/Argentina/Buenos_Aires",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2015-03-21",
+   "label": "Saturday"
+  },
+  {
+   "day": 2,
+   "date": "2015-03-22",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [],
+ "artists": [
+  {
+   "id": "lollapalooza-argentina-2015:jack-white",
+   "name": "Jack White",
+   "key": "jack-white",
+   "performers": [
+    "jack-white"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:calvin-harris",
+   "name": "Calvin Harris",
+   "key": "calvin-harris",
+   "performers": [
+    "calvin-harris"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:robert-plant-and-the-sensational-space-shifters",
+   "name": "Robert Plant and the Sensational Space Shifters",
+   "key": "robert-plant-and-the-sensational-space-shifters",
+   "performers": [
+    "robert-plant-and-the-sensational-space-shifters"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:foster-the-people",
+   "name": "Foster The People",
+   "key": "foster-the-people",
+   "performers": [
+    "foster-the-people"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:the-kooks",
+   "name": "The Kooks",
+   "key": "the-kooks",
+   "performers": [
+    "the-kooks"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:interpol",
+   "name": "Interpol",
+   "key": "interpol",
+   "performers": [
+    "interpol"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:nicky-romero",
+   "name": "Nicky Romero",
+   "key": "nicky-romero",
+   "performers": [
+    "nicky-romero"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:cypress-hill",
+   "name": "Cypress Hill",
+   "key": "cypress-hill",
+   "performers": [
+    "cypress-hill"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:st-vincent",
+   "name": "St. Vincent",
+   "key": "st-vincent",
+   "performers": [
+    "st-vincent"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:robin-schulz",
+   "name": "Robin Schulz",
+   "key": "robin-schulz",
+   "performers": [
+    "robin-schulz"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:chet-faker",
+   "name": "Chet Faker",
+   "key": "chet-faker",
+   "performers": [
+    "chet-faker"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:the-chainsmokers",
+   "name": "The Chainsmokers",
+   "key": "the-chainsmokers",
+   "performers": [
+    "the-chainsmokers"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:carnage",
+   "name": "Carnage",
+   "key": "carnage",
+   "performers": [
+    "carnage"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:kill-the-noise",
+   "name": "Kill The Noise",
+   "key": "kill-the-noise",
+   "performers": [
+    "kill-the-noise"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:molotov",
+   "name": "Molotov",
+   "key": "molotov",
+   "performers": [
+    "molotov"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:three-days-grace",
+   "name": "Three Days Grace",
+   "key": "three-days-grace",
+   "performers": [
+    "three-days-grace"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:ed-motta",
+   "name": "Ed Motta",
+   "key": "ed-motta",
+   "performers": [
+    "ed-motta"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:leiva",
+   "name": "Leiva",
+   "key": "leiva",
+   "performers": [
+    "leiva"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:maxi-trusso",
+   "name": "Maxi Trusso",
+   "key": "maxi-trusso",
+   "performers": [
+    "maxi-trusso"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:fernandez-fierro",
+   "name": "Fernandez Fierro",
+   "key": "fernandez-fierro",
+   "performers": [
+    "fernandez-fierro"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:tommy-druetta",
+   "name": "Tommy Druetta",
+   "key": "tommy-druetta",
+   "performers": [
+    "tommy-druetta"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:miss-bolivia",
+   "name": "Miss Bolivia",
+   "key": "miss-bolivia",
+   "performers": [
+    "miss-bolivia"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:hipnotica",
+   "name": "Hipnótica",
+   "key": "hipnotica",
+   "performers": [
+    "hipnotica"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:francisca-y-los-exploradores",
+   "name": "Francisca y Los Exploradores",
+   "key": "francisca-y-los-exploradores",
+   "performers": [
+    "francisca-y-los-exploradores"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:despertar-antoles",
+   "name": "Despertar Antoles",
+   "key": "despertar-antoles",
+   "performers": [
+    "despertar-antoles"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:pharrell-williams",
+   "name": "Pharrell Williams",
+   "key": "pharrell-williams",
+   "performers": [
+    "pharrell-williams"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:skrillex",
+   "name": "Skrillex",
+   "key": "skrillex",
+   "performers": [
+    "skrillex"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:the-smashing-pumpkins",
+   "name": "The Smashing Pumpkins",
+   "key": "the-smashing-pumpkins",
+   "performers": [
+    "the-smashing-pumpkins"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:kasabian",
+   "name": "Kasabian",
+   "key": "kasabian",
+   "performers": [
+    "kasabian"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:major-lazer",
+   "name": "Major Lazer",
+   "key": "major-lazer",
+   "performers": [
+    "major-lazer"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:bastille",
+   "name": "Bastille",
+   "key": "bastille",
+   "performers": [
+    "bastille"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:alt-j",
+   "name": "Alt - J",
+   "key": "alt-j",
+   "performers": [
+    "alt-j"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:pedro-aznar",
+   "name": "Pedro Aznar",
+   "key": "pedro-aznar",
+   "performers": [
+    "pedro-aznar"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:damian-jr-gong-marley",
+   "name": "Damian “JR. GONG” Marley",
+   "key": "damian-jr-gong-marley",
+   "performers": [
+    "damian-jr-gong-marley"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:dillon-francis",
+   "name": "Dillon Francis",
+   "key": "dillon-francis",
+   "performers": [
+    "dillon-francis"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:the-last-internationale",
+   "name": "The Last Internationale",
+   "key": "the-last-internationale",
+   "performers": [
+    "the-last-internationale"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:dj-snake",
+   "name": "DJ Snake",
+   "key": "dj-snake",
+   "performers": [
+    "dj-snake"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:rudimental",
+   "name": "Rudimental",
+   "key": "rudimental",
+   "performers": [
+    "rudimental"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:kongos",
+   "name": "KONGOS",
+   "key": "kongos",
+   "performers": [
+    "kongos"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:fitz-and-the-tantrums",
+   "name": "Fitz & The Tantrums",
+   "key": "fitz-and-the-tantrums",
+   "performers": [
+    "fitz-and-the-tantrums"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:big-gigantic",
+   "name": "Big Gigantic",
+   "key": "big-gigantic",
+   "performers": [
+    "big-gigantic"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:ritmo-machine",
+   "name": "Ritmo Machine",
+   "key": "ritmo-machine",
+   "performers": [
+    "ritmo-machine"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:quique-neira",
+   "name": "Quique Neira",
+   "key": "quique-neira",
+   "performers": [
+    "quique-neira"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:boom-pam",
+   "name": "Boom Pam",
+   "key": "boom-pam",
+   "performers": [
+    "boom-pam"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:dancing-mood",
+   "name": "Dancing Mood",
+   "key": "dancing-mood",
+   "performers": [
+    "dancing-mood"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:poncho",
+   "name": "Poncho",
+   "key": "poncho",
+   "performers": [
+    "poncho"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:chancha-via-circuito",
+   "name": "Chancha Via Circuito",
+   "key": "chancha-via-circuito",
+   "performers": [
+    "chancha-via-circuito"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:zero-kill",
+   "name": "Zero Kill",
+   "key": "zero-kill",
+   "performers": [
+    "zero-kill"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:sambara",
+   "name": "Sambara",
+   "key": "sambara",
+   "performers": [
+    "sambara"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-argentina-2015:jvlian",
+   "name": "Jvlian",
+   "key": "jvlian",
+   "performers": [
+    "jvlian"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "official_lineup_html",
+  "official": "http://www.lollapaloozaar.com/por-dia",
+  "captures": [
+   {
+    "page": "lineup",
+    "archivedUrl": "https://web.archive.org/web/20150318052530/http://www.lollapaloozaar.com/por-dia",
+    "captureTimestamp": "20150318052530",
+    "sha256": "17df9e25124741affad2f5638a12cbf1e40618e6fc298b8dbf8a94a6d7d3cc62"
+   }
+  ]
+ }
+}

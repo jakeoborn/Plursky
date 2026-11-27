@@ -1,0 +1,58 @@
+{
+  "id": "lollapalooza-chile-2015",
+  "method": "official_lineup_html",
+  "format": "lollacl-por-dia",
+  "official": "http://www.lollapaloozacl.com/lineupdiario2015",
+  "window": [
+    "20150101",
+    "20150315"
+  ],
+  "chosen": "20150214040606",
+  "archivedUrl": "https://web.archive.org/web/20150214040606/http://www.lollapaloozacl.com/lineupdiario2015",
+  "sha256": "ccff866756edd2b5377fd38f91c7581d288c38d78f93f72b385ade0c70b08771",
+  "title": "Lineup Diario | Lollapalooza Chile",
+  "relayedVia": "firecrawl",
+  "stageOrder": [],
+  "considered": [
+    {
+      "captureTimestamp": "20150128025951",
+      "notFiled": "relay: capture 20150128025951 of http://www.lollapaloozacl.com/lineupdiario2015 was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20150202091112",
+      "notFiled": "relay: capture 20150202091112 of http://www.lollapaloozacl.com/lineupdiario2015 was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20150206075109",
+      "notFiled": "relay: capture 20150206075109 of http://www.lollapaloozacl.com/lineupdiario2015 was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20150214040606",
+      "archivedUrl": "https://web.archive.org/web/20150214040606/http://www.lollapaloozacl.com/lineupdiario2015",
+      "sha256": "ccff866756edd2b5377fd38f91c7581d288c38d78f93f72b385ade0c70b08771",
+      "bytes": 141200,
+      "via": "firecrawl",
+      "title": "Lineup Diario | Lollapalooza Chile",
+      "valid": true,
+      "days": [
+        "Saturday 14 March 2015",
+        "Sunday 15 March 2015"
+      ],
+      "printed": {
+        "dates": "14 & 15 de marzo 2015 - Parque O'Higgins",
+        "lists": [
+          "Sábado 14",
+          "Domingo 15"
+        ]
+      },
+      "billings": 75
+    }
+  ],
+  "dropped": []
+}

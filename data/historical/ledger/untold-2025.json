@@ -1,0 +1,168 @@
+{
+  "id": "untold-2025",
+  "method": "official_lineup_html",
+  "official": "https://untold.com/artists",
+  "format": "untold-artists",
+  "window": {
+    "until": "2025-08-17",
+    "why": "captures more than 7 days after the last day show the next edition"
+  },
+  "chosen": "20250725172515",
+  "archivedUrl": "https://web.archive.org/web/20250725172515/https://untold.com/artists",
+  "sha256": "4273e4f51738cd3b34943d3f1985f3fddd81bdcab105a187460ad67ad9351f5c",
+  "title": "Artists - Untold Festival",
+  "relayedVia": "firecrawl",
+  "census": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "untold",
+    "year": 2025,
+    "lifecycle": "occurred",
+    "dates": "2025-08-07..2025-08-10",
+    "evidence": "https://www.romania-insider.com/untold-attendance-cluj-august-2025",
+    "published": "2025-08-11"
+  },
+  "stageOrder": [
+    "Main",
+    "FORM",
+    "Galaxy",
+    "Daydreaming",
+    "Alchemy",
+    "Time",
+    "Tram",
+    "Retro"
+  ],
+  "printedTwice": [],
+  "trimmed": [
+    {
+      "printed": "COLLÉ ",
+      "billedAs": "COLLÉ"
+    },
+    {
+      "printed": " CALEESI & KREIS",
+      "billedAs": "CALEESI & KREIS"
+    }
+  ],
+  "sameActs": [
+    {
+      "printed": "B MIKE",
+      "billedAs": "B.MIKE"
+    }
+  ],
+  "considered": [
+    {
+      "captureTimestamp": "20250210092213",
+      "notFiled": "relay: capture 20250210092213 of https://untold.com/artists was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20250216042109",
+      "notFiled": "relay: capture 20250216042109 of https://untold.com/artists was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20250315104230",
+      "notFiled": "relay: capture 20250315104230 of https://untold.com/artists was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20250319104321",
+      "notFiled": "relay: capture 20250319104321 of https://untold.com/artists was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20250327074714",
+      "notFiled": "relay: capture 20250327074714 of https://untold.com/artists was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20250524064520",
+      "notFiled": "relay: capture 20250524064520 of https://untold.com/artists was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20250614213246",
+      "notFiled": "relay: capture 20250614213246 of https://untold.com/artists was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20250617063728",
+      "notFiled": "relay: capture 20250617063728 of https://untold.com/artists was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20250717222532",
+      "notFiled": "relay: capture 20250717222532 of https://untold.com/artists was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20250725172515",
+      "archivedUrl": "https://web.archive.org/web/20250725172515/https://untold.com/artists",
+      "sha256": "4273e4f51738cd3b34943d3f1985f3fddd81bdcab105a187460ad67ad9351f5c",
+      "bytes": 1812155,
+      "via": "firecrawl",
+      "title": "Artists - Untold Festival",
+      "labels": [
+        "Day 1",
+        "Day 2",
+        "Day 3",
+        "Day 4"
+      ],
+      "printedDates": [
+        "2025-08-07",
+        "2025-08-08",
+        "2025-08-09",
+        "2025-08-10"
+      ],
+      "entries": 232,
+      "timedEntries": 0,
+      "valid": true,
+      "billings": 217
+    }
+  ],
+  "dropped": [
+    {
+      "day": 4,
+      "stage": "Main",
+      "billing": "DIGI FM 10 YEARS",
+      "category": "show-segment",
+      "reason": "a Main stage show moment that names no performer (a broadcaster's anniversary, a traditional interlude), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "Main",
+      "billing": "PRO TV 30 YEARS ANNIVERSARY",
+      "category": "show-segment",
+      "reason": "a Main stage show moment that names no performer (a broadcaster's anniversary, a traditional interlude), not a billed performance"
+    },
+    {
+      "day": 4,
+      "stage": "Main",
+      "billing": "TRADITIONAL ROMANIAN MOMENT",
+      "category": "show-segment",
+      "reason": "a Main stage show moment that names no performer (a broadcaster's anniversary, a traditional interlude), not a billed performance"
+    },
+    {
+      "day": 3,
+      "stage": "FORM",
+      "billing": "SURPRISE GUEST",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    },
+    {
+      "day": 1,
+      "stage": "FORM",
+      "billing": "SURPRISE GUEST",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    }
+  ]
+}
