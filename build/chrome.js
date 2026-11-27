@@ -69,10 +69,39 @@ function TopBar({
     }
   }, title)), right);
 }
+var _PLK_WIDE_MQ = "(min-width: 1024px)";
+function usePlurskyWide() {
+  var get = () => {
+    try {
+      return !!(window.matchMedia && window.matchMedia(_PLK_WIDE_MQ).matches);
+    } catch {
+      return false;
+    }
+  };
+  var [wide, setWide] = React.useState(get);
+  React.useEffect(() => {
+    var mq;
+    try {
+      mq = window.matchMedia && window.matchMedia(_PLK_WIDE_MQ);
+    } catch {}
+    if (!mq) return;
+    var on = () => setWide(mq.matches);
+    on();
+    if (mq.addEventListener) mq.addEventListener("change", on);else if (mq.addListener) mq.addListener(on);
+    return () => {
+      if (mq.removeEventListener) mq.removeEventListener("change", on);else if (mq.removeListener) mq.removeListener(on);
+    };
+  }, []);
+  return wide;
+}
+window.usePlurskyWide = usePlurskyWide;
 function TabBar({
   active,
-  onChange
+  onChange,
+  current,
+  railOnly
 }) {
+  var wide = usePlurskyWide();
   var isPostFestival = (() => {
     try {
       return Date.now() > (window.FESTIVAL_CONFIG?.endMs || Infinity);
@@ -113,10 +142,11 @@ function TabBar({
     label: "Me",
     icon: MeIcon
   }];
+  if (railOnly && !wide) return null;
   var idx = Math.max(0, tabs.findIndex(t => t.id === active));
   var lit = tabs.some(t => t.id === active);
   return React.createElement("div", {
-    className: "ps-tabbar",
+    className: railOnly ? "ps-tabbar ps-tabbar-railonly" : "ps-tabbar",
     style: {
       position: "relative",
       background: "var(--chrome)",
@@ -151,7 +181,22 @@ function TabBar({
       background: "var(--acc-14)",
       boxShadow: "inset 0 0 0 1px var(--acc-30)"
     }
-  })), tabs.map(t => {
+  })), wide && React.createElement("div", {
+    className: "ps-rail-only ps-rail-head"
+  }, React.createElement("div", {
+    className: "ps-rail-brand"
+  }, "Plursky"), React.createElement("div", {
+    className: "ps-rail-fest"
+  }, window.FESTIVAL_CONFIG && (window.FESTIVAL_CONFIG.name || window.FESTIVAL_CONFIG.shortName) || ""), React.createElement("button", {
+    type: "button",
+    className: "ps-rail-all",
+    onClick: () => {
+      haptic.light();
+      onChange("landing");
+    }
+  }, React.createElement("span", {
+    "aria-hidden": "true"
+  }, "←"), " All festivals")), tabs.map(t => {
     var Icon = t.icon;
     var on = active === t.id;
     return React.createElement("button", {
@@ -208,7 +253,71 @@ function TabBar({
         textAlign: "center"
       }
     }, t.label));
-  }));
+  }), wide && React.createElement("div", {
+    className: "ps-rail-only ps-rail-more"
+  }, React.createElement("div", {
+    className: "ps-rail-sect"
+  }, "More"), _railMore(isPostFestival).map(m => {
+    var Icon = m.icon;
+    var on = current === m.id;
+    return React.createElement("button", {
+      key: m.id,
+      type: "button",
+      className: "ps-tab ps-rail-link",
+      "aria-current": on ? "page" : undefined,
+      onClick: () => {
+        haptic.light();
+        onChange(m.id);
+      },
+      style: {
+        position: "relative",
+        background: "transparent",
+        border: "none",
+        cursor: "pointer",
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        gap: 12,
+        font: "inherit",
+        textAlign: "left",
+        color: on ? "var(--ink)" : "var(--ink-3)"
+      }
+    }, React.createElement("span", {
+      className: "ps-tab-icon",
+      style: {
+        display: "flex"
+      }
+    }, React.createElement(Icon, {
+      on: on
+    })), React.createElement("span", {
+      className: "ps-rail-label",
+      style: {
+        fontSize: 14,
+        lineHeight: 1.2,
+        fontWeight: on ? 600 : 500
+      }
+    }, m.label));
+  })));
+}
+function _railMore(postFest) {
+  var more = [{
+    id: "spotify",
+    label: "Music",
+    icon: MusicIcon
+  }, {
+    id: "artists",
+    label: "Artists",
+    icon: ArtistsIcon
+  }, {
+    id: "past",
+    label: "Past festivals",
+    icon: PastIcon
+  }];
+  return postFest ? more : [{
+    id: "memories",
+    label: "Memories",
+    icon: MemoriesIcon
+  }, ...more];
 }
 var stroke = on => ({
   fill: "none",
@@ -234,6 +343,8 @@ var HomeIcon = _tabIcon("M12 20 3.5 9 M12 20 8.5 5 M12 20 15.5 5 M12 20 20.5 9 M
 var LineupIcon = _tabIcon("M4 6h16 M4 12h11 M4 18h14");
 var MapIcon = _tabIcon("M9 4 3 6.2v13.8l6-2.2 6 2.2 6-2.2V4l-6 2.2L9 4z M9 4v13.8 M15 6.2V20");
 var MeIcon = _tabIcon("M12 12.5a4.25 4.25 0 1 0 0-8.5 4.25 4.25 0 0 0 0 8.5z M4.5 20.5c1.4-3.7 4.3-5.6 7.5-5.6s6.1 1.9 7.5 5.6");
+var ArtistsIcon = _tabIcon("M9 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z M2.5 20c1-3.3 3.6-5 6.5-5s5.5 1.7 6.5 5 M16 4.3a3.5 3.5 0 0 1 0 6.4 M18 15.2c1.7.7 2.9 2.3 3.5 4.8");
+var PastIcon = _tabIcon("M12 21a9 9 0 1 0-8.5-6 M3.5 15l-.6 3.6 M3.5 15l3.5.9 M12 7v5l3.5 2");
 var MemoriesIcon = _tabIcon("M4 6.5h16v12H4z M4 15.5l4.5-4 3.5 3 2.5-2 5.5 4.5 M15.5 10.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z");
 function MusicIcon({
   on

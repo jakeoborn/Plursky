@@ -767,6 +767,40 @@
       border-left:1px solid var(--line);border-right:1px solid var(--line);
       box-shadow:0 0 80px -20px rgba(0,0,0,.35)}
   }
+  /* Wide screens: a computer gets a side rail in place of the bottom bar,
+     reading screens sit in a centred column and the map takes the full
+     width. Below 1024px nothing here applies, so the phone is untouched. */
+  .ps-rail-only{display:none}
+  @media (max-width:1023.98px){.ps-tabbar-railonly{display:none !important}}
+  @media (min-width:1024px){
+    .ps-shell{width:min(1320px,100%) !important}
+    .ps-has-rail{padding-left:240px}
+    .ps-has-rail>.ps-tabbar{position:absolute !important;left:0;top:0;bottom:0;width:240px;
+      flex-direction:column;justify-content:flex-start !important;gap:2px;
+      border-top:none !important;border-right:1px solid var(--line);
+      padding:28px 14px 20px !important;overflow-y:auto;z-index:5}
+    .ps-has-rail .ps-tab-ind{display:none !important}
+    .ps-has-rail .ps-rail-only{display:flex;flex-direction:column}
+    .ps-has-rail .ps-tab{flex:0 0 auto !important;flex-direction:row !important;justify-content:flex-start !important;
+      align-items:center !important;gap:12px !important;padding:10px 14px !important;min-height:44px !important;
+      border-radius:12px;width:100%;text-align:left}
+    .ps-has-rail .ps-tab .ps-tab-icon{transform:none !important}
+    .ps-has-rail .ps-tab>span:last-child{width:auto !important;font-size:14px !important;line-height:1.2 !important;text-align:left !important;white-space:nowrap}
+    .ps-has-rail .ps-tab:hover{background:var(--acc-08) !important}
+    .ps-has-rail .ps-tab[aria-current=page]{background:var(--acc-14) !important;box-shadow:inset 0 0 0 1px var(--acc-30) !important;color:var(--ink) !important}
+    /* On Music, Artists or Past the rail lights that link, not Me as well. */
+    .ps-has-rail .ps-tabbar:has(.ps-rail-link[aria-current=page]) .ps-tab:not(.ps-rail-link)[aria-current=page]{background:transparent !important;box-shadow:none !important;color:var(--ink-3) !important}
+    .ps-rail-head{padding:0 14px 22px;gap:4px}
+    .ps-rail-brand{font-size:22px;font-weight:700;letter-spacing:-.02em;color:var(--ink)}
+    .ps-rail-fest{font-size:13px;color:var(--ink-3);line-height:1.3}
+    .ps-rail-all{margin-top:10px;align-self:flex-start;background:transparent;border:1px solid var(--line-2);color:var(--ink-2);
+      border-radius:999px;padding:6px 12px;font:inherit;font-size:12px;cursor:pointer}
+    .ps-rail-all:hover{background:var(--acc-08);color:var(--ink)}
+    .ps-rail-more{margin-top:18px;padding-top:16px;border-top:1px solid var(--line);gap:2px}
+    .ps-rail-sect{padding:0 14px 6px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+    .ps-has-rail .ps-view:not([data-wide="full"]),
+    .ps-frame:not(.ps-has-rail) .ps-view{left:max(0px,calc((100% - 880px) / 2)) !important;right:max(0px,calc((100% - 880px) / 2)) !important}
+  }
   /* Tab arrival: opacity only (a transform would make the view a containing
      block for fixed sheets mid-fade). The artist push is the one exception;
      its transform lasts .3s and ends at none (fill: backwards). Reduced
@@ -1082,73 +1116,73 @@
       window.__USE_NATIVE_PICKER__ = true;
     }
   </script>
-  <script src="build/ios-frame.js?v=v687"></script>
+  <script src="build/ios-frame.js?v=v688"></script>
   <!-- Multi-festival wave 1. Plain .js (no JSX), so they load as normal scripts
        and are parsed before Babel even starts on the chain below. Each is an
        IIFE that registers itself on window.PLURSKY_FESTIVALS; data.jsx reads
        that map, so these MUST stay above it. Mirrored in sw.js's precache. -->
-  <script src="data/festivals/ultra-miami-2026.js?v=v687"></script>
-  <script src="data/festivals/governors-ball-2026.js?v=v687"></script>
-  <script src="data/festivals/summerfest-2026.js?v=v687"></script>
-  <script src="data/festivals/lollapalooza-2026.js?v=v687"></script>
-  <script src="data/festivals/outside-lands-2026.js?v=v687"></script>
-  <script src="data/festivals/iii-points-2026.js?v=v687"></script>
-  <script src="data/festivals/nocturnal-wonderland-2026.js?v=v687"></script>
-  <script src="data/festivals/crssd-fall-2026.js?v=v687"></script>
-  <script src="data/festivals/portola-2026.js?v=v687"></script>
-  <script src="data/festivals/hard-summer-2026.js?v=v687"></script>
-  <script src="data/festivals/arc-2026.js?v=v687"></script>
-  <script src="data/festivals/escape-halloween-2026.js?v=v687"></script>
-  <script src="data/festivals/dreamstate-socal-2026.js?v=v687"></script>
-  <script src="data/festivals/decadence-colorado-2026.js?v=v687"></script>
-  <script src="data/festivals/countdown-nye-2026.js?v=v687"></script>
-  <script src="data/festivals/lights-all-night-2026.js?v=v687"></script>
-  <script src="data/festivals/decadence-arizona-2026.js?v=v687"></script>
-  <script src="data/festivals/sunset-on-the-river-2027.js?v=v687"></script>
-  <script src="data/festivals/dwp-2026.js?v=v687"></script>
-  <script src="data/festivals/edc-thailand-2026.js?v=v687"></script>
-  <script src="data/festivals/tomorrowland-thailand-2026.js?v=v687"></script>
-  <script src="data/festivals/groove-cruise-2027.js?v=v687"></script>
-  <script src="data/festivals/day-zero-tulum-2027.js?v=v687"></script>
-  <script src="data/festivals/coachella-2027.js?v=v687"></script>
-  <script src="data/festivals/time-warp-2027.js?v=v687"></script>
-  <script src="data/festivals/tomorrowland-winter-2027.js?v=v687"></script>
-  <script src="data/festivals/lollapalooza-brasil-2027.js?v=v687"></script>
-  <script src="data/festivals/lollapalooza-chile-2027.js?v=v687"></script>
-  <script src="data/festivals/forbidden-kingdom-2027.js?v=v687"></script>
-  <script src="data/festivals/ubbi-dubbi-2027.js?v=v687"></script>
-  <script src="data/festivals/lightning-in-a-bottle-2027.js?v=v687"></script>
-  <script src="data/festivals/edc-mexico-2027.js?v=v687"></script>
-  <script src="build/data.js?v=v687"></script>
-  <script src="build/supabase.js?v=v687"></script>
-<script src="build/machine.js?v=v687"></script>
-  <script src="data/artist-key.js?v=v687"></script>
-  <script src="data/artist-photos.js?v=v687"></script>
-  <script src="data/festival-art.js?v=v687"></script>
-  <script src="data/plan-share-contract.js?v=v687"></script>
-  <script src="build/chrome.js?v=v687"></script>
-  <script src="build/home.js?v=v687"></script>
-  <script src="build/map.js?v=v687"></script>
-  <script src="build/survey.js?v=v687"></script>
-  <script src="build/lineup.js?v=v687"></script>
-  <script src="build/artist.js?v=v687"></script>
-  <script src="build/photo-tag.js?v=v687"></script>
-  <script src="build/spotify-api.js?v=v687"></script>
-  <script src="build/recap-engine.js?v=v687"></script>
-  <script src="build/historical.js?v=v687"></script>
-  <script src="build/artists.js?v=v687"></script>
+  <script src="data/festivals/ultra-miami-2026.js?v=v688"></script>
+  <script src="data/festivals/governors-ball-2026.js?v=v688"></script>
+  <script src="data/festivals/summerfest-2026.js?v=v688"></script>
+  <script src="data/festivals/lollapalooza-2026.js?v=v688"></script>
+  <script src="data/festivals/outside-lands-2026.js?v=v688"></script>
+  <script src="data/festivals/iii-points-2026.js?v=v688"></script>
+  <script src="data/festivals/nocturnal-wonderland-2026.js?v=v688"></script>
+  <script src="data/festivals/crssd-fall-2026.js?v=v688"></script>
+  <script src="data/festivals/portola-2026.js?v=v688"></script>
+  <script src="data/festivals/hard-summer-2026.js?v=v688"></script>
+  <script src="data/festivals/arc-2026.js?v=v688"></script>
+  <script src="data/festivals/escape-halloween-2026.js?v=v688"></script>
+  <script src="data/festivals/dreamstate-socal-2026.js?v=v688"></script>
+  <script src="data/festivals/decadence-colorado-2026.js?v=v688"></script>
+  <script src="data/festivals/countdown-nye-2026.js?v=v688"></script>
+  <script src="data/festivals/lights-all-night-2026.js?v=v688"></script>
+  <script src="data/festivals/decadence-arizona-2026.js?v=v688"></script>
+  <script src="data/festivals/sunset-on-the-river-2027.js?v=v688"></script>
+  <script src="data/festivals/dwp-2026.js?v=v688"></script>
+  <script src="data/festivals/edc-thailand-2026.js?v=v688"></script>
+  <script src="data/festivals/tomorrowland-thailand-2026.js?v=v688"></script>
+  <script src="data/festivals/groove-cruise-2027.js?v=v688"></script>
+  <script src="data/festivals/day-zero-tulum-2027.js?v=v688"></script>
+  <script src="data/festivals/coachella-2027.js?v=v688"></script>
+  <script src="data/festivals/time-warp-2027.js?v=v688"></script>
+  <script src="data/festivals/tomorrowland-winter-2027.js?v=v688"></script>
+  <script src="data/festivals/lollapalooza-brasil-2027.js?v=v688"></script>
+  <script src="data/festivals/lollapalooza-chile-2027.js?v=v688"></script>
+  <script src="data/festivals/forbidden-kingdom-2027.js?v=v688"></script>
+  <script src="data/festivals/ubbi-dubbi-2027.js?v=v688"></script>
+  <script src="data/festivals/lightning-in-a-bottle-2027.js?v=v688"></script>
+  <script src="data/festivals/edc-mexico-2027.js?v=v688"></script>
+  <script src="build/data.js?v=v688"></script>
+  <script src="build/supabase.js?v=v688"></script>
+<script src="build/machine.js?v=v688"></script>
+  <script src="data/artist-key.js?v=v688"></script>
+  <script src="data/artist-photos.js?v=v688"></script>
+  <script src="data/festival-art.js?v=v688"></script>
+  <script src="data/plan-share-contract.js?v=v688"></script>
+  <script src="build/chrome.js?v=v688"></script>
+  <script src="build/home.js?v=v688"></script>
+  <script src="build/map.js?v=v688"></script>
+  <script src="build/survey.js?v=v688"></script>
+  <script src="build/lineup.js?v=v688"></script>
+  <script src="build/artist.js?v=v688"></script>
+  <script src="build/photo-tag.js?v=v688"></script>
+  <script src="build/spotify-api.js?v=v688"></script>
+  <script src="build/recap-engine.js?v=v688"></script>
+  <script src="build/historical.js?v=v688"></script>
+  <script src="build/artists.js?v=v688"></script>
   <!-- General Landing + saved festivals. Before spotify.js per CLAUDE.md §4;
        everything it borrows from there is called at runtime by bare name. -->
-  <script src="build/landing.js?v=v687"></script>
-  <script src="build/spotify.js?v=v687"></script>
-  <script src="build/app.js?v=v687"></script>
+  <script src="build/landing.js?v=v688"></script>
+  <script src="build/spotify.js?v=v688"></script>
+  <script src="build/app.js?v=v688"></script>
 
   <script>
 
     // Build version stamp â€” bumped on every deploy that changes app behaviour.
     // If the running tab's stored version doesn't match, force a full reload
     // (bypassing browser HTTP cache that GH-Pages serves with max-age=600).
-    const APP_VERSION = 'v687';
+    const APP_VERSION = 'v688';
     try {
       const stored = localStorage.getItem('app_version');
       if (stored && stored !== APP_VERSION) {
@@ -1169,11 +1203,11 @@
     if ('serviceWorker' in navigator) {
       caches.keys().then(keys =>
         Promise.all(
-          keys.filter(k => k !== 'plursky-v687' && !k.startsWith('plursky-tiles-'))
+          keys.filter(k => k !== 'plursky-v688' && !k.startsWith('plursky-tiles-'))
               .map(k => caches.delete(k))
         )
       ).then(() =>
-        navigator.serviceWorker.register('./sw.js?v=v687', { updateViaCache: 'none' })
+        navigator.serviceWorker.register('./sw.js?v=v688', { updateViaCache: 'none' })
           .then(reg => { try { reg.update(); } catch {} })
       );
 

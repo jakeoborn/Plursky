@@ -1356,7 +1356,7 @@ function App() {
           own live/offline status, so it skips the top inset and the strip. */}
       {/* On Today the frame carries the print scope, so the tab bar takes the sheet
           (cream / ink, an ink rule and indicator) instead of the board's chrome. */}
-      <div className={state.tab === "home" && !state.artist ? "np" : undefined} style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", paddingTop: state.tab === "home" && !state.artist ? 0 : "var(--top-pad, 54px)" }}>
+      <div className={[state.tab === "home" && !state.artist ? "np" : "", "ps-frame", state.tab !== "landing" ? "ps-has-rail" : ""].filter(Boolean).join(" ")} style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column", paddingTop: state.tab === "home" && !state.artist ? 0 : "var(--top-pad, 54px)" }}>
         {/* StatusStrip reads the ACTIVE festival's live/offline state, so it
             is festival-scoped chrome and stays off General Home. */}
         {!(state.tab === "home" && !state.artist) && state.tab !== "landing" && <StatusStrip />}
@@ -1366,7 +1366,7 @@ function App() {
               artist page slides in from the right, the way a pushed page
               does on iOS. The key is the tab, so moving between artists
               does not replay it. */}
-          <div key={state.artist ? "artist" : state.tab} className={state.artist ? "ps-view ps-view-push" : "ps-view"} style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column" }}>
+          <div key={state.artist ? "artist" : state.tab} className={state.artist ? "ps-view ps-view-push" : "ps-view"} data-wide={state.tab === "map" && !state.artist ? "full" : undefined} style={{ position: "absolute", inset: 0, display: "flex", flexDirection: "column" }}>
             {body}
           </div>
           {/* Search FAB — floats above TabBar, accessible from any screen.
@@ -1381,7 +1381,9 @@ function App() {
             Today / Lineup / Map all mean "of the active festival" — and
             showing it on a screen with no festival chosen would be the same
             implicit selection this wave removes. */}
-        {!state.artist && state.tab !== "landing" && (() => {
+        {/* On a phone an artist page has no bar; on a computer the side
+            rail stays (railOnly hides it below 1024px). */}
+        {state.tab !== "landing" && (() => {
           const postFest = (() => { try { return Date.now() > (FESTIVAL_CONFIG?.endMs || Infinity); } catch { return false; } })();
           // Post-festival the Memories tab is in the bar, so "memories" maps
           // to itself; pre-festival it folds into Me (where its card lives).
@@ -1390,7 +1392,9 @@ function App() {
           return (
             <TabBar
               active={meFold.includes(state.tab) ? "me" : state.tab}
-              onChange={t => setState({ ...state, tab: t })}
+              current={state.artist ? null : state.tab}
+              railOnly={!!state.artist}
+              onChange={t => setState({ ...state, tab: t, artist: null })}
             />
           );
         })()}
@@ -1500,7 +1504,7 @@ class RootErrorBoundary extends React.Component {
         stack:   err?.stack?.slice(0, 4000) || null,
         compStack: info?.componentStack?.slice(0, 2000) || null,
         ts: new Date().toISOString(),
-        version: "v687",
+        version: "v688",
       }));
     } catch {}
   }
@@ -1531,7 +1535,7 @@ class RootErrorBoundary extends React.Component {
         </div>
         <button onClick={this.reload} className="duo-btn pri" style={{ minWidth: 160 }}>Reload</button>
         <div className="duo-label duo-ink3" style={{ marginTop: 22 }}>
-          Plursky · v687
+          Plursky · v688
         </div>
       </div>
     );
