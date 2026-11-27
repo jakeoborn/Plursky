@@ -270,6 +270,16 @@ function TabBar({
         onChange(m.id);
       },
       style: {
+        position: "relative",
+        background: "transparent",
+        border: "none",
+        cursor: "pointer",
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        gap: 12,
+        font: "inherit",
+        textAlign: "left",
         color: on ? "var(--ink)" : "var(--ink-3)"
       }
     }, React.createElement("span", {
@@ -282,6 +292,8 @@ function TabBar({
     })), React.createElement("span", {
       className: "ps-rail-label",
       style: {
+        fontSize: 14,
+        lineHeight: 1.2,
         fontWeight: on ? 600 : 500
       }
     }, m.label));

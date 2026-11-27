@@ -186,9 +186,14 @@ function TabBar({ active, onChange, current, railOnly }) {
           return (
             <button key={m.id} type="button" className="ps-tab ps-rail-link" aria-current={on ? "page" : undefined}
               onClick={() => { haptic.light(); onChange(m.id); }}
-              style={{ color: on ? "var(--ink)" : "var(--ink-3)" }}>
+              style={{
+                position: "relative", background: "transparent", border: "none", cursor: "pointer",
+                display: "flex", flexDirection: "row", alignItems: "center", gap: 12,
+                font: "inherit", textAlign: "left",
+                color: on ? "var(--ink)" : "var(--ink-3)",
+              }}>
               <span className="ps-tab-icon" style={{ display: "flex" }}><Icon on={on} /></span>
-              <span className="ps-rail-label" style={{ fontWeight: on ? 600 : 500 }}>{m.label}</span>
+              <span className="ps-rail-label" style={{ fontSize: 14, lineHeight: 1.2, fontWeight: on ? 600 : 500 }}>{m.label}</span>
             </button>
           );
         })}

@@ -76,6 +76,17 @@ const measure = (page) => page.evaluate(() => {
     .filter(b => getComputedStyle(b).backgroundColor !== 'rgba(0, 0, 0, 0)' && getComputedStyle(b).backgroundColor !== 'transparent')
     .map(b => b.textContent.replace('←', '').trim());
   const se = document.scrollingElement;
+  // Each rail item lays out as a row: the label starts to the right of the
+  // icon and their middles line up.
+  let rows = true, rowsWhy = '';
+  for (const b of bar ? bar.querySelectorAll('button.ps-tab') : []) {
+    const ic = b.querySelector('.ps-tab-icon'), lb = b.querySelector('span:last-child');
+    if (!ic || !lb) continue;
+    const a = ic.getBoundingClientRect(), c = lb.getBoundingClientRect();
+    if (!(c.left >= a.right - 1 && Math.abs((a.top + a.bottom) / 2 - (c.top + c.bottom) / 2) <= 6)) { rows = false; rowsWhy = b.textContent.trim(); }
+  }
+  const linkBg = [...document.querySelectorAll('.ps-rail-link:not([aria-current="page"])')]
+    .every(b => { const bg = getComputedStyle(b).backgroundColor; return bg === 'rgba(0, 0, 0, 0)' || bg === 'transparent'; });
   return {
     vw: innerWidth, vh: innerHeight,
     bar: box(bar), barShown: !!bar && getComputedStyle(bar).display !== 'none',
@@ -83,6 +94,7 @@ const measure = (page) => page.evaluate(() => {
     head: !!document.querySelector('.ps-rail-head'), more: !!document.querySelector('.ps-rail-more'),
     labels: bar ? [...bar.querySelectorAll('button.ps-tab')].map(b => b.textContent.trim()) : [],
     view: box(view), shell: box(shell), lit,
+    rows, rowsWhy, linkBg,
     docOverflow: se.scrollWidth - se.clientWidth,
     viewOverflow: view ? view.scrollWidth - view.clientWidth : 0,
     search: location.search,
@@ -113,7 +125,12 @@ try {
       else check(m.view && m.view.w <= 900 && m.view.w >= 700, `${tag}: the screen sits in a reading column (${m.view && m.view.w})`);
       check(m.view && m.bar && m.view.x >= m.bar.x + m.bar.w - 1, `${tag}: the screen does not slide under the rail`);
       check(m.docOverflow <= 1 && m.viewOverflow <= 1, `${tag}: nothing scrolls sideways (${m.docOverflow}, ${m.viewOverflow})`);
-      check(m.lit.length === 1, `${tag}: exactly one rail item is lit (${m.lit.join('|')})`);
+      // After the festival the Map is not in the rail (Memories takes its
+      // place), so on the map screen nothing is lit; everywhere else one is.
+      if (name === 'map') check(m.lit.length <= 1, `${tag}: at most one rail item is lit (${m.lit.join('|')})`);
+      else check(m.lit.length === 1, `${tag}: exactly one rail item is lit (${m.lit.join('|')})`);
+      check(m.rows, `${tag}: every rail item is one row, icon then label (${m.rowsWhy})`);
+      check(m.linkBg, `${tag}: an unlit More link has no fill of its own`);
       if (name === 'music') check(m.lit[0] === 'Music', `${tag}: Music is the lit item, not Me (${m.lit.join('|')})`);
       if (name === 'lineup') check(m.lit[0] === 'Lineup', `${tag}: Lineup is lit (${m.lit.join('|')})`);
       await shot(page, `wide-${scheme}-${name}`);
