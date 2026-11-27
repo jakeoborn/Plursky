@@ -561,7 +561,10 @@ function SpiderWeb({ currentArtist, currentStage, similar, onSelectArtist }) {
 function ShareArtistButton({ artist, backed }) {
   const [copied, setCopied] = React.useState(false);
   const handleShare = () => {
-    const url = `${window.location.origin}${window.location.pathname}?artist=${artist.id}`;
+    // ?f= too: without it the link opens in whichever festival the friend
+    // last had active, where this artist id may not exist.
+    const fid = (typeof FESTIVAL_CONFIG !== "undefined" && FESTIVAL_CONFIG.id) || "";
+    const url = `${window.location.origin}${window.location.pathname}?${fid ? `f=${encodeURIComponent(fid)}&` : ""}artist=${encodeURIComponent(artist.id)}`;
     if (navigator.share) {
       navigator.share({ title: artist.name + " @ " + (FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name), url }).catch(() => {});
     } else {

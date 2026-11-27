@@ -3681,6 +3681,23 @@ for (const [label, file] of [
   }
 }
 
+// ── 1z-b5e2. Screen links ─────────────────────────────────────────────────
+// Every screen has its own address: a deep link is rewritten to the full
+// address rather than stripped, Back and Forward follow it, an in-app back
+// steps BACK through history instead of stacking an entry, a refresh reopens
+// the same screen, and a festival switch is one Back away without bouncing.
+{
+  console.log("▸ Screen-links gate — addresses, Back, refresh and festival switches agree");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-screen-links.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`screen links failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b5f. Memories v2 / Landing accessibility + large text ──────────────
 // Target size, accessible names, heading structure, horizontal pan, clipping,
 // text-over-text and reduced motion, at 393 and 320 CSS px and again with
