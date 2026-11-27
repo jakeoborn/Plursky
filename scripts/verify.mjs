@@ -3997,6 +3997,21 @@ for (const [label, file] of [["contract", "scripts/test-public-plan-share.mjs"],
   }
 }
 
+// ── 1z-b9b. Board freshness (Stop hook) ───────────────────────────────────
+// Live Work Board freshness gate: the Stop hook that keeps the board current
+// must name every PR move, block a stop once, and never trap or fail a session.
+{
+  console.log("▸ Board-freshness gate — a stale Live Work Board blocks a stop once, names what moved, never loops");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-plur-board-state.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`board freshness failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b10. Session note (SessionStart hook) ─────────────────────────────
 // .claude/settings.json runs scripts/session-note.mjs at every new session.
 // It must stay short, read-only, offline, credential-safe, and never fail.

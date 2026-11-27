@@ -79,8 +79,8 @@ Disco channels, several sets in one block, each inside its span. Yoga,
 workshops, talks, showcases and brand experiences are dropped as `activity`
 (`PROGRAMME` in editions.mjs); 2012's Wagon Wheel event titles that name no
 act are dropped as `event-block`; the Silent Disco is dropped as operational.
-2014 and 2015 come from the newer Scheduler (below); 2024's schedule page has
-not been read yet.
+2014 and 2015 come from the newer Scheduler (below); 2024's schedule page
+prints only graphics (one image a day).
 
 Archived Governors Ball schedule (2011, 2012, format `govball-wp`):
 
@@ -351,6 +351,37 @@ rows are excluded one for one. Yoga, hoop showcases, a brewery tasting and the
 like printed in a music stage's row are dropped by the build as `activity`
 (`PROGRAMME`), and the parser leaves them out of its overlap check. Both
 captures were taken after the festival.
+
+Archived Electric Forest lineup pages (2011, 2016, format `ef-lineup`):
+
+    PLURSKY_WAYBACK_RELAY=1 node scripts/historical/extract-ef-lineup.mjs electric-forest-2011 electric-forest-2016
+    # writes sheets/<id>.lineup.tsv and the ledger; lineup_only and undated
+
+Where no text schedule was archived, the pages read so far print only
+graphics: 2011's /lineup/schedule, 2017's /2017-info/schedule/, the 2018,
+2019 and 2022 /<year>-info/lineup/ pages (posters; 2018 and 2019 also embed
+an Aloompa widget served off the festival's domain), 2024's /schedule/ and
+2025's /lineups/ carousels. Those years go through the graphics path or
+wait. For 2011 and 2016 the festival's own lineup page lists the billed
+acts and nothing else: no day, no stage, no time. 2011's
+electricforestfestival.com/lineup/artists is a Drupal grid, one `<h2>` per
+act (a rendered copy draws each name with Cufón, one `<cufontext>` per word),
+under a title that prints the edition and its run ("2011 Artist Lineup |
+Electric Forest Festival :: June 30 - July 3, 2011 :: Rothbury, Michigan").
+2016's /experience/lineup/ is a WordPress page titled "2016 Lineup | Electric
+Forest Festival" and headed "EF 2016 Lineup", one `lineup-list` per billing
+tier of `<a class="artist">` links. The edition is `undated`: no artist
+carries a day, and its note says the page printed no days. Its dates are the
+run the title prints where it prints one (2011), and otherwise the census's
+dated post-event run (`datesFrom`, as Creamfields; 2016). Every capture of
+the year is listed up to the first one taken after the last day, and that
+one is read (2011: July 4, the day after; 2016: July 15); earlier captures
+are diffed against it (2011's June captures lack Cirque du Womp). Billings
+are verbatim ("The String Cheese Incident (3 Shows)", "STS9 (PLUS AXE THE
+CABLES SET)"); 2016's "Hannah Muse (YOGA)" is a yoga class and dropped as
+`activity` (`PROGRAMME`). 2017's only lineup capture of the year (February)
+is the second phase, "plus many more artists … to be announced", so 2017 is
+not loaded. 71 acts in 2011, 171 in 2016.
 
 Archived Coachella lineup pages (2014, 2015, 2016, format `coachella-cards`;
 2012, `coachella-overlays`; 2017, `coachella-data`):
@@ -640,6 +671,30 @@ enter it) holds the reviewed `sheet.tsv` and a `receipts.json`;
 page sources are re-read through `wayback.mjs` and must equal the sheet row
 for row.
 
+Archived Awakenings Festival party pages (2010 to 2012, format `awakenings-parties`, lineup only):
+
+    node scripts/historical/extract-awakenings-lineup.mjs awakenings-2010 awakenings-2011 awakenings-2012
+
+Until 2012 Awakenings' own site (awakenings.nl, `/en/parties/<n>/<slug>/`)
+gave each event a party page. The summer festival's page heads itself
+"Awakenings Festival" (2010: "Awakenings" over "Festival 10 Year
+Anniversary") with its one date, place and hours ("30 June 2012 /
+Recreatiegebied, Halfweg / 11:00 / 23:00"), and its title prints the same
+date; the after-party and the club nights have pages of their own and are
+refused. The lineup is one tab per area, labelled as the page labels it
+("C", "B", "A", "Z" … "V"; 2010's open-air areas "W (air)" and "V (air)"),
+the word "Area" never printed, and each tab's panel lists that area's sets,
+each with a printed range and a name. The edition keeps who played on which
+area; the ranges are counted in the ledger (`printedRanges`) and not kept.
+An act on two areas (2011's Dekmantel Soundsystem) is billed on each. The
+date is the page's own, which must be the edition's one day and the
+census's. Captures are read from the festival's day to 120 days after; the
+pages chosen were captured on 25 September 2010, 4 July 2011 and 1 July
+2012. From 2013 the festival's event page loads its lineup by script
+(`events/line-up/<id>/`), which the archive never captured, and from late
+2015 the site is awakenings.com, whose captures the archive does not serve,
+so no later year is loaded.
+
 Official lineup pages, for editions whose set-times pages were never archived
 (Nocturnal Wonderland 2025, Beyond Wonderland SoCal 2025):
 
@@ -722,6 +777,105 @@ the edition's last day.
 The festivals' later past-highlights pages (/past-highlights/<year>-lineup/)
 hold the lineup only as a poster image, so they are graphic sources and go
 through the review path above, not a page extractor.
+
+Time Warp Germany (Mannheim), 2012 to 2025: the festival's own lineup page
+on time-warp.de, one per edition (2020 was canceled).
+
+    node scripts/historical/extract-timewarp-lineup.mjs <edition-id>
+    # writes sheets/<id>.lineup.tsv (billing, night) and the ledger;
+    # lineup_only, no stages and no times: the pages print neither
+
+The site changed template twice, so `TW_LINEUP_EDITIONS` gives each edition
+its page, its `format` and the title the page must carry, and
+timewarp-lineup.mjs has one reader per format:
+
+- **timewarp-mannheim** (2012, 2013; /mannheim/line-up/). A heading names
+  the year ("Time Warp 2012", "Mannheim Line Up 2013"); acts are listed in
+  DJs, Live and VJs sections. Live acts are billed "(Live)"; VJs are visual
+  artists, not music acts, and go to the ledger's `leftOut`. 2012's meta
+  description prints the night; 2013's page prints none, so its night is the
+  first day of the census's dated run for the year, quoted in the ledger's
+  `datesFrom` and checked against the census by the test.
+- **timewarp-classic** (2014 to 2018; /germany/line-up/). The event menu
+  prints the Germany edition's night ("07 Apr 2018") only until the festival
+  has happened ("THANK YOU" afterwards), and the page lists every act once
+  under "In alphabetical order" ("In alphabetischer Reihenfolge" on the German
+  page). The menu's night must be a real date in the edition's year.
+- **timewarp-subsite** (2019, 2021 to 2025). A header names the edition
+  (Germany, with the year's two digits in 2021 and 2022), its nights and
+  Mannheim; then one list per night, in date order, headed by its weekday
+  ("Friday A-Z"), by the German weekday and date ("Fr 05.04.24"), or, when
+  the edition has a single night, by nothing or "IN ALPHABETICAL ORDER".
+  Live sets are billed "(Live)".
+
+Every reader throws on a page of another year, a night that is not a real
+date, an empty list, an act with no name or an act listed twice. One address
+served several years (/germany/line-up/ from 2014 to 2018), so each entry
+lists captures only in its own `window`: the month before the night for a
+page that stops printing it afterwards, the weeks after it for a page that
+keeps its header. The latest valid capture in the window is used; where that
+capture predates the festival, the edition's note says so and when.
+
+Official Lollapalooza Brasil lineup pages, 2014 to 2019 (formats
+`lollabr-por-dia`, `lollabr-grid`, `lollabr-cards`):
+
+    node scripts/historical/extract-lollabr-lineup.mjs lollapalooza-brasil-<year>
+    # writes sheets/<id>.lineup.tsv and the ledger; lineup_only, no times
+
+lollapaloozabr.com printed each year's lineup one of three ways
+(`lollabr-lineup.mjs`). 2014-2016 (/2014-line-up-por-dia,
+/line-up-por-dia-2015, /lineup-por-dia/) print the festival's run with its
+year in the site header ("5-6 de abril de 2014 - Autódromo de Interlagos"),
+then one heading per day ("Sábado, 5 de abril") over a list of acts; the
+headings must be the run's dates in order, each with its own weekday. 2017
+(/lineup-horarios/) and 2019 (/lineup-2019/) are the C3 schedule grid read by
+`acl-schedule.mjs`: dated day tabs ("sábado mar 25th" over
+`saturday-2017-03-25`), one column per stage. The grid prints each block's
+range, but these editions keep only the act, day and stage; an act drawn
+twice on one stage on one day is one row, listed in the ledger's `notRead`.
+2018 (/lineup/2018-interativo/) is the interactive lineup's cards, each with
+its day titles ("24/3/2018"); the page's description names the edition and
+its run ("O Lollapalooza Brasil 2018 será dias 23, 24 e 25 de março"). No
+stage is printed in 2014-2016 or 2018.
+
+Each year's captures from 1 January to the festival's last day are listed
+and the latest that proves the edition is read, so the lineup is the one
+printed closest before (or during) the festival: 27 February 2014, 27 March
+2015, 9 March 2016, 19 March 2017, 1 February 2018 (the last capture of that
+page) and 5 April 2019 (the first day). 2014's and 2018's editions carry a
+note that later changes are not shown. 2012's day-by-day lineup was a news
+post (/updates/programacao-lollapalooza-brasil) that prints each day only as a
+poster image, and 2013's reveal page has no capture from 2013; from 2022 the
+site's /lineup page also shows the lineup only as a poster image, and no
+capture of it from 2023 on was found. Those years are not read here.
+
+Ultra Europe's own Artists page (2013, format `ultra-europe-artists`):
+
+    node scripts/historical/extract-ultra-europe.mjs ultra-europe-2013
+    # writes sheets/<id>.lineup.tsv and the ledger; lineup_only
+
+ultraeurope.com/artists/ on the 2013 WordPress site printed a grid of acts,
+then one block per act in the same order, each with a line per appearance:
+"Day 1 - 05:00PM - Main Stage", several joined with ", " (Carl Cox on both
+days). The grid and the blocks must name the same acts in the same order.
+The days are numbered, never dated: the site's countdown (`timer:
+"2013:7:12:16:0:0"`) is set to the opening, which must be the edition's
+first day, so Day N is the (N-1)th day after it; the dates are the census's
+dated run (`datesFrom`), as for Creamfields. The printed times are read
+only to check each line; a lineup keeps none. The page's Day 3 is Ultra
+Beach on Hvar, a separate event after the two Poljud days:
+an appearance on it is set apart in the ledger (`offDay`), and only on the
+stage the extractor names for that day (Ultra Beach Main Stage); any other
+appearance past the edition's days stops the read. The capture used is the
+latest within a week after the festival (20 July 2013). The page lists the
+acts the festival featured, not every act that played, and an edition note
+says so. Later years left no lineup as text: 2014 and 2015 were a script
+app whose archived pages carry no lineup (2014's final lineup survives only
+as a pre-festival press release, alphabetical, with no days and "And many
+more"), and from 2016 the lineup, stage and set-times pages are poster
+images (2019 and 2023-2025 are queued for the image path in
+`ocr-queue.mjs`); the later `/artists/<year>/` pages load their lists by
+script (2024's archived empty).
 
 Then, for any path:
 

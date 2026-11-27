@@ -1,0 +1,881 @@
+{
+ "id": "awakenings-2011",
+ "festivalId": "awakenings",
+ "name": "Awakenings Festival 2011",
+ "year": 2011,
+ "timezone": "Europe/Amsterdam",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2011-06-25",
+   "label": "Saturday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "awakenings-2011:c",
+   "name": "C"
+  },
+  {
+   "id": "awakenings-2011:b",
+   "name": "B"
+  },
+  {
+   "id": "awakenings-2011:a",
+   "name": "A"
+  },
+  {
+   "id": "awakenings-2011:z",
+   "name": "Z"
+  },
+  {
+   "id": "awakenings-2011:y",
+   "name": "Y"
+  },
+  {
+   "id": "awakenings-2011:x",
+   "name": "X"
+  },
+  {
+   "id": "awakenings-2011:w",
+   "name": "W"
+  },
+  {
+   "id": "awakenings-2011:v",
+   "name": "V"
+  }
+ ],
+ "artists": [
+  {
+   "id": "awakenings-2011:gabriel-chamorro",
+   "name": "Gabriel Chamorro",
+   "key": "gabriel-chamorro",
+   "performers": [
+    "gabriel-chamorro"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:c"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:kid-culture-live",
+   "name": "Kid Culture (live)",
+   "key": "kid-culture-live",
+   "performers": [
+    "kid-culture-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:c"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:de-man-zonder-schaduw",
+   "name": "De Man Zonder Schaduw",
+   "key": "de-man-zonder-schaduw",
+   "performers": [
+    "de-man-zonder-schaduw"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:c"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:specker",
+   "name": "Specker",
+   "key": "specker",
+   "performers": [
+    "specker"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:c"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:ida-engberg",
+   "name": "Ida Engberg",
+   "key": "ida-engberg",
+   "performers": [
+    "ida-engberg"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:c"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:robert-dietz",
+   "name": "Robert Dietz",
+   "key": "robert-dietz",
+   "performers": [
+    "robert-dietz"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:c"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:egbert-live",
+   "name": "Egbert (live)",
+   "key": "egbert-live",
+   "performers": [
+    "egbert-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:c"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:dekmantel-soundsystem",
+   "name": "Dekmantel Soundsystem",
+   "key": "dekmantel-soundsystem",
+   "performers": [
+    "dekmantel-soundsystem"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:c"
+    },
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:y"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:frank-haag-live",
+   "name": "Frank Haag (live)",
+   "key": "frank-haag-live",
+   "performers": [
+    "frank-haag-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:b"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:boris-werner",
+   "name": "Boris Werner",
+   "key": "boris-werner",
+   "performers": [
+    "boris-werner"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:b"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:paul-ritch-live",
+   "name": "Paul Ritch (live)",
+   "key": "paul-ritch-live",
+   "performers": [
+    "paul-ritch-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:b"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:2000-and-one",
+   "name": "2000 and One",
+   "key": "2000-and-one",
+   "performers": [
+    "2000-and-one"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:b"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:reboot-live",
+   "name": "Reboot (live)",
+   "key": "reboot-live",
+   "performers": [
+    "reboot-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:b"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:karotte",
+   "name": "Karotte",
+   "key": "karotte",
+   "performers": [
+    "karotte"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:b"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:luke-abbott-live",
+   "name": "Luke Abbott (live)",
+   "key": "luke-abbott-live",
+   "performers": [
+    "luke-abbott-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:b"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:margot-live",
+   "name": "Margot (live)",
+   "key": "margot-live",
+   "performers": [
+    "margot-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:b"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:james-holden",
+   "name": "James Holden",
+   "key": "james-holden",
+   "performers": [
+    "james-holden"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:b"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:riso",
+   "name": "Riso",
+   "key": "riso",
+   "performers": [
+    "riso"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:makam-live",
+   "name": "Makam (live)",
+   "key": "makam-live",
+   "performers": [
+    "makam-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:melon",
+   "name": "Melon",
+   "key": "melon",
+   "performers": [
+    "melon"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:pantha-du-prince-live",
+   "name": "Pantha du Prince (live)",
+   "key": "pantha-du-prince-live",
+   "performers": [
+    "pantha-du-prince-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:mathias-kaden",
+   "name": "Mathias Kaden",
+   "key": "mathias-kaden",
+   "performers": [
+    "mathias-kaden"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:ame-live-dj",
+   "name": "Âme (live + dj)",
+   "key": "ame-live-dj",
+   "performers": [
+    "ame-live-dj"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:dixon",
+   "name": "Dixon",
+   "key": "dixon",
+   "performers": [
+    "dixon"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:henrik-schwarz-live",
+   "name": "Henrik Schwarz (live)",
+   "key": "henrik-schwarz-live",
+   "performers": [
+    "henrik-schwarz-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:innervisions-dj-team-b2b",
+   "name": "Innervisions DJ team b2b",
+   "key": "innervisions-dj-team-b2b",
+   "performers": [
+    "innervisions-dj-team-b2b"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:surgeles",
+   "name": "Surgeles",
+   "key": "surgeles",
+   "performers": [
+    "surgeles"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:tim-wolff-live",
+   "name": "Tim Wolff (live)",
+   "key": "tim-wolff-live",
+   "performers": [
+    "tim-wolff-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:counterpart-live",
+   "name": "Counterpart (live)",
+   "key": "counterpart-live",
+   "performers": [
+    "counterpart-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:gayle-san-and-sven-wittekind",
+   "name": "Gayle San & Sven Wittekind",
+   "key": "gayle-san-and-sven-wittekind",
+   "performers": [
+    "gayle-san-and-sven-wittekind"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:oscar-mulero-and-reeko",
+   "name": "Oscar Mulero & Reeko",
+   "key": "oscar-mulero-and-reeko",
+   "performers": [
+    "oscar-mulero-and-reeko"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:fatima-hajji",
+   "name": "Fatima Hajji",
+   "key": "fatima-hajji",
+   "performers": [
+    "fatima-hajji"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:god-s-army-frank-kvitta-and-boris-s-live",
+   "name": "God's Army (Frank Kvitta & Boris S) (live)",
+   "key": "god-s-army-frank-kvitta-and-boris-s-live",
+   "performers": [
+    "god-s-army-frank-kvitta-and-boris-s-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:miss-djax-and-pet-duo-live",
+   "name": "Miss Djax & PET Duo (live)",
+   "key": "miss-djax-and-pet-duo-live",
+   "performers": [
+    "miss-djax-and-pet-duo-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:dj-rush",
+   "name": "DJ Rush",
+   "key": "dj-rush",
+   "performers": [
+    "dj-rush"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:kyle-hall",
+   "name": "Kyle Hall",
+   "key": "kyle-hall",
+   "performers": [
+    "kyle-hall"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:y"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:jeff-mills",
+   "name": "Jeff Mills",
+   "key": "jeff-mills",
+   "performers": [
+    "jeff-mills"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:y"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:joris-voorn",
+   "name": "Joris Voorn",
+   "key": "joris-voorn",
+   "performers": [
+    "joris-voorn"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:y"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:chris-liebing",
+   "name": "Chris Liebing",
+   "key": "chris-liebing",
+   "performers": [
+    "chris-liebing"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:y"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:speedy-j",
+   "name": "Speedy J",
+   "key": "speedy-j",
+   "performers": [
+    "speedy-j"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:y"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:gary-beck",
+   "name": "Gary Beck",
+   "key": "gary-beck",
+   "performers": [
+    "gary-beck"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:x"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:sandwell-district-regis-and-function",
+   "name": "Sandwell District (Regis & Function)",
+   "key": "sandwell-district-regis-and-function",
+   "performers": [
+    "sandwell-district-regis-and-function"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:x"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:luke-slater",
+   "name": "Luke Slater",
+   "key": "luke-slater",
+   "performers": [
+    "luke-slater"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:x"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:ben-klock-and-marcel-dettmann",
+   "name": "Ben Klock & Marcel Dettmann",
+   "key": "ben-klock-and-marcel-dettmann",
+   "performers": [
+    "ben-klock-and-marcel-dettmann"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:x"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:laurent-garnier-presents-l-b-s",
+   "name": "Laurent Garnier presents L.B.S.",
+   "key": "laurent-garnier-presents-l-b-s",
+   "performers": [
+    "laurent-garnier-presents-l-b-s"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:x"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:rik-woldring-and-malbetrieb",
+   "name": "Rik Woldring & Malbetrieb",
+   "key": "rik-woldring-and-malbetrieb",
+   "performers": [
+    "rik-woldring-and-malbetrieb"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:w"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:seth-troxler",
+   "name": "Seth Troxler",
+   "key": "seth-troxler",
+   "performers": [
+    "seth-troxler"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:w"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:luciano",
+   "name": "Luciano",
+   "key": "luciano",
+   "performers": [
+    "luciano"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:w"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:ricardo-villalobos",
+   "name": "Ricardo Villalobos",
+   "key": "ricardo-villalobos",
+   "performers": [
+    "ricardo-villalobos"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:w"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:marco-carola",
+   "name": "Marco Carola",
+   "key": "marco-carola",
+   "performers": [
+    "marco-carola"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:w"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:adam-beyer",
+   "name": "Adam Beyer",
+   "key": "adam-beyer",
+   "performers": [
+    "adam-beyer"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:w"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:tom-ruijg",
+   "name": "Tom Ruijg",
+   "key": "tom-ruijg",
+   "performers": [
+    "tom-ruijg"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:v"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:joseph-capriati",
+   "name": "Joseph Capriati",
+   "key": "joseph-capriati",
+   "performers": [
+    "joseph-capriati"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:v"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:len-faki",
+   "name": "Len Faki",
+   "key": "len-faki",
+   "performers": [
+    "len-faki"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:v"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:vitalic-live",
+   "name": "Vitalic (live)",
+   "key": "vitalic-live",
+   "performers": [
+    "vitalic-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:v"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:hi-tek-soul-starring-kevin-saunderson-and-derrick-may",
+   "name": "Hi Tek Soul: Starring Kevin Saunderson & Derrick May",
+   "key": "hi-tek-soul-starring-kevin-saunderson-and-derrick-may",
+   "performers": [
+    "hi-tek-soul-starring-kevin-saunderson-and-derrick-may"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:v"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:dave-clarke",
+   "name": "Dave Clarke",
+   "key": "dave-clarke",
+   "performers": [
+    "dave-clarke"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:v"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2011:ben-sims",
+   "name": "Ben Sims",
+   "key": "ben-sims",
+   "performers": [
+    "ben-sims"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2011:v"
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "official_lineup_html",
+  "official": "http://www.awakenings.nl/en/parties/147/awakenings-festival/",
+  "captures": [
+   {
+    "page": "lineup",
+    "archivedUrl": "https://web.archive.org/web/20110704041942/http://www.awakenings.nl/en/parties/147/awakenings-festival/",
+    "captureTimestamp": "20110704041942",
+    "sha256": "d61bcddae13dfaa92b5fe33bb1a3891b9af1be9da44cfa63f1670bfbf85f43c6"
+   }
+  ]
+ }
+}

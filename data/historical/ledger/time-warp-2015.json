@@ -1,0 +1,55 @@
+{
+  "id": "time-warp-2015",
+  "method": "official_lineup_html",
+  "official": "http://www.time-warp.de/germany/line-up/index_eng.html",
+  "format": "timewarp-classic",
+  "window": {
+    "from": "20150306",
+    "to": "20150405",
+    "why": "the page prints the edition's night only until it has happened: the month before it"
+  },
+  "chosen": "20150403145418",
+  "archivedUrl": "https://web.archive.org/web/20150403145418/http://www.time-warp.de/germany/line-up/index_eng.html",
+  "sha256": "d8fd5c2f57aeb96e16788c4d8e84aa481c4a46cc41f4f359df535ce784a482d9",
+  "title": "Line-Up",
+  "relayedVia": "firecrawl",
+  "stageOrder": [],
+  "considered": [
+    {
+      "captureTimestamp": "20150306030317",
+      "notFiled": "relay: capture 20150306030317 of http://www.time-warp.de/germany/line-up/index_eng.html was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20150330075242",
+      "notFiled": "relay: capture 20150330075242 of http://www.time-warp.de/germany/line-up/index_eng.html was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20150403145418",
+      "archivedUrl": "https://web.archive.org/web/20150403145418/http://www.time-warp.de/germany/line-up/index_eng.html",
+      "sha256": "d8fd5c2f57aeb96e16788c4d8e84aa481c4a46cc41f4f359df535ce784a482d9",
+      "bytes": 23002,
+      "via": "firecrawl",
+      "title": "Line-Up",
+      "titled": true,
+      "dated": true,
+      "valid": true,
+      "days": [
+        "Sunday 5 April 2015"
+      ],
+      "printed": {
+        "edition": "Germany",
+        "dates": "05 Apr 2015",
+        "city": "Germany",
+        "lists": [
+          "In alphabetical order"
+        ]
+      },
+      "billings": 39
+    }
+  ],
+  "dropped": []
+}

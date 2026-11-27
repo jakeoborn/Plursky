@@ -610,6 +610,69 @@
    }
   },
   {
+   "id": "awakenings-2012",
+   "festivalId": "awakenings",
+   "festivalName": "Awakenings Festival",
+   "name": "Awakenings Festival 2012",
+   "year": 2012,
+   "timezone": "Europe/Amsterdam",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2012-06-30",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 56,
+    "sets": 0
+   }
+  },
+  {
+   "id": "awakenings-2011",
+   "festivalId": "awakenings",
+   "festivalName": "Awakenings Festival",
+   "name": "Awakenings Festival 2011",
+   "year": 2011,
+   "timezone": "Europe/Amsterdam",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2011-06-25",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 58,
+    "sets": 0
+   }
+  },
+  {
+   "id": "awakenings-2010",
+   "festivalId": "awakenings",
+   "festivalName": "Awakenings Festival",
+   "name": "Awakenings Festival 2010",
+   "year": 2010,
+   "timezone": "Europe/Amsterdam",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2010-06-26",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 6,
+    "artists": 46,
+    "sets": 0
+   }
+  },
+  {
    "id": "beyond-wonderland-gorge-2026",
    "festivalId": "beyond-wonderland-gorge",
    "festivalName": "Beyond Wonderland at The Gorge",
@@ -2637,6 +2700,42 @@
    }
   },
   {
+   "id": "electric-forest-2016",
+   "festivalId": "electric-forest",
+   "festivalName": "Electric Forest",
+   "name": "Electric Forest 2016",
+   "year": 2016,
+   "timezone": "America/Detroit",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2016-06-23",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2016-06-24",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2016-06-25",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2016-06-26",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 171,
+    "sets": 0
+   }
+  },
+  {
    "id": "electric-forest-2015",
    "festivalId": "electric-forest",
    "festivalName": "Electric Forest",
@@ -2778,6 +2877,42 @@
     "stages": 5,
     "artists": 91,
     "sets": 102
+   }
+  },
+  {
+   "id": "electric-forest-2011",
+   "festivalId": "electric-forest",
+   "festivalName": "Electric Forest",
+   "name": "Electric Forest 2011",
+   "year": 2011,
+   "timezone": "America/Detroit",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2011-06-30",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2011-07-01",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2011-07-02",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2011-07-03",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 71,
+    "sets": 0
    }
   },
   {
@@ -4061,6 +4196,172 @@
     "stages": 8,
     "artists": 143,
     "sets": 152
+   }
+  },
+  {
+   "id": "lollapalooza-brasil-2019",
+   "festivalId": "lollapalooza-brasil",
+   "festivalName": "Lollapalooza Brasil",
+   "name": "Lollapalooza Brasil 2019",
+   "year": 2019,
+   "timezone": "America/Sao_Paulo",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2019-04-05",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2019-04-06",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2019-04-07",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 4,
+    "artists": 70,
+    "sets": 0
+   }
+  },
+  {
+   "id": "lollapalooza-brasil-2018",
+   "festivalId": "lollapalooza-brasil",
+   "festivalName": "Lollapalooza Brasil",
+   "name": "Lollapalooza Brasil 2018",
+   "year": 2018,
+   "timezone": "America/Sao_Paulo",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2018-03-23",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2018-03-24",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2018-03-25",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 72,
+    "sets": 0
+   }
+  },
+  {
+   "id": "lollapalooza-brasil-2017",
+   "festivalId": "lollapalooza-brasil",
+   "festivalName": "Lollapalooza Brasil",
+   "name": "Lollapalooza Brasil 2017",
+   "year": 2017,
+   "timezone": "America/Sao_Paulo",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2017-03-25",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2017-03-26",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 4,
+    "artists": 47,
+    "sets": 0
+   }
+  },
+  {
+   "id": "lollapalooza-brasil-2016",
+   "festivalId": "lollapalooza-brasil",
+   "festivalName": "Lollapalooza Brasil",
+   "name": "Lollapalooza Brasil 2016",
+   "year": 2016,
+   "timezone": "America/Sao_Paulo",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2016-03-12",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2016-03-13",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 52,
+    "sets": 0
+   }
+  },
+  {
+   "id": "lollapalooza-brasil-2015",
+   "festivalId": "lollapalooza-brasil",
+   "festivalName": "Lollapalooza Brasil",
+   "name": "Lollapalooza Brasil 2015",
+   "year": 2015,
+   "timezone": "America/Sao_Paulo",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2015-03-28",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2015-03-29",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 46,
+    "sets": 0
+   }
+  },
+  {
+   "id": "lollapalooza-brasil-2014",
+   "festivalId": "lollapalooza-brasil",
+   "festivalName": "Lollapalooza Brasil",
+   "name": "Lollapalooza Brasil 2014",
+   "year": 2014,
+   "timezone": "America/Sao_Paulo",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2014-04-05",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2014-04-06",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 46,
+    "sets": 0
    }
   },
   {
@@ -5598,6 +5899,74 @@
    }
   },
   {
+   "id": "time-warp-2025",
+   "festivalId": "time-warp",
+   "festivalName": "Time Warp Germany",
+   "name": "Time Warp Germany 2025",
+   "year": 2025,
+   "timezone": "Europe/Berlin",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2025-04-05",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 37,
+    "sets": 0
+   }
+  },
+  {
+   "id": "time-warp-2024",
+   "festivalId": "time-warp",
+   "festivalName": "Time Warp Germany",
+   "name": "Time Warp Germany 2024",
+   "year": 2024,
+   "timezone": "Europe/Berlin",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2024-04-05",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2024-04-06",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 62,
+    "sets": 0
+   }
+  },
+  {
+   "id": "time-warp-2023",
+   "festivalId": "time-warp",
+   "festivalName": "Time Warp Germany",
+   "name": "Time Warp Germany 2023",
+   "year": 2023,
+   "timezone": "Europe/Berlin",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2023-04-01",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 39,
+    "sets": 0
+   }
+  },
+  {
    "id": "time-warp-2022",
    "festivalId": "time-warp",
    "festivalName": "Time Warp Germany",
@@ -5620,6 +5989,200 @@
    "counts": {
     "stages": 0,
     "artists": 23,
+    "sets": 0
+   }
+  },
+  {
+   "id": "time-warp-2021",
+   "festivalId": "time-warp",
+   "festivalName": "Time Warp Germany",
+   "name": "Time Warp Germany 2021",
+   "year": 2021,
+   "timezone": "Europe/Berlin",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2021-10-29",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2021-10-30",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 10,
+    "sets": 0
+   }
+  },
+  {
+   "id": "time-warp-2019",
+   "festivalId": "time-warp",
+   "festivalName": "Time Warp Germany",
+   "name": "Time Warp Germany 2019",
+   "year": 2019,
+   "timezone": "Europe/Berlin",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2019-04-06",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 46,
+    "sets": 0
+   }
+  },
+  {
+   "id": "time-warp-2018",
+   "festivalId": "time-warp",
+   "festivalName": "Time Warp Germany",
+   "name": "Time Warp Germany 2018",
+   "year": 2018,
+   "timezone": "Europe/Berlin",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2018-04-07",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 43,
+    "sets": 0
+   }
+  },
+  {
+   "id": "time-warp-2017",
+   "festivalId": "time-warp",
+   "festivalName": "Time Warp Germany",
+   "name": "Time Warp Germany 2017",
+   "year": 2017,
+   "timezone": "Europe/Berlin",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2017-04-01",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 40,
+    "sets": 0
+   }
+  },
+  {
+   "id": "time-warp-2016",
+   "festivalId": "time-warp",
+   "festivalName": "Time Warp Germany",
+   "name": "Time Warp Germany 2016",
+   "year": 2016,
+   "timezone": "Europe/Berlin",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2016-04-02",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 40,
+    "sets": 0
+   }
+  },
+  {
+   "id": "time-warp-2015",
+   "festivalId": "time-warp",
+   "festivalName": "Time Warp Germany",
+   "name": "Time Warp Germany 2015",
+   "year": 2015,
+   "timezone": "Europe/Berlin",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2015-04-05",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 39,
+    "sets": 0
+   }
+  },
+  {
+   "id": "time-warp-2014",
+   "festivalId": "time-warp",
+   "festivalName": "Time Warp Germany",
+   "name": "Time Warp Germany 2014",
+   "year": 2014,
+   "timezone": "Europe/Berlin",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2014-04-05",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 43,
+    "sets": 0
+   }
+  },
+  {
+   "id": "time-warp-2013",
+   "festivalId": "time-warp",
+   "festivalName": "Time Warp Germany",
+   "name": "Time Warp Germany 2013",
+   "year": 2013,
+   "timezone": "Europe/Berlin",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2013-04-06",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 46,
+    "sets": 0
+   }
+  },
+  {
+   "id": "time-warp-2012",
+   "festivalId": "time-warp",
+   "festivalName": "Time Warp Germany",
+   "name": "Time Warp Germany 2012",
+   "year": 2012,
+   "timezone": "Europe/Berlin",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2012-03-31",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 42,
     "sets": 0
    }
   },
@@ -6139,6 +6702,32 @@
     "stages": 25,
     "artists": 225,
     "sets": 227
+   }
+  },
+  {
+   "id": "ultra-europe-2013",
+   "festivalId": "ultra-europe",
+   "festivalName": "Ultra Europe",
+   "name": "Ultra Europe 2013",
+   "year": 2013,
+   "timezone": "Europe/Zagreb",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2013-07-12",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2013-07-13",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 2,
+    "artists": 34,
+    "sets": 0
    }
   },
   {

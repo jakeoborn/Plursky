@@ -509,6 +509,20 @@ export const EDITIONS = {
   "electric-forest-2015": { festivalId: "electric-forest", name: "Electric Forest 2015", year: 2015,
     timezone: "America/Detroit", rolloverHour: 6, method: "official_sources",
     dates: [["2015-06-25", "Thursday"], ["2015-06-26", "Friday"], ["2015-06-27", "Saturday"], ["2015-06-28", "Sunday"]] },
+  // 2011 and 2016: the schedules survive only as graphics, so these come from
+  // the festival's own lineup page (ef-lineup.mjs, extract-ef-lineup.mjs,
+  // format "ef-lineup"): every billed act, with no day, stage or time.
+  // 2011's title prints its run; 2016's dates are the census's dated run.
+  "electric-forest-2011": { festivalId: "electric-forest", name: "Electric Forest 2011", year: 2011,
+    timezone: "America/Detroit", rolloverHour: 6, method: "official_lineup_html", undated: true,
+    dates: [["2011-06-30", "Thursday"], ["2011-07-01", "Friday"], ["2011-07-02", "Saturday"], ["2011-07-03", "Sunday"]],
+    notes: [{ asOf: "2026-11-27", text: "The festival's own lineup page printed no days and no stages, so this is who was billed, as that page listed them the day after the festival, not when or where each act played.",
+      source: "https://web.archive.org/web/20110704150422/http://electricforestfestival.com/lineup/artists" }] },
+  "electric-forest-2016": { festivalId: "electric-forest", name: "Electric Forest 2016", year: 2016,
+    timezone: "America/Detroit", rolloverHour: 6, method: "official_lineup_html", undated: true,
+    dates: [["2016-06-23", "Thursday"], ["2016-06-24", "Friday"], ["2016-06-25", "Saturday"], ["2016-06-26", "Sunday"]],
+    notes: [{ asOf: "2026-11-27", text: "The festival's own lineup page printed no days and no stages, so this is who was billed, as that page listed them three weeks after the festival, not when or where each act played.",
+      source: "https://web.archive.org/web/20160715174507/http://www.electricforestfestival.com/experience/lineup/" }] },
   // Coachella's own lineup page (coachella.com/lineup/): one card per act
   // with each set's date, start and stage, and no end time, so every set is
   // open-ended. 2016's page prints both weekends; 2014's and 2015's print
@@ -640,12 +654,88 @@ export const EDITIONS = {
     dayLabels: ACL_WEEKEND_LABELS,
     notes: [{ asOf: "2026-11-19", text: "The lineup as the festival's own page printed it on 13 May 2024, two months before the festival. Late changes after that day are not shown.",
       source: "https://web.archive.org/web/20240513185007/https://www.tomorrowland.com/en/festival/line-up/stages/friday-19-july-2024" }] },
-  // Time Warp Germany 2022: the autumn "Two Days | Two Stages" edition (the
-  // April date was called off for COVID). Its own /22/lineup page lists each
-  // night A-Z with no stage per act (extract-timewarp-lineup.mjs).
+  // Time Warp Germany (Mannheim, Maimarkthalle): the festival's own lineup
+  // page for each edition (timewarp-lineup.mjs, extract-timewarp-lineup.mjs),
+  // which lists who plays each night A-Z with no stage and no time. Until 2020
+  // and in 2023, 2025 it was one night (Saturday into Sunday; 2015's was Easter
+  // Sunday into Monday); 2021, 2022 and 2024 ran two. The 2014-2018 page prints
+  // the night only until it has happened, so those lineups are as printed
+  // shortly before it. 2020 was canceled (COVID); no archived lineup page
+  // of 2010 or 2011 was found.
+  "time-warp-2012": { festivalId: "time-warp", name: "Time Warp Germany 2012", year: 2012,
+    timezone: "Europe/Berlin", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2012-03-31", "Saturday"]] },
+  "time-warp-2013": { festivalId: "time-warp", name: "Time Warp Germany 2013", year: 2013,
+    timezone: "Europe/Berlin", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2013-04-06", "Saturday"]],
+    notes: [{ asOf: "2026-11-27", text: "The lineup as the festival's own page printed it on 3 April 2013, three days before the festival. Late changes after that day are not shown.",
+      source: "https://web.archive.org/web/20130403040651/http://www.time-warp.de/mannheim/line-up/index_eng.html" }] },
+  "time-warp-2014": { festivalId: "time-warp", name: "Time Warp Germany 2014", year: 2014,
+    timezone: "Europe/Berlin", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2014-04-05", "Saturday"]],
+    notes: [{ asOf: "2026-11-27", text: "The lineup as the festival's own page printed it on 3 April 2014, two days before the festival. Late changes after that day are not shown.",
+      source: "https://web.archive.org/web/20140403223236/http://www.time-warp.de/germany/line-up/index_ger.html" }] },
+  "time-warp-2015": { festivalId: "time-warp", name: "Time Warp Germany 2015", year: 2015,
+    timezone: "Europe/Berlin", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2015-04-05", "Sunday"]],
+    notes: [{ asOf: "2026-11-27", text: "The lineup as the festival's own page printed it on 3 April 2015, two days before the festival. Late changes after that day are not shown.",
+      source: "https://web.archive.org/web/20150403145418/http://www.time-warp.de/germany/line-up/index_eng.html" }] },
+  "time-warp-2016": { festivalId: "time-warp", name: "Time Warp Germany 2016", year: 2016,
+    timezone: "Europe/Berlin", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2016-04-02", "Saturday"]],
+    notes: [{ asOf: "2026-11-27", text: "The lineup as the festival's own page printed it on 16 March 2016, 17 days before the festival. Late changes after that day are not shown.",
+      source: "https://web.archive.org/web/20160316151418/http://www.time-warp.de/germany/line-up/index_eng.html" }] },
+  "time-warp-2017": { festivalId: "time-warp", name: "Time Warp Germany 2017", year: 2017,
+    timezone: "Europe/Berlin", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2017-04-01", "Saturday"]],
+    notes: [{ asOf: "2026-11-27", text: "The lineup as the festival's own page printed it on 3 March 2017, four weeks before the festival. Late changes after that day are not shown.",
+      source: "https://web.archive.org/web/20170303114714/http://www.time-warp.de/germany/line-up?utm_source=e_mail&utm_medium=newsletter&utm_campaign=lineup1" }] },
+  "time-warp-2018": { festivalId: "time-warp", name: "Time Warp Germany 2018", year: 2018,
+    timezone: "Europe/Berlin", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2018-04-07", "Saturday"]],
+    notes: [{ asOf: "2026-11-27", text: "The lineup as the festival's own page printed it on 4 April 2018, three days before the festival. Late changes after that day are not shown.",
+      source: "https://web.archive.org/web/20180404200905/http://www.time-warp.de/germany/line-up/index_eng.html" }] },
+  "time-warp-2019": { festivalId: "time-warp", name: "Time Warp Germany 2019", year: 2019,
+    timezone: "Europe/Berlin", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2019-04-06", "Saturday"]],
+    notes: [{ asOf: "2026-11-27", text: "The lineup as the festival's own page printed it on 31 March 2019, six days before the festival. Late changes after that day are not shown.",
+      source: "https://web.archive.org/web/20190331170135/https://www.time-warp.de/germany/lineup/index_eng.html" }] },
+  // 2021: the autumn "Two Days / One Stage" edition, after the spring date
+  // was postponed (COVID).
+  "time-warp-2021": { festivalId: "time-warp", name: "Time Warp Germany 2021", year: 2021,
+    timezone: "Europe/Berlin", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2021-10-29", "Friday"], ["2021-10-30", "Saturday"]],
+    notes: [{ asOf: "2026-11-27", text: "The lineup as the festival's own page printed it on 25 October 2021, four days before the festival. Late changes after that day are not shown.",
+      source: "https://web.archive.org/web/20211025163116/https://www.time-warp.de/21/lineup" }] },
+  // 2022: the autumn "Two Days | Two Stages" edition (the April date was
+  // called off for COVID). Its lineup survives only in a Feb 2023 capture of
+  // its own /22/lineup address.
   "time-warp-2022": { festivalId: "time-warp", name: "Time Warp Germany 2022", year: 2022,
     timezone: "Europe/Berlin", rolloverHour: 6, method: "official_lineup_html",
     dates: [["2022-10-28", "Friday"], ["2022-10-29", "Saturday"]] },
+  "time-warp-2023": { festivalId: "time-warp", name: "Time Warp Germany 2023", year: 2023,
+    timezone: "Europe/Berlin", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2023-04-01", "Saturday"]] },
+  "time-warp-2024": { festivalId: "time-warp", name: "Time Warp Germany 2024", year: 2024,
+    timezone: "Europe/Berlin", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2024-04-05", "Friday"], ["2024-04-06", "Saturday"]] },
+  "time-warp-2025": { festivalId: "time-warp", name: "Time Warp Germany 2025", year: 2025,
+    timezone: "Europe/Berlin", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2025-04-05", "Saturday"]] },
+  // Awakenings Festival 2010-2012 (one Saturday at Spaarnwoude): the
+  // festival's own party page on its old site (awakenings-lineup.mjs,
+  // extract-awakenings-lineup.mjs), which prints the date and lists every
+  // set under its area tab ("C", "W (air)"). From 2013 the lineup was loaded
+  // by script and never archived; from 2016 the site is awakenings.com.
+  "awakenings-2010": { festivalId: "awakenings", name: "Awakenings Festival 2010", year: 2010,
+    timezone: "Europe/Amsterdam", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2010-06-26", "Saturday"]] },
+  "awakenings-2011": { festivalId: "awakenings", name: "Awakenings Festival 2011", year: 2011,
+    timezone: "Europe/Amsterdam", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2011-06-25", "Saturday"]] },
+  "awakenings-2012": { festivalId: "awakenings", name: "Awakenings Festival 2012", year: 2012,
+    timezone: "Europe/Amsterdam", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2012-06-30", "Saturday"]] },
   // Creamfields 2017-2019 and 2021 (Daresbury, Thursday to Sunday): the
   // festival's own /artists page (creamfields-artists.mjs,
   // extract-creamfields.mjs), which lists every act with the weekdays it
@@ -680,6 +770,46 @@ export const EDITIONS = {
     dates: [["2025-08-21", "Thursday"], ["2025-08-22", "Friday"], ["2025-08-23", "Saturday"], ["2025-08-24", "Sunday"]],
     notes: [{ asOf: "2026-11-25", text: "The lineup as the festival's own page printed it the day after the festival. Five stage lists (Arc and APEX on Friday, APEX on Sunday, drip Hospitality on Friday and Saturday) ended \"+ more\" and were never completed, so some acts on those stages are not shown.",
       source: "https://web.archive.org/web/20250825010416/https://creamfields.com/lineup/" }] },
+  // Lollapalooza Brasil 2014-2019 (São Paulo): the festival's own lineup
+  // pages on lollapaloozabr.com (lollabr-lineup.mjs,
+  // extract-lollabr-lineup.mjs), each read from the last capture taken before
+  // or during the festival. 2014-2016 list each day's acts under the site's
+  // dated header; 2017 and 2019 are the C3 schedule grid, which also names
+  // each act's stage (its printed times are not kept); 2018 is the
+  // interactive lineup's cards, one day title per act. Nothing names a stage
+  // in 2014-2016 or 2018.
+  "lollapalooza-brasil-2014": { festivalId: "lollapalooza-brasil", name: "Lollapalooza Brasil 2014", year: 2014,
+    timezone: "America/Sao_Paulo", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2014-04-05", "Saturday"], ["2014-04-06", "Sunday"]],
+    notes: [{ asOf: "2026-11-27", text: "The lineup as the festival's own page printed it on 27 February 2014, five weeks before the festival. Changes after that day are not shown.",
+      source: "https://web.archive.org/web/20140227001309/http://www.lollapaloozabr.com/2014-line-up-por-dia" }] },
+  "lollapalooza-brasil-2015": { festivalId: "lollapalooza-brasil", name: "Lollapalooza Brasil 2015", year: 2015,
+    timezone: "America/Sao_Paulo", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2015-03-28", "Saturday"], ["2015-03-29", "Sunday"]] },
+  "lollapalooza-brasil-2016": { festivalId: "lollapalooza-brasil", name: "Lollapalooza Brasil 2016", year: 2016,
+    timezone: "America/Sao_Paulo", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2016-03-12", "Saturday"], ["2016-03-13", "Sunday"]] },
+  "lollapalooza-brasil-2017": { festivalId: "lollapalooza-brasil", name: "Lollapalooza Brasil 2017", year: 2017,
+    timezone: "America/Sao_Paulo", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2017-03-25", "Saturday"], ["2017-03-26", "Sunday"]] },
+  "lollapalooza-brasil-2018": { festivalId: "lollapalooza-brasil", name: "Lollapalooza Brasil 2018", year: 2018,
+    timezone: "America/Sao_Paulo", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2018-03-23", "Friday"], ["2018-03-24", "Saturday"], ["2018-03-25", "Sunday"]],
+    notes: [{ asOf: "2026-11-27", text: "The lineup as the festival's own page printed it on 1 February 2018, seven weeks before the festival. Changes after that day are not shown.",
+      source: "https://web.archive.org/web/20180201215248/https://www.lollapaloozabr.com/lineup/2018-interativo/" }] },
+  "lollapalooza-brasil-2019": { festivalId: "lollapalooza-brasil", name: "Lollapalooza Brasil 2019", year: 2019,
+    timezone: "America/Sao_Paulo", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2019-04-05", "Friday"], ["2019-04-06", "Saturday"], ["2019-04-07", "Sunday"]] },
+  // Ultra Europe 2013 (Poljud Stadium, Split): the festival's own /artists/
+  // page (ultra-europe-artists.mjs, extract-ultra-europe.mjs) lists each act
+  // with its numbered day and stage. The page's countdown opens on the first
+  // day; the dates are the census's dated run. The page's Day 3 is Ultra
+  // Beach on Hvar, a separate event, and is not a day of this edition.
+  "ultra-europe-2013": { festivalId: "ultra-europe", name: "Ultra Europe 2013", year: 2013,
+    timezone: "Europe/Zagreb", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2013-07-12", "Friday"], ["2013-07-13", "Saturday"]],
+    notes: [{ asOf: "2026-11-27", text: "The lineup as the festival's own Artists page printed it a week after the festival: the acts it featured, each with its day and stage, not every act that played. Its third day, Ultra Beach on Hvar, was a separate event and is not listed.",
+      source: "https://web.archive.org/web/20130720070946/http://ultraeurope.com:80/artists/" }] },
   "tomorrowland-2023": { festivalId: "tomorrowland", name: "Tomorrowland 2023", year: 2023,
     timezone: "Europe/Brussels", rolloverHour: 6, method: "official_sources", dates: [["2023-07-21", "Friday"], ["2023-07-22", "Saturday"], ["2023-07-23", "Sunday"], ["2023-07-28", "Friday"], ["2023-07-29", "Saturday"], ["2023-07-30", "Sunday"]],
     dayLabels: ACL_WEEKEND_LABELS },
@@ -1035,6 +1165,8 @@ export const PROGRAMME = {
   "electric-forest-2014": ["Kyle Hollingsworth's Brewru Experience", "Hoop Troupe Showcase"],
   "electric-forest-2015": ["Yoga with Hannah Muse", "Hoop Troupe Showcase", "Group Hug World Record Attempt Hosted by Lafa Taylor",
     "Bell's Brewery Tasting at Sherwood Court Bar"],
+  // 2016's lineup page lists the yoga teacher among the acts.
+  "electric-forest-2016": ["Hannah Muse (YOGA)"],
   // Shambhala's schedule tables print its programme in the same stage
   // columns as the sets: ceremonies, classes, workshops, a fashion show, a
   // band changeover and a circus act, each read on the archived page.

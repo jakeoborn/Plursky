@@ -85,12 +85,23 @@ export const OFFICIAL_HOSTS = {
   "sziget": ["sziget.hu", "szigetfestival.com"],
   // defqon1.nl: Defqon.1's own site, where each year's timetable lived.
   "defqon1": ["defqon1.nl"],
-  // time-warp.de: Time Warp's own site; each Mannheim edition has its own
-  // sub-site (/22/ for 2022) with a lineup page.
+  // time-warp.de: Time Warp's own site, whose lineup page for the Mannheim
+  // edition lived at /mannheim/line-up (2012-2013), /germany/line-up
+  // (2014-2018), /germany/lineup (2019, 2023-2024), a year's sub-site (/21/,
+  // /22/) or /germany/mannheim/<year>/ (2025).
   "time-warp": ["time-warp.de"],
   // creamfields.com: Creamfields' own site, whose /artists page listed each
   // year's lineup by day and stage.
   "creamfields": ["creamfields.com"],
+  // lollapaloozabr.com: Lollapalooza Brasil's own site, whose lineup pages
+  // listed each year's acts by day (and, in 2017 and 2019, by stage).
+  "lollapalooza-brasil": ["lollapaloozabr.com"],
+  // awakenings.nl: Awakenings' own site until late 2015 (each festival's
+  // party page printed its lineup by area); awakenings.com is its site today.
+  "awakenings": ["awakenings.nl", "awakenings.com"],
+  // ultraeurope.com: Ultra Europe's own site, whose 2013 /artists/ page
+  // listed each act with its day and stage.
+  "ultra-europe": ["ultraeurope.com"],
 };
 
 // Where an official graphic may be re-hosted for an `official_sources`

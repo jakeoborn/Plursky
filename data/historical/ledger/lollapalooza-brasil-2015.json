@@ -1,0 +1,76 @@
+{
+  "id": "lollapalooza-brasil-2015",
+  "method": "official_lineup_html",
+  "format": "lollabr-por-dia",
+  "official": "http://www.lollapaloozabr.com/line-up-por-dia-2015",
+  "window": [
+    "20150101",
+    "20150329"
+  ],
+  "chosen": "20150327161932",
+  "archivedUrl": "https://web.archive.org/web/20150327161932/http://www.lollapaloozabr.com/line-up-por-dia-2015",
+  "sha256": "5ecf7b994fbcce0fded91bd07ca09776fe5b164a58f8cdf96666e2c865937753",
+  "title": "Por dia | Lollapalooza Brasil",
+  "relayedVia": "firecrawl",
+  "stageOrder": [],
+  "considered": [
+    {
+      "captureTimestamp": "20150107203240",
+      "notFiled": "relay: capture 20150107203240 of http://www.lollapaloozabr.com/line-up-por-dia-2015 was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20150206060029",
+      "notFiled": "relay: capture 20150206060029 of http://www.lollapaloozabr.com/line-up-por-dia-2015 was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20150207082555",
+      "notFiled": "relay: capture 20150207082555 of http://www.lollapaloozabr.com/line-up-por-dia-2015 was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20150210193056",
+      "notFiled": "relay: capture 20150210193056 of http://www.lollapaloozabr.com/line-up-por-dia-2015 was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20150226192416",
+      "notFiled": "relay: capture 20150226192416 of http://www.lollapaloozabr.com/line-up-por-dia-2015 was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20150317065318",
+      "notFiled": "relay: capture 20150317065318 of http://www.lollapaloozabr.com/line-up-por-dia-2015 was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20150327161932",
+      "archivedUrl": "https://web.archive.org/web/20150327161932/http://www.lollapaloozabr.com/line-up-por-dia-2015",
+      "sha256": "5ecf7b994fbcce0fded91bd07ca09776fe5b164a58f8cdf96666e2c865937753",
+      "bytes": 106452,
+      "via": "firecrawl",
+      "title": "Por dia | Lollapalooza Brasil",
+      "valid": true,
+      "days": [
+        "Saturday 28 March 2015",
+        "Sunday 29 March 2015"
+      ],
+      "printed": {
+        "dates": "28 e 29 de março de 2015, no Autódromo de Interlagos, São Paulo",
+        "lists": [
+          "Sábado 28 de março",
+          "Domingo 29 de março"
+        ]
+      },
+      "billings": 46
+    }
+  ],
+  "dropped": []
+}

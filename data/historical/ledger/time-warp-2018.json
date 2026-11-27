@@ -1,0 +1,49 @@
+{
+  "id": "time-warp-2018",
+  "method": "official_lineup_html",
+  "official": "http://www.time-warp.de/germany/line-up/index_eng.html",
+  "format": "timewarp-classic",
+  "window": {
+    "from": "20180308",
+    "to": "20180407",
+    "why": "the page prints the edition's night only until it has happened: the month before it"
+  },
+  "chosen": "20180404200905",
+  "archivedUrl": "https://web.archive.org/web/20180404200905/http://www.time-warp.de/germany/line-up/index_eng.html",
+  "sha256": "11fed260d79c6aa0d14215b64251a7509ad3d179b9c898bd987221e6454efcec",
+  "title": "Line-Up",
+  "relayedVia": "firecrawl",
+  "stageOrder": [],
+  "considered": [
+    {
+      "captureTimestamp": "20180313005713",
+      "notFiled": "relay: capture 20180313005713 of http://www.time-warp.de/germany/line-up/index_eng.html was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20180404200905",
+      "archivedUrl": "https://web.archive.org/web/20180404200905/http://www.time-warp.de/germany/line-up/index_eng.html",
+      "sha256": "11fed260d79c6aa0d14215b64251a7509ad3d179b9c898bd987221e6454efcec",
+      "bytes": 23611,
+      "via": "firecrawl",
+      "title": "Line-Up",
+      "titled": true,
+      "dated": true,
+      "valid": true,
+      "days": [
+        "Saturday 7 April 2018"
+      ],
+      "printed": {
+        "edition": "Germany",
+        "dates": "07 Apr 2018",
+        "city": "Germany",
+        "lists": [
+          "In alphabetical order"
+        ]
+      },
+      "billings": 43
+    }
+  ],
+  "dropped": []
+}

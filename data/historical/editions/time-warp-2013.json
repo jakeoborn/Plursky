@@ -1,0 +1,637 @@
+{
+ "id": "time-warp-2013",
+ "festivalId": "time-warp",
+ "name": "Time Warp Germany 2013",
+ "year": 2013,
+ "timezone": "Europe/Berlin",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2013-04-06",
+   "label": "Saturday"
+  }
+ ],
+ "stages": [],
+ "artists": [
+  {
+   "id": "time-warp-2013:sven-vath",
+   "name": "Sven Väth",
+   "key": "sven-vath",
+   "performers": [
+    "sven-vath"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:richie-hawtin",
+   "name": "Richie Hawtin",
+   "key": "richie-hawtin",
+   "performers": [
+    "richie-hawtin"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:carl-cox",
+   "name": "Carl Cox",
+   "key": "carl-cox",
+   "performers": [
+    "carl-cox"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:luciano",
+   "name": "Luciano",
+   "key": "luciano",
+   "performers": [
+    "luciano"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:laurent-garnier",
+   "name": "Laurent Garnier",
+   "key": "laurent-garnier",
+   "performers": [
+    "laurent-garnier"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:ricardo-villalobos",
+   "name": "Ricardo Villalobos",
+   "key": "ricardo-villalobos",
+   "performers": [
+    "ricardo-villalobos"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:loco-dice",
+   "name": "Loco Dice",
+   "key": "loco-dice",
+   "performers": [
+    "loco-dice"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:marco-carola",
+   "name": "Marco Carola",
+   "key": "marco-carola",
+   "performers": [
+    "marco-carola"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:dubfire",
+   "name": "Dubfire",
+   "key": "dubfire",
+   "performers": [
+    "dubfire"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:chris-liebing",
+   "name": "Chris Liebing",
+   "key": "chris-liebing",
+   "performers": [
+    "chris-liebing"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:visionquest",
+   "name": "Visionquest",
+   "key": "visionquest",
+   "performers": [
+    "visionquest"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:jamie-jones",
+   "name": "Jamie Jones",
+   "key": "jamie-jones",
+   "performers": [
+    "jamie-jones"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:dixon",
+   "name": "Dixon",
+   "key": "dixon",
+   "performers": [
+    "dixon"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:len-faki",
+   "name": "Len Faki",
+   "key": "len-faki",
+   "performers": [
+    "len-faki"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:magda",
+   "name": "Magda",
+   "key": "magda",
+   "performers": [
+    "magda"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:ellen-allien",
+   "name": "Ellen Allien",
+   "key": "ellen-allien",
+   "performers": [
+    "ellen-allien"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:monika-kruse",
+   "name": "Monika Kruse",
+   "key": "monika-kruse",
+   "performers": [
+    "monika-kruse"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:karotte",
+   "name": "Karotte",
+   "key": "karotte",
+   "performers": [
+    "karotte"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:marcel-dettmann",
+   "name": "Marcel Dettmann",
+   "key": "marcel-dettmann",
+   "performers": [
+    "marcel-dettmann"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:pan-pot",
+   "name": "Pan-Pot",
+   "key": "pan-pot",
+   "performers": [
+    "pan-pot"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:joseph-capriati",
+   "name": "Joseph Capriati",
+   "key": "joseph-capriati",
+   "performers": [
+    "joseph-capriati"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:agoria",
+   "name": "Agoria",
+   "key": "agoria",
+   "performers": [
+    "agoria"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:matthias-tanzmann",
+   "name": "Matthias Tanzmann",
+   "key": "matthias-tanzmann",
+   "performers": [
+    "matthias-tanzmann"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:mathias-kaden",
+   "name": "Mathias Kaden",
+   "key": "mathias-kaden",
+   "performers": [
+    "mathias-kaden"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:nick-curly",
+   "name": "Nick Curly",
+   "key": "nick-curly",
+   "performers": [
+    "nick-curly"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:valentino-kanzyani",
+   "name": "Valentino Kanzyani",
+   "key": "valentino-kanzyani",
+   "performers": [
+    "valentino-kanzyani"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:nicone-and-sascha-braemer",
+   "name": "Niconé & Sascha Braemer",
+   "key": "nicone-and-sascha-braemer",
+   "performers": [
+    "nicone-and-sascha-braemer"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:adam-port",
+   "name": "Adam Port",
+   "key": "adam-port",
+   "performers": [
+    "adam-port"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:david-mayer",
+   "name": "David Mayer",
+   "key": "david-mayer",
+   "performers": [
+    "david-mayer"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:rampa",
+   "name": "Rampa",
+   "key": "rampa",
+   "performers": [
+    "rampa"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:and-me-keinemusik",
+   "name": "&ME (Keinemusik)",
+   "key": "and-me-keinemusik",
+   "performers": [
+    "and-me-keinemusik"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:tommy-four-seven",
+   "name": "Tommy Four Seven",
+   "key": "tommy-four-seven",
+   "performers": [
+    "tommy-four-seven"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:wankelmut",
+   "name": "Wankelmut",
+   "key": "wankelmut",
+   "performers": [
+    "wankelmut"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:hector",
+   "name": "Hector",
+   "key": "hector",
+   "performers": [
+    "hector"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:alle-farben",
+   "name": "Alle Farben",
+   "key": "alle-farben",
+   "performers": [
+    "alle-farben"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:nekes",
+   "name": "Nekes",
+   "key": "nekes",
+   "performers": [
+    "nekes"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:seebase",
+   "name": "Seebase",
+   "key": "seebase",
+   "performers": [
+    "seebase"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:steffen-baumann",
+   "name": "Steffen Baumann",
+   "key": "steffen-baumann",
+   "performers": [
+    "steffen-baumann"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:sasch-bbc",
+   "name": "Sasch BBC",
+   "key": "sasch-bbc",
+   "performers": [
+    "sasch-bbc"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:steffen-deux",
+   "name": "Steffen Deux",
+   "key": "steffen-deux",
+   "performers": [
+    "steffen-deux"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:sebastian-kreikemeier",
+   "name": "Sebastian Kreikemeier",
+   "key": "sebastian-kreikemeier",
+   "performers": [
+    "sebastian-kreikemeier"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:gaiser-live",
+   "name": "Gaiser (Live)",
+   "key": "gaiser-live",
+   "performers": [
+    "gaiser-live"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:lexy-and-k-paul-live",
+   "name": "Lexy & K-Paul (Live)",
+   "key": "lexy-and-k-paul-live",
+   "performers": [
+    "lexy-and-k-paul-live"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:matador-live",
+   "name": "Matador (Live)",
+   "key": "matador-live",
+   "performers": [
+    "matador-live"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:oliver-schories-live",
+   "name": "Oliver Schories (Live)",
+   "key": "oliver-schories-live",
+   "performers": [
+    "oliver-schories-live"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2013:bunte-bummler-live",
+   "name": "Bunte Bummler (Live)",
+   "key": "bunte-bummler-live",
+   "performers": [
+    "bunte-bummler-live"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "official_lineup_html",
+  "official": "http://www.time-warp.de/mannheim/line-up/index_eng.html",
+  "captures": [
+   {
+    "page": "lineup",
+    "archivedUrl": "https://web.archive.org/web/20130403040651/http://www.time-warp.de/mannheim/line-up/index_eng.html",
+    "captureTimestamp": "20130403040651",
+    "sha256": "25086aa997d19bc8bf7caaebccbc2bca3be58127fe39df323d8240cb0fd1a38c"
+   }
+  ]
+ },
+ "notes": [
+  {
+   "asOf": "2026-11-27",
+   "text": "The lineup as the festival's own page printed it on 3 April 2013, three days before the festival. Late changes after that day are not shown.",
+   "source": "https://web.archive.org/web/20130403040651/http://www.time-warp.de/mannheim/line-up/index_eng.html"
+  }
+ ]
+}

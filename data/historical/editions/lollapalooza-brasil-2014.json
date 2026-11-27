@@ -1,0 +1,642 @@
+{
+ "id": "lollapalooza-brasil-2014",
+ "festivalId": "lollapalooza-brasil",
+ "name": "Lollapalooza Brasil 2014",
+ "year": 2014,
+ "timezone": "America/Sao_Paulo",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2014-04-05",
+   "label": "Saturday"
+  },
+  {
+   "day": 2,
+   "date": "2014-04-06",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [],
+ "artists": [
+  {
+   "id": "lollapalooza-brasil-2014:muse",
+   "name": "Muse",
+   "key": "muse",
+   "performers": [
+    "muse"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:nine-inch-nails",
+   "name": "Nine Inch Nails",
+   "key": "nine-inch-nails",
+   "performers": [
+    "nine-inch-nails"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:imagine-dragons",
+   "name": "Imagine Dragons",
+   "key": "imagine-dragons",
+   "performers": [
+    "imagine-dragons"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:phoenix",
+   "name": "Phoenix",
+   "key": "phoenix",
+   "performers": [
+    "phoenix"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:julian-casablancas",
+   "name": "Julian Casablancas",
+   "key": "julian-casablancas",
+   "performers": [
+    "julian-casablancas"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:kid-cudi",
+   "name": "Kid Cudi",
+   "key": "kid-cudi",
+   "performers": [
+    "kid-cudi"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:lorde",
+   "name": "Lorde",
+   "key": "lorde",
+   "performers": [
+    "lorde"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:nacao-zumbi",
+   "name": "Nação Zumbi",
+   "key": "nacao-zumbi",
+   "performers": [
+    "nacao-zumbi"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:capital-cities",
+   "name": "Capital Cities",
+   "key": "capital-cities",
+   "performers": [
+    "capital-cities"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:cage-the-elephant",
+   "name": "Cage The Elephant",
+   "key": "cage-the-elephant",
+   "performers": [
+    "cage-the-elephant"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:cone-crew-diretoria",
+   "name": "Cone Crew Diretoria",
+   "key": "cone-crew-diretoria",
+   "performers": [
+    "cone-crew-diretoria"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:wolfgang-gartner",
+   "name": "Wolfgang Gartner",
+   "key": "wolfgang-gartner",
+   "performers": [
+    "wolfgang-gartner"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:flux-pavilion",
+   "name": "Flux Pavilion",
+   "key": "flux-pavilion",
+   "performers": [
+    "flux-pavilion"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:portugal-the-man",
+   "name": "Portugal. The Man",
+   "key": "portugal-the-man",
+   "performers": [
+    "portugal-the-man"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:cafe-tacvba",
+   "name": "Café Tacvba",
+   "key": "cafe-tacvba",
+   "performers": [
+    "cafe-tacvba"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:lucas-santtana",
+   "name": "Lucas Santtana",
+   "key": "lucas-santtana",
+   "performers": [
+    "lucas-santtana"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:flume",
+   "name": "Flume",
+   "key": "flume",
+   "performers": [
+    "flume"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:silva",
+   "name": "Silva",
+   "key": "silva",
+   "performers": [
+    "silva"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:elekfantz",
+   "name": "Elekfantz",
+   "key": "elekfantz",
+   "performers": [
+    "elekfantz"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:vespas-mandarinas",
+   "name": "Vespas Mandarinas",
+   "key": "vespas-mandarinas",
+   "performers": [
+    "vespas-mandarinas"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:digitaria",
+   "name": "Digitaria",
+   "key": "digitaria",
+   "performers": [
+    "digitaria"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:coisinha",
+   "name": "Coisinha",
+   "key": "coisinha",
+   "performers": [
+    "coisinha"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:red-oblivion",
+   "name": "Red Oblivion",
+   "key": "red-oblivion",
+   "performers": [
+    "red-oblivion"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:arcade-fire",
+   "name": "Arcade Fire",
+   "key": "arcade-fire",
+   "performers": [
+    "arcade-fire"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:soundgarden",
+   "name": "Soundgarden",
+   "key": "soundgarden",
+   "performers": [
+    "soundgarden"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:pixies",
+   "name": "Pixies",
+   "key": "pixies",
+   "performers": [
+    "pixies"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:vampire-weekend",
+   "name": "Vampire Weekend",
+   "key": "vampire-weekend",
+   "performers": [
+    "vampire-weekend"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:new-order",
+   "name": "New Order",
+   "key": "new-order",
+   "performers": [
+    "new-order"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:axwell",
+   "name": "Axwell",
+   "key": "axwell",
+   "performers": [
+    "axwell"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:ellie-goulding",
+   "name": "Ellie Goulding",
+   "key": "ellie-goulding",
+   "performers": [
+    "ellie-goulding"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:jake-bugg",
+   "name": "Jake Bugg",
+   "key": "jake-bugg",
+   "performers": [
+    "jake-bugg"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:johnny-marr",
+   "name": "Johnny Marr",
+   "key": "johnny-marr",
+   "performers": [
+    "johnny-marr"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:the-bloody-beetroots",
+   "name": "The Bloody Beetroots",
+   "key": "the-bloody-beetroots",
+   "performers": [
+    "the-bloody-beetroots"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:raimundos",
+   "name": "Raimundos",
+   "key": "raimundos",
+   "performers": [
+    "raimundos"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:afi",
+   "name": "AFI",
+   "key": "afi",
+   "performers": [
+    "afi"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:krewella",
+   "name": "Krewella",
+   "key": "krewella",
+   "performers": [
+    "krewella"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:baauer",
+   "name": "Baauer",
+   "key": "baauer",
+   "performers": [
+    "baauer"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:savages",
+   "name": "Savages",
+   "key": "savages",
+   "performers": [
+    "savages"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:illya-kuriaki-and-the-valderramas",
+   "name": "Illya Kuriaki & The Valderramas",
+   "key": "illya-kuriaki-and-the-valderramas",
+   "performers": [
+    "illya-kuriaki-and-the-valderramas"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:francisca-valenzuela",
+   "name": "Francisca Valenzuela",
+   "key": "francisca-valenzuela",
+   "performers": [
+    "francisca-valenzuela"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:selvagens-a-procura-de-lei",
+   "name": "Selvagens à Procura de Lei",
+   "key": "selvagens-a-procura-de-lei",
+   "performers": [
+    "selvagens-a-procura-de-lei"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:apanhador-so",
+   "name": "Apanhador Só",
+   "key": "apanhador-so",
+   "performers": [
+    "apanhador-so"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:gabe",
+   "name": "Gabe",
+   "key": "gabe",
+   "performers": [
+    "gabe"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:brothers-of-brazil",
+   "name": "Brothers of Brazil",
+   "key": "brothers-of-brazil",
+   "performers": [
+    "brothers-of-brazil"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:ftampa",
+   "name": "FTampa",
+   "key": "ftampa",
+   "performers": [
+    "ftampa"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2014:barbatuques",
+   "name": "Barbatuques",
+   "key": "barbatuques",
+   "performers": [
+    "barbatuques"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "official_lineup_html",
+  "official": "http://www.lollapaloozabr.com/2014-line-up-por-dia",
+  "captures": [
+   {
+    "page": "lineup",
+    "archivedUrl": "https://web.archive.org/web/20140227001309/http://www.lollapaloozabr.com/2014-line-up-por-dia",
+    "captureTimestamp": "20140227001309",
+    "sha256": "f1a69f4cac70426c54d21e1846d540bef02fe2387dac362f355e80a80c0c20e3"
+   }
+  ]
+ },
+ "notes": [
+  {
+   "asOf": "2026-11-27",
+   "text": "The lineup as the festival's own page printed it on 27 February 2014, five weeks before the festival. Changes after that day are not shown.",
+   "source": "https://web.archive.org/web/20140227001309/http://www.lollapaloozabr.com/2014-line-up-por-dia"
+  }
+ ]
+}

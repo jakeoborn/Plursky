@@ -1,0 +1,68 @@
+{
+  "id": "awakenings-2011",
+  "method": "official_lineup_html",
+  "official": "http://www.awakenings.nl/en/parties/147/awakenings-festival/",
+  "format": "awakenings-parties",
+  "window": {
+    "until": "2011-10-23",
+    "why": "the page is read from the festival's day to 120 days after it"
+  },
+  "census": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "awakenings",
+    "year": 2011,
+    "lifecycle": "occurred",
+    "dates": "2011-06-25..2011-06-25",
+    "evidence": "https://www.volkskrant.nl/cultuur-media/de-luxe-van-techno-overdaad-op-blubberig-awakenings~b708d88d/",
+    "published": "2011-06-26"
+  },
+  "chosen": "20110704041942",
+  "archivedUrl": "https://web.archive.org/web/20110704041942/http://www.awakenings.nl/en/parties/147/awakenings-festival/",
+  "sha256": "d61bcddae13dfaa92b5fe33bb1a3891b9af1be9da44cfa63f1670bfbf85f43c6",
+  "title": "Awakenings Festival - 25 June 2011 - Awakenings Parties",
+  "relayedVia": "firecrawl",
+  "stageOrder": [
+    "C",
+    "B",
+    "A",
+    "Z",
+    "Y",
+    "X",
+    "W",
+    "V"
+  ],
+  "printedRanges": 59,
+  "considered": [
+    {
+      "captureTimestamp": "20110704041942",
+      "archivedUrl": "https://web.archive.org/web/20110704041942/http://www.awakenings.nl/en/parties/147/awakenings-festival/",
+      "sha256": "d61bcddae13dfaa92b5fe33bb1a3891b9af1be9da44cfa63f1670bfbf85f43c6",
+      "bytes": 44425,
+      "via": "firecrawl",
+      "title": "Awakenings Festival - 25 June 2011 - Awakenings Parties",
+      "dated": true,
+      "valid": true,
+      "days": [
+        "Saturday 25 June 2011"
+      ],
+      "printed": {
+        "event": "Awakenings Festival",
+        "date": "25 June 2011",
+        "place": "Recreatiegebied, Halfweg",
+        "hours": "11:00 / 23:00",
+        "areas": [
+          "C",
+          "B",
+          "A",
+          "Z",
+          "Y",
+          "X",
+          "W",
+          "V"
+        ]
+      },
+      "billings": 58
+    }
+  ],
+  "dropped": []
+}
