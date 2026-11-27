@@ -47,6 +47,7 @@ import { parseDefqonAreas, headerDate as defqonDate } from "./historical/defqon-
 import { parseDefqonLogos, subtitleDate as defqonLogosDate } from "./historical/defqon-logos-schedule.mjs";
 import { parseTomorrowlandLineup } from "./historical/tomorrowland-lineup.mjs";
 import { parseTimeWarpLineup, parseTimeWarpClassic, parseTimeWarpMannheim, headerDates as twHeaderDates, menuDate as twMenuDate } from "./historical/timewarp-lineup.mjs";
+import { parsePorDia as lbPorDia, parseGrid as lbGrid, parseCards as lbCards, printedRun as lbRun, dayHeading as lbHeading, tabPrints as lbTab } from "./historical/lollabr-lineup.mjs";
 import { parseCreamfieldsArtists, creamfieldsRows } from "./historical/creamfields-artists.mjs";
 import { parseEfLineup, printedRun as efPrintedRun } from "./historical/ef-lineup.mjs";
 import { censusRow, runDates, CENSUS as CREAMFIELDS_CENSUS } from "./historical/extract-creamfields.mjs";
@@ -181,6 +182,16 @@ if (base && edc) {
     const twCap = m => m.provenance.captures[0];
     mustFail("a Time Warp 2018 lineup read off a 2019 capture of the shared address", m => { const c = twCap(m); c.archivedUrl = c.archivedUrl.replace("/web/2018", "/web/2019"); c.captureTimestamp = c.captureTimestamp.replace(/^2018/, "2019"); }, tw18, () => {}, /is not from 2018/);
     mustFail("a Time Warp 2018 lineup off another site", m => { const c = twCap(m); c.archivedUrl = c.archivedUrl.replace("www.time-warp.de", "www.timewarp-tickets.de"); }, tw18);
+  }
+  // Lollapalooza Brasil: each lineup is a capture of the festival's own site
+  // from the edition's year; another year or another site may not pass.
+  const lb19 = editions["lollapalooza-brasil-2019"];
+  if (lb19) {
+    const lbCap = m => m.provenance.captures[0];
+    mustFail("a Lollapalooza Brasil 2019 lineup captured the year before", m => { const c = lbCap(m); c.archivedUrl = c.archivedUrl.replace("/web/2019", "/web/2018"); c.captureTimestamp = c.captureTimestamp.replace(/^2019/, "2018"); }, lb19, () => {}, /is not from 2019/);
+    mustFail("a Lollapalooza Brasil lineup read off Lollapalooza's US site", m => { const c = lbCap(m); c.archivedUrl = c.archivedUrl.replace("www.lollapaloozabr.com", "www.lollapalooza.com"); }, lb19, () => {}, /not an official lollapalooza-brasil property/);
+    mustFail("a Lollapalooza Brasil day moved off its date", m => { m.days[0].date = "2019-04-04"; }, lb19);
+    mustFail("a Lollapalooza Brasil act dropped", m => { m.artists.pop(); }, lb19, undefined, /artists, locked/);
   }
   // Tomorrowland 2010-2012: each day page prints its day as its own tab, with
   // no year, on the festival's own .be site.
@@ -1128,6 +1139,51 @@ if (base && edc) {
     twmMust("a Time Warp Mannheim section naming no act", twmPage({ secs: [twmSec("DJs", [])] }));
     twmMust("a Time Warp Mannheim page with only VJs", twmPage({ secs: [twmSec("VJs", ["Lichtfaktor"])] }));
     twmMust("a Time Warp Mannheim page with no section", twmPage({ secs: [] }));
+    // Lollapalooza Brasil's own lineup pages (lollabr-lineup.mjs): the site
+    // header's dated run over one list per day (2014-2016), the C3 grid with
+    // dated tabs and a stage per column (2017, 2019), the interactive cards
+    // with a dated day title each (2018). Each proves its year from the page.
+    const lbLi = name => `<li class="headliner__artist has-subtitle" data-artist-id="1"><a id="x" href="#"><button class="btn js-play">p</button> ${name} <span class="artist__subtitle"></span><button class="btn js-favorite">+</button></a></li>`;
+    const lbDay = (h, acts) => `<h1 style="text-align: center;"><span>${h}</span></h1><div class="lineup"><ol class="lineup-list">${acts.map(lbLi).join("")}</ol></div>`;
+    const lbPage = ({ dates = "28 e 29 de março de 2015, no Autódromo de Interlagos", days = [lbDay("Sábado 28 de março", ["Jack White", "Alt-J"]), lbDay("Domingo 29 de março", ["Pharrell Williams"])] } = {}) =>
+      `<title>Por dia | Lollapalooza Brasil</title><p class="site-dates">${dates}</p><h1 class="title">Por dia</h1><div class="content">${days.join("<br>")}</div>`;
+    const lbp = lbPorDia(lbPage(), { year: 2015 });
+    ok(JSON.stringify(lbp.days.map(d => [d.date, d.label, d.acts.map(a => a.artist)])) === JSON.stringify([["2015-03-28", "Saturday 28 March 2015", ["Jack White", "Alt-J"]], ["2015-03-29", "Sunday 29 March 2015", ["Pharrell Williams"]]])
+      && datedLabel(lbp.days[0].label, 2015) === "2015-03-28", `a Lollapalooza Brasil day list must come back as its dated days and acts: ${JSON.stringify(lbp.days)}`);
+    ok(JSON.stringify(lbRun("5-6 de abril de 2014 - Autódromo", 2014)) === JSON.stringify(["2014-04-05", "2014-04-06"]) && JSON.stringify(lbRun("dias 23, 24 e 25 de março!", 2018)) === JSON.stringify(["2018-03-23", "2018-03-24", "2018-03-25"])
+      && lbRun("5-6 de abril de 2014", 2015) === null && lbRun("5 e 7 de abril de 2014", 2014) === null && lbHeading("Sábado, 5 de abril", 2014) === "2014-04-05" && lbHeading("Domingo, 5 de abril", 2014) === null
+      && lbTab("sábado mar 25th", "2017-03-25") && !lbTab("domingo mar 25th", "2017-03-25") && !lbTab("sábado mar 25st", "2017-03-25"), "Lollapalooza Brasil printed dates must be real, in the year, with their own weekdays");
+    const lbMust = (what, read, html, year = 2015) => { let bad = false; try { read(html, { year }); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    lbMust("a Lollapalooza Brasil 2015 page read as another year's", lbPorDia, lbPage(), 2016);
+    lbMust("a Lollapalooza Brasil header printing another run", lbPorDia, lbPage({ dates: "21 e 22 de março de 2015" }));
+    lbMust("a Lollapalooza Brasil day heading with the wrong weekday", lbPorDia, lbPage({ days: [lbDay("Domingo 28 de março", ["A"]), lbDay("Domingo 29 de março", ["B"])] }));
+    lbMust("a Lollapalooza Brasil page missing a day", lbPorDia, lbPage({ days: [lbDay("Sábado 28 de março", ["A"])] }));
+    lbMust("an empty Lollapalooza Brasil page", lbPorDia, "<title>Por dia | Lollapalooza Brasil</title>");
+    lbMust("a Lollapalooza Brasil day naming no act", lbPorDia, lbPage({ days: [lbDay("Sábado 28 de março", []), lbDay("Domingo 29 de março", ["B"])] }));
+    lbMust("a Lollapalooza Brasil act listed twice on one day", lbPorDia, lbPage({ days: [lbDay("Sábado 28 de março", ["A", "A"]), lbDay("Domingo 29 de março", ["B"])] }));
+    lbMust("a Lollapalooza Brasil act with a subtitle the reader does not place", lbPorDia, lbPage().replace('<span class="artist__subtitle"></span>', '<span class="artist__subtitle">DJ set</span>'));
+    lbMust("another festival's page", lbPorDia, lbPage().replace("Lollapalooza Brasil", "Lollapalooza Chile"));
+    const lbCol = (date, wd, loc, blocks) => `<td id="schedule-column-date-${wd}-${date}-location-${loc}" class="c-schedule__location">${blocks.map(([n, r, top, h]) => `<div class="o-session" style="top: ${top}em"><div class="o-session__inner " style="height: ${h}em"><p class="o-session__title">${n}</p><p class="o-session__time">${r}</p></div></div>`).join("")}</td>`;
+    const lbGridPage = ({ year = 2017, tab = "sábado mar 25th", date = "2017-03-25" } = {}) => `<title>Horários dos Palcos – Lollapalooza Brasil</title><ul class="c-schedule__date-tabs"><li data-value="saturday-${date}">${tab}</li></ul>`
+      + `<option data-target="#schedule-column-date-saturday-${date}-location-1">Palco Skol</option><option data-target="#schedule-column-date-saturday-${date}-location-2">Perry’s</option>`
+      + `<ol class="c-schedule__timeslots"><li><span>12:00pm</span></li><li><span>1:00pm</span></li></ol>`
+      + lbCol(date, "saturday", 1, [["Opener", "12:00-1:00", 0, 12], ["Opener", "1:00-1:30", 12, 6]]) + lbCol(date, "saturday", 2, [["DJ", "12:30-1:30", 6, 12]]);
+    const lbg = lbGrid(lbGridPage(), { year: 2017 });
+    ok(JSON.stringify([lbg.stageOrder, lbg.days.map(d => [d.date, d.acts.map(a => `${a.artist}@${a.stage}`)]), lbg.dropped.length]) === JSON.stringify([["Palco Skol", "Perry’s"], [["2017-03-25", ["Opener@Palco Skol", "DJ@Perry’s"]]], 1]),
+      `a Lollapalooza Brasil grid must come back as acts on their stages, one row per act and stage, no times: ${JSON.stringify(lbg)}`);
+    lbMust("a Lollapalooza Brasil 2017 grid read as another year's", lbGrid, lbGridPage(), 2018);
+    lbMust("a Lollapalooza Brasil grid tab printing another day", lbGrid, lbGridPage({ tab: "domingo mar 26th" }), 2017);
+    lbMust("an empty Lollapalooza Brasil grid", lbGrid, "<title>Horários dos Palcos – Lollapalooza Brasil</title>", 2017);
+    const lbCard = (name, days) => `<div class="c-lineup__artist " data-id="1" data-title="${name}" data-day-titles="${JSON.stringify(days).replace(/"/g, "&quot;").replace(/\//g, "\\/")}"><p class="c-lineup__caption-text js-view-details ">${name}</p></div>`;
+    const lbCardsPage = ({ desc = "O Lollapalooza Brasil 2018 será dias 23, 24 e 25 de março!", cards = [lbCard("Pearl Jam", ["24/3/2018"]), lbCard("Red Hot Chili Peppers", ["23/3/2018"]), lbCard("Lana Del Rey", ["25/3/2018"])] } = {}) =>
+      `<title>LINEUP – Lollapalooza Brasil</title><meta name="description" content="${desc}">${cards.join("")}`;
+    const lbc = lbCards(lbCardsPage(), { year: 2018 });
+    ok(JSON.stringify(lbc.days.map(d => [d.date, d.acts.map(a => a.artist)])) === JSON.stringify([["2018-03-23", ["Red Hot Chili Peppers"]], ["2018-03-24", ["Pearl Jam"]], ["2018-03-25", ["Lana Del Rey"]]]),
+      `Lollapalooza Brasil cards must come back by their dated day titles: ${JSON.stringify(lbc.days)}`);
+    lbMust("Lollapalooza Brasil 2018 cards read as another year's", lbCards, lbCardsPage(), 2019);
+    lbMust("a Lollapalooza Brasil card dated off the run", lbCards, lbCardsPage({ cards: [lbCard("Pearl Jam", ["26/3/2018"]), lbCard("A", ["23/3/2018"]), lbCard("B", ["25/3/2018"])] }), 2018);
+    lbMust("a Lollapalooza Brasil run with a day no card plays", lbCards, lbCardsPage({ cards: [lbCard("A", ["23/3/2018"])] }), 2018);
+    lbMust("an empty Lollapalooza Brasil cards page", lbCards, `<title>LINEUP – Lollapalooza Brasil</title><meta name="description" content="O Lollapalooza Brasil 2018 será dias 23, 24 e 25 de março!">`, 2018);
     // Defqon.1 2013's timetable grid: one section per day, one row per area,
     // blocks by width with no time; a named part with its acts and hosts.
     const dgCell = (cls, inner) => `<li class="${cls}"><div class="inner">${inner}</div></li>`;

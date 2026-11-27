@@ -1,0 +1,712 @@
+{
+ "id": "lollapalooza-brasil-2017",
+ "festivalId": "lollapalooza-brasil",
+ "name": "Lollapalooza Brasil 2017",
+ "year": 2017,
+ "timezone": "America/Sao_Paulo",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2017-03-25",
+   "label": "Saturday"
+  },
+  {
+   "day": 2,
+   "date": "2017-03-26",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "lollapalooza-brasil-2017:palco-skol",
+   "name": "Palco Skol"
+  },
+  {
+   "id": "lollapalooza-brasil-2017:palco-onix",
+   "name": "Palco Onix"
+  },
+  {
+   "id": "lollapalooza-brasil-2017:palco-axe",
+   "name": "Palco AXE"
+  },
+  {
+   "id": "lollapalooza-brasil-2017:perry-s",
+   "name": "Perry’s"
+  }
+ ],
+ "artists": [
+  {
+   "id": "lollapalooza-brasil-2017:cage-the-elephant",
+   "name": "Cage the Elephant",
+   "key": "cage-the-elephant",
+   "performers": [
+    "cage-the-elephant"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2017:palco-skol"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:metallica",
+   "name": "Metallica",
+   "key": "metallica",
+   "performers": [
+    "metallica"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2017:palco-skol"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:doctor-pheabes",
+   "name": "Doctor Pheabes",
+   "key": "doctor-pheabes",
+   "performers": [
+    "doctor-pheabes"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2017:palco-skol"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:rancid",
+   "name": "Rancid",
+   "key": "rancid",
+   "performers": [
+    "rancid"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2017:palco-skol"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:suricato",
+   "name": "Suricato",
+   "key": "suricato",
+   "performers": [
+    "suricato"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2017:palco-skol"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:the-1975",
+   "name": "The 1975",
+   "key": "the-1975",
+   "performers": [
+    "the-1975"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2017:palco-onix"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:the-outs",
+   "name": "The Outs",
+   "key": "the-outs",
+   "performers": [
+    "the-outs"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2017:palco-onix"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:the-xx",
+   "name": "The xx",
+   "key": "the-xx",
+   "performers": [
+    "the-xx"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2017:palco-onix"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:glass-animals",
+   "name": "Glass Animals",
+   "key": "glass-animals",
+   "performers": [
+    "glass-animals"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2017:palco-onix"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:bob-moses",
+   "name": "Bob Moses",
+   "key": "bob-moses",
+   "performers": [
+    "bob-moses"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2017:palco-axe"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:criolo",
+   "name": "Criolo",
+   "key": "criolo",
+   "performers": [
+    "criolo"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2017:palco-axe"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:baianasystem",
+   "name": "BaianaSystem",
+   "key": "baianasystem",
+   "performers": [
+    "baianasystem"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2017:palco-axe"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:jaloo",
+   "name": "Jaloo",
+   "key": "jaloo",
+   "performers": [
+    "jaloo"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2017:palco-axe"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:tove-lo",
+   "name": "Tove Lo",
+   "key": "tove-lo",
+   "performers": [
+    "tove-lo"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2017:palco-axe"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:the-chainsmokers",
+   "name": "The Chainsmokers",
+   "key": "the-chainsmokers",
+   "performers": [
+    "the-chainsmokers"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2017:palco-axe"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:tegan-and-sara",
+   "name": "Tegan and Sara",
+   "key": "tegan-and-sara",
+   "performers": [
+    "tegan-and-sara"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2017:palco-axe"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:victor-ruiz",
+   "name": "Victor Ruiz",
+   "key": "victor-ruiz",
+   "performers": [
+    "victor-ruiz"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2017:perry-s"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:vintage-culture",
+   "name": "Vintage Culture",
+   "key": "vintage-culture",
+   "performers": [
+    "vintage-culture"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2017:perry-s"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:tchami",
+   "name": "Tchami",
+   "key": "tchami",
+   "performers": [
+    "tchami"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2017:perry-s"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:ricci",
+   "name": "Ricci",
+   "key": "ricci",
+   "performers": [
+    "ricci"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2017:perry-s"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:don-diablo",
+   "name": "Don Diablo",
+   "key": "don-diablo",
+   "performers": [
+    "don-diablo"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2017:perry-s"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:g-eazy",
+   "name": "G-Eazy",
+   "key": "g-eazy",
+   "performers": [
+    "g-eazy"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2017:perry-s"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:haikaiss",
+   "name": "Haikaiss",
+   "key": "haikaiss",
+   "performers": [
+    "haikaiss"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2017:perry-s"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:marshmello",
+   "name": "Marshmello",
+   "key": "marshmello",
+   "performers": [
+    "marshmello"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-brasil-2017:perry-s"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:jimmy-eat-world",
+   "name": "Jimmy Eat World",
+   "key": "jimmy-eat-world",
+   "performers": [
+    "jimmy-eat-world"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2017:palco-skol"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:two-door-cinema-club",
+   "name": "Two Door Cinema Club",
+   "key": "two-door-cinema-club",
+   "performers": [
+    "two-door-cinema-club"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2017:palco-skol"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:ceu",
+   "name": "Céu",
+   "key": "ceu",
+   "performers": [
+    "ceu"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2017:palco-skol"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:the-strokes",
+   "name": "The Strokes",
+   "key": "the-strokes",
+   "performers": [
+    "the-strokes"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2017:palco-skol"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:the-weeknd",
+   "name": "The Weeknd",
+   "key": "the-weeknd",
+   "performers": [
+    "the-weeknd"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2017:palco-onix"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:duran-duran",
+   "name": "Duran Duran",
+   "key": "duran-duran",
+   "performers": [
+    "duran-duran"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2017:palco-onix"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:bratislava",
+   "name": "Bratislava",
+   "key": "bratislava",
+   "performers": [
+    "bratislava"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2017:palco-onix"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:catfish-and-the-bottlemen",
+   "name": "Catfish and the Bottlemen",
+   "key": "catfish-and-the-bottlemen",
+   "performers": [
+    "catfish-and-the-bottlemen"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2017:palco-onix"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:flume",
+   "name": "Flume",
+   "key": "flume",
+   "performers": [
+    "flume"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2017:palco-axe"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:m",
+   "name": "MØ",
+   "key": "m",
+   "performers": [
+    "m"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2017:palco-axe"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:melanie-martinez",
+   "name": "Melanie Martinez",
+   "key": "melanie-martinez",
+   "performers": [
+    "melanie-martinez"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2017:palco-axe"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:89-fm",
+   "name": "89 FM",
+   "key": "89-fm",
+   "performers": [
+    "89-fm"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2017:palco-axe"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:daniel-groove",
+   "name": "Daniel Groove",
+   "key": "daniel-groove",
+   "performers": [
+    "daniel-groove"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2017:palco-axe"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:vance-joy",
+   "name": "Vance Joy",
+   "key": "vance-joy",
+   "performers": [
+    "vance-joy"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2017:palco-axe"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:silversun-pickups",
+   "name": "Silversun Pickups",
+   "key": "silversun-pickups",
+   "performers": [
+    "silversun-pickups"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2017:palco-axe"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:martin-garrix",
+   "name": "Martin Garrix",
+   "key": "martin-garrix",
+   "performers": [
+    "martin-garrix"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2017:perry-s"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:gabriel-boni",
+   "name": "Gabriel Boni",
+   "key": "gabriel-boni",
+   "performers": [
+    "gabriel-boni"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2017:perry-s"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:griz",
+   "name": "GRiZ",
+   "key": "griz",
+   "performers": [
+    "griz"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2017:perry-s"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:illusionize",
+   "name": "Illusionize",
+   "key": "illusionize",
+   "performers": [
+    "illusionize"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2017:perry-s"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:borgore",
+   "name": "Borgore",
+   "key": "borgore",
+   "performers": [
+    "borgore"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2017:perry-s"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:oliver-heldens",
+   "name": "Oliver Heldens",
+   "key": "oliver-heldens",
+   "performers": [
+    "oliver-heldens"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2017:perry-s"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:chemical-surf",
+   "name": "Chemical Surf",
+   "key": "chemical-surf",
+   "performers": [
+    "chemical-surf"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2017:perry-s"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-brasil-2017:nervo",
+   "name": "Nervo",
+   "key": "nervo",
+   "performers": [
+    "nervo"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-brasil-2017:perry-s"
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "official_lineup_html",
+  "official": "https://www.lollapaloozabr.com/lineup-horarios/",
+  "captures": [
+   {
+    "page": "lineup",
+    "archivedUrl": "https://web.archive.org/web/20170319014412/https://www.lollapaloozabr.com/lineup-horarios/",
+    "captureTimestamp": "20170319014412",
+    "sha256": "487da7c1f0dcbb55940b1317be0285b5a82d20fe3e906d86bb1febf2bcf756b4"
+   }
+  ]
+ }
+}
