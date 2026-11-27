@@ -1585,7 +1585,7 @@ function ArtistScreen({
   }, React.createElement("span", {
     "data-artist-day-pill": true,
     "data-artist-hero-label": "day"
-  }, [a.day != null ? `DAY ${a.day}` : "DAY TBA", setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED : a.start ? fmt12(a.start) : null].filter(Boolean).join(" · "))), React.createElement(ShareArtistButton, {
+  }, [a.day != null && !a.provisional ? `DAY ${a.day}` : "DAY TBA", setTimesUnconfirmed(a) ? SET_TIMES_UNCONFIRMED : a.start ? fmt12(a.start) : null].filter(Boolean).join(" · "))), React.createElement(ShareArtistButton, {
     artist: a,
     backed: backed
   })));
@@ -1807,7 +1807,7 @@ function ArtistScreen({
     setState: setState
   }), (() => {
     var live = typeof isSetLive === "function" && isSetLive(a);
-    var dayLabel = a.day == null ? null : (DAYS.find(d => d.n === a.day) || {
+    var dayLabel = a.day == null || a.provisional ? null : (DAYS.find(d => d.n === a.day) || {
       label: `DAY ${a.day}`
     }).label;
     var minsLeft = null,
@@ -2057,7 +2057,7 @@ function ArtistScreen({
     }, {
       id: "artist-section-upcoming",
       label: "Upcoming"
-    }];
+    }].filter(s => s.id !== "artist-section-upcoming" || TICKETMASTER_KEY && !(Array.isArray(tmEvents) && tmEvents.length === 0));
     var [activeChip, setActiveChip] = React.useState(sections[0].id);
     React.useEffect(() => {
       if (!window.IntersectionObserver) return;
@@ -2766,29 +2766,7 @@ function ArtistScreen({
         letterSpacing: 1.2,
         color: "var(--ink-2)"
       }
-    }, ytError ? "COULDN'T LOAD VIDEO" : "NO LIVE SET FOUND"), ytError && React.createElement("button", {
-      onClick: () => {
-        setYtError(false);
-        setYtVideo(undefined);
-        fetchYouTubeSet(lookupName).then(setYtVideo).catch(() => {
-          setYtVideo(null);
-          setYtError(true);
-        });
-      },
-      className: "mono",
-      style: {
-        marginTop: 8,
-        padding: "6px 14px",
-        borderRadius: 999,
-        background: "var(--s3)",
-        border: "none",
-        color: "var(--ink)",
-        fontSize: 9,
-        letterSpacing: 1.2,
-        fontWeight: 700,
-        cursor: "pointer"
-      }
-    }, "↻ RETRY"), !ytError && React.createElement("a", {
+    }, "FIND A LIVE SET ON YOUTUBE"), React.createElement("a", {
       href: ytSearchUrl,
       target: "_blank",
       rel: "noopener noreferrer",
@@ -3123,7 +3101,7 @@ function ArtistScreen({
     }, "↗")));
   })(), React.createElement("div", {
     id: "artist-section-upcoming"
-  }), TICKETMASTER_KEY && React.createElement("div", {
+  }), TICKETMASTER_KEY && !(Array.isArray(tmEvents) && tmEvents.length === 0) && React.createElement("div", {
     style: {
       marginBottom: 18
     }
