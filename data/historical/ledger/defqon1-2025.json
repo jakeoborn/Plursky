@@ -1,0 +1,57 @@
+{
+  "id": "defqon1-2025",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "press",
+    "site": "hardstyle.com",
+    "url": "https://hardstyle.com/en/news/defqon-1-line-up-2025",
+    "title": "This is the full Defqon.1 2025 weekend line-up",
+    "publisher": "Hardstyle.com",
+    "published": "2025-03-27",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "full",
+    "sha256": "5d8f3dbe88edaf531f2439f66759d1713e19594c8d5b1fde0bfc26750f544dde",
+    "bytes": 10238
+  },
+  "printed": {
+    "days": {
+      "1": "THURSDAY - THE GATHERING",
+      "2": "FRESH FRIDAY",
+      "3": "SATURDAY",
+      "4": "SUNDAY FUNDAY"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "defqon1",
+    "year": 2025,
+    "lifecycle": "occurred",
+    "dates": "2025-06-26..2025-06-29",
+    "evidence": "https://festivalfans.nl/report-defqon-1-2025/",
+    "published": "2025-07-10"
+  },
+  "note": "The full lineup per day and stage as announced on 27 March 2025; later changes are not shown, and hosts and the Warrior Workout are left out.",
+  "verified": {
+    "billings": 329,
+    "inSourceText": true
+  },
+  "stageOrder": [
+    "BLUE",
+    "BLACK",
+    "INDIGO",
+    "RED",
+    "U.V.",
+    "MAGENTA",
+    "YELLOW",
+    "GOLD",
+    "ORANGE",
+    "PINK",
+    "GREEN",
+    "PURPLE",
+    "SILVER",
+    "WHITE"
+  ],
+  "dropped": []
+}

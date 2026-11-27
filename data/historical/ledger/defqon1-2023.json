@@ -1,0 +1,56 @@
+{
+  "id": "defqon1-2023",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "press",
+    "site": "hard-facts.de",
+    "url": "https://www.hard-facts.de/2023/02/23/defqon-1-2023-path-of-the-warrior-line-up/",
+    "title": "Das ist das Defqon.1 2023 – Path of the Warrior Line-up",
+    "publisher": "Hard-Facts",
+    "published": "2023-02-23",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "full",
+    "sha256": "efbcf138c527870b9488e1bdd1aa80828714b9d209a4859ab9d67036fbbc07c4",
+    "bytes": 8440
+  },
+  "printed": {
+    "days": {
+      "1": "DONNERSTAG",
+      "2": "FREITAG",
+      "3": "SAMSTAG",
+      "4": "SONNTAG"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "defqon1",
+    "year": 2023,
+    "lifecycle": "occurred",
+    "dates": "2023-06-22..2023-06-25",
+    "evidence": "https://www.omroepflevoland.nl/gemist/radio/338525/organisatie-defqon-1-kijkt-weer-terug-op-geslaagde-editie",
+    "published": "2023-06-26"
+  },
+  "note": "A German hardstyle magazine's transcription of the full lineup per day and stage as announced on 23 February 2023, with its own spellings; later changes are not shown, and hosts, the Sunday \"Closing Ceremony\" label, the Warrior Workout and the Harderclass contest slots are left out.",
+  "verified": {
+    "billings": 342,
+    "inSourceText": true
+  },
+  "stageOrder": [
+    "BLUE",
+    "BLACK",
+    "INDIGO",
+    "THE BIG CHILL",
+    "RED",
+    "UV",
+    "GREEN",
+    "ORANGE",
+    "MAGENTA",
+    "YELLOW",
+    "GOLD",
+    "SILVER",
+    "PURPLE"
+  ],
+  "dropped": []
+}

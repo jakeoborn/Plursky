@@ -1,0 +1,52 @@
+{
+  "id": "defqon1-2019",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "press",
+    "site": "hardnews.nl",
+    "url": "https://hardnews.nl/en/this-is-the-entire-defqon-1-2019-line-up/",
+    "title": "This is the entire Defqon.1 2019 line-up",
+    "publisher": "Hardnews",
+    "published": "2019-02-27",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "full",
+    "sha256": "0bc7d82d23b65119b031550af42eb7446bf0dc8d68899fc3f3cb7a6c8faaa4a7",
+    "bytes": 5885
+  },
+  "printed": {
+    "days": {
+      "1": "Friday",
+      "2": "Saturday",
+      "3": "Sunday"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "defqon1",
+    "year": 2019,
+    "lifecycle": "occurred",
+    "dates": "2019-06-28..2019-06-30",
+    "evidence": "https://www.dedrontenaar.nl/nieuws/biddinghuizen/128479/opvallend-veel-klachten-en-weinig-aanhoudingen-bij-defqon-1-er-gebeurt-altijd-wel-wat",
+    "published": "2019-07-02"
+  },
+  "note": "The full lineup per day and stage as announced on 27 February 2019, printed with acts run together on one line per stage and split here at each act; Saturday's night afterparty is counted on Saturday, later changes are not shown, and hosts and an unnamed contest-winner slot are left out.",
+  "verified": {
+    "billings": 209,
+    "inSourceText": true
+  },
+  "stageOrder": [
+    "BLUE",
+    "BLACK",
+    "RED",
+    "UV",
+    "MAGENTA",
+    "INDIGO",
+    "YELLOW",
+    "GOLD",
+    "PURPLE",
+    "SILVER"
+  ],
+  "dropped": []
+}

@@ -1,0 +1,53 @@
+{
+  "id": "defqon1-2016",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "wikipedia",
+    "site": "de.wikipedia.org",
+    "url": "https://de.wikipedia.org/wiki/Defqon.1",
+    "title": "Defqon.1",
+    "publisher": "Wikipedia (German)",
+    "published": "2026-08-28",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "full",
+    "sha256": "e9b36099dd4b99039248deb5fa57efa4b37b732f8d653c81f6f0b1ac39f16691",
+    "bytes": 3806
+  },
+  "printed": {
+    "days": {
+      "1": "Friday",
+      "2": "Saturday",
+      "3": "Sunday"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "defqon1",
+    "year": 2016,
+    "lifecycle": "occurred",
+    "dates": "2016-06-24..2016-06-26",
+    "evidence": "https://www.omroepflevoland.nl/nieuws/136913/ruim-honderd-aanhoudingen-tijdens-defqon-1",
+    "published": "2016-06-27"
+  },
+  "note": "The German Wikipedia article's lineup for 24 to 26 June 2016, per day and stage, printed with acts run together and split here at each act; the Saturday afterparty is counted on Saturday at Blue, hosts and an unnamed contest-winner slot are left out, and the date is the page date Exa gave.",
+  "verified": {
+    "billings": 211,
+    "inSourceText": true
+  },
+  "stageOrder": [
+    "Blue",
+    "Black",
+    "Red",
+    "UV",
+    "Gold",
+    "Magenta",
+    "White",
+    "Indigo",
+    "Yellow",
+    "Silver",
+    "Purple"
+  ],
+  "dropped": []
+}

@@ -1,0 +1,53 @@
+{
+  "id": "defqon1-2017",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "wikipedia",
+    "site": "de.wikipedia.org",
+    "url": "https://de.wikipedia.org/wiki/Defqon.1",
+    "title": "Defqon.1",
+    "publisher": "Wikipedia (German)",
+    "published": "2026-08-28",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "full",
+    "sha256": "9a11a8758c87de32315a36e27697a569d15295a0959d7f9831c82998ea24ab6e",
+    "bytes": 4007
+  },
+  "printed": {
+    "days": {
+      "1": "Friday",
+      "2": "Saturday",
+      "3": "Sunday"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "defqon1",
+    "year": 2017,
+    "lifecycle": "occurred",
+    "dates": "2017-06-23..2017-06-25",
+    "evidence": "https://www.destentor.nl/dronten/127-aanhoudingen-tijdens-dancefestival-defqon-1-in-biddinghuizen~afa952a5/",
+    "published": "2017-06-26"
+  },
+  "note": "The German Wikipedia article's lineup for 23 to 25 June 2017, per day and stage, printed with acts run together and split here at each act; the Saturday afterparty is counted on Saturday, hosts and an unnamed contest-winner slot are left out, and the date is the page date Exa gave.",
+  "verified": {
+    "billings": 209,
+    "inSourceText": true
+  },
+  "stageOrder": [
+    "Blue",
+    "Black",
+    "Red",
+    "UV",
+    "Gold",
+    "Magenta",
+    "White",
+    "Indigo",
+    "Silver",
+    "Purple",
+    "Yellow"
+  ],
+  "dropped": []
+}

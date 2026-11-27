@@ -1834,6 +1834,314 @@
    }
   },
   {
+   "id": "defqon1-2025",
+   "festivalId": "defqon1",
+   "festivalName": "Defqon.1",
+   "name": "Defqon.1 2025",
+   "year": 2025,
+   "timezone": "Europe/Amsterdam",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "hardstyle.com",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2025-06-26",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2025-06-27",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2025-06-28",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2025-06-29",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 14,
+    "artists": 329,
+    "sets": 0
+   }
+  },
+  {
+   "id": "defqon1-2024",
+   "festivalId": "defqon1",
+   "festivalName": "Defqon.1",
+   "name": "Defqon.1 2024",
+   "year": 2024,
+   "timezone": "Europe/Amsterdam",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "hardstyle.com",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2024-06-27",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2024-06-28",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2024-06-29",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2024-06-30",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 13,
+    "artists": 344,
+    "sets": 0
+   }
+  },
+  {
+   "id": "defqon1-2023",
+   "festivalId": "defqon1",
+   "festivalName": "Defqon.1",
+   "name": "Defqon.1 2023",
+   "year": 2023,
+   "timezone": "Europe/Amsterdam",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "hard-facts.de",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2023-06-22",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2023-06-23",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2023-06-24",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2023-06-25",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 13,
+    "artists": 342,
+    "sets": 0
+   }
+  },
+  {
+   "id": "defqon1-2022",
+   "festivalId": "defqon1",
+   "festivalName": "Defqon.1",
+   "name": "Defqon.1 2022",
+   "year": 2022,
+   "timezone": "Europe/Amsterdam",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "hardstyle.com",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2022-06-23",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2022-06-24",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2022-06-25",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2022-06-26",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 315,
+    "sets": 0
+   }
+  },
+  {
+   "id": "defqon1-2019",
+   "festivalId": "defqon1",
+   "festivalName": "Defqon.1",
+   "name": "Defqon.1 2019",
+   "year": 2019,
+   "timezone": "Europe/Amsterdam",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "hardnews.nl",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2019-06-28",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2019-06-29",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2019-06-30",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 10,
+    "artists": 209,
+    "sets": 0
+   }
+  },
+  {
+   "id": "defqon1-2018",
+   "festivalId": "defqon1",
+   "festivalName": "Defqon.1",
+   "name": "Defqon.1 2018",
+   "year": 2018,
+   "timezone": "Europe/Amsterdam",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "EDM Identity",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2018-06-22",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2018-06-23",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2018-06-24",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 225,
+    "sets": 0
+   }
+  },
+  {
+   "id": "defqon1-2017",
+   "festivalId": "defqon1",
+   "festivalName": "Defqon.1",
+   "name": "Defqon.1 2017",
+   "year": 2017,
+   "timezone": "Europe/Amsterdam",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "wikipedia",
+    "name": "Wikipedia",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2017-06-23",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2017-06-24",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2017-06-25",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 11,
+    "artists": 209,
+    "sets": 0
+   }
+  },
+  {
+   "id": "defqon1-2016",
+   "festivalId": "defqon1",
+   "festivalName": "Defqon.1",
+   "name": "Defqon.1 2016",
+   "year": 2016,
+   "timezone": "Europe/Amsterdam",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "wikipedia",
+    "name": "Wikipedia",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2016-06-24",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2016-06-25",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2016-06-26",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 11,
+    "artists": 211,
+    "sets": 0
+   }
+  },
+  {
    "id": "defqon1-2015",
    "festivalId": "defqon1",
    "festivalName": "Defqon.1",
@@ -1935,6 +2243,94 @@
    "counts": {
     "stages": 11,
     "artists": 158,
+    "sets": 0
+   }
+  },
+  {
+   "id": "defqon1-2012",
+   "festivalId": "defqon1",
+   "festivalName": "Defqon.1",
+   "name": "Defqon.1 2012",
+   "year": 2012,
+   "timezone": "Europe/Amsterdam",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "wikipedia",
+    "name": "Wikipedia",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2012-06-21",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2012-06-22",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2012-06-23",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 13,
+    "artists": 174,
+    "sets": 0
+   }
+  },
+  {
+   "id": "defqon1-2011",
+   "festivalId": "defqon1",
+   "festivalName": "Defqon.1",
+   "name": "Defqon.1 2011",
+   "year": 2011,
+   "timezone": "Europe/Amsterdam",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "wikipedia",
+    "name": "Wikipedia",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2011-06-25",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 12,
+    "artists": 115,
+    "sets": 0
+   }
+  },
+  {
+   "id": "defqon1-2010",
+   "festivalId": "defqon1",
+   "festivalName": "Defqon.1",
+   "name": "Defqon.1 2010",
+   "year": 2010,
+   "timezone": "Europe/Amsterdam",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "wikipedia",
+    "name": "Wikipedia",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2010-06-12",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 11,
+    "artists": 99,
     "sets": 0
    }
   },

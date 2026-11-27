@@ -1,0 +1,47 @@
+{
+  "id": "defqon1-2018",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "press",
+    "site": "edmidentity.com",
+    "url": "https://edmidentity.com/2018/03/20/defqon-1-2018-lineup/",
+    "title": "Defqon.1 Festival Reveals 2018 Lineup; Tickets on Sale March 24",
+    "publisher": "EDM Identity",
+    "published": "2018-03-20",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "full",
+    "sha256": "9b81cccf96b0524f3cb968a5db503daed5e2cc8960ba45de7b900addc6d4853c",
+    "bytes": 6127
+  },
+  "printed": {
+    "days": {
+      "1": "Friday, June 22",
+      "2": "Saturday, June 23",
+      "3": "Sunday, June 24"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "defqon1",
+    "year": 2018,
+    "lifecycle": "occurred",
+    "dates": "2018-06-22..2018-06-24",
+    "evidence": "https://www.destentor.nl/flevoland/43-aanhoudingen-rond-festival-defqon-1-in-biddinghuizen~a8a36345/",
+    "published": "2018-06-25"
+  },
+  "note": "The full lineup per day as announced on 20 March 2018; the saved text names only the Red, Blue, Black, Gold and Magenta stages, so acts on the other stages carry no stage, later changes are not shown, and hosts are left out.",
+  "verified": {
+    "billings": 225,
+    "inSourceText": true
+  },
+  "stageOrder": [
+    "Red",
+    "Blue",
+    "Black",
+    "Gold",
+    "Magenta"
+  ],
+  "dropped": []
+}
