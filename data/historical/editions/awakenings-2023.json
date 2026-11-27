@@ -1,0 +1,1511 @@
+{
+ "id": "awakenings-2023",
+ "festivalId": "awakenings",
+ "name": "Awakenings Festival 2023",
+ "year": 2023,
+ "timezone": "Europe/Amsterdam",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2023-07-07",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2023-07-08",
+   "label": "Saturday"
+  },
+  {
+   "day": 3,
+   "date": "2023-07-09",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [],
+ "artists": [
+  {
+   "id": "awakenings-2023:anna",
+   "name": "ANNA",
+   "key": "anna",
+   "performers": [
+    "anna"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:ben-bohmer-live",
+   "name": "Ben Böhmer (live)",
+   "key": "ben-bohmer-live",
+   "performers": [
+    "ben-bohmer-live"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:carmen-lisa",
+   "name": "Carmen Lisa",
+   "key": "carmen-lisa",
+   "performers": [
+    "carmen-lisa"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:estella-boersma",
+   "name": "Estella Boersma",
+   "key": "estella-boersma",
+   "performers": [
+    "estella-boersma"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:fjaak",
+   "name": "FJAAK",
+   "key": "fjaak",
+   "performers": [
+    "fjaak"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:joyhauser",
+   "name": "Joyhauser",
+   "key": "joyhauser",
+   "performers": [
+    "joyhauser"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:ki-ki",
+   "name": "KI/KI",
+   "key": "ki-ki",
+   "performers": [
+    "ki-ki"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:kolsch",
+   "name": "Kölsch",
+   "key": "kolsch",
+   "performers": [
+    "kolsch"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:mathame",
+   "name": "Mathame",
+   "key": "mathame",
+   "performers": [
+    "mathame"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:mind-against",
+   "name": "Mind Against",
+   "key": "mind-against",
+   "performers": [
+    "mind-against"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:nicky-elisabeth",
+   "name": "Nicky Elisabeth",
+   "key": "nicky-elisabeth",
+   "performers": [
+    "nicky-elisabeth"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:orleus",
+   "name": "Orleus",
+   "key": "orleus",
+   "performers": [
+    "orleus"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:patrick-mason",
+   "name": "Patrick Mason",
+   "key": "patrick-mason",
+   "performers": [
+    "patrick-mason"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:perc-live",
+   "name": "Perc (live)",
+   "key": "perc-live",
+   "performers": [
+    "perc-live"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:recondite-live",
+   "name": "Recondite (live)",
+   "key": "recondite-live",
+   "performers": [
+    "recondite-live"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:richie-hawtin",
+   "name": "Richie Hawtin",
+   "key": "richie-hawtin",
+   "performers": [
+    "richie-hawtin"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:spfdj",
+   "name": "SPFDJ",
+   "key": "spfdj",
+   "performers": [
+    "spfdj"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:999999999",
+   "name": "999999999",
+   "key": "999999999",
+   "performers": [
+    "999999999"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:adam-beyer",
+   "name": "Adam Beyer",
+   "key": "adam-beyer",
+   "performers": [
+    "adam-beyer"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:airod",
+   "name": "Airod",
+   "key": "airod",
+   "performers": [
+    "airod"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:alan-fitzpatrick-and-luigi-madonna",
+   "name": "Alan Fitzpatrick & Luigi Madonna",
+   "key": "alan-fitzpatrick-and-luigi-madonna",
+   "performers": [
+    "alan-fitzpatrick-and-luigi-madonna"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:amoral",
+   "name": "Amoral",
+   "key": "amoral",
+   "performers": [
+    "amoral"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:bec",
+   "name": "BEC",
+   "key": "bec",
+   "performers": [
+    "bec"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:ben-klock",
+   "name": "Ben Klock",
+   "key": "ben-klock",
+   "performers": [
+    "ben-klock"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:blasha-and-allat",
+   "name": "Blasha & Allat",
+   "key": "blasha-and-allat",
+   "performers": [
+    "blasha-and-allat"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:claudio-prc",
+   "name": "Claudio PRC",
+   "key": "claudio-prc",
+   "performers": [
+    "claudio-prc"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:cravo-and-vil",
+   "name": "Cravo & VIL",
+   "key": "cravo-and-vil",
+   "performers": [
+    "cravo-and-vil"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:david-vunk",
+   "name": "David Vunk",
+   "key": "david-vunk",
+   "performers": [
+    "david-vunk"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:dax-j",
+   "name": "Dax J",
+   "key": "dax-j",
+   "performers": [
+    "dax-j"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:deborah-de-luca",
+   "name": "Deborah de Luca",
+   "key": "deborah-de-luca",
+   "performers": [
+    "deborah-de-luca"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:de-sluwe-vos",
+   "name": "De Sluwe Vos",
+   "key": "de-sluwe-vos",
+   "performers": [
+    "de-sluwe-vos"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:dj-rush",
+   "name": "DJ Rush",
+   "key": "dj-rush",
+   "performers": [
+    "dj-rush"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:dj-seinfeld",
+   "name": "Dj Seinfeld",
+   "key": "dj-seinfeld",
+   "performers": [
+    "dj-seinfeld"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:dvs1",
+   "name": "DVS1",
+   "key": "dvs1",
+   "performers": [
+    "dvs1"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:enrico-sangiuliano",
+   "name": "Enrico Sangiuliano",
+   "key": "enrico-sangiuliano",
+   "performers": [
+    "enrico-sangiuliano"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:enzo-siragusa",
+   "name": "Enzo Siragusa",
+   "key": "enzo-siragusa",
+   "performers": [
+    "enzo-siragusa"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:hadone-and-somewhen",
+   "name": "Hadone & Somewhen",
+   "key": "hadone-and-somewhen",
+   "performers": [
+    "hadone-and-somewhen"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:hector-oaks",
+   "name": "Héctor Oaks",
+   "key": "hector-oaks",
+   "performers": [
+    "hector-oaks"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:ilario-alicante",
+   "name": "Ilario Alicante",
+   "key": "ilario-alicante",
+   "performers": [
+    "ilario-alicante"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:joella-jackson",
+   "name": "Joella Jackson",
+   "key": "joella-jackson",
+   "performers": [
+    "joella-jackson"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:joris-voorn",
+   "name": "Joris Voorn",
+   "key": "joris-voorn",
+   "performers": [
+    "joris-voorn"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:julian-jeweil",
+   "name": "Julian Jeweil",
+   "key": "julian-jeweil",
+   "performers": [
+    "julian-jeweil"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:karenn-blawan-and-pariah",
+   "name": "Karenn (Blawan & Pariah)",
+   "key": "karenn-blawan-and-pariah",
+   "performers": [
+    "karenn-blawan-and-pariah"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:klangkuenstler",
+   "name": "Klangkuenstler",
+   "key": "klangkuenstler",
+   "performers": [
+    "klangkuenstler"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:len-faki",
+   "name": "Len Faki",
+   "key": "len-faki",
+   "performers": [
+    "len-faki"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:lucky-done-gone",
+   "name": "Lucky Done Gone",
+   "key": "lucky-done-gone",
+   "performers": [
+    "lucky-done-gone"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:maceo-plex",
+   "name": "Maceo Plex",
+   "key": "maceo-plex",
+   "performers": [
+    "maceo-plex"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:moxie",
+   "name": "Moxie",
+   "key": "moxie",
+   "performers": [
+    "moxie"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:nelly",
+   "name": "Nelly",
+   "key": "nelly",
+   "performers": [
+    "nelly"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:nina-kraviz",
+   "name": "Nina Kraviz",
+   "key": "nina-kraviz",
+   "performers": [
+    "nina-kraviz"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:oscar-mulero",
+   "name": "Oscar Mulero",
+   "key": "oscar-mulero",
+   "performers": [
+    "oscar-mulero"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:pan-pot",
+   "name": "Pan-Pot",
+   "key": "pan-pot",
+   "performers": [
+    "pan-pot"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:patrick-topping",
+   "name": "Patrick Topping",
+   "key": "patrick-topping",
+   "performers": [
+    "patrick-topping"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:quelza",
+   "name": "Quelza",
+   "key": "quelza",
+   "performers": [
+    "quelza"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:reiss",
+   "name": "Reiss",
+   "key": "reiss",
+   "performers": [
+    "reiss"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:sam-paganini",
+   "name": "Sam Paganini",
+   "key": "sam-paganini",
+   "performers": [
+    "sam-paganini"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:sandrien",
+   "name": "Sandrien",
+   "key": "sandrien",
+   "performers": [
+    "sandrien"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:secret-cinema",
+   "name": "Secret Cinema",
+   "key": "secret-cinema",
+   "performers": [
+    "secret-cinema"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:setaoc-mass-and-matrixxman",
+   "name": "Setaoc Mass & Matrixxman",
+   "key": "setaoc-mass-and-matrixxman",
+   "performers": [
+    "setaoc-mass-and-matrixxman"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:seth-troxler",
+   "name": "Seth Troxler",
+   "key": "seth-troxler",
+   "performers": [
+    "seth-troxler"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:silvi-loto",
+   "name": "Silvi Loto",
+   "key": "silvi-loto",
+   "performers": [
+    "silvi-loto"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:spekki-webu",
+   "name": "Spekki Webu",
+   "key": "spekki-webu",
+   "performers": [
+    "spekki-webu"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:tim-wolff",
+   "name": "Tim Wolff",
+   "key": "tim-wolff",
+   "performers": [
+    "tim-wolff"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:u-r-trax",
+   "name": "U.R. Trax",
+   "key": "u-r-trax",
+   "performers": [
+    "u-r-trax"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:under-black-helmet",
+   "name": "Under Black Helmet",
+   "key": "under-black-helmet",
+   "performers": [
+    "under-black-helmet"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:wallis",
+   "name": "Wallis",
+   "key": "wallis",
+   "performers": [
+    "wallis"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:adiel",
+   "name": "Adiel",
+   "key": "adiel",
+   "performers": [
+    "adiel"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:adriatique",
+   "name": "Adriatique",
+   "key": "adriatique",
+   "performers": [
+    "adriatique"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:alignment",
+   "name": "Alignment",
+   "key": "alignment",
+   "performers": [
+    "alignment"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:amelie-lens",
+   "name": "Amelie Lens",
+   "key": "amelie-lens",
+   "performers": [
+    "amelie-lens"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:ameme",
+   "name": "Amémé",
+   "key": "ameme",
+   "performers": [
+    "ameme"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:bart-skils",
+   "name": "Bart Skils",
+   "key": "bart-skils",
+   "performers": [
+    "bart-skils"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:bella",
+   "name": "Bella",
+   "key": "bella",
+   "performers": [
+    "bella"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:bullzeye",
+   "name": "Bullzeye",
+   "key": "bullzeye",
+   "performers": [
+    "bullzeye"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:chaos-in-the-cbd",
+   "name": "Chaos in the CBD",
+   "key": "chaos-in-the-cbd",
+   "performers": [
+    "chaos-in-the-cbd"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:charlie-sparks",
+   "name": "Charlie Sparks",
+   "key": "charlie-sparks",
+   "performers": [
+    "charlie-sparks"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:chloe-caillet",
+   "name": "Chloé Caillet",
+   "key": "chloe-caillet",
+   "performers": [
+    "chloe-caillet"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:chris-liebing-and-luke-slater",
+   "name": "Chris Liebing & Luke Slater",
+   "key": "chris-liebing-and-luke-slater",
+   "performers": [
+    "chris-liebing-and-luke-slater"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:chris-stussy",
+   "name": "Chris Stussy",
+   "key": "chris-stussy",
+   "performers": [
+    "chris-stussy"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:cincity",
+   "name": "Cincity",
+   "key": "cincity",
+   "performers": [
+    "cincity"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:daria-kolosova-and-etapp-kyle",
+   "name": "Daria Kolosova & Etapp Kyle",
+   "key": "daria-kolosova-and-etapp-kyle",
+   "performers": [
+    "daria-kolosova-and-etapp-kyle"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:ellen-allien",
+   "name": "Ellen Allien",
+   "key": "ellen-allien",
+   "performers": [
+    "ellen-allien"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:fafi-abdel-nour",
+   "name": "Fafi Abdel Nour",
+   "key": "fafi-abdel-nour",
+   "performers": [
+    "fafi-abdel-nour"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:freddy-k",
+   "name": "Freddy K",
+   "key": "freddy-k",
+   "performers": [
+    "freddy-k"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:honey-dijon",
+   "name": "Honey Dijon",
+   "key": "honey-dijon",
+   "performers": [
+    "honey-dijon"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:hot-since-82",
+   "name": "Hot Since 82",
+   "key": "hot-since-82",
+   "performers": [
+    "hot-since-82"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:i-hate-models",
+   "name": "I Hate Models",
+   "key": "i-hate-models",
+   "performers": [
+    "i-hate-models"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:ignez",
+   "name": "Ignez",
+   "key": "ignez",
+   "performers": [
+    "ignez"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:indira-paganotto",
+   "name": "Indira Paganotto",
+   "key": "indira-paganotto",
+   "performers": [
+    "indira-paganotto"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:joseph-capriati",
+   "name": "Joseph Capriati",
+   "key": "joseph-capriati",
+   "performers": [
+    "joseph-capriati"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:kevin-de-vries",
+   "name": "Kevin de Vries",
+   "key": "kevin-de-vries",
+   "performers": [
+    "kevin-de-vries"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:lee-ann-roberts",
+   "name": "Lee Ann Roberts",
+   "key": "lee-ann-roberts",
+   "performers": [
+    "lee-ann-roberts"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:ogazon",
+   "name": "Ogazón",
+   "key": "ogazon",
+   "performers": [
+    "ogazon"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:olympe",
+   "name": "Olympe",
+   "key": "olympe",
+   "performers": [
+    "olympe"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:paula-temple-and-snts",
+   "name": "Paula Temple & SNTS",
+   "key": "paula-temple-and-snts",
+   "performers": [
+    "paula-temple-and-snts"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:ph-project",
+   "name": "pH project",
+   "key": "ph-project",
+   "performers": [
+    "ph-project"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:quest",
+   "name": "Quest",
+   "key": "quest",
+   "performers": [
+    "quest"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:rebekah",
+   "name": "Rebekah",
+   "key": "rebekah",
+   "performers": [
+    "rebekah"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:regal",
+   "name": "Regal",
+   "key": "regal",
+   "performers": [
+    "regal"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:reinier-zonneveld-live",
+   "name": "Reinier Zonneveld (live)",
+   "key": "reinier-zonneveld-live",
+   "performers": [
+    "reinier-zonneveld-live"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:robert-hood",
+   "name": "Robert Hood",
+   "key": "robert-hood",
+   "performers": [
+    "robert-hood"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:rod",
+   "name": "ROD",
+   "key": "rod",
+   "performers": [
+    "rod"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:ryan-elliott",
+   "name": "Ryan Elliott",
+   "key": "ryan-elliott",
+   "performers": [
+    "ryan-elliott"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:sally-c",
+   "name": "Sally C",
+   "key": "sally-c",
+   "performers": [
+    "sally-c"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:sama",
+   "name": "SAMA",
+   "key": "sama",
+   "performers": [
+    "sama"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:samuel-deep",
+   "name": "Samuel Deep",
+   "key": "samuel-deep",
+   "performers": [
+    "samuel-deep"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:shinedoe-and-hemka",
+   "name": "Shinedoe & Hemka",
+   "key": "shinedoe-and-hemka",
+   "performers": [
+    "shinedoe-and-hemka"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:speedy-j",
+   "name": "Speedy J",
+   "key": "speedy-j",
+   "performers": [
+    "speedy-j"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:stephan-bodzin-live",
+   "name": "Stephan Bodzin (live)",
+   "key": "stephan-bodzin-live",
+   "performers": [
+    "stephan-bodzin-live"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:tale-of-us",
+   "name": "Tale Of Us",
+   "key": "tale-of-us",
+   "performers": [
+    "tale-of-us"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:tsha",
+   "name": "TSHA",
+   "key": "tsha",
+   "performers": [
+    "tsha"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2023:zenker-brothers",
+   "name": "Zenker Brothers",
+   "key": "zenker-brothers",
+   "performers": [
+    "zenker-brothers"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "unofficial_lineup",
+  "unofficial": true,
+  "source": {
+   "kind": "press",
+   "site": "thedjrevolution.com",
+   "url": "https://www.thedjrevolution.com/awakenings-summer-festival-2023-lineup/",
+   "title": "Huge 3-day schedule announced for Awakenings Summer Festival 2023",
+   "publisher": "The DJ Revolution",
+   "published": "2023-02-03",
+   "fetchedAt": "2026-11-27",
+   "fetchedVia": "exa",
+   "scope": "full",
+   "sha256": "0f3ee24d641f62f5468b436f5f2720a37c37b8417c18c225acaafb4d4b740a57",
+   "bytes": 3114
+  },
+  "captures": [
+   {
+    "page": "lineup",
+    "url": "https://www.thedjrevolution.com/awakenings-summer-festival-2023-lineup/",
+    "fetchedAt": "2026-11-27",
+    "sha256": "0f3ee24d641f62f5468b436f5f2720a37c37b8417c18c225acaafb4d4b740a57"
+   }
+  ]
+ }
+}

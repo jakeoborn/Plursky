@@ -1,0 +1,41 @@
+{
+  "id": "awakenings-2023",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "press",
+    "site": "thedjrevolution.com",
+    "url": "https://www.thedjrevolution.com/awakenings-summer-festival-2023-lineup/",
+    "title": "Huge 3-day schedule announced for Awakenings Summer Festival 2023",
+    "publisher": "The DJ Revolution",
+    "published": "2023-02-03",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "full",
+    "sha256": "0f3ee24d641f62f5468b436f5f2720a37c37b8417c18c225acaafb4d4b740a57",
+    "bytes": 3114
+  },
+  "printed": {
+    "days": {
+      "1": "Fri 7 th July",
+      "2": "Sat 8 th July",
+      "3": "Sun 9 th July"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "awakenings",
+    "year": 2023,
+    "lifecycle": "partly_canceled",
+    "dates": "2023-07-07..2023-07-09",
+    "evidence": "https://edmhousenetwork.com/this-was-awakenings-2023/",
+    "published": "2023-07-20"
+  },
+  "note": "The full lineup by day as announced on 3 February 2023; later changes are not shown. The festival called off Sunday 9 July on the morning itself because of a storm warning, so the Sunday acts listed here did not play.",
+  "verified": {
+    "billings": 112,
+    "inSourceText": true
+  },
+  "stageOrder": [],
+  "dropped": []
+}

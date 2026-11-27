@@ -1,0 +1,40 @@
+{
+  "id": "awakenings-2018",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "press",
+    "site": "ra.co",
+    "url": "https://ra.co/news/68622",
+    "title": "Awakenings announces lineup for 2018",
+    "publisher": "Resident Advisor",
+    "published": "2018-01-16",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "partial",
+    "sha256": "9d854ee0fd5a3818f3491d154e57f8c674ea2391cf9c98bb9a5ac56bb796511c",
+    "bytes": 1892
+  },
+  "printed": {
+    "days": {
+      "1": "Sat, Jun 30, 2018",
+      "2": "Sun, Jul 1, 2018"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "awakenings",
+    "year": 2018,
+    "lifecycle": "occurred",
+    "dates": "2018-06-30..2018-07-01",
+    "evidence": "https://www.ravejungle.com/2018/07/02/awakenings-festival-2018-warm-and-successful/",
+    "published": "2018-07-02"
+  },
+  "note": "The two day listings attached to Resident Advisor's lineup announcement of 16 January 2018; they name only the artists tagged in each listing, split back-to-back pairs into single names, and leave out some billed acts (Sven Väth and Kölsch among them), so this is not the complete lineup.",
+  "verified": {
+    "billings": 95,
+    "inSourceText": true
+  },
+  "stageOrder": [],
+  "dropped": []
+}

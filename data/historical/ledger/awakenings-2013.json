@@ -1,0 +1,48 @@
+{
+  "id": "awakenings-2013",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "press",
+    "site": "3voor12.vpro.nl",
+    "url": "https://3voor12.vpro.nl/artikelen/hooikoorts-awakenings-2013-maakt-line-up-per-area-bekend",
+    "title": "Hooikoorts: Awakenings 2013 maakt line-up per area bekend",
+    "publisher": "VPRO 3voor12",
+    "published": "2013-03-25",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "full",
+    "sha256": "ea7c916ab30befb419472b35b583963c8041e345d04e43673017c8becb95b90d",
+    "bytes": 3165
+  },
+  "printed": {
+    "days": {
+      "1": "Zaterdag 29 juni"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "awakenings",
+    "year": 2013,
+    "lifecycle": "occurred",
+    "dates": "2013-06-29..2013-06-29",
+    "evidence": "https://www.nu.nl/overig/3513920/awakenings-walhalla-voor-techno-djs.html",
+    "published": "2013-06-30"
+  },
+  "note": "The full lineup per area as announced on 25 March 2013, printed as a run of names without separators, so the split into acts is by hand; the rows follow the per-area list (the article's alphabetical list repeats the same acts), and later changes are not shown.",
+  "verified": {
+    "billings": 60,
+    "inSourceText": true
+  },
+  "stageOrder": [
+    "AREA V",
+    "AREA W",
+    "AREA X",
+    "AREA Y",
+    "AREA Z",
+    "AREA A",
+    "AREA B",
+    "AREA C"
+  ],
+  "dropped": []
+}

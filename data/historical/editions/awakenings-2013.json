@@ -1,0 +1,918 @@
+{
+ "id": "awakenings-2013",
+ "festivalId": "awakenings",
+ "name": "Awakenings Festival 2013",
+ "year": 2013,
+ "timezone": "Europe/Amsterdam",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2013-06-29",
+   "label": "Saturday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "awakenings-2013:area-v",
+   "name": "AREA V"
+  },
+  {
+   "id": "awakenings-2013:area-w",
+   "name": "AREA W"
+  },
+  {
+   "id": "awakenings-2013:area-x",
+   "name": "AREA X"
+  },
+  {
+   "id": "awakenings-2013:area-y",
+   "name": "AREA Y"
+  },
+  {
+   "id": "awakenings-2013:area-z",
+   "name": "AREA Z"
+  },
+  {
+   "id": "awakenings-2013:area-a",
+   "name": "AREA A"
+  },
+  {
+   "id": "awakenings-2013:area-b",
+   "name": "AREA B"
+  },
+  {
+   "id": "awakenings-2013:area-c",
+   "name": "AREA C"
+  }
+ ],
+ "artists": [
+  {
+   "id": "awakenings-2013:carl-cox",
+   "name": "Carl Cox",
+   "key": "carl-cox",
+   "performers": [
+    "carl-cox"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-v"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:joris-voorn",
+   "name": "Joris Voorn",
+   "key": "joris-voorn",
+   "performers": [
+    "joris-voorn"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-v"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:kevin-arnemann",
+   "name": "Kevin Arnemann",
+   "key": "kevin-arnemann",
+   "performers": [
+    "kevin-arnemann"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-v"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:len-faki",
+   "name": "Len Faki",
+   "key": "len-faki",
+   "performers": [
+    "len-faki"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-v"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:nina-kraviz",
+   "name": "Nina Kraviz",
+   "key": "nina-kraviz",
+   "performers": [
+    "nina-kraviz"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-v"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:pan-pot",
+   "name": "Pan-Pot",
+   "key": "pan-pot",
+   "performers": [
+    "pan-pot"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-v"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:sven-vath",
+   "name": "Sven Väth",
+   "key": "sven-vath",
+   "performers": [
+    "sven-vath"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-v"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:fritz-kalkbrenner-live",
+   "name": "Fritz Kalkbrenner (live)",
+   "key": "fritz-kalkbrenner-live",
+   "performers": [
+    "fritz-kalkbrenner-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-w"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:gaiser-live",
+   "name": "Gaiser (live)",
+   "key": "gaiser-live",
+   "performers": [
+    "gaiser-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-w"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:gui-boratto-live",
+   "name": "Gui Boratto (live)",
+   "key": "gui-boratto-live",
+   "performers": [
+    "gui-boratto-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-w"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:joran-van-pol",
+   "name": "Joran van Pol",
+   "key": "joran-van-pol",
+   "performers": [
+    "joran-van-pol"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-w"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:loco-dice",
+   "name": "Loco Dice",
+   "key": "loco-dice",
+   "performers": [
+    "loco-dice"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-w"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:marco-carola",
+   "name": "Marco Carola",
+   "key": "marco-carola",
+   "performers": [
+    "marco-carola"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-w"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:melon",
+   "name": "Melon",
+   "key": "melon",
+   "performers": [
+    "melon"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-w"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:ben-ufo",
+   "name": "Ben UFO",
+   "key": "ben-ufo",
+   "performers": [
+    "ben-ufo"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-x"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:dj-rush",
+   "name": "DJ Rush",
+   "key": "dj-rush",
+   "performers": [
+    "dj-rush"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-x"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:green-velvet",
+   "name": "Green Velvet",
+   "key": "green-velvet",
+   "performers": [
+    "green-velvet"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-x"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:jeroen-search",
+   "name": "Jeroen Search",
+   "key": "jeroen-search",
+   "performers": [
+    "jeroen-search"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-x"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:oscar-mulero-and-reeko",
+   "name": "Oscar Mulero & Reeko",
+   "key": "oscar-mulero-and-reeko",
+   "performers": [
+    "oscar-mulero-and-reeko"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-x"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:speedy-j",
+   "name": "Speedy J",
+   "key": "speedy-j",
+   "performers": [
+    "speedy-j"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-x"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:the-advent-live",
+   "name": "The Advent (live)",
+   "key": "the-advent-live",
+   "performers": [
+    "the-advent-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-x"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:vitalic-live",
+   "name": "Vitalic (live)",
+   "key": "vitalic-live",
+   "performers": [
+    "vitalic-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-x"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:ben-klock-and-marcel-dettmann",
+   "name": "Ben Klock & Marcel Dettmann",
+   "key": "ben-klock-and-marcel-dettmann",
+   "performers": [
+    "ben-klock-and-marcel-dettmann"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-y"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:blawan",
+   "name": "Blawan",
+   "key": "blawan",
+   "performers": [
+    "blawan"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-y"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:dave-clarke",
+   "name": "Dave Clarke",
+   "key": "dave-clarke",
+   "performers": [
+    "dave-clarke"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-y"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:jasper-wolff-and-maarten-mittendorf",
+   "name": "Jasper Wolff & Maarten Mittendorf",
+   "key": "jasper-wolff-and-maarten-mittendorf",
+   "performers": [
+    "jasper-wolff-and-maarten-mittendorf"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-y"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:jeff-mills",
+   "name": "Jeff Mills",
+   "key": "jeff-mills",
+   "performers": [
+    "jeff-mills"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-y"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:modeselektor-live",
+   "name": "Modeselektor (live)",
+   "key": "modeselektor-live",
+   "performers": [
+    "modeselektor-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-y"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:peter-van-hoesen",
+   "name": "Peter Van Hoesen",
+   "key": "peter-van-hoesen",
+   "performers": [
+    "peter-van-hoesen"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-y"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:abstract-division",
+   "name": "Abstract Division",
+   "key": "abstract-division",
+   "performers": [
+    "abstract-division"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:fatima-hajji",
+   "name": "Fatima Hajji",
+   "key": "fatima-hajji",
+   "performers": [
+    "fatima-hajji"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:o-b-i-and-viperxxl",
+   "name": "O.B.I. & ViperXXL",
+   "key": "o-b-i-and-viperxxl",
+   "performers": [
+    "o-b-i-and-viperxxl"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:pet-trio-pet-duo-and-miss-djax",
+   "name": "PET Trio (PET DUO & Miss Djax)",
+   "key": "pet-trio-pet-duo-and-miss-djax",
+   "performers": [
+    "pet-trio-pet-duo-and-miss-djax"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:pink-noise-fernanda-martins-and-candy-cox",
+   "name": "Pink Noise (Fernanda Martins & Candy Cox)",
+   "key": "pink-noise-fernanda-martins-and-candy-cox",
+   "performers": [
+    "pink-noise-fernanda-martins-and-candy-cox"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:tim-wolff-and-invite",
+   "name": "Tim Wolff & Invite",
+   "key": "tim-wolff-and-invite",
+   "performers": [
+    "tim-wolff-and-invite"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:triple-religion-arkus-p-boris-s-and-robert-natus",
+   "name": "Triple Religion (Arkus P, Boris S & Robert Natus)",
+   "key": "triple-religion-arkus-p-boris-s-and-robert-natus",
+   "performers": [
+    "triple-religion-arkus-p-boris-s-and-robert-natus"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:underdogz-lukas-and-malke",
+   "name": "Underdogz (Lukas & Malke)",
+   "key": "underdogz-lukas-and-malke",
+   "performers": [
+    "underdogz-lukas-and-malke"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-z"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:dj-koze",
+   "name": "DJ Koze",
+   "key": "dj-koze",
+   "performers": [
+    "dj-koze"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:gesaffelstein",
+   "name": "Gesaffelstein",
+   "key": "gesaffelstein",
+   "performers": [
+    "gesaffelstein"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:ivan-smagghe",
+   "name": "Ivan Smagghe",
+   "key": "ivan-smagghe",
+   "performers": [
+    "ivan-smagghe"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:james-holden",
+   "name": "James Holden",
+   "key": "james-holden",
+   "performers": [
+    "james-holden"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:mirella-kroes",
+   "name": "Mirella Kroes",
+   "key": "mirella-kroes",
+   "performers": [
+    "mirella-kroes"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:miss-kittin-live",
+   "name": "Miss Kittin (live)",
+   "key": "miss-kittin-live",
+   "performers": [
+    "miss-kittin-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:trentem-ller-dj-set",
+   "name": "Trentemøller (dj set)",
+   "key": "trentem-ller-dj-set",
+   "performers": [
+    "trentem-ller-dj-set"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-a"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:adam-beyer",
+   "name": "Adam Beyer",
+   "key": "adam-beyer",
+   "performers": [
+    "adam-beyer"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-b"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:alan-fitzpatrick",
+   "name": "Alan Fitzpatrick",
+   "key": "alan-fitzpatrick",
+   "performers": [
+    "alan-fitzpatrick"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-b"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:bart-skils",
+   "name": "Bart Skils",
+   "key": "bart-skils",
+   "performers": [
+    "bart-skils"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-b"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:ben-sims-live",
+   "name": "Ben Sims (live)",
+   "key": "ben-sims-live",
+   "performers": [
+    "ben-sims-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-b"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:ida-engberg",
+   "name": "Ida Engberg",
+   "key": "ida-engberg",
+   "performers": [
+    "ida-engberg"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-b"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:joseph-capriati",
+   "name": "Joseph Capriati",
+   "key": "joseph-capriati",
+   "performers": [
+    "joseph-capriati"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-b"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:manic-brothers",
+   "name": "Manic Brothers",
+   "key": "manic-brothers",
+   "performers": [
+    "manic-brothers"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-b"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:nicole-moudaber",
+   "name": "Nicole Moudaber",
+   "key": "nicole-moudaber",
+   "performers": [
+    "nicole-moudaber"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-b"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:awanto-3-live",
+   "name": "Awanto 3 (live)",
+   "key": "awanto-3-live",
+   "performers": [
+    "awanto-3-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-c"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:extrawelt-live",
+   "name": "Extrawelt (live)",
+   "key": "extrawelt-live",
+   "performers": [
+    "extrawelt-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-c"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:keinemusik-adam-port-and-me-rampa-david-mayer",
+   "name": "Keinemusik (Adam Port, &ME, Rampa, David Mayer)",
+   "key": "keinemusik-adam-port-and-me-rampa-david-mayer",
+   "performers": [
+    "keinemusik-adam-port-and-me-rampa-david-mayer"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-c"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:mathias-kaden",
+   "name": "Mathias Kaden",
+   "key": "mathias-kaden",
+   "performers": [
+    "mathias-kaden"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-c"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:max-cooper-live",
+   "name": "Max Cooper (live)",
+   "key": "max-cooper-live",
+   "performers": [
+    "max-cooper-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-c"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:noir",
+   "name": "Noir",
+   "key": "noir",
+   "performers": [
+    "noir"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-c"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:oliver-koletzki",
+   "name": "Oliver Koletzki",
+   "key": "oliver-koletzki",
+   "performers": [
+    "oliver-koletzki"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-c"
+    }
+   ]
+  },
+  {
+   "id": "awakenings-2013:some-chemistry-and-la-vondel-and-me-n-u-live",
+   "name": "Some Chemistry & La Vondèl & ME.N.U. (live)",
+   "key": "some-chemistry-and-la-vondel-and-me-n-u-live",
+   "performers": [
+    "some-chemistry-and-la-vondel-and-me-n-u-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "awakenings-2013:area-c"
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "unofficial_lineup",
+  "unofficial": true,
+  "source": {
+   "kind": "press",
+   "site": "3voor12.vpro.nl",
+   "url": "https://3voor12.vpro.nl/artikelen/hooikoorts-awakenings-2013-maakt-line-up-per-area-bekend",
+   "title": "Hooikoorts: Awakenings 2013 maakt line-up per area bekend",
+   "publisher": "VPRO 3voor12",
+   "published": "2013-03-25",
+   "fetchedAt": "2026-11-27",
+   "fetchedVia": "exa",
+   "scope": "full",
+   "sha256": "ea7c916ab30befb419472b35b583963c8041e345d04e43673017c8becb95b90d",
+   "bytes": 3165
+  },
+  "captures": [
+   {
+    "page": "lineup",
+    "url": "https://3voor12.vpro.nl/artikelen/hooikoorts-awakenings-2013-maakt-line-up-per-area-bekend",
+    "fetchedAt": "2026-11-27",
+    "sha256": "ea7c916ab30befb419472b35b583963c8041e345d04e43673017c8becb95b90d"
+   }
+  ]
+ }
+}

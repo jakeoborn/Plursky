@@ -1,0 +1,49 @@
+{
+  "id": "awakenings-2015",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "press",
+    "site": "3voor12.vpro.nl",
+    "url": "https://3voor12.vpro.nl/artikelen/hooikoorts-awakenings-2015-maakt-hele-programma-bekend",
+    "title": "Hooikoorts: Awakenings 2015 maakt hele programma bekend",
+    "publisher": "VPRO 3voor12",
+    "published": "2015-01-23",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "full",
+    "sha256": "0ff59b4fd59035cc40b29ac8822dd7b0ffdb0d7de5912e287d99114ca35d63ed",
+    "bytes": 2499
+  },
+  "printed": {
+    "days": {
+      "1": "LINE-UP ZATERDAG",
+      "2": "LINE-UP ZONDAG"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "awakenings",
+    "year": 2015,
+    "lifecycle": "occurred",
+    "dates": "2015-06-27..2015-06-28",
+    "evidence": "https://www.partyscene.nl/interviews/161607/rocco-veenboer-awakenings-gewoon-effe-lekker-doorpakken",
+    "published": "2015-07-03"
+  },
+  "note": "The full lineup by day and area as announced on 23 January 2015; later changes (such as the Sunday hard-techno area added afterwards) are not shown.",
+  "verified": {
+    "billings": 93,
+    "inSourceText": true
+  },
+  "stageOrder": [
+    "Area A",
+    "Area B",
+    "Area C",
+    "Area V",
+    "Area W",
+    "Area X",
+    "Area Y",
+    "Area Z"
+  ],
+  "dropped": []
+}

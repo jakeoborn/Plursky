@@ -1,0 +1,40 @@
+{
+  "id": "awakenings-2017",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "press",
+    "site": "ra.co",
+    "url": "https://ra.co/news/37954",
+    "title": "Sven Väth, Ben Klock, Ricardo Villalobos play Awakenings Festival 2017",
+    "publisher": "Resident Advisor",
+    "published": "2017-01-24",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "partial",
+    "sha256": "0cdd0786b423319468c354ea2f0f90a11ff30eeb70fb1f88ae2a4e861b548ae5",
+    "bytes": 2771
+  },
+  "printed": {
+    "days": {
+      "1": "Sat, Jun 24, 2017",
+      "2": "Sun, Jun 25, 2017"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "awakenings",
+    "year": 2017,
+    "lifecycle": "occurred",
+    "dates": "2017-06-24..2017-06-25",
+    "evidence": "https://www.deephouseamsterdam.com/party-report-awakenings-2017/",
+    "published": "2017-07-04"
+  },
+  "note": "The two day listings attached to Resident Advisor's lineup announcement of 24 January 2017; they name only the artists tagged in each listing, split back-to-back pairs into single names, and leave out some billed acts (Sven Väth and The Black Madonna among them), so this is not the complete lineup.",
+  "verified": {
+    "billings": 97,
+    "inSourceText": true
+  },
+  "stageOrder": [],
+  "dropped": []
+}
