@@ -5002,6 +5002,7 @@ function MomentCard({
   };
   return React.createElement("div", {
     ref: cardRef,
+    "data-moment-card": "",
     style: {
       background: "var(--s2)",
       boxShadow: "var(--e1)",
@@ -5047,7 +5048,8 @@ function MomentCard({
   }, "LOADING…"))), moment.text && React.createElement("div", {
     className: "duo-headline",
     style: {
-      color: "var(--ink)"
+      color: "var(--ink)",
+      overflowWrap: "anywhere"
     }
   }, moment.text), moment.kind === "checkin" && (() => {
     var st = stage || (moment.stageId ? STAGES.find(s => s.id === moment.stageId) : null);

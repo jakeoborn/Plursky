@@ -3521,7 +3521,7 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
     onUpdate?.(moment, { night: n, artistId: null, tagSource: "manual", autoTagged: false });
   };
   return (
-    <div ref={cardRef} style={{
+    <div ref={cardRef} data-moment-card="" style={{
       background: "var(--s2)", boxShadow: "var(--e1)", border: "none",
       borderRadius: "var(--rad-md)", padding: 12, marginBottom: 10,
     }}>
@@ -3550,7 +3550,7 @@ function MomentCard({ moment, idx, total, onDelete, onArtistClick, onUpdate, sav
         )
       )}
       {moment.text && (
-        <div className="duo-headline" style={{ color: "var(--ink)" }}>
+        <div className="duo-headline" style={{ color: "var(--ink)", overflowWrap: "anywhere" }}>
           {moment.text}
         </div>
       )}

@@ -34,21 +34,14 @@ const FALLBACK = {
   "day-zero-tulum-2027": "no reuse-cleared photo (Commons none, site has no press kit); letter tile until one exists",
   // Commons author (Lucas Gavi) and embedded EXIF author (Rafael Deprost) disagree; no owner guessed.
   "tomorrowland-winter-2027": "Commons author and EXIF author conflict; letter tile until resolved",
-  // Jake 2026-11-15: uploader licensed as own work but the description names another photographer.
-  "time-warp-2027": "Commons licensor is not the named photographer; letter tile until an author is confirmed",
-  "sonar-2027": "Commons licensor is not the named photographer; letter tile until an author is confirmed",
-  // EDC Las Vegas 2027 (added 2026-11-16): no 2027 photo has been reviewed, and
-  // the 2026 card is "reuse terms not granted" interim art, so it is not
-  // carried forward. Letter tile until a reuse-cleared photo is found.
-  "edc-lv-2027": "no reuse-cleared 2027 photo; 2026 card art is not licensed for reuse",
   // Added 2026-11-15 by festival batch 6, after photo pass 2;
   // each needs an official tile in data/festival-art.js.
   "lollapalooza-india-2027": "official art not fetched yet; tile owed before the flip",
-  "bottlerock-2027": "official art not fetched yet; tile owed before the flip",
   "suenos-2027": "official art not fetched yet; tile owed before the flip",
   "bass-canyon-2027": "official art not fetched yet; tile owed before the flip",
   "medusa-2027": "official art not fetched yet; tile owed before the flip",
   "project-glow-2027": "official art not fetched yet; tile owed before the flip",
+  // Jake 2026-11-26, Slack 12:33 CT, "whatever you recommend" (Instinct recommended the drop): the only reuse-cleared photo (#613) was Beyond Wonderland SoCal 2010, the wrong edition.
   "beyond-wonderland-midwest-2027": "official art not fetched yet; tile owed before the flip",
   "lost-in-dreams-2027": "official art not fetched yet; tile owed before the flip",
   "wasteland-2027": "official art not fetched yet; tile owed before the flip",

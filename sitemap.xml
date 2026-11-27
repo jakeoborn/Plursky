@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://plursky.com/</loc>
-    <lastmod>2026-11-26</lastmod>
+    <lastmod>2026-11-27</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
@@ -192,12 +192,12 @@
   </url>
   <url>
     <loc>https://plursky.com/terms.html</loc>
-    <lastmod>2026-09-16</lastmod>
+    <lastmod>2026-11-26</lastmod>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://plursky.com/privacy.html</loc>
-    <lastmod>2026-11-25</lastmod>
+    <lastmod>2026-11-26</lastmod>
     <priority>0.3</priority>
   </url>
 </urlset>
