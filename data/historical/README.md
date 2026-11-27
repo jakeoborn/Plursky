@@ -754,6 +754,44 @@ The festivals' later past-highlights pages (/past-highlights/<year>-lineup/)
 hold the lineup only as a poster image, so they are graphic sources and go
 through the review path above, not a page extractor.
 
+Time Warp Germany (Mannheim), 2012 to 2025: the festival's own lineup page
+on time-warp.de, one per edition (2020 was canceled).
+
+    node scripts/historical/extract-timewarp-lineup.mjs <edition-id>
+    # writes sheets/<id>.lineup.tsv (billing, night) and the ledger;
+    # lineup_only, no stages and no times: the pages print neither
+
+The site changed template twice, so `TW_LINEUP_EDITIONS` gives each edition
+its page, its `format` and the title the page must carry, and
+timewarp-lineup.mjs has one reader per format:
+
+- **timewarp-mannheim** (2012, 2013; /mannheim/line-up/). A heading names
+  the year ("Time Warp 2012", "Mannheim Line Up 2013"); acts are listed in
+  DJs, Live and VJs sections. Live acts are billed "(Live)"; VJs are visual
+  artists, not music acts, and go to the ledger's `leftOut`. 2012's meta
+  description prints the night; 2013's page prints none, so its night is the
+  first day of the census's dated run for the year, quoted in the ledger's
+  `datesFrom` and checked against the census by the test.
+- **timewarp-classic** (2014 to 2018; /germany/line-up/). The event menu
+  prints the Germany edition's night ("07 Apr 2018") only until the festival
+  has happened ("THANK YOU" afterwards), and the page lists every act once
+  under "In alphabetical order" ("In alphabetischer Reihenfolge" on the German
+  page). The menu's night must be a real date in the edition's year.
+- **timewarp-subsite** (2019, 2021 to 2025). A header names the edition
+  (Germany, with the year's two digits in 2021 and 2022), its nights and
+  Mannheim; then one list per night, in date order, headed by its weekday
+  ("Friday A-Z"), by the German weekday and date ("Fr 05.04.24"), or, when
+  the edition has a single night, by nothing or "IN ALPHABETICAL ORDER".
+  Live sets are billed "(Live)".
+
+Every reader throws on a page of another year, a night that is not a real
+date, an empty list, an act with no name or an act listed twice. One address
+served several years (/germany/line-up/ from 2014 to 2018), so each entry
+lists captures only in its own `window`: the month before the night for a
+page that stops printing it afterwards, the weeks after it for a page that
+keeps its header. The latest valid capture in the window is used; where that
+capture predates the festival, the edition's note says so and when.
+
 Then, for any path:
 
     node scripts/historical/build-editions.mjs

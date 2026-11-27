@@ -1,0 +1,598 @@
+{
+ "id": "time-warp-2014",
+ "festivalId": "time-warp",
+ "name": "Time Warp Germany 2014",
+ "year": 2014,
+ "timezone": "Europe/Berlin",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2014-04-05",
+   "label": "Saturday"
+  }
+ ],
+ "stages": [],
+ "artists": [
+  {
+   "id": "time-warp-2014:adam-beyer",
+   "name": "Adam Beyer",
+   "key": "adam-beyer",
+   "performers": [
+    "adam-beyer"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2014:ben-klock",
+   "name": "Ben Klock",
+   "key": "ben-klock",
+   "performers": [
+    "ben-klock"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2014:bjorn-hummerich",
+   "name": "Björn Hummerich",
+   "key": "bjorn-hummerich",
+   "performers": [
+    "bjorn-hummerich"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2014:bunte-bummler-live",
+   "name": "Bunte Bummler (live)",
+   "key": "bunte-bummler-live",
+   "performers": [
+    "bunte-bummler-live"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2014:carl-cox",
+   "name": "Carl Cox",
+   "key": "carl-cox",
+   "performers": [
+    "carl-cox"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2014:chris-liebing",
+   "name": "Chris Liebing",
+   "key": "chris-liebing",
+   "performers": [
+    "chris-liebing"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2014:chris-wood-and-meat",
+   "name": "Chris Wood & Meat",
+   "key": "chris-wood-and-meat",
+   "performers": [
+    "chris-wood-and-meat"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2014:daniel-schlender",
+   "name": "Daniel Schlender",
+   "key": "daniel-schlender",
+   "performers": [
+    "daniel-schlender"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2014:david-nicolas-and-sebastian-werle",
+   "name": "David Nicolas & Sebastian Werle",
+   "key": "david-nicolas-and-sebastian-werle",
+   "performers": [
+    "david-nicolas-and-sebastian-werle"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2014:dubfire",
+   "name": "Dubfire",
+   "key": "dubfire",
+   "performers": [
+    "dubfire"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2014:ernesto-ferreyra-and-mirko-loko",
+   "name": "Ernesto Ferreyra & Mirko Loko",
+   "key": "ernesto-ferreyra-and-mirko-loko",
+   "performers": [
+    "ernesto-ferreyra-and-mirko-loko"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2014:gregor-tresher-live",
+   "name": "Gregor Tresher (live)",
+   "key": "gregor-tresher-live",
+   "performers": [
+    "gregor-tresher-live"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2014:ilario-alicante",
+   "name": "Ilario Alicante",
+   "key": "ilario-alicante",
+   "performers": [
+    "ilario-alicante"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2014:jamie-jones",
+   "name": "Jamie Jones",
+   "key": "jamie-jones",
+   "performers": [
+    "jamie-jones"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2014:john-digweed",
+   "name": "John Digweed",
+   "key": "john-digweed",
+   "performers": [
+    "john-digweed"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2014:joseph-capriati",
+   "name": "Joseph Capriati",
+   "key": "joseph-capriati",
+   "performers": [
+    "joseph-capriati"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2014:josh-wink",
+   "name": "Josh Wink",
+   "key": "josh-wink",
+   "performers": [
+    "josh-wink"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2014:karotte",
+   "name": "Karotte",
+   "key": "karotte",
+   "performers": [
+    "karotte"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2014:laurent-garnier",
+   "name": "Laurent Garnier",
+   "key": "laurent-garnier",
+   "performers": [
+    "laurent-garnier"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2014:loco-dice",
+   "name": "Loco Dice",
+   "key": "loco-dice",
+   "performers": [
+    "loco-dice"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2014:luciano",
+   "name": "Luciano",
+   "key": "luciano",
+   "performers": [
+    "luciano"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2014:magda",
+   "name": "Magda",
+   "key": "magda",
+   "performers": [
+    "magda"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2014:marcel-dettmann",
+   "name": "Marcel Dettmann",
+   "key": "marcel-dettmann",
+   "performers": [
+    "marcel-dettmann"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2014:marco-carola",
+   "name": "Marco Carola",
+   "key": "marco-carola",
+   "performers": [
+    "marco-carola"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2014:monika-kruse",
+   "name": "Monika Kruse",
+   "key": "monika-kruse",
+   "performers": [
+    "monika-kruse"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2014:moonbootica",
+   "name": "Moonbootica",
+   "key": "moonbootica",
+   "performers": [
+    "moonbootica"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2014:nick-curly",
+   "name": "Nick Curly",
+   "key": "nick-curly",
+   "performers": [
+    "nick-curly"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2014:oliver-koletzki",
+   "name": "Oliver Koletzki",
+   "key": "oliver-koletzki",
+   "performers": [
+    "oliver-koletzki"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2014:pan-pot",
+   "name": "Pan-Pot",
+   "key": "pan-pot",
+   "performers": [
+    "pan-pot"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2014:recondite-live",
+   "name": "Recondite (live)",
+   "key": "recondite-live",
+   "performers": [
+    "recondite-live"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2014:ricardo-villalobos",
+   "name": "Ricardo Villalobos",
+   "key": "ricardo-villalobos",
+   "performers": [
+    "ricardo-villalobos"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2014:richie-hawtin",
+   "name": "Richie Hawtin",
+   "key": "richie-hawtin",
+   "performers": [
+    "richie-hawtin"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2014:robert-dietz",
+   "name": "Robert Dietz",
+   "key": "robert-dietz",
+   "performers": [
+    "robert-dietz"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2014:sasch-bbc",
+   "name": "Sasch BBC",
+   "key": "sasch-bbc",
+   "performers": [
+    "sasch-bbc"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2014:scan-x",
+   "name": "Scan X",
+   "key": "scan-x",
+   "performers": [
+    "scan-x"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2014:seebase",
+   "name": "Seebase",
+   "key": "seebase",
+   "performers": [
+    "seebase"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2014:seth-troxler",
+   "name": "Seth Troxler",
+   "key": "seth-troxler",
+   "performers": [
+    "seth-troxler"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2014:sonja-moonear",
+   "name": "Sonja Moonear",
+   "key": "sonja-moonear",
+   "performers": [
+    "sonja-moonear"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2014:steffen-baumann",
+   "name": "Steffen Baumann",
+   "key": "steffen-baumann",
+   "performers": [
+    "steffen-baumann"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2014:steffen-deux",
+   "name": "Steffen Deux",
+   "key": "steffen-deux",
+   "performers": [
+    "steffen-deux"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2014:sven-vath",
+   "name": "Sven Väth",
+   "key": "sven-vath",
+   "performers": [
+    "sven-vath"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2014:tale-of-us",
+   "name": "Tale of Us",
+   "key": "tale-of-us",
+   "performers": [
+    "tale-of-us"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2014:tini",
+   "name": "tINI",
+   "key": "tini",
+   "performers": [
+    "tini"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "official_lineup_html",
+  "official": "http://www.time-warp.de/germany/line-up/index_ger.html",
+  "captures": [
+   {
+    "page": "lineup",
+    "archivedUrl": "https://web.archive.org/web/20140403223236/http://www.time-warp.de/germany/line-up/index_ger.html",
+    "captureTimestamp": "20140403223236",
+    "sha256": "fe0dec6293e3f900ffcf8aef1d3408e2bf80eb688f092a20e165394d20bdfe7a"
+   }
+  ]
+ },
+ "notes": [
+  {
+   "asOf": "2026-11-27",
+   "text": "The lineup as the festival's own page printed it on 3 April 2014, two days before the festival. Late changes after that day are not shown.",
+   "source": "https://web.archive.org/web/20140403223236/http://www.time-warp.de/germany/line-up/index_ger.html"
+  }
+ ]
+}

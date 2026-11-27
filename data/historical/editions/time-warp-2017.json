@@ -1,0 +1,559 @@
+{
+ "id": "time-warp-2017",
+ "festivalId": "time-warp",
+ "name": "Time Warp Germany 2017",
+ "year": 2017,
+ "timezone": "Europe/Berlin",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2017-04-01",
+   "label": "Saturday"
+  }
+ ],
+ "stages": [],
+ "artists": [
+  {
+   "id": "time-warp-2017:and-me",
+   "name": "&ME",
+   "key": "and-me",
+   "performers": [
+    "and-me"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2017:adam-beyer",
+   "name": "Adam Beyer",
+   "key": "adam-beyer",
+   "performers": [
+    "adam-beyer"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2017:adriatique",
+   "name": "Adriatique",
+   "key": "adriatique",
+   "performers": [
+    "adriatique"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2017:bunte-bummler",
+   "name": "Bunte Bummler",
+   "key": "bunte-bummler",
+   "performers": [
+    "bunte-bummler"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2017:butch",
+   "name": "Butch",
+   "key": "butch",
+   "performers": [
+    "butch"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2017:carl-cox",
+   "name": "Carl Cox",
+   "key": "carl-cox",
+   "performers": [
+    "carl-cox"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2017:chris-liebing",
+   "name": "Chris Liebing",
+   "key": "chris-liebing",
+   "performers": [
+    "chris-liebing"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2017:chris-wood-and-meat",
+   "name": "Chris Wood & MEAT",
+   "key": "chris-wood-and-meat",
+   "performers": [
+    "chris-wood-and-meat"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2017:dixon",
+   "name": "Dixon",
+   "key": "dixon",
+   "performers": [
+    "dixon"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2017:dubfire",
+   "name": "Dubfire",
+   "key": "dubfire",
+   "performers": [
+    "dubfire"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2017:extrawelt",
+   "name": "Extrawelt",
+   "key": "extrawelt",
+   "performers": [
+    "extrawelt"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2017:fabio-florido",
+   "name": "Fabio Florido",
+   "key": "fabio-florido",
+   "performers": [
+    "fabio-florido"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2017:jackmaster",
+   "name": "Jackmaster",
+   "key": "jackmaster",
+   "performers": [
+    "jackmaster"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2017:jamie-jones",
+   "name": "Jamie Jones",
+   "key": "jamie-jones",
+   "performers": [
+    "jamie-jones"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2017:joseph-capriati",
+   "name": "Joseph Capriati",
+   "key": "joseph-capriati",
+   "performers": [
+    "joseph-capriati"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2017:karotte",
+   "name": "Karotte",
+   "key": "karotte",
+   "performers": [
+    "karotte"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2017:klaudia-gawlas",
+   "name": "Klaudia Gawlas",
+   "key": "klaudia-gawlas",
+   "performers": [
+    "klaudia-gawlas"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2017:loco-dice",
+   "name": "Loco Dice",
+   "key": "loco-dice",
+   "performers": [
+    "loco-dice"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2017:luciano",
+   "name": "Luciano",
+   "key": "luciano",
+   "performers": [
+    "luciano"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2017:maceo-plex",
+   "name": "Maceo Plex",
+   "key": "maceo-plex",
+   "performers": [
+    "maceo-plex"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2017:marco-carola",
+   "name": "Marco Carola",
+   "key": "marco-carola",
+   "performers": [
+    "marco-carola"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2017:mathias-kaden",
+   "name": "Mathias Kaden",
+   "key": "mathias-kaden",
+   "performers": [
+    "mathias-kaden"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2017:monika-kruse",
+   "name": "Monika Kruse",
+   "key": "monika-kruse",
+   "performers": [
+    "monika-kruse"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2017:nick-curly",
+   "name": "Nick Curly",
+   "key": "nick-curly",
+   "performers": [
+    "nick-curly"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2017:nina-kraviz",
+   "name": "Nina Kraviz",
+   "key": "nina-kraviz",
+   "performers": [
+    "nina-kraviz"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2017:pan-pot",
+   "name": "Pan-Pot",
+   "key": "pan-pot",
+   "performers": [
+    "pan-pot"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2017:ricardo-villalobos",
+   "name": "Ricardo Villalobos",
+   "key": "ricardo-villalobos",
+   "performers": [
+    "ricardo-villalobos"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2017:richie-hawtin",
+   "name": "Richie Hawtin",
+   "key": "richie-hawtin",
+   "performers": [
+    "richie-hawtin"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2017:r-dhad",
+   "name": "Rødhåd",
+   "key": "r-dhad",
+   "performers": [
+    "r-dhad"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2017:sam-paganini",
+   "name": "Sam Paganini",
+   "key": "sam-paganini",
+   "performers": [
+    "sam-paganini"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2017:seebase",
+   "name": "Seebase",
+   "key": "seebase",
+   "performers": [
+    "seebase"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2017:seth-troxler",
+   "name": "Seth Troxler",
+   "key": "seth-troxler",
+   "performers": [
+    "seth-troxler"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2017:solomun",
+   "name": "Solomun",
+   "key": "solomun",
+   "performers": [
+    "solomun"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2017:sonja-moonear",
+   "name": "Sonja Moonear",
+   "key": "sonja-moonear",
+   "performers": [
+    "sonja-moonear"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2017:steffen-baumann",
+   "name": "Steffen Baumann",
+   "key": "steffen-baumann",
+   "performers": [
+    "steffen-baumann"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2017:steffen-deux",
+   "name": "Steffen Deux",
+   "key": "steffen-deux",
+   "performers": [
+    "steffen-deux"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2017:sven-vath",
+   "name": "Sven Väth",
+   "key": "sven-vath",
+   "performers": [
+    "sven-vath"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2017:tale-of-us",
+   "name": "Tale Of Us",
+   "key": "tale-of-us",
+   "performers": [
+    "tale-of-us"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2017:the-martinez-brothers",
+   "name": "The Martinez Brothers",
+   "key": "the-martinez-brothers",
+   "performers": [
+    "the-martinez-brothers"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2017:tini",
+   "name": "tINI",
+   "key": "tini",
+   "performers": [
+    "tini"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "official_lineup_html",
+  "official": "http://www.time-warp.de/germany/line-up?utm_source=e_mail&utm_medium=newsletter&utm_campaign=lineup1",
+  "captures": [
+   {
+    "page": "lineup",
+    "archivedUrl": "https://web.archive.org/web/20170303114714/http://www.time-warp.de/germany/line-up?utm_source=e_mail&utm_medium=newsletter&utm_campaign=lineup1",
+    "captureTimestamp": "20170303114714",
+    "sha256": "51e25c1dbd091896a97c8e6bbccbf73692808aebf3dc5f6c71081e54488d4ffc"
+   }
+  ]
+ },
+ "notes": [
+  {
+   "asOf": "2026-11-27",
+   "text": "The lineup as the festival's own page printed it on 3 March 2017, four weeks before the festival. Late changes after that day are not shown.",
+   "source": "https://web.archive.org/web/20170303114714/http://www.time-warp.de/germany/line-up?utm_source=e_mail&utm_medium=newsletter&utm_campaign=lineup1"
+  }
+ ]
+}

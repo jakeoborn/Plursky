@@ -1,0 +1,518 @@
+{
+ "id": "time-warp-2025",
+ "festivalId": "time-warp",
+ "name": "Time Warp Germany 2025",
+ "year": 2025,
+ "timezone": "Europe/Berlin",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2025-04-05",
+   "label": "Saturday"
+  }
+ ],
+ "stages": [],
+ "artists": [
+  {
+   "id": "time-warp-2025:acid-pauli",
+   "name": "Acid Pauli",
+   "key": "acid-pauli",
+   "performers": [
+    "acid-pauli"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2025:adam-beyer",
+   "name": "Adam Beyer",
+   "key": "adam-beyer",
+   "performers": [
+    "adam-beyer"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2025:adam-ten",
+   "name": "Adam Ten",
+   "key": "adam-ten",
+   "performers": [
+    "adam-ten"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2025:adiel-b2b-quest",
+   "name": "Adiel b2b Quest",
+   "key": "adiel-b2b-quest",
+   "performers": [
+    "adiel",
+    "quest"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2025:airrica",
+   "name": "Airrica",
+   "key": "airrica",
+   "performers": [
+    "airrica"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2025:amelie-lens",
+   "name": "Amelie Lens",
+   "key": "amelie-lens",
+   "performers": [
+    "amelie-lens"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2025:anfisa-letyago",
+   "name": "Anfisa Letyago",
+   "key": "anfisa-letyago",
+   "performers": [
+    "anfisa-letyago"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2025:ben-klock",
+   "name": "Ben Klock",
+   "key": "ben-klock",
+   "performers": [
+    "ben-klock"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2025:black-coffee",
+   "name": "Black Coffee",
+   "key": "black-coffee",
+   "performers": [
+    "black-coffee"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2025:camelphat",
+   "name": "CamelPhat",
+   "key": "camelphat",
+   "performers": [
+    "camelphat"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2025:carlita",
+   "name": "Carlita",
+   "key": "carlita",
+   "performers": [
+    "carlita"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2025:charlotte-de-witte",
+   "name": "Charlotte de Witte",
+   "key": "charlotte-de-witte",
+   "performers": [
+    "charlotte-de-witte"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2025:clara-cuve",
+   "name": "Clara Cuvé",
+   "key": "clara-cuve",
+   "performers": [
+    "clara-cuve"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2025:daria-kolosova-b2b-hector-oaks",
+   "name": "Daria Kolosova b2b Héctor Oaks",
+   "key": "daria-kolosova-b2b-hector-oaks",
+   "performers": [
+    "daria-kolosova",
+    "hector-oaks"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2025:david-lohlein",
+   "name": "David Löhlein",
+   "key": "david-lohlein",
+   "performers": [
+    "david-lohlein"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2025:dixon-b2b-chloe-caillet",
+   "name": "Dixon b2b Chloé Caillet",
+   "key": "dixon-b2b-chloe-caillet",
+   "performers": [
+    "dixon",
+    "chloe-caillet"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2025:dj-heartstring",
+   "name": "DJ Heartstring",
+   "key": "dj-heartstring",
+   "performers": [
+    "dj-heartstring"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2025:enrico-sangiuliano",
+   "name": "Enrico Sangiuliano",
+   "key": "enrico-sangiuliano",
+   "performers": [
+    "enrico-sangiuliano"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2025:franky-rizardo",
+   "name": "Franky Rizardo",
+   "key": "franky-rizardo",
+   "performers": [
+    "franky-rizardo"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2025:haai",
+   "name": "HAAi",
+   "key": "haai",
+   "performers": [
+    "haai"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2025:indira-paganotto",
+   "name": "Indira Paganotto",
+   "key": "indira-paganotto",
+   "performers": [
+    "indira-paganotto"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2025:jamie-jones",
+   "name": "Jamie Jones",
+   "key": "jamie-jones",
+   "performers": [
+    "jamie-jones"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2025:joseph-capriati",
+   "name": "Joseph Capriati",
+   "key": "joseph-capriati",
+   "performers": [
+    "joseph-capriati"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2025:ki-ki",
+   "name": "KI/KI",
+   "key": "ki-ki",
+   "performers": [
+    "ki-ki"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2025:loco-dice",
+   "name": "Loco Dice",
+   "key": "loco-dice",
+   "performers": [
+    "loco-dice"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2025:malugi",
+   "name": "MALUGI",
+   "key": "malugi",
+   "performers": [
+    "malugi"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2025:marco-carola",
+   "name": "Marco Carola",
+   "key": "marco-carola",
+   "performers": [
+    "marco-carola"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2025:mischluft-b2b-pegassi",
+   "name": "Mischluft b2b Pegassi",
+   "key": "mischluft-b2b-pegassi",
+   "performers": [
+    "mischluft",
+    "pegassi"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2025:nina-kraviz",
+   "name": "Nina Kraviz",
+   "key": "nina-kraviz",
+   "performers": [
+    "nina-kraviz"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2025:pan-pot",
+   "name": "PAN-POT",
+   "key": "pan-pot",
+   "performers": [
+    "pan-pot"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2025:patrick-mason",
+   "name": "Patrick Mason",
+   "key": "patrick-mason",
+   "performers": [
+    "patrick-mason"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2025:richie-hawtin",
+   "name": "Richie Hawtin",
+   "key": "richie-hawtin",
+   "performers": [
+    "richie-hawtin"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2025:sedef-adasi",
+   "name": "Sedef Adasï",
+   "key": "sedef-adasi",
+   "performers": [
+    "sedef-adasi"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2025:seebase",
+   "name": "Seebase",
+   "key": "seebase",
+   "performers": [
+    "seebase"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2025:seth-troxler-b2b-mau-p",
+   "name": "Seth Troxler b2b Mau P",
+   "key": "seth-troxler-b2b-mau-p",
+   "performers": [
+    "seth-troxler",
+    "mau-p"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2025:sven-vath",
+   "name": "Sven Väth",
+   "key": "sven-vath",
+   "performers": [
+    "sven-vath"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2025:syreeta",
+   "name": "SYREETA",
+   "key": "syreeta",
+   "performers": [
+    "syreeta"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "official_lineup_html",
+  "official": "https://www.time-warp.de/germany/mannheim/2025/",
+  "captures": [
+   {
+    "page": "lineup",
+    "archivedUrl": "https://web.archive.org/web/20250426111315/https://www.time-warp.de/germany/mannheim/2025/",
+    "captureTimestamp": "20250426111315",
+    "sha256": "32baa8a4c1842d19c06f758f808264102ad39a320e3c60068cb01200537e0519"
+   }
+  ]
+ }
+}

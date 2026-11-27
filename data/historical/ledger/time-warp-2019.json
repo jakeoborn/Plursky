@@ -1,0 +1,43 @@
+{
+  "id": "time-warp-2019",
+  "method": "official_lineup_html",
+  "official": "https://www.time-warp.de/germany/lineup/index_eng.html",
+  "format": "timewarp-subsite",
+  "window": {
+    "from": "20190307",
+    "to": "20190406",
+    "why": "the month before the festival: the address's next capture is from 2021"
+  },
+  "chosen": "20190331170135",
+  "archivedUrl": "https://web.archive.org/web/20190331170135/https://www.time-warp.de/germany/lineup/index_eng.html",
+  "sha256": "5e518e3df12f1e416b080412386e78e919c8b1720aa5f8e9426d462b6c8597a6",
+  "title": "Lineup",
+  "relayedVia": "firecrawl",
+  "stageOrder": [],
+  "considered": [
+    {
+      "captureTimestamp": "20190331170135",
+      "archivedUrl": "https://web.archive.org/web/20190331170135/https://www.time-warp.de/germany/lineup/index_eng.html",
+      "sha256": "5e518e3df12f1e416b080412386e78e919c8b1720aa5f8e9426d462b6c8597a6",
+      "bytes": 286241,
+      "via": "firecrawl",
+      "title": "Lineup",
+      "titled": true,
+      "dated": true,
+      "valid": true,
+      "days": [
+        "Saturday 6 April 2019"
+      ],
+      "printed": {
+        "edition": "Germany",
+        "dates": "06 April 2019",
+        "city": "Mannheim",
+        "lists": [
+          ""
+        ]
+      },
+      "billings": 46
+    }
+  ],
+  "dropped": []
+}

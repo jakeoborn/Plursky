@@ -2,6 +2,7 @@
   "id": "time-warp-2022",
   "method": "official_lineup_html",
   "official": "https://www.time-warp.de/22/lineup",
+  "format": "timewarp-subsite",
   "chosen": "20230205011620",
   "archivedUrl": "https://web.archive.org/web/20230205011620/https://www.time-warp.de/22/lineup",
   "sha256": "988265a30777e5ce8cf624cf594237de35470787753cf603c220b50caebb6ec9",
