@@ -1,0 +1,1853 @@
+{
+ "id": "sziget-2025",
+ "festivalId": "sziget",
+ "name": "Sziget 2025",
+ "year": 2025,
+ "timezone": "Europe/Budapest",
+ "rolloverHour": 8,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2025-08-06",
+   "label": "Wednesday"
+  },
+  {
+   "day": 2,
+   "date": "2025-08-07",
+   "label": "Thursday"
+  },
+  {
+   "day": 3,
+   "date": "2025-08-08",
+   "label": "Friday"
+  },
+  {
+   "day": 4,
+   "date": "2025-08-09",
+   "label": "Saturday"
+  },
+  {
+   "day": 5,
+   "date": "2025-08-10",
+   "label": "Sunday"
+  },
+  {
+   "day": 6,
+   "date": "2025-08-11",
+   "label": "Monday"
+  }
+ ],
+ "stages": [],
+ "artists": [
+  {
+   "id": "sziget-2025:charli-xcx",
+   "name": "Charli XCX",
+   "key": "charli-xcx",
+   "performers": [
+    "charli-xcx"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:don-diablo",
+   "name": "Don Diablo",
+   "key": "don-diablo",
+   "performers": [
+    "don-diablo"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:empire-of-the-sun",
+   "name": "Empire of the Sun",
+   "key": "empire-of-the-sun",
+   "performers": [
+    "empire-of-the-sun"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:little-simz",
+   "name": "Little Simz",
+   "key": "little-simz",
+   "performers": [
+    "little-simz"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:papa-roach",
+   "name": "Papa Roach",
+   "key": "papa-roach",
+   "performers": [
+    "papa-roach"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:steve-angello",
+   "name": "Steve Angello",
+   "key": "steve-angello",
+   "performers": [
+    "steve-angello"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:999999999",
+   "name": "999999999",
+   "key": "999999999",
+   "performers": [
+    "999999999"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:alessi-rose",
+   "name": "Alessi Rose",
+   "key": "alessi-rose",
+   "performers": [
+    "alessi-rose"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:alok",
+   "name": "Alok",
+   "key": "alok",
+   "performers": [
+    "alok"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:the-dare",
+   "name": "The Dare",
+   "key": "the-dare",
+   "performers": [
+    "the-dare"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:fatima-hajji",
+   "name": "Fatima Hajji",
+   "key": "fatima-hajji",
+   "performers": [
+    "fatima-hajji"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:i-hate-models",
+   "name": "I Hate Models",
+   "key": "i-hate-models",
+   "performers": [
+    "i-hate-models"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:julien-granel",
+   "name": "Julien Granel",
+   "key": "julien-granel",
+   "performers": [
+    "julien-granel"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:kenya-grace",
+   "name": "Kenya Grace",
+   "key": "kenya-grace",
+   "performers": [
+    "kenya-grace"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:kiss-of-life",
+   "name": "Kiss Of Life",
+   "key": "kiss-of-life",
+   "performers": [
+    "kiss-of-life"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:lavern",
+   "name": "Lavern",
+   "key": "lavern",
+   "performers": [
+    "lavern"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:oguz",
+   "name": "Oguz",
+   "key": "oguz",
+   "performers": [
+    "oguz"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:palaye-royale",
+   "name": "Palaye Royale",
+   "key": "palaye-royale",
+   "performers": [
+    "palaye-royale"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:r-ry",
+   "name": "RØRY",
+   "key": "r-ry",
+   "performers": [
+    "r-ry"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:winson",
+   "name": "Winson",
+   "key": "winson",
+   "performers": [
+    "winson"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:shawn-mendes",
+   "name": "Shawn Mendes",
+   "key": "shawn-mendes",
+   "performers": [
+    "shawn-mendes"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:boris-brejcha",
+   "name": "Boris Brejcha",
+   "key": "boris-brejcha",
+   "performers": [
+    "boris-brejcha"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:justice",
+   "name": "Justice",
+   "key": "justice",
+   "performers": [
+    "justice"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:nelly-furtado",
+   "name": "Nelly Furtado",
+   "key": "nelly-furtado",
+   "performers": [
+    "nelly-furtado"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:alex-wann",
+   "name": "Alex Wann",
+   "key": "alex-wann",
+   "performers": [
+    "alex-wann"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:balu-brigada",
+   "name": "Balu Brigada",
+   "key": "balu-brigada",
+   "performers": [
+    "balu-brigada"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:the-beaches",
+   "name": "The Beaches",
+   "key": "the-beaches",
+   "performers": [
+    "the-beaches"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:benwal",
+   "name": "Benwal",
+   "key": "benwal",
+   "performers": [
+    "benwal"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:cera-khin",
+   "name": "Cera Khin",
+   "key": "cera-khin",
+   "performers": [
+    "cera-khin"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:co-lee",
+   "name": "Co Lee",
+   "key": "co-lee",
+   "performers": [
+    "co-lee"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:dj-gigola",
+   "name": "DJ Gigola",
+   "key": "dj-gigola",
+   "performers": [
+    "dj-gigola"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:horsegiirl",
+   "name": "Horsegiirl",
+   "key": "horsegiirl",
+   "performers": [
+    "horsegiirl"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:in-parallel",
+   "name": "In Parallel",
+   "key": "in-parallel",
+   "performers": [
+    "in-parallel"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:killowen",
+   "name": "Killowen",
+   "key": "killowen",
+   "performers": [
+    "killowen"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:layla-benitez",
+   "name": "Layla Benitez",
+   "key": "layla-benitez",
+   "performers": [
+    "layla-benitez"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:malugi",
+   "name": "Malugi",
+   "key": "malugi",
+   "performers": [
+    "malugi"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:massano",
+   "name": "Massano",
+   "key": "massano",
+   "performers": [
+    "massano"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:noga-erez",
+   "name": "Noga Erez",
+   "key": "noga-erez",
+   "performers": [
+    "noga-erez"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:ocean-alley",
+   "name": "Ocean Alley",
+   "key": "ocean-alley",
+   "performers": [
+    "ocean-alley"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:partiboi69",
+   "name": "Partiboi69",
+   "key": "partiboi69",
+   "performers": [
+    "partiboi69"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:pegassi",
+   "name": "Pegassi",
+   "key": "pegassi",
+   "performers": [
+    "pegassi"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:sio",
+   "name": "Sio",
+   "key": "sio",
+   "performers": [
+    "sio"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:salute",
+   "name": "Salute",
+   "key": "salute",
+   "performers": [
+    "salute"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:sound-rush",
+   "name": "Sound Rush",
+   "key": "sound-rush",
+   "performers": [
+    "sound-rush"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:zatox",
+   "name": "Zatox",
+   "key": "zatox",
+   "performers": [
+    "zatox"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:a-ap-rocky",
+   "name": "A$AP Rocky",
+   "key": "a-ap-rocky",
+   "performers": [
+    "a-ap-rocky"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:amelie-lens",
+   "name": "Amelie Lens",
+   "key": "amelie-lens",
+   "performers": [
+    "amelie-lens"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:caribou",
+   "name": "Caribou",
+   "key": "caribou",
+   "performers": [
+    "caribou"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:michael-kiwanuka",
+   "name": "Michael Kiwanuka",
+   "key": "michael-kiwanuka",
+   "performers": [
+    "michael-kiwanuka"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:ahadadream",
+   "name": "Ahadadream",
+   "key": "ahadadream",
+   "performers": [
+    "ahadadream"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:ash-olsen",
+   "name": "Ash Olsen",
+   "key": "ash-olsen",
+   "performers": [
+    "ash-olsen"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:beton-hofi",
+   "name": "Beton Hofi",
+   "key": "beton-hofi",
+   "performers": [
+    "beton-hofi"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:blawan",
+   "name": "Blawan",
+   "key": "blawan",
+   "performers": [
+    "blawan"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:blossoms",
+   "name": "Blossoms",
+   "key": "blossoms",
+   "performers": [
+    "blossoms"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:carlita",
+   "name": "Carlita",
+   "key": "carlita",
+   "performers": [
+    "carlita"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:ekkstacy",
+   "name": "Ekkstacy",
+   "key": "ekkstacy",
+   "performers": [
+    "ekkstacy"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:francis-mercier",
+   "name": "Francis Mercier",
+   "key": "francis-mercier",
+   "performers": [
+    "francis-mercier"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:honeyluv",
+   "name": "Honeyluv",
+   "key": "honeyluv",
+   "performers": [
+    "honeyluv"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:hot-since-82",
+   "name": "Hot Since 82",
+   "key": "hot-since-82",
+   "performers": [
+    "hot-since-82"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:josh-baker",
+   "name": "Josh Baker",
+   "key": "josh-baker",
+   "performers": [
+    "josh-baker"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:juicy-romance",
+   "name": "Juicy Romance",
+   "key": "juicy-romance",
+   "performers": [
+    "juicy-romance"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:the-joy",
+   "name": "The Joy",
+   "key": "the-joy",
+   "performers": [
+    "the-joy"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:krubi",
+   "name": "Krúbi",
+   "key": "krubi",
+   "performers": [
+    "krubi"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:len-faki",
+   "name": "Len Faki",
+   "key": "len-faki",
+   "performers": [
+    "len-faki"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:mele-brown",
+   "name": "Mele Brown",
+   "key": "mele-brown",
+   "performers": [
+    "mele-brown"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:mita-gami",
+   "name": "Mita Gami",
+   "key": "mita-gami",
+   "performers": [
+    "mita-gami"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:pogany-indulo",
+   "name": "Pogány Induló",
+   "key": "pogany-indulo",
+   "performers": [
+    "pogany-indulo"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:rene-wise",
+   "name": "Rene Wise",
+   "key": "rene-wise",
+   "performers": [
+    "rene-wise"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:scarlet-pleasure",
+   "name": "Scarlet Pleasure",
+   "key": "scarlet-pleasure",
+   "performers": [
+    "scarlet-pleasure"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:dj-seinfeld",
+   "name": "DJ Seinfeld",
+   "key": "dj-seinfeld",
+   "performers": [
+    "dj-seinfeld"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:anyma",
+   "name": "Anyma",
+   "key": "anyma",
+   "performers": [
+    "anyma"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:adriatique",
+   "name": "Adriatique",
+   "key": "adriatique",
+   "performers": [
+    "adriatique"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:fka-twigs",
+   "name": "FKA Twigs",
+   "key": "fka-twigs",
+   "performers": [
+    "fka-twigs"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:sevdaliza",
+   "name": "Sevdaliza",
+   "key": "sevdaliza",
+   "performers": [
+    "sevdaliza"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:ame-live",
+   "name": "Âme live",
+   "key": "ame-live",
+   "performers": [
+    "ame-live"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:agents-of-time",
+   "name": "Agents of Time",
+   "key": "agents-of-time",
+   "performers": [
+    "agents-of-time"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:analog-balaton",
+   "name": "Analog Balaton",
+   "key": "analog-balaton",
+   "performers": [
+    "analog-balaton"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:bedouin",
+   "name": "Bedouin",
+   "key": "bedouin",
+   "performers": [
+    "bedouin"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:dixon",
+   "name": "Dixon",
+   "key": "dixon",
+   "performers": [
+    "dixon"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:elderbrook",
+   "name": "Elderbrook",
+   "key": "elderbrook",
+   "performers": [
+    "elderbrook"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:elefant",
+   "name": "Elefánt",
+   "key": "elefant",
+   "performers": [
+    "elefant"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:helado-negro",
+   "name": "Helado Negro",
+   "key": "helado-negro",
+   "performers": [
+    "helado-negro"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:hermanos-gutierrez",
+   "name": "Hermanos Gutiérrez",
+   "key": "hermanos-gutierrez",
+   "performers": [
+    "hermanos-gutierrez"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:kolsch",
+   "name": "Kölsch",
+   "key": "kolsch",
+   "performers": [
+    "kolsch"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:korolova",
+   "name": "Korolova",
+   "key": "korolova",
+   "performers": [
+    "korolova"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:mathame",
+   "name": "Mathame",
+   "key": "mathame",
+   "performers": [
+    "mathame"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:miss-monique",
+   "name": "Miss Monique",
+   "key": "miss-monique",
+   "performers": [
+    "miss-monique"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:raven",
+   "name": "RAVEN",
+   "key": "raven",
+   "performers": [
+    "raven"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:ry-x",
+   "name": "Ry X",
+   "key": "ry-x",
+   "performers": [
+    "ry-x"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:shimza",
+   "name": "Shimza",
+   "key": "shimza",
+   "performers": [
+    "shimza"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:the-wellermen",
+   "name": "The Wellermen",
+   "key": "the-wellermen",
+   "performers": [
+    "the-wellermen"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:post-malone",
+   "name": "Post Malone",
+   "key": "post-malone",
+   "performers": [
+    "post-malone"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:armin-van-buuren",
+   "name": "Armin van Buuren",
+   "key": "armin-van-buuren",
+   "performers": [
+    "armin-van-buuren"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:riles",
+   "name": "Riles",
+   "key": "riles",
+   "performers": [
+    "riles"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:chris-liebing",
+   "name": "Chris Liebing",
+   "key": "chris-liebing",
+   "performers": [
+    "chris-liebing"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:ecca-vandal",
+   "name": "Ecca Vandal",
+   "key": "ecca-vandal",
+   "performers": [
+    "ecca-vandal"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:ela-minus",
+   "name": "Ela Minus",
+   "key": "ela-minus",
+   "performers": [
+    "ela-minus"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:elli-acula",
+   "name": "Elli Acula",
+   "key": "elli-acula",
+   "performers": [
+    "elli-acula"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:estella-boersma",
+   "name": "Estella Boersma",
+   "key": "estella-boersma",
+   "performers": [
+    "estella-boersma"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:fat-dog",
+   "name": "Fat Dog",
+   "key": "fat-dog",
+   "performers": [
+    "fat-dog"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:fjaak",
+   "name": "FJAAK",
+   "key": "fjaak",
+   "performers": [
+    "fjaak"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:frenna-and-the-gang",
+   "name": "Frenna & The Gang",
+   "key": "frenna-and-the-gang",
+   "performers": [
+    "frenna-and-the-gang"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:hanabie",
+   "name": "Hanabie",
+   "key": "hanabie",
+   "performers": [
+    "hanabie"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:isabel-larosa",
+   "name": "Isabel LaRosa",
+   "key": "isabel-larosa",
+   "performers": [
+    "isabel-larosa"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:krept-and-konan",
+   "name": "Krept & Konan",
+   "key": "krept-and-konan",
+   "performers": [
+    "krept-and-konan"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:laura-van-dam",
+   "name": "Laura van Dam",
+   "key": "laura-van-dam",
+   "performers": [
+    "laura-van-dam"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:maddix",
+   "name": "Maddix",
+   "key": "maddix",
+   "performers": [
+    "maddix"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:nicole-moudaber",
+   "name": "Nicole Moudaber",
+   "key": "nicole-moudaber",
+   "performers": [
+    "nicole-moudaber"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:sama-abdulhadi",
+   "name": "SAMA’ Abdulhadi",
+   "key": "sama-abdulhadi",
+   "performers": [
+    "sama-abdulhadi"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:sofia-isella",
+   "name": "Sofia Isella",
+   "key": "sofia-isella",
+   "performers": [
+    "sofia-isella"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:strandz",
+   "name": "STRANDZ",
+   "key": "strandz",
+   "performers": [
+    "strandz"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:vini-vici",
+   "name": "Vini Vici",
+   "key": "vini-vici",
+   "performers": [
+    "vini-vici"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:zaho-de-sagazan",
+   "name": "Zaho de Sagazan",
+   "key": "zaho-de-sagazan",
+   "performers": [
+    "zaho-de-sagazan"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:chappell-roan",
+   "name": "Chappell Roan",
+   "key": "chappell-roan",
+   "performers": [
+    "chappell-roan"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:the-last-dinner-party",
+   "name": "The Last Dinner Party",
+   "key": "the-last-dinner-party",
+   "performers": [
+    "the-last-dinner-party"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:portugal-the-man",
+   "name": "Portugal. The Man",
+   "key": "portugal-the-man",
+   "performers": [
+    "portugal-the-man"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:1991",
+   "name": "1991",
+   "key": "1991",
+   "performers": [
+    "1991"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:bartees-strange",
+   "name": "Bartees Strange",
+   "key": "bartees-strange",
+   "performers": [
+    "bartees-strange"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:the-blessed-madonna",
+   "name": "The Blessed Madonna",
+   "key": "the-blessed-madonna",
+   "performers": [
+    "the-blessed-madonna"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:brutalismus-3000",
+   "name": "Brutalismus 3000",
+   "key": "brutalismus-3000",
+   "performers": [
+    "brutalismus-3000"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:casey-lowery",
+   "name": "Casey Lowery",
+   "key": "casey-lowery",
+   "performers": [
+    "casey-lowery"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:desire",
+   "name": "DESIRE",
+   "key": "desire",
+   "performers": [
+    "desire"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:eptic-b2b-space-laces",
+   "name": "Eptic b2b Space Laces",
+   "key": "eptic-b2b-space-laces",
+   "performers": [
+    "eptic",
+    "space-laces"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:eliza-rose",
+   "name": "Eliza Rose",
+   "key": "eliza-rose",
+   "performers": [
+    "eliza-rose"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:fatima-yamaha",
+   "name": "Fatima Yamaha",
+   "key": "fatima-yamaha",
+   "performers": [
+    "fatima-yamaha"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:hedex-b2b-bou",
+   "name": "Hedex b2b Bou",
+   "key": "hedex-b2b-bou",
+   "performers": [
+    "hedex",
+    "bou"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:holi",
+   "name": "Holi",
+   "key": "holi",
+   "performers": [
+    "holi"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:hollow-coves",
+   "name": "Hollow Coves",
+   "key": "hollow-coves",
+   "performers": [
+    "hollow-coves"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:hunee",
+   "name": "Hunee",
+   "key": "hunee",
+   "performers": [
+    "hunee"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:joey-valence-and-brae",
+   "name": "Joey Valence & Brae",
+   "key": "joey-valence-and-brae",
+   "performers": [
+    "joey-valence-and-brae"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:kneecap",
+   "name": "Kneecap",
+   "key": "kneecap",
+   "performers": [
+    "kneecap"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:lsdxoxo",
+   "name": "LSDXOXO",
+   "key": "lsdxoxo",
+   "performers": [
+    "lsdxoxo"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:luvca",
+   "name": "LUVCA†",
+   "key": "luvca",
+   "performers": [
+    "luvca"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:refused",
+   "name": "Refused",
+   "key": "refused",
+   "performers": [
+    "refused"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:sally-c",
+   "name": "Sally C",
+   "key": "sally-c",
+   "performers": [
+    "sally-c"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:subtronics",
+   "name": "Subtronics",
+   "key": "subtronics",
+   "performers": [
+    "subtronics"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2025:young-marco",
+   "name": "Young Marco",
+   "key": "young-marco",
+   "performers": [
+    "young-marco"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "unofficial_lineup",
+  "unofficial": true,
+  "source": {
+   "kind": "press",
+   "site": "youbeat.it",
+   "url": "https://www.youbeat.it/en/sziget-festival-2025/",
+   "title": "Sziget Festival: Big News and Lineup for the 2025 Edition",
+   "publisher": "youBEAT",
+   "published": "2025-06-09",
+   "fetchedAt": "2026-11-27",
+   "fetchedVia": "exa",
+   "scope": "full",
+   "sha256": "0251872171beedf2d057cd4d11398500acb2941ec143dd4701b710f25513ebcc",
+   "bytes": 1985
+  },
+  "captures": [
+   {
+    "page": "lineup",
+    "url": "https://www.youbeat.it/en/sziget-festival-2025/",
+    "fetchedAt": "2026-11-27",
+    "sha256": "0251872171beedf2d057cd4d11398500acb2941ec143dd4701b710f25513ebcc"
+   }
+  ]
+ }
+}

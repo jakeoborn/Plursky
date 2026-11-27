@@ -1,0 +1,2514 @@
+{
+ "id": "sziget-2018",
+ "festivalId": "sziget",
+ "name": "Sziget 2018",
+ "year": 2018,
+ "timezone": "Europe/Budapest",
+ "rolloverHour": 8,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2018-08-08",
+   "label": "Wednesday"
+  },
+  {
+   "day": 2,
+   "date": "2018-08-09",
+   "label": "Thursday"
+  },
+  {
+   "day": 3,
+   "date": "2018-08-10",
+   "label": "Friday"
+  },
+  {
+   "day": 4,
+   "date": "2018-08-11",
+   "label": "Saturday"
+  },
+  {
+   "day": 5,
+   "date": "2018-08-12",
+   "label": "Sunday"
+  },
+  {
+   "day": 6,
+   "date": "2018-08-13",
+   "label": "Monday"
+  },
+  {
+   "day": 7,
+   "date": "2018-08-14",
+   "label": "Tuesday"
+  },
+  {
+   "day": 8,
+   "date": "2018-08-15",
+   "label": "Wednesday"
+  }
+ ],
+ "stages": [],
+ "artists": [
+  {
+   "id": "sziget-2018:kendrick-lamar",
+   "name": "Kendrick Lamar",
+   "key": "kendrick-lamar",
+   "performers": [
+    "kendrick-lamar"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:lykke-li",
+   "name": "Lykke Li",
+   "key": "lykke-li",
+   "performers": [
+    "lykke-li"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:stormzy",
+   "name": "Stormzy",
+   "key": "stormzy",
+   "performers": [
+    "stormzy"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:clean-bandit",
+   "name": "Clean Bandit",
+   "key": "clean-bandit",
+   "performers": [
+    "clean-bandit"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:the-martinez-brothers",
+   "name": "The Martinez Brothers",
+   "key": "the-martinez-brothers",
+   "performers": [
+    "the-martinez-brothers"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:tiga",
+   "name": "Tiga",
+   "key": "tiga",
+   "performers": [
+    "tiga"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:jesse-calosso",
+   "name": "Jesse Calosso",
+   "key": "jesse-calosso",
+   "performers": [
+    "jesse-calosso"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:james-cole",
+   "name": "James Cole",
+   "key": "james-cole",
+   "performers": [
+    "james-cole"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:peter-makto-gregory-s-davko",
+   "name": "Peter Makto, Gregory S, Davko",
+   "key": "peter-makto-gregory-s-davko",
+   "performers": [
+    "peter-makto-gregory-s-davko"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:pat-duff",
+   "name": "Pat Duff",
+   "key": "pat-duff",
+   "performers": [
+    "pat-duff"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:andras-bader-duel",
+   "name": "Andras Bader + Duel",
+   "key": "andras-bader-duel",
+   "performers": [
+    "andras-bader-duel"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:nigel-sorter",
+   "name": "Nigel Sorter",
+   "key": "nigel-sorter",
+   "performers": [
+    "nigel-sorter"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:scrt",
+   "name": "Scrt",
+   "key": "scrt",
+   "performers": [
+    "scrt"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:5-nizza",
+   "name": "5'NIZZA",
+   "key": "5-nizza",
+   "performers": [
+    "5-nizza"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:sol-monk-and-jenny",
+   "name": "Sol Monk & Jenny",
+   "key": "sol-monk-and-jenny",
+   "performers": [
+    "sol-monk-and-jenny"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:strapo",
+   "name": "Strapo",
+   "key": "strapo",
+   "performers": [
+    "strapo"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:the-poppers",
+   "name": "The Poppers",
+   "key": "the-poppers",
+   "performers": [
+    "the-poppers"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:willie-peyote",
+   "name": "Willie Peyote",
+   "key": "willie-peyote",
+   "performers": [
+    "willie-peyote"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:gorillaz-live",
+   "name": "Gorillaz (live)",
+   "key": "gorillaz-live",
+   "performers": [
+    "gorillaz-live"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:bonobo",
+   "name": "Bonobo",
+   "key": "bonobo",
+   "performers": [
+    "bonobo"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:oscar-and-the-wolf",
+   "name": "Oscar & The Wolf",
+   "key": "oscar-and-the-wolf",
+   "performers": [
+    "oscar-and-the-wolf"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:apey-and-the-pea",
+   "name": "Apey & The Pea",
+   "key": "apey-and-the-pea",
+   "performers": [
+    "apey-and-the-pea"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:sg-lewis",
+   "name": "SG Lewis",
+   "key": "sg-lewis",
+   "performers": [
+    "sg-lewis"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:alle-farben",
+   "name": "Alle Farben",
+   "key": "alle-farben",
+   "performers": [
+    "alle-farben"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:lemaitre",
+   "name": "Lemaitre",
+   "key": "lemaitre",
+   "performers": [
+    "lemaitre"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:seasick-steve",
+   "name": "Seasick Steve",
+   "key": "seasick-steve",
+   "performers": [
+    "seasick-steve"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:cigarettes-after-sex",
+   "name": "Cigarettes After Sex",
+   "key": "cigarettes-after-sex",
+   "performers": [
+    "cigarettes-after-sex"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:unknown-mortal-orchestra",
+   "name": "Unknown Mortal Orchestra",
+   "key": "unknown-mortal-orchestra",
+   "performers": [
+    "unknown-mortal-orchestra"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:whomadewho",
+   "name": "WhoMadeWho",
+   "key": "whomadewho",
+   "performers": [
+    "whomadewho"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:anima-sound-system",
+   "name": "Anima Sound System",
+   "key": "anima-sound-system",
+   "performers": [
+    "anima-sound-system"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:ladanybene-27",
+   "name": "Ladanybene 27",
+   "key": "ladanybene-27",
+   "performers": [
+    "ladanybene-27"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:meszecsinka",
+   "name": "Meszecsinka",
+   "key": "meszecsinka",
+   "performers": [
+    "meszecsinka"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:kistehen",
+   "name": "Kistehen",
+   "key": "kistehen",
+   "performers": [
+    "kistehen"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:zuboly",
+   "name": "Zuboly",
+   "key": "zuboly",
+   "performers": [
+    "zuboly"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:flux-pavilion",
+   "name": "Flux Pavilion",
+   "key": "flux-pavilion",
+   "performers": [
+    "flux-pavilion"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:jumodaddy",
+   "name": "Jumodaddy",
+   "key": "jumodaddy",
+   "performers": [
+    "jumodaddy"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:metzker-viktoria",
+   "name": "Metzker Viktoria",
+   "key": "metzker-viktoria",
+   "performers": [
+    "metzker-viktoria"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:roberto-rios",
+   "name": "Roberto Rios",
+   "key": "roberto-rios",
+   "performers": [
+    "roberto-rios"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:what-so-not",
+   "name": "What So Not",
+   "key": "what-so-not",
+   "performers": [
+    "what-so-not"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:yellow-claw",
+   "name": "Yellow Claw",
+   "key": "yellow-claw",
+   "performers": [
+    "yellow-claw"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:andhim",
+   "name": "Andhim",
+   "key": "andhim",
+   "performers": [
+    "andhim"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:rodriguez-jr",
+   "name": "Rodriguez Jr.",
+   "key": "rodriguez-jr",
+   "performers": [
+    "rodriguez-jr"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:francobollo",
+   "name": "Francobollo",
+   "key": "francobollo",
+   "performers": [
+    "francobollo"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:fresku",
+   "name": "Fresku",
+   "key": "fresku",
+   "performers": [
+    "fresku"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:la-sra-tomasa",
+   "name": "La Sra. Tomasa",
+   "key": "la-sra-tomasa",
+   "performers": [
+    "la-sra-tomasa"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:sexy-zebras",
+   "name": "Sexy Zebras",
+   "key": "sexy-zebras",
+   "performers": [
+    "sexy-zebras"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:shell-beach",
+   "name": "Shell Beach",
+   "key": "shell-beach",
+   "performers": [
+    "shell-beach"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:nakadia",
+   "name": "Nakadia",
+   "key": "nakadia",
+   "performers": [
+    "nakadia"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:lana-del-rey",
+   "name": "Lana Del Rey",
+   "key": "lana-del-rey",
+   "performers": [
+    "lana-del-rey"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:parov-stelar",
+   "name": "Parov Stelar",
+   "key": "parov-stelar",
+   "performers": [
+    "parov-stelar"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:the-kooks",
+   "name": "The Kooks",
+   "key": "the-kooks",
+   "performers": [
+    "the-kooks"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:vad-fruttik",
+   "name": "Vad Fruttik",
+   "key": "vad-fruttik",
+   "performers": [
+    "vad-fruttik"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:perturbator",
+   "name": "Perturbator",
+   "key": "perturbator",
+   "performers": [
+    "perturbator"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:joe-goddard-live",
+   "name": "Joe Goddard (live)",
+   "key": "joe-goddard-live",
+   "performers": [
+    "joe-goddard-live"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:asaf-avidan",
+   "name": "Asaf Avidan",
+   "key": "asaf-avidan",
+   "performers": [
+    "asaf-avidan"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:bilderbuch",
+   "name": "Bilderbuch",
+   "key": "bilderbuch",
+   "performers": [
+    "bilderbuch"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:jp-cooper",
+   "name": "JP Cooper",
+   "key": "jp-cooper",
+   "performers": [
+    "jp-cooper"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:scarlxrd",
+   "name": "Scarlxrd",
+   "key": "scarlxrd",
+   "performers": [
+    "scarlxrd"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:shame",
+   "name": "Shame",
+   "key": "shame",
+   "performers": [
+    "shame"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:el-juntacadaveres",
+   "name": "El Juntacadaveres",
+   "key": "el-juntacadaveres",
+   "performers": [
+    "el-juntacadaveres"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:besh-o-drom",
+   "name": "Besh o droM",
+   "key": "besh-o-drom",
+   "performers": [
+    "besh-o-drom"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:les-negresses-vertes",
+   "name": "Les Negresses Vertes",
+   "key": "les-negresses-vertes",
+   "performers": [
+    "les-negresses-vertes"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:warsaw-village-band",
+   "name": "Warsaw Village Band",
+   "key": "warsaw-village-band",
+   "performers": [
+    "warsaw-village-band"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:chalaban",
+   "name": "Chalaban",
+   "key": "chalaban",
+   "performers": [
+    "chalaban"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:andro",
+   "name": "Andro",
+   "key": "andro",
+   "performers": [
+    "andro"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:jay-hardway",
+   "name": "Jay Hardway",
+   "key": "jay-hardway",
+   "performers": [
+    "jay-hardway"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:sam-feldt",
+   "name": "Sam Feldt",
+   "key": "sam-feldt",
+   "performers": [
+    "sam-feldt"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:the-him",
+   "name": "The Him",
+   "key": "the-him",
+   "performers": [
+    "the-him"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:ummet-ozcan",
+   "name": "Ummet Ozcan",
+   "key": "ummet-ozcan",
+   "performers": [
+    "ummet-ozcan"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:yamina",
+   "name": "Yamina",
+   "key": "yamina",
+   "performers": [
+    "yamina"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:beissoul-and-einius",
+   "name": "BEISSOUL & EINIUS",
+   "key": "beissoul-and-einius",
+   "performers": [
+    "beissoul-and-einius"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:klub-des-loosers",
+   "name": "Klub Des Loosers",
+   "key": "klub-des-loosers",
+   "performers": [
+    "klub-des-loosers"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:omer-netzer",
+   "name": "Omer Netzer",
+   "key": "omer-netzer",
+   "performers": [
+    "omer-netzer"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:run-over-dogs",
+   "name": "Run Over Dogs",
+   "key": "run-over-dogs",
+   "performers": [
+    "run-over-dogs"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:the-paz-band",
+   "name": "The Paz Band",
+   "key": "the-paz-band",
+   "performers": [
+    "the-paz-band"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:eagles-and-butterflies",
+   "name": "Eagles & Butterflies",
+   "key": "eagles-and-butterflies",
+   "performers": [
+    "eagles-and-butterflies"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:mind-against",
+   "name": "Mind Against",
+   "key": "mind-against",
+   "performers": [
+    "mind-against"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:sam-feldt-live",
+   "name": "Sam Feldt (live)",
+   "key": "sam-feldt-live",
+   "performers": [
+    "sam-feldt-live"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:mumford-and-sons",
+   "name": "Mumford & Sons",
+   "key": "mumford-and-sons",
+   "performers": [
+    "mumford-and-sons"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:bastille",
+   "name": "Bastille",
+   "key": "bastille",
+   "performers": [
+    "bastille"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:lianne-la-havas",
+   "name": "Lianne La Havas",
+   "key": "lianne-la-havas",
+   "performers": [
+    "lianne-la-havas"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:punnany-massif",
+   "name": "Punnany Massif",
+   "key": "punnany-massif",
+   "performers": [
+    "punnany-massif"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:borgore",
+   "name": "Borgore",
+   "key": "borgore",
+   "performers": [
+    "borgore"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:zhu",
+   "name": "Zhu",
+   "key": "zhu",
+   "performers": [
+    "zhu"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:aurora",
+   "name": "Aurora",
+   "key": "aurora",
+   "performers": [
+    "aurora"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:sofi-tukker",
+   "name": "Sofi Tukker",
+   "key": "sofi-tukker",
+   "performers": [
+    "sofi-tukker"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:fink",
+   "name": "Fink",
+   "key": "fink",
+   "performers": [
+    "fink"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:everything-everything",
+   "name": "Everything Everything",
+   "key": "everything-everything",
+   "performers": [
+    "everything-everything"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:the-living-end",
+   "name": "The Living End",
+   "key": "the-living-end",
+   "performers": [
+    "the-living-end"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:cgs-canzoniere-grecanico-salentino",
+   "name": "CGS Canzoniere Grecanico Salentino",
+   "key": "cgs-canzoniere-grecanico-salentino",
+   "performers": [
+    "cgs-canzoniere-grecanico-salentino"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:labrassbanda",
+   "name": "Labrassbanda",
+   "key": "labrassbanda",
+   "performers": [
+    "labrassbanda"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:jewish-monkeys",
+   "name": "Jewish Monkeys",
+   "key": "jewish-monkeys",
+   "performers": [
+    "jewish-monkeys"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:hartyga",
+   "name": "Hartyga",
+   "key": "hartyga",
+   "performers": [
+    "hartyga"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:mr-zarko",
+   "name": "MR ZARKO",
+   "key": "mr-zarko",
+   "performers": [
+    "mr-zarko"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:above-and-beyond",
+   "name": "Above & Beyond",
+   "key": "above-and-beyond",
+   "performers": [
+    "above-and-beyond"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:gabriel-and-dresden",
+   "name": "Gabriel & Dresden",
+   "key": "gabriel-and-dresden",
+   "performers": [
+    "gabriel-and-dresden"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:grum",
+   "name": "Grum",
+   "key": "grum",
+   "performers": [
+    "grum"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:stereo-palma",
+   "name": "Stereo Palma",
+   "key": "stereo-palma",
+   "performers": [
+    "stereo-palma"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:dense-and-pika",
+   "name": "Dense & Pika",
+   "key": "dense-and-pika",
+   "performers": [
+    "dense-and-pika"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:enrico-sangiuliano",
+   "name": "Enrico Sangiuliano",
+   "key": "enrico-sangiuliano",
+   "performers": [
+    "enrico-sangiuliano"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:popof",
+   "name": "Popof",
+   "key": "popof",
+   "performers": [
+    "popof"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:sama",
+   "name": "Sama",
+   "key": "sama",
+   "performers": [
+    "sama"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:astronautalis",
+   "name": "Astronautalis",
+   "key": "astronautalis",
+   "performers": [
+    "astronautalis"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:chefboss",
+   "name": "Chefboss",
+   "key": "chefboss",
+   "performers": [
+    "chefboss"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:lea-santee",
+   "name": "Lea Santee",
+   "key": "lea-santee",
+   "performers": [
+    "lea-santee"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:peter-aristone",
+   "name": "Peter Aristone",
+   "key": "peter-aristone",
+   "performers": [
+    "peter-aristone"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:tommy-cash",
+   "name": "Tommy Cash",
+   "key": "tommy-cash",
+   "performers": [
+    "tommy-cash"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:dua-lipa",
+   "name": "Dua Lipa",
+   "key": "dua-lipa",
+   "performers": [
+    "dua-lipa"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:liam-gallagher",
+   "name": "Liam Gallagher",
+   "key": "liam-gallagher",
+   "performers": [
+    "liam-gallagher"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:kaleo",
+   "name": "Kaleo",
+   "key": "kaleo",
+   "performers": [
+    "kaleo"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:halott-penz",
+   "name": "Halott Penz",
+   "key": "halott-penz",
+   "performers": [
+    "halott-penz"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:jan-blomqvist",
+   "name": "Jan Blomqvist",
+   "key": "jan-blomqvist",
+   "performers": [
+    "jan-blomqvist"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:petit-biscuit",
+   "name": "Petit Biscuit",
+   "key": "petit-biscuit",
+   "performers": [
+    "petit-biscuit"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:desiigner",
+   "name": "Desiigner",
+   "key": "desiigner",
+   "performers": [
+    "desiigner"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:king-gizzard-and-the-lizard-wizard",
+   "name": "King Gizzard & The Lizard Wizard",
+   "key": "king-gizzard-and-the-lizard-wizard",
+   "performers": [
+    "king-gizzard-and-the-lizard-wizard"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:wolf-alice",
+   "name": "Wolf Alice",
+   "key": "wolf-alice",
+   "performers": [
+    "wolf-alice"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:soft-play-formally-slaves",
+   "name": "Soft Play (formally Slaves)",
+   "key": "soft-play-formally-slaves",
+   "performers": [
+    "soft-play-formally-slaves"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:rhye",
+   "name": "Rhye",
+   "key": "rhye",
+   "performers": [
+    "rhye"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:szikra-amsterdam-klezmer-band-and-sondorgo",
+   "name": "Szikra (Amsterdam Klezmer Band & Sondorgo)",
+   "key": "szikra-amsterdam-klezmer-band-and-sondorgo",
+   "performers": [
+    "szikra-amsterdam-klezmer-band-and-sondorgo"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:transglobal-underground",
+   "name": "Transglobal Underground",
+   "key": "transglobal-underground",
+   "performers": [
+    "transglobal-underground"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:varttina-feat-paleface",
+   "name": "Varttina feat. PALEFACE",
+   "key": "varttina-feat-paleface",
+   "performers": [
+    "varttina-feat-paleface"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:jupiter-and-okwess-international",
+   "name": "Jupiter & Okwess International",
+   "key": "jupiter-and-okwess-international",
+   "performers": [
+    "jupiter-and-okwess-international"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:mon-cote-punk",
+   "name": "Mon cote punk",
+   "key": "mon-cote-punk",
+   "performers": [
+    "mon-cote-punk"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:kideko",
+   "name": "Kideko",
+   "key": "kideko",
+   "performers": [
+    "kideko"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:kshmr",
+   "name": "KSHMR",
+   "key": "kshmr",
+   "performers": [
+    "kshmr"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:michael-calfan",
+   "name": "Michael Calfan",
+   "key": "michael-calfan",
+   "performers": [
+    "michael-calfan"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:muzzaik",
+   "name": "Muzzaik",
+   "key": "muzzaik",
+   "performers": [
+    "muzzaik"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:tujamo",
+   "name": "Tujamo",
+   "key": "tujamo",
+   "performers": [
+    "tujamo"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:ezhel",
+   "name": "Ezhel",
+   "key": "ezhel",
+   "performers": [
+    "ezhel"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:satra-benz",
+   "name": "Satra BENZ",
+   "key": "satra-benz",
+   "performers": [
+    "satra-benz"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:senbei",
+   "name": "SENBEI",
+   "key": "senbei",
+   "performers": [
+    "senbei"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:smokey-joe-and-the-kid",
+   "name": "Smokey Joe and The Kid",
+   "key": "smokey-joe-and-the-kid",
+   "performers": [
+    "smokey-joe-and-the-kid"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:eelke-kleijn",
+   "name": "Eelke Kleijn",
+   "key": "eelke-kleijn",
+   "performers": [
+    "eelke-kleijn"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:hernan-cattaneo",
+   "name": "Hernan Cattaneo",
+   "key": "hernan-cattaneo",
+   "performers": [
+    "hernan-cattaneo"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:seven-lions",
+   "name": "Seven Lions",
+   "key": "seven-lions",
+   "performers": [
+    "seven-lions"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:kygo",
+   "name": "Kygo",
+   "key": "kygo",
+   "performers": [
+    "kygo"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:shawn-mendes",
+   "name": "Shawn Mendes",
+   "key": "shawn-mendes",
+   "performers": [
+    "shawn-mendes"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:m",
+   "name": "MØ",
+   "key": "m",
+   "performers": [
+    "m"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:milky-chance",
+   "name": "Milky Chance",
+   "key": "milky-chance",
+   "performers": [
+    "milky-chance"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:damian-lazarus-and-the-ancient-moons",
+   "name": "Damian Lazarus & The Ancient Moons",
+   "key": "damian-lazarus-and-the-ancient-moons",
+   "performers": [
+    "damian-lazarus-and-the-ancient-moons"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:nick-murphy-fka-chet-faker",
+   "name": "Nick Murphy fka Chet Faker",
+   "key": "nick-murphy-fka-chet-faker",
+   "performers": [
+    "nick-murphy-fka-chet-faker"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:little-dragon",
+   "name": "Little Dragon",
+   "key": "little-dragon",
+   "performers": [
+    "little-dragon"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:la-femme",
+   "name": "La Femme",
+   "key": "la-femme",
+   "performers": [
+    "la-femme"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:goo-goo-dolls",
+   "name": "Goo Goo Dolls",
+   "key": "goo-goo-dolls",
+   "performers": [
+    "goo-goo-dolls"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:yellow-days",
+   "name": "Yellow Days",
+   "key": "yellow-days",
+   "performers": [
+    "yellow-days"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:my-baby",
+   "name": "MY BABY",
+   "key": "my-baby",
+   "performers": [
+    "my-baby"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:onuka",
+   "name": "Onuka",
+   "key": "onuka",
+   "performers": [
+    "onuka"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:plaza-francia-orchestra",
+   "name": "Plaza Francia Orchestra",
+   "key": "plaza-francia-orchestra",
+   "performers": [
+    "plaza-francia-orchestra"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:griot-blues",
+   "name": "Griot Blues",
+   "key": "griot-blues",
+   "performers": [
+    "griot-blues"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:kries",
+   "name": "Kries",
+   "key": "kries",
+   "performers": [
+    "kries"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:bukahara",
+   "name": "Bukahara",
+   "key": "bukahara",
+   "performers": [
+    "bukahara"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:dj-licious",
+   "name": "DJ Licious",
+   "key": "dj-licious",
+   "performers": [
+    "dj-licious"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:don-diablo",
+   "name": "Don Diablo",
+   "key": "don-diablo",
+   "performers": [
+    "don-diablo"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:king-arthur",
+   "name": "King Arthur",
+   "key": "king-arthur",
+   "performers": [
+    "king-arthur"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:zonderling",
+   "name": "Zonderling",
+   "key": "zonderling",
+   "performers": [
+    "zonderling"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:blaudzun",
+   "name": "Blaudzun",
+   "key": "blaudzun",
+   "performers": [
+    "blaudzun"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    },
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:bostich-fussible-from-nortec-collective",
+   "name": "Bostich + Fussible from Nortec Collective",
+   "key": "bostich-fussible-from-nortec-collective",
+   "performers": [
+    "bostich-fussible-from-nortec-collective"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:kettcar",
+   "name": "Kettcar",
+   "key": "kettcar",
+   "performers": [
+    "kettcar"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:meute",
+   "name": "Meute",
+   "key": "meute",
+   "performers": [
+    "meute"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:moonchild-sanelly",
+   "name": "Moonchild Sanelly",
+   "key": "moonchild-sanelly",
+   "performers": [
+    "moonchild-sanelly"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:motta",
+   "name": "Motta",
+   "key": "motta",
+   "performers": [
+    "motta"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:dave-clarke",
+   "name": "Dave Clarke",
+   "key": "dave-clarke",
+   "performers": [
+    "dave-clarke"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:paula-temple-b2b-rebekah",
+   "name": "Paula Temple b2b Rebekah",
+   "key": "paula-temple-b2b-rebekah",
+   "performers": [
+    "paula-temple",
+    "rebekah"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:arctic-monkeys",
+   "name": "Arctic Monkeys",
+   "key": "arctic-monkeys",
+   "performers": [
+    "arctic-monkeys"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:blossoms",
+   "name": "Blossoms",
+   "key": "blossoms",
+   "performers": [
+    "blossoms"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:gogol-bordello",
+   "name": "Gogol Bordello",
+   "key": "gogol-bordello",
+   "performers": [
+    "gogol-bordello"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:delta-heavy",
+   "name": "Delta Heavy",
+   "key": "delta-heavy",
+   "performers": [
+    "delta-heavy"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:gorgon-city",
+   "name": "Gorgon City",
+   "key": "gorgon-city",
+   "performers": [
+    "gorgon-city"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:fever-ray",
+   "name": "Fever Ray",
+   "key": "fever-ray",
+   "performers": [
+    "fever-ray"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:zara-larsson",
+   "name": "Zara Larsson",
+   "key": "zara-larsson",
+   "performers": [
+    "zara-larsson"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:borns",
+   "name": "Borns",
+   "key": "borns",
+   "performers": [
+    "borns"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:nothing-but-thieves",
+   "name": "Nothing But Thieves",
+   "key": "nothing-but-thieves",
+   "performers": [
+    "nothing-but-thieves"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:lewis-capaldi",
+   "name": "Lewis Capaldi",
+   "key": "lewis-capaldi",
+   "performers": [
+    "lewis-capaldi"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:baba-zula",
+   "name": "Baba Zula",
+   "key": "baba-zula",
+   "performers": [
+    "baba-zula"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:pannonia-allstars-ska-orchestra",
+   "name": "Pannonia Allstars Ska Orchestra",
+   "key": "pannonia-allstars-ska-orchestra",
+   "performers": [
+    "pannonia-allstars-ska-orchestra"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:ifriqiyya-electrique",
+   "name": "Ifriqiyya Electrique",
+   "key": "ifriqiyya-electrique",
+   "performers": [
+    "ifriqiyya-electrique"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:garmarna",
+   "name": "Garmarna",
+   "key": "garmarna",
+   "performers": [
+    "garmarna"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:hora-de-joglar",
+   "name": "Hora de Joglar",
+   "key": "hora-de-joglar",
+   "performers": [
+    "hora-de-joglar"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:electric-fields",
+   "name": "Electric Fields",
+   "key": "electric-fields",
+   "performers": [
+    "electric-fields"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:teme-tan",
+   "name": "Teme Tan",
+   "key": "teme-tan",
+   "performers": [
+    "teme-tan"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:the-lytics",
+   "name": "The Lytics",
+   "key": "the-lytics",
+   "performers": [
+    "the-lytics"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:thom-artway",
+   "name": "Thom Artway",
+   "key": "thom-artway",
+   "performers": [
+    "thom-artway"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:ben-ufo",
+   "name": "Ben UFO",
+   "key": "ben-ufo",
+   "performers": [
+    "ben-ufo"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:nicolas-lutz",
+   "name": "Nicolas Lutz",
+   "key": "nicolas-lutz",
+   "performers": [
+    "nicolas-lutz"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:raresh",
+   "name": "Raresh",
+   "key": "raresh",
+   "performers": [
+    "raresh"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:the-war-on-drugs",
+   "name": "The War on Drugs",
+   "key": "the-war-on-drugs",
+   "performers": [
+    "the-war-on-drugs"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2018:elrow",
+   "name": "Elrow",
+   "key": "elrow",
+   "performers": [
+    "elrow"
+   ],
+   "appearances": [
+    {
+     "day": 8
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "unofficial_lineup",
+  "unofficial": true,
+  "source": {
+   "kind": "press",
+   "site": "efestivals.co.uk",
+   "url": "https://www.efestivals.co.uk/festivals/sziget/2018/lineup.shtml",
+   "title": "Sziget Festival 2018 Line-up And Rumours",
+   "publisher": "eFestivals",
+   "fetchedAt": "2026-11-27",
+   "fetchedVia": "exa",
+   "scope": "full",
+   "sha256": "bc65aaf7331436d2070b54548c0132c8390c4167e95b7fdac46981a7a3532037",
+   "bytes": 3903
+  },
+  "captures": [
+   {
+    "page": "lineup",
+    "url": "https://www.efestivals.co.uk/festivals/sziget/2018/lineup.shtml",
+    "fetchedAt": "2026-11-27",
+    "sha256": "bc65aaf7331436d2070b54548c0132c8390c4167e95b7fdac46981a7a3532037"
+   }
+  ]
+ }
+}

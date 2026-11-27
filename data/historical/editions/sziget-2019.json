@@ -1,0 +1,1790 @@
+{
+ "id": "sziget-2019",
+ "festivalId": "sziget",
+ "name": "Sziget 2019",
+ "year": 2019,
+ "timezone": "Europe/Budapest",
+ "rolloverHour": 8,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2019-08-07",
+   "label": "Wednesday"
+  },
+  {
+   "day": 2,
+   "date": "2019-08-08",
+   "label": "Thursday"
+  },
+  {
+   "day": 3,
+   "date": "2019-08-09",
+   "label": "Friday"
+  },
+  {
+   "day": 4,
+   "date": "2019-08-10",
+   "label": "Saturday"
+  },
+  {
+   "day": 5,
+   "date": "2019-08-11",
+   "label": "Sunday"
+  },
+  {
+   "day": 6,
+   "date": "2019-08-12",
+   "label": "Monday"
+  },
+  {
+   "day": 7,
+   "date": "2019-08-13",
+   "label": "Tuesday"
+  }
+ ],
+ "stages": [],
+ "artists": [
+  {
+   "id": "sziget-2019:ed-sheeran",
+   "name": "Ed Sheeran",
+   "key": "ed-sheeran",
+   "performers": [
+    "ed-sheeran"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:kodaline",
+   "name": "Kodaline",
+   "key": "kodaline",
+   "performers": [
+    "kodaline"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:the-blaze",
+   "name": "The Blaze",
+   "key": "the-blaze",
+   "performers": [
+    "the-blaze"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:frank-turner",
+   "name": "Frank Turner",
+   "key": "frank-turner",
+   "performers": [
+    "frank-turner"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:of-mice-and-men",
+   "name": "Of Mice & Men",
+   "key": "of-mice-and-men",
+   "performers": [
+    "of-mice-and-men"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:razorlight",
+   "name": "Razorlight",
+   "key": "razorlight",
+   "performers": [
+    "razorlight"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:jain",
+   "name": "Jain",
+   "key": "jain",
+   "performers": [
+    "jain"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:fakear",
+   "name": "Fakear",
+   "key": "fakear",
+   "performers": [
+    "fakear"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:ocean-alley",
+   "name": "Ocean Alley",
+   "key": "ocean-alley",
+   "performers": [
+    "ocean-alley"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:blawan",
+   "name": "Blawan",
+   "key": "blawan",
+   "performers": [
+    "blawan"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:fjaak",
+   "name": "FJAAK",
+   "key": "fjaak",
+   "performers": [
+    "fjaak"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:luigi-madonna",
+   "name": "Luigi Madonna",
+   "key": "luigi-madonna",
+   "performers": [
+    "luigi-madonna"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:regal",
+   "name": "Regal",
+   "key": "regal",
+   "performers": [
+    "regal"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:the-1975",
+   "name": "The 1975",
+   "key": "the-1975",
+   "performers": [
+    "the-1975"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:richard-ashcroft",
+   "name": "Richard Ashcroft",
+   "key": "richard-ashcroft",
+   "performers": [
+    "richard-ashcroft"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:chvrches",
+   "name": "CHVRCHES",
+   "key": "chvrches",
+   "performers": [
+    "chvrches"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:pale-waves",
+   "name": "Pale Waves",
+   "key": "pale-waves",
+   "performers": [
+    "pale-waves"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:franz-ferdinand",
+   "name": "Franz Ferdinand",
+   "key": "franz-ferdinand",
+   "performers": [
+    "franz-ferdinand"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:tove-styrke",
+   "name": "Tove Styrke",
+   "key": "tove-styrke",
+   "performers": [
+    "tove-styrke"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:yungblud",
+   "name": "YUNGBLUD",
+   "key": "yungblud",
+   "performers": [
+    "yungblud"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:elderbrook",
+   "name": "Elderbrook",
+   "key": "elderbrook",
+   "performers": [
+    "elderbrook"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:sonny-fodera",
+   "name": "Sonny Fodera",
+   "key": "sonny-fodera",
+   "performers": [
+    "sonny-fodera"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:welshly-arms",
+   "name": "Welshly Arms",
+   "key": "welshly-arms",
+   "performers": [
+    "welshly-arms"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:giovanni-verrina",
+   "name": "Giovanni Verrina",
+   "key": "giovanni-verrina",
+   "performers": [
+    "giovanni-verrina"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:margaret-dygas",
+   "name": "Margaret Dygas",
+   "key": "margaret-dygas",
+   "performers": [
+    "margaret-dygas"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:raresh",
+   "name": "Raresh",
+   "key": "raresh",
+   "performers": [
+    "raresh"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:ryan-elliott",
+   "name": "Ryan Elliott",
+   "key": "ryan-elliott",
+   "performers": [
+    "ryan-elliott"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:hippocampe-fou",
+   "name": "Hippocampe Fou",
+   "key": "hippocampe-fou",
+   "performers": [
+    "hippocampe-fou"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:47soul",
+   "name": "47Soul",
+   "key": "47soul",
+   "performers": [
+    "47soul"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:algiers",
+   "name": "Algiers",
+   "key": "algiers",
+   "performers": [
+    "algiers"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:whispering-sons",
+   "name": "Whispering Sons",
+   "key": "whispering-sons",
+   "performers": [
+    "whispering-sons"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:cheap-tobacco",
+   "name": "Cheap Tobacco",
+   "key": "cheap-tobacco",
+   "performers": [
+    "cheap-tobacco"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:mayberian-sanskulotts",
+   "name": "Mayberian Sanskulotts",
+   "key": "mayberian-sanskulotts",
+   "performers": [
+    "mayberian-sanskulotts"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:mada",
+   "name": "Mada",
+   "key": "mada",
+   "performers": [
+    "mada"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:martin-garrix",
+   "name": "Martin Garrix",
+   "key": "martin-garrix",
+   "performers": [
+    "martin-garrix"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:gang-of-youths",
+   "name": "Gang of Youths",
+   "key": "gang-of-youths",
+   "performers": [
+    "gang-of-youths"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:tove-lo",
+   "name": "Tove Lo",
+   "key": "tove-lo",
+   "performers": [
+    "tove-lo"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:yeasayer",
+   "name": "Yeasayer",
+   "key": "yeasayer",
+   "performers": [
+    "yeasayer"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:xavier-rudd",
+   "name": "Xavier Rudd",
+   "key": "xavier-rudd",
+   "performers": [
+    "xavier-rudd"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:anna-of-the-north",
+   "name": "Anna of the North",
+   "key": "anna-of-the-north",
+   "performers": [
+    "anna-of-the-north"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:hucci",
+   "name": "Hucci",
+   "key": "hucci",
+   "performers": [
+    "hucci"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:grace-carter",
+   "name": "Grace Carter",
+   "key": "grace-carter",
+   "performers": [
+    "grace-carter"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:john-digweed",
+   "name": "John Digweed",
+   "key": "john-digweed",
+   "performers": [
+    "john-digweed"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:mark-reeve",
+   "name": "Mark Reeve",
+   "key": "mark-reeve",
+   "performers": [
+    "mark-reeve"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:metodi-hristov",
+   "name": "Metodi Hristov",
+   "key": "metodi-hristov",
+   "performers": [
+    "metodi-hristov"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:idiotape",
+   "name": "Idiotape",
+   "key": "idiotape",
+   "performers": [
+    "idiotape"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:naaz",
+   "name": "Naaz",
+   "key": "naaz",
+   "performers": [
+    "naaz"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:the-ringo-jets",
+   "name": "The Ringo Jets",
+   "key": "the-ringo-jets",
+   "performers": [
+    "the-ringo-jets"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:esti-kornel",
+   "name": "Esti Kornél",
+   "key": "esti-kornel",
+   "performers": [
+    "esti-kornel"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:mongooz-and-the-magnet",
+   "name": "Mongooz And The Magnet",
+   "key": "mongooz-and-the-magnet",
+   "performers": [
+    "mongooz-and-the-magnet"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:chicks-on-speed",
+   "name": "Chicks on Speed",
+   "key": "chicks-on-speed",
+   "performers": [
+    "chicks-on-speed"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:faka",
+   "name": "Faka",
+   "key": "faka",
+   "performers": [
+    "faka"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:gzone",
+   "name": "Gzone",
+   "key": "gzone",
+   "performers": [
+    "gzone"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:tamino",
+   "name": "Tamino",
+   "key": "tamino",
+   "performers": [
+    "tamino"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:the-national",
+   "name": "The National",
+   "key": "the-national",
+   "performers": [
+    "the-national"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:james-blake",
+   "name": "James Blake",
+   "key": "james-blake",
+   "performers": [
+    "james-blake"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:mura-masa",
+   "name": "Mura Masa",
+   "key": "mura-masa",
+   "performers": [
+    "mura-masa"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:son-lux",
+   "name": "Son Lux",
+   "key": "son-lux",
+   "performers": [
+    "son-lux"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:richie-hawtin",
+   "name": "Richie Hawtin",
+   "key": "richie-hawtin",
+   "performers": [
+    "richie-hawtin"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:w-and-w",
+   "name": "W&W",
+   "key": "w-and-w",
+   "performers": [
+    "w-and-w"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:wanda",
+   "name": "Wanda",
+   "key": "wanda",
+   "performers": [
+    "wanda"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:roosevelt",
+   "name": "Roosevelt",
+   "key": "roosevelt",
+   "performers": [
+    "roosevelt"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:craig-bratley",
+   "name": "Craig Bratley",
+   "key": "craig-bratley",
+   "performers": [
+    "craig-bratley"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:kink",
+   "name": "KiNK",
+   "key": "kink",
+   "performers": [
+    "kink"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:marvin-and-guy",
+   "name": "Marvin & Guy",
+   "key": "marvin-and-guy",
+   "performers": [
+    "marvin-and-guy"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:red-axes",
+   "name": "Red Axes",
+   "key": "red-axes",
+   "performers": [
+    "red-axes"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:younger-than-me",
+   "name": "Younger Than Me",
+   "key": "younger-than-me",
+   "performers": [
+    "younger-than-me"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:coma-cose",
+   "name": "Coma_Cose",
+   "key": "coma-cose",
+   "performers": [
+    "coma-cose"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:hearts-hearts",
+   "name": "Hearts Hearts",
+   "key": "hearts-hearts",
+   "performers": [
+    "hearts-hearts"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:madmoizel",
+   "name": "Madmoizel",
+   "key": "madmoizel",
+   "performers": [
+    "madmoizel"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:jungle",
+   "name": "Jungle",
+   "key": "jungle",
+   "performers": [
+    "jungle"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:parcels",
+   "name": "Parcels",
+   "key": "parcels",
+   "performers": [
+    "parcels"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:post-malone",
+   "name": "Post Malone",
+   "key": "post-malone",
+   "performers": [
+    "post-malone"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:years-and-years",
+   "name": "Years & Years",
+   "key": "years-and-years",
+   "performers": [
+    "years-and-years"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:honne",
+   "name": "HONNE",
+   "key": "honne",
+   "performers": [
+    "honne"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:masego",
+   "name": "Masego",
+   "key": "masego",
+   "performers": [
+    "masego"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:iamddb",
+   "name": "IAMDDB",
+   "key": "iamddb",
+   "performers": [
+    "iamddb"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:protoje",
+   "name": "Protoje",
+   "key": "protoje",
+   "performers": [
+    "protoje"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:vini-vici",
+   "name": "Vini Vici",
+   "key": "vini-vici",
+   "performers": [
+    "vini-vici"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:polo-and-pan",
+   "name": "Polo & Pan",
+   "key": "polo-and-pan",
+   "performers": [
+    "polo-and-pan"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:burak-yeter",
+   "name": "Burak Yeter",
+   "key": "burak-yeter",
+   "performers": [
+    "burak-yeter"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:anna",
+   "name": "ANNA",
+   "key": "anna",
+   "performers": [
+    "anna"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:butch",
+   "name": "Butch",
+   "key": "butch",
+   "performers": [
+    "butch"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:waff",
+   "name": "wAFF",
+   "key": "waff",
+   "performers": [
+    "waff"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:sophie-hunger",
+   "name": "Sophie Hunger",
+   "key": "sophie-hunger",
+   "performers": [
+    "sophie-hunger"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:lord-esperanza",
+   "name": "Lord Esperanza",
+   "key": "lord-esperanza",
+   "performers": [
+    "lord-esperanza"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:lucille-crew",
+   "name": "Lucille Crew",
+   "key": "lucille-crew",
+   "performers": [
+    "lucille-crew"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:ivan-dorn",
+   "name": "Ivan Dorn",
+   "key": "ivan-dorn",
+   "performers": [
+    "ivan-dorn"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:la-ganga-cale",
+   "name": "La Ganga Calé",
+   "key": "la-ganga-cale",
+   "performers": [
+    "la-ganga-cale"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:florence-the-machine",
+   "name": "Florence + The Machine",
+   "key": "florence-the-machine",
+   "performers": [
+    "florence-the-machine"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:catfish-and-the-bottlemen",
+   "name": "Catfish and The Bottlemen",
+   "key": "catfish-and-the-bottlemen",
+   "performers": [
+    "catfish-and-the-bottlemen"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:maribou-state",
+   "name": "Maribou State",
+   "key": "maribou-state",
+   "performers": [
+    "maribou-state"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:superorganism",
+   "name": "Superorganism",
+   "key": "superorganism",
+   "performers": [
+    "superorganism"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:boy-pablo",
+   "name": "Boy Pablo",
+   "key": "boy-pablo",
+   "performers": [
+    "boy-pablo"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:tom-odell",
+   "name": "Tom Odell",
+   "key": "tom-odell",
+   "performers": [
+    "tom-odell"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:big-thief",
+   "name": "Big Thief",
+   "key": "big-thief",
+   "performers": [
+    "big-thief"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:david-august",
+   "name": "David August",
+   "key": "david-august",
+   "performers": [
+    "david-august"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:yellow-days",
+   "name": "Yellow Days",
+   "key": "yellow-days",
+   "performers": [
+    "yellow-days"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:coheed-and-cambria",
+   "name": "Coheed and Cambria",
+   "key": "coheed-and-cambria",
+   "performers": [
+    "coheed-and-cambria"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:carnage",
+   "name": "Carnage",
+   "key": "carnage",
+   "performers": [
+    "carnage"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:black-asteroid",
+   "name": "Black Asteroid",
+   "key": "black-asteroid",
+   "performers": [
+    "black-asteroid"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:marco-bailey",
+   "name": "Marco Bailey",
+   "key": "marco-bailey",
+   "performers": [
+    "marco-bailey"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:paul-ritch",
+   "name": "Paul Ritch",
+   "key": "paul-ritch",
+   "performers": [
+    "paul-ritch"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:the-advent",
+   "name": "The Advent",
+   "key": "the-advent",
+   "performers": [
+    "the-advent"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:bosse",
+   "name": "Bosse",
+   "key": "bosse",
+   "performers": [
+    "bosse"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:l-or-du-commun",
+   "name": "L'or Du Commun",
+   "key": "l-or-du-commun",
+   "performers": [
+    "l-or-du-commun"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:carnival-youth",
+   "name": "Carnival Youth",
+   "key": "carnival-youth",
+   "performers": [
+    "carnival-youth"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:leoniden",
+   "name": "Leoniden",
+   "key": "leoniden",
+   "performers": [
+    "leoniden"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:celeste-buckingham",
+   "name": "Celeste Buckingham",
+   "key": "celeste-buckingham",
+   "performers": [
+    "celeste-buckingham"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:kahn-of-finland",
+   "name": "Kahn of Finland",
+   "key": "kahn-of-finland",
+   "performers": [
+    "kahn-of-finland"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:pinups",
+   "name": "Pinups",
+   "key": "pinups",
+   "performers": [
+    "pinups"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:foo-fighters",
+   "name": "Foo Fighters",
+   "key": "foo-fighters",
+   "performers": [
+    "foo-fighters"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:twenty-one-pilots",
+   "name": "Twenty One Pilots",
+   "key": "twenty-one-pilots",
+   "performers": [
+    "twenty-one-pilots"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:idles",
+   "name": "Idles",
+   "key": "idles",
+   "performers": [
+    "idles"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:frank-carter-and-the-rattlesnakes",
+   "name": "Frank Carter & The Rattlesnakes",
+   "key": "frank-carter-and-the-rattlesnakes",
+   "performers": [
+    "frank-carter-and-the-rattlesnakes"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:alma",
+   "name": "Alma",
+   "key": "alma",
+   "performers": [
+    "alma"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:johnny-marr",
+   "name": "Johnny Marr",
+   "key": "johnny-marr",
+   "performers": [
+    "johnny-marr"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:sigala",
+   "name": "Sigala",
+   "key": "sigala",
+   "performers": [
+    "sigala"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:khruangbin",
+   "name": "Khruangbin",
+   "key": "khruangbin",
+   "performers": [
+    "khruangbin"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:black-mountain",
+   "name": "Black Mountain",
+   "key": "black-mountain",
+   "performers": [
+    "black-mountain"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:valeras",
+   "name": "Valeras",
+   "key": "valeras",
+   "performers": [
+    "valeras"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:avalon-emerson",
+   "name": "Avalon Emerson",
+   "key": "avalon-emerson",
+   "performers": [
+    "avalon-emerson"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:b-traits",
+   "name": "B. Traits",
+   "key": "b-traits",
+   "performers": [
+    "b-traits"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:courtesy",
+   "name": "Courtesy",
+   "key": "courtesy",
+   "performers": [
+    "courtesy"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:objekt",
+   "name": "Objekt",
+   "key": "objekt",
+   "performers": [
+    "objekt"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:jungle-by-night",
+   "name": "Jungle By Night",
+   "key": "jungle-by-night",
+   "performers": [
+    "jungle-by-night"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:maruja-limon",
+   "name": "Maruja Limón",
+   "key": "maruja-limon",
+   "performers": [
+    "maruja-limon"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:pipes-and-pints",
+   "name": "Pipes And Pints",
+   "key": "pipes-and-pints",
+   "performers": [
+    "pipes-and-pints"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:rendez-vous",
+   "name": "Rendez-Vous",
+   "key": "rendez-vous",
+   "performers": [
+    "rendez-vous"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:satellites",
+   "name": "Satellites",
+   "key": "satellites",
+   "performers": [
+    "satellites"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:persephone",
+   "name": "Persephone",
+   "key": "persephone",
+   "performers": [
+    "persephone"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  },
+  {
+   "id": "sziget-2019:laskaar",
+   "name": "Laskaar",
+   "key": "laskaar",
+   "performers": [
+    "laskaar"
+   ],
+   "appearances": [
+    {
+     "day": 7
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "unofficial_lineup",
+  "unofficial": true,
+  "source": {
+   "kind": "press",
+   "site": "jambase.com",
+   "url": "https://www.jambase.com/festival/sziget-festival-2019",
+   "title": "Sziget Festival 2019 Lineup - Aug 7 - 13, 2019",
+   "publisher": "JamBase",
+   "fetchedAt": "2026-11-27",
+   "fetchedVia": "exa",
+   "scope": "partial",
+   "sha256": "6169cc510bbaf1ae0a461fc94f92d2f897bf130caae2b2c4f39ac10afee33047",
+   "bytes": 2504
+  },
+  "captures": [
+   {
+    "page": "lineup",
+    "url": "https://www.jambase.com/festival/sziget-festival-2019",
+    "fetchedAt": "2026-11-27",
+    "sha256": "6169cc510bbaf1ae0a461fc94f92d2f897bf130caae2b2c4f39ac10afee33047"
+   }
+  ]
+ }
+}

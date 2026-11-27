@@ -1,0 +1,46 @@
+{
+  "id": "sziget-2023",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "wikipedia",
+    "site": "nl.wikipedia.org",
+    "url": "https://nl.wikipedia.org/wiki/Sziget-festival",
+    "title": "Sziget-festival",
+    "publisher": "Wikipedia (Dutch)",
+    "published": "2026-07-14",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "partial",
+    "sha256": "c7929da4401260c58765f9ad2222c75ea61e4bd1c45bda7b7e768858603dc98d",
+    "bytes": 947
+  },
+  "printed": {
+    "days": {
+      "1": "10 aug",
+      "2": "11 aug",
+      "3": "12 aug",
+      "4": "13 aug",
+      "5": "14 aug",
+      "6": "15 aug"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "sziget",
+    "year": 2023,
+    "lifecycle": "occurred",
+    "dates": "2023-08-10..2023-08-15",
+    "evidence": "https://www.euronews.com/2023/08/16/sziget-festival-wraps-up-in-hungary-after-six-days-of-partying",
+    "published": "2023-08-16"
+  },
+  "note": "The Dutch Wikipedia article table of each day of Sziget 2023 headliners, on the Main Stage and on other stages it does not name; the date is the article revision Exa reported.",
+  "verified": {
+    "billings": 40,
+    "inSourceText": true
+  },
+  "stageOrder": [
+    "Main Stage"
+  ],
+  "dropped": []
+}

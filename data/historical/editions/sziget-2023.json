@@ -1,0 +1,613 @@
+{
+ "id": "sziget-2023",
+ "festivalId": "sziget",
+ "name": "Sziget 2023",
+ "year": 2023,
+ "timezone": "Europe/Budapest",
+ "rolloverHour": 8,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2023-08-10",
+   "label": "Thursday"
+  },
+  {
+   "day": 2,
+   "date": "2023-08-11",
+   "label": "Friday"
+  },
+  {
+   "day": 3,
+   "date": "2023-08-12",
+   "label": "Saturday"
+  },
+  {
+   "day": 4,
+   "date": "2023-08-13",
+   "label": "Sunday"
+  },
+  {
+   "day": 5,
+   "date": "2023-08-14",
+   "label": "Monday"
+  },
+  {
+   "day": 6,
+   "date": "2023-08-15",
+   "label": "Tuesday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "sziget-2023:main-stage",
+   "name": "Main Stage"
+  }
+ ],
+ "artists": [
+  {
+   "id": "sziget-2023:son-mieux",
+   "name": "Son Mieux",
+   "key": "son-mieux",
+   "performers": [
+    "son-mieux"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "sziget-2023:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "sziget-2023:foals",
+   "name": "Foals",
+   "key": "foals",
+   "performers": [
+    "foals"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "sziget-2023:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "sziget-2023:sam-fender",
+   "name": "Sam Fender",
+   "key": "sam-fender",
+   "performers": [
+    "sam-fender"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "sziget-2023:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "sziget-2023:florence-and-the-machine",
+   "name": "Florence and the Machine",
+   "key": "florence-and-the-machine",
+   "performers": [
+    "florence-and-the-machine"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "sziget-2023:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "sziget-2023:los-bitchos",
+   "name": "Los Bitchos",
+   "key": "los-bitchos",
+   "performers": [
+    "los-bitchos"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2023:bonobo",
+   "name": "Bonobo",
+   "key": "bonobo",
+   "performers": [
+    "bonobo"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2023:ran-d",
+   "name": "Ran-D",
+   "key": "ran-d",
+   "performers": [
+    "ran-d"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2023:devin-wild",
+   "name": "Devin Wild",
+   "key": "devin-wild",
+   "performers": [
+    "devin-wild"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2023:yungblud",
+   "name": "Yungblud",
+   "key": "yungblud",
+   "performers": [
+    "yungblud"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "sziget-2023:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "sziget-2023:imagine-dragons",
+   "name": "Imagine Dragons",
+   "key": "imagine-dragons",
+   "performers": [
+    "imagine-dragons"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "sziget-2023:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "sziget-2023:jamie-xx",
+   "name": "Jamie xx",
+   "key": "jamie-xx",
+   "performers": [
+    "jamie-xx"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2023:ben-bohmer",
+   "name": "Ben Böhmer",
+   "key": "ben-bohmer",
+   "performers": [
+    "ben-bohmer"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2023:adam-beyer",
+   "name": "Adam Beyer",
+   "key": "adam-beyer",
+   "performers": [
+    "adam-beyer"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2023:reinier-zonneveld",
+   "name": "Reinier Zonneveld",
+   "key": "reinier-zonneveld",
+   "performers": [
+    "reinier-zonneveld"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2023:mimi-webb",
+   "name": "Mimi Webb",
+   "key": "mimi-webb",
+   "performers": [
+    "mimi-webb"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "sziget-2023:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "sziget-2023:niall-horan",
+   "name": "Niall Horan",
+   "key": "niall-horan",
+   "performers": [
+    "niall-horan"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "sziget-2023:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "sziget-2023:david-guetta",
+   "name": "David Guetta",
+   "key": "david-guetta",
+   "performers": [
+    "david-guetta"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "sziget-2023:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "sziget-2023:jungle-by-night",
+   "name": "Jungle by Night",
+   "key": "jungle-by-night",
+   "performers": [
+    "jungle-by-night"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2023:tv-girl",
+   "name": "TV Girl",
+   "key": "tv-girl",
+   "performers": [
+    "tv-girl"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2023:two-feet",
+   "name": "Two Feet",
+   "key": "two-feet",
+   "performers": [
+    "two-feet"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2023:moderat",
+   "name": "Moderat",
+   "key": "moderat",
+   "performers": [
+    "moderat"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2023:tom-grennan",
+   "name": "Tom Grennan",
+   "key": "tom-grennan",
+   "performers": [
+    "tom-grennan"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "sziget-2023:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "sziget-2023:arlo-parks",
+   "name": "Arlo Parks",
+   "key": "arlo-parks",
+   "performers": [
+    "arlo-parks"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "sziget-2023:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "sziget-2023:mumford-and-sons",
+   "name": "Mumford & Sons",
+   "key": "mumford-and-sons",
+   "performers": [
+    "mumford-and-sons"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "sziget-2023:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "sziget-2023:m83",
+   "name": "M83",
+   "key": "m83",
+   "performers": [
+    "m83"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2023:frank-carter-and-the-rattlesnakes",
+   "name": "Frank Carter & The Rattlesnakes",
+   "key": "frank-carter-and-the-rattlesnakes",
+   "performers": [
+    "frank-carter-and-the-rattlesnakes"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2023:nothing-but-thieves",
+   "name": "Nothing But Thieves",
+   "key": "nothing-but-thieves",
+   "performers": [
+    "nothing-but-thieves"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2023:diplo",
+   "name": "Diplo",
+   "key": "diplo",
+   "performers": [
+    "diplo"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2023:lorde",
+   "name": "Lorde",
+   "key": "lorde",
+   "performers": [
+    "lorde"
+   ],
+   "appearances": [
+    {
+     "day": 5,
+     "stageId": "sziget-2023:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "sziget-2023:macklemore",
+   "name": "Macklemore",
+   "key": "macklemore",
+   "performers": [
+    "macklemore"
+   ],
+   "appearances": [
+    {
+     "day": 5,
+     "stageId": "sziget-2023:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "sziget-2023:lazza",
+   "name": "Lazza",
+   "key": "lazza",
+   "performers": [
+    "lazza"
+   ],
+   "appearances": [
+    {
+     "day": 5,
+     "stageId": "sziget-2023:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "sziget-2023:amyl-and-the-sniffers",
+   "name": "Amyl And The Sniffers",
+   "key": "amyl-and-the-sniffers",
+   "performers": [
+    "amyl-and-the-sniffers"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2023:sg-lewis",
+   "name": "SG Lewis",
+   "key": "sg-lewis",
+   "performers": [
+    "sg-lewis"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2023:sven-vath",
+   "name": "Sven Väth",
+   "key": "sven-vath",
+   "performers": [
+    "sven-vath"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2023:yung-lean",
+   "name": "Yung Lean",
+   "key": "yung-lean",
+   "performers": [
+    "yung-lean"
+   ],
+   "appearances": [
+    {
+     "day": 6,
+     "stageId": "sziget-2023:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "sziget-2023:girl-in-red",
+   "name": "Girl in red",
+   "key": "girl-in-red",
+   "performers": [
+    "girl-in-red"
+   ],
+   "appearances": [
+    {
+     "day": 6,
+     "stageId": "sziget-2023:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "sziget-2023:billie-eilish",
+   "name": "Billie Eilish",
+   "key": "billie-eilish",
+   "performers": [
+    "billie-eilish"
+   ],
+   "appearances": [
+    {
+     "day": 6,
+     "stageId": "sziget-2023:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "sziget-2023:hannah-grae",
+   "name": "Hannah Grae",
+   "key": "hannah-grae",
+   "performers": [
+    "hannah-grae"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2023:070-shake",
+   "name": "070 Shake",
+   "key": "070-shake",
+   "performers": [
+    "070-shake"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2023:sfb",
+   "name": "SFB",
+   "key": "sfb",
+   "performers": [
+    "sfb"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "unofficial_lineup",
+  "unofficial": true,
+  "source": {
+   "kind": "wikipedia",
+   "site": "nl.wikipedia.org",
+   "url": "https://nl.wikipedia.org/wiki/Sziget-festival",
+   "title": "Sziget-festival",
+   "publisher": "Wikipedia (Dutch)",
+   "published": "2026-07-14",
+   "fetchedAt": "2026-11-27",
+   "fetchedVia": "exa",
+   "scope": "partial",
+   "sha256": "c7929da4401260c58765f9ad2222c75ea61e4bd1c45bda7b7e768858603dc98d",
+   "bytes": 947
+  },
+  "captures": [
+   {
+    "page": "lineup",
+    "url": "https://nl.wikipedia.org/wiki/Sziget-festival",
+    "fetchedAt": "2026-11-27",
+    "sha256": "c7929da4401260c58765f9ad2222c75ea61e4bd1c45bda7b7e768858603dc98d"
+   }
+  ]
+ }
+}
