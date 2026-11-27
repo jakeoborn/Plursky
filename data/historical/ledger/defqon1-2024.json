@@ -1,0 +1,56 @@
+{
+  "id": "defqon1-2024",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "press",
+    "site": "hardstyle.com",
+    "url": "https://hardstyle.com/en/news/defqon-1-line-up-2024",
+    "title": "This is the full Defqon.1 weekend line-up",
+    "publisher": "Hardstyle.com",
+    "published": "2024-03-28",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "full",
+    "sha256": "92c3081e4bd1a9aec06512ce0e1ffbfb00c6c20f620b1bf9fe0d48c518c8b15a",
+    "bytes": 10358
+  },
+  "printed": {
+    "days": {
+      "1": "THURSDAY - THE GATHERING",
+      "2": "FRESH FRIDAY",
+      "3": "SATURDAY",
+      "4": "SUNDAY FUNDAY"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "defqon1",
+    "year": 2024,
+    "lifecycle": "occurred",
+    "dates": "2024-06-27..2024-06-30",
+    "evidence": "https://www.omroepflevoland.nl/nieuws/386541/klachten-over-geluidsoverlast-door-dreunend-defqon-1-meer-dan-verdubbeld",
+    "published": "2024-07-02"
+  },
+  "note": "The full lineup per day and stage as announced on 28 March 2024; later changes are not shown, and the stage hosts printed last on each line, the Warrior Workout and an unnamed 'more to be announced' slot are left out.",
+  "verified": {
+    "billings": 344,
+    "inSourceText": true
+  },
+  "stageOrder": [
+    "BLUE",
+    "BLACK",
+    "INDIGO",
+    "RED",
+    "U.V.",
+    "MAGENTA",
+    "GREEN",
+    "YELLOW",
+    "GOLD",
+    "ORANGE",
+    "PURPLE",
+    "SILVER",
+    "WHITE"
+  ],
+  "dropped": []
+}

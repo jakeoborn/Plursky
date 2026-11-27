@@ -1,0 +1,55 @@
+{
+  "id": "defqon1-2012",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "wikipedia",
+    "site": "de.wikipedia.org",
+    "url": "https://de.wikipedia.org/wiki/Defqon.1",
+    "title": "Defqon.1",
+    "publisher": "Wikipedia (German)",
+    "published": "2026-08-28",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "full",
+    "sha256": "25509d1b4f71ac90fc8b0d2b2ef7966c1c4cf32308d12d8aec403dff773ab9fe",
+    "bytes": 3068
+  },
+  "printed": {
+    "days": {
+      "1": "Preparty",
+      "2": "Friday",
+      "3": "Saturday"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "defqon1",
+    "year": 2012,
+    "lifecycle": "occurred",
+    "dates": "2012-06-21..2012-06-23",
+    "evidence": "https://www.bhznet.nl/Nieuws.asp?Id=15940",
+    "published": "2012-06-24"
+  },
+  "note": "The German Wikipedia article's lineup for 21 to 23 June 2012, printed as a preparty, Friday and Saturday with acts run together and split here at each act; the preparty is counted on the first day, the Darkraver invites, The Gathering and afterparty acts listed under Friday carry no stage, hosts are left out, and the date is the page date Exa gave.",
+  "verified": {
+    "billings": 174,
+    "inSourceText": true
+  },
+  "stageOrder": [
+    "White",
+    "Magenta",
+    "Grey",
+    "Blue",
+    "Black",
+    "Purple",
+    "Red",
+    "Brown",
+    "Orange",
+    "Silver",
+    "Ultra Violett",
+    "Green",
+    "Gold"
+  ],
+  "dropped": []
+}

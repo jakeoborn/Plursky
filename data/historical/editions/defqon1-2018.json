@@ -1,0 +1,3123 @@
+{
+ "id": "defqon1-2018",
+ "festivalId": "defqon1",
+ "name": "Defqon.1 2018",
+ "year": 2018,
+ "timezone": "Europe/Amsterdam",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2018-06-22",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2018-06-23",
+   "label": "Saturday"
+  },
+  {
+   "day": 3,
+   "date": "2018-06-24",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "defqon1-2018:red",
+   "name": "Red"
+  },
+  {
+   "id": "defqon1-2018:blue",
+   "name": "Blue"
+  },
+  {
+   "id": "defqon1-2018:black",
+   "name": "Black"
+  },
+  {
+   "id": "defqon1-2018:gold",
+   "name": "Gold"
+  },
+  {
+   "id": "defqon1-2018:magenta",
+   "name": "Magenta"
+  }
+ ],
+ "artists": [
+  {
+   "id": "defqon1-2018:andy-svge",
+   "name": "Andy Svge",
+   "key": "andy-svge",
+   "performers": [
+    "andy-svge"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:red"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:code-black",
+   "name": "Code Black",
+   "key": "code-black",
+   "performers": [
+    "code-black"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:red"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:d-block-and-s-te-fan",
+   "name": "D-Block & S-te-Fan",
+   "key": "d-block-and-s-te-fan",
+   "performers": [
+    "d-block-and-s-te-fan"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:red"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:max-enforcer",
+   "name": "Max Enforcer",
+   "key": "max-enforcer",
+   "performers": [
+    "max-enforcer"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:red"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:noisecontrollers",
+   "name": "Noisecontrollers",
+   "key": "noisecontrollers",
+   "performers": [
+    "noisecontrollers"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:red"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:ran-d-live",
+   "name": "Ran-D (Live)",
+   "key": "ran-d-live",
+   "performers": [
+    "ran-d-live"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:red"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:sound-rush",
+   "name": "Sound Rush",
+   "key": "sound-rush",
+   "performers": [
+    "sound-rush"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:red"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:sub-zero-project",
+   "name": "Sub Zero Project",
+   "key": "sub-zero-project",
+   "performers": [
+    "sub-zero-project"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:red"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:warface",
+   "name": "Warface",
+   "key": "warface",
+   "performers": [
+    "warface"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:red"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:wildstylez",
+   "name": "Wildstylez",
+   "key": "wildstylez",
+   "performers": [
+    "wildstylez"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:red"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:dee-block-and-s-te-pack",
+   "name": "Dee-Block & S-te-Pack",
+   "key": "dee-block-and-s-te-pack",
+   "performers": [
+    "dee-block-and-s-te-pack"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:red"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:ransomnia-and-friends",
+   "name": "Ransomnia & Friends",
+   "key": "ransomnia-and-friends",
+   "performers": [
+    "ransomnia-and-friends"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:red"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:psyko-punkz",
+   "name": "Psyko Punkz",
+   "key": "psyko-punkz",
+   "performers": [
+    "psyko-punkz"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:red"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:tweekacore-and-darren-styles",
+   "name": "Tweekacore & Darren Styles",
+   "key": "tweekacore-and-darren-styles",
+   "performers": [
+    "tweekacore-and-darren-styles"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:red"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:wasted-penguinz-and-adrenalize",
+   "name": "Wasted Penguinz & Adrenalize",
+   "key": "wasted-penguinz-and-adrenalize",
+   "performers": [
+    "wasted-penguinz-and-adrenalize"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:red"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:zatox-live",
+   "name": "Zatox (Live)",
+   "key": "zatox-live",
+   "performers": [
+    "zatox-live"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:red"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:zazafront",
+   "name": "Zazafront",
+   "key": "zazafront",
+   "performers": [
+    "zazafront"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:red"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:brennan-heart",
+   "name": "Brennan Heart",
+   "key": "brennan-heart",
+   "performers": [
+    "brennan-heart"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:red"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:coone",
+   "name": "Coone",
+   "key": "coone",
+   "performers": [
+    "coone"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:red"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:project-one",
+   "name": "Project One",
+   "key": "project-one",
+   "performers": [
+    "project-one"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:red"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:atmozfears",
+   "name": "Atmozfears",
+   "key": "atmozfears",
+   "performers": [
+    "atmozfears"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "defqon1-2018:blue"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:b-front-and-phuture-noize",
+   "name": "B-Front & Phuture Noize",
+   "key": "b-front-and-phuture-noize",
+   "performers": [
+    "b-front-and-phuture-noize"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "defqon1-2018:blue"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:bass-modulators",
+   "name": "Bass Modulators",
+   "key": "bass-modulators",
+   "performers": [
+    "bass-modulators"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "defqon1-2018:blue"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:frequencerz",
+   "name": "Frequencerz",
+   "key": "frequencerz",
+   "performers": [
+    "frequencerz"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "defqon1-2018:blue"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:headhunterz",
+   "name": "Headhunterz",
+   "key": "headhunterz",
+   "performers": [
+    "headhunterz"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "defqon1-2018:blue"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:adaro",
+   "name": "Adaro",
+   "key": "adaro",
+   "performers": [
+    "adaro"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:blue"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:b-freqz",
+   "name": "B-Freqz",
+   "key": "b-freqz",
+   "performers": [
+    "b-freqz"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:blue"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:degos-and-re-done",
+   "name": "Degos & Re-Done",
+   "key": "degos-and-re-done",
+   "performers": [
+    "degos-and-re-done"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:blue"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:digital-punk",
+   "name": "Digital Punk",
+   "key": "digital-punk",
+   "performers": [
+    "digital-punk"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:blue"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:e-force",
+   "name": "E-Force",
+   "key": "e-force",
+   "performers": [
+    "e-force"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:blue"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:jason-payne",
+   "name": "Jason Payne",
+   "key": "jason-payne",
+   "performers": [
+    "jason-payne"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:blue"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:luna",
+   "name": "Luna",
+   "key": "luna",
+   "performers": [
+    "luna"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:blue"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:main-concern",
+   "name": "Main Concern",
+   "key": "main-concern",
+   "performers": [
+    "main-concern"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:blue"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:radical-redemption-live",
+   "name": "Radical Redemption (Live)",
+   "key": "radical-redemption-live",
+   "performers": [
+    "radical-redemption-live"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:blue"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:rebelion",
+   "name": "Rebelion",
+   "key": "rebelion",
+   "performers": [
+    "rebelion"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:blue"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:regain-live",
+   "name": "Regain (Live)",
+   "key": "regain-live",
+   "performers": [
+    "regain-live"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:blue"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:requiem",
+   "name": "Requiem",
+   "key": "requiem",
+   "performers": [
+    "requiem"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:blue"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:bass-chaserz",
+   "name": "Bass Chaserz",
+   "key": "bass-chaserz",
+   "performers": [
+    "bass-chaserz"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:blue"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:dj-the-prophet",
+   "name": "DJ The Prophet",
+   "key": "dj-the-prophet",
+   "performers": [
+    "dj-the-prophet"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:blue"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:mental-theo",
+   "name": "Mental Theo",
+   "key": "mental-theo",
+   "performers": [
+    "mental-theo"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:blue"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:tnt",
+   "name": "TNT",
+   "key": "tnt",
+   "performers": [
+    "tnt"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:blue"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:act-of-rage",
+   "name": "Act of Rage",
+   "key": "act-of-rage",
+   "performers": [
+    "act-of-rage"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:blue"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:clockartz",
+   "name": "Clockartz",
+   "key": "clockartz",
+   "performers": [
+    "clockartz"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:blue"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:crypsis-and-chain-reaction-present-unlike-others",
+   "name": "Crypsis & Chain Reaction Present “Unlike Others”",
+   "key": "crypsis-and-chain-reaction-present-unlike-others",
+   "performers": [
+    "crypsis-and-chain-reaction-present-unlike-others"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:blue"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:d-sturb-live",
+   "name": "D-Sturb (Live)",
+   "key": "d-sturb-live",
+   "performers": [
+    "d-sturb-live"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:blue"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:deepack",
+   "name": "Deepack",
+   "key": "deepack",
+   "performers": [
+    "deepack"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:blue"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:deetox-bring-the-riot-live",
+   "name": "Deetox – “Bring The Riot” (Live)",
+   "key": "deetox-bring-the-riot-live",
+   "performers": [
+    "deetox-bring-the-riot-live"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:blue"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:delete-vip",
+   "name": "Delete VIP",
+   "key": "delete-vip",
+   "performers": [
+    "delete-vip"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:blue"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:endymion-live",
+   "name": "Endymion (Live)",
+   "key": "endymion-live",
+   "performers": [
+    "endymion-live"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:blue"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:frequencerz-stealth-mode",
+   "name": "Frequencerz “Stealth Mode”",
+   "key": "frequencerz-stealth-mode",
+   "performers": [
+    "frequencerz-stealth-mode"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:blue"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:myst",
+   "name": "Myst",
+   "key": "myst",
+   "performers": [
+    "myst"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:blue"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:phuture-noize-presents-black-mirror-society-showcase",
+   "name": "Phuture Noize Presents Black Mirror Society (Showcase)",
+   "key": "phuture-noize-presents-black-mirror-society-showcase",
+   "performers": [
+    "phuture-noize-presents-black-mirror-society-showcase"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:blue"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:rebel-ut-ion",
+   "name": "Rebel[UT]ion",
+   "key": "rebel-ut-ion",
+   "performers": [
+    "rebel-ut-ion"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:blue"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:sub-sonik",
+   "name": "Sub Sonik",
+   "key": "sub-sonik",
+   "performers": [
+    "sub-sonik"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:blue"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:28-years-of-endymion-live",
+   "name": "28 Years of Endymion (Live)",
+   "key": "28-years-of-endymion-live",
+   "performers": [
+    "28-years-of-endymion-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "defqon1-2018:black"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:destructive-tendencies",
+   "name": "Destructive Tendencies",
+   "key": "destructive-tendencies",
+   "performers": [
+    "destructive-tendencies"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "defqon1-2018:black"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:korsakoff",
+   "name": "Korsakoff",
+   "key": "korsakoff",
+   "performers": [
+    "korsakoff"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "defqon1-2018:black"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:paul-elstak",
+   "name": "Paul Elstak",
+   "key": "paul-elstak",
+   "performers": [
+    "paul-elstak"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "defqon1-2018:black"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:tha-playah",
+   "name": "Tha Playah",
+   "key": "tha-playah",
+   "performers": [
+    "tha-playah"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "defqon1-2018:black"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:andy-the-core",
+   "name": "Andy The Core",
+   "key": "andy-the-core",
+   "performers": [
+    "andy-the-core"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:black"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:angerfist",
+   "name": "Angerfist",
+   "key": "angerfist",
+   "performers": [
+    "angerfist"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:black"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:art-of-fighters",
+   "name": "Art of Fighters",
+   "key": "art-of-fighters",
+   "performers": [
+    "art-of-fighters"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:black"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:bodyshock",
+   "name": "Bodyshock",
+   "key": "bodyshock",
+   "performers": [
+    "bodyshock"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:black"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:mad-dog",
+   "name": "Mad Dog",
+   "key": "mad-dog",
+   "performers": [
+    "mad-dog"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:black"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:miss-k8",
+   "name": "Miss K8",
+   "key": "miss-k8",
+   "performers": [
+    "miss-k8"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:black"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:n-vitral-presents-bombsquad",
+   "name": "N-Vitral Presents “Bombsquad”",
+   "key": "n-vitral-presents-bombsquad",
+   "performers": [
+    "n-vitral-presents-bombsquad"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:black"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:neophyte",
+   "name": "Neophyte",
+   "key": "neophyte",
+   "performers": [
+    "neophyte"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:black"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:noize-supressor",
+   "name": "Noize Supressor",
+   "key": "noize-supressor",
+   "performers": [
+    "noize-supressor"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:black"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:scarphase-live",
+   "name": "Scarphase (Live)",
+   "key": "scarphase-live",
+   "performers": [
+    "scarphase-live"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:black"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:spitnoise",
+   "name": "Spitnoise",
+   "key": "spitnoise",
+   "performers": [
+    "spitnoise"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:black"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:the-sickest-squad",
+   "name": "The Sickest Squad",
+   "key": "the-sickest-squad",
+   "performers": [
+    "the-sickest-squad"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:black"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:yoshiko",
+   "name": "Yoshiko",
+   "key": "yoshiko",
+   "performers": [
+    "yoshiko"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:black"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:anime",
+   "name": "AniMe",
+   "key": "anime",
+   "performers": [
+    "anime"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:black"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:d-fence",
+   "name": "D-Fence",
+   "key": "d-fence",
+   "performers": [
+    "d-fence"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:black"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:deadly-guns",
+   "name": "Deadly Guns",
+   "key": "deadly-guns",
+   "performers": [
+    "deadly-guns"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:black"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:dr-peacock",
+   "name": "Dr. Peacock",
+   "key": "dr-peacock",
+   "performers": [
+    "dr-peacock"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:black"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:evil-activities",
+   "name": "Evil Activities",
+   "key": "evil-activities",
+   "performers": [
+    "evil-activities"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:black"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:i-gor",
+   "name": "I:Gor",
+   "key": "i-gor",
+   "performers": [
+    "i-gor"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:black"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:koozah",
+   "name": "Koozah",
+   "key": "koozah",
+   "performers": [
+    "koozah"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:black"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:nosferatu",
+   "name": "Nosferatu",
+   "key": "nosferatu",
+   "performers": [
+    "nosferatu"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:black"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:partyraiser-and-bulletproof",
+   "name": "Partyraiser & Bulletproof",
+   "key": "partyraiser-and-bulletproof",
+   "performers": [
+    "partyraiser-and-bulletproof"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:black"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:the-melodyst",
+   "name": "The Melodyst",
+   "key": "the-melodyst",
+   "performers": [
+    "the-melodyst"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:black"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:allstvrs",
+   "name": "Allstvrs",
+   "key": "allstvrs",
+   "performers": [
+    "allstvrs"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:crystal-lake",
+   "name": "Crystal Lake",
+   "key": "crystal-lake",
+   "performers": [
+    "crystal-lake"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:da-tweekaz",
+   "name": "Da Tweekaz",
+   "key": "da-tweekaz",
+   "performers": [
+    "da-tweekaz"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:dj-isaac",
+   "name": "DJ Isaac",
+   "key": "dj-isaac",
+   "performers": [
+    "dj-isaac"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:scale",
+   "name": "Scale",
+   "key": "scale",
+   "performers": [
+    "scale"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:ecstatic",
+   "name": "Ecstatic",
+   "key": "ecstatic",
+   "performers": [
+    "ecstatic"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:galactixx",
+   "name": "Galactixx",
+   "key": "galactixx",
+   "performers": [
+    "galactixx"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:hard-driver",
+   "name": "Hard Driver",
+   "key": "hard-driver",
+   "performers": [
+    "hard-driver"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:jnxd",
+   "name": "Jnxd",
+   "key": "jnxd",
+   "performers": [
+    "jnxd"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:rebourne",
+   "name": "Rebourne",
+   "key": "rebourne",
+   "performers": [
+    "rebourne"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:sephyx",
+   "name": "Sephyx",
+   "key": "sephyx",
+   "performers": [
+    "sephyx"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:toneshifterz",
+   "name": "Toneshifterz",
+   "key": "toneshifterz",
+   "performers": [
+    "toneshifterz"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:audiotricz",
+   "name": "Audiotricz",
+   "key": "audiotricz",
+   "performers": [
+    "audiotricz"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:crisis-era",
+   "name": "Crisis Era",
+   "key": "crisis-era",
+   "performers": [
+    "crisis-era"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:cyber",
+   "name": "Cyber",
+   "key": "cyber",
+   "performers": [
+    "cyber"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:demi-kanon",
+   "name": "Demi Kanon",
+   "key": "demi-kanon",
+   "performers": [
+    "demi-kanon"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:devin-wild",
+   "name": "Devin Wild",
+   "key": "devin-wild",
+   "performers": [
+    "devin-wild"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:keltek",
+   "name": "Keltek",
+   "key": "keltek",
+   "performers": [
+    "keltek"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:retrospect",
+   "name": "Retrospect",
+   "key": "retrospect",
+   "performers": [
+    "retrospect"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:bertocucci-feranzano",
+   "name": "Bertocucci Feranzano",
+   "key": "bertocucci-feranzano",
+   "performers": [
+    "bertocucci-feranzano"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:gold"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:dano",
+   "name": "Dano",
+   "key": "dano",
+   "performers": [
+    "dano"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:gold"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:drokz",
+   "name": "Drokz",
+   "key": "drokz",
+   "performers": [
+    "drokz"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:gold"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:dune",
+   "name": "Dune",
+   "key": "dune",
+   "performers": [
+    "dune"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:gold"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:frantic-freak",
+   "name": "Frantic Freak",
+   "key": "frantic-freak",
+   "performers": [
+    "frantic-freak"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:gold"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:jappo",
+   "name": "Jappo",
+   "key": "jappo",
+   "performers": [
+    "jappo"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:gold"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:panic",
+   "name": "Panic",
+   "key": "panic",
+   "performers": [
+    "panic"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:gold"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:rotterdam-terror-corps-live",
+   "name": "Rotterdam Terror Corps (Live)",
+   "key": "rotterdam-terror-corps-live",
+   "performers": [
+    "rotterdam-terror-corps-live"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:gold"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:ruffneck",
+   "name": "Ruffneck",
+   "key": "ruffneck",
+   "performers": [
+    "ruffneck"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:gold"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:vince",
+   "name": "Vince",
+   "key": "vince",
+   "performers": [
+    "vince"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:gold"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:waxweazle",
+   "name": "Waxweazle",
+   "key": "waxweazle",
+   "performers": [
+    "waxweazle"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:gold"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:buzz-fuzz",
+   "name": "Buzz Fuzz",
+   "key": "buzz-fuzz",
+   "performers": [
+    "buzz-fuzz"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:gold"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:d-spyre",
+   "name": "D’Spyre",
+   "key": "d-spyre",
+   "performers": [
+    "d-spyre"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:gold"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:promo",
+   "name": "Promo",
+   "key": "promo",
+   "performers": [
+    "promo"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:gold"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:negative-a",
+   "name": "Negative A",
+   "key": "negative-a",
+   "performers": [
+    "negative-a"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:gold"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:predator",
+   "name": "Predator",
+   "key": "predator",
+   "performers": [
+    "predator"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:gold"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:tha-playah-and-dazzler",
+   "name": "Tha Playah & Dazzler",
+   "key": "tha-playah-and-dazzler",
+   "performers": [
+    "tha-playah-and-dazzler"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:gold"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:the-viper",
+   "name": "The Viper",
+   "key": "the-viper",
+   "performers": [
+    "the-viper"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:gold"
+    },
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:traxtorm-legends",
+   "name": "Traxtorm Legends",
+   "key": "traxtorm-legends",
+   "performers": [
+    "traxtorm-legends"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:gold"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:alpha-twins",
+   "name": "Alpha Twins",
+   "key": "alpha-twins",
+   "performers": [
+    "alpha-twins"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:magenta"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:beholder",
+   "name": "Beholder",
+   "key": "beholder",
+   "performers": [
+    "beholder"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:magenta"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:derb",
+   "name": "Derb",
+   "key": "derb",
+   "performers": [
+    "derb"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:magenta"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:haze-and-abyss",
+   "name": "Haze & Abyss",
+   "key": "haze-and-abyss",
+   "performers": [
+    "haze-and-abyss"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:magenta"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:jaws",
+   "name": "Jaws",
+   "key": "jaws",
+   "performers": [
+    "jaws"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:magenta"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:pavo",
+   "name": "Pavo",
+   "key": "pavo",
+   "performers": [
+    "pavo"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:magenta"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:scot-project",
+   "name": "Scot Project",
+   "key": "scot-project",
+   "performers": [
+    "scot-project"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:magenta"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:sunny-d",
+   "name": "Sunny D",
+   "key": "sunny-d",
+   "performers": [
+    "sunny-d"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:magenta"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:tatanka-and-activator",
+   "name": "Tatanka & Activator",
+   "key": "tatanka-and-activator",
+   "performers": [
+    "tatanka-and-activator"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:magenta"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:zany",
+   "name": "Zany",
+   "key": "zany",
+   "performers": [
+    "zany"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "defqon1-2018:magenta"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:2-sidez-live",
+   "name": "2-Sidez (Live)",
+   "key": "2-sidez-live",
+   "performers": [
+    "2-sidez-live"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:magenta"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:balistic",
+   "name": "Balistic",
+   "key": "balistic",
+   "performers": [
+    "balistic"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:magenta"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:daniele-mondello",
+   "name": "Daniele Mondello",
+   "key": "daniele-mondello",
+   "performers": [
+    "daniele-mondello"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:magenta"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:davide-sonar",
+   "name": "Davide Sonar",
+   "key": "davide-sonar",
+   "performers": [
+    "davide-sonar"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:magenta"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:lip-dj",
+   "name": "Lip DJ",
+   "key": "lip-dj",
+   "performers": [
+    "lip-dj"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:magenta"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:second-identity",
+   "name": "Second Identity",
+   "key": "second-identity",
+   "performers": [
+    "second-identity"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:magenta"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:stephy",
+   "name": "Stephy",
+   "key": "stephy",
+   "performers": [
+    "stephy"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:magenta"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:the-pitcher",
+   "name": "The Pitcher",
+   "key": "the-pitcher",
+   "performers": [
+    "the-pitcher"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "defqon1-2018:magenta"
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:billy-the-kit",
+   "name": "Billy The Kit",
+   "key": "billy-the-kit",
+   "performers": [
+    "billy-the-kit"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:crude-intentions",
+   "name": "Crude Intentions",
+   "key": "crude-intentions",
+   "performers": [
+    "crude-intentions"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:dr-rude",
+   "name": "Dr. Rude",
+   "key": "dr-rude",
+   "performers": [
+    "dr-rude"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:dutch-movement",
+   "name": "Dutch Movement",
+   "key": "dutch-movement",
+   "performers": [
+    "dutch-movement"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:jebroer-live",
+   "name": "Jebroer (Live)",
+   "key": "jebroer-live",
+   "performers": [
+    "jebroer-live"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:kutski",
+   "name": "Kutski",
+   "key": "kutski",
+   "performers": [
+    "kutski"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:mark-with-a-k",
+   "name": "Mark With A K",
+   "key": "mark-with-a-k",
+   "performers": [
+    "mark-with-a-k"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:pat-b-live",
+   "name": "Pat B (Live)",
+   "key": "pat-b-live",
+   "performers": [
+    "pat-b-live"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:plug-n-play",
+   "name": "Plug ‘N Play",
+   "key": "plug-n-play",
+   "performers": [
+    "plug-n-play"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:ransom",
+   "name": "Ransom",
+   "key": "ransom",
+   "performers": [
+    "ransom"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:ruthless",
+   "name": "Ruthless",
+   "key": "ruthless",
+   "performers": [
+    "ruthless"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:bass-chaserz-and-ruthless",
+   "name": "Bass Chaserz & Ruthless",
+   "key": "bass-chaserz-and-ruthless",
+   "performers": [
+    "bass-chaserz-and-ruthless"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:dirtcaps",
+   "name": "Dirtcaps",
+   "key": "dirtcaps",
+   "performers": [
+    "dirtcaps"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:dr-phunk",
+   "name": "Dr Phunk",
+   "key": "dr-phunk",
+   "performers": [
+    "dr-phunk"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:geck-o-qult-special",
+   "name": "Geck-o (Qult Special)",
+   "key": "geck-o-qult-special",
+   "performers": [
+    "geck-o-qult-special"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:genius",
+   "name": "Genius",
+   "key": "genius",
+   "performers": [
+    "genius"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:gldy-lx",
+   "name": "Gldy Lx",
+   "key": "gldy-lx",
+   "performers": [
+    "gldy-lx"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:rat-n-frikk",
+   "name": "Rat N Frikk",
+   "key": "rat-n-frikk",
+   "performers": [
+    "rat-n-frikk"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:the-darkraver-and-outsiders",
+   "name": "The Darkraver & Outsiders",
+   "key": "the-darkraver-and-outsiders",
+   "performers": [
+    "the-darkraver-and-outsiders"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:380-volt",
+   "name": "380 Volt",
+   "key": "380-volt",
+   "performers": [
+    "380-volt"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:dolphin",
+   "name": "Dolphin",
+   "key": "dolphin",
+   "performers": [
+    "dolphin"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:mindustries",
+   "name": "Mindustries",
+   "key": "mindustries",
+   "performers": [
+    "mindustries"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:somniac-one",
+   "name": "Somniac One",
+   "key": "somniac-one",
+   "performers": [
+    "somniac-one"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:the-dj-producer-and-djipe",
+   "name": "The DJ Producer &Djipe",
+   "key": "the-dj-producer-and-djipe",
+   "performers": [
+    "the-dj-producer-and-djipe"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:the-outside-agency",
+   "name": "The Outside Agency",
+   "key": "the-outside-agency",
+   "performers": [
+    "the-outside-agency"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:the-teknoist",
+   "name": "The Teknoist",
+   "key": "the-teknoist",
+   "performers": [
+    "the-teknoist"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:thrasher",
+   "name": "Thrasher",
+   "key": "thrasher",
+   "performers": [
+    "thrasher"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:wavolizer-and-geck-o",
+   "name": "Wavolizer & Geck-o",
+   "key": "wavolizer-and-geck-o",
+   "performers": [
+    "wavolizer-and-geck-o"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:dither",
+   "name": "Dither",
+   "key": "dither",
+   "performers": [
+    "dither"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:ghost-in-the-machine",
+   "name": "Ghost In The Machine",
+   "key": "ghost-in-the-machine",
+   "performers": [
+    "ghost-in-the-machine"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:igneon-system",
+   "name": "Igneon System",
+   "key": "igneon-system",
+   "performers": [
+    "igneon-system"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:rude-awakening",
+   "name": "Rude Awakening",
+   "key": "rude-awakening",
+   "performers": [
+    "rude-awakening"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:switch-technique-presents-nonexistande",
+   "name": "Switch Technique Presents “Nonexistande”",
+   "key": "switch-technique-presents-nonexistande",
+   "performers": [
+    "switch-technique-presents-nonexistande"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:the-satan",
+   "name": "The Satan",
+   "key": "the-satan",
+   "performers": [
+    "the-satan"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:tripped",
+   "name": "Tripped",
+   "key": "tripped",
+   "performers": [
+    "tripped"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:tugie",
+   "name": "Tugie",
+   "key": "tugie",
+   "performers": [
+    "tugie"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:airtunes",
+   "name": "Airtunes",
+   "key": "airtunes",
+   "performers": [
+    "airtunes"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:arzadous",
+   "name": "Arzadous",
+   "key": "arzadous",
+   "performers": [
+    "arzadous"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:ceazar",
+   "name": "Ceazar",
+   "key": "ceazar",
+   "performers": [
+    "ceazar"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:deluzion",
+   "name": "Deluzion",
+   "key": "deluzion",
+   "performers": [
+    "deluzion"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:d-stroyer-and-recoder",
+   "name": "D-Stroyer & Recoder",
+   "key": "d-stroyer-and-recoder",
+   "performers": [
+    "d-stroyer-and-recoder"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:emphasis",
+   "name": "Emphasis",
+   "key": "emphasis",
+   "performers": [
+    "emphasis"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:euphorizer",
+   "name": "Euphorizer",
+   "key": "euphorizer",
+   "performers": [
+    "euphorizer"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:imperatorz",
+   "name": "Imperatorz",
+   "key": "imperatorz",
+   "performers": [
+    "imperatorz"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:luca-testa",
+   "name": "Luca Testa",
+   "key": "luca-testa",
+   "performers": [
+    "luca-testa"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:mkn",
+   "name": "MKN",
+   "key": "mkn",
+   "performers": [
+    "mkn"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:primeshock",
+   "name": "Primeshock",
+   "key": "primeshock",
+   "performers": [
+    "primeshock"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:radrz",
+   "name": "Radrz",
+   "key": "radrz",
+   "performers": [
+    "radrz"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:caine",
+   "name": "Caine",
+   "key": "caine",
+   "performers": [
+    "caine"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:chris-one",
+   "name": "Chris One",
+   "key": "chris-one",
+   "performers": [
+    "chris-one"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:killshot",
+   "name": "Killshot",
+   "key": "killshot",
+   "performers": [
+    "killshot"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:luminite-and-physika-and-thyron",
+   "name": "Luminite & Physika & Thyron",
+   "key": "luminite-and-physika-and-thyron",
+   "performers": [
+    "luminite-and-physika-and-thyron"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:mind-dimension",
+   "name": "Mind Dimension",
+   "key": "mind-dimension",
+   "performers": [
+    "mind-dimension"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:ncrypta",
+   "name": "Ncrypta",
+   "key": "ncrypta",
+   "performers": [
+    "ncrypta"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:neroz",
+   "name": "Neroz",
+   "key": "neroz",
+   "performers": [
+    "neroz"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:prefix-and-density",
+   "name": "Prefix & Density",
+   "key": "prefix-and-density",
+   "performers": [
+    "prefix-and-density"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:rejecta",
+   "name": "Rejecta",
+   "key": "rejecta",
+   "performers": [
+    "rejecta"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:rvage",
+   "name": "Rvage",
+   "key": "rvage",
+   "performers": [
+    "rvage"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:unresolved",
+   "name": "Unresolved",
+   "key": "unresolved",
+   "performers": [
+    "unresolved"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:avio-live",
+   "name": "Avio (Live)",
+   "key": "avio-live",
+   "performers": [
+    "avio-live"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:crystal-mad",
+   "name": "Crystal Mad",
+   "key": "crystal-mad",
+   "performers": [
+    "crystal-mad"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:d-attack",
+   "name": "D-Attack",
+   "key": "d-attack",
+   "performers": [
+    "d-attack"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:exit-mind",
+   "name": "Exit Mind",
+   "key": "exit-mind",
+   "performers": [
+    "exit-mind"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:malice",
+   "name": "Malice",
+   "key": "malice",
+   "performers": [
+    "malice"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:re-mind",
+   "name": "Re-mind",
+   "key": "re-mind",
+   "performers": [
+    "re-mind"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:rooler",
+   "name": "Rooler",
+   "key": "rooler",
+   "performers": [
+    "rooler"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:the-apexx-machine",
+   "name": "The Apexx Machine",
+   "key": "the-apexx-machine",
+   "performers": [
+    "the-apexx-machine"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:the-classics-machine",
+   "name": "The Classics Machine",
+   "key": "the-classics-machine",
+   "performers": [
+    "the-classics-machine"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:the-purge",
+   "name": "The Purge",
+   "key": "the-purge",
+   "performers": [
+    "the-purge"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:krtm",
+   "name": "[KRTM]",
+   "key": "krtm",
+   "performers": [
+    "krtm"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:angernoizer",
+   "name": "Angernoizer",
+   "key": "angernoizer",
+   "performers": [
+    "angernoizer"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:billz",
+   "name": "Billz",
+   "key": "billz",
+   "performers": [
+    "billz"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:dr-peacock-early-peacock-set",
+   "name": "Dr. Peacock (Early Peacock Set)",
+   "key": "dr-peacock-early-peacock-set",
+   "performers": [
+    "dr-peacock-early-peacock-set"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:f-n-ize",
+   "name": "F. NøIzE",
+   "key": "f-n-ize",
+   "performers": [
+    "f-n-ize"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:hatred",
+   "name": "Hatred",
+   "key": "hatred",
+   "performers": [
+    "hatred"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:lady-dammage",
+   "name": "Lady Dammage",
+   "key": "lady-dammage",
+   "performers": [
+    "lady-dammage"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:noisekick",
+   "name": "Noisekick",
+   "key": "noisekick",
+   "performers": [
+    "noisekick"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:sloperij-janssen",
+   "name": "Sloperij Janssen",
+   "key": "sloperij-janssen",
+   "performers": [
+    "sloperij-janssen"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:system-overload",
+   "name": "System:Overload",
+   "key": "system-overload",
+   "performers": [
+    "system-overload"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:cryogenic",
+   "name": "Cryogenic",
+   "key": "cryogenic",
+   "performers": [
+    "cryogenic"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:drs",
+   "name": "DRS",
+   "key": "drs",
+   "performers": [
+    "drs"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:gpf",
+   "name": "GPF",
+   "key": "gpf",
+   "performers": [
+    "gpf"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:nsd",
+   "name": "NSD",
+   "key": "nsd",
+   "performers": [
+    "nsd"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:sefa",
+   "name": "Sefa",
+   "key": "sefa",
+   "performers": [
+    "sefa"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:sjammienators",
+   "name": "Sjammienators",
+   "key": "sjammienators",
+   "performers": [
+    "sjammienators"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:spitnoise-and-chaotic-hostility",
+   "name": "Spitnoise & Chaotic Hostility",
+   "key": "spitnoise-and-chaotic-hostility",
+   "performers": [
+    "spitnoise-and-chaotic-hostility"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "defqon1-2018:the-sickest-squad-sickcore-set",
+   "name": "The Sickest Squad (Sickcore Set)",
+   "key": "the-sickest-squad-sickcore-set",
+   "performers": [
+    "the-sickest-squad-sickcore-set"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "unofficial_lineup",
+  "unofficial": true,
+  "source": {
+   "kind": "press",
+   "site": "edmidentity.com",
+   "url": "https://edmidentity.com/2018/03/20/defqon-1-2018-lineup/",
+   "title": "Defqon.1 Festival Reveals 2018 Lineup; Tickets on Sale March 24",
+   "publisher": "EDM Identity",
+   "published": "2018-03-20",
+   "fetchedAt": "2026-11-27",
+   "fetchedVia": "exa",
+   "scope": "full",
+   "sha256": "9b81cccf96b0524f3cb968a5db503daed5e2cc8960ba45de7b900addc6d4853c",
+   "bytes": 6127
+  },
+  "captures": [
+   {
+    "page": "lineup",
+    "url": "https://edmidentity.com/2018/03/20/defqon-1-2018-lineup/",
+    "fetchedAt": "2026-11-27",
+    "sha256": "9b81cccf96b0524f3cb968a5db503daed5e2cc8960ba45de7b900addc6d4853c"
+   }
+  ]
+ }
+}
