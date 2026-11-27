@@ -91,6 +91,9 @@ export const OFFICIAL_HOSTS = {
   // creamfields.com: Creamfields' own site, whose /artists page listed each
   // year's lineup by day and stage.
   "creamfields": ["creamfields.com"],
+  // ultraeurope.com: Ultra Europe's own site, whose 2013 /artists/ page
+  // listed each act with its day and stage.
+  "ultra-europe": ["ultraeurope.com"],
 };
 
 // Where an official graphic may be re-hosted for an `official_sources`

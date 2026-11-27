@@ -680,6 +680,16 @@ export const EDITIONS = {
     dates: [["2025-08-21", "Thursday"], ["2025-08-22", "Friday"], ["2025-08-23", "Saturday"], ["2025-08-24", "Sunday"]],
     notes: [{ asOf: "2026-11-25", text: "The lineup as the festival's own page printed it the day after the festival. Five stage lists (Arc and APEX on Friday, APEX on Sunday, drip Hospitality on Friday and Saturday) ended \"+ more\" and were never completed, so some acts on those stages are not shown.",
       source: "https://web.archive.org/web/20250825010416/https://creamfields.com/lineup/" }] },
+  // Ultra Europe 2013 (Poljud Stadium, Split): the festival's own /artists/
+  // page (ultra-europe-artists.mjs, extract-ultra-europe.mjs) lists each act
+  // with its numbered day and stage. The page's countdown opens on the first
+  // day; the dates are the census's dated run. The page's Day 3 is Ultra
+  // Beach on Hvar, a separate event, and is not a day of this edition.
+  "ultra-europe-2013": { festivalId: "ultra-europe", name: "Ultra Europe 2013", year: 2013,
+    timezone: "Europe/Zagreb", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2013-07-12", "Friday"], ["2013-07-13", "Saturday"]],
+    notes: [{ asOf: "2026-11-27", text: "The lineup as the festival's own Artists page printed it a week after the festival: the acts it featured, each with its day and stage, not every act that played. Its third day, Ultra Beach on Hvar, was a separate event and is not listed.",
+      source: "https://web.archive.org/web/20130720070946/http://ultraeurope.com:80/artists/" }] },
   "tomorrowland-2023": { festivalId: "tomorrowland", name: "Tomorrowland 2023", year: 2023,
     timezone: "Europe/Brussels", rolloverHour: 6, method: "official_sources", dates: [["2023-07-21", "Friday"], ["2023-07-22", "Saturday"], ["2023-07-23", "Sunday"], ["2023-07-28", "Friday"], ["2023-07-29", "Saturday"], ["2023-07-30", "Sunday"]],
     dayLabels: ACL_WEEKEND_LABELS },

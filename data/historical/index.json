@@ -6142,6 +6142,32 @@
    }
   },
   {
+   "id": "ultra-europe-2013",
+   "festivalId": "ultra-europe",
+   "festivalName": "Ultra Europe",
+   "name": "Ultra Europe 2013",
+   "year": 2013,
+   "timezone": "Europe/Zagreb",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2013-07-12",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2013-07-13",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 2,
+    "artists": 34,
+    "sets": 0
+   }
+  },
+  {
    "id": "ultra-miami-2025",
    "festivalId": "ultra-miami",
    "festivalName": "Ultra Miami",
