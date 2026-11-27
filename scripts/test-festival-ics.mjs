@@ -7,14 +7,19 @@
 //      without splitting UTF-8, CRLF throughout, input order never decides.
 //   B. Every committed calendar against its own page: the page links the
 //      calendar exactly when the file exists, every event's URL anchor is a
-//      set row on that page, and every event's start, read back in the
-//      festival's zone, is the very clock time and date that row prints.
+//      set row on that page, and every event's start AND end, read back in
+//      the festival's zone FROM THE REGISTRY, is the very clock time and date
+//      that row prints. A row with no end has no DTEND. The calendar's own
+//      X-WR-TIMEZONE must name that same zone (lane III, #619: a DTEND moved
+//      by 1 minute passed when only starts were compared, and reading the zone
+//      back from the file could not catch a wrong zone).
 //   C. Mutants of the lib (late-night rule, end rollover, escaping, folding)
 //      must each fail A. A gate that cannot fail proves nothing.
 import { readFileSync, readdirSync, existsSync, mkdtempSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { loadRegistry } from './lib/load-registry.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const LIB = join(ROOT, 'scripts', 'lib', 'festival-ics.mjs');
@@ -61,12 +66,11 @@ const lib = await import(pathToFileURL(LIB).href);
 fixtureChecks(lib);
 
 // ── B ──
-const tzOf = (() => {
-  // The page prints local clock times; the calendar holds UTC. Read the zone
-  // back from the calendar itself (X-WR-TIMEZONE) so the comparison needs no
-  // second copy of the registry.
-  return (t) => (/X-WR-TIMEZONE:(\S+)/.exec(t) || [])[1];
-})();
+// The page prints local clock times; the calendar holds UTC. The zone comes
+// from the registry, the source both the page and the calendar are built from.
+const { REG } = loadRegistry(ROOT);
+const regTz = new Map(REG.map(e => [e.config.id, e.config.tz]));
+const tzOf = (t) => (/X-WR-TIMEZONE:(\S+)/.exec(t) || [])[1];
 const local = (z, tz) => {
   const m = /^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})Z$/.exec(z);
   const ms = Date.UTC(+m[1], +m[2] - 1, +m[3], +m[4], +m[5]);
@@ -75,7 +79,7 @@ const local = (z, tz) => {
   return { ymd: `${p.year}-${p.month}-${p.day}`, hm: `${p.hour}:${p.minute}` };
 };
 const nextDay = (ymd) => new Date(Date.parse(ymd + 'T00:00:00Z') + 86400000).toISOString().slice(0, 10);
-let calendars = 0, compared = 0;
+let calendars = 0, compared = 0, endsCompared = 0;
 for (const id of readdirSync(join(ROOT, 'f')).sort()) {
   const pagePath = join(ROOT, 'f', id, 'index.html');
   if (!existsSync(pagePath)) continue;
@@ -87,9 +91,13 @@ for (const id of readdirSync(join(ROOT, 'f')).sort()) {
   if (!has) continue;
   calendars++;
   const t = readFileSync(icsPath, 'utf8');
-  const tz = tzOf(t);
-  check(!!tz, `${id}: calendar names no X-WR-TIMEZONE`);
-  const rows = new Map([...page.matchAll(/<li id="(set-[^"]+)"><time datetime="(\d{4}-\d{2}-\d{2})T([^"]+)">/g)].map(m => [m[1], { ymd: m[2], hm: m[3] }]));
+  const tz = regTz.get(id);
+  check(!!tz, `${id}: the registry gives this festival no tz`);
+  check(tzOf(t) === tz, `${id}: calendar says X-WR-TIMEZONE ${tzOf(t)}, registry says ${tz}`);
+  if (!tz) continue;
+  // "13:15 – 14:00", or "13:15" alone when the set has no end.
+  const rows = new Map([...page.matchAll(/<li id="(set-[^"]+)"><time datetime="(\d{4}-\d{2}-\d{2})T([^"]+)">([^<]*)<\/time>/g)]
+    .map(m => [m[1], { ymd: m[2], hm: m[3], end: (/–\s*(\d{1,2}:\d{2})\s*$/.exec(m[4]) || [])[1] || null }]));
   const ev = events(t);
   check(ev.length === rows.size, `${id}: ${ev.length} events but ${rows.size} timed set rows on the page`);
   check(new Set(ev.map(e => e.uid)).size === ev.length, `${id}: duplicate UID`);
@@ -102,9 +110,18 @@ for (const id of readdirSync(join(ROOT, 'f')).sort()) {
     const wantYmd = h < lib.LATE_NIGHT_HOUR ? nextDay(row.ymd) : row.ymd;
     compared++;
     if (at.hm !== row.hm.padStart(5, '0') || at.ymd !== wantYmd) check(false, `${id}: ${e.uid} starts ${at.ymd} ${at.hm} ${tz}, page row says ${wantYmd} ${row.hm}`);
+    if (!row.end) { if (e.end !== null) check(false, `${id}: ${e.uid} has DTEND ${e.end} but its page row prints no end`); continue; }
+    if (!e.end) { check(false, `${id}: ${e.uid} has no DTEND but its page row ends ${row.end}`); continue; }
+    // The end is on the start's date, or the next one when it is at or
+    // before the start (22:00 – 08:30).
+    const endHm = row.end.padStart(5, '0'), wantEndYmd = endHm <= row.hm.padStart(5, '0') ? nextDay(wantYmd) : wantYmd;
+    const atEnd = local(e.end, tz);
+    endsCompared++;
+    if (atEnd.hm !== endHm || atEnd.ymd !== wantEndYmd) check(false, `${id}: ${e.uid} ends ${atEnd.ymd} ${atEnd.hm} ${tz}, page row says ${wantEndYmd} ${endHm}`);
   }
 }
 check(calendars >= 10, `positive control: at least 10 committed calendars (found ${calendars})`);
+check(endsCompared >= 100, `positive control: at least 100 set ends compared (found ${endsCompared})`);
 
 // ── C ──
 const dir = mkdtempSync(join(tmpdir(), 'ics-mut-'));
@@ -132,4 +149,4 @@ for (const [name, from, to] of MUTANTS) {
 }
 
 if (failed) { console.log(`✗ festival calendars: ${failed} of ${checks} checks failed`); process.exit(1); }
-console.log(`✓ festival calendars: ${checks} checks (${calendars} calendars, ${compared} events match their page row's date and time; ${caught}/${MUTANTS.length} mutants caught)`);
+console.log(`✓ festival calendars: ${checks} checks (${calendars} calendars, ${compared} event starts and ${endsCompared} ends match their page row's date and time; ${caught}/${MUTANTS.length} mutants caught)`);
