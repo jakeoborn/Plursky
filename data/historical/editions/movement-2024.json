@@ -1,0 +1,1697 @@
+{
+ "id": "movement-2024",
+ "festivalId": "movement",
+ "name": "Movement 2024",
+ "year": 2024,
+ "timezone": "America/Detroit",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2024-05-25",
+   "label": "Saturday"
+  },
+  {
+   "day": 2,
+   "date": "2024-05-26",
+   "label": "Sunday"
+  },
+  {
+   "day": 3,
+   "date": "2024-05-27",
+   "label": "Monday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "movement-2024:movement-stage",
+   "name": "Movement Stage"
+  },
+  {
+   "id": "movement-2024:waterfront-stage-presented-by-jars",
+   "name": "Waterfront Stage presented by JARS"
+  },
+  {
+   "id": "movement-2024:stargate-stage",
+   "name": "Stargate Stage"
+  },
+  {
+   "id": "movement-2024:pyramid-stage",
+   "name": "Pyramid Stage"
+  },
+  {
+   "id": "movement-2024:underground-stage",
+   "name": "Underground Stage"
+  },
+  {
+   "id": "movement-2024:detroit-stage",
+   "name": "Detroit Stage"
+  }
+ ],
+ "artists": [
+  {
+   "id": "movement-2024:dom-dolla",
+   "name": "Dom Dolla",
+   "key": "dom-dolla",
+   "performers": [
+    "dom-dolla"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2024:movement-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:lp-giobbi",
+   "name": "LP Giobbi",
+   "key": "lp-giobbi",
+   "performers": [
+    "lp-giobbi"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2024:movement-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:solomun",
+   "name": "Solomun",
+   "key": "solomun",
+   "performers": [
+    "solomun"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2024:movement-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:stacey-hotwaxx-hale",
+   "name": "Stacey Hotwaxx Hale",
+   "key": "stacey-hotwaxx-hale",
+   "performers": [
+    "stacey-hotwaxx-hale"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2024:movement-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:stacey-pullen",
+   "name": "Stacey Pullen",
+   "key": "stacey-pullen",
+   "performers": [
+    "stacey-pullen"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2024:movement-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:barclay-crenshaw",
+   "name": "Barclay Crenshaw",
+   "key": "barclay-crenshaw",
+   "performers": [
+    "barclay-crenshaw"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2024:waterfront-stage-presented-by-jars"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:dj-etta",
+   "name": "DJ Etta",
+   "key": "dj-etta",
+   "performers": [
+    "dj-etta"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2024:waterfront-stage-presented-by-jars"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:dreamcastmoe",
+   "name": "Dreamcastmoe",
+   "key": "dreamcastmoe",
+   "performers": [
+    "dreamcastmoe"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2024:waterfront-stage-presented-by-jars"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:jyoty",
+   "name": "Jyoty",
+   "key": "jyoty",
+   "performers": [
+    "jyoty"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2024:waterfront-stage-presented-by-jars"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:ludacris",
+   "name": "Ludacris",
+   "key": "ludacris",
+   "performers": [
+    "ludacris"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2024:waterfront-stage-presented-by-jars"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:major-league-djz",
+   "name": "Major League Djz",
+   "key": "major-league-djz",
+   "performers": [
+    "major-league-djz"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2024:waterfront-stage-presented-by-jars"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:partiboi69-live",
+   "name": "Partiboi69 (Live)",
+   "key": "partiboi69-live",
+   "performers": [
+    "partiboi69-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2024:waterfront-stage-presented-by-jars"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:tee-grizzley",
+   "name": "Tee Grizzley",
+   "key": "tee-grizzley",
+   "performers": [
+    "tee-grizzley"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2024:waterfront-stage-presented-by-jars"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:acemoma",
+   "name": "AceMoMa",
+   "key": "acemoma",
+   "performers": [
+    "acemoma"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2024:stargate-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:channel-tres",
+   "name": "Channel Tres",
+   "key": "channel-tres",
+   "performers": [
+    "channel-tres"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2024:stargate-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:jayda-g",
+   "name": "Jayda G",
+   "key": "jayda-g",
+   "performers": [
+    "jayda-g"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2024:stargate-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:loco-dice",
+   "name": "Loco Dice",
+   "key": "loco-dice",
+   "performers": [
+    "loco-dice"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2024:stargate-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:rimarkable",
+   "name": "Rimarkable",
+   "key": "rimarkable",
+   "performers": [
+    "rimarkable"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2024:stargate-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:ryan-elliott",
+   "name": "Ryan Elliott",
+   "key": "ryan-elliott",
+   "performers": [
+    "ryan-elliott"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2024:stargate-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:skream",
+   "name": "Skream",
+   "key": "skream",
+   "performers": [
+    "skream"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2024:stargate-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:ataxia-b2b-mister-joshooa",
+   "name": "Ataxia b2b Mister Joshooa",
+   "key": "ataxia-b2b-mister-joshooa",
+   "performers": [
+    "ataxia",
+    "mister-joshooa"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2024:pyramid-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:carl-craig-live",
+   "name": "Carl Craig (Live)",
+   "key": "carl-craig-live",
+   "performers": [
+    "carl-craig-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2024:pyramid-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:dames-brown",
+   "name": "Dames Brown",
+   "key": "dames-brown",
+   "performers": [
+    "dames-brown"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2024:pyramid-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:dj-holographic",
+   "name": "DJ Holographic",
+   "key": "dj-holographic",
+   "performers": [
+    "dj-holographic"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2024:pyramid-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:floorplan",
+   "name": "Floorplan",
+   "key": "floorplan",
+   "performers": [
+    "floorplan"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2024:pyramid-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:honeyluv",
+   "name": "Honeyluv",
+   "key": "honeyluv",
+   "performers": [
+    "honeyluv"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2024:pyramid-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:waajeed",
+   "name": "Waajeed",
+   "key": "waajeed",
+   "performers": [
+    "waajeed"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2024:pyramid-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:colin-benders",
+   "name": "Colin Benders",
+   "key": "colin-benders",
+   "performers": [
+    "colin-benders"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2024:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:julia-govor",
+   "name": "Julia Govor",
+   "key": "julia-govor",
+   "performers": [
+    "julia-govor"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2024:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:milan-ariel",
+   "name": "Milan Ariel",
+   "key": "milan-ariel",
+   "performers": [
+    "milan-ariel"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2024:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:paranoid-london-live",
+   "name": "Paranoid London (Live)",
+   "key": "paranoid-london-live",
+   "performers": [
+    "paranoid-london-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2024:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:reference",
+   "name": "Reference",
+   "key": "reference",
+   "performers": [
+    "reference"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2024:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:speedy-j",
+   "name": "Speedy J",
+   "key": "speedy-j",
+   "performers": [
+    "speedy-j"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2024:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:aboudi-issa",
+   "name": "Aboudi Issa",
+   "key": "aboudi-issa",
+   "performers": [
+    "aboudi-issa"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2024:detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:dj-3000",
+   "name": "DJ 3000",
+   "key": "dj-3000",
+   "performers": [
+    "dj-3000"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2024:detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:dj-psycho",
+   "name": "DJ Psycho",
+   "key": "dj-psycho",
+   "performers": [
+    "dj-psycho"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2024:detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:francois-dillinger",
+   "name": "Francois Dillinger",
+   "key": "francois-dillinger",
+   "performers": [
+    "francois-dillinger"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2024:detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:huey-mnemonic",
+   "name": "Huey Mnemonic",
+   "key": "huey-mnemonic",
+   "performers": [
+    "huey-mnemonic"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2024:detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:mona-black",
+   "name": "Mona Black",
+   "key": "mona-black",
+   "performers": [
+    "mona-black"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2024:detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:secrets-live",
+   "name": "Secrets (Live)",
+   "key": "secrets-live",
+   "performers": [
+    "secrets-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2024:detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:tylr",
+   "name": "Tylr_",
+   "key": "tylr",
+   "performers": [
+    "tylr"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2024:detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:adiel",
+   "name": "Adiel",
+   "key": "adiel",
+   "performers": [
+    "adiel"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2024:movement-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:delano-smith",
+   "name": "Delano Smith",
+   "key": "delano-smith",
+   "performers": [
+    "delano-smith"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2024:movement-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:joseph-capriati",
+   "name": "Joseph Capriati",
+   "key": "joseph-capriati",
+   "performers": [
+    "joseph-capriati"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2024:movement-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:nicole-moudaber",
+   "name": "Nicole Moudaber",
+   "key": "nicole-moudaber",
+   "performers": [
+    "nicole-moudaber"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2024:movement-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:richie-hawtin",
+   "name": "Richie Hawtin",
+   "key": "richie-hawtin",
+   "performers": [
+    "richie-hawtin"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2024:movement-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:avalon-emerson",
+   "name": "Avalon Emerson",
+   "key": "avalon-emerson",
+   "performers": [
+    "avalon-emerson"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2024:waterfront-stage-presented-by-jars"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:floating-points",
+   "name": "Floating Points",
+   "key": "floating-points",
+   "performers": [
+    "floating-points"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2024:waterfront-stage-presented-by-jars"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:james-blake-dj-set",
+   "name": "James Blake (DJ Set)",
+   "key": "james-blake-dj-set",
+   "performers": [
+    "james-blake-dj-set"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2024:waterfront-stage-presented-by-jars"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:mount-kimbie",
+   "name": "Mount Kimbie",
+   "key": "mount-kimbie",
+   "performers": [
+    "mount-kimbie"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2024:waterfront-stage-presented-by-jars"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:tammy-lakkis",
+   "name": "Tammy Lakkis",
+   "key": "tammy-lakkis",
+   "performers": [
+    "tammy-lakkis"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2024:waterfront-stage-presented-by-jars"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:tiga",
+   "name": "Tiga",
+   "key": "tiga",
+   "performers": [
+    "tiga"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2024:waterfront-stage-presented-by-jars"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:anane",
+   "name": "Anané",
+   "key": "anane",
+   "performers": [
+    "anane"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2024:stargate-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:ladymonix",
+   "name": "Ladymonix",
+   "key": "ladymonix",
+   "performers": [
+    "ladymonix"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2024:stargate-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:masters-at-work",
+   "name": "Masters at Work",
+   "key": "masters-at-work",
+   "performers": [
+    "masters-at-work"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2024:stargate-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:musclecars",
+   "name": "Musclecars",
+   "key": "musclecars",
+   "performers": [
+    "musclecars"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2024:stargate-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:ron-trent",
+   "name": "Ron Trent",
+   "key": "ron-trent",
+   "performers": [
+    "ron-trent"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2024:stargate-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:the-blessed-madonna",
+   "name": "The Blessed Madonna",
+   "key": "the-blessed-madonna",
+   "performers": [
+    "the-blessed-madonna"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2024:stargate-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:coco-and-breezy",
+   "name": "Coco & Breezy",
+   "key": "coco-and-breezy",
+   "performers": [
+    "coco-and-breezy"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2024:pyramid-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:kevin-saunderson-b2b-idris-elba",
+   "name": "Kevin Saunderson b2b Idris Elba",
+   "key": "kevin-saunderson-b2b-idris-elba",
+   "performers": [
+    "kevin-saunderson",
+    "idris-elba"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2024:pyramid-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:sama-abdulhadi",
+   "name": "Sama’ Abdulhadi",
+   "key": "sama-abdulhadi",
+   "performers": [
+    "sama-abdulhadi"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2024:pyramid-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:teknono",
+   "name": "TekNoNo",
+   "key": "teknono",
+   "performers": [
+    "teknono"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2024:pyramid-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:the-saunderson-brothers",
+   "name": "The Saunderson Brothers",
+   "key": "the-saunderson-brothers",
+   "performers": [
+    "the-saunderson-brothers"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2024:pyramid-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:will-clarke",
+   "name": "Will Clarke",
+   "key": "will-clarke",
+   "performers": [
+    "will-clarke"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2024:pyramid-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:999999999",
+   "name": "999999999",
+   "key": "999999999",
+   "performers": [
+    "999999999"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2024:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:ellen-allien",
+   "name": "Ellen Allien",
+   "key": "ellen-allien",
+   "performers": [
+    "ellen-allien"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2024:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:fatima-hajji",
+   "name": "Fatima Hajji",
+   "key": "fatima-hajji",
+   "performers": [
+    "fatima-hajji"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2024:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:hector-oaks",
+   "name": "Héctor Oaks",
+   "key": "hector-oaks",
+   "performers": [
+    "hector-oaks"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2024:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:i-hate-models",
+   "name": "I Hate Models",
+   "key": "i-hate-models",
+   "performers": [
+    "i-hate-models"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2024:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:t-linder-b2b-dj-seoul",
+   "name": "T.Linder b2b DJ Seoul",
+   "key": "t-linder-b2b-dj-seoul",
+   "performers": [
+    "t-linder",
+    "dj-seoul"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2024:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:2lanes-live",
+   "name": "2Lanes (Live)",
+   "key": "2lanes-live",
+   "performers": [
+    "2lanes-live"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2024:detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:detroit-bureau-of-sound",
+   "name": "Detroit Bureau of Sound",
+   "key": "detroit-bureau-of-sound",
+   "performers": [
+    "detroit-bureau-of-sound"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2024:detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:dj-godfather",
+   "name": "DJ Godfather",
+   "key": "dj-godfather",
+   "performers": [
+    "dj-godfather"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2024:detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:dream-beach",
+   "name": "dream beach",
+   "key": "dream-beach",
+   "performers": [
+    "dream-beach"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2024:detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:fabiola",
+   "name": "Fabiola",
+   "key": "fabiola",
+   "performers": [
+    "fabiola"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2024:detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:jacob-park",
+   "name": "Jacob Park",
+   "key": "jacob-park",
+   "performers": [
+    "jacob-park"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2024:detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:k-1",
+   "name": "K-1",
+   "key": "k-1",
+   "performers": [
+    "k-1"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2024:detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:sheefy-mcfly-b2b-ak",
+   "name": "Sheefy McFly b2b AK",
+   "key": "sheefy-mcfly-b2b-ak",
+   "performers": [
+    "sheefy-mcfly",
+    "ak"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2024:detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:sts-live",
+   "name": "STS (Live)",
+   "key": "sts-live",
+   "performers": [
+    "sts-live"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2024:detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:borderland-juan-atkins-and-moritz-von-oswald",
+   "name": "Borderland (Juan Atkins & Moritz von Oswald)",
+   "key": "borderland-juan-atkins-and-moritz-von-oswald",
+   "performers": [
+    "borderland-juan-atkins-and-moritz-von-oswald"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2024:movement-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:fatboy-slim",
+   "name": "Fatboy Slim",
+   "key": "fatboy-slim",
+   "performers": [
+    "fatboy-slim"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2024:movement-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:jaguar",
+   "name": "Jaguar",
+   "key": "jaguar",
+   "performers": [
+    "jaguar"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2024:movement-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:patrick-russell",
+   "name": "Patrick Russell",
+   "key": "patrick-russell",
+   "performers": [
+    "patrick-russell"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2024:movement-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:seth-troxler",
+   "name": "Seth Troxler",
+   "key": "seth-troxler",
+   "performers": [
+    "seth-troxler"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2024:movement-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:ant-tc1",
+   "name": "Ant TC1",
+   "key": "ant-tc1",
+   "performers": [
+    "ant-tc1"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2024:waterfront-stage-presented-by-jars"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:dbridge",
+   "name": "dBridge",
+   "key": "dbridge",
+   "performers": [
+    "dbridge"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2024:waterfront-stage-presented-by-jars"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:drs-in-session-ft-dogger",
+   "name": "DRS: In Session ft. Dogger",
+   "key": "drs-in-session-ft-dogger",
+   "performers": [
+    "drs-in-session-ft-dogger"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2024:waterfront-stage-presented-by-jars"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:goldie-dj-set-ft-armanni-reign",
+   "name": "Goldie (DJ Set) ft. Armanni Reign",
+   "key": "goldie-dj-set-ft-armanni-reign",
+   "performers": [
+    "goldie-dj-set-ft-armanni-reign"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2024:waterfront-stage-presented-by-jars"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:goldie-live-band",
+   "name": "Goldie (Live Band)",
+   "key": "goldie-live-band",
+   "performers": [
+    "goldie-live-band"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2024:waterfront-stage-presented-by-jars"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:ltj-bukem-ft-armanni-reign",
+   "name": "LTJ Bukem ft. Armanni Reign",
+   "key": "ltj-bukem-ft-armanni-reign",
+   "performers": [
+    "ltj-bukem-ft-armanni-reign"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2024:waterfront-stage-presented-by-jars"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:martyn",
+   "name": "Martyn",
+   "key": "martyn",
+   "performers": [
+    "martyn"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2024:waterfront-stage-presented-by-jars"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:special-request",
+   "name": "Special Request",
+   "key": "special-request",
+   "performers": [
+    "special-request"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2024:waterfront-stage-presented-by-jars"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:azzecca",
+   "name": "Azzecca",
+   "key": "azzecca",
+   "performers": [
+    "azzecca"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2024:stargate-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:boys-noize-b2b-vtss",
+   "name": "Boys Noize b2b VTSS",
+   "key": "boys-noize-b2b-vtss",
+   "performers": [
+    "boys-noize",
+    "vtss"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2024:stargate-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:chris-lake",
+   "name": "Chris Lake",
+   "key": "chris-lake",
+   "performers": [
+    "chris-lake"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2024:stargate-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:gorgon-city",
+   "name": "Gorgon City",
+   "key": "gorgon-city",
+   "performers": [
+    "gorgon-city"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2024:stargate-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:hiroko-yamamura",
+   "name": "Hiroko Yamamura",
+   "key": "hiroko-yamamura",
+   "performers": [
+    "hiroko-yamamura"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2024:stargate-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:ti-es",
+   "name": "ti es",
+   "key": "ti-es",
+   "performers": [
+    "ti-es"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2024:stargate-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:dee-diggs",
+   "name": "Dee Diggs",
+   "key": "dee-diggs",
+   "performers": [
+    "dee-diggs"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2024:pyramid-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:dj-minx",
+   "name": "DJ Minx",
+   "key": "dj-minx",
+   "performers": [
+    "dj-minx"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2024:pyramid-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:dj-tennis-b2b-gerd-janson",
+   "name": "DJ Tennis b2b Gerd Janson",
+   "key": "dj-tennis-b2b-gerd-janson",
+   "performers": [
+    "dj-tennis",
+    "gerd-janson"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2024:pyramid-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:honey-dijon",
+   "name": "Honey Dijon",
+   "key": "honey-dijon",
+   "performers": [
+    "honey-dijon"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2024:pyramid-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:horse-meat-disco",
+   "name": "Horse Meat Disco",
+   "key": "horse-meat-disco",
+   "performers": [
+    "horse-meat-disco"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2024:pyramid-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:tama-sumo-b2b-lakuti",
+   "name": "Tama Sumo b2b Lakuti",
+   "key": "tama-sumo-b2b-lakuti",
+   "performers": [
+    "tama-sumo",
+    "lakuti"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2024:pyramid-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:augustus-williams",
+   "name": "Augustus Williams",
+   "key": "augustus-williams",
+   "performers": [
+    "augustus-williams"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2024:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:british-murder-boys",
+   "name": "British Murder Boys",
+   "key": "british-murder-boys",
+   "performers": [
+    "british-murder-boys"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2024:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:indira-paganotto",
+   "name": "Indira Paganotto",
+   "key": "indira-paganotto",
+   "performers": [
+    "indira-paganotto"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2024:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:patrick-mason",
+   "name": "Patrick Mason",
+   "key": "patrick-mason",
+   "performers": [
+    "patrick-mason"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2024:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:skin-on-skin",
+   "name": "Skin on Skin",
+   "key": "skin-on-skin",
+   "performers": [
+    "skin-on-skin"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2024:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:bruce-bailey",
+   "name": "Bruce Bailey",
+   "key": "bruce-bailey",
+   "performers": [
+    "bruce-bailey"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2024:detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:dj-cent",
+   "name": "Dj Cent",
+   "key": "dj-cent",
+   "performers": [
+    "dj-cent"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2024:detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:drummer-b",
+   "name": "Drummer B",
+   "key": "drummer-b",
+   "performers": [
+    "drummer-b"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2024:detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:john-collins",
+   "name": "John Collins",
+   "key": "john-collins",
+   "performers": [
+    "john-collins"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2024:detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:something-blue",
+   "name": "Something Blue",
+   "key": "something-blue",
+   "performers": [
+    "something-blue"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2024:detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2024:terrence-parker",
+   "name": "Terrence Parker",
+   "key": "terrence-parker",
+   "performers": [
+    "terrence-parker"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2024:detroit-stage"
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "unofficial_lineup",
+  "unofficial": true,
+  "source": {
+   "kind": "press",
+   "site": "5mag.net",
+   "url": "https://5mag.net/news/movement-2024-full-stages-daily-line-up-schedules-live-acts-dj-times/",
+   "title": "Movement 2024: Full Stages and Daily Line-Ups",
+   "publisher": "5 Magazine",
+   "published": "2024-04-17",
+   "fetchedAt": "2026-11-27",
+   "fetchedVia": "exa",
+   "scope": "full",
+   "sha256": "a3631be70cfed18c1e6d86ca5b2d9b2822ddd9b26e092ff3672a06013bbf3f5e",
+   "bytes": 3438
+  },
+  "captures": [
+   {
+    "page": "lineup",
+    "url": "https://5mag.net/news/movement-2024-full-stages-daily-line-up-schedules-live-acts-dj-times/",
+    "fetchedAt": "2026-11-27",
+    "sha256": "a3631be70cfed18c1e6d86ca5b2d9b2822ddd9b26e092ff3672a06013bbf3f5e"
+   }
+  ]
+ }
+}

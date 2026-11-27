@@ -1,0 +1,1578 @@
+{
+ "id": "movement-2012",
+ "festivalId": "movement",
+ "name": "Movement 2012",
+ "year": 2012,
+ "timezone": "America/Detroit",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2012-05-26",
+   "label": "Saturday"
+  },
+  {
+   "day": 2,
+   "date": "2012-05-27",
+   "label": "Sunday"
+  },
+  {
+   "day": 3,
+   "date": "2012-05-28",
+   "label": "Monday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "movement-2012:main-stage",
+   "name": "Main Stage"
+  },
+  {
+   "id": "movement-2012:made-in-detroit-stage",
+   "name": "Made In Detroit Stage"
+  },
+  {
+   "id": "movement-2012:red-bull-music-academy-stage",
+   "name": "Red Bull Music Academy Stage"
+  },
+  {
+   "id": "movement-2012:underground-stage",
+   "name": "Underground Stage"
+  },
+  {
+   "id": "movement-2012:beatport-stage",
+   "name": "Beatport Stage"
+  }
+ ],
+ "artists": [
+  {
+   "id": "movement-2012:mark-farina-mushroom-jazz-set",
+   "name": "Mark Farina (Mushroom Jazz set)",
+   "key": "mark-farina-mushroom-jazz-set",
+   "performers": [
+    "mark-farina-mushroom-jazz-set"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2012:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:greg-wilson",
+   "name": "Greg Wilson",
+   "key": "greg-wilson",
+   "performers": [
+    "greg-wilson"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2012:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:todd-terje",
+   "name": "Todd Terje",
+   "key": "todd-terje",
+   "performers": [
+    "todd-terje"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2012:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:derrick-carter",
+   "name": "Derrick Carter",
+   "key": "derrick-carter",
+   "performers": [
+    "derrick-carter"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2012:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:lil-louis",
+   "name": "Lil’ Louis",
+   "key": "lil-louis",
+   "performers": [
+    "lil-louis"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2012:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:daniel-andres",
+   "name": "Daniel Andres",
+   "key": "daniel-andres",
+   "performers": [
+    "daniel-andres"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2012:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:tony-ollivierra",
+   "name": "Tony Ollivierra",
+   "key": "tony-ollivierra",
+   "performers": [
+    "tony-ollivierra"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2012:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:earl-mixxin-mckinney",
+   "name": "Earl Mixxin McKinney",
+   "key": "earl-mixxin-mckinney",
+   "performers": [
+    "earl-mixxin-mckinney"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2012:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:andres",
+   "name": "Andres",
+   "key": "andres",
+   "performers": [
+    "andres"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2012:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:marcellus-pittman",
+   "name": "Marcellus Pittman",
+   "key": "marcellus-pittman",
+   "performers": [
+    "marcellus-pittman"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2012:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:kyle-hall-b2b-jay-daniel",
+   "name": "Kyle Hall b2b Jay Daniel",
+   "key": "kyle-hall-b2b-jay-daniel",
+   "performers": [
+    "kyle-hall",
+    "jay-daniel"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2012:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:mike-huckaby",
+   "name": "Mike Huckaby",
+   "key": "mike-huckaby",
+   "performers": [
+    "mike-huckaby"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2012:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:pursuit-grooves",
+   "name": "Pursuit Grooves",
+   "key": "pursuit-grooves",
+   "performers": [
+    "pursuit-grooves"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2012:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:salva",
+   "name": "Salva",
+   "key": "salva",
+   "performers": [
+    "salva"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2012:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:actress",
+   "name": "Actress",
+   "key": "actress",
+   "performers": [
+    "actress"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2012:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:brenmar",
+   "name": "Brenmar",
+   "key": "brenmar",
+   "performers": [
+    "brenmar"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2012:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:bok-bok",
+   "name": "Bok Bok",
+   "key": "bok-bok",
+   "performers": [
+    "bok-bok"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2012:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:two-fresh",
+   "name": "Two Fresh",
+   "key": "two-fresh",
+   "performers": [
+    "two-fresh"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2012:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:photek",
+   "name": "Photek",
+   "key": "photek",
+   "performers": [
+    "photek"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2012:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:sbtrkt",
+   "name": "SBTRKT",
+   "key": "sbtrkt",
+   "performers": [
+    "sbtrkt"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2012:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:roni-size",
+   "name": "Roni Size",
+   "key": "roni-size",
+   "performers": [
+    "roni-size"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2012:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:mykel-waters",
+   "name": "Mykel Waters",
+   "key": "mykel-waters",
+   "performers": [
+    "mykel-waters"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2012:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:phil-agosta",
+   "name": "Phil Agosta",
+   "key": "phil-agosta",
+   "performers": [
+    "phil-agosta"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2012:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:droog",
+   "name": "Droog",
+   "key": "droog",
+   "performers": [
+    "droog"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2012:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:mr-c",
+   "name": "Mr. C",
+   "key": "mr-c",
+   "performers": [
+    "mr-c"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2012:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:jimmy-edgar",
+   "name": "Jimmy Edgar",
+   "key": "jimmy-edgar",
+   "performers": [
+    "jimmy-edgar"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2012:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:matias-aguayo",
+   "name": "Matias Aguayo",
+   "key": "matias-aguayo",
+   "performers": [
+    "matias-aguayo"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2012:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:michael-mayer",
+   "name": "Michael Mayer",
+   "key": "michael-mayer",
+   "performers": [
+    "michael-mayer"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2012:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:ava",
+   "name": "AvA",
+   "key": "ava",
+   "performers": [
+    "ava"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2012:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:filsonik-b2b-patrick",
+   "name": "Filsonik b2b Patrick",
+   "key": "filsonik-b2b-patrick",
+   "performers": [
+    "filsonik",
+    "patrick"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2012:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:tale-of-us",
+   "name": "Tale of Us",
+   "key": "tale-of-us",
+   "performers": [
+    "tale-of-us"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2012:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:benoit-and-sergio",
+   "name": "Benoit & Sergio",
+   "key": "benoit-and-sergio",
+   "performers": [
+    "benoit-and-sergio"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2012:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:dop",
+   "name": "dOP",
+   "key": "dop",
+   "performers": [
+    "dop"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2012:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:damian-lazarus",
+   "name": "Damian Lazarus",
+   "key": "damian-lazarus",
+   "performers": [
+    "damian-lazarus"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2012:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:davide-squillace",
+   "name": "Davide Squillace",
+   "key": "davide-squillace",
+   "performers": [
+    "davide-squillace"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2012:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:seth-troxler-b2b-guy-gerber",
+   "name": "Seth Troxler b2b Guy Gerber",
+   "key": "seth-troxler-b2b-guy-gerber",
+   "performers": [
+    "seth-troxler",
+    "guy-gerber"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2012:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:carl-craig",
+   "name": "Carl Craig",
+   "key": "carl-craig",
+   "performers": [
+    "carl-craig"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2012:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:dj-sneak",
+   "name": "DJ Sneak",
+   "key": "dj-sneak",
+   "performers": [
+    "dj-sneak"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2012:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:josh-wink",
+   "name": "Josh Wink",
+   "key": "josh-wink",
+   "performers": [
+    "josh-wink"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2012:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:marco-carola",
+   "name": "Marco Carola",
+   "key": "marco-carola",
+   "performers": [
+    "marco-carola"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2012:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:loco-dice",
+   "name": "Loco Dice",
+   "key": "loco-dice",
+   "performers": [
+    "loco-dice"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2012:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:public-enemy",
+   "name": "Public Enemy",
+   "key": "public-enemy",
+   "performers": [
+    "public-enemy"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2012:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:erno-the-inferno",
+   "name": "Erno the Inferno",
+   "key": "erno-the-inferno",
+   "performers": [
+    "erno-the-inferno"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2012:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:dwayne-jensen",
+   "name": "Dwayne Jensen",
+   "key": "dwayne-jensen",
+   "performers": [
+    "dwayne-jensen"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2012:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:malik-alston",
+   "name": "Malik Alston",
+   "key": "malik-alston",
+   "performers": [
+    "malik-alston"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2012:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:john-arnold",
+   "name": "John Arnold",
+   "key": "john-arnold",
+   "performers": [
+    "john-arnold"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2012:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:pirahnahead",
+   "name": "Pirahnahead",
+   "key": "pirahnahead",
+   "performers": [
+    "pirahnahead"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2012:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:rick-wilhite",
+   "name": "Rick Wilhite",
+   "key": "rick-wilhite",
+   "performers": [
+    "rick-wilhite"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2012:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:mk-marc-kinchen",
+   "name": "MK (Marc Kinchen)",
+   "key": "mk-marc-kinchen",
+   "performers": [
+    "mk-marc-kinchen"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2012:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:keef-boxx",
+   "name": "Keef Boxx",
+   "key": "keef-boxx",
+   "performers": [
+    "keef-boxx"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2012:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:slow-hands",
+   "name": "Slow Hands",
+   "key": "slow-hands",
+   "performers": [
+    "slow-hands"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2012:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:tiger-and-woods",
+   "name": "Tiger & Woods",
+   "key": "tiger-and-woods",
+   "performers": [
+    "tiger-and-woods"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2012:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:wolf-lamb",
+   "name": "Wolf + Lamb",
+   "key": "wolf-lamb",
+   "performers": [
+    "wolf-lamb"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2012:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:lindstrom",
+   "name": "Lindstrom",
+   "key": "lindstrom",
+   "performers": [
+    "lindstrom"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2012:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:hot-natured",
+   "name": "Hot Natured",
+   "key": "hot-natured",
+   "performers": [
+    "hot-natured"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2012:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:gold-panda",
+   "name": "Gold Panda",
+   "key": "gold-panda",
+   "performers": [
+    "gold-panda"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2012:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:zeds-dead",
+   "name": "Zeds Dead",
+   "key": "zeds-dead",
+   "performers": [
+    "zeds-dead"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2012:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:calico",
+   "name": "Calico",
+   "key": "calico",
+   "performers": [
+    "calico"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2012:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:griz",
+   "name": "GRiZ",
+   "key": "griz",
+   "performers": [
+    "griz"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2012:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:adventure-club",
+   "name": "Adventure Club",
+   "key": "adventure-club",
+   "performers": [
+    "adventure-club"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2012:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:michal-menert",
+   "name": "Michal Menert",
+   "key": "michal-menert",
+   "performers": [
+    "michal-menert"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2012:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:faltydl",
+   "name": "FaltyDL",
+   "key": "faltydl",
+   "performers": [
+    "faltydl"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2012:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:dopplereffekt",
+   "name": "Dopplereffekt",
+   "key": "dopplereffekt",
+   "performers": [
+    "dopplereffekt"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2012:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:eddie-fowlkes",
+   "name": "Eddie Fowlkes",
+   "key": "eddie-fowlkes",
+   "performers": [
+    "eddie-fowlkes"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2012:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:juan-atkins",
+   "name": "Juan Atkins",
+   "key": "juan-atkins",
+   "performers": [
+    "juan-atkins"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2012:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:matthew-hawtin",
+   "name": "Matthew Hawtin",
+   "key": "matthew-hawtin",
+   "performers": [
+    "matthew-hawtin"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2012:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:camea",
+   "name": "Camea",
+   "key": "camea",
+   "performers": [
+    "camea"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2012:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:heidi",
+   "name": "Heidi",
+   "key": "heidi",
+   "performers": [
+    "heidi"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2012:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:maya-jane-coles",
+   "name": "Maya Jane Coles",
+   "key": "maya-jane-coles",
+   "performers": [
+    "maya-jane-coles"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2012:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:maceo-plex",
+   "name": "Maceo Plex",
+   "key": "maceo-plex",
+   "performers": [
+    "maceo-plex"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2012:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:ian-pooley",
+   "name": "Ian Pooley",
+   "key": "ian-pooley",
+   "performers": [
+    "ian-pooley"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2012:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:mathew-jonson",
+   "name": "Mathew Jonson",
+   "key": "mathew-jonson",
+   "performers": [
+    "mathew-jonson"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2012:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:claude-vonstroke",
+   "name": "Claude VonStroke",
+   "key": "claude-vonstroke",
+   "performers": [
+    "claude-vonstroke"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2012:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:nina-kraviz",
+   "name": "Nina Kraviz",
+   "key": "nina-kraviz",
+   "performers": [
+    "nina-kraviz"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2012:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:cassy",
+   "name": "Cassy",
+   "key": "cassy",
+   "performers": [
+    "cassy"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2012:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:radio-slave",
+   "name": "Radio Slave",
+   "key": "radio-slave",
+   "performers": [
+    "radio-slave"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2012:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:chris-liebling",
+   "name": "Chris Liebling",
+   "key": "chris-liebling",
+   "performers": [
+    "chris-liebling"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2012:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:kevin-saunderson",
+   "name": "Kevin Saunderson",
+   "key": "kevin-saunderson",
+   "performers": [
+    "kevin-saunderson"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2012:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:the-wizard-aka-jeff-mills",
+   "name": "The Wizard aka Jeff Mills",
+   "key": "the-wizard-aka-jeff-mills",
+   "performers": [
+    "the-wizard-aka-jeff-mills"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2012:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:ryan-richards",
+   "name": "Ryan Richards",
+   "key": "ryan-richards",
+   "performers": [
+    "ryan-richards"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2012:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:dru-ruiz",
+   "name": "Dru Ruiz",
+   "key": "dru-ruiz",
+   "performers": [
+    "dru-ruiz"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2012:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:dj-psycho",
+   "name": "DJ Psycho",
+   "key": "dj-psycho",
+   "performers": [
+    "dj-psycho"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2012:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:brian-gillespie",
+   "name": "Brian Gillespie",
+   "key": "brian-gillespie",
+   "performers": [
+    "brian-gillespie"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2012:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:dj-godfather",
+   "name": "DJ Godfather",
+   "key": "dj-godfather",
+   "performers": [
+    "dj-godfather"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2012:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:project-313-live",
+   "name": "Project 313 (live)",
+   "key": "project-313-live",
+   "performers": [
+    "project-313-live"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2012:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:derek-plaslaiko",
+   "name": "Derek Plaslaiko",
+   "key": "derek-plaslaiko",
+   "performers": [
+    "derek-plaslaiko"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2012:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:stacey-pullen",
+   "name": "Stacey Pullen",
+   "key": "stacey-pullen",
+   "performers": [
+    "stacey-pullen"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2012:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:no-regular-play",
+   "name": "No Regular Play",
+   "key": "no-regular-play",
+   "performers": [
+    "no-regular-play"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2012:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:danny-daze",
+   "name": "Danny Daze",
+   "key": "danny-daze",
+   "performers": [
+    "danny-daze"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2012:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:keys-n-krates",
+   "name": "Keys N Krates",
+   "key": "keys-n-krates",
+   "performers": [
+    "keys-n-krates"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2012:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:minnesota",
+   "name": "Minnesota",
+   "key": "minnesota",
+   "performers": [
+    "minnesota"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2012:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:araabmuzik",
+   "name": "araabMUZIK",
+   "key": "araabmuzik",
+   "performers": [
+    "araabmuzik"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2012:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:nadastrom",
+   "name": "Nadastrom",
+   "key": "nadastrom",
+   "performers": [
+    "nadastrom"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2012:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:dillon-francis",
+   "name": "Dillon Francis",
+   "key": "dillon-francis",
+   "performers": [
+    "dillon-francis"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2012:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:major-lazer",
+   "name": "Major Lazer",
+   "key": "major-lazer",
+   "performers": [
+    "major-lazer"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2012:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:oktored",
+   "name": "OktoRed",
+   "key": "oktored",
+   "performers": [
+    "oktored"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2012:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:jesse-rose",
+   "name": "Jesse Rose",
+   "key": "jesse-rose",
+   "performers": [
+    "jesse-rose"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2012:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:jay-haze",
+   "name": "Jay Haze",
+   "key": "jay-haze",
+   "performers": [
+    "jay-haze"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2012:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:adam-jay",
+   "name": "Adam Jay",
+   "key": "adam-jay",
+   "performers": [
+    "adam-jay"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2012:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:carlo-lio",
+   "name": "Carlo Lio",
+   "key": "carlo-lio",
+   "performers": [
+    "carlo-lio"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2012:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:clark-warner",
+   "name": "Clark Warner",
+   "key": "clark-warner",
+   "performers": [
+    "clark-warner"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2012:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:joshua-harrison",
+   "name": "Joshua Harrison",
+   "key": "joshua-harrison",
+   "performers": [
+    "joshua-harrison"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2012:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:monty-luke",
+   "name": "Monty Luke",
+   "key": "monty-luke",
+   "performers": [
+    "monty-luke"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2012:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:subb-an",
+   "name": "Subb-an",
+   "key": "subb-an",
+   "performers": [
+    "subb-an"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2012:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:the-martinez-brothers",
+   "name": "The Martinez Brothers",
+   "key": "the-martinez-brothers",
+   "performers": [
+    "the-martinez-brothers"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2012:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:nic-fanciulli-b2b-joris-voorn",
+   "name": "Nic Fanciulli b2b Joris Voorn",
+   "key": "nic-fanciulli-b2b-joris-voorn",
+   "performers": [
+    "nic-fanciulli",
+    "joris-voorn"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2012:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2012:steve-bug",
+   "name": "Steve Bug",
+   "key": "steve-bug",
+   "performers": [
+    "steve-bug"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2012:beatport-stage"
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "unofficial_lineup",
+  "unofficial": true,
+  "source": {
+   "kind": "press",
+   "site": "littlewhiteearbuds.com",
+   "url": "https://www.littlewhiteearbuds.com/review/lwes-guide-to-movement-2012/",
+   "title": "LWE’s Guide to Movement 2012",
+   "publisher": "Little White Earbuds",
+   "published": "2012-05-17",
+   "fetchedAt": "2026-11-27",
+   "fetchedVia": "exa",
+   "scope": "full",
+   "sha256": "d3dc2cdb4f2dd6cfe19d469fdfabe42b9adc4ca480a51abcdcfff09b3d9cee7f",
+   "bytes": 4139
+  },
+  "captures": [
+   {
+    "page": "lineup",
+    "url": "https://www.littlewhiteearbuds.com/review/lwes-guide-to-movement-2012/",
+    "fetchedAt": "2026-11-27",
+    "sha256": "d3dc2cdb4f2dd6cfe19d469fdfabe42b9adc4ca480a51abcdcfff09b3d9cee7f"
+   }
+  ]
+ }
+}

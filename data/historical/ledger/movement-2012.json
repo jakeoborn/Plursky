@@ -1,0 +1,47 @@
+{
+  "id": "movement-2012",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "press",
+    "site": "littlewhiteearbuds.com",
+    "url": "https://www.littlewhiteearbuds.com/review/lwes-guide-to-movement-2012/",
+    "title": "LWE’s Guide to Movement 2012",
+    "publisher": "Little White Earbuds",
+    "published": "2012-05-17",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "full",
+    "sha256": "d3dc2cdb4f2dd6cfe19d469fdfabe42b9adc4ca480a51abcdcfff09b3d9cee7f",
+    "bytes": 4139
+  },
+  "printed": {
+    "days": {
+      "1": "Saturday, May 26th",
+      "2": "Sunday, May 27th",
+      "3": "Monday, May 28th"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "movement",
+    "year": 2012,
+    "lifecycle": "occurred",
+    "dates": "2012-05-26..2012-05-28",
+    "evidence": "https://en.wikipedia.org/wiki/Detroit_Electronic_Music_Festival",
+    "published": "2026-11-04T02:48:35Z rev 1383675456"
+  },
+  "note": "A festival guide published on 17 May 2012 printing the schedule by day and stage; later changes are not shown. Its set times are not used, and the readers' comments below it are not saved.",
+  "verified": {
+    "billings": 107,
+    "inSourceText": true
+  },
+  "stageOrder": [
+    "Main Stage",
+    "Made In Detroit Stage",
+    "Red Bull Music Academy Stage",
+    "Underground Stage",
+    "Beatport Stage"
+  ],
+  "dropped": []
+}

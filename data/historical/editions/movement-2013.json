@@ -1,0 +1,1701 @@
+{
+ "id": "movement-2013",
+ "festivalId": "movement",
+ "name": "Movement 2013",
+ "year": 2013,
+ "timezone": "America/Detroit",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2013-05-25",
+   "label": "Saturday"
+  },
+  {
+   "day": 2,
+   "date": "2013-05-26",
+   "label": "Sunday"
+  },
+  {
+   "day": 3,
+   "date": "2013-05-27",
+   "label": "Monday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "movement-2013:red-bull-music-academy-stage",
+   "name": "Red Bull Music Academy Stage"
+  },
+  {
+   "id": "movement-2013:beatport-stage",
+   "name": "Beatport Stage"
+  },
+  {
+   "id": "movement-2013:made-in-detroit-stage",
+   "name": "Made in Detroit Stage"
+  },
+  {
+   "id": "movement-2013:underground-stage",
+   "name": "Underground Stage"
+  },
+  {
+   "id": "movement-2013:electric-forest-festival-stage",
+   "name": "Electric Forest Festival Stage"
+  }
+ ],
+ "artists": [
+  {
+   "id": "movement-2013:xxxy",
+   "name": "xxxy",
+   "key": "xxxy",
+   "performers": [
+    "xxxy"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2013:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:t-williams",
+   "name": "T.Williams",
+   "key": "t-williams",
+   "performers": [
+    "t-williams"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2013:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:shigeto-live",
+   "name": "Shigeto – live",
+   "key": "shigeto-live",
+   "performers": [
+    "shigeto-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2013:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:onra",
+   "name": "Onra",
+   "key": "onra",
+   "performers": [
+    "onra"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2013:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:moodymann",
+   "name": "Moodymann",
+   "key": "moodymann",
+   "performers": [
+    "moodymann"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2013:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:carl-craig",
+   "name": "Carl Craig",
+   "key": "carl-craig",
+   "performers": [
+    "carl-craig"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2013:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:dave-clarke",
+   "name": "Dave Clarke",
+   "key": "dave-clarke",
+   "performers": [
+    "dave-clarke"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2013:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:richie-hawtin",
+   "name": "Richie Hawtin",
+   "key": "richie-hawtin",
+   "performers": [
+    "richie-hawtin"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2013:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:chris-malinchak",
+   "name": "Chris Malinchak",
+   "key": "chris-malinchak",
+   "performers": [
+    "chris-malinchak"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2013:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:16-bit-lolitas",
+   "name": "16 Bit Lolitas",
+   "key": "16-bit-lolitas",
+   "performers": [
+    "16-bit-lolitas"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2013:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:system-of-survival",
+   "name": "System of Survival",
+   "key": "system-of-survival",
+   "performers": [
+    "system-of-survival"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2013:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:miguel-campbell",
+   "name": "Miguel Campbell",
+   "key": "miguel-campbell",
+   "performers": [
+    "miguel-campbell"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2013:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:hector",
+   "name": "Hector",
+   "key": "hector",
+   "performers": [
+    "hector"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2013:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:matador-live",
+   "name": "Matador – live",
+   "key": "matador-live",
+   "performers": [
+    "matador-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2013:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:paco-osuna",
+   "name": "Paco Osuna",
+   "key": "paco-osuna",
+   "performers": [
+    "paco-osuna"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2013:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:moby-dj-set",
+   "name": "MOBY – DJ set",
+   "key": "moby-dj-set",
+   "performers": [
+    "moby-dj-set"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2013:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:mr-joshooa",
+   "name": "Mr. Joshooa",
+   "key": "mr-joshooa",
+   "performers": [
+    "mr-joshooa"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2013:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:ataxia",
+   "name": "Ataxia",
+   "key": "ataxia",
+   "performers": [
+    "ataxia"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2013:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:chuck-daniels",
+   "name": "Chuck Daniels",
+   "key": "chuck-daniels",
+   "performers": [
+    "chuck-daniels"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2013:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:bruce-bailey",
+   "name": "Bruce Bailey",
+   "key": "bruce-bailey",
+   "performers": [
+    "bruce-bailey"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2013:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:al-ester",
+   "name": "Al Ester",
+   "key": "al-ester",
+   "performers": [
+    "al-ester"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2013:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:alton-miller",
+   "name": "Alton Miller",
+   "key": "alton-miller",
+   "performers": [
+    "alton-miller"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2013:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:terrence-parker",
+   "name": "Terrence Parker",
+   "key": "terrence-parker",
+   "performers": [
+    "terrence-parker"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2013:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:nina-kraviz",
+   "name": "Nina Kraviz",
+   "key": "nina-kraviz",
+   "performers": [
+    "nina-kraviz"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2013:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:lucy",
+   "name": "Lucy",
+   "key": "lucy",
+   "performers": [
+    "lucy"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2013:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:steffi",
+   "name": "Steffi",
+   "key": "steffi",
+   "performers": [
+    "steffi"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2013:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:nicole-moudaber",
+   "name": "Nicole Moudaber",
+   "key": "nicole-moudaber",
+   "performers": [
+    "nicole-moudaber"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2013:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:ben-sims",
+   "name": "Ben Sims",
+   "key": "ben-sims",
+   "performers": [
+    "ben-sims"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2013:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:slam",
+   "name": "Slam",
+   "key": "slam",
+   "performers": [
+    "slam"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2013:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:sandoz-ft-marcus-flow",
+   "name": "Sandoz ft. Marcus Flow",
+   "key": "sandoz-ft-marcus-flow",
+   "performers": [
+    "sandoz-ft-marcus-flow"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2013:electric-forest-festival-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:ronin-selecta-w-bombscare",
+   "name": "Ronin Selecta w/ Bombscare",
+   "key": "ronin-selecta-w-bombscare",
+   "performers": [
+    "ronin-selecta-w-bombscare"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2013:electric-forest-festival-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:sinistarr",
+   "name": "Sinistarr",
+   "key": "sinistarr",
+   "performers": [
+    "sinistarr"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2013:electric-forest-festival-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:nit-grit",
+   "name": "NiT GriT",
+   "key": "nit-grit",
+   "performers": [
+    "nit-grit"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2013:electric-forest-festival-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:supervision",
+   "name": "SuperVision",
+   "key": "supervision",
+   "performers": [
+    "supervision"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2013:electric-forest-festival-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:downlink",
+   "name": "Downlink",
+   "key": "downlink",
+   "performers": [
+    "downlink"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2013:electric-forest-festival-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:the-bug-live",
+   "name": "The Bug – live",
+   "key": "the-bug-live",
+   "performers": [
+    "the-bug-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2013:electric-forest-festival-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:noisia",
+   "name": "Noisia",
+   "key": "noisia",
+   "performers": [
+    "noisia"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2013:electric-forest-festival-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:andy-c",
+   "name": "Andy C",
+   "key": "andy-c",
+   "performers": [
+    "andy-c"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2013:electric-forest-festival-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:calico",
+   "name": "Calico",
+   "key": "calico",
+   "performers": [
+    "calico"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2013:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:dj-hatcha",
+   "name": "DJ Hatcha",
+   "key": "dj-hatcha",
+   "performers": [
+    "dj-hatcha"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2013:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:mala",
+   "name": "Mala",
+   "key": "mala",
+   "performers": [
+    "mala"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2013:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:adult-live",
+   "name": "Adult. -live",
+   "key": "adult-live",
+   "performers": [
+    "adult-live"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2013:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:dubfire",
+   "name": "Dubfire",
+   "key": "dubfire",
+   "performers": [
+    "dubfire"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2013:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:audion-live",
+   "name": "Audion – live",
+   "key": "audion-live",
+   "performers": [
+    "audion-live"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2013:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:stacey-pullen",
+   "name": "Stacey Pullen",
+   "key": "stacey-pullen",
+   "performers": [
+    "stacey-pullen"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2013:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:squarepusher-live",
+   "name": "Squarepusher – live",
+   "key": "squarepusher-live",
+   "performers": [
+    "squarepusher-live"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2013:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:annie-hall",
+   "name": "Annie Hall",
+   "key": "annie-hall",
+   "performers": [
+    "annie-hall"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2013:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:bill-patrick",
+   "name": "Bill Patrick",
+   "key": "bill-patrick",
+   "performers": [
+    "bill-patrick"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2013:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:soul-clap",
+   "name": "Soul Clap",
+   "key": "soul-clap",
+   "performers": [
+    "soul-clap"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2013:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:tensnake",
+   "name": "Tensnake",
+   "key": "tensnake",
+   "performers": [
+    "tensnake"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2013:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:art-department",
+   "name": "Art Department",
+   "key": "art-department",
+   "performers": [
+    "art-department"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2013:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:dennis-ferrer",
+   "name": "Dennis Ferrer",
+   "key": "dennis-ferrer",
+   "performers": [
+    "dennis-ferrer"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2013:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:masters-at-work-kenny-dope-and-louie-vega",
+   "name": "Masters at Work – Kenny Dope & Louie Vega",
+   "key": "masters-at-work-kenny-dope-and-louie-vega",
+   "performers": [
+    "masters-at-work-kenny-dope-and-louie-vega"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2013:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:dan-wagner",
+   "name": "Dan Wagner",
+   "key": "dan-wagner",
+   "performers": [
+    "dan-wagner"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2013:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:stone-owl",
+   "name": "Stone Owl",
+   "key": "stone-owl",
+   "performers": [
+    "stone-owl"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2013:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:midnite-jackers",
+   "name": "Midnite Jackers",
+   "key": "midnite-jackers",
+   "performers": [
+    "midnite-jackers"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2013:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:jason-kendig",
+   "name": "Jason Kendig",
+   "key": "jason-kendig",
+   "performers": [
+    "jason-kendig"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2013:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:dj-minx-ft-diviniti-and-eva-soul",
+   "name": "DJ Minx ft. Diviniti & Eva Soul",
+   "key": "dj-minx-ft-diviniti-and-eva-soul",
+   "performers": [
+    "dj-minx-ft-diviniti-and-eva-soul"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2013:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:magda",
+   "name": "Magda",
+   "key": "magda",
+   "performers": [
+    "magda"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2013:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:daniel-bell",
+   "name": "Daniel Bell",
+   "key": "daniel-bell",
+   "performers": [
+    "daniel-bell"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2013:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:benjamin-damage",
+   "name": "Benjamin Damage",
+   "key": "benjamin-damage",
+   "performers": [
+    "benjamin-damage"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2013:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:deadbeat",
+   "name": "Deadbeat",
+   "key": "deadbeat",
+   "performers": [
+    "deadbeat"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2013:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:gregor-tresher-live",
+   "name": "Gregor Tresher – live",
+   "key": "gregor-tresher-live",
+   "performers": [
+    "gregor-tresher-live"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2013:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:tommy-four-seven",
+   "name": "Tommy Four Seven",
+   "key": "tommy-four-seven",
+   "performers": [
+    "tommy-four-seven"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2013:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:ben-klock-b2b-marcel-dettmann",
+   "name": "Ben Klock b2b Marcel Dettmann",
+   "key": "ben-klock-b2b-marcel-dettmann",
+   "performers": [
+    "ben-klock",
+    "marcel-dettmann"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2013:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:luke-slater-planetary-assault-systems-live",
+   "name": "Luke Slater / Planetary Assault Systems – live",
+   "key": "luke-slater-planetary-assault-systems-live",
+   "performers": [
+    "luke-slater-planetary-assault-systems-live"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2013:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:steve-rachmad",
+   "name": "Steve Rachmad",
+   "key": "steve-rachmad",
+   "performers": [
+    "steve-rachmad"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2013:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:k-dog",
+   "name": "K@dog",
+   "key": "k-dog",
+   "performers": [
+    "k-dog"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2013:electric-forest-festival-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:j-phlip",
+   "name": "J.Phlip",
+   "key": "j-phlip",
+   "performers": [
+    "j-phlip"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2013:electric-forest-festival-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:milkman",
+   "name": "Milkman",
+   "key": "milkman",
+   "performers": [
+    "milkman"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2013:electric-forest-festival-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:amtrac",
+   "name": "Amtrac",
+   "key": "amtrac",
+   "performers": [
+    "amtrac"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2013:electric-forest-festival-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:samo-sound-boy",
+   "name": "Samo Sound Boy",
+   "key": "samo-sound-boy",
+   "performers": [
+    "samo-sound-boy"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2013:electric-forest-festival-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:the-m-machine-live",
+   "name": "The M Machine – live",
+   "key": "the-m-machine-live",
+   "performers": [
+    "the-m-machine-live"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2013:electric-forest-festival-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:gesaffelstein",
+   "name": "Gesaffelstein",
+   "key": "gesaffelstein",
+   "performers": [
+    "gesaffelstein"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2013:electric-forest-festival-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:brodinski",
+   "name": "Brodinski",
+   "key": "brodinski",
+   "performers": [
+    "brodinski"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2013:electric-forest-festival-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:nick-hook",
+   "name": "Nick Hook",
+   "key": "nick-hook",
+   "performers": [
+    "nick-hook"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2013:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:dabrye",
+   "name": "Dabrye",
+   "key": "dabrye",
+   "performers": [
+    "dabrye"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2013:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:tokimonsta",
+   "name": "TOKiMONSTA",
+   "key": "tokimonsta",
+   "performers": [
+    "tokimonsta"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2013:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:azari-and-iii-live",
+   "name": "Azari & III – live",
+   "key": "azari-and-iii-live",
+   "performers": [
+    "azari-and-iii-live"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2013:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:nicolas-jaar-live",
+   "name": "Nicolas Jaar – live",
+   "key": "nicolas-jaar-live",
+   "performers": [
+    "nicolas-jaar-live"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2013:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:totally-enormous-extinct-dinosaurs-live",
+   "name": "Totally Enormous Extinct Dinosaurs – live",
+   "key": "totally-enormous-extinct-dinosaurs-live",
+   "performers": [
+    "totally-enormous-extinct-dinosaurs-live"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2013:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:francois-k",
+   "name": "François K",
+   "key": "francois-k",
+   "performers": [
+    "francois-k"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2013:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:derrick-may-and-kevin-saunderson-the-hi-tech-soul-concept",
+   "name": "Derrick May & Kevin Saunderson – The Hi-Tech Soul Concept",
+   "key": "derrick-may-and-kevin-saunderson-the-hi-tech-soul-concept",
+   "performers": [
+    "derrick-may-and-kevin-saunderson-the-hi-tech-soul-concept"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2013:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:phantasmagoria-live",
+   "name": "Phantasmagoria – live",
+   "key": "phantasmagoria-live",
+   "performers": [
+    "phantasmagoria-live"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2013:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:laura-jones",
+   "name": "Laura Jones",
+   "key": "laura-jones",
+   "performers": [
+    "laura-jones"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2013:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:matt-tolfrey",
+   "name": "Matt Tolfrey",
+   "key": "matt-tolfrey",
+   "performers": [
+    "matt-tolfrey"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2013:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:george-fitzgerald",
+   "name": "George FitzGerald",
+   "key": "george-fitzgerald",
+   "performers": [
+    "george-fitzgerald"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2013:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:ellen-allien",
+   "name": "Ellen Allien",
+   "key": "ellen-allien",
+   "performers": [
+    "ellen-allien"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2013:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:cajmere",
+   "name": "Cajmere",
+   "key": "cajmere",
+   "performers": [
+    "cajmere"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2013:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:maetrik",
+   "name": "Maetrik",
+   "key": "maetrik",
+   "performers": [
+    "maetrik"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2013:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:john-digweed",
+   "name": "John Digweed",
+   "key": "john-digweed",
+   "performers": [
+    "john-digweed"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2013:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:corbin-davis",
+   "name": "Corbin Davis",
+   "key": "corbin-davis",
+   "performers": [
+    "corbin-davis"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2013:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:dantiez-saunderson",
+   "name": "Dantiez Saunderson",
+   "key": "dantiez-saunderson",
+   "performers": [
+    "dantiez-saunderson"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2013:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:carlos-souffront",
+   "name": "Carlos Souffront",
+   "key": "carlos-souffront",
+   "performers": [
+    "carlos-souffront"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2013:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:erika-live",
+   "name": "Erika -live",
+   "key": "erika-live",
+   "performers": [
+    "erika-live"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2013:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:don-dada-dj-godfather-and-dj-zebo",
+   "name": "Don Dada (DJ Godfather and DJ Zebo)",
+   "key": "don-dada-dj-godfather-and-dj-zebo",
+   "performers": [
+    "don-dada-dj-godfather-and-dj-zebo"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2013:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:ryan-elliott",
+   "name": "Ryan Elliott",
+   "key": "ryan-elliott",
+   "performers": [
+    "ryan-elliott"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2013:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:buzz-goree",
+   "name": "Buzz Goree",
+   "key": "buzz-goree",
+   "performers": [
+    "buzz-goree"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2013:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:reference-live",
+   "name": "Reference – live",
+   "key": "reference-live",
+   "performers": [
+    "reference-live"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2013:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:brendon-moeller-aka-echologist",
+   "name": "Brendon Moeller aka Echologist",
+   "key": "brendon-moeller-aka-echologist",
+   "performers": [
+    "brendon-moeller-aka-echologist"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2013:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:mike-parker",
+   "name": "Mike Parker",
+   "key": "mike-parker",
+   "performers": [
+    "mike-parker"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2013:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:rrose",
+   "name": "Rrose",
+   "key": "rrose",
+   "performers": [
+    "rrose"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2013:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:drumcell",
+   "name": "Drumcell",
+   "key": "drumcell",
+   "performers": [
+    "drumcell"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2013:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:truncate",
+   "name": "Truncate",
+   "key": "truncate",
+   "performers": [
+    "truncate"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2013:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:silent-servant",
+   "name": "Silent Servant",
+   "key": "silent-servant",
+   "performers": [
+    "silent-servant"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2013:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:dvs1",
+   "name": "DVS1",
+   "key": "dvs1",
+   "performers": [
+    "dvs1"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2013:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:circa-tapes-live",
+   "name": "Circa Tapes – live",
+   "key": "circa-tapes-live",
+   "performers": [
+    "circa-tapes-live"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2013:electric-forest-festival-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:deastro-live",
+   "name": "Deastro – live",
+   "key": "deastro-live",
+   "performers": [
+    "deastro-live"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2013:electric-forest-festival-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:kidnap-kid",
+   "name": "Kidnap Kid",
+   "key": "kidnap-kid",
+   "performers": [
+    "kidnap-kid"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2013:electric-forest-festival-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:a-tribe-called-red",
+   "name": "A Tribe Called Red",
+   "key": "a-tribe-called-red",
+   "performers": [
+    "a-tribe-called-red"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2013:electric-forest-festival-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:big-chocolate",
+   "name": "Big Chocolate",
+   "key": "big-chocolate",
+   "performers": [
+    "big-chocolate"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2013:electric-forest-festival-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:break-science-live",
+   "name": "Break Science – live",
+   "key": "break-science-live",
+   "performers": [
+    "break-science-live"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2013:electric-forest-festival-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:paper-diamond",
+   "name": "Paper Diamond",
+   "key": "paper-diamond",
+   "performers": [
+    "paper-diamond"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2013:electric-forest-festival-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:gramatik",
+   "name": "Gramatik",
+   "key": "gramatik",
+   "performers": [
+    "gramatik"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2013:electric-forest-festival-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:griz",
+   "name": "GRiZ",
+   "key": "griz",
+   "performers": [
+    "griz"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2013:electric-forest-festival-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2013:big-gigantic-live",
+   "name": "Big Gigantic – live",
+   "key": "big-gigantic-live",
+   "performers": [
+    "big-gigantic-live"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2013:electric-forest-festival-stage"
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "unofficial_lineup",
+  "unofficial": true,
+  "source": {
+   "kind": "press",
+   "site": "synthtopia.com",
+   "url": "https://www.synthtopia.com/content/2013/05/01/movement-detroit-electronic-music-festival-schedule-announced/",
+   "title": "Movement Detroit Electronic Music Festival Schedule Announced",
+   "publisher": "Synthtopia",
+   "published": "2013-05-01",
+   "fetchedAt": "2026-11-27",
+   "fetchedVia": "exa",
+   "scope": "full",
+   "sha256": "1d61b8c072e449999206234789fad17a4e7fca5ddd02274239a44d724a38b2cd",
+   "bytes": 3110
+  },
+  "captures": [
+   {
+    "page": "lineup",
+    "url": "https://www.synthtopia.com/content/2013/05/01/movement-detroit-electronic-music-festival-schedule-announced/",
+    "fetchedAt": "2026-11-27",
+    "sha256": "1d61b8c072e449999206234789fad17a4e7fca5ddd02274239a44d724a38b2cd"
+   }
+  ]
+ }
+}

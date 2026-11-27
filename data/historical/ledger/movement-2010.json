@@ -1,0 +1,47 @@
+{
+  "id": "movement-2010",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "press",
+    "site": "mlive.com",
+    "url": "https://www.mlive.com/entertainment/detroit/2010/05/movement_detroit_electronic_mu.html",
+    "title": "Movement Electronic Music Festival 2010 lineup released",
+    "publisher": "MLive.com",
+    "published": "2010-05-21",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "full",
+    "sha256": "72cf4828b2bc5846d557d204a0d14ce207391cd2cd6722b1e2b0f8126d3624e7",
+    "bytes": 2931
+  },
+  "printed": {
+    "days": {
+      "1": "Saturday, May 29",
+      "2": "Sunday, May 30",
+      "3": "Monday, May 31"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "movement",
+    "year": 2010,
+    "lifecycle": "occurred",
+    "dates": "2010-05-29..2010-05-31",
+    "evidence": "https://www.mlive.com/entertainment/detroit/2010/06/movement_festival_2010_sees_hi.html",
+    "published": "2010-06-01"
+  },
+  "note": "The schedule by day and stage as released on 21 May 2010; the article prints no Red Bull Music Academy Stage block for Monday, so that stage's Monday acts are missing.",
+  "verified": {
+    "billings": 88,
+    "inSourceText": true
+  },
+  "stageOrder": [
+    "Vitamin Water Stage",
+    "Beat Port Stage",
+    "Made in Detroit Stage",
+    "Red Bull Music Academy Stage",
+    "Movement Stage"
+  ],
+  "dropped": []
+}

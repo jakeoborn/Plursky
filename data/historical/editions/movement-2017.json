@@ -1,0 +1,1664 @@
+{
+ "id": "movement-2017",
+ "festivalId": "movement",
+ "name": "Movement 2017",
+ "year": 2017,
+ "timezone": "America/Detroit",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2017-05-27",
+   "label": "Saturday"
+  },
+  {
+   "day": 2,
+   "date": "2017-05-28",
+   "label": "Sunday"
+  },
+  {
+   "day": 3,
+   "date": "2017-05-29",
+   "label": "Monday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "movement-2017:main-stage",
+   "name": "Main Stage"
+  },
+  {
+   "id": "movement-2017:red-bull-music-academy-stage",
+   "name": "Red Bull Music Academy Stage"
+  },
+  {
+   "id": "movement-2017:stargate-stage-presented-by-thump",
+   "name": "Stargate Stage presented by Thump"
+  },
+  {
+   "id": "movement-2017:resident-advisor-underground-stage",
+   "name": "Resident Advisor Underground Stage"
+  },
+  {
+   "id": "movement-2017:pyramid-stage",
+   "name": "Pyramid Stage"
+  },
+  {
+   "id": "movement-2017:made-in-detroit-stage",
+   "name": "Made in Detroit Stage"
+  }
+ ],
+ "artists": [
+  {
+   "id": "movement-2017:luke-hess",
+   "name": "Luke Hess",
+   "key": "luke-hess",
+   "performers": [
+    "luke-hess"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2017:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:josh-wink",
+   "name": "Josh Wink",
+   "key": "josh-wink",
+   "performers": [
+    "josh-wink"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2017:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:nicole-moudaber",
+   "name": "Nicole Moudaber",
+   "key": "nicole-moudaber",
+   "performers": [
+    "nicole-moudaber"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2017:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:the-belleville-three",
+   "name": "The Belleville Three",
+   "key": "the-belleville-three",
+   "performers": [
+    "the-belleville-three"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2017:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:richie-hawtin-presents-close",
+   "name": "RICHIE HAWTIN presents CLOSE",
+   "key": "richie-hawtin-presents-close",
+   "performers": [
+    "richie-hawtin-presents-close"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2017:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:distal",
+   "name": "Distal",
+   "key": "distal",
+   "performers": [
+    "distal"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2017:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:john-arnold-live",
+   "name": "John Arnold – live",
+   "key": "john-arnold-live",
+   "performers": [
+    "john-arnold-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2017:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:river-tiber-live-trio",
+   "name": "River Tiber – live trio",
+   "key": "river-tiber-live-trio",
+   "performers": [
+    "river-tiber-live-trio"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2017:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:larry-heard-aka-mr-fingers-live",
+   "name": "Larry Heard aka Mr. Fingers – live",
+   "key": "larry-heard-aka-mr-fingers-live",
+   "performers": [
+    "larry-heard-aka-mr-fingers-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2017:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:leon-vynehall",
+   "name": "Leon Vynehall",
+   "key": "leon-vynehall",
+   "performers": [
+    "leon-vynehall"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2017:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:factory-floor-live",
+   "name": "Factory Floor – live",
+   "key": "factory-floor-live",
+   "performers": [
+    "factory-floor-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2017:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:earl-sweatshirt",
+   "name": "Earl Sweatshirt",
+   "key": "earl-sweatshirt",
+   "performers": [
+    "earl-sweatshirt"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2017:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:waajeed",
+   "name": "Waajeed",
+   "key": "waajeed",
+   "performers": [
+    "waajeed"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2017:stargate-stage-presented-by-thump"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:dj-deep",
+   "name": "DJ Deep",
+   "key": "dj-deep",
+   "performers": [
+    "dj-deep"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2017:stargate-stage-presented-by-thump"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:mirko-loko",
+   "name": "Mirko Loko",
+   "key": "mirko-loko",
+   "performers": [
+    "mirko-loko"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2017:stargate-stage-presented-by-thump"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:cassy",
+   "name": "Cassy",
+   "key": "cassy",
+   "performers": [
+    "cassy"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2017:stargate-stage-presented-by-thump"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:octave-one-live",
+   "name": "Octave One – live",
+   "key": "octave-one-live",
+   "performers": [
+    "octave-one-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2017:stargate-stage-presented-by-thump"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:stacey-pullen",
+   "name": "Stacey Pullen",
+   "key": "stacey-pullen",
+   "performers": [
+    "stacey-pullen"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2017:stargate-stage-presented-by-thump"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:carl-craig",
+   "name": "Carl Craig",
+   "key": "carl-craig",
+   "performers": [
+    "carl-craig"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2017:stargate-stage-presented-by-thump"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:altstadt-echo",
+   "name": "Altstadt Echo",
+   "key": "altstadt-echo",
+   "performers": [
+    "altstadt-echo"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2017:resident-advisor-underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:matrixxman",
+   "name": "Matrixxman",
+   "key": "matrixxman",
+   "performers": [
+    "matrixxman"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2017:resident-advisor-underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:rrose-live",
+   "name": "Rrose – live",
+   "key": "rrose-live",
+   "performers": [
+    "rrose-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2017:resident-advisor-underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:headless-horseman-live",
+   "name": "Headless Horseman – live",
+   "key": "headless-horseman-live",
+   "performers": [
+    "headless-horseman-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2017:resident-advisor-underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:ax-and-p-adam-x-and-perc",
+   "name": "AX&P (Adam X & Perc)",
+   "key": "ax-and-p-adam-x-and-perc",
+   "performers": [
+    "ax-and-p-adam-x-and-perc"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2017:resident-advisor-underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:function-live",
+   "name": "Function – live",
+   "key": "function-live",
+   "performers": [
+    "function-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2017:resident-advisor-underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:golf-clap",
+   "name": "Golf Clap",
+   "key": "golf-clap",
+   "performers": [
+    "golf-clap"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2017:pyramid-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:coyu",
+   "name": "Coyu",
+   "key": "coyu",
+   "performers": [
+    "coyu"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2017:pyramid-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:rodriguez-jr-live",
+   "name": "Rodriguez Jr. – live",
+   "key": "rodriguez-jr-live",
+   "performers": [
+    "rodriguez-jr-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2017:pyramid-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:dusky",
+   "name": "Dusky",
+   "key": "dusky",
+   "performers": [
+    "dusky"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2017:pyramid-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:ben-klock",
+   "name": "Ben Klock",
+   "key": "ben-klock",
+   "performers": [
+    "ben-klock"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2017:pyramid-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:pan-pot",
+   "name": "Pan-Pot",
+   "key": "pan-pot",
+   "performers": [
+    "pan-pot"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2017:pyramid-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:robert-hood-live",
+   "name": "Robert Hood – live",
+   "key": "robert-hood-live",
+   "performers": [
+    "robert-hood-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2017:pyramid-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:alton-miller",
+   "name": "Alton Miller",
+   "key": "alton-miller",
+   "performers": [
+    "alton-miller"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2017:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:earl-mixxin-mckinney",
+   "name": "Earl Mixxin Mckinney",
+   "key": "earl-mixxin-mckinney",
+   "performers": [
+    "earl-mixxin-mckinney"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2017:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:john-jammin-collins",
+   "name": "John Jammin Collins",
+   "key": "john-jammin-collins",
+   "performers": [
+    "john-jammin-collins"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2017:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:norm-talley",
+   "name": "Norm Talley",
+   "key": "norm-talley",
+   "performers": [
+    "norm-talley"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2017:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:keith-worthy",
+   "name": "Keith Worthy",
+   "key": "keith-worthy",
+   "performers": [
+    "keith-worthy"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2017:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:dj-minx",
+   "name": "DJ Minx",
+   "key": "dj-minx",
+   "performers": [
+    "dj-minx"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2017:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:kai-alce",
+   "name": "Kai Alce",
+   "key": "kai-alce",
+   "performers": [
+    "kai-alce"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2017:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:john-johr",
+   "name": "John Johr",
+   "key": "john-johr",
+   "performers": [
+    "john-johr"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2017:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:francesca-lombardo",
+   "name": "Francesca Lombardo",
+   "key": "francesca-lombardo",
+   "performers": [
+    "francesca-lombardo"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2017:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:death-in-vegas-present-transmission-live",
+   "name": "Death In Vegas Present Transmission – live",
+   "key": "death-in-vegas-present-transmission-live",
+   "performers": [
+    "death-in-vegas-present-transmission-live"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2017:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:joseph-capriati",
+   "name": "Joseph Capriati",
+   "key": "joseph-capriati",
+   "performers": [
+    "joseph-capriati"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2017:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:adam-beyer",
+   "name": "Adam Beyer",
+   "key": "adam-beyer",
+   "performers": [
+    "adam-beyer"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2017:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:testpilot",
+   "name": "Testpilot",
+   "key": "testpilot",
+   "performers": [
+    "testpilot"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2017:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:octo-octa",
+   "name": "Octo Octa",
+   "key": "octo-octa",
+   "performers": [
+    "octo-octa"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2017:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:red-axes-dj-set",
+   "name": "Red Axes (dj set)",
+   "key": "red-axes-dj-set",
+   "performers": [
+    "red-axes-dj-set"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2017:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:honey-dijon",
+   "name": "Honey Dijon",
+   "key": "honey-dijon",
+   "performers": [
+    "honey-dijon"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2017:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:shiba-san",
+   "name": "Shiba San",
+   "key": "shiba-san",
+   "performers": [
+    "shiba-san"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2017:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:paranoid-london-live",
+   "name": "Paranoid London – live",
+   "key": "paranoid-london-live",
+   "performers": [
+    "paranoid-london-live"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2017:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:dopplereffekt-live",
+   "name": "Dopplereffekt – live",
+   "key": "dopplereffekt-live",
+   "performers": [
+    "dopplereffekt-live"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2017:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:juicy-j",
+   "name": "Juicy J",
+   "key": "juicy-j",
+   "performers": [
+    "juicy-j"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2017:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:insoul",
+   "name": "InSOUL",
+   "key": "insoul",
+   "performers": [
+    "insoul"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2017:stargate-stage-presented-by-thump"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:the-saunderson-brothers",
+   "name": "The Saunderson Brothers",
+   "key": "the-saunderson-brothers",
+   "performers": [
+    "the-saunderson-brothers"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2017:stargate-stage-presented-by-thump"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:heidi",
+   "name": "Heidi",
+   "key": "heidi",
+   "performers": [
+    "heidi"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2017:stargate-stage-presented-by-thump"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:audion-live",
+   "name": "Audion – live",
+   "key": "audion-live",
+   "performers": [
+    "audion-live"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2017:stargate-stage-presented-by-thump"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:cajmere",
+   "name": "Cajmere",
+   "key": "cajmere",
+   "performers": [
+    "cajmere"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2017:stargate-stage-presented-by-thump"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:seth-troxler",
+   "name": "Seth Troxler",
+   "key": "seth-troxler",
+   "performers": [
+    "seth-troxler"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2017:stargate-stage-presented-by-thump"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:kevin-saunderson-as-e-dancer-live",
+   "name": "Kevin Saunderson as E-Dancer – live",
+   "key": "kevin-saunderson-as-e-dancer-live",
+   "performers": [
+    "kevin-saunderson-as-e-dancer-live"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2017:stargate-stage-presented-by-thump"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:anthony-jimenez",
+   "name": "Anthony Jimenez",
+   "key": "anthony-jimenez",
+   "performers": [
+    "anthony-jimenez"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2017:resident-advisor-underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:orphx-live",
+   "name": "Orphx – live",
+   "key": "orphx-live",
+   "performers": [
+    "orphx-live"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2017:resident-advisor-underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:ryan-elliott",
+   "name": "Ryan Elliott",
+   "key": "ryan-elliott",
+   "performers": [
+    "ryan-elliott"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2017:resident-advisor-underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:sleeparchive-live",
+   "name": "Sleeparchive – live",
+   "key": "sleeparchive-live",
+   "performers": [
+    "sleeparchive-live"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2017:resident-advisor-underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:dvs1",
+   "name": "DVS1",
+   "key": "dvs1",
+   "performers": [
+    "dvs1"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2017:resident-advisor-underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:sterac",
+   "name": "STERAC",
+   "key": "sterac",
+   "performers": [
+    "sterac"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2017:resident-advisor-underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:brian-kage",
+   "name": "Brian Kage",
+   "key": "brian-kage",
+   "performers": [
+    "brian-kage"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2017:pyramid-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:anna",
+   "name": "ANNA",
+   "key": "anna",
+   "performers": [
+    "anna"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2017:pyramid-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:daniel-avery",
+   "name": "Daniel Avery",
+   "key": "daniel-avery",
+   "performers": [
+    "daniel-avery"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2017:pyramid-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:michael-mayer",
+   "name": "Michael Mayer",
+   "key": "michael-mayer",
+   "performers": [
+    "michael-mayer"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2017:pyramid-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:dixon",
+   "name": "Dixon",
+   "key": "dixon",
+   "performers": [
+    "dixon"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2017:pyramid-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:thomas-barnett-aka-groove-slave",
+   "name": "Thomas Barnett aka Groove Slave",
+   "key": "thomas-barnett-aka-groove-slave",
+   "performers": [
+    "thomas-barnett-aka-groove-slave"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2017:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:dj-psycho",
+   "name": "Dj Psycho",
+   "key": "dj-psycho",
+   "performers": [
+    "dj-psycho"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2017:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:gary-chandler",
+   "name": "Gary Chandler",
+   "key": "gary-chandler",
+   "performers": [
+    "gary-chandler"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2017:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:scan-7-live",
+   "name": "Scan 7 – live",
+   "key": "scan-7-live",
+   "performers": [
+    "scan-7-live"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2017:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:dj-seoul",
+   "name": "DJ Seoul",
+   "key": "dj-seoul",
+   "performers": [
+    "dj-seoul"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2017:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:bxt-live",
+   "name": "BXT – live",
+   "key": "bxt-live",
+   "performers": [
+    "bxt-live"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2017:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:dru-ruiz",
+   "name": "Dru Ruiz",
+   "key": "dru-ruiz",
+   "performers": [
+    "dru-ruiz"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2017:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:mathew-jonson-live",
+   "name": "Mathew Jonson – live",
+   "key": "mathew-jonson-live",
+   "performers": [
+    "mathew-jonson-live"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2017:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:soul-clap-live-feat-amp-fiddler",
+   "name": "Soul Clap live feat. Amp Fiddler",
+   "key": "soul-clap-live-feat-amp-fiddler",
+   "performers": [
+    "soul-clap-live-feat-amp-fiddler"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2017:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:barclay-crenshaw",
+   "name": "Barclay Crenshaw",
+   "key": "barclay-crenshaw",
+   "performers": [
+    "barclay-crenshaw"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2017:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:carl-craig-presents-versus-synthesizer-ensemble",
+   "name": "Carl Craig presents Versus Synthesizer Ensemble",
+   "key": "carl-craig-presents-versus-synthesizer-ensemble",
+   "performers": [
+    "carl-craig-presents-versus-synthesizer-ensemble"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2017:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:carl-cox",
+   "name": "Carl Cox",
+   "key": "carl-cox",
+   "performers": [
+    "carl-cox"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2017:main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:tt-the-artist-live",
+   "name": "TT The Artist – live",
+   "key": "tt-the-artist-live",
+   "performers": [
+    "tt-the-artist-live"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2017:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:sheefy-mcfly",
+   "name": "Sheefy McFly",
+   "key": "sheefy-mcfly",
+   "performers": [
+    "sheefy-mcfly"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2017:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:teklife-dj-spinn-and-dj-taye",
+   "name": "Teklife: DJ Spinn & DJ Taye",
+   "key": "teklife-dj-spinn-and-dj-taye",
+   "performers": [
+    "teklife-dj-spinn-and-dj-taye"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2017:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:mount-kimbie-live",
+   "name": "Mount Kimbie – live",
+   "key": "mount-kimbie-live",
+   "performers": [
+    "mount-kimbie-live"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2017:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:s-u-r-v-i-v-e-live",
+   "name": "S U R V I V E – live",
+   "key": "s-u-r-v-i-v-e-live",
+   "performers": [
+    "s-u-r-v-i-v-e-live"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2017:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:thundercat-live",
+   "name": "Thundercat – live",
+   "key": "thundercat-live",
+   "performers": [
+    "thundercat-live"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2017:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:the-gaslamp-killer",
+   "name": "The Gaslamp Killer",
+   "key": "the-gaslamp-killer",
+   "performers": [
+    "the-gaslamp-killer"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2017:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:danny-brown",
+   "name": "Danny Brown",
+   "key": "danny-brown",
+   "performers": [
+    "danny-brown"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2017:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:dj-harvey",
+   "name": "DJ Harvey",
+   "key": "dj-harvey",
+   "performers": [
+    "dj-harvey"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2017:stargate-stage-presented-by-thump"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:kate-simko",
+   "name": "Kate Simko",
+   "key": "kate-simko",
+   "performers": [
+    "kate-simko"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2017:stargate-stage-presented-by-thump"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:patrick-topping-b2b-nathan-barato",
+   "name": "Patrick Topping b2b Nathan Barato",
+   "key": "patrick-topping-b2b-nathan-barato",
+   "performers": [
+    "patrick-topping",
+    "nathan-barato"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2017:stargate-stage-presented-by-thump"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:kerri-chandler",
+   "name": "Kerri Chandler",
+   "key": "kerri-chandler",
+   "performers": [
+    "kerri-chandler"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2017:stargate-stage-presented-by-thump"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:jamie-jones",
+   "name": "Jamie Jones",
+   "key": "jamie-jones",
+   "performers": [
+    "jamie-jones"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2017:stargate-stage-presented-by-thump"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:project-313-live",
+   "name": "Project 313 – live",
+   "key": "project-313-live",
+   "performers": [
+    "project-313-live"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2017:resident-advisor-underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:dj-hyperactive",
+   "name": "DJ Hyperactive",
+   "key": "dj-hyperactive",
+   "performers": [
+    "dj-hyperactive"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2017:resident-advisor-underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:rebekah-hybrid-set",
+   "name": "Rebekah Hybrid Set",
+   "key": "rebekah-hybrid-set",
+   "performers": [
+    "rebekah-hybrid-set"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2017:resident-advisor-underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:drumcell",
+   "name": "Drumcell",
+   "key": "drumcell",
+   "performers": [
+    "drumcell"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2017:resident-advisor-underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:ben-sims-b2b-truncate",
+   "name": "Ben Sims b2b Truncate",
+   "key": "ben-sims-b2b-truncate",
+   "performers": [
+    "ben-sims",
+    "truncate"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2017:resident-advisor-underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:asher-perkins",
+   "name": "Asher Perkins",
+   "key": "asher-perkins",
+   "performers": [
+    "asher-perkins"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2017:pyramid-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:ambivalent",
+   "name": "Ambivalent",
+   "key": "ambivalent",
+   "performers": [
+    "ambivalent"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2017:pyramid-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:mind-against",
+   "name": "Mind Against",
+   "key": "mind-against",
+   "performers": [
+    "mind-against"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2017:pyramid-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:recondite-live",
+   "name": "Recondite – live",
+   "key": "recondite-live",
+   "performers": [
+    "recondite-live"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2017:pyramid-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:paco-osuna",
+   "name": "Paco Osuna",
+   "key": "paco-osuna",
+   "performers": [
+    "paco-osuna"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2017:pyramid-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:chris-liebing",
+   "name": "Chris Liebing",
+   "key": "chris-liebing",
+   "performers": [
+    "chris-liebing"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2017:pyramid-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:haz-mat-live",
+   "name": "Haz Mat – live",
+   "key": "haz-mat-live",
+   "performers": [
+    "haz-mat-live"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2017:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:twin-cousin",
+   "name": "Twin Cousin",
+   "key": "twin-cousin",
+   "performers": [
+    "twin-cousin"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2017:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:remote-viewing-party",
+   "name": "Remote Viewing Party",
+   "key": "remote-viewing-party",
+   "performers": [
+    "remote-viewing-party"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2017:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:keith-kemp",
+   "name": "Keith Kemp",
+   "key": "keith-kemp",
+   "performers": [
+    "keith-kemp"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2017:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:ataxia-live",
+   "name": "Ataxia – live",
+   "key": "ataxia-live",
+   "performers": [
+    "ataxia-live"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2017:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:terrence-parker-feat-merachka",
+   "name": "Terrence Parker feat. Merachka",
+   "key": "terrence-parker-feat-merachka",
+   "performers": [
+    "terrence-parker-feat-merachka"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2017:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2017:terrence-dixon-as-population-one-live",
+   "name": "Terrence Dixon as Population One – live",
+   "key": "terrence-dixon-as-population-one-live",
+   "performers": [
+    "terrence-dixon-as-population-one-live"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2017:made-in-detroit-stage"
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "unofficial_lineup",
+  "unofficial": true,
+  "source": {
+   "kind": "press",
+   "site": "metrotimes.com",
+   "url": "https://www.metrotimes.com/music-2/heres-the-full-schedule-for-2017s-movement-electronic-music-festival-3236767/",
+   "title": "Here’s the full schedule for 2017’s Movement Electronic Music Festival",
+   "publisher": "Detroit Metro Times",
+   "published": "2017-04-06",
+   "fetchedAt": "2026-11-27",
+   "fetchedVia": "exa",
+   "scope": "full",
+   "sha256": "02bd999cb960eec63f8d9285bcd6a6a9aeb6d582845bebfcbd9a653225d55b23",
+   "bytes": 5341
+  },
+  "captures": [
+   {
+    "page": "lineup",
+    "url": "https://www.metrotimes.com/music-2/heres-the-full-schedule-for-2017s-movement-electronic-music-festival-3236767/",
+    "fetchedAt": "2026-11-27",
+    "sha256": "02bd999cb960eec63f8d9285bcd6a6a9aeb6d582845bebfcbd9a653225d55b23"
+   }
+  ]
+ }
+}

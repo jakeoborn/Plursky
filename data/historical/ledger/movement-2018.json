@@ -1,0 +1,47 @@
+{
+  "id": "movement-2018",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "press",
+    "site": "dancingastronaut.com",
+    "url": "https://dancingastronaut.com/2018/04/movement-music-festival-announces-stages-set-times-ahead-2018-edition/",
+    "title": "Movement Music Festival announces stages and set times ahead of 2018 edition",
+    "publisher": "Dancing Astronaut",
+    "published": "2018-04-19",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "full",
+    "sha256": "ee4e01b935a873e877ebe0dbcc2133b13b84024f45ff9b2176a9b09894acb153",
+    "bytes": 4056
+  },
+  "printed": {
+    "days": {
+      "1": "Saturday, May 26",
+      "2": "Sunday, May 27",
+      "3": "Monday, May 28"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "movement",
+    "year": 2018,
+    "lifecycle": "occurred",
+    "dates": "2018-05-26..2018-05-28",
+    "evidence": "https://qromag.com/movement-festival-2018-recap/",
+    "published": "2018-06-01"
+  },
+  "note": "The lineup by day and stage as announced on 19 April 2018; later changes are not shown. The article prints set times, which are not used; the Movement Yoga sessions are left out.",
+  "verified": {
+    "billings": 89,
+    "inSourceText": true
+  },
+  "stageOrder": [
+    "Movement Stage",
+    "Red Bull Music Stage",
+    "Stargate Stage",
+    "Resident Advisor Underground Stage",
+    "Pyramid Stage"
+  ],
+  "dropped": []
+}

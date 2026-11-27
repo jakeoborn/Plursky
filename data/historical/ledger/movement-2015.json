@@ -1,0 +1,48 @@
+{
+  "id": "movement-2015",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "press",
+    "site": "freep.com",
+    "url": "https://www.freep.com/story/entertainment/music/brian-mccollum/2015/05/06/movement-artist-stage-schedule/70899530/",
+    "title": "Start planning your Movement weekend: Find artists, times",
+    "publisher": "Detroit Free Press",
+    "published": "2015-05-06",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "full",
+    "sha256": "2327caad51b2f34eb969018eb2c459fd9f1a274ac6ef9f859e5ffd607b4898da",
+    "bytes": 6635
+  },
+  "printed": {
+    "days": {
+      "1": "Saturday, May 23",
+      "2": "Sunday, May 24",
+      "3": "Monday, May 25"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "movement",
+    "year": 2015,
+    "lifecycle": "occurred",
+    "dates": "2015-05-23..2015-05-25",
+    "evidence": "https://www.vice.com/en/article/movement-detroit-2015-recap-the-struggles-and-triumphs-of-motor-citys-biggest-year-ever/",
+    "published": "2015-05-26"
+  },
+  "note": "The lineup by day and stage as published on 6 May 2015 and updated on 22 May 2015; later changes are not shown. The article prints set times, which are not used; showcase titles are left out, and the band printed as \"! ! !\" (Monday, Red Bull Music Academy Stage) is missing because its name has no letters the checks can match.",
+  "verified": {
+    "billings": 138,
+    "inSourceText": true
+  },
+  "stageOrder": [
+    "Movement Main Stage",
+    "Red Bull Music Academy Stage",
+    "Beatport Stage",
+    "Made In Detroit Stage presented by THUMP",
+    "Underground Stage",
+    "Sixth Stage"
+  ],
+  "dropped": []
+}
