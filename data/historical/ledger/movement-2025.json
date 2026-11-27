@@ -1,0 +1,48 @@
+{
+  "id": "movement-2025",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "press",
+    "site": "fox2detroit.com",
+    "url": "https://www.fox2detroit.com/news/movement-detroit-festival-lineup-schedule-stages-2025-concert-weekend",
+    "title": "Movement Detroit Festival: Lineup, schedule, and stages for 2025 concert weekend",
+    "publisher": "FOX 2 Detroit",
+    "published": "2025-04-24",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "full",
+    "sha256": "2971b9b81c03ed718a4f4f840c711fb92b9a6240275ad32e543a5f1853c0835a",
+    "bytes": 3383
+  },
+  "printed": {
+    "days": {
+      "1": "DAY 1 (Saturday, May 24)",
+      "2": "DAY 2 (Sunday, May 25)",
+      "3": "DAY 3 (Monday, May 26)"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "movement",
+    "year": 2025,
+    "lifecycle": "occurred",
+    "dates": "2025-05-24..2025-05-26",
+    "evidence": "https://www.edmtunes.com/2025/06/02/event-review-movement-detroit-2025-a-techno-pilgrimage-through-the-heart-of-the-motor-city/",
+    "published": "2025-06-02"
+  },
+  "note": "The lineup by day and stage as published on 24 April 2025; later changes are not shown. The article lists Jeff Mills under both the Movement and Detroit stages on Saturday, kept as printed; the House Your Life Showcase label is not an act and is left out.",
+  "verified": {
+    "billings": 116,
+    "inSourceText": true
+  },
+  "stageOrder": [
+    "Movement Stage",
+    "Waterfront Stage presented by JARS",
+    "Stargate Stage",
+    "Underground Stage",
+    "Pyramid Stage",
+    "Detroit Stage"
+  ],
+  "dropped": []
+}

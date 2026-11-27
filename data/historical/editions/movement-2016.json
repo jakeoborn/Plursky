@@ -1,0 +1,1803 @@
+{
+ "id": "movement-2016",
+ "festivalId": "movement",
+ "name": "Movement 2016",
+ "year": 2016,
+ "timezone": "America/Detroit",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2016-05-28",
+   "label": "Saturday"
+  },
+  {
+   "day": 2,
+   "date": "2016-05-29",
+   "label": "Sunday"
+  },
+  {
+   "day": 3,
+   "date": "2016-05-30",
+   "label": "Monday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "movement-2016:movement-main-stage",
+   "name": "Movement Main Stage"
+  },
+  {
+   "id": "movement-2016:red-bull-music-academy-stage",
+   "name": "Red Bull Music Academy Stage"
+  },
+  {
+   "id": "movement-2016:beatport-stage",
+   "name": "Beatport Stage"
+  },
+  {
+   "id": "movement-2016:made-in-detroit-stage-presented-by-thump",
+   "name": "Made In Detroit Stage presented by THUMP"
+  },
+  {
+   "id": "movement-2016:underground-stage",
+   "name": "Underground Stage"
+  },
+  {
+   "id": "movement-2016:opportunity-detroit-stage",
+   "name": "Opportunity Detroit Stage"
+  }
+ ],
+ "artists": [
+  {
+   "id": "movement-2016:rickers",
+   "name": "Rickers",
+   "key": "rickers",
+   "performers": [
+    "rickers"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2016:movement-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:sonja-moonear",
+   "name": "Sonja Moonear",
+   "key": "sonja-moonear",
+   "performers": [
+    "sonja-moonear"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2016:movement-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:dewalta-and-mike-shannon-live",
+   "name": "DeWalta & Mike Shannon (live)",
+   "key": "dewalta-and-mike-shannon-live",
+   "performers": [
+    "dewalta-and-mike-shannon-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2016:movement-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:seth-troxler",
+   "name": "Seth Troxler",
+   "key": "seth-troxler",
+   "performers": [
+    "seth-troxler"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2016:movement-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:juan-atkins-and-moritz-von-oswald-present-borderland",
+   "name": "Juan Atkins and Moritz von Oswald Present: Borderland",
+   "key": "juan-atkins-and-moritz-von-oswald-present-borderland",
+   "performers": [
+    "juan-atkins-and-moritz-von-oswald-present-borderland"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2016:movement-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:maceo-plex",
+   "name": "Maceo Plex",
+   "key": "maceo-plex",
+   "performers": [
+    "maceo-plex"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2016:movement-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:kraftwerk-3d",
+   "name": "Kraftwerk: 3D",
+   "key": "kraftwerk-3d",
+   "performers": [
+    "kraftwerk-3d"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2016:movement-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:jeff-risk",
+   "name": "Jeff Risk",
+   "key": "jeff-risk",
+   "performers": [
+    "jeff-risk"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2016:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:shady-p",
+   "name": "Shady P",
+   "key": "shady-p",
+   "performers": [
+    "shady-p"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2016:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:kyle-hall",
+   "name": "Kyle Hall",
+   "key": "kyle-hall",
+   "performers": [
+    "kyle-hall"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2016:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:dam-funk-dj-set",
+   "name": "DāM-FunK (DJ set)",
+   "key": "dam-funk-dj-set",
+   "performers": [
+    "dam-funk-dj-set"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2016:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:kenny-dope",
+   "name": "Kenny Dope",
+   "key": "kenny-dope",
+   "performers": [
+    "kenny-dope"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2016:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:four-tet",
+   "name": "Four Tet",
+   "key": "four-tet",
+   "performers": [
+    "four-tet"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2016:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:caribou",
+   "name": "Caribou",
+   "key": "caribou",
+   "performers": [
+    "caribou"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2016:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:mister-joshooa",
+   "name": "Mister Joshooa",
+   "key": "mister-joshooa",
+   "performers": [
+    "mister-joshooa"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2016:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:guti-live",
+   "name": "Guti (live)",
+   "key": "guti-live",
+   "performers": [
+    "guti-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2016:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:zip",
+   "name": "Zip",
+   "key": "zip",
+   "performers": [
+    "zip"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2016:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:davide-squillace",
+   "name": "Davide Squillace",
+   "key": "davide-squillace",
+   "performers": [
+    "davide-squillace"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2016:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:marc-houle",
+   "name": "Marc Houle",
+   "key": "marc-houle",
+   "performers": [
+    "marc-houle"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2016:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:nic-fanciulli",
+   "name": "Nic Fanciulli",
+   "key": "nic-fanciulli",
+   "performers": [
+    "nic-fanciulli"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2016:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:al-ester",
+   "name": "AL Ester",
+   "key": "al-ester",
+   "performers": [
+    "al-ester"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2016:made-in-detroit-stage-presented-by-thump"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:niko-marks",
+   "name": "Niko Marks",
+   "key": "niko-marks",
+   "performers": [
+    "niko-marks"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2016:made-in-detroit-stage-presented-by-thump"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:la-fleur",
+   "name": "La Fleur",
+   "key": "la-fleur",
+   "performers": [
+    "la-fleur"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2016:made-in-detroit-stage-presented-by-thump"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:paul-woolford",
+   "name": "Paul Woolford",
+   "key": "paul-woolford",
+   "performers": [
+    "paul-woolford"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2016:made-in-detroit-stage-presented-by-thump"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:matthew-dear",
+   "name": "Matthew Dear",
+   "key": "matthew-dear",
+   "performers": [
+    "matthew-dear"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2016:made-in-detroit-stage-presented-by-thump"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:stacey-pullen",
+   "name": "Stacey Pullen",
+   "key": "stacey-pullen",
+   "performers": [
+    "stacey-pullen"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2016:made-in-detroit-stage-presented-by-thump"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:carl-craig",
+   "name": "Carl Craig",
+   "key": "carl-craig",
+   "performers": [
+    "carl-craig"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2016:made-in-detroit-stage-presented-by-thump"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:project-313",
+   "name": "Project 313",
+   "key": "project-313",
+   "performers": [
+    "project-313"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2016:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:andrei-morant",
+   "name": "Andrei Morant",
+   "key": "andrei-morant",
+   "performers": [
+    "andrei-morant"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2016:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:kyle-geiger",
+   "name": "Kyle Geiger",
+   "key": "kyle-geiger",
+   "performers": [
+    "kyle-geiger"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2016:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:jay-denham",
+   "name": "Jay Denham",
+   "key": "jay-denham",
+   "performers": [
+    "jay-denham"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2016:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:scuba",
+   "name": "Scuba",
+   "key": "scuba",
+   "performers": [
+    "scuba"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2016:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:len-faki",
+   "name": "Len Faki",
+   "key": "len-faki",
+   "performers": [
+    "len-faki"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2016:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:scott-zacharias",
+   "name": "Scott Zacharias",
+   "key": "scott-zacharias",
+   "performers": [
+    "scott-zacharias"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2016:opportunity-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:israel-vines-live",
+   "name": "Israel Vines LIVE",
+   "key": "israel-vines-live",
+   "performers": [
+    "israel-vines-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2016:opportunity-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:patrick-russell",
+   "name": "Patrick Russell",
+   "key": "patrick-russell",
+   "performers": [
+    "patrick-russell"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2016:opportunity-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:mike-servito-b2b-derek-plaslaiko",
+   "name": "Mike Servito b2b Derek Plaslaiko",
+   "key": "mike-servito-b2b-derek-plaslaiko",
+   "performers": [
+    "mike-servito",
+    "derek-plaslaiko"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2016:opportunity-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:gay-marvine",
+   "name": "Gay Marvine",
+   "key": "gay-marvine",
+   "performers": [
+    "gay-marvine"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2016:opportunity-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:carlos-souffront",
+   "name": "Carlos Souffront",
+   "key": "carlos-souffront",
+   "performers": [
+    "carlos-souffront"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2016:opportunity-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:ectomorph-live",
+   "name": "Ectomorph LIVE",
+   "key": "ectomorph-live",
+   "performers": [
+    "ectomorph-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2016:opportunity-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:claude-young",
+   "name": "Claude Young",
+   "key": "claude-young",
+   "performers": [
+    "claude-young"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2016:opportunity-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:barem",
+   "name": "Barem",
+   "key": "barem",
+   "performers": [
+    "barem"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2016:movement-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:bjarki-live",
+   "name": "Bjarki (live)",
+   "key": "bjarki-live",
+   "performers": [
+    "bjarki-live"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2016:movement-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:matador-live",
+   "name": "Matador (live)",
+   "key": "matador-live",
+   "performers": [
+    "matador-live"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2016:movement-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:loco-dice",
+   "name": "Loco Dice",
+   "key": "loco-dice",
+   "performers": [
+    "loco-dice"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2016:movement-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:adam-beyer",
+   "name": "Adam Beyer",
+   "key": "adam-beyer",
+   "performers": [
+    "adam-beyer"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2016:movement-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:dubfire-live-hybrid",
+   "name": "dubfire:live HYBRID",
+   "key": "dubfire-live-hybrid",
+   "performers": [
+    "dubfire-live-hybrid"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2016:movement-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:pontchartrain",
+   "name": "Pontchartrain",
+   "key": "pontchartrain",
+   "performers": [
+    "pontchartrain"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2016:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:honey-soundsystem",
+   "name": "Honey Soundsystem",
+   "key": "honey-soundsystem",
+   "performers": [
+    "honey-soundsystem"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2016:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:the-black-madonna",
+   "name": "The Black Madonna",
+   "key": "the-black-madonna",
+   "performers": [
+    "the-black-madonna"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2016:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:tiga",
+   "name": "Tiga",
+   "key": "tiga",
+   "performers": [
+    "tiga"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2016:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:will-sessions-feat-amp-fiddler-live",
+   "name": "Will Sessions feat. Amp Fiddler (live)",
+   "key": "will-sessions-feat-amp-fiddler-live",
+   "performers": [
+    "will-sessions-feat-amp-fiddler-live"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2016:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:rza-feat-stone-mecca",
+   "name": "RZA feat. Stone Mecca",
+   "key": "rza-feat-stone-mecca",
+   "performers": [
+    "rza-feat-stone-mecca"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2016:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:job-jobse",
+   "name": "Job Jobse",
+   "key": "job-jobse",
+   "performers": [
+    "job-jobse"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2016:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:dj-tennis",
+   "name": "DJ Tennis",
+   "key": "dj-tennis",
+   "performers": [
+    "dj-tennis"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2016:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:heidi",
+   "name": "Heidi",
+   "key": "heidi",
+   "performers": [
+    "heidi"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2016:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:magda",
+   "name": "Magda",
+   "key": "magda",
+   "performers": [
+    "magda"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2016:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:ame-dj-set",
+   "name": "Âme - DJ Set",
+   "key": "ame-dj-set",
+   "performers": [
+    "ame-dj-set"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2016:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:tale-of-us",
+   "name": "Tale of Us",
+   "key": "tale-of-us",
+   "performers": [
+    "tale-of-us"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2016:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:eddie-c",
+   "name": "Eddie C",
+   "key": "eddie-c",
+   "performers": [
+    "eddie-c"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2016:made-in-detroit-stage-presented-by-thump"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:no-regular-play-live",
+   "name": "No Regular Play (live)",
+   "key": "no-regular-play-live",
+   "performers": [
+    "no-regular-play-live"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2016:made-in-detroit-stage-presented-by-thump"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:ryan-crosson",
+   "name": "Ryan Crosson",
+   "key": "ryan-crosson",
+   "performers": [
+    "ryan-crosson"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2016:made-in-detroit-stage-presented-by-thump"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:lee-curtiss",
+   "name": "Lee Curtiss",
+   "key": "lee-curtiss",
+   "performers": [
+    "lee-curtiss"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2016:made-in-detroit-stage-presented-by-thump"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:shaun-reeves",
+   "name": "Shaun Reeves",
+   "key": "shaun-reeves",
+   "performers": [
+    "shaun-reeves"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2016:made-in-detroit-stage-presented-by-thump"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:art-department",
+   "name": "Art Department",
+   "key": "art-department",
+   "performers": [
+    "art-department"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2016:made-in-detroit-stage-presented-by-thump"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:ellen-allien",
+   "name": "Ellen Allien",
+   "key": "ellen-allien",
+   "performers": [
+    "ellen-allien"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2016:made-in-detroit-stage-presented-by-thump"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:eddie-fowlkes",
+   "name": "Eddie Fowlkes",
+   "key": "eddie-fowlkes",
+   "performers": [
+    "eddie-fowlkes"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2016:made-in-detroit-stage-presented-by-thump"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:rezz",
+   "name": "Rezz",
+   "key": "rezz",
+   "performers": [
+    "rezz"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2016:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:josh-pan",
+   "name": "Josh Pan",
+   "key": "josh-pan",
+   "performers": [
+    "josh-pan"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2016:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:mija",
+   "name": "Mija",
+   "key": "mija",
+   "performers": [
+    "mija"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2016:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:vindata",
+   "name": "Vindata",
+   "key": "vindata",
+   "performers": [
+    "vindata"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2016:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:bixel-boys",
+   "name": "Bixel Boys",
+   "key": "bixel-boys",
+   "performers": [
+    "bixel-boys"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2016:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:alex-metric",
+   "name": "Alex Metric",
+   "key": "alex-metric",
+   "performers": [
+    "alex-metric"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2016:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:sliink",
+   "name": "Sliink",
+   "key": "sliink",
+   "performers": [
+    "sliink"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2016:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:what-so-not",
+   "name": "What So Not",
+   "key": "what-so-not",
+   "performers": [
+    "what-so-not"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2016:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:kill-the-noise",
+   "name": "Kill The Noise",
+   "key": "kill-the-noise",
+   "performers": [
+    "kill-the-noise"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2016:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:rebecca-goldberg",
+   "name": "Rebecca Goldberg",
+   "key": "rebecca-goldberg",
+   "performers": [
+    "rebecca-goldberg"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2016:opportunity-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:loren",
+   "name": "Loren",
+   "key": "loren",
+   "performers": [
+    "loren"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2016:opportunity-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:ryan-mccray",
+   "name": "Ryan McCray",
+   "key": "ryan-mccray",
+   "performers": [
+    "ryan-mccray"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2016:opportunity-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:chuck-daniels",
+   "name": "Chuck Daniels",
+   "key": "chuck-daniels",
+   "performers": [
+    "chuck-daniels"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2016:opportunity-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:dj-seoul",
+   "name": "DJ Seoul",
+   "key": "dj-seoul",
+   "performers": [
+    "dj-seoul"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2016:opportunity-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:mike-huckaby",
+   "name": "Mike Huckaby",
+   "key": "mike-huckaby",
+   "performers": [
+    "mike-huckaby"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2016:opportunity-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:fit-siegel",
+   "name": "FIT Siegel",
+   "key": "fit-siegel",
+   "performers": [
+    "fit-siegel"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2016:movement-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:stone-owl-live",
+   "name": "Stone Owl (live)",
+   "key": "stone-owl-live",
+   "performers": [
+    "stone-owl-live"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2016:movement-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:anja-schneider",
+   "name": "Anja Schneider",
+   "key": "anja-schneider",
+   "performers": [
+    "anja-schneider"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2016:movement-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:john-digweed",
+   "name": "John Digweed",
+   "key": "john-digweed",
+   "performers": [
+    "john-digweed"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2016:movement-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:chris-liebing",
+   "name": "Chris Liebing",
+   "key": "chris-liebing",
+   "performers": [
+    "chris-liebing"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2016:movement-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:modeselektor-live",
+   "name": "Modeselektor – live",
+   "key": "modeselektor-live",
+   "performers": [
+    "modeselektor-live"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2016:movement-main-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:wheez-ie",
+   "name": "Wheez-ie",
+   "key": "wheez-ie",
+   "performers": [
+    "wheez-ie"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2016:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:dj-funk",
+   "name": "DJ FUNK",
+   "key": "dj-funk",
+   "performers": [
+    "dj-funk"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2016:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:dj-godfather",
+   "name": "DJ Godfather",
+   "key": "dj-godfather",
+   "performers": [
+    "dj-godfather"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2016:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:big-freedia",
+   "name": "Big Freedia",
+   "key": "big-freedia",
+   "performers": [
+    "big-freedia"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2016:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:zelooperz",
+   "name": "ZelooperZ",
+   "key": "zelooperz",
+   "performers": [
+    "zelooperz"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2016:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:j-phlip",
+   "name": "J.Phlip",
+   "key": "j-phlip",
+   "performers": [
+    "j-phlip"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2016:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:justin-martin",
+   "name": "Justin Martin",
+   "key": "justin-martin",
+   "performers": [
+    "justin-martin"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2016:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:get-real-green-velvet-and-claude-vonstroke",
+   "name": "GET REAL: Green Velvet & Claude VonStroke",
+   "key": "get-real-green-velvet-and-claude-vonstroke",
+   "performers": [
+    "get-real-green-velvet-and-claude-vonstroke"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2016:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:hito",
+   "name": "Hito",
+   "key": "hito",
+   "performers": [
+    "hito"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2016:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:tini",
+   "name": "tINI",
+   "key": "tini",
+   "performers": [
+    "tini"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2016:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:josepeh-capriati",
+   "name": "Josepeh Capriati",
+   "key": "josepeh-capriati",
+   "performers": [
+    "josepeh-capriati"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2016:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:richie-hawtin",
+   "name": "Richie Hawtin",
+   "key": "richie-hawtin",
+   "performers": [
+    "richie-hawtin"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2016:beatport-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:art-payne-and-keith-martin",
+   "name": "Art Payne & Keith Martin",
+   "key": "art-payne-and-keith-martin",
+   "performers": [
+    "art-payne-and-keith-martin"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2016:made-in-detroit-stage-presented-by-thump"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:stacey-hotwaxx-hale",
+   "name": "Stacey Hotwaxx Hale",
+   "key": "stacey-hotwaxx-hale",
+   "performers": [
+    "stacey-hotwaxx-hale"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2016:made-in-detroit-stage-presented-by-thump"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:bruce-bailey",
+   "name": "Bruce Bailey",
+   "key": "bruce-bailey",
+   "performers": [
+    "bruce-bailey"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2016:made-in-detroit-stage-presented-by-thump"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:the-saunderson-brothers",
+   "name": "The Saunderson Brothers",
+   "key": "the-saunderson-brothers",
+   "performers": [
+    "the-saunderson-brothers"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2016:made-in-detroit-stage-presented-by-thump"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:delano-smith",
+   "name": "Delano Smith",
+   "key": "delano-smith",
+   "performers": [
+    "delano-smith"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2016:made-in-detroit-stage-presented-by-thump"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:mk-marc-kinchen",
+   "name": "MK (Marc Kinchen)",
+   "key": "mk-marc-kinchen",
+   "performers": [
+    "mk-marc-kinchen"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2016:made-in-detroit-stage-presented-by-thump"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:guy-gerber",
+   "name": "Guy Gerber",
+   "key": "guy-gerber",
+   "performers": [
+    "guy-gerber"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2016:made-in-detroit-stage-presented-by-thump"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:kevin-saunderson",
+   "name": "Kevin Saunderson",
+   "key": "kevin-saunderson",
+   "performers": [
+    "kevin-saunderson"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2016:made-in-detroit-stage-presented-by-thump"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:abbe-and-toth-live",
+   "name": "Abbe & Toth (live)",
+   "key": "abbe-and-toth-live",
+   "performers": [
+    "abbe-and-toth-live"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2016:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:jared-wilson",
+   "name": "Jared Wilson",
+   "key": "jared-wilson",
+   "performers": [
+    "jared-wilson"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2016:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:2amfm",
+   "name": "2AMFM",
+   "key": "2amfm",
+   "performers": [
+    "2amfm"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2016:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:tin-man",
+   "name": "Tin Man",
+   "key": "tin-man",
+   "performers": [
+    "tin-man"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2016:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:dj-pierre",
+   "name": "DJ Pierre",
+   "key": "dj-pierre",
+   "performers": [
+    "dj-pierre"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2016:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:nina-kraviz",
+   "name": "Nina Kraviz",
+   "key": "nina-kraviz",
+   "performers": [
+    "nina-kraviz"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2016:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:boys-noize",
+   "name": "Boys Noize",
+   "key": "boys-noize",
+   "performers": [
+    "boys-noize"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2016:underground-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:the-friend",
+   "name": "The Friend",
+   "key": "the-friend",
+   "performers": [
+    "the-friend"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2016:opportunity-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:brian-gillespie",
+   "name": "Brian Gillespie",
+   "key": "brian-gillespie",
+   "performers": [
+    "brian-gillespie"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2016:opportunity-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:marashall-applewhite",
+   "name": "Marashall Applewhite",
+   "key": "marashall-applewhite",
+   "performers": [
+    "marashall-applewhite"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2016:opportunity-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:calico",
+   "name": "Calico",
+   "key": "calico",
+   "performers": [
+    "calico"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2016:opportunity-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:laceration-selekta",
+   "name": "Laceration Selekta",
+   "key": "laceration-selekta",
+   "performers": [
+    "laceration-selekta"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2016:opportunity-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:mark-8en-moss",
+   "name": "Mark 8en Moss",
+   "key": "mark-8en-moss",
+   "performers": [
+    "mark-8en-moss"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2016:opportunity-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:dilemma",
+   "name": "Dilemma",
+   "key": "dilemma",
+   "performers": [
+    "dilemma"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2016:opportunity-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2016:dub-phizix-and-mc-strategy",
+   "name": "Dub Phizix & MC Strategy",
+   "key": "dub-phizix-and-mc-strategy",
+   "performers": [
+    "dub-phizix-and-mc-strategy"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2016:opportunity-detroit-stage"
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "unofficial_lineup",
+  "unofficial": true,
+  "source": {
+   "kind": "press",
+   "site": "freep.com",
+   "url": "https://www.freep.com/story/entertainment/music/2016/04/07/movement-2016-full-daily-stage-schedule/82735142/",
+   "title": "Movement schedule set; Kraftwerk tops opening night",
+   "publisher": "Detroit Free Press",
+   "published": "2016-04-07",
+   "fetchedAt": "2026-11-27",
+   "fetchedVia": "exa",
+   "scope": "full",
+   "sha256": "be50a82a11f6e79d49a50588ae85649d9e66234de65ca91ca27df9b65dfc1ffc",
+   "bytes": 5760
+  },
+  "captures": [
+   {
+    "page": "lineup",
+    "url": "https://www.freep.com/story/entertainment/music/2016/04/07/movement-2016-full-daily-stage-schedule/82735142/",
+    "fetchedAt": "2026-11-27",
+    "sha256": "be50a82a11f6e79d49a50588ae85649d9e66234de65ca91ca27df9b65dfc1ffc"
+   }
+  ]
+ }
+}

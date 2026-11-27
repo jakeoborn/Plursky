@@ -1,0 +1,48 @@
+{
+  "id": "movement-2024",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "press",
+    "site": "5mag.net",
+    "url": "https://5mag.net/news/movement-2024-full-stages-daily-line-up-schedules-live-acts-dj-times/",
+    "title": "Movement 2024: Full Stages and Daily Line-Ups",
+    "publisher": "5 Magazine",
+    "published": "2024-04-17",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "full",
+    "sha256": "a3631be70cfed18c1e6d86ca5b2d9b2822ddd9b26e092ff3672a06013bbf3f5e",
+    "bytes": 3438
+  },
+  "printed": {
+    "days": {
+      "1": "DAY 1 (Saturday, May 25)",
+      "2": "DAY 2 (Sunday, May 26)",
+      "3": "DAY 3 (Monday, May 27)"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "movement",
+    "year": 2024,
+    "lifecycle": "occurred",
+    "dates": "2024-05-25..2024-05-27",
+    "evidence": "https://edmidentity.com/2024/05/31/movement-detroit-2024-review/",
+    "published": "2024-05-31"
+  },
+  "note": "The lineup by day and stage as announced on 17 April 2024, printed as one run of names per stage (split into acts by hand); later changes are not shown. Showcase titles and the VIP pop-up parties, which name no single act, are left out.",
+  "verified": {
+    "billings": 115,
+    "inSourceText": true
+  },
+  "stageOrder": [
+    "Movement Stage",
+    "Waterfront Stage presented by JARS",
+    "Stargate Stage",
+    "Pyramid Stage",
+    "Underground Stage",
+    "Detroit Stage"
+  ],
+  "dropped": []
+}

@@ -5086,6 +5086,150 @@
    }
   },
   {
+   "id": "movement-2025",
+   "festivalId": "movement",
+   "festivalName": "Movement",
+   "name": "Movement 2025",
+   "year": 2025,
+   "timezone": "America/Detroit",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "fox2detroit.com",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2025-05-24",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2025-05-25",
+     "label": "Sunday"
+    },
+    {
+     "day": 3,
+     "date": "2025-05-26",
+     "label": "Monday"
+    }
+   ],
+   "counts": {
+    "stages": 6,
+    "artists": 116,
+    "sets": 0
+   }
+  },
+  {
+   "id": "movement-2024",
+   "festivalId": "movement",
+   "festivalName": "Movement",
+   "name": "Movement 2024",
+   "year": 2024,
+   "timezone": "America/Detroit",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "5mag.net",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2024-05-25",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2024-05-26",
+     "label": "Sunday"
+    },
+    {
+     "day": 3,
+     "date": "2024-05-27",
+     "label": "Monday"
+    }
+   ],
+   "counts": {
+    "stages": 6,
+    "artists": 115,
+    "sets": 0
+   }
+  },
+  {
+   "id": "movement-2023",
+   "festivalId": "movement",
+   "festivalName": "Movement",
+   "name": "Movement 2023",
+   "year": 2023,
+   "timezone": "America/Detroit",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "EDMTunes",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2023-05-27",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2023-05-28",
+     "label": "Sunday"
+    },
+    {
+     "day": 3,
+     "date": "2023-05-29",
+     "label": "Monday"
+    }
+   ],
+   "counts": {
+    "stages": 7,
+    "artists": 120,
+    "sets": 0
+   }
+  },
+  {
+   "id": "movement-2022",
+   "festivalId": "movement",
+   "festivalName": "Movement",
+   "name": "Movement 2022",
+   "year": 2022,
+   "timezone": "America/Detroit",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "metrotimes.com",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2022-05-28",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2022-05-29",
+     "label": "Sunday"
+    },
+    {
+     "day": 3,
+     "date": "2022-05-30",
+     "label": "Monday"
+    }
+   ],
+   "counts": {
+    "stages": 7,
+    "artists": 110,
+    "sets": 0
+   }
+  },
+  {
    "id": "movement-2019",
    "festivalId": "movement",
    "festivalName": "Movement",
@@ -5118,6 +5262,258 @@
    "counts": {
     "stages": 0,
     "artists": 89,
+    "sets": 0
+   }
+  },
+  {
+   "id": "movement-2018",
+   "festivalId": "movement",
+   "festivalName": "Movement",
+   "name": "Movement 2018",
+   "year": 2018,
+   "timezone": "America/Detroit",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "Dancing Astronaut",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2018-05-26",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2018-05-27",
+     "label": "Sunday"
+    },
+    {
+     "day": 3,
+     "date": "2018-05-28",
+     "label": "Monday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 89,
+    "sets": 0
+   }
+  },
+  {
+   "id": "movement-2017",
+   "festivalId": "movement",
+   "festivalName": "Movement",
+   "name": "Movement 2017",
+   "year": 2017,
+   "timezone": "America/Detroit",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "metrotimes.com",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2017-05-27",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2017-05-28",
+     "label": "Sunday"
+    },
+    {
+     "day": 3,
+     "date": "2017-05-29",
+     "label": "Monday"
+    }
+   ],
+   "counts": {
+    "stages": 6,
+    "artists": 113,
+    "sets": 0
+   }
+  },
+  {
+   "id": "movement-2016",
+   "festivalId": "movement",
+   "festivalName": "Movement",
+   "name": "Movement 2016",
+   "year": 2016,
+   "timezone": "America/Detroit",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "freep.com",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2016-05-28",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2016-05-29",
+     "label": "Sunday"
+    },
+    {
+     "day": 3,
+     "date": "2016-05-30",
+     "label": "Monday"
+    }
+   ],
+   "counts": {
+    "stages": 6,
+    "artists": 123,
+    "sets": 0
+   }
+  },
+  {
+   "id": "movement-2015",
+   "festivalId": "movement",
+   "festivalName": "Movement",
+   "name": "Movement 2015",
+   "year": 2015,
+   "timezone": "America/Detroit",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "freep.com",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2015-05-23",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2015-05-24",
+     "label": "Sunday"
+    },
+    {
+     "day": 3,
+     "date": "2015-05-25",
+     "label": "Monday"
+    }
+   ],
+   "counts": {
+    "stages": 6,
+    "artists": 138,
+    "sets": 0
+   }
+  },
+  {
+   "id": "movement-2013",
+   "festivalId": "movement",
+   "festivalName": "Movement",
+   "name": "Movement 2013",
+   "year": 2013,
+   "timezone": "America/Detroit",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "synthtopia.com",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2013-05-25",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2013-05-26",
+     "label": "Sunday"
+    },
+    {
+     "day": 3,
+     "date": "2013-05-27",
+     "label": "Monday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 116,
+    "sets": 0
+   }
+  },
+  {
+   "id": "movement-2012",
+   "festivalId": "movement",
+   "festivalName": "Movement",
+   "name": "Movement 2012",
+   "year": 2012,
+   "timezone": "America/Detroit",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "littlewhiteearbuds.com",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2012-05-26",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2012-05-27",
+     "label": "Sunday"
+    },
+    {
+     "day": 3,
+     "date": "2012-05-28",
+     "label": "Monday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 107,
+    "sets": 0
+   }
+  },
+  {
+   "id": "movement-2010",
+   "festivalId": "movement",
+   "festivalName": "Movement",
+   "name": "Movement 2010",
+   "year": 2010,
+   "timezone": "America/Detroit",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "mlive.com",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2010-05-29",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2010-05-30",
+     "label": "Sunday"
+    },
+    {
+     "day": 3,
+     "date": "2010-05-31",
+     "label": "Monday"
+    }
+   ],
+   "counts": {
+    "stages": 5,
+    "artists": 88,
     "sets": 0
    }
   },

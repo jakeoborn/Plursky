@@ -1,0 +1,1308 @@
+{
+ "id": "movement-2010",
+ "festivalId": "movement",
+ "name": "Movement 2010",
+ "year": 2010,
+ "timezone": "America/Detroit",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2010-05-29",
+   "label": "Saturday"
+  },
+  {
+   "day": 2,
+   "date": "2010-05-30",
+   "label": "Sunday"
+  },
+  {
+   "day": 3,
+   "date": "2010-05-31",
+   "label": "Monday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "movement-2010:vitamin-water-stage",
+   "name": "Vitamin Water Stage"
+  },
+  {
+   "id": "movement-2010:beat-port-stage",
+   "name": "Beat Port Stage"
+  },
+  {
+   "id": "movement-2010:made-in-detroit-stage",
+   "name": "Made in Detroit Stage"
+  },
+  {
+   "id": "movement-2010:red-bull-music-academy-stage",
+   "name": "Red Bull Music Academy Stage"
+  },
+  {
+   "id": "movement-2010:movement-stage",
+   "name": "Movement Stage"
+  }
+ ],
+ "artists": [
+  {
+   "id": "movement-2010:matthew-hawtin",
+   "name": "Matthew Hawtin",
+   "key": "matthew-hawtin",
+   "performers": [
+    "matthew-hawtin"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2010:vitamin-water-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:mark-ernestus-r-and-s-set",
+   "name": "Mark Ernestus (R&S) set",
+   "key": "mark-ernestus-r-and-s-set",
+   "performers": [
+    "mark-ernestus-r-and-s-set"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2010:vitamin-water-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:scion",
+   "name": "Scion",
+   "key": "scion",
+   "performers": [
+    "scion"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2010:vitamin-water-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:woody-mcbride",
+   "name": "Woody McBride",
+   "key": "woody-mcbride",
+   "performers": [
+    "woody-mcbride"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2010:vitamin-water-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:john-acquaviva",
+   "name": "John Acquaviva",
+   "key": "john-acquaviva",
+   "performers": [
+    "john-acquaviva"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2010:vitamin-water-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:josh-wink",
+   "name": "Josh Wink",
+   "key": "josh-wink",
+   "performers": [
+    "josh-wink"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2010:vitamin-water-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:richie-hawtin-presents-plastikman",
+   "name": "Richie Hawtin presents Plastikman",
+   "key": "richie-hawtin-presents-plastikman",
+   "performers": [
+    "richie-hawtin-presents-plastikman"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2010:vitamin-water-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:dan-bain",
+   "name": "Dan Bain",
+   "key": "dan-bain",
+   "performers": [
+    "dan-bain"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2010:beat-port-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:onur-ozer",
+   "name": "Onur Ozer",
+   "key": "onur-ozer",
+   "performers": [
+    "onur-ozer"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2010:beat-port-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:ida-engberg",
+   "name": "Ida Engberg",
+   "key": "ida-engberg",
+   "performers": [
+    "ida-engberg"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2010:beat-port-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:jamie-jones",
+   "name": "Jamie Jones",
+   "key": "jamie-jones",
+   "performers": [
+    "jamie-jones"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2010:beat-port-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:paco-osuna",
+   "name": "Paco Osuna",
+   "key": "paco-osuna",
+   "performers": [
+    "paco-osuna"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2010:beat-port-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:claude-vonstroke",
+   "name": "Claude VonStroke",
+   "key": "claude-vonstroke",
+   "performers": [
+    "claude-vonstroke"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2010:beat-port-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:patrice-scott",
+   "name": "Patrice Scott",
+   "key": "patrice-scott",
+   "performers": [
+    "patrice-scott"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2010:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:niko-marks",
+   "name": "Niko Marks",
+   "key": "niko-marks",
+   "performers": [
+    "niko-marks"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2010:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:kyle-hall",
+   "name": "Kyle Hall",
+   "key": "kyle-hall",
+   "performers": [
+    "kyle-hall"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2010:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:rick-wilhite",
+   "name": "Rick Wilhite",
+   "key": "rick-wilhite",
+   "performers": [
+    "rick-wilhite"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2010:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:theo-parrish",
+   "name": "Theo Parrish",
+   "key": "theo-parrish",
+   "performers": [
+    "theo-parrish"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2010:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:jeff-risk",
+   "name": "Jeff Risk",
+   "key": "jeff-risk",
+   "performers": [
+    "jeff-risk"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2010:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:john-ryan-ian-clark-and-ron-zakrin",
+   "name": "John Ryan, Ian Clark and Ron Zakrin",
+   "key": "john-ryan-ian-clark-and-ron-zakrin",
+   "performers": [
+    "john-ryan-ian-clark-and-ron-zakrin"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2010:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:sinistarr-with-mc-teddy-and-bombscare",
+   "name": "Sinistarr with MC Teddy and Bombscare",
+   "key": "sinistarr-with-mc-teddy-and-bombscare",
+   "performers": [
+    "sinistarr-with-mc-teddy-and-bombscare"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2010:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:dz-featuring-toophaced",
+   "name": "DZ featuring TooPhaced",
+   "key": "dz-featuring-toophaced",
+   "performers": [
+    "dz-featuring-toophaced"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2010:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:martyn",
+   "name": "Martyn",
+   "key": "martyn",
+   "performers": [
+    "martyn"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2010:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:excision",
+   "name": "Excision",
+   "key": "excision",
+   "performers": [
+    "excision"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2010:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:a-trak",
+   "name": "A-Trak",
+   "key": "a-trak",
+   "performers": [
+    "a-trak"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2010:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:dj-hype-with-mc-daddy-earl",
+   "name": "DJ Hype with MC Daddy Earl",
+   "key": "dj-hype-with-mc-daddy-earl",
+   "performers": [
+    "dj-hype-with-mc-daddy-earl"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2010:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:shawn-michaels",
+   "name": "Shawn Michaels",
+   "key": "shawn-michaels",
+   "performers": [
+    "shawn-michaels"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2010:movement-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:yos",
+   "name": "Yos",
+   "key": "yos",
+   "performers": [
+    "yos"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2010:movement-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:kenneth-thomas",
+   "name": "Kenneth Thomas",
+   "key": "kenneth-thomas",
+   "performers": [
+    "kenneth-thomas"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2010:movement-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:stefano-fontana",
+   "name": "Stefano Fontana",
+   "key": "stefano-fontana",
+   "performers": [
+    "stefano-fontana"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2010:movement-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:kirk-digiorgio",
+   "name": "Kirk Digiorgio",
+   "key": "kirk-digiorgio",
+   "performers": [
+    "kirk-digiorgio"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2010:movement-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:marco-carola",
+   "name": "Marco Carola",
+   "key": "marco-carola",
+   "performers": [
+    "marco-carola"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "movement-2010:movement-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:recloose",
+   "name": "Recloose",
+   "key": "recloose",
+   "performers": [
+    "recloose"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2010:vitamin-water-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:dj-pierre",
+   "name": "DJ Pierre",
+   "key": "dj-pierre",
+   "performers": [
+    "dj-pierre"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2010:vitamin-water-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:larry-heard",
+   "name": "Larry Heard",
+   "key": "larry-heard",
+   "performers": [
+    "larry-heard"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2010:vitamin-water-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:dj-sneak",
+   "name": "DJ Sneak",
+   "key": "dj-sneak",
+   "performers": [
+    "dj-sneak"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2010:vitamin-water-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:derrick-carter",
+   "name": "Derrick Carter",
+   "key": "derrick-carter",
+   "performers": [
+    "derrick-carter"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2010:vitamin-water-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:inner-city",
+   "name": "Inner City",
+   "key": "inner-city",
+   "performers": [
+    "inner-city"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2010:vitamin-water-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:acid-didj",
+   "name": "Acid Didj",
+   "key": "acid-didj",
+   "performers": [
+    "acid-didj"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2010:beat-port-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:john-johr",
+   "name": "John Johr",
+   "key": "john-johr",
+   "performers": [
+    "john-johr"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2010:beat-port-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:the-martinez-brothers",
+   "name": "The Martinez Brothers",
+   "key": "the-martinez-brothers",
+   "performers": [
+    "the-martinez-brothers"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2010:beat-port-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:martin-buttrich",
+   "name": "Martin Buttrich",
+   "key": "martin-buttrich",
+   "performers": [
+    "martin-buttrich"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2010:beat-port-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:cassy",
+   "name": "Cassy",
+   "key": "cassy",
+   "performers": [
+    "cassy"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2010:beat-port-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:ricardo-villalobos",
+   "name": "Ricardo Villalobos",
+   "key": "ricardo-villalobos",
+   "performers": [
+    "ricardo-villalobos"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2010:beat-port-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:ian-desmond",
+   "name": "Ian Desmond",
+   "key": "ian-desmond",
+   "performers": [
+    "ian-desmond"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2010:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:gabe-real",
+   "name": "Gabe Real",
+   "key": "gabe-real",
+   "performers": [
+    "gabe-real"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2010:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:ryan-crosson",
+   "name": "Ryan Crosson",
+   "key": "ryan-crosson",
+   "performers": [
+    "ryan-crosson"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2010:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:k-hand",
+   "name": "K. Hand",
+   "key": "k-hand",
+   "performers": [
+    "k-hand"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2010:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:anthony-shake-shakir",
+   "name": "Anthony \"Shake\" Shakir",
+   "key": "anthony-shake-shakir",
+   "performers": [
+    "anthony-shake-shakir"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2010:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:rolando",
+   "name": "Rolando",
+   "key": "rolando",
+   "performers": [
+    "rolando"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2010:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:robert-hood",
+   "name": "Robert Hood",
+   "key": "robert-hood",
+   "performers": [
+    "robert-hood"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2010:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:dj-dick-dj-godfather-starski-and-clutch",
+   "name": "DJ Dick, DJ Godfather, Starski & Clutch",
+   "key": "dj-dick-dj-godfather-starski-and-clutch",
+   "performers": [
+    "dj-dick-dj-godfather-starski-and-clutch"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2010:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:hudson-mohawk",
+   "name": "Hudson Mohawk",
+   "key": "hudson-mohawk",
+   "performers": [
+    "hudson-mohawk"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2010:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:kid-sister",
+   "name": "Kid Sister",
+   "key": "kid-sister",
+   "performers": [
+    "kid-sister"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2010:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:phat-kat-and-guilty-simpson-with-will-sessions",
+   "name": "Phat Kat & Guilty Simpson with Will Sessions",
+   "key": "phat-kat-and-guilty-simpson-with-will-sessions",
+   "performers": [
+    "phat-kat-and-guilty-simpson-with-will-sessions"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2010:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:kraak-and-smaak",
+   "name": "Kraak & Smaak",
+   "key": "kraak-and-smaak",
+   "performers": [
+    "kraak-and-smaak"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2010:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:mr-scruff",
+   "name": "Mr. Scruff",
+   "key": "mr-scruff",
+   "performers": [
+    "mr-scruff"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2010:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:ghostland-observatory",
+   "name": "Ghostland Observatory",
+   "key": "ghostland-observatory",
+   "performers": [
+    "ghostland-observatory"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2010:red-bull-music-academy-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:i-robots",
+   "name": "I-Robots",
+   "key": "i-robots",
+   "performers": [
+    "i-robots"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2010:movement-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:dj-torpez",
+   "name": "DJ Torpez",
+   "key": "dj-torpez",
+   "performers": [
+    "dj-torpez"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2010:movement-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:psycatron",
+   "name": "Psycatron",
+   "key": "psycatron",
+   "performers": [
+    "psycatron"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2010:movement-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:orlando-voorn",
+   "name": "Orlando Voorn",
+   "key": "orlando-voorn",
+   "performers": [
+    "orlando-voorn"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2010:movement-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:greg-gow",
+   "name": "Greg Gow",
+   "key": "greg-gow",
+   "performers": [
+    "greg-gow"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2010:movement-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:derrick-may",
+   "name": "Derrick May",
+   "key": "derrick-may",
+   "performers": [
+    "derrick-may"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "movement-2010:movement-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:luke-hess",
+   "name": "Luke Hess",
+   "key": "luke-hess",
+   "performers": [
+    "luke-hess"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2010:vitamin-water-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:agoria",
+   "name": "Agoria",
+   "key": "agoria",
+   "performers": [
+    "agoria"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2010:vitamin-water-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:rex-sepulveda",
+   "name": "Rex Sepulveda",
+   "key": "rex-sepulveda",
+   "performers": [
+    "rex-sepulveda"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2010:vitamin-water-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:stacey-pullen",
+   "name": "Stacey Pullen",
+   "key": "stacey-pullen",
+   "performers": [
+    "stacey-pullen"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2010:vitamin-water-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:kenny-larkin",
+   "name": "Kenny Larkin",
+   "key": "kenny-larkin",
+   "performers": [
+    "kenny-larkin"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2010:vitamin-water-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:model-500",
+   "name": "Model 500",
+   "key": "model-500",
+   "performers": [
+    "model-500"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2010:vitamin-water-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:shigeto",
+   "name": "Shigeto",
+   "key": "shigeto",
+   "performers": [
+    "shigeto"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2010:beat-port-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:secrets",
+   "name": "Secrets",
+   "key": "secrets",
+   "performers": [
+    "secrets"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2010:beat-port-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:italoboyz",
+   "name": "ItaloBoyz",
+   "key": "italoboyz",
+   "performers": [
+    "italoboyz"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2010:beat-port-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:d0p",
+   "name": "d0p",
+   "key": "d0p",
+   "performers": [
+    "d0p"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2010:beat-port-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:joel-mull",
+   "name": "Joel Mull",
+   "key": "joel-mull",
+   "performers": [
+    "joel-mull"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2010:beat-port-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:radio-slave",
+   "name": "Radio Slave",
+   "key": "radio-slave",
+   "performers": [
+    "radio-slave"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2010:beat-port-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:chris-liebing",
+   "name": "Chris Liebing",
+   "key": "chris-liebing",
+   "performers": [
+    "chris-liebing"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2010:beat-port-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:jenny-lafemme",
+   "name": "Jenny Lafemme",
+   "key": "jenny-lafemme",
+   "performers": [
+    "jenny-lafemme"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2010:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:punisher",
+   "name": "Punisher",
+   "key": "punisher",
+   "performers": [
+    "punisher"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2010:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:jen-xerri",
+   "name": "Jen Xerri",
+   "key": "jen-xerri",
+   "performers": [
+    "jen-xerri"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2010:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:minx",
+   "name": "Minx",
+   "key": "minx",
+   "performers": [
+    "minx"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2010:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:magda",
+   "name": "Magda",
+   "key": "magda",
+   "performers": [
+    "magda"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2010:made-in-detroit-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:inxec",
+   "name": "Inxec",
+   "key": "inxec",
+   "performers": [
+    "inxec"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2010:movement-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:sean-deason",
+   "name": "Sean Deason",
+   "key": "sean-deason",
+   "performers": [
+    "sean-deason"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2010:movement-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:monty-luke",
+   "name": "Monty Luke",
+   "key": "monty-luke",
+   "performers": [
+    "monty-luke"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2010:movement-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:motel-connection",
+   "name": "Motel Connection",
+   "key": "motel-connection",
+   "performers": [
+    "motel-connection"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2010:movement-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:barem",
+   "name": "Barem",
+   "key": "barem",
+   "performers": [
+    "barem"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2010:movement-stage"
+    }
+   ]
+  },
+  {
+   "id": "movement-2010:mauro-picotto",
+   "name": "Mauro Picotto",
+   "key": "mauro-picotto",
+   "performers": [
+    "mauro-picotto"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "movement-2010:movement-stage"
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "unofficial_lineup",
+  "unofficial": true,
+  "source": {
+   "kind": "press",
+   "site": "mlive.com",
+   "url": "https://www.mlive.com/entertainment/detroit/2010/05/movement_detroit_electronic_mu.html",
+   "title": "Movement Electronic Music Festival 2010 lineup released",
+   "publisher": "MLive.com",
+   "published": "2010-05-21",
+   "fetchedAt": "2026-11-27",
+   "fetchedVia": "exa",
+   "scope": "full",
+   "sha256": "72cf4828b2bc5846d557d204a0d14ce207391cd2cd6722b1e2b0f8126d3624e7",
+   "bytes": 2931
+  },
+  "captures": [
+   {
+    "page": "lineup",
+    "url": "https://www.mlive.com/entertainment/detroit/2010/05/movement_detroit_electronic_mu.html",
+    "fetchedAt": "2026-11-27",
+    "sha256": "72cf4828b2bc5846d557d204a0d14ce207391cd2cd6722b1e2b0f8126d3624e7"
+   }
+  ]
+ }
+}
