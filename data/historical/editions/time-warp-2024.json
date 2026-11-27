@@ -1,0 +1,856 @@
+{
+ "id": "time-warp-2024",
+ "festivalId": "time-warp",
+ "name": "Time Warp Germany 2024",
+ "year": 2024,
+ "timezone": "Europe/Berlin",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2024-04-05",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2024-04-06",
+   "label": "Saturday"
+  }
+ ],
+ "stages": [],
+ "artists": [
+  {
+   "id": "time-warp-2024:8kays",
+   "name": "8Kays",
+   "key": "8kays",
+   "performers": [
+    "8kays"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:999999999",
+   "name": "999999999",
+   "key": "999999999",
+   "performers": [
+    "999999999"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:ame",
+   "name": "Âme",
+   "key": "ame",
+   "performers": [
+    "ame"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:anetha",
+   "name": "Anetha",
+   "key": "anetha",
+   "performers": [
+    "anetha"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:anfisa-letyago-b2b-hector-oaks",
+   "name": "Anfisa Letyago b2b Héctor Oaks",
+   "key": "anfisa-letyago-b2b-hector-oaks",
+   "performers": [
+    "anfisa-letyago",
+    "hector-oaks"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:artbat",
+   "name": "ARTBAT",
+   "key": "artbat",
+   "performers": [
+    "artbat"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:ben-klock-b2b-adiel",
+   "name": "Ben Klock b2b Adiel",
+   "key": "ben-klock-b2b-adiel",
+   "performers": [
+    "ben-klock",
+    "adiel"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:chris-liebing-b2b-speedy-j",
+   "name": "Chris Liebing b2b Speedy J",
+   "key": "chris-liebing-b2b-speedy-j",
+   "performers": [
+    "chris-liebing",
+    "speedy-j"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:david-lohlein",
+   "name": "David Löhlein",
+   "key": "david-lohlein",
+   "performers": [
+    "david-lohlein"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:dax-j-b2b-spfdj",
+   "name": "Dax J b2b SPFDJ",
+   "key": "dax-j-b2b-spfdj",
+   "performers": [
+    "dax-j",
+    "spfdj"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:fadi-mohem",
+   "name": "Fadi Mohem",
+   "key": "fadi-mohem",
+   "performers": [
+    "fadi-mohem"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:i-hate-models",
+   "name": "I Hate Models",
+   "key": "i-hate-models",
+   "performers": [
+    "i-hate-models"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:kas-st",
+   "name": "KAS:ST",
+   "key": "kas-st",
+   "performers": [
+    "kas-st"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:kevin-de-vries",
+   "name": "Kevin de Vries",
+   "key": "kevin-de-vries",
+   "performers": [
+    "kevin-de-vries"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:kobosil",
+   "name": "Kobosil",
+   "key": "kobosil",
+   "performers": [
+    "kobosil"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:lee-ann-roberts",
+   "name": "Lee Ann Roberts",
+   "key": "lee-ann-roberts",
+   "performers": [
+    "lee-ann-roberts"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:nto-live",
+   "name": "NTO (Live)",
+   "key": "nto-live",
+   "performers": [
+    "nto-live"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:paula-temple",
+   "name": "Paula Temple",
+   "key": "paula-temple",
+   "performers": [
+    "paula-temple"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:r-dhad",
+   "name": "Rødhåd",
+   "key": "r-dhad",
+   "performers": [
+    "r-dhad"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:adam-beyer",
+   "name": "Adam Beyer",
+   "key": "adam-beyer",
+   "performers": [
+    "adam-beyer"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:adriatique",
+   "name": "Adriatique",
+   "key": "adriatique",
+   "performers": [
+    "adriatique"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:anna-b2b-sama-abdulhadi",
+   "name": "ANNA b2b Sama' Abdulhadi",
+   "key": "anna-b2b-sama-abdulhadi",
+   "performers": [
+    "anna",
+    "sama-abdulhadi"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:boston-168-live",
+   "name": "Boston 168 (Live)",
+   "key": "boston-168-live",
+   "performers": [
+    "boston-168-live"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:chloe-caillet",
+   "name": "Chloé Caillet",
+   "key": "chloe-caillet",
+   "performers": [
+    "chloe-caillet"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:chloe-caillet-b2b-desiree",
+   "name": "Chloé Caillet b2b Desiree",
+   "key": "chloe-caillet-b2b-desiree",
+   "performers": [
+    "chloe-caillet",
+    "desiree"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:clara-cuve",
+   "name": "Clara Cuvé",
+   "key": "clara-cuve",
+   "performers": [
+    "clara-cuve"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:dj-gigola",
+   "name": "DJ Gigola",
+   "key": "dj-gigola",
+   "performers": [
+    "dj-gigola"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:dj-holographic",
+   "name": "DJ Holographic",
+   "key": "dj-holographic",
+   "performers": [
+    "dj-holographic"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:enrico-sangiuliano",
+   "name": "Enrico Sangiuliano",
+   "key": "enrico-sangiuliano",
+   "performers": [
+    "enrico-sangiuliano"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:fjaak",
+   "name": "FJAAK",
+   "key": "fjaak",
+   "performers": [
+    "fjaak"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:gerd-janson",
+   "name": "Gerd Janson",
+   "key": "gerd-janson",
+   "performers": [
+    "gerd-janson"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:honey-dijon",
+   "name": "Honey Dijon",
+   "key": "honey-dijon",
+   "performers": [
+    "honey-dijon"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:indira-paganotto",
+   "name": "Indira Paganotto",
+   "key": "indira-paganotto",
+   "performers": [
+    "indira-paganotto"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:jamie-jones-b2b-stevie-martinez",
+   "name": "Jamie Jones b2b Stevie Martinez",
+   "key": "jamie-jones-b2b-stevie-martinez",
+   "performers": [
+    "jamie-jones",
+    "stevie-martinez"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:jayda-g",
+   "name": "Jayda G",
+   "key": "jayda-g",
+   "performers": [
+    "jayda-g"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:jimi-jules",
+   "name": "Jimi Jules",
+   "key": "jimi-jules",
+   "performers": [
+    "jimi-jules"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:joseph-capriati",
+   "name": "Joseph Capriati",
+   "key": "joseph-capriati",
+   "performers": [
+    "joseph-capriati"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:juliet-fox",
+   "name": "Juliet Fox",
+   "key": "juliet-fox",
+   "performers": [
+    "juliet-fox"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:karotte",
+   "name": "Karotte",
+   "key": "karotte",
+   "performers": [
+    "karotte"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:kevin-saunderson-presents-e-dancer",
+   "name": "Kevin Saunderson presents E-Dancer",
+   "key": "kevin-saunderson-presents-e-dancer",
+   "performers": [
+    "kevin-saunderson-presents-e-dancer"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:laurent-garnier",
+   "name": "Laurent Garnier",
+   "key": "laurent-garnier",
+   "performers": [
+    "laurent-garnier"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:loco-dice",
+   "name": "Loco Dice",
+   "key": "loco-dice",
+   "performers": [
+    "loco-dice"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:marco-carola",
+   "name": "Marco Carola",
+   "key": "marco-carola",
+   "performers": [
+    "marco-carola"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:marco-carola-b2b-jamie-jones-b2b-seth-troxler-b2b-stevie-martinez",
+   "name": "Marco Carola b2b Jamie Jones b2b Seth Troxler b2b Stevie Martinez",
+   "key": "marco-carola-b2b-jamie-jones-b2b-seth-troxler-b2b-stevie-martinez",
+   "performers": [
+    "marco-carola",
+    "jamie-jones",
+    "seth-troxler",
+    "stevie-martinez"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:mochakk",
+   "name": "Mochakk",
+   "key": "mochakk",
+   "performers": [
+    "mochakk"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:nina-kraviz",
+   "name": "Nina Kraviz",
+   "key": "nina-kraviz",
+   "performers": [
+    "nina-kraviz"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:octave-one-live",
+   "name": "Octave One (Live)",
+   "key": "octave-one-live",
+   "performers": [
+    "octave-one-live"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:ogazon",
+   "name": "Ogazón",
+   "key": "ogazon",
+   "performers": [
+    "ogazon"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:pan-pot",
+   "name": "PAN-POT",
+   "key": "pan-pot",
+   "performers": [
+    "pan-pot"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:patrick-mason",
+   "name": "Patrick Mason",
+   "key": "patrick-mason",
+   "performers": [
+    "patrick-mason"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:reinier-zonneveld-live",
+   "name": "Reinier Zonneveld (Live)",
+   "key": "reinier-zonneveld-live",
+   "performers": [
+    "reinier-zonneveld-live"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:ricardo-villalobos",
+   "name": "Ricardo Villalobos",
+   "key": "ricardo-villalobos",
+   "performers": [
+    "ricardo-villalobos"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:richie-hawtin",
+   "name": "Richie Hawtin",
+   "key": "richie-hawtin",
+   "performers": [
+    "richie-hawtin"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:sam-paganini",
+   "name": "Sam Paganini",
+   "key": "sam-paganini",
+   "performers": [
+    "sam-paganini"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:sara-landry",
+   "name": "Sara Landry",
+   "key": "sara-landry",
+   "performers": [
+    "sara-landry"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:seebase",
+   "name": "Seebase",
+   "key": "seebase",
+   "performers": [
+    "seebase"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:seth-troxler",
+   "name": "Seth Troxler",
+   "key": "seth-troxler",
+   "performers": [
+    "seth-troxler"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:seth-troxler-b2b-golfos-dennis-cruz-b2b-pawsa",
+   "name": "Seth Troxler b2b GOLFOS (Dennis Cruz b2b Pawsa)",
+   "key": "seth-troxler-b2b-golfos-dennis-cruz-b2b-pawsa",
+   "performers": [
+    "seth-troxler",
+    "golfos-dennis-cruz",
+    "pawsa"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:silvie-loto",
+   "name": "Silvie Loto",
+   "key": "silvie-loto",
+   "performers": [
+    "silvie-loto"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:solomun-b2b-marcel-dettmann",
+   "name": "Solomun b2b Marcel Dettmann",
+   "key": "solomun-b2b-marcel-dettmann",
+   "performers": [
+    "solomun",
+    "marcel-dettmann"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:sven-vath",
+   "name": "Sven Väth",
+   "key": "sven-vath",
+   "performers": [
+    "sven-vath"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "time-warp-2024:uberkikz",
+   "name": "ÜBERKIKZ",
+   "key": "uberkikz",
+   "performers": [
+    "uberkikz"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "official_lineup_html",
+  "official": "https://www.time-warp.de/germany/lineup/index_eng.html",
+  "captures": [
+   {
+    "page": "lineup",
+    "archivedUrl": "https://web.archive.org/web/20240415131029/https://www.time-warp.de/germany/lineup/index_eng.html",
+    "captureTimestamp": "20240415131029",
+    "sha256": "787fadcbce541e5f49c2728e41a1f057d1123b71cca4cc71539757a5907ced1d"
+   }
+  ]
+ }
+}

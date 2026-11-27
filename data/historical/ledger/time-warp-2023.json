@@ -1,0 +1,43 @@
+{
+  "id": "time-warp-2023",
+  "method": "official_lineup_html",
+  "official": "https://www.time-warp.de/germany/lineup/index_eng.html",
+  "format": "timewarp-subsite",
+  "window": {
+    "from": "20230402",
+    "to": "20230831",
+    "why": "the page keeps its header after the festival: the weeks after it"
+  },
+  "chosen": "20230523021048",
+  "archivedUrl": "https://web.archive.org/web/20230523021048/https://www.time-warp.de/germany/lineup/index_eng.html",
+  "sha256": "d2f716223dd43b1fe2dbdfb2e7ab7d2626736d6c7a9a209e7fa40984125ee7cf",
+  "title": "Lineup",
+  "relayedVia": "firecrawl",
+  "stageOrder": [],
+  "considered": [
+    {
+      "captureTimestamp": "20230523021048",
+      "archivedUrl": "https://web.archive.org/web/20230523021048/https://www.time-warp.de/germany/lineup/index_eng.html",
+      "sha256": "d2f716223dd43b1fe2dbdfb2e7ab7d2626736d6c7a9a209e7fa40984125ee7cf",
+      "bytes": 54877,
+      "via": "firecrawl",
+      "title": "Lineup",
+      "titled": true,
+      "dated": true,
+      "valid": true,
+      "days": [
+        "Saturday 1 April 2023"
+      ],
+      "printed": {
+        "edition": "Germany",
+        "dates": "1 April 2023",
+        "city": "Mannheim",
+        "lists": [
+          "IN ALPHABETICAL ORDER"
+        ]
+      },
+      "billings": 39
+    }
+  ],
+  "dropped": []
+}

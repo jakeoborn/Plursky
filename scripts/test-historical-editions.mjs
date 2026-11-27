@@ -46,7 +46,7 @@ import { parseSzigetDays, tabDate as szigetDate } from "./historical/sziget-days
 import { parseDefqonAreas, headerDate as defqonDate } from "./historical/defqon-schedule.mjs";
 import { parseDefqonLogos, subtitleDate as defqonLogosDate } from "./historical/defqon-logos-schedule.mjs";
 import { parseTomorrowlandLineup } from "./historical/tomorrowland-lineup.mjs";
-import { parseTimeWarpLineup, headerDates as twHeaderDates } from "./historical/timewarp-lineup.mjs";
+import { parseTimeWarpLineup, parseTimeWarpClassic, parseTimeWarpMannheim, headerDates as twHeaderDates, menuDate as twMenuDate } from "./historical/timewarp-lineup.mjs";
 import { parseCreamfieldsArtists, creamfieldsRows } from "./historical/creamfields-artists.mjs";
 import { censusRow, runDates, CENSUS as CREAMFIELDS_CENSUS } from "./historical/extract-creamfields.mjs";
 import { parseCreamfieldsLineup, creamfieldsLineupRows, printedDate } from "./historical/creamfields-lineup.mjs";
@@ -163,6 +163,14 @@ if (base && edc) {
     const twCap = m => m.provenance.captures[0];
     mustFail("a Time Warp 2022 lineup read off the 2023 edition's address", m => { const c = twCap(m); c.archivedUrl = c.archivedUrl.replace("/22/lineup", "/23/lineup"); }, tw22, () => {}, /is not from 2022/);
     mustFail("a Time Warp 2022 lineup captured two years on", m => { const c = twCap(m); c.archivedUrl = c.archivedUrl.replace("/web/2023", "/web/2024"); c.captureTimestamp = c.captureTimestamp.replace(/^2023/, "2024"); }, tw22, () => {}, /is not from 2022/);
+  }
+  // Time Warp 2014-2018 shared one address, so each year's capture must be
+  // from that year, and on the festival's own site.
+  const tw18 = editions["time-warp-2018"];
+  if (tw18) {
+    const twCap = m => m.provenance.captures[0];
+    mustFail("a Time Warp 2018 lineup read off a 2019 capture of the shared address", m => { const c = twCap(m); c.archivedUrl = c.archivedUrl.replace("/web/2018", "/web/2019"); c.captureTimestamp = c.captureTimestamp.replace(/^2018/, "2019"); }, tw18, () => {}, /is not from 2018/);
+    mustFail("a Time Warp 2018 lineup off another site", m => { const c = twCap(m); c.archivedUrl = c.archivedUrl.replace("www.time-warp.de", "www.timewarp-tickets.de"); }, tw18);
   }
   // Tomorrowland 2010-2012: each day page prints its day as its own tab, with
   // no year, on the festival's own .be site.
@@ -1051,6 +1059,65 @@ if (base && edc) {
     twMust("a Time Warp list headed with the wrong weekday", twPage({ lists: [twLists[1], twLists[0]] }));
     twMust("a Time Warp act with no name", twPage({ lists: [twList(1, "Friday A-Z", [twAct(" ")]), twLists[1]] }));
     twMust("a Time Warp act listed twice on one night", twPage({ lists: [twList(1, "Friday A-Z", [twAct("Perel"), twAct("Perel")]), twLists[1]] }));
+    // 2024's lists are headed by the German weekday and date, its live sets
+    // marked <sup>; 2025's header puts the night and place in spans; a
+    // one-night edition may print one list with no heading.
+    const twDated = (n, heading, acts) => `<p class="big">${heading}</p><ul data-id="e${n}" class="ix-lineup js-overlay">${acts.join("")}</ul>`;
+    const twSup = name => `<li><span class="artist" data-type="act">${name}<sup>Live</sup></span></li>`;
+    const tw24 = { head: '<h1>Germany</h1><h2>5 &amp; 6 April 2024 | Mannheim</h2>', lists: ['<div data-page-title="Lineup"></div>' + twDated(1, "Fr 05.04.24", [twAct("Amelie Lens")]), twDated(3, "Sa 06.04.24", [twSup("Reinier Zonneveld"), twAct("Amelie Lens")])] };
+    const twp24 = parseTimeWarpLineup(twPage(tw24), { year: 2024 });
+    ok(JSON.stringify(twp24.days.map(d => [d.date, d.acts])) === JSON.stringify([["2024-04-05", ["Amelie Lens"]], ["2024-04-06", ["Reinier Zonneveld (Live)", "Amelie Lens"]]]),
+      `Time Warp 2024's dated lists must come back as their nights, a <sup>Live</sup> set billed "(Live)": ${JSON.stringify(twp24.days)}`);
+    const tw25head = '<h1>Time Warp Germany</h1><h2>Mannheim</h2><span class="ix-date">05. April 2025</span><span class="ix-location">Maimarkthalle | Mannheim</span>';
+    const twp25 = parseTimeWarpLineup(twPage({ head: tw25head, lists: [`<section data-page-title="Lineup"><ul class="ix-lineup">${twAct("Sven Väth")}</ul></section>`] }), { year: 2025 });
+    ok(JSON.stringify([twp25.edition, twp25.city, twp25.days.map(d => [d.date, d.acts])]) === JSON.stringify(["Time Warp Germany", "Mannheim", [["2025-04-05", ["Sven Väth"]]]]),
+      `Time Warp 2025's header and a single unheaded list must read as its one night: ${JSON.stringify(twp25)}`);
+    ok(JSON.stringify(twHeaderDates("5 & 6 April 2024", 2024)) === JSON.stringify(["2024-04-05", "2024-04-06"]), "Time Warp's '&' header must read as two nights");
+    twMust("a Time Warp 2024 list headed with another date", twPage({ ...tw24, lists: [tw24.lists[0], twDated(3, "Sa 07.04.24", [twAct("Perel")])] }), 2024);
+    twMust("a Time Warp 2024 list headed with the wrong German weekday", twPage({ ...tw24, lists: ['<div data-page-title="Lineup"></div>' + twDated(1, "Sa 05.04.24", [twAct("Perel")]), tw24.lists[1]] }), 2024);
+    twMust("a Time Warp two-night page with an unheaded list", twPage({ ...tw24, lists: [`<div data-page-title="Lineup"></div><ul class="ix-lineup">${twAct("Perel")}</ul>`, tw24.lists[1]] }), 2024);
+    twMust("a Time Warp night that names no act", twPage({ ...tw24, lists: ['<div data-page-title="Lineup"></div>' + twDated(1, "Fr 05.04.24", []), tw24.lists[1]] }), 2024);
+    twMust("a Time Warp 2025 header in another city", twPage({ head: tw25head.replace("| Mannheim", "| Amsterdam"), lists: [`<section data-page-title="Lineup"><ul class="ix-lineup">${twAct("Sven Väth")}</ul></section>`] }), 2025);
+    twMust("a Time Warp 2025 page read as 2024's", twPage({ head: tw25head, lists: [`<section data-page-title="Lineup"><ul class="ix-lineup">${twAct("Sven Väth")}</ul></section>`] }), 2024);
+    // The 2014-2018 site: its event menu's Germany night (until the festival
+    // has happened), then one alphabetical list.
+    const twcMenu = date => `<li><span><strong>DE</strong></span><span class="mText"><span class="eDate">${date}</span><span class="split">|</span><span class="mLocation">Germany</span></span></li>`;
+    const twcAct = name => `<li><a href="#"><span class="ixTitle">${name}</span></a></li>`;
+    const twcPage = ({ menu = [twcMenu(" 07 Apr 2018 "), twcMenu(" 07 Apr 2018 ")], heading = "In alphabetical order", acts = [twcAct("Adam Beyer"), twcAct("Ricardo Villalobos")] } = {}) =>
+      `<title>Line-Up</title><ul class="menu">${menu.join("")}</ul><div class="hgroup"><h3>${heading}</h3></div><ul class="indexG">${acts.join("")}</ul>`;
+    const twc = parseTimeWarpClassic(twcPage(), { year: 2018 });
+    ok(JSON.stringify([twc.title, twc.days.map(d => [d.date, d.label, d.acts])]) === JSON.stringify(["Line-Up", [["2018-04-07", "Saturday 7 April 2018", ["Adam Beyer", "Ricardo Villalobos"]]]]),
+      `a Time Warp 2014-2018 page must come back as its menu's night with its list: ${JSON.stringify(twc)}`);
+    ok(parseTimeWarpClassic(twcPage({ heading: "In alphabetischer Reihenfolge", menu: [twcMenu("05 Apr 2014")] }), { year: 2014 }).days[0].date === "2014-04-05", "the German Time Warp page must read too");
+    ok(twMenuDate("07 Apr 2018", 2018) === "2018-04-07" && twMenuDate("07 Apr 2018", 2017) === null && twMenuDate("31 Apr 2018", 2018) === null, "Time Warp's menu date must be a real date in its year");
+    const twcMust = (what, html, year = 2018) => { let bad = false; try { parseTimeWarpClassic(html, { year }); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    twcMust("a Time Warp 2018 page read as 2017's", twcPage(), 2017);
+    twcMust("a Time Warp page after the festival, its menu thanking", twcPage({ menu: [twcMenu("THANK YOU")] }));
+    twcMust("a Time Warp menu whose Germany entries disagree", twcPage({ menu: [twcMenu("07 Apr 2018"), twcMenu("01 Apr 2017")] }));
+    twcMust("a Time Warp page with no event menu", twcPage({ menu: [] }));
+    twcMust("a Time Warp page with no alphabetical list", twcPage({ heading: "Highlights" }));
+    twcMust("a Time Warp list naming no act", twcPage({ acts: [] }));
+    twcMust("a Time Warp act with no name", twcPage({ acts: [twcAct(" ")] }));
+    twcMust("a Time Warp act listed twice", twcPage({ acts: [twcAct("Perel"), twcAct("Perel")] }));
+    // The 2012-2013 site: its year in a heading, its night (2012) in its
+    // description, acts by section, VJs set apart.
+    const twmSec = (h, names) => `<h3>${h}</h3><ul class="lineup">${names.map(n => `<li><span class="luTitle">${n}</span></li>`).join("")}</ul>`;
+    const twmPage = ({ title = "Line-Up » Time Warp Mannheim » Time Warp", h1 = "Time Warp 2012", desc = "Time Warp Mannheim - 31.03.2012", secs = [twmSec("DJs", ["Sven Väth"]), twmSec("Live", ["Moderat"]), twmSec("VJs", ["Lichtfaktor"])] } = {}) =>
+      `<title>${title}</title>${desc ? `<meta name="description" content="${desc}">` : ""}<h1>${h1}</h1>${secs.join("")}`;
+    const twm = parseTimeWarpMannheim(twmPage(), { year: 2012 });
+    ok(JSON.stringify([twm.year, twm.printedDate, twm.acts, twm.leftOut.map(l => l.acts)]) === JSON.stringify([2012, "2012-03-31", ["Sven Väth", "Moderat (Live)"], [["Lichtfaktor"]]]),
+      `a Time Warp 2012 page must come back as its night and acts, a live act billed "(Live)", VJs left out: ${JSON.stringify(twm)}`);
+    ok(parseTimeWarpMannheim(twmPage({ h1: "Mannheim Line Up 2013", desc: null }), { year: 2013 }).printedDate === null, "a Time Warp 2013 page prints no night");
+    const twmMust = (what, html, year = 2012) => { let bad = false; try { parseTimeWarpMannheim(html, { year }); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    twmMust("a Time Warp 2012 page read as 2013's", twmPage(), 2013);
+    twmMust("a Time Warp Mannheim page whose description prints another year", twmPage({ desc: "Time Warp Mannheim - 31.03.2011" }));
+    twmMust("a Time Warp Mannheim description date that is not a date", twmPage({ desc: "Time Warp Mannheim - 31.04.2012" }));
+    twmMust("a page that is not Time Warp Mannheim's", twmPage({ title: "Line-Up » Time Warp Netherlands" }));
+    twmMust("a Time Warp Mannheim page naming no year", twmPage({ h1: "Line-Up" }));
+    twmMust("a Time Warp Mannheim section of unknown kind", twmPage({ secs: [twmSec("DJs", ["Sven Väth"]), twmSec("Hosts", ["Someone"])] }));
+    twmMust("a Time Warp Mannheim section naming no act", twmPage({ secs: [twmSec("DJs", [])] }));
+    twmMust("a Time Warp Mannheim page with only VJs", twmPage({ secs: [twmSec("VJs", ["Lichtfaktor"])] }));
+    twmMust("a Time Warp Mannheim page with no section", twmPage({ secs: [] }));
     // Defqon.1 2013's timetable grid: one section per day, one row per area,
     // blocks by width with no time; a named part with its acts and hosts.
     const dgCell = (cls, inner) => `<li class="${cls}"><div class="inner">${inner}</div></li>`;
@@ -1635,6 +1702,15 @@ for (const [id, e] of Object.entries(editions)) {
         && led.datesFrom?.census === CREAMFIELDS_CENSUS && led.datesFrom.family === e.festivalId && cen?.lifecycle === "occurred" && cen.dates === led.datesFrom.dates
         && run.length === e.days.length && run[d.day - 1] === d.date,
         `${id} day ${d.day}: ${d.date} is not the census's ${e.year} run (${cen?.dates}) or the page's day "${c?.days?.[d.day - 1]} ${c?.printedDates?.[d.day - 1] ?? ""}"`);
+    } else if (led.method === "official_lineup_html" && led.format === "timewarp-mannheim") {
+      // Time Warp's 2012-2013 site names its year in a heading; 2012's page
+      // also prints its night, and 2013's night is the census's dated run for
+      // the year (its first day), which the ledger's datesFrom must quote.
+      const c = led.considered.find(x => x.captureTimestamp === led.chosen), cen = censusRow(led.datesFrom?.family, e.year);
+      ok(e.days.length === 1 && c?.printed?.year === e.year && datedLabel(c.days?.[0] || "", e.year) === d.date
+        && (c.printed.date ? c.printed.date === d.date && !led.datesFrom
+          : led.datesFrom?.census === CREAMFIELDS_CENSUS && led.datesFrom.family === e.festivalId && cen?.lifecycle === "occurred" && cen.dates === led.datesFrom.dates && cen.range[0] === d.date),
+        `${id} day ${d.day}: ${d.date} is neither the night the archived page printed ("${c?.printed?.date}") nor the census's ${e.year} run (${cen?.dates})`);
     } else if (led.method === "official_lineup_html") {
       // The chosen capture's own By Day header for this day, as the ledger recorded it.
       const head = led.considered.find(c => c.captureTimestamp === led.chosen)?.days?.[d.day - 1] || "";

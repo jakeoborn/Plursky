@@ -640,12 +640,74 @@ export const EDITIONS = {
     dayLabels: ACL_WEEKEND_LABELS,
     notes: [{ asOf: "2026-11-19", text: "The lineup as the festival's own page printed it on 13 May 2024, two months before the festival. Late changes after that day are not shown.",
       source: "https://web.archive.org/web/20240513185007/https://www.tomorrowland.com/en/festival/line-up/stages/friday-19-july-2024" }] },
-  // Time Warp Germany 2022: the autumn "Two Days | Two Stages" edition (the
-  // April date was called off for COVID). Its own /22/lineup page lists each
-  // night A-Z with no stage per act (extract-timewarp-lineup.mjs).
+  // Time Warp Germany (Mannheim, Maimarkthalle): the festival's own lineup
+  // page for each edition (timewarp-lineup.mjs, extract-timewarp-lineup.mjs),
+  // which lists who plays each night A-Z with no stage and no time. Until 2020
+  // and in 2023, 2025 it was one night (Saturday into Sunday; 2015's was Easter
+  // Sunday into Monday); 2021, 2022 and 2024 ran two. The 2014-2018 page prints
+  // the night only until it has happened, so those lineups are as printed
+  // shortly before it. 2020 was canceled (COVID); no archived lineup page
+  // of 2010 or 2011 was found.
+  "time-warp-2012": { festivalId: "time-warp", name: "Time Warp Germany 2012", year: 2012,
+    timezone: "Europe/Berlin", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2012-03-31", "Saturday"]] },
+  "time-warp-2013": { festivalId: "time-warp", name: "Time Warp Germany 2013", year: 2013,
+    timezone: "Europe/Berlin", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2013-04-06", "Saturday"]],
+    notes: [{ asOf: "2026-11-27", text: "The lineup as the festival's own page printed it on 3 April 2013, three days before the festival. Late changes after that day are not shown.",
+      source: "https://web.archive.org/web/20130403040651/http://www.time-warp.de/mannheim/line-up/index_eng.html" }] },
+  "time-warp-2014": { festivalId: "time-warp", name: "Time Warp Germany 2014", year: 2014,
+    timezone: "Europe/Berlin", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2014-04-05", "Saturday"]],
+    notes: [{ asOf: "2026-11-27", text: "The lineup as the festival's own page printed it on 3 April 2014, two days before the festival. Late changes after that day are not shown.",
+      source: "https://web.archive.org/web/20140403223236/http://www.time-warp.de/germany/line-up/index_ger.html" }] },
+  "time-warp-2015": { festivalId: "time-warp", name: "Time Warp Germany 2015", year: 2015,
+    timezone: "Europe/Berlin", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2015-04-05", "Sunday"]],
+    notes: [{ asOf: "2026-11-27", text: "The lineup as the festival's own page printed it on 3 April 2015, two days before the festival. Late changes after that day are not shown.",
+      source: "https://web.archive.org/web/20150403145418/http://www.time-warp.de/germany/line-up/index_eng.html" }] },
+  "time-warp-2016": { festivalId: "time-warp", name: "Time Warp Germany 2016", year: 2016,
+    timezone: "Europe/Berlin", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2016-04-02", "Saturday"]],
+    notes: [{ asOf: "2026-11-27", text: "The lineup as the festival's own page printed it on 16 March 2016, 17 days before the festival. Late changes after that day are not shown.",
+      source: "https://web.archive.org/web/20160316151418/http://www.time-warp.de/germany/line-up/index_eng.html" }] },
+  "time-warp-2017": { festivalId: "time-warp", name: "Time Warp Germany 2017", year: 2017,
+    timezone: "Europe/Berlin", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2017-04-01", "Saturday"]],
+    notes: [{ asOf: "2026-11-27", text: "The lineup as the festival's own page printed it on 3 March 2017, four weeks before the festival. Late changes after that day are not shown.",
+      source: "https://web.archive.org/web/20170303114714/http://www.time-warp.de/germany/line-up?utm_source=e_mail&utm_medium=newsletter&utm_campaign=lineup1" }] },
+  "time-warp-2018": { festivalId: "time-warp", name: "Time Warp Germany 2018", year: 2018,
+    timezone: "Europe/Berlin", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2018-04-07", "Saturday"]],
+    notes: [{ asOf: "2026-11-27", text: "The lineup as the festival's own page printed it on 4 April 2018, three days before the festival. Late changes after that day are not shown.",
+      source: "https://web.archive.org/web/20180404200905/http://www.time-warp.de/germany/line-up/index_eng.html" }] },
+  "time-warp-2019": { festivalId: "time-warp", name: "Time Warp Germany 2019", year: 2019,
+    timezone: "Europe/Berlin", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2019-04-06", "Saturday"]],
+    notes: [{ asOf: "2026-11-27", text: "The lineup as the festival's own page printed it on 31 March 2019, six days before the festival. Late changes after that day are not shown.",
+      source: "https://web.archive.org/web/20190331170135/https://www.time-warp.de/germany/lineup/index_eng.html" }] },
+  // 2021: the autumn "Two Days / One Stage" edition, after the spring date
+  // was postponed (COVID).
+  "time-warp-2021": { festivalId: "time-warp", name: "Time Warp Germany 2021", year: 2021,
+    timezone: "Europe/Berlin", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2021-10-29", "Friday"], ["2021-10-30", "Saturday"]],
+    notes: [{ asOf: "2026-11-27", text: "The lineup as the festival's own page printed it on 25 October 2021, four days before the festival. Late changes after that day are not shown.",
+      source: "https://web.archive.org/web/20211025163116/https://www.time-warp.de/21/lineup" }] },
+  // 2022: the autumn "Two Days | Two Stages" edition (the April date was
+  // called off for COVID). Its lineup survives only in a Feb 2023 capture of
+  // its own /22/lineup address.
   "time-warp-2022": { festivalId: "time-warp", name: "Time Warp Germany 2022", year: 2022,
     timezone: "Europe/Berlin", rolloverHour: 6, method: "official_lineup_html",
     dates: [["2022-10-28", "Friday"], ["2022-10-29", "Saturday"]] },
+  "time-warp-2023": { festivalId: "time-warp", name: "Time Warp Germany 2023", year: 2023,
+    timezone: "Europe/Berlin", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2023-04-01", "Saturday"]] },
+  "time-warp-2024": { festivalId: "time-warp", name: "Time Warp Germany 2024", year: 2024,
+    timezone: "Europe/Berlin", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2024-04-05", "Friday"], ["2024-04-06", "Saturday"]] },
+  "time-warp-2025": { festivalId: "time-warp", name: "Time Warp Germany 2025", year: 2025,
+    timezone: "Europe/Berlin", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2025-04-05", "Saturday"]] },
   // Creamfields 2017-2019 and 2021 (Daresbury, Thursday to Sunday): the
   // festival's own /artists page (creamfields-artists.mjs,
   // extract-creamfields.mjs), which lists every act with the weekdays it

@@ -1,0 +1,43 @@
+{
+  "id": "time-warp-2025",
+  "method": "official_lineup_html",
+  "official": "https://www.time-warp.de/germany/mannheim/2025/",
+  "format": "timewarp-subsite",
+  "window": {
+    "from": "20250406",
+    "to": "20250430",
+    "why": "the page keeps its header after the festival: the weeks after it"
+  },
+  "chosen": "20250426111315",
+  "archivedUrl": "https://web.archive.org/web/20250426111315/https://www.time-warp.de/germany/mannheim/2025/",
+  "sha256": "32baa8a4c1842d19c06f758f808264102ad39a320e3c60068cb01200537e0519",
+  "title": "Time Warp Germany | Time Warp",
+  "relayedVia": "firecrawl",
+  "stageOrder": [],
+  "considered": [
+    {
+      "captureTimestamp": "20250426111315",
+      "archivedUrl": "https://web.archive.org/web/20250426111315/https://www.time-warp.de/germany/mannheim/2025/",
+      "sha256": "32baa8a4c1842d19c06f758f808264102ad39a320e3c60068cb01200537e0519",
+      "bytes": 56251,
+      "via": "firecrawl",
+      "title": "Time Warp Germany | Time Warp",
+      "titled": true,
+      "dated": true,
+      "valid": true,
+      "days": [
+        "Saturday 5 April 2025"
+      ],
+      "printed": {
+        "edition": "Time Warp Germany",
+        "dates": "05. April 2025",
+        "city": "Mannheim",
+        "lists": [
+          "Sa 05.04.25"
+        ]
+      },
+      "billings": 37
+    }
+  ],
+  "dropped": []
+}

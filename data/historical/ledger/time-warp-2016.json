@@ -1,0 +1,49 @@
+{
+  "id": "time-warp-2016",
+  "method": "official_lineup_html",
+  "official": "http://www.time-warp.de/germany/line-up/index_eng.html",
+  "format": "timewarp-classic",
+  "window": {
+    "from": "20160303",
+    "to": "20160402",
+    "why": "the page prints the edition's night only until it has happened: the month before it"
+  },
+  "chosen": "20160316151418",
+  "archivedUrl": "https://web.archive.org/web/20160316151418/http://www.time-warp.de/germany/line-up/index_eng.html",
+  "sha256": "137a8d8697798a4fa57a86fe5a8e3b02312e62468b65cf3f4a3effb52cb05f2d",
+  "title": "Line-Up",
+  "relayedVia": "firecrawl",
+  "stageOrder": [],
+  "considered": [
+    {
+      "captureTimestamp": "20160304050444",
+      "notFiled": "relay: capture 20160304050444 of http://www.time-warp.de/germany/line-up/index_eng.html was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20160316151418",
+      "archivedUrl": "https://web.archive.org/web/20160316151418/http://www.time-warp.de/germany/line-up/index_eng.html",
+      "sha256": "137a8d8697798a4fa57a86fe5a8e3b02312e62468b65cf3f4a3effb52cb05f2d",
+      "bytes": 22377,
+      "via": "firecrawl",
+      "title": "Line-Up",
+      "titled": true,
+      "dated": true,
+      "valid": true,
+      "days": [
+        "Saturday 2 April 2016"
+      ],
+      "printed": {
+        "edition": "Germany",
+        "dates": "02 Apr 2016",
+        "city": "Germany",
+        "lists": [
+          "In alphabetical order"
+        ]
+      },
+      "billings": 40
+    }
+  ],
+  "dropped": []
+}
