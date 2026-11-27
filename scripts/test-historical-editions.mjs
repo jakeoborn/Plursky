@@ -56,6 +56,8 @@ import { parseCreamfieldsLineup, creamfieldsLineupRows, printedDate } from "./hi
 import { RESPELLED as CREAMFIELDS_RESPELLED } from "./historical/extract-creamfields-lineup.mjs";
 import { parseUltraEuropeArtists, countdownDate as ueCountdownDate } from "./historical/ultra-europe-artists.mjs";
 import { ultraEuropeRows, ULTRA_EUROPE_EDITIONS } from "./historical/extract-ultra-europe.mjs";
+import { parseUntoldArtists, untoldRows, zoneDate as untoldDate } from "./historical/untold-artists.mjs";
+import { UNTOLD_EDITIONS } from "./historical/extract-untold.mjs";
 import { parseDefqonGrid, dayHeading as dgDayHeading } from "./historical/defqon-grid-lineup.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -213,6 +215,16 @@ if (base && edc) {
     const ueCap = m => m.provenance.captures[0];
     mustFail("an Ultra Europe 2013 lineup read off Ultra Miami's site", m => { const c = ueCap(m); c.archivedUrl = c.archivedUrl.replace("//ultraeurope.com", "//ultramusicfestival.com"); }, ue13, () => {}, /not an official ultra-europe property/);
     mustFail("an Ultra Europe 2013 lineup captured the next summer", m => { const c = ueCap(m); c.archivedUrl = c.archivedUrl.replace("/web/2013", "/web/2014"); c.captureTimestamp = c.captureTimestamp.replace(/^2013/, "2014"); }, ue13, () => {}, /is not from 2013/);
+  }
+  // UNTOLD 2024: its own /artists page, captured in 2024 on the festival's
+  // own domain; no other site or year may pass, and no day may move.
+  const ut24 = editions["untold-2024"];
+  if (ut24) {
+    const utCap = m => m.provenance.captures[0];
+    mustFail("an UNTOLD 2024 lineup read off another site", m => { const c = utCap(m); c.archivedUrl = c.archivedUrl.replace("//untold.com", "//untold-fans.com"); }, ut24, () => {}, /not an official untold property/);
+    mustFail("an UNTOLD 2024 lineup captured the next summer", m => { const c = utCap(m); c.archivedUrl = c.archivedUrl.replace("/web/2024", "/web/2025"); c.captureTimestamp = c.captureTimestamp.replace(/^2024/, "2025"); }, ut24, () => {}, /is not from 2024/);
+    mustFail("an UNTOLD 2024 day moved off its date", m => { m.days[0].date = "2024-08-07"; }, ut24);
+    mustFail("an UNTOLD 2024 act dropped", m => { m.artists.pop(); }, ut24, undefined, /artists, locked/);
   }
   // Tomorrowland 2010-2012: each day page prints its day as its own tab, with
   // no year, on the festival's own .be site.
@@ -1398,6 +1410,38 @@ if (base && edc) {
     ok(ultraEuropeRows(parseUltraEuropeArtists(uePage({ acts: [["x", "X", "Day 3 - 06:00PM - Main Stage"]], grid: [["x", "X"]] }), { year: 2013 }), "ultra-europe-2013") === null,
       "an Ultra Europe appearance on Day 3 anywhere but Ultra Beach proves nothing");
     ok(ULTRA_EUROPE_EDITIONS["ultra-europe-2013"].offDays[3].stage === "Ultra Beach Main Stage", "Ultra Europe 2013's only off day is Ultra Beach's");
+    // UNTOLD's Artists page (2024-2025): Next.js embeds every performance
+    // with its festival day's date (16:00 in Cluj-Napoca), a numbered day
+    // label and its stage; the dates must be the edition's run, Day 1 first.
+    const utAt = date => Date.parse(date + "T13:00:00Z");
+    const utEntry = (name, day, date, stage, extra = {}) => ({ name, dateLabel: day, performanceDate: utAt(date), performanceStage: { name: stage, ordinal: 0, subheading: "x" }, ...extra });
+    const UT24 = ["2024-08-08", "2024-08-09", "2024-08-10", "2024-08-11"];
+    const utEntries = [utEntry("MARTIN GARRIX", "Ziua 1", UT24[0], "Main", { performanceStartTimestamp: utAt(UT24[0]), performanceEndTimestamp: utAt(UT24[0]) }), utEntry("AKOS", "Ziua 1", UT24[0], "Galaxy"),
+      utEntry("AKOS", "Ziua 3", UT24[2], "Daydreaming"), utEntry("SHURUBEL ", "Ziua 2", UT24[1], "Retro"), utEntry("FISHER", "Ziua 4", UT24[3], "Main"), utEntry("FISHER", "Ziua 4", UT24[3], "Main"),
+      utEntry("B.MIKE", "Ziua 4", UT24[3], "Tram"), utEntry("B MIKE", "Ziua 2", UT24[1], "FORM")];
+    const utPage = ({ title = "Artists - Untold Festival", entries = utEntries, total, pages = 1, data = true } = {}) =>
+      `<title>${title}</title>` + (data ? `<script id="__NEXT_DATA__" type="application/json">${JSON.stringify({ props: { pageProps: { data: { content: entries, totalElements: total ?? entries.length, totalPages: pages } } } })}</script>` : "");
+    const utp = parseUntoldArtists(utPage(), { year: 2024 }), utr = untoldRows(utp, UT24);
+    ok(JSON.stringify([utp.printedDates, utp.labels, utp.timed, utr.rows.map(r => `${r.artist}|${r.day}|${r.stage}`), utr.printedTwice.length, utr.trimmed, utr.sameActs])
+      === JSON.stringify([UT24, ["Ziua 1", "Ziua 2", "Ziua 3", "Ziua 4"], 1, ["MARTIN GARRIX|1|Main", "AKOS|1|Galaxy", "AKOS|3|Daydreaming", "SHURUBEL|2|Retro", "FISHER|4|Main", "B.MIKE|4|Tram", "B.MIKE|2|FORM"], 1, [{ printed: "SHURUBEL ", billedAs: "SHURUBEL" }], [{ printed: "B MIKE", billedAs: "B.MIKE" }]]),
+      `an UNTOLD Artists page must come back as one row per act, day and stage: ${JSON.stringify(utr)}`);
+    ok(untoldDate(utAt("2024-08-08")) === "2024-08-08" && untoldDate(Date.parse("2024-08-08T21:30:00Z")) === "2024-08-09", "UNTOLD's dates are read in Cluj-Napoca time");
+    ok(untoldRows(utp, ["2024-08-09", "2024-08-10", "2024-08-11", "2024-08-12"]) === null, "an UNTOLD page printing another run proves nothing");
+    ok(untoldRows(parseUntoldArtists(utPage({ entries: utEntries.slice(0, 4) }), { year: 2024 }), UT24) === null, "an UNTOLD page missing a day of the run proves nothing");
+    ok(untoldRows(parseUntoldArtists(utPage({ entries: [...utEntries, utEntry("X", "Day 5", "2024-08-12", "Main")] }), { year: 2024 }), UT24) === null, "an UNTOLD page with a day past the run proves nothing");
+    ok(Object.keys(EDITIONS).filter(k => k.startsWith("untold-")).every(k => UNTOLD_EDITIONS.includes(k)), "every UNTOLD edition is one the extractor reads");
+    const utMust = (what, html, year = 2024) => { let bad = false; try { parseUntoldArtists(html, { year }); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    utMust("an UNTOLD 2024 page read as another year's", utPage(), 2025);
+    utMust("an UNTOLD page with another title", utPage({ title: "Stages - Untold Festival" }));
+    utMust("an UNTOLD page with no embedded data", utPage({ data: false }));
+    utMust("an UNTOLD page that lists nobody", utPage({ entries: [] }));
+    utMust("an UNTOLD page that is one page of several", utPage({ pages: 2, total: 400 }));
+    utMust("an UNTOLD entry with no name", utPage({ entries: [utEntry("  ", "Ziua 1", UT24[0], "Main")] }));
+    utMust("an UNTOLD entry with no stage", utPage({ entries: [utEntry("FISHER", "Ziua 1", UT24[0], "")] }));
+    utMust("an UNTOLD entry with no date", utPage({ entries: [{ ...utEntry("FISHER", "Ziua 1", UT24[0], "Main"), performanceDate: null }] }));
+    utMust("an UNTOLD entry with a day label it cannot read", utPage({ entries: [utEntry("FISHER", "Thursday", UT24[0], "Main")] }));
+    utMust("an UNTOLD day label dated twice", utPage({ entries: [utEntry("FISHER", "Ziua 1", UT24[0], "Main"), utEntry("AKOS", "Ziua 1", UT24[1], "Main")] }));
+    utMust("an UNTOLD entry dated the year before", utPage({ entries: [utEntry("FISHER", "Ziua 1", "2023-08-03", "Main")] }));
     const ueMust = (what, html, year = 2013) => { let bad = false; try { parseUltraEuropeArtists(html, { year }); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
     ueMust("an Ultra Europe 2013 page read as another year's", uePage(), 2014);
     ueMust("an Ultra Europe page whose countdown names another year", uePage({ timer: '<script>timer: "2012:7:12:16:0:0"</script>' }));
@@ -1893,6 +1937,16 @@ for (const [id, e] of Object.entries(editions)) {
         && led.datesFrom?.census === CREAMFIELDS_CENSUS && led.datesFrom.family === e.festivalId && cen?.lifecycle === "occurred" && cen.dates === led.datesFrom.dates
         && run.length === e.days.length && run[d.day - 1] === d.date,
         `${id} day ${d.day}: ${d.date} is not the census's ${e.year} run (${cen?.dates}) opened by the page's countdown ("${c?.countdown}")`);
+    } else if (led.method === "official_lineup_html" && led.format === "untold-artists") {
+      // UNTOLD's Artists page dates every entry: the chosen capture printed
+      // this day's date under "Day N" / "Ziua N", and the census's dated run
+      // for the year, which the ledger quotes, is the same.
+      const c = led.considered.find(x => x.captureTimestamp === led.chosen);
+      const cen = censusRow(led.census?.family, e.year), run = cen ? runDates(cen.range) : [];
+      ok(c?.valid && c.printedDates?.length === e.days.length && c.printedDates[d.day - 1] === d.date && new RegExp(`^(Day|Ziua) ${d.day}$`).test(c.labels?.[d.day - 1] || "")
+        && led.census?.census === CREAMFIELDS_CENSUS && led.census.family === e.festivalId && cen?.lifecycle === "occurred" && cen.dates === led.census.dates
+        && run.length === e.days.length && run[d.day - 1] === d.date,
+        `${id} day ${d.day}: ${d.date} is not what the archived Artists page printed ("${c?.labels?.[d.day - 1]}" ${c?.printedDates?.[d.day - 1]}) or the census's ${e.year} run (${cen?.dates})`);
     } else if (led.method === "official_lineup_html" && led.format === "creamfields-lineup") {
       // Creamfields' Lineup page names each day's weekday, and from 2024 its
       // date: the chosen capture's day must be this one, and the date the

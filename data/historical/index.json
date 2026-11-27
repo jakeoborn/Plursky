@@ -6946,6 +6946,78 @@
     "artists": 214,
     "sets": 217
    }
+  },
+  {
+   "id": "untold-2025",
+   "festivalId": "untold",
+   "festivalName": "Untold",
+   "name": "Untold 2025",
+   "year": 2025,
+   "timezone": "Europe/Bucharest",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2025-08-07",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2025-08-08",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2025-08-09",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2025-08-10",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 213,
+    "sets": 0
+   }
+  },
+  {
+   "id": "untold-2024",
+   "festivalId": "untold",
+   "festivalName": "Untold",
+   "name": "Untold 2024",
+   "year": 2024,
+   "timezone": "Europe/Bucharest",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2024-08-08",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2024-08-09",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2024-08-10",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2024-08-11",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 225,
+    "sets": 0
+   }
   }
  ]
 }

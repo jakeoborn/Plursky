@@ -102,6 +102,9 @@ export const OFFICIAL_HOSTS = {
   // ultraeurope.com: Ultra Europe's own site, whose 2013 /artists/ page
   // listed each act with its day and stage.
   "ultra-europe": ["ultraeurope.com"],
+  // untold.com: UNTOLD's own site, whose /artists page (from late 2023)
+  // embeds each year's lineup by day and stage.
+  "untold": ["untold.com"],
 };
 
 // Where an official graphic may be re-hosted for an `official_sources`

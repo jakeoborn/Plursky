@@ -877,6 +877,41 @@ images (2019 and 2023-2025 are queued for the image path in
 `ocr-queue.mjs`); the later `/artists/<year>/` pages load their lists by
 script (2024's archived empty).
 
+UNTOLD's own Artists page (2024, 2025, format `untold-artists`):
+
+    PLURSKY_WAYBACK_RELAY=1 node scripts/historical/extract-untold.mjs untold-2024 untold-2025
+    # writes sheets/<id>.lineup.tsv and the ledger; lineup_only, no times
+
+untold.com/artists on the Next.js site (from late 2023) draws its list from
+data the page embeds in itself (`<script id="__NEXT_DATA__">`): one entry per
+performance with the billing, its stage (`performanceStage.name`: Main,
+Galaxy, Alchemy …), a numbered day label ("Ziua 1" on the Romanian page,
+"Day 1" on the English one) and `performanceDate`, an instant at 16:00 in
+Cluj-Napoca on that festival day's date. The page's title names no year;
+the entries date it. Every entry's date, read in Europe/Bucharest, must be
+in the edition's year, a label may carry only one date, the labels must be
+Day 1 to Day N, and the dates must be exactly the edition's run, which must
+also be the census's dated post-event run (quoted in the ledger as
+`census`). The list must be the whole list (`totalPages` 1). 2024's entries
+also carry each set's start and end; a lineup keeps none (they are counted
+in the ledger's `timedEntries`). A name printed with spaces around it is
+billed without them (`trimmed`), and two spellings that make the same id
+(2025's "B MIKE" and "B.MIKE") are one act under the first printed
+(`sameActs`). Printed rows that name no performer are
+dropped by the build: 2024's "LOCAL ARTIST" and 2025's two "SURPRISE GUEST"
+slots as unnamed slots, and 2025's three Main stage moments (two
+broadcasters' anniversaries and "TRADITIONAL ROMANIAN MOMENT") as show
+segments. Captures are listed from 1 January to a week after the last day
+(after that the page empties and then lists the next edition), and the
+latest valid one is read: 4 August 2024 and 25 July 2025, both before the
+festival, so each edition carries a note that later changes are not shown.
+Earlier years are not read: the 2016 site was an AngularJS app and its
+2016-2018 programme, timetable, schedule and line-up captures are each
+under 3 KB (script shells, by their archived size); the 2019-2023 Gatsby
+site's line-up, schedule and stages pages print "Loading ..." and fetch
+their lists by script (never archived); 2015 left no lineup page; and no
+2023 capture of the new site was taken before the festival.
+
 Then, for any path:
 
     node scripts/historical/build-editions.mjs
