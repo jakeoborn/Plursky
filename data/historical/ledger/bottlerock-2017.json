@@ -1,0 +1,116 @@
+{
+  "id": "bottlerock-2017",
+  "method": "official_lineup_html",
+  "official": "https://www.bottlerocknapavalley.com/lineup-schedule/2017-artists/",
+  "format": "bottlerock-artists",
+  "window": {
+    "from": "20170101",
+    "to": "20171231",
+    "read": "the first valid capture taken after the last day; else the latest before it"
+  },
+  "chosen": "20170706012723",
+  "archivedUrl": "https://web.archive.org/web/20170706012723/http://www.bottlerocknapavalley.com/lineup-schedule/2017-artists/",
+  "sha256": "e4902a99faff520c18f86fc8f89551b2680b832c395f4fcdfc8c18d8e7f3ad46",
+  "title": "BottleRock Napa Valley Artists | BottleRock Napa Valley",
+  "heading": "2017 Artists",
+  "relayedVia": "firecrawl",
+  "afterFestival": true,
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "bottlerock",
+    "year": 2017,
+    "lifecycle": "occurred",
+    "dates": "2017-05-26..2017-05-28",
+    "evidence": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=BottleRock_Napa_Valley&rvprop=ids|timestamp|content&rvslots=main&format=json",
+    "published": "2026-11-04T05:11:56Z rev 1383690942"
+  },
+  "printedRun": "May 26-28, 2017",
+  "printedTwice": [],
+  "considered": [
+    {
+      "captureTimestamp": "20170103210049",
+      "original": "http://www.bottlerocknapavalley.com/lineup-schedule/2017-artists/",
+      "notFiled": "relay: capture 20170103210049 of http://www.bottlerocknapavalley.com/lineup-schedule/2017-artists/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20170103225130",
+      "original": "http://www.bottlerocknapavalley.com/lineup-schedule/2017-artists/",
+      "notFiled": "relay: capture 20170103225130 of http://www.bottlerocknapavalley.com/lineup-schedule/2017-artists/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20170103234537",
+      "original": "http://www.bottlerocknapavalley.com/lineup-schedule/2017-artists/",
+      "notFiled": "relay: capture 20170103234537 of http://www.bottlerocknapavalley.com/lineup-schedule/2017-artists/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20170104160049",
+      "original": "http://www.bottlerocknapavalley.com/lineup-schedule/2017-artists/",
+      "notFiled": "relay: capture 20170104160049 of http://www.bottlerocknapavalley.com/lineup-schedule/2017-artists/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20170104174155",
+      "original": "http://www.bottlerocknapavalley.com/lineup-schedule/2017-artists/",
+      "notFiled": "relay: capture 20170104174155 of http://www.bottlerocknapavalley.com/lineup-schedule/2017-artists/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20170104183432",
+      "original": "http://www.bottlerocknapavalley.com/lineup-schedule/2017-artists/",
+      "notFiled": "relay: capture 20170104183432 of http://www.bottlerocknapavalley.com/lineup-schedule/2017-artists/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20170116162600",
+      "original": "http://www.bottlerocknapavalley.com/lineup-schedule/2017-artists/",
+      "notFiled": "relay: capture 20170116162600 of http://www.bottlerocknapavalley.com/lineup-schedule/2017-artists/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20170524215351",
+      "original": "http://www.bottlerocknapavalley.com/lineup-schedule/2017-artists/",
+      "notFiled": "relay: capture 20170524215351 of http://www.bottlerocknapavalley.com/lineup-schedule/2017-artists/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20170706012723",
+      "original": "http://www.bottlerocknapavalley.com/lineup-schedule/2017-artists/",
+      "archivedUrl": "https://web.archive.org/web/20170706012723/http://www.bottlerocknapavalley.com/lineup-schedule/2017-artists/",
+      "sha256": "e4902a99faff520c18f86fc8f89551b2680b832c395f4fcdfc8c18d8e7f3ad46",
+      "bytes": 138507,
+      "via": "firecrawl",
+      "title": "BottleRock Napa Valley Artists | BottleRock Napa Valley",
+      "heading": "2017 Artists",
+      "filter": [
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "runs": [
+        "May 26-28, 2017",
+        "May 25-27, 2018"
+      ],
+      "valid": true,
+      "billings": 85
+    },
+    {
+      "captureTimestamp": "20171130160913",
+      "original": "http://www.bottlerocknapavalley.com/lineup-schedule/2017-artists/",
+      "notFiled": "relay: capture 20171130160913 of http://www.bottlerocknapavalley.com/lineup-schedule/2017-artists/ was not filed",
+      "valid": false,
+      "billings": 0
+    }
+  ],
+  "dropped": []
+}

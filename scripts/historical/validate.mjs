@@ -110,6 +110,10 @@ export const OFFICIAL_HOSTS = {
   // untold.com: UNTOLD's own site, whose /artists page (from late 2023)
   // embeds each year's lineup by day and stage.
   "untold": ["untold.com"],
+  // bottlerocknapavalley.com: BottleRock Napa Valley's own site, whose
+  // Artists page (/lineup-schedule/artists/, /lineup-schedule/<year>-artists/,
+  // /<year>-artists/) listed each year's acts by day.
+  "bottlerock": ["bottlerocknapavalley.com"],
 };
 
 // Where an official graphic may be re-hosted for an `official_sources`

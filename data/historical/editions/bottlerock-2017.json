@@ -1,0 +1,1147 @@
+{
+ "id": "bottlerock-2017",
+ "festivalId": "bottlerock",
+ "name": "BottleRock Napa Valley 2017",
+ "year": 2017,
+ "timezone": "America/Los_Angeles",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2017-05-26",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2017-05-27",
+   "label": "Saturday"
+  },
+  {
+   "day": 3,
+   "date": "2017-05-28",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [],
+ "artists": [
+  {
+   "id": "bottlerock-2017:foo-fighters",
+   "name": "Foo Fighters",
+   "key": "foo-fighters",
+   "performers": [
+    "foo-fighters"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:tom-petty-and-the-heartbreakers",
+   "name": "Tom Petty & The Heartbreakers",
+   "key": "tom-petty-and-the-heartbreakers",
+   "performers": [
+    "tom-petty-and-the-heartbreakers"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:maroon-5",
+   "name": "Maroon 5",
+   "key": "maroon-5",
+   "performers": [
+    "maroon-5"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:macklemore-and-ryan-lewis",
+   "name": "Macklemore & Ryan Lewis",
+   "key": "macklemore-and-ryan-lewis",
+   "performers": [
+    "macklemore-and-ryan-lewis"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:modest-mouse",
+   "name": "Modest Mouse",
+   "key": "modest-mouse",
+   "performers": [
+    "modest-mouse"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:ben-harper-and-the-innocent-criminals",
+   "name": "Ben Harper & The Innocent Criminals",
+   "key": "ben-harper-and-the-innocent-criminals",
+   "performers": [
+    "ben-harper-and-the-innocent-criminals"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:the-roots",
+   "name": "The Roots",
+   "key": "the-roots",
+   "performers": [
+    "the-roots"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:silversun-pickups",
+   "name": "Silversun Pickups",
+   "key": "silversun-pickups",
+   "performers": [
+    "silversun-pickups"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:band-of-horses",
+   "name": "Band of Horses",
+   "key": "band-of-horses",
+   "performers": [
+    "band-of-horses"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:fitz-and-the-tantrums",
+   "name": "Fitz & The Tantrums",
+   "key": "fitz-and-the-tantrums",
+   "performers": [
+    "fitz-and-the-tantrums"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:dirty-heads",
+   "name": "Dirty Heads",
+   "key": "dirty-heads",
+   "performers": [
+    "dirty-heads"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:live",
+   "name": "Live",
+   "key": "live",
+   "performers": [
+    "live"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:the-naked-and-famous",
+   "name": "The Naked and Famous",
+   "key": "the-naked-and-famous",
+   "performers": [
+    "the-naked-and-famous"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:michael-franti-and-spearhead",
+   "name": "Michael Franti & Spearhead",
+   "key": "michael-franti-and-spearhead",
+   "performers": [
+    "michael-franti-and-spearhead"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:the-devil-makes-three",
+   "name": "The Devil Makes Three",
+   "key": "the-devil-makes-three",
+   "performers": [
+    "the-devil-makes-three"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:gavin-degraw",
+   "name": "Gavin DeGraw",
+   "key": "gavin-degraw",
+   "performers": [
+    "gavin-degraw"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:st-lucia",
+   "name": "St. Lucia",
+   "key": "st-lucia",
+   "performers": [
+    "st-lucia"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:house-of-pain",
+   "name": "House of Pain",
+   "key": "house-of-pain",
+   "performers": [
+    "house-of-pain"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:bob-moses",
+   "name": "Bob Moses",
+   "key": "bob-moses",
+   "performers": [
+    "bob-moses"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:catfish-and-the-bottlemen",
+   "name": "Catfish and the Bottlemen",
+   "key": "catfish-and-the-bottlemen",
+   "performers": [
+    "catfish-and-the-bottlemen"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:saint-motel",
+   "name": "Saint Motel",
+   "key": "saint-motel",
+   "performers": [
+    "saint-motel"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:the-strumbellas",
+   "name": "The Strumbellas",
+   "key": "the-strumbellas",
+   "performers": [
+    "the-strumbellas"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:alunageorge",
+   "name": "AlunaGeorge",
+   "key": "alunageorge",
+   "performers": [
+    "alunageorge"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:frightened-rabbit",
+   "name": "Frightened Rabbit",
+   "key": "frightened-rabbit",
+   "performers": [
+    "frightened-rabbit"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:andra-day",
+   "name": "Andra Day",
+   "key": "andra-day",
+   "performers": [
+    "andra-day"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:galactic",
+   "name": "Galactic",
+   "key": "galactic",
+   "performers": [
+    "galactic"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:charles-bradley-and-his-extraordinaires",
+   "name": "Charles Bradley & His Extraordinaires",
+   "key": "charles-bradley-and-his-extraordinaires",
+   "performers": [
+    "charles-bradley-and-his-extraordinaires"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:mavis-staples",
+   "name": "Mavis Staples",
+   "key": "mavis-staples",
+   "performers": [
+    "mavis-staples"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:ani-difranco",
+   "name": "Ani DiFranco",
+   "key": "ani-difranco",
+   "performers": [
+    "ani-difranco"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:bishop-briggs",
+   "name": "Bishop Briggs",
+   "key": "bishop-briggs",
+   "performers": [
+    "bishop-briggs"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:lewis-del-mar",
+   "name": "Lewis Del Mar",
+   "key": "lewis-del-mar",
+   "performers": [
+    "lewis-del-mar"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:highly-suspect",
+   "name": "Highly Suspect",
+   "key": "highly-suspect",
+   "performers": [
+    "highly-suspect"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:judah-and-the-lion",
+   "name": "Judah & The Lion",
+   "key": "judah-and-the-lion",
+   "performers": [
+    "judah-and-the-lion"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:elephant-revival",
+   "name": "Elephant Revival",
+   "key": "elephant-revival",
+   "performers": [
+    "elephant-revival"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:warren-g",
+   "name": "Warren G",
+   "key": "warren-g",
+   "performers": [
+    "warren-g"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:bad-suns",
+   "name": "Bad Suns",
+   "key": "bad-suns",
+   "performers": [
+    "bad-suns"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:giraffage",
+   "name": "Giraffage",
+   "key": "giraffage",
+   "performers": [
+    "giraffage"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:gnash",
+   "name": "gnash",
+   "key": "gnash",
+   "performers": [
+    "gnash"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:the-staves",
+   "name": "The Staves",
+   "key": "the-staves",
+   "performers": [
+    "the-staves"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:the-barr-brothers",
+   "name": "The Barr Brothers",
+   "key": "the-barr-brothers",
+   "performers": [
+    "the-barr-brothers"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:pell",
+   "name": "Pell",
+   "key": "pell",
+   "performers": [
+    "pell"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:hippo-campus",
+   "name": "Hippo Campus",
+   "key": "hippo-campus",
+   "performers": [
+    "hippo-campus"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:jessica-hernandez-and-the-deltas",
+   "name": "Jessica Hernandez & The Deltas",
+   "key": "jessica-hernandez-and-the-deltas",
+   "performers": [
+    "jessica-hernandez-and-the-deltas"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:barns-courtney",
+   "name": "Barns Courtney",
+   "key": "barns-courtney",
+   "performers": [
+    "barns-courtney"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:hiss-golden-messenger",
+   "name": "Hiss Golden Messenger",
+   "key": "hiss-golden-messenger",
+   "performers": [
+    "hiss-golden-messenger"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:the-california-honeydrops",
+   "name": "The California Honeydrops",
+   "key": "the-california-honeydrops",
+   "performers": [
+    "the-california-honeydrops"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:chris-shiflett",
+   "name": "Chris Shiflett",
+   "key": "chris-shiflett",
+   "performers": [
+    "chris-shiflett"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:888",
+   "name": "888",
+   "key": "888",
+   "performers": [
+    "888"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:prinze-george",
+   "name": "Prinze George",
+   "key": "prinze-george",
+   "performers": [
+    "prinze-george"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:con-brio",
+   "name": "Con Brio",
+   "key": "con-brio",
+   "performers": [
+    "con-brio"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:la-santa-cecilia",
+   "name": "La Santa Cecilia",
+   "key": "la-santa-cecilia",
+   "performers": [
+    "la-santa-cecilia"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:the-shelters",
+   "name": "The Shelters",
+   "key": "the-shelters",
+   "performers": [
+    "the-shelters"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:swmrs",
+   "name": "SWMRS",
+   "key": "swmrs",
+   "performers": [
+    "swmrs"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:run-river-north",
+   "name": "Run River North",
+   "key": "run-river-north",
+   "performers": [
+    "run-river-north"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:james-hersey",
+   "name": "James Hersey",
+   "key": "james-hersey",
+   "performers": [
+    "james-hersey"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:day-wave",
+   "name": "Day Wave",
+   "key": "day-wave",
+   "performers": [
+    "day-wave"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:dreamers",
+   "name": "DREAMERS",
+   "key": "dreamers",
+   "performers": [
+    "dreamers"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:hirie",
+   "name": "HIRIE",
+   "key": "hirie",
+   "performers": [
+    "hirie"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:a-r-i-z-o-n-a",
+   "name": "A R I Z O N A",
+   "key": "a-r-i-z-o-n-a",
+   "performers": [
+    "a-r-i-z-o-n-a"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:baskery",
+   "name": "Baskery",
+   "key": "baskery",
+   "performers": [
+    "baskery"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:city-of-the-sun",
+   "name": "City of the Sun",
+   "key": "city-of-the-sun",
+   "performers": [
+    "city-of-the-sun"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:cobi",
+   "name": "Cobi",
+   "key": "cobi",
+   "performers": [
+    "cobi"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:partybaby",
+   "name": "PARTYBABY",
+   "key": "partybaby",
+   "performers": [
+    "partybaby"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:the-heydaze",
+   "name": "The Heydaze",
+   "key": "the-heydaze",
+   "performers": [
+    "the-heydaze"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:parade-of-lights",
+   "name": "Parade of Lights",
+   "key": "parade-of-lights",
+   "performers": [
+    "parade-of-lights"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:little-hurricane",
+   "name": "little hurricane",
+   "key": "little-hurricane",
+   "performers": [
+    "little-hurricane"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:marty-o-reilly-and-the-old-soul-orchestra",
+   "name": "Marty O’Reilly & The Old Soul Orchestra",
+   "key": "marty-o-reilly-and-the-old-soul-orchestra",
+   "performers": [
+    "marty-o-reilly-and-the-old-soul-orchestra"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:josh-kelley",
+   "name": "Josh Kelley",
+   "key": "josh-kelley",
+   "performers": [
+    "josh-kelley"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:jessica-childress",
+   "name": "Jessica Childress",
+   "key": "jessica-childress",
+   "performers": [
+    "jessica-childress"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:corey-harper",
+   "name": "Corey Harper",
+   "key": "corey-harper",
+   "performers": [
+    "corey-harper"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:wild",
+   "name": "WILD",
+   "key": "wild",
+   "performers": [
+    "wild"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:saint-mesa",
+   "name": "Saint Mesa",
+   "key": "saint-mesa",
+   "performers": [
+    "saint-mesa"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:hibbity-dibbity",
+   "name": "Hibbity Dibbity",
+   "key": "hibbity-dibbity",
+   "performers": [
+    "hibbity-dibbity"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:the-helmets",
+   "name": "The Helmets",
+   "key": "the-helmets",
+   "performers": [
+    "the-helmets"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:pacific-radio",
+   "name": "Pacific Radio",
+   "key": "pacific-radio",
+   "performers": [
+    "pacific-radio"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:the-redwoods-revue",
+   "name": "The Redwoods Revue",
+   "key": "the-redwoods-revue",
+   "performers": [
+    "the-redwoods-revue"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:doobie-decibel-system",
+   "name": "Doobie Decibel System",
+   "key": "doobie-decibel-system",
+   "performers": [
+    "doobie-decibel-system"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:troubadour-77",
+   "name": "Troubadour 77",
+   "key": "troubadour-77",
+   "performers": [
+    "troubadour-77"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:silverado-pickups",
+   "name": "Silverado Pickups",
+   "key": "silverado-pickups",
+   "performers": [
+    "silverado-pickups"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:tracksuit-wedding",
+   "name": "Tracksuit Wedding",
+   "key": "tracksuit-wedding",
+   "performers": [
+    "tracksuit-wedding"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:secure-the-sun",
+   "name": "Secure The Sun",
+   "key": "secure-the-sun",
+   "performers": [
+    "secure-the-sun"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:serf-and-james",
+   "name": "Serf and James",
+   "key": "serf-and-james",
+   "performers": [
+    "serf-and-james"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:kadin-yeahmon",
+   "name": "Kadin Yeahmon",
+   "key": "kadin-yeahmon",
+   "performers": [
+    "kadin-yeahmon"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:alec-lee",
+   "name": "Alec Lee",
+   "key": "alec-lee",
+   "performers": [
+    "alec-lee"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2017:napa-youth-symphony",
+   "name": "Napa Youth Symphony",
+   "key": "napa-youth-symphony",
+   "performers": [
+    "napa-youth-symphony"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "official_lineup_html",
+  "official": "https://www.bottlerocknapavalley.com/lineup-schedule/2017-artists/",
+  "captures": [
+   {
+    "page": "lineup",
+    "archivedUrl": "https://web.archive.org/web/20170706012723/http://www.bottlerocknapavalley.com/lineup-schedule/2017-artists/",
+    "captureTimestamp": "20170706012723",
+    "sha256": "e4902a99faff520c18f86fc8f89551b2680b832c395f4fcdfc8c18d8e7f3ad46"
+   }
+  ]
+ }
+}

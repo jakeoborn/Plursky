@@ -953,6 +953,40 @@ site's line-up, schedule and stages pages print "Loading ..." and fetch
 their lists by script (never archived); 2015 left no lineup page; and no
 2023 capture of the new site was taken before the festival.
 
+BottleRock Napa Valley's own Artists page (2015, 2017, 2022, format
+`bottlerock-artists`):
+
+    node scripts/historical/extract-bottlerock.mjs bottlerock-<year>
+    # writes sheets/<id>.lineup.tsv and the ledger; lineup_only, no stages
+
+bottlerocknapavalley.com kept one Artists page per year
+(`BOTTLEROCK_PAGES`: /lineup-schedule/artists/ in 2015,
+/lineup-schedule/<year>-artists/ in 2016-2019, /<year>-artists/ in
+2021-2023), all one template (`bottlerock-artists.mjs`): the heading
+"<year> Artists" (the `<h1>`, or the `<title>` in 2015, which prints no
+`<h1>`), a filter bar with one control per day, and one grid block per act
+carrying its days as the filter's classes. The filter prints weekdays
+("Friday" shows `.fri`); 2015's classes are the days of the month (`.29`),
+which must be the edition's own. The page prints no stage and no time, and
+its weekdays carry no year: the heading names the edition, the filter must
+print exactly the edition's weekdays in order, and any run the page prints
+for that year ("May 29-31, 2015" in 2015's footer, "May 26-28, 2017" in
+2017's description) must be the edition's dates, which are the census's
+dated run (`datesFrom`), as for Creamfields. A later footer prints the next
+edition's run (2022's capture prints "May 26-28, 2023") and is not read as
+this one's. An act playing two days is one row per day.
+
+Every capture of the year's address is listed, and the first valid one
+taken after the last day is read, so the lineup is the page as the festival
+left it: 10 June 2015, 6 July 2017 and 11 June 2022. No capture after the
+festival may be skipped unread; with none valid, the latest before it is read
+and the edition must carry a note saying so. 2013 and 2014 left only
+posters (2015's /lineup-schedule/2013-artists/ and 2014-artists/ pages hold
+one image each), and from 2024 the /<year>-lineup/ page is a poster too;
+2025's lineup is built by script on the home page. 2016, 2018, 2019, 2021
+and 2023 use the same template and their captures are listed, but none was
+filed yet, so those years are not read here.
+
 Then, for any path:
 
     node scripts/historical/build-editions.mjs

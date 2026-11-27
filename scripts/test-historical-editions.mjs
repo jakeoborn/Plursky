@@ -58,6 +58,8 @@ import { parseUltraEuropeArtists, countdownDate as ueCountdownDate } from "./his
 import { ultraEuropeRows, ULTRA_EUROPE_EDITIONS } from "./historical/extract-ultra-europe.mjs";
 import { parseUntoldArtists, untoldRows, zoneDate as untoldDate } from "./historical/untold-artists.mjs";
 import { UNTOLD_EDITIONS } from "./historical/extract-untold.mjs";
+import { parseBottleRockArtists, bottlerockRows, printedRuns as brPrintedRuns } from "./historical/bottlerock-artists.mjs";
+import { editionMismatch as brMismatch, sheetRows as brSheetRows, BOTTLEROCK_EDITIONS } from "./historical/extract-bottlerock.mjs";
 import { parseDefqonGrid, dayHeading as dgDayHeading } from "./historical/defqon-grid-lineup.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -235,6 +237,16 @@ if (base && edc) {
     mustFail("an UNTOLD 2024 lineup captured the next summer", m => { const c = utCap(m); c.archivedUrl = c.archivedUrl.replace("/web/2024", "/web/2025"); c.captureTimestamp = c.captureTimestamp.replace(/^2024/, "2025"); }, ut24, () => {}, /is not from 2024/);
     mustFail("an UNTOLD 2024 day moved off its date", m => { m.days[0].date = "2024-08-07"; }, ut24);
     mustFail("an UNTOLD 2024 act dropped", m => { m.artists.pop(); }, ut24, undefined, /artists, locked/);
+  }
+  // BottleRock 2017: its own 2017 Artists page, captured in 2017 on the
+  // festival's own domain; no other site, year or date may pass.
+  const br17 = editions["bottlerock-2017"];
+  if (br17) {
+    const brCap = m => m.provenance.captures[0];
+    mustFail("a BottleRock 2017 lineup read off another site", m => { const c = brCap(m); c.archivedUrl = c.archivedUrl.replace("www.bottlerocknapavalley.com", "www.bottlerock-fans.com"); }, br17, () => {}, /not an official bottlerock property/);
+    mustFail("a BottleRock 2017 lineup captured the next year", m => { const c = brCap(m); c.archivedUrl = c.archivedUrl.replace("/web/2017", "/web/2018"); c.captureTimestamp = c.captureTimestamp.replace(/^2017/, "2018"); }, br17, () => {}, /is not from 2017/);
+    mustFail("a BottleRock 2017 day moved to another date", m => { m.days[0].date = "2017-05-19"; }, br17);
+    mustFail("a BottleRock 2017 day with no billed artist", m => { for (const a of m.artists) a.appearances = a.appearances.filter(x => x.day !== 3); }, br17);
   }
   // Tomorrowland 2010-2012: each day page prints its day as its own tab, with
   // no year, on the festival's own .be site.
@@ -1503,6 +1515,53 @@ if (base && edc) {
     ueMust("an Ultra Europe appearance on Day 0", uePage({ grid: [["x", "X"]], acts: [["x", "X", "Day 0 - 05:00PM - Main Stage"]] }));
     ueMust("an Ultra Europe act printed twice on one day and stage", uePage({ grid: [["x", "X"]], acts: [["x", "X", "Day 1 - 05:00PM - Main Stage, Day 1 - 09:00PM - Main Stage"]] }));
     ueMust("an Ultra Europe act listed twice", uePage({ grid: [["x", "X"], ["y", "X"]], acts: [["x", "X", "Day 1 - 05:00PM - Main Stage"], ["y", "X", "Day 2 - 05:00PM - Main Stage"]] }));
+    // BottleRock's Artists page: an isotope grid under a weekday filter (from
+    // 2016, `.fri`) or a day-of-month one (2015, `.29`), each act a block
+    // carrying its days as the filter's classes; any run it prints is returned.
+    const brFilter = days => days.map(([cls, label]) => `<li><a href="#" data-filter=".${cls}">${label}</a></li>`).join("");
+    const brItem = ([name, cls, h2 = name]) => `<div class="item ${cls}"><a href="#"><h2>${h2}</h2></a><span class="artist-name">${name}</span></div>`;
+    const brActs = [["Kings of Leon", "fri"], ["Foo Fighters", "sat rocket-lazyload"], ["Tom Petty &amp; The Heartbreakers", "sun"], ["Mumford &amp; Sons", "fri sun"]];
+    const brPage = ({ h1 = "<h1>2017 Artists</h1>", filter = [["fri", "Friday"], ["sat", "Saturday"], ["sun", "Sunday"]], acts = brActs, grid = 1, foot = "May 26-28, 2017" } = {}) =>
+      `<title>2017 Artists | BottleRock</title>${h1}<ul><li><a data-filter="*">ALL</a></li>${brFilter(filter)}</ul>`
+      + `<div id="block-grid">`.repeat(grid) + acts.map(brItem).join("") + `</div><footer><h2>${foot}</h2></footer>`;
+    const brp = parseBottleRockArtists(brPage(), { year: 2017 }), brr = bottlerockRows(brp);
+    ok(JSON.stringify([brp.heading, brp.filter.map(f => f.weekday), brr.rows.map(r => `${r.artist}|${r.weekday}`), brp.runs])
+      === JSON.stringify(["2017 Artists", ["Friday", "Saturday", "Sunday"], ["Kings of Leon|Friday", "Foo Fighters|Saturday", "Tom Petty & The Heartbreakers|Sunday", "Mumford & Sons|Friday", "Mumford & Sons|Sunday"],
+        [{ printed: "May 26-28, 2017", year: 2017, dates: ["2017-05-26", "2017-05-27", "2017-05-28"] }]]),
+      `a BottleRock Artists page must come back as one row per act and weekday: ${JSON.stringify([brp, brr])}`);
+    ok(brMismatch(brp, "bottlerock-2017") === null && JSON.stringify(brSheetRows(brr.rows, "bottlerock-2017").map(r => r.day)) === "[1,2,3,1,3]",
+      "a BottleRock 2017 page with its own weekdays and run is 2017's, each weekday its edition day");
+    // 2015: no <h1>, the title is the heading, the filter's classes are days
+    // of the month, and the act's name is a bare <span>.
+    const br15 = `<title>2015 Artists</title><a data-filter="*">ALL</a><a data-filter=".29">Friday</a><a data-filter=".30">Saturday</a><a data-filter=".31">Sunday</a>`
+      + `<div id="block-grid"><a href="#"><div class="item 29 31"><span>No Doubt</span></div></a><a href="#"><div class="item 30"><span>Snoop Dogg</span></div></a></div><div class="dates">May 29-31, 2015</div>`;
+    const brp15 = parseBottleRockArtists(br15, { year: 2015 });
+    ok(JSON.stringify(bottlerockRows(brp15).rows.map(r => `${r.artist}|${r.weekday}`)) === JSON.stringify(["No Doubt|Friday", "No Doubt|Sunday", "Snoop Dogg|Saturday"])
+      && JSON.stringify(brp15.filter.map(f => f.dayOfMonth)) === "[29,30,31]" && brMismatch(brp15, "bottlerock-2015") === null,
+      "BottleRock 2015's page reads by its days of the month, each the edition's own");
+    ok(JSON.stringify(brPrintedRuns("May 30-1, 2015 · June 31-32, 2015 · May 29 – 31, 2015")) === JSON.stringify([{ printed: "May 29 – 31, 2015", year: 2015, dates: ["2015-05-29", "2015-05-30", "2015-05-31"] }]),
+      "BottleRock's printed runs read only as real dates in one month");
+    const brMust = (what, html, year = 2017) => { let bad = false; try { parseBottleRockArtists(html, { year }); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    brMust("a BottleRock 2017 page read as another year's", brPage(), 2018);
+    brMust("a BottleRock page headed as another year's", brPage({ h1: "<h1>2016 Artists</h1>" }));
+    brMust("a BottleRock page with no day filter", brPage({ filter: [] }));
+    brMust("a BottleRock filter printing a day twice", brPage({ filter: [["fri", "Friday"], ["sat", "Saturday"], ["sat", "Saturday"]] }));
+    brMust("a BottleRock filter whose class is another day's", brPage({ filter: [["fri", "Friday"], ["sun", "Saturday"], ["sat", "Sunday"]] }));
+    brMust("a BottleRock filter control that is no weekday", brPage({ filter: [["fri", "Friday"], ["vip", "VIP"]] }));
+    brMust("a BottleRock filter mixing weekdays and dates", brPage({ filter: [["fri", "Friday"], ["27", "Saturday"]] }));
+    brMust("an empty BottleRock Artists page", brPage({ acts: [] }));
+    brMust("a BottleRock page with no artist grid", brPage({ grid: 0 }));
+    brMust("a BottleRock page with two artist grids", brPage({ grid: 2 }));
+    brMust("a BottleRock act with no name", brPage({ acts: [[" ", "fri", " "]] }));
+    brMust("a BottleRock act on no day", brPage({ acts: [["X", "rocket-lazyload"]] }));
+    brMust("a BottleRock act on a day the filter does not offer", brPage({ acts: [["X", "fri mon"]] }));
+    brMust("a BottleRock act headed with another act's name", brPage({ acts: [["X", "fri", "Y"]] }));
+    const brNot = (what, page, id) => { mutations++; ok(brMismatch(page, id) !== null, `mutation not caught: ${what}`); };
+    brNot("a BottleRock filter printing the days out of order", parseBottleRockArtists(brPage({ filter: [["sat", "Saturday"], ["fri", "Friday"], ["sun", "Sunday"]] }), { year: 2017 }), "bottlerock-2017");
+    brNot("a BottleRock 2017 page printing another run for 2017", parseBottleRockArtists(brPage({ foot: "May 19-21, 2017" }), { year: 2017 }), "bottlerock-2017");
+    brNot("a BottleRock page whose filter lacks a day", parseBottleRockArtists(brPage({ filter: [["fri", "Friday"], ["sat", "Saturday"]], acts: [["X", "fri"]] }), { year: 2017 }), "bottlerock-2017");
+    brNot("a BottleRock 2015 filter day off its date", parseBottleRockArtists(br15.replace('".31"', '".1"').replace("item 29 31", "item 29 1"), { year: 2015 }), "bottlerock-2015");
+    ok(BOTTLEROCK_EDITIONS.includes("bottlerock-2015") && BOTTLEROCK_EDITIONS.every(id => editions[id] || !existsSync(H(`ledger/${id}.json`))), "every BottleRock edition with a ledger is built");
     // Outside Lands' 2022-2025 lineup widget: its script sets the options on
     // one line of JSON; each artist lists its performances, a shared set (a
     // b2b) under each artist with the same id, every time with its offset.
@@ -1975,6 +2034,21 @@ for (const [id, e] of Object.entries(editions)) {
         && led.datesFrom?.census === CREAMFIELDS_CENSUS && led.datesFrom.family === e.festivalId && cen?.lifecycle === "occurred" && cen.dates === led.datesFrom.dates
         && run.length === e.days.length && run[d.day - 1] === d.date,
         `${id} day ${d.day}: ${d.date} is not the census's ${e.year} run (${cen?.dates}) or the page's weekday "${c?.days?.[d.day - 1]}"`);
+    } else if (led.method === "official_lineup_html" && led.format === "bottlerock-artists") {
+      // BottleRock's Artists page prints weekdays (2015: with their days of
+      // the month): the chosen capture's filter names this day's weekday in
+      // the edition's order, any run it printed for the year is exactly the
+      // edition's, and the date is the census's dated run for the year, which
+      // the ledger's datesFrom must quote. A capture before the festival needs a note.
+      const c = led.considered.find(x => x.captureTimestamp === led.chosen), wd = new Date(d.date + "T12:00:00Z").toLocaleDateString("en-US", { weekday: "long", timeZone: "UTC" });
+      const cen = censusRow(led.datesFrom?.family, e.year), run = cen ? runDates(cen.range) : [];
+      const f = c?.filter?.[d.day - 1] || "", own = led.printedRun === null ? null : brPrintedRuns(led.printedRun)[0];
+      ok(c?.valid && c.filter.length === e.days.length && (f === wd || f === `${wd} ${+d.date.slice(8)}`)
+        && (own === null || (own?.year === e.year && JSON.stringify(own.dates) === JSON.stringify(run) && c.runs.includes(led.printedRun)))
+        && (led.afterFestival ? led.chosen.slice(0, 8) > e.days.at(-1).date.replace(/-/g, "") : (e.notes || []).some(n => n.source?.includes(`/web/${led.chosen}/`)))
+        && led.datesFrom?.census === CREAMFIELDS_CENSUS && led.datesFrom.family === e.festivalId && cen?.lifecycle === "occurred" && cen.dates === led.datesFrom.dates
+        && run.length === e.days.length && run[d.day - 1] === d.date,
+        `${id} day ${d.day}: ${d.date} is not the census's ${e.year} run (${cen?.dates}), the page's filter day "${f}" or its printed run "${led.printedRun}"`);
     } else if (led.method === "official_lineup_html" && led.format === "ultra-europe-artists") {
       // Ultra Europe's Artists page numbers its days: the chosen capture's
       // countdown opens on day 1, the page prints this day, and the date is
