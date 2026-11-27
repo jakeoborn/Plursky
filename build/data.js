@@ -1963,7 +1963,18 @@ function getActiveFestivalId() {
   } catch {}
   return _resolveDefaultFestivalId(now);
 }
-function setActiveFestivalAndReload(id) {
+function setActiveFestivalAndReload(id, opts) {
+  opts = opts || {};
+  if (opts.push !== false) {
+    try {
+      var q = new URLSearchParams();
+      q.set("f", id);
+      if (opts.tab && opts.tab !== "home") q.set("tab", opts.tab);
+      var url = window.location.pathname + "?" + q.toString();
+      if (typeof window.plurskyNavPush === "function") window.plurskyNavPush(url);else window.history.pushState(null, "", url);
+    } catch {}
+  }
+  window.__plkReloading = true;
   try {
     localStorage.setItem("active_festival_id", id);
     localStorage.setItem("active_festival_explicit", "1");

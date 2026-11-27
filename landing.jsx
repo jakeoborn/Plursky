@@ -633,8 +633,7 @@ function GeneralLandingScreen({ state, setState }) {
     if (target && target !== activeId && canGo && typeof setActiveFestivalAndReload === "function") {
       // ?tab=memories is a validated deep link, so the boot after the reload
       // lands on Memories inside that festival instead of General Home.
-      try { history.replaceState(null, "", window.location.pathname + "?tab=memories"); } catch {}
-      setActiveFestivalAndReload(target);
+      setActiveFestivalAndReload(target, { tab: "memories" });
       return;
     }
     setState(s => ({ ...s, tab: "memories", artist: null }));

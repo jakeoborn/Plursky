@@ -494,7 +494,9 @@ function OnboardingModal({
       try {
         sessionStorage.setItem("plursky_landing_entered", festId);
       } catch {}
-      setActiveFestivalAndReload(festId);
+      setActiveFestivalAndReload(festId, {
+        tab
+      });
       return;
     }
     setState(s => ({
@@ -1406,6 +1408,99 @@ function ToastHost() {
     }
   }, msg.actionLabel)));
 }
+var _PLK_NAV_KEY = "plursky_nav_v1";
+var _PLK_ROUTE_PARAMS = ["f", "festival", "tab", "artist", "edition", "stage", "day", "lineup", "from", "crew"];
+var _PLK_LINK_TABS = ["home", "map", "lineup", "spotify", "me", "memories", "past", "artists"];
+function _plkNavRead() {
+  try {
+    var a = JSON.parse(sessionStorage.getItem(_PLK_NAV_KEY) || "[]");
+    return Array.isArray(a) ? a : [];
+  } catch {
+    return [];
+  }
+}
+function _plkNavWrite(a) {
+  try {
+    sessionStorage.setItem(_PLK_NAV_KEY, JSON.stringify(a.slice(-60)));
+  } catch {}
+}
+function _plkNavIdx() {
+  var n = window.history.state && window.history.state.plk;
+  return Number.isInteger(n) && n >= 0 ? n : null;
+}
+function _plkHere() {
+  return window.location.pathname + window.location.search;
+}
+function plurskyScreenUrl(s, keep) {
+  var q = new URLSearchParams(keep != null ? keep : window.location.search);
+  for (var k of _PLK_ROUTE_PARAMS) q.delete(k);
+  if (s && s.tab && s.tab !== "landing") {
+    var fid = typeof FESTIVAL_CONFIG !== "undefined" && FESTIVAL_CONFIG && FESTIVAL_CONFIG.id || "";
+    if (fid) q.set("f", fid);
+    var tab = _PLK_LINK_TABS.includes(s.tab) ? s.tab : "home";
+    if (tab !== "home") q.set("tab", tab);
+    if (tab === "past" && s.pastEdition) q.set("edition", s.pastEdition);
+    if (s.artist) q.set("artist", s.artist);
+  }
+  var qs = q.toString();
+  return window.location.pathname + (qs ? "?" + qs : "");
+}
+function _plkNavReplace(url) {
+  if (window.__plkReloading) return;
+  var idx = _plkNavIdx();
+  var a = _plkNavRead();
+  if (idx == null) {
+    a = [];
+    idx = 0;
+  }
+  a.length = Math.min(a.length, idx + 1);
+  a[idx] = url;
+  _plkNavWrite(a);
+  try {
+    window.history.replaceState({
+      ...(window.history.state || {}),
+      plk: idx
+    }, "", url);
+  } catch {}
+}
+function _plkNavPush(url) {
+  if (window.__plkReloading) return;
+  var idx = _plkNavIdx();
+  var a = _plkNavRead();
+  if (idx == null) {
+    a = [_plkHere()];
+    idx = 0;
+    try {
+      window.history.replaceState({
+        ...(window.history.state || {}),
+        plk: 0
+      }, "", _plkHere());
+    } catch {}
+  }
+  var next = idx + 1;
+  a.length = next;
+  a[next] = url;
+  _plkNavWrite(a);
+  try {
+    window.history.pushState({
+      plk: next
+    }, "", url);
+  } catch {}
+}
+window.plurskyNavPush = _plkNavPush;
+window.plurskyScreenUrl = plurskyScreenUrl;
+function plurskyNavTo(url, replace) {
+  if (window.__plkReloading || url === _plkHere()) return;
+  var idx = _plkNavIdx();
+  var a = _plkNavRead();
+  if (idx != null && idx > 0 && a[idx - 1] === url && a[idx] === _plkHere()) {
+    try {
+      window.history.back();
+      return;
+    } catch {}
+  }
+  if (replace) _plkNavReplace(url);else _plkNavPush(url);
+}
 function App() {
   var [showOnboarding, setShowOnboarding] = React.useState(() => {
     try {
@@ -1501,13 +1596,15 @@ function App() {
             h.delete("festival");
             u.hash = h.toString() ? "#?" + h.toString() : "";
           }
-          window.history.replaceState({}, "", u.toString());
+          window.history.replaceState(window.history.state, "", u.toString());
         } catch {}
         try {
           sessionStorage.setItem("plursky_landing_entered", dlFest);
         } catch {}
         switchingFestival = true;
-        setActiveFestivalAndReload(dlFest);
+        setActiveFestivalAndReload(dlFest, {
+          push: false
+        });
       }
     }
     var dlArtist = params.get("artist");
@@ -1539,7 +1636,7 @@ function App() {
     }
     if (dlArtist || dlTab || dlStage || dlDay || dlLineup || dlFrom || dlCrew) {
       try {
-        history.replaceState(null, "", window.location.pathname);
+        history.replaceState(history.state, "", window.location.pathname);
       } catch {}
     }
     try {
@@ -1667,6 +1764,97 @@ function App() {
     window._pushNav = _pushNav;
     window._popNav = _popNav;
   }, [_pushNav, _popNav]);
+  var _navStateRef = React.useRef(state);
+  _navStateRef.current = state;
+  var _navPrevRef = React.useRef(null);
+  var _navFollowRef = React.useRef(false);
+  React.useEffect(() => {
+    var url = plurskyScreenUrl(state);
+    var prev = _navPrevRef.current;
+    _navPrevRef.current = {
+      tab: state.tab,
+      artist: state.artist,
+      pastEdition: state.pastEdition
+    };
+    if (!prev || _navFollowRef.current) {
+      _navFollowRef.current = false;
+      _plkNavReplace(url);
+      return;
+    }
+    var closingSheet = !!prev.artist && !state.artist && prev.tab === state.tab && prev.pastEdition === state.pastEdition;
+    plurskyNavTo(url, closingSheet);
+  }, [state.tab, state.artist, state.pastEdition]);
+  React.useEffect(() => {
+    var onPop = () => {
+      var q = new URLSearchParams(window.location.search);
+      var f = q.get("f") || q.get("festival");
+      if (f && typeof FESTIVAL_CONFIG !== "undefined" && FESTIVAL_CONFIG && f !== FESTIVAL_CONFIG.id) {
+        window.__plkReloading = true;
+        window.location.reload();
+        return;
+      }
+      var tab = q.get("tab");
+      var artist = q.get("artist");
+      var inFestival = !!(f || tab || artist);
+      var nextTab = !inFestival ? "landing" : _PLK_LINK_TABS.includes(tab) ? tab : "home";
+      var nextArtist = artist && ARTISTS.find(a => a.id === artist) ? artist : null;
+      var edition = q.get("edition");
+      var nextEdition = nextTab === "past" && /^[a-z0-9-]+-\d{4}$/.test(edition || "") ? edition : null;
+      var cur = _navStateRef.current;
+      var same = cur.tab === nextTab && (cur.artist || null) === nextArtist && (nextTab !== "past" || (cur.pastEdition || null) === nextEdition);
+      if (same) return;
+      _navFollowRef.current = true;
+      setState(p => ({
+        ...p,
+        tab: nextTab,
+        artist: nextArtist,
+        ...(nextTab === "past" ? {
+          pastEdition: nextEdition
+        } : {})
+      }));
+    };
+    var onShow = e => {
+      if (!e.persisted) return;
+      var stored = null;
+      try {
+        stored = localStorage.getItem("active_festival_id");
+      } catch {}
+      if (stored && typeof FESTIVAL_CONFIG !== "undefined" && FESTIVAL_CONFIG && stored !== FESTIVAL_CONFIG.id) {
+        window.location.reload();
+        return;
+      }
+      window.__plkReloading = false;
+    };
+    window.addEventListener("popstate", onPop);
+    window.addEventListener("pageshow", onShow);
+    return () => {
+      window.removeEventListener("popstate", onPop);
+      window.removeEventListener("pageshow", onShow);
+    };
+  }, []);
+  var _baseTitleRef = React.useRef(null);
+  React.useEffect(() => {
+    if (_baseTitleRef.current == null) _baseTitleRef.current = document.title || "Plursky";
+    if (state.tab === "landing") {
+      document.title = _baseTitleRef.current;
+      return;
+    }
+    var fest = typeof FESTIVAL_CONFIG !== "undefined" && FESTIVAL_CONFIG && (FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name) || "";
+    var labels = {
+      home: "Today",
+      lineup: "Lineup",
+      map: "Map",
+      spotify: "Music",
+      me: "Me",
+      memories: "Memories",
+      past: "Past festivals",
+      artists: "Artists",
+      recap: "Recap"
+    };
+    var a = state.artist ? ARTISTS.find(x => x.id === state.artist) : null;
+    var lead = a ? a.name : labels[state.tab] || "";
+    document.title = [lead, fest, "Plursky"].filter(Boolean).join(" · ");
+  }, [state.tab, state.artist]);
   var attendV = useAttendVersion();
   React.useEffect(() => {
     pruneAlertsKept(state.saved);

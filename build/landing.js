@@ -666,10 +666,9 @@ function GeneralLandingScreen({
     var entry = (typeof FESTIVALS_REGISTRY !== "undefined" ? FESTIVALS_REGISTRY : []).find(f => f && f.config && f.config.id === target);
     var canGo = entry && typeof festivalCanBeActive === "function" && festivalCanBeActive(entry);
     if (target && target !== activeId && canGo && typeof setActiveFestivalAndReload === "function") {
-      try {
-        history.replaceState(null, "", window.location.pathname + "?tab=memories");
-      } catch {}
-      setActiveFestivalAndReload(target);
+      setActiveFestivalAndReload(target, {
+        tab: "memories"
+      });
       return;
     }
     setState(s => ({
