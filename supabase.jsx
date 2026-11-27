@@ -1522,12 +1522,12 @@ function FriendsCard({ state, setState }) {
           </div>
           <div style={{ flex: 1, minWidth: 0 }}>
             <div className="duo-headline">
-              {myName || "Set your name"}
+              {myName || "You"}
             </div>
             <div className="duo-body-s duo-ink2" style={{ marginTop: 2, fontWeight: 400 }}>
               {sharing
                 ? (STAGES?.find(s => s.id === stageId)?.name || stageId) + " · live"
-                : "You · tap Go live to share"}
+                : (myName ? "You · tap Go live to share" : "Add a name, then go live to share")}
             </div>
           </div>
           <button onClick={handleToggle} className="duo-btn" style={{
