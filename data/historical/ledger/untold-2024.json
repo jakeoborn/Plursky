@@ -1,0 +1,144 @@
+{
+  "id": "untold-2024",
+  "method": "official_lineup_html",
+  "official": "https://untold.com/artists",
+  "format": "untold-artists",
+  "window": {
+    "until": "2024-08-18",
+    "why": "captures more than 7 days after the last day show the next edition"
+  },
+  "chosen": "20240804135444",
+  "archivedUrl": "https://web.archive.org/web/20240804135444/https://untold.com/artists",
+  "sha256": "69b53d1f221ffc38cdbd6f41808141045f7aced90d88473dfc0c52e380f6f00e",
+  "title": "Artists - Untold Festival",
+  "relayedVia": "firecrawl",
+  "census": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "untold",
+    "year": 2024,
+    "lifecycle": "occurred",
+    "dates": "2024-08-08..2024-08-11",
+    "evidence": "https://www.monitorulcj.ro/timp-liber/122231-un-untold-ca-niciun-altul-de-pana-acum-peste-427000-de-participanti-in-cele-patru-zile-de-festival",
+    "published": "2024-08-12"
+  },
+  "stageOrder": [
+    "Main",
+    "Galaxy",
+    "Daydreaming",
+    "Alchemy",
+    "Fortune",
+    "Time",
+    "Tram",
+    "Retro"
+  ],
+  "printedTwice": [],
+  "trimmed": [
+    {
+      "printed": "SHURUBEL ",
+      "billedAs": "SHURUBEL"
+    }
+  ],
+  "sameActs": [],
+  "considered": [
+    {
+      "captureTimestamp": "20240114102009",
+      "notFiled": "relay: capture 20240114102009 of https://untold.com/artists was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20240328225221",
+      "notFiled": "relay: capture 20240328225221 of https://untold.com/artists was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20240422164354",
+      "notFiled": "relay: capture 20240422164354 of https://untold.com/artists was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20240525170447",
+      "notFiled": "relay: capture 20240525170447 of https://untold.com/artists was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20240618125741",
+      "notFiled": "relay: capture 20240618125741 of https://untold.com/artists was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20240714125326",
+      "notFiled": "relay: capture 20240714125326 of https://untold.com/artists was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20240719125038",
+      "notFiled": "relay: capture 20240719125038 of https://untold.com/artists was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20240804105705",
+      "archivedUrl": "https://web.archive.org/web/20240804105705/https://untold.com/artists",
+      "sha256": "f9f0f84c26d354d3c723d39916a4d4cf7fe04285e6457da589e8af9c0d872d83",
+      "bytes": 1833714,
+      "via": "firecrawl",
+      "title": "Artists - Untold Festival",
+      "labels": [
+        "Ziua 1",
+        "Ziua 2",
+        "Ziua 3",
+        "Ziua 4"
+      ],
+      "printedDates": [
+        "2024-08-08",
+        "2024-08-09",
+        "2024-08-10",
+        "2024-08-11"
+      ],
+      "entries": 237,
+      "timedEntries": 237,
+      "valid": true,
+      "billings": 226,
+      "diffVsChosen": []
+    },
+    {
+      "captureTimestamp": "20240804135444",
+      "archivedUrl": "https://web.archive.org/web/20240804135444/https://untold.com/artists",
+      "sha256": "69b53d1f221ffc38cdbd6f41808141045f7aced90d88473dfc0c52e380f6f00e",
+      "bytes": 1833714,
+      "via": "firecrawl",
+      "title": "Artists - Untold Festival",
+      "labels": [
+        "Ziua 1",
+        "Ziua 2",
+        "Ziua 3",
+        "Ziua 4"
+      ],
+      "printedDates": [
+        "2024-08-08",
+        "2024-08-09",
+        "2024-08-10",
+        "2024-08-11"
+      ],
+      "entries": 237,
+      "timedEntries": 237,
+      "valid": true,
+      "billings": 226
+    }
+  ],
+  "dropped": [
+    {
+      "day": 4,
+      "stage": "Main",
+      "billing": "LOCAL ARTIST",
+      "category": "unnamed-slot",
+      "reason": "unnamed slot: no performer was billed"
+    }
+  ]
+}

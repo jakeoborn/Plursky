@@ -835,6 +835,21 @@ export const EDITIONS = {
     dates: [["2013-07-12", "Friday"], ["2013-07-13", "Saturday"]],
     notes: [{ asOf: "2026-11-27", text: "The lineup as the festival's own Artists page printed it a week after the festival: the acts it featured, each with its day and stage, not every act that played. Its third day, Ultra Beach on Hvar, was a separate event and is not listed.",
       source: "https://web.archive.org/web/20130720070946/http://ultraeurope.com:80/artists/" }] },
+  // UNTOLD 2024 and 2025 (Cluj-Napoca, Thursday to Sunday): the festival's
+  // own /artists page (untold-artists.mjs, extract-untold.mjs), whose
+  // embedded data lists every performance with its festival day's date, a
+  // numbered day label and its stage. The page's dates must be the census's
+  // dated run. Earlier years' pages load their lineup by script.
+  "untold-2024": { festivalId: "untold", name: "Untold 2024", year: 2024,
+    timezone: "Europe/Bucharest", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2024-08-08", "Thursday"], ["2024-08-09", "Friday"], ["2024-08-10", "Saturday"], ["2024-08-11", "Sunday"]],
+    notes: [{ asOf: "2026-11-27", text: "The lineup as the festival's own Artists page printed it on 4 August 2024, four days before the festival. Changes after that day are not shown.",
+      source: "https://web.archive.org/web/20240804135444/https://untold.com/artists" }] },
+  "untold-2025": { festivalId: "untold", name: "Untold 2025", year: 2025,
+    timezone: "Europe/Bucharest", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2025-08-07", "Thursday"], ["2025-08-08", "Friday"], ["2025-08-09", "Saturday"], ["2025-08-10", "Sunday"]],
+    notes: [{ asOf: "2026-11-27", text: "The lineup as the festival's own Artists page printed it on 25 July 2025, thirteen days before the festival. Changes after that day are not shown.",
+      source: "https://web.archive.org/web/20250725172515/https://untold.com/artists" }] },
   "tomorrowland-2023": { festivalId: "tomorrowland", name: "Tomorrowland 2023", year: 2023,
     timezone: "Europe/Brussels", rolloverHour: 6, method: "official_sources", dates: [["2023-07-21", "Friday"], ["2023-07-22", "Saturday"], ["2023-07-23", "Sunday"], ["2023-07-28", "Friday"], ["2023-07-29", "Saturday"], ["2023-07-30", "Sunday"]],
     dayLabels: ACL_WEEKEND_LABELS },
@@ -1092,8 +1107,13 @@ export const DROP_RULES = [
     reason: "Arcadia stage show printed between sets, not a billed performance" },
   // Electric Forest 2013 printed contest slots before their winners were
   // named ("Discovery Project Winner") and a "Secret Set".
-  { category: "unnamed-slot", test: /^(special guest|surprise guest|secret guest|secret set|tba|tbd|to be announced|coming soon!*|discovery project winners?|mystery headliner)$/i,
+  // UNTOLD 2024's Artists page lists a "LOCAL ARTIST" on the Main stage.
+  { category: "unnamed-slot", test: /^(special guest|surprise guest|secret guest|secret set|tba|tbd|to be announced|coming soon!*|discovery project winners?|mystery headliner|local artist)$/i,
     reason: "unnamed slot: no performer was billed" },
+  // UNTOLD 2025's Artists page lists three Main stage moments that name no
+  // performer: two broadcasters' anniversaries and a folk interlude.
+  { category: "show-segment", stage: /^main$/i, test: /^(traditional romanian moment|pro tv 30 years anniversary|digi fm 10 years)$/i,
+    reason: "a Main stage show moment that names no performer (a broadcaster's anniversary, a traditional interlude), not a billed performance" },
   // A bare "Discovery Project" in a printed stage slot is the contest set
   // before its winner was named (EDC Orlando 2022, 2024). A lineup list's
   // stageless "Discovery Project" entry is left to the live lineup.
