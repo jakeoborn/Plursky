@@ -21,6 +21,17 @@ const QUICK_REPLIES = [
 // chip row offers a relevant suggestion instead of a generic OMW. v1 is
 // rule-based; a future iteration can call the Anthropic API to draft a
 // real personalized message when online.
+
+// The map card's words for a failure. The raw message stays in the console
+// and on data-realmap-err-raw; a person reads what happened in plain words.
+function _mapErrWords(err) {
+  const m = String(err || "");
+  if (m === "No network connection") return "Offline — no cached map for this festival yet";
+  if (/webgl/i.test(m)) return "This browser can't draw the live map right now. Low Power Mode or an older browser can cause this.";
+  if (/library|script/i.test(m)) return "The map didn't load. Check your connection and retry.";
+  return "The map didn't load. Retry in a moment.";
+}
+
 // Black or white ink for text on an arbitrary hex fill (a stage colour),
 // whichever clears WCAG AA. Stage colours are map-only and not mode tokens.
 function _inkOnHex(hex) {
@@ -6186,15 +6197,17 @@ function RealMap({
         <div style={{
           position: "absolute", inset: 0,
           display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
-          color: "var(--alert)",
+          color: "var(--ink-2)",
           fontFamily: "'Geist Mono',monospace", fontSize: 10, letterSpacing: 1.3,
           gap: 6, padding: 20, textAlign: "center",
         }}>
-          <div>MAP ERROR</div>
+          <div data-realmap-err-head>MAP UNAVAILABLE</div>
           {/* Offline is said as offline (L7). Here nothing is cached — a saved
-              pack would have opened instead (pack mode) — so it says so. */}
-          <div data-realmap-err style={{ color: "var(--text-3)", fontSize: 9, maxWidth: 240 }}>
-            {err === "No network connection" ? "Offline — no cached map for this festival yet" : err}
+              pack would have opened instead (pack mode) — so it says so. Any
+              other cause is said in plain words: the raw message (a WebGL
+              context dump, a tile URL) went to the console, never the card. */}
+          <div data-realmap-err data-realmap-err-raw={String(err).slice(0, 200)} style={{ color: "var(--text-3)", fontSize: 9, maxWidth: 240 }}>
+            {_mapErrWords(err)}
           </div>
           {/* "USE FESTIVAL MAP" is only an offer worth making when a festival
               map EXISTS. On a mapMode:"real" festival there is no art and no
@@ -6215,6 +6228,13 @@ function RealMap({
                 The official festival map publishes before doors. Until then this
                 screen needs a connection.
               </div>
+              {(FESTIVAL_CONFIG.venue?.address || FESTIVAL_CONFIG.location) && (
+                <a data-realmap-err-directions target="_blank" rel="noopener noreferrer"
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent([FESTIVAL_CONFIG.venue?.name, FESTIVAL_CONFIG.venue?.address || FESTIVAL_CONFIG.location].filter(Boolean).join(", "))}`}
+                  style={{ marginTop: 10, color: "var(--ink)", fontSize: 9, letterSpacing: 1.2, fontWeight: 700, textDecoration: "underline", textUnderlineOffset: 3 }}>
+                  OPEN IN MAPS ↗
+                </a>
+              )}
               <button onClick={() => { setErr(null); fatalRef.current = false; tileErrRef.current = 0; setAttempt(a => a + 1); }} style={{
                 marginTop: 10, padding: "7px 16px", borderRadius: 999, border: "none",
                 background: "var(--ember)", color: "var(--on-ember)", cursor: "pointer",
