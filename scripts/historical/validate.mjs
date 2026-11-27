@@ -102,6 +102,10 @@ export const OFFICIAL_HOSTS = {
   // ultraeurope.com: Ultra Europe's own site, whose 2013 /artists/ page
   // listed each act with its day and stage.
   "ultra-europe": ["ultraeurope.com"],
+  // bottlerocknapavalley.com: BottleRock Napa Valley's own site, whose
+  // Artists page (/lineup-schedule/artists/, /lineup-schedule/<year>-artists/,
+  // /<year>-artists/) listed each year's acts by day.
+  "bottlerock": ["bottlerocknapavalley.com"],
 };
 
 // Where an official graphic may be re-hosted for an `official_sources`

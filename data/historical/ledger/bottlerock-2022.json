@@ -1,0 +1,171 @@
+{
+  "id": "bottlerock-2022",
+  "method": "official_lineup_html",
+  "official": "https://www.bottlerocknapavalley.com/2022-artists/",
+  "format": "bottlerock-artists",
+  "window": {
+    "from": "20220101",
+    "to": "20221231",
+    "read": "the first valid capture taken after the last day; else the latest before it"
+  },
+  "chosen": "20220611152424",
+  "archivedUrl": "https://web.archive.org/web/20220611152424/https://www.bottlerocknapavalley.com/2022-artists/",
+  "sha256": "c3bbe6c604cdce1ae2f4b492d5f6ea7b1c276987955e74a8fdcd6860d57b8a44",
+  "title": "BottleRock Napa Valley 2022 Artists - BottleRock Napa Valley",
+  "heading": "2022 Artists",
+  "relayedVia": "firecrawl",
+  "afterFestival": true,
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "bottlerock",
+    "year": 2022,
+    "lifecycle": "occurred",
+    "dates": "2022-05-27..2022-05-29",
+    "evidence": "https://glidemagazine.com/276313/bottlerock-napa-valley-2022-highlights-photos-metallica-greta-van-fleet-the-black-crowes-the-suffers-more/",
+    "published": "2022-06-01"
+  },
+  "printedRun": null,
+  "printedTwice": [],
+  "considered": [
+    {
+      "captureTimestamp": "20220111093513",
+      "original": "https://www.bottlerocknapavalley.com/2022-artists/",
+      "notFiled": "relay: capture 20220111093513 of https://www.bottlerocknapavalley.com/2022-artists/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20220111161140",
+      "original": "https://www.bottlerocknapavalley.com/2022-artists/",
+      "notFiled": "relay: capture 20220111161140 of https://www.bottlerocknapavalley.com/2022-artists/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20220111183612",
+      "original": "https://www.bottlerocknapavalley.com/2022-artists/",
+      "notFiled": "relay: capture 20220111183612 of https://www.bottlerocknapavalley.com/2022-artists/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20220115032718",
+      "original": "https://www.bottlerocknapavalley.com/2022-artists/",
+      "notFiled": "relay: capture 20220115032718 of https://www.bottlerocknapavalley.com/2022-artists/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20220128045857",
+      "original": "https://www.bottlerocknapavalley.com/2022-artists/",
+      "notFiled": "relay: capture 20220128045857 of https://www.bottlerocknapavalley.com/2022-artists/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20220304031953",
+      "original": "https://www.bottlerocknapavalley.com/2022-artists/",
+      "notFiled": "relay: capture 20220304031953 of https://www.bottlerocknapavalley.com/2022-artists/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20220316160510",
+      "original": "https://www.bottlerocknapavalley.com/2022-artists/",
+      "notFiled": "relay: capture 20220316160510 of https://www.bottlerocknapavalley.com/2022-artists/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20220319031841",
+      "original": "https://www.bottlerocknapavalley.com/2022-artists/",
+      "notFiled": "relay: capture 20220319031841 of https://www.bottlerocknapavalley.com/2022-artists/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20220408111354",
+      "original": "https://www.bottlerocknapavalley.com/2022-artists/",
+      "notFiled": "relay: capture 20220408111354 of https://www.bottlerocknapavalley.com/2022-artists/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20220512195332",
+      "original": "https://www.bottlerocknapavalley.com/2022-artists/",
+      "notFiled": "relay: capture 20220512195332 of https://www.bottlerocknapavalley.com/2022-artists/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20220518165154",
+      "original": "https://www.bottlerocknapavalley.com/2022-artists/",
+      "notFiled": "relay: capture 20220518165154 of https://www.bottlerocknapavalley.com/2022-artists/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20220521051456",
+      "original": "https://www.bottlerocknapavalley.com/2022-artists/",
+      "notFiled": "relay: capture 20220521051456 of https://www.bottlerocknapavalley.com/2022-artists/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20220526185726",
+      "original": "https://www.bottlerocknapavalley.com/2022-artists/",
+      "notFiled": "relay: capture 20220526185726 of https://www.bottlerocknapavalley.com/2022-artists/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20220527142427",
+      "original": "https://www.bottlerocknapavalley.com/2022-artists/",
+      "notFiled": "relay: capture 20220527142427 of https://www.bottlerocknapavalley.com/2022-artists/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20220528052155",
+      "original": "https://www.bottlerocknapavalley.com/2022-artists/",
+      "notFiled": "relay: capture 20220528052155 of https://www.bottlerocknapavalley.com/2022-artists/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20220611152424",
+      "original": "https://www.bottlerocknapavalley.com/2022-artists/",
+      "archivedUrl": "https://web.archive.org/web/20220611152424/https://www.bottlerocknapavalley.com/2022-artists/",
+      "sha256": "c3bbe6c604cdce1ae2f4b492d5f6ea7b1c276987955e74a8fdcd6860d57b8a44",
+      "bytes": 108505,
+      "via": "firecrawl",
+      "title": "BottleRock Napa Valley 2022 Artists - BottleRock Napa Valley",
+      "heading": "2022 Artists",
+      "filter": [
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "runs": [
+        "May 26-28, 2023"
+      ],
+      "valid": true,
+      "billings": 77
+    },
+    {
+      "captureTimestamp": "20220819041723",
+      "original": "https://www.bottlerocknapavalley.com/2022-artists/",
+      "notFiled": "relay: capture 20220819041723 of https://www.bottlerocknapavalley.com/2022-artists/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20221129134324",
+      "original": "https://www.bottlerocknapavalley.com/2022-artists/",
+      "notFiled": "relay: capture 20221129134324 of https://www.bottlerocknapavalley.com/2022-artists/ was not filed",
+      "valid": false,
+      "billings": 0
+    }
+  ],
+  "dropped": []
+}

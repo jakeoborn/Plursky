@@ -897,6 +897,99 @@
    }
   },
   {
+   "id": "bottlerock-2022",
+   "festivalId": "bottlerock",
+   "festivalName": "BottleRock Napa Valley",
+   "name": "BottleRock Napa Valley 2022",
+   "year": 2022,
+   "timezone": "America/Los_Angeles",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2022-05-27",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2022-05-28",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2022-05-29",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 77,
+    "sets": 0
+   }
+  },
+  {
+   "id": "bottlerock-2017",
+   "festivalId": "bottlerock",
+   "festivalName": "BottleRock Napa Valley",
+   "name": "BottleRock Napa Valley 2017",
+   "year": 2017,
+   "timezone": "America/Los_Angeles",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2017-05-26",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2017-05-27",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2017-05-28",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 85,
+    "sets": 0
+   }
+  },
+  {
+   "id": "bottlerock-2015",
+   "festivalId": "bottlerock",
+   "festivalName": "BottleRock Napa Valley",
+   "name": "BottleRock Napa Valley 2015",
+   "year": 2015,
+   "timezone": "America/Los_Angeles",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2015-05-29",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2015-05-30",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2015-05-31",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 72,
+    "sets": 0
+   }
+  },
+  {
    "id": "coachella-2026",
    "festivalId": "coachella",
    "festivalName": "Coachella",

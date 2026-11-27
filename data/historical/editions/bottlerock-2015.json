@@ -1,0 +1,978 @@
+{
+ "id": "bottlerock-2015",
+ "festivalId": "bottlerock",
+ "name": "BottleRock Napa Valley 2015",
+ "year": 2015,
+ "timezone": "America/Los_Angeles",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2015-05-29",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2015-05-30",
+   "label": "Saturday"
+  },
+  {
+   "day": 3,
+   "date": "2015-05-31",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [],
+ "artists": [
+  {
+   "id": "bottlerock-2015:imagine-dragons",
+   "name": "Imagine Dragons",
+   "key": "imagine-dragons",
+   "performers": [
+    "imagine-dragons"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:no-doubt",
+   "name": "No Doubt",
+   "key": "no-doubt",
+   "performers": [
+    "no-doubt"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:robert-plant",
+   "name": "Robert Plant",
+   "key": "robert-plant",
+   "performers": [
+    "robert-plant"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:the-avett-brothers",
+   "name": "The Avett Brothers",
+   "key": "the-avett-brothers",
+   "performers": [
+    "the-avett-brothers"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:foster-the-people",
+   "name": "Foster The People",
+   "key": "foster-the-people",
+   "performers": [
+    "foster-the-people"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:passion-pit",
+   "name": "Passion Pit",
+   "key": "passion-pit",
+   "performers": [
+    "passion-pit"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:snoop-dogg",
+   "name": "Snoop Dogg",
+   "key": "snoop-dogg",
+   "performers": [
+    "snoop-dogg"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:cage-the-elephant",
+   "name": "Cage The Elephant",
+   "key": "cage-the-elephant",
+   "performers": [
+    "cage-the-elephant"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:young-the-giant",
+   "name": "Young the Giant",
+   "key": "young-the-giant",
+   "performers": [
+    "young-the-giant"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:gipsy-kings",
+   "name": "Gipsy Kings",
+   "key": "gipsy-kings",
+   "performers": [
+    "gipsy-kings"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:capital-cities",
+   "name": "Capital Cities",
+   "key": "capital-cities",
+   "performers": [
+    "capital-cities"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:awolnation",
+   "name": "AWOLNATION",
+   "key": "awolnation",
+   "performers": [
+    "awolnation"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:michael-franti-and-spearhead",
+   "name": "Michael Franti & Spearhead",
+   "key": "michael-franti-and-spearhead",
+   "performers": [
+    "michael-franti-and-spearhead"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:portugal-the-man",
+   "name": "Portugal. The Man",
+   "key": "portugal-the-man",
+   "performers": [
+    "portugal-the-man"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:american-authors",
+   "name": "American Authors",
+   "key": "american-authors",
+   "performers": [
+    "american-authors"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:public-enemy",
+   "name": "Public Enemy",
+   "key": "public-enemy",
+   "performers": [
+    "public-enemy"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:trampled-by-turtles",
+   "name": "Trampled By Turtles",
+   "key": "trampled-by-turtles",
+   "performers": [
+    "trampled-by-turtles"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:los-lobos",
+   "name": "Los Lobos",
+   "key": "los-lobos",
+   "performers": [
+    "los-lobos"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:the-chris-robinson-brotherhood",
+   "name": "The Chris Robinson Brotherhood",
+   "key": "the-chris-robinson-brotherhood",
+   "performers": [
+    "the-chris-robinson-brotherhood"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:zz-ward",
+   "name": "ZZ Ward",
+   "key": "zz-ward",
+   "performers": [
+    "zz-ward"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:echosmith",
+   "name": "Echosmith",
+   "key": "echosmith",
+   "performers": [
+    "echosmith"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:brett-dennen",
+   "name": "Brett Dennen",
+   "key": "brett-dennen",
+   "performers": [
+    "brett-dennen"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:scott-weiland-and-the-wildabouts",
+   "name": "Scott Weiland & The Wildabouts",
+   "key": "scott-weiland-and-the-wildabouts",
+   "performers": [
+    "scott-weiland-and-the-wildabouts"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:lettuce",
+   "name": "Lettuce",
+   "key": "lettuce",
+   "performers": [
+    "lettuce"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:los-amigos-invisibles",
+   "name": "Los Amigos Invisibles",
+   "key": "los-amigos-invisibles",
+   "performers": [
+    "los-amigos-invisibles"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:preservation-hall-jazz-band",
+   "name": "Preservation Hall Jazz Band",
+   "key": "preservation-hall-jazz-band",
+   "performers": [
+    "preservation-hall-jazz-band"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:jj-grey-and-mofro",
+   "name": "JJ Grey & Mofro",
+   "key": "jj-grey-and-mofro",
+   "performers": [
+    "jj-grey-and-mofro"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:xavier-rudd-and-the-united-nations",
+   "name": "Xavier Rudd & the United Nations",
+   "key": "xavier-rudd-and-the-united-nations",
+   "performers": [
+    "xavier-rudd-and-the-united-nations"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:aer",
+   "name": "Aer",
+   "key": "aer",
+   "performers": [
+    "aer"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:the-mowgli-s",
+   "name": "The Mowgli's",
+   "key": "the-mowgli-s",
+   "performers": [
+    "the-mowgli-s"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:courtney-barnett",
+   "name": "Courtney Barnett",
+   "key": "courtney-barnett",
+   "performers": [
+    "courtney-barnett"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:kopecky",
+   "name": "Kopecky",
+   "key": "kopecky",
+   "performers": [
+    "kopecky"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:big-talk",
+   "name": "Big Talk",
+   "key": "big-talk",
+   "performers": [
+    "big-talk"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:tristan-prettyman",
+   "name": "Tristan Prettyman",
+   "key": "tristan-prettyman",
+   "performers": [
+    "tristan-prettyman"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:people-under-the-stairs",
+   "name": "People Under the Stairs",
+   "key": "people-under-the-stairs",
+   "performers": [
+    "people-under-the-stairs"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:vacationer",
+   "name": "Vacationer",
+   "key": "vacationer",
+   "performers": [
+    "vacationer"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:the-brothers-comatose",
+   "name": "The Brothers Comatose",
+   "key": "the-brothers-comatose",
+   "performers": [
+    "the-brothers-comatose"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:knox-hamilton",
+   "name": "Knox Hamilton",
+   "key": "knox-hamilton",
+   "performers": [
+    "knox-hamilton"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:the-last-internationale",
+   "name": "The Last Internationale",
+   "key": "the-last-internationale",
+   "performers": [
+    "the-last-internationale"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:zella-day",
+   "name": "Zella Day",
+   "key": "zella-day",
+   "performers": [
+    "zella-day"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:finish-ticket",
+   "name": "Finish Ticket",
+   "key": "finish-ticket",
+   "performers": [
+    "finish-ticket"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:sister-sparrow-and-the-dirty-birds",
+   "name": "Sister Sparrow & The Dirty Birds",
+   "key": "sister-sparrow-and-the-dirty-birds",
+   "performers": [
+    "sister-sparrow-and-the-dirty-birds"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:ryan-sims-band",
+   "name": "Ryan Sims Band",
+   "key": "ryan-sims-band",
+   "performers": [
+    "ryan-sims-band"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:the-london-souls",
+   "name": "The London Souls",
+   "key": "the-london-souls",
+   "performers": [
+    "the-london-souls"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:moonalice",
+   "name": "Moonalice",
+   "key": "moonalice",
+   "performers": [
+    "moonalice"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:grizfolk",
+   "name": "Grizfolk",
+   "key": "grizfolk",
+   "performers": [
+    "grizfolk"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:black-english",
+   "name": "Black English",
+   "key": "black-english",
+   "performers": [
+    "black-english"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:wild-ones",
+   "name": "Wild Ones",
+   "key": "wild-ones",
+   "performers": [
+    "wild-ones"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:the-record-company",
+   "name": "The Record Company",
+   "key": "the-record-company",
+   "performers": [
+    "the-record-company"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:kawehi",
+   "name": "Kawehi",
+   "key": "kawehi",
+   "performers": [
+    "kawehi"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:emily-wolfe",
+   "name": "Emily Wolfe",
+   "key": "emily-wolfe",
+   "performers": [
+    "emily-wolfe"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:afrolicious",
+   "name": "Afrolicious",
+   "key": "afrolicious",
+   "performers": [
+    "afrolicious"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:con-brio",
+   "name": "Con Brio",
+   "key": "con-brio",
+   "performers": [
+    "con-brio"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:wildlife-control",
+   "name": "Wildlife Control",
+   "key": "wildlife-control",
+   "performers": [
+    "wildlife-control"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:sneakout",
+   "name": "Sneakout",
+   "key": "sneakout",
+   "performers": [
+    "sneakout"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:transfer",
+   "name": "Transfer",
+   "key": "transfer",
+   "performers": [
+    "transfer"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:battle-tapes",
+   "name": "Battle Tapes",
+   "key": "battle-tapes",
+   "performers": [
+    "battle-tapes"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:the-trims",
+   "name": "The Trims",
+   "key": "the-trims",
+   "performers": [
+    "the-trims"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:fritz-montana",
+   "name": "Fritz Montana",
+   "key": "fritz-montana",
+   "performers": [
+    "fritz-montana"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:the-frail",
+   "name": "The Frail",
+   "key": "the-frail",
+   "performers": [
+    "the-frail"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:mother-mother",
+   "name": "Mother Mother",
+   "key": "mother-mother",
+   "performers": [
+    "mother-mother"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:eaglewolfsnake",
+   "name": "EagleWolfSnake",
+   "key": "eaglewolfsnake",
+   "performers": [
+    "eaglewolfsnake"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:doe-eye",
+   "name": "Doe Eye",
+   "key": "doe-eye",
+   "performers": [
+    "doe-eye"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:matthew-moon",
+   "name": "Matthew Moon",
+   "key": "matthew-moon",
+   "performers": [
+    "matthew-moon"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:the-iron-heart",
+   "name": "The Iron Heart",
+   "key": "the-iron-heart",
+   "performers": [
+    "the-iron-heart"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:the-bad-jones",
+   "name": "The Bad Jones",
+   "key": "the-bad-jones",
+   "performers": [
+    "the-bad-jones"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:silverado-pickups",
+   "name": "Silverado Pickups",
+   "key": "silverado-pickups",
+   "performers": [
+    "silverado-pickups"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:the-deadlies",
+   "name": "The Deadlies",
+   "key": "the-deadlies",
+   "performers": [
+    "the-deadlies"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:grass-child",
+   "name": "Grass Child",
+   "key": "grass-child",
+   "performers": [
+    "grass-child"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:pion-2-zion",
+   "name": "Pion 2 Zion",
+   "key": "pion-2-zion",
+   "performers": [
+    "pion-2-zion"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:napa-crossroads-live-featuring-david-pack-john-elefante-bill-champlin-jim-peterik",
+   "name": "Napa Crossroads Live Featuring: David Pack, John Elefante, Bill Champlin, Jim Peterik",
+   "key": "napa-crossroads-live-featuring-david-pack-john-elefante-bill-champlin-jim-peterik",
+   "performers": [
+    "napa-crossroads-live-featuring-david-pack-john-elefante-bill-champlin-jim-peterik"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2015:jessica-malone",
+   "name": "Jessica Malone",
+   "key": "jessica-malone",
+   "performers": [
+    "jessica-malone"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "official_lineup_html",
+  "official": "https://www.bottlerocknapavalley.com/lineup-schedule/artists/",
+  "captures": [
+   {
+    "page": "lineup",
+    "archivedUrl": "https://web.archive.org/web/20150610013448/http://www.bottlerocknapavalley.com:80/lineup-schedule/artists/",
+    "captureTimestamp": "20150610013448",
+    "sha256": "a0deeafea3faaf3d184c9afd4ae403bf4e936bf51b5134deb9c27e2446883ce2"
+   }
+  ]
+ }
+}

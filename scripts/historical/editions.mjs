@@ -810,6 +810,22 @@ export const EDITIONS = {
     dates: [["2013-07-12", "Friday"], ["2013-07-13", "Saturday"]],
     notes: [{ asOf: "2026-11-27", text: "The lineup as the festival's own Artists page printed it a week after the festival: the acts it featured, each with its day and stage, not every act that played. Its third day, Ultra Beach on Hvar, was a separate event and is not listed.",
       source: "https://web.archive.org/web/20130720070946/http://ultraeurope.com:80/artists/" }] },
+  // BottleRock Napa Valley 2015, 2017 and 2022 (Napa Valley Expo, Friday to
+  // Sunday): the festival's own Artists page (bottlerock-artists.mjs,
+  // extract-bottlerock.mjs), which lists every act under the weekday filter
+  // of the day it plays, and no stage. The page prints weekdays (in 2015
+  // with the day of the month); the dates are the run the census's dated
+  // post-event report gives for that year, and any run the page prints for
+  // the year (2015's footer, 2017's description) must be the same.
+  "bottlerock-2015": { festivalId: "bottlerock", name: "BottleRock Napa Valley 2015", year: 2015,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2015-05-29", "Friday"], ["2015-05-30", "Saturday"], ["2015-05-31", "Sunday"]] },
+  "bottlerock-2017": { festivalId: "bottlerock", name: "BottleRock Napa Valley 2017", year: 2017,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2017-05-26", "Friday"], ["2017-05-27", "Saturday"], ["2017-05-28", "Sunday"]] },
+  "bottlerock-2022": { festivalId: "bottlerock", name: "BottleRock Napa Valley 2022", year: 2022,
+    timezone: "America/Los_Angeles", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2022-05-27", "Friday"], ["2022-05-28", "Saturday"], ["2022-05-29", "Sunday"]] },
   "tomorrowland-2023": { festivalId: "tomorrowland", name: "Tomorrowland 2023", year: 2023,
     timezone: "Europe/Brussels", rolloverHour: 6, method: "official_sources", dates: [["2023-07-21", "Friday"], ["2023-07-22", "Saturday"], ["2023-07-23", "Sunday"], ["2023-07-28", "Friday"], ["2023-07-29", "Saturday"], ["2023-07-30", "Sunday"]],
     dayLabels: ACL_WEEKEND_LABELS },
