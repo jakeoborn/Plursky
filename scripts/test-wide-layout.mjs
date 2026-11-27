@@ -58,7 +58,13 @@ async function open(browser, url, width, height, scheme = 'dark') {
   await ready(page);
   return { ctx, page };
 }
-const shot = async (page, name) => { if (SHOTS) { try { await page.screenshot({ path: join(SHOTS, `${name}.png`) }); } catch {} } };
+// A small JPEG beside each PNG, which sanity.yml can print into the job log
+// when artifacts cannot be fetched (WIDE_SHOTS_LOG).
+const shot = async (page, name) => {
+  if (!SHOTS) return;
+  try { await page.screenshot({ path: join(SHOTS, `${name}.png`) }); } catch {}
+  if (process.env.WIDE_SHOTS_LOG) { try { await page.screenshot({ path: join(SHOTS, `${name}.jpg`), type: 'jpeg', quality: 55 }); } catch {} }
+};
 
 // Everything the checks need, read in one go.
 const measure = (page) => page.evaluate(() => {
@@ -126,10 +132,12 @@ try {
     check(m.view && m.view.w <= 900, `1440 artist: the artist page sits in the column (${m.view && m.view.w})`);
     check(m.docOverflow <= 1, `1440 artist: nothing scrolls sideways`);
     await shot(page, 'wide-dark-artist');
-    await page.locator('.ps-tabbar button.ps-tab', { hasText: 'Map' }).first().click();
+    // The pinned clock is after EDC, so the rail's tabs are Today / Lineup /
+    // Memories / Me; Memories is the one that is not the screen underneath.
+    await page.locator('.ps-tabbar button.ps-tab', { hasText: 'Memories' }).first().click();
     await sleep(700);
     m = await measure(page);
-    check(/tab=map/.test(m.search) && !/artist=/.test(m.search), `1440 artist: the rail's Map leaves the artist page (${m.search})`);
+    check(/tab=memories/.test(m.search) && !/artist=/.test(m.search), `1440 artist: the rail's Memories leaves the artist page (${m.search})`);
     await page.locator('.ps-rail-all').click();
     await sleep(900);
     const landed = await page.evaluate(() => !document.querySelector('.ps-tabbar') && location.search === '');

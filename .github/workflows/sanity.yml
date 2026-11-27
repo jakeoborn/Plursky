@@ -92,6 +92,7 @@ jobs:
         env:
           APPEARANCE_EVIDENCE: ${{ runner.temp }}/appearance-evidence
           WIDE_SHOTS: ${{ runner.temp }}/wide-layout-shots
+          WIDE_SHOTS_LOG: "1"
 
       # A failed appearance leak check saves the fresh and toggled shots of
       # the screenful that differed (fixture data only), so a runner-only
@@ -104,6 +105,18 @@ jobs:
           path: ${{ runner.temp }}/appearance-evidence
           if-no-files-found: ignore
           retention-days: 7
+
+      # The same screenshots as small JPEGs in the job log (base64), for a
+      # reviewer that can read logs but not download artifacts.
+      - name: Print wide-layout screenshots
+        if: always()
+        run: |
+          for f in "${{ runner.temp }}"/wide-layout-shots/*.jpg; do
+            [ -f "$f" ] || continue
+            echo "WIDESHOT $(basename "$f")"
+            base64 -w 8000 "$f" | sed 's/^/WS> /'
+            echo "WIDESHOT-END"
+          done
 
       # Screenshots of the wide (computer) layout and a phone for comparison,
       # kept on every run so a layout change can be looked at, not guessed at.
