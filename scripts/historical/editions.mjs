@@ -722,6 +722,20 @@ export const EDITIONS = {
   "time-warp-2025": { festivalId: "time-warp", name: "Time Warp Germany 2025", year: 2025,
     timezone: "Europe/Berlin", rolloverHour: 6, method: "official_lineup_html",
     dates: [["2025-04-05", "Saturday"]] },
+  // Awakenings Festival 2010-2012 (one Saturday at Spaarnwoude): the
+  // festival's own party page on its old site (awakenings-lineup.mjs,
+  // extract-awakenings-lineup.mjs), which prints the date and lists every
+  // set under its area tab ("C", "W (air)"). From 2013 the lineup was loaded
+  // by script and never archived; from 2016 the site is awakenings.com.
+  "awakenings-2010": { festivalId: "awakenings", name: "Awakenings Festival 2010", year: 2010,
+    timezone: "Europe/Amsterdam", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2010-06-26", "Saturday"]] },
+  "awakenings-2011": { festivalId: "awakenings", name: "Awakenings Festival 2011", year: 2011,
+    timezone: "Europe/Amsterdam", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2011-06-25", "Saturday"]] },
+  "awakenings-2012": { festivalId: "awakenings", name: "Awakenings Festival 2012", year: 2012,
+    timezone: "Europe/Amsterdam", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2012-06-30", "Saturday"]] },
   // Creamfields 2017-2019 and 2021 (Daresbury, Thursday to Sunday): the
   // festival's own /artists page (creamfields-artists.mjs,
   // extract-creamfields.mjs), which lists every act with the weekdays it

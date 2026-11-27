@@ -48,6 +48,7 @@ import { parseDefqonLogos, subtitleDate as defqonLogosDate } from "./historical/
 import { parseTomorrowlandLineup } from "./historical/tomorrowland-lineup.mjs";
 import { parseTimeWarpLineup, parseTimeWarpClassic, parseTimeWarpMannheim, headerDates as twHeaderDates, menuDate as twMenuDate } from "./historical/timewarp-lineup.mjs";
 import { parsePorDia as lbPorDia, parseGrid as lbGrid, parseCards as lbCards, printedRun as lbRun, dayHeading as lbHeading, tabPrints as lbTab } from "./historical/lollabr-lineup.mjs";
+import { parseAwakeningsLineup, awakeningsRows, printedDate as awPrintedDate } from "./historical/awakenings-lineup.mjs";
 import { parseCreamfieldsArtists, creamfieldsRows } from "./historical/creamfields-artists.mjs";
 import { parseEfLineup, printedRun as efPrintedRun } from "./historical/ef-lineup.mjs";
 import { censusRow, runDates, CENSUS as CREAMFIELDS_CENSUS } from "./historical/extract-creamfields.mjs";
@@ -192,6 +193,16 @@ if (base && edc) {
     mustFail("a Lollapalooza Brasil lineup read off Lollapalooza's US site", m => { const c = lbCap(m); c.archivedUrl = c.archivedUrl.replace("www.lollapaloozabr.com", "www.lollapalooza.com"); }, lb19, () => {}, /not an official lollapalooza-brasil property/);
     mustFail("a Lollapalooza Brasil day moved off its date", m => { m.days[0].date = "2019-04-04"; }, lb19);
     mustFail("a Lollapalooza Brasil act dropped", m => { m.artists.pop(); }, lb19, undefined, /artists, locked/);
+  }
+  // Awakenings 2012: its lineup is the festival's own party page on
+  // awakenings.nl, captured the day after; its one day is the date it printed.
+  const aw12 = editions["awakenings-2012"];
+  if (aw12) {
+    const awCap = m => m.provenance.captures[0];
+    mustFail("an Awakenings 2012 lineup captured a year on", m => { const c = awCap(m); c.archivedUrl = c.archivedUrl.replace("/web/2012", "/web/2013"); c.captureTimestamp = c.captureTimestamp.replace(/^2012/, "2013"); }, aw12, () => {}, /is not from 2012/);
+    mustFail("an Awakenings lineup read off another site", m => { const c = awCap(m); c.archivedUrl = c.archivedUrl.replace("www.awakenings.nl", "www.awakenings-fans.nl"); }, aw12, () => {}, /not an official awakenings property/);
+    mustFail("an Awakenings 2012 day moved to another date", m => { m.days[0].date = "2012-07-01"; }, aw12);
+    mustFail("an Awakenings 2012 day with no billed artist", m => { for (const a of m.artists) a.appearances = a.appearances.map(({ stageId }) => ({ stageId })); }, aw12);
   }
   // Tomorrowland 2010-2012: each day page prints its day as its own tab, with
   // no year, on the festival's own .be site.
@@ -1184,6 +1195,38 @@ if (base && edc) {
     lbMust("a Lollapalooza Brasil card dated off the run", lbCards, lbCardsPage({ cards: [lbCard("Pearl Jam", ["26/3/2018"]), lbCard("A", ["23/3/2018"]), lbCard("B", ["25/3/2018"])] }), 2018);
     lbMust("a Lollapalooza Brasil run with a day no card plays", lbCards, lbCardsPage({ cards: [lbCard("A", ["23/3/2018"])] }), 2018);
     lbMust("an empty Lollapalooza Brasil cards page", lbCards, `<title>LINEUP – Lollapalooza Brasil</title><meta name="description" content="O Lollapalooza Brasil 2018 será dias 23, 24 e 25 de março!">`, 2018);
+    // Awakenings' old party page: a header with the one date, area tabs, one
+    // panel per tab with each set's range and name.
+    const awAct = (range, name) => `<li><a href="http://www.awakenings.nl/en/artists/1/x/"><img src="x.jpg" alt="${name}"></a><p>${range}<br><span class="name"><a href="http://www.awakenings.nl/en/artists/1/x/" class="flyercolor">${name}</a></span></p></li>`;
+    const awPanel = (n, acts, extra = "") => `<div id="line-up-id1-${n}">${extra}<ul>${acts.join("")}</ul><div class="clear"></div><div class="full"><p>=&nbsp;DJ/Live-set available</p></div></div>`;
+    const awTabs = labels => `<div id="line-up-id1" class="margin28"><ul class="border-grey">${labels.map((l, i) => `<li><a href="http://www.awakenings.nl/#line-up-id1-${i + 1}"><span>${l}</span></a></li>`).join("")}</ul>`;
+    const awPanels = [awPanel(1, [awAct("12:00 - 14:00", "Nicole Rosie"), awAct("14:00 - 15:30", "Makam ")], '<p class="soldout">SOLD OUT</p>'), awPanel(2, [awAct("11:00 - 12:45", "Lützenkirchen (live)"), awAct("21:00 - 23:00", "Carl Cox")])];
+    const awPage = ({ title = "Awakenings Festival - 30 June 2012 - Awakenings Parties", head = "<h1>Awakenings Festival</h1><br>", date = "30 June 2012", tabs = awTabs(["C", "W (air)"]), panels = awPanels } = {}) =>
+      `<title>${title}</title><div class="detailsbig2">${head}<h3>${date}<br>Recreatiegebied, Halfweg<br>11:00 / 23:00</h3></div>${tabs}<img src="tab-gray-panel-top.gif">${panels.join("")}<img src="http://www.awakenings.nl/images/ui-tab/tab-gray-panel-bottom.gif"></div>`;
+    const awp = parseAwakeningsLineup(awPage(), { year: 2012 });
+    ok(JSON.stringify([awp.event, awp.date, awp.label, awp.place, awakeningsRows(awp).map(r => `${r.artist}@${r.stage}`)])
+      === JSON.stringify(["Awakenings Festival", "2012-06-30", "Saturday 30 June 2012", "Recreatiegebied, Halfweg", ["Nicole Rosie@C", "Makam@C", "Lützenkirchen (live)@W (air)", "Carl Cox@W (air)"]]),
+      `an Awakenings party page must come back as its one date and each act on its area tab: ${JSON.stringify(awp)}`);
+    ok(parseAwakeningsLineup(awPage({ title: "Awakenings - Parties - Awakenings Festival 10 Year Anniversary - 26 June 2010", head: "<h1>Awakenings</h1><br><h2>Festival 10 Year Anniversary</h2><br>", date: "26 June 2010" }), { year: 2010 }).event === "Awakenings Festival 10 Year Anniversary",
+      "the 2010 page names the festival across its h1 and h2");
+    ok(awPrintedDate("25 June 2011", 2011) === "2011-06-25" && awPrintedDate("31 June 2011", 2011) === null && awPrintedDate("25 June 2011", 2012) === null, "Awakenings' printed dates must be real dates in the year");
+    const awMust = (what, html, year = 2012) => { let bad = false; try { parseAwakeningsLineup(html, { year }); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    awMust("an Awakenings 2012 page read as another year's", awPage(), 2011);
+    awMust("an Awakenings page with no event header", awPage({ head: "<h4>Awakenings Festival</h4>" }));
+    awMust("an Awakenings page whose title prints another date", awPage({ title: "Awakenings Festival - 1 July 2012 - Awakenings Parties" }));
+    awMust("an Awakenings header date that is not a date", awPage({ title: "Awakenings Festival - 31 June 2012 - Awakenings Parties", date: "31 June 2012" }));
+    awMust("the festival's after-party page", awPage({ title: "Awakenings Festival After - 30 June 2012 - Awakenings Parties", head: "<h1>Awakenings Festival After</h1><br>" }));
+    awMust("an Awakenings club night's page", awPage({ title: "Awakenings Gashouder - 30 June 2012 - Awakenings Parties", head: "<h1>Awakenings Gashouder</h1><br>" }));
+    awMust("an empty Awakenings page", "");
+    awMust("an Awakenings page with no area tabs", awPage({ tabs: "", panels: [] }));
+    awMust("an Awakenings page with a tab and no panel", awPage({ panels: [awPanels[0]] }));
+    awMust("an Awakenings page with a second line-up block", awPage().replace("</title>", '</title><div id="line-up-id2"></div>'));
+    awMust("an Awakenings area with no label", awPage({ tabs: awTabs(["C", " "]) }));
+    awMust("an Awakenings area naming no act", awPage({ panels: [awPanels[0], awPanel(2, [])] }));
+    awMust("an Awakenings entry with no name", awPage({ panels: [awPanels[0], awPanel(2, [awAct("11:00 - 12:45", " ")])] }));
+    awMust("an Awakenings entry with no range", awPage({ panels: [awPanels[0], awPanel(2, [awAct("TBA", "Carl Cox")])] }));
+    awMust("an Awakenings entry the page does not name", awPage({ panels: [awPanels[0], awPanel(2, [awAct("21:00 - 23:00", "Carl Cox"), "<li><p>Special guest</p></li>"])] }));
+    awMust("an Awakenings act listed twice on one area", awPage({ panels: [awPanels[0], awPanel(2, [awAct("11:00 - 12:45", "Carl Cox"), awAct("21:00 - 23:00", "Carl Cox")])] }));
     // Defqon.1 2013's timetable grid: one section per day, one row per area,
     // blocks by width with no time; a named part with its acts and hosts.
     const dgCell = (cls, inner) => `<li class="${cls}"><div class="inner">${inner}</div></li>`;
