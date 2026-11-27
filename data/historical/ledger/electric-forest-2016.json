@@ -1,0 +1,74 @@
+{
+  "id": "electric-forest-2016",
+  "method": "official_lineup_html",
+  "official": "http://www.electricforestfestival.com/experience/lineup/",
+  "format": "ef-lineup",
+  "window": {
+    "until": "2016-06-26",
+    "why": "captures after the first one taken after the last day are not considered"
+  },
+  "chosen": "20160715174507",
+  "archivedUrl": "https://web.archive.org/web/20160715174507/http://www.electricforestfestival.com/experience/lineup/",
+  "sha256": "e029f8d5086af361af44ee43aef09d81a6496a7e1c673bdce126eb0876c7c54f",
+  "title": "2016 Lineup | Electric Forest Festival",
+  "relayedVia": "firecrawl",
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "electric-forest",
+    "year": 2016,
+    "lifecycle": "occurred",
+    "dates": "2016-06-23..2016-06-26",
+    "evidence": "https://en.wikipedia.org/wiki/Electric_Forest",
+    "published": "2026-11-04T04:09:15Z rev 1383684089"
+  },
+  "stageOrder": [],
+  "considered": [
+    {
+      "captureTimestamp": "20160209225213",
+      "notFiled": "relay: capture 20160209225213 of http://www.electricforestfestival.com/experience/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20160211210123",
+      "notFiled": "relay: capture 20160211210123 of http://www.electricforestfestival.com/experience/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20160306165134",
+      "notFiled": "relay: capture 20160306165134 of http://www.electricforestfestival.com/experience/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20160322000317",
+      "notFiled": "relay: capture 20160322000317 of http://www.electricforestfestival.com/experience/lineup/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20160715174507",
+      "archivedUrl": "https://web.archive.org/web/20160715174507/http://www.electricforestfestival.com/experience/lineup/",
+      "sha256": "e029f8d5086af361af44ee43aef09d81a6496a7e1c673bdce126eb0876c7c54f",
+      "bytes": 47035,
+      "via": "firecrawl",
+      "title": "2016 Lineup | Electric Forest Festival",
+      "template": "wordpress",
+      "heading": "EF 2016 Lineup",
+      "printedRun": null,
+      "dated": true,
+      "valid": true,
+      "billings": 172
+    }
+  ],
+  "dropped": [
+    {
+      "day": null,
+      "stage": null,
+      "billing": "Hannah Muse (YOGA)",
+      "category": "activity",
+      "reason": "non-music programming (a class, workshop, talk, showcase or brand experience), not a billed performance"
+    }
+  ]
+}

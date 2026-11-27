@@ -79,8 +79,8 @@ Disco channels, several sets in one block, each inside its span. Yoga,
 workshops, talks, showcases and brand experiences are dropped as `activity`
 (`PROGRAMME` in editions.mjs); 2012's Wagon Wheel event titles that name no
 act are dropped as `event-block`; the Silent Disco is dropped as operational.
-2014 and 2015 come from the newer Scheduler (below); 2024's schedule page has
-not been read yet.
+2014 and 2015 come from the newer Scheduler (below); 2024's schedule page
+prints only graphics (one image a day).
 
 Archived Governors Ball schedule (2011, 2012, format `govball-wp`):
 
@@ -351,6 +351,37 @@ rows are excluded one for one. Yoga, hoop showcases, a brewery tasting and the
 like printed in a music stage's row are dropped by the build as `activity`
 (`PROGRAMME`), and the parser leaves them out of its overlap check. Both
 captures were taken after the festival.
+
+Archived Electric Forest lineup pages (2011, 2016, format `ef-lineup`):
+
+    PLURSKY_WAYBACK_RELAY=1 node scripts/historical/extract-ef-lineup.mjs electric-forest-2011 electric-forest-2016
+    # writes sheets/<id>.lineup.tsv and the ledger; lineup_only and undated
+
+Where no text schedule was archived, the pages read so far print only
+graphics: 2011's /lineup/schedule, 2017's /2017-info/schedule/, the 2018,
+2019 and 2022 /<year>-info/lineup/ pages (posters; 2018 and 2019 also embed
+an Aloompa widget served off the festival's domain), 2024's /schedule/ and
+2025's /lineups/ carousels. Those years go through the graphics path or
+wait. For 2011 and 2016 the festival's own lineup page lists the billed
+acts and nothing else: no day, no stage, no time. 2011's
+electricforestfestival.com/lineup/artists is a Drupal grid, one `<h2>` per
+act (a rendered copy draws each name with Cufón, one `<cufontext>` per word),
+under a title that prints the edition and its run ("2011 Artist Lineup |
+Electric Forest Festival :: June 30 - July 3, 2011 :: Rothbury, Michigan").
+2016's /experience/lineup/ is a WordPress page titled "2016 Lineup | Electric
+Forest Festival" and headed "EF 2016 Lineup", one `lineup-list` per billing
+tier of `<a class="artist">` links. The edition is `undated`: no artist
+carries a day, and its note says the page printed no days. Its dates are the
+run the title prints where it prints one (2011), and otherwise the census's
+dated post-event run (`datesFrom`, as Creamfields; 2016). Every capture of
+the year is listed up to the first one taken after the last day, and that
+one is read (2011: July 4, the day after; 2016: July 15); earlier captures
+are diffed against it (2011's June captures lack Cirque du Womp). Billings
+are verbatim ("The String Cheese Incident (3 Shows)", "STS9 (PLUS AXE THE
+CABLES SET)"); 2016's "Hannah Muse (YOGA)" is a yoga class and dropped as
+`activity` (`PROGRAMME`). 2017's only lineup capture of the year (February)
+is the second phase, "plus many more artists … to be announced", so 2017 is
+not loaded. 71 acts in 2011, 171 in 2016.
 
 Archived Coachella lineup pages (2014, 2015, 2016, format `coachella-cards`;
 2012, `coachella-overlays`; 2017, `coachella-data`):

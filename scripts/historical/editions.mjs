@@ -509,6 +509,20 @@ export const EDITIONS = {
   "electric-forest-2015": { festivalId: "electric-forest", name: "Electric Forest 2015", year: 2015,
     timezone: "America/Detroit", rolloverHour: 6, method: "official_sources",
     dates: [["2015-06-25", "Thursday"], ["2015-06-26", "Friday"], ["2015-06-27", "Saturday"], ["2015-06-28", "Sunday"]] },
+  // 2011 and 2016: the schedules survive only as graphics, so these come from
+  // the festival's own lineup page (ef-lineup.mjs, extract-ef-lineup.mjs,
+  // format "ef-lineup"): every billed act, with no day, stage or time.
+  // 2011's title prints its run; 2016's dates are the census's dated run.
+  "electric-forest-2011": { festivalId: "electric-forest", name: "Electric Forest 2011", year: 2011,
+    timezone: "America/Detroit", rolloverHour: 6, method: "official_lineup_html", undated: true,
+    dates: [["2011-06-30", "Thursday"], ["2011-07-01", "Friday"], ["2011-07-02", "Saturday"], ["2011-07-03", "Sunday"]],
+    notes: [{ asOf: "2026-11-27", text: "The festival's own lineup page printed no days and no stages, so this is who was billed, as that page listed them the day after the festival, not when or where each act played.",
+      source: "https://web.archive.org/web/20110704150422/http://electricforestfestival.com/lineup/artists" }] },
+  "electric-forest-2016": { festivalId: "electric-forest", name: "Electric Forest 2016", year: 2016,
+    timezone: "America/Detroit", rolloverHour: 6, method: "official_lineup_html", undated: true,
+    dates: [["2016-06-23", "Thursday"], ["2016-06-24", "Friday"], ["2016-06-25", "Saturday"], ["2016-06-26", "Sunday"]],
+    notes: [{ asOf: "2026-11-27", text: "The festival's own lineup page printed no days and no stages, so this is who was billed, as that page listed them three weeks after the festival, not when or where each act played.",
+      source: "https://web.archive.org/web/20160715174507/http://www.electricforestfestival.com/experience/lineup/" }] },
   // Coachella's own lineup page (coachella.com/lineup/): one card per act
   // with each set's date, start and stage, and no end time, so every set is
   // open-ended. 2016's page prints both weekends; 2014's and 2015's print
@@ -1035,6 +1049,8 @@ export const PROGRAMME = {
   "electric-forest-2014": ["Kyle Hollingsworth's Brewru Experience", "Hoop Troupe Showcase"],
   "electric-forest-2015": ["Yoga with Hannah Muse", "Hoop Troupe Showcase", "Group Hug World Record Attempt Hosted by Lafa Taylor",
     "Bell's Brewery Tasting at Sherwood Court Bar"],
+  // 2016's lineup page lists the yoga teacher among the acts.
+  "electric-forest-2016": ["Hannah Muse (YOGA)"],
   // Shambhala's schedule tables print its programme in the same stage
   // columns as the sets: ceremonies, classes, workshops, a fashion show, a
   // band changeover and a circus act, each read on the archived page.

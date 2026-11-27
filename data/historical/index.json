@@ -2637,6 +2637,42 @@
    }
   },
   {
+   "id": "electric-forest-2016",
+   "festivalId": "electric-forest",
+   "festivalName": "Electric Forest",
+   "name": "Electric Forest 2016",
+   "year": 2016,
+   "timezone": "America/Detroit",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2016-06-23",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2016-06-24",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2016-06-25",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2016-06-26",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 171,
+    "sets": 0
+   }
+  },
+  {
    "id": "electric-forest-2015",
    "festivalId": "electric-forest",
    "festivalName": "Electric Forest",
@@ -2778,6 +2814,42 @@
     "stages": 5,
     "artists": 91,
     "sets": 102
+   }
+  },
+  {
+   "id": "electric-forest-2011",
+   "festivalId": "electric-forest",
+   "festivalName": "Electric Forest",
+   "name": "Electric Forest 2011",
+   "year": 2011,
+   "timezone": "America/Detroit",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2011-06-30",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2011-07-01",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2011-07-02",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2011-07-03",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 71,
+    "sets": 0
    }
   },
   {

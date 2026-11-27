@@ -1,0 +1,1595 @@
+{
+ "id": "electric-forest-2016",
+ "festivalId": "electric-forest",
+ "name": "Electric Forest 2016",
+ "year": 2016,
+ "timezone": "America/Detroit",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "undated": true,
+ "days": [
+  {
+   "day": 1,
+   "date": "2016-06-23",
+   "label": "Thursday"
+  },
+  {
+   "day": 2,
+   "date": "2016-06-24",
+   "label": "Friday"
+  },
+  {
+   "day": 3,
+   "date": "2016-06-25",
+   "label": "Saturday"
+  },
+  {
+   "day": 4,
+   "date": "2016-06-26",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [],
+ "artists": [
+  {
+   "id": "electric-forest-2016:the-string-cheese-incident-3-shows",
+   "name": "The String Cheese Incident (3 Shows)",
+   "key": "the-string-cheese-incident-3-shows",
+   "performers": [
+    "the-string-cheese-incident-3-shows"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:bassnectar",
+   "name": "BASSNECTAR",
+   "key": "bassnectar",
+   "performers": [
+    "bassnectar"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:major-lazer",
+   "name": "Major Lazer",
+   "key": "major-lazer",
+   "performers": [
+    "major-lazer"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:adventure-club",
+   "name": "Adventure Club",
+   "key": "adventure-club",
+   "performers": [
+    "adventure-club"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:baauer",
+   "name": "Baauer",
+   "key": "baauer",
+   "performers": [
+    "baauer"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:beats-antique",
+   "name": "Beats Antique",
+   "key": "beats-antique",
+   "performers": [
+    "beats-antique"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:bonobo-dj-set",
+   "name": "Bonobo (DJ Set)",
+   "key": "bonobo-dj-set",
+   "performers": [
+    "bonobo-dj-set"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:bro-safari",
+   "name": "Bro Safari",
+   "key": "bro-safari",
+   "performers": [
+    "bro-safari"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:dj-mustard",
+   "name": "DJ Mustard",
+   "key": "dj-mustard",
+   "performers": [
+    "dj-mustard"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:duke-dumont",
+   "name": "Duke Dumont",
+   "key": "duke-dumont",
+   "performers": [
+    "duke-dumont"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:flosstradamus",
+   "name": "Flosstradamus",
+   "key": "flosstradamus",
+   "performers": [
+    "flosstradamus"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:gorgon-city-live",
+   "name": "Gorgon City (Live)",
+   "key": "gorgon-city-live",
+   "performers": [
+    "gorgon-city-live"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:greensky-bluegrass",
+   "name": "GREENSKY BLUEGRASS",
+   "key": "greensky-bluegrass",
+   "performers": [
+    "greensky-bluegrass"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:griz",
+   "name": "GRiZ",
+   "key": "griz",
+   "performers": [
+    "griz"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:nahko-and-medicine-for-the-people",
+   "name": "Nahko and Medicine for the People",
+   "key": "nahko-and-medicine-for-the-people",
+   "performers": [
+    "nahko-and-medicine-for-the-people"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:porter-robinson-live",
+   "name": "Porter Robinson (Live)",
+   "key": "porter-robinson-live",
+   "performers": [
+    "porter-robinson-live"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:sts9-plus-axe-the-cables-set",
+   "name": "STS9 (PLUS AXE THE CABLES SET)",
+   "key": "sts9-plus-axe-the-cables-set",
+   "performers": [
+    "sts9-plus-axe-the-cables-set"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:tchami",
+   "name": "Tchami",
+   "key": "tchami",
+   "performers": [
+    "tchami"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:the-disco-biscuits",
+   "name": "The Disco Biscuits",
+   "key": "the-disco-biscuits",
+   "performers": [
+    "the-disco-biscuits"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:the-floozies",
+   "name": "The Floozies",
+   "key": "the-floozies",
+   "performers": [
+    "the-floozies"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:the-soul-rebels-feat-talib-kweli-and-gza",
+   "name": "The Soul Rebels feat. Talib Kweli & GZA",
+   "key": "the-soul-rebels-feat-talib-kweli-and-gza",
+   "performers": [
+    "the-soul-rebels-feat-talib-kweli-and-gza"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:12th-planet",
+   "name": "12th Planet",
+   "key": "12th-planet",
+   "performers": [
+    "12th-planet"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:ac-slater",
+   "name": "AC Slater",
+   "key": "ac-slater",
+   "performers": [
+    "ac-slater"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:airwav",
+   "name": "AIRWAV",
+   "key": "airwav",
+   "performers": [
+    "airwav"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:alina-baraz",
+   "name": "Alina Baraz",
+   "key": "alina-baraz",
+   "performers": [
+    "alina-baraz"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:anna-lunoe",
+   "name": "Anna Lunoe",
+   "key": "anna-lunoe",
+   "performers": [
+    "anna-lunoe"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:apashe",
+   "name": "Apashe",
+   "key": "apashe",
+   "performers": [
+    "apashe"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:aqueous",
+   "name": "Aqueous",
+   "key": "aqueous",
+   "performers": [
+    "aqueous"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:atlas-road-crew",
+   "name": "Atlas Road Crew",
+   "key": "atlas-road-crew",
+   "performers": [
+    "atlas-road-crew"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:austin-plaine",
+   "name": "Austin Plaine",
+   "key": "austin-plaine",
+   "performers": [
+    "austin-plaine"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:balkan-beat-box",
+   "name": "Balkan Beat Box",
+   "key": "balkan-beat-box",
+   "performers": [
+    "balkan-beat-box"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:bass-physics",
+   "name": "Bass Physics",
+   "key": "bass-physics",
+   "performers": [
+    "bass-physics"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:bionik",
+   "name": "Bionik",
+   "key": "bionik",
+   "performers": [
+    "bionik"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:bleep-bloop",
+   "name": "Bleep Bloop",
+   "key": "bleep-bloop",
+   "performers": [
+    "bleep-bloop"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:brillz",
+   "name": "Brillz",
+   "key": "brillz",
+   "performers": [
+    "brillz"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:broccoli-samurai",
+   "name": "Broccoli Samurai",
+   "key": "broccoli-samurai",
+   "performers": [
+    "broccoli-samurai"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:calliope-musicals",
+   "name": "Calliope Musicals",
+   "key": "calliope-musicals",
+   "performers": [
+    "calliope-musicals"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:carly-bins",
+   "name": "Carly Bins",
+   "key": "carly-bins",
+   "performers": [
+    "carly-bins"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:caspa-b2b-rusko",
+   "name": "Caspa b2b Rusko",
+   "key": "caspa-b2b-rusko",
+   "performers": [
+    "caspa",
+    "rusko"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:chris-lorenzo",
+   "name": "Chris Lorenzo",
+   "key": "chris-lorenzo",
+   "performers": [
+    "chris-lorenzo"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:coleman-hell",
+   "name": "Coleman Hell",
+   "key": "coleman-hell",
+   "performers": [
+    "coleman-hell"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:craigslist-hook-up",
+   "name": "Craigslist Hook-Up",
+   "key": "craigslist-hook-up",
+   "performers": [
+    "craigslist-hook-up"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:cubicolor",
+   "name": "Cubicolor",
+   "key": "cubicolor",
+   "performers": [
+    "cubicolor"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:daily-bread",
+   "name": "Daily Bread",
+   "key": "daily-bread",
+   "performers": [
+    "daily-bread"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:delhi-2-dublin-dj-set",
+   "name": "Delhi 2 Dublin (DJ Set)",
+   "key": "delhi-2-dublin-dj-set",
+   "performers": [
+    "delhi-2-dublin-dj-set"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:desert-dwellers",
+   "name": "Desert Dwellers",
+   "key": "desert-dwellers",
+   "performers": [
+    "desert-dwellers"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:dgro",
+   "name": "dgro",
+   "key": "dgro",
+   "performers": [
+    "dgro"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:dirtwire",
+   "name": "Dirtwire",
+   "key": "dirtwire",
+   "performers": [
+    "dirtwire"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:dixon-s-violin",
+   "name": "Dixon’s Violin",
+   "key": "dixon-s-violin",
+   "performers": [
+    "dixon-s-violin"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:dj-jazzy-jeff",
+   "name": "DJ Jazzy Jeff",
+   "key": "dj-jazzy-jeff",
+   "performers": [
+    "dj-jazzy-jeff"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:dj-soul-sister",
+   "name": "DJ Soul Sister",
+   "key": "dj-soul-sister",
+   "performers": [
+    "dj-soul-sister"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:dj-vourteque",
+   "name": "DJ Vourteque",
+   "key": "dj-vourteque",
+   "performers": [
+    "dj-vourteque"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:doomtree",
+   "name": "Doomtree",
+   "key": "doomtree",
+   "performers": [
+    "doomtree"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:dumpstaphunk",
+   "name": "Dumpstaphunk",
+   "key": "dumpstaphunk",
+   "performers": [
+    "dumpstaphunk"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:dusky",
+   "name": "Dusky",
+   "key": "dusky",
+   "performers": [
+    "dusky"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:earphunk",
+   "name": "Earphunk",
+   "key": "earphunk",
+   "performers": [
+    "earphunk"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:egyptian-lover",
+   "name": "Egyptian Lover",
+   "key": "egyptian-lover",
+   "performers": [
+    "egyptian-lover"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:eoto",
+   "name": "EOTO",
+   "key": "eoto",
+   "performers": [
+    "eoto"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:eprom",
+   "name": "EPROM",
+   "key": "eprom",
+   "performers": [
+    "eprom"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:evanoff",
+   "name": "Evanoff",
+   "key": "evanoff",
+   "performers": [
+    "evanoff"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:filthy-gorgeous",
+   "name": "Filthy Gorgeous",
+   "key": "filthy-gorgeous",
+   "performers": [
+    "filthy-gorgeous"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:flava-d",
+   "name": "Flava D",
+   "key": "flava-d",
+   "performers": [
+    "flava-d"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:frameworks",
+   "name": "Frameworks",
+   "key": "frameworks",
+   "performers": [
+    "frameworks"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:fury-mc-dino",
+   "name": "Fury + MC Dino",
+   "key": "fury-mc-dino",
+   "performers": [
+    "fury-mc-dino"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:future-rock",
+   "name": "Future Rock",
+   "key": "future-rock",
+   "performers": [
+    "future-rock"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:futuristic",
+   "name": "FUTURISTIC",
+   "key": "futuristic",
+   "performers": [
+    "futuristic"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:g-jones",
+   "name": "G Jones",
+   "key": "g-jones",
+   "performers": [
+    "g-jones"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:gallant",
+   "name": "Gallant",
+   "key": "gallant",
+   "performers": [
+    "gallant"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:getter",
+   "name": "GETTER",
+   "key": "getter",
+   "performers": [
+    "getter"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:gilligan-moss",
+   "name": "Gilligan Moss",
+   "key": "gilligan-moss",
+   "performers": [
+    "gilligan-moss"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:gosh-pith",
+   "name": "Gosh Pith",
+   "key": "gosh-pith",
+   "performers": [
+    "gosh-pith"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:grandtheft",
+   "name": "Grandtheft",
+   "key": "grandtheft",
+   "performers": [
+    "grandtheft"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:gryffin",
+   "name": "Gryffin",
+   "key": "gryffin",
+   "performers": [
+    "gryffin"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:hayden-james",
+   "name": "Hayden James",
+   "key": "hayden-james",
+   "performers": [
+    "hayden-james"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:heather-m",
+   "name": "Heather M",
+   "key": "heather-m",
+   "performers": [
+    "heather-m"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:hermitude",
+   "name": "Hermitude",
+   "key": "hermitude",
+   "performers": [
+    "hermitude"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:hippie-sabotage",
+   "name": "Hippie Sabotage",
+   "key": "hippie-sabotage",
+   "performers": [
+    "hippie-sabotage"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:imagined-herbal-flows",
+   "name": "Imagined Herbal Flows",
+   "key": "imagined-herbal-flows",
+   "performers": [
+    "imagined-herbal-flows"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:jackal",
+   "name": "Jackal",
+   "key": "jackal",
+   "performers": [
+    "jackal"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:jillionaire",
+   "name": "JILLIONAIRE",
+   "key": "jillionaire",
+   "performers": [
+    "jillionaire"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:josh-wink",
+   "name": "Josh Wink",
+   "key": "josh-wink",
+   "performers": [
+    "josh-wink"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:just-kiddin",
+   "name": "Just Kiddin",
+   "key": "just-kiddin",
+   "performers": [
+    "just-kiddin"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:justin-martin",
+   "name": "Justin Martin",
+   "key": "justin-martin",
+   "performers": [
+    "justin-martin"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:kamasi-washington",
+   "name": "Kamasi Washington",
+   "key": "kamasi-washington",
+   "performers": [
+    "kamasi-washington"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:karl-denson-s-tiny-universe",
+   "name": "Karl Denson’s Tiny Universe",
+   "key": "karl-denson-s-tiny-universe",
+   "performers": [
+    "karl-denson-s-tiny-universe"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:keys-n-krates",
+   "name": "Keys N Krates",
+   "key": "keys-n-krates",
+   "performers": [
+    "keys-n-krates"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:kry-wolf",
+   "name": "KRY WOLF",
+   "key": "kry-wolf",
+   "performers": [
+    "kry-wolf"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:lafa-taylor",
+   "name": "Lafa Taylor",
+   "key": "lafa-taylor",
+   "performers": [
+    "lafa-taylor"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:lance-herbstrong",
+   "name": "Lance Herbstrong",
+   "key": "lance-herbstrong",
+   "performers": [
+    "lance-herbstrong"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:landis-lapace",
+   "name": "Landis LaPace",
+   "key": "landis-lapace",
+   "performers": [
+    "landis-lapace"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:lane-8",
+   "name": "Lane 8",
+   "key": "lane-8",
+   "performers": [
+    "lane-8"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:lany",
+   "name": "LANY",
+   "key": "lany",
+   "performers": [
+    "lany"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:late-night-radio",
+   "name": "Late Night Radio",
+   "key": "late-night-radio",
+   "performers": [
+    "late-night-radio"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:le-youth",
+   "name": "Le Youth",
+   "key": "le-youth",
+   "performers": [
+    "le-youth"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:liquid-stranger",
+   "name": "Liquid Stranger",
+   "key": "liquid-stranger",
+   "performers": [
+    "liquid-stranger"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:los-colognes",
+   "name": "Los Colognes",
+   "key": "los-colognes",
+   "performers": [
+    "los-colognes"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:louis-futon",
+   "name": "Louis Futon",
+   "key": "louis-futon",
+   "performers": [
+    "louis-futon"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:louis-the-child",
+   "name": "Louis The Child",
+   "key": "louis-the-child",
+   "performers": [
+    "louis-the-child"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:low-steppa",
+   "name": "Low Steppa",
+   "key": "low-steppa",
+   "performers": [
+    "low-steppa"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:magic-giant",
+   "name": "Magic Giant",
+   "key": "magic-giant",
+   "performers": [
+    "magic-giant"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:manic-focus",
+   "name": "Manic Focus",
+   "key": "manic-focus",
+   "performers": [
+    "manic-focus"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:marian-hill",
+   "name": "Marian Hill",
+   "key": "marian-hill",
+   "performers": [
+    "marian-hill"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:mark-farina",
+   "name": "Mark Farina",
+   "key": "mark-farina",
+   "performers": [
+    "mark-farina"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:marvel-years",
+   "name": "Marvel Years",
+   "key": "marvel-years",
+   "performers": [
+    "marvel-years"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:metrik",
+   "name": "Metrik",
+   "key": "metrik",
+   "performers": [
+    "metrik"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:mija",
+   "name": "Mija",
+   "key": "mija",
+   "performers": [
+    "mija"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:mike-dunn",
+   "name": "Mike Dunn",
+   "key": "mike-dunn",
+   "performers": [
+    "mike-dunn"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:miner",
+   "name": "Miner",
+   "key": "miner",
+   "performers": [
+    "miner"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:moon-boots",
+   "name": "Moon Boots",
+   "key": "moon-boots",
+   "performers": [
+    "moon-boots"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:motez",
+   "name": "MOTEZ",
+   "key": "motez",
+   "performers": [
+    "motez"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:motion-potion",
+   "name": "Motion Potion",
+   "key": "motion-potion",
+   "performers": [
+    "motion-potion"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:mountain-of-youth",
+   "name": "Mountain Of Youth",
+   "key": "mountain-of-youth",
+   "performers": [
+    "mountain-of-youth"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:muzzy-bearr",
+   "name": "Muzzy Bearr",
+   "key": "muzzy-bearr",
+   "performers": [
+    "muzzy-bearr"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:navid-izadi-live",
+   "name": "Navid Izadi (Live)",
+   "key": "navid-izadi-live",
+   "performers": [
+    "navid-izadi-live"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:neon-indian",
+   "name": "Neon Indian",
+   "key": "neon-indian",
+   "performers": [
+    "neon-indian"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:new-beat-fund",
+   "name": "New Beat Fund",
+   "key": "new-beat-fund",
+   "performers": [
+    "new-beat-fund"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:nghtmre",
+   "name": "NGHTMRE",
+   "key": "nghtmre",
+   "performers": [
+    "nghtmre"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:nick-monaco-live",
+   "name": "Nick Monaco (Live)",
+   "key": "nick-monaco-live",
+   "performers": [
+    "nick-monaco-live"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:nyne2five",
+   "name": "Nyne2Five",
+   "key": "nyne2five",
+   "performers": [
+    "nyne2five"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:papadosio",
+   "name": "Papadosio",
+   "key": "papadosio",
+   "performers": [
+    "papadosio"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:paper-diamond",
+   "name": "Paper Diamond",
+   "key": "paper-diamond",
+   "performers": [
+    "paper-diamond"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:party-favor",
+   "name": "Party Favor",
+   "key": "party-favor",
+   "performers": [
+    "party-favor"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:petey-clicks",
+   "name": "Petey Clicks",
+   "key": "petey-clicks",
+   "performers": [
+    "petey-clicks"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:preservation-hall-jazz-band",
+   "name": "Preservation Hall Jazz Band",
+   "key": "preservation-hall-jazz-band",
+   "performers": [
+    "preservation-hall-jazz-band"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:prince-fox",
+   "name": "Prince Fox",
+   "key": "prince-fox",
+   "performers": [
+    "prince-fox"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:prof",
+   "name": "Prof",
+   "key": "prof",
+   "performers": [
+    "prof"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:rabbit-wilde",
+   "name": "Rabbit Wilde",
+   "key": "rabbit-wilde",
+   "performers": [
+    "rabbit-wilde"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:random-rab",
+   "name": "Random Rab",
+   "key": "random-rab",
+   "performers": [
+    "random-rab"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:raury",
+   "name": "Raury",
+   "key": "raury",
+   "performers": [
+    "raury"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:reverse-noise",
+   "name": "Reverse Noise",
+   "key": "reverse-noise",
+   "performers": [
+    "reverse-noise"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:rufus-du-sol",
+   "name": "RÜFÜS DU SOL",
+   "key": "rufus-du-sol",
+   "performers": [
+    "rufus-du-sol"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:russ-liquid",
+   "name": "Russ Liquid",
+   "key": "russ-liquid",
+   "performers": [
+    "russ-liquid"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:savoy",
+   "name": "SAVOY",
+   "key": "savoy",
+   "performers": [
+    "savoy"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:scott-grooves",
+   "name": "Scott Grooves",
+   "key": "scott-grooves",
+   "performers": [
+    "scott-grooves"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:sheni-doko",
+   "name": "Sheni Doko",
+   "key": "sheni-doko",
+   "performers": [
+    "sheni-doko"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:shooka",
+   "name": "SHOOKA",
+   "key": "shooka",
+   "performers": [
+    "shooka"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:sidecar-tommy",
+   "name": "Sidecar Tommy",
+   "key": "sidecar-tommy",
+   "performers": [
+    "sidecar-tommy"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:skratch-bastid",
+   "name": "Skratch Bastid",
+   "key": "skratch-bastid",
+   "performers": [
+    "skratch-bastid"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:slander",
+   "name": "SLANDER",
+   "key": "slander",
+   "performers": [
+    "slander"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:slumberjack",
+   "name": "Slumberjack",
+   "key": "slumberjack",
+   "performers": [
+    "slumberjack"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:son-little",
+   "name": "Son Little",
+   "key": "son-little",
+   "performers": [
+    "son-little"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:soul-clap",
+   "name": "Soul Clap",
+   "key": "soul-clap",
+   "performers": [
+    "soul-clap"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:spundose",
+   "name": "Spundose",
+   "key": "spundose",
+   "performers": [
+    "spundose"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:stephen",
+   "name": "Stephen",
+   "key": "stephen",
+   "performers": [
+    "stephen"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:stick-figure",
+   "name": "Stick Figure",
+   "key": "stick-figure",
+   "performers": [
+    "stick-figure"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:styles-and-complete",
+   "name": "Styles&Complete",
+   "key": "styles-and-complete",
+   "performers": [
+    "styles-and-complete"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:sunsquabi",
+   "name": "SunSquabi",
+   "key": "sunsquabi",
+   "performers": [
+    "sunsquabi"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:taiki-nulight",
+   "name": "Taiki Nulight",
+   "key": "taiki-nulight",
+   "performers": [
+    "taiki-nulight"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:talia-keys",
+   "name": "Talia Keys",
+   "key": "talia-keys",
+   "performers": [
+    "talia-keys"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:tc",
+   "name": "TC",
+   "key": "tc",
+   "performers": [
+    "tc"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:teddy-killerz",
+   "name": "TEDDY KILLERZ",
+   "key": "teddy-killerz",
+   "performers": [
+    "teddy-killerz"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:tei-shi",
+   "name": "Tei Shi",
+   "key": "tei-shi",
+   "performers": [
+    "tei-shi"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:tennyson",
+   "name": "Tennyson",
+   "key": "tennyson",
+   "performers": [
+    "tennyson"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:the-bright-light-social-hour",
+   "name": "The Bright Light Social Hour",
+   "key": "the-bright-light-social-hour",
+   "performers": [
+    "the-bright-light-social-hour"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:the-drunken-hearts",
+   "name": "The Drunken Hearts",
+   "key": "the-drunken-hearts",
+   "performers": [
+    "the-drunken-hearts"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:the-geek-x-vrv",
+   "name": "The Geek x VRV",
+   "key": "the-geek-x-vrv",
+   "performers": [
+    "the-geek-x-vrv"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:the-new-mastersounds",
+   "name": "The New Mastersounds",
+   "key": "the-new-mastersounds",
+   "performers": [
+    "the-new-mastersounds"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:the-nth-power",
+   "name": "The Nth Power",
+   "key": "the-nth-power",
+   "performers": [
+    "the-nth-power"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:the-polish-ambassador",
+   "name": "The Polish Ambassador",
+   "key": "the-polish-ambassador",
+   "performers": [
+    "the-polish-ambassador"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:the-suffers",
+   "name": "The Suffers",
+   "key": "the-suffers",
+   "performers": [
+    "the-suffers"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:the-white-buffalo",
+   "name": "The White Buffalo",
+   "key": "the-white-buffalo",
+   "performers": [
+    "the-white-buffalo"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:tim-snider",
+   "name": "Tim Snider",
+   "key": "tim-snider",
+   "performers": [
+    "tim-snider"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:turbo-suit-and-friends",
+   "name": "Turbo Suit & Friends",
+   "key": "turbo-suit-and-friends",
+   "performers": [
+    "turbo-suit-and-friends"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:way-out-west-live",
+   "name": "Way Out West (Live)",
+   "key": "way-out-west-live",
+   "performers": [
+    "way-out-west-live"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:what-so-not",
+   "name": "What So Not",
+   "key": "what-so-not",
+   "performers": [
+    "what-so-not"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:whilk-and-misky",
+   "name": "Whilk & Misky",
+   "key": "whilk-and-misky",
+   "performers": [
+    "whilk-and-misky"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:will-clarke",
+   "name": "Will Clarke",
+   "key": "will-clarke",
+   "performers": [
+    "will-clarke"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:xonic",
+   "name": "Xonic",
+   "key": "xonic",
+   "performers": [
+    "xonic"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:yamn",
+   "name": "Yamn",
+   "key": "yamn",
+   "performers": [
+    "yamn"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:yotto",
+   "name": "Yotto",
+   "key": "yotto",
+   "performers": [
+    "yotto"
+   ],
+   "appearances": []
+  },
+  {
+   "id": "electric-forest-2016:zoogma",
+   "name": "ZOOGMA",
+   "key": "zoogma",
+   "performers": [
+    "zoogma"
+   ],
+   "appearances": []
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "official_lineup_html",
+  "official": "http://www.electricforestfestival.com/experience/lineup/",
+  "captures": [
+   {
+    "page": "lineup",
+    "archivedUrl": "https://web.archive.org/web/20160715174507/http://www.electricforestfestival.com/experience/lineup/",
+    "captureTimestamp": "20160715174507",
+    "sha256": "e029f8d5086af361af44ee43aef09d81a6496a7e1c673bdce126eb0876c7c54f"
+   }
+  ]
+ },
+ "notes": [
+  {
+   "asOf": "2026-11-27",
+   "text": "The festival's own lineup page printed no days and no stages, so this is who was billed, as that page listed them three weeks after the festival, not when or where each act played.",
+   "source": "https://web.archive.org/web/20160715174507/http://www.electricforestfestival.com/experience/lineup/"
+  }
+ ]
+}

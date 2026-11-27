@@ -48,6 +48,7 @@ import { parseDefqonLogos, subtitleDate as defqonLogosDate } from "./historical/
 import { parseTomorrowlandLineup } from "./historical/tomorrowland-lineup.mjs";
 import { parseTimeWarpLineup, headerDates as twHeaderDates } from "./historical/timewarp-lineup.mjs";
 import { parseCreamfieldsArtists, creamfieldsRows } from "./historical/creamfields-artists.mjs";
+import { parseEfLineup, printedRun as efPrintedRun } from "./historical/ef-lineup.mjs";
 import { censusRow, runDates, CENSUS as CREAMFIELDS_CENSUS } from "./historical/extract-creamfields.mjs";
 import { parseCreamfieldsLineup, creamfieldsLineupRows, printedDate } from "./historical/creamfields-lineup.mjs";
 import { RESPELLED as CREAMFIELDS_RESPELLED } from "./historical/extract-creamfields-lineup.mjs";
@@ -163,6 +164,15 @@ if (base && edc) {
     const twCap = m => m.provenance.captures[0];
     mustFail("a Time Warp 2022 lineup read off the 2023 edition's address", m => { const c = twCap(m); c.archivedUrl = c.archivedUrl.replace("/22/lineup", "/23/lineup"); }, tw22, () => {}, /is not from 2022/);
     mustFail("a Time Warp 2022 lineup captured two years on", m => { const c = twCap(m); c.archivedUrl = c.archivedUrl.replace("/web/2023", "/web/2024"); c.captureTimestamp = c.captureTimestamp.replace(/^2023/, "2024"); }, tw22, () => {}, /is not from 2022/);
+  }
+  // Electric Forest 2011 and 2016: lineup pages that print no days, read
+  // from the edition year's own capture; no artist may gain a day.
+  const ef16 = editions["electric-forest-2016"];
+  if (ef16) {
+    mustFail("an Electric Forest 2016 lineup captured the year before", m => { const c = m.provenance.captures[0]; c.archivedUrl = c.archivedUrl.replace("/web/2016", "/web/2015"); }, ef16, () => {}, /is not from 2016/);
+    mustFail("an Electric Forest 2016 lineup read off another site", m => { const c = m.provenance.captures[0]; c.archivedUrl = c.archivedUrl.replace("www.electricforestfestival.com", "www.clashfinder.com"); }, ef16, () => {}, /not an official/);
+    mustFail("an Electric Forest 2016 act given a day the page never printed", m => { m.artists[0].appearances.push({ day: 1 }); }, ef16, () => {}, /undated lineup, but an artist carries a day/);
+    mustFail("an Electric Forest 2016 lineup without its no-days note", m => { m.notes = []; }, ef16, () => {}, /notes differ|printed no days/);
   }
   // Tomorrowland 2010-2012: each day page prints its day as its own tab, with
   // no year, on the festival's own .be site.
@@ -1116,6 +1126,34 @@ if (base && edc) {
     cfMust("a Creamfields act with a class the page does not explain", cfPage({ acts: [cfAct("friday headliner A", "Armin Van Buuren")] }));
     cfMust("a Creamfields act listing a stage with no name", cfPage({ acts: [cfAct("friday A", "Armin Van Buuren", [" "])] }));
     cfMust("a Creamfields page with no act", cfPage({ acts: [] }));
+    // Electric Forest's own lineup page: 2011's Drupal grid (the title prints
+    // the run; a rendered copy draws each name as Cufón words) and 2016's
+    // WordPress tiers (the title and heading print the year only).
+    const eflCell = name => `<td><div class="views-field-title"><span class="field-content"><a href="/x"><h2>${name.split(" ").map(w => `<cufon class="cufon cufon-canvas" alt="${w} "><canvas width="9" height="9"></canvas><cufontext>${w} </cufontext></cufon>`).join("")}</h2></a></span></div></td>`;
+    const efl11 = ({ title = "2011 Artist Lineup | Electric Forest Festival :: June 30 - July 3, 2011 :: Rothbury, Michigan", acts = ["The String Cheese Incident", "Ti&euml;sto", "Edward Sharpe &amp; The Magnetic Zeros"] } = {}) =>
+      `<title>${title}</title><table class="views-view-grid"><tr>${acts.map(eflCell).join("")}</tr></table>`;
+    const eflA = name => `<a href="/artist/x/" class="artist" title="${name}">${name}</a>`;
+    const efl16 = ({ title = "2016 Lineup | Electric Forest Festival", heading = "EF 2016 Lineup", tiers = [[eflA("The String Cheese Incident (3 Shows)"), eflA("BASSNECTAR")], [eflA("Whilk &amp; Misky")]] } = {}) =>
+      `<title>${title}</title><div class="pageHeaderInner noSubTitle"> <h3> <img src="x.png"> ${heading} <img src="x.png"> </h3> </div><section class="full_lineup">${tiers.map((t, i) => `<div class="${["first", "second"][i] || "third"}_tier lineup-list">${t.join("")} </div>`).join(" ")}</section>`;
+    const efp11 = parseEfLineup(efl11(), { year: 2011 }), efp16 = parseEfLineup(efl16(), { year: 2016 });
+    ok(JSON.stringify([efp11.template, efp11.printed, efp11.run, efp11.acts, efp16.template, efp16.heading, efp16.run, efp16.acts])
+      === JSON.stringify(["drupal", "June 30 - July 3, 2011", ["2011-06-30", "2011-07-01", "2011-07-02", "2011-07-03"], ["The String Cheese Incident", "Tiësto", "Edward Sharpe & The Magnetic Zeros"],
+        "wordpress", "EF 2016 Lineup", null, ["The String Cheese Incident (3 Shows)", "BASSNECTAR", "Whilk & Misky"]]),
+      `an Electric Forest lineup page must come back as its billed acts in order, with the run its title prints: ${JSON.stringify([efp11, efp16])}`);
+    ok(JSON.stringify(efPrintedRun("June 23 - 26, 2016", 2016)) === '["2016-06-23","2016-06-24","2016-06-25","2016-06-26"]' && efPrintedRun("June 30 - July 3, 2012", 2011) === null
+      && efPrintedRun("June 31 - July 3, 2011", 2011) === null && efPrintedRun("July 3 - June 30, 2011", 2011) === null, "an Electric Forest title's run must be real dates in its year, in order");
+    const eflMust = (what, html, year) => { let bad = false; try { parseEfLineup(html, { year }); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    eflMust("an Electric Forest 2011 page read as another year's", efl11(), 2012);
+    eflMust("an Electric Forest 2016 page read as another year's", efl16(), 2017);
+    eflMust("an Electric Forest 2011 title printing another year's run", efl11({ title: "2011 Artist Lineup | Electric Forest Festival :: June 28 - July 1, 2012 :: Rothbury, Michigan" }), 2011);
+    eflMust("an Electric Forest 2011 title printing a date that is not one", efl11({ title: "2011 Artist Lineup | Electric Forest Festival :: June 31 - July 3, 2011 :: Rothbury, Michigan" }), 2011);
+    eflMust("an Electric Forest page with another title", efl16({ title: "2016 Schedule | Electric Forest Festival" }), 2016);
+    eflMust("an Electric Forest 2016 page headed for another year", efl16({ heading: "EF 2017 Lineup" }), 2016);
+    eflMust("an empty Electric Forest 2011 page", efl11({ acts: [] }), 2011);
+    eflMust("an empty Electric Forest 2016 page", efl16({ tiers: [] }), 2016);
+    eflMust("an Electric Forest 2016 page with no lineup section", efl16().replace("full_lineup", "curated_events"), 2016);
+    eflMust("an Electric Forest act with no name", efl16({ tiers: [[eflA(" ")]] }), 2016);
+    eflMust("an Electric Forest act listed twice", efl11({ acts: ["Zedd", "Zedd"] }), 2011);
     // Creamfields' Lineup page (2022 on): a block per day, a column per stage.
     const clAct = (name, { tag = "strong", cls = "", above, after, below } = {}) => `<li class="a-list-item ">${above !== undefined ? `<span class="box-above">${above}</span><br>` : ""}<${tag} class="a-name ${cls}">${name}${after !== undefined ? ` <span class="inline-after">${after}</span>` : ""}</${tag}>${below !== undefined ? ` <span class="below-highlight">${below}</span><br>` : ""}</li>`;
     const clCol = (h3, acts, { more = false, attrs = "" } = {}) => `<div class="listing-col "><h3${attrs}><span>${h3}</span></h3><ul>${acts.join("")}</ul>${more ? '<span class="plus-more">+ more</span>' : ""}</div>`;
@@ -1608,7 +1646,20 @@ const MONTH = ["JANUARY","FEBRUARY","MARCH","APRIL","MAY","JUNE","JULY","AUGUST"
 for (const [id, e] of Object.entries(editions)) {
   const led = JSON.parse(readFileSync(H(`ledger/${id}.json`), "utf8")), rev = reviewFor(id);
   for (const d of e.days) {
-    if (led.method === "official_lineup_html" && e.undated) {
+    if (led.method === "official_lineup_html" && led.format === "ef-lineup") {
+      // Electric Forest's lineup page prints no days. The dates are the run
+      // the chosen capture's own title prints (2011), or else the census's
+      // dated run for the year, which the ledger's datesFrom must quote.
+      const c = led.considered.find(x => x.captureTimestamp === led.chosen), df = led.datesFrom || {};
+      let run = [];
+      if (df.page === "title") run = (c?.printedRun === df.printed && efPrintedRun(df.printed, e.year)) || [];
+      else {
+        const cen = censusRow(df.family, e.year);
+        if (df.census === CREAMFIELDS_CENSUS && df.family === e.festivalId && c?.printedRun === null && cen?.lifecycle === "occurred" && cen.dates === df.dates) run = runDates(cen.range);
+      }
+      ok(e.undated && c?.valid && c.captureTimestamp.slice(0, 8) > e.days.at(-1).date.replace(/-/g, "") && run.length === e.days.length && run[d.day - 1] === d.date,
+        `${id} day ${d.day}: ${d.date} is not the run its lineup page's title (${df.printed ?? "none"}) or the census (${df.dates ?? "none"}) gives, or the page was not captured after the festival`);
+    } else if (led.method === "official_lineup_html" && e.undated) {
       // An undated page printed no days: the festival's own home page, captured
       // in the edition's year, printed them in its title.
       const dp = led.datesPrinted, host = new URL(led.official).hostname.replace(/^www\./, "");

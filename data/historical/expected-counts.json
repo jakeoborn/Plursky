@@ -190,6 +190,8 @@
  "creamfields-2022": { "artists": 253, "stages": 26, "appearancesPerDay": [24, 65, 89, 87], "dropped": 0 },
  "creamfields-2024": { "artists": 219, "stages": 21, "appearancesPerDay": [24, 62, 83, 70], "dropped": 1 },
  "creamfields-2025": { "artists": 201, "stages": 19, "appearancesPerDay": [24, 51, 76, 61], "dropped": 0 },
+ "electric-forest-2011": { "artists": 71, "stages": 0, "appearancesPerDay": [0, 0, 0, 0], "dropped": 0 },
+ "electric-forest-2016": { "artists": 171, "stages": 0, "appearancesPerDay": [0, 0, 0, 0], "dropped": 1 },
  "defqon1-2014": { "stages": 17, "setsPerDay": [12, 127, 57], "droppedPerDay": [0, 0, 0] },
  "defqon1-2015": { "stages": 14, "setsPerDay": [11, 133, 77], "droppedPerDay": [0, 0, 0] }
 }
