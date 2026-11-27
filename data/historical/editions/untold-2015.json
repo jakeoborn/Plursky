@@ -1,0 +1,972 @@
+{
+ "id": "untold-2015",
+ "festivalId": "untold",
+ "name": "Untold 2015",
+ "year": 2015,
+ "timezone": "Europe/Bucharest",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2015-07-30",
+   "label": "Thursday"
+  },
+  {
+   "day": 2,
+   "date": "2015-07-31",
+   "label": "Friday"
+  },
+  {
+   "day": 3,
+   "date": "2015-08-01",
+   "label": "Saturday"
+  },
+  {
+   "day": 4,
+   "date": "2015-08-02",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "untold-2015:ursus-untold-arena",
+   "name": "Ursus Untold Arena"
+  },
+  {
+   "id": "untold-2015:the-labyrinth",
+   "name": "The Labyrinth"
+  },
+  {
+   "id": "untold-2015:river-side",
+   "name": "River Side"
+  }
+ ],
+ "artists": [
+  {
+   "id": "untold-2015:suie-paparude",
+   "name": "Șuie Paparude",
+   "key": "suie-paparude",
+   "performers": [
+    "suie-paparude"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2015:ursus-untold-arena"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:tom-odell",
+   "name": "Tom Odell",
+   "key": "tom-odell",
+   "performers": [
+    "tom-odell"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2015:ursus-untold-arena"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:duke-dumont",
+   "name": "Duke Dumont",
+   "key": "duke-dumont",
+   "performers": [
+    "duke-dumont"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2015:ursus-untold-arena"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:fedde-le-grand",
+   "name": "Fedde Le Grand",
+   "key": "fedde-le-grand",
+   "performers": [
+    "fedde-le-grand"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2015:ursus-untold-arena"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:dimitri-vegas-and-like-mike",
+   "name": "Dimitri Vegas and Like Mike",
+   "key": "dimitri-vegas-and-like-mike",
+   "performers": [
+    "dimitri-vegas-and-like-mike"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2015:ursus-untold-arena"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:atb",
+   "name": "ATB",
+   "key": "atb",
+   "performers": [
+    "atb"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2015:ursus-untold-arena"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:lost-frequencies",
+   "name": "Lost Frequencies",
+   "key": "lost-frequencies",
+   "performers": [
+    "lost-frequencies"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2015:ursus-untold-arena"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:michael-calfan",
+   "name": "Michael Calfan",
+   "key": "michael-calfan",
+   "performers": [
+    "michael-calfan"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2015:ursus-untold-arena"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:nu-zau",
+   "name": "Nu Zau",
+   "key": "nu-zau",
+   "performers": [
+    "nu-zau"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2015:the-labyrinth"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:dense-and-pika",
+   "name": "Dense & Pika",
+   "key": "dense-and-pika",
+   "performers": [
+    "dense-and-pika"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2015:the-labyrinth"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:adam-beyer",
+   "name": "Adam Beyer",
+   "key": "adam-beyer",
+   "performers": [
+    "adam-beyer"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2015:the-labyrinth"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:alexandru-jijian",
+   "name": "Alexandru Jijian",
+   "key": "alexandru-jijian",
+   "performers": [
+    "alexandru-jijian"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2015:the-labyrinth"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:dj-oz",
+   "name": "DJ OZ",
+   "key": "dj-oz",
+   "performers": [
+    "dj-oz"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2015:river-side"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:dj-snow-and-mc-agent",
+   "name": "DJ Snow & MC Agent",
+   "key": "dj-snow-and-mc-agent",
+   "performers": [
+    "dj-snow-and-mc-agent"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2015:river-side"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:p-money",
+   "name": "P Money",
+   "key": "p-money",
+   "performers": [
+    "p-money"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2015:river-side"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:the-bug-and-flow-dan",
+   "name": "The BUG & Flow Dan",
+   "key": "the-bug-and-flow-dan",
+   "performers": [
+    "the-bug-and-flow-dan"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2015:river-side"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:gramatik",
+   "name": "Gramatik",
+   "key": "gramatik",
+   "performers": [
+    "gramatik"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2015:river-side"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:wilkinson",
+   "name": "Wilkinson",
+   "key": "wilkinson",
+   "performers": [
+    "wilkinson"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2015:river-side"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:marwan",
+   "name": "Marwan",
+   "key": "marwan",
+   "performers": [
+    "marwan"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2015:ursus-untold-arena"
+    },
+    {
+     "day": 3,
+     "stageId": "untold-2015:river-side"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:raku",
+   "name": "Raku",
+   "key": "raku",
+   "performers": [
+    "raku"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2015:ursus-untold-arena"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:gentleman",
+   "name": "Gentleman",
+   "key": "gentleman",
+   "performers": [
+    "gentleman"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2015:ursus-untold-arena"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:subcarpati",
+   "name": "Subcarpați",
+   "key": "subcarpati",
+   "performers": [
+    "subcarpati"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2015:ursus-untold-arena"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:cazzette",
+   "name": "Cazzette",
+   "key": "cazzette",
+   "performers": [
+    "cazzette"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2015:ursus-untold-arena"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:avicii",
+   "name": "Avicii",
+   "key": "avicii",
+   "performers": [
+    "avicii"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2015:ursus-untold-arena"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:aronchupa",
+   "name": "Aronchupa",
+   "key": "aronchupa",
+   "performers": [
+    "aronchupa"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2015:ursus-untold-arena"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:parra-for-cuva-and-marwan",
+   "name": "Parra for Cuva & Marwan",
+   "key": "parra-for-cuva-and-marwan",
+   "performers": [
+    "parra-for-cuva-and-marwan"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2015:the-labyrinth"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:sasha",
+   "name": "Sasha",
+   "key": "sasha",
+   "performers": [
+    "sasha"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2015:the-labyrinth"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:lee-buridge",
+   "name": "Lee Buridge",
+   "key": "lee-buridge",
+   "performers": [
+    "lee-buridge"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2015:the-labyrinth"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:pedestrian",
+   "name": "Pedestrian",
+   "key": "pedestrian",
+   "performers": [
+    "pedestrian"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2015:the-labyrinth"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:star-slinger",
+   "name": "Star Slinger",
+   "key": "star-slinger",
+   "performers": [
+    "star-slinger"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2015:river-side"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:moods",
+   "name": "Moods",
+   "key": "moods",
+   "performers": [
+    "moods"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2015:river-side"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:onra",
+   "name": "ONRA",
+   "key": "onra",
+   "performers": [
+    "onra"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2015:river-side"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:foreign-beggars",
+   "name": "Foreign Beggars",
+   "key": "foreign-beggars",
+   "performers": [
+    "foreign-beggars"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2015:river-side"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:andy-c-and-mc-2shy",
+   "name": "Andy C & MC 2SHY",
+   "key": "andy-c-and-mc-2shy",
+   "performers": [
+    "andy-c-and-mc-2shy"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2015:river-side"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:moonlight-breakfast",
+   "name": "Moonlight Breakfast",
+   "key": "moonlight-breakfast",
+   "performers": [
+    "moonlight-breakfast"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2015:ursus-untold-arena"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:patrice",
+   "name": "Patrice",
+   "key": "patrice",
+   "performers": [
+    "patrice"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2015:ursus-untold-arena"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:john-newman",
+   "name": "John Newman",
+   "key": "john-newman",
+   "performers": [
+    "john-newman"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2015:ursus-untold-arena"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:tinie-tempah",
+   "name": "Tinie Tempah",
+   "key": "tinie-tempah",
+   "performers": [
+    "tinie-tempah"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2015:ursus-untold-arena"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:radio-killer",
+   "name": "Radio Killer",
+   "key": "radio-killer",
+   "performers": [
+    "radio-killer"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2015:ursus-untold-arena"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:sunner-james-and-ryan-marciano",
+   "name": "Sunner James & Ryan Marciano",
+   "key": "sunner-james-and-ryan-marciano",
+   "performers": [
+    "sunner-james-and-ryan-marciano"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2015:ursus-untold-arena"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:armin-van-buuren",
+   "name": "Armin Van Buuren",
+   "key": "armin-van-buuren",
+   "performers": [
+    "armin-van-buuren"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2015:ursus-untold-arena"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:virgil",
+   "name": "Virgil",
+   "key": "virgil",
+   "performers": [
+    "virgil"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2015:the-labyrinth"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:sharam",
+   "name": "Sharam",
+   "key": "sharam",
+   "performers": [
+    "sharam"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2015:the-labyrinth"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:satoshi-tomiie",
+   "name": "Satoshi Tomiie",
+   "key": "satoshi-tomiie",
+   "performers": [
+    "satoshi-tomiie"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2015:the-labyrinth"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:livio-and-roby",
+   "name": "Livio & Roby",
+   "key": "livio-and-roby",
+   "performers": [
+    "livio-and-roby"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2015:the-labyrinth"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:mr-goju",
+   "name": "MR Goju",
+   "key": "mr-goju",
+   "performers": [
+    "mr-goju"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2015:river-side"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:crazy-p",
+   "name": "Crazy P",
+   "key": "crazy-p",
+   "performers": [
+    "crazy-p"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2015:river-side"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:argatu",
+   "name": "Argatu",
+   "key": "argatu",
+   "performers": [
+    "argatu"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2015:river-side"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:mala",
+   "name": "Mala",
+   "key": "mala",
+   "performers": [
+    "mala"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2015:river-side"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:golan",
+   "name": "GOLAN",
+   "key": "golan",
+   "performers": [
+    "golan"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2015:ursus-untold-arena"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:irie-maffia",
+   "name": "Irie Maffia",
+   "key": "irie-maffia",
+   "performers": [
+    "irie-maffia"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2015:ursus-untold-arena"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:fatman-scoop",
+   "name": "Fatman Scoop",
+   "key": "fatman-scoop",
+   "performers": [
+    "fatman-scoop"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2015:ursus-untold-arena"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:third-party",
+   "name": "Third Party",
+   "key": "third-party",
+   "performers": [
+    "third-party"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2015:ursus-untold-arena"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:tujamo",
+   "name": "Tujamo",
+   "key": "tujamo",
+   "performers": [
+    "tujamo"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2015:ursus-untold-arena"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:david-guetta",
+   "name": "David Guetta",
+   "key": "david-guetta",
+   "performers": [
+    "david-guetta"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2015:ursus-untold-arena"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:paul-k",
+   "name": "Paul K",
+   "key": "paul-k",
+   "performers": [
+    "paul-k"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2015:the-labyrinth"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:nic-fanciulli",
+   "name": "Nic Fanciulli",
+   "key": "nic-fanciulli",
+   "performers": [
+    "nic-fanciulli"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2015:the-labyrinth"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:john-digweed",
+   "name": "John Digweed",
+   "key": "john-digweed",
+   "performers": [
+    "john-digweed"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2015:the-labyrinth"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:maribou-state",
+   "name": "Maribou State",
+   "key": "maribou-state",
+   "performers": [
+    "maribou-state"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2015:the-labyrinth"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:nightmares-on-wax",
+   "name": "Nightmares On Wax",
+   "key": "nightmares-on-wax",
+   "performers": [
+    "nightmares-on-wax"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2015:river-side"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:bondax",
+   "name": "Bondax",
+   "key": "bondax",
+   "performers": [
+    "bondax"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2015:river-side"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:jeru-the-damaja",
+   "name": "Jeru the Damaja",
+   "key": "jeru-the-damaja",
+   "performers": [
+    "jeru-the-damaja"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2015:river-side"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:dj-premier",
+   "name": "DJ Premier",
+   "key": "dj-premier",
+   "performers": [
+    "dj-premier"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2015:river-side"
+    }
+   ]
+  },
+  {
+   "id": "untold-2015:pendulum-dj-set-and-mc-verse",
+   "name": "Pendulum (DJ Set) & MC Verse",
+   "key": "pendulum-dj-set-and-mc-verse",
+   "performers": [
+    "pendulum-dj-set-and-mc-verse"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2015:river-side"
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "unofficial_lineup",
+  "unofficial": true,
+  "source": {
+   "kind": "press",
+   "site": "infomusic.ro",
+   "url": "https://www.infomusic.ro/agenda/untold-festival-2015/",
+   "title": "UNTOLD FESTIVAL 2015",
+   "publisher": "InfoMusic",
+   "fetchedAt": "2026-11-27",
+   "fetchedVia": "exa",
+   "scope": "partial",
+   "sha256": "87f357be19ec409946d66011110c8119f77fea2d809882d94816bd5b75fca74e",
+   "bytes": 4114
+  },
+  "captures": [
+   {
+    "page": "lineup",
+    "url": "https://www.infomusic.ro/agenda/untold-festival-2015/",
+    "fetchedAt": "2026-11-27",
+    "sha256": "87f357be19ec409946d66011110c8119f77fea2d809882d94816bd5b75fca74e"
+   }
+  ]
+ }
+}

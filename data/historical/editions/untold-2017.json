@@ -1,0 +1,489 @@
+{
+ "id": "untold-2017",
+ "festivalId": "untold",
+ "name": "Untold 2017",
+ "year": 2017,
+ "timezone": "Europe/Bucharest",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2017-08-03",
+   "label": "Thursday"
+  },
+  {
+   "day": 2,
+   "date": "2017-08-04",
+   "label": "Friday"
+  },
+  {
+   "day": 3,
+   "date": "2017-08-05",
+   "label": "Saturday"
+  },
+  {
+   "day": 4,
+   "date": "2017-08-06",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [],
+ "artists": [
+  {
+   "id": "untold-2017:hardwell",
+   "name": "Hardwell",
+   "key": "hardwell",
+   "performers": [
+    "hardwell"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "untold-2017:axwell-and-ingrosso",
+   "name": "Axwell&Ingrosso",
+   "key": "axwell-and-ingrosso",
+   "performers": [
+    "axwell-and-ingrosso"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "untold-2017:m",
+   "name": "MØ",
+   "key": "m",
+   "performers": [
+    "m"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "untold-2017:charli-xcx",
+   "name": "Charli XCX",
+   "key": "charli-xcx",
+   "performers": [
+    "charli-xcx"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "untold-2017:dillon-francis",
+   "name": "Dillon Francis",
+   "key": "dillon-francis",
+   "performers": [
+    "dillon-francis"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "untold-2017:sven-vath",
+   "name": "Sven Vath",
+   "key": "sven-vath",
+   "performers": [
+    "sven-vath"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "untold-2017:dubfire",
+   "name": "Dubfire",
+   "key": "dubfire",
+   "performers": [
+    "dubfire"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "untold-2017:ellie-goulding",
+   "name": "Ellie Goulding",
+   "key": "ellie-goulding",
+   "performers": [
+    "ellie-goulding"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "untold-2017:dimitri-vegas-and-like-mike",
+   "name": "Dimitri Vegas&Like Mike",
+   "key": "dimitri-vegas-and-like-mike",
+   "performers": [
+    "dimitri-vegas-and-like-mike"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "untold-2017:tujamo",
+   "name": "Tujamo",
+   "key": "tujamo",
+   "performers": [
+    "tujamo"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "untold-2017:jasmine-thompson",
+   "name": "Jasmine Thompson",
+   "key": "jasmine-thompson",
+   "performers": [
+    "jasmine-thompson"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "untold-2017:don-diablo",
+   "name": "Don Diablo",
+   "key": "don-diablo",
+   "performers": [
+    "don-diablo"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "untold-2017:lost-frequencies",
+   "name": "Lost Frequencies",
+   "key": "lost-frequencies",
+   "performers": [
+    "lost-frequencies"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "untold-2017:solomon",
+   "name": "Solomon",
+   "key": "solomon",
+   "performers": [
+    "solomon"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "untold-2017:armin-van-buuren",
+   "name": "Armin van Buuren",
+   "key": "armin-van-buuren",
+   "performers": [
+    "armin-van-buuren"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "untold-2017:marshmello",
+   "name": "Marshmello",
+   "key": "marshmello",
+   "performers": [
+    "marshmello"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "untold-2017:tinie-tempah",
+   "name": "Tinie Tempah",
+   "key": "tinie-tempah",
+   "performers": [
+    "tinie-tempah"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "untold-2017:hurts",
+   "name": "Hurts",
+   "key": "hurts",
+   "performers": [
+    "hurts"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "untold-2017:sunnery-james-and-ryan-marciano",
+   "name": "Sunnery James&Ryan Marciano",
+   "key": "sunnery-james-and-ryan-marciano",
+   "performers": [
+    "sunnery-james-and-ryan-marciano"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "untold-2017:sander-van-doorn",
+   "name": "Sander van Doorn",
+   "key": "sander-van-doorn",
+   "performers": [
+    "sander-van-doorn"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "untold-2017:loco-dice",
+   "name": "Loco Dice",
+   "key": "loco-dice",
+   "performers": [
+    "loco-dice"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "untold-2017:chris-liebing",
+   "name": "Chris Liebing",
+   "key": "chris-liebing",
+   "performers": [
+    "chris-liebing"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "untold-2017:grasu-xxl",
+   "name": "Grasu XXL",
+   "key": "grasu-xxl",
+   "performers": [
+    "grasu-xxl"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "untold-2017:martin-garrix",
+   "name": "Martin Garrix",
+   "key": "martin-garrix",
+   "performers": [
+    "martin-garrix"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "untold-2017:afrojack",
+   "name": "Afrojack",
+   "key": "afrojack",
+   "performers": [
+    "afrojack"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "untold-2017:steve-aoki",
+   "name": "Steve Aoki",
+   "key": "steve-aoki",
+   "performers": [
+    "steve-aoki"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "untold-2017:alan-walker",
+   "name": "Alan Walker",
+   "key": "alan-walker",
+   "performers": [
+    "alan-walker"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "untold-2017:example-and-dj-wire",
+   "name": "Example&DJ Wire",
+   "key": "example-and-dj-wire",
+   "performers": [
+    "example-and-dj-wire"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "untold-2017:redfoo",
+   "name": "Redfoo",
+   "key": "redfoo",
+   "performers": [
+    "redfoo"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "untold-2017:jamie-jones",
+   "name": "Jamie Jones",
+   "key": "jamie-jones",
+   "performers": [
+    "jamie-jones"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "untold-2017:steve-lawler",
+   "name": "Steve Lawler",
+   "key": "steve-lawler",
+   "performers": [
+    "steve-lawler"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "untold-2017:la-familia",
+   "name": "La Familia",
+   "key": "la-familia",
+   "performers": [
+    "la-familia"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "untold-2017:macanache",
+   "name": "Macanache",
+   "key": "macanache",
+   "performers": [
+    "macanache"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "unofficial_lineup",
+  "unofficial": true,
+  "source": {
+   "kind": "press",
+   "site": "gherlainfo.ro",
+   "url": "https://gherlainfo.ro/a-aparut-programul-untold-2017-pe-zile/",
+   "title": "A apărut programul Untold 2017 PE ZILE. La Familia şi Grasu XXL pe afiş",
+   "publisher": "Gherla INFO",
+   "published": "2017-06-21",
+   "fetchedAt": "2026-11-27",
+   "fetchedVia": "exa",
+   "scope": "partial",
+   "sha256": "84c2f9d8e599eb88a6bcf1cea8d77f472f159a4b4aa2333f79280b877a3c54f4",
+   "bytes": 2356
+  },
+  "captures": [
+   {
+    "page": "lineup",
+    "url": "https://gherlainfo.ro/a-aparut-programul-untold-2017-pe-zile/",
+    "fetchedAt": "2026-11-27",
+    "sha256": "84c2f9d8e599eb88a6bcf1cea8d77f472f159a4b4aa2333f79280b877a3c54f4"
+   }
+  ]
+ }
+}

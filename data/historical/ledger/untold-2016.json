@@ -1,0 +1,42 @@
+{
+  "id": "untold-2016",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "press",
+    "site": "gazetadecluj.ro",
+    "url": "https://gazetadecluj.ro/programul-pe-zile-untold-ia-ti-acum-biletul-de-o-zi-la-cel-mai-bun-festival-din-europa/",
+    "title": "Programul pe zile UNTOLD! Ia-ți acum biletul de o zi la cel mai bun festival din Europa",
+    "publisher": "Gazeta de Cluj",
+    "published": "2016-05-12",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "partial",
+    "sha256": "f428272e703cd42fa701f490415cb765fec13113da4744cbf15c1535afa13118",
+    "bytes": 2528
+  },
+  "printed": {
+    "days": {
+      "1": "JOI, 4 AUGUST",
+      "2": "VINERI, 5 AUGUST",
+      "3": "SÂMBĂTĂ, 6 AUGUST",
+      "4": "DUMINICĂ, 7 AUGUST"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "untold",
+    "year": 2016,
+    "lifecycle": "occurred",
+    "dates": "2016-08-04..2016-08-07",
+    "evidence": "https://en.wikipedia.org/w/api.php?action=query&prop=revisions&titles=Untold_Festival&rvprop=ids|timestamp|content&rvslots=main&format=json",
+    "published": "2026-11-18T15:42:04Z rev 1386441408"
+  },
+  "note": "The headliners and early names per day as the organisers announced them on 12 May 2016; the article says about 150 acts would play, so stages, smaller acts and later changes are not shown.",
+  "verified": {
+    "billings": 28,
+    "inSourceText": true
+  },
+  "stageOrder": [],
+  "dropped": []
+}

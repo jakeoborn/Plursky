@@ -1,0 +1,424 @@
+{
+ "id": "untold-2016",
+ "festivalId": "untold",
+ "name": "Untold 2016",
+ "year": 2016,
+ "timezone": "Europe/Bucharest",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2016-08-04",
+   "label": "Thursday"
+  },
+  {
+   "day": 2,
+   "date": "2016-08-05",
+   "label": "Friday"
+  },
+  {
+   "day": 3,
+   "date": "2016-08-06",
+   "label": "Saturday"
+  },
+  {
+   "day": 4,
+   "date": "2016-08-07",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [],
+ "artists": [
+  {
+   "id": "untold-2016:dimitri-vegas-and-like-mike",
+   "name": "DIMITRI VEGAS&LIKE MIKE",
+   "key": "dimitri-vegas-and-like-mike",
+   "performers": [
+    "dimitri-vegas-and-like-mike"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "untold-2016:tiesto",
+   "name": "TIESTO",
+   "key": "tiesto",
+   "performers": [
+    "tiesto"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "untold-2016:faithless",
+   "name": "FAITHLESS",
+   "key": "faithless",
+   "performers": [
+    "faithless"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "untold-2016:route94",
+   "name": "ROUTE94",
+   "key": "route94",
+   "performers": [
+    "route94"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "untold-2016:martinez-brothers",
+   "name": "MARTINEZ BROTHERS",
+   "key": "martinez-brothers",
+   "performers": [
+    "martinez-brothers"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "untold-2016:borgore",
+   "name": "BORGORE",
+   "key": "borgore",
+   "performers": [
+    "borgore"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "untold-2016:rudimental-dj",
+   "name": "RUDIMENTAL DJ",
+   "key": "rudimental-dj",
+   "performers": [
+    "rudimental-dj"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "untold-2016:hardwell",
+   "name": "HARDWELL",
+   "key": "hardwell",
+   "performers": [
+    "hardwell"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "untold-2016:scooter",
+   "name": "SCOOTER",
+   "key": "scooter",
+   "performers": [
+    "scooter"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "untold-2016:tujamo",
+   "name": "TUJAMO",
+   "key": "tujamo",
+   "performers": [
+    "tujamo"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "untold-2016:jamie-jones",
+   "name": "JAMIE JONES",
+   "key": "jamie-jones",
+   "performers": [
+    "jamie-jones"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "untold-2016:seth-troxler",
+   "name": "SETH TROXLER",
+   "key": "seth-troxler",
+   "performers": [
+    "seth-troxler"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "untold-2016:chase-and-status-dj-set",
+   "name": "CHASE AND STATUS DJ SET",
+   "key": "chase-and-status-dj-set",
+   "performers": [
+    "chase-and-status-dj-set"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "untold-2016:dope-dod",
+   "name": "DOPE DOD",
+   "key": "dope-dod",
+   "performers": [
+    "dope-dod"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "untold-2016:armin-van-buuren",
+   "name": "ARMIN VAN BUUREN",
+   "key": "armin-van-buuren",
+   "performers": [
+    "armin-van-buuren"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "untold-2016:w-and-w",
+   "name": "W&W",
+   "key": "w-and-w",
+   "performers": [
+    "w-and-w"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "untold-2016:satoshi-tomiie",
+   "name": "SATOSHI TOMIIE",
+   "key": "satoshi-tomiie",
+   "performers": [
+    "satoshi-tomiie"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "untold-2016:sasha",
+   "name": "SASHA",
+   "key": "sasha",
+   "performers": [
+    "sasha"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "untold-2016:foreign-beggars",
+   "name": "FOREIGN BEGGARS",
+   "key": "foreign-beggars",
+   "performers": [
+    "foreign-beggars"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "untold-2016:pendulum-dj-set-and-verse",
+   "name": "PENDULUM DJ SET&VERSE",
+   "key": "pendulum-dj-set-and-verse",
+   "performers": [
+    "pendulum-dj-set-and-verse"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "untold-2016:kwabs",
+   "name": "KWABS",
+   "key": "kwabs",
+   "performers": [
+    "kwabs"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "untold-2016:afrojack",
+   "name": "AFROJACK",
+   "key": "afrojack",
+   "performers": [
+    "afrojack"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "untold-2016:martin-garrix",
+   "name": "MARTIN GARRIX",
+   "key": "martin-garrix",
+   "performers": [
+    "martin-garrix"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "untold-2016:parov-stelar",
+   "name": "PAROV STELAR",
+   "key": "parov-stelar",
+   "performers": [
+    "parov-stelar"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "untold-2016:dubfire",
+   "name": "DUBFIRE",
+   "key": "dubfire",
+   "performers": [
+    "dubfire"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "untold-2016:john-digweed",
+   "name": "JOHN DIGWEED",
+   "key": "john-digweed",
+   "performers": [
+    "john-digweed"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "untold-2016:sharam",
+   "name": "SHARAM",
+   "key": "sharam",
+   "performers": [
+    "sharam"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "untold-2016:netsky-dj-set",
+   "name": "NETSKY DJ SET",
+   "key": "netsky-dj-set",
+   "performers": [
+    "netsky-dj-set"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "unofficial_lineup",
+  "unofficial": true,
+  "source": {
+   "kind": "press",
+   "site": "gazetadecluj.ro",
+   "url": "https://gazetadecluj.ro/programul-pe-zile-untold-ia-ti-acum-biletul-de-o-zi-la-cel-mai-bun-festival-din-europa/",
+   "title": "Programul pe zile UNTOLD! Ia-ți acum biletul de o zi la cel mai bun festival din Europa",
+   "publisher": "Gazeta de Cluj",
+   "published": "2016-05-12",
+   "fetchedAt": "2026-11-27",
+   "fetchedVia": "exa",
+   "scope": "partial",
+   "sha256": "f428272e703cd42fa701f490415cb765fec13113da4744cbf15c1535afa13118",
+   "bytes": 2528
+  },
+  "captures": [
+   {
+    "page": "lineup",
+    "url": "https://gazetadecluj.ro/programul-pe-zile-untold-ia-ti-acum-biletul-de-o-zi-la-cel-mai-bun-festival-din-europa/",
+    "fetchedAt": "2026-11-27",
+    "sha256": "f428272e703cd42fa701f490415cb765fec13113da4744cbf15c1535afa13118"
+   }
+  ]
+ }
+}

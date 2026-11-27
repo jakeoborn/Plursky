@@ -7303,6 +7303,334 @@
     "artists": 214,
     "sets": 217
    }
+  },
+  {
+   "id": "untold-2023",
+   "festivalId": "untold",
+   "festivalName": "Untold",
+   "name": "Untold 2023",
+   "year": 2023,
+   "timezone": "Europe/Bucharest",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "descoperabucurestiul.eu",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2023-08-03",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2023-08-04",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2023-08-05",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2023-08-06",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 223,
+    "sets": 0
+   }
+  },
+  {
+   "id": "untold-2022",
+   "festivalId": "untold",
+   "festivalName": "Untold",
+   "name": "Untold 2022",
+   "year": 2022,
+   "timezone": "Europe/Bucharest",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "infomusic.ro",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2022-08-04",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2022-08-05",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2022-08-06",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2022-08-07",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 6,
+    "artists": 178,
+    "sets": 0
+   }
+  },
+  {
+   "id": "untold-2021",
+   "festivalId": "untold",
+   "festivalName": "Untold",
+   "name": "Untold 2021",
+   "year": 2021,
+   "timezone": "Europe/Bucharest",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "monitorulcj.ro",
+    "scope": "partial"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2021-09-09",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2021-09-10",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2021-09-11",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2021-09-12",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 6,
+    "artists": 102,
+    "sets": 0
+   }
+  },
+  {
+   "id": "untold-2019",
+   "festivalId": "untold",
+   "festivalName": "Untold",
+   "name": "Untold 2019",
+   "year": 2019,
+   "timezone": "Europe/Bucharest",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "infomusic.ro",
+    "scope": "partial"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2019-08-01",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2019-08-02",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2019-08-03",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2019-08-04",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 44,
+    "sets": 0
+   }
+  },
+  {
+   "id": "untold-2018",
+   "festivalId": "untold",
+   "festivalName": "Untold",
+   "name": "Untold 2018",
+   "year": 2018,
+   "timezone": "Europe/Bucharest",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "ziarulunirea.ro",
+    "scope": "partial"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2018-08-02",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2018-08-03",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2018-08-04",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2018-08-05",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 35,
+    "sets": 0
+   }
+  },
+  {
+   "id": "untold-2017",
+   "festivalId": "untold",
+   "festivalName": "Untold",
+   "name": "Untold 2017",
+   "year": 2017,
+   "timezone": "Europe/Bucharest",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "gherlainfo.ro",
+    "scope": "partial"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2017-08-03",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2017-08-04",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2017-08-05",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2017-08-06",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 33,
+    "sets": 0
+   }
+  },
+  {
+   "id": "untold-2016",
+   "festivalId": "untold",
+   "festivalName": "Untold",
+   "name": "Untold 2016",
+   "year": 2016,
+   "timezone": "Europe/Bucharest",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "gazetadecluj.ro",
+    "scope": "partial"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2016-08-04",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2016-08-05",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2016-08-06",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2016-08-07",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 28,
+    "sets": 0
+   }
+  },
+  {
+   "id": "untold-2015",
+   "festivalId": "untold",
+   "festivalName": "Untold",
+   "name": "Untold 2015",
+   "year": 2015,
+   "timezone": "Europe/Bucharest",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "infomusic.ro",
+    "scope": "partial"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2015-07-30",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2015-07-31",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2015-08-01",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2015-08-02",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 3,
+    "artists": 64,
+    "sets": 0
+   }
   }
  ]
 }

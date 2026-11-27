@@ -1,0 +1,635 @@
+{
+ "id": "untold-2019",
+ "festivalId": "untold",
+ "name": "Untold 2019",
+ "year": 2019,
+ "timezone": "Europe/Bucharest",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2019-08-01",
+   "label": "Thursday"
+  },
+  {
+   "day": 2,
+   "date": "2019-08-02",
+   "label": "Friday"
+  },
+  {
+   "day": 3,
+   "date": "2019-08-03",
+   "label": "Saturday"
+  },
+  {
+   "day": 4,
+   "date": "2019-08-04",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [],
+ "artists": [
+  {
+   "id": "untold-2019:3-are-legend",
+   "name": "3 Are Legend",
+   "key": "3-are-legend",
+   "performers": [
+    "3-are-legend"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:tujamo",
+   "name": "Tujamo",
+   "key": "tujamo",
+   "performers": [
+    "tujamo"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:loco-dice",
+   "name": "Loco Dice",
+   "key": "loco-dice",
+   "performers": [
+    "loco-dice"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:oxia",
+   "name": "Oxia",
+   "key": "oxia",
+   "performers": [
+    "oxia"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:pendulum-dj-set-b2b-friction",
+   "name": "Pendulum DJ Set B2B Friction",
+   "key": "pendulum-dj-set-b2b-friction",
+   "performers": [
+    "pendulum-dj-set",
+    "friction"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:roni-size",
+   "name": "Roni Size",
+   "key": "roni-size",
+   "performers": [
+    "roni-size"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:audiofly",
+   "name": "Audiofly",
+   "key": "audiofly",
+   "performers": [
+    "audiofly"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:lum",
+   "name": "Lum",
+   "key": "lum",
+   "performers": [
+    "lum"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:alborosie",
+   "name": "Alborosie",
+   "key": "alborosie",
+   "performers": [
+    "alborosie"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:morcheeba",
+   "name": "Morcheeba",
+   "key": "morcheeba",
+   "performers": [
+    "morcheeba"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:christina-novelli-live",
+   "name": "Christina Novelli (live)",
+   "key": "christina-novelli-live",
+   "performers": [
+    "christina-novelli-live"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:cosmic-gate",
+   "name": "Cosmic Gate",
+   "key": "cosmic-gate",
+   "performers": [
+    "cosmic-gate"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:armin-van-buuren",
+   "name": "Armin Van Buuren",
+   "key": "armin-van-buuren",
+   "performers": [
+    "armin-van-buuren"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:timmy-trumpet",
+   "name": "Timmy Trumpet",
+   "key": "timmy-trumpet",
+   "performers": [
+    "timmy-trumpet"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:boris-brejcha",
+   "name": "Boris Brejcha",
+   "key": "boris-brejcha",
+   "performers": [
+    "boris-brejcha"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:solomun",
+   "name": "Solomun",
+   "key": "solomun",
+   "performers": [
+    "solomun"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:chase-and-status-dj-set",
+   "name": "Chase & Status DJ Set",
+   "key": "chase-and-status-dj-set",
+   "performers": [
+    "chase-and-status-dj-set"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:acid-pauli",
+   "name": "Acid Pauli",
+   "key": "acid-pauli",
+   "performers": [
+    "acid-pauli"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:blond-ish-b2b-yokoo",
+   "name": "Blond:ish B2B Yokoo",
+   "key": "blond-ish-b2b-yokoo",
+   "performers": [
+    "blond-ish",
+    "yokoo"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:akua-naru",
+   "name": "Akua Naru",
+   "key": "akua-naru",
+   "performers": [
+    "akua-naru"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:cid-inc",
+   "name": "Cid Inc.",
+   "key": "cid-inc",
+   "performers": [
+    "cid-inc"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:sebastian-leger",
+   "name": "Sebastian Leger",
+   "key": "sebastian-leger",
+   "performers": [
+    "sebastian-leger"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:don-diablo",
+   "name": "Don Diablo",
+   "key": "don-diablo",
+   "performers": [
+    "don-diablo"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:paul-kalkbrenner",
+   "name": "Paul Kalkbrenner",
+   "key": "paul-kalkbrenner",
+   "performers": [
+    "paul-kalkbrenner"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:tale-of-us",
+   "name": "Tale Of Us",
+   "key": "tale-of-us",
+   "performers": [
+    "tale-of-us"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:congo-natty-dj-set",
+   "name": "Congo Natty DJ Set",
+   "key": "congo-natty-dj-set",
+   "performers": [
+    "congo-natty-dj-set"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:rusko",
+   "name": "Rusko",
+   "key": "rusko",
+   "performers": [
+    "rusko"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:black-motion-live",
+   "name": "Black Motion Live",
+   "key": "black-motion-live",
+   "performers": [
+    "black-motion-live"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:lee-burridge",
+   "name": "Lee Burridge",
+   "key": "lee-burridge",
+   "performers": [
+    "lee-burridge"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:alexandrina",
+   "name": "Alexandrina",
+   "key": "alexandrina",
+   "performers": [
+    "alexandrina"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:sevdaliza",
+   "name": "Sevdaliza",
+   "key": "sevdaliza",
+   "performers": [
+    "sevdaliza"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:atb",
+   "name": "ATB",
+   "key": "atb",
+   "performers": [
+    "atb"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:richard-durand",
+   "name": "Richard Durand",
+   "key": "richard-durand",
+   "performers": [
+    "richard-durand"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:david-guetta",
+   "name": "David Guetta",
+   "key": "david-guetta",
+   "performers": [
+    "david-guetta"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:martin-garrix",
+   "name": "Martin Garrix",
+   "key": "martin-garrix",
+   "performers": [
+    "martin-garrix"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:jamie-jones-b2b-martinez-brothers",
+   "name": "Jamie Jones B2B Martinez Brothers",
+   "key": "jamie-jones-b2b-martinez-brothers",
+   "performers": [
+    "jamie-jones",
+    "martinez-brothers"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:seth-troxler",
+   "name": "Seth Troxler",
+   "key": "seth-troxler",
+   "performers": [
+    "seth-troxler"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:dub-fx",
+   "name": "Dub FX",
+   "key": "dub-fx",
+   "performers": [
+    "dub-fx"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:andy-c-and-tonn-piper",
+   "name": "Andy C & Tonn Piper",
+   "key": "andy-c-and-tonn-piper",
+   "performers": [
+    "andy-c-and-tonn-piper"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:black-coffee",
+   "name": "Black Coffee",
+   "key": "black-coffee",
+   "performers": [
+    "black-coffee"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:lazare-hoche",
+   "name": "Lazare Hoche",
+   "key": "lazare-hoche",
+   "performers": [
+    "lazare-hoche"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:tanya-stephens-and-royal-roots",
+   "name": "Tanya Stephens & Royal Roots",
+   "key": "tanya-stephens-and-royal-roots",
+   "performers": [
+    "tanya-stephens-and-royal-roots"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:emma-hewitt-live",
+   "name": "Emma Hewitt (live)",
+   "key": "emma-hewitt-live",
+   "performers": [
+    "emma-hewitt-live"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "untold-2019:john-o-callaghan",
+   "name": "John O'Callaghan",
+   "key": "john-o-callaghan",
+   "performers": [
+    "john-o-callaghan"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "unofficial_lineup",
+  "unofficial": true,
+  "source": {
+   "kind": "press",
+   "site": "infomusic.ro",
+   "url": "https://www.infomusic.ro/2019/06/untold-2019-programul-pe-zile-preturile-biletelor-de-o-zi/",
+   "title": "UNTOLD 2019 - Programul parțial pe zile și prețurile biletelor de o zi",
+   "publisher": "InfoMusic",
+   "published": "2019-06-11",
+   "fetchedAt": "2026-11-27",
+   "fetchedVia": "exa",
+   "scope": "partial",
+   "sha256": "7763e93503697a8f7d09f6966a4bfa7ee7986ec0d7f447a6b6ac98d67ad5e3cc",
+   "bytes": 5229
+  },
+  "captures": [
+   {
+    "page": "lineup",
+    "url": "https://www.infomusic.ro/2019/06/untold-2019-programul-pe-zile-preturile-biletelor-de-o-zi/",
+    "fetchedAt": "2026-11-27",
+    "sha256": "7763e93503697a8f7d09f6966a4bfa7ee7986ec0d7f447a6b6ac98d67ad5e3cc"
+   }
+  ]
+ }
+}
