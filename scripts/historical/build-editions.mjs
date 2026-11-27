@@ -141,7 +141,9 @@ export function buildLineupEdition(id, rows, ledger) {
       // An unofficial source (unofficial.mjs): no official page, the source
       // itself named, and the one text the lineup was read from.
       ? { extractionMethod: ed.method, unofficial: true, source: ledger.source,
-        captures: [{ page: "lineup", url: ledger.source.url, fetchedAt: ledger.source.fetchedAt, sha256: ledger.source.sha256 }] }
+        captures: [{ page: "lineup", url: ledger.source.url, fetchedAt: ledger.source.fetchedAt, sha256: ledger.source.sha256 }],
+        // A day the festival cancelled: left out of `days`, its billings dropped.
+        ...(ledger.cancelledDays && { cancelledDays: ledger.cancelledDays.map(c => ({ date: c.date, weekday: c.weekday, reason: c.reason, quote: c.quote, source: c.source, dropped: c.dropped })) }) }
       : { extractionMethod: ed.method, official: ledger.official,
         captures: [{ page: "lineup", archivedUrl: ledger.archivedUrl, captureTimestamp: ledger.chosen, sha256: ledger.sha256 }] },
     ...(ed.notes && { notes: ed.notes }),

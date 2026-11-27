@@ -288,6 +288,11 @@ function _HistProvenance({ edition, onClose }) {
           <p data-unofficial-source style={{ margin: 0, color: "var(--text-2)" }}>
             Unofficial: from {from}, not the festival's own pages. Plursky has no official {edition.year} lineup, so this one is used instead.{s.scope === "partial" ? " It names only part of the lineup." : ""} Artist names appear as the source printed them. Set times are not shown, and non-music activities are left out.
           </p>
+          {(p.cancelledDays || []).map(c => (
+            <p key={c.date} data-cancelled-day={c.date} style={{ margin: 0, color: "var(--text-2)" }}>
+              {c.weekday}, {day(c.date)} was cancelled ({c.reason}), so the acts billed for it are left out. <a href={c.source?.url} target="_blank" rel="noopener noreferrer" style={link}>{c.source?.publisher || c.source?.site}</a>{c.source?.published ? `, ${day(c.source.published)}` : ""}
+            </p>
+          ))}
           <div>
             <div style={{ fontSize: 13, color: "var(--text-2)", marginBottom: 4 }}>Source</div>
             <a href={s.url} target="_blank" rel="noopener noreferrer" style={link}>{s.title || site}</a>

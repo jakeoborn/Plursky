@@ -226,6 +226,13 @@ export function validateEdition(e, { expected, review, dropped = [] } = {}) {
   } else if (meta.canceled) p.push(`${e.id}: carries cancellation evidence but is not canceled`);
   for (const c of meta.cancelledDays || []) {
     if (meta.dates.some(([x]) => x === c.date)) p.push(`${e.id}: cancelled day ${c.date} is still an edition day`);
+    if (meta.method === UNOFFICIAL_METHOD) {
+      // An unofficial edition proves the day with a saved article quoting it.
+      const x = (e.provenance?.cancelledDays || []).find(x => x.date === c.date);
+      if (!x || x.reason !== c.reason || x.quote !== c.quote || !/^[0-9a-f]{64}$/.test(x.source?.sha256 || "") || !(x.dropped >= 0) || x.source?.url !== c.source?.url)
+        p.push(`${e.id}: cancelled day ${c.date} has no ledger proof from its saved article`);
+      continue;
+    }
     if (!(e.notes || []).some(n => !n.days && n.text.includes(c.banner))) p.push(`${e.id}: cancelled day ${c.date} has no edition note quoting its banner`);
     if (!(e.provenance?.cancelledDays || []).some(x => x.date === c.date && x.banner === c.banner && x.blocks > 0)) p.push(`${e.id}: cancelled day ${c.date} has no ledger proof of its banner`);
   }

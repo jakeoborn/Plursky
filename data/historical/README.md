@@ -905,7 +905,14 @@ the line-up view (`clashfinder.com/m/<event>/`, never a `?user=` selection);
 `rows` reads `rows.tsv` beside it (artist, day, stage), listed by hand from the
 text, with `days` giving the words the source prints for each day. Every
 billing, printed day and stage must appear in the saved text; the dates come
-from the census's dated run for that year. The ledger keeps the text's hash,
+from the census's dated run for that year; day numbers count over that whole
+run, and its first or last day may be empty (an arrival or departure day). A
+day the festival cancelled goes in the registry's `cancelledDays` (date,
+weekday, reason, a quote and its source, the article saved as
+`cancelled-<date>.txt` beside the lineup source): it is left out of the
+edition, every billing on it is dropped, and the app says so. An act the
+source prints two ways that read as one name keeps its first spelling (the
+ledger's `spellings`). The ledger keeps the text's hash,
 and the app shows "unofficial, from <source>" wherever the year appears, with
 a link to the source.
 
