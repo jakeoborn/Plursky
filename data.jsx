@@ -1267,6 +1267,84 @@ const FESTIVALS_REGISTRY = [
     region:    "North America",
   },
   {
+    // ── VELD Music Festival 2027 — Downsview Park, Toronto ──
+    // Added 2026-11-27 as a gated preview. Dates and venue from VELD's official
+    // ticket site (veld.frontgatetickets.com, read 2026-11-25): "July 30 – August
+    // 1, we return to Downsview Park"; page title "VELD MUSIC FESTIVAL | July 30 -
+    // Aug 1, 2027 | DOWNSVIEW PARK". First lineup names posted there (Alesso,
+    // Chris Lake, deadmau5 RETRO5PECTIVE, Loud Luxury, Martin Garrix, Zedd, "many
+    // more to come"); not entered until the full lineup is out.
+    config: {
+      id:        "veld-2027",
+      officialEvent: { website: "https://veld.frontgatetickets.com/", observedAt: "2026-11-25" },
+      name:      "VELD Music Festival 2027",
+      shortName: "VELD",
+      brand:     "VELD",
+      tagline:   "Three days of electronic music at Downsview Park",
+      location:  "Downsview Park · Toronto, ON",
+      locationShort: "Downsview Park",
+      dates:     "Jul 30 – Aug 1, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://veld.frontgatetickets.com/", observedAt: "2026-11-25" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#22d3ee",
+    emoji:     "🍁",
+    region:    "North America",
+  },
+  {
+    // ── îLESONIQ 2027 — Parc Jean-Drapeau, Montreal ──
+    // Added 2026-11-27 as a gated preview. Dates and venue from ilesoniq.com/en
+    // (page title, read 2026-11-27): "îLESONIQ 2027 │ August 7-8 at Parc
+    // Jean-Drapeau │ August 7: îLESONIQ in the city"; weekend tickets on sale.
+    // The 2027 headliners are on an image only; no lineup entered yet.
+    config: {
+      id:        "ilesoniq-2027",
+      officialEvent: { website: "https://ilesoniq.com/en", observedAt: "2026-11-27" },
+      name:      "îLESONIQ 2027",
+      shortName: "îLESONIQ",
+      brand:     "îLESONIQ",
+      tagline:   "Montreal's electronic music festival on Île Sainte-Hélène",
+      location:  "Parc Jean-Drapeau · Montreal, QC",
+      locationShort: "Parc Jean-Drapeau",
+      dates:     "Aug 7–8, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://ilesoniq.com/en", observedAt: "2026-11-27" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#34d399",
+    emoji:     "🏝️",
+    region:    "North America",
+  },
+  {
+    // ── Wobbleland 2027 — San Jose Convention Center, San Jose CA ──
+    // Added 2026-11-27 as a gated preview. Dates and venue from wobbleland.com
+    // (read 2026-11-27): "August 20 + 21, 2027 · San Jose Convention Center ·
+    // San Jose, CA"; 18+, two nights; lineup "coming soon". The 2026 edition is
+    // on insomniac.com at the same venue; the 2027 date is on the festival's own
+    // site only so far.
+    config: {
+      id:        "wobbleland-2027",
+      officialEvent: { website: "https://wobbleland.com/", observedAt: "2026-11-27" },
+      name:      "Wobbleland 2027",
+      shortName: "Wobbleland",
+      brand:     "Wobbleland",
+      tagline:   "Two nights of bass music in downtown San Jose",
+      location:  "San Jose Convention Center · San Jose, CA",
+      locationShort: "San Jose Convention Center",
+      dates:     "Aug 20–21, 2027",
+      year:      2027,
+      // Night Print accent not measured yet (accent null = neutral print).
+      print: { accent: null, source: { url: "https://wobbleland.com/", observedAt: "2026-11-27" }, note: "Not measured yet; read the site's own CSS before setting a first-party colour." },
+    },
+    available: false,
+    accent:    "#a3e635",
+    emoji:     "🔊",
+    region:    "North America",
+  },
+  {
     // ── Lost Lands 2026 — Legend Valley, Thornville OH ──
     // Flip 2026-09-11: stage + set time per act come from the Lost Lands app
     // schedule (app v10.0.0, as captured 2026-09-10); the SCHEDULE block
