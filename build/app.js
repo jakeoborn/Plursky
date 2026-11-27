@@ -721,16 +721,17 @@ function OnboardingModal({
   }, "Continue with ", fallback ? fallback.config.shortName || fallback.config.name : FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name))));
 }
 function QuickNameSheet({
-  onDone
+  onDone,
+  edit = false
 }) {
-  var [name, setName] = React.useState("");
+  var [name, setName] = React.useState(() => edit && plurskyLocalName() || "");
   var ok = !!name.trim();
   var save = () => {
     if (!ok) return;
     onDone(plurskySetLocalName(name.trim().slice(0, 20)));
   };
   var skip = () => {
-    plurskySkipQuickName();
+    if (!edit) plurskySkipQuickName();
     onDone(null);
   };
   return React.createElement(FieldSheet, {
@@ -1416,17 +1417,25 @@ function App() {
   var [searchOpen, setSearchOpen] = React.useState(false);
   var [personalizeOpen, setPersonalizeOpen] = React.useState(false);
   var [quickNameOpen, setQuickNameOpen] = React.useState(false);
+  var [quickNameEdit, setQuickNameEdit] = React.useState(false);
   var quickNameWaiters = React.useRef([]);
   React.useLayoutEffect(() => {
     window.plurskyAskQuickName = () => {
       if (!plurskyQuickNameDue()) return Promise.resolve(plurskyLocalName() || null);
       return new Promise(resolve => {
         quickNameWaiters.current.push(resolve);
+        setQuickNameEdit(false);
         setQuickNameOpen(true);
       });
     };
+    window.plurskyEditName = () => new Promise(resolve => {
+      quickNameWaiters.current.push(resolve);
+      setQuickNameEdit(true);
+      setQuickNameOpen(true);
+    });
     return () => {
       delete window.plurskyAskQuickName;
+      delete window.plurskyEditName;
     };
   }, []);
   var quickNameDone = name => {
@@ -1793,6 +1802,7 @@ function App() {
     state: state,
     onClose: () => setPersonalizeOpen(false)
   }), quickNameOpen && !showOnboarding && React.createElement(QuickNameSheet, {
+    edit: quickNameEdit,
     onDone: quickNameDone
   }), state.tab !== "landing" && window.NowPlayingBar && React.createElement(window.NowPlayingBar), React.createElement(BatterySaverToast, null), state.tab !== "landing" && React.createElement(SetTrackingWatcher, null));
 }

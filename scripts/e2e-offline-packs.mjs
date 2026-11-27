@@ -209,7 +209,7 @@ try {
   const srcs = await page.evaluate(() => [...document.scripts].map(s => s.src).filter(s => /maplibre|^blob:/.test(s)));
   check(lib.length === 2 && lib.every(([, h]) => h) && srcs.some(s => s.startsWith("blob:")) && await page.evaluate(() => !!window.maplibregl),
     `MapLibre loaded from the pack's stored copy (lib reads: ${show(lib) || "none"}; scripts: ${srcs.map(s => s.slice(0, 40)).join(", ")})`);
-  check(await page.getByText("MAP ERROR").count() === 0, "no MAP ERROR");
+  check(await page.getByText("MAP UNAVAILABLE").count() === 0, "no MAP UNAVAILABLE");
   check(await page.getByText(/festival map shown|check your connection/i).count() === 0, "no offline fallback note");
   // The saved pack is what makes this map work offline, so GPS off says so.
   if (await page.getAttribute("button[data-map-locate]", "data-map-locate").catch(() => null) === "on") await page.click("button[data-map-locate]");

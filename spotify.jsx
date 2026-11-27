@@ -553,9 +553,20 @@ function SpotifyScreen({ state, setState }) {
 
 // ── ME SCREEN ─────────────────────────────────────────────────
 // ── Safety & Wellness — harm-reduction surface ────────────────
+// Ground Control, Amnesty Boxes and Insomniac Cares are Insomniac's own
+// programs, so they show only at an Insomniac festival. Every other festival
+// gets the two that hold anywhere: medical on the map, and DanceSafe's
+// harm-reduction guides (read-up, not a claim of on-site drug checking).
+const _INSOMNIAC_FEST = /^(edc|beyond-wonderland|nocturnal-wonderland|escape-|countdown-|dreamstate-|wasteland-|project-glow|hard-summer|lost-in-dreams)/;
+function _isInsomniacFest() {
+  const c = window.FESTIVAL_CONFIG || (typeof FESTIVAL_CONFIG !== "undefined" ? FESTIVAL_CONFIG : {}) || {};
+  const ev = c.officialEvent || {};
+  return _INSOMNIAC_FEST.test(c.id || "") || /insomniac\.com/.test(ev.url || "");
+}
 const SAFETY_LINKS = [
   {
     id: "ground",
+    insomniac: true,
     title: "Ground Control",
     sub: "Free water · cool down · friendly faces. Look for the high-vis vests.",
     color: "var(--horizon)",
@@ -564,6 +575,7 @@ const SAFETY_LINKS = [
   },
   {
     id: "amnesty",
+    insomniac: true,
     title: "Amnesty Boxes",
     sub: "Drop unwanted substances at any entrance. No questions, no consequences.",
     color: "var(--ember-ink)",
@@ -573,13 +585,14 @@ const SAFETY_LINKS = [
   {
     id: "dancesafe",
     title: "DanceSafe",
-    sub: "Drug-checking, harm-reduction info, peer support. Independent nonprofit.",
+    sub: "Harm-reduction guides and peer support. Independent nonprofit.",
     color: "var(--signal-ink)",
     icon: "info",
     href: "https://dancesafe.org",
   },
   {
     id: "consent",
+    insomniac: true,
     title: "Consent Reporting",
     sub: "Report anonymously. Insomniac Cares + 24/7 confidential line.",
     color: "var(--ink)",
@@ -588,11 +601,11 @@ const SAFETY_LINKS = [
   },
   {
     id: "medical",
-    title: "Medical · 24/7",
-    sub: "3 medic tents on-site · roamers in the crowd. Tap → map.",
+    title: "Medical",
+    sub: "Find the medical tents on the festival map.",
     color: "var(--alert)",
     icon: "med",
-    onClick: (state, setState) => setState({ ...state, tab: "map" }),
+    tab: "map",
   },
 ];
 
@@ -606,13 +619,17 @@ function SafetyIcon({ kind, color }) {
   return null;
 }
 
-function SafetyCards() {
+function SafetyCards({ state, setState }) {
+  const insomniac = _isInsomniacFest();
+  // Medical opens the map tab; after a festival the tab bar swaps Map for
+  // Memories, so the row only shows while there is a map to open.
+  const links = SAFETY_LINKS.filter(it => (insomniac || !it.insomniac) && (it.id !== "medical" || (state && setState)));
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-      {SAFETY_LINKS.map(item => {
+      {links.map(item => {
         const onClick = item.href
           ? () => window.open(item.href, "_blank", "noopener")
-          : () => item.onClick?.();
+          : () => setState({ ...state, tab: item.tab });
         return (
           // Board card: one icon well, the accent for every team and the
           // clash red only for Medical, so the colour still means "urgent".
@@ -8273,22 +8290,18 @@ function MeScreen({ state, setState }) {
     window.addEventListener("plursky:display-name", onName);
     return () => window.removeEventListener("plursky:display-name", onName);
   }, []);
-  // Opening Me is one of the places the quick-name ask appears: once, only
-  // while no name is set and the ask was never skipped.
-  React.useEffect(() => {
-    if (plurskyQuickNameDue()) window.plurskyAskQuickName?.();
-  }, []);
+  // Opening Me no longer pops the quick-name ask: the pass card's "Add your
+  // name" offers it, and a first crew join still asks when it is due.
 
   // The local name first — it is what your crew sees (plurskyLocalName) — then
   // the Spotify profile's name for a user who never typed one.
   const rawName = localName || profile?.name || "";
   const displayName = rawName || "—";
   const initial = rawName ? (rawName.match(/[A-Za-z0-9]/) || ["?"])[0].toUpperCase() : "?";
+  // The in-app name sheet, not the browser's prompt() box.
   const promptName = () => {
-    const next = (window.prompt("Your name (shown to crew & on this screen):", localName || "") || "").trim();
-    if (!next) return;
-    plurskySetLocalName(next);
-    setLocalName(next);
+    if (!window.plurskyEditName) return;
+    window.plurskyEditName().then(next => { if (next) setLocalName(next); });
   };
 
   // Ping code (e.g. SAGE) — exported on window by map.jsx
@@ -8711,9 +8724,9 @@ function MeScreen({ state, setState }) {
         ) : (<>
           <h2 className="duo-sect" style={{ marginTop: 24 }}>Safety &amp; care</h2>
           <div className="duo-body-s duo-ink2" style={{ marginTop: 4, marginBottom: 12 }}>
-            On-site teams. No questions asked.
+            {_isInsomniacFest() ? "On-site teams. No questions asked." : "Medical help on site, and where to read up first."}
           </div>
-          <SafetyCards />
+          <SafetyCards state={state} setState={setState} />
         </>)}
 
         {/* Your headliners — saved tier-3 sets, tappable to artist screen.

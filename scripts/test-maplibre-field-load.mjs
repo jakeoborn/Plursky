@@ -71,13 +71,13 @@ try {
     check(await page.evaluate(() => window.FESTIVAL_CONFIG.mapMode === "real"), `${tag}: the fixture festival is mapMode "real"`);
     if (C.offline) await ctx.setOffline(true);
     await page.evaluate(() => [...document.querySelectorAll("button")].find(b => b.innerText.trim() === "Map")?.click());
-    const card = await page.waitForFunction(() => /MAP ERROR/.test(document.body.innerText), null, { timeout: 30000 }).then(() => true, () => false);
+    const card = await page.waitForFunction(() => /MAP UNAVAILABLE/.test(document.body.innerText), null, { timeout: 30000 }).then(() => true, () => false);
     check(card, `${tag}: an error card shows`);
     // Past the old 7-second note: the card is still there, with RETRY.
     await page.clock.runFor(9000);
     await page.waitForTimeout(300);
     const later = await page.evaluate(() => ({
-      card: /MAP ERROR/.test(document.body.innerText),
+      card: /MAP UNAVAILABLE/.test(document.body.innerText),
       retry: [...document.querySelectorAll("button")].some(b => b.innerText.trim() === "RETRY"),
       note: /CHECK YOUR CONNECTION/.test(document.body.innerText),
     }));
@@ -87,10 +87,10 @@ try {
     if (C.block) await ctx.unroute(JS_URL, refuse);
     if (C.offline) await ctx.setOffline(false);
     await page.evaluate(() => [...document.querySelectorAll("button")].find(b => b.innerText.trim() === "RETRY")?.click());
-    const up = await page.waitForFunction(() => !!window.__plurskyRealMap && window.__plurskyRealMap.loaded?.() && !/MAP ERROR/.test(document.body.innerText),
+    const up = await page.waitForFunction(() => !!window.__plurskyRealMap && window.__plurskyRealMap.loaded?.() && !/MAP UNAVAILABLE/.test(document.body.innerText),
       null, { timeout: 30000, polling: 250 }).then(() => true, () => false);
     if (!up) await page.clock.runFor(2000);
-    const upNow = up || await page.evaluate(() => !!window.__plurskyRealMap && !/MAP ERROR/.test(document.body.innerText));
+    const upNow = up || await page.evaluate(() => !!window.__plurskyRealMap && !/MAP UNAVAILABLE/.test(document.body.innerText));
     check(upNow, `${tag}: RETRY loads the map and clears the card`);
     check(!errors.length, `${tag}: no page errors (${errors.slice(0, 2).join(" | ")})`);
     await ctx.close();

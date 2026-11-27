@@ -449,15 +449,17 @@ function OnboardingModal({ onDone, setState, state }) {
 }
 
 // Quick name: "What should Plursky call you?", asked once, on the first
-// screen that uses who you are (opening Me, a first crew join), never in
-// onboarding. It writes the same local name every other door reads
-// (plurskySetLocalName); no account, no server. Closing it in any way is a
-// skip, and a skip is remembered (plurskySkipQuickName), so it never nags.
-function QuickNameSheet({ onDone }) {
-  const [name, setName] = React.useState("");
+// thing that needs who you are (a first crew join), never in onboarding and
+// never just for opening a tab. Me's "Add your name" opens the same sheet as
+// an edit. It writes the same local name every other door reads
+// (plurskySetLocalName); no account, no server. Closing the unasked-for ask
+// is a skip, remembered (plurskySkipQuickName) so it never nags; closing an
+// edit just closes.
+function QuickNameSheet({ onDone, edit = false }) {
+  const [name, setName] = React.useState(() => (edit && plurskyLocalName()) || "");
   const ok = !!name.trim();
   const save = () => { if (!ok) return; onDone(plurskySetLocalName(name.trim().slice(0, 20))); };
-  const skip = () => { plurskySkipQuickName(); onDone(null); };
+  const skip = () => { if (!edit) plurskySkipQuickName(); onDone(null); };
   return (
     <FieldSheet title="What should Plursky call you?" onClose={skip}>
       <div data-quick-name>
@@ -821,13 +823,17 @@ function App() {
   // resolves with the saved name or null on a skip. A layout effect, so it is
   // in place before any screen's mount effect (Me asks on mount).
   const [quickNameOpen, setQuickNameOpen] = React.useState(false);
+  // "edit": opened from a tap on Add your name, so closing it is not a skip
+  // and the field starts with the current name.
+  const [quickNameEdit, setQuickNameEdit] = React.useState(false);
   const quickNameWaiters = React.useRef([]);
   React.useLayoutEffect(() => {
     window.plurskyAskQuickName = () => {
       if (!plurskyQuickNameDue()) return Promise.resolve(plurskyLocalName() || null);
-      return new Promise(resolve => { quickNameWaiters.current.push(resolve); setQuickNameOpen(true); });
+      return new Promise(resolve => { quickNameWaiters.current.push(resolve); setQuickNameEdit(false); setQuickNameOpen(true); });
     };
-    return () => { delete window.plurskyAskQuickName; };
+    window.plurskyEditName = () => new Promise(resolve => { quickNameWaiters.current.push(resolve); setQuickNameEdit(true); setQuickNameOpen(true); });
+    return () => { delete window.plurskyAskQuickName; delete window.plurskyEditName; };
   }, []);
   const quickNameDone = (name) => {
     setQuickNameOpen(false);
@@ -1219,7 +1225,7 @@ function App() {
         />
       )}
       {personalizeOpen && <PersonalizeSheet state={state} onClose={() => setPersonalizeOpen(false)} />}
-      {quickNameOpen && !showOnboarding && <QuickNameSheet onDone={quickNameDone} />}
+      {quickNameOpen && !showOnboarding && <QuickNameSheet edit={quickNameEdit} onDone={quickNameDone} />}
       {/* Festival-scoped like the status strip and tab bar: it reads the ACTIVE
           festival and starts its geolocation flow, so General Home, which is
           before any festival is chosen, never mounts it. */}
