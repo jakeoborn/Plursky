@@ -538,7 +538,8 @@ function ShareArtistButton({
 }) {
   var [copied, setCopied] = React.useState(false);
   var handleShare = () => {
-    var url = `${window.location.origin}${window.location.pathname}?artist=${artist.id}`;
+    var fid = typeof FESTIVAL_CONFIG !== "undefined" && FESTIVAL_CONFIG.id || "";
+    var url = `${window.location.origin}${window.location.pathname}?${fid ? `f=${encodeURIComponent(fid)}&` : ""}artist=${encodeURIComponent(artist.id)}`;
     if (navigator.share) {
       navigator.share({
         title: artist.name + " @ " + (FESTIVAL_CONFIG.shortName || FESTIVAL_CONFIG.name),
