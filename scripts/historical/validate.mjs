@@ -91,6 +91,9 @@ export const OFFICIAL_HOSTS = {
   // creamfields.com: Creamfields' own site, whose /artists page listed each
   // year's lineup by day and stage.
   "creamfields": ["creamfields.com"],
+  // lollapaloozabr.com: Lollapalooza Brasil's own site, whose lineup pages
+  // listed each year's acts by day (and, in 2017 and 2019, by stage).
+  "lollapalooza-brasil": ["lollapaloozabr.com"],
 };
 
 // Where an official graphic may be re-hosted for an `official_sources`

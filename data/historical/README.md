@@ -723,6 +723,39 @@ The festivals' later past-highlights pages (/past-highlights/<year>-lineup/)
 hold the lineup only as a poster image, so they are graphic sources and go
 through the review path above, not a page extractor.
 
+Official Lollapalooza Brasil lineup pages, 2014 to 2019 (formats
+`lollabr-por-dia`, `lollabr-grid`, `lollabr-cards`):
+
+    node scripts/historical/extract-lollabr-lineup.mjs lollapalooza-brasil-<year>
+    # writes sheets/<id>.lineup.tsv and the ledger; lineup_only, no times
+
+lollapaloozabr.com printed each year's lineup one of three ways
+(`lollabr-lineup.mjs`). 2014-2016 (/2014-line-up-por-dia,
+/line-up-por-dia-2015, /lineup-por-dia/) print the festival's run with its
+year in the site header ("5-6 de abril de 2014 - Autódromo de Interlagos"),
+then one heading per day ("Sábado, 5 de abril") over a list of acts; the
+headings must be the run's dates in order, each with its own weekday. 2017
+(/lineup-horarios/) and 2019 (/lineup-2019/) are the C3 schedule grid read by
+`acl-schedule.mjs`: dated day tabs ("sábado mar 25th" over
+`saturday-2017-03-25`), one column per stage. The grid prints each block's
+range, but these editions keep only the act, day and stage; an act drawn
+twice on one stage on one day is one row, listed in the ledger's `notRead`.
+2018 (/lineup/2018-interativo/) is the interactive lineup's cards, each with
+its day titles ("24/3/2018"); the page's description names the edition and
+its run ("O Lollapalooza Brasil 2018 será dias 23, 24 e 25 de março"). No
+stage is printed in 2014-2016 or 2018.
+
+Each year's captures from 1 January to the festival's last day are listed
+and the latest that proves the edition is read, so the lineup is the one
+printed closest before (or during) the festival: 27 February 2014, 27 March
+2015, 9 March 2016, 19 March 2017, 1 February 2018 (the last capture of that
+page) and 5 April 2019 (the first day). 2014's and 2018's editions carry a
+note that later changes are not shown. 2012's day-by-day lineup was a news
+post (/updates/programacao-lollapalooza-brasil) that prints each day only as a
+poster image, and 2013's reveal page has no capture from 2013; from 2022 the
+site's /lineup page also shows the lineup only as a poster image, and no
+capture of it from 2023 on was found. Those years are not read here.
+
 Then, for any path:
 
     node scripts/historical/build-editions.mjs

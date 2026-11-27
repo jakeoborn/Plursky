@@ -1,0 +1,48 @@
+{
+  "id": "lollapalooza-brasil-2018",
+  "method": "official_lineup_html",
+  "format": "lollabr-cards",
+  "official": "https://www.lollapaloozabr.com/lineup/2018-interativo/",
+  "window": [
+    "20180101",
+    "20180325"
+  ],
+  "chosen": "20180201215248",
+  "archivedUrl": "https://web.archive.org/web/20180201215248/https://www.lollapaloozabr.com/lineup/2018-interativo/",
+  "sha256": "f276fadb1c12da855458975eac9dce58ed4b4ce2863e4b9fe4e439c6fdfcae2b",
+  "title": "LINEUP – Lollapalooza Brasil",
+  "relayedVia": "firecrawl",
+  "stageOrder": [],
+  "considered": [
+    {
+      "captureTimestamp": "20180116010033",
+      "notFiled": "relay: capture 20180116010033 of https://www.lollapaloozabr.com/lineup/2018-interativo/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20180201215248",
+      "archivedUrl": "https://web.archive.org/web/20180201215248/https://www.lollapaloozabr.com/lineup/2018-interativo/",
+      "sha256": "f276fadb1c12da855458975eac9dce58ed4b4ce2863e4b9fe4e439c6fdfcae2b",
+      "bytes": 352501,
+      "via": "firecrawl",
+      "title": "LINEUP – Lollapalooza Brasil",
+      "valid": true,
+      "days": [
+        "Friday 23 March 2018",
+        "Saturday 24 March 2018",
+        "Sunday 25 March 2018"
+      ],
+      "printed": {
+        "dates": "O Lollapalooza Brasil 2018 será dias 23, 24 e 25 de março! Confira o lineup e garanta o seu lugar no festival.",
+        "lists": [
+          "23/3/2018",
+          "24/3/2018",
+          "25/3/2018"
+        ]
+      },
+      "billings": 72
+    }
+  ],
+  "dropped": []
+}

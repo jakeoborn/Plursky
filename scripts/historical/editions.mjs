@@ -680,6 +680,36 @@ export const EDITIONS = {
     dates: [["2025-08-21", "Thursday"], ["2025-08-22", "Friday"], ["2025-08-23", "Saturday"], ["2025-08-24", "Sunday"]],
     notes: [{ asOf: "2026-11-25", text: "The lineup as the festival's own page printed it the day after the festival. Five stage lists (Arc and APEX on Friday, APEX on Sunday, drip Hospitality on Friday and Saturday) ended \"+ more\" and were never completed, so some acts on those stages are not shown.",
       source: "https://web.archive.org/web/20250825010416/https://creamfields.com/lineup/" }] },
+  // Lollapalooza Brasil 2014-2019 (São Paulo): the festival's own lineup
+  // pages on lollapaloozabr.com (lollabr-lineup.mjs,
+  // extract-lollabr-lineup.mjs), each read from the last capture taken before
+  // or during the festival. 2014-2016 list each day's acts under the site's
+  // dated header; 2017 and 2019 are the C3 schedule grid, which also names
+  // each act's stage (its printed times are not kept); 2018 is the
+  // interactive lineup's cards, one day title per act. Nothing names a stage
+  // in 2014-2016 or 2018.
+  "lollapalooza-brasil-2014": { festivalId: "lollapalooza-brasil", name: "Lollapalooza Brasil 2014", year: 2014,
+    timezone: "America/Sao_Paulo", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2014-04-05", "Saturday"], ["2014-04-06", "Sunday"]],
+    notes: [{ asOf: "2026-11-27", text: "The lineup as the festival's own page printed it on 27 February 2014, five weeks before the festival. Changes after that day are not shown.",
+      source: "https://web.archive.org/web/20140227001309/http://www.lollapaloozabr.com/2014-line-up-por-dia" }] },
+  "lollapalooza-brasil-2015": { festivalId: "lollapalooza-brasil", name: "Lollapalooza Brasil 2015", year: 2015,
+    timezone: "America/Sao_Paulo", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2015-03-28", "Saturday"], ["2015-03-29", "Sunday"]] },
+  "lollapalooza-brasil-2016": { festivalId: "lollapalooza-brasil", name: "Lollapalooza Brasil 2016", year: 2016,
+    timezone: "America/Sao_Paulo", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2016-03-12", "Saturday"], ["2016-03-13", "Sunday"]] },
+  "lollapalooza-brasil-2017": { festivalId: "lollapalooza-brasil", name: "Lollapalooza Brasil 2017", year: 2017,
+    timezone: "America/Sao_Paulo", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2017-03-25", "Saturday"], ["2017-03-26", "Sunday"]] },
+  "lollapalooza-brasil-2018": { festivalId: "lollapalooza-brasil", name: "Lollapalooza Brasil 2018", year: 2018,
+    timezone: "America/Sao_Paulo", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2018-03-23", "Friday"], ["2018-03-24", "Saturday"], ["2018-03-25", "Sunday"]],
+    notes: [{ asOf: "2026-11-27", text: "The lineup as the festival's own page printed it on 1 February 2018, seven weeks before the festival. Changes after that day are not shown.",
+      source: "https://web.archive.org/web/20180201215248/https://www.lollapaloozabr.com/lineup/2018-interativo/" }] },
+  "lollapalooza-brasil-2019": { festivalId: "lollapalooza-brasil", name: "Lollapalooza Brasil 2019", year: 2019,
+    timezone: "America/Sao_Paulo", rolloverHour: 6, method: "official_lineup_html",
+    dates: [["2019-04-05", "Friday"], ["2019-04-06", "Saturday"], ["2019-04-07", "Sunday"]] },
   "tomorrowland-2023": { festivalId: "tomorrowland", name: "Tomorrowland 2023", year: 2023,
     timezone: "Europe/Brussels", rolloverHour: 6, method: "official_sources", dates: [["2023-07-21", "Friday"], ["2023-07-22", "Saturday"], ["2023-07-23", "Sunday"], ["2023-07-28", "Friday"], ["2023-07-29", "Saturday"], ["2023-07-30", "Sunday"]],
     dayLabels: ACL_WEEKEND_LABELS },

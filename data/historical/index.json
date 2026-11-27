@@ -4064,6 +4064,172 @@
    }
   },
   {
+   "id": "lollapalooza-brasil-2019",
+   "festivalId": "lollapalooza-brasil",
+   "festivalName": "Lollapalooza Brasil",
+   "name": "Lollapalooza Brasil 2019",
+   "year": 2019,
+   "timezone": "America/Sao_Paulo",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2019-04-05",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2019-04-06",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2019-04-07",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 4,
+    "artists": 70,
+    "sets": 0
+   }
+  },
+  {
+   "id": "lollapalooza-brasil-2018",
+   "festivalId": "lollapalooza-brasil",
+   "festivalName": "Lollapalooza Brasil",
+   "name": "Lollapalooza Brasil 2018",
+   "year": 2018,
+   "timezone": "America/Sao_Paulo",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2018-03-23",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2018-03-24",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2018-03-25",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 72,
+    "sets": 0
+   }
+  },
+  {
+   "id": "lollapalooza-brasil-2017",
+   "festivalId": "lollapalooza-brasil",
+   "festivalName": "Lollapalooza Brasil",
+   "name": "Lollapalooza Brasil 2017",
+   "year": 2017,
+   "timezone": "America/Sao_Paulo",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2017-03-25",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2017-03-26",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 4,
+    "artists": 47,
+    "sets": 0
+   }
+  },
+  {
+   "id": "lollapalooza-brasil-2016",
+   "festivalId": "lollapalooza-brasil",
+   "festivalName": "Lollapalooza Brasil",
+   "name": "Lollapalooza Brasil 2016",
+   "year": 2016,
+   "timezone": "America/Sao_Paulo",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2016-03-12",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2016-03-13",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 52,
+    "sets": 0
+   }
+  },
+  {
+   "id": "lollapalooza-brasil-2015",
+   "festivalId": "lollapalooza-brasil",
+   "festivalName": "Lollapalooza Brasil",
+   "name": "Lollapalooza Brasil 2015",
+   "year": 2015,
+   "timezone": "America/Sao_Paulo",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2015-03-28",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2015-03-29",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 46,
+    "sets": 0
+   }
+  },
+  {
+   "id": "lollapalooza-brasil-2014",
+   "festivalId": "lollapalooza-brasil",
+   "festivalName": "Lollapalooza Brasil",
+   "name": "Lollapalooza Brasil 2014",
+   "year": 2014,
+   "timezone": "America/Sao_Paulo",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2014-04-05",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2014-04-06",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 46,
+    "sets": 0
+   }
+  },
+  {
    "id": "nocturnal-wonderland-2025",
    "festivalId": "nocturnal-wonderland",
    "festivalName": "Nocturnal Wonderland",

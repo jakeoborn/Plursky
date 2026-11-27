@@ -1,0 +1,46 @@
+{
+  "id": "lollapalooza-brasil-2017",
+  "method": "official_lineup_html",
+  "format": "lollabr-grid",
+  "official": "https://www.lollapaloozabr.com/lineup-horarios/",
+  "window": [
+    "20170101",
+    "20170326"
+  ],
+  "chosen": "20170319014412",
+  "archivedUrl": "https://web.archive.org/web/20170319014412/https://www.lollapaloozabr.com/lineup-horarios/",
+  "sha256": "487da7c1f0dcbb55940b1317be0285b5a82d20fe3e906d86bb1febf2bcf756b4",
+  "title": "Horários dos Palcos – Lollapalooza Brasil",
+  "relayedVia": "firecrawl",
+  "stageOrder": [
+    "Palco Skol",
+    "Palco Onix",
+    "Palco AXE",
+    "Perry’s"
+  ],
+  "timesNotKept": "the grid prints each block's range; a lineup edition keeps no times",
+  "considered": [
+    {
+      "captureTimestamp": "20170319014412",
+      "archivedUrl": "https://web.archive.org/web/20170319014412/https://www.lollapaloozabr.com/lineup-horarios/",
+      "sha256": "487da7c1f0dcbb55940b1317be0285b5a82d20fe3e906d86bb1febf2bcf756b4",
+      "bytes": 226494,
+      "via": "firecrawl",
+      "title": "Horários dos Palcos – Lollapalooza Brasil",
+      "valid": true,
+      "days": [
+        "Saturday 25 March 2017",
+        "Sunday 26 March 2017"
+      ],
+      "printed": {
+        "dates": "sábado mar 25th | domingo mar 26th",
+        "lists": [
+          "sábado mar 25th",
+          "domingo mar 26th"
+        ]
+      },
+      "billings": 47
+    }
+  ],
+  "dropped": []
+}
