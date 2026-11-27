@@ -1,0 +1,45 @@
+{
+  "id": "sziget-2018",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "press",
+    "site": "efestivals.co.uk",
+    "url": "https://www.efestivals.co.uk/festivals/sziget/2018/lineup.shtml",
+    "title": "Sziget Festival 2018 Line-up And Rumours",
+    "publisher": "eFestivals",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "full",
+    "sha256": "bc65aaf7331436d2070b54548c0132c8390c4167e95b7fdac46981a7a3532037",
+    "bytes": 3903
+  },
+  "printed": {
+    "days": {
+      "1": "Wed 8th",
+      "2": "Thu 9th",
+      "3": "Fri 10th",
+      "4": "Sat 11th",
+      "5": "Sun 12th",
+      "6": "Mon 13th",
+      "7": "Tue 14th",
+      "8": "Wed 15th"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "sziget",
+    "year": 2018,
+    "lifecycle": "occurred",
+    "dates": "2018-08-08..2018-08-15",
+    "evidence": "https://abouthungary.hu/news-in-brief/sziget-festival-pulls-in-record-565000-visitors-in-2018",
+    "published": "2018-08-16"
+  },
+  "note": "eFestivals lineup page split by day, with no publication date and without stage names; its DAY UNKNOWN list repeats acts already listed by day (and a misprint, 1Motta, of the listed Motta), so it is not carried.",
+  "verified": {
+    "billings": 187,
+    "inSourceText": true
+  },
+  "stageOrder": [],
+  "dropped": []
+}

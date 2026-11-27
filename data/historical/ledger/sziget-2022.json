@@ -1,0 +1,44 @@
+{
+  "id": "sziget-2022",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "press",
+    "site": "eska.pl",
+    "url": "https://www.eska.pl/news/sziget-festival-2022-line-up-bilety-data-aa-uQvx-oB4d-Vxqw.html",
+    "title": "Sziget Festival 2022 - LINE-UP, BILETY, DATA",
+    "publisher": "ESKA.pl",
+    "published": "2022-04-16",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "full",
+    "sha256": "ff363edb28f6f46a91f210d672733707a46560dfc2a79e541d302330c405e9f0",
+    "bytes": 2791
+  },
+  "printed": {
+    "days": {
+      "1": "10 SIERPNIA",
+      "2": "11 SIERPNIA",
+      "3": "12 SIERPNIA",
+      "4": "13 SIERPNIA",
+      "5": "14 SIERPNIA",
+      "6": "15 SIERPNIA"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "sziget",
+    "year": 2022,
+    "lifecycle": "occurred",
+    "dates": "2022-08-10..2022-08-15",
+    "evidence": "https://news.pollstar.com/2022/08/16/450000-across-six-days-at-sziget-hungary/",
+    "published": "2022-08-16"
+  },
+  "note": "The daily lineup as ESKA.pl printed it on 16 April 2022, misspellings included; later changes are not shown.",
+  "verified": {
+    "billings": 101,
+    "inSourceText": true
+  },
+  "stageOrder": [],
+  "dropped": []
+}

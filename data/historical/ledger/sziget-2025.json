@@ -1,0 +1,44 @@
+{
+  "id": "sziget-2025",
+  "method": "unofficial_lineup",
+  "format": "rows",
+  "source": {
+    "kind": "press",
+    "site": "youbeat.it",
+    "url": "https://www.youbeat.it/en/sziget-festival-2025/",
+    "title": "Sziget Festival: Big News and Lineup for the 2025 Edition",
+    "publisher": "youBEAT",
+    "published": "2025-06-09",
+    "fetchedAt": "2026-11-27",
+    "fetchedVia": "exa",
+    "scope": "full",
+    "sha256": "0251872171beedf2d057cd4d11398500acb2941ec143dd4701b710f25513ebcc",
+    "bytes": 1985
+  },
+  "printed": {
+    "days": {
+      "1": "August 6",
+      "2": "August 7",
+      "3": "August 8",
+      "4": "August 9",
+      "5": "August 10",
+      "6": "August 11"
+    }
+  },
+  "datesFrom": {
+    "census": "data/historical/census/coverage-2010-2026.tsv",
+    "family": "sziget",
+    "year": 2025,
+    "lifecycle": "occurred",
+    "dates": "2025-08-06..2025-08-11",
+    "evidence": "https://news.pollstar.com/2025/08/14/uk-euro-festivals-picture-perfect-boardmasters-szigets-11-millionth-visitor-untold-raises-cancer-awareness-monumental-reggae-land/",
+    "published": "2025-08-14"
+  },
+  "note": "The daily lineup as youBEAT printed it on 9 June 2025; later changes (A$AP Rocky withdrew, Kid Cudi replaced him) are not shown, and the billing printed as \"Дeva feat. Napfonat\" is left out because it mixes Cyrillic and Latin letters.",
+  "verified": {
+    "billings": 137,
+    "inSourceText": true
+  },
+  "stageOrder": [],
+  "dropped": []
+}

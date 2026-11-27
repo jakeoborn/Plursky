@@ -1,0 +1,2565 @@
+{
+ "id": "sziget-2024",
+ "festivalId": "sziget",
+ "name": "Sziget 2024",
+ "year": 2024,
+ "timezone": "Europe/Budapest",
+ "rolloverHour": 8,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2024-08-07",
+   "label": "Wednesday"
+  },
+  {
+   "day": 2,
+   "date": "2024-08-08",
+   "label": "Thursday"
+  },
+  {
+   "day": 3,
+   "date": "2024-08-09",
+   "label": "Friday"
+  },
+  {
+   "day": 4,
+   "date": "2024-08-10",
+   "label": "Saturday"
+  },
+  {
+   "day": 5,
+   "date": "2024-08-11",
+   "label": "Sunday"
+  },
+  {
+   "day": 6,
+   "date": "2024-08-12",
+   "label": "Monday"
+  }
+ ],
+ "stages": [],
+ "artists": [
+  {
+   "id": "sziget-2024:tom-odell",
+   "name": "Tom Odell",
+   "key": "tom-odell",
+   "performers": [
+    "tom-odell"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:kylie-minogue",
+   "name": "Kylie Minogue",
+   "key": "kylie-minogue",
+   "performers": [
+    "kylie-minogue"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:marc-rebillet",
+   "name": "Marc Rebillet",
+   "key": "marc-rebillet",
+   "performers": [
+    "marc-rebillet"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:l-imperatrice",
+   "name": "L'Impératrice",
+   "key": "l-imperatrice",
+   "performers": [
+    "l-imperatrice"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:richie-hawtin",
+   "name": "Richie Hawtin",
+   "key": "richie-hawtin",
+   "performers": [
+    "richie-hawtin"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:dom-dolla",
+   "name": "Dom Dolla",
+   "key": "dom-dolla",
+   "performers": [
+    "dom-dolla"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:loco-dice",
+   "name": "Loco Dice",
+   "key": "loco-dice",
+   "performers": [
+    "loco-dice"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:ki-ki",
+   "name": "KI/KI",
+   "key": "ki-ki",
+   "performers": [
+    "ki-ki"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:tkay-maidza",
+   "name": "Tkay Maidza",
+   "key": "tkay-maidza",
+   "performers": [
+    "tkay-maidza"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:joost-joost-klein",
+   "name": "Joost (Joost Klein)",
+   "key": "joost-joost-klein",
+   "performers": [
+    "joost-joost-klein"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:blondshell",
+   "name": "Blondshell",
+   "key": "blondshell",
+   "performers": [
+    "blondshell"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:bart-skils",
+   "name": "Bart Skils",
+   "key": "bart-skils",
+   "performers": [
+    "bart-skils"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:r3d-tr1be",
+   "name": "R3d Tr1be",
+   "key": "r3d-tr1be",
+   "performers": [
+    "r3d-tr1be"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:6363",
+   "name": "6363",
+   "key": "6363",
+   "performers": [
+    "6363"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:pimf",
+   "name": "Pimf",
+   "key": "pimf",
+   "performers": [
+    "pimf"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:die-p",
+   "name": "Die P",
+   "key": "die-p",
+   "performers": [
+    "die-p"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:hexer",
+   "name": "Hexer",
+   "key": "hexer",
+   "performers": [
+    "hexer"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:grinch",
+   "name": "Grinch",
+   "key": "grinch",
+   "performers": [
+    "grinch"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:satarii",
+   "name": "SATARII",
+   "key": "satarii",
+   "performers": [
+    "satarii"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:mimii",
+   "name": "Mimii",
+   "key": "mimii",
+   "performers": [
+    "mimii"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:cary",
+   "name": "CARY",
+   "key": "cary",
+   "performers": [
+    "cary"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:skuff-barbie",
+   "name": "Skuff Barbie",
+   "key": "skuff-barbie",
+   "performers": [
+    "skuff-barbie"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:mona-lina",
+   "name": "Mona Lina",
+   "key": "mona-lina",
+   "performers": [
+    "mona-lina"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:zola",
+   "name": "ZOLA",
+   "key": "zola",
+   "performers": [
+    "zola"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:dj-ron",
+   "name": "DJ Ron",
+   "key": "dj-ron",
+   "performers": [
+    "dj-ron"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:torky-tork",
+   "name": "Torky Tork",
+   "key": "torky-tork",
+   "performers": [
+    "torky-tork"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:deaf-jules",
+   "name": "Deaf Jules",
+   "key": "deaf-jules",
+   "performers": [
+    "deaf-jules"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:marc-maya",
+   "name": "Marc Maya",
+   "key": "marc-maya",
+   "performers": [
+    "marc-maya"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:tini-gessler",
+   "name": "Tini Gessler",
+   "key": "tini-gessler",
+   "performers": [
+    "tini-gessler"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:halsey",
+   "name": "Halsey",
+   "key": "halsey",
+   "performers": [
+    "halsey"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:aurora",
+   "name": "AURORA",
+   "key": "aurora",
+   "performers": [
+    "aurora"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:azahriah",
+   "name": "Azahriah",
+   "key": "azahriah",
+   "performers": [
+    "azahriah"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:grandson",
+   "name": "grandson",
+   "key": "grandson",
+   "performers": [
+    "grandson"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:honey-dijon",
+   "name": "Honey Dijon",
+   "key": "honey-dijon",
+   "performers": [
+    "honey-dijon"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:anotr",
+   "name": "ANOTR",
+   "key": "anotr",
+   "performers": [
+    "anotr"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:meute",
+   "name": "MEUTE",
+   "key": "meute",
+   "performers": [
+    "meute"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:joker-out",
+   "name": "Joker Out",
+   "key": "joker-out",
+   "performers": [
+    "joker-out"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:goldband",
+   "name": "Goldband",
+   "key": "goldband",
+   "performers": [
+    "goldband"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:lp-giobbi",
+   "name": "LP Giobbi",
+   "key": "lp-giobbi",
+   "performers": [
+    "lp-giobbi"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:tinlicker",
+   "name": "Tinlicker",
+   "key": "tinlicker",
+   "performers": [
+    "tinlicker"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:chloe-caillet",
+   "name": "Chloé Caillet",
+   "key": "chloe-caillet",
+   "performers": [
+    "chloe-caillet"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:nova-twins",
+   "name": "Nova Twins",
+   "key": "nova-twins",
+   "performers": [
+    "nova-twins"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:dagny",
+   "name": "Dagny",
+   "key": "dagny",
+   "performers": [
+    "dagny"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:sarah-story",
+   "name": "Sarah Story",
+   "key": "sarah-story",
+   "performers": [
+    "sarah-story"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:ghetto-funk-collective",
+   "name": "Ghetto Funk Collective",
+   "key": "ghetto-funk-collective",
+   "performers": [
+    "ghetto-funk-collective"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:co-lee",
+   "name": "Co Lee",
+   "key": "co-lee",
+   "performers": [
+    "co-lee"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:franko",
+   "name": "Franko",
+   "key": "franko",
+   "performers": [
+    "franko"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:aminon",
+   "name": "Aminon",
+   "key": "aminon",
+   "performers": [
+    "aminon"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:kebab",
+   "name": "Kebab",
+   "key": "kebab",
+   "performers": [
+    "kebab"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:orlando",
+   "name": "Orlando",
+   "key": "orlando",
+   "performers": [
+    "orlando"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:ele-a",
+   "name": "Ele A",
+   "key": "ele-a",
+   "performers": [
+    "ele-a"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:otoy",
+   "name": "OTOY",
+   "key": "otoy",
+   "performers": [
+    "otoy"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:l-entourloop",
+   "name": "L'Entourloop",
+   "key": "l-entourloop",
+   "performers": [
+    "l-entourloop"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:deep-tempo-djs",
+   "name": "Deep Tempo DJs",
+   "key": "deep-tempo-djs",
+   "performers": [
+    "deep-tempo-djs"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:mc-logan",
+   "name": "MC Logan",
+   "key": "mc-logan",
+   "performers": [
+    "mc-logan"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:cadik",
+   "name": "Cadik",
+   "key": "cadik",
+   "performers": [
+    "cadik"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:zosha",
+   "name": "Zosha",
+   "key": "zosha",
+   "performers": [
+    "zosha"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:primeshock",
+   "name": "Primeshock",
+   "key": "primeshock",
+   "performers": [
+    "primeshock"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:frontliner",
+   "name": "Frontliner",
+   "key": "frontliner",
+   "performers": [
+    "frontliner"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:outsiders",
+   "name": "Outsiders",
+   "key": "outsiders",
+   "performers": [
+    "outsiders"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:hard-driver",
+   "name": "Hard Driver",
+   "key": "hard-driver",
+   "performers": [
+    "hard-driver"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:adaro",
+   "name": "Adaro",
+   "key": "adaro",
+   "performers": [
+    "adaro"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:d-sturb",
+   "name": "D-Sturb",
+   "key": "d-sturb",
+   "performers": [
+    "d-sturb"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:rebelion",
+   "name": "Rebelion",
+   "key": "rebelion",
+   "performers": [
+    "rebelion"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:panic",
+   "name": "Panic",
+   "key": "panic",
+   "performers": [
+    "panic"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:the-viper",
+   "name": "The Viper",
+   "key": "the-viper",
+   "performers": [
+    "the-viper"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:dv8",
+   "name": "DV8",
+   "key": "dv8",
+   "performers": [
+    "dv8"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:liam-gallagher",
+   "name": "Liam Gallagher",
+   "key": "liam-gallagher",
+   "performers": [
+    "liam-gallagher"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:stormzy",
+   "name": "Stormzy",
+   "key": "stormzy",
+   "performers": [
+    "stormzy"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:yves-tumor",
+   "name": "Yves Tumor",
+   "key": "yves-tumor",
+   "performers": [
+    "yves-tumor"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:teezo-touchdown",
+   "name": "Teezo Touchdown",
+   "key": "teezo-touchdown",
+   "performers": [
+    "teezo-touchdown"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:apashe",
+   "name": "Apashe",
+   "key": "apashe",
+   "performers": [
+    "apashe"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:kevin-de-vries",
+   "name": "Kevin de Vries",
+   "key": "kevin-de-vries",
+   "performers": [
+    "kevin-de-vries"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:enrico-sangiuliano",
+   "name": "Enrico Sangiuliano",
+   "key": "enrico-sangiuliano",
+   "performers": [
+    "enrico-sangiuliano"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:job-jobse",
+   "name": "Job Jobse",
+   "key": "job-jobse",
+   "performers": [
+    "job-jobse"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:eris-drew",
+   "name": "Eris Drew",
+   "key": "eris-drew",
+   "performers": [
+    "eris-drew"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:octo-octa",
+   "name": "Octo Octa",
+   "key": "octo-octa",
+   "performers": [
+    "octo-octa"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:liberato",
+   "name": "Liberato",
+   "key": "liberato",
+   "performers": [
+    "liberato"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:warhaus",
+   "name": "Warhaus",
+   "key": "warhaus",
+   "performers": [
+    "warhaus"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:whipped-cream",
+   "name": "Whipped Cream",
+   "key": "whipped-cream",
+   "performers": [
+    "whipped-cream"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:venerus",
+   "name": "Venerus",
+   "key": "venerus",
+   "performers": [
+    "venerus"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:kungs",
+   "name": "Kungs",
+   "key": "kungs",
+   "performers": [
+    "kungs"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:blahalouisiana",
+   "name": "Blahalouisiana",
+   "key": "blahalouisiana",
+   "performers": [
+    "blahalouisiana"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:kapela",
+   "name": "Kapela",
+   "key": "kapela",
+   "performers": [
+    "kapela"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:joe-unknown",
+   "name": "joe unknown",
+   "key": "joe-unknown",
+   "performers": [
+    "joe-unknown"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:ezhel",
+   "name": "Ezhel",
+   "key": "ezhel",
+   "performers": [
+    "ezhel"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:hundred-sins",
+   "name": "Hundred Sins",
+   "key": "hundred-sins",
+   "performers": [
+    "hundred-sins"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:beatrick",
+   "name": "Beatrick",
+   "key": "beatrick",
+   "performers": [
+    "beatrick"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:miller-david",
+   "name": "Miller David",
+   "key": "miller-david",
+   "performers": [
+    "miller-david"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:ajsa-luna",
+   "name": "Ajsa Luna",
+   "key": "ajsa-luna",
+   "performers": [
+    "ajsa-luna"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:laurie",
+   "name": "Laurie.",
+   "key": "laurie",
+   "performers": [
+    "laurie"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:anubii",
+   "name": "Anubii$",
+   "key": "anubii",
+   "performers": [
+    "anubii"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:siaga",
+   "name": "Siaga",
+   "key": "siaga",
+   "performers": [
+    "siaga"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:dj-pampinho",
+   "name": "DJ Pampinho",
+   "key": "dj-pampinho",
+   "performers": [
+    "dj-pampinho"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:pimienta",
+   "name": "Pimienta",
+   "key": "pimienta",
+   "performers": [
+    "pimienta"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:carmen-lisa",
+   "name": "Carmen Lisa",
+   "key": "carmen-lisa",
+   "performers": [
+    "carmen-lisa"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:joris-voorn",
+   "name": "Joris Voorn",
+   "key": "joris-voorn",
+   "performers": [
+    "joris-voorn"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:daria-kolosova",
+   "name": "Daria Kolosova",
+   "key": "daria-kolosova",
+   "performers": [
+    "daria-kolosova"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:martin-garrix",
+   "name": "Martin Garrix",
+   "key": "martin-garrix",
+   "performers": [
+    "martin-garrix"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:louis-tomlinson",
+   "name": "Louis Tomlinson",
+   "key": "louis-tomlinson",
+   "performers": [
+    "louis-tomlinson"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:m",
+   "name": "MØ",
+   "key": "m",
+   "performers": [
+    "m"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:neil-frances",
+   "name": "NEIL FRANCES",
+   "key": "neil-frances",
+   "performers": [
+    "neil-frances"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:franc-moody",
+   "name": "Franc Moody",
+   "key": "franc-moody",
+   "performers": [
+    "franc-moody"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:zoe-wees",
+   "name": "Zoe Wees",
+   "key": "zoe-wees",
+   "performers": [
+    "zoe-wees"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:sam-paganini",
+   "name": "Sam Paganini",
+   "key": "sam-paganini",
+   "performers": [
+    "sam-paganini"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:ellen-allien",
+   "name": "Ellen Allien",
+   "key": "ellen-allien",
+   "performers": [
+    "ellen-allien"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:anfisa-letyago",
+   "name": "Anfisa Letyago",
+   "key": "anfisa-letyago",
+   "performers": [
+    "anfisa-letyago"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:len-faki",
+   "name": "Len Faki",
+   "key": "len-faki",
+   "performers": [
+    "len-faki"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:crows",
+   "name": "Crows",
+   "key": "crows",
+   "performers": [
+    "crows"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:lf-system",
+   "name": "LF System",
+   "key": "lf-system",
+   "performers": [
+    "lf-system"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:d-low",
+   "name": "D-Low",
+   "key": "d-low",
+   "performers": [
+    "d-low"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:m-o-m",
+   "name": "M.O.M.",
+   "key": "m-o-m",
+   "performers": [
+    "m-o-m"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:rushy",
+   "name": "Rushy",
+   "key": "rushy",
+   "performers": [
+    "rushy"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:ovtar-pestis",
+   "name": "Óvtar Pestis",
+   "key": "ovtar-pestis",
+   "performers": [
+    "ovtar-pestis"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:pogany-indulo",
+   "name": "Pogány Induló",
+   "key": "pogany-indulo",
+   "performers": [
+    "pogany-indulo"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:p-money",
+   "name": "P Money",
+   "key": "p-money",
+   "performers": [
+    "p-money"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:whiney",
+   "name": "Whiney",
+   "key": "whiney",
+   "performers": [
+    "whiney"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:gray",
+   "name": "Gray",
+   "key": "gray",
+   "performers": [
+    "gray"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:chris-su",
+   "name": "Chris.Su",
+   "key": "chris-su",
+   "performers": [
+    "chris-su"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:incident",
+   "name": "Incident",
+   "key": "incident",
+   "performers": [
+    "incident"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:markov",
+   "name": "Markov",
+   "key": "markov",
+   "performers": [
+    "markov"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:andrew-mathers",
+   "name": "Andrew Mathers",
+   "key": "andrew-mathers",
+   "performers": [
+    "andrew-mathers"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:eleganto",
+   "name": "Eleganto",
+   "key": "eleganto",
+   "performers": [
+    "eleganto"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:justin-mylo",
+   "name": "Justin Mylo",
+   "key": "justin-mylo",
+   "performers": [
+    "justin-mylo"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:nuzb",
+   "name": "Nuzb",
+   "key": "nuzb",
+   "performers": [
+    "nuzb"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:dubvision",
+   "name": "DubVision",
+   "key": "dubvision",
+   "performers": [
+    "dubvision"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:mesto",
+   "name": "Mesto",
+   "key": "mesto",
+   "performers": [
+    "mesto"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:moksi",
+   "name": "Moksi",
+   "key": "moksi",
+   "performers": [
+    "moksi"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:blinders",
+   "name": "Blinders",
+   "key": "blinders",
+   "performers": [
+    "blinders"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:merow",
+   "name": "Merow",
+   "key": "merow",
+   "performers": [
+    "merow"
+   ],
+   "appearances": [
+    {
+     "day": 4
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:janelle-monae",
+   "name": "Janelle Monáe",
+   "key": "janelle-monae",
+   "performers": [
+    "janelle-monae"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:sam-smith",
+   "name": "Sam Smith",
+   "key": "sam-smith",
+   "performers": [
+    "sam-smith"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:fontaines-d-c",
+   "name": "Fontaines D.C.",
+   "key": "fontaines-d-c",
+   "performers": [
+    "fontaines-d-c"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:becky-hill",
+   "name": "Becky Hill",
+   "key": "becky-hill",
+   "performers": [
+    "becky-hill"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:crystal-fighters",
+   "name": "Crystal Fighters",
+   "key": "crystal-fighters",
+   "performers": [
+    "crystal-fighters"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:sven-vath",
+   "name": "Sven Väth",
+   "key": "sven-vath",
+   "performers": [
+    "sven-vath"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:editors",
+   "name": "Editors",
+   "key": "editors",
+   "performers": [
+    "editors"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:kiasmos",
+   "name": "Kiasmos",
+   "key": "kiasmos",
+   "performers": [
+    "kiasmos"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:modeselektor",
+   "name": "Modeselektor",
+   "key": "modeselektor",
+   "performers": [
+    "modeselektor"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:nto",
+   "name": "NTO",
+   "key": "nto",
+   "performers": [
+    "nto"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:joesef",
+   "name": "Joesef",
+   "key": "joesef",
+   "performers": [
+    "joesef"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:colyn",
+   "name": "Colyn",
+   "key": "colyn",
+   "performers": [
+    "colyn"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:rebuke",
+   "name": "Rebūke",
+   "key": "rebuke",
+   "performers": [
+    "rebuke"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:ameme",
+   "name": "AMÉMÉ",
+   "key": "ameme",
+   "performers": [
+    "ameme"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:pip-blom",
+   "name": "Pip Blom",
+   "key": "pip-blom",
+   "performers": [
+    "pip-blom"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:team-brazil",
+   "name": "Team Brazil",
+   "key": "team-brazil",
+   "performers": [
+    "team-brazil"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:dj-rogue-wave",
+   "name": "DJ Rogue Wave",
+   "key": "dj-rogue-wave",
+   "performers": [
+    "dj-rogue-wave"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:eklips",
+   "name": "Eklips",
+   "key": "eklips",
+   "performers": [
+    "eklips"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:bongor",
+   "name": "Bongor",
+   "key": "bongor",
+   "performers": [
+    "bongor"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:kojaque",
+   "name": "Kojaque",
+   "key": "kojaque",
+   "performers": [
+    "kojaque"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:songer",
+   "name": "Songer",
+   "key": "songer",
+   "performers": [
+    "songer"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:soft-boy",
+   "name": "Soft Boy",
+   "key": "soft-boy",
+   "performers": [
+    "soft-boy"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:tritxn",
+   "name": "Tritxn",
+   "key": "tritxn",
+   "performers": [
+    "tritxn"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:myamo",
+   "name": "Myamo",
+   "key": "myamo",
+   "performers": [
+    "myamo"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:schomey",
+   "name": "Schomey",
+   "key": "schomey",
+   "performers": [
+    "schomey"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:murdock",
+   "name": "Murdock",
+   "key": "murdock",
+   "performers": [
+    "murdock"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:sullivan-king",
+   "name": "Sullivan King",
+   "key": "sullivan-king",
+   "performers": [
+    "sullivan-king"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:camo-and-krooked",
+   "name": "Camo & Krooked",
+   "key": "camo-and-krooked",
+   "performers": [
+    "camo-and-krooked"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:luude",
+   "name": "Luude",
+   "key": "luude",
+   "performers": [
+    "luude"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:must-die",
+   "name": "MUST DIE!",
+   "key": "must-die",
+   "performers": [
+    "must-die"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:riot-ten",
+   "name": "Riot Ten",
+   "key": "riot-ten",
+   "performers": [
+    "riot-ten"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:dublic",
+   "name": "Dublic",
+   "key": "dublic",
+   "performers": [
+    "dublic"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:skrude",
+   "name": "Skrude",
+   "key": "skrude",
+   "performers": [
+    "skrude"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:b-andre",
+   "name": "B'Andre",
+   "key": "b-andre",
+   "performers": [
+    "b-andre"
+   ],
+   "appearances": [
+    {
+     "day": 5
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:fred-again",
+   "name": "Fred again..",
+   "key": "fred-again",
+   "performers": [
+    "fred-again"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:skrillex",
+   "name": "Skrillex",
+   "key": "skrillex",
+   "performers": [
+    "skrillex"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:raye",
+   "name": "RAYE",
+   "key": "raye",
+   "performers": [
+    "raye"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:four-tet",
+   "name": "Four Tet",
+   "key": "four-tet",
+   "performers": [
+    "four-tet"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:big-thief",
+   "name": "Big Thief",
+   "key": "big-thief",
+   "performers": [
+    "big-thief"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:artbat",
+   "name": "ARTBAT",
+   "key": "artbat",
+   "performers": [
+    "artbat"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:lany",
+   "name": "LANY",
+   "key": "lany",
+   "performers": [
+    "lany"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:overmono",
+   "name": "Overmono",
+   "key": "overmono",
+   "performers": [
+    "overmono"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:argy",
+   "name": "Argy",
+   "key": "argy",
+   "performers": [
+    "argy"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:nico-moreno",
+   "name": "Nico Moreno",
+   "key": "nico-moreno",
+   "performers": [
+    "nico-moreno"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:nia-archives",
+   "name": "Nia Archives",
+   "key": "nia-archives",
+   "performers": [
+    "nia-archives"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:yard-act",
+   "name": "Yard Act",
+   "key": "yard-act",
+   "performers": [
+    "yard-act"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:fideles",
+   "name": "Fideles",
+   "key": "fideles",
+   "performers": [
+    "fideles"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:victoria",
+   "name": "Victoria",
+   "key": "victoria",
+   "performers": [
+    "victoria"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:wednesday",
+   "name": "Wednesday",
+   "key": "wednesday",
+   "performers": [
+    "wednesday"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:alle-farben",
+   "name": "Alle Farben",
+   "key": "alle-farben",
+   "performers": [
+    "alle-farben"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:kristof-7s",
+   "name": "Kristof 7s",
+   "key": "kristof-7s",
+   "performers": [
+    "kristof-7s"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:rhove",
+   "name": "Rhove",
+   "key": "rhove",
+   "performers": [
+    "rhove"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:lil-frakk",
+   "name": "Lil Frakk",
+   "key": "lil-frakk",
+   "performers": [
+    "lil-frakk"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:sisi",
+   "name": "SiSi",
+   "key": "sisi",
+   "performers": [
+    "sisi"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:sor",
+   "name": "sor",
+   "key": "sor",
+   "performers": [
+    "sor"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:reanny",
+   "name": "Reanny",
+   "key": "reanny",
+   "performers": [
+    "reanny"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:rockefellababe",
+   "name": "Rockefellababe",
+   "key": "rockefellababe",
+   "performers": [
+    "rockefellababe"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:mc-claudio",
+   "name": "MC Claudio",
+   "key": "mc-claudio",
+   "performers": [
+    "mc-claudio"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:vunzige-deuntjes-soundsystem",
+   "name": "Vunzige Deuntjes Soundsystem",
+   "key": "vunzige-deuntjes-soundsystem",
+   "performers": [
+    "vunzige-deuntjes-soundsystem"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:kybba",
+   "name": "Kybba",
+   "key": "kybba",
+   "performers": [
+    "kybba"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:metha",
+   "name": "Metha",
+   "key": "metha",
+   "performers": [
+    "metha"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  },
+  {
+   "id": "sziget-2024:denes-toth",
+   "name": "Denes Toth",
+   "key": "denes-toth",
+   "performers": [
+    "denes-toth"
+   ],
+   "appearances": [
+    {
+     "day": 6
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "unofficial_lineup",
+  "unofficial": true,
+  "source": {
+   "kind": "press",
+   "site": "jambase.com",
+   "url": "https://www.jambase.com/festival/sziget-festival-2024",
+   "title": "Sziget Festival 2024 Lineup - Aug 7 - 12, 2024",
+   "publisher": "JamBase",
+   "fetchedAt": "2026-11-27",
+   "fetchedVia": "exa",
+   "scope": "partial",
+   "sha256": "b56fddeb035111191cc3f39d0118f42b13ad3d2417e1f72a081acf7ef3905389",
+   "bytes": 2825
+  },
+  "captures": [
+   {
+    "page": "lineup",
+    "url": "https://www.jambase.com/festival/sziget-festival-2024",
+    "fetchedAt": "2026-11-27",
+    "sha256": "b56fddeb035111191cc3f39d0118f42b13ad3d2417e1f72a081acf7ef3905389"
+   }
+  ]
+ }
+}
