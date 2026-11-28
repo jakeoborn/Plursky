@@ -27,6 +27,7 @@ import { createServer } from "node:net";
 import { existsSync, mkdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { serverReady } from "./lib/server-ready.mjs";
+import { wireVendor } from "./lib/vendor-cdn.mjs";
 
 const ROOT = process.cwd();
 const SHOTS = process.env.PLURSKY_RENEWAL_SHOTS;
@@ -80,6 +81,7 @@ async function runAll(spotifySrc, { shots = false } = {}) {
   const ok = (cond, msg) => { checks++; if (!cond) fails.push(msg); };
   const open = async (customer, { width = 393 } = {}) => {
     const ctx = await browser.newContext({ viewport: { width, height: 852 }, deviceScaleFactor: shots ? 3 : 1, timezoneId: "America/Chicago", serviceWorkers: "block" });
+    await wireVendor(ctx);
     if (spotifySrc !== SPOTIFY) await ctx.route(/\/build\/spotify\.js/, r => r.fulfill({ status: 200, contentType: "application/javascript", body: spotifySrc }));
     await ctx.addInitScript(`(${installBridge.toString()})(${JSON.stringify(customer)})`);
     await ctx.addInitScript(() => {

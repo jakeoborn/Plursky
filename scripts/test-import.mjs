@@ -20,6 +20,7 @@
 import { chromium } from 'playwright';
 import { spawn } from 'node:child_process';
 import { serverReady } from './lib/server-ready.mjs';
+import { wireVendor } from './lib/vendor-cdn.mjs';
 import { createServer } from 'node:net';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
@@ -56,6 +57,7 @@ async function run() {
     // comparisons are reproducible regardless of where this test runs.
     timezoneId: 'America/Los_Angeles',
   });
+  await wireVendor(ctx);
   const page = await ctx.newPage();
 
   page.on('console', m => {

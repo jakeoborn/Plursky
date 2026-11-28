@@ -4544,6 +4544,18 @@ for (const [label, file] of [["contract", "scripts/test-public-plan-share.mjs"],
   }
 }
 
+// Browser gates that boot the app serve React/ReactDOM/supabase from
+// scripts/vendor/, never the live CDN (f16: a CDN stall failed Season Pass rescue).
+{
+  console.log("▸ Vendor wired — app-booting browser gates use scripts/vendor/");
+  try {
+    process.stdout.write(execFileSync(process.execPath, ["scripts/test-vendor-wired.mjs"], { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] }));
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`vendor wired failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 2. Mount probe ─────────────────────────────────────────────────────────
 // scripts/test-mount-probe.mjs: the real index.html in headless Chrome, with
 // the pinned CDN scripts served from scripts/vendor/ (no network). Output is
