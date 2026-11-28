@@ -46,3 +46,15 @@ for (const f of open) {
 }
 if (/<\/script/i.test(m[1])) fail('WELCOME_DATA contains a closing script tag');
 console.log(`  ✓ ${open.length} open festivals each have a lineup to load`);
+
+// 4. The app's structured data: one MobileApplication whose App Store id is the
+//    Smart App Banner's, free, and with no rating it cannot cite.
+const ldBlocks = [...page.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map((x) => JSON.parse(x[1]));
+const appLd = ldBlocks.filter((x) => x['@type'] === 'MobileApplication');
+const bannerId = (page.match(/<meta name="apple-itunes-app" content="app-id=(\d+)">/) || [])[1];
+if (appLd.length !== 1) fail(`welcome page has ${appLd.length} MobileApplication JSON-LD blocks (want 1)`);
+const a = appLd[0];
+if (!bannerId || !String(a.installUrl).endsWith(`/id${bannerId}`)) fail(`MobileApplication installUrl ${a.installUrl} does not match the banner app-id ${bannerId}`);
+if (a.operatingSystem !== 'iOS' || !a.offers || a.offers.price !== '0' || a.offers.priceCurrency !== 'USD') fail('MobileApplication must say iOS and a free USD offer');
+if ('aggregateRating' in a || 'review' in a) fail('MobileApplication carries a rating or review; only add one sourced from the App Store');
+console.log(`  ✓ MobileApplication JSON-LD matches the banner (id${bannerId}), free, no uncited rating`);
