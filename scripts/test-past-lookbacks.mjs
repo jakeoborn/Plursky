@@ -39,7 +39,9 @@ const H = p => JSON.parse(readFileSync(join(ROOT, "data/historical", p), "utf8")
 // What a look-back may claim about its source, stated here and not read from
 // the generator: a Wayback capture is "archived"; an official_sources edition
 // can date from a re-hosted graphic's publish date, so it says "latest source".
-const wording = ed => ed.provenance?.extractionMethod === "official_sources"
+// An unofficial lineup (a fan-made timetable, an article) was read, not archived.
+const wording = ed => ed.provenance?.unofficial ? { page: "Unofficial source read", app: "source read" }
+  : ed.provenance?.extractionMethod === "official_sources"
   ? { page: "Latest official source", app: "latest source" } : { page: "Official source archived", app: "source archived" };
 const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const dateLabel = iso => { const [y, m, d] = iso.split("-").map(Number); return `${MON[m - 1]} ${d}, ${y}`; };

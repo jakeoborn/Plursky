@@ -4588,6 +4588,42 @@
    }
   },
   {
+   "id": "movement-2019",
+   "festivalId": "movement",
+   "festivalName": "Movement",
+   "name": "Movement 2019",
+   "year": 2019,
+   "timezone": "America/Detroit",
+   "completeness": "lineup_only",
+   "unofficialSource": {
+    "kind": "press",
+    "name": "Dancing Astronaut",
+    "scope": "full"
+   },
+   "days": [
+    {
+     "day": 1,
+     "date": "2019-05-25",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2019-05-26",
+     "label": "Sunday"
+    },
+    {
+     "day": 3,
+     "date": "2019-05-27",
+     "label": "Monday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 89,
+    "sets": 0
+   }
+  },
+  {
    "id": "nocturnal-wonderland-2025",
    "festivalId": "nocturnal-wonderland",
    "festivalName": "Nocturnal Wonderland",
