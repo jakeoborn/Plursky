@@ -122,6 +122,11 @@
   a.cta-secondary { font-weight:600; white-space:nowrap; }
   section[aria-labelledby="app-h"] { background:var(--paper-2); border:1px solid var(--line); border-radius:8px; padding:4px 22px 18px; margin-top:48px; }
   section[aria-labelledby="app-h"] h2 { border-top:0; margin-top:18px; padding-top:0; }
+  /* Desktop only: a computer can't install an iPhone app, so offer the phone a code to scan. */
+  figure.appqr { display:none; margin:14px 0 4px; align-items:center; gap:14px; }
+  figure.appqr img { width:112px; height:112px; border-radius:6px; background:#fff; padding:6px; flex:none; }
+  figure.appqr figcaption { color:var(--text-2); font-size:14px; max-width:28ch; }
+  @media (hover:hover) and (pointer:fine) and (min-width:720px) { figure.appqr { display:flex; } }
   section[aria-labelledby="past-h"] > ul { list-style:none; padding:0; margin:14px 0 0; display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:10px; }
   section[aria-labelledby="past-h"] > ul li { background:var(--paper-2); border:1px solid var(--line); border-radius:8px; padding:12px 14px; font-size:13px; color:var(--text-2); }
   section[aria-labelledby="past-h"] > ul li a { display:block; color:var(--ink); font-weight:600; font-size:15px; text-decoration:none; margin-bottom:2px; }
@@ -588,6 +593,7 @@ two.parentNode.insertBefore(twenty, two);
       <a class="cta" href="https://apps.apple.com/us/app/plursky-live/id6768888507">Get the Plursky app for iPhone</a>
       <a class="cta-secondary" href="/?f=ubbi-dubbi-2027">Open in your browser</a>
     </p>
+    <figure class="appqr"><img src="/app-qr.svg" width="112" height="112" loading="lazy" decoding="async" alt="QR code that opens Plursky on the App Store"><figcaption>On a computer? Point your iPhone camera here to get the app.</figcaption></figure>
     <p class="note">Plursky is a free festival companion — build a personal schedule from the lineup, meet your crew, and turn the weekend into a shareable recap.</p>
     <p class="note">Ubbi Dubbi 2027 is open in the app with the lineup announced so far. Set times appear as soon as the festival publishes them.</p>
   </section>
