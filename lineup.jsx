@@ -1846,6 +1846,115 @@ function LineupScreen({ state, setState }) {
   );
 }
 
+// ── Schedule Watch runner (Plursky+, #115) ─────────────────────────────────
+// Mounted once by App. Free users get nothing here: the manual "Updates"
+// check in the lineup is unchanged. For Plus, it checks on launch, on return
+// to the app, every few minutes while open (scheduleWatchDue throttles to 30
+// min) and when the connection comes back. An alert is a banner that opens the
+// same review sheet; if the app is in the background when a check lands, a
+// local notification says the same thing.
+function ScheduleWatch({ saved }) {
+  const cfg = FESTIVAL_CONFIG, fid = cfg.id;
+  const { perm, showLocal } = useNotifications();
+  const [plus, setPlus] = React.useState(() => typeof _isPlusSub === "function" && _isPlusSub());
+  const [alert, setAlert] = React.useState(null);
+  const [open, setOpen] = React.useState(false);
+  const savedRef = React.useRef(saved);
+  savedRef.current = saved;
+  const busy = React.useRef(false);
+  React.useEffect(() => {
+    const on = () => setPlus(typeof _isPlusSub === "function" && _isPlusSub());
+    window.addEventListener("plursky-plus-change", on);
+    return () => window.removeEventListener("plursky-plus-change", on);
+  }, []);
+  const run = React.useCallback(force => {
+    if (!plus || busy.current) return;
+    if (!scheduleWatchDue(cfg, scheduleWatchState()[fid], Date.now(), force)) return;
+    busy.current = true;
+    const done = review => {
+      const d = scheduleWatchDecide(review, scheduleWatchState()[fid], Date.now());
+      scheduleWatchWrite(fid, d.rec);
+      busy.current = false;
+      if (!d.alert) return;
+      setAlert(d.alert);
+      if (perm === "granted" && typeof document !== "undefined" && document.visibilityState === "hidden") {
+        const t = scheduleWatchText(d.alert, cfg);
+        showLocal(t.title, { body: t.body, tag: "schedule-review-" + fid, data: { url: scheduleWatchTapUrl(fid), scheduleReview: fid } });
+      }
+    };
+    fetchScheduleFeed(fid).then(
+      feed => done(scheduleReview(fid, feed, { saved: savedRef.current || [], remindersOn: perm === "granted", leadMin: getReminderLeadMin() })),
+      () => done(null));
+  }, [plus, fid, perm]);
+  React.useEffect(() => {
+    run(false);
+    const vis = () => { if (document.visibilityState === "visible") run(false); };
+    const online = () => run(true);
+    const iv = setInterval(() => run(false), 5 * 60000);
+    document.addEventListener("visibilitychange", vis);
+    window.addEventListener("online", online);
+    return () => { clearInterval(iv); document.removeEventListener("visibilitychange", vis); window.removeEventListener("online", online); };
+  }, [run]);
+  // A tapped alert lands here: a web tap reloads on /?schedule-review=<fid>,
+  // a native tap fires localNotificationActionPerformed (queued on cold start).
+  const tapTo = React.useCallback(target => {
+    const route = scheduleWatchTapRoute(target, fid);
+    if (route === "open") { setAlert(null); setOpen(true); }
+    else if (route === "switch") {
+      try { localStorage.setItem(_SCHED_WATCH_PENDING_KEY, target); } catch {}
+      setActiveFestivalAndReload(target);
+    }
+  }, [fid]);
+  React.useEffect(() => {
+    const fromUrl = scheduleWatchTapTarget(location.href);
+    if (fromUrl) {
+      try {
+        const u = new URL(location.href);
+        u.searchParams.delete(SCHED_WATCH_TAP_PARAM);
+        history.replaceState(history.state, "", u.pathname + u.search + u.hash);
+      } catch {}
+    }
+    let pending = null;
+    try { pending = localStorage.getItem(_SCHED_WATCH_PENDING_KEY); localStorage.removeItem(_SCHED_WATCH_PENDING_KEY); } catch {}
+    const first = fromUrl || (pending === fid ? pending : null);
+    if (first) tapTo(first);
+    const ln = typeof _capLocalNotifications === "function" ? _capLocalNotifications() : null;
+    let sub = null, gone = false;
+    if (ln && ln.addListener) {
+      Promise.resolve(ln.addListener("localNotificationActionPerformed", ev => {
+        const target = scheduleWatchTapTarget(ev);
+        if (target) tapTo(target);
+      })).then(s => { if (gone) { try { s && s.remove && s.remove(); } catch {} } else sub = s; }).catch(() => {});
+    }
+    return () => { gone = true; try { sub && sub.remove && sub.remove(); } catch {} };
+  }, [tapTo]);
+
+  if (open) return <ScheduleReviewSheet saved={saved || []} onClose={() => { setOpen(false); setAlert(null); }} />;
+  if (!alert) return null;
+  const t = scheduleWatchText(alert, cfg);
+  return ReactDOM.createPortal(
+    <div role="status" data-sched-watch={alert.key} style={{
+      position: "fixed", left: 12, right: 12, top: "calc(env(safe-area-inset-top, 0px) + 10px)", zIndex: 8900,
+      maxWidth: 456, margin: "0 auto", boxSizing: "border-box", padding: "10px 10px 10px 14px", borderRadius: 14,
+      background: "var(--paper)", border: "1px solid var(--line-2)", boxShadow: "0 8px 24px rgba(var(--shade-rgb),0.25)",
+      display: "flex", alignItems: "center", gap: 10,
+    }}>
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <div style={{ fontSize: 14, fontWeight: 600, color: "var(--ink)" }}>{t.title}</div>
+        <div style={{ fontSize: 12, color: "var(--ink)", opacity: 0.7, marginTop: 1 }}>{t.body}</div>
+      </div>
+      <button data-sched-watch-review onClick={() => setOpen(true)} style={{
+        fontFamily: "'Geist Mono', monospace", letterSpacing: 1.2, fontWeight: 700, fontSize: 10, minHeight: 40, padding: "0 14px",
+        borderRadius: 999, border: "none", background: "var(--ink)", color: "var(--paper)", cursor: "pointer", flexShrink: 0,
+      }}>REVIEW</button>
+      <button aria-label="Dismiss" data-sched-watch-dismiss onClick={() => setAlert(null)} style={{
+        width: 40, height: 40, borderRadius: 20, border: "none", background: "transparent", color: "var(--ink)", fontSize: 18, cursor: "pointer", flexShrink: 0,
+      }}>×</button>
+    </div>,
+    document.body
+  );
+}
+
 // ── Schedule Sync: check the published schedule, review, confirm ──────────
 // Nothing about the lineup, the plan or reminders changes before APPLY
 // UPDATE. Rows read against the lineup as it stands now; applying stores the

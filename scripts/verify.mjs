@@ -2898,6 +2898,22 @@ for (const [script, label] of [
   }
 }
 
+// ── 1z-b4w. Schedule Watch (Plursky+) ─────────────────────────────────────
+// The automatic check behind the Updates sheet: due 30 days out through the
+// end, at most every 30 minutes; alerts once per published schedule that
+// touches the plan; Plus-only, and it applies nothing without the sheet.
+{
+  console.log("▸ Schedule-watch gate — due window + throttle, one alert per feed, Plus-only, applies nothing itself");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-schedule-watch.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`schedule watch failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-b5. Sitemap content fingerprint ────────────────────────────────────
 // sitemap <lastmod> is a fingerprint of each page's own indexable content, so
 // a rendered field missing from that fingerprint freezes the date while the
