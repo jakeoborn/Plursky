@@ -6,6 +6,9 @@
 // page itself (Insomniac day tabs, or the header printed on each official
 // graphic), and the ledger holds the capture that shows it.
 
+import { existsSync, readdirSync, readFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { slug } from "./lib.mjs";
 
 const TML_THREE_WEEKEND_LABELS = ["Weekend 1 · Friday", "Weekend 1 · Saturday", "Weekend 1 · Sunday",
@@ -13,7 +16,19 @@ const TML_THREE_WEEKEND_LABELS = ["Weekend 1 · Friday", "Weekend 1 · Saturday"
 const ACL_WEEKEND_LABELS = ["Weekend 1 · Friday", "Weekend 1 · Saturday", "Weekend 1 · Sunday",
   "Weekend 2 · Friday", "Weekend 2 · Saturday", "Weekend 2 · Sunday"];
 
+// Editions whose lineup comes from an unofficial source (unofficial.mjs):
+// one JSON file per festival in data/historical/unofficial/, mapping each
+// edition id to its entry. Their dates are the census's dated run for the
+// year (the ledger's datesFrom); method is always "unofficial_lineup". An id
+// may not also be registered above.
+const UNOFFICIAL_DIR = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "data", "historical", "unofficial");
+const UNOFFICIAL = Object.assign({}, ...(existsSync(UNOFFICIAL_DIR) ? readdirSync(UNOFFICIAL_DIR).filter(f => f.endsWith(".json")).sort() : [])
+  .map(f => JSON.parse(readFileSync(join(UNOFFICIAL_DIR, f), "utf8"))));
+
+// An id registered below as well keeps its official entry; the test fails it.
+export const UNOFFICIAL_IDS = Object.keys(UNOFFICIAL);
 export const EDITIONS = {
+  ...UNOFFICIAL,
   // Governors Ball 2024: three official daily grids (official_image_transcription).
   // The page also embeds one Bud Light Backyard sheet for all three days; it
   // prints weekdays without dates and starts without ends, so it is not read.
