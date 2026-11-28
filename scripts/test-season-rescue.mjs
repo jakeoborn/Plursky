@@ -34,6 +34,7 @@ import { createServer } from "node:net";
 import { existsSync, mkdirSync } from "node:fs";
 import { join } from "node:path";
 import { serverReady } from "./lib/server-ready.mjs";
+import { wireVendor } from "./lib/vendor-cdn.mjs";
 
 const ROOT = process.cwd();
 const SHOTS = process.env.PLURSKY_RESCUE_SHOTS;
@@ -110,6 +111,9 @@ try {
   const open = async (cfg, { plus = false, next = {}, owned = false } = {}) => {
     const ctx = await browser.newContext({ viewport: { width: 393, height: 852 }, deviceScaleFactor: SHOTS ? 3 : 1,
       timezoneId: "America/Chicago", serviceWorkers: "block" });
+    // React, ReactDOM and supabase come from scripts/vendor/ (SRI-checked), not a live CDN:
+    // an unpkg stall left React undefined and failed the rescue scenarios (f16).
+    await wireVendor(ctx);
     const src = installBridge.toString().replace(/SEASON_ID/g, JSON.stringify(SEASON)).replace(/MONTHLY_ID/g, JSON.stringify(MONTHLY)).replace(/PROMO_ID/g, JSON.stringify(PROMO));
     await ctx.addInitScript(`(${src})(${JSON.stringify(cfg)})`);
     await ctx.addInitScript(({ plus, next, owned }) => {
@@ -135,7 +139,11 @@ try {
         console.log(`  (navigation retry: ${String(e.message).split("\n")[0]})`);
       }
     }
-    await page.waitForFunction(() => typeof PlusGate === "function" && typeof _rescueOffer === "function", null, { timeout: 30000 });
+    // mountInline calls ReactDOM.createRoot itself, so React and ReactDOM must be on
+    // window too, not only the app's functions. Verify on 2026-11-28 failed here with
+    // "ReactDOM is not defined" under load and passed alone.
+    await page.waitForFunction(() => typeof PlusGate === "function" && typeof _rescueOffer === "function"
+      && typeof React === "object" && typeof ReactDOM === "object" && typeof ReactDOM.createRoot === "function", null, { timeout: 30000 });
     await sleep(600);
     return { ctx, page, errors };
   };

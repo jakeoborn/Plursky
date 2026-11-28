@@ -203,9 +203,17 @@ function checkPage(entry, html, { verified }) {
 
   // Lineup: every name, once, in its own row.
   const lineup = section(html, 'lineup-h') || '';
-  const acts = [...lineup.matchAll(/<span class="act">(.*?)<\/span>/g)].map(x => decode(x[1]));
+  // A name is a <span class="act"> or, when it is one performer with an
+  // artist page, an <a class="act" href="/artists/…/">.
+  const acts = [...lineup.matchAll(/<(span|a) class="act"(?: href="\/artists\/[^"]+\/")?>(.*?)<\/\1>/g)].map(x => decode(x[2]));
   const missing = names.filter(n => !acts.includes(n));
   if (missing.length) out.push(`lineup is missing ${missing.length} act(s), e.g. ${missing[0]}`);
+  // A whole-name artist link is for ONE performer. A billed collaboration
+  // ("A.M.C w/ Phantom") linking as one artist sends a reader to the wrong page.
+  // A parenthetical is an alias's gloss, not a billing: "Leveltronics
+  // (Subtronics B2B Level Up)" is one act.
+  const collab = [...lineup.matchAll(/<a class="act"[^>]*>(.*?)<\/a>/g)].map(x => decode(x[1])).filter(n => /\s(b2b|b3b|w\/|with|vs\.?)\s/i.test(n.replace(/\([^)]*\)/g, '')));
+  if (collab.length) out.push(`collaboration linked as one artist: ${collab[0]}`);
   if (acts.length !== new Set(acts).size) out.push('lineup repeats a name');
   if (/Schedule TBA/.test(visibleText(lineup))) out.push('lineup shows the placeholder stage');
   // A one-day (or absent) dayDates is a bucket, not a published day split.
@@ -315,6 +323,15 @@ for (const [what, n] of [['plate', plates], ['official-map link only', links], [
 // ── The mutations the spec names, and a control ──────────────────────
 const byId = (id) => REG.find(e => e.config.id === id);
 const pageOf = (id) => readFileSync(join(F_DIR, id, 'index.html'), 'utf8');
+
+// Committed collaboration fixture (lane III, #619). "A.M.C w/ Phantom": A.M.C
+// has no artist page, Phantom has one. The billed name stays text and only
+// Phantom is linked after it; the first build linked the whole name to
+// Phantom's page. EDC Las Vegas 2026 has ended, so this row is stable.
+const AMC_ROW = '<span class="act">A.M.C w/ Phantom</span> <span class="slots"><a href="/artists/phantom/">Phantom</a></span>';
+if (!existsSync(join(F_DIR, 'edc-lv-2026', 'index.html'))) fail('collaboration fixture: f/edc-lv-2026/ is missing');
+else if (!pageOf('edc-lv-2026').includes(AMC_ROW)) fail('collaboration fixture: edc-lv-2026 no longer prints "A.M.C w/ Phantom" as text with only Phantom linked after it');
+else ok();
 const unverified = REG.find(e => !verifiedIds.has(e.config.id) && /class="plate"/.test(pageOf(e.config.id)));
 const verified = REG.find(e => verifiedIds.has(e.config.id) && existsSync(join(F_DIR, e.config.id, 'index.html')));
 const artFestival = REG.find(e => e.config.mapImage && !/\.svg$/i.test(e.config.mapImage));
@@ -337,6 +354,8 @@ const mutants = [
   ['an embedded official map', artFestival, (h) => h.replace('</main>', `<img src="/${artFestival.config.mapImage}" width="10" height="10">\n</main>`), false],
   // The ruled-out photo coming back: festival card art on a public page.
   ['official festival card art', byId('acl-2026'), (h) => h.replace('</main>', `<img src="/festival-art/acl-2026.webp" width="10" height="10">\n</main>`), false],
+  // The collaboration fixture above, linked whole to one performer's page.
+  ['a collaboration linked whole to one artist', byId('edc-lv-2026'), (h) => h.replace(AMC_ROW, '<a class="act" href="/artists/phantom/">A.M.C w/ Phantom</a>'), false],
   ['a dropped act', withLineup, (h) => h.replace(/\n      <li><span class="act">[^\n]*<\/li>/, ''), false],
   ['a walk-time sentence on unverified geometry', unverified, (h) => h.replace('</main>', `${WALK}\n</main>`), false],
   // A lineup-only page losing its only source line, and a preview losing its

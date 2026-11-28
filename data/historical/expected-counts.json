@@ -158,6 +158,7 @@
  "time-warp-2019": { "artists": 46, "stages": 0, "appearancesPerDay": [46], "dropped": 0 },
  "time-warp-2021": { "artists": 10, "stages": 0, "appearancesPerDay": [4, 6], "dropped": 0 },
  "time-warp-2022": { "artists": 23, "stages": 0, "appearancesPerDay": [11, 12], "dropped": 0 },
+ "movement-2019": { "artists": 89, "stages": 0, "appearancesPerDay": [29, 30, 30], "dropped": 0 },
  "time-warp-2023": { "artists": 39, "stages": 0, "appearancesPerDay": [39], "dropped": 0 },
  "time-warp-2024": { "artists": 62, "stages": 0, "appearancesPerDay": [19, 43], "dropped": 0 },
  "time-warp-2025": { "artists": 37, "stages": 0, "appearancesPerDay": [37], "dropped": 0 },
