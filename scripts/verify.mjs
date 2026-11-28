@@ -3982,6 +3982,19 @@ for (const [label, file] of [["contract", "scripts/test-public-plan-share.mjs"],
   }
 }
 
+// ── 1z-b8b. 404 page ──────────────────────────────────────────────────────
+// GitHub Pages serves 404.html at every missing path: noindex, root-absolute
+// links that resolve, and the install path (banner + App Store link).
+{
+  console.log("▸ 404 page gate — noindex, every link resolves from any path");
+  try {
+    process.stdout.write(execFileSync(process.execPath, ["scripts/test-404-page.mjs"], { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] }));
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`404 page failed${detail ? ` — ${detail.split("\n").slice(0, 6).join(" | ")}` : ""}`);
+  }
+}
+
 // ── 1z-b9. Shell portability ──────────────────────────────────────────────
 // Every push in this repo goes through scripts/verify-and-push.sh, and that
 // wrapper shipped with `#!/bin/zsh` until #211. On a box without zsh the kernel
