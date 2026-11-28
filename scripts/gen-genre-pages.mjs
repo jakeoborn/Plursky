@@ -88,13 +88,17 @@ const CSS = `<style>
   footer { margin-top:48px; padding-top:18px; border-top:1px solid var(--line); color:var(--text-2); font-size:14px; } footer a { color:var(--text-2); }
 </style>`;
 
+// iOS Safari's Smart App Banner, the same tag the festival pages and the home
+// page carry. It is page chrome, not page content, so the lastmod fingerprint
+// leaves it out: adding it must not restamp every page's <lastmod>.
+const APP_BANNER = '<meta name="apple-itunes-app" content="app-id=6768888507">\n';
 function shell({ title, desc, url, ld, body }, lastmod) {
   return `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>${esc(title)}</title>
+${APP_BANNER}<title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
 <link rel="canonical" href="${esc(url)}">
 <meta property="og:type" content="website">
@@ -178,7 +182,7 @@ const ledger = existsSync(LEDGER) ? JSON.parse(readFileSync(LEDGER, 'utf8')) : {
 const next = {}, files = new Map(), rows = [];
 const hash = s => createHash('sha256').update(s).digest('hex').slice(0, 16);
 const emit = (rel, model, k) => {
-  const h = hash(shell(model, null)), d = ledger[k]?.h === h ? ledger[k].d : TODAY;
+  const h = hash(shell(model, null).replace(APP_BANNER, '')), d = ledger[k]?.h === h ? ledger[k].d : TODAY;
   next[k] = { h, d }; files.set(rel, shell(model, d)); rows.push([model.url, d]);
 };
 emit('index.html', indexPage(), '_index');
