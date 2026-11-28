@@ -1,0 +1,1217 @@
+{
+ "id": "movement-2019",
+ "festivalId": "movement",
+ "name": "Movement 2019",
+ "year": 2019,
+ "timezone": "America/Detroit",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2019-05-25",
+   "label": "Saturday"
+  },
+  {
+   "day": 2,
+   "date": "2019-05-26",
+   "label": "Sunday"
+  },
+  {
+   "day": 3,
+   "date": "2019-05-27",
+   "label": "Monday"
+  }
+ ],
+ "stages": [],
+ "artists": [
+  {
+   "id": "movement-2019:al-ester-b2b-earl-mixxin-mckinney",
+   "name": "Al Ester b2b Earl Mixxin Mckinney",
+   "key": "al-ester-b2b-earl-mixxin-mckinney",
+   "performers": [
+    "al-ester",
+    "earl-mixxin-mckinney"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:amelie-lens",
+   "name": "Amelie Lens",
+   "key": "amelie-lens",
+   "performers": [
+    "amelie-lens"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:art-department",
+   "name": "Art Department",
+   "key": "art-department",
+   "performers": [
+    "art-department"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:brian-kage",
+   "name": "Brian Kage",
+   "key": "brian-kage",
+   "performers": [
+    "brian-kage"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:carl-craig",
+   "name": "Carl Craig",
+   "key": "carl-craig",
+   "performers": [
+    "carl-craig"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:disclosure-dj-set",
+   "name": "Disclosure – DJ set",
+   "key": "disclosure-dj-set",
+   "performers": [
+    "disclosure-dj-set"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:dj-holographic",
+   "name": "DJ Holographic",
+   "key": "dj-holographic",
+   "performers": [
+    "dj-holographic"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:josh-wink",
+   "name": "Josh Wink",
+   "key": "josh-wink",
+   "performers": [
+    "josh-wink"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:kenny-larkin-live",
+   "name": "Kenny Larkin – live",
+   "key": "kenny-larkin-live",
+   "performers": [
+    "kenny-larkin-live"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:loco-dice",
+   "name": "Loco Dice",
+   "key": "loco-dice",
+   "performers": [
+    "loco-dice"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:lsd-luke-slater-function-steve-bicknell",
+   "name": "LSD (Luke Slater, Function, Steve Bicknell)",
+   "key": "lsd-luke-slater-function-steve-bicknell",
+   "performers": [
+    "lsd-luke-slater-function-steve-bicknell"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:marie-davidson",
+   "name": "Marie Davidson",
+   "key": "marie-davidson",
+   "performers": [
+    "marie-davidson"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:matthew-herbert",
+   "name": "Matthew Herbert",
+   "key": "matthew-herbert",
+   "performers": [
+    "matthew-herbert"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:maya-jane-coles",
+   "name": "Maya Jane Coles",
+   "key": "maya-jane-coles",
+   "performers": [
+    "maya-jane-coles"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:mgun",
+   "name": "MGUN",
+   "key": "mgun",
+   "performers": [
+    "mgun"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:mister-joshooa",
+   "name": "Mister Joshooa",
+   "key": "mister-joshooa",
+   "performers": [
+    "mister-joshooa"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:neil-landstrumm",
+   "name": "Neil Landstrumm",
+   "key": "neil-landstrumm",
+   "performers": [
+    "neil-landstrumm"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:octave-one-live",
+   "name": "Octave One – live",
+   "key": "octave-one-live",
+   "performers": [
+    "octave-one-live"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:orbital",
+   "name": "Orbital",
+   "key": "orbital",
+   "performers": [
+    "orbital"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:ryan-crosson-b2b-shaun-reeves",
+   "name": "Ryan Crosson b2b Shaun Reeves",
+   "key": "ryan-crosson-b2b-shaun-reeves",
+   "performers": [
+    "ryan-crosson",
+    "shaun-reeves"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:seth-troxler",
+   "name": "Seth Troxler",
+   "key": "seth-troxler",
+   "performers": [
+    "seth-troxler"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:soul-clap",
+   "name": "Soul Clap",
+   "key": "soul-clap",
+   "performers": [
+    "soul-clap"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:stacey-pullen",
+   "name": "Stacey Pullen",
+   "key": "stacey-pullen",
+   "performers": [
+    "stacey-pullen"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:sterac",
+   "name": "STERAC",
+   "key": "sterac",
+   "performers": [
+    "sterac"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:tin-man-live",
+   "name": "Tin Man – live",
+   "key": "tin-man-live",
+   "performers": [
+    "tin-man-live"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:tylr",
+   "name": "Tylr",
+   "key": "tylr",
+   "performers": [
+    "tylr"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:umfang",
+   "name": "Umfang",
+   "key": "umfang",
+   "performers": [
+    "umfang"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:virgil-abloh",
+   "name": "Virgil Abloh",
+   "key": "virgil-abloh",
+   "performers": [
+    "virgil-abloh"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:wajatta-live-john-tejada-x-reggie-watts",
+   "name": "WAJATTA – live (John Tejada x Reggie Watts)",
+   "key": "wajatta-live-john-tejada-x-reggie-watts",
+   "performers": [
+    "wajatta-live-john-tejada-x-reggie-watts"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:andrea-ghita",
+   "name": "Andrea Ghita",
+   "key": "andrea-ghita",
+   "performers": [
+    "andrea-ghita"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:anna",
+   "name": "ANNA",
+   "key": "anna",
+   "performers": [
+    "anna"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:asher-perkins-and-rex-sepulveda-front-to-front-live",
+   "name": "Asher Perkins & Rex Sepulveda: Front to Front – live",
+   "key": "asher-perkins-and-rex-sepulveda-front-to-front-live",
+   "performers": [
+    "asher-perkins-and-rex-sepulveda-front-to-front-live"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:ataxia",
+   "name": "Ataxia",
+   "key": "ataxia",
+   "performers": [
+    "ataxia"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:channel-tres",
+   "name": "Channel Tres",
+   "key": "channel-tres",
+   "performers": [
+    "channel-tres"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:charlotte-de-witte",
+   "name": "Charlotte de Witte",
+   "key": "charlotte-de-witte",
+   "performers": [
+    "charlotte-de-witte"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:chris-liebing",
+   "name": "Chris Liebing",
+   "key": "chris-liebing",
+   "performers": [
+    "chris-liebing"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:craig-gonzalez",
+   "name": "Craig Gonzalez",
+   "key": "craig-gonzalez",
+   "performers": [
+    "craig-gonzalez"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:danny-brown",
+   "name": "Danny Brown",
+   "key": "danny-brown",
+   "performers": [
+    "danny-brown"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:dj-godfather",
+   "name": "DJ Godfather",
+   "key": "dj-godfather",
+   "performers": [
+    "dj-godfather"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:dj-minx",
+   "name": "DJ Minx",
+   "key": "dj-minx",
+   "performers": [
+    "dj-minx"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:dj-t-1000",
+   "name": "DJ T-1000",
+   "key": "dj-t-1000",
+   "performers": [
+    "dj-t-1000"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:dm-nation",
+   "name": "DM Nation",
+   "key": "dm-nation",
+   "performers": [
+    "dm-nation"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:dubfire-b3b-nicole-moudaber-b3b-paco-osuna",
+   "name": "Dubfire b3b Nicole Moudaber b3b Paco Osuna",
+   "key": "dubfire-b3b-nicole-moudaber-b3b-paco-osuna",
+   "performers": [
+    "dubfire",
+    "nicole-moudaber",
+    "paco-osuna"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:fisher",
+   "name": "Fisher",
+   "key": "fisher",
+   "performers": [
+    "fisher"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:gucci-mane",
+   "name": "Gucci Mane",
+   "key": "gucci-mane",
+   "performers": [
+    "gucci-mane"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:heiko-laux",
+   "name": "Heiko Laux",
+   "key": "heiko-laux",
+   "performers": [
+    "heiko-laux"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:john-acquaviva",
+   "name": "John Acquaviva",
+   "key": "john-acquaviva",
+   "performers": [
+    "john-acquaviva"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:kevin-saunderson-b2b-the-saunderson-brothers",
+   "name": "Kevin Saunderson b2b The Saunderson Brothers",
+   "key": "kevin-saunderson-b2b-the-saunderson-brothers",
+   "performers": [
+    "kevin-saunderson",
+    "the-saunderson-brothers"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:nastia",
+   "name": "Nastia",
+   "key": "nastia",
+   "performers": [
+    "nastia"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:noncompliant",
+   "name": "Noncompliant",
+   "key": "noncompliant",
+   "performers": [
+    "noncompliant"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:norm-talley",
+   "name": "Norm Talley",
+   "key": "norm-talley",
+   "performers": [
+    "norm-talley"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:oscar-mulero",
+   "name": "Oscar Mulero",
+   "key": "oscar-mulero",
+   "performers": [
+    "oscar-mulero"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:patrick-topping",
+   "name": "Patrick Topping",
+   "key": "patrick-topping",
+   "performers": [
+    "patrick-topping"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:richie-hawtin",
+   "name": "Richie Hawtin",
+   "key": "richie-hawtin",
+   "performers": [
+    "richie-hawtin"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:ryan-elliott",
+   "name": "Ryan Elliott",
+   "key": "ryan-elliott",
+   "performers": [
+    "ryan-elliott"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:sam-austins",
+   "name": "Sam Austins",
+   "key": "sam-austins",
+   "performers": [
+    "sam-austins"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:sheefy-mcfly",
+   "name": "Sheefy McFly",
+   "key": "sheefy-mcfly",
+   "performers": [
+    "sheefy-mcfly"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:soul-goodman",
+   "name": "Soul Goodman",
+   "key": "soul-goodman",
+   "performers": [
+    "soul-goodman"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:volvox",
+   "name": "Volvox",
+   "key": "volvox",
+   "performers": [
+    "volvox"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:audion-live",
+   "name": "Audion – live",
+   "key": "audion-live",
+   "performers": [
+    "audion-live"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:chris-lake",
+   "name": "Chris Lake",
+   "key": "chris-lake",
+   "performers": [
+    "chris-lake"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:ciel",
+   "name": "Ciel",
+   "key": "ciel",
+   "performers": [
+    "ciel"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:dabrye-kadence",
+   "name": "Dabrye + Kadence",
+   "key": "dabrye-kadence",
+   "performers": [
+    "dabrye-kadence"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:danny-daze",
+   "name": "Danny Daze",
+   "key": "danny-daze",
+   "performers": [
+    "danny-daze"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:detroit-techno-militia-2-4",
+   "name": "Detroit Techno Militia 2×4",
+   "key": "detroit-techno-militia-2-4",
+   "performers": [
+    "detroit-techno-militia-2-4"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:dj-bone",
+   "name": "DJ Bone",
+   "key": "dj-bone",
+   "performers": [
+    "dj-bone"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:dj-nobu",
+   "name": "DJ Nobu",
+   "key": "dj-nobu",
+   "performers": [
+    "dj-nobu"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:dj-tennis",
+   "name": "DJ Tennis",
+   "key": "dj-tennis",
+   "performers": [
+    "dj-tennis"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:fjaak-live",
+   "name": "FJAAK – live",
+   "key": "fjaak-live",
+   "performers": [
+    "fjaak-live"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:floorplan-live",
+   "name": "Floorplan – live",
+   "key": "floorplan-live",
+   "performers": [
+    "floorplan-live"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:get-real",
+   "name": "Get Real",
+   "key": "get-real",
+   "performers": [
+    "get-real"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:golf-clap",
+   "name": "Golf Clap",
+   "key": "golf-clap",
+   "performers": [
+    "golf-clap"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:griz",
+   "name": "GRiZ",
+   "key": "griz",
+   "performers": [
+    "griz"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:heathered-pearls",
+   "name": "Heathered Pearls",
+   "key": "heathered-pearls",
+   "performers": [
+    "heathered-pearls"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:heidi",
+   "name": "Heidi",
+   "key": "heidi",
+   "performers": [
+    "heidi"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:hot-since-82",
+   "name": "Hot Since 82",
+   "key": "hot-since-82",
+   "performers": [
+    "hot-since-82"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:j-phlip",
+   "name": "J.Phlip",
+   "key": "j-phlip",
+   "performers": [
+    "j-phlip"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:justin-cudmore",
+   "name": "Justin Cudmore",
+   "key": "justin-cudmore",
+   "performers": [
+    "justin-cudmore"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:loren",
+   "name": "Loren",
+   "key": "loren",
+   "performers": [
+    "loren"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:madlib",
+   "name": "Madlib",
+   "key": "madlib",
+   "performers": [
+    "madlib"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:mathew-jonson-live",
+   "name": "Mathew Jonson – live",
+   "key": "mathew-jonson-live",
+   "performers": [
+    "mathew-jonson-live"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:mk",
+   "name": "MK",
+   "key": "mk",
+   "performers": [
+    "mk"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:remote-viewing-party",
+   "name": "Remote Viewing Party",
+   "key": "remote-viewing-party",
+   "performers": [
+    "remote-viewing-party"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:shigeto-live",
+   "name": "Shigeto – live",
+   "key": "shigeto-live",
+   "performers": [
+    "shigeto-live"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:stephan-bodzin",
+   "name": "Stephan Bodzin",
+   "key": "stephan-bodzin",
+   "performers": [
+    "stephan-bodzin"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:tale-of-us",
+   "name": "Tale Of Us",
+   "key": "tale-of-us",
+   "performers": [
+    "tale-of-us"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:the-advent-live",
+   "name": "The Advent – live",
+   "key": "the-advent-live",
+   "performers": [
+    "the-advent-live"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:whodat",
+   "name": "Whodat",
+   "key": "whodat",
+   "performers": [
+    "whodat"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "movement-2019:yaeji",
+   "name": "Yaeji",
+   "key": "yaeji",
+   "performers": [
+    "yaeji"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "unofficial_lineup",
+  "unofficial": true,
+  "source": {
+   "kind": "press",
+   "site": "dancingastronaut.com",
+   "url": "https://dancingastronaut.com/2019/01/movements-2019-lineup-displays-true-talent-detroit/",
+   "title": "Movement's 2019 lineup displays true talent in Detroit",
+   "publisher": "Dancing Astronaut",
+   "published": "2019-01-24",
+   "fetchedAt": "2026-11-27",
+   "fetchedVia": "exa",
+   "scope": "full",
+   "sha256": "253d2c1c60cf763418c81a8cc47b2798b1320ca135d881db78052c3b71c18837",
+   "bytes": 2142
+  },
+  "captures": [
+   {
+    "page": "lineup",
+    "url": "https://dancingastronaut.com/2019/01/movements-2019-lineup-displays-true-talent-detroit/",
+    "fetchedAt": "2026-11-27",
+    "sha256": "253d2c1c60cf763418c81a8cc47b2798b1320ca135d881db78052c3b71c18837"
+   }
+  ]
+ }
+}

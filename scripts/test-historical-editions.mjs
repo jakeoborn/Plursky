@@ -17,7 +17,7 @@ import { fileURLToPath } from "node:url";
 import { execFileSync } from "node:child_process";
 import { validateEdition, hostIn, urlIn, OFFICIAL_HOSTS } from "./historical/validate.mjs";
 import { buildEdition, droppedRows, performerKeys, artistKey, readSheet } from "./historical/build-editions.mjs";
-import { lineupDropReason, ACTIVITIES, EDITIONS, KEPT_STAGES, dropReason } from "./historical/editions.mjs";
+import { lineupDropReason, ACTIVITIES, EDITIONS, KEPT_STAGES, UNOFFICIAL_IDS, dropReason } from "./historical/editions.mjs";
 import { activeTab, parseDayTabs, stageFor } from "./historical/import-gather.mjs";
 import { datedLabel, graphicPrints, instant, sameGraphic, to24 } from "./historical/lib.mjs";
 import { dayTabs, sheetRow } from "./historical/extract-insomniac.mjs";
@@ -52,6 +52,7 @@ import { parseAwakeningsLineup, awakeningsRows, printedDate as awPrintedDate } f
 import { parseCreamfieldsArtists, creamfieldsRows } from "./historical/creamfields-artists.mjs";
 import { parseEfLineup, printedRun as efPrintedRun } from "./historical/ef-lineup.mjs";
 import { censusRow, runDates, CENSUS as CREAMFIELDS_CENSUS } from "./historical/extract-creamfields.mjs";
+import { METHOD as UNOFFICIAL_METHOD, billedIn, clashfinderDay, parseClashfinder, sourceProblems } from "./historical/unofficial.mjs";
 import { parseCreamfieldsLineup, creamfieldsLineupRows, printedDate } from "./historical/creamfields-lineup.mjs";
 import { RESPELLED as CREAMFIELDS_RESPELLED } from "./historical/extract-creamfields-lineup.mjs";
 import { parseUltraEuropeArtists, countdownDate as ueCountdownDate } from "./historical/ultra-europe-artists.mjs";
@@ -2011,7 +2012,16 @@ const MONTH = ["JANUARY","FEBRUARY","MARCH","APRIL","MAY","JUNE","JULY","AUGUST"
 for (const [id, e] of Object.entries(editions)) {
   const led = JSON.parse(readFileSync(H(`ledger/${id}.json`), "utf8")), rev = reviewFor(id);
   for (const d of e.days) {
-    if (led.method === "official_lineup_html" && led.format === "ef-lineup") {
+    if (led.method === "unofficial_lineup") {
+      // An unofficial lineup's dates are the census's dated run for the year,
+      // which the ledger's datesFrom must quote; a Clashfinder day heading
+      // must also name this date (its weekday, day and month).
+      const cen = censusRow(led.datesFrom?.family, e.year), run = cen ? runDates(cen.range) : [];
+      ok(led.datesFrom?.census === CREAMFIELDS_CENSUS && led.datesFrom.family === e.festivalId && cen?.dates === led.datesFrom.dates
+        && ["occurred", "scheduled_unverified", "partly_canceled"].includes(cen?.lifecycle) && run.length === e.days.length && run[d.day - 1] === d.date
+        && (led.format !== "clashfinder" || led.printed.days.some(h => clashfinderDay(h, run) === d.day)),
+        `${id} day ${d.day}: ${d.date} is not the census's ${e.year} run (${cen?.dates}), or no timetable day heading names it`);
+    } else if (led.method === "official_lineup_html" && led.format === "ef-lineup") {
       // Electric Forest's lineup page prints no days. The dates are the run
       // the chosen capture's own title prints (2011), or else the census's
       // dated run for the year, which the ledger's datesFrom must quote.
@@ -2331,18 +2341,22 @@ ok(instant("2025-05-16", "04:13", 12, -420) === "2025-05-17T11:13:00.000Z",
   // Every other lineup edition is one registered as official_lineup_html in
   // editions.mjs (the 2010-2025 backfill); nothing else may be lineup_only.
   const LINEUP_2025 = ["beyond-wonderland-socal-2025", "nocturnal-wonderland-2025"];
-  const LINEUP_ALL = Object.keys(EDITIONS).filter(id => EDITIONS[id].method === "official_lineup_html" && editions[id]).sort();
+  const LINEUP_ALL = Object.keys(EDITIONS).filter(id => ["official_lineup_html", UNOFFICIAL_METHOD].includes(EDITIONS[id].method) && editions[id]).sort();
   for (const id of LINEUP_2025) ok(LINEUP_ALL.includes(id), `${id}: no longer a lineup edition`);
   ok(JSON.stringify(lineups.map(e => e.id).sort()) === JSON.stringify(LINEUP_ALL), `expected the lineup editions ${LINEUP_ALL.join(", ")}, found ${lineups.map(e => e.id).join(", ") || "none"}`);
   for (const id of ["escape-halloween-2025", "edc-orlando-2025", "dreamstate-socal-2025"])
     ok(editions[id]?.completeness === "complete_schedule" && editions[id].sets.length > 0, `${id}: downgraded to ${editions[id]?.completeness} with ${editions[id]?.sets?.length} sets`);
   for (const e of lineups) {
-    ok(e.provenance.extractionMethod === "official_lineup_html" && !e.sets.length, `${e.id}: lineup_only must come from a lineup page and carry no sets`);
+    ok(["official_lineup_html", UNOFFICIAL_METHOD].includes(e.provenance.extractionMethod) && !e.sets.length, `${e.id}: lineup_only must come from a lineup page or a named unofficial source and carry no sets`);
     ok(!JSON.stringify(e.artists).match(/"(start|end|time)"/), `${e.id}: an artist carries a time`);
     // An undated page printed no days (validate.mjs holds it to that).
     if (!e.undated) for (const d of e.days) ok(e.artists.some(a => a.appearances.some(x => x.day === d.day)), `${e.id}: day ${d.day} has no billed artist`);
     const led = JSON.parse(readFileSync(H(`ledger/${e.id}.json`), "utf8"));
-    ok(led.chosen === led.considered.filter(c => c.valid && c.billings).at(-1)?.captureTimestamp, `${e.id}: the chosen capture is not the latest one that proves the edition`);
+    if (led.method === UNOFFICIAL_METHOD) {
+      // Read from one saved text: the ledger keeps its hash, and every billing was found in it.
+      ok(led.source?.sha256 === e.provenance.source?.sha256 && led.verified?.inSourceText === true && led.verified.billings === new Set(readSheet(H(`sheets/${e.id}.lineup.tsv`)).map(r => r.artist)).size,
+        `${e.id}: the ledger does not record that every billing was found in the hashed source text`);
+    } else ok(led.chosen === led.considered.filter(c => c.valid && c.billings).at(-1)?.captureTimestamp, `${e.id}: the chosen capture is not the latest one that proves the edition`);
     ok(JSON.stringify(e.stages.map(s => s.name)) === JSON.stringify(led.stageOrder || []), `${e.id}: stages are not in the order the By Stage tab printed (${e.stages.map(s => s.name).join(", ")})`);
   }
   const noc = editions["nocturnal-wonderland-2025"], esc = editions["beyond-wonderland-socal-2025"];
@@ -2473,6 +2487,48 @@ ok(instant("2025-05-16", "04:13", 12, -420) === "2025-05-17T11:13:00.000Z",
   }
   } finally { EDITIONS[UO] = live.o; LINEUP_EDITIONS[UO] = live.ol; EDITIONS[UL] = live.l; }
   mustFail("a dated lineup marked undated", m => { m.undated = true; }, noc, undefined, /the edition registry says false/);
+}
+
+// ── 3c. unofficial lineups (a fan-made timetable, an article, a poster) ──
+// Jake approved these on 2026-11-27 for years with no official lineup, as long
+// as each says where it came from. Always lineup_only, never set times.
+{
+  // Clashfinder's line-up view: day headings name a date without a year.
+  const CF = "# Example Fest 2019\n\n## Fri​day 9th August\n\n### Main Stage\n\n20:00 - 21:00Act One\n\n21:30 - 23:00Act Two\n\n### Tent\n\n22:00 - 23:00Act Three\n\n## Saturday 10th August\n\n### Main Stage\n\n21:00 - 22:00Act Four\n";
+  const cf = parseClashfinder(CF), run = ["2019-08-09", "2019-08-10"];
+  ok(cf.title === "Example Fest 2019" && cf.days.length === 2 && cf.days[0].stages.length === 2 && cf.days[0].stages[0].acts[1].act === "Act Two", "Clashfinder: days, stages and acts are read in order");
+  ok(clashfinderDay(cf.days[0].heading, run) === 1 && clashfinderDay(cf.days[1].heading, run) === 2, "Clashfinder: a day heading (with a zero-width space) names its date");
+  ok(clashfinderDay("Thursday 9th August", run) === null, "Clashfinder: a heading whose weekday is wrong for the date names no day");
+  ok(clashfinderDay("Friday 9th July", run) === null, "Clashfinder: a heading in another month names no day");
+  let threw = false; try { parseClashfinder("# Empty 2019\n\n## Friday 9th August\n"); } catch { threw = true; }
+  ok(threw, "Clashfinder: a timetable with no sets is not read");
+  ok(billedIn("MARTIN GARRIX, Tiësto and Chase &amp; Status", "Martin Garrix") && billedIn("Tiësto", "Tiesto") && billedIn("Chase &amp; Status", "Chase & Status"), "billedIn ignores case, accents and markup");
+  ok(!billedIn("Martin Garrixx", "Martin Garrix") && !billedIn("Act Twenty", "Act Two"), "billedIn matches whole words only");
+  const good = { kind: "fan_timetable", site: "clashfinder.com", url: "https://clashfinder.com/m/example19/", title: "Example Fest 2019", fetchedAt: "2026-11-28", scope: "full", sha256: "a".repeat(64) };
+  ok(!sourceProblems(good, "t").length, "a complete source has no problems");
+  for (const [label, mut, by] of [["unknown kind", x => { x.kind = "rumour"; }, /unknown source kind/], ["http address", x => { x.url = "http://clashfinder.com/m/x/"; }, /not an https/],
+    ["address on another site", x => { x.url = "https://example.com/m/x/"; }, /is not on/], ["a user parameter", x => { x.url = "https://clashfinder.com/m/x/?user=abc"; }, /user or session/],
+    ["no fetch date", x => { delete x.fetchedAt; }, /no fetch date/], ["unknown scope", x => { x.scope = "most"; }, /neither full nor partial/], ["no hash", x => { x.sha256 = "x"; }, /hash missing/], ["no title", x => { x.title = ""; }, /no title/]]) {
+    const x = { ...good }; mut(x);
+    ok(sourceProblems(x, "t").some(m => by.test(m)), `an unofficial source with ${label} is caught`);
+  }
+  for (const id of UNOFFICIAL_IDS) ok(EDITIONS[id]?.method === UNOFFICIAL_METHOD, `${id}: an unofficial entry is also registered as ${EDITIONS[id]?.method}`);
+  const INDEX_ROW = id => JSON.parse(readFileSync(H("index.json"), "utf8")).editions.find(x => x.id === id);
+  const unofficial = Object.values(editions).filter(e => e.provenance?.unofficial);
+  for (const e of unofficial) {
+    ok(e.completeness === "lineup_only" && !e.sets.length && !("official" in e.provenance), `${e.id}: an unofficial source must make a lineup_only edition with no official source`);
+    ok(INDEX_ROW(e.id)?.unofficialSource?.name, `${e.id}: the Past Festivals list does not name its unofficial source`);
+  }
+  const u = unofficial[0];
+  if (u) {
+    mustFail("an unofficial lineup gains a set", m => { m.sets.push({ id: `${m.id}:d1:x:2000:y`, artistId: m.artists[0].id, day: 1, stageId: m.stages[0]?.id, start: "20:00", end: "21:00" }); }, u, undefined, /no sets/);
+    mustFail("an unofficial lineup promoted to a complete schedule", m => { m.completeness = "complete_schedule"; }, u, undefined, /never trusted for set times/);
+    mustFail("an unofficial lineup stops saying so", m => { delete m.provenance.unofficial; }, u, undefined, /not marked unofficial/);
+    mustFail("an unofficial lineup claims an official source", m => { m.provenance.official = "https://example.com/"; }, u, undefined, /names an official source/);
+    mustFail("an unofficial source loses its hash", m => { m.provenance.source.sha256 = ""; }, u, undefined, /hash missing/);
+    mustFail("an unofficial capture is not its source", m => { m.provenance.captures[0].url = "https://example.com/other"; }, u, undefined, /capture is not its source/);
+    mustFail("an official extraction carries an unofficial source", m => { m.provenance.extractionMethod = "official_lineup_html"; }, u, undefined, /registered as unofficial_lineup|carries an unofficial source/);
+  }
 }
 
 // ── 4. isolation from the live app ──

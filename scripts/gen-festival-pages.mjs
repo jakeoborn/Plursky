@@ -629,7 +629,8 @@ const editionHref = e => `/?tab=past&amp;edition=${esc(e.id)}`;
 const missingList = ms => { const p = ms.map(m => `${esc(m.stage)} (${esc(m.when)})`); return p.length < 2 ? p.join('') : `${p.slice(0, -1).join(', ')} and ${p[p.length - 1]}`; };
 function editionSummary(e) {
   return e.lineupOnly
-    ? `${actsN(e.artists)} from the official lineup. Set times not verified for this edition.`
+    ? e.unofficial ? `${actsN(e.artists)} from an unofficial source, ${esc(e.unofficial)}, because Plursky has no official lineup for that year. Set times not verified for this edition.`
+      : `${actsN(e.artists)} from the official lineup. Set times not verified for this edition.`
     : `${e.sets} sets on ${e.stages} stages, with the day, stage and time the festival's official schedule printed.${e.missingStages ? ` Selected stages: the official schedule also listed ${missingList(e.missingStages)}, not included yet.` : ''}`;
 }
 
@@ -664,7 +665,7 @@ function pastSection(entry, editions) {
     <ul>
 ${rest.map(e => e.datesOnly
     ? `      <li><a href="${editionHref(e)}">${esc(e.name)}</a><span class="sep"> — </span>${ymdLabel(e.first, e.last)}${e.venue ? `, ${esc(e.venue)}` : ''}, lineup coming</li>`
-    : `      <li><a href="${editionHref(e)}">${esc(e.name)}</a><span class="sep"> — </span>${ymdLabel(e.first, e.last)}${e.artists != null ? `, ${actsN(e.artists)}` : ''}${e.sets != null ? `, ${e.sets} sets` : ''}${e.lineupOnly ? ', set times not verified' : ''}${e.missingStages ? ', selected stages' : ''}</li>`).join('\n')}
+    : `      <li><a href="${editionHref(e)}">${esc(e.name)}</a><span class="sep"> — </span>${ymdLabel(e.first, e.last)}${e.artists != null ? `, ${actsN(e.artists)}` : ''}${e.sets != null ? `, ${e.sets} sets` : ''}${e.lineupOnly ? (e.unofficial ? `, unofficial lineup from ${esc(e.unofficial)}` : ', set times not verified') : ''}${e.missingStages ? ', selected stages' : ''}</li>`).join('\n')}
     </ul>
     <p class="note">Each link opens that edition in Past Festivals in Plursky.${datesOnly ? ' A year marked lineup coming shows its dates, venue and your photos from it until its lineup is added.' : ''}</p>
   </section>`;
