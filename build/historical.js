@@ -206,7 +206,7 @@ function _histMissingList(missing) {
   return parts.length < 2 ? parts.join("") : `${parts.slice(0, -1).join(", ")} and ${parts[parts.length - 1]}`;
 }
 function pastEditionLine(e) {
-  var what = e.completeness === "lineup_only" ? `${e.counts.artists} artists · set times not verified` : `${e.counts.sets} sets · ${e.counts.stages} stages${e.completeness === "selected_stages" ? " · selected stages" : ""}`;
+  var what = e.completeness === "lineup_only" ? `${e.counts.artists} artists · ${e.unofficialSource ? `unofficial, from ${e.unofficialSource.name}` : "set times not verified"}` : `${e.counts.sets} sets · ${e.counts.stages} stages${e.completeness === "selected_stages" ? " · selected stages" : ""}`;
   return `${_histDateRange(e.days)} · ${what}`;
 }
 function PastEditionsSection({
@@ -315,7 +315,7 @@ function _HistLibrary({
   var photoOnly = (cal && cal.editions || []).filter(e => photoYears.includes(e.id) && !listed.has(e.id)).sort((a, b) => b.year - a.year || a.festivalName.localeCompare(b.festivalName));
   return React.createElement(Screen, null, React.createElement(_HistHeader, {
     title: "Past festivals",
-    sub: "Official schedules · archived",
+    sub: "Past schedules · every source named",
     onBack: () => _histBack(state, setState)
   }), React.createElement(ScrollBody, {
     style: {
@@ -329,7 +329,7 @@ function _HistLibrary({
       color: "var(--text-2)",
       maxWidth: "60ch"
     }
-  }, "Every lineup and set time as each festival printed it. Read-only; nothing here changes your plan."), res.status !== "ready" && React.createElement(_HistStatus, {
+  }, "Every lineup and set time as each festival printed it. Where we have no official lineup, a year may come from a fan-made timetable or an article, and says so. Read-only; nothing here changes your plan."), res.status !== "ready" && React.createElement(_HistStatus, {
     res: res,
     retry: retry,
     what: "past festivals"
@@ -436,7 +436,7 @@ function _HistLibrary({
     style: {
       marginTop: 3
     }
-  }, e.completeness === "lineup_only" ? `${e.counts.artists} artists · lineup only` : `${e.days.length} days · ${e.counts.stages} stages · ${e.counts.sets} sets${e.completeness === "selected_stages" ? " · selected stages" : ""}`)), React.createElement("svg", {
+  }, e.completeness === "lineup_only" ? `${e.counts.artists} artists · lineup only${e.unofficialSource ? ` · unofficial, from ${e.unofficialSource.name}` : ""}` : `${e.days.length} days · ${e.counts.stages} stages · ${e.counts.sets} sets${e.completeness === "selected_stages" ? " · selected stages" : ""}`)), React.createElement("svg", {
     "aria-hidden": "true",
     width: "16",
     height: "16",
@@ -456,6 +456,13 @@ var _HIST_METHOD = {
   official_image_transcription: "Transcribed from the festival's official schedule graphics, checked block by block",
   official_sources: "From the festival's official set-times pages and schedule graphics, checked row by row"
 };
+var _HIST_UNOFFICIAL = {
+  fan_timetable: n => `a fan-made timetable on ${n}`,
+  press: n => `an article on ${n}`,
+  wikipedia: () => "Wikipedia",
+  social: n => `a post on ${n}`,
+  poster: n => `a lineup poster found on ${n}`
+};
 function _HistProvenance({
   edition,
   onClose
@@ -471,6 +478,49 @@ function _HistProvenance({
     color: "var(--signal-ink)",
     overflowWrap: "anywhere"
   };
+  if (p.unofficial) {
+    var s = p.source || {},
+      site = (s.publisher || s.site || "").replace(/^www\./, "");
+    var from = (_HIST_UNOFFICIAL[s.kind] || (n => n))(s.kind === "fan_timetable" && s.site === "clashfinder.com" ? "Clashfinder" : site);
+    var day = d => d ? _histDate(d, {
+      month: "short",
+      day: "numeric",
+      year: "numeric"
+    }) : "";
+    return React.createElement(FieldSheet, {
+      title: "About this lineup",
+      onClose: onClose
+    }, React.createElement("div", {
+      style: {
+        display: "grid",
+        gap: 14,
+        fontSize: 15,
+        lineHeight: "21px"
+      }
+    }, React.createElement("p", {
+      "data-unofficial-source": true,
+      style: {
+        margin: 0,
+        color: "var(--text-2)"
+      }
+    }, "Unofficial: from ", from, ", not the festival's own pages. Plursky has no official ", edition.year, " lineup, so this one is used instead.", s.scope === "partial" ? " It names only part of the lineup." : "", " Artist names appear as the source printed them. Set times are not shown, and non-music activities are left out."), React.createElement("div", null, React.createElement("div", {
+      style: {
+        fontSize: 13,
+        color: "var(--text-2)",
+        marginBottom: 4
+      }
+    }, "Source"), React.createElement("a", {
+      href: s.url,
+      target: "_blank",
+      rel: "noopener noreferrer",
+      style: link
+    }, s.title || site), React.createElement("div", {
+      style: {
+        fontSize: 13,
+        color: "var(--text-2)"
+      }
+    }, [site, s.published && `published ${day(s.published)}`, s.fetchedAt && `read ${day(s.fetchedAt)}`].filter(Boolean).join(" · ")))));
+  }
   return React.createElement(FieldSheet, {
     title: "About this schedule",
     onClose: onClose
@@ -741,14 +791,14 @@ function _HistEdition({
   var lineupOnly = meta.completeness === "lineup_only";
   var lineupDays = lineupOnly && !!e && e.artists.some(a => (a.appearances || []).some(x => x.day));
   var checked = React.useMemo(() => {
-    var ts = (e?.provenance?.captures || []).map(c => c.captureTimestamp || c.pageCapture || c.imageCapture || c.published?.replace(/-/g, "")).filter(t => /^\d{8}/.test(t || "")).sort().pop();
+    var ts = (e?.provenance?.captures || []).map(c => c.captureTimestamp || c.pageCapture || c.imageCapture || (c.published || c.fetchedAt)?.replace(/-/g, "")).filter(t => /^\d{8}/.test(t || "")).sort().pop();
     return ts ? _histDate(`${ts.slice(0, 4)}-${ts.slice(4, 6)}-${ts.slice(6, 8)}`, {
       month: "short",
       day: "numeric",
       year: "numeric"
     }) : "";
   }, [e]);
-  var frozen = `Official ${meta.year} ${lineupOnly ? "lineup" : "schedule"}${meta.completeness === "selected_stages" ? ", selected stages" : ""} · archived`;
+  var frozen = meta.unofficialSource ? `${meta.year} lineup · unofficial, from ${meta.unofficialSource.name}` : `Official ${meta.year} ${lineupOnly ? "lineup" : "schedule"}${meta.completeness === "selected_stages" ? ", selected stages" : ""} · archived`;
   var view = React.useMemo(() => {
     if (!e) return null;
     var artist = Object.fromEntries(e.artists.map(a => [a.id, a]));
@@ -879,7 +929,7 @@ function _HistEdition({
   var byName = (a, b) => a.name.localeCompare(b.name);
   if (e && lineupOnly) {
     var printedDays = e.artists.some(a => (a.appearances || []).some(x => x.day));
-    var note = `Set times not verified for this edition: no official set times survive${printedDays ? `. Days${e.stages.length ? " and stages" : ""} are as the official lineup printed them.` : ", so only the lineup is shown."}`;
+    var note = e.provenance?.unofficial ? `Unofficial lineup, from ${meta.unofficialSource?.name || "a source that is not the festival"}: Plursky has no official ${meta.year} lineup.${e.provenance.source?.scope === "partial" ? " It names only part of the lineup." : ""} Set times are not shown.` : `Set times not verified for this edition: no official set times survive${printedDays ? `. Days${e.stages.length ? " and stages" : ""} are as the official lineup printed them.` : ", so only the lineup is shown."}`;
     var list;
     if (query || day === "all" || !printedDays) {
       var hits = e.artists.filter(a => !query || _histFold(a.name).includes(query)).sort(byName);
@@ -1068,7 +1118,7 @@ function _HistEdition({
       fontWeight: 600,
       color: "var(--ink)"
     }
-  }, "Past edition"), " · ", _histDateRange(meta.days), checked && React.createElement(React.Fragment, null, " · ", e?.provenance?.extractionMethod === "official_sources" ? "latest source" : "source archived", " ", checked)), React.createElement(_HistYourPhotos, {
+  }, "Past edition"), " · ", _histDateRange(meta.days), checked && React.createElement(React.Fragment, null, " · ", e?.provenance?.unofficial ? "source read" : e?.provenance?.extractionMethod === "official_sources" ? "latest source" : "source archived", " ", checked)), React.createElement(_HistYourPhotos, {
     editionId: meta.id,
     artistName: id => view?.artist[id]?.name || null
   }), (!lineupOnly || lineupDays) && !query && groups.map(g => React.createElement("div", {

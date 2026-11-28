@@ -1,0 +1,3 @@
+{
+  "movement-2019": { "festivalId": "movement", "name": "Movement 2019", "year": 2019, "timezone": "America/Detroit", "rolloverHour": 6, "method": "unofficial_lineup", "dates": [["2019-05-25","Saturday"],["2019-05-26","Sunday"],["2019-05-27","Monday"]] }
+}

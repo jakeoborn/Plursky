@@ -151,7 +151,7 @@ function _histMissingList(missing) {
 
 function pastEditionLine(e) {
   const what = e.completeness === "lineup_only"
-    ? `${e.counts.artists} artists · set times not verified`
+    ? `${e.counts.artists} artists · ${e.unofficialSource ? `unofficial, from ${e.unofficialSource.name}` : "set times not verified"}`
     : `${e.counts.sets} sets · ${e.counts.stages} stages${e.completeness === "selected_stages" ? " · selected stages" : ""}`;
   return `${_histDateRange(e.days)} · ${what}`;
 }
@@ -208,10 +208,10 @@ function _HistLibrary({ state, setState }) {
     .sort((a, b) => b.year - a.year || a.festivalName.localeCompare(b.festivalName));
   return (
     <Screen>
-      <_HistHeader title="Past festivals" sub="Official schedules · archived" onBack={() => _histBack(state, setState)} />
+      <_HistHeader title="Past festivals" sub="Past schedules · every source named" onBack={() => _histBack(state, setState)} />
       <ScrollBody style={{ padding: "8px 20px 94px" }}>
         <p style={{ margin: "0 0 8px", fontSize: 15, lineHeight: "21px", color: "var(--text-2)", maxWidth: "60ch" }}>
-          Every lineup and set time as each festival printed it. Read-only; nothing here changes your plan.
+          Every lineup and set time as each festival printed it. Where we have no official lineup, a year may come from a fan-made timetable or an article, and says so. Read-only; nothing here changes your plan.
         </p>
         {res.status !== "ready" && <_HistStatus res={res} retry={retry} what="past festivals" />}
         {photoOnly.length > 0 && (
@@ -246,7 +246,7 @@ function _HistLibrary({ state, setState }) {
                   <div style={{ font: "400 13px/1.385 var(--f-ui)", color: "var(--ink-2)" }}>{_histDateRange(e.days)}</div>
                   <div className="duo-data-s duo-ink2" style={{ marginTop: 3 }}>
                     {e.completeness === "lineup_only"
-                      ? `${e.counts.artists} artists · lineup only`
+                      ? `${e.counts.artists} artists · lineup only${e.unofficialSource ? ` · unofficial, from ${e.unofficialSource.name}` : ""}`
                       : `${e.days.length} days · ${e.counts.stages} stages · ${e.counts.sets} sets${e.completeness === "selected_stages" ? " · selected stages" : ""}`}
                   </div>
                 </div>
@@ -266,12 +266,37 @@ const _HIST_METHOD = {
   official_image_transcription: "Transcribed from the festival's official schedule graphics, checked block by block",
   official_sources: "From the festival's official set-times pages and schedule graphics, checked row by row",
 };
+// An unofficial source's kind, in the words the About sheet uses ("From …").
+const _HIST_UNOFFICIAL = {
+  fan_timetable: n => `a fan-made timetable on ${n}`, press: n => `an article on ${n}`, wikipedia: () => "Wikipedia",
+  social: n => `a post on ${n}`, poster: n => `a lineup poster found on ${n}`,
+};
 
 function _HistProvenance({ edition, onClose }) {
   const p = edition.provenance || {};
   const stamp = ts => ts && /^\d{8}/.test(ts) ? _histDate(`${ts.slice(0, 4)}-${ts.slice(4, 6)}-${ts.slice(6, 8)}`, { month: "short", day: "numeric", year: "numeric" }) : "";
   const dayLabel = n => edition.days.find(d => d.day === n)?.label || `Day ${n}`;
   const link = { color: "var(--signal-ink)", overflowWrap: "anywhere" };
+  if (p.unofficial) {
+    // Not the festival's own: say where it came from, plainly, before anything else.
+    const s = p.source || {}, site = (s.publisher || s.site || "").replace(/^www\./, "");
+    const from = (_HIST_UNOFFICIAL[s.kind] || (n => n))(s.kind === "fan_timetable" && s.site === "clashfinder.com" ? "Clashfinder" : site);
+    const day = d => d ? _histDate(d, { month: "short", day: "numeric", year: "numeric" }) : "";
+    return (
+      <FieldSheet title="About this lineup" onClose={onClose}>
+        <div style={{ display: "grid", gap: 14, fontSize: 15, lineHeight: "21px" }}>
+          <p data-unofficial-source style={{ margin: 0, color: "var(--text-2)" }}>
+            Unofficial: from {from}, not the festival's own pages. Plursky has no official {edition.year} lineup, so this one is used instead.{s.scope === "partial" ? " It names only part of the lineup." : ""} Artist names appear as the source printed them. Set times are not shown, and non-music activities are left out.
+          </p>
+          <div>
+            <div style={{ fontSize: 13, color: "var(--text-2)", marginBottom: 4 }}>Source</div>
+            <a href={s.url} target="_blank" rel="noopener noreferrer" style={link}>{s.title || site}</a>
+            <div style={{ fontSize: 13, color: "var(--text-2)" }}>{[site, s.published && `published ${day(s.published)}`, s.fetchedAt && `read ${day(s.fetchedAt)}`].filter(Boolean).join(" · ")}</div>
+          </div>
+        </div>
+      </FieldSheet>
+    );
+  }
   return (
     <FieldSheet title="About this schedule" onClose={onClose}>
       <div style={{ display: "grid", gap: 14, fontSize: 15, lineHeight: "21px" }}>
@@ -414,10 +439,12 @@ function _HistEdition({ meta, back }) {
   const lineupOnly = meta.completeness === "lineup_only";
   const lineupDays = lineupOnly && !!e && e.artists.some(a => (a.appearances || []).some(x => x.day));
   const checked = React.useMemo(() => {
-    const ts = (e?.provenance?.captures || []).map(c => c.captureTimestamp || c.pageCapture || c.imageCapture || c.published?.replace(/-/g, "")).filter(t => /^\d{8}/.test(t || "")).sort().pop();
+    const ts = (e?.provenance?.captures || []).map(c => c.captureTimestamp || c.pageCapture || c.imageCapture || (c.published || c.fetchedAt)?.replace(/-/g, "")).filter(t => /^\d{8}/.test(t || "")).sort().pop();
     return ts ? _histDate(`${ts.slice(0, 4)}-${ts.slice(4, 6)}-${ts.slice(6, 8)}`, { month: "short", day: "numeric", year: "numeric" }) : "";
   }, [e]);
-  const frozen = `Official ${meta.year} ${lineupOnly ? "lineup" : "schedule"}${meta.completeness === "selected_stages" ? ", selected stages" : ""} · archived`;
+  const frozen = meta.unofficialSource
+    ? `${meta.year} lineup · unofficial, from ${meta.unofficialSource.name}`
+    : `Official ${meta.year} ${lineupOnly ? "lineup" : "schedule"}${meta.completeness === "selected_stages" ? ", selected stages" : ""} · archived`;
 
   const view = React.useMemo(() => {
     if (!e) return null;
@@ -478,7 +505,9 @@ function _HistEdition({ meta, back }) {
   const byName = (a, b) => a.name.localeCompare(b.name);
   if (e && lineupOnly) {
     const printedDays = e.artists.some(a => (a.appearances || []).some(x => x.day));
-    const note = `Set times not verified for this edition: no official set times survive${printedDays ? `. Days${e.stages.length ? " and stages" : ""} are as the official lineup printed them.` : ", so only the lineup is shown."}`;
+    const note = e.provenance?.unofficial
+      ? `Unofficial lineup, from ${meta.unofficialSource?.name || "a source that is not the festival"}: Plursky has no official ${meta.year} lineup.${e.provenance.source?.scope === "partial" ? " It names only part of the lineup." : ""} Set times are not shown.`
+      : `Set times not verified for this edition: no official set times survive${printedDays ? `. Days${e.stages.length ? " and stages" : ""} are as the official lineup printed them.` : ", so only the lineup is shown."}`;
     let list;
     if (query || day === "all" || !printedDays) {
       const hits = e.artists.filter(a => !query || _histFold(a.name).includes(query)).sort(byName);
@@ -571,7 +600,7 @@ function _HistEdition({ meta, back }) {
             re-hosted graphic, published). */}
         <p data-edition-status style={{ margin: 0, fontSize: 13, lineHeight: "18px", color: "var(--text-2)" }}>
           <span style={{ fontWeight: 600, color: "var(--ink)" }}>Past edition</span> · {_histDateRange(meta.days)}
-          {checked && <> · {e?.provenance?.extractionMethod === "official_sources" ? "latest source" : "source archived"} {checked}</>}
+          {checked && <> · {e?.provenance?.unofficial ? "source read" : e?.provenance?.extractionMethod === "official_sources" ? "latest source" : "source archived"} {checked}</>}
         </p>
         <_HistYourPhotos editionId={meta.id} artistName={id => view?.artist[id]?.name || null} />
         {(!lineupOnly || lineupDays) && !query && groups.map(g => (

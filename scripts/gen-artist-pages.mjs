@@ -33,6 +33,7 @@ import { createHash } from 'node:crypto';
 import path from 'node:path';
 import vm from 'node:vm';
 import { loadRegistry } from './lib/load-registry.mjs';
+import { pageEligible } from './lib/artist-pages.mjs';
 
 const ROOT = process.cwd();
 const CHECK = process.argv.includes('--check');
@@ -62,19 +63,11 @@ const dayLabel = d => { const [y, m, dd] = String(d).split('-').map(Number); ret
 const clock = t => { if (!t) return ''; const [h, m] = t.split(':').map(Number); return `${((h + 11) % 12) + 1}:${String(m).padStart(2, '0')} ${h < 12 ? 'AM' : 'PM'}`; };
 const nameOf = k => careers.artists[k]?.n || careers.names[k] || k;
 
-// Rule 2 and rule 3.
-function pageEligible(key, a) {
-  if (!a || a.pending) return { ok: false, why: 'under review' };
-  const bs = a.b.map(B);
-  const timed26 = bs.some(b => b.fest?.year === 2026 && b.start);
-  const editions = new Set(bs.map(b => b.fest?.id)).size;
-  return timed26 || editions >= 2 ? { ok: true } : { ok: false, why: 'one edition, no timed 2026 set' };
-}
-
+// Rule 2 and rule 3, shared with gen-festival-pages.mjs (scripts/lib/artist-pages.mjs).
 const keys = Object.keys(careers.artists).sort();
 const pages = [], skipped = { 'under review': 0, 'one edition, no timed 2026 set': 0 };
 for (const k of keys) {
-  const e = pageEligible(k, careers.artists[k]);
+  const e = pageEligible(careers.artists[k], careers.festivals);
   if (e.ok) pages.push(k); else skipped[e.why]++;
 }
 const onSite = new Set(pages);

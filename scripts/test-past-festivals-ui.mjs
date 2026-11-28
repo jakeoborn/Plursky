@@ -102,7 +102,8 @@ try {
   await page.getByRole("heading", { name: "Past festivals", level: 1 }).waitFor({ timeout: 10000 });
   await page.getByText(INDEX.editions[0].festivalName, { exact: true }).first().waitFor({ timeout: 10000 });
   for (const e of INDEX.editions) {
-    const want = e.completeness === "lineup_only" ? `${e.counts.artists} artists · lineup only` : `${e.days.length} days · ${e.counts.stages} stages · ${e.counts.sets} sets${e.completeness === "selected_stages" ? " · selected stages" : ""}`;
+    // An unofficial edition must SAY so on its row (Jake 2026-11-27: labelled unofficial ok).
+    const want = e.completeness === "lineup_only" ? `${e.counts.artists} artists · lineup only${e.unofficialSource ? ` · unofficial, from ${e.unofficialSource.name}` : ""}` : `${e.days.length} days · ${e.counts.stages} stages · ${e.counts.sets} sets${e.completeness === "selected_stages" ? " · selected stages" : ""}`;
     ok(await page.getByText(want, { exact: true }).count() >= 1, `library row for ${e.id} does not read "${want}"`);
   }
   ok(await page.getByText("3 artists · lineup only", { exact: true }).count() === 1, "the lineup_only row does not say it is lineup only");

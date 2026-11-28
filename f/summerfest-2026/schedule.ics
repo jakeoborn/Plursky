@@ -1,0 +1,5246 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Plursky//Festival set times//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Summerfest 2026 set times · Plursky
+X-WR-TIMEZONE:America/Chicago
+X-WR-CALDESC:Every timed set at Summerfest 2026. Updates itself when the sc
+ hedule changes. https://plursky.com/f/summerfest-2026/
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:summerfest-2026-set-su23@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260618T170000Z
+DTEND:20260618T185000Z
+SUMMARY:MKE Live Groove: Summerfest Edition · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su23
+URL:https://plursky.com/f/summerfest-2026/#set-su23
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su39@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260618T170000Z
+DTEND:20260618T180500Z
+SUMMARY:Blues Disciples · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su39
+URL:https://plursky.com/f/summerfest-2026/#set-su39
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su44@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260618T170000Z
+DTEND:20260618T180500Z
+SUMMARY:DJay Mando · AmFam House
+LOCATION:AmFam House\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam House\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su44
+URL:https://plursky.com/f/summerfest-2026/#set-su44
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su33@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260618T173000Z
+DTEND:20260618T181500Z
+SUMMARY:Barely Civil · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su33
+URL:https://plursky.com/f/summerfest-2026/#set-su33
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su6@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260618T180000Z
+DTEND:20260618T184500Z
+SUMMARY:Saint Blonde · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su6
+URL:https://plursky.com/f/summerfest-2026/#set-su6
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su17@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260618T181500Z
+DTEND:20260618T190500Z
+SUMMARY:Bowling Shoes · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su17
+URL:https://plursky.com/f/summerfest-2026/#set-su17
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su40@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260618T184500Z
+DTEND:20260618T195000Z
+SUMMARY:The Mighty Ms. Erica And the Sound Production · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su40
+URL:https://plursky.com/f/summerfest-2026/#set-su40
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su12@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260618T190000Z
+DTEND:20260618T195000Z
+SUMMARY:Scott E. Berendt & The US Project · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su12
+URL:https://plursky.com/f/summerfest-2026/#set-su12
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su34@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260618T190000Z
+DTEND:20260618T194500Z
+SUMMARY:Supertaste · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su34
+URL:https://plursky.com/f/summerfest-2026/#set-su34
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su45@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260618T190000Z
+DTEND:20260618T200500Z
+SUMMARY:Stephan Jenkins of Third Eye Blind · AmFam House
+LOCATION:AmFam House\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam House\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su45
+URL:https://plursky.com/f/summerfest-2026/#set-su45
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su28@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260618T193000Z
+DTEND:20260618T202000Z
+SUMMARY:Micah Emrich · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su28
+URL:https://plursky.com/f/summerfest-2026/#set-su28
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su7@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260618T193000Z
+DTEND:20260618T202000Z
+SUMMARY:Avery Cochrane · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su7
+URL:https://plursky.com/f/summerfest-2026/#set-su7
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su18@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260618T194500Z
+DTEND:20260618T203500Z
+SUMMARY:Mari · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su18
+URL:https://plursky.com/f/summerfest-2026/#set-su18
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su13@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260618T203000Z
+DTEND:20260618T213500Z
+SUMMARY:Circa 79 · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su13
+URL:https://plursky.com/f/summerfest-2026/#set-su13
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su35@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260618T203000Z
+DTEND:20260618T213500Z
+SUMMARY:Post Sex Nachos · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su35
+URL:https://plursky.com/f/summerfest-2026/#set-su35
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su41@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260618T203000Z
+DTEND:20260618T213500Z
+SUMMARY:The Mighty Ms. Erica And the Sound Production · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su41
+URL:https://plursky.com/f/summerfest-2026/#set-su41
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su46@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260618T210000Z
+DTEND:20260618T220500Z
+SUMMARY:Passion Pit · AmFam House
+LOCATION:AmFam House\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam House\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su46
+URL:https://plursky.com/f/summerfest-2026/#set-su46
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su8@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260618T210000Z
+DTEND:20260618T220500Z
+SUMMARY:Tigernite · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su8
+URL:https://plursky.com/f/summerfest-2026/#set-su8
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su29@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260618T211500Z
+DTEND:20260618T222000Z
+SUMMARY:Maximiano · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su29
+URL:https://plursky.com/f/summerfest-2026/#set-su29
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su19@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260618T213000Z
+DTEND:20260618T223500Z
+SUMMARY:City of the Sun · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su19
+URL:https://plursky.com/f/summerfest-2026/#set-su19
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su14@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260618T223000Z
+DTEND:20260618T233500Z
+SUMMARY:The Dream Syndicate · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su14
+URL:https://plursky.com/f/summerfest-2026/#set-su14
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su36@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260618T223000Z
+DTEND:20260618T233500Z
+SUMMARY:Taylor Acorn · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su36
+URL:https://plursky.com/f/summerfest-2026/#set-su36
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su42@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260618T223000Z
+DTEND:20260618T233500Z
+SUMMARY:5 Card Studs · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su42
+URL:https://plursky.com/f/summerfest-2026/#set-su42
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su25@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260618T230000Z
+DTEND:20260618T234500Z
+SUMMARY:Summerfest Opening Ceremonies · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su25
+URL:https://plursky.com/f/summerfest-2026/#set-su25
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su47@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260618T230000Z
+DTEND:20260619T000000Z
+SUMMARY:DJay Mando · AmFam House
+LOCATION:AmFam House\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam House\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su47
+URL:https://plursky.com/f/summerfest-2026/#set-su47
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su9@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260618T230000Z
+DTEND:20260619T000500Z
+SUMMARY:Morgan St. Jean · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su9
+URL:https://plursky.com/f/summerfest-2026/#set-su9
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su30@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260618T231500Z
+DTEND:20260619T002500Z
+SUMMARY:Venus & The Flytraps · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su30
+URL:https://plursky.com/f/summerfest-2026/#set-su30
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su1@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260618T233000Z
+DTEND:20260619T002000Z
+SUMMARY:Solon Holt · AmFam Amphitheater
+LOCATION:AmFam Amphitheater\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam Amphitheater\nhttps://plursky.com/f/su
+ mmerfest-2026/#set-su1
+URL:https://plursky.com/f/summerfest-2026/#set-su1
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su20@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260618T233000Z
+DTEND:20260619T003500Z
+SUMMARY:Nicholas Tremulis & The Prodigals · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su20
+URL:https://plursky.com/f/summerfest-2026/#set-su20
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su26@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T000000Z
+DTEND:20260619T010500Z
+SUMMARY:Alejandro Escovedo · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su26
+URL:https://plursky.com/f/summerfest-2026/#set-su26
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su4@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T001500Z
+DTEND:20260619T012000Z
+SUMMARY:Dannyboy · BMO Pavilion
+LOCATION:BMO Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · BMO Pavilion\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su4
+URL:https://plursky.com/f/summerfest-2026/#set-su4
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su15@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T003000Z
+DTEND:20260619T013500Z
+SUMMARY:Modern English · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su15
+URL:https://plursky.com/f/summerfest-2026/#set-su15
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su2@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T003000Z
+DTEND:20260619T013500Z
+SUMMARY:JP Saxe · AmFam Amphitheater
+LOCATION:AmFam Amphitheater\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam Amphitheater\nhttps://plursky.com/f/su
+ mmerfest-2026/#set-su2
+URL:https://plursky.com/f/summerfest-2026/#set-su2
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su37@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T003000Z
+DTEND:20260619T013500Z
+SUMMARY:The Bends · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su37
+URL:https://plursky.com/f/summerfest-2026/#set-su37
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su43@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T003000Z
+DTEND:20260619T013500Z
+SUMMARY:5 Card Studs · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su43
+URL:https://plursky.com/f/summerfest-2026/#set-su43
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su10@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T010000Z
+DTEND:20260619T020500Z
+SUMMARY:Dora Jar · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su10
+URL:https://plursky.com/f/summerfest-2026/#set-su10
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su31@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T011500Z
+DTEND:20260619T022000Z
+SUMMARY:Marlon Funaki · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su31
+URL:https://plursky.com/f/summerfest-2026/#set-su31
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su21@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T013000Z
+DTEND:20260619T023500Z
+SUMMARY:Hunny · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su21
+URL:https://plursky.com/f/summerfest-2026/#set-su21
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su3@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T014500Z
+DTEND:20260619T032500Z
+SUMMARY:Megan Moroney · AmFam Amphitheater
+LOCATION:AmFam Amphitheater\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam Amphitheater\nhttps://plursky.com/f/su
+ mmerfest-2026/#set-su3
+URL:https://plursky.com/f/summerfest-2026/#set-su3
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su27@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T020000Z
+DTEND:20260619T033000Z
+SUMMARY:DJ B-Lee · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su27
+URL:https://plursky.com/f/summerfest-2026/#set-su27
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su11@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T030000Z
+DTEND:20260619T043000Z
+SUMMARY:Holly Humberstone · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su11
+URL:https://plursky.com/f/summerfest-2026/#set-su11
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su16@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T030000Z
+DTEND:20260619T043000Z
+SUMMARY:Echo & The Bunnymen · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su16
+URL:https://plursky.com/f/summerfest-2026/#set-su16
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su38@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T030000Z
+DTEND:20260619T043000Z
+SUMMARY:Third Eye Blind · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su38
+URL:https://plursky.com/f/summerfest-2026/#set-su38
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su5@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T030000Z
+DTEND:20260619T043000Z
+SUMMARY:Charlie Wilson · BMO Pavilion
+LOCATION:BMO Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · BMO Pavilion\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su5
+URL:https://plursky.com/f/summerfest-2026/#set-su5
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su32@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T031500Z
+DTEND:20260619T045000Z
+SUMMARY:Passion Pit · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su32
+URL:https://plursky.com/f/summerfest-2026/#set-su32
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su22@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T033000Z
+DTEND:20260619T050000Z
+SUMMARY:Tash Sultana · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su22
+URL:https://plursky.com/f/summerfest-2026/#set-su22
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su87@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T170000Z
+DTEND:20260619T180500Z
+SUMMARY:John Kocher · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su87
+URL:https://plursky.com/f/summerfest-2026/#set-su87
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su92@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T170000Z
+DTEND:20260619T181500Z
+SUMMARY:DJay Mando · AmFam House
+LOCATION:AmFam House\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam House\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su92
+URL:https://plursky.com/f/summerfest-2026/#set-su92
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su70@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T171500Z
+DTEND:20260619T193500Z
+SUMMARY:Rockonsin · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su70
+URL:https://plursky.com/f/summerfest-2026/#set-su70
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su58@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T173000Z
+DTEND:20260619T182000Z
+SUMMARY:flowersatherfeet · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su58
+URL:https://plursky.com/f/summerfest-2026/#set-su58
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su76@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T174500Z
+DTEND:20260619T183000Z
+SUMMARY:Amy Lowe & King Katz · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su76
+URL:https://plursky.com/f/summerfest-2026/#set-su76
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su52@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T180000Z
+DTEND:20260619T185000Z
+SUMMARY:Phil Wittliff · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su52
+URL:https://plursky.com/f/summerfest-2026/#set-su52
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su64@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T181500Z
+DTEND:20260619T190000Z
+SUMMARY:From Ashes to Embers · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su64
+URL:https://plursky.com/f/summerfest-2026/#set-su64
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su82@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T184500Z
+DTEND:20260619T195000Z
+SUMMARY:FieldHockey · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su82
+URL:https://plursky.com/f/summerfest-2026/#set-su82
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su88@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T184500Z
+DTEND:20260619T195000Z
+SUMMARY:Hot & Dirty Brass Band · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su88
+URL:https://plursky.com/f/summerfest-2026/#set-su88
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su59@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T190000Z
+DTEND:20260619T194500Z
+SUMMARY:Initiate · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su59
+URL:https://plursky.com/f/summerfest-2026/#set-su59
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su93@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T190000Z
+DTEND:20260619T201500Z
+SUMMARY:State Champs · AmFam House
+LOCATION:AmFam House\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam House\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su93
+URL:https://plursky.com/f/summerfest-2026/#set-su93
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su53@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T193000Z
+DTEND:20260619T201500Z
+SUMMARY:Brady Lee · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su53
+URL:https://plursky.com/f/summerfest-2026/#set-su53
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su77@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T193000Z
+DTEND:20260619T201500Z
+SUMMARY:Queen Drie · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su77
+URL:https://plursky.com/f/summerfest-2026/#set-su77
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su65@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T194500Z
+DTEND:20260619T203500Z
+SUMMARY:Current Comfort · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su65
+URL:https://plursky.com/f/summerfest-2026/#set-su65
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su71@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T201500Z
+DTEND:20260619T210500Z
+SUMMARY:Ben Mulwana · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su71
+URL:https://plursky.com/f/summerfest-2026/#set-su71
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su60@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T203000Z
+DTEND:20260619T213500Z
+SUMMARY:Sleepy Gaucho · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su60
+URL:https://plursky.com/f/summerfest-2026/#set-su60
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su83@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T203000Z
+DTEND:20260619T213500Z
+SUMMARY:Tiny Voices · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su83
+URL:https://plursky.com/f/summerfest-2026/#set-su83
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su89@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T203000Z
+DTEND:20260619T213500Z
+SUMMARY:Hot & Dirty Brass Band · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su89
+URL:https://plursky.com/f/summerfest-2026/#set-su89
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su54@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T210000Z
+DTEND:20260619T220500Z
+SUMMARY:Colin Lynch · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su54
+URL:https://plursky.com/f/summerfest-2026/#set-su54
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su94@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T210000Z
+DTEND:20260619T221500Z
+SUMMARY:Evan Honer · AmFam House
+LOCATION:AmFam House\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam House\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su94
+URL:https://plursky.com/f/summerfest-2026/#set-su94
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su78@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T211500Z
+DTEND:20260619T222000Z
+SUMMARY:Troy Tyler · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su78
+URL:https://plursky.com/f/summerfest-2026/#set-su78
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su66@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T213000Z
+DTEND:20260619T223500Z
+SUMMARY:Vial · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su66
+URL:https://plursky.com/f/summerfest-2026/#set-su66
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su72@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T213000Z
+DTEND:20260619T222000Z
+SUMMARY:JazzMen · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su72
+URL:https://plursky.com/f/summerfest-2026/#set-su72
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su49@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T223000Z
+DTEND:20260619T233500Z
+SUMMARY:The Lovemonkeys · BMO Pavilion
+LOCATION:BMO Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · BMO Pavilion\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su49
+URL:https://plursky.com/f/summerfest-2026/#set-su49
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su61@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T223000Z
+DTEND:20260619T233500Z
+SUMMARY:Deer Tick · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su61
+URL:https://plursky.com/f/summerfest-2026/#set-su61
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su84@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T223000Z
+DTEND:20260619T233500Z
+SUMMARY:Red Jumpsuit Apparatus · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su84
+URL:https://plursky.com/f/summerfest-2026/#set-su84
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su90@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T223000Z
+DTEND:20260619T233500Z
+SUMMARY:Mrs. Fun · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su90
+URL:https://plursky.com/f/summerfest-2026/#set-su90
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su73@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T224500Z
+DTEND:20260619T233000Z
+SUMMARY:Chris Crain · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su73
+URL:https://plursky.com/f/summerfest-2026/#set-su73
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su55@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T230000Z
+DTEND:20260620T000500Z
+SUMMARY:Steph Strings · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su55
+URL:https://plursky.com/f/summerfest-2026/#set-su55
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su95@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T230000Z
+DTEND:20260620T000000Z
+SUMMARY:Hot Mulligan · AmFam House
+LOCATION:AmFam House\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam House\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su95
+URL:https://plursky.com/f/summerfest-2026/#set-su95
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su79@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T231500Z
+DTEND:20260620T002000Z
+SUMMARY:Emmitt James · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su79
+URL:https://plursky.com/f/summerfest-2026/#set-su79
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su67@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260619T233000Z
+DTEND:20260620T003500Z
+SUMMARY:Panic Shack · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su67
+URL:https://plursky.com/f/summerfest-2026/#set-su67
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su48@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T000000Z
+DTEND:20260620T034500Z
+SUMMARY:Don Toliver with SahBabii\, SoFaygo\, Che\, Lelo\, Chase B\, and so
+ socamo · AmFam Amphitheater
+LOCATION:AmFam Amphitheater\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam Amphitheater\nhttps://plursky.com/f/su
+ mmerfest-2026/#set-su48
+URL:https://plursky.com/f/summerfest-2026/#set-su48
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su74@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T000000Z
+DTEND:20260620T010500Z
+SUMMARY:The Family Stone · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su74
+URL:https://plursky.com/f/summerfest-2026/#set-su74
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su96@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T000000Z
+DTEND:20260620T013000Z
+SUMMARY:DJay Mando · AmFam House
+LOCATION:AmFam House\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam House\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su96
+URL:https://plursky.com/f/summerfest-2026/#set-su96
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su50@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T001500Z
+DTEND:20260620T012000Z
+SUMMARY:Aldo Nova · BMO Pavilion
+LOCATION:BMO Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · BMO Pavilion\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su50
+URL:https://plursky.com/f/summerfest-2026/#set-su50
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su62@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T003000Z
+DTEND:20260620T013500Z
+SUMMARY:Evan Honer · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su62
+URL:https://plursky.com/f/summerfest-2026/#set-su62
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su85@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T003000Z
+DTEND:20260620T013500Z
+SUMMARY:State Champs · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su85
+URL:https://plursky.com/f/summerfest-2026/#set-su85
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su91@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T003000Z
+DTEND:20260620T013500Z
+SUMMARY:Mrs. Fun · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su91
+URL:https://plursky.com/f/summerfest-2026/#set-su91
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su56@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T010000Z
+DTEND:20260620T020500Z
+SUMMARY:Adrien Nunez · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su56
+URL:https://plursky.com/f/summerfest-2026/#set-su56
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su80@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T011500Z
+DTEND:20260620T022000Z
+SUMMARY:FEE$ · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su80
+URL:https://plursky.com/f/summerfest-2026/#set-su80
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su68@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T013000Z
+DTEND:20260620T030000Z
+SUMMARY:NOBRO · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su68
+URL:https://plursky.com/f/summerfest-2026/#set-su68
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su51@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T020000Z
+DTEND:20260620T033000Z
+SUMMARY:Styx · BMO Pavilion
+LOCATION:BMO Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · BMO Pavilion\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su51
+URL:https://plursky.com/f/summerfest-2026/#set-su51
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su75@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T020000Z
+DTEND:20260620T033000Z
+SUMMARY:Nico At Nite · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su75
+URL:https://plursky.com/f/summerfest-2026/#set-su75
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su63@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T023000Z
+DTEND:20260620T040500Z
+SUMMARY:Father John Misty · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su63
+URL:https://plursky.com/f/summerfest-2026/#set-su63
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su86@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T023000Z
+DTEND:20260620T040000Z
+SUMMARY:Hot Mulligan · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su86
+URL:https://plursky.com/f/summerfest-2026/#set-su86
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su57@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T030000Z
+DTEND:20260620T043000Z
+SUMMARY:Cameron Whitcomb · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su57
+URL:https://plursky.com/f/summerfest-2026/#set-su57
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su81@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T031500Z
+DTEND:20260620T044500Z
+SUMMARY:Tyrese · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su81
+URL:https://plursky.com/f/summerfest-2026/#set-su81
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su69@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T033000Z
+DTEND:20260620T050000Z
+SUMMARY:Amyl and the Sniffers · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su69
+URL:https://plursky.com/f/summerfest-2026/#set-su69
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su137@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T170000Z
+DTEND:20260620T180500Z
+SUMMARY:Daniel Nathan Electracoustic · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su137
+URL:https://plursky.com/f/summerfest-2026/#set-su137
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su142@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T170000Z
+DTEND:20260620T180500Z
+SUMMARY:DJay Mando · AmFam House
+LOCATION:AmFam House\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam House\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su142
+URL:https://plursky.com/f/summerfest-2026/#set-su142
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su119@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T171500Z
+DTEND:20260620T193000Z
+SUMMARY:Rockonsin · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su119
+URL:https://plursky.com/f/summerfest-2026/#set-su119
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su107@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T173000Z
+DTEND:20260620T181500Z
+SUMMARY:The Band Solstice · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su107
+URL:https://plursky.com/f/summerfest-2026/#set-su107
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su131@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T173000Z
+DTEND:20260620T181500Z
+SUMMARY:Milly & The Mayhem · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su131
+URL:https://plursky.com/f/summerfest-2026/#set-su131
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su125@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T174500Z
+DTEND:20260620T183500Z
+SUMMARY:Lauren Gottshall · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su125
+URL:https://plursky.com/f/summerfest-2026/#set-su125
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su101@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T180000Z
+DTEND:20260620T185000Z
+SUMMARY:Sarah Krohn · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su101
+URL:https://plursky.com/f/summerfest-2026/#set-su101
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su113@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T181500Z
+DTEND:20260620T190500Z
+SUMMARY:IDKCONUNDRUM · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su113
+URL:https://plursky.com/f/summerfest-2026/#set-su113
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su138@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T184500Z
+DTEND:20260620T195000Z
+SUMMARY:Divas & Jazz · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su138
+URL:https://plursky.com/f/summerfest-2026/#set-su138
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su108@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T190000Z
+DTEND:20260620T194500Z
+SUMMARY:Tobacco Road · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su108
+URL:https://plursky.com/f/summerfest-2026/#set-su108
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su132@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T190000Z
+DTEND:20260620T194500Z
+SUMMARY:Kenneth Brian Band · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su132
+URL:https://plursky.com/f/summerfest-2026/#set-su132
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su143@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T190000Z
+DTEND:20260620T200500Z
+SUMMARY:flipturn · AmFam House
+LOCATION:AmFam House\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam House\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su143
+URL:https://plursky.com/f/summerfest-2026/#set-su143
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su102@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T193000Z
+DTEND:20260620T201500Z
+SUMMARY:Noah Richardson · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su102
+URL:https://plursky.com/f/summerfest-2026/#set-su102
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su126@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T193000Z
+DTEND:20260620T202000Z
+SUMMARY:Will Terry · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su126
+URL:https://plursky.com/f/summerfest-2026/#set-su126
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su114@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T194500Z
+DTEND:20260620T203500Z
+SUMMARY:American Progress · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su114
+URL:https://plursky.com/f/summerfest-2026/#set-su114
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su120@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T201500Z
+DTEND:20260620T210500Z
+SUMMARY:Cigarettes @ Sunset · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su120
+URL:https://plursky.com/f/summerfest-2026/#set-su120
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su109@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T203000Z
+DTEND:20260620T213500Z
+SUMMARY:Old Mervs · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su109
+URL:https://plursky.com/f/summerfest-2026/#set-su109
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su133@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T203000Z
+DTEND:20260620T213500Z
+SUMMARY:A.J. Croce · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su133
+URL:https://plursky.com/f/summerfest-2026/#set-su133
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su139@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T203000Z
+DTEND:20260620T213500Z
+SUMMARY:Divas & Jazz · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su139
+URL:https://plursky.com/f/summerfest-2026/#set-su139
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su103@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T210000Z
+DTEND:20260620T220500Z
+SUMMARY:SM6 · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su103
+URL:https://plursky.com/f/summerfest-2026/#set-su103
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su144@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T210000Z
+DTEND:20260620T220500Z
+SUMMARY:Weston Estate · AmFam House
+LOCATION:AmFam House\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam House\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su144
+URL:https://plursky.com/f/summerfest-2026/#set-su144
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su127@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T211500Z
+DTEND:20260620T222000Z
+SUMMARY:Landon Wilks · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su127
+URL:https://plursky.com/f/summerfest-2026/#set-su127
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su115@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T213000Z
+DTEND:20260620T223500Z
+SUMMARY:Colin Bracewell · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su115
+URL:https://plursky.com/f/summerfest-2026/#set-su115
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su121@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T213000Z
+DTEND:20260620T221500Z
+SUMMARY:Altered By Mom · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su121
+URL:https://plursky.com/f/summerfest-2026/#set-su121
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su110@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T223000Z
+DTEND:20260620T233500Z
+SUMMARY:Winyah · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su110
+URL:https://plursky.com/f/summerfest-2026/#set-su110
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su134@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T223000Z
+DTEND:20260620T233500Z
+SUMMARY:Trapper Schoepp · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su134
+URL:https://plursky.com/f/summerfest-2026/#set-su134
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su140@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T223000Z
+DTEND:20260620T233500Z
+SUMMARY:Dan Kolesari · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su140
+URL:https://plursky.com/f/summerfest-2026/#set-su140
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su98@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T223000Z
+DTEND:20260620T233500Z
+SUMMARY:Substitutes: Tales From The Who · BMO Pavilion
+LOCATION:BMO Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · BMO Pavilion\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su98
+URL:https://plursky.com/f/summerfest-2026/#set-su98
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su122@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T224500Z
+DTEND:20260620T233000Z
+SUMMARY:Red Leather · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su122
+URL:https://plursky.com/f/summerfest-2026/#set-su122
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su104@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T230000Z
+DTEND:20260621T000500Z
+SUMMARY:GRAHAM · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su104
+URL:https://plursky.com/f/summerfest-2026/#set-su104
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su145@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T230000Z
+DTEND:20260621T000500Z
+SUMMARY:DJay Mando · AmFam House
+LOCATION:AmFam House\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam House\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su145
+URL:https://plursky.com/f/summerfest-2026/#set-su145
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su128@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T231500Z
+DTEND:20260621T002000Z
+SUMMARY:Scott Wolverton · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su128
+URL:https://plursky.com/f/summerfest-2026/#set-su128
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su116@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260620T233000Z
+DTEND:20260621T003500Z
+SUMMARY:The Juliana Theory · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su116
+URL:https://plursky.com/f/summerfest-2026/#set-su116
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su123@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260621T000000Z
+DTEND:20260621T010500Z
+SUMMARY:Dexter And The Moonrocks · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su123
+URL:https://plursky.com/f/summerfest-2026/#set-su123
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su97@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260621T000000Z
+DTEND:20260621T014000Z
+SUMMARY:Carín León · AmFam Amphitheater
+LOCATION:AmFam Amphitheater\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam Amphitheater\nhttps://plursky.com/f/su
+ mmerfest-2026/#set-su97
+URL:https://plursky.com/f/summerfest-2026/#set-su97
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su99@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260621T001500Z
+DTEND:20260621T012000Z
+SUMMARY:Kirstie Kraus · BMO Pavilion
+LOCATION:BMO Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · BMO Pavilion\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su99
+URL:https://plursky.com/f/summerfest-2026/#set-su99
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su111@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260621T003000Z
+DTEND:20260621T013500Z
+SUMMARY:Penelope Road · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su111
+URL:https://plursky.com/f/summerfest-2026/#set-su111
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su135@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260621T003000Z
+DTEND:20260621T013500Z
+SUMMARY:Don Felder · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su135
+URL:https://plursky.com/f/summerfest-2026/#set-su135
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su141@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260621T003000Z
+DTEND:20260621T013500Z
+SUMMARY:Dan Kolesari · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su141
+URL:https://plursky.com/f/summerfest-2026/#set-su141
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su105@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260621T010000Z
+DTEND:20260621T020500Z
+SUMMARY:Weston Estate · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su105
+URL:https://plursky.com/f/summerfest-2026/#set-su105
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su129@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260621T011500Z
+DTEND:20260621T022000Z
+SUMMARY:McCoy Moore · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su129
+URL:https://plursky.com/f/summerfest-2026/#set-su129
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su117@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260621T013000Z
+DTEND:20260621T023500Z
+SUMMARY:Braid · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su117
+URL:https://plursky.com/f/summerfest-2026/#set-su117
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su100@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260621T020000Z
+DTEND:20260621T033000Z
+SUMMARY:David Lee Roth · BMO Pavilion
+LOCATION:BMO Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · BMO Pavilion\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su100
+URL:https://plursky.com/f/summerfest-2026/#set-su100
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su124@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260621T020000Z
+DTEND:20260621T033000Z
+SUMMARY:Aspen · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su124
+URL:https://plursky.com/f/summerfest-2026/#set-su124
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su112@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260621T023000Z
+DTEND:20260621T040000Z
+SUMMARY:flipturn · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su112
+URL:https://plursky.com/f/summerfest-2026/#set-su112
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su136@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260621T023000Z
+DTEND:20260621T040000Z
+SUMMARY:Christopher Cross · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su136
+URL:https://plursky.com/f/summerfest-2026/#set-su136
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su106@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260621T030000Z
+DTEND:20260621T043000Z
+SUMMARY:Connor Price · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su106
+URL:https://plursky.com/f/summerfest-2026/#set-su106
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su130@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260621T031500Z
+DTEND:20260621T045000Z
+SUMMARY:Nate Smith · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su130
+URL:https://plursky.com/f/summerfest-2026/#set-su130
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su118@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260621T033000Z
+DTEND:20260621T050000Z
+SUMMARY:The Academy Is... · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su118
+URL:https://plursky.com/f/summerfest-2026/#set-su118
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su184@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260625T170000Z
+DTEND:20260625T180500Z
+SUMMARY:Jimmy Ray & The Hipsters · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su184
+URL:https://plursky.com/f/summerfest-2026/#set-su184
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su189@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260625T170000Z
+DTEND:20260625T180500Z
+SUMMARY:DJay Mando · AmFam House
+LOCATION:AmFam House\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam House\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su189
+URL:https://plursky.com/f/summerfest-2026/#set-su189
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su162@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260625T181500Z
+DTEND:20260625T190500Z
+SUMMARY:OUTDrejas · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su162
+URL:https://plursky.com/f/summerfest-2026/#set-su162
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su185@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260625T184500Z
+DTEND:20260625T195000Z
+SUMMARY:Ghosts in the Gravel · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su185
+URL:https://plursky.com/f/summerfest-2026/#set-su185
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su190@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260625T190000Z
+DTEND:20260625T200500Z
+SUMMARY:Walk Off The Earth · AmFam House
+LOCATION:AmFam House\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam House\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su190
+URL:https://plursky.com/f/summerfest-2026/#set-su190
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su163@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260625T194500Z
+DTEND:20260625T203500Z
+SUMMARY:Chrystal Gales · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su163
+URL:https://plursky.com/f/summerfest-2026/#set-su163
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su186@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260625T203000Z
+DTEND:20260625T214000Z
+SUMMARY:Ghosts in the Gravel · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su186
+URL:https://plursky.com/f/summerfest-2026/#set-su186
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su191@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260625T210000Z
+DTEND:20260625T220500Z
+SUMMARY:Gabriel Jacoby · AmFam House
+LOCATION:AmFam House\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam House\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su191
+URL:https://plursky.com/f/summerfest-2026/#set-su191
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su158@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260625T211500Z
+DTEND:20260625T222000Z
+SUMMARY:Booker T. Jones · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su158
+URL:https://plursky.com/f/summerfest-2026/#set-su158
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su174@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260625T211500Z
+DTEND:20260625T215500Z
+SUMMARY:Wire & Nail · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su174
+URL:https://plursky.com/f/summerfest-2026/#set-su174
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su180@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260625T211500Z
+DTEND:20260625T222000Z
+SUMMARY:10\,000 Maniacs · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su180
+URL:https://plursky.com/f/summerfest-2026/#set-su180
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su153@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260625T213000Z
+DTEND:20260625T223500Z
+SUMMARY:Robert Randolph & The Family Band · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su153
+URL:https://plursky.com/f/summerfest-2026/#set-su153
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su164@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260625T213000Z
+DTEND:20260625T223500Z
+SUMMARY:Vertical Horizon · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su164
+URL:https://plursky.com/f/summerfest-2026/#set-su164
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su169@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260625T213000Z
+DTEND:20260625T221500Z
+SUMMARY:Abby Moeller · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su169
+URL:https://plursky.com/f/summerfest-2026/#set-su169
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su175@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260625T221500Z
+DTEND:20260625T232500Z
+SUMMARY:Old 97's · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su175
+URL:https://plursky.com/f/summerfest-2026/#set-su175
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su149@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260625T223000Z
+DTEND:20260625T233500Z
+SUMMARY:Big Daddy Kane · BMO Pavilion
+LOCATION:BMO Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · BMO Pavilion\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su149
+URL:https://plursky.com/f/summerfest-2026/#set-su149
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su187@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260625T223000Z
+DTEND:20260625T233500Z
+SUMMARY:The Terry Sims Band · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su187
+URL:https://plursky.com/f/summerfest-2026/#set-su187
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su159@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260625T224500Z
+DTEND:20260625T235500Z
+SUMMARY:Pat McCurdy · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su159
+URL:https://plursky.com/f/summerfest-2026/#set-su159
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su170@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260625T224500Z
+DTEND:20260625T233000Z
+SUMMARY:Boy Golden · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su170
+URL:https://plursky.com/f/summerfest-2026/#set-su170
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su181@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260625T224500Z
+DTEND:20260625T235000Z
+SUMMARY:Lisa Loeb · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su181
+URL:https://plursky.com/f/summerfest-2026/#set-su181
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su192@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260625T230000Z
+DTEND:20260626T000500Z
+SUMMARY:DJay Mando · AmFam House
+LOCATION:AmFam House\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam House\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su192
+URL:https://plursky.com/f/summerfest-2026/#set-su192
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su154@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260625T233000Z
+DTEND:20260626T003500Z
+SUMMARY:The Handcuffs · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su154
+URL:https://plursky.com/f/summerfest-2026/#set-su154
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su165@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260625T233000Z
+DTEND:20260626T003500Z
+SUMMARY:Porch Light · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su165
+URL:https://plursky.com/f/summerfest-2026/#set-su165
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su176@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260625T234500Z
+DTEND:20260626T005000Z
+SUMMARY:Elijah Scott · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su176
+URL:https://plursky.com/f/summerfest-2026/#set-su176
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su171@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260626T000000Z
+DTEND:20260626T010500Z
+SUMMARY:The Mountain Goats · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su171
+URL:https://plursky.com/f/summerfest-2026/#set-su171
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su150@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260626T001500Z
+DTEND:20260626T011500Z
+SUMMARY:Gabriel Jacoby · BMO Pavilion
+LOCATION:BMO Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · BMO Pavilion\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su150
+URL:https://plursky.com/f/summerfest-2026/#set-su150
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su146@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260626T003000Z
+DTEND:20260626T010000Z
+SUMMARY:Aaron Rowe · AmFam Amphitheater
+LOCATION:AmFam Amphitheater\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam Amphitheater\nhttps://plursky.com/f/su
+ mmerfest-2026/#set-su146
+URL:https://plursky.com/f/summerfest-2026/#set-su146
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su182@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260626T003000Z
+DTEND:20260626T013500Z
+SUMMARY:Walk Off The Earth · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su182
+URL:https://plursky.com/f/summerfest-2026/#set-su182
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su188@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260626T003000Z
+DTEND:20260626T013500Z
+SUMMARY:The Terry Sims Band · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su188
+URL:https://plursky.com/f/summerfest-2026/#set-su188
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su147@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260626T010000Z
+DTEND:20260626T021500Z
+SUMMARY:Myles Smith · AmFam Amphitheater
+LOCATION:AmFam Amphitheater\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam Amphitheater\nhttps://plursky.com/f/su
+ mmerfest-2026/#set-su147
+URL:https://plursky.com/f/summerfest-2026/#set-su147
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su160@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260626T010000Z
+DTEND:20260626T020500Z
+SUMMARY:Grabbitz · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su160
+URL:https://plursky.com/f/summerfest-2026/#set-su160
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su177@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260626T011500Z
+DTEND:20260626T022000Z
+SUMMARY:Lanie Gardner · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su177
+URL:https://plursky.com/f/summerfest-2026/#set-su177
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su155@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260626T013000Z
+DTEND:20260626T023500Z
+SUMMARY:Sincere Engineer · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su155
+URL:https://plursky.com/f/summerfest-2026/#set-su155
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su166@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260626T013000Z
+DTEND:20260626T023500Z
+SUMMARY:Hazlett · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su166
+URL:https://plursky.com/f/summerfest-2026/#set-su166
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su151@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260626T020000Z
+DTEND:20260626T033500Z
+SUMMARY:Common · BMO Pavilion
+LOCATION:BMO Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · BMO Pavilion\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su151
+URL:https://plursky.com/f/summerfest-2026/#set-su151
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su172@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260626T020000Z
+DTEND:20260626T033000Z
+SUMMARY:DJ Gemini Gilly · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su172
+URL:https://plursky.com/f/summerfest-2026/#set-su172
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su148@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260626T021500Z
+DTEND:20260626T034500Z
+SUMMARY:Ed Sheeran · AmFam Amphitheater
+LOCATION:AmFam Amphitheater\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam Amphitheater\nhttps://plursky.com/f/su
+ mmerfest-2026/#set-su148
+URL:https://plursky.com/f/summerfest-2026/#set-su148
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su183@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260626T023000Z
+DTEND:20260626T040500Z
+SUMMARY:Halestorm · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su183
+URL:https://plursky.com/f/summerfest-2026/#set-su183
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su161@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260626T030000Z
+DTEND:20260626T043000Z
+SUMMARY:Subtronics · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su161
+URL:https://plursky.com/f/summerfest-2026/#set-su161
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su178@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260626T031500Z
+DTEND:20260626T044500Z
+SUMMARY:Tucker Wetmore · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su178
+URL:https://plursky.com/f/summerfest-2026/#set-su178
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su156@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260626T033000Z
+DTEND:20260626T050000Z
+SUMMARY:Kim Gordon · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su156
+URL:https://plursky.com/f/summerfest-2026/#set-su156
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su167@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260626T033000Z
+DTEND:20260626T050000Z
+SUMMARY:Kaleo · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su167
+URL:https://plursky.com/f/summerfest-2026/#set-su167
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su229@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260626T170000Z
+DTEND:20260626T180500Z
+SUMMARY:Allison Mahal · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su229
+URL:https://plursky.com/f/summerfest-2026/#set-su229
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su234@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260626T170000Z
+DTEND:20260626T180500Z
+SUMMARY:DJay Mando · AmFam House
+LOCATION:AmFam House\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam House\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su234
+URL:https://plursky.com/f/summerfest-2026/#set-su234
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su208@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260626T181500Z
+DTEND:20260626T190500Z
+SUMMARY:Guardrail · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su208
+URL:https://plursky.com/f/summerfest-2026/#set-su208
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su230@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260626T184500Z
+DTEND:20260626T195000Z
+SUMMARY:Danny Miller Band · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su230
+URL:https://plursky.com/f/summerfest-2026/#set-su230
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su235@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260626T190000Z
+DTEND:20260626T200500Z
+SUMMARY:Grouplove · AmFam House
+LOCATION:AmFam House\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam House\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su235
+URL:https://plursky.com/f/summerfest-2026/#set-su235
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su209@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260626T194500Z
+DTEND:20260626T203500Z
+SUMMARY:Harrison Gordon · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su209
+URL:https://plursky.com/f/summerfest-2026/#set-su209
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su231@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260626T203000Z
+DTEND:20260626T213500Z
+SUMMARY:Danny Miller Band · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su231
+URL:https://plursky.com/f/summerfest-2026/#set-su231
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su236@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260626T210000Z
+DTEND:20260626T220500Z
+SUMMARY:David Shaw and Zack Feinberg of the Revivalists · AmFam House
+LOCATION:AmFam House\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam House\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su236
+URL:https://plursky.com/f/summerfest-2026/#set-su236
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su204@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260626T211500Z
+DTEND:20260626T222000Z
+SUMMARY:7th Heaven · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su204
+URL:https://plursky.com/f/summerfest-2026/#set-su204
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su220@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260626T211500Z
+DTEND:20260626T222000Z
+SUMMARY:Sugo · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su220
+URL:https://plursky.com/f/summerfest-2026/#set-su220
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su225@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260626T211500Z
+DTEND:20260626T222000Z
+SUMMARY:Sons Of The Silent Age · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su225
+URL:https://plursky.com/f/summerfest-2026/#set-su225
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su199@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260626T213000Z
+DTEND:20260626T223500Z
+SUMMARY:Blonde · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su199
+URL:https://plursky.com/f/summerfest-2026/#set-su199
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su210@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260626T213000Z
+DTEND:20260626T223500Z
+SUMMARY:Lake Drive · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su210
+URL:https://plursky.com/f/summerfest-2026/#set-su210
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su215@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260626T213000Z
+DTEND:20260626T222000Z
+SUMMARY:Siobhan Bodrug · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su215
+URL:https://plursky.com/f/summerfest-2026/#set-su215
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su195@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260626T223000Z
+DTEND:20260626T233500Z
+SUMMARY:Alex Sampson · BMO Pavilion
+LOCATION:BMO Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · BMO Pavilion\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su195
+URL:https://plursky.com/f/summerfest-2026/#set-su195
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su232@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260626T223000Z
+DTEND:20260626T233500Z
+SUMMARY:Testing Floor · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su232
+URL:https://plursky.com/f/summerfest-2026/#set-su232
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su205@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260626T224500Z
+DTEND:20260626T235000Z
+SUMMARY:Bobby Friss · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su205
+URL:https://plursky.com/f/summerfest-2026/#set-su205
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su216@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260626T224500Z
+DTEND:20260626T233000Z
+SUMMARY:Harper O'Neill · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su216
+URL:https://plursky.com/f/summerfest-2026/#set-su216
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su226@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260626T224500Z
+DTEND:20260626T235000Z
+SUMMARY:Two Feet · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su226
+URL:https://plursky.com/f/summerfest-2026/#set-su226
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su237@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260626T230000Z
+DTEND:20260627T000500Z
+SUMMARY:DJay Mando · AmFam House
+LOCATION:AmFam House\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam House\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su237
+URL:https://plursky.com/f/summerfest-2026/#set-su237
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su200@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260626T231500Z
+DTEND:20260627T002000Z
+SUMMARY:KSP · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su200
+URL:https://plursky.com/f/summerfest-2026/#set-su200
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su221@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260626T231500Z
+DTEND:20260627T002000Z
+SUMMARY:Greg Koch & The Koch Marshall Trio · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su221
+URL:https://plursky.com/f/summerfest-2026/#set-su221
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su211@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260626T233000Z
+DTEND:20260627T003500Z
+SUMMARY:Showoff · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su211
+URL:https://plursky.com/f/summerfest-2026/#set-su211
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su193@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T000000Z
+DTEND:20260627T010500Z
+SUMMARY:Jessie Murph · AmFam Amphitheater
+LOCATION:AmFam Amphitheater\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam Amphitheater\nhttps://plursky.com/f/su
+ mmerfest-2026/#set-su193
+URL:https://plursky.com/f/summerfest-2026/#set-su193
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su217@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T000000Z
+DTEND:20260627T010500Z
+SUMMARY:Sudan Archives · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su217
+URL:https://plursky.com/f/summerfest-2026/#set-su217
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su196@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T001500Z
+DTEND:20260627T012000Z
+SUMMARY:The Aces · BMO Pavilion
+LOCATION:BMO Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · BMO Pavilion\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su196
+URL:https://plursky.com/f/summerfest-2026/#set-su196
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su206@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T003000Z
+DTEND:20260627T014000Z
+SUMMARY:Big Wild · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su206
+URL:https://plursky.com/f/summerfest-2026/#set-su206
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su227@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T003000Z
+DTEND:20260627T013500Z
+SUMMARY:Grouplove · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su227
+URL:https://plursky.com/f/summerfest-2026/#set-su227
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su233@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T003000Z
+DTEND:20260627T013500Z
+SUMMARY:Testing Floor · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su233
+URL:https://plursky.com/f/summerfest-2026/#set-su233
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su201@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T010000Z
+DTEND:20260627T020500Z
+SUMMARY:Henrik · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su201
+URL:https://plursky.com/f/summerfest-2026/#set-su201
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su222@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T011500Z
+DTEND:20260627T022500Z
+SUMMARY:The Band Loula · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su222
+URL:https://plursky.com/f/summerfest-2026/#set-su222
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su194@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T013000Z
+DTEND:20260627T025000Z
+SUMMARY:Cody Johnson · AmFam Amphitheater
+LOCATION:AmFam Amphitheater\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam Amphitheater\nhttps://plursky.com/f/su
+ mmerfest-2026/#set-su194
+URL:https://plursky.com/f/summerfest-2026/#set-su194
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su212@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T013000Z
+DTEND:20260627T023500Z
+SUMMARY:Lucky Boys Confusion · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su212
+URL:https://plursky.com/f/summerfest-2026/#set-su212
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su197@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T020000Z
+DTEND:20260627T033000Z
+SUMMARY:Louis Tomlinson · BMO Pavilion
+LOCATION:BMO Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · BMO Pavilion\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su197
+URL:https://plursky.com/f/summerfest-2026/#set-su197
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su218@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T020000Z
+DTEND:20260627T033000Z
+SUMMARY:Mr. New York · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su218
+URL:https://plursky.com/f/summerfest-2026/#set-su218
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su207@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T023000Z
+DTEND:20260627T040500Z
+SUMMARY:Elderbrook · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su207
+URL:https://plursky.com/f/summerfest-2026/#set-su207
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su228@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T023000Z
+DTEND:20260627T040000Z
+SUMMARY:The Revivalists · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su228
+URL:https://plursky.com/f/summerfest-2026/#set-su228
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su202@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T030000Z
+DTEND:20260627T043000Z
+SUMMARY:Petey USA · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su202
+URL:https://plursky.com/f/summerfest-2026/#set-su202
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su223@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T031500Z
+DTEND:20260627T044500Z
+SUMMARY:Marcus King Band · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su223
+URL:https://plursky.com/f/summerfest-2026/#set-su223
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su213@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T033000Z
+DTEND:20260627T050000Z
+SUMMARY:Goldfinger · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su213
+URL:https://plursky.com/f/summerfest-2026/#set-su213
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su244@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T170000Z
+DTEND:20260627T175000Z
+SUMMARY:Alley Eyes · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su244
+URL:https://plursky.com/f/summerfest-2026/#set-su244
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su251@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T170000Z
+DTEND:20260627T200500Z
+SUMMARY:MUSIC6S for Veterans & First Responders · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su251
+URL:https://plursky.com/f/summerfest-2026/#set-su251
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su262@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T170000Z
+DTEND:20260627T194000Z
+SUMMARY:Tempo Dance Co. · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su262
+URL:https://plursky.com/f/summerfest-2026/#set-su262
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su281@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T170000Z
+DTEND:20260627T180500Z
+SUMMARY:Aubrey Marie · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su281
+URL:https://plursky.com/f/summerfest-2026/#set-su281
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su286@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T170000Z
+DTEND:20260627T180500Z
+SUMMARY:DJay Mando · AmFam House
+LOCATION:AmFam House\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam House\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su286
+URL:https://plursky.com/f/summerfest-2026/#set-su286
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su275@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T173000Z
+DTEND:20260627T181500Z
+SUMMARY:The Noize · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su275
+URL:https://plursky.com/f/summerfest-2026/#set-su275
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su269@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T174500Z
+DTEND:20260627T183000Z
+SUMMARY:The Taxmen · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su269
+URL:https://plursky.com/f/summerfest-2026/#set-su269
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su245@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T181500Z
+DTEND:20260627T190500Z
+SUMMARY:Fuzzysurf · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su245
+URL:https://plursky.com/f/summerfest-2026/#set-su245
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su256@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T181500Z
+DTEND:20260627T190500Z
+SUMMARY:In The Know · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su256
+URL:https://plursky.com/f/summerfest-2026/#set-su256
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su282@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T184500Z
+DTEND:20260627T195000Z
+SUMMARY:Organissimo · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su282
+URL:https://plursky.com/f/summerfest-2026/#set-su282
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su276@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T190000Z
+DTEND:20260627T194500Z
+SUMMARY:Haley Johnsen · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su276
+URL:https://plursky.com/f/summerfest-2026/#set-su276
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su287@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T190000Z
+DTEND:20260627T200500Z
+SUMMARY:PawPaw Rod · AmFam House
+LOCATION:AmFam House\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam House\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su287
+URL:https://plursky.com/f/summerfest-2026/#set-su287
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su246@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T193000Z
+DTEND:20260627T202000Z
+SUMMARY:Cardinal Bloom · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su246
+URL:https://plursky.com/f/summerfest-2026/#set-su246
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su270@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T193000Z
+DTEND:20260627T203500Z
+SUMMARY:Vincent Van Great · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su270
+URL:https://plursky.com/f/summerfest-2026/#set-su270
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su257@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T194500Z
+DTEND:20260627T203500Z
+SUMMARY:King Solomon · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su257
+URL:https://plursky.com/f/summerfest-2026/#set-su257
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su263@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T194500Z
+DTEND:20260627T202000Z
+SUMMARY:DJ Andres · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su263
+URL:https://plursky.com/f/summerfest-2026/#set-su263
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su264@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T201500Z
+DTEND:20260627T211000Z
+SUMMARY:Jazzteca · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su264
+URL:https://plursky.com/f/summerfest-2026/#set-su264
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su252@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T203000Z
+DTEND:20260627T213500Z
+SUMMARY:Chris Koster · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su252
+URL:https://plursky.com/f/summerfest-2026/#set-su252
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su277@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T203000Z
+DTEND:20260627T213500Z
+SUMMARY:Tracy Bonham · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su277
+URL:https://plursky.com/f/summerfest-2026/#set-su277
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su283@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T203000Z
+DTEND:20260627T213500Z
+SUMMARY:Organissimo · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su283
+URL:https://plursky.com/f/summerfest-2026/#set-su283
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su247@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T210000Z
+DTEND:20260627T220500Z
+SUMMARY:Modern Alibi · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su247
+URL:https://plursky.com/f/summerfest-2026/#set-su247
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su288@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T210000Z
+DTEND:20260627T220500Z
+SUMMARY:Dylan Schneider · AmFam House
+LOCATION:AmFam House\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam House\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su288
+URL:https://plursky.com/f/summerfest-2026/#set-su288
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su271@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T211500Z
+DTEND:20260627T222000Z
+SUMMARY:LAMB · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su271
+URL:https://plursky.com/f/summerfest-2026/#set-su271
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su258@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T213000Z
+DTEND:20260627T223500Z
+SUMMARY:Left on Sunset · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su258
+URL:https://plursky.com/f/summerfest-2026/#set-su258
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su265@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T213000Z
+DTEND:20260627T221500Z
+SUMMARY:Orquesta Ayala · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su265
+URL:https://plursky.com/f/summerfest-2026/#set-su265
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su240@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T220000Z
+DTEND:20260627T230500Z
+SUMMARY:Alyssia Dominguez · BMO Pavilion
+LOCATION:BMO Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · BMO Pavilion\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su240
+URL:https://plursky.com/f/summerfest-2026/#set-su240
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su253@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T223000Z
+DTEND:20260627T233500Z
+SUMMARY:Jean Dawson · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su253
+URL:https://plursky.com/f/summerfest-2026/#set-su253
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su278@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T223000Z
+DTEND:20260627T233500Z
+SUMMARY:Hank Azaria And The EZ Street Band · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su278
+URL:https://plursky.com/f/summerfest-2026/#set-su278
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su284@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T223000Z
+DTEND:20260627T233500Z
+SUMMARY:The Hungry Williams · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su284
+URL:https://plursky.com/f/summerfest-2026/#set-su284
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su266@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T224500Z
+DTEND:20260627T234000Z
+SUMMARY:Junior Rivera · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su266
+URL:https://plursky.com/f/summerfest-2026/#set-su266
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su248@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T230000Z
+DTEND:20260628T000500Z
+SUMMARY:Taz · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su248
+URL:https://plursky.com/f/summerfest-2026/#set-su248
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su289@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T230000Z
+DTEND:20260628T000500Z
+SUMMARY:DJay Mando · AmFam House
+LOCATION:AmFam House\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam House\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su289
+URL:https://plursky.com/f/summerfest-2026/#set-su289
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su272@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T231500Z
+DTEND:20260628T002000Z
+SUMMARY:Soulidified · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su272
+URL:https://plursky.com/f/summerfest-2026/#set-su272
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su241@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T233000Z
+DTEND:20260628T003500Z
+SUMMARY:Alannah McCready · BMO Pavilion
+LOCATION:BMO Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · BMO Pavilion\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su241
+URL:https://plursky.com/f/summerfest-2026/#set-su241
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su259@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260627T233000Z
+DTEND:20260628T003500Z
+SUMMARY:The Expendables · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su259
+URL:https://plursky.com/f/summerfest-2026/#set-su259
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su238@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260628T000000Z
+DTEND:20260628T005000Z
+SUMMARY:Carter Faith · AmFam Amphitheater
+LOCATION:AmFam Amphitheater\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam Amphitheater\nhttps://plursky.com/f/su
+ mmerfest-2026/#set-su238
+URL:https://plursky.com/f/summerfest-2026/#set-su238
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su267@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260628T000000Z
+DTEND:20260628T010500Z
+SUMMARY:Mariachi Sol De Mexico · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su267
+URL:https://plursky.com/f/summerfest-2026/#set-su267
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su254@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260628T003000Z
+DTEND:20260628T013500Z
+SUMMARY:King Buffalo · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su254
+URL:https://plursky.com/f/summerfest-2026/#set-su254
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su279@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260628T003000Z
+DTEND:20260628T013500Z
+SUMMARY:Freddy Jones Band · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su279
+URL:https://plursky.com/f/summerfest-2026/#set-su279
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su285@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260628T003000Z
+DTEND:20260628T013500Z
+SUMMARY:The Hungry Williams · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su285
+URL:https://plursky.com/f/summerfest-2026/#set-su285
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su249@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260628T010000Z
+DTEND:20260628T020500Z
+SUMMARY:PawPaw Rod · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su249
+URL:https://plursky.com/f/summerfest-2026/#set-su249
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su242@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260628T011500Z
+DTEND:20260628T022000Z
+SUMMARY:Dylan Schneider · BMO Pavilion
+LOCATION:BMO Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · BMO Pavilion\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su242
+URL:https://plursky.com/f/summerfest-2026/#set-su242
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su273@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260628T011500Z
+DTEND:20260628T022000Z
+SUMMARY:Maris · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su273
+URL:https://plursky.com/f/summerfest-2026/#set-su273
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su239@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260628T013000Z
+DTEND:20260628T025000Z
+SUMMARY:Post Malone · AmFam Amphitheater
+LOCATION:AmFam Amphitheater\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam Amphitheater\nhttps://plursky.com/f/su
+ mmerfest-2026/#set-su239
+URL:https://plursky.com/f/summerfest-2026/#set-su239
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su260@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260628T013000Z
+DTEND:20260628T023500Z
+SUMMARY:The Movement · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su260
+URL:https://plursky.com/f/summerfest-2026/#set-su260
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su268@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260628T020000Z
+DTEND:20260628T033000Z
+SUMMARY:DJ Don B · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su268
+URL:https://plursky.com/f/summerfest-2026/#set-su268
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su255@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260628T023000Z
+DTEND:20260628T040500Z
+SUMMARY:Wolfmother · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su255
+URL:https://plursky.com/f/summerfest-2026/#set-su255
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su280@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260628T023000Z
+DTEND:20260628T040000Z
+SUMMARY:Little Feat · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su280
+URL:https://plursky.com/f/summerfest-2026/#set-su280
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su243@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260628T030000Z
+DTEND:20260628T043000Z
+SUMMARY:Russell Dickerson · BMO Pavilion
+LOCATION:BMO Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · BMO Pavilion\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su243
+URL:https://plursky.com/f/summerfest-2026/#set-su243
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su250@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260628T030000Z
+DTEND:20260628T043000Z
+SUMMARY:BØRNS · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su250
+URL:https://plursky.com/f/summerfest-2026/#set-su250
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su274@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260628T031500Z
+DTEND:20260628T044500Z
+SUMMARY:Audrey Nuna · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su274
+URL:https://plursky.com/f/summerfest-2026/#set-su274
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su261@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260628T033000Z
+DTEND:20260628T050000Z
+SUMMARY:Pepper · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su261
+URL:https://plursky.com/f/summerfest-2026/#set-su261
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su332@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260702T170000Z
+DTEND:20260702T180500Z
+SUMMARY:Marcya Danielle · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su332
+URL:https://plursky.com/f/summerfest-2026/#set-su332
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su337@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260702T170000Z
+DTEND:20260702T180500Z
+SUMMARY:DJay Mando · AmFam House
+LOCATION:AmFam House\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam House\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su337
+URL:https://plursky.com/f/summerfest-2026/#set-su337
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su302@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260702T173000Z
+DTEND:20260702T181500Z
+SUMMARY:The President Kings · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su302
+URL:https://plursky.com/f/summerfest-2026/#set-su302
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su308@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260702T173000Z
+DTEND:20260702T182000Z
+SUMMARY:Jonny T-Bird & The MP's · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su308
+URL:https://plursky.com/f/summerfest-2026/#set-su308
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su326@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260702T173000Z
+DTEND:20260702T181500Z
+SUMMARY:Palm Ghosts · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su326
+URL:https://plursky.com/f/summerfest-2026/#set-su326
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su314@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260702T174500Z
+DTEND:20260702T200000Z
+SUMMARY:Florentine Opera Company · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su314
+URL:https://plursky.com/f/summerfest-2026/#set-su314
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su320@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260702T174500Z
+DTEND:20260702T183000Z
+SUMMARY:Pretty Pity · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su320
+URL:https://plursky.com/f/summerfest-2026/#set-su320
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su296@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260702T180000Z
+DTEND:20260702T184500Z
+SUMMARY:Buffchick · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su296
+URL:https://plursky.com/f/summerfest-2026/#set-su296
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su333@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260702T184500Z
+DTEND:20260702T195000Z
+SUMMARY:Paul Spencer Band · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su333
+URL:https://plursky.com/f/summerfest-2026/#set-su333
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su303@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260702T190000Z
+DTEND:20260702T194500Z
+SUMMARY:Munroe · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su303
+URL:https://plursky.com/f/summerfest-2026/#set-su303
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su327@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260702T190000Z
+DTEND:20260702T194500Z
+SUMMARY:Outronaut · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su327
+URL:https://plursky.com/f/summerfest-2026/#set-su327
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su297@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260702T193000Z
+DTEND:20260702T202000Z
+SUMMARY:Hell On Heels · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su297
+URL:https://plursky.com/f/summerfest-2026/#set-su297
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su321@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260702T193000Z
+DTEND:20260702T201500Z
+SUMMARY:Gold Steps · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su321
+URL:https://plursky.com/f/summerfest-2026/#set-su321
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su309@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260702T194500Z
+DTEND:20260702T203000Z
+SUMMARY:Superfly · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su309
+URL:https://plursky.com/f/summerfest-2026/#set-su309
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su315@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260702T201500Z
+DTEND:20260702T210000Z
+SUMMARY:Kyle Ray · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su315
+URL:https://plursky.com/f/summerfest-2026/#set-su315
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su304@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260702T203000Z
+DTEND:20260702T213500Z
+SUMMARY:Scorched Waves · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su304
+URL:https://plursky.com/f/summerfest-2026/#set-su304
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su328@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260702T203000Z
+DTEND:20260702T213500Z
+SUMMARY:The Ocean Blue · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su328
+URL:https://plursky.com/f/summerfest-2026/#set-su328
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su334@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260702T203000Z
+DTEND:20260702T213500Z
+SUMMARY:Paul Spencer Band · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su334
+URL:https://plursky.com/f/summerfest-2026/#set-su334
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su298@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260702T210000Z
+DTEND:20260702T222000Z
+SUMMARY:Hotel Fiction · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su298
+URL:https://plursky.com/f/summerfest-2026/#set-su298
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su338@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260702T210000Z
+DTEND:20260702T220500Z
+SUMMARY:Spin Doctors · AmFam House
+LOCATION:AmFam House\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam House\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su338
+URL:https://plursky.com/f/summerfest-2026/#set-su338
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su322@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260702T211500Z
+DTEND:20260702T222000Z
+SUMMARY:Flourescents · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su322
+URL:https://plursky.com/f/summerfest-2026/#set-su322
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su310@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260702T213000Z
+DTEND:20260702T223500Z
+SUMMARY:Breaking Cadence · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su310
+URL:https://plursky.com/f/summerfest-2026/#set-su310
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su316@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260702T213000Z
+DTEND:20260702T221500Z
+SUMMARY:Case Oats · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su316
+URL:https://plursky.com/f/summerfest-2026/#set-su316
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su293@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260702T223000Z
+DTEND:20260702T233500Z
+SUMMARY:*aya · BMO Pavilion
+LOCATION:BMO Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · BMO Pavilion\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su293
+URL:https://plursky.com/f/summerfest-2026/#set-su293
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su305@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260702T223000Z
+DTEND:20260702T233500Z
+SUMMARY:Living Colour · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su305
+URL:https://plursky.com/f/summerfest-2026/#set-su305
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su329@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260702T223000Z
+DTEND:20260702T233500Z
+SUMMARY:Sister Hazel · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su329
+URL:https://plursky.com/f/summerfest-2026/#set-su329
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su335@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260702T223000Z
+DTEND:20260702T233500Z
+SUMMARY:The Group · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su335
+URL:https://plursky.com/f/summerfest-2026/#set-su335
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su317@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260702T224500Z
+DTEND:20260702T233000Z
+SUMMARY:Jobi Riccio · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su317
+URL:https://plursky.com/f/summerfest-2026/#set-su317
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su299@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260702T230000Z
+DTEND:20260703T001000Z
+SUMMARY:Sunflower Bean · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su299
+URL:https://plursky.com/f/summerfest-2026/#set-su299
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su339@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260702T230000Z
+DTEND:20260703T000500Z
+SUMMARY:DJay Mando · AmFam House
+LOCATION:AmFam House\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam House\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su339
+URL:https://plursky.com/f/summerfest-2026/#set-su339
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su323@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260702T231500Z
+DTEND:20260703T002500Z
+SUMMARY:Girlfriends · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su323
+URL:https://plursky.com/f/summerfest-2026/#set-su323
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su311@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260702T233000Z
+DTEND:20260703T003500Z
+SUMMARY:El Sebas · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su311
+URL:https://plursky.com/f/summerfest-2026/#set-su311
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su290@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T000000Z
+DTEND:20260703T005000Z
+SUMMARY:Temper City · AmFam Amphitheater
+LOCATION:AmFam Amphitheater\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam Amphitheater\nhttps://plursky.com/f/su
+ mmerfest-2026/#set-su290
+URL:https://plursky.com/f/summerfest-2026/#set-su290
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su318@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T000000Z
+DTEND:20260703T010500Z
+SUMMARY:Matthew Hansen · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su318
+URL:https://plursky.com/f/summerfest-2026/#set-su318
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su294@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T001500Z
+DTEND:20260703T012500Z
+SUMMARY:Lindsey Lomis · BMO Pavilion
+LOCATION:BMO Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · BMO Pavilion\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su294
+URL:https://plursky.com/f/summerfest-2026/#set-su294
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su306@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T003000Z
+DTEND:20260703T013500Z
+SUMMARY:Buckcherry · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su306
+URL:https://plursky.com/f/summerfest-2026/#set-su306
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su330@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T003000Z
+DTEND:20260703T013500Z
+SUMMARY:Spin Doctors · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su330
+URL:https://plursky.com/f/summerfest-2026/#set-su330
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su336@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T003000Z
+DTEND:20260703T013500Z
+SUMMARY:The Group · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su336
+URL:https://plursky.com/f/summerfest-2026/#set-su336
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su291@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T010000Z
+DTEND:20260703T015000Z
+SUMMARY:Julia Wolf · AmFam Amphitheater
+LOCATION:AmFam Amphitheater\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam Amphitheater\nhttps://plursky.com/f/su
+ mmerfest-2026/#set-su291
+URL:https://plursky.com/f/summerfest-2026/#set-su291
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su300@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T010000Z
+DTEND:20260703T020500Z
+SUMMARY:Blondshell · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su300
+URL:https://plursky.com/f/summerfest-2026/#set-su300
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su324@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T011500Z
+DTEND:20260703T022000Z
+SUMMARY:KennyHoopla · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su324
+URL:https://plursky.com/f/summerfest-2026/#set-su324
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su312@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T013000Z
+DTEND:20260703T023500Z
+SUMMARY:Anees · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su312
+URL:https://plursky.com/f/summerfest-2026/#set-su312
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su295@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T020000Z
+DTEND:20260703T033000Z
+SUMMARY:Ella Mai · BMO Pavilion
+LOCATION:BMO Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · BMO Pavilion\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su295
+URL:https://plursky.com/f/summerfest-2026/#set-su295
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su319@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T020000Z
+DTEND:20260703T033000Z
+SUMMARY:GIRLNEXTDOOR · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su319
+URL:https://plursky.com/f/summerfest-2026/#set-su319
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su292@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T021000Z
+DTEND:20260703T035000Z
+SUMMARY:Muse · AmFam Amphitheater
+LOCATION:AmFam Amphitheater\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam Amphitheater\nhttps://plursky.com/f/su
+ mmerfest-2026/#set-su292
+URL:https://plursky.com/f/summerfest-2026/#set-su292
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su307@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T023000Z
+DTEND:20260703T040000Z
+SUMMARY:Candlebox · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su307
+URL:https://plursky.com/f/summerfest-2026/#set-su307
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su331@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T023000Z
+DTEND:20260703T040000Z
+SUMMARY:Gin Blossoms · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su331
+URL:https://plursky.com/f/summerfest-2026/#set-su331
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su301@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T030000Z
+DTEND:20260703T043000Z
+SUMMARY:The Beths · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su301
+URL:https://plursky.com/f/summerfest-2026/#set-su301
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su325@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T031500Z
+DTEND:20260703T044500Z
+SUMMARY:All Time Low · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su325
+URL:https://plursky.com/f/summerfest-2026/#set-su325
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su313@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T033000Z
+DTEND:20260703T050000Z
+SUMMARY:Sean Paul · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su313
+URL:https://plursky.com/f/summerfest-2026/#set-su313
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su384@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T170000Z
+DTEND:20260703T180500Z
+SUMMARY:Suzanne Grzanna · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su384
+URL:https://plursky.com/f/summerfest-2026/#set-su384
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su389@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T170000Z
+DTEND:20260703T180500Z
+SUMMARY:DJay Mando · AmFam House
+LOCATION:AmFam House\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam House\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su389
+URL:https://plursky.com/f/summerfest-2026/#set-su389
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su352@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T173000Z
+DTEND:20260703T181500Z
+SUMMARY:Social Cig · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su352
+URL:https://plursky.com/f/summerfest-2026/#set-su352
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su358@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T173000Z
+DTEND:20260703T181500Z
+SUMMARY:Fellow Travelers · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su358
+URL:https://plursky.com/f/summerfest-2026/#set-su358
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su378@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T173000Z
+DTEND:20260703T181500Z
+SUMMARY:Bob Mittnacht & The Crowning Glories · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su378
+URL:https://plursky.com/f/summerfest-2026/#set-su378
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su365@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T174500Z
+DTEND:20260703T183500Z
+SUMMARY:wht.rrbt.obj · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su365
+URL:https://plursky.com/f/summerfest-2026/#set-su365
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su372@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T174500Z
+DTEND:20260703T183500Z
+SUMMARY:Hanna Simone · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su372
+URL:https://plursky.com/f/summerfest-2026/#set-su372
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su346@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T180000Z
+DTEND:20260703T184500Z
+SUMMARY:Sarah Fierek · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su346
+URL:https://plursky.com/f/summerfest-2026/#set-su346
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su385@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T184500Z
+DTEND:20260703T195500Z
+SUMMARY:The Kal Bergendahl Project · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su385
+URL:https://plursky.com/f/summerfest-2026/#set-su385
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su353@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T190000Z
+DTEND:20260703T195000Z
+SUMMARY:Easy Honey · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su353
+URL:https://plursky.com/f/summerfest-2026/#set-su353
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su359@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T190000Z
+DTEND:20260703T195000Z
+SUMMARY:Lost Orange Cat · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su359
+URL:https://plursky.com/f/summerfest-2026/#set-su359
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su366@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T190000Z
+DTEND:20260703T195000Z
+SUMMARY:Lunde · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su366
+URL:https://plursky.com/f/summerfest-2026/#set-su366
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su379@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T190000Z
+DTEND:20260703T195000Z
+SUMMARY:Julianna Joy · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su379
+URL:https://plursky.com/f/summerfest-2026/#set-su379
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su390@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T190000Z
+DTEND:20260703T200500Z
+SUMMARY:St. Paul And The Broken Bones · AmFam House
+LOCATION:AmFam House\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam House\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su390
+URL:https://plursky.com/f/summerfest-2026/#set-su390
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su347@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T193000Z
+DTEND:20260703T202000Z
+SUMMARY:V-Funk · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su347
+URL:https://plursky.com/f/summerfest-2026/#set-su347
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su373@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T193000Z
+DTEND:20260703T202000Z
+SUMMARY:Manny Torres · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su373
+URL:https://plursky.com/f/summerfest-2026/#set-su373
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su367@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T201500Z
+DTEND:20260703T210500Z
+SUMMARY:Ask Carol · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su367
+URL:https://plursky.com/f/summerfest-2026/#set-su367
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su354@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T203000Z
+DTEND:20260703T213500Z
+SUMMARY:YaYa Biggs · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su354
+URL:https://plursky.com/f/summerfest-2026/#set-su354
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su380@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T203000Z
+DTEND:20260703T213500Z
+SUMMARY:Radio Radio · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su380
+URL:https://plursky.com/f/summerfest-2026/#set-su380
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su386@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T203000Z
+DTEND:20260703T213500Z
+SUMMARY:The Kal Bergendahl Project · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su386
+URL:https://plursky.com/f/summerfest-2026/#set-su386
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su348@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T210000Z
+DTEND:20260703T220500Z
+SUMMARY:Stone Jam Band · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su348
+URL:https://plursky.com/f/summerfest-2026/#set-su348
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su360@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T210000Z
+DTEND:20260703T220500Z
+SUMMARY:The Big Win · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su360
+URL:https://plursky.com/f/summerfest-2026/#set-su360
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su391@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T210000Z
+DTEND:20260703T220500Z
+SUMMARY:Spoon · AmFam House
+LOCATION:AmFam House\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam House\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su391
+URL:https://plursky.com/f/summerfest-2026/#set-su391
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su374@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T211500Z
+DTEND:20260703T222000Z
+SUMMARY:Wave X Nile · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su374
+URL:https://plursky.com/f/summerfest-2026/#set-su374
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su368@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T213000Z
+DTEND:20260703T222000Z
+SUMMARY:Six Foot Blonde · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su368
+URL:https://plursky.com/f/summerfest-2026/#set-su368
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su361@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T221500Z
+DTEND:20260703T230500Z
+SUMMARY:Scout Speer · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su361
+URL:https://plursky.com/f/summerfest-2026/#set-su361
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su343@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T223000Z
+DTEND:20260703T233500Z
+SUMMARY:DJ Splackavelli · BMO Pavilion
+LOCATION:BMO Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · BMO Pavilion\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su343
+URL:https://plursky.com/f/summerfest-2026/#set-su343
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su355@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T223000Z
+DTEND:20260703T233500Z
+SUMMARY:Edgehill · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su355
+URL:https://plursky.com/f/summerfest-2026/#set-su355
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su381@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T223000Z
+DTEND:20260703T233500Z
+SUMMARY:Ken Pomeroy · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su381
+URL:https://plursky.com/f/summerfest-2026/#set-su381
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su387@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T223000Z
+DTEND:20260703T233500Z
+SUMMARY:Pierre 'Mr. Untouchable' Lee · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su387
+URL:https://plursky.com/f/summerfest-2026/#set-su387
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su369@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T224500Z
+DTEND:20260703T233500Z
+SUMMARY:The Heavy Heavy · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su369
+URL:https://plursky.com/f/summerfest-2026/#set-su369
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su349@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T230000Z
+DTEND:20260704T000500Z
+SUMMARY:DJ Kool · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su349
+URL:https://plursky.com/f/summerfest-2026/#set-su349
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su392@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T230000Z
+DTEND:20260704T000500Z
+SUMMARY:DJay Mando · AmFam House
+LOCATION:AmFam House\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam House\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su392
+URL:https://plursky.com/f/summerfest-2026/#set-su392
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su375@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T231500Z
+DTEND:20260704T002000Z
+SUMMARY:LowDown Brass Band · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su375
+URL:https://plursky.com/f/summerfest-2026/#set-su375
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su362@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T233000Z
+DTEND:20260704T003500Z
+SUMMARY:Adam Warner · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su362
+URL:https://plursky.com/f/summerfest-2026/#set-su362
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su340@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260703T235500Z
+DTEND:20260704T003500Z
+SUMMARY:Emei · AmFam Amphitheater
+LOCATION:AmFam Amphitheater\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam Amphitheater\nhttps://plursky.com/f/su
+ mmerfest-2026/#set-su340
+URL:https://plursky.com/f/summerfest-2026/#set-su340
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su370@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T000000Z
+DTEND:20260704T010500Z
+SUMMARY:Neal Francis · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su370
+URL:https://plursky.com/f/summerfest-2026/#set-su370
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su344@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T001500Z
+DTEND:20260704T012000Z
+SUMMARY:Stephen Marley · BMO Pavilion
+LOCATION:BMO Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · BMO Pavilion\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su344
+URL:https://plursky.com/f/summerfest-2026/#set-su344
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su356@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T003000Z
+DTEND:20260704T013500Z
+SUMMARY:Ax And The Hatchetmen · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su356
+URL:https://plursky.com/f/summerfest-2026/#set-su356
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su382@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T003000Z
+DTEND:20260704T013500Z
+SUMMARY:St. Paul And The Broken Bones · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su382
+URL:https://plursky.com/f/summerfest-2026/#set-su382
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su388@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T003000Z
+DTEND:20260704T013500Z
+SUMMARY:Pierre 'Mr. Untouchable' Lee · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su388
+URL:https://plursky.com/f/summerfest-2026/#set-su388
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su341@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T004500Z
+DTEND:20260704T015000Z
+SUMMARY:Noah Cyrus · AmFam Amphitheater
+LOCATION:AmFam Amphitheater\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam Amphitheater\nhttps://plursky.com/f/su
+ mmerfest-2026/#set-su341
+URL:https://plursky.com/f/summerfest-2026/#set-su341
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su350@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T010000Z
+DTEND:20260704T020500Z
+SUMMARY:DJ Jazzy Jeff · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su350
+URL:https://plursky.com/f/summerfest-2026/#set-su350
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su376@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T011500Z
+DTEND:20260704T022000Z
+SUMMARY:DJay Mando · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su376
+URL:https://plursky.com/f/summerfest-2026/#set-su376
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su363@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T013000Z
+DTEND:20260704T023500Z
+SUMMARY:Chase McDaniel · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su363
+URL:https://plursky.com/f/summerfest-2026/#set-su363
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su345@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T020000Z
+DTEND:20260704T033000Z
+SUMMARY:Buju Banton · BMO Pavilion
+LOCATION:BMO Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · BMO Pavilion\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su345
+URL:https://plursky.com/f/summerfest-2026/#set-su345
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su371@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T020000Z
+DTEND:20260704T050000Z
+SUMMARY:BG Good · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su371
+URL:https://plursky.com/f/summerfest-2026/#set-su371
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su342@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T021500Z
+DTEND:20260704T042000Z
+SUMMARY:Alex Warren · AmFam Amphitheater
+LOCATION:AmFam Amphitheater\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam Amphitheater\nhttps://plursky.com/f/su
+ mmerfest-2026/#set-su342
+URL:https://plursky.com/f/summerfest-2026/#set-su342
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su357@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T023000Z
+DTEND:20260704T040500Z
+SUMMARY:Spoon · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su357
+URL:https://plursky.com/f/summerfest-2026/#set-su357
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su383@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T023000Z
+DTEND:20260704T040000Z
+SUMMARY:Gene Simmons Band · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su383
+URL:https://plursky.com/f/summerfest-2026/#set-su383
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su351@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T030000Z
+DTEND:20260704T043000Z
+SUMMARY:Rev Run · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su351
+URL:https://plursky.com/f/summerfest-2026/#set-su351
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su377@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T031500Z
+DTEND:20260704T044500Z
+SUMMARY:Flo Rida · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su377
+URL:https://plursky.com/f/summerfest-2026/#set-su377
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su364@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T033000Z
+DTEND:20260704T050000Z
+SUMMARY:Whiskey Myers · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su364
+URL:https://plursky.com/f/summerfest-2026/#set-su364
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su439@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T170000Z
+DTEND:20260704T180500Z
+SUMMARY:Frogwater · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su439
+URL:https://plursky.com/f/summerfest-2026/#set-su439
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su444@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T170000Z
+DTEND:20260704T180500Z
+SUMMARY:DJay Mando · AmFam House
+LOCATION:AmFam House\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam House\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su444
+URL:https://plursky.com/f/summerfest-2026/#set-su444
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su413@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T171500Z
+DTEND:20260704T182000Z
+SUMMARY:"Horizon" The Popular Music Group Of Navy Band Great Lakes · Mille
+ r Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su413
+URL:https://plursky.com/f/summerfest-2026/#set-su413
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su407@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T173000Z
+DTEND:20260704T182000Z
+SUMMARY:Oh Geeez\, Not Again · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su407
+URL:https://plursky.com/f/summerfest-2026/#set-su407
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su433@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T173000Z
+DTEND:20260704T182000Z
+SUMMARY:Victor Jones · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su433
+URL:https://plursky.com/f/summerfest-2026/#set-su433
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su420@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T174500Z
+DTEND:20260704T185000Z
+SUMMARY:Rockonsin: Runner Up · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su420
+URL:https://plursky.com/f/summerfest-2026/#set-su420
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su427@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T174500Z
+DTEND:20260704T183000Z
+SUMMARY:The Last Bees · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su427
+URL:https://plursky.com/f/summerfest-2026/#set-su427
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su401@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T180000Z
+DTEND:20260704T184500Z
+SUMMARY:BERMS. · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su401
+URL:https://plursky.com/f/summerfest-2026/#set-su401
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su414@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T184500Z
+DTEND:20260704T193500Z
+SUMMARY:Flatwounds · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su414
+URL:https://plursky.com/f/summerfest-2026/#set-su414
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su440@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T184500Z
+DTEND:20260704T195000Z
+SUMMARY:Joe Wray · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su440
+URL:https://plursky.com/f/summerfest-2026/#set-su440
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su408@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T190000Z
+DTEND:20260704T194500Z
+SUMMARY:Ur Mom · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su408
+URL:https://plursky.com/f/summerfest-2026/#set-su408
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su421@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T190000Z
+DTEND:20260704T200500Z
+SUMMARY:Rockonsin: Winner · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su421
+URL:https://plursky.com/f/summerfest-2026/#set-su421
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su434@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T190000Z
+DTEND:20260704T194500Z
+SUMMARY:Porcupine · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su434
+URL:https://plursky.com/f/summerfest-2026/#set-su434
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su445@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T190000Z
+DTEND:20260704T200500Z
+SUMMARY:Soul Asylum · AmFam House
+LOCATION:AmFam House\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam House\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su445
+URL:https://plursky.com/f/summerfest-2026/#set-su445
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su402@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T193000Z
+DTEND:20260704T202000Z
+SUMMARY:Louie & The Flashbombs · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su402
+URL:https://plursky.com/f/summerfest-2026/#set-su402
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su428@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T193000Z
+DTEND:20260704T202000Z
+SUMMARY:Known Moons · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su428
+URL:https://plursky.com/f/summerfest-2026/#set-su428
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su415@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T201500Z
+DTEND:20260704T210500Z
+SUMMARY:The Maiden Voyage · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su415
+URL:https://plursky.com/f/summerfest-2026/#set-su415
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su422@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T201500Z
+DTEND:20260704T210500Z
+SUMMARY:VALE · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su422
+URL:https://plursky.com/f/summerfest-2026/#set-su422
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su409@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T203000Z
+DTEND:20260704T213500Z
+SUMMARY:Nicole Lawrence · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su409
+URL:https://plursky.com/f/summerfest-2026/#set-su409
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su435@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T203000Z
+DTEND:20260704T213500Z
+SUMMARY:Poi Dog Pondering · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su435
+URL:https://plursky.com/f/summerfest-2026/#set-su435
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su441@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T203000Z
+DTEND:20260704T213500Z
+SUMMARY:Joe Wray · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su441
+URL:https://plursky.com/f/summerfest-2026/#set-su441
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su403@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T210000Z
+DTEND:20260704T220500Z
+SUMMARY:Elephonic · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su403
+URL:https://plursky.com/f/summerfest-2026/#set-su403
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su446@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T210000Z
+DTEND:20260704T220500Z
+SUMMARY:The Temper Trap · AmFam House
+LOCATION:AmFam House\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam House\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su446
+URL:https://plursky.com/f/summerfest-2026/#set-su446
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su429@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T211500Z
+DTEND:20260704T222000Z
+SUMMARY:Carolina Liar · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su429
+URL:https://plursky.com/f/summerfest-2026/#set-su429
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su393@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T213000Z
+DTEND:20260704T215000Z
+SUMMARY:Sunny Black · AmFam Amphitheater
+LOCATION:AmFam Amphitheater\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam Amphitheater\nhttps://plursky.com/f/su
+ mmerfest-2026/#set-su393
+URL:https://plursky.com/f/summerfest-2026/#set-su393
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su423@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T213000Z
+DTEND:20260704T222000Z
+SUMMARY:Gego Y Nony · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su423
+URL:https://plursky.com/f/summerfest-2026/#set-su423
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su394@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T220000Z
+DTEND:20260704T222000Z
+SUMMARY:Ethan Burdick · AmFam Amphitheater
+LOCATION:AmFam Amphitheater\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam Amphitheater\nhttps://plursky.com/f/su
+ mmerfest-2026/#set-su394
+URL:https://plursky.com/f/summerfest-2026/#set-su394
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su416@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T220000Z
+DTEND:20260704T230500Z
+SUMMARY:SIIN · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su416
+URL:https://plursky.com/f/summerfest-2026/#set-su416
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su398@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T223000Z
+DTEND:20260704T233500Z
+SUMMARY:Palmer Anthony · BMO Pavilion
+LOCATION:BMO Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · BMO Pavilion\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su398
+URL:https://plursky.com/f/summerfest-2026/#set-su398
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su410@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T223000Z
+DTEND:20260704T233500Z
+SUMMARY:Soul Asylum · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su410
+URL:https://plursky.com/f/summerfest-2026/#set-su410
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su436@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T223000Z
+DTEND:20260704T234500Z
+SUMMARY:Jerry Harrison's '50 Years Of Talking Heads' · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su436
+URL:https://plursky.com/f/summerfest-2026/#set-su436
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su442@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T223000Z
+DTEND:20260704T233500Z
+SUMMARY:Dorsten · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su442
+URL:https://plursky.com/f/summerfest-2026/#set-su442
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su395@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T223500Z
+DTEND:20260704T232000Z
+SUMMARY:Three 6 Mafia · AmFam Amphitheater
+LOCATION:AmFam Amphitheater\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam Amphitheater\nhttps://plursky.com/f/su
+ mmerfest-2026/#set-su395
+URL:https://plursky.com/f/summerfest-2026/#set-su395
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su424@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T224500Z
+DTEND:20260704T233000Z
+SUMMARY:Tag Team · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su424
+URL:https://plursky.com/f/summerfest-2026/#set-su424
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su404@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T230000Z
+DTEND:20260705T000500Z
+SUMMARY:KT Tunstall · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su404
+URL:https://plursky.com/f/summerfest-2026/#set-su404
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su447@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T230000Z
+DTEND:20260705T000500Z
+SUMMARY:DJay Mando · AmFam House
+LOCATION:AmFam House\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam House\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su447
+URL:https://plursky.com/f/summerfest-2026/#set-su447
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su430@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T231500Z
+DTEND:20260705T002000Z
+SUMMARY:Pure Hex · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su430
+URL:https://plursky.com/f/summerfest-2026/#set-su430
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su396@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T234500Z
+DTEND:20260705T003500Z
+SUMMARY:Tyler Hubbard · AmFam Amphitheater
+LOCATION:AmFam Amphitheater\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam Amphitheater\nhttps://plursky.com/f/su
+ mmerfest-2026/#set-su396
+URL:https://plursky.com/f/summerfest-2026/#set-su396
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su417@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260704T234500Z
+DTEND:20260705T005000Z
+SUMMARY:Drown The Lifeguard · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su417
+URL:https://plursky.com/f/summerfest-2026/#set-su417
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su425@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260705T000000Z
+DTEND:20260705T010500Z
+SUMMARY:Baha Men · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su425
+URL:https://plursky.com/f/summerfest-2026/#set-su425
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su399@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260705T001500Z
+DTEND:20260705T012000Z
+SUMMARY:Preston Cooper · BMO Pavilion
+LOCATION:BMO Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · BMO Pavilion\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su399
+URL:https://plursky.com/f/summerfest-2026/#set-su399
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su411@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260705T003000Z
+DTEND:20260705T013500Z
+SUMMARY:The Jayhawks · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su411
+URL:https://plursky.com/f/summerfest-2026/#set-su411
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su437@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260705T003000Z
+DTEND:20260705T013500Z
+SUMMARY:Mindi Abair · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su437
+URL:https://plursky.com/f/summerfest-2026/#set-su437
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su443@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260705T003000Z
+DTEND:20260705T013500Z
+SUMMARY:Dorsten · Summerville
+LOCATION:Summerville\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Summerville\nhttps://plursky.com/f/summerfes
+ t-2026/#set-su443
+URL:https://plursky.com/f/summerfest-2026/#set-su443
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su397@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260705T010000Z
+DTEND:20260705T022000Z
+SUMMARY:Jelly Roll · AmFam Amphitheater
+LOCATION:AmFam Amphitheater\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · AmFam Amphitheater\nhttps://plursky.com/f/su
+ mmerfest-2026/#set-su397
+URL:https://plursky.com/f/summerfest-2026/#set-su397
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su405@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260705T010000Z
+DTEND:20260705T020500Z
+SUMMARY:John Vincent III · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su405
+URL:https://plursky.com/f/summerfest-2026/#set-su405
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su431@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260705T011500Z
+DTEND:20260705T022000Z
+SUMMARY:Joywave · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su431
+URL:https://plursky.com/f/summerfest-2026/#set-su431
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su418@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260705T013000Z
+DTEND:20260705T023500Z
+SUMMARY:Sunami · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su418
+URL:https://plursky.com/f/summerfest-2026/#set-su418
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su426@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260705T020000Z
+DTEND:20260705T033000Z
+SUMMARY:Sad Boy Saturday · Aurora Pavilion
+LOCATION:Aurora Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Aurora Pavilion\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su426
+URL:https://plursky.com/f/summerfest-2026/#set-su426
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su400@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260705T030000Z
+DTEND:20260705T043000Z
+SUMMARY:Sam Barber · BMO Pavilion
+LOCATION:BMO Pavilion\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · BMO Pavilion\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su400
+URL:https://plursky.com/f/summerfest-2026/#set-su400
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su406@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260705T030000Z
+DTEND:20260705T043000Z
+SUMMARY:Jonah Kagen · Big Backyard
+LOCATION:Big Backyard\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Big Backyard\nhttps://plursky.com/f/summerfe
+ st-2026/#set-su406
+URL:https://plursky.com/f/summerfest-2026/#set-su406
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su412@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260705T030000Z
+DTEND:20260705T043000Z
+SUMMARY:BoDeans · Generac Power Stage
+LOCATION:Generac Power Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Generac Power Stage\nhttps://plursky.com/f/s
+ ummerfest-2026/#set-su412
+URL:https://plursky.com/f/summerfest-2026/#set-su412
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su438@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260705T030000Z
+DTEND:20260705T043000Z
+SUMMARY:Straight No Chaser · Uline Warehouse
+LOCATION:Uline Warehouse\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Uline Warehouse\nhttps://plursky.com/f/summe
+ rfest-2026/#set-su438
+URL:https://plursky.com/f/summerfest-2026/#set-su438
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su432@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260705T031500Z
+DTEND:20260705T044500Z
+SUMMARY:The Temper Trap · T-Mobile Stage
+LOCATION:T-Mobile Stage\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · T-Mobile Stage\nhttps://plursky.com/f/summer
+ fest-2026/#set-su432
+URL:https://plursky.com/f/summerfest-2026/#set-su432
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:summerfest-2026-set-su419@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260705T033000Z
+DTEND:20260705T050000Z
+SUMMARY:Kerry King · Miller Lite Oasis
+LOCATION:Miller Lite Oasis\, Henry Maier Festival Park\, Milwaukee\, WI
+DESCRIPTION:Summerfest 2026 · Miller Lite Oasis\nhttps://plursky.com/f/sum
+ merfest-2026/#set-su419
+URL:https://plursky.com/f/summerfest-2026/#set-su419
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR
