@@ -14499,8 +14499,10 @@ async function _purchasePlus(productId, {
       aPackage: pkg
     }), 45000, "StoreKit purchase sheet");
     _syncEntitlements(customerInfo);
+    var bought = !!customerInfo?.entitlements?.active?.[RC_ENTITLEMENT];
+    if (bought) _maybeAskForRating("plus-purchase", 2500);
     return {
-      success: !!customerInfo?.entitlements?.active?.[RC_ENTITLEMENT]
+      success: bought
     };
   } catch (e) {
     if (e?.userCancelled === true || e?.code === "1" || e?.message?.includes("cancelled")) {
@@ -16083,20 +16085,44 @@ async function requestRating() {
     };
   }
 }
+var RATING_ASK_GAP_MS = 120 * 24 * 3600 * 1000;
+function _nativeReviewPlugin() {
+  var p = window.Capacitor?.Plugins?.InAppReview;
+  return window.Capacitor?.isNativePlatform?.() && typeof p?.requestReview === "function" ? p : null;
+}
+function _maybeAskForRating(reason, delayMs = 1500) {
+  try {
+    var plugin = _nativeReviewPlugin();
+    if (!plugin) return false;
+    var prevAt = localStorage.getItem("plursky_rating_prompted_at");
+    var prevReason = localStorage.getItem("plursky_rating_prompted_reason");
+    var last = parseInt(prevAt || "0", 10);
+    if (last && Date.now() - last < RATING_ASK_GAP_MS) return false;
+    var stamp = String(Date.now());
+    localStorage.setItem("plursky_rating_prompted_at", stamp);
+    localStorage.setItem("plursky_rating_prompted_reason", String(reason));
+    var giveBack = () => {
+      try {
+        if (localStorage.getItem("plursky_rating_prompted_at") !== stamp) return;
+        if (prevAt === null) localStorage.removeItem("plursky_rating_prompted_at");else localStorage.setItem("plursky_rating_prompted_at", prevAt);
+        if (prevReason === null) localStorage.removeItem("plursky_rating_prompted_reason");else localStorage.setItem("plursky_rating_prompted_reason", prevReason);
+      } catch {}
+    };
+    setTimeout(() => {
+      Promise.resolve().then(() => plugin.requestReview()).catch(giveBack);
+    }, delayMs);
+    return true;
+  } catch {
+    return false;
+  }
+}
 function _maybeAutoRatingPromptOnRecap() {
   try {
     var key = "plursky_recap_visits_v1";
     var visits = parseInt(localStorage.getItem(key) || "0", 10) + 1;
     localStorage.setItem(key, String(visits));
-    var lastPromptedAt = parseInt(localStorage.getItem("plursky_rating_prompted_at") || "0", 10);
-    var oneYearMs = 365 * 24 * 3600 * 1000;
     if (visits < 2) return;
-    if (lastPromptedAt && Date.now() - lastPromptedAt < oneYearMs) return;
-    if (!window.Capacitor?.isNativePlatform?.()) return;
-    localStorage.setItem("plursky_rating_prompted_at", String(Date.now()));
-    setTimeout(() => {
-      requestRating().catch(() => {});
-    }, 1500);
+    _maybeAskForRating("recap", 1500);
   } catch {}
 }
 function FestivalYearCard({
