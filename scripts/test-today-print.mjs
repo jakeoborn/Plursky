@@ -36,7 +36,7 @@ import { serverReady } from './lib/server-ready.mjs';
 import { wireVendor } from './lib/vendor-cdn.mjs';
 import { fontEvidence, faceEvidence, heroEvidence, ledgerActs, HERO_FONT_SAMPLES } from './lib/today-print-evidence.mjs';
 import { existsSync } from 'node:fs';
-import { runOnce } from './lib/retry-once.mjs';
+import { runOnce, ownedContext } from './lib/retry-once.mjs';
 
 const ONLY = process.argv.slice(2);
 const problems = []; let checks = 0;
@@ -72,7 +72,9 @@ try {
   browser = await chromium.launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
 
   const open = async ({ fid, at, saved, extra, width, pick, motion = 'reduce', query = 'tab=home', ready = '[data-night-print]' }) => {
-    const ctx = await browser.newContext({ viewport: { width, height: 852 }, serviceWorkers: 'block', reducedMotion: motion, colorScheme: pick });
+    // open() owns the context until it returns: a throw inside (a goto or ready-wait timeout)
+    // closes it, so a hero retry never leaves the first one running (lane III, #631).
+    return ownedContext(() => browser.newContext({ viewport: { width, height: 852 }, serviceWorkers: 'block', reducedMotion: motion, colorScheme: pick }), async ctx => {
     // Nothing leaves the box: the app's CDN scripts come from scripts/vendor/ and every other
     // outside call is refused, so the print is measured on fixture data alone.
     await ctx.route(u => !u.toString().startsWith(`http://127.0.0.1:${PORT}/`), r => r.abort());
@@ -100,6 +102,7 @@ try {
     await page.waitForSelector(ready, { timeout: 60000 });
     await page.clock.runFor(1500); await page.waitForTimeout(400);
     return { ctx, page, errors };
+    });
   };
 
   // A drawer (the first-timer guide, the alerts drawer): measured by its dialog name.

@@ -50,6 +50,23 @@ async function suite(mod, tag = '') {
   r = await run([]);
   check(r.ok && r.attempts === 1 && r.resets === 0 && r.retries === 0, `${tag}a clean pass: one attempt, no reset (got attempts=${r.attempts} resets=${r.resets})`);
   check(isTimeout(timeout()) && isTimeout(gotoTimeout()) && !isTimeout(other()) && !isTimeout(null), `${tag}isTimeout tells a timeout from anything else`);
+  // Only Playwright's own timeouts: wording that merely mentions one is another failure.
+  check(!isTimeout(new Error('fetch: Timeout 5000ms exceeded.')) && !isTimeout(new Error('waiting failed: Timeout 30000ms exceeded.'))
+    && !isTimeout(new Error('a Timeout 30000ms exceeded. somewhere')) && isTimeout(new Error('locator.click: Timeout 5000ms exceeded.')),
+    `${tag}isTimeout accepts only a named TimeoutError or Playwright's "<api>.<call>: Timeout Nms exceeded." shape`);
+  // Lane III's repro: open() creates a context, then page.goto times out before it returns.
+  // The context must be closed before the retry boots a fresh one: 2 created, 2 closed.
+  const { ownedContext } = mod;
+  const browser = { made: 0, closed: 0, newContext: async () => { browser.made++; let shut = false; return { close: async () => { if (!shut) { shut = true; browser.closed++; } } }; } };
+  let booted = null, attempt = 0;
+  const open = () => ownedContext(() => browser.newContext(), async ctx => { if (attempt++ === 0) throw gotoTimeout(); return { ctx }; });
+  r = await runOnce(async () => { if (!booted) booted = await open(); },
+    { onReset: async () => { await booted?.ctx.close().catch(() => {}); booted = null; } });
+  await booted?.ctx.close();
+  check(r.ok && browser.made === 2 && browser.closed === 2, `${tag}a timeout inside open() closes its context before the retry (got ok=${r.ok} made=${browser.made} closed=${browser.closed})`);
+  const kept = { made: 0, closed: 0 };
+  const ok2 = await ownedContext(async () => { kept.made++; return { close: async () => { kept.closed++; } }; }, async ctx => ctx);
+  check(kept.made === 1 && kept.closed === 0 && ok2, `${tag}a setup that returns hands the context over open (got closed=${kept.closed})`);
   return failed - before;
 }
 
@@ -58,11 +75,12 @@ await suite(real);
 
 // Static pins on the gate that uses it.
 const gate = readFileSync(join(ROOT, 'scripts/test-today-print.mjs'), 'utf8');
-check(/import \{ runOnce \} from '\.\/lib\/retry-once\.mjs'/.test(gate), 'test-today-print imports runOnce');
+check(/import \{ runOnce, ownedContext \} from '\.\/lib\/retry-once\.mjs'/.test(gate), 'test-today-print imports runOnce and ownedContext');
 check(/const res = await runOnce\(async \(\) => \{\n(?:[^\n]*TP_HERO_FAULT[^\n]*\n)?\s+if \(!booted\)/.test(gate), 'the hero render runs inside runOnce');
 check(!readFileSync(join(ROOT, 'scripts/verify.mjs'), 'utf8').includes('TP_HERO_FAULT') && /process\.env\.TP_HERO_FAULT \|\| ''/.test(gate), 'the TP_HERO_FAULT seam is off unless set by hand (verify never sets it)');
 check(/if \(!res\.ok\) check\(false, `\$\{tag\} threw/.test(gate), 'a hero that still fails is a failed check');
 check(gate.includes('heroRuns === acts.length * 4 && heroesSeen === heroRuns'), 'the floor still requires every hero measured');
+check(/const open = async \([^\n]*\n(?:\s*\/\/[^\n]*\n)*\s*return ownedContext\(\(\) => browser\.newContext\(/.test(gate), 'open() creates its context through ownedContext, so a throw inside closes it');
 check(!/runOnce\([^)]*\{\s*retries:/.test(gate) && (gate.match(/runOnce\(/g) || []).length === 1, 'runOnce is used once, for heroes only');
 
 // Mutants of the helper: each must fail the suite.
@@ -72,6 +90,8 @@ const MUTANTS = [
   ['retry any throw', 'if (attempt === 0 && isTimeout(err))', 'if (attempt === 0)'],
   ['swallow the last error', "return { ok: false, err, attempts: attempt + 1 };", "return { ok: true, attempts: attempt + 1 };"],
   ['no reset before retry', '      await onReset(err);\n', ''],
+  ['open() leaks its context', '    await ctx.close().catch(() => {});\n    throw err;', '    throw err;'],
+  ['any timeout wording retries', "return PLAYWRIGHT_TIMEOUT.test(String(err.message || ''));", "return /\\bTimeout \\d+ms exceeded\\b/.test(String(err.message || ''));"],
 ];
 const dir = mkdtempSync(join(tmpdir(), 'retry-once-'));
 let caught = 0;

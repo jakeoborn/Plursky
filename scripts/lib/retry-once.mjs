@@ -11,10 +11,27 @@
 //   onReset  async; runs after every failed attempt (e.g. close the page).
 //   onRetry  called with the first timeout before the second attempt.
 
+// A Playwright timeout: an error named TimeoutError, or Playwright's own message
+// shape ("page.goto: Timeout 30000ms exceeded."). Nothing looser: a message that
+// merely mentions a timeout is another failure and is not retried.
+const PLAYWRIGHT_TIMEOUT = /^(?:page|frame|locator|browserContext|elementHandle)\.\w+: Timeout \d+ms exceeded\./;
 export function isTimeout(err) {
   if (!err) return false;
   if (err.name === 'TimeoutError') return true;
-  return /\bTimeout \d+ms exceeded\b/.test(String(err.message || err));
+  return PLAYWRIGHT_TIMEOUT.test(String(err.message || ''));
+}
+
+// A context that belongs to whoever is setting it up until setup returns: if
+// setup throws (say page.goto times out), the context is closed before the
+// error leaves, so a retry never leaves the first context running.
+export async function ownedContext(newContext, setup) {
+  const ctx = await newContext();
+  try {
+    return await setup(ctx);
+  } catch (err) {
+    await ctx.close().catch(() => {});
+    throw err;
+  }
 }
 
 export async function runOnce(fn, { onRetry = () => {}, onReset = async () => {} } = {}) {
