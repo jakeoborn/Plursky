@@ -3548,6 +3548,21 @@ for (const [label, file] of [
   }
 }
 
+// ── 1z-tp0. Today print hero retry (f4): a timed-out hero render gets one
+// retry on a fresh boot; a second timeout or any other throw fails, and every
+// hero must still be measured. Pure, no browser: runs before the gate it guards.
+{
+  console.log("▸ Today print retry — one retry for a timed-out hero, never a loosening");
+  try {
+    const out = execFileSync(process.execPath, ["scripts/test-retry-once.mjs"],
+      { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] });
+    process.stdout.write(out);
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`today print retry failed${detail ? ` — ${detail}` : ""}`);
+  }
+}
+
 // ── 1z-tp. Today print: the ticket / journey Today and the artist hero under
 // the approved Sora + chalk/charcoal direction (2026-10-12). Every lifecycle
 // state at 390 and 320 in both modes: chalk/charcoal sheet, the verified accent

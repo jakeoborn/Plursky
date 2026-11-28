@@ -36,6 +36,7 @@ import { serverReady } from './lib/server-ready.mjs';
 import { wireVendor } from './lib/vendor-cdn.mjs';
 import { fontEvidence, faceEvidence, heroEvidence, ledgerActs, HERO_FONT_SAMPLES } from './lib/today-print-evidence.mjs';
 import { existsSync } from 'node:fs';
+import { runOnce, ownedContext } from './lib/retry-once.mjs';
 
 const ONLY = process.argv.slice(2);
 const problems = []; let checks = 0;
@@ -71,7 +72,9 @@ try {
   browser = await chromium.launch({ headless: true, ...(executablePath ? { executablePath } : {}) });
 
   const open = async ({ fid, at, saved, extra, width, pick, motion = 'reduce', query = 'tab=home', ready = '[data-night-print]' }) => {
-    const ctx = await browser.newContext({ viewport: { width, height: 852 }, serviceWorkers: 'block', reducedMotion: motion, colorScheme: pick });
+    // open() owns the context until it returns: a throw inside (a goto or ready-wait timeout)
+    // closes it, so a hero retry never leaves the first one running (lane III, #631).
+    return ownedContext(() => browser.newContext({ viewport: { width, height: 852 }, serviceWorkers: 'block', reducedMotion: motion, colorScheme: pick }), async ctx => {
     // Nothing leaves the box: the app's CDN scripts come from scripts/vendor/ and every other
     // outside call is refused, so the print is measured on fixture data alone.
     await ctx.route(u => !u.toString().startsWith(`http://127.0.0.1:${PORT}/`), r => r.abort());
@@ -99,6 +102,7 @@ try {
     await page.waitForSelector(ready, { timeout: 60000 });
     await page.clock.runFor(1500); await page.waitForTimeout(400);
     return { ctx, page, errors };
+    });
   };
 
   // A drawer (the first-timer guide, the alerts drawer): measured by its dialog name.
@@ -459,12 +463,20 @@ try {
       groups.get(k).push({ a, pick, width });
     }
     let heroRuns = 0, boots = 0;
+    const heroRetries = [];
+    // Test seam (manual proof of f4 only, unset in verify/CI): TP_HERO_FAULT="1,2" makes the
+    // 1st hero time out once and the 2nd twice, so one run shows a recovered retry and a failure.
+    const heroFaults = String(process.env.TP_HERO_FAULT || '').split(',').filter(Boolean).map(Number);
     for (const runs of groups.values()) {
       let booted = null;
       for (const { a, pick, width } of runs) {
       heroRuns++;
       const tag = `hero ${a.name}${a.parts > 1 ? ` (${a.billing})` : ''} (${a.fid}) ${pick} ${width}`;
-      try {
+      // One retry for a timed-out render (f4): load can miss a 30 s wait. The retry boots
+      // fresh; a second timeout or any other throw fails, and the floor below still wants every hero.
+      const faultIdx = heroRuns - 1;
+      const res = await runOnce(async () => {
+        if (heroFaults[faultIdx] > 0) { heroFaults[faultIdx]--; throw Object.assign(new Error(`page.waitForSelector: Timeout 30000ms exceeded. (TP_HERO_FAULT)`), { name: 'TimeoutError' }); }
         if (!booted) {
           booted = await open({ fid: a.fid, at: '2026-05-01T18:00:00Z', saved: [], extra: {}, width, pick, query: `tab=lineup&artist=${encodeURIComponent(a.id)}`, ready: '[data-artist-hero]' });
           boots++;
@@ -526,17 +538,18 @@ try {
         }
         o.errors.push(...booted.errors.splice(0));
         check(!o.errors.length, `${tag}: page errors: ${o.errors.join(' | ').slice(0, 200)}`);
-      } catch (err) {
-        check(false, `${tag} threw: ${String(err.message || err).split('\n')[0]}`);
-        // A hero that threw may leave the page anywhere: the next hero boots fresh.
-        await booted?.ctx.close().catch(() => {}); booted = null;
-      }
+      }, {
+        // A hero that threw may leave the page anywhere: the next attempt or hero boots fresh.
+        onReset: async () => { await booted?.ctx.close().catch(() => {}); booted = null; },
+        onRetry: (err) => { heroRetries.push(tag); console.log(`  ↻ ${tag}: ${String(err.message || err).split('\n')[0]}; retrying once on a fresh boot`); },
+      });
+      if (!res.ok) check(false, `${tag} threw: ${String(res.err.message || res.err).split('\n')[0]}${res.attempts > 1 ? ' (after one retry)' : ''}`);
       }
       await booted?.ctx.close();
     }
     // The floor: every hero ran, each in both modes at both widths, with one boot per group.
     check(heroRuns === acts.length * 4 && heroesSeen === heroRuns && boots >= groups.size, `heroes: ${heroesSeen} measured of ${heroRuns} runs (want ${acts.length * 4}, all of them), ${boots} boot(s) for ${groups.size} group(s)`);
-    console.log(`  heroes: ${heroRuns} runs in ${groups.size} group(s), ${boots} boot(s)`);
+    console.log(`  heroes: ${heroRuns} runs in ${groups.size} group(s), ${boots} boot(s), ${heroRetries.length} timeout retr${heroRetries.length === 1 ? 'y' : 'ies'}${heroRetries.length ? ` (${heroRetries.join('; ')})` : ''}`);
     await cmp.close();
   }
 
