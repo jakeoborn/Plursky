@@ -57,6 +57,10 @@ import { parseCreamfieldsLineup, creamfieldsLineupRows, printedDate } from "./hi
 import { RESPELLED as CREAMFIELDS_RESPELLED } from "./historical/extract-creamfields-lineup.mjs";
 import { parseUltraEuropeArtists, countdownDate as ueCountdownDate } from "./historical/ultra-europe-artists.mjs";
 import { ultraEuropeRows, ULTRA_EUROPE_EDITIONS } from "./historical/extract-ultra-europe.mjs";
+import { parseUntoldArtists, untoldRows, zoneDate as untoldDate } from "./historical/untold-artists.mjs";
+import { UNTOLD_EDITIONS } from "./historical/extract-untold.mjs";
+import { parseBottleRockArtists, bottlerockRows, printedRuns as brPrintedRuns } from "./historical/bottlerock-artists.mjs";
+import { editionMismatch as brMismatch, sheetRows as brSheetRows, BOTTLEROCK_EDITIONS } from "./historical/extract-bottlerock.mjs";
 import { parseDefqonGrid, dayHeading as dgDayHeading } from "./historical/defqon-grid-lineup.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -197,6 +201,16 @@ if (base && edc) {
     mustFail("a Lollapalooza Brasil day moved off its date", m => { m.days[0].date = "2019-04-04"; }, lb19);
     mustFail("a Lollapalooza Brasil act dropped", m => { m.artists.pop(); }, lb19, undefined, /artists, locked/);
   }
+  // Lollapalooza Chile and Argentina: the same, on their own sites.
+  for (const [id, other] of [["lollapalooza-chile-2016", "www.lollapaloozaar.com"], ["lollapalooza-argentina-2015", "www.lollapaloozacl.com"]]) {
+    const e = editions[id];
+    if (!e) continue;
+    const cap = m => m.provenance.captures[0], y = String(e.year);
+    mustFail(`a ${e.name} lineup captured the year before`, m => { const c = cap(m); c.archivedUrl = c.archivedUrl.replace(`/web/${y}`, `/web/${y - 1}`); c.captureTimestamp = c.captureTimestamp.replace(new RegExp(`^${y}`), String(y - 1)); }, e, () => {}, new RegExp(`is not from ${y}`));
+    mustFail(`a ${e.name} lineup read off the other country's site`, m => { const c = cap(m); c.archivedUrl = c.archivedUrl.replace(/www\.lollapalooza(cl|ar)\.com/, other); }, e, () => {}, new RegExp(`not an official ${e.festivalId} property`));
+    mustFail(`a ${e.name} day moved off its date`, m => { m.days[1].date = `${y}-04-30`; }, e);
+    mustFail(`a ${e.name} act dropped`, m => { m.artists.pop(); }, e, undefined, /artists, locked/);
+  }
   // Awakenings 2012: its lineup is the festival's own party page on
   // awakenings.nl, captured the day after; its one day is the date it printed.
   const aw12 = editions["awakenings-2012"];
@@ -214,6 +228,26 @@ if (base && edc) {
     const ueCap = m => m.provenance.captures[0];
     mustFail("an Ultra Europe 2013 lineup read off Ultra Miami's site", m => { const c = ueCap(m); c.archivedUrl = c.archivedUrl.replace("//ultraeurope.com", "//ultramusicfestival.com"); }, ue13, () => {}, /not an official ultra-europe property/);
     mustFail("an Ultra Europe 2013 lineup captured the next summer", m => { const c = ueCap(m); c.archivedUrl = c.archivedUrl.replace("/web/2013", "/web/2014"); c.captureTimestamp = c.captureTimestamp.replace(/^2013/, "2014"); }, ue13, () => {}, /is not from 2013/);
+  }
+  // UNTOLD 2024: its own /artists page, captured in 2024 on the festival's
+  // own domain; no other site or year may pass, and no day may move.
+  const ut24 = editions["untold-2024"];
+  if (ut24) {
+    const utCap = m => m.provenance.captures[0];
+    mustFail("an UNTOLD 2024 lineup read off another site", m => { const c = utCap(m); c.archivedUrl = c.archivedUrl.replace("//untold.com", "//untold-fans.com"); }, ut24, () => {}, /not an official untold property/);
+    mustFail("an UNTOLD 2024 lineup captured the next summer", m => { const c = utCap(m); c.archivedUrl = c.archivedUrl.replace("/web/2024", "/web/2025"); c.captureTimestamp = c.captureTimestamp.replace(/^2024/, "2025"); }, ut24, () => {}, /is not from 2024/);
+    mustFail("an UNTOLD 2024 day moved off its date", m => { m.days[0].date = "2024-08-07"; }, ut24);
+    mustFail("an UNTOLD 2024 act dropped", m => { m.artists.pop(); }, ut24, undefined, /artists, locked/);
+  }
+  // BottleRock 2017: its own 2017 Artists page, captured in 2017 on the
+  // festival's own domain; no other site, year or date may pass.
+  const br17 = editions["bottlerock-2017"];
+  if (br17) {
+    const brCap = m => m.provenance.captures[0];
+    mustFail("a BottleRock 2017 lineup read off another site", m => { const c = brCap(m); c.archivedUrl = c.archivedUrl.replace("www.bottlerocknapavalley.com", "www.bottlerock-fans.com"); }, br17, () => {}, /not an official bottlerock property/);
+    mustFail("a BottleRock 2017 lineup captured the next year", m => { const c = brCap(m); c.archivedUrl = c.archivedUrl.replace("/web/2017", "/web/2018"); c.captureTimestamp = c.captureTimestamp.replace(/^2017/, "2018"); }, br17, () => {}, /is not from 2017/);
+    mustFail("a BottleRock 2017 day moved to another date", m => { m.days[0].date = "2017-05-19"; }, br17);
+    mustFail("a BottleRock 2017 day with no billed artist", m => { for (const a of m.artists) a.appearances = a.appearances.filter(x => x.day !== 3); }, br17);
   }
   // Tomorrowland 2010-2012: each day page prints its day as its own tab, with
   // no year, on the festival's own .be site.
@@ -1206,6 +1240,44 @@ if (base && edc) {
     lbMust("a Lollapalooza Brasil card dated off the run", lbCards, lbCardsPage({ cards: [lbCard("Pearl Jam", ["26/3/2018"]), lbCard("A", ["23/3/2018"]), lbCard("B", ["25/3/2018"])] }), 2018);
     lbMust("a Lollapalooza Brasil run with a day no card plays", lbCards, lbCardsPage({ cards: [lbCard("A", ["23/3/2018"])] }), 2018);
     lbMust("an empty Lollapalooza Brasil cards page", lbCards, `<title>LINEUP – Lollapalooza Brasil</title><meta name="description" content="O Lollapalooza Brasil 2018 será dias 23, 24 e 25 de março!">`, 2018);
+    // Lollapalooza Chile's and Argentina's day-by-day pages share Brasil's
+    // template, in Spanish: a header that may print no year (the title then
+    // does), "Sábado 29" headings that print only the day of the month, a
+    // Kidzapalooza list under a Chile day, and a subtitle that continues the
+    // billing.
+    const latDay = (h, acts, tag = "h2") => `<${tag} style="text-align: center;">${h}</${tag}><div class="lineup"><ol class="lineup-list">${acts.map(lbLi).join("")}</ol></div>`;
+    const chPage = ({ title = "LineUp Diario | Lollapalooza Chile | Santiago – 29 y 30 de Marzo 2014", dates = "29 y 30 de Marzo - Parque O'Higgins", days = [latDay("Sábado 29", ["Red Hot Chili Peppers", "Phoenix"]), latDay("Kidzapalooza", ["Cachureos"], "h3"), latDay("Domingo 30", ["Arcade Fire"])] } = {}) =>
+      `<title>${title}</title><p class="site-dates">${dates}</p><h1 class="title">LineUp Diario</h1><div class="content">${days.join("<hr>")}</div>`;
+    const chl = lbPorDia(chPage(), { year: 2014, site: "chile" });
+    ok(JSON.stringify(chl.days.map(d => [d.date, d.acts.map(a => a.stage ? `${a.artist}@${a.stage}` : a.artist)])) === JSON.stringify([["2014-03-29", ["Red Hot Chili Peppers", "Phoenix", "Cachureos@Kidzapalooza"]], ["2014-03-30", ["Arcade Fire"]]])
+      && JSON.stringify(chl.stageOrder) === JSON.stringify(["Kidzapalooza"]), `a Lollapalooza Chile day list must come back as its dated days, its Kidzapalooza list on that day: ${JSON.stringify(chl.days)}`);
+    const arPage = ({ title = "Por día | Lollapalooza Argentina 2015", dates = "21 y 22 de Marzo. Hipódromo de San Isidro. Buenos Aires.", sub = "and the Sensational Space Shifters", days } = {}) =>
+      `<title>${title}</title><p class="site-dates">${dates}</p><div class="content">${(days || [latDay("Sábado 21", ["Jack White", "Robert Plant"], "h3"), latDay("Domingo 22", ["Pharrell Williams"], "h3")]).join("")}</div>`
+        .replace(/Robert Plant <span class="artist__subtitle"><\/span>/, `Robert Plant <span class="artist__subtitle">${sub}</span>`);
+    const ar = lbPorDia(arPage(), { year: 2015, site: "argentina" });
+    ok(JSON.stringify(ar.days.map(d => [d.date, d.acts.map(a => a.artist)])) === JSON.stringify([["2015-03-21", ["Jack White", "Robert Plant and the Sensational Space Shifters"]], ["2015-03-22", ["Pharrell Williams"]]]),
+      `a Lollapalooza Argentina day list must come back dated, a continuing subtitle joined to its billing: ${JSON.stringify(ar.days)}`);
+    ok(JSON.stringify(lbRun("14 & 15 de marzo 2015 - Parque O'Higgins", 2015, "es")) === JSON.stringify(["2015-03-14", "2015-03-15"]) && JSON.stringify(lbRun("19 y 20 de Marzo, 2016 · Parque", 2016, "es")) === JSON.stringify(["2016-03-19", "2016-03-20"])
+      && lbRun("18 y 19 de marzo de 2016", 2015, "es") === null && lbHeading("Sabado 19", 2016, { lang: "es", run: ["2016-03-18", "2016-03-19"] }) === "2016-03-19"
+      && lbHeading("Domingo 19", 2016, { lang: "es", run: ["2016-03-18", "2016-03-19"] }) === null && lbHeading("Sábado 19", 2016, { lang: "es" }) === null,
+      "Lollapalooza Chile and Argentina printed dates must be real, in the year, with their own weekdays");
+    const latMust = (what, html, year, site, o = {}) => { let bad = false; try { lbPorDia(html, { year, site, ...o }); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    latMust("a Lollapalooza Chile 2014 page read as another year's", chPage(), 2015, "chile");
+    latMust("a Lollapalooza Chile page whose title prints another year's run", chPage({ title: "LineUp Diario | Lollapalooza Chile | Santiago – 29 y 30 de Marzo 2013" }), 2014, "chile");
+    latMust("a Lollapalooza Chile page printing no year at all", chPage({ title: "LineUp Diario | Lollapalooza Chile" }), 2014, "chile");
+    latMust("a Lollapalooza Chile day heading on another date", chPage({ days: [latDay("Sábado 29", ["A"]), latDay("Domingo 31", ["B"])] }), 2014, "chile");
+    latMust("a Lollapalooza Chile day heading with the wrong weekday", chPage({ days: [latDay("Domingo 29", ["A"]), latDay("Domingo 30", ["B"])] }), 2014, "chile");
+    latMust("a Lollapalooza Chile page missing a day", chPage({ days: [latDay("Sábado 29", ["A"])] }), 2014, "chile");
+    latMust("an empty Lollapalooza Chile page", chPage({ days: [] }), 2014, "chile");
+    latMust("a Lollapalooza Chile Kidzapalooza list before any day", chPage({ days: [latDay("Kidzapalooza", ["K"], "h3"), latDay("Sábado 29", ["A"]), latDay("Domingo 30", ["B"])] }), 2014, "chile");
+    latMust("a Lollapalooza Chile list under a heading that is neither a day nor a stage", chPage({ days: [latDay("Sábado 29", ["A"]), latDay("Invitados", ["X"], "h3"), latDay("Domingo 30", ["B"])] }), 2014, "chile");
+    latMust("a Kidzapalooza list on Argentina's page, which names no such stage", arPage({ days: [latDay("Sábado 21", ["A"], "h3"), latDay("Kidzapalooza", ["K"]), latDay("Domingo 22", ["B"], "h3")] }), 2015, "argentina");
+    latMust("a Lollapalooza Argentina 2015 page read as another year's", arPage(), 2016, "argentina");
+    latMust("Lollapalooza Argentina's page read as Chile's", arPage(), 2015, "chile");
+    latMust("a Lollapalooza Argentina subtitle that is not part of the billing", arPage({ sub: "Jean Paul Olhaberry & Boris Krivoss" }), 2015, "argentina");
+    latMust("a credit named for an act the page does not print", arPage(), 2015, "argentina", { credits: { "MAGIA REAL": "Jean Paul Olhaberry & Boris Krivoss" } });
+    const arCredit = lbPorDia(arPage({ sub: "Jean Paul Olhaberry &amp; Boris Krivoss" }), { year: 2015, site: "argentina", credits: { "Robert Plant": "Jean Paul Olhaberry & Boris Krivoss" } });
+    ok(arCredit.days[0].acts[1].artist === "Robert Plant" && arCredit.credits.length === 1, `a subtitle named as a credit must be set apart, not joined: ${JSON.stringify(arCredit.credits)}`);
     // Awakenings' old party page: a header with the one date, area tabs, one
     // panel per tab with each set's range and name.
     const awAct = (range, name) => `<li><a href="http://www.awakenings.nl/en/artists/1/x/"><img src="x.jpg" alt="${name}"></a><p>${range}<br><span class="name"><a href="http://www.awakenings.nl/en/artists/1/x/" class="flyercolor">${name}</a></span></p></li>`;
@@ -1399,6 +1471,38 @@ if (base && edc) {
     ok(ultraEuropeRows(parseUltraEuropeArtists(uePage({ acts: [["x", "X", "Day 3 - 06:00PM - Main Stage"]], grid: [["x", "X"]] }), { year: 2013 }), "ultra-europe-2013") === null,
       "an Ultra Europe appearance on Day 3 anywhere but Ultra Beach proves nothing");
     ok(ULTRA_EUROPE_EDITIONS["ultra-europe-2013"].offDays[3].stage === "Ultra Beach Main Stage", "Ultra Europe 2013's only off day is Ultra Beach's");
+    // UNTOLD's Artists page (2024-2025): Next.js embeds every performance
+    // with its festival day's date (16:00 in Cluj-Napoca), a numbered day
+    // label and its stage; the dates must be the edition's run, Day 1 first.
+    const utAt = date => Date.parse(date + "T13:00:00Z");
+    const utEntry = (name, day, date, stage, extra = {}) => ({ name, dateLabel: day, performanceDate: utAt(date), performanceStage: { name: stage, ordinal: 0, subheading: "x" }, ...extra });
+    const UT24 = ["2024-08-08", "2024-08-09", "2024-08-10", "2024-08-11"];
+    const utEntries = [utEntry("MARTIN GARRIX", "Ziua 1", UT24[0], "Main", { performanceStartTimestamp: utAt(UT24[0]), performanceEndTimestamp: utAt(UT24[0]) }), utEntry("AKOS", "Ziua 1", UT24[0], "Galaxy"),
+      utEntry("AKOS", "Ziua 3", UT24[2], "Daydreaming"), utEntry("SHURUBEL ", "Ziua 2", UT24[1], "Retro"), utEntry("FISHER", "Ziua 4", UT24[3], "Main"), utEntry("FISHER", "Ziua 4", UT24[3], "Main"),
+      utEntry("B.MIKE", "Ziua 4", UT24[3], "Tram"), utEntry("B MIKE", "Ziua 2", UT24[1], "FORM")];
+    const utPage = ({ title = "Artists - Untold Festival", entries = utEntries, total, pages = 1, data = true } = {}) =>
+      `<title>${title}</title>` + (data ? `<script id="__NEXT_DATA__" type="application/json">${JSON.stringify({ props: { pageProps: { data: { content: entries, totalElements: total ?? entries.length, totalPages: pages } } } })}</script>` : "");
+    const utp = parseUntoldArtists(utPage(), { year: 2024 }), utr = untoldRows(utp, UT24);
+    ok(JSON.stringify([utp.printedDates, utp.labels, utp.timed, utr.rows.map(r => `${r.artist}|${r.day}|${r.stage}`), utr.printedTwice.length, utr.trimmed, utr.sameActs])
+      === JSON.stringify([UT24, ["Ziua 1", "Ziua 2", "Ziua 3", "Ziua 4"], 1, ["MARTIN GARRIX|1|Main", "AKOS|1|Galaxy", "AKOS|3|Daydreaming", "SHURUBEL|2|Retro", "FISHER|4|Main", "B.MIKE|4|Tram", "B.MIKE|2|FORM"], 1, [{ printed: "SHURUBEL ", billedAs: "SHURUBEL" }], [{ printed: "B MIKE", billedAs: "B.MIKE" }]]),
+      `an UNTOLD Artists page must come back as one row per act, day and stage: ${JSON.stringify(utr)}`);
+    ok(untoldDate(utAt("2024-08-08")) === "2024-08-08" && untoldDate(Date.parse("2024-08-08T21:30:00Z")) === "2024-08-09", "UNTOLD's dates are read in Cluj-Napoca time");
+    ok(untoldRows(utp, ["2024-08-09", "2024-08-10", "2024-08-11", "2024-08-12"]) === null, "an UNTOLD page printing another run proves nothing");
+    ok(untoldRows(parseUntoldArtists(utPage({ entries: utEntries.slice(0, 4) }), { year: 2024 }), UT24) === null, "an UNTOLD page missing a day of the run proves nothing");
+    ok(untoldRows(parseUntoldArtists(utPage({ entries: [...utEntries, utEntry("X", "Day 5", "2024-08-12", "Main")] }), { year: 2024 }), UT24) === null, "an UNTOLD page with a day past the run proves nothing");
+    ok(Object.keys(EDITIONS).filter(k => k.startsWith("untold-")).every(k => UNTOLD_EDITIONS.includes(k)), "every UNTOLD edition is one the extractor reads");
+    const utMust = (what, html, year = 2024) => { let bad = false; try { parseUntoldArtists(html, { year }); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    utMust("an UNTOLD 2024 page read as another year's", utPage(), 2025);
+    utMust("an UNTOLD page with another title", utPage({ title: "Stages - Untold Festival" }));
+    utMust("an UNTOLD page with no embedded data", utPage({ data: false }));
+    utMust("an UNTOLD page that lists nobody", utPage({ entries: [] }));
+    utMust("an UNTOLD page that is one page of several", utPage({ pages: 2, total: 400 }));
+    utMust("an UNTOLD entry with no name", utPage({ entries: [utEntry("  ", "Ziua 1", UT24[0], "Main")] }));
+    utMust("an UNTOLD entry with no stage", utPage({ entries: [utEntry("FISHER", "Ziua 1", UT24[0], "")] }));
+    utMust("an UNTOLD entry with no date", utPage({ entries: [{ ...utEntry("FISHER", "Ziua 1", UT24[0], "Main"), performanceDate: null }] }));
+    utMust("an UNTOLD entry with a day label it cannot read", utPage({ entries: [utEntry("FISHER", "Thursday", UT24[0], "Main")] }));
+    utMust("an UNTOLD day label dated twice", utPage({ entries: [utEntry("FISHER", "Ziua 1", UT24[0], "Main"), utEntry("AKOS", "Ziua 1", UT24[1], "Main")] }));
+    utMust("an UNTOLD entry dated the year before", utPage({ entries: [utEntry("FISHER", "Ziua 1", "2023-08-03", "Main")] }));
     const ueMust = (what, html, year = 2013) => { let bad = false; try { parseUltraEuropeArtists(html, { year }); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
     ueMust("an Ultra Europe 2013 page read as another year's", uePage(), 2014);
     ueMust("an Ultra Europe page whose countdown names another year", uePage({ timer: '<script>timer: "2012:7:12:16:0:0"</script>' }));
@@ -1412,6 +1516,60 @@ if (base && edc) {
     ueMust("an Ultra Europe appearance on Day 0", uePage({ grid: [["x", "X"]], acts: [["x", "X", "Day 0 - 05:00PM - Main Stage"]] }));
     ueMust("an Ultra Europe act printed twice on one day and stage", uePage({ grid: [["x", "X"]], acts: [["x", "X", "Day 1 - 05:00PM - Main Stage, Day 1 - 09:00PM - Main Stage"]] }));
     ueMust("an Ultra Europe act listed twice", uePage({ grid: [["x", "X"], ["y", "X"]], acts: [["x", "X", "Day 1 - 05:00PM - Main Stage"], ["y", "X", "Day 2 - 05:00PM - Main Stage"]] }));
+    // BottleRock's Artists page: an isotope grid under a weekday filter (from
+    // 2016, `.fri`) or a day-of-month one (2015, `.29`), each act a block
+    // carrying its days as the filter's classes; any run it prints is returned.
+    const brFilter = days => days.map(([cls, label]) => `<li><a href="#" data-filter=".${cls}">${label}</a></li>`).join("");
+    const brItem = ([name, cls, h2 = name]) => `<div class="item ${cls}"><a href="#"><h2>${h2}</h2></a><span class="artist-name">${name}</span></div>`;
+    const brActs = [["Kings of Leon", "fri"], ["Foo Fighters", "sat rocket-lazyload"], ["Tom Petty &amp; The Heartbreakers", "sun"], ["Mumford &amp; Sons", "fri sun"]];
+    const brPage = ({ h1 = "<h1>2017 Artists</h1>", filter = [["fri", "Friday"], ["sat", "Saturday"], ["sun", "Sunday"]], acts = brActs, grid = 1, foot = "May 26-28, 2017" } = {}) =>
+      `<title>2017 Artists | BottleRock</title>${h1}<ul><li><a data-filter="*">ALL</a></li>${brFilter(filter)}</ul>`
+      + `<div id="block-grid">`.repeat(grid) + acts.map(brItem).join("") + `</div><footer><h2>${foot}</h2></footer>`;
+    const brp = parseBottleRockArtists(brPage(), { year: 2017 }), brr = bottlerockRows(brp);
+    ok(JSON.stringify([brp.heading, brp.filter.map(f => f.weekday), brr.rows.map(r => `${r.artist}|${r.weekday}`), brp.runs])
+      === JSON.stringify(["2017 Artists", ["Friday", "Saturday", "Sunday"], ["Kings of Leon|Friday", "Foo Fighters|Saturday", "Tom Petty & The Heartbreakers|Sunday", "Mumford & Sons|Friday", "Mumford & Sons|Sunday"],
+        [{ printed: "May 26-28, 2017", year: 2017, dates: ["2017-05-26", "2017-05-27", "2017-05-28"] }]]),
+      `a BottleRock Artists page must come back as one row per act and weekday: ${JSON.stringify([brp, brr])}`);
+    ok(brMismatch(brp, "bottlerock-2017") === null && JSON.stringify(brSheetRows(brr.rows, "bottlerock-2017").map(r => r.day)) === "[1,2,3,1,3]",
+      "a BottleRock 2017 page with its own weekdays and run is 2017's, each weekday its edition day");
+    // 2015: no <h1>, the title is the heading, the filter's classes are days
+    // of the month, and the act's name is a bare <span>.
+    const br15 = `<title>2015 Artists</title><a data-filter="*">ALL</a><a data-filter=".29">Friday</a><a data-filter=".30">Saturday</a><a data-filter=".31">Sunday</a>`
+      + `<div id="block-grid"><a href="#"><div class="item 29 31"><span>No Doubt</span></div></a><a href="#"><div class="item 30"><span>Snoop Dogg</span></div></a></div><div class="dates">May 29-31, 2015</div>`;
+    const brp15 = parseBottleRockArtists(br15, { year: 2015 });
+    ok(JSON.stringify(bottlerockRows(brp15).rows.map(r => `${r.artist}|${r.weekday}`)) === JSON.stringify(["No Doubt|Friday", "No Doubt|Sunday", "Snoop Dogg|Saturday"])
+      && JSON.stringify(brp15.filter.map(f => f.dayOfMonth)) === "[29,30,31]" && brMismatch(brp15, "bottlerock-2015") === null,
+      "BottleRock 2015's page reads by its days of the month, each the edition's own");
+    // 2022 styles part of a name with a nested <span> (SAINt JHN, #628's one
+    // bad row): the name runs to the artist-name span's OWN close, and the
+    // inner span joins its letters with no space.
+    const brNested = parseBottleRockArtists(brPage({ acts: [['SAIN<span style="text-transform:lowercase;">t</span> JHN', "fri", "SAINt JHN"], ["Kygo", "sat"]] }), { year: 2017 });
+    ok(JSON.stringify(brNested.acts.map(a => a.artist)) === JSON.stringify(["SAINt JHN", "Kygo"]),
+      `a BottleRock name with a nested <span> must read whole, not cut at the inner </span>: ${JSON.stringify(brNested.acts)}`);
+    ok(JSON.stringify(brPrintedRuns("May 30-1, 2015 · June 31-32, 2015 · May 29 – 31, 2015")) === JSON.stringify([{ printed: "May 29 – 31, 2015", year: 2015, dates: ["2015-05-29", "2015-05-30", "2015-05-31"] }]),
+      "BottleRock's printed runs read only as real dates in one month");
+    const brMust = (what, html, year = 2017) => { let bad = false; try { parseBottleRockArtists(html, { year }); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
+    brMust("a BottleRock 2017 page read as another year's", brPage(), 2018);
+    brMust("a BottleRock artist-name <span> that never closes", brPage({ acts: [["SAIN<span>t JHN", "fri", "x"]] }).replace("</span></div>", "</div>"));
+    brMust("a BottleRock page headed as another year's", brPage({ h1: "<h1>2016 Artists</h1>" }));
+    brMust("a BottleRock page with no day filter", brPage({ filter: [] }));
+    brMust("a BottleRock filter printing a day twice", brPage({ filter: [["fri", "Friday"], ["sat", "Saturday"], ["sat", "Saturday"]] }));
+    brMust("a BottleRock filter whose class is another day's", brPage({ filter: [["fri", "Friday"], ["sun", "Saturday"], ["sat", "Sunday"]] }));
+    brMust("a BottleRock filter control that is no weekday", brPage({ filter: [["fri", "Friday"], ["vip", "VIP"]] }));
+    brMust("a BottleRock filter mixing weekdays and dates", brPage({ filter: [["fri", "Friday"], ["27", "Saturday"]] }));
+    brMust("an empty BottleRock Artists page", brPage({ acts: [] }));
+    brMust("a BottleRock page with no artist grid", brPage({ grid: 0 }));
+    brMust("a BottleRock page with two artist grids", brPage({ grid: 2 }));
+    brMust("a BottleRock act with no name", brPage({ acts: [[" ", "fri", " "]] }));
+    brMust("a BottleRock act on no day", brPage({ acts: [["X", "rocket-lazyload"]] }));
+    brMust("a BottleRock act on a day the filter does not offer", brPage({ acts: [["X", "fri mon"]] }));
+    brMust("a BottleRock act headed with another act's name", brPage({ acts: [["X", "fri", "Y"]] }));
+    const brNot = (what, page, id) => { mutations++; ok(brMismatch(page, id) !== null, `mutation not caught: ${what}`); };
+    brNot("a BottleRock filter printing the days out of order", parseBottleRockArtists(brPage({ filter: [["sat", "Saturday"], ["fri", "Friday"], ["sun", "Sunday"]] }), { year: 2017 }), "bottlerock-2017");
+    brNot("a BottleRock 2017 page printing another run for 2017", parseBottleRockArtists(brPage({ foot: "May 19-21, 2017" }), { year: 2017 }), "bottlerock-2017");
+    brNot("a BottleRock page whose filter lacks a day", parseBottleRockArtists(brPage({ filter: [["fri", "Friday"], ["sat", "Saturday"]], acts: [["X", "fri"]] }), { year: 2017 }), "bottlerock-2017");
+    brNot("a BottleRock 2015 filter day off its date", parseBottleRockArtists(br15.replace('".31"', '".1"').replace("item 29 31", "item 29 1"), { year: 2015 }), "bottlerock-2015");
+    ok(BOTTLEROCK_EDITIONS.includes("bottlerock-2015") && BOTTLEROCK_EDITIONS.every(id => editions[id] || !existsSync(H(`ledger/${id}.json`))), "every BottleRock edition with a ledger is built");
     // Outside Lands' 2022-2025 lineup widget: its script sets the options on
     // one line of JSON; each artist lists its performances, a shared set (a
     // b2b) under each artist with the same id, every time with its offset.
@@ -1893,6 +2051,21 @@ for (const [id, e] of Object.entries(editions)) {
         && led.datesFrom?.census === CREAMFIELDS_CENSUS && led.datesFrom.family === e.festivalId && cen?.lifecycle === "occurred" && cen.dates === led.datesFrom.dates
         && run.length === e.days.length && run[d.day - 1] === d.date,
         `${id} day ${d.day}: ${d.date} is not the census's ${e.year} run (${cen?.dates}) or the page's weekday "${c?.days?.[d.day - 1]}"`);
+    } else if (led.method === "official_lineup_html" && led.format === "bottlerock-artists") {
+      // BottleRock's Artists page prints weekdays (2015: with their days of
+      // the month): the chosen capture's filter names this day's weekday in
+      // the edition's order, any run it printed for the year is exactly the
+      // edition's, and the date is the census's dated run for the year, which
+      // the ledger's datesFrom must quote. A capture before the festival needs a note.
+      const c = led.considered.find(x => x.captureTimestamp === led.chosen), wd = new Date(d.date + "T12:00:00Z").toLocaleDateString("en-US", { weekday: "long", timeZone: "UTC" });
+      const cen = censusRow(led.datesFrom?.family, e.year), run = cen ? runDates(cen.range) : [];
+      const f = c?.filter?.[d.day - 1] || "", own = led.printedRun === null ? null : brPrintedRuns(led.printedRun)[0];
+      ok(c?.valid && c.filter.length === e.days.length && (f === wd || f === `${wd} ${+d.date.slice(8)}`)
+        && (own === null || (own?.year === e.year && JSON.stringify(own.dates) === JSON.stringify(run) && c.runs.includes(led.printedRun)))
+        && (led.afterFestival ? led.chosen.slice(0, 8) > e.days.at(-1).date.replace(/-/g, "") : (e.notes || []).some(n => n.source?.includes(`/web/${led.chosen}/`)))
+        && led.datesFrom?.census === CREAMFIELDS_CENSUS && led.datesFrom.family === e.festivalId && cen?.lifecycle === "occurred" && cen.dates === led.datesFrom.dates
+        && run.length === e.days.length && run[d.day - 1] === d.date,
+        `${id} day ${d.day}: ${d.date} is not the census's ${e.year} run (${cen?.dates}), the page's filter day "${f}" or its printed run "${led.printedRun}"`);
     } else if (led.method === "official_lineup_html" && led.format === "ultra-europe-artists") {
       // Ultra Europe's Artists page numbers its days: the chosen capture's
       // countdown opens on day 1, the page prints this day, and the date is
@@ -1903,6 +2076,16 @@ for (const [id, e] of Object.entries(editions)) {
         && led.datesFrom?.census === CREAMFIELDS_CENSUS && led.datesFrom.family === e.festivalId && cen?.lifecycle === "occurred" && cen.dates === led.datesFrom.dates
         && run.length === e.days.length && run[d.day - 1] === d.date,
         `${id} day ${d.day}: ${d.date} is not the census's ${e.year} run (${cen?.dates}) opened by the page's countdown ("${c?.countdown}")`);
+    } else if (led.method === "official_lineup_html" && led.format === "untold-artists") {
+      // UNTOLD's Artists page dates every entry: the chosen capture printed
+      // this day's date under "Day N" / "Ziua N", and the census's dated run
+      // for the year, which the ledger quotes, is the same.
+      const c = led.considered.find(x => x.captureTimestamp === led.chosen);
+      const cen = censusRow(led.census?.family, e.year), run = cen ? runDates(cen.range) : [];
+      ok(c?.valid && c.printedDates?.length === e.days.length && c.printedDates[d.day - 1] === d.date && new RegExp(`^(Day|Ziua) ${d.day}$`).test(c.labels?.[d.day - 1] || "")
+        && led.census?.census === CREAMFIELDS_CENSUS && led.census.family === e.festivalId && cen?.lifecycle === "occurred" && cen.dates === led.census.dates
+        && run.length === e.days.length && run[d.day - 1] === d.date,
+        `${id} day ${d.day}: ${d.date} is not what the archived Artists page printed ("${c?.labels?.[d.day - 1]}" ${c?.printedDates?.[d.day - 1]}) or the census's ${e.year} run (${cen?.dates})`);
     } else if (led.method === "official_lineup_html" && led.format === "creamfields-lineup") {
       // Creamfields' Lineup page names each day's weekday, and from 2024 its
       // date: the chosen capture's day must be this one, and the date the

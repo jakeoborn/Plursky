@@ -214,7 +214,17 @@
  "lollapalooza-brasil-2017": { "artists": 47, "stages": 4, "appearancesPerDay": [24, 23], "dropped": 0 },
  "lollapalooza-brasil-2018": { "artists": 72, "stages": 0, "appearancesPerDay": [25, 24, 23], "dropped": 0 },
  "lollapalooza-brasil-2019": { "artists": 70, "stages": 4, "appearancesPerDay": [23, 24, 23], "dropped": 0 },
+ "lollapalooza-chile-2014": { "artists": 66, "stages": 0, "appearancesPerDay": [34, 33], "dropped": 0 },
+ "lollapalooza-chile-2015": { "artists": 75, "stages": 0, "appearancesPerDay": [37, 40], "dropped": 0 },
+ "lollapalooza-chile-2016": { "artists": 66, "stages": 1, "appearancesPerDay": [34, 33], "dropped": 0 },
+ "lollapalooza-argentina-2015": { "artists": 50, "stages": 0, "appearancesPerDay": [25, 25], "dropped": 0 },
+ "lollapalooza-argentina-2016": { "artists": 51, "stages": 0, "appearancesPerDay": [26, 25], "dropped": 0 },
  "ultra-europe-2013": { "artists": 34, "stages": 2, "appearancesPerDay": [18, 17], "dropped": 0 },
+ "untold-2024": { "artists": 225, "stages": 8, "appearancesPerDay": [58, 57, 61, 60], "dropped": 1 },
+ "untold-2025": { "artists": 213, "stages": 8, "appearancesPerDay": [58, 54, 58, 57], "dropped": 5 },
+ "bottlerock-2015": { "artists": 72, "stages": 0, "appearancesPerDay": [23, 25, 24], "dropped": 0 },
+ "bottlerock-2017": { "artists": 85, "stages": 0, "appearancesPerDay": [30, 28, 27], "dropped": 0 },
+ "bottlerock-2022": { "artists": 77, "stages": 0, "appearancesPerDay": [26, 26, 25], "dropped": 0 },
  "defqon1-2014": { "stages": 17, "setsPerDay": [12, 127, 57], "droppedPerDay": [0, 0, 0] },
  "defqon1-2015": { "stages": 14, "setsPerDay": [11, 133, 77], "droppedPerDay": [0, 0, 0] }
 }

@@ -1,17 +1,22 @@
 #!/usr/bin/env node
-// extract-lollabr-lineup.mjs — a past Lollapalooza Brasil edition's official
-// lineup page (lollabr-lineup.mjs), read from the Wayback Machine. The edition
-// is lineup_only: who played each day, and on which stage where the page
-// prints one. The 2017 and 2019 grids print set times too; they are not kept.
+// extract-lollabr-lineup.mjs — a past Lollapalooza Brasil, Chile or
+// Argentina edition's official lineup page (lollabr-lineup.mjs), read from the
+// Wayback Machine. The edition is lineup_only: who played each day, and on
+// which stage where the page prints one. Brasil's 2017 and 2019 grids print
+// set times too; they are not kept.
 //
 //   node scripts/historical/extract-lollabr-lineup.mjs lollapalooza-brasil-2019
+//   node scripts/historical/extract-lollabr-lineup.mjs lollapalooza-chile-2016
 //
 // Every capture of the edition's page from 1 January of its year to its last
 // day is listed, so the lineup is the one the site printed closest before
 // (or during) the festival; the LATEST capture that proves the edition is
 // used and the others are diffed against it. A capture proves the edition
 // when the page's own dates (the site header's run, the grid's dated tabs,
-// or the cards' day titles) are exactly the edition's days.
+// or the cards' day titles) are exactly the edition's days. An entry's
+// `site` (SITES in lollabr-lineup.mjs; Brasil when none) says whose page it
+// is, and `credits` names a subtitle printed under a billing that is not part
+// of it (a Kidzapalooza act's performers), set apart in the ledger.
 //
 // Writes data/historical/sheets/<id>.lineup.tsv and data/historical/ledger/<id>.json.
 
@@ -20,7 +25,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { listCaptures, fetchCapture, RELAY } from "./wayback.mjs";
 import { EDITIONS } from "./editions.mjs";
-import { READERS } from "./lollabr-lineup.mjs";
+import { READERS, SITES } from "./lollabr-lineup.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..", "..");
 
@@ -31,6 +36,12 @@ export const LOLLABR_LINEUP_EDITIONS = {
   "lollapalooza-brasil-2017": { url: "https://www.lollapaloozabr.com/lineup-horarios/", format: "grid" },
   "lollapalooza-brasil-2018": { url: "https://www.lollapaloozabr.com/lineup/2018-interativo/", format: "cards" },
   "lollapalooza-brasil-2019": { url: "https://www.lollapaloozabr.com/lineup-2019/", format: "grid" },
+  "lollapalooza-chile-2014": { site: "chile", url: "http://www.lollapaloozacl.com/lineup-diario", format: "por-dia" },
+  "lollapalooza-chile-2015": { site: "chile", url: "http://www.lollapaloozacl.com/lineupdiario2015", format: "por-dia" },
+  "lollapalooza-chile-2016": { site: "chile", url: "http://www.lollapaloozacl.com/lineupdiario2016/", format: "por-dia",
+    credits: { "MAGIA REAL": "Jean Paul Olhaberry & Boris Krivoss" } },
+  "lollapalooza-argentina-2015": { site: "argentina", url: "http://www.lollapaloozaar.com/por-dia", format: "por-dia" },
+  "lollapalooza-argentina-2016": { site: "argentina", url: "http://www.lollapaloozaar.com/lineup-2016-diario/", format: "por-dia" },
 };
 
 // The capture window: 1 January of the edition's year to its last day.
@@ -49,8 +60,8 @@ export function lollabrRows(page, id) {
 
 export async function extract(id) {
   const want = LOLLABR_LINEUP_EDITIONS[id], ed = EDITIONS[id];
-  if (!want || !ed) throw new Error(`unknown Lollapalooza Brasil lineup edition ${id}`);
-  const read = READERS[want.format];
+  if (!want || !ed) throw new Error(`unknown Lollapalooza Brasil, Chile or Argentina lineup edition ${id}`);
+  const site = want.site || "brasil", read = (html, o) => READERS[want.format](html, { ...o, site, ...(want.credits && { credits: want.credits }) });
   const caps = await listCaptures(want.url.replace(/^https?:\/\//, ""), ...windowOf(ed));
   const considered = [];
   for (const c of caps) {
@@ -70,7 +81,7 @@ export async function extract(id) {
       ...(page && { printed: { dates: page.printed, lists: page.days.map(d => d.heading) } }),
       ...(why && { unread: why }), billings: rows ? new Set(rows.map(r => r.artist)).size : 0, page, rows });
   }
-  const ledger = { id, method: "official_lineup_html", format: `lollabr-${want.format}`, official: want.url, window: windowOf(ed) };
+  const ledger = { id, method: "official_lineup_html", format: `${SITES[site].prefix}-${want.format}`, official: want.url, window: windowOf(ed) };
   const strip = ({ page, rows, ...c }) => c;
   const valid = considered.filter(c => c.valid && c.billings);
   if (!valid.length) return { ledger: { ...ledger, blocked: `no capture of ${want.url} proves the edition`, considered: considered.map(strip) }, rows: [] };
@@ -82,11 +93,13 @@ export async function extract(id) {
   Object.assign(ledger, {
     chosen: chosen.captureTimestamp, archivedUrl: chosen.archivedUrl, sha256: chosen.sha256, title: chosen.title,
     ...(chosen.via ? { relayedVia: chosen.via } : {}),
-    // Stages in the order the grid prints its columns; the other formats
-    // print no stage.
+    // Stages in the order the grid prints its columns, or the day lists'
+    // stage headings (Chile 2016's Kidzapalooza); otherwise no stage.
     stageOrder: chosen.page.stageOrder,
     ...(want.format === "grid" && { timesNotKept: "the grid prints each block's range; a lineup edition keeps no times" }),
     ...(chosen.page.dropped.length && { notRead: chosen.page.dropped }),
+    // Subtitles printed under a billing that are not part of it.
+    ...(chosen.page.credits.length && { creditsNotKept: chosen.page.credits }),
     considered: considered.map(c => ({ ...strip(c), diffVsChosen: c === chosen || !c.valid ? undefined : diff(c) })),
   });
   const rows = chosen.rows, cols = ["artist", "day", "stage"];

@@ -1,0 +1,52 @@
+{
+  "id": "lollapalooza-argentina-2015",
+  "method": "official_lineup_html",
+  "format": "lollaar-por-dia",
+  "official": "http://www.lollapaloozaar.com/por-dia",
+  "window": [
+    "20150101",
+    "20150322"
+  ],
+  "chosen": "20150318052530",
+  "archivedUrl": "https://web.archive.org/web/20150318052530/http://www.lollapaloozaar.com/por-dia",
+  "sha256": "17df9e25124741affad2f5638a12cbf1e40618e6fc298b8dbf8a94a6d7d3cc62",
+  "title": "Por día | Lollapalooza Argentina 2015",
+  "relayedVia": "firecrawl",
+  "stageOrder": [],
+  "considered": [
+    {
+      "captureTimestamp": "20150225143711",
+      "notFiled": "relay: capture 20150225143711 of http://www.lollapaloozaar.com/por-dia was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20150315090618",
+      "notFiled": "relay: capture 20150315090618 of http://www.lollapaloozaar.com/por-dia was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20150318052530",
+      "archivedUrl": "https://web.archive.org/web/20150318052530/http://www.lollapaloozaar.com/por-dia",
+      "sha256": "17df9e25124741affad2f5638a12cbf1e40618e6fc298b8dbf8a94a6d7d3cc62",
+      "bytes": 90969,
+      "via": "firecrawl",
+      "title": "Por día | Lollapalooza Argentina 2015",
+      "valid": true,
+      "days": [
+        "Saturday 21 March 2015",
+        "Sunday 22 March 2015"
+      ],
+      "printed": {
+        "dates": "21 y 22 de Marzo. Hipódromo de San Isidro. Buenos Aires.",
+        "lists": [
+          "Sábado 21",
+          "Domingo 22"
+        ]
+      },
+      "billings": 50
+    }
+  ],
+  "dropped": []
+}

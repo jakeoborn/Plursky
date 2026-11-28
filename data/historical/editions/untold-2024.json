@@ -1,0 +1,3303 @@
+{
+ "id": "untold-2024",
+ "festivalId": "untold",
+ "name": "Untold 2024",
+ "year": 2024,
+ "timezone": "Europe/Bucharest",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2024-08-08",
+   "label": "Thursday"
+  },
+  {
+   "day": 2,
+   "date": "2024-08-09",
+   "label": "Friday"
+  },
+  {
+   "day": 3,
+   "date": "2024-08-10",
+   "label": "Saturday"
+  },
+  {
+   "day": 4,
+   "date": "2024-08-11",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "untold-2024:main",
+   "name": "Main"
+  },
+  {
+   "id": "untold-2024:galaxy",
+   "name": "Galaxy"
+  },
+  {
+   "id": "untold-2024:daydreaming",
+   "name": "Daydreaming"
+  },
+  {
+   "id": "untold-2024:alchemy",
+   "name": "Alchemy"
+  },
+  {
+   "id": "untold-2024:fortune",
+   "name": "Fortune"
+  },
+  {
+   "id": "untold-2024:time",
+   "name": "Time"
+  },
+  {
+   "id": "untold-2024:tram",
+   "name": "Tram"
+  },
+  {
+   "id": "untold-2024:retro",
+   "name": "Retro"
+  }
+ ],
+ "artists": [
+  {
+   "id": "untold-2024:afro-vibes-dj-dxnger-and-dj-papi-mc-mullan",
+   "name": "AFRO VIBES (DJ DXNGER & DJ PAPI + MC MULLAN)",
+   "key": "afro-vibes-dj-dxnger-and-dj-papi-mc-mullan",
+   "performers": [
+    "afro-vibes-dj-dxnger-and-dj-papi-mc-mullan"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:main"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:almud",
+   "name": "ALMUD",
+   "key": "almud",
+   "performers": [
+    "almud"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:main"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:alok",
+   "name": "ALOK",
+   "key": "alok",
+   "performers": [
+    "alok"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:main"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:arkadia-by-fehrplay",
+   "name": "ARKADIA BY FEHRPLAY",
+   "key": "arkadia-by-fehrplay",
+   "performers": [
+    "arkadia-by-fehrplay"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:main"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:blasterjaxx",
+   "name": "BLASTERJAXX",
+   "key": "blasterjaxx",
+   "performers": [
+    "blasterjaxx"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:main"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:burna-boy",
+   "name": "BURNA BOY",
+   "key": "burna-boy",
+   "performers": [
+    "burna-boy"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:main"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:dimitri-vegas-and-like-mike",
+   "name": "DIMITRI VEGAS & LIKE MIKE",
+   "key": "dimitri-vegas-and-like-mike",
+   "performers": [
+    "dimitri-vegas-and-like-mike"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:main"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:dj-bliss",
+   "name": "DJ BLISS",
+   "key": "dj-bliss",
+   "performers": [
+    "dj-bliss"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:main"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:irina-rimes",
+   "name": "IRINA RIMES",
+   "key": "irina-rimes",
+   "performers": [
+    "irina-rimes"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:main"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:jax-jones",
+   "name": "JAX JONES",
+   "key": "jax-jones",
+   "performers": [
+    "jax-jones"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:main"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:jaxomy",
+   "name": "JAXOMY",
+   "key": "jaxomy",
+   "performers": [
+    "jaxomy"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:main"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:lenny-kravitz",
+   "name": "LENNY KRAVITZ",
+   "key": "lenny-kravitz",
+   "performers": [
+    "lenny-kravitz"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:main"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:lost-frequencies",
+   "name": "LOST FREQUENCIES",
+   "key": "lost-frequencies",
+   "performers": [
+    "lost-frequencies"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:main"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:louis-tomlinson",
+   "name": "LOUIS TOMLINSON",
+   "key": "louis-tomlinson",
+   "performers": [
+    "louis-tomlinson"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:main"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:mahmut-orhan",
+   "name": "MAHMUT ORHAN",
+   "key": "mahmut-orhan",
+   "performers": [
+    "mahmut-orhan"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:main"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:marius-moga-and-special-guests",
+   "name": "MARIUS MOGA & SPECIAL GUESTS",
+   "key": "marius-moga-and-special-guests",
+   "performers": [
+    "marius-moga-and-special-guests"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:main"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:martin-garrix",
+   "name": "MARTIN GARRIX",
+   "key": "martin-garrix",
+   "performers": [
+    "martin-garrix"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:main"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:milky-chance",
+   "name": "MILKY CHANCE",
+   "key": "milky-chance",
+   "performers": [
+    "milky-chance"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:main"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:nicky-romero",
+   "name": "NICKY ROMERO",
+   "key": "nicky-romero",
+   "performers": [
+    "nicky-romero"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:main"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:partydul-kiss-fm",
+   "name": "PARTYDUL KISS FM",
+   "key": "partydul-kiss-fm",
+   "performers": [
+    "partydul-kiss-fm"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:main"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:purple-disco-machine",
+   "name": "PURPLE DISCO MACHINE",
+   "key": "purple-disco-machine",
+   "performers": [
+    "purple-disco-machine"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:main"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:salvatore-ganacci",
+   "name": "SALVATORE GANACCI",
+   "key": "salvatore-ganacci",
+   "performers": [
+    "salvatore-ganacci"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:main"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:sam-smith",
+   "name": "SAM SMITH",
+   "key": "sam-smith",
+   "performers": [
+    "sam-smith"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:main"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:steve-aoki",
+   "name": "STEVE AOKI",
+   "key": "steve-aoki",
+   "performers": [
+    "steve-aoki"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:main"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:swedish-house-mafia",
+   "name": "SWEDISH HOUSE MAFIA",
+   "key": "swedish-house-mafia",
+   "performers": [
+    "swedish-house-mafia"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:main"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:timmy-trumpet",
+   "name": "TIMMY TRUMPET",
+   "key": "timmy-trumpet",
+   "performers": [
+    "timmy-trumpet"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:main"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:tom-grennan",
+   "name": "TOM GRENNAN",
+   "key": "tom-grennan",
+   "performers": [
+    "tom-grennan"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:main"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:tujamo",
+   "name": "TUJAMO",
+   "key": "tujamo",
+   "performers": [
+    "tujamo"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:main"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:vama",
+   "name": "VAMA",
+   "key": "vama",
+   "performers": [
+    "vama"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:main"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:zerb",
+   "name": "ZERB",
+   "key": "zerb",
+   "performers": [
+    "zerb"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:main"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:akos",
+   "name": "AKOS",
+   "key": "akos",
+   "performers": [
+    "akos"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:galaxy"
+    },
+    {
+     "day": 3,
+     "stageId": "untold-2024:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:black-coffee",
+   "name": "BLACK COFFEE",
+   "key": "black-coffee",
+   "performers": [
+    "black-coffee"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:galaxy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:carl-cox-hybrid-live-set",
+   "name": "CARL COX HYBRID LIVE SET",
+   "key": "carl-cox-hybrid-live-set",
+   "performers": [
+    "carl-cox-hybrid-live-set"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:galaxy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:cezar",
+   "name": "CEZAR",
+   "key": "cezar",
+   "performers": [
+    "cezar"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:galaxy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:charlie",
+   "name": "CHARLIE",
+   "key": "charlie",
+   "performers": [
+    "charlie"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:galaxy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:deaf-jules",
+   "name": "DEAF JULES",
+   "key": "deaf-jules",
+   "performers": [
+    "deaf-jules"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:galaxy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:fisher",
+   "name": "FISHER",
+   "key": "fisher",
+   "performers": [
+    "fisher"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:galaxy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:gordo",
+   "name": "GORDO",
+   "key": "gordo",
+   "performers": [
+    "gordo"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:galaxy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:grigore",
+   "name": "GRIGORÉ",
+   "key": "grigore",
+   "performers": [
+    "grigore"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:galaxy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:mahony",
+   "name": "MAHONY",
+   "key": "mahony",
+   "performers": [
+    "mahony"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:galaxy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:marwan-dua",
+   "name": "MARWAN DUA",
+   "key": "marwan-dua",
+   "performers": [
+    "marwan-dua"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:daydreaming"
+    },
+    {
+     "day": 1,
+     "stageId": "untold-2024:galaxy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:mihigh",
+   "name": "MIHIGH",
+   "key": "mihigh",
+   "performers": [
+    "mihigh"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:galaxy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:nusha",
+   "name": "NUSHA",
+   "key": "nusha",
+   "performers": [
+    "nusha"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:galaxy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:peredel",
+   "name": "PEREDEL",
+   "key": "peredel",
+   "performers": [
+    "peredel"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:galaxy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:persic",
+   "name": "PERSIC",
+   "key": "persic",
+   "performers": [
+    "persic"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:galaxy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:poltom",
+   "name": "POLTOM",
+   "key": "poltom",
+   "performers": [
+    "poltom"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:galaxy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:praslea",
+   "name": "PRASLEA",
+   "key": "praslea",
+   "performers": [
+    "praslea"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:galaxy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:priku-b2b-arapu",
+   "name": "PRIKU B2B ARAPU",
+   "key": "priku-b2b-arapu",
+   "performers": [
+    "priku",
+    "arapu"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:galaxy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:sara-bluma",
+   "name": "SARA BLUMA",
+   "key": "sara-bluma",
+   "performers": [
+    "sara-bluma"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:galaxy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:sit",
+   "name": "SIT",
+   "key": "sit",
+   "performers": [
+    "sit"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:galaxy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:solomun",
+   "name": "SOLOMUN",
+   "key": "solomun",
+   "performers": [
+    "solomun"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:galaxy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:stephan-bodzin",
+   "name": "STEPHAN BODZIN",
+   "key": "stephan-bodzin",
+   "performers": [
+    "stephan-bodzin"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:galaxy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:alex-super-beats",
+   "name": "ALEX SUPER BEATS",
+   "key": "alex-super-beats",
+   "performers": [
+    "alex-super-beats"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:andy-c",
+   "name": "ANDY C",
+   "key": "andy-c",
+   "performers": [
+    "andy-c"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:azteca",
+   "name": "AZTECA",
+   "key": "azteca",
+   "performers": [
+    "azteca"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:bad-and-boujee",
+   "name": "BAD & BOUJEE",
+   "key": "bad-and-boujee",
+   "performers": [
+    "bad-and-boujee"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:calinacho",
+   "name": "CALINACHO",
+   "key": "calinacho",
+   "performers": [
+    "calinacho"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:candyboii-x-solomon",
+   "name": "CANDYBOII X SOLOMON",
+   "key": "candyboii-x-solomon",
+   "performers": [
+    "candyboii-x-solomon"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:deliric-x-silent-strike-with-muse-orchestra",
+   "name": "DELIRIC X SILENT STRIKE WITH MUSE ORCHESTRA",
+   "key": "deliric-x-silent-strike-with-muse-orchestra",
+   "performers": [
+    "deliric-x-silent-strike-with-muse-orchestra"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:doc",
+   "name": "DOC",
+   "key": "doc",
+   "performers": [
+    "doc"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:dub-fx-and-woodnote",
+   "name": "DUB FX & WOODNOTE",
+   "key": "dub-fx-and-woodnote",
+   "performers": [
+    "dub-fx-and-woodnote"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:faust",
+   "name": "FAUST",
+   "key": "faust",
+   "performers": [
+    "faust"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:funky-drop",
+   "name": "FUNKY DROP",
+   "key": "funky-drop",
+   "performers": [
+    "funky-drop"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:grasu-xxl",
+   "name": "GRASU XXL",
+   "key": "grasu-xxl",
+   "performers": [
+    "grasu-xxl"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:guess-who",
+   "name": "GUESS WHO",
+   "key": "guess-who",
+   "performers": [
+    "guess-who"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:hvnds",
+   "name": "HVNDS",
+   "key": "hvnds",
+   "performers": [
+    "hvnds"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:ian",
+   "name": "IAN",
+   "key": "ian",
+   "performers": [
+    "ian"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:idk",
+   "name": "IDK",
+   "key": "idk",
+   "performers": [
+    "idk"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:jeru-the-damaja",
+   "name": "JERU THE DAMAJA",
+   "key": "jeru-the-damaja",
+   "performers": [
+    "jeru-the-damaja"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:killa-fonic",
+   "name": "KILLA FONIC",
+   "key": "killa-fonic",
+   "performers": [
+    "killa-fonic"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:k-lu-b2b-zo",
+   "name": "K-LU B2B ZO",
+   "key": "k-lu-b2b-zo",
+   "performers": [
+    "k-lu",
+    "zo"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:macanache",
+   "name": "MACANACHE",
+   "key": "macanache",
+   "performers": [
+    "macanache"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:macky-gee",
+   "name": "MACKY GEE",
+   "key": "macky-gee",
+   "performers": [
+    "macky-gee"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:marko-glass-ft-bvcovia",
+   "name": "MARKO GLASS FT. BVCOVIA",
+   "key": "marko-glass-ft-bvcovia",
+   "performers": [
+    "marko-glass-ft-bvcovia"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:mgl",
+   "name": "MGL",
+   "key": "mgl",
+   "performers": [
+    "mgl"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:netsky",
+   "name": "NETSKY",
+   "key": "netsky",
+   "performers": [
+    "netsky"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:og-eastbull",
+   "name": "OG EASTBULL",
+   "key": "og-eastbull",
+   "performers": [
+    "og-eastbull"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:oscar",
+   "name": "OSCAR",
+   "key": "oscar",
+   "performers": [
+    "oscar"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:petre-stefan",
+   "name": "PETRE STEFAN",
+   "key": "petre-stefan",
+   "performers": [
+    "petre-stefan"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:phunk-b",
+   "name": "PHUNK B",
+   "key": "phunk-b",
+   "performers": [
+    "phunk-b"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:puya",
+   "name": "PUYA",
+   "key": "puya",
+   "performers": [
+    "puya"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:rava",
+   "name": "RAVA",
+   "key": "rava",
+   "performers": [
+    "rava"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:satoshi",
+   "name": "SATOSHI",
+   "key": "satoshi",
+   "performers": [
+    "satoshi"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:satra-b-e-n-z",
+   "name": "SATRA B.E.N.Z.",
+   "key": "satra-b-e-n-z",
+   "performers": [
+    "satra-b-e-n-z"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:stefan-costea-x-george-pitariu",
+   "name": "ȘTEFAN COSTEA X GEORGE PITARIU",
+   "key": "stefan-costea-x-george-pitariu",
+   "performers": [
+    "stefan-costea-x-george-pitariu"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:tussin",
+   "name": "TUSSIN",
+   "key": "tussin",
+   "performers": [
+    "tussin"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:vescan",
+   "name": "VESCAN",
+   "key": "vescan",
+   "performers": [
+    "vescan"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:vlad-flueraru",
+   "name": "VLAD FLUERARU",
+   "key": "vlad-flueraru",
+   "performers": [
+    "vlad-flueraru"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:yny-sebi",
+   "name": "YNY SEBI",
+   "key": "yny-sebi",
+   "performers": [
+    "yny-sebi"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:alchemy"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:ahmed-helmy",
+   "name": "AHMED HELMY",
+   "key": "ahmed-helmy",
+   "performers": [
+    "ahmed-helmy"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:ahmed-romel",
+   "name": "AHMED ROMEL",
+   "key": "ahmed-romel",
+   "performers": [
+    "ahmed-romel"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:airwave",
+   "name": "AIRWAVE",
+   "key": "airwave",
+   "performers": [
+    "airwave"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:alex-m-o-r-p-h-and-asteroid",
+   "name": "ALEX M.O.R.P.H. & ASTEROID",
+   "key": "alex-m-o-r-p-h-and-asteroid",
+   "performers": [
+    "alex-m-o-r-p-h-and-asteroid"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:avao",
+   "name": "AVAO",
+   "key": "avao",
+   "performers": [
+    "avao"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:ben-gold",
+   "name": "BEN GOLD",
+   "key": "ben-gold",
+   "performers": [
+    "ben-gold"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:bogdan-vix-hardstyle-fortune",
+   "name": "BOGDAN VIX (HARDSTYLE FORTUNE)",
+   "key": "bogdan-vix-hardstyle-fortune",
+   "performers": [
+    "bogdan-vix-hardstyle-fortune"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:fortune"
+    },
+    {
+     "day": 1,
+     "stageId": "untold-2024:fortune"
+    },
+    {
+     "day": 2,
+     "stageId": "untold-2024:fortune"
+    },
+    {
+     "day": 4,
+     "stageId": "untold-2024:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:cold-blue",
+   "name": "COLD BLUE",
+   "key": "cold-blue",
+   "performers": [
+    "cold-blue"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:daxson",
+   "name": "DAXSON",
+   "key": "daxson",
+   "performers": [
+    "daxson"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:d-block-and-s-te-fan",
+   "name": "D-BLOCK & S-TE-FAN",
+   "key": "d-block-and-s-te-fan",
+   "performers": [
+    "d-block-and-s-te-fan"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:dim3nsion",
+   "name": "DIM3NSION",
+   "key": "dim3nsion",
+   "performers": [
+    "dim3nsion"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:dj-t-h-and-tekno",
+   "name": "DJ T.H. & TEKNO",
+   "key": "dj-t-h-and-tekno",
+   "performers": [
+    "dj-t-h-and-tekno"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:factor-b",
+   "name": "FACTOR B",
+   "key": "factor-b",
+   "performers": [
+    "factor-b"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:giuseppe-ottaviani",
+   "name": "GIUSEPPE OTTAVIANI",
+   "key": "giuseppe-ottaviani",
+   "performers": [
+    "giuseppe-ottaviani"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:hel-sl-wed",
+   "name": "HEL:SLØWED",
+   "key": "hel-sl-wed",
+   "performers": [
+    "hel-sl-wed"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:indecent-noise-and-ontune",
+   "name": "INDECENT NOISE & ONTUNE",
+   "key": "indecent-noise-and-ontune",
+   "performers": [
+    "indecent-noise-and-ontune"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:john-o-callaghan",
+   "name": "JOHN O'CALLAGHAN",
+   "key": "john-o-callaghan",
+   "performers": [
+    "john-o-callaghan"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:laura-van-dam",
+   "name": "LAURA VAN DAM",
+   "key": "laura-van-dam",
+   "performers": [
+    "laura-van-dam"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:luke-bond",
+   "name": "LUKE BOND",
+   "key": "luke-bond",
+   "performers": [
+    "luke-bond"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:maddix",
+   "name": "MADDIX",
+   "key": "maddix",
+   "performers": [
+    "maddix"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:markus-schulz",
+   "name": "MARKUS SCHULZ",
+   "key": "markus-schulz",
+   "performers": [
+    "markus-schulz"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:nifra",
+   "name": "NIFRA",
+   "key": "nifra",
+   "performers": [
+    "nifra"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:paul-denton-and-nikolauss",
+   "name": "PAUL DENTON & NIKOLAUSS",
+   "key": "paul-denton-and-nikolauss",
+   "performers": [
+    "paul-denton-and-nikolauss"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:philippe-el-sisi-and-omar-sherif",
+   "name": "PHILIPPE EL SISI & OMAR SHERIF",
+   "key": "philippe-el-sisi-and-omar-sherif",
+   "performers": [
+    "philippe-el-sisi-and-omar-sherif"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:ram-and-richard-durand-pres-digital-culture",
+   "name": "RAM & RICHARD DURAND PRES. DIGITAL CULTURE",
+   "key": "ram-and-richard-durand-pres-digital-culture",
+   "performers": [
+    "ram-and-richard-durand-pres-digital-culture"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:roger-shah",
+   "name": "ROGER SHAH",
+   "key": "roger-shah",
+   "performers": [
+    "roger-shah"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:ruben-de-ronde",
+   "name": "RUBEN DE RONDE",
+   "key": "ruben-de-ronde",
+   "performers": [
+    "ruben-de-ronde"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:somna",
+   "name": "SOMNA",
+   "key": "somna",
+   "performers": [
+    "somna"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:suncatcher-and-exolight",
+   "name": "SUNCATCHER & EXOLIGHT",
+   "key": "suncatcher-and-exolight",
+   "performers": [
+    "suncatcher-and-exolight"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:sunny-lax",
+   "name": "SUNNY LAX",
+   "key": "sunny-lax",
+   "performers": [
+    "sunny-lax"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:talla-2xlc-pres-rraw",
+   "name": "TALLA 2XLC PRES. RRAW!",
+   "key": "talla-2xlc-pres-rraw",
+   "performers": [
+    "talla-2xlc-pres-rraw"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:tim-clark",
+   "name": "TIM CLARK",
+   "key": "tim-clark",
+   "performers": [
+    "tim-clark"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:xijaro-and-pitch-vs-artento-divini",
+   "name": "XIJARO & PITCH VS. ARTENTO DIVINI",
+   "key": "xijaro-and-pitch-vs-artento-divini",
+   "performers": [
+    "xijaro-and-pitch-vs-artento-divini"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:fortune"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:aaron-sevilla",
+   "name": "AARON SEVILLA",
+   "key": "aaron-sevilla",
+   "performers": [
+    "aaron-sevilla"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:adrian-eftimie-and-dj-optick",
+   "name": "ADRIAN EFTIMIE & DJ OPTICK",
+   "key": "adrian-eftimie-and-dj-optick",
+   "performers": [
+    "adrian-eftimie-and-dj-optick"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:alb-who-b2b-du-mad",
+   "name": "ALB WHO B2B DU MAD",
+   "key": "alb-who-b2b-du-mad",
+   "performers": [
+    "alb-who",
+    "du-mad"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:alexandru-demeter-untold-creators",
+   "name": "ALEXANDRU DEMETER (UNTOLD CREATORS)",
+   "key": "alexandru-demeter-untold-creators",
+   "performers": [
+    "alexandru-demeter-untold-creators"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:alex-twin",
+   "name": "ALEX TWIN",
+   "key": "alex-twin",
+   "performers": [
+    "alex-twin"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:andor-gabriel-b2b-arias",
+   "name": "ANDOR GABRIEL B2B ARIAS",
+   "key": "andor-gabriel-b2b-arias",
+   "performers": [
+    "andor-gabriel",
+    "arias"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:andreea-esca-and-otrava",
+   "name": "ANDREEA ESCA & OTRAVA",
+   "key": "andreea-esca-and-otrava",
+   "performers": [
+    "andreea-esca-and-otrava"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:andre-rizo",
+   "name": "ANDRE RIZO",
+   "key": "andre-rizo",
+   "performers": [
+    "andre-rizo"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:andrew-dum",
+   "name": "ANDREW DUM",
+   "key": "andrew-dum",
+   "performers": [
+    "andrew-dum"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:andrew-maze-b2b-belle",
+   "name": "ANDREW MAZE B2B BELLE",
+   "key": "andrew-maze-b2b-belle",
+   "performers": [
+    "andrew-maze",
+    "belle"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:chapter-47",
+   "name": "CHAPTER 47",
+   "key": "chapter-47",
+   "performers": [
+    "chapter-47"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:digitalove",
+   "name": "DIGITALOVE",
+   "key": "digitalove",
+   "performers": [
+    "digitalove"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:divolly-and-markward",
+   "name": "DIVOLLY & MARKWARD",
+   "key": "divolly-and-markward",
+   "performers": [
+    "divolly-and-markward"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:dj-dark-and-mentol",
+   "name": "DJ DARK & MENTOL",
+   "key": "dj-dark-and-mentol",
+   "performers": [
+    "dj-dark-and-mentol"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:hvmza",
+   "name": "HVMZA",
+   "key": "hvmza",
+   "performers": [
+    "hvmza"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:imen-b2b-adrien",
+   "name": "IMEN B2B ADRIEN",
+   "key": "imen-b2b-adrien",
+   "performers": [
+    "imen",
+    "adrien"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:jay-ko-b2b-mike-kross",
+   "name": "JAY KO B2B MIKE KROSS",
+   "key": "jay-ko-b2b-mike-kross",
+   "performers": [
+    "jay-ko",
+    "mike-kross"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:john-trend",
+   "name": "JOHN TREND",
+   "key": "john-trend",
+   "performers": [
+    "john-trend"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:karol-diac",
+   "name": "KAROL DIAC",
+   "key": "karol-diac",
+   "performers": [
+    "karol-diac"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:laura-giurcanu-b2b-4awl",
+   "name": "LAURA GIURCANU B2B 4AWL",
+   "key": "laura-giurcanu-b2b-4awl",
+   "performers": [
+    "laura-giurcanu",
+    "4awl"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:mademoiselle-sabah",
+   "name": "MADEMOISELLE SABAH",
+   "key": "mademoiselle-sabah",
+   "performers": [
+    "mademoiselle-sabah"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:manuel-riva-b2b-dj-andi",
+   "name": "MANUEL RIVA B2B DJ ANDI",
+   "key": "manuel-riva-b2b-dj-andi",
+   "performers": [
+    "manuel-riva",
+    "dj-andi"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:marius-onuc-b2b-elchinsoul",
+   "name": "MARIUS ONUC B2B ELCHINSOUL",
+   "key": "marius-onuc-b2b-elchinsoul",
+   "performers": [
+    "marius-onuc",
+    "elchinsoul"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:marko-di-b2b-sasu",
+   "name": "MARKO DI B2B SASU",
+   "key": "marko-di-b2b-sasu",
+   "performers": [
+    "marko-di",
+    "sasu"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:pascal-junior",
+   "name": "PASCAL JUNIOR",
+   "key": "pascal-junior",
+   "performers": [
+    "pascal-junior"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:paul-damixie-b2b-moonsound",
+   "name": "PAUL DAMIXIE B2B MOONSOUND",
+   "key": "paul-damixie-b2b-moonsound",
+   "performers": [
+    "paul-damixie",
+    "moonsound"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:peppe-citarella",
+   "name": "PEPPE CITARELLA",
+   "key": "peppe-citarella",
+   "performers": [
+    "peppe-citarella"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:rb-r-b2b-adrian-saguna",
+   "name": "RBØR B2B ADRIAN SAGUNA",
+   "key": "rb-r-b2b-adrian-saguna",
+   "performers": [
+    "rb-r",
+    "adrian-saguna"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:rhum-g-b2b-deny",
+   "name": "RHUM G B2B DENY",
+   "key": "rhum-g-b2b-deny",
+   "performers": [
+    "rhum-g",
+    "deny"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:sezer-uysal",
+   "name": "SEZER UYSAL",
+   "key": "sezer-uysal",
+   "performers": [
+    "sezer-uysal"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:simone-vitullo",
+   "name": "SIMONE VITULLO",
+   "key": "simone-vitullo",
+   "performers": [
+    "simone-vitullo"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:vladimir",
+   "name": "VLADIMIR",
+   "key": "vladimir",
+   "performers": [
+    "vladimir"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:time"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:andi-moisescu-b2b-gabriel-radu",
+   "name": "ANDI MOISESCU B2B GABRIEL RADU",
+   "key": "andi-moisescu-b2b-gabriel-radu",
+   "performers": [
+    "andi-moisescu",
+    "gabriel-radu"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:arapu-b2b-priku",
+   "name": "ARAPU B2B PRIKU",
+   "key": "arapu-b2b-priku",
+   "performers": [
+    "arapu",
+    "priku"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:bora-uzer",
+   "name": "BORA UZER",
+   "key": "bora-uzer",
+   "performers": [
+    "bora-uzer"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:daydreamers-marwan-dub-fx-woodnote",
+   "name": "DAYDREAMERS (MARWAN, DUB FX, WOODNOTE)",
+   "key": "daydreamers-marwan-dub-fx-woodnote",
+   "performers": [
+    "daydreamers-marwan-dub-fx-woodnote"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:giz",
+   "name": "GIZ",
+   "key": "giz",
+   "performers": [
+    "giz"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:glauco-di-mambro",
+   "name": "GLAUCO DI MAMBRO",
+   "key": "glauco-di-mambro",
+   "performers": [
+    "glauco-di-mambro"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:henrik-schwarz-live",
+   "name": "HENRIK SCHWARZ LIVE",
+   "key": "henrik-schwarz-live",
+   "performers": [
+    "henrik-schwarz-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:hraach-live",
+   "name": "HRAACH LIVE",
+   "key": "hraach-live",
+   "performers": [
+    "hraach-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:igor-marijuan",
+   "name": "IGOR MARIJUAN",
+   "key": "igor-marijuan",
+   "performers": [
+    "igor-marijuan"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:jan-blomqvist",
+   "name": "JAN BLOMQVIST",
+   "key": "jan-blomqvist",
+   "performers": [
+    "jan-blomqvist"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:julian-m",
+   "name": "JULIAN M",
+   "key": "julian-m",
+   "performers": [
+    "julian-m"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:maga",
+   "name": "MAGA",
+   "key": "maga",
+   "performers": [
+    "maga"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:maya-mar",
+   "name": "MAYA MAR",
+   "key": "maya-mar",
+   "performers": [
+    "maya-mar"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:mihai-popoviciu",
+   "name": "MIHAI POPOVICIU",
+   "key": "mihai-popoviciu",
+   "performers": [
+    "mihai-popoviciu"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:oceanvs-orientalis",
+   "name": "OCEANVS ORIENTALIS",
+   "key": "oceanvs-orientalis",
+   "performers": [
+    "oceanvs-orientalis"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:paax-tulum",
+   "name": "PAAX (TULUM)",
+   "key": "paax-tulum",
+   "performers": [
+    "paax-tulum"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:powel",
+   "name": "POWEL",
+   "key": "powel",
+   "performers": [
+    "powel"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:rampue-live",
+   "name": "RAMPUE LIVE",
+   "key": "rampue-live",
+   "performers": [
+    "rampue-live"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:rhem",
+   "name": "RHEM",
+   "key": "rhem",
+   "performers": [
+    "rhem"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:rodriguez-jr-live",
+   "name": "RODRIGUEZ JR. LIVE",
+   "key": "rodriguez-jr-live",
+   "performers": [
+    "rodriguez-jr-live"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:sarah-kreis",
+   "name": "SARAH KREIS",
+   "key": "sarah-kreis",
+   "performers": [
+    "sarah-kreis"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:satori",
+   "name": "SATORI",
+   "key": "satori",
+   "performers": [
+    "satori"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:sebastien-leger-b2b-tim-green",
+   "name": "SÉBASTIEN LÉGER B2B TIM GREEN",
+   "key": "sebastien-leger-b2b-tim-green",
+   "performers": [
+    "sebastien-leger",
+    "tim-green"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:seen-vybe",
+   "name": "SEEN VYBE",
+   "key": "seen-vybe",
+   "performers": [
+    "seen-vybe"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:shimza",
+   "name": "SHIMZA",
+   "key": "shimza",
+   "performers": [
+    "shimza"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:stavroz-dj-set",
+   "name": "STAVROZ DJ SET",
+   "key": "stavroz-dj-set",
+   "performers": [
+    "stavroz-dj-set"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:three-less-one",
+   "name": "THREE LESS ONE",
+   "key": "three-less-one",
+   "performers": [
+    "three-less-one"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:tooker-live",
+   "name": "TOOKER LIVE",
+   "key": "tooker-live",
+   "performers": [
+    "tooker-live"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:viken-arman-b2b-matthew-dekay",
+   "name": "VIKEN ARMAN B2B MATTHEW DEKAY",
+   "key": "viken-arman-b2b-matthew-dekay",
+   "performers": [
+    "viken-arman",
+    "matthew-dekay"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:vizan",
+   "name": "VIZAN",
+   "key": "vizan",
+   "performers": [
+    "vizan"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:yokoo-b2b-nico-stojan",
+   "name": "YOKOO B2B NICO STOJAN",
+   "key": "yokoo-b2b-nico-stojan",
+   "performers": [
+    "yokoo",
+    "nico-stojan"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:daydreaming"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:4awl",
+   "name": "4AWL",
+   "key": "4awl",
+   "performers": [
+    "4awl"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:tram"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:albin-kaczka",
+   "name": "ALBIN KACZKA",
+   "key": "albin-kaczka",
+   "performers": [
+    "albin-kaczka"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:tram"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:alexandru-ungur",
+   "name": "ALEXANDRU UNGUR",
+   "key": "alexandru-ungur",
+   "performers": [
+    "alexandru-ungur"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:tram"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:alex-tripon-and-mc-shuthy",
+   "name": "ALEX TRIPON & MC SHUTHY",
+   "key": "alex-tripon-and-mc-shuthy",
+   "performers": [
+    "alex-tripon-and-mc-shuthy"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:tram"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:andrew-ickx",
+   "name": "ANDREW ICKX",
+   "key": "andrew-ickx",
+   "performers": [
+    "andrew-ickx"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:tram"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:aurik-and-pelin",
+   "name": "AURIK & PELIN",
+   "key": "aurik-and-pelin",
+   "performers": [
+    "aurik-and-pelin"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:tram"
+    },
+    {
+     "day": 3,
+     "stageId": "untold-2024:retro"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:bipolvr",
+   "name": "BIPOLVR",
+   "key": "bipolvr",
+   "performers": [
+    "bipolvr"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:tram"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:candino-d",
+   "name": "CANDINO D",
+   "key": "candino-d",
+   "performers": [
+    "candino-d"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:tram"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:cdj-cristian-daniel",
+   "name": "CDJ CRISTIAN-DANIEL",
+   "key": "cdj-cristian-daniel",
+   "performers": [
+    "cdj-cristian-daniel"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:tram"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:celavi",
+   "name": "CELAVI",
+   "key": "celavi",
+   "performers": [
+    "celavi"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:tram"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:cristian-b",
+   "name": "CRISTIAN B",
+   "key": "cristian-b",
+   "performers": [
+    "cristian-b"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:tram"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:dacian-t",
+   "name": "DACIAN T.",
+   "key": "dacian-t",
+   "performers": [
+    "dacian-t"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:tram"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:dj-fo-k",
+   "name": "DJ FO-K",
+   "key": "dj-fo-k",
+   "performers": [
+    "dj-fo-k"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:tram"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:dj-junior-b2b-soceron",
+   "name": "DJ JUNIOR B2B SOCERON",
+   "key": "dj-junior-b2b-soceron",
+   "performers": [
+    "dj-junior",
+    "soceron"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:tram"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:dj-ma-ta",
+   "name": "DJ MĂ-TA",
+   "key": "dj-ma-ta",
+   "performers": [
+    "dj-ma-ta"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:tram"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:dj-pici",
+   "name": "DJ PICI",
+   "key": "dj-pici",
+   "performers": [
+    "dj-pici"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:tram"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:draos",
+   "name": "DRAOS",
+   "key": "draos",
+   "performers": [
+    "draos"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:tram"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:eddy-ianceu",
+   "name": "EDDY IANCEU",
+   "key": "eddy-ianceu",
+   "performers": [
+    "eddy-ianceu"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:tram"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:graziano",
+   "name": "GRAZIANO",
+   "key": "graziano",
+   "performers": [
+    "graziano"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:tram"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:kamil",
+   "name": "KAMIL",
+   "key": "kamil",
+   "performers": [
+    "kamil"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:tram"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:los-vagabondos",
+   "name": "LOS VAGABONDOS",
+   "key": "los-vagabondos",
+   "performers": [
+    "los-vagabondos"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:tram"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:marc-rayen-b2b-danny-burg",
+   "name": "MARC RAYEN B2B DANNY BURG",
+   "key": "marc-rayen-b2b-danny-burg",
+   "performers": [
+    "marc-rayen",
+    "danny-burg"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:tram"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:mircea-ivan",
+   "name": "MIRCEA IVAN",
+   "key": "mircea-ivan",
+   "performers": [
+    "mircea-ivan"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:tram"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:nrb-b2b-brn",
+   "name": "NRB B2B BRN",
+   "key": "nrb-b2b-brn",
+   "performers": [
+    "nrb",
+    "brn"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:tram"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:puri",
+   "name": "PURI",
+   "key": "puri",
+   "performers": [
+    "puri"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:tram"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:serginio-and-lucas",
+   "name": "SERGINIO & LUCAS",
+   "key": "serginio-and-lucas",
+   "performers": [
+    "serginio-and-lucas"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:tram"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:simea",
+   "name": "SIMEA",
+   "key": "simea",
+   "performers": [
+    "simea"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:tram"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:underr",
+   "name": "UNDERR",
+   "key": "underr",
+   "performers": [
+    "underr"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:tram"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:villain",
+   "name": "VILLAIN",
+   "key": "villain",
+   "performers": [
+    "villain"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:tram"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:yoyo",
+   "name": "YOYO",
+   "key": "yoyo",
+   "performers": [
+    "yoyo"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:tram"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:bobonete",
+   "name": "BOBONETE",
+   "key": "bobonete",
+   "performers": [
+    "bobonete"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:retro"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:dan-t-and-mc-zedho",
+   "name": "DAN T & MC ZEDHO",
+   "key": "dan-t-and-mc-zedho",
+   "performers": [
+    "dan-t-and-mc-zedho"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "untold-2024:retro"
+    },
+    {
+     "day": 4,
+     "stageId": "untold-2024:retro"
+    },
+    {
+     "day": 1,
+     "stageId": "untold-2024:retro"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:dj-cosmin-nadasan",
+   "name": "DJ COSMIN NADASAN",
+   "key": "dj-cosmin-nadasan",
+   "performers": [
+    "dj-cosmin-nadasan"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:retro"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:dj-da-criss",
+   "name": "DJ DA’CRISS",
+   "key": "dj-da-criss",
+   "performers": [
+    "dj-da-criss"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:retro"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:emo-kids-reunion",
+   "name": "EMO KIDS' REUNION",
+   "key": "emo-kids-reunion",
+   "performers": [
+    "emo-kids-reunion"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:retro"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:fly-project",
+   "name": "FLY PROJECT",
+   "key": "fly-project",
+   "performers": [
+    "fly-project"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:retro"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:gringo",
+   "name": "GRINGO",
+   "key": "gringo",
+   "performers": [
+    "gringo"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:retro"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:mc-dylma-and-dj-pappa-m",
+   "name": "MC DYLMA & DJ PAPPA M",
+   "key": "mc-dylma-and-dj-pappa-m",
+   "performers": [
+    "mc-dylma-and-dj-pappa-m"
+   ],
+   "appearances": [
+    {
+     "day": 3,
+     "stageId": "untold-2024:retro"
+    },
+    {
+     "day": 4,
+     "stageId": "untold-2024:retro"
+    },
+    {
+     "day": 2,
+     "stageId": "untold-2024:retro"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:pixar-stelar",
+   "name": "PIXAR STELAR",
+   "key": "pixar-stelar",
+   "performers": [
+    "pixar-stelar"
+   ],
+   "appearances": [
+    {
+     "day": 4,
+     "stageId": "untold-2024:retro"
+    }
+   ]
+  },
+  {
+   "id": "untold-2024:shurubel",
+   "name": "SHURUBEL",
+   "key": "shurubel",
+   "performers": [
+    "shurubel"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "untold-2024:retro"
+    },
+    {
+     "day": 2,
+     "stageId": "untold-2024:retro"
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "official_lineup_html",
+  "official": "https://untold.com/artists",
+  "captures": [
+   {
+    "page": "lineup",
+    "archivedUrl": "https://web.archive.org/web/20240804135444/https://untold.com/artists",
+    "captureTimestamp": "20240804135444",
+    "sha256": "69b53d1f221ffc38cdbd6f41808141045f7aced90d88473dfc0c52e380f6f00e"
+   }
+  ]
+ },
+ "notes": [
+  {
+   "asOf": "2026-11-27",
+   "text": "The lineup as the festival's own Artists page printed it on 4 August 2024, four days before the festival. Changes after that day are not shown.",
+   "source": "https://web.archive.org/web/20240804135444/https://untold.com/artists"
+  }
+ ]
+}

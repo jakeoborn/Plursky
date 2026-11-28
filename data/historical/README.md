@@ -849,6 +849,47 @@ poster image, and 2013's reveal page has no capture from 2013; from 2022 the
 site's /lineup page also shows the lineup only as a poster image, and no
 capture of it from 2023 on was found. Those years are not read here.
 
+Official Lollapalooza Chile (2014-2016) and Lollapalooza Argentina
+(2015-2016) day-by-day lineup pages (formats `lollacl-por-dia`,
+`lollaar-por-dia`):
+
+    node scripts/historical/extract-lollabr-lineup.mjs lollapalooza-chile-<year>
+    node scripts/historical/extract-lollabr-lineup.mjs lollapalooza-argentina-<year>
+    # writes sheets/<id>.lineup.tsv and the ledger; lineup_only, no times
+
+lollapaloozacl.com and lollapaloozaar.com ran on Brasil's templates, so the
+same reader reads them (`lollabr-lineup.mjs`, each reader given its `site`:
+the festival the title must name and the language its dates are printed in,
+Spanish here). Chile's /lineup-diario (2014), /lineupdiario2015 and
+/lineupdiario2016/, and Argentina's /por-dia (2015) and /lineup-2016-diario/
+print the run in the site header ("14 & 15 de marzo 2015 - Parque
+O'Higgins", "18 y 19 de marzo de 2016. Hipódromo de San Isidro."). Where the
+header prints no year, the title must: Chile 2014's title prints the same
+run with it ("… | Santiago – 29 y 30 de Marzo 2014"), Argentina 2015's names
+the edition ("Por día | Lollapalooza Argentina 2015"). Each list of acts is
+headed by the nearest heading before it, a weekday and the day of the month
+("Sábado 29", "Viernes 18", Argentina 2016's "Sabado 19"): that day of the
+run, which must be the heading's own weekday, the days in the run's order.
+Chile 2016 also prints a Kidzapalooza list under each day; its acts are kept
+on that day with the stage Kidzapalooza, the only stage these pages name.
+A subtitle that continues a billing is part of it (Argentina 2015's "Robert
+Plant" over "and the Sensational Space Shifters"); Chile 2016's "MAGIA REAL"
+prints its performers under it, named in the extractor as a credit and set
+apart in the ledger (`creditsNotKept`). Any other subtitle, a list under any
+other heading, or a heading that heads two lists stops the read.
+
+Each year's captures from 1 January to the festival's last day are listed
+and the latest that proves the edition is read: Chile 29 March 2014 (the
+first day), 14 February 2015 (four weeks before; the edition's note says
+later changes are not shown) and 12 March 2016; Argentina 18 March 2015 and
+18 March 2016 (the first day). Not read here: Chile 2011-2013 (the archive's index
+lists no day-by-day lineup page from those years, only news posts announcing
+one, which were not read), Argentina
+2014 (its /lineup-diario has no capture from 2014's run; the September 2014
+capture already prints 2015's), and both festivals from 2017 on, whose
+schedule grids (/horario/, /horarios/) were found in the archive's index but
+not yet read.
+
 Ultra Europe's own Artists page (2013, format `ultra-europe-artists`):
 
     node scripts/historical/extract-ultra-europe.mjs ultra-europe-2013
@@ -876,6 +917,75 @@ more"), and from 2016 the lineup, stage and set-times pages are poster
 images (2019 and 2023-2025 are queued for the image path in
 `ocr-queue.mjs`); the later `/artists/<year>/` pages load their lists by
 script (2024's archived empty).
+
+UNTOLD's own Artists page (2024, 2025, format `untold-artists`):
+
+    PLURSKY_WAYBACK_RELAY=1 node scripts/historical/extract-untold.mjs untold-2024 untold-2025
+    # writes sheets/<id>.lineup.tsv and the ledger; lineup_only, no times
+
+untold.com/artists on the Next.js site (from late 2023) draws its list from
+data the page embeds in itself (`<script id="__NEXT_DATA__">`): one entry per
+performance with the billing, its stage (`performanceStage.name`: Main,
+Galaxy, Alchemy …), a numbered day label ("Ziua 1" on the Romanian page,
+"Day 1" on the English one) and `performanceDate`, an instant at 16:00 in
+Cluj-Napoca on that festival day's date. The page's title names no year;
+the entries date it. Every entry's date, read in Europe/Bucharest, must be
+in the edition's year, a label may carry only one date, the labels must be
+Day 1 to Day N, and the dates must be exactly the edition's run, which must
+also be the census's dated post-event run (quoted in the ledger as
+`census`). The list must be the whole list (`totalPages` 1). 2024's entries
+also carry each set's start and end; a lineup keeps none (they are counted
+in the ledger's `timedEntries`). A name printed with spaces around it is
+billed without them (`trimmed`), and two spellings that make the same id
+(2025's "B MIKE" and "B.MIKE") are one act under the first printed
+(`sameActs`). Printed rows that name no performer are
+dropped by the build: 2024's "LOCAL ARTIST" and 2025's two "SURPRISE GUEST"
+slots as unnamed slots, and 2025's three Main stage moments (two
+broadcasters' anniversaries and "TRADITIONAL ROMANIAN MOMENT") as show
+segments. Captures are listed from 1 January to a week after the last day
+(after that the page empties and then lists the next edition), and the
+latest valid one is read: 4 August 2024 and 25 July 2025, both before the
+festival, so each edition carries a note that later changes are not shown.
+Earlier years are not read: the 2016 site was an AngularJS app and its
+2016-2018 programme, timetable, schedule and line-up captures are each
+under 3 KB (script shells, by their archived size); the 2019-2023 Gatsby
+site's line-up, schedule and stages pages print "Loading ..." and fetch
+their lists by script (never archived); 2015 left no lineup page; and no
+2023 capture of the new site was taken before the festival.
+
+BottleRock Napa Valley's own Artists page (2015, 2017, 2022, format
+`bottlerock-artists`):
+
+    node scripts/historical/extract-bottlerock.mjs bottlerock-<year>
+    # writes sheets/<id>.lineup.tsv and the ledger; lineup_only, no stages
+
+bottlerocknapavalley.com kept one Artists page per year
+(`BOTTLEROCK_PAGES`: /lineup-schedule/artists/ in 2015,
+/lineup-schedule/<year>-artists/ in 2016-2019, /<year>-artists/ in
+2021-2023), all one template (`bottlerock-artists.mjs`): the heading
+"<year> Artists" (the `<h1>`, or the `<title>` in 2015, which prints no
+`<h1>`), a filter bar with one control per day, and one grid block per act
+carrying its days as the filter's classes. The filter prints weekdays
+("Friday" shows `.fri`); 2015's classes are the days of the month (`.29`),
+which must be the edition's own. The page prints no stage and no time, and
+its weekdays carry no year: the heading names the edition, the filter must
+print exactly the edition's weekdays in order, and any run the page prints
+for that year ("May 29-31, 2015" in 2015's footer, "May 26-28, 2017" in
+2017's description) must be the edition's dates, which are the census's
+dated run (`datesFrom`), as for Creamfields. A later footer prints the next
+edition's run (2022's capture prints "May 26-28, 2023") and is not read as
+this one's. An act playing two days is one row per day.
+
+Every capture of the year's address is listed, and the first valid one
+taken after the last day is read, so the lineup is the page as the festival
+left it: 10 June 2015, 6 July 2017 and 11 June 2022. No capture after the
+festival may be skipped unread; with none valid, the latest before it is read
+and the edition must carry a note saying so. 2013 and 2014 left only
+posters (2015's /lineup-schedule/2013-artists/ and 2014-artists/ pages hold
+one image each), and from 2024 the /<year>-lineup/ page is a poster too;
+2025's lineup is built by script on the home page. 2016, 2018, 2019, 2021
+and 2023 use the same template and their captures are listed, but none was
+filed yet, so those years are not read here.
 
 Then, for any path:
 

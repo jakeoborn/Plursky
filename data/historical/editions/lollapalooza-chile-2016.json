@@ -1,0 +1,911 @@
+{
+ "id": "lollapalooza-chile-2016",
+ "festivalId": "lollapalooza-chile",
+ "name": "Lollapalooza Chile 2016",
+ "year": 2016,
+ "timezone": "America/Santiago",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2016-03-19",
+   "label": "Saturday"
+  },
+  {
+   "day": 2,
+   "date": "2016-03-20",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [
+  {
+   "id": "lollapalooza-chile-2016:kidzapalooza",
+   "name": "Kidzapalooza"
+  }
+ ],
+ "artists": [
+  {
+   "id": "lollapalooza-chile-2016:eminem",
+   "name": "Eminem",
+   "key": "eminem",
+   "performers": [
+    "eminem"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:jack-u",
+   "name": "Jack Ü",
+   "key": "jack-u",
+   "performers": [
+    "jack-u"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:tame-impala",
+   "name": "Tame Impala",
+   "key": "tame-impala",
+   "performers": [
+    "tame-impala"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:zedd",
+   "name": "Zedd",
+   "key": "zedd",
+   "performers": [
+    "zedd"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:of-monsters-and-men",
+   "name": "Of Monsters And Men",
+   "key": "of-monsters-and-men",
+   "performers": [
+    "of-monsters-and-men"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:jungle",
+   "name": "Jungle",
+   "key": "jungle",
+   "performers": [
+    "jungle"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:halsey",
+   "name": "Halsey",
+   "key": "halsey",
+   "performers": [
+    "halsey"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:albert-hammond-jr",
+   "name": "Albert Hammond Jr.",
+   "key": "albert-hammond-jr",
+   "performers": [
+    "albert-hammond-jr"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:walk-the-moon",
+   "name": "Walk The Moon",
+   "key": "walk-the-moon",
+   "performers": [
+    "walk-the-moon"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:flosstradamus",
+   "name": "Flosstradamus",
+   "key": "flosstradamus",
+   "performers": [
+    "flosstradamus"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:duke-dumont",
+   "name": "Duke Dumont",
+   "key": "duke-dumont",
+   "performers": [
+    "duke-dumont"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:eagles-of-death-metal",
+   "name": "Eagles Of Death Metal",
+   "key": "eagles-of-death-metal",
+   "performers": [
+    "eagles-of-death-metal"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:candlebox",
+   "name": "Candlebox",
+   "key": "candlebox",
+   "performers": [
+    "candlebox"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:gepe",
+   "name": "Gepe",
+   "key": "gepe",
+   "performers": [
+    "gepe"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:todos-tus-muertos",
+   "name": "Todos Tus Muertos",
+   "key": "todos-tus-muertos",
+   "performers": [
+    "todos-tus-muertos"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:javiera-mena",
+   "name": "Javiera Mena",
+   "key": "javiera-mena",
+   "performers": [
+    "javiera-mena"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:movimiento-original",
+   "name": "Movimiento Original",
+   "key": "movimiento-original",
+   "performers": [
+    "movimiento-original"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:the-joy-formidable",
+   "name": "The Joy Formidable",
+   "key": "the-joy-formidable",
+   "performers": [
+    "the-joy-formidable"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:bitman-and-roban",
+   "name": "Bitman & Roban",
+   "key": "bitman-and-roban",
+   "performers": [
+    "bitman-and-roban"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:ases-falsos",
+   "name": "Ases Falsos",
+   "key": "ases-falsos",
+   "performers": [
+    "ases-falsos"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:follakzoid",
+   "name": "Föllakzoid",
+   "key": "follakzoid",
+   "performers": [
+    "follakzoid"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:jiminelson",
+   "name": "Jiminelson",
+   "key": "jiminelson",
+   "performers": [
+    "jiminelson"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:jack-novak",
+   "name": "Jack Novak",
+   "key": "jack-novak",
+   "performers": [
+    "jack-novak"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:magaly-fields",
+   "name": "Magaly Fields",
+   "key": "magaly-fields",
+   "performers": [
+    "magaly-fields"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:dj-who",
+   "name": "Dj Who",
+   "key": "dj-who",
+   "performers": [
+    "dj-who"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:the-suicide-bitches",
+   "name": "The Suicide Bitches",
+   "key": "the-suicide-bitches",
+   "performers": [
+    "the-suicide-bitches"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:kuervos-del-sur",
+   "name": "Kuervos Del Sur",
+   "key": "kuervos-del-sur",
+   "performers": [
+    "kuervos-del-sur"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:rootz-hi-fi-and-m8cky-banton",
+   "name": "Rootz Hi-Fi & M8cky Banton",
+   "key": "rootz-hi-fi-and-m8cky-banton",
+   "performers": [
+    "rootz-hi-fi-and-m8cky-banton"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:telebit",
+   "name": "Telebit",
+   "key": "telebit",
+   "performers": [
+    "telebit"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:julius-popper",
+   "name": "Julius Popper",
+   "key": "julius-popper",
+   "performers": [
+    "julius-popper"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:cachureos",
+   "name": "CACHUREOS",
+   "key": "cachureos",
+   "performers": [
+    "cachureos"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-chile-2016:kidzapalooza"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:magia-real",
+   "name": "MAGIA REAL",
+   "key": "magia-real",
+   "performers": [
+    "magia-real"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-chile-2016:kidzapalooza"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:despertando-las-neuronas",
+   "name": "DESPERTANDO LAS NEURONAS",
+   "key": "despertando-las-neuronas",
+   "performers": [
+    "despertando-las-neuronas"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-chile-2016:kidzapalooza"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:school-of-rock",
+   "name": "SCHOOL OF ROCK",
+   "key": "school-of-rock",
+   "performers": [
+    "school-of-rock"
+   ],
+   "appearances": [
+    {
+     "day": 1,
+     "stageId": "lollapalooza-chile-2016:kidzapalooza"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:florence-the-machine",
+   "name": "Florence + The Machine",
+   "key": "florence-the-machine",
+   "performers": [
+    "florence-the-machine"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:mumford-and-sons",
+   "name": "Mumford & Sons",
+   "key": "mumford-and-sons",
+   "performers": [
+    "mumford-and-sons"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:noel-gallagher-s-high-flying-birds",
+   "name": "Noel Gallagher's High Flying Birds",
+   "key": "noel-gallagher-s-high-flying-birds",
+   "performers": [
+    "noel-gallagher-s-high-flying-birds"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:brandon-flowers",
+   "name": "Brandon Flowers",
+   "key": "brandon-flowers",
+   "performers": [
+    "brandon-flowers"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:kaskade",
+   "name": "Kaskade",
+   "key": "kaskade",
+   "performers": [
+    "kaskade"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:die-antwoord",
+   "name": "Die Antwoord",
+   "key": "die-antwoord",
+   "performers": [
+    "die-antwoord"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:alabama-shakes",
+   "name": "Alabama Shakes",
+   "key": "alabama-shakes",
+   "performers": [
+    "alabama-shakes"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:bad-religion",
+   "name": "Bad Religion",
+   "key": "bad-religion",
+   "performers": [
+    "bad-religion"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:odesza",
+   "name": "Odesza",
+   "key": "odesza",
+   "performers": [
+    "odesza"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:twenty-one-pilots",
+   "name": "Twenty One Pilots",
+   "key": "twenty-one-pilots",
+   "performers": [
+    "twenty-one-pilots"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:ghost",
+   "name": "Ghost",
+   "key": "ghost",
+   "performers": [
+    "ghost"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:rl-grime",
+   "name": "RL Grime",
+   "key": "rl-grime",
+   "performers": [
+    "rl-grime"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:zeds-dead",
+   "name": "Zeds Dead",
+   "key": "zeds-dead",
+   "performers": [
+    "zeds-dead"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:marina-and-the-diamonds",
+   "name": "Marina And The Diamonds",
+   "key": "marina-and-the-diamonds",
+   "performers": [
+    "marina-and-the-diamonds"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:a-trak",
+   "name": "A-Trak",
+   "key": "a-trak",
+   "performers": [
+    "a-trak"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:babasonicos",
+   "name": "Babasónicos",
+   "key": "babasonicos",
+   "performers": [
+    "babasonicos"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:gramatik",
+   "name": "Gramatik",
+   "key": "gramatik",
+   "performers": [
+    "gramatik"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:seeed",
+   "name": "Seeed",
+   "key": "seeed",
+   "performers": [
+    "seeed"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:vintage-trouble",
+   "name": "Vintage Trouble",
+   "key": "vintage-trouble",
+   "performers": [
+    "vintage-trouble"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:matthew-koma",
+   "name": "Matthew Koma",
+   "key": "matthew-koma",
+   "performers": [
+    "matthew-koma"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:tinariwen",
+   "name": "Tinariwen",
+   "key": "tinariwen",
+   "performers": [
+    "tinariwen"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:aguaturbia",
+   "name": "Aguaturbia",
+   "key": "aguaturbia",
+   "performers": [
+    "aguaturbia"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:tiano-bless",
+   "name": "Tiano Bless",
+   "key": "tiano-bless",
+   "performers": [
+    "tiano-bless"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:oddo",
+   "name": "Oddó",
+   "key": "oddo",
+   "performers": [
+    "oddo"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:la-guacha",
+   "name": "La Guacha",
+   "key": "la-guacha",
+   "performers": [
+    "la-guacha"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:tunacola",
+   "name": "Tunacola",
+   "key": "tunacola",
+   "performers": [
+    "tunacola"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:planeta-no",
+   "name": "Planeta No",
+   "key": "planeta-no",
+   "performers": [
+    "planeta-no"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:stone-giant",
+   "name": "Stone Giant",
+   "key": "stone-giant",
+   "performers": [
+    "stone-giant"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:florcita-motuda",
+   "name": "FLORCITA MOTUDA",
+   "key": "florcita-motuda",
+   "performers": [
+    "florcita-motuda"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-chile-2016:kidzapalooza"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:mike-tompkins",
+   "name": "MIKE TOMPKINS",
+   "key": "mike-tompkins",
+   "performers": [
+    "mike-tompkins"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-chile-2016:kidzapalooza"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:cantando-aprendo-a-hablar",
+   "name": "CANTANDO APRENDO A HABLAR",
+   "key": "cantando-aprendo-a-hablar",
+   "performers": [
+    "cantando-aprendo-a-hablar"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-chile-2016:kidzapalooza"
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2016:haumoana",
+   "name": "HAUMOANA",
+   "key": "haumoana",
+   "performers": [
+    "haumoana"
+   ],
+   "appearances": [
+    {
+     "day": 2,
+     "stageId": "lollapalooza-chile-2016:kidzapalooza"
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "official_lineup_html",
+  "official": "http://www.lollapaloozacl.com/lineupdiario2016/",
+  "captures": [
+   {
+    "page": "lineup",
+    "archivedUrl": "https://web.archive.org/web/20160312181051/http://www.lollapaloozacl.com/lineupdiario2016/",
+    "captureTimestamp": "20160312181051",
+    "sha256": "c4726952358baef0da1ce069a8120a4e7948f21a0c7f60ff35d6021317153126"
+   }
+  ]
+ }
+}
