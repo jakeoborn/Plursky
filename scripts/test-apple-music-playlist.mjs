@@ -12,6 +12,7 @@ import { spawn } from 'node:child_process';
 import { createServer } from 'node:net';
 import { existsSync } from 'node:fs';
 import { serverReady } from './lib/server-ready.mjs';
+import { wireVendor } from './lib/vendor-cdn.mjs';
 const reservePort=()=>new Promise((resolve,reject)=>{const s=createServer();s.once('error',reject);s.listen(0,'127.0.0.1',()=>{const a=s.address();s.close(e=>e?reject(e):resolve(a.port));});});
 const PORT=await reservePort();
 const server=spawn('python3',['-m','http.server',String(PORT),'--bind','127.0.0.1'],{cwd:process.cwd(),stdio:'ignore'});
@@ -22,6 +23,7 @@ try {
   const executablePath=['/opt/google/chrome/chrome','/usr/bin/google-chrome','/usr/bin/chromium'].find(existsSync);
   const browser=await chromium.launch({headless:true,...(executablePath?{executablePath}:{})});
   const ctx=await browser.newContext({serviceWorkers:'block'});
+  await wireVendor(ctx);
   await ctx.addInitScript(()=>{localStorage.setItem('onboarded','v1');localStorage.setItem('active_festival_id','acl-2026');localStorage.setItem('active_festival_explicit','1');
     try{Object.defineProperty(navigator,'getBattery',{value:undefined});}catch{}});
   // Catalog stub: term → songs. Mode switches per case through window.__amMode.

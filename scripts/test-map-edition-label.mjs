@@ -28,6 +28,7 @@ import { existsSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 import { serverReady } from "./lib/server-ready.mjs";
+import { wireVendor } from "./lib/vendor-cdn.mjs";
 import { loadRegistry } from "./lib/load-registry.mjs";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
@@ -70,6 +71,7 @@ try {
   const ESC = { fid: "escape-halloween-2026", when: "2026-10-30T20:00:00-07:00" };
   const open = async (width, artYear, { fid, when } = ACL, real = false) => {
     const ctx = await browser.newContext({ serviceWorkers: "block", viewport: { width, height: 700 } });
+    await wireVendor(ctx);
     // A festival's tab bar has a Map only while it runs: pin Date (not
     // timers) to a live evening so this does not rot with the calendar.
     await ctx.clock.setFixedTime(new Date(when));
