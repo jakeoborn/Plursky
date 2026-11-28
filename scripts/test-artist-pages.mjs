@@ -47,6 +47,7 @@ const want = k => {
 
 function checkPage(k, html) {
   const out = [], a = careers.artists[k];
+  if (!html.includes('<meta name="apple-itunes-app" content="app-id=6768888507">')) out.push(`${k}: no Smart App Banner meta`);
   const rows = (html.match(/<ul class="sets">[\s\S]*?<\/ul>/g) || []).join('').match(/<li>/g) || [];
   if (rows.length !== a.b.length) out.push(`${k}: ${rows.length} set rows, the data holds ${a.b.length} billings`);
   const archived = a.b.filter(r => r[11] && careers.festivals[r[1]]?.year < 2026).length;
@@ -114,6 +115,7 @@ const pastOnlyK = pick((k, h) => /is billed at \d+ past festival edition/.test(h
 const untimed26K = pick(k => !timed26Of(k) && careers.artists[k].b.some(r => careers.festivals[r[1]]?.year === 2026));
 const read = k => readFileSync(join(DIR, k, 'index.html'), 'utf8');
 const mutants = [
+  ['the Smart App Banner dropped', archivedK, h => h.replace(/<meta name="apple-itunes-app"[^>]*>\n/, '')],
   ['a dropped billing row', archivedK, h => h.replace(/\n      <li><time[^\n]*<\/li>/, '')],
   ['an archived row without its snapshot date', archivedK, h => h.replace(/ · <span class="pub">as published [^<]*<\/span>/, '')],
   ['the word "confirmed"', archivedK, h => h.replace('</h1>', '</h1><p>Set times confirmed.</p>')],
