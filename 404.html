@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-itunes-app" content="app-id=6768888507">
+<title>Page not found · Plursky</title>
+<meta name="description" content="That page isn't on plursky.com. Find festival set times, lineups and artist histories, or get the Plursky app.">
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#151C1D">
+<!-- GitHub Pages serves this file for every missing path, at that path, so
+     every URL here is root-absolute. It is noindex and never in a sitemap. -->
+<link rel="stylesheet" href="/artists/artists.css">
+<style>
+  .lost { padding:40px 0 8px; }
+  .lost .go { display:flex; flex-wrap:wrap; gap:12px; }
+  ul.ways { list-style:none; padding:0; margin:8px 0 0; border-top:1px solid var(--line); }
+  ul.ways li { border-bottom:1px solid var(--line); }
+  ul.ways a { display:block; padding:14px 4px; color:var(--ink); text-decoration:none; font-weight:500; }
+  ul.ways a span { display:block; color:var(--text-2); font-size:13px; font-weight:400; margin-top:2px; }
+  #hint[hidden] { display:none; }
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><a class="wordmark" href="/welcome/">PLURSKY<sup>®</sup></a><nav aria-label="Plursky"><a class="lnk" href="/artists/">Artists</a><a class="btn primary" href="https://apps.apple.com/us/app/plursky-live/id6768888507">Get the app</a></nav></div></header>
+<main class="wrap">
+  <section class="lost">
+    <h1>That page isn't here.</h1>
+    <p class="intro">The link may be old, or a festival page may have moved to its new year.</p>
+    <p class="note" id="hint" hidden></p>
+    <p class="go"><a class="btn primary" href="/welcome/#festivals">Browse festivals</a><a class="btn" href="/">Open Plursky</a></p>
+  </section>
+  <h2>Where to go</h2>
+  <ul class="ways">
+    <li><a href="/welcome/#festivals">Festivals<span>Set times, lineups and maps for every festival in Plursky.</span></a></li>
+    <li><a href="/artists/">Artists<span>Every artist's festival history in Plursky's records.</span></a></li>
+    <li><a href="/genres/">Genres<span>Festival acts by genre.</span></a></li>
+    <li><a href="https://apps.apple.com/us/app/plursky-live/id6768888507">Get the iPhone app<span>Build your schedule, find your crew and keep your sets.</span></a></li>
+  </ul>
+  <footer><p><a href="/welcome/">About Plursky</a> · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></p></footer>
+</main>
+<script>
+  // Point a mistyped section URL at that section's index. Plain links above work without this.
+  (function () {
+    var p = location.pathname, hint = document.getElementById('hint'), to = null, what = '';
+    if (/^\/f\//.test(p)) { to = '/welcome/#festivals'; what = 'all festivals'; }
+    else if (/^\/artists\//.test(p)) { to = '/artists/'; what = 'all artists'; }
+    else if (/^\/genres\//.test(p)) { to = '/genres/'; what = 'all genres'; }
+    if (!to) return;
+    var a = document.createElement('a');
+    a.href = to; a.textContent = 'See ' + what + '.';
+    hint.appendChild(document.createTextNode('Looking for something in this section? '));
+    hint.appendChild(a);
+    hint.hidden = false;
+  })();
+</script>
+</body>
+</html>

@@ -38,6 +38,7 @@ const decode = s => s.replace(/&amp;/g, '&').replace(/&lt;/g, '<').replace(/&gt;
 
 function checkPage(k, html) {
   const out = [];
+  if (!html.includes('<meta name="apple-itunes-app" content="app-id=6768888507">')) out.push(`${k}: no Smart App Banner meta`);
   const listed = new Set([...html.matchAll(/<ul class="acts">([\s\S]*?)<\/ul>/g)].flatMap(m => [...m[1].matchAll(/<li>([^<]*)<\/li>/g)].map(x => decode(x[1]))));
   const exp = want.get(k) || new Set();
   for (const a of exp) if (!listed.has(a)) { out.push(`${k}: ${a} is tagged ${k} but not listed`); break; }
@@ -74,6 +75,7 @@ if (!/^Sitemap: https:\/\/plursky\.com\/sitemap-genres\.xml$/m.test(readFileSync
 
 const base = readFileSync(join(DIR, 'trance', 'index.html'), 'utf8');
 const mutants = [
+  ['the Smart App Banner dropped', h => h.replace(/<meta name="apple-itunes-app"[^>]*>\n/, '')],
   ['an untagged act listed', h => h.replace('<ul class="acts">', '<ul class="acts">\n      <li>Some Guessed Act</li>')],
   ['a tagged act dropped', h => h.replace(/\n      <li>Darude<\/li>/, '')],
   ['a festival outside the ruling ranked', h => h.replace('<ol class="rank">', `<ol class="rank">\n      <li><a href="/f/x/">${others[0]}</a> 3 acts</li>`)],

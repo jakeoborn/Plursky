@@ -191,13 +191,17 @@ ${block26 ? `  <section aria-labelledby="now-h">\n    <h2 id="now-h">${label26}<
 
 function link(k) { return onSite.has(k) ? `<a href="/artists/${esc(k)}/">${esc(nameOf(k))}</a>` : esc(nameOf(k)); }
 
+// iOS Safari's Smart App Banner, the same tag the festival pages and the home
+// page carry. It is page chrome, not page content, so the lastmod fingerprint
+// leaves it out: adding it must not restamp every page's <lastmod>.
+const APP_BANNER = '<meta name="apple-itunes-app" content="app-id=6768888507">\n';
 function shell({ title, desc, url, ld, body }, lastmod) {
   return `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>${esc(title)}</title>
+${APP_BANNER}<title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}">
 <link rel="canonical" href="${esc(url)}">
 <meta property="og:type" content="website">
@@ -308,7 +312,7 @@ const nextLedger = {};
 const files = new Map();
 const hash = s => createHash('sha256').update(s).digest('hex').slice(0, 16);
 const emitPage = (rel, model, k) => {
-  const h = hash(shell(model, null));
+  const h = hash(shell(model, null).replace(APP_BANNER, ''));
   const prev = ledger[k];
   const lastmod = prev && prev.h === h ? prev.d : TODAY;
   nextLedger[k] = { h, d: lastmod };
