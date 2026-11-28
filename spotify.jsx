@@ -11161,17 +11161,36 @@ async function requestRating() {
 }
 // One throttle for every rating ask (recap, 10th saved set, Plus purchase).
 // iOS shows at most 3 prompts a year and may show none; this keeps the app's
-// own asks at least RATING_ASK_GAP_MS apart so no moment stacks on another,
-// and never asks on web (the fallback there opens a tab, which is spam).
+// own asks at least RATING_ASK_GAP_MS apart so no moment stacks on another.
+// The automatic ask is the native review sheet or nothing: it never goes
+// through requestRating(), whose App Store fallback is for the manual "Rate"
+// tap only, so a missing plugin never opens a store tab after a save,
+// purchase or recap. A missing plugin spends no throttle, and a rejected
+// request gives the throttle back.
 const RATING_ASK_GAP_MS = 120 * 24 * 3600 * 1000;
+function _nativeReviewPlugin() {
+  const p = window.Capacitor?.Plugins?.InAppReview;
+  return window.Capacitor?.isNativePlatform?.() && typeof p?.requestReview === "function" ? p : null;
+}
 function _maybeAskForRating(reason, delayMs = 1500) {
   try {
-    if (!window.Capacitor?.isNativePlatform?.()) return false;
-    const last = parseInt(localStorage.getItem("plursky_rating_prompted_at") || "0", 10);
+    const plugin = _nativeReviewPlugin();
+    if (!plugin) return false;
+    const prevAt = localStorage.getItem("plursky_rating_prompted_at");
+    const prevReason = localStorage.getItem("plursky_rating_prompted_reason");
+    const last = parseInt(prevAt || "0", 10);
     if (last && Date.now() - last < RATING_ASK_GAP_MS) return false;
-    localStorage.setItem("plursky_rating_prompted_at", String(Date.now()));
+    const stamp = String(Date.now());
+    localStorage.setItem("plursky_rating_prompted_at", stamp);
     localStorage.setItem("plursky_rating_prompted_reason", String(reason));
-    setTimeout(() => { requestRating().catch(() => {}); }, delayMs);
+    const giveBack = () => {
+      try {
+        if (localStorage.getItem("plursky_rating_prompted_at") !== stamp) return;
+        if (prevAt === null) localStorage.removeItem("plursky_rating_prompted_at"); else localStorage.setItem("plursky_rating_prompted_at", prevAt);
+        if (prevReason === null) localStorage.removeItem("plursky_rating_prompted_reason"); else localStorage.setItem("plursky_rating_prompted_reason", prevReason);
+      } catch {}
+    };
+    setTimeout(() => { Promise.resolve().then(() => plugin.requestReview()).catch(giveBack); }, delayMs);
     return true;
   } catch { return false; }
 }
