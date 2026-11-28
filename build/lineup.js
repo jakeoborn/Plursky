@@ -2615,6 +2615,201 @@ function LineupScreen({
     onClose: () => setSyncOpen(false)
   }));
 }
+function ScheduleWatch({
+  saved
+}) {
+  var cfg = FESTIVAL_CONFIG,
+    fid = cfg.id;
+  var {
+    perm,
+    showLocal
+  } = useNotifications();
+  var [plus, setPlus] = React.useState(() => typeof _isPlusSub === "function" && _isPlusSub());
+  var [alert, setAlert] = React.useState(null);
+  var [open, setOpen] = React.useState(false);
+  var savedRef = React.useRef(saved);
+  savedRef.current = saved;
+  var busy = React.useRef(false);
+  React.useEffect(() => {
+    var on = () => setPlus(typeof _isPlusSub === "function" && _isPlusSub());
+    window.addEventListener("plursky-plus-change", on);
+    return () => window.removeEventListener("plursky-plus-change", on);
+  }, []);
+  var run = React.useCallback(force => {
+    if (!plus || busy.current) return;
+    if (!scheduleWatchDue(cfg, scheduleWatchState()[fid], Date.now(), force)) return;
+    busy.current = true;
+    var done = review => {
+      var d = scheduleWatchDecide(review, scheduleWatchState()[fid], Date.now());
+      scheduleWatchWrite(fid, d.rec);
+      busy.current = false;
+      if (!d.alert) return;
+      setAlert(d.alert);
+      if (perm === "granted" && typeof document !== "undefined" && document.visibilityState === "hidden") {
+        var _t = scheduleWatchText(d.alert, cfg);
+        showLocal(_t.title, {
+          body: _t.body,
+          tag: "schedule-review-" + fid,
+          data: {
+            url: scheduleWatchTapUrl(fid),
+            scheduleReview: fid
+          }
+        });
+      }
+    };
+    fetchScheduleFeed(fid).then(feed => done(scheduleReview(fid, feed, {
+      saved: savedRef.current || [],
+      remindersOn: perm === "granted",
+      leadMin: getReminderLeadMin()
+    })), () => done(null));
+  }, [plus, fid, perm]);
+  React.useEffect(() => {
+    run(false);
+    var vis = () => {
+      if (document.visibilityState === "visible") run(false);
+    };
+    var online = () => run(true);
+    var iv = setInterval(() => run(false), 5 * 60000);
+    document.addEventListener("visibilitychange", vis);
+    window.addEventListener("online", online);
+    return () => {
+      clearInterval(iv);
+      document.removeEventListener("visibilitychange", vis);
+      window.removeEventListener("online", online);
+    };
+  }, [run]);
+  var tapTo = React.useCallback(target => {
+    var route = scheduleWatchTapRoute(target, fid);
+    if (route === "open") {
+      setAlert(null);
+      setOpen(true);
+    } else if (route === "switch") {
+      try {
+        localStorage.setItem(_SCHED_WATCH_PENDING_KEY, target);
+      } catch {}
+      setActiveFestivalAndReload(target);
+    }
+  }, [fid]);
+  React.useEffect(() => {
+    var fromUrl = scheduleWatchTapTarget(location.href);
+    if (fromUrl) {
+      try {
+        var u = new URL(location.href);
+        u.searchParams.delete(SCHED_WATCH_TAP_PARAM);
+        history.replaceState(history.state, "", u.pathname + u.search + u.hash);
+      } catch {}
+    }
+    var pending = null;
+    try {
+      pending = localStorage.getItem(_SCHED_WATCH_PENDING_KEY);
+      localStorage.removeItem(_SCHED_WATCH_PENDING_KEY);
+    } catch {}
+    var first = fromUrl || (pending === fid ? pending : null);
+    if (first) tapTo(first);
+    var ln = typeof _capLocalNotifications === "function" ? _capLocalNotifications() : null;
+    var sub = null,
+      gone = false;
+    if (ln && ln.addListener) {
+      Promise.resolve(ln.addListener("localNotificationActionPerformed", ev => {
+        var target = scheduleWatchTapTarget(ev);
+        if (target) tapTo(target);
+      })).then(s => {
+        if (gone) {
+          try {
+            s && s.remove && s.remove();
+          } catch {}
+        } else sub = s;
+      }).catch(() => {});
+    }
+    return () => {
+      gone = true;
+      try {
+        sub && sub.remove && sub.remove();
+      } catch {}
+    };
+  }, [tapTo]);
+  if (open) return React.createElement(ScheduleReviewSheet, {
+    saved: saved || [],
+    onClose: () => {
+      setOpen(false);
+      setAlert(null);
+    }
+  });
+  if (!alert) return null;
+  var t = scheduleWatchText(alert, cfg);
+  return ReactDOM.createPortal(React.createElement("div", {
+    role: "status",
+    "data-sched-watch": alert.key,
+    style: {
+      position: "fixed",
+      left: 12,
+      right: 12,
+      top: "calc(env(safe-area-inset-top, 0px) + 10px)",
+      zIndex: 8900,
+      maxWidth: 456,
+      margin: "0 auto",
+      boxSizing: "border-box",
+      padding: "10px 10px 10px 14px",
+      borderRadius: 14,
+      background: "var(--paper)",
+      border: "1px solid var(--line-2)",
+      boxShadow: "0 8px 24px rgba(var(--shade-rgb),0.25)",
+      display: "flex",
+      alignItems: "center",
+      gap: 10
+    }
+  }, React.createElement("div", {
+    style: {
+      flex: 1,
+      minWidth: 0
+    }
+  }, React.createElement("div", {
+    style: {
+      fontSize: 14,
+      fontWeight: 600,
+      color: "var(--ink)"
+    }
+  }, t.title), React.createElement("div", {
+    style: {
+      fontSize: 12,
+      color: "var(--ink)",
+      opacity: 0.7,
+      marginTop: 1
+    }
+  }, t.body)), React.createElement("button", {
+    "data-sched-watch-review": true,
+    onClick: () => setOpen(true),
+    style: {
+      fontFamily: "'Geist Mono', monospace",
+      letterSpacing: 1.2,
+      fontWeight: 700,
+      fontSize: 10,
+      minHeight: 40,
+      padding: "0 14px",
+      borderRadius: 999,
+      border: "none",
+      background: "var(--ink)",
+      color: "var(--paper)",
+      cursor: "pointer",
+      flexShrink: 0
+    }
+  }, "REVIEW"), React.createElement("button", {
+    "aria-label": "Dismiss",
+    "data-sched-watch-dismiss": true,
+    onClick: () => setAlert(null),
+    style: {
+      width: 40,
+      height: 40,
+      borderRadius: 20,
+      border: "none",
+      background: "transparent",
+      color: "var(--ink)",
+      fontSize: 18,
+      cursor: "pointer",
+      flexShrink: 0
+    }
+  }, "×")), document.body);
+}
 function _schedSlotText(slot, cfg) {
   if (!slot) return "";
   var d = cfg.dayDates && cfg.dayDates[slot.day];
