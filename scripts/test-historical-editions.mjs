@@ -1539,10 +1539,17 @@ if (base && edc) {
     ok(JSON.stringify(bottlerockRows(brp15).rows.map(r => `${r.artist}|${r.weekday}`)) === JSON.stringify(["No Doubt|Friday", "No Doubt|Sunday", "Snoop Dogg|Saturday"])
       && JSON.stringify(brp15.filter.map(f => f.dayOfMonth)) === "[29,30,31]" && brMismatch(brp15, "bottlerock-2015") === null,
       "BottleRock 2015's page reads by its days of the month, each the edition's own");
+    // 2022 styles part of a name with a nested <span> (SAINt JHN, #628's one
+    // bad row): the name runs to the artist-name span's OWN close, and the
+    // inner span joins its letters with no space.
+    const brNested = parseBottleRockArtists(brPage({ acts: [['SAIN<span style="text-transform:lowercase;">t</span> JHN', "fri", "SAINt JHN"], ["Kygo", "sat"]] }), { year: 2017 });
+    ok(JSON.stringify(brNested.acts.map(a => a.artist)) === JSON.stringify(["SAINt JHN", "Kygo"]),
+      `a BottleRock name with a nested <span> must read whole, not cut at the inner </span>: ${JSON.stringify(brNested.acts)}`);
     ok(JSON.stringify(brPrintedRuns("May 30-1, 2015 · June 31-32, 2015 · May 29 – 31, 2015")) === JSON.stringify([{ printed: "May 29 – 31, 2015", year: 2015, dates: ["2015-05-29", "2015-05-30", "2015-05-31"] }]),
       "BottleRock's printed runs read only as real dates in one month");
     const brMust = (what, html, year = 2017) => { let bad = false; try { parseBottleRockArtists(html, { year }); } catch { bad = true; } mutations++; ok(bad, `mutation not caught: ${what}`); };
     brMust("a BottleRock 2017 page read as another year's", brPage(), 2018);
+    brMust("a BottleRock artist-name <span> that never closes", brPage({ acts: [["SAIN<span>t JHN", "fri", "x"]] }).replace("</span></div>", "</div>"));
     brMust("a BottleRock page headed as another year's", brPage({ h1: "<h1>2016 Artists</h1>" }));
     brMust("a BottleRock page with no day filter", brPage({ filter: [] }));
     brMust("a BottleRock filter printing a day twice", brPage({ filter: [["fri", "Friday"], ["sat", "Saturday"], ["sat", "Saturday"]] }));

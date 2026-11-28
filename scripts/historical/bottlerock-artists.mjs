@@ -35,6 +35,23 @@ const MARK = { uml: "̈", acute: "́", grave: "̀", circ: "̂", tilde: "̃", ced
 const accent = e => { const m = /^&([A-Za-z])(uml|acute|grave|circ|tilde|cedil|ring);$/.exec(e); return m ? (m[1] + MARK[m[2]]).normalize("NFC") : undefined; };
 const unent = s => String(s).replace(/&#?\w+;/g, e => ENT[e] ?? accent(e) ?? (/^&#(\d+);$/.test(e) ? String.fromCodePoint(+e.slice(2, -1)) : /^&#x([0-9a-f]+);$/i.test(e) ? String.fromCodePoint(parseInt(e.slice(3, -1), 16)) : e));
 export const plain = s => unent(String(s).replace(/<[^>]+>/g, " ")).replace(/\s+/g, " ").trim();
+// An act's name as the page shows it. A <span> inside the name styles part of
+// a word (2022: `SAIN<span style="text-transform:lowercase;">t</span> JHN`),
+// so it joins with no space; any other tag still breaks words.
+export const nameText = s => plain(String(s).replace(/<\/?span\b[^>]*>/g, ""));
+// The inner markup of the first <span class="artist-name">, to ITS closing
+// tag: nested spans are counted, so the name is not cut at the first </span>.
+export function artistNameSpan(b) {
+  const open = /<span class="artist-name">/.exec(b);
+  if (!open) return null;
+  const from = open.index + open[0].length, tag = /<(\/?)span\b[^>]*>/g;
+  tag.lastIndex = from;
+  for (let depth = 1, m; (m = tag.exec(b)); ) {
+    depth += m[1] ? -1 : 1;
+    if (!depth) return b.slice(from, m.index);
+  }
+  throw new Error("bottlerock-artists: an artist-name <span> never closes");
+}
 export const WEEKDAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 // Classes the grid adds that say nothing about the act.
@@ -90,11 +107,11 @@ export function parseBottleRockArtists(html, { year } = {}) {
   for (const b of blocks) {
     const cls = /\bclass="item ([^"]*)"/.exec(b)[1].split(/\s+/).filter(Boolean);
     // The block ends before the next one; 2015's link wrapper closes after it.
-    const span = /<span class="artist-name">([\s\S]*?)<\/span>/.exec(b) || /^[^>]*>\s*<span>([\s\S]*?)<\/span>/.exec(b);
-    const name = plain(span?.[1] || "");
+    const inner = artistNameSpan(b) ?? /^[^>]*>\s*<span>([\s\S]*?)<\/span>/.exec(b)?.[1];
+    const name = nameText(inner || "");
     if (!name) throw new Error(`bottlerock-artists: an act (${cls.join(" ")}) has no name`);
     const h2 = /<h2>([\s\S]*?)<\/h2>/.exec(b);
-    if (h2 && plain(h2[1]) !== name) throw new Error(`bottlerock-artists: ${name}'s block is headed "${plain(h2[1])}"`);
+    if (h2 && nameText(h2[1]) !== name) throw new Error(`bottlerock-artists: ${name}'s block is headed "${nameText(h2[1])}"`);
     const days = [];
     for (const c of cls) {
       if (NEUTRAL.has(c)) continue;
