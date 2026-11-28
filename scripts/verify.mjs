@@ -4007,6 +4007,19 @@ for (const [label, file] of [["contract", "scripts/test-public-plan-share.mjs"],
   }
 }
 
+// ── 1z-b8b2. Desktop App Store QR ─────────────────────────────────────────
+// Festival pages offer desktop visitors a QR to the App Store. The SVG is
+// pinned to the bytes that were decoded; the figure is desktop-only.
+{
+  console.log("▸ App QR gate — decoded file pinned, every festival page, desktop only");
+  try {
+    process.stdout.write(execFileSync(process.execPath, ["scripts/test-app-qr.mjs"], { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] }));
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`app QR failed${detail ? ` — ${detail.split("\n").slice(0, 6).join(" | ")}` : ""}`);
+  }
+}
+
 // ── 1z-b8c. App Store rating asks ────────────────────────────────────────
 // One throttle for recap / 10th saved set / Plus purchase: native only, one
 // app-side ask per 120 days, Recap from its 2nd visit.
