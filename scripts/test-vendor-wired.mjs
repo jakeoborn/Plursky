@@ -71,9 +71,9 @@ export function pairing(code) {
     .map((m) => ({ v: m[1], at: m.index + m[0].length }));
   if (assigned.length !== all.length) problems.push(`${all.length - assigned.length} newContext( call(s) not assigned to a variable, so they cannot be paired with wireVendor`);
   assigned.forEach((a, k) => {
-    const next = all.find((x) => x > a.at - 'browser.newContext('.length);
-    const nextIdx = all.indexOf(next);
-    const end = nextIdx >= 0 && nextIdx + 1 < all.length ? all[nextIdx + 1] : code.length;
+    // a.at is the end of this context's own `browser.newContext(`, so the
+    // window closes at the first newContext that starts after it.
+    const end = all.find((x) => x >= a.at) ?? code.length;
     const span = code.slice(a.at, end);
     const re = new RegExp(`\\bawait\\s+wireVendor\\(\\s*${a.v.replace(/\$/g, '\\$')}\\s*[,)]`);
     if (!re.test(span)) problems.push(`context ${k + 1} (${a.v}) has no \`await wireVendor(${a.v})\` before the next newContext`);
@@ -106,6 +106,8 @@ const CONTROLS = [
   ['context 1 wired twice and context 2 unwired is flagged', 'bad', "const a = await browser.newContext({});\nawait wireVendor(a);\nawait wireVendor(a);\nconst b = await browser.newContext({});\n" + GOTO],
   ['wiring the wrong variable is flagged', 'bad', "const a = await browser.newContext({});\nawait wireVendor(other);\n" + GOTO],
   ['an unassigned newContext is flagged', 'bad', "await wireVendor(ctx);\n(await browser.newContext({})).newPage();\n" + GOTO],
+  ['context A used unwired, then B created, then both wired is flagged', 'bad', "const a = await browser.newContext({});\nconst pa = await a.newPage();\n" + GOTO + "const b = await browser.newContext({});\nawait wireVendor(a);\nawait wireVendor(b);\n"],
+  ['three contexts each wired pass', 'ok', "const a = await browser.newContext({});\nawait wireVendor(a);\nconst b = await browser.newContext({});\nawait wireVendor(b);\nconst c = await browser.newContext({});\nawait wireVendor(c);\n" + GOTO],
   ['two contexts each wired pass', 'ok', "const a = await browser.newContext({ x: 1 });\nawait wireVendor(a);\nconst b=await browser.newContext({});\nawait wireVendor(b); // done\n" + GOTO],
   ['a regex literal with // does not hide code', 'ok', "const r = /https:\\/\\//; const ctx = await browser.newContext({});\nawait wireVendor(ctx);\n" + GOTO],
 ];
