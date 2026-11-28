@@ -86,6 +86,8 @@
   h4 { font-size:12px; font-weight:600; margin:22px 0 4px; color:var(--flare); text-transform:uppercase; letter-spacing:.12em; }
   h5 { font-size:11px; font-weight:500; margin:14px 0 4px; color:var(--text-3); text-transform:uppercase; letter-spacing:.12em; }
   .note { color:var(--text-2); font-size:14px; }
+  .cal-links { font-size:15px; font-weight:650; }
+  .cal-links a { display:inline-block; padding:10px 0; margin-right:20px; }
   .checked { color:var(--text-2); font-size:13px; margin:6px 0 16px; }
   figure { margin:16px 0; }
   figure img { display:block; width:100%; height:auto; max-width:100%; border-radius:8px; background:var(--panel); }
@@ -101,6 +103,8 @@
   ul.lineup { list-style:none; padding:0; margin:12px 0 0; }
   ul.lineup li { padding:9px 0; border-bottom:1px solid var(--line); font-size:15px; display:flex; flex-wrap:wrap; gap:2px 12px; }
   ul.lineup .act { font-weight:600; }
+  ul.lineup a.act { color:var(--ink); text-decoration-color:var(--line-2); }
+  ul.lineup a.act:hover { color:var(--signal); text-decoration-color:currentColor; }
   ul.lineup .slots { color:var(--text-2); font-size:13px; overflow-wrap:anywhere; }
   ul.sets { list-style:none; padding:0; margin:4px 0 0; border-top:1px solid var(--line); }
   ul.sets li { padding:9px 4px; border-bottom:1px solid var(--line); font-size:15px; display:flex; gap:14px; scroll-margin-top:136px; }
@@ -190,15 +194,18 @@
     },
     {
       "@type": "MusicGroup",
-      "name": "Afrojack"
+      "name": "Afrojack",
+      "url": "https://plursky.com/artists/afrojack/"
     },
     {
       "@type": "MusicGroup",
-      "name": "Agents of Time"
+      "name": "Agents of Time",
+      "url": "https://plursky.com/artists/agents-of-time/"
     },
     {
       "@type": "MusicGroup",
-      "name": "Alok"
+      "name": "Alok",
+      "url": "https://plursky.com/artists/alok/"
     },
     {
       "@type": "MusicGroup",
@@ -206,11 +213,13 @@
     },
     {
       "@type": "MusicGroup",
-      "name": "Angger Dimas"
+      "name": "Angger Dimas",
+      "url": "https://plursky.com/artists/angger-dimas/"
     },
     {
       "@type": "MusicGroup",
-      "name": "ARTBAT"
+      "name": "ARTBAT",
+      "url": "https://plursky.com/artists/artbat/"
     },
     {
       "@type": "MusicGroup",
@@ -218,39 +227,48 @@
     },
     {
       "@type": "MusicGroup",
-      "name": "Billy Gillies"
+      "name": "Billy Gillies",
+      "url": "https://plursky.com/artists/billy-gillies/"
     },
     {
       "@type": "MusicGroup",
-      "name": "Cosmic Gate"
+      "name": "Cosmic Gate",
+      "url": "https://plursky.com/artists/cosmic-gate/"
     },
     {
       "@type": "MusicGroup",
-      "name": "Dimension"
+      "name": "Dimension",
+      "url": "https://plursky.com/artists/dimension/"
     },
     {
       "@type": "MusicGroup",
-      "name": "Dimitri Vegas"
+      "name": "Dimitri Vegas",
+      "url": "https://plursky.com/artists/dimitri-vegas/"
     },
     {
       "@type": "MusicGroup",
-      "name": "Eli & Fur"
+      "name": "Eli & Fur",
+      "url": "https://plursky.com/artists/eli-and-fur/"
     },
     {
       "@type": "MusicGroup",
-      "name": "Ely Oaks"
+      "name": "Ely Oaks",
+      "url": "https://plursky.com/artists/ely-oaks/"
     },
     {
       "@type": "MusicGroup",
-      "name": "Gil Glaze"
+      "name": "Gil Glaze",
+      "url": "https://plursky.com/artists/gil-glaze/"
     },
     {
       "@type": "MusicGroup",
-      "name": "HALO"
+      "name": "HALO",
+      "url": "https://plursky.com/artists/halo/"
     },
     {
       "@type": "MusicGroup",
-      "name": "Ian Asher"
+      "name": "Ian Asher",
+      "url": "https://plursky.com/artists/ian-asher/"
     },
     {
       "@type": "MusicGroup",
@@ -258,15 +276,18 @@
     },
     {
       "@type": "MusicGroup",
-      "name": "Lilly Palmer"
+      "name": "Lilly Palmer",
+      "url": "https://plursky.com/artists/lilly-palmer/"
     },
     {
       "@type": "MusicGroup",
-      "name": "Maddix"
+      "name": "Maddix",
+      "url": "https://plursky.com/artists/maddix/"
     },
     {
       "@type": "MusicGroup",
-      "name": "Marlo"
+      "name": "Marlo",
+      "url": "https://plursky.com/artists/marlo/"
     },
     {
       "@type": "MusicGroup",
@@ -274,7 +295,8 @@
     },
     {
       "@type": "MusicGroup",
-      "name": "R3hab"
+      "name": "R3hab",
+      "url": "https://plursky.com/artists/r3hab/"
     },
     {
       "@type": "MusicGroup",
@@ -290,7 +312,8 @@
     },
     {
       "@type": "MusicGroup",
-      "name": "Whisnu Santika"
+      "name": "Whisnu Santika",
+      "url": "https://plursky.com/artists/whisnu-santika/"
     }
   ],
   "organizer": {
@@ -413,36 +436,36 @@ two.parentNode.insertBefore(twenty, two);
     <p class="note">Plursky does not have stage assignments or set times for every act at Djakarta Warehouse Project 2026 yet; each row shows what it has.</p>
     <ul class="lineup">
       <li><span class="act">Adnan Veron x HBRP</span></li>
-      <li><span class="act">Afrojack</span></li>
-      <li><span class="act">Agents of Time</span></li>
-      <li><span class="act">Alok</span></li>
+      <li><a class="act" href="/artists/afrojack/">Afrojack</a></li>
+      <li><a class="act" href="/artists/agents-of-time/">Agents of Time</a></li>
+      <li><a class="act" href="/artists/alok/">Alok</a></li>
       <li><span class="act">ALZENA</span></li>
-      <li><span class="act">Angger Dimas</span></li>
-      <li><span class="act">ARTBAT</span></li>
-      <li><span class="act">Axwell B2B Sebastian Ingrosso</span></li>
-      <li><span class="act">Billy Gillies</span></li>
-      <li><span class="act">Cosmic Gate</span></li>
-      <li><span class="act">Dimension</span></li>
-      <li><span class="act">Dimitri Vegas</span></li>
-      <li><span class="act">Eli &amp; Fur</span></li>
-      <li><span class="act">Ely Oaks</span></li>
-      <li><span class="act">Gil Glaze</span></li>
-      <li><span class="act">HALO</span></li>
-      <li><span class="act">Ian Asher</span></li>
+      <li><a class="act" href="/artists/angger-dimas/">Angger Dimas</a></li>
+      <li><a class="act" href="/artists/artbat/">ARTBAT</a></li>
+      <li><span class="act">Axwell B2B Sebastian Ingrosso</span> <span class="slots"><a href="/artists/axwell/">Axwell</a>, <a href="/artists/sebastian-ingrosso/">Sebastian Ingrosso</a></span></li>
+      <li><a class="act" href="/artists/billy-gillies/">Billy Gillies</a></li>
+      <li><a class="act" href="/artists/cosmic-gate/">Cosmic Gate</a></li>
+      <li><a class="act" href="/artists/dimension/">Dimension</a></li>
+      <li><a class="act" href="/artists/dimitri-vegas/">Dimitri Vegas</a></li>
+      <li><a class="act" href="/artists/eli-and-fur/">Eli &amp; Fur</a></li>
+      <li><a class="act" href="/artists/ely-oaks/">Ely Oaks</a></li>
+      <li><a class="act" href="/artists/gil-glaze/">Gil Glaze</a></li>
+      <li><a class="act" href="/artists/halo/">HALO</a></li>
+      <li><a class="act" href="/artists/ian-asher/">Ian Asher</a></li>
       <li><span class="act">Josiah</span></li>
-      <li><span class="act">Lilly Palmer</span></li>
-      <li><span class="act">Maddix</span></li>
+      <li><a class="act" href="/artists/lilly-palmer/">Lilly Palmer</a></li>
+      <li><a class="act" href="/artists/maddix/">Maddix</a></li>
     </ul>
     <details class="more">
       <summary>Show all 27 acts</summary>
       <ul class="lineup">
-        <li><span class="act">Marlo</span></li>
+        <li><a class="act" href="/artists/marlo/">Marlo</a></li>
         <li><span class="act">NENSHIN</span></li>
-        <li><span class="act">R3hab</span></li>
+        <li><a class="act" href="/artists/r3hab/">R3hab</a></li>
         <li><span class="act">Syber</span></li>
         <li><span class="act">Tye Turner</span></li>
         <li><span class="act">W.w</span></li>
-        <li><span class="act">Whisnu Santika</span></li>
+        <li><a class="act" href="/artists/whisnu-santika/">Whisnu Santika</a></li>
       </ul>
     </details>
   </section>

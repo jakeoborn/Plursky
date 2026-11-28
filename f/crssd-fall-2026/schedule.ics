@@ -1,0 +1,649 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Plursky//Festival set times//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:CRSSD Fest Fall 2026 set times · Plursky
+X-WR-TIMEZONE:America/Los_Angeles
+X-WR-CALDESC:Every timed set at CRSSD Fest Fall 2026. Updates itself when t
+ he schedule changes. https://plursky.com/f/crssd-fall-2026/
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-bb-shaine@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260926T190000Z
+DTEND:20260926T194500Z
+SUMMARY:BB Shaine · City Steps
+LOCATION:City Steps\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · City Steps\nhttps://plursky.com/f/crssd
+ -fall-2026/#set-crssd-bb-shaine
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-bb-shaine
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-heminguey@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260926T190000Z
+DTEND:20260926T200000Z
+SUMMARY:Heminguey · The Palms
+LOCATION:The Palms\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · The Palms\nhttps://plursky.com/f/crssd-
+ fall-2026/#set-crssd-heminguey
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-heminguey
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-pete-soul@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260926T193000Z
+DTEND:20260926T200000Z
+SUMMARY:Pete Soul · Ocean View
+LOCATION:Ocean View\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · Ocean View\nhttps://plursky.com/f/crssd
+ -fall-2026/#set-crssd-pete-soul
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-pete-soul
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-adam-sellouk@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260926T194500Z
+DTEND:20260926T210000Z
+SUMMARY:Adam Sellouk · City Steps
+LOCATION:City Steps\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · City Steps\nhttps://plursky.com/f/crssd
+ -fall-2026/#set-crssd-adam-sellouk
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-adam-sellouk
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-torren-foot@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260926T200000Z
+DTEND:20260926T210000Z
+SUMMARY:Torren Foot · The Palms
+LOCATION:The Palms\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · The Palms\nhttps://plursky.com/f/crssd-
+ fall-2026/#set-crssd-torren-foot
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-torren-foot
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-beginagain@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260926T201500Z
+DTEND:20260926T210000Z
+SUMMARY:beginagain · Ocean View
+LOCATION:Ocean View\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · Ocean View\nhttps://plursky.com/f/crssd
+ -fall-2026/#set-crssd-beginagain
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-beginagain
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-ahadadream@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260926T210000Z
+DTEND:20260926T221500Z
+SUMMARY:Ahadadream · City Steps
+LOCATION:City Steps\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · City Steps\nhttps://plursky.com/f/crssd
+ -fall-2026/#set-crssd-ahadadream
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-ahadadream
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-rafael@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260926T210000Z
+DTEND:20260926T220000Z
+SUMMARY:Rafael · The Palms
+LOCATION:The Palms\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · The Palms\nhttps://plursky.com/f/crssd-
+ fall-2026/#set-crssd-rafael
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-rafael
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-ear@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260926T213000Z
+DTEND:20260926T221500Z
+SUMMARY:ear · Ocean View
+LOCATION:Ocean View\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · Ocean View\nhttps://plursky.com/f/crssd
+ -fall-2026/#set-crssd-ear
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-ear
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-dean-turnley@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260926T220000Z
+DTEND:20260926T230000Z
+SUMMARY:Dean Turnley · The Palms
+LOCATION:The Palms\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · The Palms\nhttps://plursky.com/f/crssd-
+ fall-2026/#set-crssd-dean-turnley
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-dean-turnley
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-salute@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260926T221500Z
+DTEND:20260926T233000Z
+SUMMARY:salute · City Steps
+LOCATION:City Steps\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · City Steps\nhttps://plursky.com/f/crssd
+ -fall-2026/#set-crssd-salute
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-salute
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-mind-enterprises@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260926T224500Z
+DTEND:20260926T233000Z
+SUMMARY:Mind Enterprises · Ocean View
+LOCATION:Ocean View\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · Ocean View\nhttps://plursky.com/f/crssd
+ -fall-2026/#set-crssd-mind-enterprises
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-mind-enterprises
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-jamback@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260926T230000Z
+DTEND:20260927T000000Z
+SUMMARY:Jamback · The Palms
+LOCATION:The Palms\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · The Palms\nhttps://plursky.com/f/crssd-
+ fall-2026/#set-crssd-jamback
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-jamback
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-mph@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260926T233000Z
+DTEND:20260927T004500Z
+SUMMARY:MPH · City Steps
+LOCATION:City Steps\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · City Steps\nhttps://plursky.com/f/crssd
+ -fall-2026/#set-crssd-mph
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-mph
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-ayybo@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260927T000000Z
+DTEND:20260927T011500Z
+SUMMARY:AYYBO · Ocean View
+LOCATION:Ocean View\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · Ocean View\nhttps://plursky.com/f/crssd
+ -fall-2026/#set-crssd-ayybo
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-ayybo
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-locklead@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260927T000000Z
+DTEND:20260927T010000Z
+SUMMARY:Locklead · The Palms
+LOCATION:The Palms\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · The Palms\nhttps://plursky.com/f/crssd-
+ fall-2026/#set-crssd-locklead
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-locklead
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-ben-ufo@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260927T004500Z
+DTEND:20260927T020000Z
+SUMMARY:Ben UFO · City Steps
+LOCATION:City Steps\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · City Steps\nhttps://plursky.com/f/crssd
+ -fall-2026/#set-crssd-ben-ufo
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-ben-ufo
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-rossi-b2b-carlita@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260927T010000Z
+DTEND:20260927T023000Z
+SUMMARY:Rossi. b2b Carlita · The Palms
+LOCATION:The Palms\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · The Palms\nhttps://plursky.com/f/crssd-
+ fall-2026/#set-crssd-rossi-b2b-carlita
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-rossi-b2b-carlita
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-notion@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260927T013000Z
+DTEND:20260927T023000Z
+SUMMARY:Notion · Ocean View
+LOCATION:Ocean View\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · Ocean View\nhttps://plursky.com/f/crssd
+ -fall-2026/#set-crssd-notion
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-notion
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-marlon-hoffstadt@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260927T020000Z
+DTEND:20260927T033000Z
+SUMMARY:Marlon Hoffstadt · City Steps
+LOCATION:City Steps\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · City Steps\nhttps://plursky.com/f/crssd
+ -fall-2026/#set-crssd-marlon-hoffstadt
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-marlon-hoffstadt
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-chasewest@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260927T023000Z
+DTEND:20260927T040000Z
+SUMMARY:CHASEWEST · The Palms
+LOCATION:The Palms\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · The Palms\nhttps://plursky.com/f/crssd-
+ fall-2026/#set-crssd-chasewest
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-chasewest
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-horsegiirl@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260927T030000Z
+DTEND:20260927T041500Z
+SUMMARY:horsegiirL (live) · Ocean View
+LOCATION:Ocean View\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · Ocean View\nhttps://plursky.com/f/crssd
+ -fall-2026/#set-crssd-horsegiirl
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-horsegiirl
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-i-hate-models@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260927T033000Z
+DTEND:20260927T044500Z
+SUMMARY:I Hate Models · City Steps
+LOCATION:City Steps\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · City Steps\nhttps://plursky.com/f/crssd
+ -fall-2026/#set-crssd-i-hate-models
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-i-hate-models
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-layton-giordani@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260927T040000Z
+DTEND:20260927T050000Z
+SUMMARY:Layton Giordani · The Palms
+LOCATION:The Palms\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · The Palms\nhttps://plursky.com/f/crssd-
+ fall-2026/#set-crssd-layton-giordani
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-layton-giordani
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-mochakk@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260927T044500Z
+DTEND:20260927T060000Z
+SUMMARY:Mochakk · Ocean View
+LOCATION:Ocean View\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · Ocean View\nhttps://plursky.com/f/crssd
+ -fall-2026/#set-crssd-mochakk
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-mochakk
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-vtss@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260927T044500Z
+DTEND:20260927T060000Z
+SUMMARY:VTSS · City Steps
+LOCATION:City Steps\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · City Steps\nhttps://plursky.com/f/crssd
+ -fall-2026/#set-crssd-vtss
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-vtss
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-sonny-fodera@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260927T050000Z
+DTEND:20260927T060000Z
+SUMMARY:Sonny Fodera · The Palms
+LOCATION:The Palms\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · The Palms\nhttps://plursky.com/f/crssd-
+ fall-2026/#set-crssd-sonny-fodera
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-sonny-fodera
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-punkybutter@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260927T190000Z
+DTEND:20260927T193000Z
+SUMMARY:Punkybutter · The Palms
+LOCATION:The Palms\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · The Palms\nhttps://plursky.com/f/crssd-
+ fall-2026/#set-crssd-punkybutter
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-punkybutter
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-rivka-m@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260927T190000Z
+DTEND:20260927T200000Z
+SUMMARY:Rivka M · City Steps
+LOCATION:City Steps\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · City Steps\nhttps://plursky.com/f/crssd
+ -fall-2026/#set-crssd-rivka-m
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-rivka-m
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-saand@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260927T191500Z
+DTEND:20260927T194500Z
+SUMMARY:SAAND · Ocean View
+LOCATION:Ocean View\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · Ocean View\nhttps://plursky.com/f/crssd
+ -fall-2026/#set-crssd-saand
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-saand
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-greg-99@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260927T193000Z
+DTEND:20260927T203000Z
+SUMMARY:GREG 99 · The Palms
+LOCATION:The Palms\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · The Palms\nhttps://plursky.com/f/crssd-
+ fall-2026/#set-crssd-greg-99
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-greg-99
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-roya@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260927T200000Z
+DTEND:20260927T204500Z
+SUMMARY:ROYA · Ocean View
+LOCATION:Ocean View\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · Ocean View\nhttps://plursky.com/f/crssd
+ -fall-2026/#set-crssd-roya
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-roya
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-son-of-son@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260927T200000Z
+DTEND:20260927T211500Z
+SUMMARY:Son of Son · City Steps
+LOCATION:City Steps\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · City Steps\nhttps://plursky.com/f/crssd
+ -fall-2026/#set-crssd-son-of-son
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-son-of-son
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-sam-alfred@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260927T203000Z
+DTEND:20260927T213000Z
+SUMMARY:Sam Alfred · The Palms
+LOCATION:The Palms\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · The Palms\nhttps://plursky.com/f/crssd-
+ fall-2026/#set-crssd-sam-alfred
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-sam-alfred
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-arodes@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260927T211500Z
+DTEND:20260927T224500Z
+SUMMARY:ARODES · City Steps
+LOCATION:City Steps\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · City Steps\nhttps://plursky.com/f/crssd
+ -fall-2026/#set-crssd-arodes
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-arodes
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-sebastien-tellier@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260927T211500Z
+DTEND:20260927T220000Z
+SUMMARY:Sébastien Tellier · Ocean View
+LOCATION:Ocean View\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · Ocean View\nhttps://plursky.com/f/crssd
+ -fall-2026/#set-crssd-sebastien-tellier
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-sebastien-tellier
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-jay-de-lys@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260927T213000Z
+DTEND:20260927T223000Z
+SUMMARY:Jay de Lys · The Palms
+LOCATION:The Palms\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · The Palms\nhttps://plursky.com/f/crssd-
+ fall-2026/#set-crssd-jay-de-lys
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-jay-de-lys
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-balu-brigada@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260927T223000Z
+DTEND:20260927T231500Z
+SUMMARY:Balu Brigada · Ocean View
+LOCATION:Ocean View\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · Ocean View\nhttps://plursky.com/f/crssd
+ -fall-2026/#set-crssd-balu-brigada
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-balu-brigada
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-chris-lorenzo@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260927T223000Z
+DTEND:20260927T233000Z
+SUMMARY:Chris Lorenzo · The Palms
+LOCATION:The Palms\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · The Palms\nhttps://plursky.com/f/crssd-
+ fall-2026/#set-crssd-chris-lorenzo
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-chris-lorenzo
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-kas-st@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260927T224500Z
+DTEND:20260928T001500Z
+SUMMARY:KAS:ST · City Steps
+LOCATION:City Steps\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · City Steps\nhttps://plursky.com/f/crssd
+ -fall-2026/#set-crssd-kas-st
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-kas-st
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-genesi@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260927T233000Z
+DTEND:20260928T003000Z
+SUMMARY:GENESI · The Palms
+LOCATION:The Palms\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · The Palms\nhttps://plursky.com/f/crssd-
+ fall-2026/#set-crssd-genesi
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-genesi
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-oskar-med-k@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260927T234500Z
+DTEND:20260928T003000Z
+SUMMARY:oskar med k · Ocean View
+LOCATION:Ocean View\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · Ocean View\nhttps://plursky.com/f/crssd
+ -fall-2026/#set-crssd-oskar-med-k
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-oskar-med-k
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-mathame@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260928T001500Z
+DTEND:20260928T013000Z
+SUMMARY:Mathame · City Steps
+LOCATION:City Steps\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · City Steps\nhttps://plursky.com/f/crssd
+ -fall-2026/#set-crssd-mathame
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-mathame
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-marco-strous@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260928T003000Z
+DTEND:20260928T013000Z
+SUMMARY:Marco Strous · The Palms
+LOCATION:The Palms\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · The Palms\nhttps://plursky.com/f/crssd-
+ fall-2026/#set-crssd-marco-strous
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-marco-strous
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-drama@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260928T004500Z
+DTEND:20260928T013000Z
+SUMMARY:DRAMA · Ocean View
+LOCATION:Ocean View\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · Ocean View\nhttps://plursky.com/f/crssd
+ -fall-2026/#set-crssd-drama
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-drama
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-groove-armada-dj-set@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260928T013000Z
+DTEND:20260928T023000Z
+SUMMARY:Groove Armada (dj set) · The Palms
+LOCATION:The Palms\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · The Palms\nhttps://plursky.com/f/crssd-
+ fall-2026/#set-crssd-groove-armada-dj-set
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-groove-armada-dj-set
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-helena-hauff@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260928T013000Z
+DTEND:20260928T024500Z
+SUMMARY:Helena Hauff · City Steps
+LOCATION:City Steps\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · City Steps\nhttps://plursky.com/f/crssd
+ -fall-2026/#set-crssd-helena-hauff
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-helena-hauff
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-big-wild@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260928T020000Z
+DTEND:20260928T030000Z
+SUMMARY:Big Wild · Ocean View
+LOCATION:Ocean View\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · Ocean View\nhttps://plursky.com/f/crssd
+ -fall-2026/#set-crssd-big-wild
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-big-wild
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-prospa@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260928T023000Z
+DTEND:20260928T034500Z
+SUMMARY:Prospa · The Palms
+LOCATION:The Palms\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · The Palms\nhttps://plursky.com/f/crssd-
+ fall-2026/#set-crssd-prospa
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-prospa
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-boys-noize@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260928T024500Z
+DTEND:20260928T040000Z
+SUMMARY:Boys Noize · City Steps
+LOCATION:City Steps\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · City Steps\nhttps://plursky.com/f/crssd
+ -fall-2026/#set-crssd-boys-noize
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-boys-noize
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-chris-lake-b2b-disclosure@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260928T033000Z
+DTEND:20260928T050000Z
+SUMMARY:Chris Lake b2b Disclosure · Ocean View
+LOCATION:Ocean View\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · Ocean View\nhttps://plursky.com/f/crssd
+ -fall-2026/#set-crssd-chris-lake-b2b-disclosure
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-chris-lake-b2b-disclos
+ ure
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-kettama@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260928T034500Z
+DTEND:20260928T050000Z
+SUMMARY:KETTAMA · The Palms
+LOCATION:The Palms\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · The Palms\nhttps://plursky.com/f/crssd-
+ fall-2026/#set-crssd-kettama
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-kettama
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:crssd-fall-2026-set-crssd-999999999@plursky.com
+DTSTAMP:20261128T000000Z
+DTSTART:20260928T040000Z
+DTEND:20260928T050000Z
+SUMMARY:999999999 · City Steps
+LOCATION:City Steps\, Waterfront Park\, San Diego\, CA
+DESCRIPTION:CRSSD Fest Fall 2026 · City Steps\nhttps://plursky.com/f/crssd
+ -fall-2026/#set-crssd-999999999
+URL:https://plursky.com/f/crssd-fall-2026/#set-crssd-999999999
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

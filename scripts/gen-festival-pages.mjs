@@ -22,6 +22,8 @@ import { loadRegistry } from './lib/load-registry.mjs';
 import { fp, festivalFingerprint } from './lib/sitemap-fingerprint.mjs';
 import { plateFor, pastYearsFor, amenitySummary, isPlaceholderStage, hoursLine, editionHours, checkedOn, pageStatus, stageProgrammingFor } from './lib/festival-page-data.mjs';
 import { loadEmbedData, selectEmbeds, embedsSection, embedWindowStart } from './lib/official-embeds.mjs';
+import { artistPageKeys, performersByAct } from './lib/artist-pages.mjs';
+import { festivalIcs } from './lib/festival-ics.mjs';
 import { loadDayAfter, assertDayAfter, selectDayAfter, dayAfterSection, DAY_AFTER_CSS } from './lib/day-after.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -234,9 +236,21 @@ function scheduleGrid(entry, dates, blocks) {
   return `
   <section aria-labelledby="schedule-h">
     <h2 id="schedule-h">${esc(cfg.name)} schedule &amp; set times</h2>
-    <p class="note">${srcNote}${cfg.tzAbbr ? ` All times local (${esc(cfg.tzAbbr)}).` : ''}</p>
+    <p class="note">${srcNote}${cfg.tzAbbr ? ` All times local (${esc(cfg.tzAbbr)}).` : ''}</p>${calendarLinks(entry)}
 ${body}
   </section>`;
+}
+
+// Subscribe once, stay current: a webcal:// link opens the calendar app's
+// subscribe sheet (Apple Calendar, Outlook; Google takes the https URL). Shown
+// exactly when scheduleIcs emits the file, so the link never 404s.
+function calendarLinks(entry) {
+  const cfg = entry.config;
+  // The very predicate that decides whether the file is written (the stamp
+  // does not change whether it exists), so link and file cannot disagree.
+  if (!entry.available || !scheduleIcs(entry, '2000-01-01')) return '';
+  const https = `${ORIGIN}/f/${cfg.id}/schedule.ics`;
+  return `\n    <p class="cal-links"><a href="${esc(https.replace(/^https?:/, 'webcal:'))}">Subscribe to every set in your calendar</a> <a href="/f/${esc(cfg.id)}/schedule.ics" download>Download .ics</a></p>`;
 }
 
 // Only a page that renders the section carries its styles, so the other
@@ -325,6 +339,46 @@ ${placed.map(s => `        <li>${esc(s.name)}</li>`).join('\n')}
 //   - the time, as a link to its row in the set-times grid.
 // No billing tiers: `tier` in the data is display weight derived from start
 // hours, not the order a poster printed.
+// Lineup names link to their public artist pages (/artists/<key>/), so the
+// festival pages and the artist pages form one graph in both directions (the
+// artist pages already linked back here). The page set is the artist
+// generator's own rule (scripts/lib/artist-pages.mjs), read from the same
+// careers data, never from artists/ on disk. A name billed as one performer
+// becomes the link; a b2b or co-billed name stays as printed and links each
+// performer that has a page after it.
+const CAREERS = JSON.parse(readFileSync(path.join(root, 'data/artists/careers.json'), 'utf8'));
+const ARTIST_PAGES = new Set(artistPageKeys(CAREERS));
+const artistName = k => CAREERS.artists[k]?.n || k;
+// name -> { pages: Set of artist-page keys, solo }. `solo` is true only when
+// every billing under that name is ONE performer in the registry, counting
+// performers with no page. Without it, "A.M.C w/ Phantom" (A.M.C has no page)
+// read as one performer and the whole name linked to Phantom's page.
+const ALL_ARTIST_KEYS = Object.keys(CAREERS.artists);
+function artistKeysByName(cfg) {
+  const withPage = performersByAct(CAREERS, cfg.id, ARTIST_PAGES);
+  const everyone = performersByAct(CAREERS, cfg.id, ALL_ARTIST_KEYS);
+  const out = new Map();
+  for (const a of DS[cfg.id]?.artists || []) {
+    if (!a.name) continue;
+    if (!out.has(a.name)) out.set(a.name, { pages: new Set(), solo: true });
+    const e = out.get(a.name);
+    for (const k of withPage.get(String(a.id)) || []) e.pages.add(k);
+    if ((everyone.get(String(a.id)) || new Set()).size !== 1) e.solo = false;
+  }
+  return out;
+}
+const artistHref = k => `/artists/${encodeURIComponent(k)}/`;
+// The whole name links only for a solo performer with a page. A multi-performer
+// name stays text and lists each performer that HAS a page after it.
+function soloKey(e) { return e && e.solo && e.pages.size === 1 ? [...e.pages][0] : null; }
+function actHtml(n, e) {
+  const solo = soloKey(e);
+  if (solo) return `<a class="act" href="${artistHref(solo)}">${esc(n)}</a>`;
+  const ks = [...(e?.pages || [])].sort();
+  if (!ks.length) return `<span class="act">${esc(n)}</span>`;
+  return `<span class="act">${esc(n)}</span> <span class="slots">${ks.map(k => `<a href="${artistHref(k)}">${esc(artistName(k))}</a>`).join(', ')}</span>`;
+}
+
 function lineupSection(entry, blocks, dates, names, hasTimes) {
   const cfg = entry.config;
   const artists = DS[cfg.id]?.artists || [];
@@ -346,9 +400,10 @@ function lineupSection(entry, blocks, dates, names, hasTimes) {
     real.has(a.stage) ? esc(real.get(a.stage).name) : '',
     a.start ? `<a href="#${setId(b, a)}">${esc(a.start)}</a>` : a.timeEvidence && a.timeEvidence.status === 'unresolved' ? 'set times unconfirmed' : '',
   ].filter(Boolean).join(' · ')).filter(Boolean);
+  const keysByName = artistKeysByName(cfg);
   const rows = names.map(n => {
     const s = artists.filter(a => a.name === n).flatMap(slots);
-    return `      <li><span class="act">${esc(n)}</span>${s.length ? ` <span class="slots">${s.join('; ')}</span>` : ''}</li>`;
+    return `      <li>${actHtml(n, keysByName.get(n))}${s.length ? ` <span class="slots">${s.join('; ')}</span>` : ''}</li>`;
   });
   return `
   <section aria-labelledby="lineup-h">
@@ -848,7 +903,11 @@ function stub(entry, statusOverride, lastmod) {
     // performer is emitted ONLY when the names are also visible on the page
     // below — structured data that isn't in the rendered content is a
     // Google structured-data violation.
-    ...(names.length ? { performer: names.map(n => ({ '@type': 'MusicGroup', name: n })) } : {}),
+    // A name billed as one performer with a page carries that page as its url.
+    ...(names.length ? { performer: (() => { const kb = artistKeysByName(cfg); return names.map(n => {
+      const solo = soloKey(kb.get(n));
+      return { '@type': 'MusicGroup', name: n, ...(solo ? { url: `${ORIGIN}${artistHref(solo)}` } : {}) };
+    }); })() } : {}),
     // organizer is the festival's own brand, so its url is the festival's
     // official site, never plursky.com (that would name us as the
     // organizer's website). No official site in the data: no url.
@@ -1000,6 +1059,8 @@ ${indexable ? '' : '<meta name="robots" content="noindex">\n'}<link rel="canonic
   h4 { font-size:12px; font-weight:600; margin:22px 0 4px; color:var(--flare); text-transform:uppercase; letter-spacing:.12em; }
   h5 { font-size:11px; font-weight:500; margin:14px 0 4px; color:var(--text-3); text-transform:uppercase; letter-spacing:.12em; }
   .note { color:var(--text-2); font-size:14px; }
+  .cal-links { font-size:15px; font-weight:650; }
+  .cal-links a { display:inline-block; padding:10px 0; margin-right:20px; }
   .checked { color:var(--text-2); font-size:13px; margin:6px 0 16px; }
   figure { margin:16px 0; }
   figure img { display:block; width:100%; height:auto; max-width:100%; border-radius:8px; background:var(--panel); }
@@ -1015,6 +1076,8 @@ ${indexable ? '' : '<meta name="robots" content="noindex">\n'}<link rel="canonic
   ul.lineup { list-style:none; padding:0; margin:12px 0 0; }
   ul.lineup li { padding:9px 0; border-bottom:1px solid var(--line); font-size:15px; display:flex; flex-wrap:wrap; gap:2px 12px; }
   ul.lineup .act { font-weight:600; }
+  ul.lineup a.act { color:var(--ink); text-decoration-color:var(--line-2); }
+  ul.lineup a.act:hover { color:var(--signal); text-decoration-color:currentColor; }
   ul.lineup .slots { color:var(--text-2); font-size:13px; overflow-wrap:anywhere; }
   ul.sets { list-style:none; padding:0; margin:4px 0 0; border-top:1px solid var(--line); }
   ul.sets li { padding:9px 4px; border-bottom:1px solid var(--line); font-size:15px; display:flex; gap:14px; scroll-margin-top:136px; }
@@ -1202,6 +1265,9 @@ const drift = [];
 const norm = (t, f) => CHECK_STRICT ? t
   : f === 'sitemap.xml' ? t.replace(/<lastmod>[^<]*<\/lastmod>/g, '<lastmod>-</lastmod>')
   : /^f\/[^/]+\/index\.html$/.test(f) ? t.replace(/<time class="updated" datetime="[^"]*">[^<]*<\/time>/g, '<time class="updated">-</time>')
+  // DTSTAMP is the page's lastmod, so it moves with the calendar for the same
+  // reason the page's "Last updated" does.
+  : /^f\/[^/]+\/schedule\.ics$/.test(f) ? t.replace(/DTSTAMP:\d{8}T\d{6}Z/g, 'DTSTAMP:-')
   : t;
 // strictOnly: a file whose whole job is to carry dates across runs moves on the
 // calendar for the same reason the dates do, so the PR-facing --check skips it
@@ -1239,6 +1305,32 @@ function scheduleFeed(entry) {
   const hash = createHash('sha256').update(JSON.stringify(acts)).digest('hex').slice(0, 16);
   return `{\n  "festivalId": ${JSON.stringify(cfg.id)},\n  "source": ${JSON.stringify(cfg.scheduleSource || null)},\n` +
          `  "scheduleHash": "${hash}",\n  "acts": [\n${acts.map(o => '    ' + JSON.stringify(o)).join(',\n')}\n  ]\n}\n`;
+}
+
+// /f/<id>/schedule.ics: the same timed sets as the grid above, as a calendar a
+// person subscribes to once (webcal://). Rules live in scripts/lib/festival-ics.mjs.
+// Same block/day/date logic as scheduleGrid, so the calendar and the page
+// cannot put a set on different dates (ACL W2, Summerfest's three blocks).
+function scheduleIcs(entry, lastmod) {
+  const cfg = entry.config;
+  const dates = eventDates(cfg);
+  if (!dates || !cfg.tz) return null;
+  const stages = DS[cfg.id]?.stages || [];
+  const stageName = (sid) => stages.find(t => t.id === sid)?.name || null;
+  const acts = scheduleActs(DS[cfg.id]?.artists).filter(a => a.start && a.start !== '');
+  if (!acts.length) return null;
+  const blocks = weekendBlocks(cfg);
+  const pageUrl = `${ORIGIN}/f/${cfg.id}/`;
+  const sets = [];
+  for (const b of blocks) for (const a of acts.filter(inBlock(blocks, b))) {
+    const { ymd } = dayLabel(cfg.dayDates, a.day, dates, b.shift);
+    if (!ymd) continue;
+    const anchor = setId(b, a);
+    sets.push({ uid: `${cfg.id}-${anchor}@plursky.com`, ymd, start: a.start, end: a.end, name: a.name, stage: stageName(a.stage), url: `${pageUrl}#${anchor}` });
+  }
+  const venue = String(cfg.location || '').split('·').map(s => s.trim()).filter(Boolean).join(', ');
+  const { text, events } = festivalIcs({ id: cfg.id, name: cfg.name, tz: cfg.tz, location: venue, url: pageUrl, stamp: lastmod }, sets);
+  return events ? text : null;
 }
 
 const rows = [];
@@ -1307,6 +1399,8 @@ for (const entry of REG) {
   // would blind schedule-change detection for exactly the five festivals
   // whose schedules are about to drop.
   if (entry.available) emit(path.join(dir, 'schedule.json'), scheduleFeed(entry));
+  const ics = entry.available ? scheduleIcs(entry, lastmod) : null;
+  if (ics) emit(path.join(dir, 'schedule.ics'), ics);
   const n = new Set((DS[id]?.artists || []).map(a => a.name)).size;
   const d = eventDates(entry.config);
   rows.push({ id, artists: n, dates: d ? `${d.start}..${d.end}` : 'NO DATES' });
