@@ -14499,8 +14499,10 @@ async function _purchasePlus(productId, {
       aPackage: pkg
     }), 45000, "StoreKit purchase sheet");
     _syncEntitlements(customerInfo);
+    var bought = !!customerInfo?.entitlements?.active?.[RC_ENTITLEMENT];
+    if (bought) _maybeAskForRating("plus-purchase", 2500);
     return {
-      success: !!customerInfo?.entitlements?.active?.[RC_ENTITLEMENT]
+      success: bought
     };
   } catch (e) {
     if (e?.userCancelled === true || e?.code === "1" || e?.message?.includes("cancelled")) {
@@ -16083,20 +16085,29 @@ async function requestRating() {
     };
   }
 }
+var RATING_ASK_GAP_MS = 120 * 24 * 3600 * 1000;
+function _maybeAskForRating(reason, delayMs = 1500) {
+  try {
+    if (!window.Capacitor?.isNativePlatform?.()) return false;
+    var last = parseInt(localStorage.getItem("plursky_rating_prompted_at") || "0", 10);
+    if (last && Date.now() - last < RATING_ASK_GAP_MS) return false;
+    localStorage.setItem("plursky_rating_prompted_at", String(Date.now()));
+    localStorage.setItem("plursky_rating_prompted_reason", String(reason));
+    setTimeout(() => {
+      requestRating().catch(() => {});
+    }, delayMs);
+    return true;
+  } catch {
+    return false;
+  }
+}
 function _maybeAutoRatingPromptOnRecap() {
   try {
     var key = "plursky_recap_visits_v1";
     var visits = parseInt(localStorage.getItem(key) || "0", 10) + 1;
     localStorage.setItem(key, String(visits));
-    var lastPromptedAt = parseInt(localStorage.getItem("plursky_rating_prompted_at") || "0", 10);
-    var oneYearMs = 365 * 24 * 3600 * 1000;
     if (visits < 2) return;
-    if (lastPromptedAt && Date.now() - lastPromptedAt < oneYearMs) return;
-    if (!window.Capacitor?.isNativePlatform?.()) return;
-    localStorage.setItem("plursky_rating_prompted_at", String(Date.now()));
-    setTimeout(() => {
-      requestRating().catch(() => {});
-    }, 1500);
+    _maybeAskForRating("recap", 1500);
   } catch {}
 }
 function FestivalYearCard({

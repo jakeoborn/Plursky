@@ -5497,6 +5497,9 @@ function toggleSave(state, setState, id) {
     if ((isFirstSave || isMilestone) && !has) {
       window._plurskyCelebrate?.();
     }
+    if (!has && !hasConflict && liveNext === 10 && typeof _maybeAskForRating === "function") {
+      _maybeAskForRating("tenth-save", 3500);
+    }
   } catch {}
 }
 async function shareLineupImage(state) {

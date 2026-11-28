@@ -3982,6 +3982,19 @@ for (const [label, file] of [["contract", "scripts/test-public-plan-share.mjs"],
   }
 }
 
+// ── 1z-b8c. App Store rating asks ────────────────────────────────────────
+// One throttle for recap / 10th saved set / Plus purchase: native only, one
+// app-side ask per 120 days, Recap from its 2nd visit.
+{
+  console.log("▸ Rating asks gate — native only, one ask per 120 days");
+  try {
+    process.stdout.write(execFileSync(process.execPath, ["scripts/test-rating-ask.mjs"], { cwd: ROOT, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] }));
+  } catch (e) {
+    const detail = [e?.stdout, e?.stderr].filter(Boolean).join("\n").trim();
+    fail(`rating asks failed${detail ? ` — ${detail.split("\n").slice(0, 6).join(" | ")}` : ""}`);
+  }
+}
+
 // ── 1z-b9. Shell portability ──────────────────────────────────────────────
 // Every push in this repo goes through scripts/verify-and-push.sh, and that
 // wrapper shipped with `#!/bin/zsh` until #211. On a box without zsh the kernel

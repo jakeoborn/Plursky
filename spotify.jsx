@@ -10145,7 +10145,10 @@ async function _purchasePlus(productId, { offeringId } = {}) {
     const { customerInfo } = await _withTimeout(
       Purchases.purchasePackage({ aPackage: pkg }), 45000, "StoreKit purchase sheet");
     _syncEntitlements(customerInfo);
-    return { success: !!customerInfo?.entitlements?.active?.[RC_ENTITLEMENT] };
+    const bought = !!customerInfo?.entitlements?.active?.[RC_ENTITLEMENT];
+    // A completed purchase is a happy moment: ask once the sheet has closed.
+    if (bought) _maybeAskForRating("plus-purchase", 2500);
+    return { success: bought };
   } catch (e) {
     if (e?.userCancelled === true || e?.code === "1" || e?.message?.includes("cancelled")) {
       return { success: false, cancelled: true };
@@ -11156,19 +11159,30 @@ async function requestRating() {
   try { window.open(_appStoreUrl(), "_blank", "noopener"); return { ok: true, source: "web" }; }
   catch { return { ok: false }; }
 }
+// One throttle for every rating ask (recap, 10th saved set, Plus purchase).
+// iOS shows at most 3 prompts a year and may show none; this keeps the app's
+// own asks at least RATING_ASK_GAP_MS apart so no moment stacks on another,
+// and never asks on web (the fallback there opens a tab, which is spam).
+const RATING_ASK_GAP_MS = 120 * 24 * 3600 * 1000;
+function _maybeAskForRating(reason, delayMs = 1500) {
+  try {
+    if (!window.Capacitor?.isNativePlatform?.()) return false;
+    const last = parseInt(localStorage.getItem("plursky_rating_prompted_at") || "0", 10);
+    if (last && Date.now() - last < RATING_ASK_GAP_MS) return false;
+    localStorage.setItem("plursky_rating_prompted_at", String(Date.now()));
+    localStorage.setItem("plursky_rating_prompted_reason", String(reason));
+    setTimeout(() => { requestRating().catch(() => {}); }, delayMs);
+    return true;
+  } catch { return false; }
+}
 function _maybeAutoRatingPromptOnRecap() {
   try {
     const key = "plursky_recap_visits_v1";
     const visits = parseInt(localStorage.getItem(key) || "0", 10) + 1;
     localStorage.setItem(key, String(visits));
-    const lastPromptedAt = parseInt(localStorage.getItem("plursky_rating_prompted_at") || "0", 10);
-    const oneYearMs = 365 * 24 * 3600 * 1000;
     if (visits < 2) return;                                            // wait for 2nd visit
-    if (lastPromptedAt && Date.now() - lastPromptedAt < oneYearMs) return; // iOS will silently no-op anyway
-    if (!window.Capacitor?.isNativePlatform?.()) return;               // only auto-prompt on native — web spam is bad
-    localStorage.setItem("plursky_rating_prompted_at", String(Date.now()));
     // Small delay so the user is past the hero card animation before iOS pops
-    setTimeout(() => { requestRating().catch(() => {}); }, 1500);
+    _maybeAskForRating("recap", 1500);
   } catch {}
 }
 

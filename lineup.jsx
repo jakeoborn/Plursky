@@ -3614,6 +3614,11 @@ function toggleSave(state, setState, id) {
     if ((isFirstSave || isMilestone) && !has) {
       window._plurskyCelebrate?.();
     }
+    // The 10th saved set is real engagement: ask for a rating after the toast
+    // has had its moment. _maybeAskForRating (spotify.jsx) owns the throttle.
+    if (!has && !hasConflict && liveNext === 10 && typeof _maybeAskForRating === "function") {
+      _maybeAskForRating("tenth-save", 3500);
+    }
   } catch {}
 }
 
