@@ -1,0 +1,1043 @@
+{
+ "id": "bottlerock-2022",
+ "festivalId": "bottlerock",
+ "name": "BottleRock Napa Valley 2022",
+ "year": 2022,
+ "timezone": "America/Los_Angeles",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2022-05-27",
+   "label": "Friday"
+  },
+  {
+   "day": 2,
+   "date": "2022-05-28",
+   "label": "Saturday"
+  },
+  {
+   "day": 3,
+   "date": "2022-05-29",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [],
+ "artists": [
+  {
+   "id": "bottlerock-2022:metallica",
+   "name": "Metallica",
+   "key": "metallica",
+   "performers": [
+    "metallica"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:p-nk",
+   "name": "P!NK",
+   "key": "p-nk",
+   "performers": [
+    "p-nk"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:twenty-one-pilots",
+   "name": "Twenty One Pilots",
+   "key": "twenty-one-pilots",
+   "performers": [
+    "twenty-one-pilots"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:luke-combs",
+   "name": "Luke Combs",
+   "key": "luke-combs",
+   "performers": [
+    "luke-combs"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:the-black-crowes",
+   "name": "The Black Crowes",
+   "key": "the-black-crowes",
+   "performers": [
+    "the-black-crowes"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:kygo",
+   "name": "Kygo",
+   "key": "kygo",
+   "performers": [
+    "kygo"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:pitbull",
+   "name": "Pitbull",
+   "key": "pitbull",
+   "performers": [
+    "pitbull"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:greta-van-fleet",
+   "name": "Greta Van Fleet",
+   "key": "greta-van-fleet",
+   "performers": [
+    "greta-van-fleet"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:mount-westmore",
+   "name": "Mount Westmore",
+   "key": "mount-westmore",
+   "performers": [
+    "mount-westmore"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:rainbow-kitten-surprise",
+   "name": "Rainbow Kitten Surprise",
+   "key": "rainbow-kitten-surprise",
+   "performers": [
+    "rainbow-kitten-surprise"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:chvrches",
+   "name": "Chvrches",
+   "key": "chvrches",
+   "performers": [
+    "chvrches"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:spoon",
+   "name": "Spoon",
+   "key": "spoon",
+   "performers": [
+    "spoon"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:banks",
+   "name": "Banks",
+   "key": "banks",
+   "performers": [
+    "banks"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:alessia-cara",
+   "name": "Alessia Cara",
+   "key": "alessia-cara",
+   "performers": [
+    "alessia-cara"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:sain-t",
+   "name": "SAIN t",
+   "key": "sain-t",
+   "performers": [
+    "sain-t"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:vance-joy",
+   "name": "Vance Joy",
+   "key": "vance-joy",
+   "performers": [
+    "vance-joy"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:michael-franti-and-spearhead",
+   "name": "Michael Franti & Spearhead",
+   "key": "michael-franti-and-spearhead",
+   "performers": [
+    "michael-franti-and-spearhead"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:silversun-pickups",
+   "name": "Silversun Pickups",
+   "key": "silversun-pickups",
+   "performers": [
+    "silversun-pickups"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:the-wailers-ft-julian-marley",
+   "name": "The Wailers Ft. Julian Marley",
+   "key": "the-wailers-ft-julian-marley",
+   "performers": [
+    "the-wailers-ft-julian-marley"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:iration",
+   "name": "Iration",
+   "key": "iration",
+   "performers": [
+    "iration"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:greensky-bluegrass",
+   "name": "Greensky Bluegrass",
+   "key": "greensky-bluegrass",
+   "performers": [
+    "greensky-bluegrass"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:grandson",
+   "name": "Grandson",
+   "key": "grandson",
+   "performers": [
+    "grandson"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:amos-lee",
+   "name": "Amos Lee",
+   "key": "amos-lee",
+   "performers": [
+    "amos-lee"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:tai-verdes",
+   "name": "Tai Verdes",
+   "key": "tai-verdes",
+   "performers": [
+    "tai-verdes"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:misterwives",
+   "name": "Misterwives",
+   "key": "misterwives",
+   "performers": [
+    "misterwives"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:marcus-king",
+   "name": "Marcus King",
+   "key": "marcus-king",
+   "performers": [
+    "marcus-king"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:fletcher",
+   "name": "Fletcher",
+   "key": "fletcher",
+   "performers": [
+    "fletcher"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:bahamas",
+   "name": "Bahamas",
+   "key": "bahamas",
+   "performers": [
+    "bahamas"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:noah-kahan",
+   "name": "Noah Kahan",
+   "key": "noah-kahan",
+   "performers": [
+    "noah-kahan"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:marc-e-bassy",
+   "name": "Marc E. Bassy",
+   "key": "marc-e-bassy",
+   "performers": [
+    "marc-e-bassy"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:fantastic-negrito",
+   "name": "Fantastic Negrito",
+   "key": "fantastic-negrito",
+   "performers": [
+    "fantastic-negrito"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:drew-holcomb-and-the-neighbors",
+   "name": "Drew Holcomb & The Neighbors",
+   "key": "drew-holcomb-and-the-neighbors",
+   "performers": [
+    "drew-holcomb-and-the-neighbors"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:skip-marley",
+   "name": "Skip Marley",
+   "key": "skip-marley",
+   "performers": [
+    "skip-marley"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:kikagaku-moyo",
+   "name": "Kikagaku Moyo",
+   "key": "kikagaku-moyo",
+   "performers": [
+    "kikagaku-moyo"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:royal-and-the-serpent",
+   "name": "Royal & The Serpent",
+   "key": "royal-and-the-serpent",
+   "performers": [
+    "royal-and-the-serpent"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:aly-and-aj",
+   "name": "Aly & AJ",
+   "key": "aly-and-aj",
+   "performers": [
+    "aly-and-aj"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:justus-bennetts",
+   "name": "Justus Bennetts",
+   "key": "justus-bennetts",
+   "performers": [
+    "justus-bennetts"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:wild-rivers",
+   "name": "Wild Rivers",
+   "key": "wild-rivers",
+   "performers": [
+    "wild-rivers"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:kinky",
+   "name": "Kinky",
+   "key": "kinky",
+   "performers": [
+    "kinky"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:tessa-violet",
+   "name": "Tessa Violet",
+   "key": "tessa-violet",
+   "performers": [
+    "tessa-violet"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:dorothy",
+   "name": "Dorothy",
+   "key": "dorothy",
+   "performers": [
+    "dorothy"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:foy-vance",
+   "name": "Foy Vance",
+   "key": "foy-vance",
+   "performers": [
+    "foy-vance"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:the-brothers-comatose",
+   "name": "The Brothers Comatose",
+   "key": "the-brothers-comatose",
+   "performers": [
+    "the-brothers-comatose"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:jordy",
+   "name": "Jordy",
+   "key": "jordy",
+   "performers": [
+    "jordy"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:blu-detiger",
+   "name": "Blu DeTiger",
+   "key": "blu-detiger",
+   "performers": [
+    "blu-detiger"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:jake-wesley-rogers",
+   "name": "Jake Wesley Rogers",
+   "key": "jake-wesley-rogers",
+   "performers": [
+    "jake-wesley-rogers"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:delta-goodrem",
+   "name": "Delta Goodrem",
+   "key": "delta-goodrem",
+   "performers": [
+    "delta-goodrem"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:the-happy-fits",
+   "name": "The Happy Fits",
+   "key": "the-happy-fits",
+   "performers": [
+    "the-happy-fits"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:djo",
+   "name": "DJO",
+   "key": "djo",
+   "performers": [
+    "djo"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:ana-tijoux",
+   "name": "Ana Tijoux",
+   "key": "ana-tijoux",
+   "performers": [
+    "ana-tijoux"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:allison-ponthier",
+   "name": "Allison Ponthier",
+   "key": "allison-ponthier",
+   "performers": [
+    "allison-ponthier"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:hot-milk",
+   "name": "Hot Milk",
+   "key": "hot-milk",
+   "performers": [
+    "hot-milk"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:diamante-electrico",
+   "name": "Diamante Eléctrico",
+   "key": "diamante-electrico",
+   "performers": [
+    "diamante-electrico"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:de-wayne",
+   "name": "De’Wayne",
+   "key": "de-wayne",
+   "performers": [
+    "de-wayne"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:madame-gandhi",
+   "name": "Madame Gandhi",
+   "key": "madame-gandhi",
+   "performers": [
+    "madame-gandhi"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:liily",
+   "name": "Liily",
+   "key": "liily",
+   "performers": [
+    "liily"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:the-suffers",
+   "name": "The Suffers",
+   "key": "the-suffers",
+   "performers": [
+    "the-suffers"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:motherfolk",
+   "name": "Motherfolk",
+   "key": "motherfolk",
+   "performers": [
+    "motherfolk"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:eliza-and-the-delusionals",
+   "name": "Eliza & The Delusionals",
+   "key": "eliza-and-the-delusionals",
+   "performers": [
+    "eliza-and-the-delusionals"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:william-prince",
+   "name": "William Prince",
+   "key": "william-prince",
+   "performers": [
+    "william-prince"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:james-torme",
+   "name": "James Tormé",
+   "key": "james-torme",
+   "performers": [
+    "james-torme"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:taipei-houston",
+   "name": "Taipei Houston",
+   "key": "taipei-houston",
+   "performers": [
+    "taipei-houston"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:bastardane",
+   "name": "Bastardane",
+   "key": "bastardane",
+   "performers": [
+    "bastardane"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:ottto",
+   "name": "OTTTO",
+   "key": "ottto",
+   "performers": [
+    "ottto"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:niko-rubio",
+   "name": "Niko Rubio",
+   "key": "niko-rubio",
+   "performers": [
+    "niko-rubio"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:peter-collins",
+   "name": "Peter Collins",
+   "key": "peter-collins",
+   "performers": [
+    "peter-collins"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:jharrel-jerome",
+   "name": "Jharrel Jerome",
+   "key": "jharrel-jerome",
+   "performers": [
+    "jharrel-jerome"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:ron-artis-ii-and-the-truth",
+   "name": "Ron Artis II & The Truth",
+   "key": "ron-artis-ii-and-the-truth",
+   "performers": [
+    "ron-artis-ii-and-the-truth"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:moonalice",
+   "name": "Moonalice",
+   "key": "moonalice",
+   "performers": [
+    "moonalice"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:the-alive",
+   "name": "The Alive",
+   "key": "the-alive",
+   "performers": [
+    "the-alive"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:jaleh",
+   "name": "Jaleh",
+   "key": "jaleh",
+   "performers": [
+    "jaleh"
+   ],
+   "appearances": [
+    {
+     "day": 3
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:kosha-dillz",
+   "name": "Kosha Dillz",
+   "key": "kosha-dillz",
+   "performers": [
+    "kosha-dillz"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:great-northern",
+   "name": "Great Northern",
+   "key": "great-northern",
+   "performers": [
+    "great-northern"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:mama-said",
+   "name": "Mama Said",
+   "key": "mama-said",
+   "performers": [
+    "mama-said"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:chelsea-effect",
+   "name": "Chelsea Effect",
+   "key": "chelsea-effect",
+   "performers": [
+    "chelsea-effect"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:the-silverado-pickups",
+   "name": "The Silverado Pickups",
+   "key": "the-silverado-pickups",
+   "performers": [
+    "the-silverado-pickups"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "bottlerock-2022:napa-valley-youth-symphony",
+   "name": "Napa Valley Youth Symphony",
+   "key": "napa-valley-youth-symphony",
+   "performers": [
+    "napa-valley-youth-symphony"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "official_lineup_html",
+  "official": "https://www.bottlerocknapavalley.com/2022-artists/",
+  "captures": [
+   {
+    "page": "lineup",
+    "archivedUrl": "https://web.archive.org/web/20220611152424/https://www.bottlerocknapavalley.com/2022-artists/",
+    "captureTimestamp": "20220611152424",
+    "sha256": "c3bbe6c604cdce1ae2f4b492d5f6ea7b1c276987955e74a8fdcd6860d57b8a44"
+   }
+  ]
+ }
+}

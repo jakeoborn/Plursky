@@ -1,0 +1,80 @@
+{
+  "id": "lollapalooza-chile-2016",
+  "method": "official_lineup_html",
+  "format": "lollacl-por-dia",
+  "official": "http://www.lollapaloozacl.com/lineupdiario2016/",
+  "window": [
+    "20160101",
+    "20160320"
+  ],
+  "chosen": "20160312181051",
+  "archivedUrl": "https://web.archive.org/web/20160312181051/http://www.lollapaloozacl.com/lineupdiario2016/",
+  "sha256": "c4726952358baef0da1ce069a8120a4e7948f21a0c7f60ff35d6021317153126",
+  "title": "Lineup Por día | Lollapalooza Chile",
+  "relayedVia": "firecrawl",
+  "stageOrder": [
+    "Kidzapalooza"
+  ],
+  "creditsNotKept": [
+    {
+      "date": "2016-03-19",
+      "stage": "Kidzapalooza",
+      "artist": "MAGIA REAL",
+      "credit": "Jean Paul Olhaberry & Boris Krivoss"
+    }
+  ],
+  "considered": [
+    {
+      "captureTimestamp": "20160111075822",
+      "notFiled": "relay: capture 20160111075822 of http://www.lollapaloozacl.com/lineupdiario2016/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20160127223630",
+      "notFiled": "relay: capture 20160127223630 of http://www.lollapaloozacl.com/lineupdiario2016/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20160131133544",
+      "notFiled": "relay: capture 20160131133544 of http://www.lollapaloozacl.com/lineupdiario2016/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20160220053643",
+      "notFiled": "relay: capture 20160220053643 of http://www.lollapaloozacl.com/lineupdiario2016/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20160303010915",
+      "notFiled": "relay: capture 20160303010915 of http://www.lollapaloozacl.com/lineupdiario2016/ was not filed",
+      "valid": false,
+      "billings": 0
+    },
+    {
+      "captureTimestamp": "20160312181051",
+      "archivedUrl": "https://web.archive.org/web/20160312181051/http://www.lollapaloozacl.com/lineupdiario2016/",
+      "sha256": "c4726952358baef0da1ce069a8120a4e7948f21a0c7f60ff35d6021317153126",
+      "bytes": 109580,
+      "via": "firecrawl",
+      "title": "Lineup Por día | Lollapalooza Chile",
+      "valid": true,
+      "days": [
+        "Saturday 19 March 2016",
+        "Sunday 20 March 2016"
+      ],
+      "printed": {
+        "dates": "19 y 20 de Marzo, 2016 · Parque O'Higgins",
+        "lists": [
+          "Sábado 19",
+          "Domingo 20"
+        ]
+      },
+      "billings": 66
+    }
+  ],
+  "dropped": []
+}

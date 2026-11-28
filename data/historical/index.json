@@ -897,6 +897,99 @@
    }
   },
   {
+   "id": "bottlerock-2022",
+   "festivalId": "bottlerock",
+   "festivalName": "BottleRock Napa Valley",
+   "name": "BottleRock Napa Valley 2022",
+   "year": 2022,
+   "timezone": "America/Los_Angeles",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2022-05-27",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2022-05-28",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2022-05-29",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 77,
+    "sets": 0
+   }
+  },
+  {
+   "id": "bottlerock-2017",
+   "festivalId": "bottlerock",
+   "festivalName": "BottleRock Napa Valley",
+   "name": "BottleRock Napa Valley 2017",
+   "year": 2017,
+   "timezone": "America/Los_Angeles",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2017-05-26",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2017-05-27",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2017-05-28",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 85,
+    "sets": 0
+   }
+  },
+  {
+   "id": "bottlerock-2015",
+   "festivalId": "bottlerock",
+   "festivalName": "BottleRock Napa Valley",
+   "name": "BottleRock Napa Valley 2015",
+   "year": 2015,
+   "timezone": "America/Los_Angeles",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2015-05-29",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2015-05-30",
+     "label": "Saturday"
+    },
+    {
+     "day": 3,
+     "date": "2015-05-31",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 72,
+    "sets": 0
+   }
+  },
+  {
    "id": "coachella-2026",
    "festivalId": "coachella",
    "festivalName": "Coachella",
@@ -4199,6 +4292,58 @@
    }
   },
   {
+   "id": "lollapalooza-argentina-2016",
+   "festivalId": "lollapalooza-argentina",
+   "festivalName": "Lollapalooza Argentina",
+   "name": "Lollapalooza Argentina 2016",
+   "year": 2016,
+   "timezone": "America/Argentina/Buenos_Aires",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2016-03-18",
+     "label": "Friday"
+    },
+    {
+     "day": 2,
+     "date": "2016-03-19",
+     "label": "Saturday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 51,
+    "sets": 0
+   }
+  },
+  {
+   "id": "lollapalooza-argentina-2015",
+   "festivalId": "lollapalooza-argentina",
+   "festivalName": "Lollapalooza Argentina",
+   "name": "Lollapalooza Argentina 2015",
+   "year": 2015,
+   "timezone": "America/Argentina/Buenos_Aires",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2015-03-21",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2015-03-22",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 50,
+    "sets": 0
+   }
+  },
+  {
    "id": "lollapalooza-brasil-2019",
    "festivalId": "lollapalooza-brasil",
    "festivalName": "Lollapalooza Brasil",
@@ -4361,6 +4506,84 @@
    "counts": {
     "stages": 0,
     "artists": 46,
+    "sets": 0
+   }
+  },
+  {
+   "id": "lollapalooza-chile-2016",
+   "festivalId": "lollapalooza-chile",
+   "festivalName": "Lollapalooza Chile",
+   "name": "Lollapalooza Chile 2016",
+   "year": 2016,
+   "timezone": "America/Santiago",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2016-03-19",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2016-03-20",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 1,
+    "artists": 66,
+    "sets": 0
+   }
+  },
+  {
+   "id": "lollapalooza-chile-2015",
+   "festivalId": "lollapalooza-chile",
+   "festivalName": "Lollapalooza Chile",
+   "name": "Lollapalooza Chile 2015",
+   "year": 2015,
+   "timezone": "America/Santiago",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2015-03-14",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2015-03-15",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 75,
+    "sets": 0
+   }
+  },
+  {
+   "id": "lollapalooza-chile-2014",
+   "festivalId": "lollapalooza-chile",
+   "festivalName": "Lollapalooza Chile",
+   "name": "Lollapalooza Chile 2014",
+   "year": 2014,
+   "timezone": "America/Santiago",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2014-03-29",
+     "label": "Saturday"
+    },
+    {
+     "day": 2,
+     "date": "2014-03-30",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 0,
+    "artists": 66,
     "sets": 0
    }
   },
@@ -6945,6 +7168,78 @@
     "stages": 9,
     "artists": 214,
     "sets": 217
+   }
+  },
+  {
+   "id": "untold-2025",
+   "festivalId": "untold",
+   "festivalName": "Untold",
+   "name": "Untold 2025",
+   "year": 2025,
+   "timezone": "Europe/Bucharest",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2025-08-07",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2025-08-08",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2025-08-09",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2025-08-10",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 213,
+    "sets": 0
+   }
+  },
+  {
+   "id": "untold-2024",
+   "festivalId": "untold",
+   "festivalName": "Untold",
+   "name": "Untold 2024",
+   "year": 2024,
+   "timezone": "Europe/Bucharest",
+   "completeness": "lineup_only",
+   "days": [
+    {
+     "day": 1,
+     "date": "2024-08-08",
+     "label": "Thursday"
+    },
+    {
+     "day": 2,
+     "date": "2024-08-09",
+     "label": "Friday"
+    },
+    {
+     "day": 3,
+     "date": "2024-08-10",
+     "label": "Saturday"
+    },
+    {
+     "day": 4,
+     "date": "2024-08-11",
+     "label": "Sunday"
+    }
+   ],
+   "counts": {
+    "stages": 8,
+    "artists": 225,
+    "sets": 0
    }
   }
  ]

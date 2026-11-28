@@ -1,0 +1,1025 @@
+{
+ "id": "lollapalooza-chile-2015",
+ "festivalId": "lollapalooza-chile",
+ "name": "Lollapalooza Chile 2015",
+ "year": 2015,
+ "timezone": "America/Santiago",
+ "rolloverHour": 6,
+ "completeness": "lineup_only",
+ "days": [
+  {
+   "day": 1,
+   "date": "2015-03-14",
+   "label": "Saturday"
+  },
+  {
+   "day": 2,
+   "date": "2015-03-15",
+   "label": "Sunday"
+  }
+ ],
+ "stages": [],
+ "artists": [
+  {
+   "id": "lollapalooza-chile-2015:jack-white",
+   "name": "JACK WHITE",
+   "key": "jack-white",
+   "performers": [
+    "jack-white"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:skrillex",
+   "name": "SKRILLEX",
+   "key": "skrillex",
+   "performers": [
+    "skrillex"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:the-smashing-pumpkins",
+   "name": "THE SMASHING PUMPKINS",
+   "key": "the-smashing-pumpkins",
+   "performers": [
+    "the-smashing-pumpkins"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:foster-the-people",
+   "name": "FOSTER THE PEOPLE",
+   "key": "foster-the-people",
+   "performers": [
+    "foster-the-people"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:nicky-romero",
+   "name": "NICKY ROMERO",
+   "key": "nicky-romero",
+   "performers": [
+    "nicky-romero"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:the-kooks",
+   "name": "THE KOOKS",
+   "key": "the-kooks",
+   "performers": [
+    "the-kooks"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:st-vincent",
+   "name": "ST. VINCENT",
+   "key": "st-vincent",
+   "performers": [
+    "st-vincent"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:dillon-francis",
+   "name": "DILLON FRANCIS",
+   "key": "dillon-francis",
+   "performers": [
+    "dillon-francis"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:molotov",
+   "name": "MOLOTOV",
+   "key": "molotov",
+   "performers": [
+    "molotov"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:donavon-frankenreiter",
+   "name": "DONAVON FRANKENREITER",
+   "key": "donavon-frankenreiter",
+   "performers": [
+    "donavon-frankenreiter"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:carnage",
+   "name": "CARNAGE",
+   "key": "carnage",
+   "performers": [
+    "carnage"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:jorge-gonzalez",
+   "name": "JORGE GONZÁLEZ",
+   "key": "jorge-gonzalez",
+   "performers": [
+    "jorge-gonzalez"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:congreso",
+   "name": "CONGRESO",
+   "key": "congreso",
+   "performers": [
+    "congreso"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:familia-chilenita-del-funk",
+   "name": "FAMILIA CHILENITA DEL FUNK",
+   "key": "familia-chilenita-del-funk",
+   "performers": [
+    "familia-chilenita-del-funk"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:camila-moreno",
+   "name": "CAMILA MORENO",
+   "key": "camila-moreno",
+   "performers": [
+    "camila-moreno"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:fernando-milagros",
+   "name": "FERNANDO MILAGROS",
+   "key": "fernando-milagros",
+   "performers": [
+    "fernando-milagros"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:zaturno",
+   "name": "ZATURNO",
+   "key": "zaturno",
+   "performers": [
+    "zaturno"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:kill-the-noise",
+   "name": "KILL THE NOISE",
+   "key": "kill-the-noise",
+   "performers": [
+    "kill-the-noise"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:ritmo-machine-with-sen-dog-and-sick-jacken",
+   "name": "RITMO MACHINE WITH SEN DOG & SICK JACKEN",
+   "key": "ritmo-machine-with-sen-dog-and-sick-jacken",
+   "performers": [
+    "ritmo-machine-with-sen-dog-and-sick-jacken"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:matanza",
+   "name": "MATANZA",
+   "key": "matanza",
+   "performers": [
+    "matanza"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:lopez",
+   "name": "LÓPEZ",
+   "key": "lopez",
+   "performers": [
+    "lopez"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:maxi-trusso",
+   "name": "MAXI TRUSSO",
+   "key": "maxi-trusso",
+   "performers": [
+    "maxi-trusso"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:javiera-y-los-imposibles",
+   "name": "JAVIERA Y LOS IMPOSIBLES",
+   "key": "javiera-y-los-imposibles",
+   "performers": [
+    "javiera-y-los-imposibles"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:chinoy",
+   "name": "CHINOY",
+   "key": "chinoy",
+   "performers": [
+    "chinoy"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:hielo-negro",
+   "name": "HIELO NEGRO",
+   "key": "hielo-negro",
+   "performers": [
+    "hielo-negro"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:esteman",
+   "name": "ESTEMAN",
+   "key": "esteman",
+   "performers": [
+    "esteman"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:marineros",
+   "name": "MARINEROS",
+   "key": "marineros",
+   "performers": [
+    "marineros"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:mkrni",
+   "name": "MKRNI",
+   "key": "mkrni",
+   "performers": [
+    "mkrni"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:manu-da-banda",
+   "name": "MANU DA BANDA",
+   "key": "manu-da-banda",
+   "performers": [
+    "manu-da-banda"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:dj-caso",
+   "name": "DJ CASO",
+   "key": "dj-caso",
+   "performers": [
+    "dj-caso"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:abya-yala",
+   "name": "ABYA YALA",
+   "key": "abya-yala",
+   "performers": [
+    "abya-yala"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:rootz-hi-fi",
+   "name": "ROOTZ HI-FI",
+   "key": "rootz-hi-fi",
+   "performers": [
+    "rootz-hi-fi"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:oh-margot",
+   "name": "OH MARGOT",
+   "key": "oh-margot",
+   "performers": [
+    "oh-margot"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:la-ciscu-margaret",
+   "name": "LA CISCU MARGARET",
+   "key": "la-ciscu-margaret",
+   "performers": [
+    "la-ciscu-margaret"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:3x7-veintiuna",
+   "name": "3X7 VEINTIUNA",
+   "key": "3x7-veintiuna",
+   "performers": [
+    "3x7-veintiuna"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:the-helmets",
+   "name": "THE HELMETS",
+   "key": "the-helmets",
+   "performers": [
+    "the-helmets"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:power-peralta",
+   "name": "Power Peralta",
+   "key": "power-peralta",
+   "performers": [
+    "power-peralta"
+   ],
+   "appearances": [
+    {
+     "day": 1
+    },
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:kings-of-leon",
+   "name": "KINGS OF LEON",
+   "key": "kings-of-leon",
+   "performers": [
+    "kings-of-leon"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:calvin-harris",
+   "name": "CALVIN HARRIS",
+   "key": "calvin-harris",
+   "performers": [
+    "calvin-harris"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:robert-plant-and-the-sensational-space-shifters",
+   "name": "ROBERT PLANT AND THE SENSATIONAL SPACE SHIFTERS",
+   "key": "robert-plant-and-the-sensational-space-shifters",
+   "performers": [
+    "robert-plant-and-the-sensational-space-shifters"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:alt-j",
+   "name": "ALT-J",
+   "key": "alt-j",
+   "performers": [
+    "alt-j"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:kasabian",
+   "name": "KASABIAN",
+   "key": "kasabian",
+   "performers": [
+    "kasabian"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:interpol",
+   "name": "INTERPOL",
+   "key": "interpol",
+   "performers": [
+    "interpol"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:bastille",
+   "name": "BASTILLE",
+   "key": "bastille",
+   "performers": [
+    "bastille"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:major-lazer",
+   "name": "MAJOR LAZER",
+   "key": "major-lazer",
+   "performers": [
+    "major-lazer"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:damian-jr-gong-marley",
+   "name": "DAMIAN “JR. GONG” MARLEY",
+   "key": "damian-jr-gong-marley",
+   "performers": [
+    "damian-jr-gong-marley"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:cypress-hill",
+   "name": "CYPRESS HILL",
+   "key": "cypress-hill",
+   "performers": [
+    "cypress-hill"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:the-specials",
+   "name": "THE SPECIALS",
+   "key": "the-specials",
+   "performers": [
+    "the-specials"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:rudimental",
+   "name": "RUDIMENTAL",
+   "key": "rudimental",
+   "performers": [
+    "rudimental"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:sbtrkt",
+   "name": "SBTRKT",
+   "key": "sbtrkt",
+   "performers": [
+    "sbtrkt"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:nofx",
+   "name": "NOFX",
+   "key": "nofx",
+   "performers": [
+    "nofx"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:dj-snake",
+   "name": "DJ SNAKE",
+   "key": "dj-snake",
+   "performers": [
+    "dj-snake"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:lumumba",
+   "name": "LUMUMBA",
+   "key": "lumumba",
+   "performers": [
+    "lumumba"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:astro",
+   "name": "ASTRO",
+   "key": "astro",
+   "performers": [
+    "astro"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:chet-faker",
+   "name": "CHET FAKER",
+   "key": "chet-faker",
+   "performers": [
+    "chet-faker"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:quique-neira",
+   "name": "QUIQUE NEIRA",
+   "key": "quique-neira",
+   "performers": [
+    "quique-neira"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:pedropiedra",
+   "name": "PEDROPIEDRA",
+   "key": "pedropiedra",
+   "performers": [
+    "pedropiedra"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:rvsb",
+   "name": "RVSB",
+   "key": "rvsb",
+   "performers": [
+    "rvsb"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:tinariwen",
+   "name": "TINARIWEN",
+   "key": "tinariwen",
+   "performers": [
+    "tinariwen"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:mass-mental",
+   "name": "MASS MENTAL",
+   "key": "mass-mental",
+   "performers": [
+    "mass-mental"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:atomtm",
+   "name": "ATOM™",
+   "key": "atomtm",
+   "performers": [
+    "atomtm"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:yajaira",
+   "name": "YAJAIRA",
+   "key": "yajaira",
+   "performers": [
+    "yajaira"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:maria-magdalena",
+   "name": "MARÍA MAGDALENA",
+   "key": "maria-magdalena",
+   "performers": [
+    "maria-magdalena"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:portavoz",
+   "name": "PORTAVOZ",
+   "key": "portavoz",
+   "performers": [
+    "portavoz"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:farmacos",
+   "name": "FÁRMACOS",
+   "key": "farmacos",
+   "performers": [
+    "farmacos"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:afrik",
+   "name": "AFRIK",
+   "key": "afrik",
+   "performers": [
+    "afrik"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:coffeehouse",
+   "name": "COFFEEHOUSE",
+   "key": "coffeehouse",
+   "performers": [
+    "coffeehouse"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:miss-garrison",
+   "name": "MISS GARRISON",
+   "key": "miss-garrison",
+   "performers": [
+    "miss-garrison"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:edgar-van-de-wingard",
+   "name": "EDGAR VAN DE WINGARD",
+   "key": "edgar-van-de-wingard",
+   "performers": [
+    "edgar-van-de-wingard"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:dead-christine",
+   "name": "DEAD CHRISTINE",
+   "key": "dead-christine",
+   "performers": [
+    "dead-christine"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:lilits",
+   "name": "LILITS",
+   "key": "lilits",
+   "performers": [
+    "lilits"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:heavysaurios",
+   "name": "HEAVYSAURIOS",
+   "key": "heavysaurios",
+   "performers": [
+    "heavysaurios"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:las-aventuras-del-barco-volador",
+   "name": "LAS AVENTURAS DEL BARCO VOLADOR",
+   "key": "las-aventuras-del-barco-volador",
+   "performers": [
+    "las-aventuras-del-barco-volador"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:mosquitas-muertas",
+   "name": "MOSQUITAS MUERTAS",
+   "key": "mosquitas-muertas",
+   "performers": [
+    "mosquitas-muertas"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  },
+  {
+   "id": "lollapalooza-chile-2015:los-plumabits",
+   "name": "LOS PLUMABITS",
+   "key": "los-plumabits",
+   "performers": [
+    "los-plumabits"
+   ],
+   "appearances": [
+    {
+     "day": 2
+    }
+   ]
+  }
+ ],
+ "sets": [],
+ "provenance": {
+  "extractionMethod": "official_lineup_html",
+  "official": "http://www.lollapaloozacl.com/lineupdiario2015",
+  "captures": [
+   {
+    "page": "lineup",
+    "archivedUrl": "https://web.archive.org/web/20150214040606/http://www.lollapaloozacl.com/lineupdiario2015",
+    "captureTimestamp": "20150214040606",
+    "sha256": "ccff866756edd2b5377fd38f91c7581d288c38d78f93f72b385ade0c70b08771"
+   }
+  ]
+ },
+ "notes": [
+  {
+   "asOf": "2026-11-27",
+   "text": "The lineup as the festival's own page printed it on 14 February 2015, four weeks before the festival. Changes after that day are not shown.",
+   "source": "https://web.archive.org/web/20150214040606/http://www.lollapaloozacl.com/lineupdiario2015"
+  }
+ ]
+}
